@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Logo } from "./Logo";
 import { StartIntakeButton } from "./StartIntakeButton";
+import { CartIconButton } from "./CartIconButton";
 
 interface NavProps {
   variant?: "women" | "men" | "gate";
@@ -110,19 +111,14 @@ export function Nav({ variant = "gate" }: NavProps) {
           >
             Start Intake
           </StartIntakeButton>
-          <a
-            href="#/assessment"
-            className="nx-cta-ghost text-xs"
-            style={{ padding: "0.5rem 1rem" }}
-            data-testid="nav-sign-in"
-          >
-            Sign In
-          </a>
+          <CartIconButton />
         </div>
 
-        {/* Hamburger — mobile */}
+        {/* Mobile right: cart + hamburger */}
+        <div className="md:hidden flex items-center gap-1">
+          <CartIconButton />
         <button
-          className="md:hidden p-2 -mr-2 text-nx-fg"
+          className="p-2 -mr-2 text-nx-fg"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           data-testid="button-mobile-menu"
@@ -130,6 +126,7 @@ export function Nav({ variant = "gate" }: NavProps) {
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}

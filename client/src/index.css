@@ -426,4 +426,29 @@
       transition-duration: 0.01ms !important;
     }
   }
+
+  /* Pharmacy form inputs */
+  .nx-input {
+    width: 100%;
+    padding: 0.6875rem 0.875rem;
+    background: #fff;
+    border: 1px solid var(--nx-border);
+    border-radius: 0;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 0.9375rem;
+    color: #0A0A0A;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .nx-input::placeholder {
+    color: #9A9A95;
+  }
+  .nx-input:focus {
+    outline: none;
+    border-color: #0A0A0A;
+    box-shadow: 0 0 0 1px #0A0A0A;
+  }
+  .nx-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

@@ -6,6 +6,8 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { CartProvider } from "@/contexts/CartProvider";
+import { CartDrawer } from "@/components/CartDrawer";
 
 // Pages — eagerly loaded (fast/common paths)
 import Gate from "@/pages/Gate";
@@ -27,6 +29,10 @@ const GenderPeptides = lazy(() => import("@/pages/GenderPeptides"));
 const GenderPeptideDetail = lazy(() => import("@/pages/GenderPeptideDetail"));
 const GenderProtocols = lazy(() => import("@/pages/GenderProtocols"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
+const StackIndex = lazy(() => import("@/pages/StackIndex"));
+const StackDetail = lazy(() => import("@/pages/StackDetail"));
+const Cart = lazy(() => import("@/pages/Cart"));
+const Checkout = lazy(() => import("@/pages/Checkout"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
@@ -64,6 +70,16 @@ function AppRouter() {
           {() => <GenderProtocols gender="men" />}
         </Route>
 
+        {/* Stacks (pharmacy tier 2) */}
+        <Route path="/stacks" component={StackIndex} />
+        <Route path="/stacks/:slug">
+          {(params) => <StackDetail slug={(params as { slug: string }).slug} />}
+        </Route>
+
+        {/* Cart + Checkout (pharmacy flow) */}
+        <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
+
         {/* Shared informational */}
         <Route path="/how-it-works" component={HowItWorks} />
         <Route path="/science" component={Science} />
@@ -94,10 +110,13 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router hook={useHashLocation}>
-          <AppRouter />
-        </Router>
+        <CartProvider>
+          <Toaster />
+          <Router hook={useHashLocation}>
+            <AppRouter />
+          </Router>
+          <CartDrawer />
+        </CartProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

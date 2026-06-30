@@ -45,3 +45,36 @@ export const contactSubmissions = sqliteTable("contact_submissions", {
 export const insertContactSchema = createInsertSchema(contactSubmissions).omit({ id: true, createdAt: true });
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contactSubmissions.$inferSelect;
+
+/* ──────────────────────────────────────────────────────────────
+   Checkout intake — order submission with health flags + cart payload
+   ────────────────────────────────────────────────────────────── */
+export const checkoutSubmissions = sqliteTable("checkout_submissions", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  email: text("email").notNull(),
+  name: text("name").notNull(),
+  age: integer("age").notNull(),
+  cartJson: text("cart_json").notNull(),
+  subtotal: real("subtotal").notNull(),
+  cardiacHistory: integer("cardiac_history", { mode: "boolean" }).notNull(),
+  diabetic: integer("diabetic", { mode: "boolean" }).notNull(),
+  hormonalRx: integer("hormonal_rx", { mode: "boolean" }).notNull(),
+  allergies: text("allergies"),
+  shippingAddress: text("shipping_address").notNull(),
+  city: text("city").notNull(),
+  state: text("state").notNull(),
+  zip: text("zip").notNull(),
+  createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
+});
+
+export const insertCheckoutSchema = createInsertSchema(checkoutSubmissions, {
+  email: z.string().email("Enter a valid email"),
+  name: z.string().min(2, "Enter your full name"),
+  age: z.coerce.number().int().min(18, "Must be 18+").max(110),
+  shippingAddress: z.string().min(4, "Enter your shipping address"),
+  city: z.string().min(1),
+  state: z.string().min(2).max(2, "Use 2-letter state code"),
+  zip: z.string().min(5).max(10),
+}).omit({ id: true, createdAt: true });
+export type InsertCheckout = z.infer<typeof insertCheckoutSchema>;
+export type Checkout = typeof checkoutSubmissions.$inferSelect;

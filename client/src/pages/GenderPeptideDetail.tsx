@@ -10,6 +10,8 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { peptides, CATEGORY_LABELS } from "@/data/peptides";
+import { getPrice, formatUSD } from "@/data/pricing";
+import { AddToCartButton } from "@/components/AddToCartButton";
 import { useSeo } from "@/lib/seo";
 
 interface GenderPeptideDetailProps {
@@ -114,9 +116,74 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                   </p>
                 </div>
 
+                {/* Price block */}
+                {(() => {
+                  const p = getPrice(slug);
+                  if (!p) return null;
+                  return (
+                    <div
+                      className="flex items-end justify-between p-5 mb-6"
+                      style={{ background: "#fff", border: "1px solid var(--nx-border)" }}
+                      data-testid={`pdp-price-block-${slug}`}
+                    >
+                      <div>
+                        <div
+                          style={{
+                            fontFamily: "'JetBrains Mono', monospace",
+                            fontSize: "10px",
+                            letterSpacing: "0.18em",
+                            textTransform: "uppercase",
+                            color: "var(--nx-fg-muted)",
+                            marginBottom: 4,
+                          }}
+                        >
+                          Monthly · vial
+                        </div>
+                        <div className="flex items-baseline gap-2">
+                          <span
+                            style={{
+                              fontFamily: "'Playfair Display', serif",
+                              fontSize: "2rem",
+                              fontWeight: 500,
+                              color: "var(--nx-fg)",
+                            }}
+                            data-testid={`pdp-price-${slug}`}
+                          >
+                            {formatUSD(p.monthlyPrice)}
+                          </span>
+                          {p.badge && (
+                            <span
+                              style={{
+                                fontFamily: "'JetBrains Mono', monospace",
+                                fontSize: "9px",
+                                letterSpacing: "0.16em",
+                                textTransform: "uppercase",
+                                color: "#8B5A2B",
+                              }}
+                            >
+                              · {p.badge}
+                            </span>
+                          )}
+                        </div>
+                        <div
+                          style={{
+                            fontFamily: "'Inter Tight', sans-serif",
+                            fontSize: "12px",
+                            color: "var(--nx-fg-graphite)",
+                            marginTop: 4,
+                          }}
+                        >
+                          {p.vialSpec} — {p.vialDuration}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 <div className="flex flex-wrap gap-3">
+                  <AddToCartButton slug={slug} type="peptide" variant="primary" />
                   <StartIntakeButton productSlug={slug} source={`${gender}-peptide-detail`} size="lg">
-                    START INTAKE →
+                    Start intake →
                   </StartIntakeButton>
                 </div>
               </Reveal>

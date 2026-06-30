@@ -5,6 +5,7 @@ import {
   insertWaitlistSchema,
   insertIntakeClickSchema,
   insertContactSchema,
+  insertCheckoutSchema,
 } from "@shared/schema";
 
 export function registerRoutes(httpServer: Server, app: Express) {
@@ -33,5 +34,13 @@ export function registerRoutes(httpServer: Server, app: Express) {
     if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
     const entry = await storage.submitContact(parsed.data);
     res.json({ ok: true, id: entry.id });
+  });
+
+  // Checkout intake — order submission with health flags + cart
+  app.post("/api/checkout", async (req, res) => {
+    const parsed = insertCheckoutSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ error: parsed.error.flatten() });
+    const entry = await storage.submitCheckout(parsed.data);
+    res.json({ ok: true, id: entry.id, message: "Submitted for physician review" });
   });
 }
