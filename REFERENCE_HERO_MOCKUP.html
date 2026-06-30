@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nexphoria — Home B2 · Vial Row (Artistic + Editorial)</title>
+<link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700,800&f[]=gambarino@400&f[]=jetbrains-mono@400,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0a0a0a;color:#fffff3;font-family:'Switzer',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+.mono{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9c9c93}
+img{display:block;max-width:100%}
+
+/* ─── NAV (sits over hero, not blended so it stays legible above black top) ─── */
+.nav{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:28px 56px;color:#fffff3}
+.logo{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.04em;font-size:15px}
+.logo-mark{width:26px;height:26px;background:#c6f184;border-radius:50%;position:relative}
+.logo-mark::after{content:"";position:absolute;inset:6px;background:#0a0a0a;border-radius:50%}
+.nav ul{display:flex;gap:36px;list-style:none;font-size:14px;color:#fffff3}
+.cta-nav{background:#c6f184;color:#0a0a0a;padding:11px 22px;border-radius:999px;font-weight:600;font-size:13px;text-decoration:none}
+
+/* ─── HERO — vial row is the foundation, type frames it ─── */
+.hero{position:relative;min-height:880px;background:#000;overflow:hidden;display:flex;flex-direction:column}
+
+/* Top zone: eyebrow + coordinate marker */
+.hero-top{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:flex-start;padding:112px 56px 0}
+.hero-eyebrow{color:#c6f184}
+.hero-eyebrow::before{content:"●";margin-right:10px;color:#c6f184}
+.hero-coord{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9c9c93;text-align:right;line-height:1.7}
+
+/* Display headline sits above the vial row, tightened to keep vials in-frame */
+.hero-headline{position:relative;z-index:3;padding:32px 56px 0}
+.hero h1{font-size:clamp(56px,7.4vw,108px);line-height:.92;letter-spacing:-.04em;font-weight:600;max-width:100%}
+.hero h1 .line1{display:block}
+.hero h1 .line2{display:block;color:#c6f184;font-family:'Gambarino',serif;font-style:italic;font-weight:400;letter-spacing:-.022em}
+
+/* The vial lineup — anchored at hero bottom, framed by gradient so labels stay readable */
+.hero-vials{position:relative;margin-top:auto;width:100%;height:540px;overflow:hidden}
+.hero-vials img{width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block}
+.hero-vials::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 14%,transparent 42%,rgba(0,0,0,.65) 100%);pointer-events:none;z-index:2}
+.hero-vials::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45) 0%,transparent 12%,transparent 88%,rgba(0,0,0,.45) 100%);pointer-events:none;z-index:2}
+
+/* Footer band — sits OVER the bottom of the vial image, on the dark obsidian surface */
+.hero-foot{position:absolute;left:0;right:0;bottom:0;z-index:4;display:grid;grid-template-columns:1.1fr auto 1fr;gap:32px;align-items:end;padding:32px 56px 40px;border-top:1px solid rgba(255,255,243,.18);background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 40%,#000 100%)}
+.hero-foot .left{font-size:15px;color:#cdcdc6;max-width:380px;line-height:1.55}
+.hero-foot .ctas{display:flex;gap:12px;justify-content:center}
+.hero-foot .right{text-align:right;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9c9c93;line-height:1.7}
+.btn-primary{background:#c6f184;color:#0a0a0a;padding:18px 30px;font-weight:600;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;letter-spacing:-.005em;text-transform:uppercase}
+.btn-primary:hover{background:#d4f896}
+.btn-secondary{background:transparent;color:#fffff3;padding:18px 30px;border:1px solid rgba(255,255,243,.3);font-weight:500;font-size:14px;text-decoration:none;letter-spacing:-.005em;text-transform:uppercase}
+
+/* ─── INDEX STRIP ─── */
+.index-strip{display:grid;grid-template-columns:repeat(4,1fr);padding:40px 56px;background:#000;border-bottom:1px solid rgba(255,255,243,.12);gap:48px}
+.index-strip .item{display:flex;flex-direction:column;gap:6px}
+.index-strip .num{font-family:'Gambarino',serif;font-style:italic;font-size:26px;color:#c6f184}
+.index-strip .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9c9c93}
+
+/* ─── HOW IT WORKS ─── */
+.section{padding:140px 56px;position:relative}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:80px;align-items:end}
+.section-head .left .mono{margin-bottom:20px;color:#c6f184}
+.section-head .left h2{font-size:88px;line-height:.95;letter-spacing:-.035em;font-weight:600}
+.section-head .left h2 .italic{font-family:'Gambarino',serif;font-style:italic;font-weight:400;color:#c6f184}
+.section-head .right p{font-size:17px;color:#a8a8a0;line-height:1.65}
+.section-head .right .mono{margin-top:24px;color:#7c7c73}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,243,.15)}
+.step{padding:40px 32px 40px 0;border-right:1px solid rgba(255,255,243,.06)}
+.step:last-child{border-right:none}
+.step .n{font-family:'Gambarino',serif;font-style:italic;font-size:48px;color:#c6f184;line-height:1;margin-bottom:24px;display:block}
+.step h3{font-size:18px;font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.step p{font-size:14px;color:#9c9c93;line-height:1.6}
+
+/* ─── STACKS ─── */
+.stacks-section{background:#070707;padding:140px 56px;border-top:1px solid rgba(255,255,243,.06);position:relative}
+.stacks-head{margin-bottom:60px}
+.stacks-head .mono{margin-bottom:20px;color:#c6f184}
+.stacks-head h2{font-size:88px;line-height:.95;letter-spacing:-.035em;font-weight:600}
+.stacks-head h2 .italic{font-family:'Gambarino',serif;font-style:italic;font-weight:400;color:#c6f184}
+.stacks{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.stack{background:linear-gradient(180deg,#101010 0%,#0a0a0a 100%);border:1px solid rgba(255,255,243,.1);padding:56px 48px;position:relative;overflow:hidden}
+.stack::before{content:"";position:absolute;top:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(198,241,132,.08) 0%,transparent 70%);pointer-events:none}
+.stack .mono{margin-bottom:32px;color:#c6f184}
+.stack .num-tag{position:absolute;top:32px;right:48px;font-family:'Gambarino',serif;font-style:italic;font-size:24px;color:#c6f184;opacity:.5}
+.stack h3{font-size:64px;font-weight:600;letter-spacing:-.035em;margin-bottom:20px;line-height:.95}
+.stack h3 .italic{font-family:'Gambarino',serif;font-style:italic;font-weight:400;color:#c6f184}
+.stack .desc{font-size:16px;color:#a8a8a0;margin-bottom:36px;line-height:1.55;max-width:420px}
+.stack .peps{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.stack .pep{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;background:rgba(198,241,132,.08);color:#c6f184;border:1px solid rgba(198,241,132,.25)}
+.stack-foot{display:flex;justify-content:space-between;align-items:end;padding-top:28px;border-top:1px solid rgba(255,255,243,.12)}
+.stack-foot .price{font-family:'Gambarino',serif;font-style:italic;font-size:40px;color:#fffff3}
+.stack-foot .price .unit{font-size:14px;color:#9c9c93;font-style:normal;font-family:'Switzer';margin-left:4px}
+.stack-foot a{color:#c6f184;text-decoration:none;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.08em}
+
+/* ─── OUTCOMES ─── */
+.outcomes-section{padding:140px 56px;position:relative}
+.outcomes-head{margin-bottom:80px}
+.outcomes-head .mono{margin-bottom:20px;color:#c6f184}
+.outcomes-head h2{font-size:88px;line-height:.95;letter-spacing:-.035em;font-weight:600;max-width:1200px}
+.outcomes-head h2 .italic{font-family:'Gambarino',serif;font-style:italic;font-weight:400;color:#c6f184}
+.outcomes-head .sub{font-size:18px;color:#a8a8a0;margin-top:28px;max-width:620px;line-height:1.6}
+.outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,243,.18);border-bottom:1px solid rgba(255,255,243,.18)}
+.outcome{padding:48px 36px 48px 0;border-right:1px solid rgba(255,255,243,.06)}
+.outcome:last-child{border-right:none}
+.outcome .big{font-size:96px;font-weight:600;letter-spacing:-.04em;line-height:.95;color:#fffff3;margin-bottom:16px;font-family:'Switzer'}
+.outcome .big .unit{font-size:24px;color:#c6f184;margin-left:2px;font-weight:400;font-family:'Gambarino';font-style:italic}
+.outcome .lbl{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9c9c93;margin-bottom:12px}
+.outcome p{font-size:14px;color:#9c9c93;line-height:1.55}
+
+/* ─── CLOSING ─── */
+.closing{padding:180px 56px;text-align:center;background:#000;position:relative;overflow:hidden}
+.closing::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(198,241,132,.06) 0%,transparent 60%)}
+.closing > *{position:relative;z-index:2}
+.closing .mono{margin-bottom:32px;color:#c6f184}
+.closing h2{font-size:clamp(72px,9vw,128px);line-height:.92;letter-spacing:-.04em;font-weight:600;max-width:1200px;margin:0 auto 48px}
+.closing h2 .italic{font-family:'Gambarino',serif;font-style:italic;font-weight:400;color:#c6f184}
+.closing .ctas{display:flex;justify-content:center;gap:14px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="logo"><div class="logo-mark"></div>NEXPHORIA</div>
+  <ul><li>Protocols</li><li>Peptides</li><li>Physicians</li><li>Lab Testing</li><li>Pricing</li></ul>
+  <a href="#" class="cta-nav">Get started ↗</a>
+</nav>
+
+<!-- HERO — vial row anchored at bottom, type above -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="mono hero-eyebrow">A New Standard for Peptide Therapy</div>
+    <div class="hero-coord">N · 40.7128°<br>W · 74.0060°<br>2026 · ED.04</div>
+  </div>
+
+  <div class="hero-headline">
+    <h1>
+      <span class="line1">Science you can feel.</span>
+      <span class="line2">Results you can measure.</span>
+    </h1>
+  </div>
+
+  <div class="hero-vials">
+    <img src="hero-vial-lineup-v2.jpg" alt="Nexphoria vial lineup — BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, PT-141">
+  </div>
+
+  <div class="hero-foot">
+    <div class="left">Prescribed peptide protocols. Compounded in U.S. 503A pharmacies. Reviewed by board-certified MDs. Quarterly labs.</div>
+    <div class="ctas">
+      <a href="#" class="btn-primary">Begin →</a>
+      <a href="#" class="btn-secondary">Browse</a>
+    </div>
+    <div class="right">EST. 2026<br>MIAMI · NEW YORK<br>FDA-NOTICED</div>
+  </div>
+</section>
+
+<!-- INDEX STRIP -->
+<div class="index-strip">
+  <div class="item"><span class="num">14</span><span class="lbl">Peptides in formulary</span></div>
+  <div class="item"><span class="num">12</span><span class="lbl">503A pharmacy partners</span></div>
+  <div class="item"><span class="num">04</span><span class="lbl">Physicians on staff</span></div>
+  <div class="item"><span class="num">96%</span><span class="lbl">Quarterly lab adherence</span></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-head">
+    <div class="left">
+      <div class="mono">How it works · 04 Acts</div>
+      <h2>A clinical <span class="italic">act,</span><br>not a checkout.</h2>
+    </div>
+    <div class="right">
+      <p>Every Nexphoria protocol begins with an anonymous intake and ends with measured outcomes. In between: a physician reviews your case, a U.S. 503A pharmacy compounds your prescription, and quarterly labs confirm what you feel.</p>
+      <div class="mono">— THE METHOD</div>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="n">i.</span><h3>Assess</h3><p>Anonymous 4-minute intake matched to your goals and medical history.</p></div>
+    <div class="step"><span class="n">ii.</span><h3>Review</h3><p>Board-certified MD reviews your case within 24 hours.</p></div>
+    <div class="step"><span class="n">iii.</span><h3>Ship</h3><p>Compounded in a U.S. 503A pharmacy. Cold-chain to your door.</p></div>
+    <div class="step"><span class="n">iv.</span><h3>Measure</h3><p>Quarterly labs. Dose titrated by your MD based on data.</p></div>
+  </div>
+</section>
+
+<!-- STACKS -->
+<section class="stacks-section">
+  <div class="stacks-head">
+    <div class="mono">Featured Protocols · 02</div>
+    <h2>Two flagship <span class="italic">stacks.</span></h2>
+  </div>
+  <div class="stacks">
+    <div class="stack">
+      <div class="num-tag">i.</div>
+      <div class="mono">Recovery & Performance</div>
+      <h3>Wolverine.</h3>
+      <p class="desc">Accelerated tissue repair, training capacity, and metabolic recovery. Built for athletes and high-output professionals.</p>
+      <div class="peps">
+        <span class="pep">BPC-157</span><span class="pep">TB-500</span><span class="pep">GHK-Cu</span><span class="pep">Ipamorelin</span>
+      </div>
+      <div class="stack-foot">
+        <span class="price">$262<span class="unit">/mo</span></span>
+        <a href="#">View protocol →</a>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="num-tag">ii.</div>
+      <div class="mono">Skin, Hair & Vitality</div>
+      <h3>Glow.</h3>
+      <p class="desc">Collagen production, hair density, and dermal radiance. Backed by quarterly labs and physician dose titration.</p>
+      <div class="peps">
+        <span class="pep">GHK-Cu</span><span class="pep">Epitalon</span><span class="pep">Thymosin α1</span><span class="pep">PT-141</span>
+      </div>
+      <div class="stack-foot">
+        <span class="price">$298<span class="unit">/mo</span></span>
+        <a href="#">View protocol →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes-section">
+  <div class="outcomes-head">
+    <div class="mono">Outcomes · Aggregated · 12 Months</div>
+    <h2>Measured, <span class="italic">not</span> marketed.</h2>
+    <p class="sub">Aggregated member outcomes from intake through month 12. Reviewed quarterly by our medical board.</p>
+  </div>
+  <div class="outcomes">
+    <div class="outcome"><div class="lbl">Recovery time</div><div class="big">–31<span class="unit">%</span></div><p>Reduction in self-reported soreness window by week 6.</p></div>
+    <div class="outcome"><div class="lbl">Sleep efficiency</div><div class="big">+18<span class="unit">%</span></div><p>Mean deep-sleep improvement measured by wearables.</p></div>
+    <div class="outcome"><div class="lbl">Skin / hair</div><div class="big">84<span class="unit">%</span></div><p>Members reporting visible change by month 4.</p></div>
+    <div class="outcome"><div class="lbl">Lab adherence</div><div class="big">96<span class="unit">%</span></div><p>Quarterly lab completion among active members.</p></div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="mono">Begin in four minutes.</div>
+  <h2>The molecules that <span class="italic">matter,</span><br>prescribed.</h2>
+  <div class="ctas">
+    <a href="#" class="btn-primary">Find your protocol →</a>
+    <a href="#" class="btn-secondary">Talk to a physician</a>
+  </div>
+</section>
+
+</body>
+</html>

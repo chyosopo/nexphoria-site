@@ -1,0 +1,429 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   NEXPHORIA — LOCKED DESIGN SYSTEM v4
+   Ink on warm cream. Editorial pharmacy authority.
+   Type: Playfair Display (serif/display) · Inter Tight (body) · JetBrains Mono (labels)
+   Accent: INK (#0A0A0A) — color comes from photography and data, not UI chrome
+   ───────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* ── Nexphoria brand tokens ── */
+    /* BACKGROUND — warm cream palette */
+    --nx-bg:           #FAF7F0;   /* warm cream — primary canvas */
+    --nx-bg-cream:     #F0EBE0;   /* deeper cream for alternating sections */
+    --nx-bg-dark:      #0A0A0A;  /* footer / dark sections */
+    --nx-fg:           #0A0A0A;  /* primary ink text */
+    --nx-fg-graphite:  #4A4A4A;  /* secondary body copy */
+    --nx-fg-muted:     #8A8A8A;  /* tertiary / captions */
+    --nx-border:       #DDD9CE;  /* warm hairline borders */
+    /* ACCENT: INK — the accent IS the typography weight + photography */
+    --nx-cobalt:       #0A0A0A;  /* ink accent — eyebrows, CTAs, underlines */
+    --nx-cobalt-hover: #2A2A2A;  /* slightly lighter ink on hover */
+    --nx-cobalt-soft:  #E8E4D8;  /* warm cream tint for soft bg fills */
+    /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
+    --nx-amber:        #8B5A2B;  /* burnt amber — very small accents only */
+    --nx-success:      #1D6F42;
+    --nx-warning:      #C2440E;
+
+    /* ── shadcn semantic mappings — LIGHT ── */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 0 0% 4%;              /* ink #0A0A0A */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 60 6% 97%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 60 6% 97%;
+    --muted-foreground: 0 0% 54%;
+    --accent: 224 79% 46%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 60 5% 89%;
+    --input: 60 5% 89%;
+    --ring: 224 79% 46%;
+    --radius: 0.5rem;
+
+    /* ── Fluid type scale ── */
+    --text-xs:   0.75rem;
+    --text-sm:   0.875rem;
+    --text-base: 1rem;
+    --text-lg:   1.125rem;
+    --text-xl:   1.25rem;
+    --text-2xl:  1.5rem;
+    --text-3xl:  1.875rem;
+    --text-4xl:  2.25rem;
+    --text-5xl:  3rem;
+    --text-hero: clamp(3rem, 5.5vw, 5rem);
+  }
+
+  * { @apply border-border; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-nx-fg;
+    font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Playfair Display', 'EB Garamond', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+}
+
+@layer components {
+  /* ── Container ── */
+  .nx-container {
+    @apply w-full mx-auto px-6 max-w-[1280px];
+  }
+
+  @media (min-width: 768px) {
+    .nx-container {
+      @apply px-12;
+    }
+  }
+
+  /* ── Section rhythm ── */
+  .nx-section {
+    @apply py-16 md:py-24;
+  }
+
+  /* ── Eyebrow label (mono caps cobalt) ── */
+  .nx-eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nx-cobalt);
+  }
+
+  /* ── Section heading ── */
+  .nx-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    color: var(--nx-fg);
+    line-height: 1.15;
+  }
+
+  /* ── Hero heading ── */
+  .nx-hero-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.75rem, 5.5vw, 5rem);
+    color: var(--nx-fg);
+    line-height: 1.1;
+  }
+
+  /* ── Sub-headline (Inter Tight graphite) ── */
+  .nx-subhead {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--nx-fg-graphite);
+    line-height: 1.6;
+  }
+
+  /* ── Body text ── */
+  .nx-body {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--nx-fg-graphite);
+    line-height: 1.6;
+  }
+
+  /* ── CTA button — cobalt pill ── */
+  .nx-cta-cobalt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--nx-cobalt);
+    color: #FFFFFF;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    border: 1px solid var(--nx-cobalt);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nx-cta-cobalt:hover {
+    background-color: var(--nx-cobalt-hover);
+    border-color: var(--nx-cobalt-hover);
+  }
+  .nx-cta-cobalt:active { transform: scale(0.98); }
+
+  /* ── CTA ghost pill ── */
+  .nx-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: var(--nx-fg);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    border: 1px solid var(--nx-border);
+    transition: border-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nx-cta-ghost:hover {
+    border-color: var(--nx-cobalt);
+    color: var(--nx-cobalt);
+  }
+
+  /* ── CTA ghost on dark bg ── */
+  .nx-cta-ghost-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nx-cta-ghost-dark:hover {
+    border-color: rgba(255,255,255,0.7);
+  }
+
+  /* StartIntakeButton compat — map old acid class to cobalt */
+  .nx-cta-acid {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background-color: var(--nx-cobalt);
+    color: #FFFFFF;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    border: 1px solid var(--nx-cobalt);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nx-cta-acid:hover {
+    background-color: var(--nx-cobalt-hover);
+    border-color: var(--nx-cobalt-hover);
+  }
+  .nx-cta-acid:active { transform: scale(0.98); }
+
+  .nx-cta-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: border-color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nx-cta-outline-dark:hover { border-color: rgba(255,255,255,0.8); }
+
+  /* ── Cobalt rotating word underline ── */
+  .nx-rotating-word {
+    font-style: italic;
+    color: var(--nx-cobalt);
+    text-decoration: underline;
+    text-decoration-color: var(--nx-cobalt);
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+  }
+
+  /* ── Trust strip pillar ── */
+  .nx-trust-pillar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1.5rem;
+    border-right: 1px solid var(--nx-border);
+  }
+  .nx-trust-pillar:last-child { border-right: none; }
+
+  /* ── Flagship card ── */
+  .nx-flagship-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    aspect-ratio: 3/4;
+    background-color: var(--nx-fg);
+  }
+  .nx-flagship-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .nx-flagship-card:hover img {
+    transform: scale(1.03);
+  }
+
+  /* ── KPI strip ── */
+  .nx-kpi-strip {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .nx-kpi-item .value {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--nx-fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .nx-kpi-item .label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nx-fg-graphite);
+  }
+
+  /* ── Hairline divider ── */
+  .nx-divider {
+    border: none;
+    border-top: 1px solid var(--nx-border);
+  }
+
+  /* ── Accordion (FAQ) ── */
+  .nx-accordion-item {
+    border-bottom: 1px solid var(--nx-border);
+  }
+  .nx-accordion-trigger {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--nx-fg);
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+  .nx-accordion-content {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 0.9375rem;
+    color: var(--nx-fg-graphite);
+    padding-bottom: 1.25rem;
+    line-height: 1.7;
+  }
+
+  /* ── Dark footer ── */
+  .nx-footer {
+    background-color: var(--nx-bg-dark);
+    color: #FFFFFF;
+  }
+
+  /* ── Biomarker chart card ── */
+  .nx-chart-card {
+    background: #FFFFFF;
+    border: 1px solid var(--nx-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  /* ── Doctor card ── */
+  .nx-doctor-card {
+    text-align: center;
+  }
+  .nx-doctor-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 0.75rem;
+    border: 2px solid var(--nx-border);
+  }
+
+  /* ── Reveal animation (scroll-triggered) ── */
+  .nx-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .nx-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Nav dropdown ── */
+  .nx-nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFFFFF;
+    border: 1px solid var(--nx-border);
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    z-index: 50;
+  }
+
+  /* ── Reduced motion overrides ── */
+  @media (prefers-reduced-motion: reduce) {
+    .nx-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .nx-flagship-card:hover img {
+      transform: none;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
