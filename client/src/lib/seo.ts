@@ -10,7 +10,7 @@
 import { useEffect } from "react";
 
 const SITE = "Nexphoria";
-const BASE_URL = "https://nexphoria.com";
+const BASE_URL = "https://nexphoria.pplx.app";
 const DEFAULT_OG = "/og/og-default.png";
 
 export interface SeoOptions {

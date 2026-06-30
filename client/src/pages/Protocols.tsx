@@ -7,7 +7,7 @@ import { stacks, getPeptidesForStack, type Stack } from "@/lib/protocols";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ArrowRight, Check } from "lucide-react";
 import { SectionEyebrow } from "@/components/Editorial";
-import heroGoals from "@/assets/hero-goals.jpg";
+import heroGoals from "@/assets/hero-goals.webp";
 import editorialKit from "@/assets/brand/editorial/editorial-kit-unbox.png";
 import handsKitSelect from "@/assets/brand/editorial/editorial-hands-kit-select.png";
 import handsSealed from "@/assets/brand/editorial/editorial-hands-sealed.png";

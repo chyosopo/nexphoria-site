@@ -2,9 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
-import editorialPharmacy from "@/assets/brand/editorial-pharmacy.jpg";
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.jpg";
+import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
+import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
+import lifestyleBloodworkDashboard from "@/assets/brand/lifestyle-bloodwork-dashboard-mood.webp";
+import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 
 const families = [
   {
@@ -159,6 +162,11 @@ function TOCSidebar({ activeId }: { activeId: string }) {
 }
 
 export default function Science() {
+  useSeo({
+    title: "The Science | Nexphoria",
+    description: "Peptide therapy demands literacy. The mechanisms, the evidence, the references.",
+    path: "/science",
+  });
   const [activeId, setActiveId] = useState(families[0].id);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -267,8 +275,8 @@ export default function Science() {
                 }}
               >
                 <img
-                  src={editorialBloodwork}
-                  alt="Precision in peptide medicine"
+                  src={lifestyleBloodworkDashboard}
+                  alt="Patient reviewing biomarker panel results on clinical dashboard"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   loading="eager"
                 />
@@ -730,8 +738,8 @@ export default function Science() {
               }}
             >
               <img
-                src={editorialPharmacy}
-                alt="Nexphoria 503A compounding pharmacy"
+                src={lifestyleProtocolBinder}
+                alt="Physician protocol binder with anatomical diagrams and peptide research notes"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 loading="lazy"
               />

@@ -4,7 +4,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { useSeo, orgJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
 import { stacks, getPeptidesForStack } from "@/lib/protocols";
-import vialHero from "@/assets/brand/vial-lineup-hero.jpg";
+import vialHero from "@/assets/brand/vial-lineup-hero.webp";
 import editorialHero from "@/assets/brand/editorial/editorial-hero-home.png";
 import editorialMorning from "@/assets/brand/editorial/editorial-lifestyle-morning.png";
 import editorialHandsKit from "@/assets/brand/editorial/editorial-hands-kit-select.png";

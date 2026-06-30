@@ -10,6 +10,7 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { peptides, CATEGORY_LABELS } from "@/data/peptides";
+import { useSeo } from "@/lib/seo";
 
 interface GenderPeptideDetailProps {
   gender: "women" | "men";
@@ -18,6 +19,13 @@ interface GenderPeptideDetailProps {
 
 export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetailProps) {
   const peptide = peptides.find((p) => p.slug === slug);
+  useSeo({
+    title: peptide ? `${peptide.name} | Nexphoria` : "Peptide Protocol | Nexphoria",
+    description: peptide
+      ? `${peptide.name} (${peptide.fullName}): ${peptide.summary}`
+      : "Compounded peptide protocol supervised by U.S. board-certified physicians.",
+    path: `/${gender}/peptides/${slug}`,
+  });
   if (!peptide) {
     return (
       <SiteLayout navVariant={gender} footerVariant={gender}>

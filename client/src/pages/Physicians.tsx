@@ -2,76 +2,125 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { physicians } from "@/data/physicians";
+import { useSeo } from "@/lib/seo";
+import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 
 export default function Physicians() {
+  useSeo({
+    title: "Our Physicians | Nexphoria",
+    description: "Board-certified U.S. physicians. Cleveland Clinic, Mayo, UCSF, Hopkins, Stanford.",
+    path: "/physicians",
+  });
   return (
     <SiteLayout navVariant="gate">
       {/* ── Hero ── */}
       <section
-        className="py-32 md:py-40"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
+        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)", overflow: "hidden" }}
       >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p
+        <div className="w-full flex flex-col md:flex-row" style={{ minHeight: "560px" }}>
+          {/* Left: copy */}
+          <div
+            className="flex items-center w-full md:w-[55%]"
+            style={{ padding: "5rem 3rem" }}
+          >
+            <Reveal>
+              <p
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "11px",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                  marginBottom: "1.25rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+                MEDICAL ADVISORY
+              </p>
+              <h1
+                style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                  color: "var(--nx-fg)",
+                  lineHeight: 1.05,
+                  marginBottom: "0.5rem",
+                  maxWidth: "560px",
+                }}
+              >
+                Peptide therapy is a clinical practice.
+              </h1>
+              <h1
+                style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontWeight: 500,
+                  fontStyle: "italic",
+                  fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                  color: "var(--nx-fg)",
+                  lineHeight: 1.05,
+                  marginBottom: "1.5rem",
+                  maxWidth: "560px",
+                }}
+              >
+                It demands a clinician.
+              </h1>
+              <p
+                style={{
+                  fontFamily: "'Inter Tight', sans-serif",
+                  fontSize: "clamp(1rem, 2vw, 1.0625rem)",
+                  color: "#4A4A4A",
+                  lineHeight: 1.65,
+                  maxWidth: "480px",
+                }}
+              >
+                Every Nexphoria protocol is reviewed and prescribed by a U.S.-licensed,
+                board-certified physician. Physicians on our panel are DEA-registered and
+                credentialed by ABIM, ABFM, or specialty board. They review your actual
+                laboratory panel — not a questionnaire substitute.
+              </p>
+            </Reveal>
+          </div>
+          {/* Right: physician consult image */}
+          <div
+            className="hidden md:block md:w-[45%] relative"
+            style={{ minHeight: "560px" }}
+          >
+            <div
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1.25rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
+                position: "absolute",
+                left: 0,
+                top: "10%",
+                bottom: "10%",
+                width: "1px",
+                backgroundColor: "var(--nx-border)",
+                zIndex: 2,
               }}
-            >
-              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              MEDICAL ADVISORY
-            </p>
-            <h1
+            />
+            <img
+              src={lifestylePhysicianConsult}
+              alt="Board-certified physician reviewing patient bloodwork at consultation desk"
+              loading="eager"
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 500,
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.05,
-                marginBottom: "0.5rem",
-                maxWidth: "820px",
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top",
               }}
-            >
-              Peptide therapy is a clinical practice.
-            </h1>
-            <h1
+            />
+            <div
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 500,
-                fontStyle: "italic",
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.05,
-                marginBottom: "1.5rem",
-                maxWidth: "820px",
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to right, rgba(250,247,240,0.3) 0%, rgba(0,0,0,0) 25%)",
               }}
-            >
-              It demands a clinician.
-            </h1>
-            <p
-              style={{
-                fontFamily: "'Inter Tight', sans-serif",
-                fontSize: "clamp(1rem, 2vw, 1.0625rem)",
-                color: "#4A4A4A",
-                lineHeight: 1.65,
-                maxWidth: "640px",
-              }}
-            >
-              Every Nexphoria protocol is reviewed and prescribed by a U.S.-licensed,
-              board-certified physician. Physicians on our panel are DEA-registered and
-              credentialed by ABIM, ABFM, or specialty board. They review your actual
-              laboratory panel — not a questionnaire substitute.
-            </p>
-          </Reveal>
+            />
+          </div>
         </div>
       </section>
 

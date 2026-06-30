@@ -1,6 +1,12 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
+import { useSeo } from "@/lib/seo";
 
 export default function Privacy() {
+  useSeo({
+    title: "Privacy Policy | Nexphoria",
+    description: "How we collect, use, and protect your personal and health information. HIPAA-compliant.",
+    path: "/legal/privacy",
+  });
   return (
     <LegalLayout title="Privacy Policy" lastUpdated="June 2026">
       <LegalSection title="1. Information We Collect">

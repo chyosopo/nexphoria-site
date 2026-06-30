@@ -1,6 +1,12 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
+import { useSeo } from "@/lib/seo";
 
 export default function Terms() {
+  useSeo({
+    title: "Terms of Service | Nexphoria",
+    description: "Service agreements, user eligibility, and platform terms for Nexphoria peptide therapy.",
+    path: "/legal/terms",
+  });
   return (
     <LegalLayout title="Terms of Service" lastUpdated="June 2026">
       <LegalSection title="1. Acceptance of Terms">

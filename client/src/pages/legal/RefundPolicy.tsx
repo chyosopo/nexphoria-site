@@ -1,6 +1,12 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
+import { useSeo } from "@/lib/seo";
 
 export default function RefundPolicy() {
+  useSeo({
+    title: "Refund Policy | Nexphoria",
+    description: "Cancellation, returns, and refund request procedures for Nexphoria subscriptions and compounded medications.",
+    path: "/legal/refund-policy",
+  });
   return (
     <LegalLayout title="Refund Policy" lastUpdated="June 2026">
       <LegalSection title="General Policy">

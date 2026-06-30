@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Reveal } from "@/components/Reveal";
-import outcomeScore from "@/assets/v2/outcome-score-card.png";
-import cycleTimeline from "@/assets/v2/cycle-timeline-chart.png";
+import outcomeScore from "@/assets/v2/outcome-score-card.webp";
+import cycleTimeline from "@/assets/v2/cycle-timeline-chart.webp";
 
 /**
  * DashboardMockup — Maximus-style outcome-score showcase.

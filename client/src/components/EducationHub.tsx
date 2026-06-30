@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { EducationCard } from "@/components/EducationCard";
 
 /* Editorial brand images */
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.jpg";
-import editorialPrescription from "@/assets/brand/editorial-prescription.jpg";
-import editorialProtocolKit from "@/assets/brand/editorial-protocol-kit.jpg";
-import editorialPharmacy from "@/assets/brand/editorial-pharmacy.jpg";
+import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
+import editorialPrescription from "@/assets/brand/editorial-prescription.webp";
+import editorialProtocolKit from "@/assets/brand/editorial-protocol-kit.webp";
+import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
 
 /* ─────────────────────────────────────────────────────────────
    EducationHub — Wave 5

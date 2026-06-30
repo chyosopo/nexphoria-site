@@ -31,18 +31,18 @@ import {
 import { useSeo, productJsonLd } from "@/lib/seo";
 
 /* Cinematic per-stack hero images */
-import heroWolverine from "@/assets/brand/protocol-hero-wolverine.png";
-import heroGlow from "@/assets/brand/protocol-hero-glow.png";
-import heroLongevity from "@/assets/brand/protocol-hero-longevity.png";
-import heroSleep from "@/assets/brand/protocol-hero-sleep.png";
-import heroLean from "@/assets/brand/protocol-hero-lean.png";
+import heroWolverine from "@/assets/brand/protocol-hero-wolverine.webp";
+import heroGlow from "@/assets/brand/protocol-hero-glow.webp";
+import heroLongevity from "@/assets/brand/protocol-hero-longevity.webp";
+import heroSleep from "@/assets/brand/protocol-hero-sleep.webp";
+import heroLean from "@/assets/brand/protocol-hero-lean.webp";
 
 /* Vial-cluster product PNGs */
-import vialWolverine from "@/assets/brand/stack-wolverine.png";
-import vialGlow from "@/assets/brand/stack-glow.png";
-import vialLongevity from "@/assets/brand/stack-longevity.png";
-import vialSleep from "@/assets/brand/stack-sleep.png";
-import vialLean from "@/assets/brand/stack-weightloss.png";
+import vialWolverine from "@/assets/brand/stack-wolverine.webp";
+import vialGlow from "@/assets/brand/stack-glow.webp";
+import vialLongevity from "@/assets/brand/stack-longevity.webp";
+import vialSleep from "@/assets/brand/stack-sleep.webp";
+import vialLean from "@/assets/brand/stack-weightloss.webp";
 
 const STACK_HEROES: Record<string, string> = {
   wolverine: heroWolverine,

@@ -1,6 +1,12 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
+import { useSeo } from "@/lib/seo";
 
 export default function TelehealthConsent() {
+  useSeo({
+    title: "Telehealth Consent | Nexphoria",
+    description: "Your consent to receive care via telehealth and off-label prescribing. State-specific requirements.",
+    path: "/legal/telehealth-consent",
+  });
   return (
     <LegalLayout title="Telehealth Consent" lastUpdated="June 2026">
       <LegalSection title="1. Telehealth Services">

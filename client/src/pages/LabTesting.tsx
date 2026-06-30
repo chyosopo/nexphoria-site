@@ -1,8 +1,11 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.jpg";
+import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
+import lifestyleLabVials from "@/assets/brand/lifestyle-lab-vials.webp";
+import lifestyleBloodworkDashboard from "@/assets/brand/lifestyle-bloodwork-dashboard-mood.webp";
 
 const panels = [
   { name: "Hormones", markers: 11, examples: ["Testosterone (total + free)", "Estradiol", "LH, FSH", "DHEA-S", "Progesterone", "Cortisol", "Prolactin", "SHBG", "IGF-1", "GH", "TSH"] },
@@ -68,6 +71,11 @@ const biomarkerCards = [
 ];
 
 export default function LabTesting() {
+  useSeo({
+    title: "Lab Testing | Nexphoria",
+    description: "38 biomarkers per draw. Quest Diagnostics. Every 90 days. Always included.",
+    path: "/lab-testing",
+  });
   return (
     <SiteLayout navVariant="gate">
       {/* ── Hero ── */}
@@ -233,8 +241,8 @@ export default function LabTesting() {
                 }}
               >
                 <img
-                  src={editorialBloodwork}
-                  alt="Quest Diagnostics laboratory blood draw"
+                  src={lifestyleLabVials}
+                  alt="Blood draw collection tubes arranged top-down for clinical panel review"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   loading="eager"
                 />
@@ -368,6 +376,34 @@ export default function LabTesting() {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* ── Bloodwork dashboard mood image ── */}
+      <section
+        className="relative w-full overflow-hidden"
+        style={{ height: "400px" }}
+        data-testid="labtesting-mood-strip"
+      >
+        <img
+          src={lifestyleBloodworkDashboard}
+          alt="Patient reviewing bloodwork results on digital dashboard, illustrating how Nexphoria presents lab data"
+          loading="lazy"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to bottom, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.35) 100%)",
+          }}
+        />
       </section>
 
       {/* ── Biomarker panel grid ── */}

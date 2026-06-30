@@ -12,7 +12,7 @@ import {
   type Peptide,
 } from "@/data/peptides";
 import { useSeo, orgJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
-import vialLineup from "@/assets/brand/vial-lineup-hero.jpg";
+import vialLineup from "@/assets/brand/vial-lineup-hero.webp";
 import handsMeasure from "@/assets/brand/editorial/editorial-hands-measure.png";
 import handsPipette from "@/assets/brand/editorial/editorial-hands-pipette.png";
 import { EditorialHands } from "@/components/EditorialHands";

@@ -3,11 +3,11 @@
    5 board-certified US physicians. Used by: /physicians, gender home pages.
    ────────────────────────────────────────────────────────────── */
 
-import drChen from "@/assets/doctors/dr-chen.jpg";
-import drPatel from "@/assets/doctors/dr-patel.jpg";
-import drReyes from "@/assets/doctors/dr-reyes.jpg";
-import drOkafor from "@/assets/doctors/dr-okafor.jpg";
-import drBennett from "@/assets/doctors/dr-bennett.jpg";
+import drChen from "@/assets/doctors/dr-chen.webp";
+import drPatel from "@/assets/doctors/dr-patel.webp";
+import drReyes from "@/assets/doctors/dr-reyes.webp";
+import drOkafor from "@/assets/doctors/dr-okafor.webp";
+import drBennett from "@/assets/doctors/dr-bennett.webp";
 
 export type Physician = {
   photo: string;

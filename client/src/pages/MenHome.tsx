@@ -19,10 +19,13 @@ import { CategoryTiles } from "@/components/CategoryTiles";
 import { EditorialSection } from "@/components/EditorialSection";
 import { BloodworkSection } from "@/components/BloodworkSection";
 import { peptides } from "@/data/peptides";
-import menHeroBg from "@/assets/brand/men-hero-bg.jpg";
-import menCardStrength from "@/assets/brand/men-card-strength.jpg";
-import menCardWeight from "@/assets/brand/men-card-weight.jpg";
-import menCardLongevity from "@/assets/brand/men-card-longevity.jpg";
+import menHeroBg from "@/assets/brand/men-hero-bg.webp";
+import menCardStrength from "@/assets/brand/men-card-strength.webp";
+import menCardWeight from "@/assets/brand/men-card-weight.webp";
+import menCardLongevity from "@/assets/brand/men-card-longevity.webp";
+import lifestyleManProtocol from "@/assets/brand/lifestyle-man-protocol.webp";
+import lifestyleProtocolCounter from "@/assets/brand/lifestyle-protocol-counter.webp";
+import { useSeo } from "@/lib/seo";
 
 const menWords = ["performance", "testosterone", "weight loss", "recovery", "longevity"];
 
@@ -57,6 +60,11 @@ const menCategoryTiles = [
 ];
 
 export default function MenHome() {
+  useSeo({
+    title: "For Him — Nexphoria Peptide Protocols",
+    description: "Strength, metabolic, longevity, cognitive. Lab-driven peptide protocols for men, supervised by U.S. board-certified physicians.",
+    path: "/men",
+  });
   const [wordIdx, setWordIdx] = useState(0);
 
   return (
@@ -75,6 +83,9 @@ export default function MenHome() {
 
       {/* ── 5. Flagship protocol cards — 600px tall, hover zoom ── */}
       <FlagshipCards />
+
+      {/* ── 5b. Editorial banner — protocol counter still life ── */}
+      <EditorialBannerMen />
 
       {/* ── 6. How It Works — 4 numbered steps, big numerals ── */}
       <HowItWorksSection />
@@ -120,6 +131,64 @@ export default function MenHome() {
 }
 
 /* ── Shared eyebrow component ────────────────────────────────── */
+/* ── 5b. Editorial lifestyle banner — men ──────────────── */
+function EditorialBannerMen() {
+  return (
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ height: "480px" }}
+      data-testid="men-editorial-banner"
+    >
+      <img
+        src={lifestyleProtocolCounter}
+        alt="Peptide compounding vials and syringe arranged on marble counter in clinical still life"
+        loading="lazy"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(10,10,10,0.50)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "2rem",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
+            color: "#FAF7F0",
+            lineHeight: 1.35,
+            letterSpacing: "-0.01em",
+            textAlign: "center",
+            maxWidth: "720px",
+          }}
+        >
+          "Compounded by U.S. 503A pharmacy. Cold-chain shipped overnight."
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function SectionEyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
     <div className="flex items-center gap-3 mb-5">
@@ -311,8 +380,8 @@ function HeroSection({
             }}
           />
           <img
-            src={menHeroBg}
-            alt="Man in athletic lifestyle setting"
+            src={lifestyleManProtocol}
+            alt="Man reading peptide protocol document at desk in natural light"
             style={{
               position: "absolute",
               inset: 0,

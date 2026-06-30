@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { Plus, Minus } from "lucide-react";
+import { useSeo } from "@/lib/seo";
 
 interface FAQItem {
   q: string;
@@ -189,6 +190,11 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
 }
 
 export default function FAQPage() {
+  useSeo({
+    title: "Frequently Asked Questions | Nexphoria",
+    description: "Safety. Legality. Pricing. Process. Side effects. Direct answers.",
+    path: "/faq",
+  });
   const [openItem, setOpenItem] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState(0);
 

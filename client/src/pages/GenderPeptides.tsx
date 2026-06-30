@@ -10,6 +10,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
+import { useSeo } from "@/lib/seo";
 
 // Gender affinity map — which categories are relevant per gender
 const womenCategories: PeptideCategory[] = ["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"];
@@ -20,6 +21,11 @@ interface GenderPeptidesProps {
 }
 
 export default function GenderPeptides({ gender }: GenderPeptidesProps) {
+  useSeo({
+    title: "Peptide Catalog | Nexphoria",
+    description: "Browse our complete catalog of compounded peptides. Each protocol is physician-reviewed and lab-driven.",
+    path: `/${gender}/peptides`,
+  });
   const relevantCategories = gender === "women" ? womenCategories : menCategories;
   const filteredPeptides = peptides.filter((p) => relevantCategories.includes(p.category));
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
 const contactColumns = [
   {
@@ -45,6 +46,11 @@ const reasons = [
 ];
 
 export default function Contact() {
+  useSeo({
+    title: "Contact | Nexphoria",
+    description: "We answer in 24 hours, Monday-Friday.",
+    path: "/contact",
+  });
   const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 

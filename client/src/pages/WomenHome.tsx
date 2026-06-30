@@ -19,10 +19,15 @@ import { CategoryTiles } from "@/components/CategoryTiles";
 import { EditorialSection } from "@/components/EditorialSection";
 import { BloodworkSection } from "@/components/BloodworkSection";
 import { peptides } from "@/data/peptides";
-import womenHeroBg from "@/assets/brand/women-hero-bg.jpg";
-import womenCardWeight from "@/assets/brand/women-card-weight.jpg";
-import womenCardSkin from "@/assets/brand/women-card-skin.jpg";
-import womenCardLongevity from "@/assets/brand/women-card-longevity.jpg";
+import womenHeroBg from "@/assets/brand/women-hero-bg.webp";
+import womenCardWeight from "@/assets/brand/women-card-weight.webp";
+import womenCardSkin from "@/assets/brand/women-card-skin.webp";
+import womenCardLongevity from "@/assets/brand/women-card-longevity.webp";
+import lifestyleMorningRoutine from "@/assets/brand/lifestyle-morning-routine.webp";
+import lifestyleWindowPortrait from "@/assets/brand/lifestyle-window-light-portrait.webp";
+import lifestyleCoupleKitchen from "@/assets/brand/lifestyle-couple-kitchen.webp";
+import lifestyleEveningProtocol from "@/assets/brand/lifestyle-evening-protocol.webp";
+import { useSeo } from "@/lib/seo";
 
 const womenWords = ["skin", "weight loss", "longevity", "hormones", "recovery"];
 
@@ -57,6 +62,11 @@ const womenCategoryTiles = [
 ];
 
 export default function WomenHome() {
+  useSeo({
+    title: "For Her — Nexphoria Peptide Protocols",
+    description: "Metabolic, skin, longevity, hormonal. Lab-driven peptide protocols for women, supervised by U.S. board-certified physicians.",
+    path: "/women",
+  });
   const [wordIdx, setWordIdx] = useState(0);
 
   return (
@@ -75,6 +85,9 @@ export default function WomenHome() {
 
       {/* ── 5. Flagship protocol cards — 600px tall, hover zoom ── */}
       <FlagshipCards />
+
+      {/* ── 5b. Editorial banner — lifestyle full-bleed ── */}
+      <EditorialBannerWomen />
 
       {/* ── 6. How It Works — 4 numbered steps, big numerals ── */}
       <HowItWorksSection />
@@ -106,12 +119,144 @@ export default function WomenHome() {
       {/* ── 13. FAQ — 12 questions, educational tone ── */}
       <FAQAccordion title="You have questions. We have answers." showCategories />
 
+      {/* ── 13b. Evening protocol atmospheric strip ── */}
+      <EveningProtocolStrip />
+
       {/* ── 14. Discord + eBook CTA ── */}
       <DiscordCTAStrip />
 
       {/* ── 15. Final CTA — full-bleed ink ── */}
       <FinalCTAStrip gender="women" />
     </SiteLayout>
+  );
+}
+
+/* ── 13b. Evening protocol atmospheric strip ────────────── */
+function EveningProtocolStrip() {
+  return (
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ height: "360px" }}
+      data-testid="women-evening-protocol-strip"
+    >
+      <img
+        src={lifestyleEveningProtocol}
+        alt="Woman preparing evening peptide protocol at home in warm ambient light"
+        loading="lazy"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to right, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.15) 60%)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          padding: "0 3rem",
+        }}
+      >
+        <div style={{ maxWidth: "480px" }}>
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "10px",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(250,247,240,0.6)",
+              marginBottom: "1rem",
+            }}
+          >
+            YOUR PROTOCOL
+          </p>
+          <p
+            style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 400,
+              fontSize: "clamp(1.375rem, 2.5vw, 2rem)",
+              color: "#FAF7F0",
+              lineHeight: 1.4,
+            }}
+          >
+            Consistent. Measured. Adjusted from your labs.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 5b. Editorial lifestyle banner — post FlagshipCards ────── */
+function EditorialBannerWomen() {
+  return (
+    <section
+      className="relative w-full overflow-hidden"
+      style={{ height: "480px" }}
+      data-testid="women-editorial-banner"
+    >
+      <img
+        src={lifestyleCoupleKitchen}
+        alt="Couple reviewing morning peptide protocol together in home kitchen"
+        loading="lazy"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
+      {/* Ink overlay 5% */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(10,10,10,0.52)",
+        }}
+      />
+      {/* Pull quote centered */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "2rem",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontStyle: "italic",
+            fontWeight: 400,
+            fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
+            color: "#FAF7F0",
+            lineHeight: 1.35,
+            letterSpacing: "-0.01em",
+            textAlign: "center",
+            maxWidth: "720px",
+          }}
+        >
+          "Built around lab values. Adjusted every 90 days."
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -307,8 +452,8 @@ function HeroSection({
             }}
           />
           <img
-            src={womenHeroBg}
-            alt="Woman in natural morning light"
+            src={lifestyleMorningRoutine}
+            alt="Woman examining peptide vial in window light during morning protocol"
             style={{
               position: "absolute",
               inset: 0,

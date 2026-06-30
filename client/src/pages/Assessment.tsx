@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { apiRequest } from "@/lib/queryClient";
+import { useSeo } from "@/lib/seo";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -335,6 +336,11 @@ function CheckboxRow({
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function Assessment() {
+  useSeo({
+    title: "Begin Assessment | Nexphoria",
+    description: "5-minute medical intake. Physician review in 24-48 hours.",
+    path: "/assessment",
+  });
   const [, navigate] = useLocation();
   const prefersReducedMotion = useReducedMotion();
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back

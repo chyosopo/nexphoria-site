@@ -1,6 +1,8 @@
 import { Reveal } from "./Reveal";
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.jpg";
-import editorialPrescription from "@/assets/brand/editorial-prescription.jpg";
+import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
+import editorialPrescription from "@/assets/brand/editorial-prescription.webp";
+import lifestyleWindowPortrait from "@/assets/brand/lifestyle-window-light-portrait.webp";
+import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 
 /**
  * EditorialSection — Maximus "Why Peptides" pattern.
@@ -20,8 +22,8 @@ const womenContent = {
   pullQuote: "Peptides don't replace what's working. They restore what stopped.",
   body2: `This is why physician supervision matters more, not less, with peptides. The dose-response relationship is nuanced. IGF-1 elevation from ipamorelin follows your natural pulsatile GH rhythm — get the timing wrong and you blunt the effect. Get the compounding wrong and you have nothing. This is why every Nexphoria protocol begins with a 65-marker blood panel: we are not guessing at your baseline. We are measuring it, then calibrating to it.`,
   body3: `The 503A pharmacy standard exists precisely because precision compounding cannot be achieved at industrial scale. Sterile preparation, batch-specific potency testing, cold-chain storage — these are not branding decisions. They are prerequisites. A peptide that has degraded in transit is not a peptide. It is an expensive saline injection.`,
-  image: editorialBloodwork,
-  imageAlt: "Clinical bloodwork analysis",
+  image: lifestyleWindowPortrait,
+  imageAlt: "Woman reviewing lab results in window light, illustrating the peptide protocol outcome",
   footnote: "Individual results vary. All protocols are prescribed by licensed US physicians and compounded by 503A pharmacies.",
 };
 
@@ -32,8 +34,8 @@ const menContent = {
   pullQuote: "The most effective interventions mimic biology rather than bypassing it.",
   body2: `Growth hormone secretagogues operate on the same principle. CJC-1295 and ipamorelin don't deliver synthetic HGH — they signal the pituitary to release your own. The result is a pulsatile pattern that mirrors how healthy twenty-five-year-old physiology works. IGF-1 rises. Lean mass responds. Recovery accelerates. And because you're not suppressing your axis, the benefit doesn't disappear when you stop the protocol.`,
   body3: `The data is granular because the measurement is granular. Every Nexphoria protocol begins with a 65-marker blood panel. We're tracking IGF-1, testosterone (total and free), LH, FSH, estradiol, SHBG, and twenty more hormonal and metabolic markers — because optimization without measurement is guesswork. Your quarterly reassessment panel is included. If your numbers don't move in the right direction, we adjust the protocol. That is what physician supervision looks like in practice.`,
-  image: editorialPrescription,
-  imageAlt: "Physician reviewing prescription protocol",
+  image: lifestyleProtocolBinder,
+  imageAlt: "Leather protocol binder with anatomical diagrams and peptide compounding notes on physician desk",
   footnote: "Individual results vary. All protocols are prescribed by licensed US physicians and compounded by 503A pharmacies.",
 };
 

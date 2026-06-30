@@ -1,12 +1,12 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
-import findYourFocusArt from "@/assets/brand/find-your-focus-art.jpg";
+import findYourFocusArt from "@/assets/brand/find-your-focus-art.webp";
 
 /**
  * FindYourFocusSection — THE editorial showstopper.
  * ────────────────────────────────────────────────
  * A cinematic full-bleed treatment of the real brand photograph
- * (`find-your-focus-art.jpg`, 1800×1113) — the half-blurred man behind glass
+ * (`find-your-focus-art.webp`, 1800×1113) — the half-blurred man behind glass
  * with the "Find your focus." typography. As the section enters the viewport
  * the image animates from 110% scale + 8px blur → 100% scale + 0 blur,
  * a scroll-driven "come into focus" reveal that literalizes the brand vision.

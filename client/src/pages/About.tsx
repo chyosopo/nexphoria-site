@@ -1,11 +1,18 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
-import editorialPharmacy from "@/assets/brand/editorial-pharmacy.jpg";
-import editorialPrescription from "@/assets/brand/editorial-prescription.jpg";
+import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
+import editorialPrescription from "@/assets/brand/editorial-prescription.webp";
+import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
 
 export default function About() {
+  useSeo({
+    title: "About | Nexphoria",
+    description: "Peptide therapy needs a pharmacy, not an influencer.",
+    path: "/about",
+  });
   return (
     <SiteLayout navVariant="gate">
       {/* ── Hero ── */}
@@ -165,8 +172,8 @@ export default function About() {
                 }}
               >
                 <img
-                  src={editorialPharmacy}
-                  alt="503A licensed compounding pharmacy"
+                  src={lifestylePharmacyShelf}
+                  alt="Licensed 503A compounding pharmacy shelf with precisely labeled peptide preparations"
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   loading="lazy"
                 />

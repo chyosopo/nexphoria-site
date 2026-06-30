@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
 const legalPages = [
   { label: "Terms of Service", href: "/legal/terms", desc: "Service agreements, user eligibility, and platform terms." },
@@ -10,6 +11,11 @@ const legalPages = [
 ];
 
 export default function LegalIndex() {
+  useSeo({
+    title: "Legal | Nexphoria",
+    description: "Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy for Nexphoria.",
+    path: "/legal",
+  });
   return (
     <SiteLayout navVariant="gate">
       <section className="py-20" style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>

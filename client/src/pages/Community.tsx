@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
 const clinicalTopics = [
   { category: "METABOLIC", title: "Tirzepatide at week 8 — before/after lab panel shared", activity: "43 responses · 2h ago" },
@@ -44,6 +45,11 @@ const programFeatures = [
 ];
 
 export default function Community() {
+  useSeo({
+    title: "Knowledge Community | Nexphoria",
+    description: "Monthly clinical roundtables. Patient outcomes. Educational webinars.",
+    path: "/community",
+  });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 

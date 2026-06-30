@@ -3,6 +3,7 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { Check, X } from "lucide-react";
+import { useSeo } from "@/lib/seo";
 
 const protocols = [
   {
@@ -85,6 +86,11 @@ const comparison = [
 ];
 
 export default function Pricing() {
+  useSeo({
+    title: "Pricing | Nexphoria",
+    description: "Transparent pricing. Everything included. No labs upsell.",
+    path: "/pricing",
+  });
   return (
     <SiteLayout navVariant="gate">
       {/* ── Hero ── */}

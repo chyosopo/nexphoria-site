@@ -6,6 +6,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 
 interface Protocol {
   slug: string;
@@ -129,6 +130,11 @@ interface GenderProtocolsProps {
 }
 
 export default function GenderProtocols({ gender }: GenderProtocolsProps) {
+  useSeo({
+    title: "Protocols | Nexphoria",
+    description: "Multi-peptide stacks designed for specific clinical outcomes.",
+    path: `/${gender}/protocols`,
+  });
   const protocols = gender === "women" ? womenProtocols : menProtocols;
   const eyebrow = gender === "women" ? "NEXPHORIA · FOR WOMEN" : "NEXPHORIA · FOR MEN";
   const heading = gender === "women" ? "Protocols for women." : "Protocols for men.";

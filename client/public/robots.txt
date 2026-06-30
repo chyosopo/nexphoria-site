@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://nexphoria.com/sitemap.xml
+Sitemap: https://nexphoria.pplx.app/sitemap.xml

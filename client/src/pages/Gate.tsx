@@ -1,15 +1,21 @@
 import { useState, useRef } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import gateHer from "@/assets/brand/gate-her.jpg";
-import gateHim from "@/assets/brand/gate-him.jpg";
+import gateHer from "@/assets/brand/gate-her.webp";
+import gateHim from "@/assets/brand/gate-him.webp";
 import { Logo } from "@/components/Logo";
+import { useSeo } from "@/lib/seo";
 
 const reducedMotion =
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export default function Gate() {
+  useSeo({
+    title: "Nexphoria — The Peptides Pharmacy",
+    description: "Choose your protocol track.",
+    path: "/",
+  });
   const [, setLocation] = useLocation();
   const [chosen, setChosen] = useState<null | "her" | "him">(null);
   const [hoveredCard, setHoveredCard] = useState<null | "her" | "him">(null);
