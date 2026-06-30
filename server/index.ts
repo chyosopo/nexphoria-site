@@ -8,6 +8,35 @@ import { createServer } from "node:http";
 const app = express();
 const httpServer = createServer(app);
 
+// Minimal security headers (no helmet dep needed for marketing site)
+app.use((_req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "geolocation=(), microphone=(), camera=()");
+  next();
+});
+
+// Simple in-memory rate limiter for POST /api/* (20 req / 15min / IP)
+const rateBuckets = new Map<string, { count: number; resetAt: number }>();
+const RATE_WINDOW_MS = 15 * 60 * 1000;
+const RATE_MAX = 20;
+app.use((req, res, next) => {
+  if (req.method !== "POST" || !req.path.startsWith("/api")) return next();
+  const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() || req.socket.remoteAddress || "unknown";
+  const now = Date.now();
+  const bucket = rateBuckets.get(ip);
+  if (!bucket || bucket.resetAt < now) {
+    rateBuckets.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return next();
+  }
+  if (bucket.count >= RATE_MAX) {
+    return res.status(429).json({ error: "Too many requests. Please try again later." });
+  }
+  bucket.count += 1;
+  next();
+});
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
