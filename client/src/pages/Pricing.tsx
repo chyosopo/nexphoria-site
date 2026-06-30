@@ -130,7 +130,7 @@ export default function Pricing() {
             >
               Transparent. Everything included.
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
@@ -143,7 +143,7 @@ export default function Pricing() {
               }}
             >
               No labs upsell.
-            </h1>
+            </p>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",

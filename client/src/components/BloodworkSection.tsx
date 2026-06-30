@@ -148,6 +148,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
             data-testid="bloodwork-dashboard-wrapper"
+            className="overflow-x-auto"
           >
             <BloodworkDashboard />
           </motion.div>

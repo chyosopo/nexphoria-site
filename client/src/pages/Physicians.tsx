@@ -54,7 +54,7 @@ export default function Physicians() {
               >
                 Peptide therapy is a clinical practice.
               </h1>
-              <h1
+              <p
                 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontWeight: 500,
@@ -67,7 +67,7 @@ export default function Physicians() {
                 }}
               >
                 It demands a clinician.
-              </h1>
+              </p>
               <p
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",
@@ -200,6 +200,8 @@ export default function Physicians() {
                     <img
                       src={doc.photo}
                       alt={doc.name}
+                      loading="lazy"
+                      decoding="async"
                       style={{
                         width: "100%",
                         height: "100%",

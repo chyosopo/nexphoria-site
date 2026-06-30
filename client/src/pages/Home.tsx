@@ -188,6 +188,7 @@ function Hero() {
         {/* Display headline */}
         <div className="relative z-[3] px-6 lg:px-14 pt-8">
           <h1
+            aria-hidden="true"
             className="font-display font-semibold"
             style={{ fontSize: "clamp(56px,7.4vw,108px)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
           >
@@ -206,6 +207,8 @@ function Hero() {
           <img
             src={vialHero}
             alt="Nexphoria peptide lineup — BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, PT-141"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 50%" }}
           />
@@ -271,6 +274,8 @@ function Hero() {
           <img
             src={vialHero}
             alt="Nexphoria peptide lineup — BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, PT-141"
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 50%" }}
           />

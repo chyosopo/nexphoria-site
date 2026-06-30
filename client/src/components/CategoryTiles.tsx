@@ -59,7 +59,8 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
         <div
           className="grid gap-3"
           style={{
-            gridTemplateColumns: `repeat(${tiles.length}, 1fr)`,
+            gridTemplateColumns: `repeat(${tiles.length}, minmax(140px, 1fr))`,
+            overflowX: "auto",
           }}
         >
           {tiles.map((tile, i) => (

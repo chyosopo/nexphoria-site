@@ -237,7 +237,7 @@ export default function Science() {
               >
                 What peptides are.
               </h1>
-              <h1
+              <p
                 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontWeight: 500,
@@ -249,7 +249,7 @@ export default function Science() {
                 }}
               >
                 What the evidence shows.
-              </h1>
+              </p>
               <p
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",

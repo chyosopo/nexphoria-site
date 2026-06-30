@@ -96,7 +96,7 @@ export default function Community() {
             >
               Clinical knowledge.
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
@@ -108,7 +108,7 @@ export default function Community() {
               }}
             >
               Shared transparently.
-            </h1>
+            </p>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",

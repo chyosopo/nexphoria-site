@@ -57,6 +57,8 @@ export function DashboardMockup() {
                   <img
                     src={outcomeScore}
                     alt="Outcome score dashboard — 89 performance index, recovery 72, vitality 85, strength 91"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto block"
                   />
                 </div>
@@ -89,6 +91,8 @@ export function DashboardMockup() {
                   <img
                     src={cycleTimeline}
                     alt="12-week peptide cycle progression chart showing primary and secondary biomarker response curves"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto block"
                   />
                 </div>

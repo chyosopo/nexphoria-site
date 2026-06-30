@@ -97,7 +97,7 @@ export default function HowItWorks() {
             >
               Peptide therapy is a clinical practice.
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
@@ -110,7 +110,7 @@ export default function HowItWorks() {
               }}
             >
               It demands a clinical process.
-            </h1>
+            </p>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",
@@ -166,6 +166,8 @@ export default function HowItWorks() {
                   <img
                     src={step.image}
                     alt={step.imageAlt}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       width: "100%",
                       height: "100%",

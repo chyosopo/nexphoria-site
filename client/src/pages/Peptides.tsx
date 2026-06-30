@@ -75,6 +75,8 @@ export default function Peptides() {
           <img
             src={vialLineup}
             alt="The Nexphoria peptide lineup — frosted vials of BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, and PT-141 on dark marble"
+            loading="lazy"
+            decoding="async"
             className="w-full h-auto object-cover"
           />
           <div

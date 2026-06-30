@@ -52,7 +52,7 @@ export default function About() {
             >
               Peptide therapy needs a pharmacy,
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
@@ -65,7 +65,7 @@ export default function About() {
               }}
             >
               not an influencer.
-            </h1>
+            </p>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",

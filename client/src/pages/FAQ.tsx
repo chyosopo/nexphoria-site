@@ -248,7 +248,7 @@ export default function FAQPage() {
             >
               Direct answers.
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
@@ -260,7 +260,7 @@ export default function FAQPage() {
               }}
             >
               No spin.
-            </h1>
+            </p>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",

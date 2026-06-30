@@ -259,7 +259,7 @@ function HeroSection({
             >
               Peptide protocols,
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontStyle: "italic",
@@ -277,7 +277,7 @@ function HeroSection({
             >
               <RotatingWord words={menWords} onWordChange={onWordChange} />
               <span style={{ fontStyle: "normal", opacity: 0.3 }}>supervised.</span>
-            </h1>
+            </p>
 
             {/* Sub-headline */}
             <p
@@ -382,6 +382,8 @@ function HeroSection({
           <img
             src={lifestyleManProtocol}
             alt="Man reading peptide protocol document at desk in natural light"
+            loading="lazy"
+            decoding="async"
             style={{
               position: "absolute",
               inset: 0,

@@ -331,7 +331,7 @@ function HeroSection({
             >
               Peptide protocols,
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontStyle: "italic",
@@ -349,7 +349,7 @@ function HeroSection({
             >
               <RotatingWord words={womenWords} onWordChange={onWordChange} />
               <span style={{ fontStyle: "normal", opacity: 0.3 }}>supervised.</span>
-            </h1>
+            </p>
 
             {/* Sub-headline — 1 line, Maximus spec */}
             <p
@@ -454,6 +454,8 @@ function HeroSection({
           <img
             src={lifestyleMorningRoutine}
             alt="Woman examining peptide vial in window light during morning protocol"
+            loading="lazy"
+            decoding="async"
             style={{
               position: "absolute",
               inset: 0,

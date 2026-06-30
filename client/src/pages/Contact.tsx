@@ -123,7 +123,7 @@ export default function Contact() {
             >
               We answer in 24 hours,
             </h1>
-            <h1
+            <p
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
@@ -135,7 +135,7 @@ export default function Contact() {
               }}
             >
               Monday through Friday.
-            </h1>
+            </p>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",
