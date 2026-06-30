@@ -109,7 +109,7 @@ function TOCSidebar({ activeId }: { activeId: string }) {
     >
       <p
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'DM Mono', monospace",
           fontSize: "9px",
           fontWeight: 500,
           letterSpacing: "0.16em",
@@ -128,7 +128,7 @@ function TOCSidebar({ activeId }: { activeId: string }) {
               <a
                 href={`#science-${f.id}`}
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "13px",
                   fontWeight: isActive ? 600 : 400,
                   color: isActive ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
@@ -210,7 +210,7 @@ export default function Science() {
             <Reveal>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "11px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -227,7 +227,7 @@ export default function Science() {
               </p>
               <h1
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(3rem, 6vw, 5rem)",
                   color: "var(--nx-fg)",
@@ -239,7 +239,7 @@ export default function Science() {
               </h1>
               <p
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontStyle: "italic",
                   fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -252,7 +252,7 @@ export default function Science() {
               </p>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                   color: "#4A4A4A",
                   lineHeight: 1.65,
@@ -307,7 +307,7 @@ export default function Science() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -320,7 +320,7 @@ export default function Science() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -334,7 +334,7 @@ export default function Science() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -351,7 +351,7 @@ export default function Science() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -364,7 +364,7 @@ export default function Science() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -379,7 +379,7 @@ export default function Science() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -444,7 +444,7 @@ export default function Science() {
                   <Reveal>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "10px",
                         fontWeight: 500,
                         letterSpacing: "0.15em",
@@ -461,7 +461,7 @@ export default function Science() {
                     </p>
                     <h2
                       style={{
-                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontFamily: "'Fraunces', Georgia, serif",
                         fontWeight: 500,
                         fontStyle: "italic",
                         fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
@@ -474,7 +474,7 @@ export default function Science() {
                     </h2>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "11px",
                         fontWeight: 500,
                         letterSpacing: "0.1em",
@@ -489,7 +489,7 @@ export default function Science() {
                     <div style={{ marginBottom: "1.75rem" }}>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "10px",
                           fontWeight: 700,
                           letterSpacing: "0.12em",
@@ -502,7 +502,7 @@ export default function Science() {
                       </p>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "1.0625rem",
                           color: "#4A4A4A",
                           lineHeight: 1.7,
@@ -517,7 +517,7 @@ export default function Science() {
                     <div style={{ marginBottom: "1.75rem" }}>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "10px",
                           fontWeight: 700,
                           letterSpacing: "0.12em",
@@ -530,7 +530,7 @@ export default function Science() {
                       </p>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "1.0625rem",
                           color: "#4A4A4A",
                           lineHeight: 1.7,
@@ -556,7 +556,7 @@ export default function Science() {
                     >
                       <p
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "9px",
                           fontWeight: 700,
                           letterSpacing: "0.14em",
@@ -572,7 +572,7 @@ export default function Science() {
                       />
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "13px",
                           fontWeight: 600,
                           color: "var(--nx-fg)",
@@ -586,7 +586,7 @@ export default function Science() {
                     <div style={{ marginBottom: "2.5rem" }}>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "10px",
                           fontWeight: 700,
                           letterSpacing: "0.12em",
@@ -599,7 +599,7 @@ export default function Science() {
                       </p>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "0.9375rem",
                           color: "#4A4A4A",
                           lineHeight: 1.65,
@@ -621,7 +621,7 @@ export default function Science() {
                     >
                       <p
                         style={{
-                          fontFamily: "'Playfair Display', Georgia, serif",
+                          fontFamily: "'Fraunces', Georgia, serif",
                           fontStyle: "italic",
                           fontWeight: 400,
                           fontSize: "clamp(1.25rem, 2.5vw, 1.625rem)",
@@ -647,7 +647,7 @@ export default function Science() {
               <Reveal>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.15em",
@@ -683,7 +683,7 @@ export default function Science() {
                     >
                       <span
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "10px",
                           fontWeight: 700,
                           color: "#8B5A2B",
@@ -695,7 +695,7 @@ export default function Science() {
                       </span>
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "13px",
                           color: "#4A4A4A",
                           lineHeight: 1.6,
@@ -748,7 +748,7 @@ export default function Science() {
           <Reveal delay={100}>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -765,7 +765,7 @@ export default function Science() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
                 color: "var(--nx-fg)",
@@ -777,7 +777,7 @@ export default function Science() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -790,7 +790,7 @@ export default function Science() {
             </h2>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.0625rem",
                 color: "#4A4A4A",
                 lineHeight: 1.65,

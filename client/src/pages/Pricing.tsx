@@ -2,6 +2,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
+import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { Check, X } from "lucide-react";
 import { useSeo } from "@/lib/seo";
 
@@ -102,7 +103,7 @@ export default function Pricing() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -119,7 +120,7 @@ export default function Pricing() {
             </p>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -132,7 +133,7 @@ export default function Pricing() {
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -146,7 +147,7 @@ export default function Pricing() {
             </p>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -171,7 +172,7 @@ export default function Pricing() {
             >
               <span
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   fontWeight: 700,
                   letterSpacing: "0.14em",
@@ -191,7 +192,7 @@ export default function Pricing() {
               />
               <span
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "14px",
                   fontWeight: 600,
                   color: "var(--nx-fg)",
@@ -213,7 +214,7 @@ export default function Pricing() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -230,7 +231,7 @@ export default function Pricing() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -265,7 +266,7 @@ export default function Pricing() {
               >
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
@@ -280,7 +281,7 @@ export default function Pricing() {
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem" }}>
                       <p
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "9px",
                           fontWeight: 700,
                           letterSpacing: "0.14em",
@@ -293,7 +294,7 @@ export default function Pricing() {
                       {term.badge && (
                         <span
                           style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                             fontSize: "7px",
                             fontWeight: 700,
                             letterSpacing: "0.08em",
@@ -311,7 +312,7 @@ export default function Pricing() {
                     {term.discount && (
                       <p
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "8px",
                           color: "rgba(255,255,255,0.6)",
                           marginTop: "2px",
@@ -342,7 +343,7 @@ export default function Pricing() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "14px",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
@@ -353,7 +354,7 @@ export default function Pricing() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "12px",
                         color: "#4A4A4A",
                         lineHeight: 1.5,
@@ -365,7 +366,7 @@ export default function Pricing() {
                   {/* Monthly */}
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontSize: "1.25rem",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -375,7 +376,7 @@ export default function Pricing() {
                     ${protocol.monthlyFrom}
                     <span
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "9px",
                         color: "var(--nx-fg-muted)",
                         display: "block",
@@ -388,7 +389,7 @@ export default function Pricing() {
                   {/* 6-month */}
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontSize: "1.25rem",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -398,7 +399,7 @@ export default function Pricing() {
                     ${Math.round(protocol.monthlyFrom * 0.9)}
                     <span
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "9px",
                         color: "var(--nx-fg-muted)",
                         display: "block",
@@ -411,7 +412,7 @@ export default function Pricing() {
                   {/* 12-month */}
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontSize: "1.25rem",
                       fontWeight: 500,
                       color: "var(--nx-cobalt)",
@@ -421,7 +422,7 @@ export default function Pricing() {
                     ${Math.round(protocol.monthlyFrom * 0.8)}
                     <span
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "9px",
                         color: "var(--nx-fg-muted)",
                         display: "block",
@@ -444,7 +445,7 @@ export default function Pricing() {
               >
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "12px",
                     color: "var(--nx-fg-muted)",
                     lineHeight: 1.5,
@@ -468,7 +469,7 @@ export default function Pricing() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -485,7 +486,7 @@ export default function Pricing() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -497,7 +498,7 @@ export default function Pricing() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -540,7 +541,7 @@ export default function Pricing() {
                   />
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "14px",
                       color: "var(--nx-fg)",
                       lineHeight: 1.5,
@@ -564,7 +565,7 @@ export default function Pricing() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -581,7 +582,7 @@ export default function Pricing() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -614,7 +615,7 @@ export default function Pricing() {
               >
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
@@ -626,7 +627,7 @@ export default function Pricing() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
@@ -639,7 +640,7 @@ export default function Pricing() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
@@ -667,7 +668,7 @@ export default function Pricing() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13px",
                       color: "var(--nx-fg)",
                       fontWeight: 500,
@@ -684,7 +685,7 @@ export default function Pricing() {
                     ) : row.others === "varies" || row.others === "rarely" ? (
                       <span
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "9px",
                           color: "var(--nx-fg-muted)",
                           fontWeight: 500,
@@ -714,7 +715,7 @@ export default function Pricing() {
             <div style={{ maxWidth: "640px" }}>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -727,7 +728,7 @@ export default function Pricing() {
               </p>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   color: "#4A4A4A",
                   lineHeight: 1.7,
@@ -744,6 +745,11 @@ export default function Pricing() {
           </Reveal>
         </div>
       </section>
+
+      <TrustStatsStrip
+        eyebrow="Why patients trust the price"
+        heading="What ‘no hidden fees’ actually looks like."
+      />
 
       <FinalCTAStrip
         gender="women"

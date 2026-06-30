@@ -19,6 +19,8 @@ import { CategoryTiles } from "@/components/CategoryTiles";
 import { ThreeTierMenu } from "@/components/ThreeTierMenu";
 import { EditorialSection } from "@/components/EditorialSection";
 import { BloodworkSection } from "@/components/BloodworkSection";
+import { DoctorChoiceBadge } from "@/components/DoctorChoiceBadge";
+import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { peptides } from "@/data/peptides";
 import menHeroBg from "@/assets/brand/men-hero-bg.webp";
 import menCardStrength from "@/assets/brand/men-card-strength.webp";
@@ -118,6 +120,12 @@ export default function MenHome() {
       {/* ── 12. Testimonial strip — 3 verified patient cards ── */}
       <TestimonialStrip />
 
+      {/* ── 12b. Trust stats — Maximus-style proof strip ── */}
+      <TrustStatsStrip
+        eyebrow="Track record"
+        heading="Built on evidence, not vibes."
+      />
+
       {/* ── 13. FAQ — 12 questions, educational tone ── */}
       <FAQAccordion title="You have questions. We have answers." showCategories />
 
@@ -175,7 +183,7 @@ function EditorialBannerMen() {
       >
         <p
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontStyle: "italic",
             fontWeight: 400,
             fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
@@ -206,7 +214,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
       />
       <p
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'DM Mono', monospace",
           fontSize: "10px",
           fontWeight: 500,
           letterSpacing: "0.14em",
@@ -252,7 +260,7 @@ function HeroSection({
             {/* Hero headline — roman + italic (Maximus pattern, ink version) */}
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2.75rem, 5.2vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -265,7 +273,7 @@ function HeroSection({
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontStyle: "italic",
                 fontWeight: 500,
                 fontSize: "clamp(2.75rem, 5.2vw, 5rem)",
@@ -286,7 +294,7 @@ function HeroSection({
             {/* Sub-headline */}
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.125rem",
                 fontWeight: 500,
                 color: "var(--nx-fg-graphite)",
@@ -311,7 +319,7 @@ function HeroSection({
             <Link
               href="/how-it-works"
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.9375rem",
                 fontWeight: 500,
                 color: "var(--nx-fg-graphite)",
@@ -340,7 +348,7 @@ function HeroSection({
                 <div key={l}>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "15px",
                       fontWeight: 700,
                       color: "var(--nx-fg)",
@@ -351,7 +359,7 @@ function HeroSection({
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -421,6 +429,7 @@ const flagshipCards = [
     from: "$279/mo",
     href: "/men/protocols",
     slug: "strength",
+    doctorsChoice: true,
   },
   {
     image: menCardWeight,
@@ -430,6 +439,7 @@ const flagshipCards = [
     from: "$249/mo",
     href: "/men/protocols",
     slug: "metabolic",
+    doctorsChoice: false,
   },
   {
     image: menCardLongevity,
@@ -439,6 +449,7 @@ const flagshipCards = [
     from: "$299/mo",
     href: "/men/protocols",
     slug: "longevity",
+    doctorsChoice: false,
   },
 ];
 
@@ -471,6 +482,19 @@ function FlagshipCards() {
                     cursor: "pointer",
                   }}
                 >
+                  {/* DOCTOR'S CHOICE badge — top-left, only when flagged */}
+                  {card.doctorsChoice && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 20,
+                        left: 20,
+                        zIndex: 5,
+                      }}
+                    >
+                      <DoctorChoiceBadge size="md" variant="dark" />
+                    </div>
+                  )}
                   {/* Image — zoom 1.05x over 600ms ease-out (Maximus spec) */}
                   <img
                     src={card.image}
@@ -508,7 +532,7 @@ function FlagshipCards() {
                   >
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "9px",
                         fontWeight: 500,
                         letterSpacing: "0.14em",
@@ -521,7 +545,7 @@ function FlagshipCards() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontFamily: "'Fraunces', Georgia, serif",
                         fontStyle: "italic",
                         fontWeight: 500,
                         fontSize: "clamp(1.875rem, 3vw, 2.75rem)",
@@ -535,7 +559,7 @@ function FlagshipCards() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "13px",
                         color: "rgba(250,247,240,0.68)",
                         lineHeight: 1.5,
@@ -547,7 +571,7 @@ function FlagshipCards() {
                     <div className="flex items-center justify-between">
                       <p
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "13px",
                           fontWeight: 600,
                           color: "rgba(250,247,240,0.9)",
@@ -623,7 +647,7 @@ function HowItWorksSection() {
           <SectionEyebrow>How It Works</SectionEyebrow>
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
               color: "var(--nx-fg)",
@@ -643,7 +667,7 @@ function HowItWorksSection() {
                 {/* Big numeral — Maximus pattern */}
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontSize: "4.5rem",
                     fontWeight: 500,
                     color: "var(--nx-fg)",
@@ -659,7 +683,7 @@ function HowItWorksSection() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "14px",
                     fontWeight: 700,
                     color: "var(--nx-fg)",
@@ -672,7 +696,7 @@ function HowItWorksSection() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.9375rem",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.75,
@@ -713,7 +737,7 @@ function ChartCard({
       <SectionEyebrow>{eyebrow}</SectionEyebrow>
       <h3
         style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
+          fontFamily: "'Fraunces', Georgia, serif",
           fontWeight: 500,
           fontSize: "clamp(1.25rem, 2vw, 1.625rem)",
           color: "var(--nx-fg)",
@@ -739,7 +763,7 @@ function ChartCard({
           <div key={l}>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.75rem",
                 fontWeight: 700,
                 color: "var(--nx-fg)",
@@ -752,7 +776,7 @@ function ChartCard({
             </p>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "9px",
                 fontWeight: 500,
                 letterSpacing: "0.1em",
@@ -791,7 +815,7 @@ function SplitSectionPerformance() {
               <SectionEyebrow>CJC-1295 · Ipamorelin · GH Axis</SectionEyebrow>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(2rem, 3.5vw, 3rem)",
                   color: "var(--nx-fg)",
@@ -804,7 +828,7 @@ function SplitSectionPerformance() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",
                   color: "var(--nx-fg-graphite)",
                   lineHeight: 1.75,
@@ -825,7 +849,7 @@ function SplitSectionPerformance() {
                       alignItems: "center",
                       padding: "0.5rem 1rem",
                       borderRadius: "9999px",
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13px",
                       border: "1px solid var(--nx-border)",
                       color: "var(--nx-fg-graphite)",
@@ -854,10 +878,10 @@ function SplitSectionPerformance() {
                       backgroundColor: "var(--nx-bg-cream)",
                     }}
                   >
-                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>
                       {p.name}
                     </span>
-                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--nx-fg)" }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--nx-fg)" }}>
                       Starting at {p.price} →
                     </span>
                   </div>
@@ -886,13 +910,13 @@ function SplitSectionPerformance() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     unit=" ng/mL"
@@ -901,7 +925,7 @@ function SplitSectionPerformance() {
                   <Area type="monotone" dataKey="igf" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
-                    contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
+                    contentStyle={{ fontFamily: "'Inter', sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -941,13 +965,13 @@ function SplitSectionTestosterone() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
+                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'DM Mono', monospace" }}
                     axisLine={false}
                     tickLine={false}
                     label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
+                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'DM Mono', monospace" }}
                     axisLine={false}
                     tickLine={false}
                     domain={[250, 650]}
@@ -955,7 +979,7 @@ function SplitSectionTestosterone() {
                     width={60}
                   />
                   <Line type="monotone" dataKey="total" stroke="#0A0A0A" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
-                  <Tooltip contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8 }} />
+                  <Tooltip contentStyle={{ fontFamily: "'Inter', sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -966,7 +990,7 @@ function SplitSectionTestosterone() {
               <SectionEyebrow>Enclomiphene · Kisspeptin · HCG</SectionEyebrow>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(2rem, 3.5vw, 3rem)",
                   color: "var(--nx-fg)",
@@ -979,7 +1003,7 @@ function SplitSectionTestosterone() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",
                   color: "var(--nx-fg-graphite)",
                   lineHeight: 1.75,
@@ -1022,7 +1046,7 @@ function SplitSectionWeightLoss() {
               <SectionEyebrow>GLP-1 + GIP · Metabolic</SectionEyebrow>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(2rem, 3.5vw, 3rem)",
                   color: "var(--nx-fg)",
@@ -1035,7 +1059,7 @@ function SplitSectionWeightLoss() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",
                   color: "var(--nx-fg-graphite)",
                   lineHeight: 1.75,
@@ -1056,7 +1080,7 @@ function SplitSectionWeightLoss() {
                       alignItems: "center",
                       padding: "0.5rem 1rem",
                       borderRadius: "9999px",
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13px",
                       border: "1px solid var(--nx-border)",
                       color: "var(--nx-fg-graphite)",
@@ -1085,10 +1109,10 @@ function SplitSectionWeightLoss() {
                       backgroundColor: "var(--nx-bg-cream)",
                     }}
                   >
-                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>
                       {p.name}
                     </span>
-                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--nx-fg)" }}>
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--nx-fg)" }}>
                       Starting at {p.price} →
                     </span>
                   </div>
@@ -1117,13 +1141,13 @@ function SplitSectionWeightLoss() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'DM Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     unit="%"
@@ -1131,7 +1155,7 @@ function SplitSectionWeightLoss() {
                   <Area type="monotone" dataKey="fat" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
-                    contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
+                    contentStyle={{ fontFamily: "'Inter', sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -1158,7 +1182,7 @@ function PeptideGrid() {
           <SectionEyebrow>Peptide Catalog</SectionEyebrow>
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "clamp(2rem, 3vw, 2.75rem)",
               color: "var(--nx-fg)",
@@ -1170,7 +1194,7 @@ function PeptideGrid() {
           </h2>
           <p
             style={{
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "var(--nx-fg-graphite)",
               lineHeight: 1.65,
@@ -1198,7 +1222,7 @@ function PeptideGrid() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       fontWeight: 500,
                       letterSpacing: "0.1em",
@@ -1211,7 +1235,7 @@ function PeptideGrid() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "14px",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
@@ -1223,7 +1247,7 @@ function PeptideGrid() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "12px",
                       color: "var(--nx-fg-graphite)",
                       lineHeight: 1.5,
@@ -1277,7 +1301,7 @@ function TestimonialStrip() {
           <SectionEyebrow>Real clients. Real results.</SectionEyebrow>
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "clamp(1.875rem, 3.5vw, 2.5rem)",
               color: "var(--nx-fg)",
@@ -1302,7 +1326,7 @@ function TestimonialStrip() {
               >
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontSize: "3rem",
                     color: "var(--nx-fg)",
                     lineHeight: 0.8,
@@ -1316,7 +1340,7 @@ function TestimonialStrip() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.9375rem",
                     lineHeight: 1.75,
                     color: "var(--nx-fg)",
@@ -1336,7 +1360,7 @@ function TestimonialStrip() {
                 />
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontSize: "0.9375rem",
                     fontWeight: 500,
@@ -1348,7 +1372,7 @@ function TestimonialStrip() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
@@ -1365,7 +1389,7 @@ function TestimonialStrip() {
 
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'DM Mono', monospace",
             fontSize: "9px",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",

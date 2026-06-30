@@ -10,11 +10,14 @@ import { CartProvider } from "@/contexts/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 
 // Pages — eagerly loaded (fast/common paths)
+import Showcase from "@/pages/Showcase";
 import Gate from "@/pages/Gate";
 import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
 import HowItWorks from "@/pages/HowItWorks";
 import Science from "@/pages/Science";
+import Journal from "@/pages/Journal";
+import JournalArticle from "@/pages/JournalArticle";
 import Physicians from "@/pages/Physicians";
 import LabTesting from "@/pages/LabTesting";
 import Pricing from "@/pages/Pricing";
@@ -25,6 +28,8 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
+const Peptides = lazy(() => import("@/pages/Peptides"));
+const PeptideDetail = lazy(() => import("@/pages/PeptideDetail"));
 const GenderPeptides = lazy(() => import("@/pages/GenderPeptides"));
 const GenderPeptideDetail = lazy(() => import("@/pages/GenderPeptideDetail"));
 const GenderProtocols = lazy(() => import("@/pages/GenderProtocols"));
@@ -43,8 +48,15 @@ function AppRouter() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
-        {/* Gate — "/" */}
-        <Route path="/" component={Gate} />
+        {/* Showcase — "/" — the pharmacy floor */}
+        <Route path="/" component={Showcase} />
+
+        {/* Gender-neutral pharmacy shelf */}
+        <Route path="/peptides" component={Peptides} />
+        <Route path="/peptides/:slug" component={PeptideDetail} />
+
+        {/* Old gender gate — kept reachable at /gate but not the home */}
+        <Route path="/gate" component={Gate} />
 
         {/* Women routes */}
         <Route path="/women" component={WomenHome} />
@@ -83,6 +95,8 @@ function AppRouter() {
         {/* Shared informational */}
         <Route path="/how-it-works" component={HowItWorks} />
         <Route path="/science" component={Science} />
+        <Route path="/journal" component={Journal} />
+        <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />
         <Route path="/lab-testing" component={LabTesting} />
         <Route path="/pricing" component={Pricing} />

@@ -3,9 +3,10 @@ import { ArrowRight, Plus, Minus, Trash2, ShoppingBag } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
+import { CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 
 export default function Cart() {
-  const { lines, subtotal, totalSavings, itemCount, updateQty, removeItem } = useCart();
+  const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
 
   return (
     <SiteLayout variant="gate">
@@ -15,19 +16,19 @@ export default function Cart() {
           <div className="mb-10">
             <div
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+              style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
             >
               Your Pharmacy
             </div>
             <h1
               className="text-4xl md:text-5xl"
-              style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
             >
               <em style={{ fontStyle: "italic" }}>Review</em> your cart
             </h1>
             <p
               className="mt-3 text-base max-w-xl"
-              style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
+              style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
             >
               {itemCount === 0
                 ? "Your pharmacy is empty. Add single peptides or a curated stack to begin."
@@ -44,7 +45,7 @@ export default function Cart() {
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     color: "#6B6B6B",
                     borderBottom: "1px solid var(--nx-border)",
                   }}
@@ -67,7 +68,7 @@ export default function Cart() {
                             background: line.type === "stack" ? "var(--nx-bg-cream)" : "#fff",
                             border: "1px solid var(--nx-border)",
                             color: line.type === "stack" ? "#8B5A2B" : "#0A0A0A",
-                            fontFamily: "'Playfair Display', serif",
+                            fontFamily: "'Fraunces', serif",
                             fontStyle: "italic",
                             fontSize: 22,
                           }}
@@ -79,7 +80,7 @@ export default function Cart() {
                           <div
                             className="text-[10px] uppercase tracking-[0.2em] mb-1"
                             style={{
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "'DM Mono', monospace",
                               color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B",
                             }}
                           >
@@ -88,7 +89,7 @@ export default function Cart() {
                           <h3
                             className="text-lg md:text-xl mb-1"
                             style={{
-                              fontFamily: "'Playfair Display', serif",
+                              fontFamily: "'Fraunces', serif",
                               color: "#0A0A0A",
                               fontWeight: 500,
                             }}
@@ -97,7 +98,7 @@ export default function Cart() {
                           </h3>
                           <p
                             className="text-sm"
-                            style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A" }}
+                            style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A" }}
                           >
                             {formatUSD(line.unitPrice)} <span className="text-xs text-[#6B6B6B]">/ month supply</span>
                           </p>
@@ -108,22 +109,70 @@ export default function Cart() {
                             <div
                               className="text-xs mt-2 inline-block px-2 py-0.5"
                               style={{
-                                fontFamily: "'JetBrains Mono', monospace",
+                                fontFamily: "'DM Mono', monospace",
                                 color: "#8B5A2B",
                                 background: "var(--nx-bg-cream)",
                                 letterSpacing: "0.05em",
                               }}
                             >
-                              SAVE {formatUSD(line.savings)} BUNDLED
+                              SAVE {formatUSD(line.savings)} · {line.cadenceLabel.toUpperCase()}
                             </div>
                           ) : null}
+
+                          {/* Cadence picker */}
+                          <div className="mt-4">
+                            <div
+                              className="text-[9px] uppercase tracking-[0.2em] mb-1.5"
+                              style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
+                            >
+                              Billing cadence
+                            </div>
+                            <div
+                              className="inline-flex"
+                              style={{ border: "1px solid var(--nx-border)" }}
+                              role="radiogroup"
+                              aria-label="Billing cadence"
+                            >
+                              {(Object.keys(CADENCE_DISCOUNTS) as CadenceKey[]).map((c) => {
+                                const meta = CADENCE_DISCOUNTS[c];
+                                const active = line.cadence === c;
+                                return (
+                                  <button
+                                    key={c}
+                                    type="button"
+                                    role="radio"
+                                    aria-checked={active}
+                                    onClick={() => updateCadence(line.slug, line.type, c)}
+                                    className="px-3 py-1.5 text-[10px] uppercase tracking-[0.12em] transition-colors"
+                                    style={{
+                                      fontFamily: "'DM Mono', monospace",
+                                      background: active ? "#0A0A0A" : "transparent",
+                                      color: active ? "#FAF7F0" : "#0A0A0A",
+                                      borderRight: c === "12mo" ? "none" : "1px solid var(--nx-border)",
+                                    }}
+                                    data-testid={`button-cadence-page-${c}-${line.type}-${line.slug}`}
+                                  >
+                                    <span>{meta.label}</span>
+                                    {meta.savePct > 0 ? (
+                                      <span
+                                        className="ml-1.5 text-[9px]"
+                                        style={{ color: active ? "#FAF7F0" : "#8B5A2B", opacity: active ? 0.85 : 1 }}
+                                      >
+                                        −{meta.savePct}%
+                                      </span>
+                                    ) : null}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
                         </div>
 
                         <div className="text-right">
                           <div
                             className="text-xl mb-3"
                             style={{
-                              fontFamily: "'Playfair Display', serif",
+                              fontFamily: "'Fraunces', serif",
                               color: "#0A0A0A",
                               fontWeight: 500,
                             }}
@@ -146,7 +195,7 @@ export default function Cart() {
                             </button>
                             <span
                               className="px-3 text-sm min-w-[28px] text-center"
-                              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                              style={{ fontFamily: "'DM Mono', monospace" }}
                               data-testid={`text-qty-page-${line.type}-${line.slug}`}
                             >
                               {line.qty}
@@ -166,7 +215,7 @@ export default function Cart() {
                               onClick={() => removeItem(line.slug, line.type)}
                               className="text-xs inline-flex items-center gap-1 hover:underline"
                               style={{
-                                fontFamily: "'Inter Tight', sans-serif",
+                                fontFamily: "'Inter', sans-serif",
                                 color: "#8B5A2B",
                               }}
                               data-testid={`button-remove-page-${line.type}-${line.slug}`}
@@ -185,7 +234,7 @@ export default function Cart() {
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         color: "#0A0A0A",
                         border: "1px solid var(--nx-border)",
                       }}
@@ -198,7 +247,7 @@ export default function Cart() {
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         color: "#0A0A0A",
                         border: "1px solid var(--nx-border)",
                       }}
@@ -218,7 +267,7 @@ export default function Cart() {
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     color: "#8B5A2B",
                     borderBottom: "1px solid var(--nx-border)",
                   }}
@@ -229,7 +278,7 @@ export default function Cart() {
                 <SummaryRow label="Items" value={`${itemCount}`} mono />
                 <SummaryRow label="Monthly supply" value={formatUSD(subtotal + totalSavings)} mono />
                 {totalSavings > 0 ? (
-                  <SummaryRow label="Stack savings" value={`−${formatUSD(totalSavings)}`} accent mono />
+                  <SummaryRow label="You save" value={`−${formatUSD(totalSavings)}`} accent mono />
                 ) : null}
                 <SummaryRow label="Physician oversight" value="Included" />
                 <SummaryRow label="Lab interpretation" value="Included" />
@@ -241,14 +290,14 @@ export default function Cart() {
                 >
                   <span
                     className="text-sm uppercase tracking-[0.12em]"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", color: "#0A0A0A" }}
+                    style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
                   >
                     Subtotal
                   </span>
                   <span
                     className="text-3xl"
                     style={{
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: "'Fraunces', serif",
                       color: "#0A0A0A",
                       fontWeight: 500,
                     }}
@@ -259,7 +308,7 @@ export default function Cart() {
                 </div>
                 <p
                   className="text-[11px] mt-2 mb-5 leading-relaxed"
-                  style={{ fontFamily: "'Inter Tight', sans-serif", color: "#6B6B6B" }}
+                  style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
                 >
                   Final pricing confirmed after intake review.
                 </p>
@@ -270,7 +319,7 @@ export default function Cart() {
                     style={{
                       background: "#0A0A0A",
                       color: "#FAF7F0",
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontWeight: 500,
                       fontSize: "0.875rem",
                       letterSpacing: "0.02em",
@@ -285,7 +334,7 @@ export default function Cart() {
                   className="mt-5 pt-5 text-[11px] space-y-2"
                   style={{
                     borderTop: "1px solid var(--nx-border)",
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     color: "#6B6B6B",
                     lineHeight: 1.6,
                   }}
@@ -309,7 +358,7 @@ function StackContents({ slug }: { slug: string }) {
   return (
     <p
       className="text-xs mt-1"
-      style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B", letterSpacing: "0.05em" }}
+      style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B", letterSpacing: "0.05em" }}
     >
       INCLUDES · {stack.peptides.map((p) => p.toUpperCase()).join(" + ")}
     </p>
@@ -331,14 +380,14 @@ function SummaryRow({
     <div className="flex items-baseline justify-between py-1.5">
       <span
         className="text-sm"
-        style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A" }}
+        style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A" }}
       >
         {label}
       </span>
       <span
         className="text-sm"
         style={{
-          fontFamily: mono ? "'JetBrains Mono', monospace" : "'Inter Tight', sans-serif",
+          fontFamily: mono ? "'DM Mono', monospace" : "'Inter', sans-serif",
           color: accent ? "#8B5A2B" : "#0A0A0A",
         }}
       >
@@ -362,13 +411,13 @@ function EmptyCart() {
       </div>
       <h2
         className="text-2xl mb-3"
-        style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+        style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
       >
         Your pharmacy is empty
       </h2>
       <p
         className="text-sm mb-6 px-6"
-        style={{ fontFamily: "'Inter Tight', sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
+        style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
       >
         Start with a curated stack, browse single peptides, or take the assessment for a custom physician-built protocol.
       </p>
@@ -379,7 +428,7 @@ function EmptyCart() {
             style={{
               background: "#0A0A0A",
               color: "#FAF7F0",
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.875rem",
               fontWeight: 500,
             }}
@@ -393,7 +442,7 @@ function EmptyCart() {
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5"
             style={{
               color: "#0A0A0A",
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.875rem",
               border: "1px solid var(--nx-border)",
             }}

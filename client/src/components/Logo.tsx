@@ -29,7 +29,7 @@ export function Logo({ variant = "dark", className = "" }: LogoProps) {
         <text
           x="26"
           y="21"
-          fontFamily="'Inter Tight', sans-serif"
+          fontFamily="'Inter', sans-serif"
           fontSize="16"
           fontWeight="700"
           letterSpacing="0.08em"
@@ -46,7 +46,7 @@ export function Logo({ variant = "dark", className = "" }: LogoProps) {
       {/* Peptide pharmacy sub-mark */}
       <span
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'DM Mono', monospace",
           fontSize: "9px",
           fontWeight: 500,
           letterSpacing: "0.12em",

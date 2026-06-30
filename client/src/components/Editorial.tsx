@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * SectionEyebrow — numbered JetBrains Mono uppercase tracking-widest divider label.
+ * SectionEyebrow — numbered DM Mono uppercase tracking-widest divider label.
  * e.g. <SectionEyebrow num="02" label="The Method" />  →  02 — THE METHOD
  */
 export function SectionEyebrow({

@@ -2,7 +2,7 @@
    EditorialHands — full-bleed editorial spread for the hands imagery.
    Used across Home, HowItWorks, Pharmacy, Science, Physicians, About,
    LabTesting. Static (no scroll motion / parallax / blur) per brand
-   constraints. Caption is JetBrains Mono uppercase tracking-widest.
+   constraints. Caption is DM Mono uppercase tracking-widest.
    ────────────────────────────────────────────────────────────── */
 
 type EditorialHandsProps = {

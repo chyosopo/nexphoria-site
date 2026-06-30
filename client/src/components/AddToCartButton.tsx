@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartProvider";
+import type { CadenceKey } from "@/data/pricing";
 
 /* AddToCartButton — reusable on peptide PDPs, catalog cards, stack pages */
 
@@ -12,17 +13,19 @@ interface AddToCartButtonProps {
   /** override label */
   label?: string;
   className?: string;
+  /** optional billing cadence; defaults to "3mo" (most-popular) */
+  cadence?: CadenceKey;
 }
 
-export function AddToCartButton({ slug, type, variant = "primary", label, className = "" }: AddToCartButtonProps) {
+export function AddToCartButton({ slug, type, variant = "primary", label, className = "", cadence }: AddToCartButtonProps) {
   const { addPeptide, addStack } = useCart();
   const [justAdded, setJustAdded] = useState(false);
 
   const handleAdd = () => {
     if (type === "peptide") {
-      addPeptide(slug);
+      addPeptide(slug, { cadence });
     } else {
-      addStack(slug);
+      addStack(slug, { cadence });
     }
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 1400);
@@ -30,7 +33,7 @@ export function AddToCartButton({ slug, type, variant = "primary", label, classN
 
   const baseClass =
     "inline-flex items-center justify-center gap-2 transition-all";
-  const fontStyle = { fontFamily: "'Inter Tight', sans-serif" as const };
+  const fontStyle = { fontFamily: "'Inter', sans-serif" as const };
 
   if (variant === "compact") {
     return (

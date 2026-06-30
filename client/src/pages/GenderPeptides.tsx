@@ -94,7 +94,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-8 pr-4 py-2 text-sm rounded-full border focus:outline-none focus:border-blue-500 transition-colors"
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 borderColor: "var(--nx-border)",
                 fontSize: "13px",
               }}
@@ -125,7 +125,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
         >
           <span
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'DM Mono', monospace",
               fontSize: "10px",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
@@ -142,7 +142,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
           <span
             className="ml-auto"
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'DM Mono', monospace",
               fontSize: "10px",
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -159,7 +159,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
       <section className="nx-section" data-testid={`${gender}-peptides-grid`}>
         <div className="nx-container">
           {displayed.length === 0 ? (
-            <p style={{ fontFamily: "'Inter Tight', sans-serif", color: "var(--nx-fg-graphite)", fontSize: "15px" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", color: "var(--nx-fg-graphite)", fontSize: "15px" }}>
               No compounds match your filter.
             </p>
           ) : (
@@ -182,24 +182,24 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                     >
                       <div className="flex items-start justify-between mb-4">
                         <div>
-                          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "4px" }}>
+                          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "4px" }}>
                             {CATEGORY_LABELS[p.category]}
                           </p>
-                          <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "18px", fontWeight: 700, color: "var(--nx-fg)", lineHeight: 1.2 }}>
+                          <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: "18px", fontWeight: 700, color: "var(--nx-fg)", lineHeight: 1.2 }}>
                             {p.name}
                           </h2>
                           {price?.badge && (
-                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
+                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'DM Mono', monospace", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
                               {price.badge}
                             </span>
                           )}
                         </div>
-                        <span style={{ fontSize: "18px", color: "var(--nx-cobalt)", fontFamily: "'Inter Tight', sans-serif", fontWeight: 300, lineHeight: 1 }}>→</span>
+                        <span style={{ fontSize: "18px", color: "var(--nx-cobalt)", fontFamily: "'Inter', sans-serif", fontWeight: 300, lineHeight: 1 }}>→</span>
                       </div>
-                      <p style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1rem" }}>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1rem" }}>
                         {p.tagline}
                       </p>
-                      <p style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.5, marginBottom: "1rem" }}>
+                      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.5, marginBottom: "1rem" }}>
                         {p.summary.slice(0, 120)}…
                       </p>
                       <div className="flex flex-wrap gap-3">
@@ -215,7 +215,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                     >
                       <div
                         style={{
-                          fontFamily: "'Playfair Display', serif",
+                          fontFamily: "'Fraunces', serif",
                           fontSize: "1.25rem",
                           fontWeight: 500,
                           color: "var(--nx-fg)",
@@ -225,7 +225,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                         {formatUSD(price.monthlyPrice)}
                         <span
                           style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                             fontSize: "9px",
                             letterSpacing: "0.12em",
                             textTransform: "uppercase",
@@ -259,7 +259,7 @@ function CategoryPill({ label, active, onClick }: { label: string; active: boole
       onClick={onClick}
       className="px-3 py-1.5 rounded-full text-xs transition-all"
       style={{
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "'DM Mono', monospace",
         fontSize: "10px",
         fontWeight: 500,
         letterSpacing: "0.08em",
@@ -279,8 +279,8 @@ function CategoryPill({ label, active, onClick }: { label: string; active: boole
 function MetaChip({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col" style={{ minWidth: "70px" }}>
-      <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
-      <p style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "12px", fontWeight: 600, color: "var(--nx-fg)" }}>{value}</p>
+      <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
+      <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "12px", fontWeight: 600, color: "var(--nx-fg)" }}>{value}</p>
     </div>
   );
 }

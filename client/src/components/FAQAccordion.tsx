@@ -110,7 +110,7 @@ export function FAQAccordion({
             />
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
@@ -124,7 +124,7 @@ export function FAQAccordion({
 
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
               color: "var(--nx-fg)",
@@ -165,7 +165,7 @@ export function FAQAccordion({
                     {showCategories && item.category && (
                       <p
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "9px",
                           fontWeight: 500,
                           letterSpacing: "0.12em",
@@ -180,7 +180,7 @@ export function FAQAccordion({
                     )}
                     <span
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "1rem",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
@@ -210,7 +210,7 @@ export function FAQAccordion({
                   >
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "0.9375rem",
                         lineHeight: 1.75,
                         color: "var(--nx-fg-graphite)",

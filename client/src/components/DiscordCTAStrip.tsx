@@ -13,7 +13,7 @@ export function DiscordCTAStrip() {
             <p className="nx-eyebrow mb-3">COMMUNITY</p>
             <h3
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
                 fontWeight: 500,
                 color: "var(--nx-fg)",
@@ -23,7 +23,7 @@ export function DiscordCTAStrip() {
             >
               Join the Nexphoria Discord.
             </h3>
-            <p style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
               Members share lab results, protocol experience, and real outcomes.
               Ask questions, compare protocols, and get support from the community.
             </p>
@@ -43,7 +43,7 @@ export function DiscordCTAStrip() {
             <p className="nx-eyebrow mb-3">FREE GUIDE</p>
             <h3
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
                 fontWeight: 500,
                 color: "var(--nx-fg)",
@@ -53,7 +53,7 @@ export function DiscordCTAStrip() {
             >
               The Peptide Field Guide.
             </h3>
-            <p style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1.5rem" }}>
               64 pages. Every compound we offer — mechanism, outcomes, dosing,
               timeline. Written by our medical team.
             </p>
@@ -68,7 +68,7 @@ export function DiscordCTAStrip() {
                 placeholder="Your email"
                 className="flex-1 px-4 py-3 rounded-full text-sm border focus:outline-none focus:border-blue-500 transition-colors"
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   borderColor: "var(--nx-border)",
                   color: "var(--nx-fg)",
                 }}

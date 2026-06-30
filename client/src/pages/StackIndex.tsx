@@ -15,19 +15,19 @@ export default function StackIndex() {
         <section className="nx-container py-14 md:py-20 max-w-4xl">
           <div
             className="text-[11px] uppercase tracking-[0.22em] mb-3"
-            style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+            style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
           >
             Tier 02 · Doctor-Curated Stacks
           </div>
           <h1
             className="text-4xl md:text-6xl mb-5 leading-[1.05]"
-            style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+            style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
           >
             Pre-built protocols, <em style={{ fontStyle: "italic" }}>physician-formulated</em>.
           </h1>
           <p
             className="text-lg max-w-2xl"
-            style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
+            style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
           >
             Six flagship stacks designed by our medical directors — each tested against published clinical
             literature and our internal outcomes data. Add full stacks to cart or customize before checkout.
@@ -67,7 +67,7 @@ export default function StackIndex() {
                           style={{
                             background: "#0A0A0A",
                             color: "#FAF7F0",
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                           }}
                         >
                           {stack.badge}
@@ -79,25 +79,25 @@ export default function StackIndex() {
                     <div className="p-6 md:p-7">
                       <div
                         className="text-[10px] uppercase tracking-[0.2em] mb-2"
-                        style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                        style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                       >
                         {stack.peptides.length} peptides · {stack.gender === "him" ? "For Him" : stack.gender === "her" ? "For Her" : "Unisex"}
                       </div>
                       <h2
                         className="text-3xl mb-1.5"
-                        style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+                        style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
                       >
                         {stack.name}
                       </h2>
                       <p
                         className="text-base mb-4"
-                        style={{ fontFamily: "'Playfair Display', serif", color: "#4A4A4A", fontStyle: "italic" }}
+                        style={{ fontFamily: "'Fraunces', serif", color: "#4A4A4A", fontStyle: "italic" }}
                       >
                         {stack.tagline}
                       </p>
                       <p
                         className="text-sm mb-5"
-                        style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
+                        style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
                       >
                         {stack.purpose}
                       </p>
@@ -111,7 +111,7 @@ export default function StackIndex() {
                             style={{
                               background: "var(--nx-bg-cream)",
                               color: "#0A0A0A",
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "'DM Mono', monospace",
                             }}
                           >
                             {p}
@@ -127,7 +127,7 @@ export default function StackIndex() {
                         <div>
                           <div
                             className="text-[10px] uppercase tracking-[0.18em] mb-0.5"
-                            style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B" }}
+                            style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
                           >
                             Monthly · stack price
                           </div>
@@ -135,7 +135,7 @@ export default function StackIndex() {
                             <span
                               className="text-2xl"
                               style={{
-                                fontFamily: "'Playfair Display', serif",
+                                fontFamily: "'Fraunces', serif",
                                 color: "#0A0A0A",
                                 fontWeight: 500,
                               }}
@@ -144,14 +144,14 @@ export default function StackIndex() {
                             </span>
                             <span
                               className="text-sm line-through"
-                              style={{ fontFamily: "'JetBrains Mono', monospace", color: "#9A9A95" }}
+                              style={{ fontFamily: "'DM Mono', monospace", color: "#9A9A95" }}
                             >
                               {formatUSD(sum)}
                             </span>
                           </div>
                           <div
                             className="text-[10px] uppercase tracking-[0.12em] mt-0.5"
-                            style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                            style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                           >
                             Save {formatUSD(savings)}
                           </div>
@@ -174,19 +174,19 @@ export default function StackIndex() {
           >
             <div
               className="text-[10px] uppercase tracking-[0.22em] mb-2"
-              style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+              style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
             >
               Tier 03
             </div>
             <h2
               className="text-3xl md:text-4xl mb-3"
-              style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
             >
               Want a <em style={{ fontStyle: "italic" }}>fully custom</em> protocol?
             </h2>
             <p
               className="text-base mb-5 max-w-xl mx-auto"
-              style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
+              style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
             >
               Take the 5-minute intake. Our physicians design a peptide protocol around your bloodwork, goals, and
               medical history — no off-the-shelf bundle required.
@@ -197,7 +197,7 @@ export default function StackIndex() {
                 style={{
                   background: "#0A0A0A",
                   color: "#FAF7F0",
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.875rem",
                   fontWeight: 500,
                 }}

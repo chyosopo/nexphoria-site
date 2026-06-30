@@ -1,6 +1,7 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
+import { ProcessStrip } from "@/components/ProcessStrip";
 import { useSeo } from "@/lib/seo";
 
 // Editorial images
@@ -69,7 +70,7 @@ export default function HowItWorks() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -86,7 +87,7 @@ export default function HowItWorks() {
             </p>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -99,7 +100,7 @@ export default function HowItWorks() {
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -113,7 +114,7 @@ export default function HowItWorks() {
             </p>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -126,6 +127,14 @@ export default function HowItWorks() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── Compact timeline scanner — fast read above the deep editorial breakdown ── */}
+      <ProcessStrip
+        eyebrow="At a glance"
+        heading="From intake to your first dose."
+        sub="A complete read of the journey — typical patient timeline from questionnaire to cold-chain delivery."
+        variant="light"
+      />
 
       {/* ── Steps — alternating image/text ── */}
       {steps.map((step, i) => {
@@ -185,7 +194,7 @@ export default function HowItWorks() {
                   {/* Huge step number */}
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontWeight: 300,
                       fontSize: "clamp(6rem, 12vw, 9rem)",
                       color: "transparent",
@@ -201,7 +210,7 @@ export default function HowItWorks() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "10px",
                       fontWeight: 500,
                       letterSpacing: "0.15em",
@@ -214,7 +223,7 @@ export default function HowItWorks() {
                   </p>
                   <h2
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontWeight: 500,
                       fontStyle: "italic",
                       fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
@@ -227,7 +236,7 @@ export default function HowItWorks() {
                   </h2>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "1.0625rem",
                       color: "#4A4A4A",
                       lineHeight: 1.65,
@@ -239,7 +248,7 @@ export default function HowItWorks() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "10px",
                       fontWeight: 500,
                       letterSpacing: "0.12em",
@@ -280,7 +289,7 @@ export default function HowItWorks() {
             <div style={{ maxWidth: "640px" }}>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -297,7 +306,7 @@ export default function HowItWorks() {
               </p>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                   color: "var(--nx-fg)",
@@ -310,7 +319,7 @@ export default function HowItWorks() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   color: "#4A4A4A",
                   lineHeight: 1.7,
@@ -324,7 +333,7 @@ export default function HowItWorks() {
               </p>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   color: "#4A4A4A",
                   lineHeight: 1.7,
@@ -350,7 +359,7 @@ export default function HowItWorks() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -363,7 +372,7 @@ export default function HowItWorks() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3.5rem)",
                 color: "#FFFFFF",
@@ -375,7 +384,7 @@ export default function HowItWorks() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3.5rem)",
@@ -388,7 +397,7 @@ export default function HowItWorks() {
             </h2>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.0625rem",
                 color: "rgba(255,255,255,0.75)",
                 lineHeight: 1.6,

@@ -62,7 +62,7 @@ export default function Contact() {
   };
 
   const inputStyle: React.CSSProperties = {
-    fontFamily: "'Inter Tight', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     fontSize: "14px",
     padding: "0.875rem 1.125rem",
     border: "1px solid var(--nx-border)",
@@ -75,7 +75,7 @@ export default function Contact() {
   };
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'DM Mono', monospace",
     fontSize: "9px",
     fontWeight: 700,
     letterSpacing: "0.14em",
@@ -96,7 +96,7 @@ export default function Contact() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -113,7 +113,7 @@ export default function Contact() {
             </p>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -125,7 +125,7 @@ export default function Contact() {
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -138,7 +138,7 @@ export default function Contact() {
             </p>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -179,7 +179,7 @@ export default function Contact() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
@@ -192,7 +192,7 @@ export default function Contact() {
                   </p>
                   <h2
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontStyle: "italic",
                       fontWeight: 500,
                       fontSize: "1.375rem",
@@ -217,7 +217,7 @@ export default function Contact() {
                       <li key={item.label}>
                         <p
                           style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                             fontSize: "8px",
                             fontWeight: 700,
                             letterSpacing: "0.14em",
@@ -230,7 +230,7 @@ export default function Contact() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'Inter Tight', sans-serif",
+                            fontFamily: "'Inter', sans-serif",
                             fontSize: "14px",
                             fontWeight: 500,
                             color: "var(--nx-fg)",
@@ -245,7 +245,7 @@ export default function Contact() {
                   </ul>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "12px",
                       color: "var(--nx-fg-muted)",
                       lineHeight: 1.5,
@@ -280,7 +280,7 @@ export default function Contact() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -297,7 +297,7 @@ export default function Contact() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontWeight: 500,
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -324,7 +324,7 @@ export default function Contact() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontStyle: "italic",
                       fontWeight: 500,
                       fontSize: "1.5rem",
@@ -336,7 +336,7 @@ export default function Contact() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "14px",
                       color: "#4A4A4A",
                     }}
@@ -442,7 +442,7 @@ export default function Contact() {
                       gap: "0.5rem",
                       backgroundColor: "var(--nx-cobalt)",
                       color: "#FFFFFF",
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "12px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",

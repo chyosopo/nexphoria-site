@@ -46,7 +46,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               />
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.14em",
@@ -61,7 +61,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
             {/* Headline */}
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2.25rem, 4vw, 3.5rem)",
                 color: "var(--nx-fg)",
@@ -78,7 +78,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
             {/* Body */}
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "17px",
                 fontWeight: 400,
                 color: "var(--nx-fg-graphite)",
@@ -102,7 +102,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
                 <span
                   key={label}
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 600,
                     letterSpacing: "0.13em",
@@ -124,7 +124,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               href="#how-we-read-labs"
               data-testid="bloodwork-how-we-read-link"
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "14px",
                 fontWeight: 500,
                 color: "var(--nx-fg)",

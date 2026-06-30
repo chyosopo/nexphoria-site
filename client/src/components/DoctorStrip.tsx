@@ -22,7 +22,7 @@ export function DoctorStrip() {
             />
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
@@ -36,7 +36,7 @@ export function DoctorStrip() {
 
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
               color: "var(--nx-fg)",
@@ -48,7 +48,7 @@ export function DoctorStrip() {
           </h2>
           <p
             style={{
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "var(--nx-fg-graphite)",
               maxWidth: "560px",
@@ -96,7 +96,7 @@ export function DoctorStrip() {
                 {/* Name — Playfair italic */}
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontWeight: 500,
                     fontSize: "1rem",
@@ -122,7 +122,7 @@ export function DoctorStrip() {
                 {/* Credential */}
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
@@ -135,7 +135,7 @@ export function DoctorStrip() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "12px",
                     color: "var(--nx-fg-graphite)",
                     marginTop: "2px",

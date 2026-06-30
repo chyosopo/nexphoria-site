@@ -3,11 +3,8 @@ import { Link, useRoute } from "wouter";
 import { ArrowUpRight, ArrowLeft, ExternalLink, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { EditorialHands } from "@/components/EditorialHands";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
-import handsPipette from "@/assets/brand/editorial/editorial-hands-pipette.png";
-import handsSealed from "@/assets/brand/editorial/editorial-hands-sealed.png";
 import NotFound from "@/pages/not-found";
 import { getPeptide, getPeptide as gp, CATEGORY_LABELS } from "@/data/peptides";
 import { getStackBySlug } from "@/lib/protocols";
@@ -61,7 +58,7 @@ export default function PeptideDetail() {
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
   return (
-    <SiteLayout navVariant="dark">
+    <SiteLayout navVariant="showcase">
       {/* HERO */}
       <section className="relative bg-background text-foreground overflow-hidden">
         <div className="absolute inset-0 nx-grid-bg opacity-25" />
@@ -131,15 +128,6 @@ export default function PeptideDetail() {
           </div>
         </div>
       </section>
-
-      {/* FIG.20 — compounded, research-grade */}
-      <EditorialHands
-        src={handsPipette}
-        alt="Hands drawing a precise dose with a pipette in a compounding pharmacy"
-        caption="FIG. 20 · COMPOUNDED · RESEARCH-GRADE"
-        ratio="16/9"
-        objectPosition="center 42%"
-      />
 
       {/* MECHANISM */}
       <section className="nx-section bg-background text-foreground">
@@ -318,15 +306,6 @@ export default function PeptideDetail() {
           </p>
         </div>
       </section>
-
-      {/* tonal spread — sealed, before CTA */}
-      <EditorialHands
-        src={handsSealed}
-        alt="Hands sealing a finished, physician-supervised peptide order"
-        caption="PRESCRIBED · COMPOUNDED · ONE STANDARD"
-        captionAnchor="top-right"
-        objectPosition="center 45%"
-      />
 
       {/* CTA */}
       <section className="bg-background text-foreground relative overflow-hidden">

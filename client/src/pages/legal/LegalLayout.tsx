@@ -14,10 +14,10 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
       <section className="py-14" style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
         <div className="nx-container max-w-3xl">
           <p className="nx-eyebrow mb-3">LEGAL</p>
-          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.15, marginBottom: "0.5rem" }}>
+          <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.15, marginBottom: "0.5rem" }}>
             {title}
           </h1>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", color: "var(--nx-fg-muted)" }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", color: "var(--nx-fg-muted)" }}>
             Last updated: {lastUpdated}
           </p>
         </div>
@@ -27,7 +27,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
       <section className="nx-section">
         <div className="nx-container max-w-3xl">
           <div className="legal-content" style={{
-            fontFamily: "'Inter Tight', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "15px",
             lineHeight: 1.7,
             color: "var(--nx-fg-graphite)",
@@ -51,7 +51,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                 key={label}
                 href={href}
                 className="no-underline"
-                style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", color: "var(--nx-cobalt)" }}
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "var(--nx-cobalt)" }}
               >
                 {label}
               </Link>
@@ -66,7 +66,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
 export function LegalSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-8">
-      <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "17px", fontWeight: 700, color: "var(--nx-fg)", marginBottom: "0.75rem", lineHeight: 1.3 }}>
+      <h2 style={{ fontFamily: "'Inter', sans-serif", fontSize: "17px", fontWeight: 700, color: "var(--nx-fg)", marginBottom: "0.75rem", lineHeight: 1.3 }}>
         {title}
       </h2>
       {children}

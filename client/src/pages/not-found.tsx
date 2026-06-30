@@ -8,7 +8,7 @@ export default function NotFound() {
         <p className="nx-eyebrow mb-4">404</p>
         <h1
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontWeight: 500,
             fontSize: "clamp(2.5rem, 5vw, 4rem)",
             color: "var(--nx-fg)",
@@ -20,7 +20,7 @@ export default function NotFound() {
         </h1>
         <p
           style={{
-            fontFamily: "'Inter Tight', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "1rem",
             color: "var(--nx-fg-graphite)",
             marginBottom: "2.5rem",

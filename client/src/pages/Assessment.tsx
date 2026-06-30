@@ -65,7 +65,7 @@ const US_STATES = [
 // ─── Shared style helpers ─────────────────────────────────────────────────────
 
 const monoEyebrow: React.CSSProperties = {
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "'DM Mono', monospace",
   fontSize: "10px",
   fontWeight: 500,
   letterSpacing: "0.16em",
@@ -75,7 +75,7 @@ const monoEyebrow: React.CSSProperties = {
 };
 
 const playfairQuestion: React.CSSProperties = {
-  fontFamily: "'Playfair Display', Georgia, serif",
+  fontFamily: "'Fraunces', Georgia, serif",
   fontWeight: 500,
   fontStyle: "italic",
   fontSize: "clamp(1.625rem, 4vw, 2.25rem)",
@@ -85,7 +85,7 @@ const playfairQuestion: React.CSSProperties = {
 };
 
 const subCopy: React.CSSProperties = {
-  fontFamily: "'Inter Tight', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "15px",
   color: "var(--nx-fg-muted)",
   lineHeight: 1.55,
@@ -100,7 +100,7 @@ const pill: React.CSSProperties = {
   borderRadius: "100px",
   border: "1px solid var(--nx-border)",
   backgroundColor: "transparent",
-  fontFamily: "'Inter Tight', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "11px",
   fontWeight: 600,
   letterSpacing: "0.09em",
@@ -120,7 +120,7 @@ const pillPrimary = (disabled: boolean): React.CSSProperties => ({
   borderRadius: "100px",
   border: "none",
   backgroundColor: disabled ? "#D1D5DB" : "var(--nx-fg)",
-  fontFamily: "'Inter Tight', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "11px",
   fontWeight: 700,
   letterSpacing: "0.1em",
@@ -215,7 +215,7 @@ function OptionButton({
         <span
           style={{
             display: "block",
-            fontFamily: "'Inter Tight', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "15px",
             fontWeight: selected ? 600 : 400,
             color: selected ? "var(--nx-bg-cream)" : "var(--nx-fg)",
@@ -227,7 +227,7 @@ function OptionButton({
           <span
             style={{
               display: "block",
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'DM Mono', monospace",
               fontSize: "9px",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -321,7 +321,7 @@ function CheckboxRow({
       />
       <span
         style={{
-          fontFamily: "'Inter Tight', sans-serif",
+          fontFamily: "'Inter', sans-serif",
           fontSize: "15px",
           fontWeight: checked ? 600 : 400,
           color: checked ? "var(--nx-bg-cream)" : "var(--nx-fg)",
@@ -468,7 +468,7 @@ export default function Assessment() {
         {step > 0 && step <= TOTAL_STEPS && (
           <p
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'DM Mono', monospace",
               fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.14em",
@@ -524,7 +524,7 @@ export default function Assessment() {
                 </p>
                 <h1
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontSize: "clamp(2rem, 5vw, 3rem)",
                     color: "var(--nx-fg)",
@@ -537,7 +537,7 @@ export default function Assessment() {
                 </h1>
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontSize: "clamp(1.125rem, 2.5vw, 1.375rem)",
                     color: "var(--nx-fg-muted)",
@@ -578,7 +578,7 @@ export default function Assessment() {
                       >
                         <p
                           style={{
-                            fontFamily: "'Playfair Display', Georgia, serif",
+                            fontFamily: "'Fraunces', Georgia, serif",
                             fontStyle: "italic",
                             fontWeight: 500,
                             fontSize: "2rem",
@@ -591,7 +591,7 @@ export default function Assessment() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                             fontSize: "9px",
                             fontWeight: 500,
                             letterSpacing: "0.12em",
@@ -700,7 +700,7 @@ export default function Assessment() {
                       htmlFor="medications-text"
                       style={{
                         display: "block",
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "9px",
                         fontWeight: 500,
                         letterSpacing: "0.12em",
@@ -724,7 +724,7 @@ export default function Assessment() {
                         borderRadius: "4px",
                         border: "1px solid var(--nx-border)",
                         backgroundColor: "#FFFFFF",
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "15px",
                         color: "var(--nx-fg)",
                         lineHeight: 1.5,
@@ -830,7 +830,7 @@ export default function Assessment() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2.5rem" }}>
                   {/* Name */}
                   <div>
-                    <label htmlFor="contact-name" style={{ display: "block", fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-name" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Full name *
                     </label>
                     <input
@@ -848,7 +848,7 @@ export default function Assessment() {
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="contact-email" style={{ display: "block", fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-email" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Email address *
                     </label>
                     <input
@@ -866,7 +866,7 @@ export default function Assessment() {
 
                   {/* Phone */}
                   <div>
-                    <label htmlFor="contact-phone" style={{ display: "block", fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-phone" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Phone number
                     </label>
                     <input
@@ -884,7 +884,7 @@ export default function Assessment() {
 
                   {/* State */}
                   <div>
-                    <label htmlFor="contact-state" style={{ display: "block", fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-state" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       State of residence *
                     </label>
                     <select
@@ -990,7 +990,7 @@ export default function Assessment() {
                     >
                       <span
                         style={{
-                          fontFamily: "'JetBrains Mono', monospace",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: "9px",
                           fontWeight: 500,
                           letterSpacing: "0.1em",
@@ -1005,7 +1005,7 @@ export default function Assessment() {
                       </span>
                       <span
                         style={{
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "14px",
                           color: "var(--nx-fg)",
                           lineHeight: 1.45,
@@ -1020,7 +1020,7 @@ export default function Assessment() {
                 {submitError && (
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13px",
                       color: "#B91C1C",
                       marginBottom: "1rem",
@@ -1075,7 +1075,7 @@ export default function Assessment() {
                 </div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
@@ -1088,7 +1088,7 @@ export default function Assessment() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                     color: "var(--nx-fg)",
@@ -1100,7 +1100,7 @@ export default function Assessment() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontSize: "clamp(1rem, 2vw, 1.25rem)",
                     color: "var(--nx-fg-muted)",
@@ -1112,7 +1112,7 @@ export default function Assessment() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "15px",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -1134,7 +1134,7 @@ export default function Assessment() {
                     gap: "0.5rem",
                     backgroundColor: "var(--nx-fg)",
                     color: "var(--nx-bg-cream)",
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "11px",
                     fontWeight: 700,
                     letterSpacing: "0.1em",
@@ -1164,7 +1164,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: "4px",
   border: "1px solid var(--nx-border)",
   backgroundColor: "#FFFFFF",
-  fontFamily: "'Inter Tight', sans-serif",
+  fontFamily: "'Inter', sans-serif",
   fontSize: "15px",
   color: "var(--nx-fg)",
   lineHeight: 1.5,

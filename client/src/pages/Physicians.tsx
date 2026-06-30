@@ -26,7 +26,7 @@ export default function Physicians() {
             <Reveal>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "11px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -43,7 +43,7 @@ export default function Physicians() {
               </p>
               <h1
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
                   color: "var(--nx-fg)",
@@ -56,7 +56,7 @@ export default function Physicians() {
               </h1>
               <p
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontStyle: "italic",
                   fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
@@ -70,7 +70,7 @@ export default function Physicians() {
               </p>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                   color: "#4A4A4A",
                   lineHeight: 1.65,
@@ -133,7 +133,7 @@ export default function Physicians() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -150,7 +150,7 @@ export default function Physicians() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -162,7 +162,7 @@ export default function Physicians() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -220,7 +220,7 @@ export default function Physicians() {
                   <div style={{ padding: "1.5rem 1.25rem 2rem" }}>
                     <h3
                       style={{
-                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontFamily: "'Fraunces', Georgia, serif",
                         fontStyle: "italic",
                         fontWeight: 500,
                         fontSize: "1.375rem",
@@ -233,7 +233,7 @@ export default function Physicians() {
                     </h3>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "9px",
                         fontWeight: 500,
                         letterSpacing: "0.12em",
@@ -246,7 +246,7 @@ export default function Physicians() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "8px",
                         fontWeight: 500,
                         letterSpacing: "0.1em",
@@ -259,7 +259,7 @@ export default function Physicians() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "13px",
                         color: "#4A4A4A",
                         lineHeight: 1.65,
@@ -271,7 +271,7 @@ export default function Physicians() {
                     <a
                       href="#"
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "12px",
                         fontWeight: 600,
                         letterSpacing: "0.06em",
@@ -312,7 +312,7 @@ export default function Physicians() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -329,7 +329,7 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
                     color: "var(--nx-fg)",
@@ -341,7 +341,7 @@ export default function Physicians() {
                 </h2>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -354,7 +354,7 @@ export default function Physicians() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -406,7 +406,7 @@ export default function Physicians() {
                       <div>
                         <p
                           style={{
-                            fontFamily: "'Inter Tight', sans-serif",
+                            fontFamily: "'Inter', sans-serif",
                             fontSize: "14px",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
@@ -417,7 +417,7 @@ export default function Physicians() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'Inter Tight', sans-serif",
+                            fontFamily: "'Inter', sans-serif",
                             fontSize: "13px",
                             color: "#4A4A4A",
                             lineHeight: 1.55,
@@ -452,7 +452,7 @@ export default function Physicians() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontStyle: "italic",
                       fontWeight: 400,
                       fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -468,7 +468,7 @@ export default function Physicians() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "14px",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
@@ -479,7 +479,7 @@ export default function Physicians() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'JetBrains Mono', monospace",
+                        fontFamily: "'DM Mono', monospace",
                         fontSize: "10px",
                         fontWeight: 500,
                         letterSpacing: "0.1em",

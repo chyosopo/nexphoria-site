@@ -40,7 +40,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
           {/* Brand + email */}
           <div className="md:col-span-2">
             <Logo variant="light" />
-            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter Tight', sans-serif", lineHeight: 1.6 }}>
+            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>
               Early access to new protocols, research, and member-only pricing.
             </p>
             <form
@@ -51,14 +51,14 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 type="email"
                 placeholder="Your email"
                 className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50"
-                style={{ fontFamily: "'Inter Tight', sans-serif" }}
+                style={{ fontFamily: "'Inter', sans-serif" }}
                 data-testid="footer-email-input"
               />
               <button
                 type="submit"
                 className="px-5 py-2.5 rounded-full text-sm font-semibold transition-colors"
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   backgroundColor: "var(--nx-cobalt)",
                   color: "#fff",
                   letterSpacing: "0.04em",
@@ -90,7 +90,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
 
         {/* Bottom row */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter Tight', sans-serif" }}>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', sans-serif" }}>
             © 2026 Nexphoria · All rights reserved
           </p>
           <div className="flex flex-wrap gap-4">
@@ -104,7 +104,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 key={label}
                 href={href}
                 className="text-xs no-underline hover:text-white transition-colors"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter Tight', sans-serif" }}
+                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', sans-serif" }}
               >
                 {label}
               </Link>
@@ -113,7 +113,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-6 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Inter Tight', sans-serif", maxWidth: "680px" }}>
+        <p className="mt-6 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Inter', sans-serif", maxWidth: "680px" }}>
           These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in FDA-registered 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
         </p>
       </div>
@@ -133,7 +133,7 @@ function FooterCol({
       <p
         className="mb-4"
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'DM Mono', monospace",
           fontSize: "10px",
           fontWeight: 500,
           letterSpacing: "0.12em",
@@ -149,7 +149,7 @@ function FooterCol({
             <Link
               href={href}
               className="text-sm no-underline hover:text-white transition-colors"
-              style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Inter Tight', sans-serif" }}
+              style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif" }}
             >
               {label}
             </Link>

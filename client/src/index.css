@@ -5,7 +5,7 @@
 /* ─────────────────────────────────────────────────────────────
    NEXPHORIA — LOCKED DESIGN SYSTEM v4
    Ink on warm cream. Editorial pharmacy authority.
-   Type: Playfair Display (serif/display) · Inter Tight (body) · JetBrains Mono (labels)
+   Type: Fraunces (serif/display) · Inter (body) · DM Mono (labels)
    Accent: INK (#0A0A0A) — color comes from photography and data, not UI chrome
    ───────────────────────────────────────────────────────────── */
 
@@ -74,15 +74,18 @@
 
   body {
     @apply bg-white text-nx-fg;
-    font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
   }
 
   h1, h2, h3 {
-    font-family: 'Playfair Display', 'EB Garamond', Georgia, serif;
+    font-family: 'Fraunces', 'EB Garamond', Georgia, serif;
     font-weight: 500;
-    line-height: 1.15;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-feature-settings: "ss01";
   }
 }
 
@@ -105,35 +108,45 @@
 
   /* ── Eyebrow label (mono caps cobalt) ── */
   .nx-eyebrow {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'DM Mono', ui-monospace, monospace;
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--nx-cobalt);
   }
 
   /* ── Section heading ── */
   .nx-heading {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--nx-fg);
-    line-height: 1.15;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
   }
 
   /* ── Hero heading ── */
   .nx-hero-heading {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
-    font-size: clamp(2.75rem, 5.5vw, 5rem);
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
     color: var(--nx-fg);
-    line-height: 1.1;
+    line-height: 1.0;
+    letter-spacing: -0.035em;
   }
 
-  /* ── Sub-headline (Inter Tight graphite) ── */
+  /* ── Italic accent (Maximus signature: blue italic word inside serif hero) ── */
+  .nx-italic-accent {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--nx-cobalt);
+  }
+
+  /* ── Sub-headline (Inter graphite) ── */
   .nx-subhead {
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 1.125rem;
     font-weight: 500;
     color: var(--nx-fg-graphite);
@@ -142,7 +155,7 @@
 
   /* ── Body text ── */
   .nx-body {
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     color: var(--nx-fg-graphite);
@@ -157,7 +170,7 @@
     padding: 0.75rem 1.5rem;
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -182,7 +195,7 @@
     padding: 0.75rem 1.5rem;
     background-color: transparent;
     color: var(--nx-fg);
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -206,7 +219,7 @@
     padding: 0.75rem 1.5rem;
     background-color: transparent;
     color: #FFFFFF;
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -229,7 +242,7 @@
     padding: 0.875rem 1.75rem;
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -253,7 +266,7 @@
     padding: 0.875rem 1.75rem;
     background-color: transparent;
     color: #FFFFFF;
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -311,14 +324,14 @@
     flex-wrap: wrap;
   }
   .nx-kpi-item .value {
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 2rem;
     font-weight: 700;
     color: var(--nx-fg);
     font-variant-numeric: tabular-nums;
   }
   .nx-kpi-item .label {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'DM Mono', ui-monospace, monospace;
     font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -337,7 +350,7 @@
     border-bottom: 1px solid var(--nx-border);
   }
   .nx-accordion-trigger {
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: var(--nx-fg);
@@ -350,7 +363,7 @@
     text-align: left;
   }
   .nx-accordion-content {
-    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.9375rem;
     color: var(--nx-fg-graphite);
     padding-bottom: 1.25rem;
@@ -434,7 +447,7 @@
     background: #fff;
     border: 1px solid var(--nx-border);
     border-radius: 0;
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.9375rem;
     color: #0A0A0A;
     transition: border-color 150ms ease, box-shadow 150ms ease;

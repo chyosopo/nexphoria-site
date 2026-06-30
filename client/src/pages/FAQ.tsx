@@ -133,7 +133,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
       >
         <p
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontStyle: isOpen ? "italic" : "normal",
             fontWeight: 500,
             fontSize: "clamp(1rem, 2vw, 1.375rem)",
@@ -175,7 +175,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
         >
           <p
             style={{
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "#4A4A4A",
               lineHeight: 1.7,
@@ -221,7 +221,7 @@ export default function FAQPage() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -238,7 +238,7 @@ export default function FAQPage() {
             </p>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -250,7 +250,7 @@ export default function FAQPage() {
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -263,7 +263,7 @@ export default function FAQPage() {
             </p>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -307,7 +307,7 @@ export default function FAQPage() {
               >
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
@@ -328,7 +328,7 @@ export default function FAQPage() {
                           border: "none",
                           cursor: "pointer",
                           padding: "0.5rem 0",
-                          fontFamily: "'Inter Tight', sans-serif",
+                          fontFamily: "'Inter', sans-serif",
                           fontSize: "14px",
                           fontWeight: activeCategory === i ? 600 : 400,
                           color: activeCategory === i ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
@@ -351,7 +351,7 @@ export default function FAQPage() {
                         {cat.label}
                         <span
                           style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                             fontSize: "9px",
                             color: "var(--nx-fg-muted)",
                           }}
@@ -370,7 +370,7 @@ export default function FAQPage() {
               <Reveal>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -383,7 +383,7 @@ export default function FAQPage() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",

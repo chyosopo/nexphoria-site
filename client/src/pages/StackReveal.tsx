@@ -191,7 +191,7 @@ export default function StackReveal() {
   const heroSrc = STACK_HEROES[stack.slug] ?? heroWolverine;
 
   return (
-    <SiteLayout navVariant="dark">
+    <SiteLayout navVariant="showcase">
       {/* ═══════════════ ACT 1 — CINEMATIC HERO ═══════════════ */}
       <section
         className="relative w-full h-[70vh] lg:h-[80vh] min-h-[520px] flex items-end overflow-hidden bg-background"

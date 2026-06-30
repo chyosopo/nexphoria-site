@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { X, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
+import type { CadenceKey } from "@/data/pricing";
+import { CADENCE_DISCOUNTS } from "@/data/pricing";
 
 /* ──────────────────────────────────────────────────────────────
    CartDrawer — slide-in from right
    ────────────────────────────────────────────────────────────── */
 
 export function CartDrawer() {
-  const { isOpen, close, lines, subtotal, totalSavings, itemCount, updateQty, removeItem } = useCart();
+  const { isOpen, close, lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
 
   // Close on Escape
   useEffect(() => {
@@ -64,13 +66,13 @@ export function CartDrawer() {
             <div>
               <div
                 className="text-[10px] uppercase tracking-[0.18em] mb-1"
-                style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
               >
                 Your Pharmacy
               </div>
               <h2
                 className="text-xl"
-                style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+                style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
               >
                 {itemCount === 0 ? "Cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"}`}
               </h2>
@@ -104,7 +106,7 @@ export function CartDrawer() {
                         <div
                           className="text-[9px] uppercase tracking-[0.2em] mb-1.5"
                           style={{
-                            fontFamily: "'JetBrains Mono', monospace",
+                            fontFamily: "'DM Mono', monospace",
                             color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B",
                           }}
                         >
@@ -112,13 +114,13 @@ export function CartDrawer() {
                         </div>
                         <div
                           className="text-base mb-1"
-                          style={{ fontFamily: "'Inter Tight', sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+                          style={{ fontFamily: "'Inter', sans-serif", color: "#0A0A0A", fontWeight: 500 }}
                         >
                           {line.name}
                         </div>
                         <div
                           className="text-sm"
-                          style={{ fontFamily: "'Inter Tight', sans-serif", color: "#6B6B6B" }}
+                          style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
                         >
                           {formatUSD(line.unitPrice)} <span className="text-xs">/ month supply</span>
                         </div>
@@ -126,12 +128,12 @@ export function CartDrawer() {
                           <div
                             className="text-xs mt-1"
                             style={{
-                              fontFamily: "'JetBrains Mono', monospace",
+                              fontFamily: "'DM Mono', monospace",
                               color: "#8B5A2B",
                               letterSpacing: "0.05em",
                             }}
                           >
-                            Save {formatUSD(line.savings)} vs individual
+                            Save {formatUSD(line.savings)} on this cadence
                           </div>
                         ) : null}
                       </div>
@@ -139,7 +141,7 @@ export function CartDrawer() {
                       <div className="text-right">
                         <div
                           className="text-base mb-2"
-                          style={{ fontFamily: "'Inter Tight', sans-serif", color: "#0A0A0A", fontWeight: 600 }}
+                          style={{ fontFamily: "'Inter', sans-serif", color: "#0A0A0A", fontWeight: 600 }}
                         >
                           {formatUSD(line.lineTotal)}
                         </div>
@@ -152,6 +154,57 @@ export function CartDrawer() {
                         >
                           <Trash2 size={14} />
                         </button>
+                      </div>
+                    </div>
+
+                    {/* Cadence segmented control */}
+                    <div className="mt-3">
+                      <div
+                        className="text-[9px] uppercase tracking-[0.18em] mb-1.5"
+                        style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
+                      >
+                        Billing cadence
+                      </div>
+                      <div
+                        className="inline-flex w-full"
+                        style={{ border: "1px solid var(--nx-border)" }}
+                        role="radiogroup"
+                        aria-label="Billing cadence"
+                      >
+                        {(Object.keys(CADENCE_DISCOUNTS) as CadenceKey[]).map((c) => {
+                          const meta = CADENCE_DISCOUNTS[c];
+                          const active = line.cadence === c;
+                          return (
+                            <button
+                              key={c}
+                              type="button"
+                              role="radio"
+                              aria-checked={active}
+                              onClick={() => updateCadence(line.slug, line.type, c)}
+                              className="flex-1 px-2 py-1.5 text-[10px] uppercase tracking-[0.1em] transition-colors"
+                              style={{
+                                fontFamily: "'DM Mono', monospace",
+                                background: active ? "#0A0A0A" : "transparent",
+                                color: active ? "#FAF7F0" : "#0A0A0A",
+                              }}
+                              data-testid={`button-cadence-${c}-${line.type}-${line.slug}`}
+                            >
+                              {meta.label}
+                              {meta.savePct > 0 ? (
+                                <span
+                                  className="block text-[8px] mt-0.5"
+                                  style={{ color: active ? "#FAF7F0" : "#8B5A2B", opacity: active ? 0.85 : 1 }}
+                                >
+                                  −{meta.savePct}%
+                                </span>
+                              ) : (
+                                <span className="block text-[8px] mt-0.5" style={{ opacity: 0 }}>
+                                  &nbsp;
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
 
@@ -172,7 +225,7 @@ export function CartDrawer() {
                         </button>
                         <span
                           className="px-3 text-sm min-w-[28px] text-center"
-                          style={{ fontFamily: "'JetBrains Mono', monospace", color: "#0A0A0A" }}
+                          style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
                           data-testid={`text-qty-${line.type}-${line.slug}`}
                         >
                           {line.qty}
@@ -187,6 +240,12 @@ export function CartDrawer() {
                           <Plus size={12} />
                         </button>
                       </div>
+                      <span
+                        className="text-[10px] uppercase tracking-[0.15em]"
+                        style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
+                      >
+                        {line.cadenceLabel} · billed monthly
+                      </span>
                     </div>
                   </li>
                 ))}
@@ -204,13 +263,13 @@ export function CartDrawer() {
                 <div className="flex items-center justify-between mb-2">
                   <span
                     className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                    style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                   >
-                    Stack savings
+                    You save
                   </span>
                   <span
                     className="text-sm"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                    style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                   >
                     −{formatUSD(totalSavings)}
                   </span>
@@ -219,23 +278,42 @@ export function CartDrawer() {
               <div className="flex items-center justify-between mb-4">
                 <span
                   className="text-sm uppercase tracking-[0.12em]"
-                  style={{ fontFamily: "'JetBrains Mono', monospace", color: "#0A0A0A" }}
+                  style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
                 >
                   Subtotal · monthly
                 </span>
                 <span
                   className="text-2xl"
-                  style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+                  style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
                   data-testid="text-cart-subtotal"
                 >
                   {formatUSD(subtotal)}
                 </span>
               </div>
+              <div
+                className="flex items-center gap-2 mb-3 pb-3 flex-wrap"
+                style={{ borderBottom: "1px dashed var(--nx-border)" }}
+              >
+                {["Klarna", "HSA/FSA", "Free Ship"].map((label) => (
+                  <span
+                    key={label}
+                    className="text-[9px] uppercase tracking-[0.18em] px-2 py-1"
+                    style={{
+                      fontFamily: "'DM Mono', monospace",
+                      background: "#FAF7F0",
+                      color: "#0A0A0A",
+                      border: "1px solid var(--nx-border)",
+                    }}
+                  >
+                    {label}
+                  </span>
+                ))}
+              </div>
               <p
                 className="text-[11px] mb-4 leading-relaxed"
-                style={{ fontFamily: "'Inter Tight', sans-serif", color: "#6B6B6B" }}
+                style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
               >
-                Physician oversight, lab interpretation, and shipping included. Final pricing confirmed after intake review.
+                Physician oversight, lab interpretation, and shipping included. Cancel or change cadence anytime.
               </p>
               <Link href="/checkout" onClick={close}>
                 <a
@@ -243,7 +321,7 @@ export function CartDrawer() {
                   style={{
                     background: "#0A0A0A",
                     color: "#FAF7F0",
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontWeight: 500,
                     fontSize: "0.875rem",
                     letterSpacing: "0.02em",
@@ -258,7 +336,7 @@ export function CartDrawer() {
                   className="block w-full text-center px-6 py-2.5 mt-2 transition-colors hover:bg-black/5"
                   style={{
                     color: "#0A0A0A",
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.8125rem",
                   }}
                   data-testid="button-view-cart"
@@ -285,13 +363,13 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
       </div>
       <h3
         className="text-lg mb-2"
-        style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+        style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
       >
         Your pharmacy is empty
       </h3>
       <p
         className="text-sm mb-6 max-w-xs"
-        style={{ fontFamily: "'Inter Tight', sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
+        style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
       >
         Browse single peptides, doctor-curated stacks, or take the intake to receive a custom protocol.
       </p>
@@ -302,7 +380,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             style={{
               background: "#0A0A0A",
               color: "#FAF7F0",
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.8125rem",
               fontWeight: 500,
             }}
@@ -316,7 +394,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             className="block w-full text-center px-4 py-2.5 transition-colors hover:bg-black/5"
             style={{
               color: "#0A0A0A",
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.8125rem",
               border: "1px solid var(--nx-border)",
             }}

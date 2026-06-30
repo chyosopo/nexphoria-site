@@ -60,7 +60,7 @@ export default function Gate() {
         <Logo variant="light" />
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'DM Mono', monospace",
             fontSize: "9px",
             fontWeight: 500,
             letterSpacing: "0.18em",
@@ -73,7 +73,7 @@ export default function Gate() {
         </p>
         <p
           style={{
-            fontFamily: "'Inter Tight', sans-serif",
+            fontFamily: "'Inter', sans-serif",
             fontSize: "12px",
             fontWeight: 400,
             color: "rgba(255,255,255,0.55)",
@@ -151,7 +151,7 @@ export default function Gate() {
           >
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
@@ -197,6 +197,22 @@ export default function Gate() {
 // GateCard
 // ─────────────────────────────────────────────
 
+const flagshipPeek: Record<
+  "her" | "him",
+  Array<{ num: string; name: string; peptides: string; from: string }>
+> = {
+  her: [
+    { num: "01", name: "Metabolic", peptides: "Tirzepatide · Semaglutide", from: "$249/mo" },
+    { num: "02", name: "Skin & Recovery", peptides: "GHK-Cu · BPC-157", from: "$199/mo" },
+    { num: "03", name: "Longevity", peptides: "NAD+ · MOTS-c · Epitalon", from: "$299/mo" },
+  ],
+  him: [
+    { num: "01", name: "Strength", peptides: "CJC-1295 · Ipamorelin", from: "$279/mo" },
+    { num: "02", name: "Metabolic", peptides: "Tirzepatide · Semaglutide", from: "$249/mo" },
+    { num: "03", name: "Longevity", peptides: "NAD+ · MOTS-c · Sermorelin", from: "$299/mo" },
+  ],
+};
+
 interface GateCardProps {
   side: "her" | "him";
   image: string;
@@ -222,6 +238,7 @@ function GateCard({
   const ariaLabel =
     side === "her" ? "Enter peptides for her" : "Enter peptides for him";
   const testId = side === "her" ? "gate-card-her" : "gate-card-him";
+  const stacks = flagshipPeek[side];
 
   // Outer card: when chosen, expand to fixed full-viewport overlay
   const cardStyle: React.CSSProperties = isChosen
@@ -310,6 +327,164 @@ function GateCard({
         transition={{ duration: 0.5 }}
       />
 
+      {/* Top chip strip: protocol count + pulsing dot — anchored to outer corners away from wordmark */}
+      <motion.div
+        className="gate-card-top-chips"
+        style={{
+          position: "absolute",
+          top: 32,
+          left: side === "her" ? 32 : "auto",
+          right: side === "him" ? 32 : "auto",
+          zIndex: 12,
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "8px 12px",
+          borderRadius: 999,
+          backgroundColor: "rgba(10,10,10,0.45)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          border: "1px solid rgba(255,255,243,0.12)",
+        }}
+        animate={{ opacity: isChosen ? 0 : 1 }}
+        transition={{ duration: 0.2 }}
+      >
+        <motion.span
+          style={{
+            display: "inline-block",
+            width: 6,
+            height: 6,
+            borderRadius: "50%",
+            backgroundColor: "#C97A4A",
+          }}
+          animate={reducedMotion ? {} : { opacity: [1, 0.35, 1], scale: [1, 0.85, 1] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <span
+          style={{
+            fontFamily: "'DM Mono', monospace",
+            fontSize: 10,
+            fontWeight: 500,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#FFFFF3",
+          }}
+        >
+          3 Flagship Protocols
+        </span>
+      </motion.div>
+
+      {/* Hover peek panel (desktop only) */}
+      <AnimatePresence>
+        {isHovered && !isChosen && (
+          <motion.div
+            key="peek-panel"
+            className="gate-peek-panel"
+            style={{
+              position: "absolute",
+              top: "50%",
+              right: side === "her" ? 48 : "auto",
+              left: side === "him" ? 48 : "auto",
+              transform: "translateY(-50%)",
+              zIndex: 11,
+              width: 320,
+              padding: "24px 24px 20px",
+              borderRadius: 4,
+              backgroundColor: "rgba(10,10,10,0.72)",
+              backdropFilter: "blur(14px)",
+              WebkitBackdropFilter: "blur(14px)",
+              border: "1px solid rgba(255,255,243,0.14)",
+              boxShadow: "0 24px 48px -16px rgba(0,0,0,0.5)",
+              pointerEvents: "none",
+            }}
+            initial={reducedMotion ? { opacity: 0 } : { opacity: 0, x: side === "her" ? 12 : -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={reducedMotion ? { opacity: 0 } : { opacity: 0, x: side === "her" ? 12 : -12 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+          >
+            <p
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: 9,
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,243,0.55)",
+                marginBottom: 16,
+              }}
+            >
+              Built for {side === "her" ? "her" : "him"}
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+              {stacks.map((s, i) => (
+                <motion.li
+                  key={s.name}
+                  initial={reducedMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.06 + i * 0.07, ease: "easeOut" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2,
+                    paddingBottom: i < stacks.length - 1 ? 14 : 0,
+                    borderBottom: i < stacks.length - 1 ? "1px solid rgba(255,255,243,0.08)" : "none",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+                      <span
+                        style={{
+                          fontFamily: "'Fraunces', Georgia, serif",
+                          fontStyle: "italic",
+                          fontSize: 13,
+                          color: "#C97A4A",
+                          letterSpacing: "-0.01em",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {s.num}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: 14,
+                          fontWeight: 600,
+                          color: "#FFFFF3",
+                          letterSpacing: "-0.01em",
+                        }}
+                      >
+                        {s.name}
+                      </span>
+                    </div>
+                    <span
+                      style={{
+                        fontFamily: "'DM Mono', monospace",
+                        fontSize: 11,
+                        fontWeight: 500,
+                        color: "rgba(255,255,243,0.75)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {s.from}
+                    </span>
+                  </div>
+                  <span
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: 12,
+                      color: "rgba(255,255,243,0.6)",
+                      letterSpacing: "0.01em",
+                    }}
+                  >
+                    {s.peptides}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Text content */}
       <motion.div
         style={{
@@ -331,7 +506,7 @@ function GateCard({
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'DM Mono', monospace",
             fontSize: "10px",
             fontWeight: 500,
             letterSpacing: "0.16em",
@@ -346,7 +521,7 @@ function GateCard({
         {/* Main label */}
         <p
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontStyle: "italic",
             fontWeight: 400,
             fontSize: "clamp(3.5rem, 6vw, 6rem)",
@@ -401,6 +576,15 @@ function GateCard({
           }
           [data-testid="${testId}"] .gate-card-text p:nth-child(2) {
             font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+          }
+          [data-testid="${testId}"] .gate-peek-panel {
+            display: none !important;
+          }
+          [data-testid="${testId}"] .gate-card-top-chips {
+            top: 92px !important;
+            right: 16px !important;
+            left: auto !important;
+            padding: 6px 10px !important;
           }
         }
       `}</style>

@@ -6,13 +6,23 @@ import { StartIntakeButton } from "./StartIntakeButton";
 import { CartIconButton } from "./CartIconButton";
 
 interface NavProps {
-  variant?: "women" | "men" | "gate";
+  variant?: "women" | "men" | "gate" | "showcase";
 }
+
+const showcaseLinks = [
+  { label: "Pharmacy", href: "/peptides" },
+  { label: "Stacks", href: "/stacks" },
+  { label: "Science", href: "/science" },
+  { label: "Journal", href: "/journal" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "About", href: "/about" },
+];
 
 const womenLinks = [
   { label: "Pharmacy", href: "/women/peptides" },
   { label: "Stacks", href: "/stacks" },
   { label: "Custom Protocol", href: "/women/assessment" },
+  { label: "Journal", href: "/journal" },
   { label: "How It Works", href: "/how-it-works" },
 ];
 
@@ -20,6 +30,7 @@ const menLinks = [
   { label: "Pharmacy", href: "/men/peptides" },
   { label: "Stacks", href: "/stacks" },
   { label: "Custom Protocol", href: "/men/assessment" },
+  { label: "Journal", href: "/journal" },
   { label: "How It Works", href: "/how-it-works" },
 ];
 
@@ -29,6 +40,7 @@ const gateLinks = [
   { label: "Stacks", href: "/stacks" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Science", href: "/science" },
+  { label: "Journal", href: "/journal" },
 ];
 
 export function Nav({ variant = "gate" }: NavProps) {
@@ -46,10 +58,21 @@ export function Nav({ variant = "gate" }: NavProps) {
     setMenuOpen(false);
   }, [location]);
 
-  const links = variant === "women" ? womenLinks : variant === "men" ? menLinks : gateLinks;
+  const links =
+    variant === "showcase" ? showcaseLinks :
+    variant === "women" ? womenLinks :
+    variant === "men" ? menLinks :
+    gateLinks;
 
-  const navSource = variant === "women" ? "women-nav" : variant === "men" ? "men-nav" : "gate-nav";
-  const intakeSlug = variant === "women" ? "women-assessment" : variant === "men" ? "men-assessment" : "assessment";
+  const navSource =
+    variant === "showcase" ? "showcase-nav" :
+    variant === "women" ? "women-nav" :
+    variant === "men" ? "men-nav" :
+    "gate-nav";
+  const intakeSlug =
+    variant === "women" ? "women-assessment" :
+    variant === "men" ? "men-assessment" :
+    "assessment";
 
   return (
     <header
@@ -69,7 +92,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               <Link
                 href={link.href}
                 className="text-sm font-medium text-nx-graphite hover:text-nx-cobalt transition-colors no-underline"
-                style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A" }}
+                style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A" }}
               >
                 {link.label}
               </Link>
@@ -114,7 +137,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <Link
                   href={link.href}
                   className="block py-2.5 text-sm font-medium no-underline"
-                  style={{ color: "#4A4A4A", fontFamily: "'Inter Tight', sans-serif" }}
+                  style={{ color: "#4A4A4A", fontFamily: "'Inter', sans-serif" }}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

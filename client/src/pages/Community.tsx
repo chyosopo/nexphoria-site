@@ -69,7 +69,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -86,7 +86,7 @@ export default function Community() {
             </p>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -98,7 +98,7 @@ export default function Community() {
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -111,7 +111,7 @@ export default function Community() {
             </p>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -136,7 +136,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -153,7 +153,7 @@ export default function Community() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -185,7 +185,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.15em",
@@ -197,7 +197,7 @@ export default function Community() {
                   </p>
                   <h3
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontStyle: "italic",
                       fontWeight: 500,
                       fontSize: "1.25rem",
@@ -210,7 +210,7 @@ export default function Community() {
                   </h3>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13.5px",
                       color: "#4A4A4A",
                       lineHeight: 1.65,
@@ -243,7 +243,7 @@ export default function Community() {
             <Reveal>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "11px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -256,7 +256,7 @@ export default function Community() {
               </p>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
                   color: "#FFFFFF",
@@ -268,7 +268,7 @@ export default function Community() {
               </h2>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontStyle: "italic",
                   fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
@@ -281,7 +281,7 @@ export default function Community() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   color: "rgba(255,255,255,0.75)",
                   lineHeight: 1.7,
@@ -304,7 +304,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontStyle: "italic",
                       fontWeight: 500,
                       fontSize: "1.25rem",
@@ -316,7 +316,7 @@ export default function Community() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "14px",
                       color: "rgba(255,255,255,0.75)",
                     }}
@@ -329,7 +329,7 @@ export default function Community() {
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   <label
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
@@ -349,7 +349,7 @@ export default function Community() {
                     required
                     data-testid="community-email-input"
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "14px",
                       padding: "0.875rem 1.25rem",
                       borderRadius: "4px",
@@ -369,7 +369,7 @@ export default function Community() {
                       gap: "0.5rem",
                       backgroundColor: "#FFFFFF",
                       color: "var(--nx-cobalt)",
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "12px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
@@ -385,7 +385,7 @@ export default function Community() {
                   </button>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "11px",
                       color: "rgba(255,255,255,0.45)",
                     }}
@@ -408,7 +408,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -425,7 +425,7 @@ export default function Community() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -457,7 +457,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -469,7 +469,7 @@ export default function Community() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "14px",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -481,7 +481,7 @@ export default function Community() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       color: "var(--nx-fg-muted)",
                     }}
@@ -504,7 +504,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -521,7 +521,7 @@ export default function Community() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -534,7 +534,7 @@ export default function Community() {
             </h2>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1.0625rem",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -567,7 +567,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -581,7 +581,7 @@ export default function Community() {
                   <div style={{ flex: 1 }}>
                     <p
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "14.5px",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
@@ -593,7 +593,7 @@ export default function Community() {
                   </div>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       color: "var(--nx-fg-muted)",
                       flexShrink: 0,

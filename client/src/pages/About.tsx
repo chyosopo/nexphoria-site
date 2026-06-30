@@ -1,6 +1,7 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { useSeo } from "@/lib/seo";
 
 import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
@@ -24,7 +25,7 @@ export default function About() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -41,7 +42,7 @@ export default function About() {
             </p>
             <h1
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2.25rem, 5vw, 4.25rem)",
                 color: "var(--nx-fg)",
@@ -54,7 +55,7 @@ export default function About() {
             </h1>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2.25rem, 5vw, 4.25rem)",
@@ -68,7 +69,7 @@ export default function About() {
             </p>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
                 lineHeight: 1.65,
@@ -103,7 +104,7 @@ export default function About() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -120,7 +121,7 @@ export default function About() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -134,7 +135,7 @@ export default function About() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "1.0625rem",
                       color: "#4A4A4A",
                       lineHeight: 1.7,
@@ -148,7 +149,7 @@ export default function About() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "1.0625rem",
                       color: "#4A4A4A",
                       lineHeight: 1.7,
@@ -192,7 +193,7 @@ export default function About() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -209,7 +210,7 @@ export default function About() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -266,7 +267,7 @@ export default function About() {
               >
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -278,7 +279,7 @@ export default function About() {
                 </p>
                 <h3
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontWeight: 500,
                     fontSize: "1.375rem",
@@ -291,7 +292,7 @@ export default function About() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "14px",
                     color: "#4A4A4A",
                     lineHeight: 1.65,
@@ -324,7 +325,7 @@ export default function About() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -341,7 +342,7 @@ export default function About() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -354,7 +355,7 @@ export default function About() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -374,7 +375,7 @@ export default function About() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -391,7 +392,7 @@ export default function About() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -404,7 +405,7 @@ export default function About() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -419,7 +420,7 @@ export default function About() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -470,7 +471,7 @@ export default function About() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -487,7 +488,7 @@ export default function About() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
@@ -500,7 +501,7 @@ export default function About() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -513,7 +514,7 @@ export default function About() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -541,7 +542,7 @@ export default function About() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontStyle: "italic",
                 fontWeight: 400,
                 fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
@@ -557,7 +558,7 @@ export default function About() {
             <div style={{ marginTop: "2.5rem" }}>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   fontWeight: 700,
                   letterSpacing: "0.16em",
@@ -571,6 +572,12 @@ export default function About() {
           </Reveal>
         </div>
       </section>
+
+      <TrustStatsStrip
+        eyebrow="By the numbers"
+        heading="The Nexphoria record — in receipts, not adjectives."
+        variant="dark"
+      />
 
       <FinalCTAStrip
         gender="women"

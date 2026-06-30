@@ -1,19 +1,26 @@
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
+import { AnnouncementBar } from "./AnnouncementBar";
 
 interface SiteLayoutProps {
   children: React.ReactNode;
-  navVariant?: "women" | "men" | "gate";
+  navVariant?: "showcase" | "women" | "men" | "gate";
   footerVariant?: "women" | "men" | "shared";
   hideFooter?: boolean;
+  hideAnnouncementBar?: boolean;
+  /** Legacy prop alias used by Cart.tsx & friends */
+  variant?: "showcase" | "women" | "men" | "gate";
 }
 
 export function SiteLayout({
   children,
-  navVariant = "gate",
+  navVariant,
   footerVariant = "shared",
   hideFooter = false,
+  hideAnnouncementBar = false,
+  variant,
 }: SiteLayoutProps) {
+  const resolvedNavVariant = navVariant ?? variant ?? "showcase";
   return (
     <div className="min-h-screen flex flex-col">
       <a
@@ -22,9 +29,10 @@ export function SiteLayout({
       >
         Skip to main content
       </a>
-      <Nav variant={navVariant} />
+      {!hideAnnouncementBar && <AnnouncementBar />}
+      <Nav variant={resolvedNavVariant} />
       <main id="main-content" className="flex-1 pt-14">{children}</main>
-      {!hideFooter && <Footer variant={footerVariant} />}
+      {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
     </div>
   );
 }

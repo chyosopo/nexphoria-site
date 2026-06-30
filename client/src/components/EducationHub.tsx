@@ -19,7 +19,7 @@ const articles = [
     readTime: "8 MIN",
     excerpt:
       "Short chains of amino acids that signal cells. Understanding mechanism is the first step toward informed therapy.",
-    href: "/education/what-is-a-peptide",
+    href: "/journal/what-is-a-peptide",
     imageSrc: editorialBloodwork,
   },
   {
@@ -28,7 +28,7 @@ const articles = [
     readTime: "12 MIN",
     excerpt:
       "Reference ranges are population averages — not your personal optimum. A primer on biomarker interpretation.",
-    href: "/education/reading-your-bloodwork",
+    href: "/journal/reading-your-bloodwork",
     imageSrc: editorialPrescription,
   },
   {
@@ -37,7 +37,7 @@ const articles = [
     readTime: "9 MIN",
     excerpt:
       "Every peptide has a side-effect profile. We catalog them, severity-rated, with clinical recourse.",
-    href: "/education/side-effects-and-contraindications",
+    href: "/journal/side-effects-and-contraindications",
     imageSrc: editorialProtocolKit,
   },
   {
@@ -46,7 +46,7 @@ const articles = [
     readTime: "14 MIN",
     excerpt:
       "503A pharmacies, FDA enforcement discretion, and what 'research-only' really means.",
-    href: "/education/legal-landscape-compounded-peptides-2026",
+    href: "/journal/legal-landscape-compounded-peptides-2026",
     imageSrc: editorialPharmacy,
   },
 ];
@@ -101,7 +101,7 @@ export function EducationHub() {
               />
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.14em",
@@ -116,7 +116,7 @@ export function EducationHub() {
             {/* Heading */}
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
                 color: "var(--nx-fg)",
@@ -132,7 +132,7 @@ export function EducationHub() {
             {/* Subhead */}
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "15px",
                 color: "var(--nx-fg-muted)",
                 lineHeight: 1.6,
@@ -147,7 +147,7 @@ export function EducationHub() {
             href="/education"
             data-testid="education-hub-explore-all-link"
             style={{
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "13px",
               fontWeight: 500,
               color: "var(--nx-fg)",

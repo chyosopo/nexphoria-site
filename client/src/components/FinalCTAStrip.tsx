@@ -58,7 +58,7 @@ export function FinalCTAStrip({
             />
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -80,7 +80,7 @@ export function FinalCTAStrip({
           {/* Main headline — Playfair italic, cream */}
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontStyle: "italic",
               fontWeight: 500,
               fontSize: "clamp(2rem, 4.5vw, 3.625rem)",
@@ -98,7 +98,7 @@ export function FinalCTAStrip({
           {/* Sub-copy — cream tinted */}
           <p
             style={{
-              fontFamily: "'Inter Tight', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.0625rem",
               color: "rgba(255,255,243,0.72)",
               lineHeight: 1.6,

@@ -4,6 +4,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { getStack, computeStackPrice } from "@/data/stacks";
 import { pricing, formatUSD, getPrice } from "@/data/pricing";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import { CadenceSelector } from "@/components/CadenceSelector";
 import { getStackImage } from "@/lib/stackImages";
 
 /* Stack detail page — full clinical case + add-to-cart + customize */
@@ -22,7 +23,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
           <div className="nx-container py-20 text-center">
             <h1
               className="text-4xl mb-4"
-              style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
             >
               Stack not found
             </h1>
@@ -32,7 +33,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 style={{
                   background: "#0A0A0A",
                   color: "#FAF7F0",
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
                 }}
                 data-testid="link-back-to-stacks"
@@ -59,7 +60,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
             <a
               className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em]"
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 color: "#6B6B6B",
               }}
               data-testid="link-back-stack-index"
@@ -89,7 +90,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   style={{
                     background: "#0A0A0A",
                     color: "#FAF7F0",
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                   }}
                 >
                   {stack.badge}
@@ -101,13 +102,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
             <div>
               <div
                 className="text-[11px] uppercase tracking-[0.22em] mb-4"
-                style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
               >
                 Doctor-Curated Stack · {audienceLabel}
               </div>
               <h1
                 className="text-5xl md:text-6xl mb-3 leading-[1.04]"
-                style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+                style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
                 data-testid={`text-stack-name-${stack.slug}`}
               >
                 {stack.name}
@@ -115,7 +116,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
               <p
                 className="text-xl md:text-2xl mb-7"
                 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Fraunces', serif",
                   color: "#4A4A4A",
                   fontStyle: "italic",
                   fontWeight: 400,
@@ -125,7 +126,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
               </p>
               <p
                 className="text-base mb-8"
-                style={{ fontFamily: "'Inter Tight', sans-serif", color: "#28251D", lineHeight: 1.65 }}
+                style={{ fontFamily: "'Inter', sans-serif", color: "#28251D", lineHeight: 1.65 }}
               >
                 {stack.description}
               </p>
@@ -149,7 +150,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   <div>
                     <div
                       className="text-[10px] uppercase tracking-[0.2em] mb-1"
-                      style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B" }}
+                      style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
                     >
                       Monthly · full stack
                     </div>
@@ -157,7 +158,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                       <span
                         className="text-4xl"
                         style={{
-                          fontFamily: "'Playfair Display', serif",
+                          fontFamily: "'Fraunces', serif",
                           color: "#0A0A0A",
                           fontWeight: 500,
                         }}
@@ -167,31 +168,29 @@ export default function StackDetail({ slug }: StackDetailProps) {
                       </span>
                       <span
                         className="text-base line-through"
-                        style={{ fontFamily: "'JetBrains Mono', monospace", color: "#9A9A95" }}
+                        style={{ fontFamily: "'DM Mono', monospace", color: "#9A9A95" }}
                       >
                         {formatUSD(sum)}
                       </span>
                     </div>
                     <div
                       className="text-[11px] uppercase tracking-[0.14em] mt-1"
-                      style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                      style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                     >
                       Bundle savings — {formatUSD(savings)} / month
                     </div>
                   </div>
                 </div>
+                {/* Cadence selector with built-in Add-to-Cart */}
+                <div className="mb-5">
+                  <CadenceSelector slug={stack.slug} type="stack" productName={stack.name} />
+                </div>
                 <div className="flex flex-wrap gap-3">
-                  <AddToCartButton
-                    slug={stack.slug}
-                    type="stack"
-                    variant="primary"
-                    label="Add full stack to cart"
-                  />
                   <Link href={`/peptides/${stack.peptides[0]}`}>
                     <a
                       className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm"
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         color: "#0A0A0A",
                         border: "1px solid var(--nx-border)",
                         fontWeight: 500,
@@ -207,7 +206,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
               {/* Trust ribbon */}
               <div
                 className="flex flex-wrap gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.16em]"
-                style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B" }}
+                style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
               >
                 <span className="inline-flex items-center gap-1.5">
                   <Check size={11} strokeWidth={2.5} /> Physician-reviewed
@@ -231,13 +230,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
           <div className="nx-container">
             <div
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+              style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
             >
               Peptides included · {stack.peptides.length}
             </div>
             <h2
               className="text-3xl md:text-4xl mb-10 max-w-3xl leading-[1.1]"
-              style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
             >
               The active compounds, <em style={{ fontStyle: "italic" }}>each individually sourced</em>.
             </h2>
@@ -259,14 +258,14 @@ export default function StackDetail({ slug }: StackDetailProps) {
                     >
                       <div
                         className="text-[10px] uppercase tracking-[0.2em] mb-2"
-                        style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                        style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                       >
                         {p.badge || "Active compound"}
                       </div>
                       <h3
                         className="text-xl mb-2"
                         style={{
-                          fontFamily: "'Playfair Display', serif",
+                          fontFamily: "'Fraunces', serif",
                           color: "#0A0A0A",
                           fontWeight: 500,
                           letterSpacing: "-0.01em",
@@ -276,26 +275,26 @@ export default function StackDetail({ slug }: StackDetailProps) {
                       </h3>
                       <div
                         className="text-xs mb-3"
-                        style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A", lineHeight: 1.5 }}
+                        style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.5 }}
                       >
                         {p.vialSpec}
                       </div>
                       <div className="flex items-end justify-between pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
                         <div
                           className="text-lg"
-                          style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+                          style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
                         >
                           {formatUSD(p.monthlyPrice)}
                           <span
                             className="text-[10px] ml-1 uppercase tracking-[0.12em]"
-                            style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B" }}
+                            style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
                           >
                             / mo
                           </span>
                         </div>
                         <span
                           className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1"
-                          style={{ fontFamily: "'JetBrains Mono', monospace", color: "#0A0A0A" }}
+                          style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
                         >
                           Details <ArrowRight size={10} strokeWidth={2.5} />
                         </span>
@@ -313,13 +312,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
           <div className="nx-container max-w-5xl">
             <div
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+              style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
             >
               Bloodwork tracked
             </div>
             <h2
               className="text-3xl md:text-4xl mb-10 leading-[1.1]"
-              style={{ fontFamily: "'Playfair Display', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
             >
               The biomarkers <em style={{ fontStyle: "italic" }}>that confirm the protocol is working</em>.
             </h2>
@@ -334,13 +333,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 >
                   <div
                     className="text-[10px] uppercase tracking-[0.18em] mb-1.5"
-                    style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B" }}
+                    style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
                   >
                     Marker
                   </div>
                   <div
                     className="text-base"
-                    style={{ fontFamily: "'Inter Tight', sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+                    style={{ fontFamily: "'Inter', sans-serif", color: "#0A0A0A", fontWeight: 500 }}
                   >
                     {marker}
                   </div>
@@ -350,7 +349,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
 
             <p
               className="mt-8 text-sm max-w-2xl"
-              style={{ fontFamily: "'Inter Tight', sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
+              style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
             >
               Bloodwork is drawn at baseline and at intervals throughout the protocol. Results return to
               your physician, who adjusts the stack based on what your body is doing — not what the
@@ -369,13 +368,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
               <div>
                 <div
                   className="text-[10px] uppercase tracking-[0.22em] mb-2"
-                  style={{ fontFamily: "'JetBrains Mono', monospace", color: "#8B5A2B" }}
+                  style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
                 >
                   Ready to start?
                 </div>
                 <h2
                   className="text-3xl md:text-4xl leading-[1.1]"
-                  style={{ fontFamily: "'Playfair Display', serif", color: "#FAF7F0", fontWeight: 500 }}
+                  style={{ fontFamily: "'Fraunces', serif", color: "#FAF7F0", fontWeight: 500 }}
                 >
                   Add <em style={{ fontStyle: "italic" }}>{stack.name}</em> to cart — physician
                   consult included.
@@ -392,7 +391,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   <a
                     className="inline-flex items-center justify-center px-5 py-3 text-sm"
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       color: "#FAF7F0",
                       border: "1px solid rgba(250,247,240,0.3)",
                       fontWeight: 500,
@@ -416,13 +415,13 @@ function MetaRow({ label, value }: { label: string; value: string }) {
     <div className="grid grid-cols-[120px_1fr] gap-4 py-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
       <dt
         className="text-[10px] uppercase tracking-[0.2em] pt-0.5"
-        style={{ fontFamily: "'JetBrains Mono', monospace", color: "#6B6B6B" }}
+        style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
       >
         {label}
       </dt>
       <dd
         className="text-sm"
-        style={{ fontFamily: "'Inter Tight', sans-serif", color: "#28251D", lineHeight: 1.55 }}
+        style={{ fontFamily: "'Inter', sans-serif", color: "#28251D", lineHeight: 1.55 }}
       >
         {value}
       </dd>

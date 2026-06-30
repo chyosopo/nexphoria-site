@@ -31,7 +31,7 @@ export function PressStrip() {
           <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-14">
             <div
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "9px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
@@ -50,7 +50,7 @@ export function PressStrip() {
                   key={abbr}
                   title={name}
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontSize: "1.125rem",
                     fontWeight: 500,
@@ -77,7 +77,7 @@ export function PressStrip() {
 
         <p
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'DM Mono', monospace",
             fontSize: "9px",
             letterSpacing: "0.1em",
             color: "var(--nx-fg-muted)",

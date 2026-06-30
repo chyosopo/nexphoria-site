@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <SiteLayout
-      navVariant="dark"
+      navVariant="showcase"
       footerCtaHeadline={
         <>
           The molecules that matter,{" "}

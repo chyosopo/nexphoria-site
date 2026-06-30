@@ -12,10 +12,6 @@ import {
   type Peptide,
 } from "@/data/peptides";
 import { useSeo, orgJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
-import vialLineup from "@/assets/brand/vial-lineup-hero.webp";
-import handsMeasure from "@/assets/brand/editorial/editorial-hands-measure.png";
-import handsPipette from "@/assets/brand/editorial/editorial-hands-pipette.png";
-import { EditorialHands } from "@/components/EditorialHands";
 
 const FILTERS: ({ key: "all"; label: string } | { key: PeptideCategory; label: string })[] = [
   { key: "all", label: "All peptides" },
@@ -43,7 +39,7 @@ export default function Peptides() {
     filter === "all" ? peptides : peptides.filter((p) => p.category === filter);
 
   return (
-    <SiteLayout navVariant="dark">
+    <SiteLayout navVariant="showcase">
       {/* HERO */}
       <section className="relative bg-background text-foreground overflow-hidden">
         <div className="absolute inset-0 nx-grid-bg opacity-30" />
@@ -68,40 +64,6 @@ export default function Peptides() {
           </p>
         </div>
       </section>
-
-      {/* VIAL LINEUP — brand statement, crisp, no blur/scale */}
-      <section className="relative bg-background">
-        <div className="relative w-full overflow-hidden">
-          <img
-            src={vialLineup}
-            alt="The Nexphoria peptide lineup — frosted vials of BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, and PT-141 on dark marble"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-auto object-cover"
-          />
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg,rgba(10,10,10,.55) 0%,transparent 22%,transparent 70%,rgba(10,10,10,.9) 100%)" }}
-          />
-          <div className="absolute bottom-8 left-0 right-0 nx-container z-[2]">
-            <div className="nx-eyebrow text-primary mb-2 flex items-center gap-3">
-              <span className="nx-data-dot" />
-              Compounded in a U.S. 503A pharmacy
-            </div>
-            <p className="font-display text-fluid-2xl leading-[1] tracking-tight max-w-2xl">
-              Every signal. One <span className="text-primary">standard.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <EditorialHands
-        src={handsMeasure}
-        alt="A hand bringing a caliper to an amber vial — the library, measured molecule by molecule"
-        ratio="21/9"
-        caption="FIG. 13 · THE LIBRARY"
-        objectPosition="center 45%"
-      />
 
       {/* FILTER + GRID */}
       <section className="nx-section bg-background text-foreground">
@@ -160,15 +122,6 @@ export default function Peptides() {
           </div>
         </div>
       </section>
-
-      <EditorialHands
-        src={handsPipette}
-        alt="Gloved hands pipetting between vials — research-grade chemistry, handled like medicine"
-        ratio="16/9"
-        caption="PEPTIDES · RESEARCH-GRADE · ONE STANDARD"
-        captionAnchor="top-right"
-        objectPosition="center 48%"
-      />
 
       {/* CTA */}
       <section className="bg-background text-foreground relative overflow-hidden">

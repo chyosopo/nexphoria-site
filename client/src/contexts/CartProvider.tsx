@@ -1,10 +1,13 @@
 import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
-import { pricing, formatUSD } from "@/data/pricing";
+import { pricing, priceAtCadence, CADENCE_DISCOUNTS, formatUSD, type CadenceKey } from "@/data/pricing";
 import { stacks, computeStackPrice } from "@/data/stacks";
 
 /* ──────────────────────────────────────────────────────────────
    Nexphoria Cart — React Context (NO localStorage — blocked in iframe)
    Cart survives page navigation within a session; not across reloads.
+
+   Each item carries a billing cadence (1mo / 3mo / 12mo) which
+   controls the per-month price the user actually pays.
    ────────────────────────────────────────────────────────────── */
 
 export type CartItemType = "peptide" | "stack";
@@ -14,14 +17,17 @@ export interface CartItem {
   slug: string;
   type: CartItemType;
   qty: number;
+  /** billing cadence — defaults to 1mo */
+  cadence: CadenceKey;
 }
 
 export interface CartLine extends CartItem {
   name: string;
   unitPrice: number;
   lineTotal: number;
-  /** for stacks: how much you save vs buying components individually */
+  /** how much you save vs 1mo cadence (for stacks: includes bundle savings) */
   savings?: number;
+  cadenceLabel: string;
 }
 
 interface CartContextValue {
@@ -30,9 +36,10 @@ interface CartContextValue {
   subtotal: number;
   totalSavings: number;
   itemCount: number;
-  addPeptide: (slug: string, qty?: number) => void;
-  addStack: (slug: string, qty?: number) => void;
+  addPeptide: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
+  addStack: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
   updateQty: (slug: string, type: CartItemType, qty: number) => void;
+  updateCadence: (slug: string, type: CartItemType, cadence: CadenceKey) => void;
   removeItem: (slug: string, type: CartItemType) => void;
   clear: () => void;
   isOpen: boolean;
@@ -47,24 +54,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const addPeptide = useCallback((slug: string, qty: number = 1) => {
+  const addPeptide = useCallback((slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => {
+    const qty = opts?.qty ?? 1;
+    const cadence = opts?.cadence ?? "3mo"; // default to the most-popular cadence
     setItems((prev) => {
       const existing = prev.find((i) => i.slug === slug && i.type === "peptide");
       if (existing) {
-        return prev.map((i) => (i.slug === slug && i.type === "peptide" ? { ...i, qty: i.qty + qty } : i));
+        return prev.map((i) => (i.slug === slug && i.type === "peptide" ? { ...i, qty: i.qty + qty, cadence } : i));
       }
-      return [...prev, { slug, type: "peptide", qty }];
+      return [...prev, { slug, type: "peptide", qty, cadence }];
     });
     setIsOpen(true);
   }, []);
 
-  const addStack = useCallback((slug: string, qty: number = 1) => {
+  const addStack = useCallback((slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => {
+    const qty = opts?.qty ?? 1;
+    const cadence = opts?.cadence ?? "3mo";
     setItems((prev) => {
       const existing = prev.find((i) => i.slug === slug && i.type === "stack");
       if (existing) {
-        return prev.map((i) => (i.slug === slug && i.type === "stack" ? { ...i, qty: i.qty + qty } : i));
+        return prev.map((i) => (i.slug === slug && i.type === "stack" ? { ...i, qty: i.qty + qty, cadence } : i));
       }
-      return [...prev, { slug, type: "stack", qty }];
+      return [...prev, { slug, type: "stack", qty, cadence }];
     });
     setIsOpen(true);
   }, []);
@@ -75,6 +86,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return;
     }
     setItems((prev) => prev.map((i) => (i.slug === slug && i.type === type ? { ...i, qty } : i)));
+  }, []);
+
+  const updateCadence = useCallback((slug: string, type: CartItemType, cadence: CadenceKey) => {
+    setItems((prev) => prev.map((i) => (i.slug === slug && i.type === type ? { ...i, cadence } : i)));
   }, []);
 
   const removeItem = useCallback((slug: string, type: CartItemType) => {
@@ -90,29 +105,39 @@ export function CartProvider({ children }: { children: ReactNode }) {
   /** Derive line items + totals from items + data */
   const { lines, subtotal, totalSavings } = useMemo(() => {
     const lines: CartLine[] = items.map((item) => {
+      const cadenceLabel = CADENCE_DISCOUNTS[item.cadence]?.label || "Monthly";
       if (item.type === "peptide") {
         const p = pricing[item.slug];
-        const unitPrice = p?.monthlyPrice || 0;
+        const baseMonthly = p?.monthlyPrice || 0;
+        const unitPrice = priceAtCadence(item.slug, item.cadence);
         const name = humanizePeptide(item.slug);
+        const cadenceSavings = (baseMonthly - unitPrice) * item.qty;
         return {
           ...item,
           name,
           unitPrice,
           lineTotal: unitPrice * item.qty,
+          savings: cadenceSavings > 0 ? cadenceSavings : undefined,
+          cadenceLabel,
         };
       }
       // stack
       const stack = stacks.find((s) => s.slug === item.slug);
       if (!stack) {
-        return { ...item, name: item.slug, unitPrice: 0, lineTotal: 0 };
+        return { ...item, name: item.slug, unitPrice: 0, lineTotal: 0, cadenceLabel };
       }
-      const { sum, bundle, savings } = computeStackPrice(stack, pricing);
+      const { sum, bundle, savings: bundleSavings } = computeStackPrice(stack, pricing);
+      const disc = CADENCE_DISCOUNTS[item.cadence].pct;
+      const unitPrice = Math.round(bundle * (1 - disc));
+      const cadenceSavings = (bundle - unitPrice) * item.qty;
+      const totalSavings = bundleSavings * item.qty + cadenceSavings;
       return {
         ...item,
         name: `${stack.name} Stack`,
-        unitPrice: bundle,
-        lineTotal: bundle * item.qty,
-        savings: savings * item.qty,
+        unitPrice,
+        lineTotal: unitPrice * item.qty,
+        savings: totalSavings > 0 ? totalSavings : undefined,
+        cadenceLabel,
       };
     });
     const subtotal = lines.reduce((acc, l) => acc + l.lineTotal, 0);
@@ -131,6 +156,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     addPeptide,
     addStack,
     updateQty,
+    updateCadence,
     removeItem,
     clear,
     isOpen,

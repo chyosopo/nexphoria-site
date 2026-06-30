@@ -96,7 +96,7 @@ export default function LabTesting() {
             <Reveal>
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "11px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -113,7 +113,7 @@ export default function LabTesting() {
               </p>
               <h1
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontSize: "clamp(3rem, 6vw, 5rem)",
                   color: "var(--nx-fg)",
@@ -125,7 +125,7 @@ export default function LabTesting() {
               </h1>
               <p
                 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 500,
                   fontStyle: "italic",
                   fontSize: "clamp(3rem, 6vw, 5rem)",
@@ -138,7 +138,7 @@ export default function LabTesting() {
               </p>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                   color: "#4A4A4A",
                   lineHeight: 1.65,
@@ -155,7 +155,7 @@ export default function LabTesting() {
                 <div>
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontSize: "2.75rem",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -167,7 +167,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -181,7 +181,7 @@ export default function LabTesting() {
                 <div>
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontSize: "2.75rem",
                       fontWeight: 500,
                       color: "var(--nx-cobalt)",
@@ -193,7 +193,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -207,7 +207,7 @@ export default function LabTesting() {
                 <div>
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontSize: "2.75rem",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -219,7 +219,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -270,7 +270,7 @@ export default function LabTesting() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -283,7 +283,7 @@ export default function LabTesting() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -296,7 +296,7 @@ export default function LabTesting() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -310,7 +310,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -323,7 +323,7 @@ export default function LabTesting() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -336,7 +336,7 @@ export default function LabTesting() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontStyle: "italic",
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -349,7 +349,7 @@ export default function LabTesting() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -363,7 +363,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -415,7 +415,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -432,7 +432,7 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -444,7 +444,7 @@ export default function LabTesting() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -484,7 +484,7 @@ export default function LabTesting() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontWeight: 500,
                       fontSize: "1.125rem",
                       color: "var(--nx-fg)",
@@ -495,7 +495,7 @@ export default function LabTesting() {
                   </p>
                   <span
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "10px",
                       fontWeight: 700,
                       color: "var(--nx-cobalt)",
@@ -523,7 +523,7 @@ export default function LabTesting() {
                     <li
                       key={ex}
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "12px",
                         color: "#4A4A4A",
                         lineHeight: 1.5,
@@ -547,7 +547,7 @@ export default function LabTesting() {
                   {panel.examples.length > 5 && (
                     <li
                       style={{
-                        fontFamily: "'Inter Tight', sans-serif",
+                        fontFamily: "'Inter', sans-serif",
                         fontSize: "11px",
                         color: "var(--nx-fg-muted)",
                         marginTop: "0.25rem",
@@ -572,7 +572,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -589,7 +589,7 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -621,7 +621,7 @@ export default function LabTesting() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "'Fraunces', Georgia, serif",
                       fontWeight: 500,
                       fontStyle: "italic",
                       fontSize: "1.25rem",
@@ -634,7 +634,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -647,7 +647,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13.5px",
                       color: "#4A4A4A",
                       lineHeight: 1.65,
@@ -671,7 +671,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -688,7 +688,7 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -722,7 +722,7 @@ export default function LabTesting() {
               >
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.12em",
@@ -734,7 +734,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "15px",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
@@ -745,7 +745,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "13px",
                     color: "#4A4A4A",
                     lineHeight: 1.6,
@@ -768,7 +768,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -785,7 +785,7 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -798,7 +798,7 @@ export default function LabTesting() {
             </h2>
             <p
               style={{
-                fontFamily: "'Inter Tight', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "#4A4A4A",
                 lineHeight: 1.6,
@@ -833,7 +833,7 @@ export default function LabTesting() {
               >
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -845,7 +845,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: "10px",
                     color: "rgba(255,255,255,0.6)",
                   }}
@@ -868,7 +868,7 @@ export default function LabTesting() {
                   <p
                     key={h}
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -896,7 +896,7 @@ export default function LabTesting() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "13px",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -906,7 +906,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "12px",
                       fontWeight: 600,
                       color: row.status === "normal" ? "var(--nx-fg)" : "#C2440E",
@@ -916,7 +916,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "11px",
                       color: "var(--nx-fg-muted)",
                     }}
@@ -925,7 +925,7 @@ export default function LabTesting() {
                   </p>
                   <span
                     style={{
-                      fontFamily: "'JetBrains Mono', monospace",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",

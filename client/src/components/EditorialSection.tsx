@@ -61,7 +61,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
             />
             <p
               style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
@@ -75,7 +75,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
 
           <h2
             style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "clamp(2rem, 3.5vw, 3.25rem)",
               color: "var(--nx-fg)",
@@ -95,7 +95,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
             <div>
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
                   color: "var(--nx-fg-graphite)",
@@ -116,7 +116,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
               >
                 <p
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontStyle: "italic",
                     fontWeight: 400,
                     fontSize: "clamp(1.375rem, 2.2vw, 1.875rem)",
@@ -131,7 +131,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
 
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
                   color: "var(--nx-fg-graphite)",
@@ -143,7 +143,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
 
               <p
                 style={{
-                  fontFamily: "'Inter Tight', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
                   color: "var(--nx-fg-graphite)",
@@ -186,7 +186,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
               {/* Footnote below image */}
               <p
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: "9px",
                   letterSpacing: "0.08em",
                   color: "var(--nx-fg-muted)",
