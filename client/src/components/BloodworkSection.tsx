@@ -9,7 +9,11 @@ import { BloodworkDashboard } from "@/components/BloodworkDashboard";
 
 const pillLabels = ["38 BIOMARKERS", "CLIA-CERTIFIED", "QUEST DIAGNOSTICS"];
 
-export function BloodworkSection() {
+interface BloodworkSectionProps {
+  gender?: "women" | "men";
+}
+
+export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
   return (
     <section
       data-testid="bloodwork-section"

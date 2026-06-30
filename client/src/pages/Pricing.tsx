@@ -4,68 +4,84 @@ import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { Check, X } from "lucide-react";
 
-const tiers = [
+const protocols = [
   {
-    name: "Starter",
-    tagline: "Single compound. One goal.",
-    priceFrom: "$199",
-    priceTo: "$299",
-    period: "/mo",
+    name: "Metabolic",
+    description: "GLP-1 agonist protocols (semaglutide, tirzepatide). Includes HbA1c, fasting insulin, and lipid panel monitoring.",
+    monthlyFrom: 349,
     slug: "starter",
-    includes: [
-      "1 compounded peptide",
-      "Initial 65-marker blood panel",
-      "Board-certified physician consult",
-      "Protocol guide & dosing schedule",
-      "Member portal access",
-      "Secure physician messaging",
-    ],
-    highlight: false,
   },
   {
-    name: "Stack",
-    tagline: "A complete protocol. Physician-monitored.",
-    priceFrom: "$499",
-    priceTo: "$749",
-    period: "/mo",
-    slug: "protocol",
-    includes: [
-      "2–3 compounded peptides",
-      "Comprehensive 65-marker panel",
-      "Board-certified physician consult",
-      "Quarterly reassessments & labs",
-      "Dose adjustments included",
-      "Secure physician messaging",
-    ],
-    highlight: true,
+    name: "Tissue Repair",
+    description: "BPC-157, TB-500, and GHK-Cu compounded formulations. Inflammatory and hepatic markers included.",
+    monthlyFrom: 279,
+    slug: "tissue-repair",
   },
   {
-    name: "Premium",
-    tagline: "Full stack. Unlimited access.",
-    priceFrom: "$999",
-    priceTo: "$1,499",
-    period: "/mo",
-    slug: "concierge",
-    includes: [
-      "Up to 5 compounded peptides",
-      "Monthly labs",
-      "Priority physician response (< 4h)",
-      "Unlimited dose adjustments",
-      "Dedicated care coordinator",
-      "Expedited cold-chain shipping",
-    ],
-    highlight: false,
+    name: "Growth Hormone Axis",
+    description: "CJC-1295, Ipamorelin, Sermorelin, and Tesamorelin. IGF-1 and growth hormone axis monitoring.",
+    monthlyFrom: 319,
+    slug: "ghs",
+  },
+  {
+    name: "HPG-Axis / Hormonal",
+    description: "Enclomiphene and Kisspeptin protocols. Full HPG-axis panel including LH, FSH, total and free testosterone.",
+    monthlyFrom: 299,
+    slug: "hpg",
+  },
+  {
+    name: "Longevity",
+    description: "NAD+, MOTS-c, and Epitalon. Epigenetic clock testing and mitochondrial function markers available.",
+    monthlyFrom: 389,
+    slug: "longevity",
+  },
+  {
+    name: "Cognitive",
+    description: "Selank and Semax intranasal formulations. BDNF and baseline inflammatory markers monitored quarterly.",
+    monthlyFrom: 249,
+    slug: "cognitive",
   },
 ];
 
+const billingTerms = [
+  {
+    label: "Monthly",
+    discount: null,
+    badge: null,
+    note: "Billed month-to-month. Cancel anytime.",
+  },
+  {
+    label: "6-Month",
+    discount: "Save 10%",
+    badge: null,
+    note: "Paid in full at start. Protocols lock for 6 months.",
+  },
+  {
+    label: "12-Month",
+    discount: "Save 20%",
+    badge: "BEST VALUE",
+    note: "Paid in full. Lowest per-month cost of any term.",
+  },
+];
+
+const included = [
+  "Board-certified physician consultation (initial + follow-up)",
+  "Compounded peptides from a 503A-licensed US pharmacy",
+  "Quest Diagnostics labs every 90 days",
+  "Overnight cold-chain shipping",
+  "Physician re-evaluation at each lab cycle",
+  "Secure telehealth messaging between visits",
+  "Itemized receipts for FSA/HSA submission",
+];
+
 const comparison = [
-  { feature: "Blood panel included", nexphoria: true, others: false },
-  { feature: "Board-certified US physician", nexphoria: true, others: "sometimes" },
-  { feature: "503A US compounding pharmacy", nexphoria: true, others: false },
-  { feature: "Pre-filled syringes, no prep", nexphoria: true, others: false },
-  { feature: "Quarterly lab monitoring", nexphoria: true, others: false },
+  { feature: "Quest Diagnostics labs included", nexphoria: true, others: false },
+  { feature: "Board-certified US physician on every case", nexphoria: true, others: "varies" },
+  { feature: "503A US compounding pharmacy only", nexphoria: true, others: false },
+  { feature: "Quarterly monitoring included", nexphoria: true, others: false },
   { feature: "No long-term contracts", nexphoria: true, others: false },
-  { feature: "FSA/HSA eligible receipts", nexphoria: true, others: false },
+  { feature: "FSA/HSA receipts provided", nexphoria: true, others: false },
+  { feature: "Physician declines if inappropriate", nexphoria: true, others: "rarely" },
 ];
 
 export default function Pricing() {
@@ -99,6 +115,19 @@ export default function Pricing() {
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
+                fontSize: "clamp(3rem, 6vw, 5rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.05,
+                marginBottom: "0.5rem",
+                maxWidth: "700px",
+              }}
+            >
+              Transparent. Everything included.
+            </h1>
+            <h1
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -107,190 +136,324 @@ export default function Pricing() {
                 maxWidth: "700px",
               }}
             >
-              No hidden fees.
+              No labs upsell.
             </h1>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",
-                fontSize: "clamp(1rem, 2vw, 1.25rem)",
+                fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
-                lineHeight: 1.6,
+                lineHeight: 1.65,
                 maxWidth: "560px",
+                marginBottom: "1.5rem",
               }}
             >
-              Lab work, physician consultation, and pharmacy compounding are included in your monthly fee.
-              No surprise line items. Free first consultation.
+              Physician consultation, compounded peptides, Quest Diagnostics labs every 90 days,
+              and overnight cold-chain shipping are included in every protocol fee. No itemized
+              upsells. No consultation charges billed separately.
             </p>
+            {/* First month banner */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                border: "1.5px solid var(--nx-cobalt)",
+                borderRadius: "4px",
+                padding: "0.75rem 1.25rem",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "10px",
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                }}
+              >
+                INTRODUCTORY OFFER
+              </span>
+              <span
+                style={{
+                  width: "1px",
+                  height: "16px",
+                  backgroundColor: "var(--nx-cobalt)",
+                  opacity: 0.3,
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "'Inter Tight', sans-serif",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  color: "var(--nx-fg)",
+                }}
+              >
+                30% off your first month on any protocol
+              </span>
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ── Pricing tiers ── */}
+      {/* ── Protocol pricing table ── */}
       <section
         className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: "1.5px",
-              backgroundColor: "var(--nx-border)",
-              border: "1.5px solid var(--nx-border)",
-              maxWidth: "980px",
-              margin: "0 auto",
-            }}
-          >
-            {tiers.map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 80}>
-                <div
+          <Reveal>
+            <p
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--nx-cobalt)",
+                marginBottom: "1rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+              }}
+            >
+              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+              PROTOCOLS
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 500,
+                fontStyle: "italic",
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.1,
+                marginBottom: "2rem",
+              }}
+            >
+              Starting prices by protocol category.
+            </h2>
+          </Reveal>
+
+          {/* Billing terms header */}
+          <Reveal delay={40}>
+            <div
+              style={{
+                border: "1.5px solid var(--nx-border)",
+                borderRadius: "4px",
+                overflow: "hidden",
+                maxWidth: "860px",
+              }}
+            >
+              {/* Column headers */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                  backgroundColor: "var(--nx-cobalt)",
+                  padding: "0.875rem 1.5rem",
+                  gap: "1rem",
+                }}
+              >
+                <p
                   style={{
-                    backgroundColor: tier.highlight ? "var(--nx-cobalt)" : "#FFFFFF",
-                    padding: "2.5rem 2rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "9px",
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.6)",
                   }}
-                  data-testid={`pricing-tier-${tier.slug}`}
                 >
-                  {tier.highlight && (
+                  PROTOCOL
+                </p>
+                {billingTerms.map((term) => (
+                  <div key={term.label} style={{ textAlign: "center" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.4rem" }}>
+                      <p
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: "9px",
+                          fontWeight: 700,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          color: "#FFFFFF",
+                        }}
+                      >
+                        {term.label}
+                      </p>
+                      {term.badge && (
+                        <span
+                          style={{
+                            fontFamily: "'JetBrains Mono', monospace",
+                            fontSize: "7px",
+                            fontWeight: 700,
+                            letterSpacing: "0.08em",
+                            textTransform: "uppercase",
+                            color: "var(--nx-cobalt)",
+                            backgroundColor: "#FFFFFF",
+                            padding: "1px 5px",
+                            borderRadius: "100px",
+                          }}
+                        >
+                          {term.badge}
+                        </span>
+                      )}
+                    </div>
+                    {term.discount && (
+                      <p
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: "8px",
+                          color: "rgba(255,255,255,0.6)",
+                          marginTop: "2px",
+                        }}
+                      >
+                        {term.discount}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Protocol rows */}
+              {protocols.map((protocol, i) => (
+                <div
+                  key={protocol.name}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                    padding: "1.25rem 1.5rem",
+                    backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                    borderTop: "1px solid var(--nx-border)",
+                    gap: "1rem",
+                    alignItems: "center",
+                  }}
+                  data-testid={`pricing-tier-${protocol.slug}`}
+                >
+                  <div>
                     <p
+                      style={{
+                        fontFamily: "'Inter Tight', sans-serif",
+                        fontSize: "14px",
+                        fontWeight: 600,
+                        color: "var(--nx-fg)",
+                        marginBottom: "0.2rem",
+                      }}
+                    >
+                      {protocol.name}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'Inter Tight', sans-serif",
+                        fontSize: "12px",
+                        color: "#4A4A4A",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {protocol.description}
+                    </p>
+                  </div>
+                  {/* Monthly */}
+                  <p
+                    style={{
+                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontSize: "1.25rem",
+                      fontWeight: 500,
+                      color: "var(--nx-fg)",
+                      textAlign: "center",
+                    }}
+                  >
+                    ${protocol.monthlyFrom}
+                    <span
                       style={{
                         fontFamily: "'JetBrains Mono', monospace",
                         fontSize: "9px",
-                        fontWeight: 700,
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.7)",
-                        marginBottom: "1rem",
+                        color: "var(--nx-fg-muted)",
+                        display: "block",
+                        fontWeight: 500,
                       }}
                     >
-                      ● MOST POPULAR
-                    </p>
-                  )}
-
-                  <h2
-                    style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
-                      fontWeight: 500,
-                      fontStyle: "italic",
-                      fontSize: "1.75rem",
-                      color: tier.highlight ? "#FFFFFF" : "var(--nx-fg)",
-                      lineHeight: 1.1,
-                      marginBottom: "0.375rem",
-                    }}
-                  >
-                    {tier.name}
-                  </h2>
+                      /mo
+                    </span>
+                  </p>
+                  {/* 6-month */}
                   <p
                     style={{
-                      fontFamily: "'Inter Tight', sans-serif",
-                      fontSize: "13px",
-                      color: tier.highlight ? "rgba(255,255,255,0.65)" : "var(--nx-fg-muted)",
-                      marginBottom: "1.75rem",
+                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontSize: "1.25rem",
+                      fontWeight: 500,
+                      color: "var(--nx-fg)",
+                      textAlign: "center",
                     }}
                   >
-                    {tier.tagline}
-                  </p>
-
-                  <div style={{ marginBottom: "2rem" }}>
-                    <p
-                      style={{
-                        fontFamily: "'Playfair Display', Georgia, serif",
-                        fontSize: "clamp(2rem, 4vw, 2.75rem)",
-                        fontWeight: 500,
-                        color: tier.highlight ? "#FFFFFF" : "var(--nx-fg)",
-                        lineHeight: 1,
-                        marginBottom: "0.25rem",
-                      }}
-                    >
-                      {tier.priceFrom}
-                      <span
-                        style={{
-                          fontSize: "1rem",
-                          color: tier.highlight ? "rgba(255,255,255,0.6)" : "var(--nx-fg-muted)",
-                          fontFamily: "'Inter Tight', sans-serif",
-                        }}
-                      >
-                        {" "}–{" "}
-                      </span>
-                      {tier.priceTo}
-                    </p>
-                    <p
+                    ${Math.round(protocol.monthlyFrom * 0.9)}
+                    <span
                       style={{
                         fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: "10px",
-                        letterSpacing: "0.1em",
-                        color: tier.highlight ? "rgba(255,255,255,0.55)" : "var(--nx-fg-muted)",
+                        fontSize: "9px",
+                        color: "var(--nx-fg-muted)",
+                        display: "block",
+                        fontWeight: 500,
                       }}
                     >
-                      PER MONTH · BASED ON PROTOCOL
-                    </p>
-                  </div>
-
-                  <ul
+                      /mo
+                    </span>
+                  </p>
+                  {/* 12-month */}
+                  <p
                     style={{
-                      listStyle: "none",
-                      padding: 0,
-                      margin: "0 0 2rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "0.75rem",
-                      flexGrow: 1,
+                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontSize: "1.25rem",
+                      fontWeight: 500,
+                      color: "var(--nx-cobalt)",
+                      textAlign: "center",
                     }}
                   >
-                    {tier.includes.map((item) => (
-                      <li
-                        key={item}
-                        style={{
-                          display: "flex",
-                          alignItems: "flex-start",
-                          gap: "0.625rem",
-                          fontFamily: "'Inter Tight', sans-serif",
-                          fontSize: "13.5px",
-                          color: tier.highlight ? "rgba(255,255,255,0.85)" : "#4A4A4A",
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        <Check
-                          size={13}
-                          style={{
-                            color: tier.highlight ? "rgba(255,255,255,0.8)" : "var(--nx-cobalt)",
-                            flexShrink: 0,
-                            marginTop: "3px",
-                          }}
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <StartIntakeButton
-                    productSlug={tier.slug}
-                    source="pricing"
-                    size="md"
-                    className="w-full justify-center"
-                    style={
-                      tier.highlight
-                        ? {
-                            backgroundColor: "#FFFFFF",
-                            color: "var(--nx-cobalt)",
-                            border: "none",
-                          }
-                        : {}
-                    }
-                  >
-                    Get started
-                  </StartIntakeButton>
+                    ${Math.round(protocol.monthlyFrom * 0.8)}
+                    <span
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: "9px",
+                        color: "var(--nx-fg-muted)",
+                        display: "block",
+                        fontWeight: 500,
+                      }}
+                    >
+                      /mo
+                    </span>
+                  </p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+
+              {/* Footer note */}
+              <div
+                style={{
+                  padding: "1rem 1.5rem",
+                  borderTop: "1px solid var(--nx-border)",
+                  backgroundColor: "var(--nx-bg-cream)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Inter Tight', sans-serif",
+                    fontSize: "12px",
+                    color: "var(--nx-fg-muted)",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  Starting prices. Final protocol cost determined at physician consultation based on compound selection and dosing.
+                  Multi-compound protocols priced individually. All prices are monthly equivalent.
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── Always included strip ── */}
+      {/* ── What's included ── */}
       <section
         className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
@@ -318,6 +481,18 @@ export default function Pricing() {
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.1,
+                marginBottom: "0.5rem",
+              }}
+            >
+              What's in every protocol fee.
+            </h2>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -325,58 +500,52 @@ export default function Pricing() {
                 marginBottom: "3rem",
               }}
             >
-              Regardless of tier, some things never change.
+              Regardless of tier or term.
             </h2>
           </Reveal>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-              gap: "1.5px",
-              backgroundColor: "var(--nx-border)",
-              border: "1.5px solid var(--nx-border)",
-            }}
-          >
-            {[
-              { title: "MD consult", detail: "Free first consultation. Board-certified physician on every case." },
-              { title: "65-marker blood panel", detail: "Every protocol starts with labs. Included in your first month." },
-              { title: "503A compounding", detail: "Sterile, US-only, batch-tested. No overseas sourcing." },
-              { title: "Cold-chain shipping", detail: "Insulated, temperature-controlled delivery to your door." },
-              { title: "No contracts", detail: "Month-to-month. Cancel anytime. No cancellation fees." },
-              { title: "FSA/HSA receipts", detail: "Detailed receipts for FSA/HSA submission at checkout." },
-            ].map((item) => (
-              <div
-                key={item.title}
-                style={{
-                  backgroundColor: "var(--nx-bg-cream)",
-                  padding: "1.75rem",
-                }}
-              >
-                <p
+          <Reveal delay={40}>
+            <div
+              style={{
+                border: "1.5px solid var(--nx-border)",
+                borderRadius: "4px",
+                overflow: "hidden",
+                maxWidth: "600px",
+              }}
+            >
+              {included.map((item, i) => (
+                <div
+                  key={item}
                   style={{
-                    fontFamily: "'Inter Tight', sans-serif",
-                    fontSize: "14px",
-                    fontWeight: 700,
-                    color: "var(--nx-fg)",
-                    marginBottom: "0.375rem",
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "0.875rem",
+                    padding: "1rem 1.5rem",
+                    backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                    borderTop: i > 0 ? "1px solid var(--nx-border)" : "none",
                   }}
                 >
-                  {item.title}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter Tight', sans-serif",
-                    fontSize: "13px",
-                    color: "#4A4A4A",
-                    lineHeight: 1.55,
-                  }}
-                >
-                  {item.detail}
-                </p>
-              </div>
-            ))}
-          </div>
+                  <Check
+                    size={14}
+                    style={{
+                      color: "var(--nx-cobalt)",
+                      flexShrink: 0,
+                      marginTop: "3px",
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontFamily: "'Inter Tight', sans-serif",
+                      fontSize: "14px",
+                      color: "var(--nx-fg)",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -415,7 +584,7 @@ export default function Pricing() {
                 marginBottom: "3rem",
               }}
             >
-              The standard most clinics skip.
+              The clinical standard most providers skip.
             </h2>
           </Reveal>
 
@@ -506,16 +675,17 @@ export default function Pricing() {
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     {row.others === true ? (
                       <Check size={16} style={{ color: "var(--nx-success)" }} />
-                    ) : row.others === "sometimes" ? (
+                    ) : row.others === "varies" || row.others === "rarely" ? (
                       <span
                         style={{
                           fontFamily: "'JetBrains Mono', monospace",
                           fontSize: "9px",
                           color: "var(--nx-fg-muted)",
                           fontWeight: 500,
+                          textTransform: "uppercase",
                         }}
                       >
-                        VARIES
+                        {row.others}
                       </span>
                     ) : (
                       <X size={16} style={{ color: "#C2440E" }} />
@@ -528,10 +698,51 @@ export default function Pricing() {
         </div>
       </section>
 
+      {/* ── Refund policy ── */}
+      <section
+        className="py-16 md:py-20"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <div style={{ maxWidth: "640px" }}>
+              <p
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "10px",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                REFUND POLICY
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Inter Tight', sans-serif",
+                  fontSize: "1.0625rem",
+                  color: "#4A4A4A",
+                  lineHeight: 1.7,
+                }}
+              >
+                Compounded medications that have been dispensed cannot be returned under federal
+                compounding pharmacy regulations. Physician consultation fees are non-refundable
+                after the consultation has been completed. If a physician declines your protocol
+                request and no prescription is issued, you are not charged for pharmacy
+                compounding. Subscription fees for upcoming billing cycles may be cancelled
+                at any time from your member portal with no cancellation fee.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <FinalCTAStrip
         gender="women"
-        title="Free first consult. No contracts."
-        sub="Start your intake. Blood panel included with every protocol."
+        title="No consultation fee. Labs included."
+        sub="Start your intake. Physician review within 48 hours of your Quest Diagnostics draw."
       />
     </SiteLayout>
   );

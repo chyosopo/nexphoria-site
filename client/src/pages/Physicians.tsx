@@ -34,6 +34,19 @@ export default function Physicians() {
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
+                fontSize: "clamp(3rem, 6vw, 5rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.05,
+                marginBottom: "0.5rem",
+                maxWidth: "820px",
+              }}
+            >
+              Peptide therapy is a clinical practice.
+            </h1>
+            <h1
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -42,20 +55,21 @@ export default function Physicians() {
                 maxWidth: "820px",
               }}
             >
-              Designed by US board-certified physicians.
+              It demands a clinician.
             </h1>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",
-                fontSize: "clamp(1rem, 2vw, 1.25rem)",
+                fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
-                lineHeight: 1.6,
+                lineHeight: 1.65,
                 maxWidth: "640px",
               }}
             >
-              Every Nexphoria protocol is reviewed and prescribed by licensed US physicians,
-              board-certified in internal medicine, endocrinology, and integrative health.
-              They review your actual labs — not a questionnaire.
+              Every Nexphoria protocol is reviewed and prescribed by a U.S.-licensed,
+              board-certified physician. Physicians on our panel are DEA-registered and
+              credentialed by ABIM, ABFM, or specialty board. They review your actual
+              laboratory panel — not a questionnaire substitute.
             </p>
           </Reveal>
         </div>
@@ -83,7 +97,7 @@ export default function Physicians() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              THE TEAM
+              THE PANEL
             </p>
             <h2
               style={{
@@ -92,10 +106,23 @@ export default function Physicians() {
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
+                marginBottom: "0.5rem",
+              }}
+            >
+              Five physicians.
+            </h2>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 500,
+                fontStyle: "italic",
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.1,
                 marginBottom: "3.5rem",
               }}
             >
-              Five physicians. One standard.
+              One clinical standard.
             </h2>
           </Reveal>
 
@@ -161,10 +188,23 @@ export default function Physicians() {
                         letterSpacing: "0.12em",
                         textTransform: "uppercase",
                         color: "var(--nx-cobalt)",
-                        marginBottom: "0.875rem",
+                        marginBottom: "0.375rem",
                       }}
                     >
                       {doc.specialty} · {doc.institution}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: "8px",
+                        fontWeight: 500,
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        color: "var(--nx-fg-muted)",
+                        marginBottom: "0.875rem",
+                      }}
+                    >
+                      {doc.credentials}
                     </p>
                     <p
                       style={{
@@ -243,11 +283,38 @@ export default function Physicians() {
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  Every physician on our panel
+                </h2>
+                <h2
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontWeight: 500,
+                    fontStyle: "italic",
+                    fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                    color: "var(--nx-fg)",
+                    lineHeight: 1.1,
                     marginBottom: "2rem",
                   }}
                 >
-                  What every Nexphoria protocol requires.
+                  meets this standard.
                 </h2>
+                <p
+                  style={{
+                    fontFamily: "'Inter Tight', sans-serif",
+                    fontSize: "1.0625rem",
+                    color: "#4A4A4A",
+                    lineHeight: 1.7,
+                    marginBottom: "2rem",
+                  }}
+                >
+                  Every physician on our panel is U.S.-licensed, board-certified, and
+                  DEA-registered. We do not contract with international or non-licensed
+                  providers. Every physician reviews actual laboratory results before
+                  issuing a prescription — intake questionnaires alone are insufficient.
+                </p>
                 <ul
                   style={{
                     display: "flex",
@@ -259,11 +326,11 @@ export default function Physicians() {
                   }}
                 >
                   {[
-                    { label: "Every protocol MD-reviewed", detail: "Board-certified physician sign-off on every prescription. ABIM, ABFM, or specialty board-certified." },
-                    { label: "Mandatory blood panel before Rx", detail: "65-marker comprehensive baseline required before any prescription is written. No labs, no protocol." },
-                    { label: "503A compounding only", detail: "Sterile, FDA-registered 503A pharmacy. cGMP standards. Batch-tested for purity and potency." },
-                    { label: "Continuous quarterly monitoring", detail: "Labs re-run every 12 weeks. Dose adjustments from real data, not guesswork." },
-                    { label: "Secure physician messaging", detail: "Direct async access to your prescribing physician between scheduled check-ins." },
+                    { label: "ABIM, ABFM, or specialty board certification required", detail: "No exceptions. Board certification is the minimum — not a differentiator." },
+                    { label: "Laboratory review mandatory before any Rx", detail: "38-biomarker Quest Diagnostics panel must be on file. No prescription precedes labs." },
+                    { label: "Licensed in member's state of residence", detail: "Physician licensure is state-specific. Members are matched to a licensed provider in their state." },
+                    { label: "DEA registration active and current", detail: "Required for prescribing scheduled and controlled compounds within our formulary." },
+                    { label: "Quarterly case review with medical director", detail: "All active protocols are reviewed against updated clinical literature on a rolling 90-day cycle." },
                   ].map((item) => (
                     <li
                       key={item.label}
@@ -289,7 +356,7 @@ export default function Physicians() {
                         <p
                           style={{
                             fontFamily: "'Inter Tight', sans-serif",
-                            fontSize: "15px",
+                            fontSize: "14px",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
                             marginBottom: "2px",
@@ -343,9 +410,9 @@ export default function Physicians() {
                       marginBottom: "2rem",
                     }}
                   >
-                    "Peptide medicine done right isn't a supplement category. It's precision
-                    pharmacology — labs, dosing, monitoring, and a physician who knows
-                    your baseline."
+                    "Peptide medicine is precision pharmacology — labs, dosing, monitoring,
+                    and a physician who understands your individual baseline. Without all four,
+                    it is guesswork with a syringe."
                   </p>
                   <div>
                     <p
@@ -369,7 +436,7 @@ export default function Physicians() {
                         color: "var(--nx-cobalt)",
                       }}
                     >
-                      Endocrinology · Cleveland Clinic
+                      Endocrinology · Cleveland Clinic · ABIM Board-Certified
                     </p>
                   </div>
                 </div>
@@ -381,8 +448,8 @@ export default function Physicians() {
 
       <FinalCTAStrip
         gender="women"
-        title="Your physician is waiting."
-        sub="Blood panel included. MD review within 48 hours."
+        title="Your physician review is included."
+        sub="Quest Diagnostics labs drawn first. Board-certified MD review within 48 hours."
       />
     </SiteLayout>
   );

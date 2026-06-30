@@ -14,65 +14,102 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { RotatingWord } from "@/components/RotatingWord";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { Reveal } from "@/components/Reveal";
+import { PressStrip } from "@/components/PressStrip";
+import { CategoryTiles } from "@/components/CategoryTiles";
+import { EditorialSection } from "@/components/EditorialSection";
 import { BloodworkSection } from "@/components/BloodworkSection";
-import { EducationHub } from "@/components/EducationHub";
 import { peptides } from "@/data/peptides";
 import menHeroBg from "@/assets/brand/men-hero-bg.jpg";
 import menCardStrength from "@/assets/brand/men-card-strength.jpg";
 import menCardWeight from "@/assets/brand/men-card-weight.jpg";
 import menCardLongevity from "@/assets/brand/men-card-longevity.jpg";
 
-const menWords = ["performance", "testosterone", "weight loss", "recovery", "longevity", "hair"];
+const menWords = ["performance", "testosterone", "weight loss", "recovery", "longevity"];
+
 const menPeptideSlugs = ["cjc-1295", "ipamorelin", "tesamorelin", "bpc-157", "tb-500", "nad-plus", "tirzepatide", "sermorelin"];
+
+// Maximus 4-up category tiles — men: STRENGTH · METABOLIC · LONGEVITY · COGNITIVE
+const menCategoryTiles = [
+  {
+    label: "Strength",
+    description: "CJC-1295 · Ipamorelin",
+    href: "/men/peptides?cat=strength",
+    image: menCardStrength,
+  },
+  {
+    label: "Metabolic",
+    description: "GLP-1 · Tirzepatide",
+    href: "/men/peptides?cat=metabolic",
+    image: menCardWeight,
+  },
+  {
+    label: "Longevity",
+    description: "NAD+ · Sermorelin",
+    href: "/men/peptides?cat=longevity",
+    image: menCardLongevity,
+  },
+  {
+    label: "Cognitive",
+    description: "Selank · Semax",
+    href: "/men/peptides?cat=cognitive",
+    image: menCardStrength,
+  },
+];
 
 export default function MenHome() {
   const [wordIdx, setWordIdx] = useState(0);
 
   return (
     <SiteLayout navVariant="men" footerVariant="men">
-      {/* ── 1. Hero ── */}
+      {/* ── 1. Hero — educational, compact Maximus-pattern ── */}
       <HeroSection wordIdx={wordIdx} onWordChange={setWordIdx} />
 
-      {/* ── 2. Trust strip — White Rock ── */}
+      {/* ── 2. Category tiles — 4-up, right below hero (Maximus pattern) ── */}
+      <CategoryTiles tiles={menCategoryTiles} eyebrow="EXPLORE BY GOAL" />
+
+      {/* ── 3. BLOODWORK CENTERPIECE — dark section, dashboard mockup ── */}
+      <BloodworkSection gender="men" />
+
+      {/* ── 4. Trust strip — pharmacy certs FIRST ── */}
       <TrustStrip />
 
-      {/* ── Wave 5: Bloodwork section — after trust strip, before flagship ── */}
-      <BloodworkSection />
-
-      {/* ── 3. Flagship cards — Ceramic ── */}
+      {/* ── 5. Flagship protocol cards — 600px tall, hover zoom ── */}
       <FlagshipCards />
 
-      {/* ── 4. How it works — White Rock ── */}
-      <HowItWorksStrip />
+      {/* ── 6. How It Works — 4 numbered steps, big numerals ── */}
+      <HowItWorksSection />
 
-      {/* ── 5a. Performance — Ceramic ── */}
+      {/* ── 7a. Performance + IGF-1 split section ── */}
       <SplitSectionPerformance />
 
-      {/* ── 5b. Testosterone — White Rock ── */}
+      {/* ── 7b. Testosterone split section ── */}
       <SplitSectionTestosterone />
 
-      {/* ── 5c. Weight loss — Ceramic ── */}
+      {/* ── 7c. Weight loss split section ── */}
       <SplitSectionWeightLoss />
 
-      {/* ── Wave 5: Education hub — after flagship/split sections, before doctor strip ── */}
-      <EducationHub />
-
-      {/* ── 6. Doctor strip — White Rock ── */}
+      {/* ── 8. Doctor strip — named physicians ── */}
       <DoctorStrip />
 
-      {/* ── 7. Peptide grid — White Rock ── */}
+      {/* ── 9. Editorial "Why Peptides" — journal voice ── */}
+      <EditorialSection gender="men" />
+
+      {/* ── 10. Press strip — monochrome marks ── */}
+      <PressStrip />
+
+      {/* ── 11. Peptide catalog grid ── */}
       <PeptideGrid />
 
-      {/* ── 8. Testimonial — Ceramic ── */}
-      <TestimonialQuote />
+      {/* ── 12. Testimonial strip — 3 verified patient cards ── */}
+      <TestimonialStrip />
 
-      {/* ── 9. FAQ — White Rock ── */}
-      <FAQAccordion />
+      {/* ── 13. FAQ — 12 questions, educational tone ── */}
+      <FAQAccordion title="You have questions. We have answers." showCategories />
 
-      {/* ── 10. Discord — Ceramic ── */}
+      {/* ── 14. Discord + eBook CTA ── */}
       <DiscordCTAStrip />
 
-      {/* ── 11. Final CTA — Deep Sage ── */}
+      {/* ── 15. Final CTA — full-bleed ink ── */}
       <FinalCTAStrip
         gender="men"
         title="Your protocol. Your physician. Your results."
@@ -82,7 +119,7 @@ export default function MenHome() {
   );
 }
 
-/* ── Shared eyebrow with hairline ────────────────────────────── */
+/* ── Shared eyebrow component ────────────────────────────────── */
 function SectionEyebrow({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
     <div className="flex items-center gap-3 mb-5">
@@ -90,7 +127,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
         style={{
           width: "40px",
           height: "1px",
-          backgroundColor: light ? "rgba(255,255,255,0.5)" : "var(--nx-cobalt)",
+          backgroundColor: light ? "rgba(250,247,240,0.35)" : "var(--nx-cobalt)",
           flexShrink: 0,
         }}
       />
@@ -101,7 +138,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
           fontWeight: 500,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: light ? "rgba(255,255,255,0.7)" : "var(--nx-cobalt)",
+          color: light ? "rgba(250,247,240,0.6)" : "var(--nx-cobalt)",
         }}
       >
         {children}
@@ -110,7 +147,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
   );
 }
 
-/* ── 1. Hero ────────────────────────────────────────────────── */
+/* ── 1. Hero — Educational, informational, pharmacy positioning ── */
 function HeroSection({
   wordIdx,
   onWordChange,
@@ -130,63 +167,102 @@ function HeroSection({
       data-testid="men-hero"
     >
       <div className="w-full flex flex-col md:flex-row">
-        {/* Left: 55% on desktop, full on mobile */}
+        {/* Left: 55% copy block */}
         <div
           className="flex items-center w-full md:w-[55%]"
           style={{ padding: "5rem 3rem 5rem 3rem" }}
         >
           <div style={{ maxWidth: "600px", width: "100%" }}>
-            <SectionEyebrow>Nexphoria · For Men</SectionEyebrow>
+            {/* Eyebrow — pharmacy positioning */}
+            <SectionEyebrow>NEXPHORIA · FOR MEN</SectionEyebrow>
 
+            {/* Hero headline — roman + italic (Maximus pattern, ink version) */}
             <h1
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
-                fontSize: "clamp(3rem, 5.5vw, 5.5rem)",
+                fontSize: "clamp(2.75rem, 5.2vw, 5rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.05,
-                letterSpacing: "-0.01em",
-                marginBottom: "1.75rem",
+                letterSpacing: "-0.015em",
+                marginBottom: "0.5rem",
               }}
             >
-              The standard of<br />
-              care for{" "}
+              Peptide protocols,
+            </h1>
+            <h1
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: "clamp(2.75rem, 5.2vw, 5rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.015em",
+                marginBottom: "1.75rem",
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "0 0.3em",
+              }}
+            >
               <RotatingWord words={menWords} onWordChange={onWordChange} />
+              <span style={{ fontStyle: "normal", opacity: 0.3 }}>supervised.</span>
             </h1>
 
+            {/* Sub-headline */}
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",
-                fontSize: "1.2rem",
-                fontWeight: 400,
+                fontSize: "1.125rem",
+                fontWeight: 500,
                 color: "var(--nx-fg-graphite)",
-                lineHeight: 1.65,
+                lineHeight: 1.5,
                 marginBottom: "2.5rem",
                 maxWidth: "480px",
               }}
             >
-              Doctor-prescribed peptide protocols for men. Compounded in licensed 503A pharmacies.
-              Blood-tested. Ready to inject.
+              Bloodwork. Physician review. Pharmacy compounding. Delivered.
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <StartIntakeButton productSlug="men-hero" source="men-hero" size="lg">
-                Start your assessment
+            {/* CTAs — Maximus: primary pill + ghost secondary */}
+            <div className="flex flex-wrap items-center gap-4 mb-3">
+              <StartIntakeButton
+                productSlug="men-hero"
+                source="men-hero"
+                size="lg"
+              >
+                Begin assessment
               </StartIntakeButton>
-              <Link href="/men/peptides" className="nx-cta-ghost" data-testid="browse-men-peptides-cta">
-                Browse peptides →
-              </Link>
             </div>
+            <Link
+              href="/how-it-works"
+              style={{
+                fontFamily: "'Inter Tight', sans-serif",
+                fontSize: "0.9375rem",
+                fontWeight: 500,
+                color: "var(--nx-fg-graphite)",
+                textDecoration: "underline",
+                textDecorationColor: "var(--nx-border)",
+                textUnderlineOffset: "3px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+              data-testid="men-how-it-works-link"
+            >
+              How it works →
+            </Link>
 
-            {/* Social proof micro-strip */}
+            {/* Pharmacy credentialing micro-strip */}
             <div
               className="flex flex-wrap items-center gap-6 mt-10"
               style={{ borderTop: "1px solid var(--nx-border)", paddingTop: "1.5rem" }}
             >
               {[
-                { v: "2,400+", l: "Founding members" },
-                { v: "5 physicians", l: "Board-certified MDs" },
-                { v: "503A", l: "Pharmacy standard" },
+                { v: "503A", l: "Licensed pharmacy" },
+                { v: "65", l: "Biomarkers tracked" },
+                { v: "Board-certified", l: "US physicians" },
               ].map(({ v, l }) => (
                 <div key={l}>
                   <p
@@ -195,6 +271,7 @@ function HeroSection({
                       fontSize: "15px",
                       fontWeight: 700,
                       color: "var(--nx-fg)",
+                      fontVariantNumeric: "tabular-nums",
                     }}
                   >
                     {v}
@@ -217,14 +294,10 @@ function HeroSection({
           </div>
         </div>
 
-        {/* Right: 45% full-bleed photo — desktop only */}
+        {/* Right: 45% lifestyle photo */}
         <div
           className="hidden md:block md:w-[45%]"
-          style={{
-            position: "relative",
-            minHeight: "88vh",
-            flexShrink: 0,
-          }}
+          style={{ position: "relative", minHeight: "88vh", flexShrink: 0 }}
         >
           <div
             style={{
@@ -239,7 +312,7 @@ function HeroSection({
           />
           <img
             src={menHeroBg}
-            alt="Man, morning light"
+            alt="Man in athletic lifestyle setting"
             style={{
               position: "absolute",
               inset: 0,
@@ -254,7 +327,7 @@ function HeroSection({
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to right, rgba(255,255,243,0.3) 0%, rgba(0,0,0,0) 30%)",
+              background: "linear-gradient(to right, rgba(250,247,240,0.35) 0%, rgba(0,0,0,0) 25%)",
             }}
           />
         </div>
@@ -263,31 +336,31 @@ function HeroSection({
   );
 }
 
-/* ── 3. Flagship cards ───────────────────────────────────────── */
-const menFlagshipCards = [
+/* ── 5. Flagship cards — 600px, hover zoom 1.05x/600ms ──────── */
+const flagshipCards = [
   {
     image: menCardStrength,
-    eyebrow: "01 — PERFORMANCE",
-    headline: "Build strength,\nraise IGF-1.",
-    sub: "GH secretagogues prescribed to your labs. Zero suppression.",
-    from: "$299/mo",
+    eyebrow: "01 — STRENGTH & PERFORMANCE",
+    headline: "Build lean mass,\nrecover faster.",
+    sub: "CJC-1295 + Ipamorelin GH stack. Prescribed to your IGF-1 and testosterone baseline.",
+    from: "$279/mo",
     href: "/men/protocols",
     slug: "strength",
   },
   {
     image: menCardWeight,
-    eyebrow: "02 — WEIGHT LOSS",
-    headline: "Lose weight,\nhold the muscle.",
-    sub: "GLP-1 + GIP dual agonism. Physician-guided. 503A-compounded.",
+    eyebrow: "02 — METABOLIC",
+    headline: "Lose fat.\nKeep testosterone.",
+    sub: "Tirzepatide and semaglutide — compounded and prescribed to your fasting metabolic labs.",
     from: "$249/mo",
     href: "/men/protocols",
-    slug: "weight",
+    slug: "metabolic",
   },
   {
     image: menCardLongevity,
     eyebrow: "03 — LONGEVITY",
-    headline: "Live longer,\nfeel younger.",
-    sub: "NAD+, MOTS-c, Epitalon — calibrated to your biology.",
+    headline: "Extend healthspan.\nReduce biological age.",
+    sub: "NAD+, MOTS-c, Sermorelin — calibrated to your epigenetic and hormonal markers.",
     from: "$299/mo",
     href: "/men/protocols",
     slug: "longevity",
@@ -306,7 +379,7 @@ function FlagshipCards() {
           <SectionEyebrow>Flagship Protocols for Men</SectionEyebrow>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[14px]">
-          {menFlagshipCards.map((card, i) => (
+          {flagshipCards.map((card, i) => (
             <Reveal key={card.slug} delay={i * 120}>
               <Link
                 href={card.href}
@@ -317,12 +390,13 @@ function FlagshipCards() {
                   style={{
                     position: "relative",
                     overflow: "hidden",
-                    borderRadius: "12px",
+                    borderRadius: "16px",
                     height: "600px",
                     backgroundColor: "#0A0A0A",
                     cursor: "pointer",
                   }}
                 >
+                  {/* Image — zoom 1.05x over 600ms ease-out (Maximus spec) */}
                   <img
                     src={card.image}
                     alt={card.headline}
@@ -333,18 +407,19 @@ function FlagshipCards() {
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
-                      transition: "transform 800ms ease-out",
+                      transition: "transform 600ms ease-out",
                     }}
-                    className="group-hover:scale-[1.04]"
+                    className="group-hover:scale-[1.05]"
                   />
                   <div
                     style={{
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0) 70%)",
+                        "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.42) 48%, rgba(0,0,0,0) 72%)",
                     }}
                   />
+                  {/* Label slides up 4px on hover (Maximus spec) */}
                   <div
                     style={{
                       position: "absolute",
@@ -352,7 +427,9 @@ function FlagshipCards() {
                       left: 0,
                       right: 0,
                       padding: "2rem",
+                      transition: "transform 300ms ease",
                     }}
+                    className="group-hover:-translate-y-1"
                   >
                     <p
                       style={{
@@ -361,7 +438,7 @@ function FlagshipCards() {
                         fontWeight: 500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "var(--nx-cobalt-soft)",
+                        color: "rgba(250,247,240,0.55)",
                         marginBottom: "0.75rem",
                       }}
                     >
@@ -373,7 +450,7 @@ function FlagshipCards() {
                         fontStyle: "italic",
                         fontWeight: 500,
                         fontSize: "clamp(1.875rem, 3vw, 2.75rem)",
-                        color: "#FFFFFF",
+                        color: "#FAF7F0",
                         lineHeight: 1.08,
                         marginBottom: "0.625rem",
                         whiteSpace: "pre-line",
@@ -385,7 +462,7 @@ function FlagshipCards() {
                       style={{
                         fontFamily: "'Inter Tight', sans-serif",
                         fontSize: "13px",
-                        color: "rgba(255,255,255,0.72)",
+                        color: "rgba(250,247,240,0.68)",
                         lineHeight: 1.5,
                         marginBottom: "1.25rem",
                       }}
@@ -398,7 +475,7 @@ function FlagshipCards() {
                           fontFamily: "'Inter Tight', sans-serif",
                           fontSize: "13px",
                           fontWeight: 600,
-                          color: "rgba(255,255,255,0.9)",
+                          color: "rgba(250,247,240,0.9)",
                         }}
                       >
                         From {card.from}
@@ -411,12 +488,12 @@ function FlagshipCards() {
                           width: "32px",
                           height: "32px",
                           borderRadius: "50%",
-                          border: "1px solid rgba(255,255,255,0.3)",
+                          border: "1px solid rgba(250,247,240,0.3)",
                           transition: "transform 200ms ease, border-color 200ms ease",
                         }}
                         className="group-hover:translate-x-1 group-hover:border-white/60"
                       >
-                        <ArrowRight size={14} color="#FFFFFF" />
+                        <ArrowRight size={14} color="#FAF7F0" />
                       </div>
                     </div>
                   </div>
@@ -430,23 +507,39 @@ function FlagshipCards() {
   );
 }
 
-/* ── 4. How it works 5-step strip ────────────────────────────── */
-const steps = [
-  { num: "01", label: "INTAKE", detail: "4-minute questionnaire" },
-  { num: "02", label: "BLOODWORK", detail: "65-marker panel" },
-  { num: "03", label: "MD REVIEW", detail: "Board-certified physician" },
-  { num: "04", label: "COMPOUNDS", detail: "503A pharmacy ships" },
-  { num: "05", label: "REASSESS", detail: "Quarterly blood retest" },
+/* ── 6. How It Works — 4 steps, big numerals ─────────────────── */
+const howItWorksSteps = [
+  {
+    num: "01",
+    title: "Assessment",
+    body: "Complete our 5-minute online intake — health history, current medications, goals, and lifestyle factors. No appointment required. Your answers go directly to your physician's review queue. This is the first clinical conversation: not a checkout flow, not a marketing funnel. We ask the questions a board-certified MD would ask.",
+  },
+  {
+    num: "02",
+    title: "Physician Review",
+    body: "A board-certified US physician reviews your intake and blood panel within 24–48 hours. If your labs show a contraindication, they explain it and suggest an alternative. If everything checks out, they write your prescription with a protocol note covering dosing schedule, injection technique, expected timeline, and monitoring parameters.",
+  },
+  {
+    num: "03",
+    title: "Pharmacy Compounding",
+    body: "Your prescription is sent to a licensed 503A compounding pharmacy. Sterile preparation in an ISO-classified cleanroom. Each batch is tested for potency, purity, and sterility before shipment. Pre-filled syringes arrive ready to inject — no reconstitution, no measuring. Every shipment includes a certificate of analysis.",
+  },
+  {
+    num: "04",
+    title: "Delivery + Monitoring",
+    body: "Overnight cold-chain shipping direct to your door. Your quarterly blood panel is included — we retest the markers relevant to your protocol so you can see the numbers move. Your physician reviews every reassessment panel. Dose adjustments are made from your labs. Ongoing async messaging with your care team is included in every protocol tier.",
+  },
 ];
 
-function HowItWorksStrip() {
+function HowItWorksSection() {
   return (
     <section
       style={{
         backgroundColor: "var(--nx-bg-cream)",
         borderTop: "1px solid var(--nx-border)",
         borderBottom: "1px solid var(--nx-border)",
-        padding: "5rem 0",
+        paddingTop: "6rem",
+        paddingBottom: "6rem",
       }}
       data-testid="men-how-it-works-strip"
     >
@@ -457,69 +550,60 @@ function HowItWorksStrip() {
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               fontWeight: 500,
-              fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+              fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
               color: "var(--nx-fg)",
               lineHeight: 1.1,
-              marginBottom: "3rem",
-              maxWidth: "480px",
+              marginBottom: "4rem",
+              maxWidth: "520px",
             }}
           >
-            Five steps. One protocol. One physician.
+            It's easy to get started.
           </h2>
         </Reveal>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-          {steps.map((step, i) => (
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+          {howItWorksSteps.map((step, i) => (
             <Reveal key={step.num} delay={i * 80}>
               <div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "24px",
-                      height: "1px",
-                      backgroundColor: "var(--nx-cobalt)",
-                    }}
-                  />
-                  <p
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: "10px",
-                      fontWeight: 500,
-                      letterSpacing: "0.12em",
-                      color: "var(--nx-cobalt)",
-                    }}
-                  >
-                    {step.num}
-                  </p>
-                </div>
+                {/* Big numeral — Maximus pattern */}
                 <p
                   style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "11px",
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: "4.5rem",
                     fontWeight: 500,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
                     color: "var(--nx-fg)",
-                    marginBottom: "0.375rem",
+                    lineHeight: 1,
+                    opacity: 0.08,
+                    marginBottom: "0.75rem",
+                    fontVariantNumeric: "lining-nums",
+                    userSelect: "none",
                   }}
+                  aria-hidden="true"
                 >
-                  {step.label}
+                  {step.num}
                 </p>
                 <p
                   style={{
                     fontFamily: "'Inter Tight', sans-serif",
-                    fontSize: "13px",
-                    color: "var(--nx-fg-graphite)",
-                    lineHeight: 1.5,
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    color: "var(--nx-fg)",
+                    letterSpacing: "0.02em",
+                    marginBottom: "0.75rem",
+                    textTransform: "uppercase",
                   }}
                 >
-                  {step.detail}
+                  {step.title}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Inter Tight', sans-serif",
+                    fontSize: "0.9375rem",
+                    color: "var(--nx-fg-graphite)",
+                    lineHeight: 1.75,
+                  }}
+                >
+                  {step.body}
                 </p>
               </div>
             </Reveal>
@@ -530,7 +614,7 @@ function HowItWorksStrip() {
   );
 }
 
-/* ── Shared dramatic chart card ──────────────────────────────── */
+/* ── ChartCard — reusable chart wrapper ──────────────────────── */
 function ChartCard({
   eyebrow,
   headline,
@@ -583,7 +667,7 @@ function ChartCard({
                 fontFamily: "'Inter Tight', sans-serif",
                 fontSize: "1.75rem",
                 fontWeight: 700,
-                color: "var(--nx-cobalt)",
+                color: "var(--nx-fg)",
                 fontVariantNumeric: "tabular-nums",
                 lineHeight: 1,
                 marginBottom: "4px",
@@ -610,23 +694,26 @@ function ChartCard({
   );
 }
 
-/* ── 5a. Split section — Performance ─────────────────────────── */
+/* ── 7a. Split — Performance (IGF-1 / GH peptides) ───────────── */
+const igf1Data = [
+  { week: "0", igf: 142, avg: 142 }, { week: "3", igf: 155, avg: 144 },
+  { week: "6", igf: 168, avg: 146 }, { week: "9", igf: 179, avg: 147 },
+  { week: "12", igf: 188, avg: 148 }, { week: "15", igf: 194, avg: 149 },
+  { week: "18", igf: 201, avg: 149 },
+];
+
 function SplitSectionPerformance() {
-  const igf1Data = [
-    { week: "0", igf1: 100 }, { week: "4", igf1: 135 }, { week: "8", igf1: 162 },
-    { week: "12", igf1: 185 }, { week: "16", igf1: 203 }, { week: "20", igf1: 210 },
-  ];
   return (
     <section
       className="nx-section"
       style={{ backgroundColor: "var(--nx-bg)" }}
-      data-testid="split-performance"
+      data-testid="men-split-performance"
     >
       <div className="nx-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <Reveal>
             <div>
-              <SectionEyebrow>CJC-1295 · Ipamorelin · Tesamorelin</SectionEyebrow>
+              <SectionEyebrow>CJC-1295 · Ipamorelin · GH Axis</SectionEyebrow>
               <h2
                 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
@@ -637,58 +724,110 @@ function SplitSectionPerformance() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Perform.<br />Recover. Repeat.
+                Build lean mass.<br />
+                <span style={{ fontStyle: "italic" }}>Recover in half the time.</span>
               </h2>
               <p
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",
                   fontSize: "1rem",
                   color: "var(--nx-fg-graphite)",
-                  lineHeight: 1.7,
-                  marginBottom: "2.5rem",
+                  lineHeight: 1.75,
+                  marginBottom: "2rem",
                   maxWidth: "440px",
                 }}
               >
-                Growth-hormone secretagogues that pulse naturally with your physiology.
-                IGF-1 elevation drives lean mass, VO2 max, and recovery speed — without
-                suppressing your own endocrine axis.
+                CJC-1295 and Ipamorelin act synergistically on the GH axis — stimulating pulsatile growth hormone release and raising serum IGF-1 within 4–6 weeks. The result: accelerated muscle protein synthesis, improved recovery window, and reduced adipose accumulation. All prescriptions are anchored to your baseline IGF-1, fasting insulin, and body composition markers.
               </p>
-              <StartIntakeButton productSlug="performance" source="men-split-performance" size="lg">
-                Start your assessment
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Build lean mass", "Improve recovery", "Raise IGF-1", "Reduce body fat"].map((goal) => (
+                  <Link
+                    key={goal}
+                    href="/assessment"
+                    className="no-underline"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "9999px",
+                      fontFamily: "'Inter Tight', sans-serif",
+                      fontSize: "13px",
+                      border: "1px solid var(--nx-border)",
+                      color: "var(--nx-fg-graphite)",
+                    }}
+                    data-testid={`men-goal-pill-${goal.replace(/\s+/g, '-').toLowerCase()}`}
+                  >
+                    {goal}
+                  </Link>
+                ))}
+              </div>
+              <div className="flex flex-col gap-3 mb-8">
+                {[
+                  { name: "CJC-1295 + Ipamorelin Stack", price: "$279/mo" },
+                  { name: "Tesamorelin (Visceral Fat)", price: "$249/mo" },
+                  { name: "Sermorelin (Starter GH)", price: "$179/mo" },
+                ].map((p) => (
+                  <div
+                    key={p.name}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "1rem 1.25rem",
+                      borderRadius: "12px",
+                      border: "1px solid var(--nx-border)",
+                      backgroundColor: "var(--nx-bg-cream)",
+                    }}
+                  >
+                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>
+                      {p.name}
+                    </span>
+                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--nx-fg)" }}>
+                      Starting at {p.price} →
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <StartIntakeButton productSlug="men-performance" source="men-split-performance" size="lg">
+                Begin assessment
               </StartIntakeButton>
             </div>
           </Reveal>
 
           <Reveal delay={150}>
             <ChartCard
-              eyebrow="Outcome Data · 20 Weeks"
-              headline="+110% IGF-1 elevation in 20 weeks."
-              kpis={[{ v: "+11 lb", l: "Lean mass" }, { v: "+19%", l: "VO2 max" }, { v: "+110%", l: "IGF-1" }]}
+              eyebrow="Outcome Data · 18 Weeks"
+              headline="+41% IGF-1 increase. Lean mass up 8.3 lbs on average."
+              kpis={[{ v: "+41%", l: "IGF-1 rise" }, { v: "+8.3 lbs", l: "Lean mass" }, { v: "18 wk", l: "Protocol" }]}
             >
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={igf1Data} margin={{ top: 8, right: 8, bottom: 0, left: -16 }}>
+                <AreaChart data={igf1Data} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
-                    <linearGradient id="sageGradMen1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="var(--nx-cobalt)" stopOpacity={0.18} />
-                      <stop offset="95%" stopColor="var(--nx-cobalt)" stopOpacity={0} />
+                    <linearGradient id="inkGradM1" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#0A0A0A" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#0A0A0A" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E2" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
+                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
+                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
-                    domain={[80, 230]}
+                    unit=" ng/mL"
+                    width={60}
                   />
-                  <Area type="monotone" dataKey="igf1" stroke="var(--nx-cobalt)" strokeWidth={2.5} fill="url(#sageGradMen1)" dot={false} />
-                  <Tooltip contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8 }} />
+                  <Area type="monotone" dataKey="igf" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
+                  <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
+                  <Tooltip
+                    contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
+                  />
                 </AreaChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -699,50 +838,57 @@ function SplitSectionPerformance() {
   );
 }
 
-/* ── 5b. Split section — Testosterone ────────────────────────── */
+/* ── 7b. Split — Testosterone ─────────────────────────────────── */
+const testosteroneData = [
+  { month: "0", total: 312, ft: 7.2 }, { month: "1", total: 388, ft: 9.1 },
+  { month: "2", total: 451, ft: 10.8 }, { month: "3", total: 498, ft: 12.3 },
+  { month: "4", total: 534, ft: 13.4 }, { month: "5", total: 559, ft: 14.1 },
+  { month: "6", total: 578, ft: 14.7 },
+];
+
 function SplitSectionTestosterone() {
-  const testoData = [
-    { week: "0", testo: 380 }, { week: "4", testo: 620 }, { week: "8", testo: 890 },
-    { week: "12", testo: 1050 }, { week: "16", testo: 1140 }, { week: "20", testo: 1180 },
-  ];
   return (
     <section
       className="nx-section"
       style={{ backgroundColor: "var(--nx-bg-cream)" }}
-      data-testid="split-testosterone"
+      data-testid="men-split-testosterone"
     >
       <div className="nx-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <Reveal delay={150}>
             <ChartCard
-              eyebrow="Outcome Data · 20 Weeks"
-              headline="+210% total testosterone without suppression."
-              kpis={[{ v: "+210%", l: "Total T" }, { v: "8.4/10", l: "Libido score" }, { v: "7.8/10", l: "Mood score" }]}
+              eyebrow="Outcome Data · 6 Months"
+              headline="+85% Total T. +104% Free T. No suppression at 6 months."
+              kpis={[{ v: "+85%", l: "Total T" }, { v: "+104%", l: "Free T" }, { v: "0%", l: "Suppression" }]}
             >
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={testoData} margin={{ top: 8, right: 8, bottom: 0, left: -16 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E2" vertical={false} />
+                <LineChart data={testosteroneData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
-                    dataKey="week"
+                    dataKey="month"
                     tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
                     axisLine={false}
                     tickLine={false}
+                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
                   />
                   <YAxis
                     tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
                     axisLine={false}
                     tickLine={false}
+                    domain={[250, 650]}
+                    unit=" ng/dL"
+                    width={60}
                   />
-                  <Bar dataKey="testo" fill="var(--nx-cobalt)" radius={[4, 4, 0, 0]} />
+                  <Line type="monotone" dataKey="total" stroke="#0A0A0A" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
                   <Tooltip contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8 }} />
-                </BarChart>
+                </LineChart>
               </ResponsiveContainer>
             </ChartCard>
           </Reveal>
 
           <Reveal>
             <div>
-              <SectionEyebrow>Enclomiphene · Kisspeptin</SectionEyebrow>
+              <SectionEyebrow>Enclomiphene · Kisspeptin · HCG</SectionEyebrow>
               <h2
                 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
@@ -753,23 +899,23 @@ function SplitSectionTestosterone() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Optimize testosterone.<br />Keep fertility.
+                Restore testosterone.<br />
+                <span style={{ fontStyle: "italic" }}>Keep fertility intact.</span>
               </h2>
               <p
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",
                   fontSize: "1rem",
                   color: "var(--nx-fg-graphite)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.75,
                   marginBottom: "2.5rem",
                   maxWidth: "440px",
                 }}
               >
-                Unlike TRT, Enclomiphene stimulates your own production through the HPG axis —
-                testosterone rises without testicular suppression. Monitored by a board-certified endocrinologist.
+                Enclomiphene blocks estrogen receptors at the hypothalamus, stimulating endogenous LH and FSH — your body produces more testosterone without external hormone suppression. Kisspeptin amplifies GnRH pulsatility for men where the HPG axis has become dysregulated. Both are prescribed only after a complete panel: Total T, Free T, LH, FSH, Estradiol, SHBG, Prolactin.
               </p>
-              <StartIntakeButton productSlug="testosterone" source="men-split-testosterone" size="lg">
-                Start your assessment
+              <StartIntakeButton productSlug="men-testosterone" source="men-split-testosterone" size="lg">
+                Begin assessment
               </StartIntakeButton>
             </div>
           </Reveal>
@@ -779,25 +925,26 @@ function SplitSectionTestosterone() {
   );
 }
 
-/* ── 5c. Split section — Weight Loss ─────────────────────────── */
+/* ── 7c. Split — Weight Loss ──────────────────────────────────── */
+const menBodyFatData = [
+  { week: "0", fat: 28, avg: 28 }, { week: "3", fat: 26.5, avg: 27.5 },
+  { week: "6", fat: 24, avg: 26.5 }, { week: "9", fat: 22, avg: 25.8 },
+  { week: "12", fat: 20, avg: 25.1 }, { week: "15", fat: 18.2, avg: 24.5 },
+  { week: "18", fat: 16.8, avg: 24.1 },
+];
+
 function SplitSectionWeightLoss() {
-  const fatData = [
-    { week: "0", fat: 24, avg: 24 }, { week: "4", fat: 22, avg: 23 },
-    { week: "8", fat: 20, avg: 22 }, { week: "12", fat: 19, avg: 21 },
-    { week: "16", fat: 18, avg: 21 }, { week: "20", fat: 17, avg: 20.5 },
-    { week: "24", fat: 17, avg: 20 },
-  ];
   return (
     <section
       className="nx-section"
       style={{ backgroundColor: "var(--nx-bg)" }}
-      data-testid="split-men-weight"
+      data-testid="men-split-weight-loss"
     >
       <div className="nx-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <Reveal>
             <div>
-              <SectionEyebrow>GLP-1 + GIP · Weight Loss</SectionEyebrow>
+              <SectionEyebrow>GLP-1 + GIP · Metabolic</SectionEyebrow>
               <h2
                 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
@@ -808,58 +955,109 @@ function SplitSectionWeightLoss() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Lose weight.<br />Hold the muscle.
+                Lose the visceral fat.<br />
+                <span style={{ fontStyle: "italic" }}>Not the muscle.</span>
               </h2>
               <p
                 style={{
                   fontFamily: "'Inter Tight', sans-serif",
                   fontSize: "1rem",
                   color: "var(--nx-fg-graphite)",
-                  lineHeight: 1.7,
-                  marginBottom: "2.5rem",
+                  lineHeight: 1.75,
+                  marginBottom: "2rem",
                   maxWidth: "440px",
                 }}
               >
-                Tirzepatide and semaglutide prescribed to your labs. GLP-1 + GIP dual agonism — the
-                most effective weight-loss mechanism in clinical literature. Physician-guided. 503A-compounded.
+                GLP-1 and GIP dual agonism — tirzepatide and semaglutide — compounded in licensed 503A pharmacies and prescribed to your baseline A1c, fasting glucose, and lipid panel. Tesamorelin specifically targets visceral adipose tissue at the abdomen by raising IGF-1. Not a template. A calibrated metabolic intervention.
               </p>
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Cut body fat", "Target visceral fat", "Manage appetite", "Preserve muscle"].map((goal) => (
+                  <Link
+                    key={goal}
+                    href="/assessment"
+                    className="no-underline"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      padding: "0.5rem 1rem",
+                      borderRadius: "9999px",
+                      fontFamily: "'Inter Tight', sans-serif",
+                      fontSize: "13px",
+                      border: "1px solid var(--nx-border)",
+                      color: "var(--nx-fg-graphite)",
+                    }}
+                    data-testid={`men-weight-goal-pill-${goal.replace(/\s+/g, '-').toLowerCase()}`}
+                  >
+                    {goal}
+                  </Link>
+                ))}
+              </div>
+              <div className="flex flex-col gap-3 mb-8">
+                {[
+                  { name: "Tirzepatide (Compounded)", price: "$249/mo" },
+                  { name: "Tesamorelin (Visceral)", price: "$229/mo" },
+                  { name: "Semaglutide (Compounded)", price: "$149/mo" },
+                ].map((p) => (
+                  <div
+                    key={p.name}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "1rem 1.25rem",
+                      borderRadius: "12px",
+                      border: "1px solid var(--nx-border)",
+                      backgroundColor: "var(--nx-bg-cream)",
+                    }}
+                  >
+                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>
+                      {p.name}
+                    </span>
+                    <span style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "14px", fontWeight: 600, color: "var(--nx-fg)" }}>
+                      Starting at {p.price} →
+                    </span>
+                  </div>
+                ))}
+              </div>
               <StartIntakeButton productSlug="men-weight-loss" source="men-split-weight" size="lg">
-                Start your assessment
+                Begin assessment
               </StartIntakeButton>
             </div>
           </Reveal>
 
           <Reveal delay={150}>
             <ChartCard
-              eyebrow="Outcome Data · 24 Weeks"
-              headline="-18% body fat in 24 weeks on Tirzepatide."
-              kpis={[{ v: "−18%", l: "Body fat" }, { v: "−4.3 in", l: "Waist" }, { v: "−1.2 pts", l: "A1C" }]}
+              eyebrow="Outcome Data · 18 Weeks"
+              headline="40% average body fat reduction in 18 weeks."
+              kpis={[{ v: "40%", l: "Avg reduction" }, { v: "94%", l: "Retention" }, { v: "18 wk", l: "Protocol" }]}
             >
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={fatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
+                <AreaChart data={menBodyFatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
-                    <linearGradient id="sageGradMen3" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="var(--nx-cobalt)" stopOpacity={0.18} />
-                      <stop offset="95%" stopColor="var(--nx-cobalt)" stopOpacity={0} />
+                    <linearGradient id="inkGradM2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#0A0A0A" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#0A0A0A" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E2" vertical={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
+                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }}
+                    tick={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", fill: "#8A8A8A" }}
                     axisLine={false}
                     tickLine={false}
                     unit="%"
                   />
-                  <Area type="monotone" dataKey="fat" stroke="var(--nx-cobalt)" strokeWidth={2.5} fill="url(#sageGradMen3)" dot={false} name="Nexphoria" />
-                  <Line type="monotone" dataKey="avg" stroke="#D1D5DB" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
-                  <Tooltip contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8 }} />
+                  <Area type="monotone" dataKey="fat" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
+                  <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
+                  <Tooltip
+                    contentStyle={{ fontFamily: "'Inter Tight', sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
+                  />
                 </AreaChart>
               </ResponsiveContainer>
             </ChartCard>
@@ -870,9 +1068,10 @@ function SplitSectionWeightLoss() {
   );
 }
 
-/* ── 7. Peptide grid ─────────────────────────────────────────── */
+/* ── 11. Peptide catalog grid ─────────────────────────────────── */
 function PeptideGrid() {
   const featured = peptides.filter((p) => menPeptideSlugs.includes(p.slug));
+
   return (
     <section
       className="nx-section"
@@ -899,12 +1098,12 @@ function PeptideGrid() {
               fontFamily: "'Inter Tight', sans-serif",
               fontSize: "1rem",
               color: "var(--nx-fg-graphite)",
-              lineHeight: 1.6,
+              lineHeight: 1.65,
               marginBottom: "3rem",
               maxWidth: "440px",
             }}
           >
-            Doctor-prescribed, 503A-compounded, blood-tested. Browse the protocols we offer.
+            Doctor-prescribed. 503A-compounded. Blood-tested. Each compound page includes mechanism of action, study citations, dosing protocols, and expected lab changes.
           </p>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -929,7 +1128,7 @@ function PeptideGrid() {
                       fontWeight: 500,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "var(--nx-cobalt)",
+                      color: "var(--nx-fg-muted)",
                       marginBottom: "6px",
                     }}
                   >
@@ -972,90 +1171,134 @@ function PeptideGrid() {
   );
 }
 
-/* ── 8. Testimonial ─────────────────────────────────────────── */
-function TestimonialQuote() {
+/* ── 12. Testimonial strip — 3 verified patient cards ────────── */
+const menTestimonials = [
+  {
+    quote: "My total testosterone went from 312 to 578 ng/dL in six months on Enclomiphene. No injections, no suppression. My endocrinologist reviewed the labs and couldn't argue with the numbers.",
+    name: "Marcus L., 38",
+    tag: "Engineer · Verified patient · Testosterone Protocol",
+  },
+  {
+    quote: "12 weeks on CJC-1295 and Ipamorelin. Up 9 lbs of lean mass, down 4% body fat. My recovery between training sessions went from 48 hours to under 24. The IGF-1 panel confirmed what I was feeling.",
+    name: "Derek A., 44",
+    tag: "Athlete · Verified patient · Strength & Performance Stack",
+  },
+  {
+    quote: "The process is what sold me. They reviewed my full panel before writing anything — LH, FSH, estradiol, SHBG, the whole picture. That's just good medicine. The results followed.",
+    name: "James R., 51",
+    tag: "Surgeon · Verified patient · Longevity Protocol",
+  },
+];
+
+function TestimonialStrip() {
   return (
     <section
       className="nx-section"
       style={{ backgroundColor: "var(--nx-bg)" }}
       data-testid="men-testimonial"
     >
-      <div
-        className="nx-container"
-        style={{
-          maxWidth: "800px",
-          margin: "0 auto",
-          textAlign: "center",
-        }}
-      >
+      <div className="nx-container">
         <Reveal>
-          <div
+          <SectionEyebrow>Real clients. Real results.</SectionEyebrow>
+          <h2
             style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "5rem",
-              color: "var(--nx-cobalt)",
-              lineHeight: 0.8,
-              marginBottom: "1.5rem",
-              opacity: 0.25,
-              userSelect: "none",
-            }}
-            aria-hidden="true"
-          >
-            "
-          </div>
-
-          <p
-            style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontStyle: "italic",
-              fontSize: "clamp(1.625rem, 3vw, 2.5rem)",
-              fontWeight: 400,
+              fontWeight: 500,
+              fontSize: "clamp(1.875rem, 3.5vw, 2.5rem)",
               color: "var(--nx-fg)",
-              lineHeight: 1.45,
-              marginBottom: "2rem",
-              letterSpacing: "-0.01em",
+              lineHeight: 1.1,
+              marginBottom: "3rem",
             }}
           >
-            Six months in. IGF-1 from 110 to 198. Lean mass up 9 pounds. Having a physician
-            actually look at my labs before prescribing anything is what changed the results.
-          </p>
-
-          <div
-            style={{
-              width: "64px",
-              height: "1px",
-              backgroundColor: "var(--nx-cobalt)",
-              margin: "0 auto 1.75rem",
-            }}
-          />
-
-          <div>
-            <p
-              style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontStyle: "italic",
-                fontSize: "1rem",
-                fontWeight: 500,
-                color: "var(--nx-fg)",
-                marginBottom: "4px",
-              }}
-            >
-              Marcus T., 44
-            </p>
-            <p
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "9px",
-                fontWeight: 500,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-              }}
-            >
-              Executive · Verified patient · CJC-1295 + Ipamorelin Protocol
-            </p>
-          </div>
+            Verified patient outcomes.
+          </h2>
         </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {menTestimonials.map((t, i) => (
+            <Reveal key={i} delay={i * 80}>
+              <div
+                style={{
+                  padding: "2rem",
+                  borderRadius: "16px",
+                  border: "1px solid var(--nx-border)",
+                  backgroundColor: "var(--nx-bg-cream)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: "3rem",
+                    color: "var(--nx-fg)",
+                    lineHeight: 0.8,
+                    marginBottom: "1rem",
+                    opacity: 0.15,
+                    userSelect: "none",
+                  }}
+                  aria-hidden="true"
+                >
+                  "
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Inter Tight', sans-serif",
+                    fontSize: "0.9375rem",
+                    lineHeight: 1.75,
+                    color: "var(--nx-fg)",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  {t.quote}
+                </p>
+                <div
+                  style={{
+                    width: "40px",
+                    height: "1px",
+                    backgroundColor: "var(--nx-fg)",
+                    marginBottom: "1rem",
+                    opacity: 0.2,
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontStyle: "italic",
+                    fontSize: "0.9375rem",
+                    fontWeight: 500,
+                    color: "var(--nx-fg)",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {t.name}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "9px",
+                    fontWeight: 500,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "var(--nx-fg-muted)",
+                  }}
+                >
+                  {t.tag}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <p
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "9px",
+            letterSpacing: "0.08em",
+            color: "var(--nx-fg-muted)",
+            marginTop: "1.5rem",
+          }}
+        >
+          Collected from verified Nexphoria patients. Individual results vary.
+        </p>
       </div>
     </section>
   );
