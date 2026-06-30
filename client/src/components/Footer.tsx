@@ -6,25 +6,31 @@ interface FooterProps {
 }
 
 export function Footer({ variant = "shared" }: FooterProps) {
-  const col1 =
-    variant === "men"
-      ? {
-          heading: "PERFORMANCE",
-          links: [
-            { label: "CJC-1295 / Ipamorelin", href: "/men/peptides/cjc-1295" },
-            { label: "Tesamorelin", href: "/men/peptides/tesamorelin" },
-            { label: "Sermorelin", href: "/men/peptides/sermorelin" },
-            { label: "All protocols", href: "/men/protocols" },
-          ],
-        }
-      : {
-          heading: "WEIGHT LOSS",
-          links: [
-            { label: "Tirzepatide", href: "/women/peptides/tirzepatide" },
-            { label: "Semaglutide", href: "/women/peptides/semaglutide" },
-            { label: "All weight loss", href: "/women/protocols" },
-          ],
-        };
+  const pharmacyBase = variant === "men" ? "/men/peptides" : "/women/peptides";
+  const assessmentBase = variant === "men" ? "/men/assessment" : "/women/assessment";
+
+  const col1 = {
+    heading: "PHARMACY",
+    links: [
+      { label: "All peptides", href: pharmacyBase },
+      { label: "BPC-157", href: `${pharmacyBase}/bpc-157` },
+      { label: "GHK-Cu", href: `${pharmacyBase}/ghk-cu` },
+      { label: "Tirzepatide", href: `${pharmacyBase}/tirzepatide` },
+      { label: "NAD+", href: `${pharmacyBase}/nad-plus` },
+    ],
+  };
+
+  const col2 = {
+    heading: "STACKS",
+    links: [
+      { label: "All stacks", href: "/stacks" },
+      { label: "Wolverine — Recovery", href: "/stacks/wolverine" },
+      { label: "Glow — Skin", href: "/stacks/glow" },
+      { label: "Restore — Sleep", href: "/stacks/sleep" },
+      { label: "Longevity", href: "/stacks/longevity" },
+      { label: "Custom protocol", href: assessmentBase },
+    ],
+  };
 
   return (
     <footer className="nx-footer" data-testid="footer">
@@ -65,19 +71,8 @@ export function Footer({ variant = "shared" }: FooterProps) {
           </div>
 
           {/* Nav columns */}
-          <FooterCol
-            heading={col1.heading}
-            links={col1.links}
-          />
-          <FooterCol
-            heading="LONGEVITY"
-            links={[
-              { label: "NAD+", href: "/women/peptides/nad-plus" },
-              { label: "MOTS-c", href: "/women/peptides/mots-c" },
-              { label: "Epitalon", href: "/women/peptides/epitalon" },
-              { label: "All longevity", href: "/women/protocols" },
-            ]}
-          />
+          <FooterCol heading={col1.heading} links={col1.links} />
+          <FooterCol heading={col2.heading} links={col2.links} />
           <FooterCol
             heading="COMPANY"
             links={[

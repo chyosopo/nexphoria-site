@@ -10,7 +10,11 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
+import { getPrice, formatUSD } from "@/data/pricing";
+import { AddToCartButton } from "@/components/AddToCartButton";
 import { useSeo } from "@/lib/seo";
+
+type PriceRange = "all" | "under-200" | "200-300" | "over-300";
 
 // Gender affinity map — which categories are relevant per gender
 const womenCategories: PeptideCategory[] = ["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"];
@@ -31,6 +35,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
 
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<PeptideCategory | "all">("all");
+  const [priceRange, setPriceRange] = useState<PriceRange>("all");
 
   const displayed = filteredPeptides.filter((p) => {
     const matchesSearch =
@@ -38,7 +43,14 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.tagline.toLowerCase().includes(search.toLowerCase());
     const matchesCat = activeCategory === "all" || p.category === activeCategory;
-    return matchesSearch && matchesCat;
+    if (!matchesSearch || !matchesCat) return false;
+    if (priceRange === "all") return true;
+    const price = getPrice(p.slug)?.monthlyPrice;
+    if (price == null) return false;
+    if (priceRange === "under-200") return price < 200;
+    if (priceRange === "200-300") return price >= 200 && price < 300;
+    if (priceRange === "over-300") return price >= 300;
+    return true;
   });
 
   const usedCategories = [...new Set(filteredPeptides.map((p) => p.category))];
@@ -106,6 +118,41 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
             ))}
           </div>
         </div>
+        {/* Price range row */}
+        <div
+          className="nx-container py-2 flex items-center gap-2 flex-wrap"
+          style={{ borderTop: "1px solid var(--nx-border)" }}
+        >
+          <span
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "10px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+              marginRight: 4,
+            }}
+          >
+            Price
+          </span>
+          <CategoryPill label="All" active={priceRange === "all"} onClick={() => setPriceRange("all")} />
+          <CategoryPill label="Under $200" active={priceRange === "under-200"} onClick={() => setPriceRange("under-200")} />
+          <CategoryPill label="$200–$300" active={priceRange === "200-300"} onClick={() => setPriceRange("200-300")} />
+          <CategoryPill label="Over $300" active={priceRange === "over-300"} onClick={() => setPriceRange("over-300")} />
+          <span
+            className="ml-auto"
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "10px",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
+            data-testid="text-peptide-count"
+          >
+            {displayed.length} of {filteredPeptides.length} peptides
+          </span>
+        </div>
       </section>
 
       {/* Peptide grid */}
@@ -117,16 +164,21 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
             </p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {displayed.map((p, i) => (
+              {displayed.map((p, i) => {
+                const price = getPrice(p.slug);
+                return (
                 <Reveal key={p.slug} delay={i * 40}>
-                  <Link
-                    href={`${detailBase}/${p.slug}`}
-                    className="block no-underline group"
+                  <div
+                    className="flex flex-col h-full rounded-2xl overflow-hidden transition-all duration-200 hover:shadow-md"
+                    style={{ border: "1px solid var(--nx-border)", backgroundColor: "#FFFFFF" }}
                     data-testid={`peptide-card-${p.slug}`}
                   >
+                  <Link
+                    href={`${detailBase}/${p.slug}`}
+                    className="block no-underline group flex-1"
+                  >
                     <div
-                      className="p-6 rounded-2xl transition-all duration-200 group-hover:shadow-md"
-                      style={{ border: "1px solid var(--nx-border)", backgroundColor: "#FFFFFF" }}
+                      className="p-6"
                     >
                       <div className="flex items-start justify-between mb-4">
                         <div>
@@ -136,6 +188,11 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                           <h2 style={{ fontFamily: "'Inter Tight', sans-serif", fontSize: "18px", fontWeight: 700, color: "var(--nx-fg)", lineHeight: 1.2 }}>
                             {p.name}
                           </h2>
+                          {price?.badge && (
+                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'JetBrains Mono', monospace", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
+                              {price.badge}
+                            </span>
+                          )}
                         </div>
                         <span style={{ fontSize: "18px", color: "var(--nx-cobalt)", fontFamily: "'Inter Tight', sans-serif", fontWeight: 300, lineHeight: 1 }}>→</span>
                       </div>
@@ -151,8 +208,41 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                       </div>
                     </div>
                   </Link>
+                  {price && (
+                    <div
+                      className="flex items-center justify-between px-6 py-4"
+                      style={{ borderTop: "1px solid var(--nx-border)" }}
+                    >
+                      <div
+                        style={{
+                          fontFamily: "'Playfair Display', serif",
+                          fontSize: "1.25rem",
+                          fontWeight: 500,
+                          color: "var(--nx-fg)",
+                        }}
+                        data-testid={`card-price-${p.slug}`}
+                      >
+                        {formatUSD(price.monthlyPrice)}
+                        <span
+                          style={{
+                            fontFamily: "'JetBrains Mono', monospace",
+                            fontSize: "9px",
+                            letterSpacing: "0.12em",
+                            textTransform: "uppercase",
+                            color: "var(--nx-fg-muted)",
+                            marginLeft: 4,
+                          }}
+                        >
+                          / mo
+                        </span>
+                      </div>
+                      <AddToCartButton slug={p.slug} type="peptide" variant="compact" label="Add" />
+                    </div>
+                  )}
+                  </div>
                 </Reveal>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>

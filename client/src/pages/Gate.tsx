@@ -13,7 +13,7 @@ const reducedMotion =
 export default function Gate() {
   useSeo({
     title: "Nexphoria — The Peptides Pharmacy",
-    description: "Choose your protocol track.",
+    description: "Single peptides, physician-built stacks, or a custom protocol. Compounded in FDA-registered 503A pharmacies, supervised by U.S. board-certified physicians.",
     path: "/",
   });
   const [, setLocation] = useLocation();
@@ -70,6 +70,33 @@ export default function Gate() {
           }}
         >
           PEPTIDE PHARMACY · BY PHYSICIANS
+        </p>
+        <p
+          style={{
+            fontFamily: "'Inter Tight', sans-serif",
+            fontSize: "12px",
+            fontWeight: 400,
+            color: "rgba(255,255,255,0.55)",
+            marginTop: "10px",
+            letterSpacing: "0.02em",
+            pointerEvents: "auto",
+          }}
+        >
+          <a
+            href="#/stacks"
+            style={{ color: "rgba(255,255,255,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            data-testid="gate-link-stacks"
+          >
+            Browse stacks
+          </a>
+          <span style={{ margin: "0 10px", color: "rgba(255,255,255,0.3)" }}>·</span>
+          <a
+            href="#/how-it-works"
+            style={{ color: "rgba(255,255,255,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            data-testid="gate-link-how"
+          >
+            How it works
+          </a>
         </p>
       </div>
 

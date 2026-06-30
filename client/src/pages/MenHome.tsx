@@ -16,6 +16,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { Reveal } from "@/components/Reveal";
 import { PressStrip } from "@/components/PressStrip";
 import { CategoryTiles } from "@/components/CategoryTiles";
+import { ThreeTierMenu } from "@/components/ThreeTierMenu";
 import { EditorialSection } from "@/components/EditorialSection";
 import { BloodworkSection } from "@/components/BloodworkSection";
 import { peptides } from "@/data/peptides";
@@ -71,6 +72,9 @@ export default function MenHome() {
     <SiteLayout navVariant="men" footerVariant="men">
       {/* ── 1. Hero — educational, compact Maximus-pattern ── */}
       <HeroSection wordIdx={wordIdx} onWordChange={setWordIdx} />
+
+      {/* ── 1b. Three-tier pharmacy menu — Single | Stacks | Custom ── */}
+      <ThreeTierMenu gender="men" />
 
       {/* ── 2. Category tiles — 4-up, right below hero (Maximus pattern) ── */}
       <CategoryTiles tiles={menCategoryTiles} eyebrow="EXPLORE BY GOAL" />

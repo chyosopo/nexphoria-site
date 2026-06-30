@@ -10,49 +10,25 @@ interface NavProps {
 }
 
 const womenLinks = [
-  {
-    label: "Weight Loss",
-    href: "/women/peptides",
-  },
-  {
-    label: "Skin & Recovery",
-    href: "/women/protocols",
-  },
-  {
-    label: "Longevity",
-    href: "/women/protocols",
-  },
-  {
-    label: "How It Works",
-    href: "/how-it-works",
-  },
+  { label: "Pharmacy", href: "/women/peptides" },
+  { label: "Stacks", href: "/stacks" },
+  { label: "Custom Protocol", href: "/women/assessment" },
+  { label: "How It Works", href: "/how-it-works" },
 ];
 
 const menLinks = [
-  {
-    label: "Performance",
-    href: "/men/peptides",
-  },
-  {
-    label: "Testosterone",
-    href: "/men/protocols",
-  },
-  {
-    label: "Weight Loss",
-    href: "/men/peptides",
-  },
-  {
-    label: "How It Works",
-    href: "/how-it-works",
-  },
+  { label: "Pharmacy", href: "/men/peptides" },
+  { label: "Stacks", href: "/stacks" },
+  { label: "Custom Protocol", href: "/men/assessment" },
+  { label: "How It Works", href: "/how-it-works" },
 ];
 
 const gateLinks = [
   { label: "For Women", href: "/women" },
   { label: "For Men", href: "/men" },
+  { label: "Stacks", href: "/stacks" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Science", href: "/science" },
-  { label: "Lab Testing", href: "/lab-testing" },
 ];
 
 export function Nav({ variant = "gate" }: NavProps) {
