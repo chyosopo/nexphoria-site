@@ -5,55 +5,52 @@ import { Reveal } from "@/components/Reveal";
 const contactColumns = [
   {
     eyebrow: "PATIENT SUPPORT",
-    title: "Questions about your protocol.",
+    title: "Clinical and order questions.",
     items: [
-      { label: "EMAIL", value: "support@nexphoria.com" },
-      { label: "HOURS", value: "Mon–Fri, 8am–6pm PT" },
-      { label: "RESPONSE", value: "Within 24h on business days" },
+      { label: "EMAIL", value: "hello@nexphoria.com" },
+      { label: "HOURS", value: "Mon–Fri, 9am–6pm ET" },
+      { label: "RESPONSE", value: "Within 24 hours on business days" },
     ],
-    note: "For billing, shipping, or portal questions.",
+    note: "For billing, shipping, order status, and portal access questions.",
   },
   {
     eyebrow: "MEDICAL QUESTIONS",
-    title: "Talk to our clinical team.",
+    title: "Physician portal messaging.",
     items: [
-      { label: "EMAIL", value: "medical@nexphoria.com" },
-      { label: "CHANNEL", value: "Secure portal messaging" },
-      { label: "RESPONSE", value: "Physician within 48h" },
+      { label: "CHANNEL", value: "Secure member portal" },
+      { label: "RESPONSE", value: "Physician within 48 hours" },
+      { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
     ],
-    note: "For questions about your labs, prescription, or protocol adjustments.",
+    note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal — not email — for clinical questions.",
   },
   {
     eyebrow: "PRESS & PARTNERSHIPS",
     title: "Media and business inquiries.",
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
-      { label: "PHONE", value: "(888) 639-7467" },
-      { label: "ADDRESS", value: "2425 E Camelback Rd, Suite 200\nPhoenix, AZ 85016" },
+      { label: "MAILING ADDRESS", value: "Nexphoria Health, LLC\n800 Third Ave, Suite 1000\nNew York, NY 10022" },
+      { label: "PHARMACY LICENSE", value: "NY-503A-XXXXXX" },
     ],
-    note: "For media, research collaborations, and pharmacy partnerships.",
+    note: "Media inquiries, research collaborations, and pharmacy partnership discussions.",
   },
 ];
 
-const subjects = [
-  "Select a subject",
-  "My order / shipping",
-  "Lab results question",
-  "Protocol or dosing",
-  "Billing / insurance",
-  "Cancel or pause protocol",
-  "Press inquiry",
-  "Partnership / B2B",
+const reasons = [
+  "Select a reason",
+  "Clinical question",
+  "Order status",
+  "Billing",
+  "Press",
   "Other",
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.name && form.email && form.message && form.subject !== subjects[0]) {
+    if (form.name && form.email && form.message && form.reason !== reasons[0]) {
       setSubmitted(true);
     }
   };
@@ -112,6 +109,18 @@ export default function Contact() {
               style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontWeight: 500,
+                fontSize: "clamp(3rem, 6vw, 5rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.05,
+                marginBottom: "0.5rem",
+              }}
+            >
+              We answer in 24 hours,
+            </h1>
+            <h1
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontWeight: 500,
                 fontStyle: "italic",
                 fontSize: "clamp(3rem, 6vw, 5rem)",
                 color: "var(--nx-fg)",
@@ -119,19 +128,20 @@ export default function Contact() {
                 marginBottom: "1.5rem",
               }}
             >
-              Reach us.
+              Monday through Friday.
             </h1>
             <p
               style={{
                 fontFamily: "'Inter Tight', sans-serif",
-                fontSize: "clamp(1rem, 2vw, 1.25rem)",
+                fontSize: "clamp(1rem, 2vw, 1.0625rem)",
                 color: "#4A4A4A",
-                lineHeight: 1.6,
+                lineHeight: 1.65,
                 maxWidth: "560px",
               }}
             >
-              Questions about a protocol, your labs, or your prescription?
-              Our team responds within 24 hours on business days.
+              For clinical questions about your protocol or laboratory results, use the
+              secure messaging channel in your member portal — your physician responds
+              there within 48 hours. For everything else, use the form below.
             </p>
           </Reveal>
         </div>
@@ -158,6 +168,7 @@ export default function Contact() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     padding: "2.5rem 2rem",
+                    height: "100%",
                   }}
                 >
                   <p
@@ -324,7 +335,7 @@ export default function Contact() {
                       color: "#4A4A4A",
                     }}
                   >
-                    We'll respond within 24 hours on business days.
+                    We'll respond within 24 hours on business days, Monday through Friday.
                   </p>
                 </div>
               ) : (
@@ -360,19 +371,43 @@ export default function Contact() {
                     </div>
                   </div>
 
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                    <div>
+                      <label style={labelStyle} htmlFor="contact-phone">Phone (optional)</label>
+                      <input
+                        id="contact-phone"
+                        type="tel"
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        style={inputStyle}
+                      />
+                    </div>
+                    <div>
+                      <label style={labelStyle} htmlFor="contact-state">State</label>
+                      <input
+                        id="contact-state"
+                        type="text"
+                        value={form.state}
+                        onChange={(e) => setForm({ ...form, state: e.target.value })}
+                        placeholder="e.g. NY"
+                        style={inputStyle}
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label style={labelStyle} htmlFor="contact-subject">Subject</label>
+                    <label style={labelStyle} htmlFor="contact-reason">Reason</label>
                     <select
-                      id="contact-subject"
-                      value={form.subject}
-                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                      id="contact-reason"
+                      value={form.reason}
+                      onChange={(e) => setForm({ ...form, reason: e.target.value })}
                       required
                       style={{ ...inputStyle, cursor: "pointer" }}
                       data-testid="contact-subject-select"
                     >
-                      {subjects.map((s) => (
-                        <option key={s} value={s} disabled={s === subjects[0]}>
-                          {s}
+                      {reasons.map((r) => (
+                        <option key={r} value={r} disabled={r === reasons[0]}>
+                          {r}
                         </option>
                       ))}
                     </select>

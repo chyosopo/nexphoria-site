@@ -19,7 +19,7 @@ export default function TelehealthConsent() {
         <LegalP>Telehealth regulations vary by state. Your physician is licensed to practice in your state of residence. By proceeding, you confirm that you are located in a state where Nexphoria currently operates.</LegalP>
       </LegalSection>
       <LegalSection title="6. Withdrawal of Consent">
-        <LegalP>You may withdraw consent to telehealth services at any time by contacting support@nexphoria.com. Withdrawal does not affect care received prior to withdrawal.</LegalP>
+        <LegalP>You may withdraw consent to telehealth services at any time by contacting hello@nexphoria.com. Withdrawal does not affect care received prior to withdrawal.</LegalP>
       </LegalSection>
     </LegalLayout>
   );

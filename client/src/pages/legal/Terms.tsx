@@ -26,7 +26,7 @@ export default function Terms() {
         <LegalP>To the fullest extent permitted by law, Nexphoria shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services.</LegalP>
       </LegalSection>
       <LegalSection title="8. Contact">
-        <LegalP>Questions about these terms? Contact us at legal@nexphoria.com or (888) 639-7467.</LegalP>
+        <LegalP>Questions about these terms? Contact us at hello@nexphoria.com. Nexphoria operates under the laws of the State of New York. Any dispute arising from these terms shall be governed by and construed in accordance with New York law, without regard to its conflict-of-law provisions.</LegalP>
       </LegalSection>
     </LegalLayout>
   );

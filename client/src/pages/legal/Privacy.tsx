@@ -19,7 +19,7 @@ export default function Privacy() {
         <LegalP>We retain your health records for a minimum of seven years or as required by applicable state law, whichever is longer. You may request a copy of your records at any time.</LegalP>
       </LegalSection>
       <LegalSection title="6. Your Rights">
-        <LegalP>You have the right to access, correct, or delete your personal information, subject to legal retention requirements. Submit requests to privacy@nexphoria.com.</LegalP>
+        <LegalP>You have the right to access, correct, or delete your personal information, subject to legal retention requirements. Submit requests to hello@nexphoria.com. This policy is governed by the laws of the State of New York.</LegalP>
       </LegalSection>
     </LegalLayout>
   );
