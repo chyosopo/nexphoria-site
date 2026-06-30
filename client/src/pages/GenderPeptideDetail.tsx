@@ -104,7 +104,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                 {/* Gender context box */}
                 <div
                   className="p-4 rounded-xl mb-8"
-                  style={{ backgroundColor: "var(--nx-cobalt-soft)", border: "1px solid #c3d0f7" }}
+                  style={{ backgroundColor: "var(--nx-cobalt-soft)", border: "1px solid #D6D2C4" }}
                 >
                   <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
                     {genderContext.contextLabel}
@@ -155,14 +155,14 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                         <AreaChart data={timelineData} margin={{ top: 4, right: 4, bottom: 0, left: -28 }}>
                           <defs>
                             <linearGradient id="detailGrad" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#1747D6" stopOpacity={0.12} />
-                              <stop offset="95%" stopColor="#1747D6" stopOpacity={0} />
+                              <stop offset="5%" stopColor="#0A0A0A" stopOpacity={0.12} />
+                              <stop offset="95%" stopColor="#0A0A0A" stopOpacity={0} />
                             </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E2" vertical={false} />
                           <XAxis dataKey="week" tick={{ fontSize: 9, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }} axisLine={false} tickLine={false} />
                           <YAxis tick={{ fontSize: 9, fill: "#8A8A8A", fontFamily: "'JetBrains Mono', monospace" }} axisLine={false} tickLine={false} />
-                          <Area type="monotone" dataKey="score" stroke="#1747D6" strokeWidth={2} fill="url(#detailGrad)" dot={false} />
+                          <Area type="monotone" dataKey="score" stroke="#0A0A0A" strokeWidth={2} fill="url(#detailGrad)" dot={false} />
                         </AreaChart>
                       </ResponsiveContainer>
                     </div>

@@ -7,7 +7,7 @@ interface LogoProps {
 
 export function Logo({ variant = "dark", className = "" }: LogoProps) {
   const textColor = variant === "light" ? "#FFFFFF" : "#0A0A0A";
-  const cobalt = "#1747D6";
+  const cobalt = "#0A0A0A";
 
   return (
     <Link href="/" className={`inline-flex items-center gap-2 no-underline ${className}`} data-testid="logo-nexphoria">

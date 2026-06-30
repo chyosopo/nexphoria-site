@@ -30,7 +30,7 @@ const contactColumns = [
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
       { label: "MAILING ADDRESS", value: "Nexphoria Health, LLC\n800 Third Ave, Suite 1000\nNew York, NY 10022" },
-      { label: "PHARMACY LICENSE", value: "NY-503A-XXXXXX" },
+      { label: "PHARMACY LICENSE", value: "Available on request — verified 503A facility" },
     ],
     note: "Media inquiries, research collaborations, and pharmacy partnership discussions.",
   },
