@@ -271,17 +271,132 @@ export default function Science() {
               Every peptide in our catalog carries a tier rating reflecting the depth of its clinical evidence. The framework is the same one our physicians apply when reviewing a new compound for the formulary.
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <div
+            data-testid="evidence-tier-explainer"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px"
+            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
             {[
-              { tier: "Tier A", color: "#c6f184", label: "Established", desc: "Multiple Phase III RCTs in humans. FDA approval for at least one indication. Examples: tirzepatide, semaglutide, GHK-Cu (dermatologic)." },
-              { tier: "Tier B+", color: "#a8d87a", label: "Emerging — Strong", desc: "Phase II human data, or Phase III in a non-primary indication. Substantial pharmacokinetic evidence. Examples: tesamorelin, enclomiphene." },
-              { tier: "Tier B", color: "#8b8b8b", label: "Emerging — Moderate", desc: "Robust preclinical data plus early-stage human safety and PK studies. Limited large RCTs. Examples: selank, semax, CJC-1295/ipamorelin." },
-              { tier: "Tier B\u2212", color: "#6b6b6b", label: "Investigational", desc: "Strong animal or in vitro evidence; limited controlled human data. Prescribed at physician discretion after explicit risk/benefit discussion. Examples: BPC-157, epitalon." },
+              {
+                tier: "Tier A",
+                key: "a",
+                color: "#c6f184",
+                strength: 100,
+                label: "Established",
+                desc: "Multiple Phase III RCTs in humans. FDA approval for at least one indication.",
+                examples: [
+                  { slug: "tirzepatide", name: "Tirzepatide" },
+                  { slug: "tesamorelin", name: "Tesamorelin" },
+                  { slug: "ghk-cu", name: "GHK-Cu" },
+                ],
+              },
+              {
+                tier: "Tier B+",
+                key: "b-plus",
+                color: "#a8d87a",
+                strength: 75,
+                label: "Emerging \u2014 Strong",
+                desc: "Phase II human data, or Phase III in a non-primary indication. Substantial pharmacokinetic evidence.",
+                examples: [
+                  { slug: "thymosin-alpha-1", name: "Thymosin \u03b1-1" },
+                  { slug: "retatrutide", name: "Retatrutide" },
+                ],
+              },
+              {
+                tier: "Tier B",
+                key: "b",
+                color: "#8b8b8b",
+                strength: 55,
+                label: "Emerging \u2014 Moderate",
+                desc: "Robust preclinical data plus early-stage human safety and PK studies. Limited large RCTs.",
+                examples: [
+                  { slug: "ipamorelin", name: "Ipamorelin" },
+                  { slug: "cjc-1295", name: "CJC-1295" },
+                  { slug: "semax", name: "Semax" },
+                  { slug: "selank", name: "Selank" },
+                ],
+              },
+              {
+                tier: "Tier B\u2212",
+                key: "b-minus",
+                color: "#6b6b6b",
+                strength: 35,
+                label: "Investigational",
+                desc: "Strong animal or in vitro evidence; limited controlled human data. Prescribed at physician discretion after explicit risk/benefit discussion.",
+                examples: [
+                  { slug: "bpc-157", name: "BPC-157" },
+                  { slug: "epitalon", name: "Epitalon" },
+                  { slug: "aod-9604", name: "AOD-9604" },
+                ],
+              },
             ].map((t) => (
-              <div key={t.tier} style={{ backgroundColor: "#0A0A0A", padding: "2rem 1.75rem" }}>
+              <div
+                key={t.tier}
+                data-testid={`tier-card-${t.key}`}
+                style={{ backgroundColor: "#0A0A0A", padding: "2rem 1.75rem", display: "flex", flexDirection: "column" }}
+              >
                 <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: t.color, marginBottom: "0.5rem" }}>{t.tier}</p>
-                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "#FFFFF3", marginBottom: "0.75rem", lineHeight: 1.2 }}>{t.label}</p>
-                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.6)", lineHeight: 1.6 }}>{t.desc}</p>
+                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "#FFFFF3", marginBottom: "0.875rem", lineHeight: 1.2 }}>{t.label}</p>
+                <div
+                  aria-hidden="true"
+                  style={{
+                    height: "3px",
+                    width: "100%",
+                    background: "rgba(255,255,255,0.06)",
+                    borderRadius: "1px",
+                    marginBottom: "1rem",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    style={{
+                      height: "100%",
+                      width: `${t.strength}%`,
+                      background: t.color,
+                      transition: "width 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+                    }}
+                  />
+                </div>
+                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.6)", lineHeight: 1.6, marginBottom: "1.25rem", flexGrow: 1 }}>{t.desc}</p>
+                <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,243,0.4)", marginBottom: "0.625rem" }}>In our catalog</p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+                  {t.examples.map((ex) => (
+                    <Link
+                      key={ex.slug}
+                      href={`/peptides/${ex.slug}`}
+                      data-testid={`tier-example-${ex.slug}`}
+                    >
+                      <a
+                        style={{
+                          display: "inline-block",
+                          padding: "0.3125rem 0.625rem",
+                          border: `1px solid ${t.color}55`,
+                          borderRadius: "999px",
+                          fontFamily: SANS,
+                          fontSize: "0.75rem",
+                          fontWeight: 500,
+                          color: t.color,
+                          textDecoration: "none",
+                          background: "transparent",
+                          transition: "background 180ms ease, color 180ms ease, border-color 180ms ease",
+                          cursor: "pointer",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.background = t.color;
+                          (e.currentTarget as HTMLElement).style.color = "#0A0A0A";
+                          (e.currentTarget as HTMLElement).style.borderColor = t.color;
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.background = "transparent";
+                          (e.currentTarget as HTMLElement).style.color = t.color;
+                          (e.currentTarget as HTMLElement).style.borderColor = `${t.color}55`;
+                        }}
+                      >
+                        {ex.name}
+                      </a>
+                    </Link>
+                  ))}
+                </div>
               </div>
             ))}
           </div>

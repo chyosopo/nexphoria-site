@@ -56,6 +56,7 @@ import { getStack, stacks } from "@/data/stacks";
 import { VialTile, categoryToTone } from "@/components/VialTile";
 import { PillBadge } from "@/components/PillBadge";
 import { getPrice } from "@/data/pricing";
+import { getPeptideHeroImage } from "@/lib/peptideImages";
 
 const INK = "var(--nx-cobalt)";
 const CREAM = "var(--nx-bg)";
@@ -1230,8 +1231,47 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
       {/* Sticky in-page nav (polish 10) */}
       <StickyPageNav />
 
-      {/* 2 · HERO — benefits left, pricing card right */}
+      {/* 2 · HERO — editorial image band (if available), then benefits left + pricing card right */}
       <section id="overview" className="bg-white border-b border-[var(--nx-border)] scroll-mt-32" data-testid="section-product-hero">
+        {(() => {
+          const heroImg = getPeptideHeroImage(peptide.slug);
+          if (!heroImg) return null;
+          return (
+            <div
+              className="relative w-full overflow-hidden"
+              style={{
+                aspectRatio: "16 / 6",
+                backgroundColor: "var(--nx-rock, #E8E9DB)",
+                borderBottom: "1px solid var(--nx-border)",
+              }}
+              data-testid="hero-editorial-image"
+            >
+              <img
+                src={heroImg}
+                alt={`Editorial photograph of ${peptide.name} preparation on a physician-grade apothecary surface.`}
+                loading="eager"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: "center 55%" }}
+              />
+              {/* Editorial caption overlay — bottom left corner, restrained */}
+              <div
+                className="absolute left-0 bottom-0 px-6 py-4 md:px-10 md:py-5"
+                style={{
+                  fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                  fontSize: "10px",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "rgba(10,10,10,0.55)",
+                }}
+              >
+                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "rgba(10,10,10,0.55)", marginRight: "0.5rem", verticalAlign: "middle" }} />
+                {catLabel} · Compounded under USP-797
+              </div>
+            </div>
+          );
+        })()}
         <div className="nx-container py-12 md:py-16">
           <div className="grid lg:grid-cols-[1fr_minmax(360px,420px)] gap-10 lg:gap-16 items-start">
             {/* Left — benefits */}
