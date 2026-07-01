@@ -76,7 +76,7 @@ export function EducationCard({
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "9px",
             fontWeight: 600,
             letterSpacing: "0.14em",
@@ -95,7 +95,7 @@ export function EducationCard({
             hovered: { textDecoration: "underline" },
           }}
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 500,
             fontSize: "clamp(1.1rem, 2vw, 1.375rem)",
             color: "var(--nx-fg)",
@@ -110,7 +110,7 @@ export function EducationCard({
         {/* Excerpt */}
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "13px",
             fontWeight: 400,
             color: "var(--nx-fg-graphite)",
@@ -136,7 +136,7 @@ export function EducationCard({
         >
           <span
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "9px",
               fontWeight: 500,
               letterSpacing: "0.1em",
@@ -154,7 +154,7 @@ export function EducationCard({
             }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "12px",
               fontWeight: 500,
               color: "var(--nx-fg)",

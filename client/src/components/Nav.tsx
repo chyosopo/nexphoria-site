@@ -12,16 +12,18 @@ interface NavProps {
 const showcaseLinks = [
   { label: "Pharmacy", href: "/peptides" },
   { label: "Stacks", href: "/stacks" },
+  { label: "Build a stack", href: "/stacks/build" },
+  { label: "Bloodwork", href: "/bloodwork" },
   { label: "Science", href: "/science" },
   { label: "Journal", href: "/journal" },
   { label: "How It Works", href: "/how-it-works" },
-  { label: "About", href: "/about" },
 ];
 
 const womenLinks = [
   { label: "Pharmacy", href: "/women/peptides" },
   { label: "Stacks", href: "/stacks" },
-  { label: "Custom Protocol", href: "/women/assessment" },
+  { label: "Custom Protocol", href: "/assessment" },
+  { label: "Bloodwork", href: "/bloodwork" },
   { label: "Journal", href: "/journal" },
   { label: "How It Works", href: "/how-it-works" },
 ];
@@ -29,7 +31,8 @@ const womenLinks = [
 const menLinks = [
   { label: "Pharmacy", href: "/men/peptides" },
   { label: "Stacks", href: "/stacks" },
-  { label: "Custom Protocol", href: "/men/assessment" },
+  { label: "Custom Protocol", href: "/assessment" },
+  { label: "Bloodwork", href: "/bloodwork" },
   { label: "Journal", href: "/journal" },
   { label: "How It Works", href: "/how-it-works" },
 ];
@@ -38,6 +41,7 @@ const gateLinks = [
   { label: "For Women", href: "/women" },
   { label: "For Men", href: "/men" },
   { label: "Stacks", href: "/stacks" },
+  { label: "Bloodwork", href: "/bloodwork" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Science", href: "/science" },
   { label: "Journal", href: "/journal" },
@@ -92,7 +96,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               <Link
                 href={link.href}
                 className="text-sm font-medium text-nx-graphite hover:text-nx-cobalt transition-colors no-underline"
-                style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A" }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A" }}
               >
                 {link.label}
               </Link>
@@ -137,7 +141,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <Link
                   href={link.href}
                   className="block py-2.5 text-sm font-medium no-underline"
-                  style={{ color: "#4A4A4A", fontFamily: "'Inter', sans-serif" }}
+                  style={{ color: "#4A4A4A", fontFamily: "'General Sans', system-ui, sans-serif" }}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

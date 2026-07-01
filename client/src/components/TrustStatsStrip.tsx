@@ -63,7 +63,7 @@ export function TrustStatsStrip({
         >
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 11,
               fontWeight: 500,
               letterSpacing: "0.22em",
@@ -76,8 +76,8 @@ export function TrustStatsStrip({
           </p>
           <h2
             style={{
-              fontFamily: "'Fraunces', Georgia, serif",
-              fontStyle: "italic",
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              
               fontWeight: 400,
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
               lineHeight: 1.1,
@@ -163,8 +163,8 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
     >
       <p
         style={{
-          fontFamily: "'Fraunces', Georgia, serif",
-          fontStyle: "italic",
+          fontFamily: "'General Sans', system-ui, sans-serif",
+          
           fontWeight: 400,
           fontSize: "clamp(2.5rem, 5vw, 4.25rem)",
           lineHeight: 1,
@@ -178,7 +178,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
         {stat.suffix && (
           <span
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontStyle: "normal",
               fontSize: "0.45em",
               fontWeight: 500,
@@ -195,7 +195,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
       </p>
       <p
         style={{
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: 11,
           fontWeight: 500,
           letterSpacing: "0.16em",
@@ -209,7 +209,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
       {stat.caption && (
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: 12,
             lineHeight: 1.45,
             color: isDark ? "rgba(255,255,243,0.55)" : "var(--nx-text-muted)",

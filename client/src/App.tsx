@@ -10,6 +10,7 @@ import { CartProvider } from "@/contexts/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 
 // Pages — eagerly loaded (fast/common paths)
+import Home from "@/pages/Home";
 import Showcase from "@/pages/Showcase";
 import Gate from "@/pages/Gate";
 import WomenHome from "@/pages/WomenHome";
@@ -36,6 +37,7 @@ const GenderProtocols = lazy(() => import("@/pages/GenderProtocols"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackIndex = lazy(() => import("@/pages/StackIndex"));
 const StackDetail = lazy(() => import("@/pages/StackDetail"));
+const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
@@ -48,8 +50,9 @@ function AppRouter() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
-        {/* Showcase — "/" — the pharmacy floor */}
-        <Route path="/" component={Showcase} />
+        {/* Home — new V3 landing (Maximus tiles + Bask cinematics) */}
+        <Route path="/" component={Home} />
+        <Route path="/showcase" component={Showcase} />
 
         {/* Gender-neutral pharmacy shelf */}
         <Route path="/peptides" component={Peptides} />
@@ -84,6 +87,7 @@ function AppRouter() {
 
         {/* Stacks (pharmacy tier 2) */}
         <Route path="/stacks" component={StackIndex} />
+        <Route path="/stacks/build" component={BuildYourStack} />
         <Route path="/stacks/:slug">
           {(params) => <StackDetail slug={(params as { slug: string }).slug} />}
         </Route>
@@ -99,6 +103,8 @@ function AppRouter() {
         <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />
         <Route path="/lab-testing" component={LabTesting} />
+        <Route path="/bloodwork" component={LabTesting} />
+        <Route path="/testing" component={LabTesting} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />
@@ -128,8 +134,8 @@ function App() {
           <Toaster />
           <Router hook={useHashLocation}>
             <AppRouter />
+            <CartDrawer />
           </Router>
-          <CartDrawer />
         </CartProvider>
       </TooltipProvider>
     </QueryClientProvider>

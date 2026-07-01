@@ -91,19 +91,19 @@ export default function Checkout() {
               </div>
               <div
                 className="text-[11px] uppercase tracking-[0.22em] mb-3"
-                style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
               >
                 Submission #{submittedId.toString().padStart(5, "0")}
               </div>
               <h1
                 className="text-4xl md:text-5xl mb-5"
-                style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
               >
-                Submitted for <em style={{ fontStyle: "italic" }}>physician review</em>
+                Submitted for <span style={{  }}>physician review</span>
               </h1>
               <p
                 className="text-base mb-8 max-w-lg mx-auto"
-                style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.7 }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.7 }}
               >
                 Your cart and intake are now with our physician team. You'll receive an email within 24–48 hours
                 with either an approval (and final payment link) or a request for additional information.
@@ -114,26 +114,26 @@ export default function Checkout() {
               >
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-3"
-                  style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
                 >
                   What happens next
                 </div>
                 <ul
                   className="space-y-2 text-sm list-none p-0"
-                  style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
                 >
                   <li>→ Physician reviews intake + cart (24–48 hours)</li>
                   <li>→ You'll receive a secure approval link by email</li>
-                  <li>→ Bloodwork ordered to your nearest LabCorp</li>
+                  <li>→ Bloodwork ordered to your nearest Quest Diagnostics</li>
                   <li>→ Compounded shipment in cold-chain packaging</li>
                 </ul>
               </div>
-              <Link href="/women">
+              <Link asChild href="/">
                 <a
                   className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
                   style={{
                     color: "#0A0A0A",
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "0.875rem",
                     border: "1px solid var(--nx-border)",
                   }}
@@ -157,23 +157,23 @@ export default function Checkout() {
           <div className="nx-container py-20 max-w-md text-center">
             <h1
               className="text-3xl mb-4"
-              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
             >
               Your cart is empty
             </h1>
             <p
               className="text-base mb-6"
-              style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A" }}
             >
               Add a peptide or curated stack before checkout.
             </p>
-            <Link href="/stacks">
+            <Link asChild href="/stacks">
               <a
                 className="inline-block px-6 py-3"
                 style={{
                   background: "#0A0A0A",
                   color: "#FAF7F0",
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "0.875rem",
                 }}
                 data-testid="link-empty-checkout-stacks"
@@ -195,10 +195,10 @@ export default function Checkout() {
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         <div className="nx-container py-12 md:py-16">
           {/* Breadcrumb */}
-          <Link href="/cart">
+          <Link asChild href="/cart">
             <a
               className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] mb-6 hover:underline"
-              style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
               data-testid="link-back-to-cart"
             >
               <ArrowLeft size={12} /> Back to cart
@@ -209,23 +209,35 @@ export default function Checkout() {
           <div className="mb-10 max-w-2xl">
             <div
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
             >
               Checkout · Intake
             </div>
             <h1
               className="text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
             >
-              Submit for <em style={{ fontStyle: "italic" }}>physician review</em>
+              Submit for <span style={{  }}>physician review</span>
             </h1>
             <p
-              className="text-base"
-              style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
+              className="text-base mb-4"
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
             >
               Every order is reviewed by a licensed physician before it ships. The questions below help us flag
               contraindications and recommend monitoring. No card is charged today.
             </p>
+            {/* Bask handoff disclaimer */}
+            <div
+              className="p-4 max-w-2xl"
+              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "4px" }}
+            >
+              <p className="text-xs" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>
+                IMPORTANT — LEAD CAPTURE ONLY
+              </p>
+              <p className="text-sm" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}>
+                This form captures your interest and health overview. Actual checkout, payment, and prescription fulfillment happen through <strong>Bask Health</strong>, our licensed telehealth partner. A physician will contact you within 24–48 hours to continue the process.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-start">
@@ -271,7 +283,7 @@ export default function Checkout() {
               <Section title="Health screening" eyebrow="Step 02">
                 <p
                   className="text-sm mb-5 max-w-xl"
-                  style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
                 >
                   Answer honestly — this informs physician approval and is covered by HIPAA-aligned data handling.
                 </p>
@@ -316,7 +328,7 @@ export default function Checkout() {
               <Section title="Shipping" eyebrow="Step 03">
                 <p
                   className="text-sm mb-5 max-w-xl"
-                  style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
                 >
                   Cold-chain shipped overnight after physician approval. We currently ship to all US states except
                   LA, AK, and HI.
@@ -363,6 +375,24 @@ export default function Checkout() {
                 </div>
               </Section>
 
+              {/* What happens next preview */}
+              <div className="pt-6 pb-4">
+                <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}>WHAT HAPPENS AFTER YOU SUBMIT</p>
+                <div className="space-y-2">
+                  {[
+                    { n: "01", t: "Physician reviews your cart + intake within 24–48 hours" },
+                    { n: "02", t: "You receive a secure approval link via email from Bask Health" },
+                    { n: "03", t: "Quest Diagnostics lab requisition issued to your member portal" },
+                    { n: "04", t: "Protocol compounded and shipped cold-chain overnight" },
+                  ].map(({ n, t }) => (
+                    <div key={n} className="flex gap-3 items-start">
+                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, color: "#8B5A2B", flexShrink: 0, marginTop: "2px" }}>{n}</span>
+                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.55 }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Submit */}
               <div className="pt-4">
                 <button
@@ -372,7 +402,7 @@ export default function Checkout() {
                   style={{
                     background: "#0A0A0A",
                     color: "#FAF7F0",
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "0.9375rem",
                     fontWeight: 500,
                     letterSpacing: "0.02em",
@@ -383,7 +413,7 @@ export default function Checkout() {
                 </button>
                 <p
                   className="text-xs mt-3 max-w-md"
-                  style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
                 >
                   By submitting, you consent to physician review and HIPAA-aligned data handling. No payment is
                   collected today — final invoice is sent after approval.
@@ -395,7 +425,7 @@ export default function Checkout() {
                       background: "#FBEAE5",
                       border: "1px solid #E2B6AB",
                       color: "#8B2E1A",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                     }}
                     data-testid="text-form-errors"
                   >
@@ -413,7 +443,7 @@ export default function Checkout() {
               <div
                 className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   color: "#8B5A2B",
                   borderBottom: "1px solid var(--nx-border)",
                 }}
@@ -435,7 +465,7 @@ export default function Checkout() {
                           <div
                             className="text-[9px] uppercase tracking-[0.2em] mb-0.5"
                             style={{
-                              fontFamily: "'DM Mono', monospace",
+                              fontFamily: "'General Sans', system-ui, sans-serif",
                               color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B",
                             }}
                           >
@@ -444,7 +474,7 @@ export default function Checkout() {
                           <div
                             className="text-sm leading-tight"
                             style={{
-                              fontFamily: "'Inter', sans-serif",
+                              fontFamily: "'General Sans', system-ui, sans-serif",
                               color: "#0A0A0A",
                               fontWeight: 500,
                             }}
@@ -455,7 +485,7 @@ export default function Checkout() {
                             <div
                               className="text-[10px] mt-0.5"
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "'General Sans', system-ui, sans-serif",
                                 color: "#6B6B6B",
                                 letterSpacing: "0.05em",
                               }}
@@ -467,7 +497,7 @@ export default function Checkout() {
                             <div
                               className="text-[10px] mt-1"
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "'General Sans', system-ui, sans-serif",
                                 color: "#8B5A2B",
                                 letterSpacing: "0.05em",
                               }}
@@ -478,7 +508,7 @@ export default function Checkout() {
                         </div>
                         <div
                           className="text-sm flex-shrink-0"
-                          style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
+                          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A" }}
                         >
                           {formatUSD(line.lineTotal)}
                         </div>
@@ -492,13 +522,13 @@ export default function Checkout() {
                 <div className="flex items-baseline justify-between py-1.5">
                   <span
                     className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                    style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
                   >
                     Stack savings
                   </span>
                   <span
                     className="text-sm"
-                    style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                    style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
                   >
                     −{formatUSD(totalSavings)}
                   </span>
@@ -511,14 +541,14 @@ export default function Checkout() {
               >
                 <span
                   className="text-sm uppercase tracking-[0.12em]"
-                  style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A" }}
                 >
                   Total · monthly
                 </span>
                 <span
                   className="text-2xl"
                   style={{
-                    fontFamily: "'Fraunces', serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     color: "#0A0A0A",
                     fontWeight: 500,
                   }}
@@ -536,6 +566,13 @@ export default function Checkout() {
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
                 <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · 256-bit encryption" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
+                <TrustRow icon={<Check size={14} />} text="30-day satisfaction guarantee on physician consult" />
+                <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
+              </div>
+
+              {/* Money-back note */}
+              <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}>
+                <p>No payment collected today. Final pricing confirmed after physician approval. Bask Health handles all billing.</p>
               </div>
             </aside>
           </div>
@@ -552,13 +589,13 @@ function Section({ title, eyebrow, children }: { title: string; eyebrow: string;
     <section>
       <div
         className="text-[10px] uppercase tracking-[0.22em] mb-1"
-        style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
       >
         {eyebrow}
       </div>
       <h2
         className="text-2xl mb-5"
-        style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
       >
         {title}
       </h2>
@@ -586,14 +623,14 @@ function Field({
     <label className="block">
       <span
         className="block text-[11px] uppercase tracking-[0.15em] mb-1.5"
-        style={{ fontFamily: "'DM Mono', monospace", color: "#4A4A4A" }}
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A" }}
       >
         {label}
       </span>
       {helper ? (
         <span
           className="block text-xs mb-2"
-          style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
+          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
         >
           {helper}
         </span>
@@ -602,7 +639,7 @@ function Field({
       {error ? (
         <span
           className="block text-xs mt-1.5"
-          style={{ fontFamily: "'Inter', sans-serif", color: "#8B2E1A" }}
+          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B2E1A" }}
         >
           {error}
         </span>
@@ -637,14 +674,14 @@ const YesNoField = ({
         <div className="flex-1">
           <div
             className="text-sm"
-            style={{ fontFamily: "'Inter', sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
           >
             {label}
           </div>
           {helper ? (
             <div
               className="text-xs mt-1"
-              style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
             >
               {helper}
             </div>
@@ -659,7 +696,7 @@ function TrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
     <div
       className="flex items-start gap-2.5 text-xs"
-      style={{ fontFamily: "'Inter', sans-serif", color: "#4A4A4A", lineHeight: 1.5 }}
+      style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.5 }}
     >
       <span style={{ color: "#8B5A2B", marginTop: 1 }}>{icon}</span>
       <span>{text}</span>

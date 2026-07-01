@@ -10,29 +10,64 @@ export default function Terms() {
   return (
     <LegalLayout title="Terms of Service" lastUpdated="June 2026">
       <LegalSection title="1. Acceptance of Terms">
-        <LegalP>By accessing or using Nexphoria services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.</LegalP>
+        <LegalP>By accessing or using any Nexphoria service — including this website, the patient portal, telehealth consultations, laboratory ordering, or compounded medication fulfillment — you agree to be bound by these Terms of Service ("Terms"), our Privacy Policy, our Telehealth Consent, and all applicable federal and state laws. These Terms constitute a legally binding agreement between you and Nexphoria, Inc. ("Nexphoria," "we," "us," or "our").</LegalP>
+        <LegalP>If you do not agree with any provision of these Terms, you must immediately discontinue use of our services. We reserve the right to modify these Terms at any time. Material changes will be communicated by email or by a prominent notice on our website. Continued use after the effective date of any change constitutes your acceptance of the revised Terms.</LegalP>
       </LegalSection>
-      <LegalSection title="2. Medical Services">
-        <LegalP>Nexphoria provides a telehealth platform connecting patients with licensed US physicians. Physicians are independent contractors and not employees of Nexphoria. All prescriptions are issued solely at the physician's medical discretion after review of your labs and health history.</LegalP>
-        <LegalP>Nexphoria does not practice medicine. Nothing on this site constitutes medical advice. You should always consult with a qualified healthcare provider before starting any new treatment protocol.</LegalP>
+
+      <LegalSection title="2. Description of Services">
+        <LegalP>Nexphoria is a digital health platform that connects patients with licensed physicians for telehealth consultations and, where clinically appropriate, prescriptions for compounded peptide medications. Nexphoria is not a pharmacy and does not dispense medication directly. All compounded preparations are dispensed by independent 503A FDA-registered compounding pharmacies holding valid state pharmacy permits across all 50 United States.</LegalP>
+        <LegalP>Telehealth consultations are conducted through Bask Health, our licensed telehealth platform partner. Laboratory services, including baseline and follow-up blood panels, are fulfilled through Quest Diagnostics or other CLIA-certified laboratories. Nexphoria coordinates access to these services but does not employ the physicians, pharmacists, or laboratory professionals who provide them. Nexphoria holds LegitScript certification confirming compliance with applicable laws governing online healthcare and pharmacy advertising.</LegalP>
       </LegalSection>
-      <LegalSection title="3. Compounding Pharmacy">
-        <LegalP>Compounded medications are prepared by third-party 503A-licensed pharmacies. Nexphoria is not a pharmacy. All compounded preparations are made pursuant to a valid prescription from a licensed physician.</LegalP>
+
+      <LegalSection title="3. Medical Services and Disclaimer">
+        <LegalP>Nexphoria does not practice medicine and does not provide medical diagnoses or treatment recommendations. Nothing on this website, in our marketing materials, or in any automated intake process constitutes medical advice, diagnosis, or treatment. All prescribing decisions are made solely by the independent licensed physician assigned to your case, based on their independent clinical judgment following review of your health history and laboratory results.</LegalP>
+        <LegalP>Nexphoria is not a substitute for emergency medical care. If you are experiencing a medical emergency, call 911 or proceed to the nearest emergency room immediately. Outcomes described on our website represent individual results and are not guaranteed. Peptide therapies may be prescribed for uses not approved by the FDA (off-label use). Your physician will discuss the off-label nature of any prescription and the applicable evidence before initiating treatment.</LegalP>
+        <LegalP>You are encouraged to share your Nexphoria treatment plan and laboratory data with your primary care physician. Our telehealth physicians are not intended to serve as your sole healthcare provider. Nexphoria assumes no responsibility for any decision you make to withhold health information from other treating providers.</LegalP>
       </LegalSection>
-      <LegalSection title="4. User Eligibility">
-        <LegalP>You must be at least 21 years of age to use Nexphoria services. By using our services, you represent and warrant that you are of legal age and have the legal capacity to enter into these terms.</LegalP>
+
+      <LegalSection title="4. Compounding Pharmacy">
+        <LegalP>Compounded medications dispensed through Nexphoria are prepared by 503A FDA-registered compounding pharmacies operating under state pharmacy board oversight and complying with applicable USP sterile compounding standards. All compounds are prepared pursuant to a valid prescription issued by a licensed physician following a legitimate patient-physician relationship established through our telehealth platform.</LegalP>
+        <LegalP>Compounded medications are not FDA-approved drug products. The FDA does not verify the safety, effectiveness, or quality of compounded drugs in the same manner as FDA-approved products. Your physician will explain the clinical rationale for compounding and the current state of clinical evidence before prescribing any compounded preparation.</LegalP>
+        <LegalP>Our compounding pharmacy partners are LegitScript certified and subject to regular quality audits. We require that all pharmacy partners maintain current state licensure in every state to which they ship and comply with applicable pedigree and serialization requirements under the Drug Supply Chain Security Act (DSCSA).</LegalP>
       </LegalSection>
-      <LegalSection title="5. Payment and Billing">
-        <LegalP>All services are self-pay. Charges are billed monthly. You authorize us to charge the payment method on file for recurring subscription charges. We provide itemized receipts suitable for FSA/HSA reimbursement.</LegalP>
+
+      <LegalSection title="5. User Eligibility">
+        <LegalP>You must be at least 21 years of age and a legal resident of one of the 50 United States or the District of Columbia to use Nexphoria services. By using our services, you represent and warrant that: (a) you are of legal age and have the legal capacity to enter into these Terms; (b) all information you provide during registration and intake is truthful, accurate, and complete to the best of your knowledge; (c) you are physically located in a state where Nexphoria currently operates at the time of your consultation; and (d) you are not prohibited by any applicable law, court order, or professional licensing board action from receiving the services described herein.</LegalP>
+        <LegalP>Nexphoria reserves the right to refuse service, suspend accounts, or cancel subscriptions at its sole discretion, including where there is reason to believe that information provided is fraudulent or inaccurate, or where continued service poses a risk to patient safety or regulatory compliance.</LegalP>
       </LegalSection>
-      <LegalSection title="6. Cancellation">
-        <LegalP>You may cancel your subscription at any time through your member portal. Cancellation takes effect at the end of your current billing cycle. Medications that have been dispensed cannot be returned.</LegalP>
+
+      <LegalSection title="6. Payment and Billing">
+        <LegalP>All Nexphoria services are self-pay. We do not accept insurance, Medicare, or Medicaid. Monthly subscription fees, consultation fees, laboratory fees, and medication costs are clearly disclosed prior to enrollment and itemized on every invoice. All fees are charged in US dollars.</LegalP>
+        <LegalP>By enrolling, you authorize Nexphoria or its billing partner to charge the payment method on file for all applicable fees, including recurring monthly subscription charges, on the schedule disclosed at enrollment. We provide itemized receipts for all charges that may be submitted to a health flexible spending account (FSA) or health savings account (HSA) administrator; we make no representation that any charge will be eligible for reimbursement by your plan or account administrator.</LegalP>
+        <LegalP>If a payment fails, we will notify you by email and may suspend access to services until the balance is resolved. Nexphoria reserves the right to engage a third-party collection agency for balances that remain unpaid for more than 60 days after the original due date.</LegalP>
       </LegalSection>
-      <LegalSection title="7. Limitation of Liability">
-        <LegalP>To the fullest extent permitted by law, Nexphoria shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our services.</LegalP>
+
+      <LegalSection title="7. Cancellation and Subscription Management">
+        <LegalP>You may cancel your subscription at any time through your member portal or by contacting us at hello@nexphoria.com. Cancellation requests must be submitted at least 48 hours before your next billing date to take effect before the next charge. Cancellation takes effect at the end of the current billing cycle. Monthly fees already charged for the current period are not refunded upon cancellation.</LegalP>
+        <LegalP>Cancellation of your subscription does not automatically cancel any pending prescription refills in transit. If you wish to stop medication shipments, you must separately notify the fulfilling pharmacy or contact us to coordinate cessation of shipments. Medications that have been dispensed and shipped cannot be returned per federal and state pharmacy regulations governing compounded preparations.</LegalP>
       </LegalSection>
-      <LegalSection title="8. Contact">
-        <LegalP>Questions about these terms? Contact us at hello@nexphoria.com. Nexphoria operates under the laws of the State of New York. Any dispute arising from these terms shall be governed by and construed in accordance with New York law, without regard to its conflict-of-law provisions.</LegalP>
+
+      <LegalSection title="8. Intellectual Property">
+        <LegalP>All content on this website — including text, images, graphics, protocol guides, editorial articles, data visualizations, and software — is owned by or licensed to Nexphoria and is protected by United States and international copyright, trademark, and trade secret laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, or otherwise exploit any Nexphoria content for commercial purposes without our prior written consent.</LegalP>
+        <LegalP>The Nexphoria name, logo, and brand marks are trademarks of Nexphoria, Inc. Nothing in these Terms grants any right to use our trademarks, logos, or brand elements without our explicit prior written permission.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="9. Limitation of Liability">
+        <LegalP>To the fullest extent permitted by applicable law, Nexphoria, its directors, officers, employees, contractors, and affiliates shall not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages arising from or related to your use of our services — including but not limited to loss of data, loss of revenue, personal injury, or medical outcomes — even if Nexphoria has been advised of the possibility of such damages.</LegalP>
+        <LegalP>Nexphoria's total aggregate liability to you for any claims arising from these Terms or your use of services shall not exceed the total fees paid by you to Nexphoria in the three months immediately preceding the event giving rise to the claim. Some jurisdictions do not allow limitations on liability for personal injury or certain damages; in such jurisdictions, this limitation shall apply to the maximum extent permitted by applicable law.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="10. Indemnification">
+        <LegalP>You agree to indemnify, defend, and hold harmless Nexphoria and its officers, directors, employees, agents, and successors from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable attorneys' fees) arising out of: (a) your use of our services; (b) your violation of these Terms; (c) your violation of any applicable law or regulation; or (d) any information you provide to Nexphoria that is inaccurate, misleading, or fraudulent.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="11. Governing Law and Dispute Resolution">
+        <LegalP>These Terms are governed by and construed in accordance with the laws of the State of New York, without regard to its conflict-of-law provisions. Any dispute arising from or related to these Terms or your use of Nexphoria services shall first be submitted to binding arbitration administered by the American Arbitration Association under its Consumer Arbitration Rules, with arbitration to take place in New York County, New York. The arbitrator's decision shall be final and binding and may be entered as a judgment in any court of competent jurisdiction.</LegalP>
+        <LegalP>You and Nexphoria each waive any right to a jury trial and agree that all claims shall be brought individually and not as part of any class action, class arbitration, or consolidated proceeding. Nothing in this section prevents either party from seeking emergency injunctive relief from a court of competent jurisdiction to prevent irreparable harm pending arbitration.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="12. Contact">
+        <LegalP>Questions about these Terms? Contact our team at hello@nexphoria.com. We respond to written inquiries within 10 business days. Nexphoria, Inc. operates under the laws of the State of New York.</LegalP>
       </LegalSection>
     </LegalLayout>
   );

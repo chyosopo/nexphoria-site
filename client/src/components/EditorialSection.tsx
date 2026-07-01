@@ -6,7 +6,7 @@ import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.we
 
 /**
  * EditorialSection — Maximus "Why Peptides" pattern.
- * Long-form 2-column block with serif italic pull quote centered.
+ * Long-form 2-column block with serif pull quote centered.
  * Reads like New Yorker copy, not marketing.
  * One editorial image as supporting visual.
  */
@@ -61,7 +61,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
             />
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
@@ -75,7 +75,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
 
           <h2
             style={{
-              fontFamily: "'Fraunces', Georgia, serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 500,
               fontSize: "clamp(2rem, 3.5vw, 3.25rem)",
               color: "var(--nx-fg)",
@@ -95,7 +95,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
             <div>
               <p
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
                   color: "var(--nx-fg-graphite)",
@@ -116,8 +116,8 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
               >
                 <p
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontStyle: "italic",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    
                     fontWeight: 400,
                     fontSize: "clamp(1.375rem, 2.2vw, 1.875rem)",
                     color: "var(--nx-fg)",
@@ -131,7 +131,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
 
               <p
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
                   color: "var(--nx-fg-graphite)",
@@ -143,7 +143,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
 
               <p
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "1.0625rem",
                   lineHeight: 1.75,
                   color: "var(--nx-fg-graphite)",
@@ -186,7 +186,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
               {/* Footnote below image */}
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "9px",
                   letterSpacing: "0.08em",
                   color: "var(--nx-fg-muted)",

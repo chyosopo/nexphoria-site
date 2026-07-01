@@ -101,7 +101,7 @@ export function EducationHub() {
               />
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.14em",
@@ -116,7 +116,7 @@ export function EducationHub() {
             {/* Heading */}
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
                 color: "var(--nx-fg)",
@@ -126,13 +126,13 @@ export function EducationHub() {
               }}
             >
               Learn before you start.{" "}
-              <em>Before you start.</em>
+              <span>Before you start.</span>
             </h2>
 
             {/* Subhead */}
             <p
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "15px",
                 color: "var(--nx-fg-muted)",
                 lineHeight: 1.6,
@@ -147,7 +147,7 @@ export function EducationHub() {
             href="/education"
             data-testid="education-hub-explore-all-link"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "13px",
               fontWeight: 500,
               color: "var(--nx-fg)",

@@ -86,7 +86,7 @@ export function DoctorChoiceBadge({
       {/* Label */}
       <span
         style={{
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: isSm ? "9px" : "10px",
           fontWeight: 600,
           letterSpacing: "0.16em",

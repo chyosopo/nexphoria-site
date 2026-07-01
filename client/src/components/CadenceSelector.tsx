@@ -72,9 +72,9 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
     setTimeout(() => setJustAdded(false), 1600);
   };
 
-  const fontMono = { fontFamily: "'DM Mono', monospace" as const };
-  const fontSans = { fontFamily: "'Inter', sans-serif" as const };
-  const fontSerif = { fontFamily: "'Fraunces', Georgia, serif" as const };
+  const fontMono = { fontFamily: "'General Sans', system-ui, sans-serif" as const };
+  const fontSans = { fontFamily: "'General Sans', system-ui, sans-serif" as const };
+  const fontSerif = { fontFamily: "'General Sans', system-ui, sans-serif" as const };
 
   return (
     <div data-testid={`cadence-selector-${slug}`}>

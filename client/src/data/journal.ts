@@ -353,6 +353,170 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     ],
     related: ["what-is-a-peptide", "reading-your-bloodwork"],
   },
+  {
+    slug: "gh-secretagogues-complete-guide",
+    category: "performance",
+    eyebrow: "Performance · 11 min read",
+    title: "Growth hormone secretagogues: a complete clinical guide.",
+    dek: "CJC-1295, ipamorelin, sermorelin — what each does, how they stack, and what your IGF-1 should tell you at 90 days.",
+    readTime: "11 MIN",
+    publishedISO: "2026-06-10",
+    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    reviewers: [
+      { name: "Dr. Marcus Chen, PharmD", title: "Pharmacy Director" },
+    ],
+    imageSrc: editorialBloodwork,
+    sections: [
+      {
+        id: "what-are-ghs",
+        label: "What GH secretagogues actually do",
+        body: "Growth hormone secretagogues (GHS) are a class of peptides that stimulate the pituitary gland to release growth hormone in a pulsatile, physiologically normal pattern. They are not the same as exogenous recombinant HGH. The distinction is critical: exogenous GH suppresses endogenous production via negative feedback; secretagogues preserve and amplify the body\'s own secretion rhythm.\n\nTwo receptor systems are relevant. GHRH-receptor agonists (CJC-1295, sermorelin, tesamorelin) mimic growth hormone-releasing hormone from the hypothalamus. Ghrelin-receptor agonists (ipamorelin, hexarelin, MK-677) bind the GHS-R1a receptor, driving a distinct pituitary signal. Stacking one from each class produces additive pulsation without equivalent feedback blunting.",
+        callout: "The pituitary cannot distinguish a synthetic GHRH signal from endogenous release. That indifference is the entire pharmacological premise.",
+      },
+      {
+        id: "cjc-vs-sermorelin",
+        label: "CJC-1295 vs. sermorelin — duration and potency",
+        body: "Sermorelin is the shortest-acting option: a 29-amino-acid GHRH analog with a half-life of ten to twenty minutes. It mimics the natural, brief hypothalamic pulse. CJC-1295 extends that pulse via a drug affinity complex (DAC) that binds serum albumin, extending half-life to seven to ten days per dose. That longevity is both its advantage and its risk — if you react poorly, the signal persists.\n\nFor patients new to GHS therapy, sermorelin\'s short half-life makes it the lower-risk entry point. CJC-1295 is reserved for patients who have tolerated a shorter-acting analog and want sustained IGF-1 elevation with weekly rather than nightly dosing.",
+        table: {
+          headers: ["Compound", "Class", "Half-life", "Dosing schedule", "Practical"],
+          rows: [
+            ["Sermorelin", "GHRH analog", "10–20 min", "Nightly SC", "Best starting point; short half-life, reversible"],
+            ["CJC-1295 (DAC)", "GHRH analog", "7–10 days", "1–2× weekly SC", "Sustained IGF-1 elevation; less forgiving if poorly tolerated"],
+            ["Ipamorelin", "GHS-R agonist", "2 hours", "Nightly SC", "Selective GH pulse; minimal cortisol/prolactin elevation"],
+          ],
+        },
+      },
+      {
+        id: "stack-rationale",
+        label: "Why GHRH + GHS stacks work",
+        body: "The clinical rationale for combining a GHRH analog with a ghrelin-mimetic is synergy at the pituitary level. The two receptor systems amplify each other: GHRH primes somatotrophs (GH-secreting pituitary cells) and the ghrelin signal then triggers a larger-than-normal release. The IGF-1 response to the CJC-1295 + ipamorelin combination exceeds either agent alone by a factor of 2–3× in clinical use.\n\nIpamorelin is the preferred GHS-R agonist because it is highly selective for GH secretion with minimal effect on cortisol and prolactin — a critical safety advantage over older ghrelin mimetics like GHRP-2 and GHRP-6.",
+      },
+      {
+        id: "monitoring",
+        label: "Monitoring: IGF-1 is the signal",
+        body: "IGF-1 (insulin-like growth factor-1) is the primary biomarker for GHS therapy response. It is produced in the liver downstream of GH stimulation and has a half-life of fifteen to twenty hours, making it a stable, integrated measure of GH-axis activity — unlike GH itself, which pulses and is hard to capture.\n\nBaseline IGF-1 is drawn before the first dose. At 90 days, we target an IGF-1 in the upper quartile of age-adjusted reference range — not supraphysiologic. If IGF-1 exceeds the upper limit of normal, dose is reduced. If response is sub-optimal, the protocol is reviewed for compliance and timing.",
+        callout: "The goal is restoration to physiological optimum — not supraphysiology. IGF-1 at 2× normal is not better; it is a risk signal.",
+      },
+    ],
+    references: [
+      {
+        n: 1,
+        citation: "Sigalos JT, Pastuszak AW. The safety and efficacy of growth hormone secretagogues. Sex Med Rev. 2018;6(1):45-53.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/27997118/",
+      },
+      {
+        n: 2,
+        citation: "Teichman SL et al. Prolonged stimulation of GH and IGF-1 secretion by CJC-1295, a long-acting GHRH analog. J Clin Endocrinol Metab. 2006;91(3):799-805.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/16352683/",
+      },
+    ],
+    related: ["what-is-a-peptide", "reading-your-bloodwork", "longevity-nad-mots-c"],
+  },
+  {
+    slug: "longevity-nad-mots-c",
+    category: "longevity",
+    eyebrow: "Longevity · 10 min read",
+    title: "NAD+, MOTS-c, and the mitochondrial theory of aging.",
+    dek: "Why cellular energy decline is measurable, what restores it, and what the clinical evidence actually supports.",
+    readTime: "10 MIN",
+    publishedISO: "2026-06-03",
+    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    imageSrc: editorialProtocolKit,
+    sections: [
+      {
+        id: "nad-decline",
+        label: "The NAD+ problem",
+        body: "Nicotinamide adenine dinucleotide (NAD+) is a coenzyme present in every living cell, essential for hundreds of metabolic reactions and for the function of sirtuins — proteins that govern DNA repair, gene expression, and mitochondrial biogenesis. NAD+ levels decline by roughly fifty percent between age twenty and age fifty in most tissues, and the consequences are measurable: impaired mitochondrial function, reduced DNA repair capacity, and a shift in cellular metabolism toward inflammation.\n\nThe therapeutic thesis is straightforward: restoring NAD+ to youthful levels should restore the enzymatic activity it supports. The question is how to get it into cells efficiently.",
+        callout: "NAD+ does not simply enter cells — it must be synthesized inside them. The precursors NMN and NR are better absorbed and converted intracellularly.",
+      },
+      {
+        id: "nad-precursors-vs-iv",
+        label: "Precursors vs. direct infusion",
+        body: "Oral NMN (nicotinamide mononucleotide) and NR (nicotinamide riboside) are the most-studied delivery vehicles. Multiple randomized controlled trials in humans confirm that oral NMN raises blood and muscle NAD+ levels measurably. The magnitude of cellular restoration at tissue level remains debated.\n\nDirect IV NAD+ infusion bypasses the precursor conversion step and produces rapid, sustained plasma NAD+ elevation. Clinical reports of improved energy, cognitive clarity, and sleep quality are consistent. The evidence base is smaller than for oral precursors — but the mechanism is direct.",
+        table: {
+          headers: ["Form", "Route", "Evidence level", "Time to effect", "Practical notes"],
+          rows: [
+            ["NMN / NR", "Oral", "RCT data in humans", "2–4 weeks", "Convenient; lower cost; moderate tissue delivery"],
+            ["IV NAD+", "Intravenous", "Smaller trials + case series", "Hours to days", "Direct plasma elevation; infusion clinic required"],
+            ["SC NAD+", "Subcutaneous", "Early clinical use", "1–3 days", "Emerging; more convenient than IV; compounded only"],
+          ],
+        },
+      },
+      {
+        id: "mots-c",
+        label: "MOTS-c: mitochondria\'s own hormone",
+        body: "MOTS-c (mitochondrial open reading frame of the 12S rRNA type-c) is a peptide encoded in mitochondrial DNA itself — the first mitochondria-derived regulatory peptide identified in humans. It activates AMPK, the cellular energy sensor, and has been shown to improve insulin sensitivity in skeletal muscle with effects comparable to exercise in some animal models.\n\nHuman data is limited but compelling: MOTS-c levels are lower in older adults and in populations with metabolic disease. Exogenous MOTS-c supplementation in aging rodent models improved metabolic markers and extended healthspan. Clinical trials in humans are ongoing.",
+      },
+      {
+        id: "measuring-longevity",
+        label: "Measuring biological age — the Horvath clock and beyond",
+        body: "The clinical question is: how do you know if a longevity intervention is working? Chronological age is fixed. Biological age, as measured by epigenetic DNA methylation clocks (Horvath, GrimAge, PhenoAge), is not. Validated epigenetic clocks correlate with mortality risk, disease incidence, and physiological function — and they respond to interventions.\n\nNexphoria\'s longevity protocols are benchmarked at baseline and at one year using a validated biological age assessment. A protocol that doesn\'t move the needle on measurable markers is re-evaluated. Dare to defy. Find your focus. Measure the result.",
+      },
+    ],
+    references: [
+      {
+        n: 1,
+        citation: "Yoshino J et al. NAD+ intermediates: the biology and therapeutic potential of NMN and NR. Cell Metab. 2018;27(3):513-528.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/29514063/",
+      },
+      {
+        n: 2,
+        citation: "Lee C et al. The mitochondrial-derived peptide MOTS-c promotes metabolic homeostasis and reduces obesity and insulin resistance. Cell Metab. 2015;21(3):443-454.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/25738459/",
+      },
+    ],
+    related: ["what-is-a-peptide", "reading-your-bloodwork", "gh-secretagogues-complete-guide"],
+  },
+  {
+    slug: "bpc-157-tissue-repair-evidence",
+    category: "research",
+    eyebrow: "Research · 9 min read",
+    title: "BPC-157 and tissue repair: what the evidence actually supports.",
+    dek: "Exceptional preclinical data, limited human trials. A clear-eyed review of where BPC-157 stands in 2026.",
+    readTime: "9 MIN",
+    publishedISO: "2026-05-20",
+    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    reviewers: [
+      { name: "Dr. Marcus Chen, PharmD", title: "Pharmacy Director" },
+    ],
+    imageSrc: editorialPharmacy,
+    sections: [
+      {
+        id: "mechanism",
+        label: "The mechanism: VEGF and the nitric oxide system",
+        body: "BPC-157 (Body Protection Compound-157) is a synthetic pentadecapeptide derived from a sequence found in human gastric juice. Its healing properties were first documented in the gastrointestinal tract, where it exhibited cytoprotective effects across essentially every tissue type studied.\n\nThe primary mechanism involves upregulation of vascular endothelial growth factor (VEGF) expression at injury sites. VEGF drives angiogenesis — the formation of new blood vessels — which is the biological prerequisite for tissue repair. BPC-157 also modulates nitric oxide synthase, enhancing NO availability at injury sites and further accelerating fibroblast migration.",
+        callout: "In rodent models, BPC-157 has demonstrated healing activity in tendon, ligament, muscle, nerve, GI mucosa, cornea, and bone. No other single peptide in the research literature comes close to this tissue range.",
+      },
+      {
+        id: "preclinical",
+        label: "Preclinical evidence: exceptional",
+        body: "The animal-model literature on BPC-157 is among the most extensive in peptide pharmacology. Dozens of independent research groups across multiple countries have replicated core findings: accelerated tendon-to-bone healing, gut mucosal repair, reduction in inflammatory markers, and reversal of drug-induced organ damage.\n\nA 2018 review by Seiwerth et al. in Current Pharmaceutical Design synthesized this body of work, concluding that BPC-157 consistently accelerates healing across tissue types with a favorable safety profile and no reported organ toxicity at studied doses in animals.",
+      },
+      {
+        id: "human-evidence",
+        label: "Human evidence: limited but promising",
+        body: "The honest assessment: BPC-157 has not been subject to large randomized controlled trials in humans. Small early-phase studies and case series exist, primarily from Croatian research groups. The compound has not completed Phase III trials for any indication. It is not FDA-approved.\n\nThis is why Nexphoria classifies BPC-157 as Tier B− (investigational). The preclinical signal is compelling enough that physicians include it in the formulary for appropriate patients — but the evidence-to-risk discussion with each patient is explicit, not assumed.",
+      },
+      {
+        id: "who-benefits",
+        label: "Who benefits: clinical use cases",
+        body: "In clinical practice, BPC-157 is used primarily in two contexts: soft-tissue injury recovery (tendon, ligament, muscle tears) and gastrointestinal protection during protocols that include compounds with GI side effects.\n\nTypical protocol: 250–500 mcg subcutaneous daily or twice-daily, 8–12 weeks. Oral pH-stable formulations are available for GI-specific use. Monitoring is clinical — there is no validated serum biomarker for BPC-157 response, so symptom tracking and functional assessment are the primary endpoints.",
+      },
+    ],
+    references: [
+      {
+        n: 1,
+        citation: "Seiwerth S et al. BPC-157 and standard angiogenic growth factors: gastrointestinal tract healing, wound healing, and angiogenesis. Curr Pharm Des. 2018;24(18):1972-1989.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/29745325/",
+      },
+      {
+        n: 2,
+        citation: "Sikiric P et al. Stable gastric pentadecapeptide BPC 157: novel therapy in gastrointestinal tract. Curr Pharm Des. 2011;17(16):1612-1632.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/21548867/",
+      },
+    ],
+    related: ["what-is-a-peptide", "side-effects-and-contraindications", "legal-landscape-compounded-peptides-2026"],
+  },
 ];
 
 export function getArticleBySlug(slug: string): JournalArticle | undefined {

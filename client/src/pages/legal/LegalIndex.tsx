@@ -38,8 +38,8 @@ export default function LegalIndex() {
                   data-testid={`legal-link-${href.split('/').pop()}`}
                 >
                   <div>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "17px", fontWeight: 600, color: "var(--nx-fg)", marginBottom: "4px" }}>{label}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)" }}>{desc}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "17px", fontWeight: 600, color: "var(--nx-fg)", marginBottom: "4px" }}>{label}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)" }}>{desc}</p>
                   </div>
                   <span style={{ color: "var(--nx-cobalt)", marginTop: "4px", flexShrink: 0, marginLeft: "1rem" }}>→</span>
                 </Link>

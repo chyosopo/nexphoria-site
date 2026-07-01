@@ -33,7 +33,7 @@ export function AddToCartButton({ slug, type, variant = "primary", label, classN
 
   const baseClass =
     "inline-flex items-center justify-center gap-2 transition-all";
-  const fontStyle = { fontFamily: "'Inter', sans-serif" as const };
+  const fontStyle = { fontFamily: "'General Sans', system-ui, sans-serif" as const };
 
   if (variant === "compact") {
     return (

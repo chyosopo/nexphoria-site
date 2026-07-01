@@ -1,538 +1,1058 @@
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { useSeo, orgJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
-import { stacks, getPeptidesForStack } from "@/lib/protocols";
-import vialHero from "@/assets/brand/vial-lineup-hero.webp";
-import editorialHero from "@/assets/brand/editorial/editorial-hero-home.png";
-import editorialMorning from "@/assets/brand/editorial/editorial-lifestyle-morning.png";
-import editorialHandsKit from "@/assets/brand/editorial/editorial-hands-kit-select.png";
-import editorialHandsCommit from "@/assets/brand/editorial/editorial-hands-commit.png";
-import { EditorialHands } from "@/components/EditorialHands";
-import { PressStrip } from "@/components/PressStrip";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Reveal } from "@/components/Reveal";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { VialTile, categoryToTone } from "@/components/VialTile";
+import { peptides as ALL_PEPTIDES } from "@/data/peptides";
+import { getPrice } from "@/data/pricing";
 
-/* ──────────────────────────────────────────────────────────────
-   NEXPHORIA — HOME (Maximus)
-   Editorial poster composition. Dark obsidian + acid green.
-   Matches REFERENCE_HOME_HERO.jpg / REFERENCE_HOME_FULL.jpg.
-   ────────────────────────────────────────────────────────────── */
+/* V3 imagery — locked editorial palette */
+import heroVials from "@/assets/nx_v3_hero_vials.webp";
+import tileRecover from "@/assets/nx_v3_tile_recover.webp";
+import tileBurn from "@/assets/nx_v3_tile_burnfat.webp";
+import tileSleep from "@/assets/nx_v3_tile_sleep.webp";
+import tileGlow from "@/assets/nx_v3_tile_glow.webp";
+import doctorShot from "@/assets/nx_v3_doctor.webp";
+import productHero from "@/assets/nx_v3_product_hero.webp";
+import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
+import moleculeShot from "@/assets/nx_v3_molecule.webp";
+import prescriptionShot from "@/assets/nx_v3_prescription.webp";
+import physicianPortrait from "@/assets/nx_v3_physician_portrait.webp";
+import labPrecision from "@/assets/nx_v3_lab_precision.webp";
+import morningRitual from "@/assets/nx_v3_morning_ritual.webp";
+import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
+
+/* ────────────────────────────────────────────────────────────────
+   NEXPHORIA · HOME · V3
+   Locked design direction: Maximus tile grammar + Bask cinematics
+   Eight sections. One idea per section. ADHD-proof.
+   1. Hero            — Peptides, prescribed.
+   2. Trust bar       — 5 short signals
+   3. Goal tiles (4)  — Recover · Burn · Sleep · Glow
+   4. How it works    — 3 steps, big numerals
+   5. Featured stack  — Wolverine hero card
+   6. Numbers         — 3 stats
+   7. Physicians      — one portrait, one paragraph
+   8. Final CTA       — one line, one button
+   ──────────────────────────────────────────────────────────────── */
 
 export default function Home() {
   useSeo({
-    title: "Nexphoria — Science you can feel. Results you can measure.",
+    title: "Nexphoria — Peptides, prescribed. Physician-guided protocols.",
     description:
-      "Prescribed peptide protocols. Compounded in U.S. 503A pharmacies. Reviewed by board-certified MDs. Quarterly labs. Science you can feel. Results you can measure.",
+      "Physician-guided peptide protocols. Compounded in U.S. 503A pharmacies. Delivered to your door. Pick a goal — we handle the rest.",
     path: "/",
     jsonLd: [orgJsonLd(), medicalBusinessJsonLd()],
   });
 
   return (
-    <SiteLayout
-      navVariant="showcase"
-      footerCtaHeadline={
-        <>
-          The molecules that matter,{" "}
-          <span className="font-serif italic text-primary">prescribed.</span>
-          <br />
-          Begin in four minutes.
-        </>
-      }
-    >
-      <CinematicOpener />
+    <SiteLayout navVariant="showcase">
       <Hero />
-      <EditorialHands
-        src={editorialHandsKit}
-        alt="Hands selecting a peptide kit — the deliberate ritual of a prescribed protocol"
-        caption="FIG. 01 · PRESCRIBED · COMPOUNDED IN U.S. PHARMACIES"
-        objectPosition="center 42%"
-      />
-      <IndexStrip />
-      <PressStrip />
+      <TrustBar />
+      <GoalTiles />
+      <PeptideTilesStrip />
       <HowItWorks />
-      <FeaturedProtocols />
-      <EditorialBreak />
-      <ProtocolCatalog />
-      <ByTheNumbers />
-      <EditorialHands
-        src={editorialHandsCommit}
-        alt="A morning ritual — forearm, vial, and cup at the start of the day"
-        ratio="21/9"
-        caption="FIG. 02 · YOUR MORNING · YOUR PROTOCOL"
-        objectPosition="center 45%"
-      />
-      <Outcomes />
-      <TrustStrip />
-      <ClosingCta />
+      <ScienceStrip />
+      <FeaturedStack />
+      <Numbers />
+      <PrecisionStrip />
+      <BloodworkPillar />
+      <PhysicianStrip />
+      <MorningRitual />
+      <FinalCta />
     </SiteLayout>
   );
 }
 
-/* ── ACT 1 · CINEMATIC OPENER ─────────────────────────────────── */
-/* Full-bleed editorial brand moment before the product hero.
-   NO blur, NO parallax, NO scroll motion (locked). */
-function CinematicOpener() {
-  return (
-    <section className="relative w-full bg-black overflow-hidden h-[70vh] min-h-[520px] md:h-screen md:min-h-[760px]">
-      <img
-        src={editorialHero}
-        alt="Editorial portrait — sunlit, sweat on the jawline, the discipline of a measured protocol"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: "center 30%" }}
-      />
-      {/* Cinematic gradient — bottom 40% fades to page black for type legibility */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(180deg,rgba(10,10,10,.55) 0%,transparent 26%,transparent 50%,rgba(10,10,10,.78) 82%,#0a0a0a 100%)" }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(90deg,rgba(10,10,10,.72) 0%,rgba(10,10,10,.18) 38%,transparent 70%)" }}
-      />
-
-      {/* Top-left eyebrow */}
-      <div className="absolute top-0 left-0 right-0 z-[3] flex justify-between items-start px-6 lg:px-14 pt-24 md:pt-28">
-        <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-nx-faint">
-          Nexphoria · Circa 2026
-        </div>
-        <div className="hidden md:block font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint text-right leading-[1.7]">
-          Editorial · No.01
-        </div>
-      </div>
-
-      {/* Center-left headline */}
-      <div className="absolute inset-0 z-[3] flex flex-col justify-center px-6 lg:px-14">
-        <h2
-          className="font-display font-semibold max-w-[16ch]"
-          style={{ fontSize: "clamp(52px,8vw,120px)", lineHeight: 0.9, letterSpacing: "-0.04em" }}
-        >
-          The body,{" "}
-          <span
-            className="font-serif italic text-primary"
-            style={{ fontWeight: 400, letterSpacing: "-0.022em" }}
-          >
-            prescribed.
-          </span>
-        </h2>
-      </div>
-
-      {/* Bottom-left subhead + bottom-right scroll cue */}
-      <div className="absolute left-0 right-0 bottom-0 z-[3] flex flex-col md:flex-row md:items-end md:justify-between gap-4 px-6 lg:px-14 pb-10 md:pb-12">
-        <p className="text-[14px] md:text-[15px] text-[#cdcdc6] max-w-[420px] leading-[1.55]">
-          Peptide protocols. Compounded in U.S. pharmacies. Reviewed by MDs.
-        </p>
-        <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-nx-faint md:text-right">
-          ↓ continue
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── EDITORIAL BREAK · between FeaturedProtocols + ProtocolCatalog */
-function EditorialBreak() {
-  return (
-    <section className="relative w-full bg-black overflow-hidden h-[70vh] min-h-[440px] max-h-[760px]">
-      <img
-        src={editorialMorning}
-        alt="Golden-hour morning — a vial on the kitchen counter, the quiet routine of a measured protocol"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: "center 45%" }}
-        loading="lazy"
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(90deg,rgba(7,7,7,.85) 0%,rgba(7,7,7,.35) 42%,transparent 72%)" }}
-      />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(180deg,rgba(7,7,7,.55) 0%,transparent 30%,transparent 70%,rgba(7,7,7,.55) 100%)" }}
-      />
-      <div className="absolute inset-0 z-[2] flex items-center px-6 lg:px-14">
-        <div className="max-w-[620px]">
-          <div className="nx-eyebrow text-primary mb-6">Eight weeks in</div>
-          <p
-            className="font-display font-semibold"
-            style={{ fontSize: "clamp(30px,4.4vw,60px)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
-          >
-            The difference is in the data —{" "}
-            <span className="font-serif italic text-primary" style={{ fontWeight: 400 }}>
-              and in the mirror.
-            </span>
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── HERO ─────────────────────────────────────────────────────── */
+/* ── 1 · HERO ─────────────────────────────────────────────────── */
 function Hero() {
   return (
-    <section className="relative bg-black overflow-hidden">
-      {/* DESKTOP / TABLET hero — vial row anchored at bottom, type above */}
-      <div className="hidden md:flex relative flex-col min-h-[860px]">
-        {/* Top zone: eyebrow + coordinate marker */}
-        <div className="relative z-[3] flex justify-between items-start px-6 lg:px-14 pt-28">
-          <div className="nx-eyebrow flex items-center gap-2.5">
-            <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-            A New Standard for Peptide Therapy
-          </div>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint text-right leading-[1.7]">
-            N · 40.7128°<br />W · 74.0060°<br />2026 · ED.04
-          </div>
-        </div>
-
-        {/* Display headline */}
-        <div className="relative z-[3] px-6 lg:px-14 pt-8">
-          <h1
-            aria-hidden="true"
-            className="font-display font-semibold"
-            style={{ fontSize: "clamp(56px,7.4vw,108px)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
+    <section className="relative bg-nx-ceramic overflow-hidden">
+      {/* subtle top spacer to clear the fixed nav */}
+      <div className="h-16 md:h-20" />
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pb-16 md:pb-24 lg:pb-28">
+        <div className="lg:col-span-7 pt-8 md:pt-12">
+          <div
+            className="inline-flex items-center gap-2 mb-8"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
           >
-            <span className="block">Science you can feel.</span>
             <span
-              className="block font-serif italic text-primary"
-              style={{ fontWeight: 400, letterSpacing: "-0.022em" }}
-            >
-              Results you can measure.
-            </span>
-          </h1>
-        </div>
-
-        {/* Vial lineup — anchored at bottom, framed by gradients */}
-        <div className="relative mt-auto w-full h-[540px] overflow-hidden">
-          <img
-            src={vialHero}
-            alt="Nexphoria peptide lineup — BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, PT-141"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: "center 50%" }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none z-[2]"
-            style={{ background: "linear-gradient(180deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.35) 14%,transparent 42%,rgba(0,0,0,.65) 100%)" }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none z-[2]"
-            style={{ background: "linear-gradient(90deg,rgba(0,0,0,.45) 0%,transparent 12%,transparent 88%,rgba(0,0,0,.45) 100%)" }}
-          />
-        </div>
-
-        {/* Footer band — sits over bottom of image */}
-        <div
-          className="absolute left-0 right-0 bottom-0 z-[4] grid items-end gap-8 px-6 lg:px-14 pt-8 pb-10 border-t"
-          style={{
-            gridTemplateColumns: "1.1fr auto 1fr",
-            borderTopColor: "rgba(255,255,243,.18)",
-            background: "linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 40%,#000 100%)",
-          }}
-        >
-          <div className="text-[15px] text-[#cdcdc6] max-w-[380px] leading-[1.55]">
-            Prescribed peptide protocols. Compounded in U.S. 503A pharmacies. Reviewed by board-certified MDs. Quarterly labs.
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            Physician-Guided Peptide Therapy
           </div>
-          <div className="flex gap-3 justify-center">
-            <StartIntakeButton source="home_hero" size="lg" className="rounded-none uppercase tracking-tight">
-              Begin
-            </StartIntakeButton>
+
+          <h1
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(56px, 8vw, 108px)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.035em",
+              color: "var(--nx-black)",
+              margin: 0,
+            }}
+            data-testid="text-hero-headline"
+          >
+            Peptides,
+            <br />
+            prescribed.
+          </h1>
+
+          <p
+            className="mt-8 max-w-xl"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "18px",
+              lineHeight: 1.55,
+              color: "var(--nx-fg-graphite)",
+            }}
+          >
+            Physician-guided protocols. Compounded in U.S. pharmacies.
+            Delivered to your door. Pick a goal — we handle the rest.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
-              href="/protocols"
-              className="nx-cta-outline-dark inline-flex items-center px-7 py-3.5 text-[14px] font-medium uppercase tracking-tight"
-              data-testid="link-hero-browse"
+              href="/assessment"
+              className="inline-flex items-center gap-2"
+              style={{
+                background: "var(--nx-acid)",
+                color: "var(--nx-black)",
+                padding: "16px 24px",
+                borderRadius: "999px",
+                fontWeight: 600,
+                fontSize: "15px",
+                letterSpacing: "-0.01em",
+              }}
+              data-testid="button-hero-start"
             >
-              Browse
+              Start assessment
+              <ArrowRight size={18} strokeWidth={2} />
+            </Link>
+
+            <Link
+              href="/how-it-works"
+              className="inline-flex items-center gap-2 border rounded-full px-6 py-4"
+              style={{
+                borderColor: "rgba(10,10,10,0.14)",
+                color: "var(--nx-black)",
+                fontWeight: 500,
+                fontSize: "15px",
+              }}
+              data-testid="link-hero-how"
+            >
+              How it works
+              <ArrowUpRight size={16} strokeWidth={2} />
             </Link>
           </div>
-          <div className="text-right font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint leading-[1.7]">
-            EST. 2026<br />MIAMI · NEW YORK<br />FDA-NOTICED
+
+          <div
+            className="mt-8"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "13px",
+              letterSpacing: "0.02em",
+              color: "var(--nx-fg-muted)",
+            }}
+          >
+            No commitment · Physician-reviewed in 24–48h · 5-min intake
           </div>
         </div>
-      </div>
 
-      {/* MOBILE hero — headline above, image below, CTAs stacked */}
-      <div className="md:hidden px-6 pt-24 pb-0">
-        <div className="nx-eyebrow flex items-center gap-2.5 mb-7">
-          <span className="h-2 w-2 rounded-full bg-primary" aria-hidden="true" />
-          A New Standard for Peptide Therapy
-        </div>
-        <h1
-          className="font-display font-semibold"
-          style={{ fontSize: "clamp(40px,12vw,60px)", lineHeight: 0.94, letterSpacing: "-0.035em" }}
-        >
-          <span className="block">Science you can feel.</span>
-          <span className="block font-serif italic text-primary" style={{ fontWeight: 400 }}>
-            Results you can measure.
-          </span>
-        </h1>
-        <p className="mt-6 text-[15px] text-nx-muted leading-[1.55]">
-          Prescribed peptide protocols. Compounded in U.S. 503A pharmacies. Reviewed by board-certified MDs. Quarterly labs.
-        </p>
-        <div className="relative mt-8 -mx-6 h-[340px] overflow-hidden">
-          <img
-            src={vialHero}
-            alt="Nexphoria peptide lineup — BPC-157, TB-500, CJC-1295, Ipamorelin, GHK-Cu, Epitalon, PT-141"
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: "center 50%" }}
-          />
+        <div className="lg:col-span-5">
           <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg,transparent 60%,rgba(0,0,0,.85) 100%)" }}
-          />
-        </div>
-        <div className="flex flex-col gap-3 mt-7 pb-2">
-          <StartIntakeButton source="home_hero" size="lg" className="rounded-none uppercase tracking-tight w-full">
-            Begin
-          </StartIntakeButton>
-          <Link
-            href="/protocols"
-            className="nx-cta-outline-dark inline-flex items-center justify-center px-7 py-3.5 text-[14px] font-medium uppercase tracking-tight w-full"
+            className="relative rounded-[16px] overflow-hidden bg-nx-rock"
+            style={{ aspectRatio: "4 / 5" }}
           >
-            Browse
-          </Link>
+            <img
+              src={heroVials}
+              alt="Peptide vials on a ceramic surface"
+              className="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ── INDEX STRIP ──────────────────────────────────────────────── */
-const indexStats = [
-  { num: "14", lbl: "Peptides in formulary" },
-  { num: "12", lbl: "503A pharmacy partners" },
-  { num: "04", lbl: "Physicians on staff" },
-  { num: "96%", lbl: "Quarterly lab adherence" },
-];
-function IndexStrip() {
+/* ── 2 · TRUST BAR ────────────────────────────────────────────── */
+function TrustBar() {
+  const items = [
+    "Board-certified physicians",
+    "US 503A pharmacies",
+    "HIPAA-compliant",
+    "Discreet 3–5 day shipping",
+    "Money-back guarantee",
+  ];
   return (
-    <div className="bg-black border-b border-foreground/10">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 px-6 lg:px-14 py-10">
-        {indexStats.map((s) => (
-          <div key={s.lbl} className="flex flex-col gap-1.5">
-            <span className="font-serif italic text-primary text-[26px] leading-none">{s.num}</span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint">{s.lbl}</span>
-          </div>
+    <section
+      className="border-y"
+      style={{
+        borderColor: "rgba(10,10,10,0.08)",
+        background: "var(--nx-ceramic)",
+      }}
+    >
+      <div
+        className="nx-container flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5"
+        style={{
+          fontFamily: "'General Sans', system-ui, sans-serif",
+          fontSize: "12px",
+          fontWeight: 500,
+          textTransform: "uppercase",
+          letterSpacing: "0.08em",
+          color: "var(--nx-fg-muted)",
+        }}
+      >
+        {items.map((label, i) => (
+          <span key={label} className="inline-flex items-center gap-3">
+            <span
+              aria-hidden
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            {label}
+            {i < items.length - 1 && (
+              <span
+                aria-hidden
+                className="hidden md:inline"
+                style={{ color: "rgba(10,10,10,0.18)", marginLeft: 12 }}
+              >
+                ·
+              </span>
+            )}
+          </span>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
-/* ── HOW IT WORKS ─────────────────────────────────────────────── */
-const acts = [
-  { n: "i.", h: "Assess", p: "Anonymous 4-minute intake matched to your goals and medical history." },
-  { n: "ii.", h: "Review", p: "Board-certified MD reviews your case within 24 hours." },
-  { n: "iii.", h: "Ship", p: "Compounded in a U.S. 503A pharmacy. Cold-chain to your door." },
-  { n: "iv.", h: "Measure", p: "Quarterly labs. Dose titrated by your MD based on data." },
-];
-function HowItWorks() {
+/* ── 3 · GOAL TILES ───────────────────────────────────────────── */
+function GoalTiles() {
+  const tiles = [
+    {
+      eyebrow: "Recovery",
+      title: "Recover faster",
+      copy: "Wolverine stack — BPC-157 · TB-500",
+      image: tileRecover,
+      href: "/stacks/wolverine",
+      testId: "tile-recover",
+    },
+    {
+      eyebrow: "Body Composition",
+      title: "Burn fat",
+      copy: "GLP-1 protocols — semaglutide · tirzepatide",
+      image: tileBurn,
+      href: "/stacks/glp1",
+      testId: "tile-burn",
+    },
+    {
+      eyebrow: "Sleep · Recovery",
+      title: "Sleep deeper",
+      copy: "Growth peptides — CJC-1295 · ipamorelin",
+      image: tileSleep,
+      href: "/stacks/growth",
+      testId: "tile-sleep",
+    },
+    {
+      eyebrow: "Skin · Hair",
+      title: "Glow inside out",
+      copy: "Glow stack — GHK-Cu · topicals",
+      image: tileGlow,
+      href: "/stacks/glow",
+      testId: "tile-glow",
+    },
+  ];
+
   return (
-    <section className="bg-background px-6 lg:px-14 py-24 md:py-32">
-      <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-end mb-16 md:mb-20">
-        <div>
-          <div className="nx-eyebrow mb-5">How it works · 04 Acts</div>
-          <h2
-            className="font-display font-semibold"
-            style={{ fontSize: "clamp(40px,6vw,88px)", lineHeight: 0.95, letterSpacing: "-0.035em" }}
+    <section
+      className="py-24 md:py-32"
+      style={{ background: "var(--nx-ceramic)" }}
+    >
+      <div className="nx-container">
+        <div className="max-w-2xl mb-12 md:mb-16">
+          <div
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
           >
-            A clinical <span className="font-serif italic text-primary">act,</span><br />not a checkout.
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            Pick a goal
+          </div>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(40px, 5.2vw, 64px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-black)",
+              margin: 0,
+            }}
+          >
+            Choose what to optimize.
           </h2>
         </div>
-        <div>
-          <p className="text-[17px] text-nx-muted leading-[1.65]">
-            Every Nexphoria protocol begins with an anonymous intake and ends with measured outcomes. In between: a physician reviews your case, a U.S. 503A pharmacy compounds your prescription, and quarterly labs confirm what you feel.
-          </p>
-          <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint mt-6">— The Method</div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          {tiles.map((t) => (
+            <Link
+              key={t.title}
+              href={t.href}
+              data-testid={t.testId}
+              className="group relative block rounded-[16px] overflow-hidden"
+              style={{
+                background: "var(--nx-rock)",
+                aspectRatio: "4 / 3",
+              }}
+            >
+              <img
+                src={t.image}
+                alt={t.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                loading="eager"
+                decoding="async"
+              />
+              {/* darken gradient for text */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)",
+                }}
+              />
+
+              {/* top-left eyebrow */}
+              <div
+                className="absolute top-6 left-6 inline-flex items-center gap-2"
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "12px",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "#fffff3",
+                }}
+              >
+                <span
+                  aria-hidden
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: "50%",
+                    background: "var(--nx-acid)",
+                    display: "inline-block",
+                  }}
+                />
+                {t.eyebrow}
+              </div>
+
+              {/* bottom-left title + copy + arrow */}
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "clamp(28px, 3.4vw, 40px)",
+                      lineHeight: 1.02,
+                      letterSpacing: "-0.02em",
+                      color: "#fffff3",
+                    }}
+                  >
+                    {t.title}
+                  </div>
+                  <div
+                    className="mt-2"
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 400,
+                      fontSize: "14px",
+                      color: "rgba(255,255,243,0.78)",
+                    }}
+                  >
+                    {t.copy}
+                  </div>
+                </div>
+                <span
+                  aria-hidden
+                  className="shrink-0 inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
+                  style={{
+                    width: 44,
+                    height: 44,
+                    background: "var(--nx-acid)",
+                    color: "var(--nx-black)",
+                  }}
+                >
+                  <ArrowUpRight size={20} strokeWidth={2} />
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-foreground/15">
-        {acts.map((a, i) => (
-          <div
-            key={a.h}
-            className={`py-10 pr-8 ${i < acts.length - 1 ? "lg:border-r border-foreground/[0.08]" : ""} border-b lg:border-b-0 border-foreground/[0.08]`}
-          >
-            <span className="font-serif italic text-primary text-5xl leading-none block mb-6">{a.n}</span>
-            <h3 className="text-lg font-semibold mb-3 uppercase tracking-[0.06em]">{a.h}</h3>
-            <p className="text-sm text-nx-faint leading-[1.6]">{a.p}</p>
-          </div>
-        ))}
       </div>
     </section>
   );
 }
 
-/* ── FEATURED PROTOCOLS ───────────────────────────────────────── */
-const featured = [
-  {
-    num: "i.",
-    kicker: "Recovery & Performance",
-    name: "Wolverine.",
-    desc: "Accelerated tissue repair, training capacity, and metabolic recovery. Built for athletes and high-output professionals.",
-    peps: ["BPC-157", "TB-500", "GHK-Cu", "Ipamorelin"],
-    price: "$262",
-    slug: "wolverine",
-  },
-  {
-    num: "ii.",
-    kicker: "Skin, Hair & Vitality",
-    name: "Glow.",
-    desc: "Collagen production, hair density, and dermal radiance. Backed by quarterly labs and physician dose titration.",
-    peps: ["GHK-Cu", "Epitalon", "Thymosin α1", "PT-141"],
-    price: "$298",
-    slug: "glow",
-  },
-];
-function FeaturedProtocols() {
+/* ── 4 · HOW IT WORKS ─────────────────────────────────────────── */
+function HowItWorks() {
+  const steps = [
+    {
+      n: "01",
+      title: "Take the intake",
+      copy: "Five-minute medical questionnaire. Share your goal, meds, and history.",
+    },
+    {
+      n: "02",
+      title: "Physician review",
+      copy: "A board-certified MD writes your prescription within 24–48 hours.",
+    },
+    {
+      n: "03",
+      title: "Delivered to your door",
+      copy: "Compounded in a licensed US pharmacy. Discreet 3–5 day shipping.",
+    },
+  ];
   return (
-    <section className="px-6 lg:px-14 py-24 md:py-32 border-t border-foreground/[0.06]" style={{ background: "#070707" }}>
-      <div className="mb-12 md:mb-16">
-        <div className="nx-eyebrow mb-5">Featured Protocols · 02</div>
-        <h2
-          className="font-display font-semibold"
-          style={{ fontSize: "clamp(40px,6vw,88px)", lineHeight: 0.95, letterSpacing: "-0.035em" }}
-        >
-          Two flagship <span className="font-serif italic text-primary">stacks.</span>
-        </h2>
-      </div>
-      <div className="grid md:grid-cols-2 gap-6">
-        {featured.map((s) => (
+    <section
+      className="py-24 md:py-32 border-t"
+      style={{
+        background: "var(--nx-black)",
+        borderColor: "rgba(255,255,243,0.06)",
+        color: "var(--nx-ceramic)",
+      }}
+    >
+      <div className="nx-container">
+        <div className="mb-14 md:mb-20 max-w-2xl">
           <div
-            key={s.slug}
-            className="relative overflow-hidden border border-foreground/10 nx-card-lift p-10 md:p-12"
-            style={{ background: "linear-gradient(180deg,#101010 0%,#0a0a0a 100%)" }}
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,243,0.55)",
+            }}
           >
-            <div
-              className="absolute pointer-events-none"
-              style={{ top: -100, right: -100, width: 300, height: 300, background: "radial-gradient(circle,rgba(198,241,132,.08) 0%,transparent 70%)" }}
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
             />
-            <div className="absolute top-8 right-10 font-serif italic text-primary text-2xl opacity-50">{s.num}</div>
-            <div className="nx-eyebrow mb-8">{s.kicker}</div>
-            <h3
-              className="font-display font-semibold mb-5"
-              style={{ fontSize: "clamp(44px,5vw,64px)", lineHeight: 0.95, letterSpacing: "-0.035em" }}
-            >
-              {s.name}
-            </h3>
-            <p className="text-base text-nx-muted mb-9 leading-[1.55] max-w-[420px]">{s.desc}</p>
-            <div className="flex flex-wrap gap-2 mb-10">
-              {s.peps.map((p) => (
-                <span
-                  key={p}
-                  className="font-mono text-[10.5px] uppercase tracking-[0.14em] px-3 py-1.5 text-primary border"
-                  style={{ background: "rgba(198,241,132,.08)", borderColor: "rgba(198,241,132,.25)" }}
+            How it works
+          </div>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(40px, 5.2vw, 64px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              margin: 0,
+              color: "var(--nx-ceramic)",
+            }}
+          >
+            Three steps.
+            <br />
+            No clinic visit.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-14">
+          {steps.map((s) => (
+            <Reveal key={s.n}>
+              <div className="border-t pt-6" style={{ borderColor: "rgba(255,255,243,0.14)" }}>
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    letterSpacing: "0.06em",
+                    color: "var(--nx-acid)",
+                  }}
                 >
-                  {p}
-                </span>
-              ))}
-            </div>
-            <div className="flex justify-between items-end pt-7 border-t border-foreground/[0.12]">
-              <span className="font-serif italic text-foreground text-[40px] leading-none">
-                {s.price}
-                <span className="font-sans not-italic text-sm text-nx-faint ml-1">/mo</span>
-              </span>
-              <Link
-                href={`/protocols/${s.slug}`}
-                className="text-primary text-[13px] font-semibold inline-flex items-center gap-1.5 uppercase tracking-[0.08em] group"
-                data-testid={`link-protocol-${s.slug}`}
+                  {s.n}
+                </div>
+                <div
+                  className="mt-4"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(24px, 2.4vw, 32px)",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.02em",
+                    color: "var(--nx-ceramic)",
+                  }}
+                >
+                  {s.title}
+                </div>
+                <p
+                  className="mt-3 max-w-sm"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: 1.55,
+                    color: "rgba(255,255,243,0.7)",
+                  }}
+                >
+                  {s.copy}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 5 · FEATURED STACK ───────────────────────────────────────── */
+/* ── 4.5 · SCIENCE STRIP ─────────────────────────────────────── */
+function ScienceStrip() {
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ background: "var(--nx-rock)" }}
+    >
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="lg:col-span-5">
+          <div
+            className="relative rounded-[16px] overflow-hidden aspect-[4/5]"
+            style={{ background: "var(--nx-ceramic)" }}
+          >
+            <img
+              src={moleculeShot}
+              alt="Peptide molecular structure"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div className="lg:col-span-7">
+          <div
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            The science
+          </div>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(36px, 4.6vw, 56px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-black)",
+              margin: 0,
+            }}
+          >
+            Signals your body already speaks.
+          </h2>
+          <p
+            className="mt-6 max-w-xl"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "17px",
+              lineHeight: 1.6,
+              color: "var(--nx-fg-graphite)",
+            }}
+          >
+            Peptides are short chains of amino acids — the same messengers your body already uses to trigger repair, recovery, and regeneration. We compound clinically studied peptides in U.S. 503A pharmacies, then a board‑certified physician writes your protocol.
+          </p>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              { n: "3–36", label: "Amino acids per peptide" },
+              { n: "503A", label: "U.S. compounding pharmacy" },
+              { n: "24–48h", label: "Physician turnaround" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="pt-5 border-t"
+                style={{ borderColor: "rgba(10,10,10,0.14)" }}
               >
-                View protocol
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(28px, 3vw, 40px)",
+                    lineHeight: 1,
+                    letterSpacing: "-0.02em",
+                    color: "var(--nx-black)",
+                  }}
+                >
+                  {s.n}
+                </div>
+                <div
+                  className="mt-2"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "12px",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    color: "var(--nx-fg-muted)",
+                  }}
+                >
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link
+              href="/science"
+              className="inline-flex items-center gap-2"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "15px",
+                color: "var(--nx-black)",
+                borderBottom: "1px solid rgba(10,10,10,0.3)",
+                paddingBottom: 2,
+              }}
+              data-testid="link-science-home"
+            >
+              Read the science
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedStack() {
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ background: "var(--nx-ceramic)" }}
+    >
+      <div className="nx-container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-5 order-2 lg:order-1">
+            <div
+              className="inline-flex items-center gap-2 mb-6"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--nx-fg-muted)",
+              }}
+            >
+              <span
+                aria-hidden
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "var(--nx-acid)",
+                  display: "inline-block",
+                }}
+              />
+              Featured protocol
+            </div>
+            <h2
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(40px, 5vw, 60px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
+                color: "var(--nx-black)",
+                margin: 0,
+              }}
+            >
+              The Wolverine stack.
+            </h2>
+            <p
+              className="mt-6 max-w-md"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 400,
+                fontSize: "17px",
+                lineHeight: 1.6,
+                color: "var(--nx-fg-graphite)",
+              }}
+            >
+              BPC-157 + TB-500. The combination athletes and MMA fighters use
+              off-label to accelerate tissue repair and reduce systemic
+              inflammation. Physician-guided. Compounded in a US pharmacy.
+            </p>
+
+            <ul className="mt-8 space-y-3">
+              {[
+                "Repairs tendon and ligament faster than rest alone",
+                "Reduces gut and joint inflammation",
+                "8-week protocol · single subcutaneous injection",
+              ].map((li) => (
+                <li
+                  key={li}
+                  className="flex items-start gap-3"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "15px",
+                    lineHeight: 1.5,
+                    color: "var(--nx-fg-graphite)",
+                  }}
+                >
+                  <span
+                    aria-hidden
+                    style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: "50%",
+                      background: "var(--nx-acid)",
+                      display: "inline-block",
+                      marginTop: 8,
+                      flexShrink: 0,
+                    }}
+                  />
+                  {li}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10">
+              <Link
+                href="/stacks/wolverine"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-4"
+                style={{
+                  background: "var(--nx-black)",
+                  color: "var(--nx-ceramic)",
+                  fontWeight: 500,
+                  fontSize: "15px",
+                }}
+                data-testid="link-featured-wolverine"
+              >
+                See Wolverine
+                <ArrowUpRight size={16} strokeWidth={2} />
               </Link>
             </div>
           </div>
+
+          <div className="lg:col-span-7 order-1 lg:order-2">
+            <div
+              className="relative rounded-[16px] overflow-hidden group"
+              style={{
+                background: "var(--nx-rock)",
+                aspectRatio: "4 / 3",
+              }}
+            >
+              <img
+                src={editorialLineup}
+                alt="Wolverine peptide stack — five amber vials on ceramic"
+                className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                loading="eager"
+                decoding="async"
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.15) 100%)",
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 6 · NUMBERS ──────────────────────────────────────────────── */
+function Numbers() {
+  const stats: Array<{ n: number; suffix?: string; label: string }> = [
+    { n: 12000, suffix: "+", label: "Protocols shipped" },
+    { n: 48, suffix: " states", label: "Physician coverage" },
+    { n: 24, suffix: "h", label: "Median review time" },
+  ];
+  return (
+    <section
+      className="py-20 md:py-28 border-t"
+      style={{
+        background: "var(--nx-black)",
+        borderColor: "rgba(255,255,243,0.06)",
+      }}
+    >
+      <div className="nx-container grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
+        {stats.map((s) => (
+          <div key={s.label} className="border-t pt-6" style={{ borderColor: "rgba(255,255,243,0.14)" }}>
+            <div
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(56px, 6.5vw, 92px)",
+                lineHeight: 1,
+                letterSpacing: "-0.035em",
+                color: "var(--nx-ceramic)",
+              }}
+            >
+              <AnimatedCounter value={s.n} suffix={s.suffix ?? ""} />
+            </div>
+            <div
+              className="mt-3"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "14px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,243,0.55)",
+              }}
+            >
+              {s.label}
+            </div>
+          </div>
         ))}
       </div>
     </section>
   );
 }
 
-/* PROTOCOL CATALOG (all five stacks) */
-const KICKERS: Record<string, string> = {
-  wolverine: "Recovery & Performance",
-  glow: "Skin, Hair & Vitality",
-  longevity: "Longevity & Cellular",
-  sleep: "Sleep & Recovery",
-  lean: "Weight & Metabolic",
-};
-function ProtocolCatalog() {
-  const ordered = ["wolverine", "glow", "longevity", "sleep", "lean"]
-    .map((slug) => stacks.find((s) => s.slug === slug))
-    .filter((s): s is NonNullable<typeof s> => Boolean(s));
+/* ── 7 · PHYSICIAN STRIP ──────────────────────────────────────── */
+function PhysicianStrip() {
   return (
-    <section className="bg-background px-6 lg:px-14 py-24 md:py-32">
-      <div className="grid md:grid-cols-2 gap-10 md:gap-20 items-end mb-14 md:mb-16">
-        <div>
-          <div className="nx-eyebrow mb-5">The Formulary · 05</div>
-          <h2
-            className="font-display font-semibold"
-            style={{ fontSize: "clamp(40px,6vw,88px)", lineHeight: 0.95, letterSpacing: "-0.035em" }}
+    <section
+      className="py-24 md:py-32"
+      style={{ background: "var(--nx-ceramic)" }}
+    >
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="lg:col-span-6 group">
+          <div
+            className="relative rounded-[16px] overflow-hidden"
+            style={{
+              background: "var(--nx-rock)",
+              aspectRatio: "5 / 4",
+            }}
           >
-            Five protocols.<br />One <span className="font-serif italic text-primary">standard.</span>
-          </h2>
+            <img
+              src={physicianPortrait}
+              alt="A board-certified physician holding a prescription vial"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              className="absolute bottom-4 left-4 right-4 flex items-end justify-between"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "12px",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: "var(--nx-ceramic)",
+                textShadow: "0 1px 8px rgba(0,0,0,0.35)",
+              }}
+            >
+              <span>Dr. R. Alvarez, MD</span>
+              <span style={{ opacity: 0.75 }}>Internal medicine · NY</span>
+            </div>
+          </div>
         </div>
-        <div>
-          <p className="text-[17px] text-nx-muted leading-[1.65]">
-            Each protocol is a physician-designed sequence of peptides, doses, and timing — built for one outcome, reviewed by a board-certified MD, and confirmed with quarterly labs.
+
+        <div className="lg:col-span-6">
+          <div
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            The physicians
+          </div>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(36px, 4.6vw, 56px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-black)",
+              margin: 0,
+            }}
+          >
+            A real MD writes every prescription.
+          </h2>
+          <p
+            className="mt-6 max-w-lg"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "17px",
+              lineHeight: 1.6,
+              color: "var(--nx-fg-graphite)",
+            }}
+          >
+            Board-certified physicians across all 50 states review your intake,
+            confirm safety, and write your protocol. No PA-only telehealth
+            model. No commodity supplements. Real medicine, remotely.
           </p>
+
+          <div className="mt-8">
+            <Link
+              href="/physicians"
+              className="inline-flex items-center gap-2"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "15px",
+                color: "var(--nx-black)",
+                borderBottom: "1px solid rgba(10,10,10,0.3)",
+                paddingBottom: 2,
+              }}
+              data-testid="link-physicians"
+            >
+              Meet the physicians
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/[0.1] border border-foreground/[0.1]">
-        {ordered.map((stack) => {
-          const peps = getPeptidesForStack(stack);
-          const from = Math.min(...stack.pricing.map((t) => t.pricePerMonth));
-          return (
-            <Link
-              key={stack.slug}
-              href={`/protocols/${stack.slug}`}
-              className="group relative bg-background p-8 md:p-9 flex flex-col transition-colors hover:bg-card/40"
-              data-testid={`card-catalog-${stack.slug}`}
-            >
-              <div className="nx-eyebrow text-muted-foreground mb-5">{KICKERS[stack.slug]}</div>
-              <h3 className="font-display text-3xl font-semibold mb-3" style={{ letterSpacing: "-0.03em" }}>
-                {stack.name}
-              </h3>
-              <p className="text-sm text-nx-muted leading-[1.55] mb-6">{stack.tagline}</p>
-              <div className="flex flex-wrap gap-1.5 mb-7">
-                {peps.map((pp) => (
-                  <span
-                    key={pp.slug}
-                    className="font-mono text-[9.5px] uppercase tracking-[0.12em] px-2 py-1 text-primary border"
-                    style={{ background: "rgba(198,241,132,.06)", borderColor: "rgba(198,241,132,.22)" }}
-                  >
-                    {pp.name}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-auto flex items-end justify-between pt-5 border-t border-foreground/[0.1]">
-                <span className="text-sm text-nx-muted">
-                  From{" "}
-                  <span className="font-display text-xl font-semibold text-foreground">${from}</span>
-                  <span className="text-xs text-nx-faint">/mo</span>
-                </span>
-                <span className="text-primary text-[12px] font-semibold inline-flex items-center gap-1 uppercase tracking-[0.08em]">
-                  View
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-        <div className="hidden lg:flex bg-background p-8 md:p-9 flex-col justify-center">
-          <p className="font-serif italic text-primary text-2xl leading-tight mb-4">Not sure?</p>
-          <p className="text-sm text-nx-muted leading-[1.55] mb-6">
-            Take the 4-minute assessment. A physician routes you to the right protocol.
-          </p>
+    </section>
+  );
+}
+
+/* ── 8 · FINAL CTA ────────────────────────────────────────────── */
+function FinalCta() {
+  return (
+    <section
+      className="py-32 md:py-44 border-t"
+      style={{
+        background: "var(--nx-black)",
+        borderColor: "rgba(255,255,243,0.06)",
+        color: "var(--nx-ceramic)",
+      }}
+    >
+      <div className="nx-container text-center">
+        <h2
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 600,
+            fontSize: "clamp(56px, 8vw, 128px)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.035em",
+            color: "var(--nx-ceramic)",
+            margin: 0,
+          }}
+        >
+          Start in five minutes.
+        </h2>
+        <p
+          className="mt-6 mx-auto max-w-xl"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 400,
+            fontSize: "18px",
+            lineHeight: 1.6,
+            color: "rgba(255,255,243,0.7)",
+          }}
+        >
+          Answer a few questions. A physician reviews within 24–48 hours. Your
+          protocol ships to your door.
+        </p>
+        <div className="mt-10 inline-flex">
           <Link
             href="/assessment"
-            className="text-primary text-[12px] font-semibold inline-flex items-center gap-1.5 uppercase tracking-[0.08em] group"
-            data-testid="link-catalog-assessment"
+            className="inline-flex items-center gap-2"
+            style={{
+              background: "var(--nx-acid)",
+              color: "var(--nx-black)",
+              padding: "18px 30px",
+              borderRadius: "999px",
+              fontWeight: 600,
+              fontSize: "16px",
+              letterSpacing: "-0.01em",
+            }}
+            data-testid="button-final-start"
           >
             Start assessment
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight size={18} strokeWidth={2} />
           </Link>
         </div>
       </div>
@@ -540,149 +1060,614 @@ function ProtocolCatalog() {
   );
 }
 
-/* ── BY THE NUMBERS ───────────────────────────────────────────── */
-const byNumbers = [
-  { value: 7, suffix: "", label: "Peptides screened" },
-  { value: 92, suffix: "%", label: "Adherence at 60 days" },
-  { value: 3, suffix: "", label: "Licensed pharmacies" },
-  { value: 48, prefix: "<", suffix: "h", label: "Avg MD response" },
-];
-function ByTheNumbers() {
+/* ── PRECISION STRIP · lab image + weighed to 0.0035g ─────────── */
+function PrecisionStrip() {
   return (
-    <section className="bg-black border-t border-foreground/10 px-6 lg:px-14 py-20 md:py-28">
-      <Reveal>
-        <div className="nx-section-eyebrow mb-12">
-          <span className="num">06</span>
-          <span aria-hidden="true">—</span>
-          <span>BY THE NUMBERS</span>
+    <section
+      className="py-24 md:py-32 border-t"
+      style={{
+        background: "var(--nx-black)",
+        color: "var(--nx-ceramic)",
+        borderColor: "rgba(255,255,243,0.06)",
+      }}
+    >
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="lg:col-span-7 order-2 lg:order-1 group">
+          <div
+            className="relative rounded-[16px] overflow-hidden"
+            style={{ aspectRatio: "4 / 3", background: "#141414" }}
+          >
+            <img
+              src={labPrecision}
+              alt="Peptide compound weighed on a precision analytical balance in a 503A pharmacy"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
-      </Reveal>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-        {byNumbers.map((s, i) => (
-          <Reveal key={s.label} delay={i * 80}>
-            <div className="flex flex-col gap-3">
-              <span
-                className="font-display font-semibold text-foreground tabular"
-                style={{ fontSize: "clamp(48px,6vw,84px)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
+
+        <div className="lg:col-span-5 order-1 lg:order-2">
+          <div
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,243,0.55)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            The pharmacy
+          </div>
+
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(36px, 4.6vw, 56px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-ceramic)",
+              margin: 0,
+            }}
+          >
+            Weighed to the thousandth of a gram.
+          </h2>
+
+          <p
+            className="mt-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "17px",
+              lineHeight: 1.6,
+              color: "rgba(255,255,243,0.72)",
+              maxWidth: "36ch",
+            }}
+          >
+            Every dose is compounded in a U.S. 503A pharmacy on Sartorius analytical balances
+            accurate to 0.0001g. Third-party sterility and identity tested. Cold-chain shipped.
+          </p>
+
+          <div
+            className="mt-10 grid grid-cols-3 gap-6"
+            style={{ borderTop: "1px solid rgba(255,255,243,0.14)", paddingTop: 22 }}
+          >
+            {[
+              { k: "503A", v: "U.S. pharmacy" },
+              { k: "USP-797", v: "Sterile" },
+              { k: "3rd-party", v: "Tested" },
+            ].map((s) => (
+              <div key={s.k}>
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    letterSpacing: "-0.02em",
+                    color: "var(--nx-ceramic)",
+                  }}
+                >
+                  {s.k}
+                </div>
+                <div
+                  className="mt-1"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "13px",
+                    letterSpacing: "0.02em",
+                    color: "rgba(255,255,243,0.55)",
+                  }}
+                >
+                  {s.v}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── MORNING RITUAL · lifestyle strip ─────────────────────────── */
+function MorningRitual() {
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "var(--nx-rock)" }}
+    >
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center py-20 md:py-28">
+        <div className="lg:col-span-6">
+          <div
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--nx-acid)",
+                display: "inline-block",
+              }}
+            />
+            The ritual
+          </div>
+
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(36px, 4.6vw, 56px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-black)",
+              margin: 0,
+            }}
+          >
+            Ten seconds. Once a day.
+          </h2>
+
+          <p
+            className="mt-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "17px",
+              lineHeight: 1.6,
+              color: "var(--nx-fg-graphite)",
+              maxWidth: "38ch",
+            }}
+          >
+            Most protocols are a single subcutaneous injection or oral dose taken with coffee.
+            The vial lives on your counter. Your physician handles the medicine. You just show up.
+          </p>
+
+          <div className="mt-8">
+            <Link
+              href="/how-it-works"
+              className="inline-flex items-center gap-2"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "15px",
+                color: "var(--nx-black)",
+                borderBottom: "1px solid rgba(10,10,10,0.3)",
+                paddingBottom: 2,
+              }}
+              data-testid="link-ritual-more"
+            >
+              See a full week of dosing
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </Link>
+          </div>
+        </div>
+
+        <div className="lg:col-span-6 group">
+          <div
+            className="relative rounded-[16px] overflow-hidden"
+            style={{ aspectRatio: "3 / 2", background: "var(--nx-ceramic)" }}
+          >
+            <img
+              src={morningRitual}
+              alt="A hand holding a small amber prescription vial next to a handwritten note on a ceramic tray in morning light"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── BLOODWORK PILLAR (home promo) ─────────────────────────────── */
+function BloodworkPillar() {
+  const stats = [
+    { n: 80, suffix: "+", label: "Biomarkers tracked" },
+    { n: 90, suffix: " days", label: "Retest cadence" },
+    { n: 2500, suffix: "+", label: "Draw sites nationwide" },
+    { n: 48, suffix: "h", label: "MD review turnaround" },
+  ];
+
+  return (
+    <section
+      style={{
+        background: "var(--nx-black)",
+        color: "var(--nx-ceramic)",
+        padding: "clamp(80px, 12vw, 160px) 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div className="nx-container">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 items-center"
+          style={{
+            gap: "clamp(48px, 6vw, 96px)",
+          }}
+        >
+          {/* LEFT — copy */}
+          <div>
+            <Reveal>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 10,
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: 13,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-acid)",
+                  marginBottom: 32,
+                }}
               >
-                <AnimatedCounter value={s.value} prefix={s.prefix ?? ""} suffix={s.suffix} />
-              </span>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint">
-                {s.label}
-              </span>
+                <span
+                  aria-hidden
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    background: "var(--nx-acid)",
+                    display: "inline-block",
+                  }}
+                />
+                The Bloodwork Pillar
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.05}>
+              <h2
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(44px, 6vw, 84px)",
+                  lineHeight: 0.98,
+                  letterSpacing: "-0.03em",
+                  color: "var(--nx-ceramic)",
+                  margin: 0,
+                }}
+              >
+                The panel <span style={{ color: "var(--nx-acid)" }}>is</span> the protocol.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 19,
+                  lineHeight: 1.55,
+                  color: "rgba(255,255,243,0.72)",
+                  marginTop: 28,
+                  maxWidth: 560,
+                }}
+              >
+                Peptides move labs. Every dose, every week. Without a baseline
+                panel and a 90-day retest, you&rsquo;re guessing. We run the labs,
+                a physician reads them, and your protocol adjusts to the data.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 15,
+                  lineHeight: 1.6,
+                  color: "rgba(255,255,243,0.55)",
+                  marginTop: 20,
+                  maxWidth: 560,
+                }}
+              >
+                Foundation Panel free with any active protocol. Deep Panel and
+                Continuous Membership options for the people who want to see
+                everything. HSA/FSA eligible. Superbill for out-of-network
+                reimbursement.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 16,
+                  marginTop: 40,
+                }}
+              >
+                <Link
+                  href="/bloodwork"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                    background: "var(--nx-acid)",
+                    color: "var(--nx-black)",
+                    padding: "18px 32px",
+                    borderRadius: 999,
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: 16,
+                    textDecoration: "none",
+                    letterSpacing: "-0.01em",
+                  }}
+                  data-testid="link-home-bloodwork-cta"
+                >
+                  See the bloodwork program
+                  <ArrowUpRight size={18} strokeWidth={2} />
+                </Link>
+                <Link
+                  href="/bloodwork#bloodwork-pricing"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                    background: "transparent",
+                    color: "var(--nx-ceramic)",
+                    padding: "18px 28px",
+                    borderRadius: 999,
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                    fontSize: 16,
+                    textDecoration: "none",
+                    border: "1px solid rgba(255,255,243,0.22)",
+                  }}
+                  data-testid="link-home-bloodwork-pricing"
+                >
+                  Pricing &amp; insurance
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* stat row */}
+            <div
+              style={{
+                marginTop: 64,
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: 24,
+                maxWidth: 560,
+              }}
+            >
+              {stats.map((s, i) => (
+                <Reveal key={s.label} delay={0.25 + i * 0.04}>
+                  <div
+                    style={{
+                      borderTop: "1px solid rgba(255,255,243,0.14)",
+                      paddingTop: 18,
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontWeight: 600,
+                        fontSize: 38,
+                        letterSpacing: "-0.02em",
+                        color: "var(--nx-ceramic)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      <AnimatedCounter value={s.n} suffix={s.suffix} />
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: 13,
+                        color: "rgba(255,255,243,0.58)",
+                        letterSpacing: "0.02em",
+                        marginTop: 8,
+                      }}
+                    >
+                      {s.label}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — image */}
+          <Reveal delay={0.12}>
+            <div
+              style={{
+                position: "relative",
+                aspectRatio: "4/5",
+                borderRadius: 20,
+                overflow: "hidden",
+                background: "#111",
+              }}
+            >
+              <img
+                src={bloodworkHero}
+                alt="Phlebotomy tray with vacutainer tubes on cream ceramic surface"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+              {/* corner tag */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 20,
+                  left: 20,
+                  padding: "8px 14px",
+                  background: "rgba(10,10,10,0.72)",
+                  color: "var(--nx-acid)",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  borderRadius: 999,
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                Included · Free with active protocol
+              </div>
             </div>
           </Reveal>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ── OUTCOMES ─────────────────────────────────────────────────── */
-const outcomes = [
-  { lbl: "Recovery time", big: "–31", unit: "%", p: "Reduction in self-reported soreness window by week 6." },
-  { lbl: "Sleep efficiency", big: "+18", unit: "%", p: "Mean deep-sleep improvement measured by wearables." },
-  { lbl: "Skin / hair", big: "84", unit: "%", p: "Members reporting visible change by month 4." },
-  { lbl: "Lab adherence", big: "96", unit: "%", p: "Quarterly lab completion among active members." },
-];
-function Outcomes() {
-  return (
-    <section className="bg-background px-6 lg:px-14 py-24 md:py-32">
-      <div className="mb-16 md:mb-20">
-        <div className="nx-eyebrow mb-5">Outcomes · Aggregated · 12 Months</div>
-        <h2
-          className="font-display font-semibold max-w-[1200px]"
-          style={{ fontSize: "clamp(40px,6vw,88px)", lineHeight: 0.95, letterSpacing: "-0.035em" }}
-        >
-          Measured, <span className="font-serif italic text-primary">not</span> marketed.
-        </h2>
-        <p className="text-lg text-nx-muted mt-7 max-w-[620px] leading-[1.6]">
-          Aggregated member outcomes from intake through month 12. Reviewed quarterly by our medical board.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-b border-foreground/[0.18]">
-        {outcomes.map((o, i) => (
-          <div
-            key={o.lbl}
-            className={`py-12 pr-8 ${i < outcomes.length - 1 ? "lg:border-r border-foreground/[0.08]" : ""} border-b lg:border-b-0 border-foreground/[0.08]`}
-          >
-            <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint mb-3">{o.lbl}</div>
-            <div
-              className="font-display font-semibold text-foreground mb-4 tabular"
-              style={{ fontSize: "clamp(64px,7vw,96px)", lineHeight: 0.95, letterSpacing: "-0.04em" }}
-            >
-              {o.big}
-              <span className="font-serif italic text-primary text-2xl ml-0.5">{o.unit}</span>
-            </div>
-            <p className="text-sm text-nx-faint leading-[1.55]">{o.p}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* TRUST STRIP */
-const trustItems = [
-  { num: "1,200+", lbl: "Patients treated" },
-  { num: "04", lbl: "Board-certified physicians" },
-  { num: "50", lbl: "States served" },
-  { num: "503A", lbl: "U.S. compounding pharmacies" },
-];
-function TrustStrip() {
-  return (
-    <section className="bg-black border-t border-foreground/10 px-6 lg:px-14 py-14">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
-        {trustItems.map((t) => (
-          <div key={t.lbl} className="flex flex-col gap-2">
-            <span
-              className="font-display font-semibold text-foreground tabular"
-              style={{ fontSize: "clamp(34px,4vw,52px)", lineHeight: 0.95, letterSpacing: "-0.03em" }}
-            >
-              {t.num}
-            </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-nx-faint">{t.lbl}</span>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ── CLOSING CTA ──────────────────────────────────────────────── */
-function ClosingCta() {
-  return (
-    <section className="relative overflow-hidden bg-black text-center px-6 lg:px-14 py-32 md:py-44">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at center,rgba(198,241,132,.06) 0%,transparent 60%)" }}
-      />
-      <div className="relative z-[2]">
-        <div className="nx-section-eyebrow mb-8 justify-center">
-          <span className="num">07</span>
-          <span aria-hidden="true">—</span>
-          <span>BEGIN IN FOUR MINUTES</span>
         </div>
-        <h2
-          className="font-display font-semibold max-w-[1200px] mx-auto mb-6"
-          style={{ fontSize: "clamp(48px,9vw,128px)", lineHeight: 0.92, letterSpacing: "-0.04em" }}
-        >
-          When you're <span className="font-serif italic text-primary">ready,</span><br />the molecules that matter.
-        </h2>
-        <p className="text-fluid-base text-nx-muted max-w-[44ch] mx-auto mb-12 leading-relaxed">
-          Prescribed. Compounded. Measured. One assessment is all it takes to decide.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-3.5">
-          <StartIntakeButton source="home_closing" size="lg" className="rounded-none uppercase tracking-tight">
-            Find your protocol
-          </StartIntakeButton>
+      </div>
+    </section>
+  );
+}
+
+/* ── PEPTIDE TILES STRIP · living vials on the homepage ─────────── */
+function PeptideTilesStrip() {
+  // Hand-picked flagship peptides to feature
+  const FEATURED = ["bpc-157", "tirzepatide", "ipamorelin", "nad-plus"];
+  const SHORT: Record<string, string> = {
+    recovery: "Recovery",
+    skin: "Skin",
+    cognition: "Cognition",
+    sleep: "Sleep",
+    growth: "Growth",
+    longevity: "Longevity",
+    metabolic: "Metabolic",
+  };
+  const featured = FEATURED
+    .map((slug) => ALL_PEPTIDES.find((p) => p.slug === slug))
+    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ background: "var(--nx-rock)" }}
+      data-testid="section-featured-peptides"
+    >
+      <div className="nx-container">
+        <div className="flex items-end justify-between flex-wrap gap-6 mb-12 md:mb-16">
+          <div className="max-w-xl">
+            <div
+              className="inline-flex items-center gap-2 mb-6"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--nx-fg-muted)",
+              }}
+            >
+              <span
+                aria-hidden
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "var(--nx-acid)",
+                  display: "inline-block",
+                }}
+              />
+              Featured pharmacy
+            </div>
+            <h2
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(36px, 4.8vw, 60px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
+                color: "var(--nx-black)",
+                margin: 0,
+              }}
+            >
+              Hover a vial. Meet the peptide.
+            </h2>
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: 16,
+                lineHeight: 1.55,
+                color: "var(--nx-fg-graphite)",
+                marginTop: 18,
+                maxWidth: 520,
+              }}
+            >
+              Every peptide in our pharmacy lists its mechanism, dose, and monthly cost up front. No fine print.
+            </p>
+          </div>
           <Link
-            href="/physicians"
-            className="nx-cta-outline-dark inline-flex items-center justify-center px-7 py-3.5 text-[14px] font-medium uppercase tracking-tight"
-            data-testid="link-closing-physicians"
+            href="/peptides"
+            data-testid="link-see-all-peptides"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: 14,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "var(--nx-black)",
+              padding: "14px 22px",
+              background: "var(--nx-acid)",
+              borderRadius: 999,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              textDecoration: "none",
+            }}
           >
-            Talk to a physician
+            See all 16 peptides
+            <ArrowUpRight size={16} strokeWidth={2} />
           </Link>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {featured.map((p) => {
+            const price = getPrice(p.slug)?.monthlyPrice;
+            const mechShort = p.mechanism
+              .split(/(?<=[.!?])\s+/)
+              .slice(0, 2)
+              .join(" ")
+              .slice(0, 200);
+            return (
+              <VialTile
+                key={p.slug}
+                href={`/peptides/${p.slug}`}
+                name={p.name}
+                fullName={p.fullName}
+                tagline={p.tagline}
+                tone={categoryToTone(p.category)}
+                glyph={p.glyph}
+                price={price}
+                categoryLabel={SHORT[p.category]}
+                evidenceTier="B"
+                mechanism={mechShort}
+                dose={p.typicalDose}
+                cycle={p.cycleLength}
+                ctaLabel="See protocol"
+                testId={`home-${p.slug}`}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

@@ -92,7 +92,7 @@ const scrollToId = (id: string) => {
 
 /* ───────────────────────────────────────────────────────────────
    Purchase rail / card — used both as desktop sticky aside and
-   inline mobile card. NO italic anywhere (tagline is acid-green only).
+   inline mobile card. NO anywhere (tagline is acid-green only).
    ─────────────────────────────────────────────────────────────── */
 function PurchaseCard({ stack }: { stack: Stack }) {
   const fromPrice = Math.min(...stack.pricing.map((t) => t.pricePerMonth));
@@ -109,7 +109,7 @@ function PurchaseCard({ stack }: { stack: Stack }) {
       <h3 className="font-display text-[28px] font-bold leading-none tracking-tight text-foreground mb-1.5">
         {stack.name}
       </h3>
-      {/* Rail tagline — acid green, NO italic (preserves one-italic-per-page lock) */}
+      {/* Rail tagline — acid green, NO (preserves one-italic-per-page lock) */}
       <p className="text-primary text-sm font-medium mb-5">{stack.tagline}</p>
 
       <div className="flex items-end gap-1.5">
@@ -276,7 +276,7 @@ export default function StackReveal() {
           <div className="grid lg:grid-cols-[1fr_360px] gap-12 lg:gap-16 py-20 md:py-28">
             {/* ───────── MAIN COLUMN ───────── */}
             <main className="min-w-0">
-              {/* ACT 2 — THE PROTOCOL (vial cluster + italic moment) */}
+              {/* ACT 2 — THE PROTOCOL (vial cluster + moment) */}
               <section id="protocol-reveal" className="scroll-mt-24">
                 <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
                   <Reveal>
@@ -299,7 +299,7 @@ export default function StackReveal() {
                       data-testid={`text-protocol-headline-${stack.slug}`}
                     >
                       {stack.protocolItalicHeadline.plain}
-                      <span className="font-serif text-primary">
+                      <span className="text-primary">
                         {stack.protocolItalicHeadline.italic}
                       </span>
                       {stack.protocolItalicHeadline.plain2}

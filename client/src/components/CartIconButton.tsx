@@ -21,7 +21,7 @@ export function CartIconButton({ className = "" }: { className?: string }) {
           style={{
             background: "#8B5A2B",
             color: "#FAF7F0",
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 600,
             letterSpacing: 0,
           }}

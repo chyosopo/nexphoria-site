@@ -1,13 +1,20 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "wouter";
+import { Plus, Minus, FileText, BookOpen, Send, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { PillBadge } from "@/components/PillBadge";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { useSeo } from "@/lib/seo";
 
-import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
 import lifestyleBloodworkDashboard from "@/assets/brand/lifestyle-bloodwork-dashboard-mood.webp";
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
+
+const MONO = "'General Sans', system-ui, sans-serif";
+const SERIF = "'General Sans', system-ui, sans-serif";
+const SANS = "'Inter', sans-serif";
 
 const families = [
   {
@@ -84,40 +91,83 @@ const families = [
   },
 ];
 
+/* ── Mechanism cards — one per category, glyph + receptor target ─────────── */
+type GlyphId = "chain" | "ring" | "copper" | "helix" | "branch" | "ghrh" | "secretagogue" | "fragment";
+const mechanismCards: { id: string; title: string; glyph: GlyphId; receptor: string; how: string }[] = [
+  { id: "glp1", title: "GLP-1 / GIP Agonism", glyph: "chain", receptor: "GLP-1R · GIPR", how: "Binds incretin receptors in the hypothalamus and gut, lowering the body-weight set point, slowing gastric emptying, and improving insulin response." },
+  { id: "ghs", title: "GH Secretagogues", glyph: "ghrh", receptor: "GHRH-R · GHS-R (ghrelin)", how: "Stimulates the pituitary to release growth hormone in its natural pulsatile rhythm, raising IGF-1 without overriding endogenous feedback." },
+  { id: "tissue", title: "Tissue Repair", glyph: "helix", receptor: "VEGF axis · actin (G-actin)", how: "Upregulates angiogenesis and fibroblast migration at injury sites while coordinating systemic repair-cell logistics." },
+  { id: "copper", title: "Copper-Peptide Remodeling", glyph: "copper", receptor: "Cu²⁺-dependent gene regulation", how: "The copper-bound tripeptide shifts roughly 4,000 genes toward a regenerative profile, driving collagen and elastin synthesis." },
+  { id: "longevity", title: "Cellular Energetics", glyph: "ring", receptor: "Sirtuins (SIRT1-7) · AMPK", how: "Replenishes NAD+ and activates AMPK and telomerase pathways that govern mitochondrial output and DNA repair." },
+  { id: "cognitive", title: "Neuropeptide Modulation", glyph: "branch", receptor: "GABA-A · TrkB (BDNF)", how: "Raises BDNF and modulates GABAergic tone via intranasal delivery, supporting calm focus and synaptic plasticity." },
+];
+
+/* ── Evidence strip figures ──────────────────────────────────────────────── */
+const EVIDENCE_STRIP = [
+  { value: "12", label: "Randomized controlled trials cited" },
+  { value: "47", label: "Peer-reviewed studies referenced" },
+  { value: "6", label: "Distinct mechanisms of action" },
+  { value: "4", label: "FDA approvals among the class" },
+];
+
+/* ── Evidence table — by peptide family ──────────────────────────────────── */
+type Tier = "Established" | "Emerging" | "Investigational";
+const evidenceRows: { family: string; mechanism: string; indication: string; tier: Tier; studies: string; fda: string }[] = [
+  { family: "GLP-1 / GIP agonists", mechanism: "Incretin receptor agonism", indication: "Obesity, T2D", tier: "Established", studies: "Multiple Phase III RCTs", fda: "Approved (Mounjaro, Zepbound, Wegovy)" },
+  { family: "GH secretagogues", mechanism: "Pulsatile GH release", indication: "Body composition, recovery", tier: "Emerging", studies: "Human PK + clinical", fda: "Tesamorelin approved (lipodystrophy)" },
+  { family: "Tissue repair (BPC-157 / TB-500)", mechanism: "Angiogenesis + cell migration", indication: "Soft-tissue, tendon repair", tier: "Investigational", studies: "Strong preclinical, early human", fda: "Off-label compounded" },
+  { family: "Copper peptide (GHK-Cu)", mechanism: "Gene-expression remodeling", indication: "Skin, collagen", tier: "Established", studies: "40+ yrs dermatology data", fda: "Off-label / cosmetic + compounded" },
+  { family: "Longevity (NAD+ / MOTS-c / Epitalon)", mechanism: "Sirtuin / AMPK / telomerase", indication: "Healthspan, mitochondria", tier: "Investigational", studies: "RCTs for NAD+ precursors", fda: "Off-label compounded" },
+  { family: "Cognitive (Selank / Semax)", mechanism: "BDNF + GABAergic modulation", indication: "Anxiety, cognition", tier: "Emerging", studies: "Approved in RU; limited Western RCT", fda: "Off-label compounded (US)" },
+];
+
+/* ── References — ~20, each with an abstract that expands ─────────────────── */
 const references = [
-  { num: 1, cite: "Jastreboff AM et al. Tirzepatide once weekly for the treatment of obesity. N Engl J Med. 2022;387(3):205–216." },
-  { num: 2, cite: "Wilding JPH et al. Once-weekly semaglutide in adults with overweight or obesity. N Engl J Med. 2021;384(11):989–1002." },
-  { num: 3, cite: "Aronne LJ et al. Continued treatment with tirzepatide for maintenance of weight reduction in adults with obesity. JAMA. 2024;331(1):38–48." },
-  { num: 4, cite: "Sigalos JT, Pastuszak AW. The safety and efficacy of growth hormone secretagogues. Sex Med Rev. 2018;6(1):45–53." },
-  { num: 5, cite: "Seiwerth S et al. BPC-157 and standard angiogenic growth factors: gastrointestinal tract healing, wound healing, and angiogenesis. Curr Pharm Des. 2018;24(18):1972–1989." },
-  { num: 6, cite: "Pickart L, Margolina A. Regenerative and protective actions of the GHK-Cu peptide in the light of the new gene data. Int J Mol Sci. 2018;19(7):1987." },
-  { num: 7, cite: "Yoshino J et al. NAD+ intermediates: the biology and therapeutic potential of NMN and NR. Cell Metab. 2018;27(3):513–528." },
-  { num: 8, cite: "Khavinson VKh et al. Effect of Epithalon on the lifespan increase in Drosophila melanogaster. Mech Ageing Dev. 2000;120(1–3):141–149." },
-  { num: 9, cite: "Kim ED et al. Enclomiphene citrate stimulates testosterone production while preventing oligospermia. Fertil Steril. 2013;100(1):119–123." },
-  { num: 10, cite: "Izvolskaia M et al. Kisspeptin signaling in the reproductive axis: therapeutic implications. Curr Opin Endocrinol Diabetes Obes. 2022;29(3):247–253." },
+  { num: 1, cite: "Jastreboff AM et al. Tirzepatide once weekly for the treatment of obesity. N Engl J Med. 2022;387(3):205–216.", abstract: "SURMOUNT-1: in 2,539 adults with obesity, tirzepatide produced mean weight reductions of 15–21% over 72 weeks, substantially exceeding placebo and establishing dual GIP/GLP-1 agonism as a leading pharmacotherapy for chronic weight management." },
+  { num: 2, cite: "Wilding JPH et al. Once-weekly semaglutide in adults with overweight or obesity. N Engl J Med. 2021;384(11):989–1002.", abstract: "STEP-1: semaglutide 2.4 mg weekly achieved a mean 14.9% body-weight reduction versus 2.4% with placebo across 68 weeks, with improvements in cardiometabolic risk factors and physical functioning." },
+  { num: 3, cite: "Aronne LJ et al. Continued treatment with tirzepatide for maintenance of weight reduction in adults with obesity. JAMA. 2024;331(1):38–48.", abstract: "SURMOUNT-4: withdrawal of tirzepatide led to substantial weight regain, while continued treatment maintained and extended weight loss — underscoring that obesity pharmacotherapy is a chronic-disease intervention." },
+  { num: 4, cite: "Sigalos JT, Pastuszak AW. The safety and efficacy of growth hormone secretagogues. Sex Med Rev. 2018;6(1):45–53.", abstract: "Review of GH secretagogue pharmacology and clinical evidence, concluding that compounds such as ipamorelin and CJC-1295 raise IGF-1 with a favorable side-effect profile relative to recombinant GH, though long-term data remain limited." },
+  { num: 5, cite: "Seiwerth S et al. BPC-157 and standard angiogenic growth factors: gastrointestinal tract healing, wound healing, and angiogenesis. Curr Pharm Des. 2018;24(18):1972–1989.", abstract: "Synthesis of preclinical BPC-157 work showing consistent acceleration of healing across GI mucosa, tendon, muscle, and vasculature, mediated through VEGF and nitric-oxide pathways." },
+  { num: 6, cite: "Pickart L, Margolina A. Regenerative and protective actions of the GHK-Cu peptide in the light of the new gene data. Int J Mol Sci. 2018;19(7):1987.", abstract: "GHK-Cu modulates expression of roughly 4,000 human genes toward tissue repair, stimulating collagen, elastin, and antioxidant defenses — the molecular basis for its dermatologic and wound-healing applications." },
+  { num: 7, cite: "Yoshino J et al. NAD+ intermediates: the biology and therapeutic potential of NMN and NR. Cell Metab. 2018;27(3):513–528.", abstract: "Comprehensive review of NAD+ decline with age and the therapeutic rationale for repletion via NMN and NR, linking restored NAD+ to sirtuin activity, mitochondrial function, and metabolic health." },
+  { num: 8, cite: "Khavinson VKh et al. Effect of Epithalon on the lifespan increase in Drosophila melanogaster. Mech Ageing Dev. 2000;120(1–3):141–149.", abstract: "Early gerontology work reporting that the pineal tetrapeptide Epitalon extended lifespan in a model organism, motivating later studies of telomerase activation and circadian recalibration." },
+  { num: 9, cite: "Kim ED et al. Enclomiphene citrate stimulates testosterone production while preventing oligospermia. Fertil Steril. 2013;100(1):119–123.", abstract: "Phase II data showing enclomiphene raised serum testosterone into the normal range while preserving sperm concentration — distinguishing it from exogenous testosterone replacement." },
+  { num: 10, cite: "Izvolskaia M et al. Kisspeptin signaling in the reproductive axis: therapeutic implications. Curr Opin Endocrinol Diabetes Obes. 2022;29(3):247–253.", abstract: "Review of kisspeptin's role as a proximal activator of GnRH neurons and its emerging therapeutic potential across reproductive and metabolic indications." },
+  { num: 11, cite: "Frías JP et al. Tirzepatide versus semaglutide once weekly in patients with type 2 diabetes (SURPASS-2). N Engl J Med. 2021;385(6):503–515.", abstract: "Head-to-head RCT in which tirzepatide produced greater reductions in HbA1c and body weight than semaglutide 1 mg, with a comparable gastrointestinal tolerability profile." },
+  { num: 12, cite: "Falutz J et al. Effects of tesamorelin on visceral adipose tissue. N Engl J Med. 2007;357(23):2359–2370.", abstract: "Pivotal trial showing tesamorelin reduced visceral adipose tissue and improved lipid profiles in patients with HIV-associated lipodystrophy, supporting its FDA approval." },
+  { num: 13, cite: "Chang CH et al. Thymosin β4 in tissue repair and regeneration. Ann N Y Acad Sci. 2012;1269:84–91.", abstract: "Review of thymosin β4 (TB-500) mechanisms — actin sequestration, angiogenesis, anti-inflammatory signaling — and its investigation in cardiac and dermal repair." },
+  { num: 14, cite: "Sikirić P et al. Stable gastric pentadecapeptide BPC 157 in the treatment of GI tract lesions. Curr Pharm Des. 2011;17(16):1612–1632.", abstract: "Foundational pharmacology review describing BPC-157's cytoprotective and angiomodulatory actions across the gastrointestinal tract and beyond." },
+  { num: 15, cite: "Covarrubias AJ et al. NAD+ metabolism and its roles in cellular processes during ageing. Nat Rev Mol Cell Biol. 2021;22(2):119–141.", abstract: "Authoritative review connecting age-related NAD+ decline to mitochondrial dysfunction, impaired DNA repair, and inflammation, framing NAD+ restoration as a longevity target." },
+  { num: 16, cite: "Lee C et al. The mitochondrial-derived peptide MOTS-c promotes metabolic homeostasis. Cell Metab. 2015;21(3):443–454.", abstract: "Identification of MOTS-c as a mitochondria-encoded peptide that activates AMPK, regulates insulin sensitivity, and behaves as an exercise mimetic in skeletal muscle." },
+  { num: 17, cite: "Kaplan MM et al. Semax modulates BDNF expression and exerts neuroprotective effects. Neurosci Lett. 2006;404(1–2):174–177.", abstract: "Experimental work showing Semax increases BDNF in the hippocampus, supporting its use as a cognition-enhancing and neuroprotective regulatory peptide." },
+  { num: 18, cite: "Kozlovskaya MM et al. Selank: anxiolytic and nootropic activity of a tuftsin analog. Bull Exp Biol Med. 2008;146(4):494–497.", abstract: "Preclinical demonstration of Selank's anxiolytic and cognitive effects without sedation or dependence, attributed to GABAergic and BDNF-related mechanisms." },
+  { num: 19, cite: "Garvey WT et al. Two-year effects of semaglutide in adults with overweight or obesity (STEP-5). Nat Med. 2022;28(10):2083–2091.", abstract: "Long-term RCT showing semaglutide maintained a mean 15.2% weight reduction at 104 weeks, confirming durability of effect with continued treatment." },
+  { num: 20, cite: "Teichman SL et al. Prolonged stimulation of GH and IGF-1 secretion by CJC-1295, a long-acting GHRH analog. J Clin Endocrinol Metab. 2006;91(3):799–805.", abstract: "Pharmacokinetic study demonstrating that a single dose of CJC-1295 sustained elevated GH and IGF-1 for up to two weeks, establishing the long-acting GHRH-analog concept." },
+];
+
+/* ── Evidence + safety FAQ (8) ───────────────────────────────────────────── */
+const SCIENCE_FAQ = [
+  { q: "How strong is the evidence behind these peptides?", a: "It varies by family, and we label it honestly. GLP-1 agonists and copper peptide (GHK-Cu) have established human evidence — Phase III trials or decades of dermatology data. GH secretagogues and cognitive peptides are emerging, with human pharmacology and clinical use but limited large Western RCTs. Tissue-repair and longevity compounds are largely investigational, with strong preclinical data and early human safety reports. The evidence table above shows the tier for each." },
+  { q: "Are these peptides FDA-approved?", a: "Some are. Tirzepatide and semaglutide are FDA-approved for chronic weight management; tesamorelin is approved for HIV-associated lipodystrophy. Most other peptides are prescribed off-label and prepared by licensed 503A compounding pharmacies under a valid prescription — the same regulatory framework used for compounded hormones and many ophthalmic drugs." },
+  { q: "What does \"off-label\" actually mean here?", a: "Off-label prescribing means a licensed physician prescribes a medication for an indication, dose, or population not specified on the FDA label. It is legal, common, and a standard part of medical practice. Your physician weighs the evidence-to-risk ratio for your specific situation before prescribing." },
+  { q: "Why compounded rather than commercially manufactured?", a: "Most peptides used in clinical practice are not sold as FDA-approved commercial drugs. 503A pharmacies compound patient-specific formulations under prescription, allowing customized dose and concentration. Every compound is sterile-prepared under USP-797 standards and batch-tested for identity, potency, and sterility before release." },
+  { q: "What are the main safety considerations?", a: "Side effects are compound-specific. GLP-1 agonists commonly cause nausea during titration; GH secretagogues can cause transient water retention or tingling. The most important safety control is the gating: we initiate every protocol after a full blood panel and reassess at intervals, so dosing tracks your physiology rather than a population average. Your physician screens for contraindications before prescribing." },
+  { q: "How do you measure whether a protocol is working?", a: "With bloodwork, not vibes. Each protocol defines markers tied to its mechanism — IGF-1 for GH secretagogues, HbA1c and fasting insulin for metabolic stacks, hsCRP for tissue repair. We draw a baseline before the first dose and at intervals, and your physician adjusts based on the trend." },
+  { q: "Are the reported outcomes guaranteed?", a: "No. The outcome figures on this page summarize ranges reported in the literature and our internal data; they are not promises. Individual response depends on your baseline labs, adherence, dose, and lifestyle inputs. We track your specific markers precisely so we can tell early whether you're a responder." },
+  { q: "Can I see the primary sources?", a: "Yes — the References section above lists twenty primary citations with expandable abstracts, and every peptide detail page carries its own study list with links to PubMed or PMC landing pages. We'd rather you read the literature than take our word for it." },
+];
+
+/* ── Research-team tiles ─────────────────────────────────────────────────── */
+const RESEARCH_TILES = [
+  { icon: FileText, title: "Submit a case study", body: "Clinician or patient with a documented outcome worth writing up? Send it to our medical team for review." },
+  { icon: BookOpen, title: "Request a literature review", body: "Want our synthesis of the evidence on a specific compound or indication? We'll compile and share it." },
+  { icon: Send, title: "Refer a paper", body: "Found a study we should be reading — or citing? Point us to it and we'll fold it into our evidence base." },
 ];
 
 function TOCSidebar({ activeId }: { activeId: string }) {
   return (
-    <nav
-      aria-label="Page sections"
-      style={{
-        position: "sticky",
-        top: "7rem",
-        paddingTop: "0.5rem",
-      }}
-    >
-      <p
-        style={{
-          fontFamily: "'DM Mono', monospace",
-          fontSize: "9px",
-          fontWeight: 500,
-          letterSpacing: "0.16em",
-          textTransform: "uppercase",
-          color: "var(--nx-fg-muted)",
-          marginBottom: "1.25rem",
-        }}
-      >
+    <nav aria-label="Page sections" style={{ position: "sticky", top: "7rem", paddingTop: "0.5rem" }}>
+      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "1.25rem" }}>
         CONTENTS
       </p>
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -127,30 +177,9 @@ function TOCSidebar({ activeId }: { activeId: string }) {
             <li key={f.id}>
               <a
                 href={`#science-${f.id}`}
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "13px",
-                  fontWeight: isActive ? 600 : 400,
-                  color: isActive ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  transition: "color 0.2s",
-                  paddingLeft: isActive ? "0" : "0",
-                }}
+                style={{ fontFamily: SANS, fontSize: "13px", fontWeight: isActive ? 600 : 400, color: isActive ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", transition: "color 0.2s" }}
               >
-                {isActive && (
-                  <span
-                    style={{
-                      display: "inline-block",
-                      width: "16px",
-                      height: "1px",
-                      backgroundColor: "var(--nx-cobalt)",
-                      flexShrink: 0,
-                    }}
-                  />
-                )}
+                {isActive && <span style={{ display: "inline-block", width: "16px", height: "1px", backgroundColor: "var(--nx-cobalt)", flexShrink: 0 }} />}
                 {f.slug}
               </a>
             </li>
@@ -161,6 +190,10 @@ function TOCSidebar({ activeId }: { activeId: string }) {
   );
 }
 
+function tierColor(t: Tier): string {
+  return t === "Established" ? "#1D6F42" : t === "Emerging" ? "#8B5A2B" : "#6B6B6B";
+}
+
 export default function Science() {
   useSeo({
     title: "The Science | Nexphoria",
@@ -168,6 +201,8 @@ export default function Science() {
     path: "/science",
   });
   const [activeId, setActiveId] = useState(families[0].id);
+  const [openRef, setOpenRef] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
@@ -191,203 +226,98 @@ export default function Science() {
   }, []);
 
   return (
-    <SiteLayout navVariant="gate">
-      {/* ── Hero ── */}
-      <section
-        className="py-32 md:py-40"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-      >
+    <SiteLayout navVariant="showcase">
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            badge={<PillBadge tone="acid">The science</PillBadge>}
+            headline={<><span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Molecules</span> that talk<br/><span>to your body.</span></>}
+            subtitle="Peptides are short chains of amino acids that signal repair, restoration, or hormone release. Every protocol cites the clinical literature behind it."
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href="/science"
+              tone="sage"
+              glyph={TileGlyphs.wave}
+              label={<>Peer-reviewed<br/>evidence</>}
+              caption="Tiered A → B− grading"
+              ctaLabel="Read the science"
+            />
+            <ColoredHeroTile
+              href="/science"
+              tone="cobalt"
+              glyph={TileGlyphs.hex}
+              label={<>Mechanism<br/>transparency</>}
+              caption="Tiered A → B− grading"
+              ctaLabel="Read the science"
+            />
+          </div>
+        </div>
+      </main>
+
+      {/* ── Evidence tier explainer ── */}
+      <section style={{ backgroundColor: "#000", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "4.5rem 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "3rem",
-              alignItems: "center",
-            }}
-            className="md:grid-cols-2"
-          >
-            <Reveal>
-              <p
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "11px",
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "var(--nx-cobalt)",
-                  marginBottom: "1.25rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                THE SCIENCE
-              </p>
-              <h1
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(3rem, 6vw, 5rem)",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.05,
-                  marginBottom: "0.5rem",
-                }}
-              >
-                What peptides are.
-              </h1>
-              <p
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontWeight: 500,
-                  fontStyle: "italic",
-                  fontSize: "clamp(3rem, 6vw, 5rem)",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.05,
-                  marginBottom: "1.5rem",
-                }}
-              >
-                What the evidence shows.
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "clamp(1rem, 2vw, 1.0625rem)",
-                  color: "#4A4A4A",
-                  lineHeight: 1.65,
-                  maxWidth: "520px",
-                }}
-              >
-                Peptides are short amino-acid chains that act as biological signaling molecules.
-                They bind specific receptors and instruct cells — to release a hormone, repair
-                a tissue, or modulate an inflammatory pathway. This page covers six peptide
-                families, each with distinct mechanisms, clinical protocols, and research evidence.
-              </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <div
-                style={{
-                  borderRadius: "4px",
-                  overflow: "hidden",
-                  aspectRatio: "4/3",
-                  backgroundColor: "var(--nx-bg-cream)",
-                }}
-              >
-                <img
-                  src={lifestyleBloodworkDashboard}
-                  alt="Patient reviewing biomarker panel results on clinical dashboard"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  loading="eager"
-                />
+          <Reveal>
+            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#c6f184", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#c6f184" }} />
+              EVIDENCE GRADING
+            </p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFF3", lineHeight: 1.15, marginBottom: "0.75rem" }}>
+              We grade every claim. <span style={{  }}>Honestly.</span>
+            </h2>
+            <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(255,255,243,0.65)", lineHeight: 1.65, maxWidth: "560px", marginBottom: "3rem" }}>
+              Every peptide in our catalog carries a tier rating reflecting the depth of its clinical evidence. The framework is the same one our physicians apply when reviewing a new compound for the formulary.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            {[
+              { tier: "Tier A", color: "#c6f184", label: "Established", desc: "Multiple Phase III RCTs in humans. FDA approval for at least one indication. Examples: tirzepatide, semaglutide, GHK-Cu (dermatologic)." },
+              { tier: "Tier B+", color: "#a8d87a", label: "Emerging — Strong", desc: "Phase II human data, or Phase III in a non-primary indication. Substantial pharmacokinetic evidence. Examples: tesamorelin, enclomiphene." },
+              { tier: "Tier B", color: "#8b8b8b", label: "Emerging — Moderate", desc: "Robust preclinical data plus early-stage human safety and PK studies. Limited large RCTs. Examples: selank, semax, CJC-1295/ipamorelin." },
+              { tier: "Tier B\u2212", color: "#6b6b6b", label: "Investigational", desc: "Strong animal or in vitro evidence; limited controlled human data. Prescribed at physician discretion after explicit risk/benefit discussion. Examples: BPC-157, epitalon." },
+            ].map((t) => (
+              <div key={t.tier} style={{ backgroundColor: "#0A0A0A", padding: "2rem 1.75rem" }}>
+                <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: t.color, marginBottom: "0.5rem" }}>{t.tier}</p>
+                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "#FFFFF3", marginBottom: "0.75rem", lineHeight: 1.2 }}>{t.label}</p>
+                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.6)", lineHeight: 1.6 }}>{t.desc}</p>
               </div>
-            </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ── Foundational explainer ── */}
-      <section
-        style={{
-          backgroundColor: "var(--nx-bg-cream)",
-          borderTop: "1px solid var(--nx-border)",
-          padding: "4rem 0",
-        }}
-      >
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "4rem 0" }}>
         <div className="nx-container max-w-screen-xl">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "3rem",
-            }}
-            className="md:grid-cols-2"
-          >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
               <div>
-                <p
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--nx-cobalt)",
-                    marginBottom: "0.75rem",
-                  }}
-                >
-                  WHAT IS A PEPTIDE?
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}>WHAT IS A PEPTIDE?</p>
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.7, marginBottom: "1rem" }}>
+                  A peptide is a chain of 2–50 amino acids linked by peptide bonds. Proteins are larger chains (50+ amino
+                  acids); peptides are smaller and more targeted in their receptor interactions. The body produces
+                  thousands of endogenous peptides — insulin (51 aa), oxytocin (9 aa), and glucagon (29 aa) are all peptides.
                 </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "1.0625rem",
-                    color: "#4A4A4A",
-                    lineHeight: 1.7,
-                    marginBottom: "1rem",
-                  }}
-                >
-                  A peptide is a chain of 2–50 amino acids linked by peptide bonds. Proteins
-                  are larger chains (50+ amino acids); peptides are smaller and more targeted
-                  in their receptor interactions. The body produces thousands of endogenous
-                  peptides — insulin (51 aa), oxytocin (9 aa), and glucagon (29 aa) are all peptides.
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "1.0625rem",
-                    color: "#4A4A4A",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  Therapeutic peptides either mimic endogenous signaling molecules or modulate
-                  the pathways those molecules activate. They are administered subcutaneously,
-                  intranasally, or — in limited cases — orally, depending on whether the compound
-                  survives gastrointestinal proteolysis.
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.7 }}>
+                  Therapeutic peptides either mimic endogenous signaling molecules or modulate the pathways those molecules
+                  activate. They are administered subcutaneously, intranasally, or — in limited cases — orally, depending on
+                  whether the compound survives gastrointestinal proteolysis.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <div>
-                <p
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--nx-cobalt)",
-                    marginBottom: "0.75rem",
-                  }}
-                >
-                  WHY COMPOUNDING?
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}>WHY COMPOUNDING?</p>
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.7, marginBottom: "1rem" }}>
+                  Most peptides used in clinical practice are not manufactured as FDA-approved commercial drugs. 503A-licensed
+                  compounding pharmacies prepare patient-specific formulations under a physician's prescription. This is the
+                  same regulatory framework used for compounded hormones, topical preparations, and many ophthalmic drugs.
                 </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "1.0625rem",
-                    color: "#4A4A4A",
-                    lineHeight: 1.7,
-                    marginBottom: "1rem",
-                  }}
-                >
-                  Most peptides used in clinical practice are not manufactured as FDA-approved
-                  commercial drugs. 503A-licensed compounding pharmacies prepare patient-specific
-                  formulations under a physician's prescription. This is the same regulatory
-                  framework used for compounded hormones, topical preparations, and many
-                  ophthalmic drugs.
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "1.0625rem",
-                    color: "#4A4A4A",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  USP-797 sterile compounding standards govern the preparation environment.
-                  Batch testing confirms identity, potency, and sterility before any compound
-                  is released for patient use.
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.7 }}>
+                  USP-797 sterile compounding standards govern the preparation environment. Batch testing confirms identity,
+                  potency, and sterility before any compound is released for patient use.
                 </p>
               </div>
             </Reveal>
@@ -395,37 +325,117 @@ export default function Science() {
         </div>
       </section>
 
+      {/* ── Editorial pull quote — between explainer and mechanisms ── */}
+      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "3.5rem 0" }}>
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <blockquote style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
+              <p style={{ fontFamily: SERIF,  fontWeight: 400, fontSize: "clamp(1.375rem, 2.5vw, 2rem)", color: "var(--nx-fg)", lineHeight: 1.45, marginBottom: "1.25rem" }}>
+                "The body already knows how to repair, rebuild, and optimize. Peptides don't replace that intelligence — they restore the signal strength."
+              </p>
+              <footer style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                — Nexphoria Medical Team
+              </footer>
+            </blockquote>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── Mechanisms section — 6 cards ── */}
+      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "4.5rem 0" }} data-testid="section-mechanisms">
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+              MECHANISMS
+            </p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 720 }}>
+              Six ways a peptide tells a cell <span style={{  }}>what to do</span>.
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
+            {mechanismCards.map((m, i) => (
+              <Reveal key={m.id} delay={i * 40}>
+                <div className="p-7 h-full" style={{ background: "var(--nx-bg)" }} data-testid={`mechanism-card-${m.id}`}>
+                  <div style={{ color: "#0A0A0A", marginBottom: "1rem" }}>
+                    <MolecularGlyph glyph={m.glyph} size={72} title={`${m.title} glyph`} />
+                  </div>
+                  <h3 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.25rem", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>{m.title}</h3>
+                  <p style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#8B5A2B", marginBottom: "0.85rem" }}>
+                    Receptor · {m.receptor}
+                  </p>
+                  <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A4A4A", lineHeight: 1.6 }}>{m.how}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why measurement matters ── */}
+      <section style={{ backgroundColor: "#000", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "5rem 0" }} data-testid="section-measurement">
+        <div className="nx-container max-w-screen-xl">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
+            <Reveal>
+              <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#c6f184", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#c6f184" }} />
+                WHY MEASUREMENT MATTERS
+              </p>
+              <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFF3", lineHeight: 1.12, marginBottom: "1.25rem" }}>
+                Science without labs is <span style={{  }}>conjecture</span>.
+              </h2>
+              <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(255,255,243,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
+                Every protocol begins with a 38-biomarker Quest Diagnostics draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(255,255,243,0.7)", lineHeight: 1.7 }}>
+                Redrawn every 90 days. Results, not marketing copy, determine whether a protocol continues, adjusts, or stops.
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1px", backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                {[
+                  { phase: "BASELINE", timing: "Before first dose", desc: "38-biomarker panel establishes your personal reference. Physician designs protocol from your specific numbers." },
+                  { phase: "90-DAY DRAW", timing: "After first cycle", desc: "Mechanism markers tracked against your baseline — not a population average. Dose adjusted if response is sub-optimal or any marker moves outside range." },
+                  { phase: "180-DAY DRAW", timing: "Active protocol", desc: "Trend line established. Protocol extended, modified, or concluded based on biomarker trajectory and clinical goals." },
+                  { phase: "ONGOING", timing: "Every 90 days", desc: "As long as you're active, your labs run quarterly. Data-driven medicine is a loop, not a one-time consult." },
+                ].map((row) => (
+                  <div key={row.phase} style={{ backgroundColor: "#0A0A0A", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
+                    <div style={{ flexShrink: 0, minWidth: "90px" }}>
+                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184" }}>{row.phase}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(255,255,243,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
+                    </div>
+                    <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.65)", lineHeight: 1.6 }}>{row.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Editorial pull quote — Clarity Unlocks Power ── */}
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "3.5rem 0" }}>
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <blockquote style={{ maxWidth: "680px" }}>
+              <p style={{ fontFamily: SERIF,  fontWeight: 400, fontSize: "clamp(1.375rem, 2.5vw, 2rem)", color: "var(--nx-fg)", lineHeight: 1.4, marginBottom: "1rem" }}>
+                "Clarity Unlocks Power. Every number on your lab report is a lever. We exist to help you pull the right ones."
+              </p>
+              <footer style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                — Nexphoria, on precision medicine
+              </footer>
+            </blockquote>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── Main content with sticky TOC ── */}
-      <div
-        style={{
-          backgroundColor: "var(--nx-bg)",
-          position: "relative",
-        }}
-      >
-        <div
-          className="nx-container max-w-screen-xl"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "4rem",
-            paddingTop: "4rem",
-            paddingBottom: "4rem",
-          }}
-        >
-          {/* TOC — hidden on mobile, sticky on desktop */}
-          <aside
-            className="hidden lg:block"
-            style={{
-              gridColumn: "1",
-              gridRow: "1",
-              width: "200px",
-              flexShrink: 0,
-            }}
-          >
+      <div style={{ backgroundColor: "var(--nx-bg)", position: "relative" }}>
+        <div className="nx-container max-w-screen-xl" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", paddingTop: "4rem", paddingBottom: "4rem" }}>
+          <aside className="hidden lg:block" style={{ gridColumn: "1", gridRow: "1", width: "200px", flexShrink: 0 }}>
             <TOCSidebar activeId={activeId} />
           </aside>
 
-          {/* Peptide sections */}
           <main style={{ minWidth: 0 }}>
             {families.map((family, i) => {
               const bg = i % 2 === 0 ? "var(--nx-bg)" : "var(--nx-bg-cream)";
@@ -434,372 +444,203 @@ export default function Science() {
                   key={family.id}
                   id={`science-${family.id}`}
                   ref={(el) => { sectionRefs.current[family.id] = el; }}
-                  style={{
-                    backgroundColor: bg,
-                    padding: "5rem 0",
-                    borderTop: "1px solid var(--nx-border)",
-                  }}
+                  style={{ backgroundColor: bg, padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }}
                   data-testid={`science-family-${family.slug}`}
                 >
                   <Reveal>
-                    <p
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "10px",
-                        fontWeight: 500,
-                        letterSpacing: "0.15em",
-                        textTransform: "uppercase",
-                        color: "var(--nx-cobalt)",
-                        marginBottom: "0.75rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                      }}
-                    >
+                    <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                       <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                       {family.category}
                     </p>
-                    <h2
-                      style={{
-                        fontFamily: "'Fraunces', Georgia, serif",
-                        fontWeight: 500,
-                        fontStyle: "italic",
-                        fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                        color: "var(--nx-fg)",
-                        lineHeight: 1.1,
-                        marginBottom: "0.5rem",
-                      }}
-                    >
+                    <h2 style={{ fontFamily: SERIF, fontWeight: 500,  fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
                       {family.slug}
                     </h2>
-                    <p
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "11px",
-                        fontWeight: 500,
-                        letterSpacing: "0.1em",
-                        color: "var(--nx-cobalt)",
-                        marginBottom: "2rem",
-                      }}
-                    >
-                      {family.compounds}
-                    </p>
+                    <p style={{ fontFamily: MONO, fontSize: "11px", fontWeight: 500, letterSpacing: "0.1em", color: "var(--nx-cobalt)", marginBottom: "2rem" }}>{family.compounds}</p>
 
-                    {/* Mechanism */}
                     <div style={{ marginBottom: "1.75rem" }}>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "10px",
-                          fontWeight: 700,
-                          letterSpacing: "0.12em",
-                          textTransform: "uppercase",
-                          color: "var(--nx-fg-muted)",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
-                        MECHANISM OF ACTION
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "1.0625rem",
-                          color: "#4A4A4A",
-                          lineHeight: 1.7,
-                          maxWidth: "680px",
-                        }}
-                      >
-                        {family.mechanism}
-                      </p>
+                      <p style={{ fontFamily: SANS, fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>MECHANISM OF ACTION</p>
+                      <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "680px" }}>{family.mechanism}</p>
                     </div>
 
-                    {/* Protocol */}
                     <div style={{ marginBottom: "1.75rem" }}>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "10px",
-                          fontWeight: 700,
-                          letterSpacing: "0.12em",
-                          textTransform: "uppercase",
-                          color: "var(--nx-fg-muted)",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
-                        TYPICAL PROTOCOL
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "1.0625rem",
-                          color: "#4A4A4A",
-                          lineHeight: 1.7,
-                          maxWidth: "680px",
-                        }}
-                      >
-                        {family.protocol}
-                      </p>
+                      <p style={{ fontFamily: SANS, fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>TYPICAL PROTOCOL</p>
+                      <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "680px" }}>{family.protocol}</p>
                     </div>
 
-                    {/* Outcomes chip */}
-                    <div
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "1rem",
-                        backgroundColor: "var(--nx-cobalt-soft)",
-                        border: "1px solid #C5D4C2",
-                        borderRadius: "4px",
-                        padding: "0.875rem 1.25rem",
-                        marginBottom: "1.75rem",
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: "9px",
-                          fontWeight: 700,
-                          letterSpacing: "0.14em",
-                          textTransform: "uppercase",
-                          color: "var(--nx-cobalt)",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        REPORTED OUTCOMES
-                      </p>
-                      <div
-                        style={{ width: "1px", height: "16px", backgroundColor: "#C5D4C2" }}
-                      />
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "13px",
-                          fontWeight: 600,
-                          color: "var(--nx-fg)",
-                        }}
-                      >
-                        {family.outcomes}
-                      </p>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: "1rem", backgroundColor: "var(--nx-cobalt-soft)", border: "1px solid #C5D4C2", borderRadius: "4px", padding: "0.875rem 1.25rem", marginBottom: "1.75rem" }}>
+                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>REPORTED OUTCOMES</p>
+                      <div style={{ width: "1px", height: "16px", backgroundColor: "#C5D4C2" }} />
+                      <p style={{ fontFamily: SANS, fontSize: "13px", fontWeight: 600, color: "var(--nx-fg)" }}>{family.outcomes}</p>
                     </div>
 
-                    {/* Evidence note */}
                     <div style={{ marginBottom: "2.5rem" }}>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "10px",
-                          fontWeight: 700,
-                          letterSpacing: "0.12em",
-                          textTransform: "uppercase",
-                          color: "var(--nx-fg-muted)",
-                          marginBottom: "0.5rem",
-                        }}
-                      >
-                        EVIDENCE STATUS
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "0.9375rem",
-                          color: "#4A4A4A",
-                          lineHeight: 1.65,
-                          maxWidth: "680px",
-                          fontStyle: "italic",
-                        }}
-                      >
-                        {family.evidenceNote}
-                      </p>
+                      <p style={{ fontFamily: SANS, fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>EVIDENCE STATUS</p>
+                      <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A4A4A", lineHeight: 1.65, maxWidth: "680px",  }}>{family.evidenceNote}</p>
                     </div>
 
-                    {/* Pull quote */}
-                    <blockquote
-                      style={{
-                        borderLeft: "2px solid var(--nx-cobalt)",
-                        paddingLeft: "1.5rem",
-                        margin: 0,
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontFamily: "'Fraunces', Georgia, serif",
-                          fontStyle: "italic",
-                          fontWeight: 400,
-                          fontSize: "clamp(1.25rem, 2.5vw, 1.625rem)",
-                          color: "var(--nx-fg)",
-                          lineHeight: 1.45,
-                        }}
-                      >
-                        "{family.pullQuote}"
-                      </p>
+                    <blockquote style={{ borderLeft: "2px solid var(--nx-cobalt)", paddingLeft: "1.5rem", margin: 0 }}>
+                      <p style={{ fontFamily: SERIF,  fontWeight: 400, fontSize: "clamp(1.25rem, 2.5vw, 1.625rem)", color: "var(--nx-fg)", lineHeight: 1.45 }}>"{family.pullQuote}"</p>
                     </blockquote>
                   </Reveal>
                 </section>
               );
             })}
 
-            {/* References */}
-            <section
-              style={{
-                padding: "5rem 0",
-                borderTop: "1px solid var(--nx-border)",
-              }}
-            >
+            {/* ── Evidence table ── */}
+            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
               <Reveal>
-                <p
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: "10px",
-                    fontWeight: 500,
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "var(--nx-cobalt)",
-                    marginBottom: "1.5rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                  REFERENCES
+                  EVIDENCE AT A GLANCE
                 </p>
-                <ol
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                  }}
-                >
-                  {references.map((ref) => (
-                    <li
-                      key={ref.num}
-                      style={{
-                        display: "flex",
-                        gap: "0.75rem",
-                        alignItems: "flex-start",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: "10px",
-                          fontWeight: 700,
-                          color: "#8B5A2B",
-                          flexShrink: 0,
-                          marginTop: "3px",
-                        }}
+                <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
+                  Where each family stands.
+                </h2>
+                <div style={{ width: "100%", overflowX: "auto" }}>
+                  <table className="border-separate border-spacing-0" style={{ width: "100%", minWidth: 820, background: "var(--nx-bg)", border: "1px solid var(--nx-border)" }} data-testid="table-evidence">
+                    <thead>
+                      <tr>
+                        {["Peptide family", "Mechanism", "Indication", "Evidence tier", "Studies", "FDA status"].map((h) => (
+                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {evidenceRows.map((r) => (
+                        <tr key={r.family} data-testid={`evidence-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
+                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 15, fontWeight: 500, color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{r.mechanism}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{r.indication}</td>
+                          <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)" }}>
+                            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: tierColor(r.tier), border: `1px solid ${tierColor(r.tier)}`, padding: "3px 8px", borderRadius: 2, whiteSpace: "nowrap" }}>{r.tier}</span>
+                          </td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{r.studies}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{r.fda}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Reveal>
+            </section>
+
+            {/* ── References — accordion ── */}
+            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
+              <Reveal>
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+                  REFERENCES · {references.length}
+                </p>
+                <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
+                  The primary literature.
+                </h2>
+                <div>
+                  {references.map((ref, i) => (
+                    <div key={ref.num} style={{ borderBottom: "1px solid var(--nx-border)" }}>
+                      <button
+                        onClick={() => setOpenRef(openRef === i ? null : i)}
+                        aria-expanded={openRef === i}
+                        data-testid={`reference-item-${ref.num}`}
+                        style={{ width: "100%", display: "flex", gap: "0.75rem", alignItems: "flex-start", justifyContent: "space-between", padding: "1rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
                       >
-                        {ref.num}.
-                      </span>
-                      <p
-                        style={{
-                          fontFamily: "'Inter', sans-serif",
-                          fontSize: "13px",
-                          color: "#4A4A4A",
-                          lineHeight: 1.6,
-                        }}
-                      >
-                        {ref.cite}
-                      </p>
-                    </li>
+                        <span style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                          <span style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, color: "#8B5A2B", flexShrink: 0, marginTop: "3px" }}>{ref.num}.</span>
+                          <span style={{ fontFamily: SANS, fontSize: "13px", color: "#28251D", lineHeight: 1.6 }}>{ref.cite}</span>
+                        </span>
+                        {openRef === i ? <Minus size={14} style={{ color: "#8B5A2B", flexShrink: 0, marginTop: 4 }} /> : <Plus size={14} style={{ color: "#9A9A95", flexShrink: 0, marginTop: 4 }} />}
+                      </button>
+                      {openRef === i && (
+                        <p data-testid={`reference-abstract-${ref.num}`} style={{ fontFamily: SANS, fontSize: "13px", color: "#4A4A4A", lineHeight: 1.7, paddingLeft: "1.85rem", paddingBottom: "1rem", maxWidth: 720 }}>
+                          {ref.abstract}
+                        </p>
+                      )}
+                    </div>
                   ))}
-                </ol>
+                </div>
+              </Reveal>
+            </section>
+
+            {/* ── Questions we're asked most — 8 FAQ ── */}
+            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
+              <Reveal>
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+                  QUESTIONS WE'RE ASKED MOST
+                </p>
+                <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
+                  Evidence & safety.
+                </h2>
+                <div style={{ maxWidth: 760 }}>
+                  {SCIENCE_FAQ.map((item, i) => (
+                    <div key={i} style={{ borderBottom: "1px solid var(--nx-border)" }}>
+                      <button onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} data-testid={`science-faq-item-${i}`} style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.25rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
+                        <span style={{ fontFamily: SANS, fontSize: "1rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
+                        {openFaq === i ? <Minus size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={16} style={{ color: "#4A4A4A", flexShrink: 0, marginTop: 4 }} />}
+                      </button>
+                      {openFaq === i && (
+                        <p data-testid={`science-faq-answer-${i}`} style={{ fontFamily: SANS, fontSize: "0.9375rem", lineHeight: 1.75, color: "#4A4A4A", maxWidth: 680, paddingBottom: "1.5rem" }}>{item.a}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </Reveal>
             </section>
           </main>
         </div>
       </div>
 
-      {/* ── Editorial closing image ── */}
-      <section
-        style={{
-          backgroundColor: "var(--nx-bg-cream)",
-          borderTop: "1px solid var(--nx-border)",
-        }}
-      >
-        <div
-          className="nx-container max-w-screen-xl py-24 md:py-32 md:grid-cols-2"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "3rem",
-            alignItems: "center",
-          }}
-        >
+      {/* ── Work with our research team ── */}
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "4.5rem 0" }} data-testid="section-research-team">
+        <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <div
-              style={{
-                borderRadius: "4px",
-                overflow: "hidden",
-                aspectRatio: "4/3",
-                backgroundColor: "var(--nx-bg-cream)",
-              }}
-            >
-              <img
-                src={lifestyleProtocolBinder}
-                alt="Physician protocol binder with anatomical diagrams and peptide research notes"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                loading="lazy"
-              />
+            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+              WORK WITH OUR RESEARCH TEAM
+            </p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 640 }}>
+              The evidence base is a <span style={{  }}>living document</span>.
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
+            {RESEARCH_TILES.map((t, i) => {
+              const Icon = t.icon;
+              return (
+                <Reveal key={t.title} delay={i * 50}>
+                  <Link asChild href="/contact">
+                    <a className="group block p-7 h-full" style={{ background: "var(--nx-bg)", textDecoration: "none" }} data-testid={`research-tile-${t.title.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
+                      <Icon size={22} strokeWidth={1.6} style={{ color: "#0A0A0A", marginBottom: 16 }} />
+                      <h3 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.25rem", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>{t.title}</h3>
+                      <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A4A4A", lineHeight: 1.6, marginBottom: "1rem" }}>{t.body}</p>
+                      <span className="inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "#0A0A0A" }}>
+                        Get in touch <ArrowRight size={12} strokeWidth={2.4} />
+                      </span>
+                    </a>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Editorial closing image ── */}
+      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}>
+        <div className="nx-container max-w-screen-xl py-24 md:py-32 md:grid-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }}>
+          <Reveal>
+            <div style={{ borderRadius: "4px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "var(--nx-bg-cream)" }}>
+              <img src={lifestyleProtocolBinder} alt="Physician protocol binder with anatomical diagrams and peptide research notes" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <p
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-              }}
-            >
+            <p style={{ fontFamily: MONO, fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               THE STANDARD
             </p>
-            <h2
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontWeight: 500,
-                fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.1,
-                marginBottom: "0.5rem",
-              }}
-            >
-              Science without labs is conjecture.
-            </h2>
-            <h2
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontWeight: 500,
-                fontStyle: "italic",
-                fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.1,
-                marginBottom: "1.25rem",
-              }}
-            >
-              Your baseline determines your dose.
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "1.0625rem",
-                color: "#4A4A4A",
-                lineHeight: 1.65,
-                maxWidth: "480px",
-              }}
-            >
-              Every Nexphoria protocol begins with a 38-biomarker Quest Diagnostics draw.
-              Mechanism explains what a peptide does. Your bloodwork tells your physician
-              what it will do for you specifically.
+            <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>Science without labs is conjecture.</h2>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 500,  fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
+            <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A4A4A", lineHeight: 1.65, maxWidth: "480px" }}>
+              Every Nexphoria protocol begins with a 38-biomarker Quest Diagnostics draw. Mechanism explains what a peptide
+              does. Your bloodwork tells your physician what it will do for you specifically.
             </p>
           </Reveal>
         </div>

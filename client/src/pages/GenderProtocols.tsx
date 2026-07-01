@@ -168,18 +168,18 @@ export default function GenderProtocols({ gender }: GenderProtocolsProps) {
                   data-testid={`protocol-card-${protocol.slug}`}
                 >
                   <div>
-                    <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
                       {protocol.peptides}
                     </p>
-                    <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontSize: "1.5rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "4px" }}>
+                    <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1.5rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "4px" }}>
                       {protocol.name}
                     </h2>
-                    <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontSize: "1rem", color: "var(--nx-fg-graphite)" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontSize: "1rem", color: "var(--nx-fg-graphite)" }}>
                       {protocol.tagline}
                     </p>
                   </div>
 
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                     {protocol.goal}
                   </p>
 
@@ -188,7 +188,7 @@ export default function GenderProtocols({ gender }: GenderProtocolsProps) {
                     {protocol.kpis.map((kpi) => (
                       <div key={kpi} className="flex items-center gap-2">
                         <div className="w-1 h-1 rounded-full flex-shrink-0" style={{ backgroundColor: "var(--nx-cobalt)" }} />
-                        <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-graphite)" }}>
+                        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-graphite)" }}>
                           {kpi}
                         </p>
                       </div>
@@ -196,7 +196,7 @@ export default function GenderProtocols({ gender }: GenderProtocolsProps) {
                   </div>
 
                   <div className="mt-auto pt-4 flex items-center justify-between border-t" style={{ borderColor: "var(--nx-border)" }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", fontWeight: 700, color: "var(--nx-fg)" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "16px", fontWeight: 700, color: "var(--nx-fg)" }}>
                       {protocol.price}
                     </p>
                     <StartIntakeButton productSlug={protocol.slug} source={`${gender}-protocols`} size="sm">

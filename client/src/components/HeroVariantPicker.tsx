@@ -8,7 +8,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
  * Tagline is LOCKED site-wide: "Science you can feel. Results you can measure."
  * One display treatment (Roc Grotesk) with a single acid-green accent on
  * "feel" — the hero's one focal point. The page's single Instrument Serif
- * italic moment lives in the Find Your Focus section. No A/B machinery in the
+ * moment lives in the Find Your Focus section. No A/B machinery in the
  * public path — one clean, intentional hero.
  *
  * (Export name kept as `HeroVariantPicker` so callers don't change.)

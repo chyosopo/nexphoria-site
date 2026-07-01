@@ -28,6 +28,17 @@ export interface PeptideTimelineEntry {
   effect: string;
 }
 
+export interface PeptideEvidenceTier {
+  /** Letter grade — A / A- / B+ / B / B- / C+ / C / Preclinical */
+  grade: string;
+  /** One-line description of the evidence base (e.g. "FDA-approved · Phase 3 RCTs"). */
+  description: string;
+  /** Approximate count of citable human/preclinical studies backing the tier. */
+  studyCount: number;
+  /** US regulatory status — shown as a callout when it materially affects patient decision-making. */
+  fdaStatus?: string;
+}
+
 export interface Peptide {
   slug: string;
   name: string;
@@ -54,6 +65,10 @@ export interface Peptide {
   studies: PeptideStudy[];
   pairsWith: string[]; // slugs
   inStacks: string[]; // protocol slugs: "wolverine" | "glow"
+  /** Optional per-peptide evidence tier. When omitted, PDP falls back to category-derived tier. */
+  evidenceTier?: PeptideEvidenceTier;
+  /** Optional per-peptide contraindications strip. When omitted, PDP falls back to category-generic copy. */
+  contraindications?: string;
 }
 
 export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
@@ -95,6 +110,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["tb-500", "ghk-cu"],
     inStacks: ["wolverine"],
+    evidenceTier: {
+      grade: "Preclinical",
+      description: "Rodent tendon, ligament, and gut-lining models · limited human data",
+      studyCount: 40,
+      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · personal or family history of cancer · active malignancy · pro-angiogenic risk (untreated retinopathy, recent DVT) · competitive athletes under WADA testing · <18 yrs",
   },
   {
     slug: "tb-500",
@@ -182,6 +205,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["selank"],
     inStacks: [],
+    evidenceTier: {
+      grade: "B-",
+      description: "Human clinical use in Russia · no US Phase 2/3 trials",
+      studyCount: 14,
+      fdaStatus: "Not FDA-approved · registered as a drug in Russia (Peptogen) · compounded in US by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · recent sinus or trans-sphenoidal surgery · active rhinosinusitis or nasal polyps · known or suspected CSF leak · severe uncontrolled hypertension · <18 yrs",
   },
   {
     slug: "selank",
@@ -240,6 +271,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["ipamorelin", "cjc-1295"],
     inStacks: ["lean"],
+    evidenceTier: {
+      grade: "A",
+      description: "FDA-approved (Egrifta / Egrifta SV) · NEJM Phase 3 RCTs",
+      studyCount: 22,
+      fdaStatus: "FDA-approved for HIV-associated lipodystrophy · prescribed off-label for adult GH-axis support",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · mannitol or tesamorelin hypersensitivity · hypothalamic-pituitary axis disruption (hypophysectomy, hypopituitarism, pituitary tumor, head trauma) · active malignancy · use with caution in diabetic retinopathy · <18 yrs",
   },
   {
     slug: "ipamorelin",

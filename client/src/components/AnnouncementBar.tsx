@@ -18,9 +18,9 @@ interface AnnouncementBarProps {
 }
 
 export function AnnouncementBar({
-  message = "50% off your first month on the 12-month plan · for new members",
-  tag = "Limited",
-  ctaLabel = "Take the intake",
+  message = "Free physician consult on your first protocol \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
+  tag = "Pharmacy",
+  ctaLabel = "Start intake",
   ctaHref = "/assessment",
 }: AnnouncementBarProps) {
   const [dismissed, setDismissed] = useState(false);
@@ -42,10 +42,11 @@ export function AnnouncementBar({
         <span
           className="hidden sm:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-[0.22em]"
           style={{
-            fontFamily: "'DM Mono', monospace",
-            color: "#FAF7F0",
-            background: "#8B5A2B",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            color: "#0A0A0A",
+            background: "#c6f184",
             letterSpacing: "0.22em",
+            fontWeight: 600,
           }}
         >
           {tag}
@@ -53,7 +54,7 @@ export function AnnouncementBar({
         <span
           className="flex-1 text-[11px] sm:text-[12px] leading-tight"
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             color: "#FAF7F0",
             fontWeight: 400,
           }}
@@ -64,7 +65,7 @@ export function AnnouncementBar({
           href={`#${ctaHref}`}
           className="hidden sm:inline text-[10px] uppercase tracking-[0.18em] hover:opacity-80 transition-opacity"
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             color: "#FAF7F0",
             borderBottom: "1px solid rgba(250,247,240,0.4)",
             paddingBottom: 1,

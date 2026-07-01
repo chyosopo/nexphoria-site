@@ -1,4 +1,5 @@
 import { SiteLayout } from "@/components/SiteLayout";
+import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
@@ -6,6 +7,24 @@ import { useSeo } from "@/lib/seo";
 import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
 import lifestyleLabVials from "@/assets/brand/lifestyle-lab-vials.webp";
 import lifestyleBloodworkDashboard from "@/assets/brand/lifestyle-bloodwork-dashboard-mood.webp";
+import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
+import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
+import { Link } from "wouter";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ColoredHeroTile, TileGlyphs, MxHeader } from "@/components/MaximusTile";
+import { PillBadge } from "@/components/PillBadge";
+
+type PanelTone = { bg: string; accent: string; ring: string };
+const PANEL_TONES: Record<string, PanelTone> = {
+  Hormones:       { bg: "#F2DDD0", accent: "#8E4A26", ring: "#D8B69A" }, // rose/terracotta
+  Metabolic:      { bg: "#D6E2E8", accent: "#2D5663", ring: "#A8BFCB" }, // sky
+  Inflammation:   { bg: "#F0D4C8", accent: "#A23E1F", ring: "#D8AC97" }, // terra
+  Nutrients:      { bg: "#E2E6C8", accent: "#566526", ring: "#BDC498" }, // sage
+  Cardiovascular: { bg: "#DCD0C0", accent: "#5E4421", ring: "#BFAB8C" }, // sand
+  Thyroid:        { bg: "#E6DFC1", accent: "#615620", ring: "#C1B68C" }, // butter
+  "Kidney & Liver": { bg: "#CFDFD8", accent: "#2D5046", ring: "#9DB8AB" }, // cobalt-soft
+  "Blood Count":  { bg: "#E2D2C2", accent: "#6A3A22", ring: "#C1A286" }, // clay
+};
 
 const panels = [
   { name: "Hormones", markers: 11, examples: ["Testosterone (total + free)", "Estradiol", "LH, FSH", "DHEA-S", "Progesterone", "Cortisol", "Prolactin", "SHBG", "IGF-1", "GH", "TSH"] },
@@ -77,180 +96,44 @@ export default function LabTesting() {
     path: "/lab-testing",
   });
   return (
-    <SiteLayout navVariant="gate">
-      {/* ── Hero ── */}
-      <section
-        className="py-32 md:py-40"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "3rem",
-              alignItems: "center",
-            }}
-            className="md:grid-cols-2"
-          >
-            <Reveal>
-              <p
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "11px",
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "var(--nx-cobalt)",
-                  marginBottom: "1.25rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                LAB TESTING
-              </p>
-              <h1
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(3rem, 6vw, 5rem)",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.05,
-                  marginBottom: "0.5rem",
-                }}
-              >
-                No prescription without bloodwork.
-              </h1>
-              <p
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontWeight: 500,
-                  fontStyle: "italic",
-                  fontSize: "clamp(3rem, 6vw, 5rem)",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.05,
-                  marginBottom: "1.5rem",
-                }}
-              >
-                No exceptions.
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "clamp(1rem, 2vw, 1.0625rem)",
-                  color: "#4A4A4A",
-                  lineHeight: 1.65,
-                  maxWidth: "560px",
-                  marginBottom: "2.5rem",
-                }}
-              >
-                A physician cannot calibrate a peptide protocol without knowing your baseline.
-                Every Nexphoria protocol requires a 38-biomarker panel drawn through Quest
-                Diagnostics before a prescription is written. Labs are included with every
-                active protocol at no additional charge.
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontSize: "2.75rem",
-                      fontWeight: 500,
-                      color: "var(--nx-fg)",
-                      lineHeight: 1,
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    38
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: "9px",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "var(--nx-fg-muted)",
-                    }}
-                  >
-                    BIOMARKERS
-                  </p>
-                </div>
-                <div style={{ width: "1px", height: "48px", backgroundColor: "var(--nx-border)" }} />
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontSize: "2.75rem",
-                      fontWeight: 500,
-                      color: "var(--nx-cobalt)",
-                      lineHeight: 1,
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    Included
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: "9px",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "var(--nx-fg-muted)",
-                    }}
-                  >
-                    WITH PROTOCOL
-                  </p>
-                </div>
-                <div style={{ width: "1px", height: "48px", backgroundColor: "var(--nx-border)" }} />
-                <div>
-                  <p
-                    style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontSize: "2.75rem",
-                      fontWeight: 500,
-                      color: "var(--nx-fg)",
-                      lineHeight: 1,
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    2,500+
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: "9px",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "var(--nx-fg-muted)",
-                    }}
-                  >
-                    QUEST LOCATIONS
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <div
-                style={{
-                  borderRadius: "4px",
-                  overflow: "hidden",
-                  aspectRatio: "4/3",
-                  backgroundColor: "var(--nx-bg-cream)",
-                }}
-              >
-                <img
-                  src={lifestyleLabVials}
-                  alt="Blood draw collection tubes arranged top-down for clinical panel review"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  loading="eager"
-                />
-              </div>
-            </Reveal>
+    <SiteLayout navVariant="showcase">
+      <BloodworkManifesto />
+      <BloodworkPillars />
+      <BloodworkPricing />
+      <BloodworkInsurance />
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            badge={<PillBadge tone="acid">Bloodwork &amp; biomarkers</PillBadge>}
+            headline={
+              <>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Test</span> before.<br />
+                <span>Verify</span> after.
+              </>
+            }
+            subtitle="Comprehensive panels before your protocol begins and after it ends. We track 50+ biomarkers so dose decisions stay data-driven."
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href="/lab-testing"
+              tone="sky"
+              glyph={TileGlyphs.vial}
+              label={<>Pre-protocol<br /><span>baseline panel</span></>}
+              caption="50+ biomarkers tracked"
+              ctaLabel="See panels"
+            />
+            <ColoredHeroTile
+              href="/lab-testing"
+              tone="sage"
+              glyph={TileGlyphs.circle}
+              label={<>Post-protocol<br /><span>verification</span></>}
+              caption="Did it actually work?"
+              ctaLabel="View results"
+            />
           </div>
         </div>
-      </section>
+      </main>
 
       {/* ── Quest Diagnostics partnership ── */}
       <section
@@ -270,7 +153,7 @@ export default function LabTesting() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -283,9 +166,9 @@ export default function LabTesting() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
-                    fontStyle: "italic",
+                    
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.2,
@@ -296,7 +179,7 @@ export default function LabTesting() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -310,7 +193,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -323,7 +206,7 @@ export default function LabTesting() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -336,9 +219,9 @@ export default function LabTesting() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
-                    fontStyle: "italic",
+                    
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.2,
@@ -349,7 +232,7 @@ export default function LabTesting() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -363,7 +246,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -415,7 +298,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -432,7 +315,7 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -444,9 +327,9 @@ export default function LabTesting() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontStyle: "italic",
+                
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -466,14 +349,32 @@ export default function LabTesting() {
               border: "1.5px solid var(--nx-border)",
             }}
           >
-            {panels.map((panel) => (
+            {panels.map((panel) => {
+              const tone = PANEL_TONES[panel.name] ?? { bg: "var(--nx-bg-cream)", accent: "var(--nx-cobalt)", ring: "var(--nx-cobalt-soft)" };
+              return (
               <div
                 key={panel.name}
                 style={{
-                  backgroundColor: "var(--nx-bg-cream)",
+                  backgroundColor: tone.bg,
                   padding: "1.75rem",
+                  position: "relative",
+                  overflow: "hidden",
                 }}
               >
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    right: -40,
+                    top: -40,
+                    width: 120,
+                    height: 120,
+                    borderRadius: "50%",
+                    border: `1.5px solid ${tone.ring}`,
+                    opacity: 0.7,
+                    pointerEvents: "none",
+                  }}
+                />
                 <div
                   style={{
                     display: "flex",
@@ -484,7 +385,7 @@ export default function LabTesting() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 500,
                       fontSize: "1.125rem",
                       color: "var(--nx-fg)",
@@ -495,15 +396,17 @@ export default function LabTesting() {
                   </p>
                   <span
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "10px",
                       fontWeight: 700,
-                      color: "var(--nx-cobalt)",
-                      backgroundColor: "var(--nx-cobalt-soft)",
+                      color: tone.accent,
+                      backgroundColor: "rgba(255,255,255,0.75)",
+                      border: `1px solid ${tone.ring}`,
                       padding: "2px 8px",
                       borderRadius: "100px",
                       flexShrink: 0,
                       marginLeft: "0.5rem",
+                      position: "relative",
                     }}
                   >
                     {panel.markers}
@@ -523,7 +426,7 @@ export default function LabTesting() {
                     <li
                       key={ex}
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "12px",
                         color: "#4A4A4A",
                         lineHeight: 1.5,
@@ -547,7 +450,7 @@ export default function LabTesting() {
                   {panel.examples.length > 5 && (
                     <li
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "11px",
                         color: "var(--nx-fg-muted)",
                         marginTop: "0.25rem",
@@ -558,7 +461,8 @@ export default function LabTesting() {
                   )}
                 </ul>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -572,7 +476,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -589,9 +493,9 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontStyle: "italic",
+                
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -621,9 +525,9 @@ export default function LabTesting() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 500,
-                      fontStyle: "italic",
+                      
                       fontSize: "1.25rem",
                       color: "var(--nx-fg)",
                       lineHeight: 1.2,
@@ -634,7 +538,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -647,7 +551,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13.5px",
                       color: "#4A4A4A",
                       lineHeight: 1.65,
@@ -671,7 +575,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -688,9 +592,9 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontStyle: "italic",
+                
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -722,7 +626,7 @@ export default function LabTesting() {
               >
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.12em",
@@ -734,7 +638,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "15px",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
@@ -745,7 +649,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "13px",
                     color: "#4A4A4A",
                     lineHeight: 1.6,
@@ -768,7 +672,7 @@ export default function LabTesting() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -785,9 +689,9 @@ export default function LabTesting() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontStyle: "italic",
+                
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -798,7 +702,7 @@ export default function LabTesting() {
             </h2>
             <p
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1rem",
                 color: "#4A4A4A",
                 lineHeight: 1.6,
@@ -833,7 +737,7 @@ export default function LabTesting() {
               >
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
@@ -845,7 +749,7 @@ export default function LabTesting() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     color: "rgba(255,255,255,0.6)",
                   }}
@@ -868,7 +772,7 @@ export default function LabTesting() {
                   <p
                     key={h}
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -896,7 +800,7 @@ export default function LabTesting() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13px",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
@@ -906,7 +810,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
                       fontWeight: 600,
                       color: row.status === "normal" ? "var(--nx-fg)" : "#C2440E",
@@ -916,7 +820,7 @@ export default function LabTesting() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "11px",
                       color: "var(--nx-fg-muted)",
                     }}
@@ -925,7 +829,7 @@ export default function LabTesting() {
                   </p>
                   <span
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
@@ -946,11 +850,769 @@ export default function LabTesting() {
         </div>
       </section>
 
+      {/* ── Lab testing pricing ── */}
+      <section
+        className="py-16 md:py-20"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+            >
+              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+              LAB TESTING PRICING
+            </p>
+          </Reveal>
+
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", maxWidth: "760px" }}
+          >
+            {[
+              {
+                label: "Included with Protocol",
+                price: "$0",
+                note: "3-month and 12-month plans",
+                detail: "Quest Diagnostics 38-biomarker baseline panel and all 90-day retest panels included. No add-on fee.",
+              },
+              {
+                label: "Standalone Add-On",
+                price: "$199",
+                note: "Monthly plan members",
+                detail: "Full 38-biomarker Quest Diagnostics panel. Physician review of results within 24 hours of receipt. Available at any Quest patient service center.",
+              },
+              {
+                label: "Home Phlebotomy",
+                price: "$149",
+                note: "+ lab panel cost",
+                detail: "Certified phlebotomist dispatched to your home or office. Available in most major US metro areas. Kit shipped overnight.",
+              },
+            ].map(({ label, price, note, detail }) => (
+              <Reveal key={label}>
+                <div style={{ backgroundColor: "var(--nx-bg-cream)", padding: "2rem", height: "100%" }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2.25rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1, marginBottom: "0.25rem" }}>{price}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.65 }}>{detail}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <Reveal delay={80}>
+            <div className="mt-12">
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
+                Clarity Unlocks Power. Unleash the Extraordinary.
+              </p>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
+                Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your Quest Diagnostics requisition within 24 hours.
+              </p>
+              <StartIntakeButton source="labtesting-page" size="lg">
+                Start your assessment
+              </StartIntakeButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <FinalCTAStrip
         gender="women"
         title="Your panel is included with every protocol."
         sub="38 biomarkers. Quest Diagnostics. Physician-reviewed within 24 hours."
       />
     </SiteLayout>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   BLOODWORK PILLAR — Added as brand-level positioning
+   Placed above the existing page so the whole story opens with:
+   1. Manifesto  — "Bloodwork isn't a feature. It's the medicine."
+   2. Pillars    — 4 reasons peptides without bloodwork = malpractice
+   3. Pricing    — Free foundation + paid deep panel + membership
+   4. Insurance  — HSA/FSA + superbill path
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── 1 · MANIFESTO ────────────────────────────────────────────── */
+function BloodworkManifesto() {
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "var(--nx-black)", color: "var(--nx-ceramic)" }}
+    >
+      <div className="h-16 md:h-20" />
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pb-16 md:pb-24">
+        <div className="lg:col-span-7">
+          <div
+            className="inline-flex items-center gap-2 mb-8"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,243,0.55)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{
+                width: 8, height: 8, borderRadius: "50%",
+                background: "var(--nx-acid)", display: "inline-block",
+              }}
+            />
+            Nexphoria Bloodwork
+          </div>
+
+          <h1
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(48px, 7vw, 96px)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.035em",
+              color: "var(--nx-ceramic)",
+              margin: 0,
+            }}
+          >
+            Bloodwork isn't a feature.<br />
+            <span style={{ color: "var(--nx-acid)" }}>It&rsquo;s the medicine.</span>
+          </h1>
+
+          <p
+            className="mt-8"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "19px",
+              lineHeight: 1.55,
+              color: "rgba(255,255,243,0.75)",
+              maxWidth: "56ch",
+            }}
+          >
+            A peptide protocol without a full panel is a guess wearing a lab coat. Nexphoria
+            begins every treatment with a physician-ordered blood panel — up to 80 biomarkers,
+            drawn at any of 2,500+ Quest locations — and re-tests every 90 days so dose changes
+            follow data, not vibes.
+          </p>
+
+          <div className="mt-12 flex flex-wrap items-center gap-6">
+            <Link
+              href="#bloodwork-pricing"
+              className="inline-flex items-center gap-2"
+              style={{
+                background: "var(--nx-acid)",
+                color: "var(--nx-black)",
+                padding: "18px 30px",
+                borderRadius: "999px",
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600, fontSize: "16px",
+                letterSpacing: "-0.01em",
+              }}
+              data-testid="button-blood-pricing"
+            >
+              See panels &amp; pricing
+              <ArrowRight size={18} strokeWidth={2} />
+            </Link>
+
+            <Link
+              href="/assessment"
+              className="inline-flex items-center gap-2"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500, fontSize: "15px",
+                color: "var(--nx-ceramic)",
+                borderBottom: "1px solid rgba(255,255,243,0.35)",
+                paddingBottom: 2,
+              }}
+              data-testid="link-blood-assessment"
+            >
+              Start with the free foundation panel
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </Link>
+          </div>
+
+          <div
+            className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8"
+            style={{ borderTop: "1px solid rgba(255,255,243,0.12)", paddingTop: 28 }}
+          >
+            {[
+              { k: "80+", v: "Biomarkers" },
+              { k: "2,500+", v: "Quest locations" },
+              { k: "48h", v: "Physician review" },
+              { k: "90 days", v: "Re-test cadence" },
+            ].map((s) => (
+              <div key={s.k}>
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600, fontSize: "28px",
+                    letterSpacing: "-0.02em",
+                    color: "var(--nx-ceramic)",
+                    lineHeight: 1,
+                  }}
+                >
+                  {s.k}
+                </div>
+                <div
+                  className="mt-2"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 400, fontSize: "12px",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,243,0.55)",
+                  }}
+                >
+                  {s.v}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="lg:col-span-5 group">
+          <div
+            className="relative rounded-[16px] overflow-hidden"
+            style={{ aspectRatio: "4 / 5", background: "#141414" }}
+          >
+            <img
+              src={bloodworkHero}
+              alt="Sterile phlebotomy tray with vacutainer blood collection tubes in soft window light"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 2 · PILLARS · why peptides without bloodwork = malpractice ─ */
+function BloodworkPillars() {
+  const items = [
+    {
+      k: "01",
+      title: "Every peptide changes your labs.",
+      body: "Sermorelin and CJC-1295 raise IGF-1 — the same marker linked to cancer risk when elevated. GLP-1s alter lipids and thyroid markers. AOD-9604 shifts liver enzymes. Not measuring is not conservative — it&rsquo;s reckless.",
+    },
+    {
+      k: "02",
+      title: "Population &lsquo;normal&rsquo; is a lie.",
+      body: "A testosterone of 300 ng/dL is technically in-range and functionally low. Reference ranges are built from the general population — sedentary, aging, unwell. Nexphoria targets the top quartile of healthy peers, age-adjusted.",
+    },
+    {
+      k: "03",
+      title: "Dose without data is a wish.",
+      body: "If you don&rsquo;t know your baseline free-T, cortisol, SHBG, ApoB, hsCRP, ferritin and homocysteine, no honest physician can dose you. We refuse protocols that skip labs. So should every clinic.",
+    },
+    {
+      k: "04",
+      title: "Progress is a graph, not a feeling.",
+      body: "&lsquo;I feel better&rsquo; is not a data point. Re-testing at week 12 tells us whether IGF-1 climbed, ApoB stabilized, testosterone reached the top quartile, and whether cortisol crashed. That&rsquo;s medicine.",
+    },
+  ];
+
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ background: "var(--nx-ceramic)" }}
+    >
+      <div className="nx-container">
+        <div
+          className="inline-flex items-center gap-2 mb-8"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 500,
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--nx-fg-muted)",
+          }}
+        >
+          <span
+            aria-hidden
+            style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }}
+          />
+          Why it matters
+        </div>
+
+        <h2
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 600,
+            fontSize: "clamp(40px, 5vw, 64px)",
+            lineHeight: 1.02,
+            letterSpacing: "-0.03em",
+            color: "var(--nx-black)",
+            margin: 0,
+            maxWidth: "22ch",
+          }}
+        >
+          Four reasons every peptide protocol lives or dies on the panel.
+        </h2>
+
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14">
+          {items.map((it) => (
+            <div key={it.k}>
+              <div
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "14px",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-fg-muted)",
+                  marginBottom: 12,
+                }}
+              >
+                {it.k}
+              </div>
+              <h3
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(22px, 2.4vw, 28px)",
+                  lineHeight: 1.12,
+                  letterSpacing: "-0.02em",
+                  color: "var(--nx-black)",
+                  margin: 0,
+                }}
+                dangerouslySetInnerHTML={{ __html: it.title }}
+              />
+              <p
+                className="mt-4"
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  lineHeight: 1.6,
+                  color: "var(--nx-fg-graphite)",
+                  maxWidth: "44ch",
+                }}
+                dangerouslySetInnerHTML={{ __html: it.body }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 3 · PRICING · Free / Deep / Membership ───────────────────── */
+function BloodworkPricing() {
+  const tiers = [
+    {
+      badge: "Included",
+      name: "Foundation Panel",
+      price: "Free",
+      priceNote: "with any active protocol",
+      valueNote: "$300 retail value",
+      accent: false,
+      dark: false,
+      features: [
+        "40 core biomarkers",
+        "Hormones + metabolic + lipids + CBC",
+        "Physician review within 48 hours",
+        "Quest Diagnostics · walk-in draw",
+        "Re-tested every 90 days",
+        "Trend dashboard in your portal",
+      ],
+      cta: "Start assessment",
+      href: "/assessment",
+    },
+    {
+      badge: "Most complete",
+      name: "Deep Panel",
+      price: "$299",
+      priceNote: "per quarter",
+      valueNote: "or included in membership",
+      accent: true,
+      dark: true,
+      features: [
+        "80+ biomarkers — the full workup",
+        "ApoB, Lp(a), homocysteine, insulin, HOMA-IR",
+        "Thyroid full — TSH, fT3, fT4, rT3, TPO",
+        "Inflammatory — hsCRP, IL-6, ferritin, GGT",
+        "Longevity — IGF-1, DHEA-S, sex hormones binding globulin",
+        "30-minute 1-on-1 physician review call",
+      ],
+      cta: "Add Deep Panel",
+      href: "/assessment?panel=deep",
+    },
+    {
+      badge: "Recurring",
+      name: "Continuous Membership",
+      price: "$89",
+      priceNote: "per month",
+      valueNote: "billed annually · save $228 vs à la carte",
+      accent: false,
+      dark: false,
+      features: [
+        "Deep Panel every 90 days (4× / year)",
+        "Unlimited async physician messaging",
+        "Quarterly 30-min review calls",
+        "Personalized biomarker targets",
+        "Trend graphs across all 80+ markers",
+        "10% off all protocols and add-ons",
+      ],
+      cta: "Join membership",
+      href: "/assessment?plan=membership",
+    },
+  ];
+
+  return (
+    <section
+      id="bloodwork-pricing"
+      className="py-24 md:py-32 border-t"
+      style={{
+        background: "var(--nx-rock)",
+        borderColor: "rgba(10,10,10,0.08)",
+      }}
+    >
+      <div className="nx-container">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+          <div>
+            <div
+              className="inline-flex items-center gap-2 mb-6"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "13px",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--nx-fg-muted)",
+              }}
+            >
+              <span
+                aria-hidden
+                style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }}
+              />
+              Panels &amp; membership
+            </div>
+            <h2
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(40px, 5vw, 64px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.03em",
+                color: "var(--nx-black)",
+                margin: 0,
+                maxWidth: "22ch",
+              }}
+            >
+              Start free. Go deep when you&rsquo;re ready.
+            </h2>
+          </div>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "16px",
+              lineHeight: 1.6,
+              color: "var(--nx-fg-graphite)",
+              maxWidth: "34ch",
+            }}
+          >
+            The Foundation Panel is included with every protocol. Upgrade to Deep or Membership for
+            longevity-grade biomarker coverage. All tiers are HSA/FSA eligible.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {tiers.map((t) => (
+            <div
+              key={t.name}
+              className="relative flex flex-col"
+              style={{
+                background: t.dark ? "var(--nx-black)" : "var(--nx-ceramic)",
+                color: t.dark ? "var(--nx-ceramic)" : "var(--nx-black)",
+                borderRadius: 20,
+                padding: "36px 32px",
+                border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(10,10,10,0.08)",
+                boxShadow: t.accent ? "0 30px 60px -20px rgba(198,241,132,0.35)" : "none",
+              }}
+            >
+              {t.badge && (
+                <div
+                  className="absolute"
+                  style={{
+                    top: -12, left: 24,
+                    background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-black)"),
+                    color: t.accent ? "var(--nx-black)" : (t.dark ? "var(--nx-black)" : "var(--nx-ceramic)"),
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600, fontSize: "11px",
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    padding: "6px 12px",
+                    borderRadius: 999,
+                  }}
+                >
+                  {t.badge}
+                </div>
+              )}
+
+              <div>
+                <h3
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "22px",
+                    letterSpacing: "-0.02em",
+                    margin: 0,
+                    color: "inherit",
+                  }}
+                >
+                  {t.name}
+                </h3>
+                <div
+                  className="mt-6"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "56px",
+                    letterSpacing: "-0.035em",
+                    lineHeight: 0.95,
+                    color: "inherit",
+                  }}
+                >
+                  {t.price}
+                </div>
+                <div
+                  className="mt-1"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "14px",
+                    color: t.dark ? "rgba(255,255,243,0.55)" : "var(--nx-fg-muted)",
+                  }}
+                >
+                  {t.priceNote}
+                </div>
+                <div
+                  className="mt-1"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "12px",
+                    letterSpacing: "0.04em",
+                    color: t.accent ? "var(--nx-acid)" : (t.dark ? "rgba(255,255,243,0.55)" : "var(--nx-fg-muted)"),
+                  }}
+                >
+                  {t.valueNote}
+                </div>
+              </div>
+
+              <ul className="mt-8 space-y-3 flex-1">
+                {t.features.map((f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-3"
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "14px",
+                      lineHeight: 1.5,
+                      color: t.dark ? "rgba(255,255,243,0.85)" : "var(--nx-fg-graphite)",
+                    }}
+                  >
+                    <Check
+                      size={16}
+                      strokeWidth={2.5}
+                      style={{
+                        flexShrink: 0,
+                        marginTop: 2,
+                        color: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-acid)" : "var(--nx-black)"),
+                      }}
+                    />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-10">
+                <Link
+                  href={t.href}
+                  className="inline-flex items-center justify-center gap-2 w-full"
+                  style={{
+                    background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-black)"),
+                    color: t.accent ? "var(--nx-black)" : (t.dark ? "var(--nx-black)" : "var(--nx-ceramic)"),
+                    padding: "16px 24px",
+                    borderRadius: 999,
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "15px",
+                    letterSpacing: "-0.01em",
+                  }}
+                  data-testid={`button-tier-${t.name.replace(/\s+/g, "-").toLowerCase()}`}
+                >
+                  {t.cta}
+                  <ArrowRight size={16} strokeWidth={2} />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p
+          className="mt-10 text-center"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontSize: "13px",
+            color: "var(--nx-fg-muted)",
+            letterSpacing: "0.02em",
+          }}
+        >
+          All panels are physician-ordered. All results are reviewed by a board-certified MD before release.
+          Add-on panels available: Advanced Longevity ($149), Female Hormone Cycle ($99), Nutrient &amp; Toxin ($129).
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ── 4 · INSURANCE · HSA/FSA + superbill ─────────────────────── */
+function BloodworkInsurance() {
+  return (
+    <section
+      className="py-24 md:py-32 border-t"
+      style={{ background: "var(--nx-ceramic)", borderColor: "rgba(10,10,10,0.08)" }}
+    >
+      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="lg:col-span-6 group order-2 lg:order-1">
+          <div
+            className="relative rounded-[16px] overflow-hidden"
+            style={{ aspectRatio: "4 / 3", background: "var(--nx-rock)" }}
+          >
+            <img
+              src={bloodworkReport}
+              alt="A printed bloodwork report on a physician's desk with hand-annotated notes and a prescription vial"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div className="lg:col-span-6 order-1 lg:order-2">
+          <div
+            className="inline-flex items-center gap-2 mb-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "13px",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+            }}
+          >
+            <span
+              aria-hidden
+              style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }}
+            />
+            HSA · FSA · Insurance
+          </div>
+
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(36px, 4.6vw, 56px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.03em",
+              color: "var(--nx-black)",
+              margin: 0,
+            }}
+          >
+            Use your HSA. Submit for reimbursement.
+          </h2>
+
+          <p
+            className="mt-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "17px",
+              lineHeight: 1.6,
+              color: "var(--nx-fg-graphite)",
+              maxWidth: "44ch",
+            }}
+          >
+            Every Nexphoria panel is physician-ordered under a valid diagnostic code, which means
+            it qualifies for HSA and FSA spending. For patients with insurance, we provide an
+            itemized superbill you can submit to your carrier for out-of-network reimbursement.
+          </p>
+
+          <div className="mt-10 space-y-5">
+            {[
+              {
+                title: "HSA / FSA eligible on every panel",
+                body: "Pay directly with your HSA/FSA debit card at checkout, or reimburse yourself after the fact with your itemized receipt.",
+              },
+              {
+                title: "Letter of Medical Necessity included",
+                body: "For FSA reimbursement or IRS documentation, your physician provides an LMN referencing your diagnosis, prescribed protocol, and clinical rationale.",
+              },
+              {
+                title: "Superbill for insurance submission",
+                body: "Downloadable, CPT/ICD-10 coded superbill for the physician consult and lab panel. Submit to your carrier for out-of-network reimbursement — many members recover 40–80%.",
+              },
+              {
+                title: "Employer wellness reimbursement",
+                body: "If your employer offers a wellness stipend, our panels typically qualify. We provide the documentation. You submit — most see it back within 30 days.",
+              },
+            ].map((row) => (
+              <div key={row.title} className="flex items-start gap-4">
+                <Check size={20} strokeWidth={2.5} style={{ flexShrink: 0, marginTop: 2, color: "var(--nx-black)" }} />
+                <div>
+                  <div
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "16px",
+                      letterSpacing: "-0.01em",
+                      color: "var(--nx-black)",
+                    }}
+                  >
+                    {row.title}
+                  </div>
+                  <div
+                    className="mt-1"
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 400,
+                      fontSize: "14px",
+                      lineHeight: 1.55,
+                      color: "var(--nx-fg-graphite)",
+                    }}
+                  >
+                    {row.body}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p
+            className="mt-10"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "12px",
+              lineHeight: 1.55,
+              color: "var(--nx-fg-muted)",
+              maxWidth: "50ch",
+            }}
+          >
+            Reimbursement is subject to your specific HSA/FSA plan rules and insurance carrier
+            policy. Nexphoria does not bill insurance directly and cannot guarantee reimbursement.
+            We provide the documentation you need to submit.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

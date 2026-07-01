@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { physicians } from "@/data/physicians";
+import { physicians, type Physician } from "@/data/physicians";
 import { useSeo } from "@/lib/seo";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { PillBadge } from "@/components/PillBadge";
 
 export default function Physicians() {
   useSeo({
@@ -12,117 +16,40 @@ export default function Physicians() {
     path: "/physicians",
   });
   return (
-    <SiteLayout navVariant="gate">
-      {/* ── Hero ── */}
-      <section
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)", overflow: "hidden" }}
-      >
-        <div className="w-full flex flex-col md:flex-row" style={{ minHeight: "560px" }}>
-          {/* Left: copy */}
-          <div
-            className="flex items-center w-full md:w-[55%]"
-            style={{ padding: "5rem 3rem" }}
-          >
-            <Reveal>
-              <p
-                style={{
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: "11px",
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "var(--nx-cobalt)",
-                  marginBottom: "1.25rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                MEDICAL ADVISORY
-              </p>
-              <h1
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.05,
-                  marginBottom: "0.5rem",
-                  maxWidth: "560px",
-                }}
-              >
-                Peptide therapy is a clinical practice.
-              </h1>
-              <p
-                style={{
-                  fontFamily: "'Fraunces', Georgia, serif",
-                  fontWeight: 500,
-                  fontStyle: "italic",
-                  fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.05,
-                  marginBottom: "1.5rem",
-                  maxWidth: "560px",
-                }}
-              >
-                It demands a clinician.
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "clamp(1rem, 2vw, 1.0625rem)",
-                  color: "#4A4A4A",
-                  lineHeight: 1.65,
-                  maxWidth: "480px",
-                }}
-              >
-                Every Nexphoria protocol is reviewed and prescribed by a U.S.-licensed,
-                board-certified physician. Physicians on our panel are DEA-registered and
-                credentialed by ABIM, ABFM, or specialty board. They review your actual
-                laboratory panel — not a questionnaire substitute.
-              </p>
-            </Reveal>
-          </div>
-          {/* Right: physician consult image */}
-          <div
-            className="hidden md:block md:w-[45%] relative"
-            style={{ minHeight: "560px" }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                top: "10%",
-                bottom: "10%",
-                width: "1px",
-                backgroundColor: "var(--nx-border)",
-                zIndex: 2,
-              }}
+    <SiteLayout navVariant="showcase">
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            badge={<PillBadge tone="acid">Medical team</PillBadge>}
+            headline={
+              <>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Board-certified</span> physicians<br />
+                <span>who actually answer.</span>
+              </>
+            }
+            subtitle="Every protocol is reviewed and signed by a licensed U.S. physician. Direct message your prescribing doctor through the patient portal."
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href="/physicians"
+              tone="sky"
+              glyph={TileGlyphs.circle}
+              label={<>Physician-led<br /><span>every protocol</span></>}
+              caption="Board-certified MDs"
+              ctaLabel="Meet the team"
             />
-            <img
-              src={lifestylePhysicianConsult}
-              alt="Board-certified physician reviewing patient bloodwork at consultation desk"
-              loading="eager"
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center top",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to right, rgba(250,247,240,0.3) 0%, rgba(0,0,0,0) 25%)",
-              }}
+            <ColoredHeroTile
+              href="/physicians"
+              tone="sand"
+              glyph={TileGlyphs.leaf}
+              label={<>Direct access<br /><span>zero gatekeeping</span></>}
+              caption="Board-certified MDs"
+              ctaLabel="Meet the team"
             />
           </div>
         </div>
-      </section>
+      </main>
 
       {/* ── Doctor grid ── */}
       <section
@@ -133,7 +60,7 @@ export default function Physicians() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -150,7 +77,7 @@ export default function Physicians() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -162,9 +89,9 @@ export default function Physicians() {
             </h2>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontStyle: "italic",
+                
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -184,110 +111,7 @@ export default function Physicians() {
           >
             {physicians.map((doc, i) => (
               <Reveal key={doc.name} delay={i * 80}>
-                <div
-                  style={{ backgroundColor: "#FFFFFF", overflow: "hidden" }}
-                  data-testid={`physician-card-${i}`}
-                >
-                  {/* Full-bleed headshot at 4:5 */}
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4/5",
-                      backgroundColor: "var(--nx-bg-cream)",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <img
-                      src={doc.photo}
-                      alt={doc.name}
-                      loading="lazy"
-                      decoding="async"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        objectPosition: "top center",
-                        display: "block",
-                      }}
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Deep Sage hairline */}
-                  <div style={{ height: "2px", backgroundColor: "var(--nx-cobalt)" }} />
-
-                  {/* Card content */}
-                  <div style={{ padding: "1.5rem 1.25rem 2rem" }}>
-                    <h3
-                      style={{
-                        fontFamily: "'Fraunces', Georgia, serif",
-                        fontStyle: "italic",
-                        fontWeight: 500,
-                        fontSize: "1.375rem",
-                        color: "var(--nx-fg)",
-                        lineHeight: 1.2,
-                        marginBottom: "0.4rem",
-                      }}
-                    >
-                      {doc.name}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "9px",
-                        fontWeight: 500,
-                        letterSpacing: "0.12em",
-                        textTransform: "uppercase",
-                        color: "var(--nx-cobalt)",
-                        marginBottom: "0.375rem",
-                      }}
-                    >
-                      {doc.specialty} · {doc.institution}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: "8px",
-                        fontWeight: 500,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        color: "var(--nx-fg-muted)",
-                        marginBottom: "0.875rem",
-                      }}
-                    >
-                      {doc.credentials}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "13px",
-                        color: "#4A4A4A",
-                        lineHeight: 1.65,
-                        marginBottom: "1rem",
-                      }}
-                    >
-                      {doc.bio}
-                    </p>
-                    <a
-                      href="#"
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "12px",
-                        fontWeight: 600,
-                        letterSpacing: "0.06em",
-                        textTransform: "uppercase",
-                        color: "var(--nx-cobalt)",
-                        textDecoration: "none",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "0.35rem",
-                      }}
-                      aria-label={`Read more about ${doc.name}`}
-                    >
-                      Read more →
-                    </a>
-                  </div>
-                </div>
+                <PhysicianCard doc={doc} index={i} />
               </Reveal>
             ))}
           </div>
@@ -312,7 +136,7 @@ export default function Physicians() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -329,7 +153,7 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
                     color: "var(--nx-fg)",
@@ -341,9 +165,9 @@ export default function Physicians() {
                 </h2>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
-                    fontStyle: "italic",
+                    
                     fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
@@ -354,7 +178,7 @@ export default function Physicians() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -406,7 +230,7 @@ export default function Physicians() {
                       <div>
                         <p
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "14px",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
@@ -417,7 +241,7 @@ export default function Physicians() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "13px",
                             color: "#4A4A4A",
                             lineHeight: 1.55,
@@ -452,8 +276,8 @@ export default function Physicians() {
                 >
                   <p
                     style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontStyle: "italic",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      
                       fontWeight: 400,
                       fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                       color: "var(--nx-fg)",
@@ -468,7 +292,7 @@ export default function Physicians() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "14px",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
@@ -479,7 +303,7 @@ export default function Physicians() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "10px",
                         fontWeight: 500,
                         letterSpacing: "0.1em",
@@ -497,6 +321,74 @@ export default function Physicians() {
         </div>
       </section>
 
+      {/* ── How physician review works ── */}
+      <section
+        className="py-24 md:py-32"
+        style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+            >
+              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+              HOW REVIEW WORKS
+            </p>
+            <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
+              Three steps.
+            </h2>
+            <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
+              Zero algorithmic shortcuts.
+            </h2>
+          </Reveal>
+
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", maxWidth: "900px" }}
+          >
+            {[
+              {
+                n: "01",
+                label: "Labs First",
+                body: "A 38-biomarker Quest Diagnostics panel is required before any prescription. Your physician will not prescribe based on symptoms alone. The panel covers hormones, metabolic markers, inflammation, cardiovascular markers, and organ function.",
+              },
+              {
+                n: "02",
+                label: "Physician Review",
+                body: "Your assigned board-certified physician reviews your full panel and intake within 24 hours of receipt. They look for absolute contraindications, relative cautions, and protocol optimization based on your specific baseline — not population averages.",
+              },
+              {
+                n: "03",
+                label: "Telehealth Consult",
+                body: "Your consult is scheduled through Bask Health, our licensed telehealth partner. Your physician finalizes your protocol, sets dose parameters, and answers clinical questions. Ongoing secure portal messaging is available between consult cycles.",
+              },
+            ].map(({ n, label, body }) => (
+              <Reveal key={n}>
+                <div style={{ backgroundColor: "#FFFFFF", padding: "2rem", height: "100%" }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{n}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontSize: "1.25rem", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "0.75rem" }}>{label}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13.5px", color: "#4A4A4A", lineHeight: 1.7 }}>{body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* CTA to assessment */}
+          <Reveal delay={100}>
+            <div className="mt-12">
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
+                "Dare to defy. Find your focus. Elevate every moment."
+              </p>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
+                Your physician review is included with every protocol. Take the assessment and our team will match you with the right physician for your state and goals.
+              </p>
+              <StartIntakeButton source="physicians-page" size="lg">
+                Begin physician-led intake
+              </StartIntakeButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <FinalCTAStrip
         gender="women"
         title="Your physician review is included."
@@ -505,3 +397,108 @@ export default function Physicians() {
     </SiteLayout>
   );
 }
+
+// ─────────────────────────────────────────────
+// PhysicianCard — expandable, with extended bio + focus + publications
+// ─────────────────────────────────────────────
+
+function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      style={{ backgroundColor: "#FFFFFF", overflow: "hidden" }}
+      data-testid={`physician-card-${index}`}
+    >
+      <div
+        style={{
+          width: "100%",
+          aspectRatio: "4/5",
+          backgroundColor: "var(--nx-bg-cream)",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={doc.photo}
+          alt={doc.name}
+          loading="lazy"
+          decoding="async"
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block" }}
+        />
+      </div>
+      <div style={{ height: "2px", backgroundColor: "var(--nx-cobalt)" }} />
+      <div style={{ padding: "1.5rem 1.25rem 2rem" }}>
+        <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
+          {doc.name}
+        </h3>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.375rem" }}>
+          {doc.specialty} · {doc.institution}
+        </p>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "8px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>
+          {doc.credentials}
+        </p>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.65, marginBottom: "1rem" }}>
+          {doc.bio}
+        </p>
+
+        {open && (
+          <div style={{ marginTop: "0.5rem", marginBottom: "1rem", paddingTop: "1rem", borderTop: "1px solid #E8E9DB" }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.7, marginBottom: "1rem" }}>
+              {doc.extendedBio}
+            </p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
+              Clinical focus
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
+              {doc.focus.map((f) => (
+                <li key={f} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: "#4A4A4A", lineHeight: 1.6, paddingLeft: "1rem", position: "relative" }}>
+                  <span style={{ position: "absolute", left: 0, color: "var(--nx-cobalt)" }}>•</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
+              Selected publications
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
+              {doc.publications.map((p) => (
+                <li key={p} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px",  color: "#6A6A6A", lineHeight: 1.55, marginBottom: "0.35rem" }}>
+                  {p}
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.35rem" }}>
+              Languages
+            </p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: "#4A4A4A" }}>{doc.languages}</p>
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-controls={`physician-extended-${index}`}
+          data-testid={`physician-read-more-${index}`}
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontSize: "12px",
+            fontWeight: 600,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+            color: "var(--nx-cobalt)",
+            background: "transparent",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.35rem",
+          }}
+        >
+          {open ? "Show less ↑" : "Read more →"}
+        </button>
+      </div>
+    </div>
+  );
+}
+

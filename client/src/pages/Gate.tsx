@@ -60,7 +60,7 @@ export default function Gate() {
         <Logo variant="light" />
         <p
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "9px",
             fontWeight: 500,
             letterSpacing: "0.18em",
@@ -73,7 +73,7 @@ export default function Gate() {
         </p>
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "12px",
             fontWeight: 400,
             color: "rgba(255,255,255,0.55)",
@@ -96,6 +96,14 @@ export default function Gate() {
             data-testid="gate-link-how"
           >
             How it works
+          </a>
+          <span style={{ margin: "0 10px", color: "rgba(255,255,255,0.3)" }}>·</span>
+          <a
+            href="#/assessment"
+            style={{ color: "rgba(255,255,255,0.85)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            data-testid="gate-link-assessment"
+          >
+            Start assessment
           </a>
         </p>
       </div>
@@ -151,7 +159,7 @@ export default function Gate() {
           >
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
@@ -362,7 +370,7 @@ function GateCard({
         />
         <span
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: 10,
             fontWeight: 500,
             letterSpacing: "0.14em",
@@ -404,7 +412,7 @@ function GateCard({
           >
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: 9,
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -434,8 +442,8 @@ function GateCard({
                     <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
                       <span
                         style={{
-                          fontFamily: "'Fraunces', Georgia, serif",
-                          fontStyle: "italic",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          
                           fontSize: 13,
                           color: "#C97A4A",
                           letterSpacing: "-0.01em",
@@ -446,7 +454,7 @@ function GateCard({
                       </span>
                       <span
                         style={{
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: 14,
                           fontWeight: 600,
                           color: "#FFFFF3",
@@ -458,7 +466,7 @@ function GateCard({
                     </div>
                     <span
                       style={{
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 11,
                         fontWeight: 500,
                         color: "rgba(255,255,243,0.75)",
@@ -470,7 +478,7 @@ function GateCard({
                   </div>
                   <span
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 12,
                       color: "rgba(255,255,243,0.6)",
                       letterSpacing: "0.01em",
@@ -506,7 +514,7 @@ function GateCard({
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "10px",
             fontWeight: 500,
             letterSpacing: "0.16em",
@@ -521,8 +529,8 @@ function GateCard({
         {/* Main label */}
         <p
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
-            fontStyle: "italic",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            
             fontWeight: 400,
             fontSize: "clamp(3.5rem, 6vw, 6rem)",
             lineHeight: 1.0,

@@ -7,7 +7,7 @@ interface FooterProps {
 
 export function Footer({ variant = "shared" }: FooterProps) {
   const pharmacyBase = variant === "men" ? "/men/peptides" : "/women/peptides";
-  const assessmentBase = variant === "men" ? "/men/assessment" : "/women/assessment";
+  const assessmentBase = "/assessment";
 
   const col1 = {
     heading: "PHARMACY",
@@ -28,6 +28,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
       { label: "Glow — Skin", href: "/stacks/glow" },
       { label: "Restore — Sleep", href: "/stacks/sleep" },
       { label: "Longevity", href: "/stacks/longevity" },
+      { label: "Build your own stack", href: "/stacks/build" },
       { label: "Custom protocol", href: assessmentBase },
     ],
   };
@@ -40,7 +41,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
           {/* Brand + email */}
           <div className="md:col-span-2">
             <Logo variant="light" />
-            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>
+            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'General Sans', system-ui, sans-serif", lineHeight: 1.6 }}>
               Early access to new protocols, research, and member-only pricing.
             </p>
             <form
@@ -51,16 +52,16 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 type="email"
                 placeholder="Your email"
                 className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50"
-                style={{ fontFamily: "'Inter', sans-serif" }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
                 data-testid="footer-email-input"
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-full text-sm font-semibold transition-colors"
+                className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5"
                 style={{
-                  fontFamily: "'Inter', sans-serif",
-                  backgroundColor: "var(--nx-cobalt)",
-                  color: "#fff",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  backgroundColor: "#c6f184",
+                  color: "#0A0A0A",
                   letterSpacing: "0.04em",
                 }}
                 data-testid="footer-email-submit"
@@ -88,9 +89,53 @@ export function Footer({ variant = "shared" }: FooterProps) {
           />
         </div>
 
+        {/* Trust badges row */}
+        <div
+          className="py-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 border-b"
+          style={{ borderColor: "rgba(255,255,255,0.08)" }}
+          data-testid="footer-trust-badges"
+        >
+          {[
+            { label: "503A · FDA-registered", sub: "Compounding pharmacy" },
+            { label: "All 50 states", sub: "US-licensed physicians" },
+            { label: "HIPAA", sub: "Encrypted intake" },
+            { label: "Quest Diagnostics", sub: "Lab partner" },
+            { label: "LegitScript", sub: "Pending verification" },
+          ].map((b) => (
+            <div
+              key={b.label}
+              className="flex flex-col items-center text-center"
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
+            >
+              <span
+                style={{
+                  fontSize: 11,
+                  color: "rgba(255,255,255,0.85)",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                }}
+              >
+                {b.label}
+              </span>
+              <span
+                style={{
+                  fontSize: 9,
+                  color: "rgba(255,255,255,0.4)",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  marginTop: 2,
+                }}
+              >
+                {b.sub}
+              </span>
+            </div>
+          ))}
+        </div>
+
         {/* Bottom row */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', sans-serif" }}>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}>
             © 2026 Nexphoria · All rights reserved
           </p>
           <div className="flex flex-wrap gap-4">
@@ -104,7 +149,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 key={label}
                 href={href}
                 className="text-xs no-underline hover:text-white transition-colors"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Inter', sans-serif" }}
+                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
               >
                 {label}
               </Link>
@@ -113,8 +158,15 @@ export function Footer({ variant = "shared" }: FooterProps) {
         </div>
 
         {/* Disclaimer */}
-        <p className="mt-6 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Inter', sans-serif", maxWidth: "680px" }}>
+        <p className="mt-6 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "680px" }} data-testid="footer-fda-disclaimer">
           These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in FDA-registered 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
+        </p>
+        <p
+          className="mt-3 text-xs"
+          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.06em" }}
+          data-testid="footer-usp-line"
+        >
+          Compounded under USP &lt;797&gt; in U.S. 503A pharmacies
         </p>
       </div>
     </footer>
@@ -133,7 +185,7 @@ function FooterCol({
       <p
         className="mb-4"
         style={{
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: "10px",
           fontWeight: 500,
           letterSpacing: "0.12em",
@@ -149,7 +201,7 @@ function FooterCol({
             <Link
               href={href}
               className="text-sm no-underline hover:text-white transition-colors"
-              style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Inter', sans-serif" }}
+              style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'General Sans', system-ui, sans-serif" }}
             >
               {label}
             </Link>

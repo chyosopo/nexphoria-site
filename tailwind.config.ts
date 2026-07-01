@@ -18,8 +18,21 @@ export default {
           cobalt: "#1747D6",
           "cobalt-hover": "#0E33A8",
           "cobalt-soft": "#E8EEFB",
+          // Pastel panel rotation (Maximus-style)
+          ice: "#E6EEF4",
+          "ice-edge": "#C9D8E2",
+          peach: "#F4E2D2",
+          "peach-edge": "#E2C9B3",
+          sage: "#DDE3DA",
+          "sage-edge": "#BFC9BC",
+          rust: "#C97A4A",
           success: "#1D6F42",
           warning: "#C2440E",
+          // V3 locked tokens
+          black: "#0A0A0A",
+          ceramic: "#FFFFF3",
+          rock: "#E8E9DB",
+          acid: "#C6F184",
         },
         // shadcn semantic — light mode, cobalt accent
         background: "hsl(var(--background))",
@@ -36,10 +49,10 @@ export default {
         ring: "hsl(var(--ring))",
       },
       fontFamily: {
-        display: ["Playfair Display", "EB Garamond", "Georgia", "serif"],
-        serif: ["Playfair Display", "EB Garamond", "Georgia", "serif"],
-        sans: ["Inter Tight", "Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+        display: ["General Sans", "system-ui", "sans-serif"],
+        serif: ["General Sans", "system-ui", "sans-serif"],
+        sans: ["General Sans", "system-ui", "sans-serif"],
+        mono: ["General Sans", "system-ui", "sans-serif"],
       },
       fontSize: {
         "fluid-xs": "var(--text-xs)",

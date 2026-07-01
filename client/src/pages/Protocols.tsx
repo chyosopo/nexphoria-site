@@ -96,7 +96,7 @@ export default function Protocols() {
             </p>
             <h1 className="nx-display text-foreground max-w-4xl" data-testid="text-protocols-title">
               Pick your goal.{" "}
-              <span className="font-serif italic text-primary">We architect</span> the rest.
+              <span className="text-primary">We architect</span> the rest.
             </h1>
             <p className="nx-body text-foreground/70 max-w-2xl mt-6">
               Every protocol is a sequence of peptides, doses, and timing — designed for one
@@ -164,7 +164,7 @@ export default function Protocols() {
               );
             })}
           </div>
-            <Link href="/assessment">
+            <Link asChild href="/assessment">
               <a
                 className="group inline-flex items-center gap-2 text-sm font-mono uppercase tracking-wider text-primary nx-micro"
                 data-testid="link-which-is-right"

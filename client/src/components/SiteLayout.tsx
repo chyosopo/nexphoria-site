@@ -1,6 +1,8 @@
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { AnnouncementBar } from "./AnnouncementBar";
+import { TrustBar } from "./TrustBar";
+import { ExitIntentModal } from "./ExitIntentModal";
 
 interface SiteLayoutProps {
   children: React.ReactNode;
@@ -8,6 +10,7 @@ interface SiteLayoutProps {
   footerVariant?: "women" | "men" | "shared";
   hideFooter?: boolean;
   hideAnnouncementBar?: boolean;
+  hideTrustBar?: boolean;
   /** Legacy prop alias used by Cart.tsx & friends */
   variant?: "showcase" | "women" | "men" | "gate";
 }
@@ -18,6 +21,7 @@ export function SiteLayout({
   footerVariant = "shared",
   hideFooter = false,
   hideAnnouncementBar = false,
+  hideTrustBar = false,
   variant,
 }: SiteLayoutProps) {
   const resolvedNavVariant = navVariant ?? variant ?? "showcase";
@@ -31,8 +35,12 @@ export function SiteLayout({
       </a>
       {!hideAnnouncementBar && <AnnouncementBar />}
       <Nav variant={resolvedNavVariant} />
-      <main id="main-content" className="flex-1 pt-14">{children}</main>
+      {/* Spacer for fixed nav */}
+      <div className="pt-14" aria-hidden="true" />
+      {!hideTrustBar && <TrustBar />}
+      <main id="main-content" className="flex-1">{children}</main>
       {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
+      <ExitIntentModal />
     </div>
   );
 }

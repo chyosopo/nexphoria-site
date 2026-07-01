@@ -2,6 +2,8 @@ import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { PillBadge } from "@/components/PillBadge";
 
 const contactColumns = [
   {
@@ -38,10 +40,12 @@ const contactColumns = [
 
 const reasons = [
   "Select a reason",
-  "Clinical question",
-  "Order status",
-  "Billing",
-  "Press",
+  "General inquiry",
+  "Clinical / medical question",
+  "Order status or shipping",
+  "Billing or account",
+  "Press or media",
+  "Partnership or wholesale",
   "Other",
 ];
 
@@ -62,7 +66,7 @@ export default function Contact() {
   };
 
   const inputStyle: React.CSSProperties = {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'General Sans', system-ui, sans-serif",
     fontSize: "14px",
     padding: "0.875rem 1.125rem",
     border: "1px solid var(--nx-border)",
@@ -75,7 +79,7 @@ export default function Contact() {
   };
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: "'DM Mono', monospace",
+    fontFamily: "'General Sans', system-ui, sans-serif",
     fontSize: "9px",
     fontWeight: 700,
     letterSpacing: "0.14em",
@@ -86,72 +90,40 @@ export default function Contact() {
   };
 
   return (
-    <SiteLayout navVariant="gate">
-      {/* ── Hero ── */}
-      <section
-        className="py-32 md:py-40"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1.25rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-              }}
-            >
-              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              CONTACT
-            </p>
-            <h1
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontWeight: 500,
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.05,
-                marginBottom: "0.5rem",
-              }}
-            >
-              We answer in 24 hours,
-            </h1>
-            <p
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontWeight: 500,
-                fontStyle: "italic",
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.05,
-                marginBottom: "1.5rem",
-              }}
-            >
-              Monday through Friday.
-            </p>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1rem, 2vw, 1.0625rem)",
-                color: "#4A4A4A",
-                lineHeight: 1.65,
-                maxWidth: "560px",
-              }}
-            >
-              For clinical questions about your protocol or laboratory results, use the
-              secure messaging channel in your member portal — your physician responds
-              there within 48 hours. For everything else, use the form below.
-            </p>
-          </Reveal>
+    <SiteLayout navVariant="showcase">
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            badge={<PillBadge tone="acid">Get in touch</PillBadge>}
+            headline={
+              <>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Questions?</span><br />
+                <span>We're listening.</span>
+              </>
+            }
+            subtitle="Patient support, physician escalation, partnership inquiries, or press. Pick the right door and we'll route you to the right person."
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href="/contact/support"
+              tone="sky"
+              glyph={TileGlyphs.circle}
+              label={<>Patient support<br /><span>24/7 available</span></>}
+              caption="Average reply: 2hrs"
+              ctaLabel="Message us"
+            />
+            <ColoredHeroTile
+              href="/contact/press"
+              tone="sage"
+              glyph={TileGlyphs.wave}
+              label={<>Press & partners<br /><span>media kit</span></>}
+              caption="Average reply: 2hrs"
+              ctaLabel="Message us"
+            />
+          </div>
         </div>
-      </section>
+      </main>
 
       {/* ── Three support columns ── */}
       <section
@@ -179,7 +151,7 @@ export default function Contact() {
                 >
                   <p
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
@@ -192,8 +164,8 @@ export default function Contact() {
                   </p>
                   <h2
                     style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontStyle: "italic",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      
                       fontWeight: 500,
                       fontSize: "1.375rem",
                       color: "var(--nx-fg)",
@@ -217,7 +189,7 @@ export default function Contact() {
                       <li key={item.label}>
                         <p
                           style={{
-                            fontFamily: "'DM Mono', monospace",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "8px",
                             fontWeight: 700,
                             letterSpacing: "0.14em",
@@ -230,7 +202,7 @@ export default function Contact() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "14px",
                             fontWeight: 500,
                             color: "var(--nx-fg)",
@@ -245,7 +217,7 @@ export default function Contact() {
                   </ul>
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
                       color: "var(--nx-fg-muted)",
                       lineHeight: 1.5,
@@ -257,6 +229,44 @@ export default function Contact() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Coverage strip ── */}
+      <section
+        className="py-10 md:py-12"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <div
+              style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", alignItems: "center", justifyContent: "space-between" }}
+            >
+              <div>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>
+                  NYC HEADQUARTERS · 50-STATE COVERAGE
+                </p>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.5rem" }}>
+                  Nexphoria Health, LLC
+                </p>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "#4A4A4A", lineHeight: 1.6 }}>
+                  800 Third Ave, Suite 1000 · New York, NY 10022
+                </p>
+              </div>
+              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+                {[
+                  { label: "States Covered", value: "50" },
+                  { label: "Response Time", value: "24 hrs" },
+                  { label: "Physician Availability", value: "Mon–Fri" },
+                ].map(({ label, value }) => (
+                  <div key={label} style={{ textAlign: "center" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1 }}>{value}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -280,7 +290,7 @@ export default function Contact() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -297,8 +307,8 @@ export default function Contact() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontStyle: "italic",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    
                     fontWeight: 500,
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                     color: "var(--nx-fg)",
@@ -318,31 +328,49 @@ export default function Contact() {
                     padding: "2.5rem",
                     border: "1px solid var(--nx-border)",
                     borderRadius: "4px",
-                    textAlign: "center",
                     backgroundColor: "var(--nx-bg-cream)",
                   }}
                 >
                   <p
                     style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontStyle: "italic",
-                      fontWeight: 500,
-                      fontSize: "1.5rem",
-                      color: "var(--nx-fg)",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "9px",
+                      fontWeight: 700,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: "var(--nx-cobalt)",
                       marginBottom: "0.75rem",
                     }}
                   >
-                    Message received.
+                    MESSAGE RECEIVED
                   </p>
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "14px",
-                      color: "#4A4A4A",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      
+                      fontWeight: 500,
+                      fontSize: "1.5rem",
+                      color: "var(--nx-fg)",
+                      marginBottom: "0.625rem",
                     }}
                   >
-                    We'll respond within 24 hours on business days, Monday through Friday.
+                    We're on it.
                   </p>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "14px",
+                      color: "#4A4A4A",
+                      lineHeight: 1.65,
+                    }}
+                  >
+                    We'll respond within 24 hours on business days (Monday through Friday ET). Clinical questions are routed to a physician within 48 hours.
+                  </p>
+                  {form.reason === "Clinical / medical question" && (
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B5A2B", marginTop: "1rem" }}>
+                      Note: For urgent medical concerns, use the secure portal or call 911.
+                    </p>
+                  )}
                 </div>
               ) : (
                 <form
@@ -442,7 +470,7 @@ export default function Contact() {
                       gap: "0.5rem",
                       backgroundColor: "var(--nx-cobalt)",
                       color: "#FFFFFF",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",

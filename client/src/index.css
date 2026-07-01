@@ -29,6 +29,25 @@
     --nx-success:      #1D6F42;
     --nx-warning:      #C2440E;
 
+    /* ── Maximus-style paneled pastels, derived from cobalt+rust ── */
+    /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
+    --nx-ice:          #E6EEF4;
+    --nx-ice-edge:     #C9D8E2;
+    /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
+    --nx-peach:        #F4E2D2;
+    --nx-peach-edge:   #E2C9B3;
+    /* Sage — cream's deeper alternate. Used for recovery/sleep panels.  */
+    --nx-sage:         #DDE3DA;
+    --nx-sage-edge:    #BFC9BC;
+    /* Rust accent for callouts */
+    --nx-rust:         #C97A4A;
+
+    /* ── V3 tokens — locked minimal palette (Maximus × Bask) ── */
+    --nx-black:        #0A0A0A;
+    --nx-ceramic:      #FFFFF3;
+    --nx-rock:         #E8E9DB;
+    --nx-acid:         #C6F184;
+
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
     --foreground: 0 0% 4%;
@@ -74,14 +93,22 @@
 
   body {
     @apply bg-white text-nx-fg;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     font-feature-settings: "ss01", "cv11";
   }
 
+  /* Kill ALL italic. Zero tolerance. */
+  em, i, cite, address, dfn, var {
+    font-style: normal;
+  }
+  .italic {
+    font-style: normal !important;
+  }
+
   h1, h2, h3 {
-    font-family: 'Fraunces', 'EB Garamond', Georgia, serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-weight: 500;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -108,7 +135,7 @@
 
   /* ── Eyebrow label (mono caps cobalt) ── */
   .nx-eyebrow {
-    font-family: 'DM Mono', ui-monospace, monospace;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.12em;
@@ -118,7 +145,7 @@
 
   /* ── Section heading ── */
   .nx-heading {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--nx-fg);
@@ -128,7 +155,7 @@
 
   /* ── Hero heading ── */
   .nx-hero-heading {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-weight: 500;
     font-size: clamp(2.75rem, 6vw, 5.5rem);
     color: var(--nx-fg);
@@ -136,17 +163,18 @@
     letter-spacing: -0.035em;
   }
 
-  /* ── Italic accent (Maximus signature: blue italic word inside serif hero) ── */
+  /* ── Accent word: honest weight + color, NO italic, NO serif ── */
   .nx-italic-accent {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-style: normal;
+    font-weight: 600;
     color: var(--nx-cobalt);
+    letter-spacing: -0.02em;
   }
 
   /* ── Sub-headline (Inter graphite) ── */
   .nx-subhead {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 1.125rem;
     font-weight: 500;
     color: var(--nx-fg-graphite);
@@ -155,7 +183,7 @@
 
   /* ── Body text ── */
   .nx-body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 1rem;
     font-weight: 400;
     color: var(--nx-fg-graphite);
@@ -170,7 +198,7 @@
     padding: 0.75rem 1.5rem;
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -195,7 +223,7 @@
     padding: 0.75rem 1.5rem;
     background-color: transparent;
     color: var(--nx-fg);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -219,7 +247,7 @@
     padding: 0.75rem 1.5rem;
     background-color: transparent;
     color: #FFFFFF;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -242,7 +270,7 @@
     padding: 0.875rem 1.75rem;
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -266,7 +294,7 @@
     padding: 0.875rem 1.75rem;
     background-color: transparent;
     color: #FFFFFF;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -281,7 +309,7 @@
 
   /* ── Cobalt rotating word underline ── */
   .nx-rotating-word {
-    font-style: italic;
+    
     color: var(--nx-cobalt);
     text-decoration: underline;
     text-decoration-color: var(--nx-cobalt);
@@ -324,14 +352,14 @@
     flex-wrap: wrap;
   }
   .nx-kpi-item .value {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 2rem;
     font-weight: 700;
     color: var(--nx-fg);
     font-variant-numeric: tabular-nums;
   }
   .nx-kpi-item .label {
-    font-family: 'DM Mono', ui-monospace, monospace;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -350,7 +378,7 @@
     border-bottom: 1px solid var(--nx-border);
   }
   .nx-accordion-trigger {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: var(--nx-fg);
@@ -363,7 +391,7 @@
     text-align: left;
   }
   .nx-accordion-content {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.9375rem;
     color: var(--nx-fg-graphite);
     padding-bottom: 1.25rem;
@@ -398,13 +426,13 @@
   }
 
   /* ── Reveal animation (scroll-triggered) ── */
+  /* Start at full opacity so content is always visible (Playwright + crawlers + reduced-motion); use a subtle translate for the in-view animation. */
   .nx-reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 1;
+    transform: translateY(12px);
+    transition: transform 0.6s ease-out;
   }
   .nx-reveal.visible {
-    opacity: 1;
     transform: translateY(0);
   }
 
@@ -423,6 +451,29 @@
     z-index: 50;
   }
 
+  /* ── Category tile hover-lift (no CLS) ── */
+  .nx-tile {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    will-change: transform;
+  }
+  .nx-tile:hover {
+    transform: scale(1.01);
+    box-shadow: 0 14px 40px rgba(10,10,10,0.12);
+  }
+
+  /* ── Trust-bar marquee ── */
+  @keyframes nx-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .nx-marquee-track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: nx-marquee 60s linear infinite;
+  }
+
   /* ── Reduced motion overrides ── */
   @media (prefers-reduced-motion: reduce) {
     .nx-reveal {
@@ -431,6 +482,10 @@
       transition: none;
     }
     .nx-flagship-card:hover img {
+      transform: none;
+    }
+    .nx-marquee-track {
+      animation: none;
       transform: none;
     }
     * {
@@ -447,7 +502,7 @@
     background: #fff;
     border: 1px solid var(--nx-border);
     border-radius: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.9375rem;
     color: #0A0A0A;
     transition: border-color 150ms ease, box-shadow 150ms ease;
@@ -463,5 +518,411 @@
   .nx-input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MAXIMUS TILE SYSTEM v1 — approved 2026-06-30
+   Adopted from /nexphoria_mockups/home_maximus.html
+   Photo hero tiles (5:4) + unified cream product tiles (1:1.15) 
+   + dark variant for rhythm. Fraunces serif labels, Inter meta.
+   ───────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    --mx-cream:       #EFEBE3;    /* unified tile background */
+    --mx-cream-deep:  #E6E0D4;    /* hover tint */
+    --mx-page-bg:     #F4EFE6;    /* page-level pharmacy cream */
+    --mx-navy:        #15233A;    /* label color on photo tiles */
+    --mx-ink:         #0E0E0F;    /* serif labels, pills */
+    --mx-pill:        #0E0E0F;
+    --mx-pill-text:   #F4EFE6;
+    --mx-dark:        #1A1916;    /* dark tile bg */
+    --mx-dark-hover:  #232220;
+    --mx-dark-text:   #F0EBE0;
+    --mx-radius:      22px;
+    --mx-radius-sm:   16px;
+  }
+}
+
+@layer components {
+  /* Page chrome */
+  .mx-page {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 28px 28px 96px;
+    background: var(--mx-page-bg);
+  }
+
+  /* Editorial header */
+  .mx-eyebrow {
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(14, 14, 15, 0.55);
+  }
+  .mx-headline {
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5.4vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--mx-ink);
+  }
+  .mx-headline em {
+    
+    font-weight: 400;
+    color: rgba(14, 14, 15, 0.55);
+  }
+  .mx-subtitle {
+    max-width: 580px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: rgba(14, 14, 15, 0.65);
+  }
+
+  /* Tile grid */
+  .mx-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .mx-grid.small {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .mx-grid.three {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .mx-grid.four {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  /* Hero photo tile (5:4) */
+  .mx-hero {
+    position: relative;
+    border-radius: var(--mx-radius);
+    overflow: hidden;
+    aspect-ratio: 5 / 4;
+    background: #2a2a2a;
+    cursor: pointer;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.5s ease;
+    will-change: transform;
+  }
+  .mx-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mx-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 50px -20px rgba(0, 0, 0, 0.25);
+  }
+  .mx-hero:hover img {
+    transform: scale(1.04);
+  }
+  .mx-hero-label {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    padding: 18px 22px;
+    background: rgba(244, 239, 230, 0.86);
+    backdrop-filter: blur(14px) saturate(1.1);
+    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    border-radius: 14px;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(22px, 2vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--mx-navy);
+    max-width: 70%;
+  }
+  .mx-hero-label small {
+    display: block;
+    margin-top: 8px;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mx-navy);
+    opacity: 0.7;
+  }
+  .mx-hero-cta {
+    position: absolute;
+    bottom: 28px;
+    left: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 999px;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mx-ink);
+    backdrop-filter: blur(10px);
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .mx-hero:hover .mx-hero-cta {
+    background: #fff;
+    transform: translateX(2px);
+  }
+  .mx-hero-cta svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Small product tile (1:1.15) */
+  .mx-tile {
+    position: relative;
+    background: var(--mx-cream);
+    border-radius: var(--mx-radius-sm);
+    aspect-ratio: 1 / 1.15;
+    padding: 22px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background 0.35s ease,
+                transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.35s ease;
+  }
+  .mx-tile:hover {
+    background: var(--mx-cream-deep);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px -22px rgba(14, 14, 15, 0.25);
+  }
+  .mx-tile-head {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mx-pill {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 6px 11px;
+    background: var(--mx-pill);
+    color: var(--mx-pill-text);
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .mx-tile-label {
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    color: var(--mx-ink);
+    max-width: 92%;
+  }
+  .mx-tile-meta {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(14, 14, 15, 0.55);
+  }
+  .mx-tile-meta::after {
+    content: '→';
+    margin-left: auto;
+    font-size: 14px;
+    letter-spacing: 0;
+    color: rgba(14, 14, 15, 0.55);
+    transition: transform 0.3s ease;
+  }
+  .mx-tile:hover .mx-tile-meta::after {
+    transform: translateX(4px);
+    color: var(--mx-ink);
+  }
+  .mx-tile-obj {
+    position: absolute;
+    right: 4%;
+    bottom: -4%;
+    width: 72%;
+    height: 68%;
+    object-fit: contain;
+    object-position: right bottom;
+    z-index: 1;
+    transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    filter: drop-shadow(0 14px 18px rgba(14, 14, 15, 0.08));
+  }
+  .mx-tile:hover .mx-tile-obj {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+
+  /* Dark tile variant */
+  .mx-tile.dark {
+    background: var(--mx-dark);
+    color: var(--mx-dark-text);
+  }
+  .mx-tile.dark:hover {
+    background: var(--mx-dark-hover);
+  }
+  .mx-tile.dark .mx-tile-obj {
+    mix-blend-mode: normal;
+  }
+  .mx-tile.dark .mx-tile-label {
+    color: var(--mx-dark-text);
+  }
+  .mx-tile.dark .mx-tile-meta,
+  .mx-tile.dark .mx-tile-meta::after {
+    color: rgba(240, 235, 224, 0.55);
+  }
+  .mx-tile.dark .mx-pill {
+    background: var(--mx-dark-text);
+    color: var(--mx-dark);
+  }
+
+  /* Photo small tile variant */
+  .mx-tile.photo {
+    background: #2a2a2a;
+    padding: 0;
+  }
+  .mx-tile.photo .mx-tile-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .mx-tile.photo:hover .mx-tile-photo {
+    transform: scale(1.05);
+  }
+  .mx-tile.photo .mx-tile-head {
+    padding: 24px;
+    z-index: 2;
+  }
+  .mx-tile.photo .mx-tile-meta {
+    padding: 0 24px 24px;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .mx-tile.photo .mx-tile-meta::after {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .mx-tile.photo .mx-tile-label {
+    color: #fff;
+  }
+  .mx-tile.photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.45) 100%);
+    z-index: 1;
+  }
+
+  /* Editorial band (trust footer) */
+  .mx-band {
+    margin-top: 60px;
+    padding: 36px 32px;
+    background: #fff;
+    border-radius: var(--mx-radius);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .mx-band h3 {
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+    color: var(--mx-ink);
+  }
+  .mx-band-item .num {
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--mx-ink);
+    letter-spacing: -0.025em;
+  }
+  .mx-band-item .lbl {
+    margin-top: 6px;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-size: 12px;
+    color: rgba(14, 14, 15, 0.55);
+    letter-spacing: 0.04em;
+  }
+
+  /* Subtle entrance */
+  @keyframes mx-rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .mx-tile,
+  .mx-hero {
+    animation: mx-rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .mx-grid.small { grid-template-columns: repeat(3, 1fr); }
+    .mx-grid.four  { grid-template-columns: repeat(2, 1fr); }
+    .mx-band       { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+  @media (max-width: 720px) {
+    .mx-page { padding: 20px 16px 64px; }
+    .mx-grid { grid-template-columns: 1fr; gap: 12px; }
+    .mx-grid.three { grid-template-columns: 1fr; }
+    .mx-grid.four  { grid-template-columns: 1fr 1fr; }
+    .mx-grid.small {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 70%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 12px;
+      padding: 0 16px 8px;
+      margin-left: -16px;
+      width: calc(100% + 32px);
+    }
+    .mx-grid.small .mx-tile { scroll-snap-align: start; }
+    .mx-hero { aspect-ratio: 5 / 4.5; }
+    .mx-hero-label {
+      font-size: 22px;
+      top: 18px;
+      left: 18px;
+      padding: 14px 18px;
+      max-width: 75%;
+    }
+    .mx-band {
+      grid-template-columns: 1fr;
+      padding: 24px;
+      gap: 20px;
+    }
+    .mx-headline { font-size: 40px; }
   }
 }

@@ -90,7 +90,7 @@ export function FindYourFocusSection() {
             style={captionStyle as any}
             className="absolute bottom-10 left-8 lg:bottom-16 lg:left-12 z-10 max-w-xl"
           >
-            <div className="font-serif-italic text-foreground leading-[0.95] text-fluid-5xl mb-1">
+            <div className="text-foreground text-foreground leading-[0.95] text-fluid-5xl mb-1">
               Dare to defy.
             </div>
             <div className="font-display text-foreground leading-[0.95] tracking-[-0.02em] text-fluid-4xl">
@@ -127,7 +127,7 @@ export function FindYourFocusSection() {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="font-serif-italic text-foreground leading-[1] text-fluid-4xl mb-1">
+            <div className="text-foreground text-foreground leading-[1] text-fluid-4xl mb-1">
               Dare to defy.
             </div>
             <div className="font-display text-foreground leading-[1] tracking-[-0.02em] text-fluid-3xl">

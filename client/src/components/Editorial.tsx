@@ -27,7 +27,7 @@ export function SectionEyebrow({
 }
 
 /**
- * PullQuote — editorial Gambarino italic pull quote with acid-green left rule.
+ * PullQuote — editorial Gambarino pull quote with acid-green left rule.
  * One per interior page max (brief rule).
  */
 export function PullQuote({

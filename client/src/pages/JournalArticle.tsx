@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import {
   getArticleBySlug,
   getRelatedArticles,
@@ -46,11 +47,11 @@ export default function JournalArticle() {
 
   if (!article) {
     return (
-      <SiteLayout variant="cream">
+      <SiteLayout navVariant="showcase">
         <section style={{ padding: "120px 0", textAlign: "center" }}>
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 18,
               color: "var(--nx-text-muted)",
               marginBottom: 16,
@@ -62,7 +63,7 @@ export default function JournalArticle() {
             data-testid="button-back-to-journal"
             onClick={() => navigate("/journal")}
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 12,
               padding: "10px 20px",
               border: "1px solid var(--nx-cobalt)",
@@ -82,145 +83,39 @@ export default function JournalArticle() {
 
   const related = getRelatedArticles(article.related);
   const categoryMeta = JOURNAL_CATEGORIES.find((c) => c.slug === article.category);
+  const articleDate = new Date(article.publishedISO).toLocaleDateString("en-US", { month: "short", year: "numeric" });
 
   return (
-    <SiteLayout variant="cream">
-      {/* ── Article hero ──────────────────────────────────── */}
-      <section
-        data-testid="article-hero"
-        style={{
-          backgroundColor: "var(--nx-cobalt)",
-          color: "#FFFFF3",
-          paddingTop: 120,
-          paddingBottom: 64,
-        }}
-      >
-        <div className="nx-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            style={{ maxWidth: 820, margin: "0 auto" }}
-          >
-            <Link href="/journal">
-              <a
-                data-testid="link-back-journal"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  color: "rgba(255,255,243,0.6)",
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: 11,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  marginBottom: 32,
-                  textDecoration: "none",
-                }}
-              >
-                ← The Journal
-              </a>
-            </Link>
-            <p
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: "#C97A4A",
-                marginBottom: 28,
-              }}
-            >
-              {categoryMeta?.label ?? article.category} · {article.readTime}
-            </p>
-            <h1
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                fontSize: "clamp(2.4rem, 5vw, 4rem)",
-                lineHeight: 1.06,
-                letterSpacing: "-0.015em",
-                marginBottom: 28,
-              }}
-            >
-              {article.title}
-            </h1>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: 18,
-                lineHeight: 1.6,
-                color: "rgba(255,255,243,0.78)",
-                marginBottom: 40,
-              }}
-            >
-              {article.dek}
-            </p>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 16,
-                paddingTop: 24,
-                borderTop: "1px solid rgba(255,255,243,0.12)",
-              }}
-            >
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: 13,
-                    fontWeight: 600,
-                    color: "#FFFFF3",
-                    marginBottom: 2,
-                  }}
-                >
-                  {article.author.name}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: 12,
-                    color: "rgba(255,255,243,0.55)",
-                  }}
-                >
-                  {article.author.title}
-                </p>
-              </div>
-              {article.reviewers && article.reviewers.length > 0 && (
-                <>
-                  <span style={{ color: "rgba(255,255,243,0.25)" }}>·</span>
-                  <div>
-                    <p
-                      style={{
-                        fontFamily: "'DM Mono', monospace",
-                        fontSize: 9,
-                        letterSpacing: "0.16em",
-                        textTransform: "uppercase",
-                        color: "rgba(255,255,243,0.45)",
-                        marginBottom: 4,
-                      }}
-                    >
-                      Reviewed by
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: 12,
-                        color: "rgba(255,255,243,0.75)",
-                      }}
-                    >
-                      {article.reviewers.map((r) => r.name).join(", ")}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-          </motion.div>
+    <SiteLayout navVariant="showcase">
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            eyebrow={`${categoryMeta?.label ?? article.category} · Journal`}
+            headline={<span>{article.title}</span>}
+            subtitle={article.dek}
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href={`/journal/${article.slug}`}
+              tone="sand"
+              glyph={TileGlyphs.leaf}
+              priority
+              label={<span>{article.title}</span>}
+              caption={`${article.readTime} read · ${articleDate}`}
+              ctaLabel="Read article"
+            />
+            <ColoredHeroTile
+              href="/journal"
+              tone="butter"
+              glyph={TileGlyphs.hex}
+              label={<>More from<br /><span>the journal</span></>}
+              caption="All articles"
+              ctaLabel="Back to journal"
+            />
+          </div>
         </div>
-      </section>
+      </main>
 
       {/* ── Editorial image ───────────────────────────────── */}
       <section
@@ -277,7 +172,7 @@ export default function JournalArticle() {
           >
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: 10,
                 fontWeight: 500,
                 letterSpacing: "0.2em",
@@ -302,7 +197,7 @@ export default function JournalArticle() {
                     }}
                     style={{
                       display: "block",
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
                       lineHeight: 1.45,
                       color: activeSection === `sec-${s.id}` ? "var(--nx-cobalt)" : "var(--nx-text-muted)",
@@ -326,8 +221,8 @@ export default function JournalArticle() {
               <div key={s.id} id={`sec-${s.id}`} style={{ marginBottom: 56, scrollMarginTop: 96 }}>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontStyle: "italic",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    
                     fontWeight: 400,
                     fontSize: 32,
                     lineHeight: 1.15,
@@ -342,7 +237,7 @@ export default function JournalArticle() {
                   <p
                     key={i}
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 17,
                       lineHeight: 1.75,
                       color: "var(--nx-text)",
@@ -363,8 +258,8 @@ export default function JournalArticle() {
                   >
                     <p
                       style={{
-                        fontFamily: "'Fraunces', Georgia, serif",
-                        fontStyle: "italic",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        
                         fontWeight: 400,
                         fontSize: 22,
                         lineHeight: 1.35,
@@ -399,7 +294,7 @@ export default function JournalArticle() {
                       >
                         <span
                           style={{
-                            fontFamily: "'DM Mono', monospace",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: 13,
                             fontWeight: 500,
                             color: "#C97A4A",
@@ -410,7 +305,7 @@ export default function JournalArticle() {
                         </span>
                         <span
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: 16,
                             lineHeight: 1.6,
                             color: "var(--nx-text)",
@@ -428,7 +323,7 @@ export default function JournalArticle() {
                       style={{
                         width: "100%",
                         borderCollapse: "collapse",
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 14,
                       }}
                     >
@@ -440,7 +335,7 @@ export default function JournalArticle() {
                               style={{
                                 textAlign: "left",
                                 padding: "12px 16px 12px 0",
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "'General Sans', system-ui, sans-serif",
                                 fontSize: 10,
                                 fontWeight: 500,
                                 letterSpacing: "0.14em",
@@ -479,6 +374,85 @@ export default function JournalArticle() {
               </div>
             ))}
 
+            {/* Share buttons */}
+            <div
+              data-testid="article-share"
+              style={{
+                marginTop: 56,
+                paddingTop: 28,
+                borderTop: "1px solid var(--nx-border)",
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                flexWrap: "wrap",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-text-muted)",
+                  marginRight: 8,
+                }}
+              >
+                Share
+              </p>
+              <button
+                data-testid="share-x"
+                onClick={() => {
+                  const url = encodeURIComponent(window.location.href);
+                  const text = encodeURIComponent(`"${article.title}" — from the Nexphoria Journal`);
+                  window.open(`https://x.com/intent/tweet?url=${url}&text=${text}`, "_blank", "noopener,noreferrer");
+                }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                  background: "transparent",
+                  border: "1px solid var(--nx-cobalt)",
+                  borderRadius: 2,
+                  padding: "8px 14px",
+                  cursor: "pointer",
+                }}
+              >
+                Share on X
+              </button>
+              <button
+                data-testid="share-linkedin"
+                onClick={() => {
+                  const url = encodeURIComponent(window.location.href);
+                  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, "_blank", "noopener,noreferrer");
+                }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                  background: "transparent",
+                  border: "1px solid var(--nx-cobalt)",
+                  borderRadius: 2,
+                  padding: "8px 14px",
+                  cursor: "pointer",
+                }}
+              >
+                Share on LinkedIn
+              </button>
+            </div>
+
             {/* References */}
             <div
               data-testid="article-references"
@@ -490,7 +464,7 @@ export default function JournalArticle() {
             >
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 10,
                   fontWeight: 500,
                   letterSpacing: "0.2em",
@@ -509,7 +483,7 @@ export default function JournalArticle() {
                       display: "grid",
                       gridTemplateColumns: "32px 1fr",
                       gap: 12,
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
                       lineHeight: 1.55,
                       color: "var(--nx-text-muted)",
@@ -517,7 +491,7 @@ export default function JournalArticle() {
                   >
                     <span
                       style={{
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 11,
                         color: "#C97A4A",
                       }}
@@ -559,7 +533,7 @@ export default function JournalArticle() {
           <div className="nx-container">
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: 10,
                 fontWeight: 500,
                 letterSpacing: "0.22em",
@@ -572,8 +546,8 @@ export default function JournalArticle() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontStyle: "italic",
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                
                 fontWeight: 400,
                 fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
                 lineHeight: 1.1,
@@ -591,7 +565,7 @@ export default function JournalArticle() {
               }}
             >
               {related.map((r) => (
-                <Link key={r.slug} href={`/journal/${r.slug}`}>
+                <Link asChild key={r.slug} href={`/journal/${r.slug}`}>
                   <a
                     data-testid={`link-related-${r.slug}`}
                     style={{
@@ -607,7 +581,7 @@ export default function JournalArticle() {
                   >
                     <p
                       style={{
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 9,
                         fontWeight: 500,
                         letterSpacing: "0.18em",
@@ -620,8 +594,8 @@ export default function JournalArticle() {
                     </p>
                     <h3
                       style={{
-                        fontFamily: "'Fraunces', Georgia, serif",
-                        fontStyle: "italic",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        
                         fontWeight: 400,
                         fontSize: 20,
                         lineHeight: 1.2,
@@ -633,7 +607,7 @@ export default function JournalArticle() {
                     </h3>
                     <p
                       style={{
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 13,
                         lineHeight: 1.55,
                         color: "var(--nx-text-muted)",
@@ -648,6 +622,95 @@ export default function JournalArticle() {
           </div>
         </section>
       )}
+
+
+      {/* ── Get the next issue ────────────────── */}
+      <section
+        data-testid="article-get-next-issue"
+        style={{
+          backgroundColor: "#000",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          paddingTop: 80,
+          paddingBottom: 80,
+        }}
+      >
+        <div className="nx-container" style={{ maxWidth: 1180, margin: "0 auto" }}>
+          <div
+            style={{
+              backgroundColor: "#c6f184",
+              borderRadius: 4,
+              padding: "48px 56px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: 32,
+            }}
+          >
+            <div>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 9,
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "rgba(0,0,0,0.55)",
+                  marginBottom: 12,
+                }}
+              >
+                The Nexphoria Journal · Monthly dispatch
+              </p>
+              <h2
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                  color: "#000",
+                  lineHeight: 1.1,
+                  marginBottom: 8,
+                }}
+              >
+                <span>Get the next issue.</span>
+              </h2>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  color: "rgba(0,0,0,0.7)",
+                  maxWidth: 440,
+                }}
+              >
+                Evidence reviews, protocol explainers, physician notes — straight to your inbox the week they publish.
+              </p>
+            </div>
+            <div>
+              <a
+                href="mailto:journal@nexphoria.com"
+                data-testid="journal-subscribe-email"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  backgroundColor: "#000",
+                  color: "#c6f184",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  padding: "14px 24px",
+                  borderRadius: 2,
+                  textDecoration: "none",
+                }}
+              >
+                Email journal@nexphoria.com →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <style>{`
         @media (max-width: 900px) {

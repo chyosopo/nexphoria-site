@@ -43,7 +43,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
             />
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
@@ -135,8 +135,8 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                     <div>
                       <p
                         style={{
-                          fontFamily: "'Fraunces', Georgia, serif",
-                          fontStyle: "italic",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          
                           fontWeight: 500,
                           fontSize: "1.25rem",
                           color: "#FFFFFF",
@@ -148,7 +148,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                       </p>
                       <p
                         style={{
-                          fontFamily: "'DM Mono', monospace",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "9px",
                           letterSpacing: "0.12em",
                           textTransform: "uppercase",

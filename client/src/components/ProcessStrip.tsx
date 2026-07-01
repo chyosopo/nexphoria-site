@@ -83,7 +83,7 @@ export function ProcessStrip({
         >
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 11,
               fontWeight: 500,
               letterSpacing: "0.22em",
@@ -96,8 +96,8 @@ export function ProcessStrip({
           </p>
           <h2
             style={{
-              fontFamily: "'Fraunces', Georgia, serif",
-              fontStyle: "italic",
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              
               fontWeight: 400,
               fontSize: "clamp(2.2rem, 4.5vw, 3.75rem)",
               lineHeight: 1.08,
@@ -109,7 +109,7 @@ export function ProcessStrip({
           </h2>
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 17,
               lineHeight: 1.6,
               color: isDark ? "rgba(255,255,243,0.7)" : "var(--nx-text-muted)",
@@ -203,8 +203,8 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
       >
         <p
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
-            fontStyle: "italic",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            
             fontWeight: 400,
             fontSize: 56,
             lineHeight: 1,
@@ -216,7 +216,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
         </p>
         <p
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: 10,
             fontWeight: 500,
             letterSpacing: "0.14em",
@@ -229,7 +229,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
       </div>
       <p
         style={{
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: 10,
           fontWeight: 500,
           letterSpacing: "0.18em",
@@ -242,8 +242,8 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
       </p>
       <h3
         style={{
-          fontFamily: "'Fraunces', Georgia, serif",
-          fontStyle: "italic",
+          fontFamily: "'General Sans', system-ui, sans-serif",
+          
           fontWeight: 400,
           fontSize: 24,
           lineHeight: 1.15,
@@ -255,7 +255,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
       </h3>
       <p
         style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: 14,
           lineHeight: 1.6,
           color: isDark ? "rgba(255,255,243,0.7)" : "var(--nx-text-muted)",

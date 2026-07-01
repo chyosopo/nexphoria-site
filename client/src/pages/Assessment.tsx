@@ -5,6 +5,12 @@ import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo } from "@/lib/seo";
+import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
+import { SiteLayout } from "@/components/SiteLayout";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { GoalVialTile, GOAL_TILE_CONFIG } from "@/components/GoalVialTile";
+import { VialArt, categoryToTone } from "@/components/VialTile";
+import { track } from "@/lib/analytics";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -65,7 +71,7 @@ const US_STATES = [
 // ─── Shared style helpers ─────────────────────────────────────────────────────
 
 const monoEyebrow: React.CSSProperties = {
-  fontFamily: "'DM Mono', monospace",
+  fontFamily: "'General Sans', system-ui, sans-serif",
   fontSize: "10px",
   fontWeight: 500,
   letterSpacing: "0.16em",
@@ -75,9 +81,9 @@ const monoEyebrow: React.CSSProperties = {
 };
 
 const playfairQuestion: React.CSSProperties = {
-  fontFamily: "'Fraunces', Georgia, serif",
+  fontFamily: "'General Sans', system-ui, sans-serif",
   fontWeight: 500,
-  fontStyle: "italic",
+  
   fontSize: "clamp(1.625rem, 4vw, 2.25rem)",
   color: "var(--nx-fg)",
   lineHeight: 1.2,
@@ -85,7 +91,7 @@ const playfairQuestion: React.CSSProperties = {
 };
 
 const subCopy: React.CSSProperties = {
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'General Sans', system-ui, sans-serif",
   fontSize: "15px",
   color: "var(--nx-fg-muted)",
   lineHeight: 1.55,
@@ -100,7 +106,7 @@ const pill: React.CSSProperties = {
   borderRadius: "100px",
   border: "1px solid var(--nx-border)",
   backgroundColor: "transparent",
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'General Sans', system-ui, sans-serif",
   fontSize: "11px",
   fontWeight: 600,
   letterSpacing: "0.09em",
@@ -120,7 +126,7 @@ const pillPrimary = (disabled: boolean): React.CSSProperties => ({
   borderRadius: "100px",
   border: "none",
   backgroundColor: disabled ? "#D1D5DB" : "var(--nx-fg)",
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'General Sans', system-ui, sans-serif",
   fontSize: "11px",
   fontWeight: 700,
   letterSpacing: "0.1em",
@@ -215,7 +221,7 @@ function OptionButton({
         <span
           style={{
             display: "block",
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "15px",
             fontWeight: selected ? 600 : 400,
             color: selected ? "var(--nx-bg-cream)" : "var(--nx-fg)",
@@ -227,7 +233,7 @@ function OptionButton({
           <span
             style={{
               display: "block",
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "9px",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -321,7 +327,7 @@ function CheckboxRow({
       />
       <span
         style={{
-          fontFamily: "'Inter', sans-serif",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: "15px",
           fontWeight: checked ? 600 : 400,
           color: checked ? "var(--nx-bg-cream)" : "var(--nx-fg)",
@@ -349,6 +355,7 @@ export default function Assessment() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const topRef = useRef<HTMLDivElement>(null);
+  const progressHintShown = step > 0 && step <= TOTAL_STEPS;
 
   // Read ?gender= from URL
   const urlParams = typeof window !== "undefined"
@@ -448,11 +455,45 @@ export default function Assessment() {
   // ── Render ──────────────────────────────────────────────────────────────────
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "var(--nx-bg)" }}
-      data-testid="assessment-page"
-    >
+    <SiteLayout navVariant="showcase">
+      {/* ════════════════ MAXIMUS HERO ════════════════ */}
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            eyebrow="Start your protocol"
+            headline={
+              <>Tell us your goal.<br /><span>We’ll build the protocol.</span></>
+            }
+            subtitle="A short physician-reviewed intake. Personalized peptide protocol delivered within 48 hours of approval."
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href="/assessment"
+              tone="cobalt"
+              glyph={TileGlyphs.hex}
+              label={<>Personalized protocol</>}
+              caption="Built around your goal"
+              ctaLabel="Start intake"
+            />
+            <ColoredHeroTile
+              href="/assessment"
+              tone="sky"
+              glyph={TileGlyphs.wave}
+              label={<>Physician-reviewed</>}
+              caption="Built around your goal"
+              ctaLabel="Start intake"
+            />
+          </div>
+        </div>
+      </main>
+
+      {/* ════════════════ ASSESSMENT FORM ════════════════ */}
+      <div
+        className="min-h-screen flex flex-col"
+        style={{ backgroundColor: "var(--nx-bg)" }}
+        data-testid="assessment-page"
+      >
       {/* ── Header ── */}
       <header
         style={{
@@ -462,55 +503,75 @@ export default function Assessment() {
           padding: "1.25rem 2rem",
           borderBottom: "1px solid var(--nx-border)",
           flexShrink: 0,
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+          backgroundColor: "var(--nx-bg)",
         }}
       >
         <Logo variant="dark" />
         {step > 0 && step <= TOTAL_STEPS && (
-          <p
-            style={{
-              fontFamily: "'DM Mono', monospace",
-              fontSize: "10px",
-              fontWeight: 500,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              color: "var(--nx-fg-muted)",
-            }}
-          >
-            STEP {step} OF {TOTAL_STEPS}
-          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+            {progressHintShown && (
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "9px",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-fg-muted)",
+                  opacity: 0.6,
+                }}
+              >
+                Don't refresh — answers are in-page
+              </p>
+            )}
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "10px",
+                fontWeight: 500,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "var(--nx-fg-muted)",
+              }}
+            >
+              STEP {step} OF {TOTAL_STEPS}
+            </p>
+          </div>
         )}
       </header>
 
-      {/* ── Progress bar ── */}
-      {step > 0 && step <= TOTAL_STEPS && (
-        <div style={{ height: "2px", backgroundColor: "var(--nx-border)", flexShrink: 0 }}>
-          <div
-            style={{
-              height: "100%",
-              width: `${progressPct}%`,
-              backgroundColor: "var(--nx-cobalt)",
-              transition: "width 0.4s ease",
-            }}
-            role="progressbar"
-            aria-valuenow={progressPct}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          />
-        </div>
-      )}
+      {/* ── Top labeled progress bar ── */}
+      {step > 0 && step <= TOTAL_STEPS && <LabeledProgress step={step} />}
 
-      {/* ── Main content ── */}
+      {/* ── Main content + sidebar ── */}
       <main
         style={{
           flex: 1,
           display: "flex",
-          alignItems: "center",
+          alignItems: "flex-start",
           justifyContent: "center",
           padding: "3rem 1.5rem 5rem",
-          overflow: "hidden",
         }}
       >
-        <div ref={topRef} style={{ width: "100%", maxWidth: "640px" }}>
+        <div
+          className={`assessment-layout${step > 0 && step <= TOTAL_STEPS ? " assessment-layout--with-sidebar" : ""}`}
+          style={{
+            width: "100%",
+            maxWidth: step > 0 && step <= TOTAL_STEPS ? "1040px" : "640px",
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "2.5rem",
+            alignItems: "start",
+          }}
+        >
+          {/* Question column */}
+          <div
+            ref={topRef}
+            style={{ width: "100%", maxWidth: "640px", margin: "0 auto", minWidth: 0 }}
+          >
+          <div style={{ overflow: "hidden" }}>
           <AnimatePresence mode="wait" custom={direction}>
             {/* ════════════════════════════════════════════════════════════
                 STEP 0 — Gender
@@ -524,7 +585,7 @@ export default function Assessment() {
                 </p>
                 <h1
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     fontSize: "clamp(2rem, 5vw, 3rem)",
                     color: "var(--nx-fg)",
@@ -537,8 +598,8 @@ export default function Assessment() {
                 </h1>
                 <p
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontStyle: "italic",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    
                     fontSize: "clamp(1.125rem, 2.5vw, 1.375rem)",
                     color: "var(--nx-fg-muted)",
                     lineHeight: 1.4,
@@ -578,8 +639,8 @@ export default function Assessment() {
                       >
                         <p
                           style={{
-                            fontFamily: "'Fraunces', Georgia, serif",
-                            fontStyle: "italic",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            
                             fontWeight: 500,
                             fontSize: "2rem",
                             color: sel ? "var(--nx-bg-cream)" : "var(--nx-fg)",
@@ -591,7 +652,7 @@ export default function Assessment() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'DM Mono', monospace",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "9px",
                             fontWeight: 500,
                             letterSpacing: "0.12em",
@@ -605,6 +666,7 @@ export default function Assessment() {
                     );
                   })}
                 </div>
+                <WhyWeAsk funnelStep={0} />
               </motion.div>
             )}
 
@@ -613,22 +675,115 @@ export default function Assessment() {
             ════════════════════════════════════════════════════════════ */}
             {step === 1 && (
               <motion.div key="step-1" {...motionProps} data-testid="assessment-step-1">
-                <p style={monoEyebrow}>STEP 01 OF 07</p>
+                <p style={monoEyebrow}>STEP 02 OF 07</p>
                 <h2 style={playfairQuestion}>What is your primary clinical goal?</h2>
                 <p style={subCopy}>
                   This shapes protocol selection. You can note secondary goals in your physician consult.
                 </p>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "2.5rem" }}>
-                  {GOALS.map((g) => (
-                    <OptionButton
-                      key={g}
-                      label={g}
-                      selected={form.goal === g}
-                      onClick={() => setField("goal", g)}
-                      testId={`assessment-option-${g.replace(/\s+/g, "-").toLowerCase()}`}
-                    />
-                  ))}
+                <div
+                  className="assessment-goal-grid"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                    gap: "0.75rem",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  {GOALS.map((g) => {
+                    const cfg = GOAL_TILE_CONFIG[g];
+                    if (!cfg) return null;
+                    return (
+                      <GoalVialTile
+                        key={g}
+                        goal={g}
+                        displayName={cfg.displayName}
+                        oneLiner={cfg.oneLiner}
+                        category={cfg.category}
+                        protocol={cfg.protocol}
+                        peptides={cfg.peptides}
+                        monthlyRange={cfg.monthlyRange}
+                        glyph={cfg.glyph}
+                        selected={form.goal === g}
+                        onClick={() => {
+                          setField("goal", g);
+                          track("goal_selected", { goal: g, category: cfg.category, protocol: cfg.protocol, step: 1 });
+                        }}
+                        testId={`assessment-option-${g.replace(/[\s\/]+/g, "-").toLowerCase()}`}
+                      />
+                    );
+                  })}
                 </div>
+                {/* Progressive email capture — saves lead even if they abandon */}
+                <div
+                  style={{
+                    padding: "1.25rem 1.25rem",
+                    borderRadius: "4px",
+                    border: "1px solid var(--nx-border)",
+                    backgroundColor: "rgba(198, 241, 132, 0.06)",
+                    marginBottom: "1.75rem",
+                  }}
+                >
+                  <label
+                    htmlFor="assessment-early-email"
+                    style={{
+                      display: "block",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "9px",
+                      fontWeight: 500,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "var(--nx-fg-muted)",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    Save your progress · Optional
+                  </label>
+                  <input
+                    id="assessment-early-email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setField("email", e.target.value)}
+                    onBlur={async (e) => {
+                      const val = e.currentTarget.value.trim();
+                      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                      if (emailRe.test(val)) {
+                        try {
+                          await fetch("/api/waitlist", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ email: val, source: `assessment-early-${form.gender ?? "unknown"}`, goal: form.goal || undefined }),
+                          });
+                        } catch {}
+                      }
+                    }}
+                    placeholder="you@example.com"
+                    data-testid="assessment-early-email"
+                    style={{
+                      width: "100%",
+                      padding: "0.75rem 1rem",
+                      borderRadius: "4px",
+                      border: "1px solid var(--nx-border)",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "0.9375rem",
+                      color: "var(--nx-fg)",
+                      backgroundColor: "var(--nx-bg-cream)",
+                      outline: "none",
+                    }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = "var(--nx-cobalt)"; }}
+                  />
+                  <p
+                    style={{
+                      marginTop: "0.5rem",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "0.75rem",
+                      color: "var(--nx-fg-muted)",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    We’ll email your protocol match so you can pick up where you left off. No spam · unsubscribe anytime.
+                  </p>
+                </div>
+                <WhyWeAsk funnelStep={1} />
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <button type="button" onClick={goBack} data-testid="assessment-back" style={pill}>
                     <ArrowLeft size={13} /> Back
@@ -661,6 +816,7 @@ export default function Assessment() {
                     />
                   ))}
                 </div>
+                <WhyWeAsk funnelStep={2} />
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <button type="button" onClick={goBack} data-testid="assessment-back" style={pill}>
                     <ArrowLeft size={13} /> Back
@@ -700,7 +856,7 @@ export default function Assessment() {
                       htmlFor="medications-text"
                       style={{
                         display: "block",
-                        fontFamily: "'DM Mono', monospace",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "9px",
                         fontWeight: 500,
                         letterSpacing: "0.12em",
@@ -724,7 +880,7 @@ export default function Assessment() {
                         borderRadius: "4px",
                         border: "1px solid var(--nx-border)",
                         backgroundColor: "#FFFFFF",
-                        fontFamily: "'Inter', sans-serif",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "15px",
                         color: "var(--nx-fg)",
                         lineHeight: 1.5,
@@ -740,6 +896,7 @@ export default function Assessment() {
 
                 {form.noMedications && <div style={{ marginBottom: "2.5rem" }} />}
 
+                <WhyWeAsk funnelStep={3} />
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <button type="button" onClick={goBack} data-testid="assessment-back" style={pill}>
                     <ArrowLeft size={13} /> Back
@@ -772,6 +929,7 @@ export default function Assessment() {
                     />
                   ))}
                 </div>
+                <WhyWeAsk funnelStep={4} />
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <button type="button" onClick={goBack} data-testid="assessment-back" style={pill}>
                     <ArrowLeft size={13} /> Back
@@ -805,6 +963,7 @@ export default function Assessment() {
                     />
                   ))}
                 </div>
+                <WhyWeAsk funnelStep={5} />
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <button type="button" onClick={goBack} data-testid="assessment-back" style={pill}>
                     <ArrowLeft size={13} /> Back
@@ -830,7 +989,7 @@ export default function Assessment() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2.5rem" }}>
                   {/* Name */}
                   <div>
-                    <label htmlFor="contact-name" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-name" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Full name *
                     </label>
                     <input
@@ -848,7 +1007,7 @@ export default function Assessment() {
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="contact-email" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-email" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Email address *
                     </label>
                     <input
@@ -866,7 +1025,7 @@ export default function Assessment() {
 
                   {/* Phone */}
                   <div>
-                    <label htmlFor="contact-phone" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-phone" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Phone number
                     </label>
                     <input
@@ -884,7 +1043,7 @@ export default function Assessment() {
 
                   {/* State */}
                   <div>
-                    <label htmlFor="contact-state" style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-state" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       State of residence *
                     </label>
                     <select
@@ -912,6 +1071,7 @@ export default function Assessment() {
                   </div>
                 </div>
 
+                <WhyWeAsk funnelStep={6} />
                 <div style={{ display: "flex", gap: "0.75rem" }}>
                   <button type="button" onClick={goBack} data-testid="assessment-back" style={pill}>
                     <ArrowLeft size={13} /> Back
@@ -933,6 +1093,46 @@ export default function Assessment() {
                 <p style={subCopy}>
                   Your physician will receive these details. You can go back to change any answer.
                 </p>
+
+                {/* Screener disclaimer */}
+                <div
+                  style={{
+                    backgroundColor: "var(--nx-bg-cream)",
+                    border: "1px solid var(--nx-border)",
+                    borderRadius: "4px",
+                    padding: "0.875rem 1.25rem",
+                    marginBottom: "1.5rem",
+                    display: "flex",
+                    gap: "0.625rem",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "8px",
+                      fontWeight: 700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "var(--nx-cobalt)",
+                      flexShrink: 0,
+                      marginTop: "2px",
+                    }}
+                  >
+                    NOTE
+                  </span>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "12px",
+                      color: "#4A4A4A",
+                      lineHeight: 1.6,
+                      margin: 0,
+                    }}
+                  >
+                    This is a marketing screener. Formal medical eligibility is determined during physician review after your Quest Diagnostics labs are on file. No prescription is issued based on these answers alone.
+                  </p>
+                </div>
 
                 {/* Summary card */}
                 <div
@@ -990,7 +1190,7 @@ export default function Assessment() {
                     >
                       <span
                         style={{
-                          fontFamily: "'DM Mono', monospace",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "9px",
                           fontWeight: 500,
                           letterSpacing: "0.1em",
@@ -1005,7 +1205,7 @@ export default function Assessment() {
                       </span>
                       <span
                         style={{
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "14px",
                           color: "var(--nx-fg)",
                           lineHeight: 1.45,
@@ -1020,7 +1220,7 @@ export default function Assessment() {
                 {submitError && (
                   <p
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13px",
                       color: "#B91C1C",
                       marginBottom: "1rem",
@@ -1075,7 +1275,7 @@ export default function Assessment() {
                 </div>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
@@ -1088,7 +1288,7 @@ export default function Assessment() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
                     color: "var(--nx-fg)",
@@ -1100,8 +1300,8 @@ export default function Assessment() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontStyle: "italic",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    
                     fontSize: "clamp(1rem, 2vw, 1.25rem)",
                     color: "var(--nx-fg-muted)",
                     lineHeight: 1.4,
@@ -1112,7 +1312,7 @@ export default function Assessment() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "15px",
                     color: "#4A4A4A",
                     lineHeight: 1.7,
@@ -1120,39 +1320,118 @@ export default function Assessment() {
                     margin: "0 auto 2.5rem",
                   }}
                 >
-                  A board-certified physician will review your answers, request your blood panel if
-                  needed, and contact you to schedule a telehealth consult. No prescription is issued
-                  before that review is complete.
+                  A board-certified physician will review your answers, request your blood panel, and schedule a telehealth consult via Bask Health. No prescription is issued before that review is complete.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => navigate(form.gender === "female" ? "/women" : "/men")}
-                  data-testid="assessment-view-protocols"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    backgroundColor: "var(--nx-fg)",
-                    color: "var(--nx-bg-cream)",
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "11px",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    padding: "0.875rem 2rem",
-                    borderRadius: "100px",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  VIEW {form.gender === "female" ? "WOMEN'S" : "MEN'S"} PROTOCOLS <ArrowRight size={13} />
-                </button>
+
+                {/* What happens next */}
+                <div style={{ backgroundColor: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "4px", padding: "1.25rem 1.5rem", marginBottom: "1.5rem", textAlign: "left" }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.875rem" }}>
+                    WHAT HAPPENS NEXT
+                  </p>
+                  {[
+                    { n: "01", t: "Physician reviews your intake within 24–48 hours" },
+                    { n: "02", t: "Quest Diagnostics requisition generated in your member portal" },
+                    { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
+                    { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
+                  ].map(({ n, t }) => (
+                    <div key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
+                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
+                      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg)", lineHeight: 1.55, margin: 0 }}>{t}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Recommended stack hint — tinted VialTile echo of the goal step */}
+                {form.goal && GOAL_TILE_CONFIG[form.goal] && (() => {
+                  const cfg = GOAL_TILE_CONFIG[form.goal];
+                  const tone = categoryToTone(cfg.category);
+                  const tintBg: Record<string, string> = {
+                    cream: "#F8F4E8", sage: "#EBF2E5", rose: "#F6E4E1", sky: "#DDE9F0",
+                    dusk: "#E4E1EC", butter: "#F8EED2", cobalt: "#D9E2F2", mineral: "#E4E9EC",
+                  };
+                  const tintInk: Record<string, string> = {
+                    cream: "#3E2A18", sage: "#2E4432", rose: "#5C2A2C", sky: "#1F3B52",
+                    dusk: "#3A2F4E", butter: "#4A3A16", cobalt: "#1E2A55", mineral: "#2A3841",
+                  };
+                  return (
+                    <div
+                      style={{ borderRadius: "8px", overflow: "hidden", marginBottom: "2rem", textAlign: "left", border: "1.5px solid var(--nx-fg)" }}
+                      data-testid="outcome-protocol-tile"
+                    >
+                      <div style={{ backgroundColor: "var(--nx-fg)", padding: "0.875rem 1.25rem" }}>
+                        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)", margin: 0 }}>
+                          SUGGESTED STARTING POINT · BASED ON YOUR GOAL
+                        </p>
+                      </div>
+                      <div style={{ backgroundColor: tintBg[tone], padding: "1.25rem", display: "flex", gap: "1rem", alignItems: "center" }}>
+                        <div style={{ flexShrink: 0 }}>
+                          <VialArt tone={tone} glyph={cfg.glyph} size={92} />
+                        </div>
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: tintInk[tone], opacity: 0.6, margin: "0 0 0.375rem 0" }}>
+                            {cfg.category.toUpperCase()}
+                          </p>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1.0625rem", fontWeight: 600, color: tintInk[tone], marginBottom: "0.375rem", lineHeight: 1.25 }}>
+                            {cfg.protocol}
+                          </p>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: tintInk[tone], opacity: 0.78, margin: "0 0 0.5rem 0", lineHeight: 1.45 }}>
+                            You’d take: <span style={{ fontWeight: 600 }}>{cfg.peptides}</span> · Range {cfg.monthlyRange}
+                          </p>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "8.5px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: tintInk[tone], opacity: 0.55, marginBottom: 0 }}>
+                            Subject to physician approval after lab review
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+                  <button
+                    type="button"
+                    onClick={() => navigate("/stacks")}
+                    data-testid="assessment-view-protocols"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", backgroundColor: "var(--nx-fg)", color: "var(--nx-bg-cream)", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.875rem 2rem", borderRadius: "100px", border: "none", cursor: "pointer" }}
+                  >
+                    VIEW PROTOCOLS <ArrowRight size={13} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => navigate("/pricing")}
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", backgroundColor: "transparent", color: "var(--nx-fg)", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.875rem 1.5rem", borderRadius: "100px", border: "1.5px solid var(--nx-border)", cursor: "pointer" }}
+                  >
+                    View pricing
+                  </button>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
+          </div>
+
+          {/* Trust strip — shown on question + review steps */}
+          {step > 0 && step <= TOTAL_STEPS && <TrustStrip />}
+          </div>
+
+          {/* Sidebar — shown on question + review steps */}
+          {step > 0 && step <= TOTAL_STEPS && <IntakeSidebar />}
         </div>
       </main>
+
+      <style>{`
+        @media (min-width: 980px) {
+          .assessment-layout--with-sidebar {
+            grid-template-columns: minmax(0, 640px) 320px !important;
+            max-width: 1040px !important;
+          }
+          .assessment-layout--with-sidebar > div:first-child { margin: 0 !important; }
+        }
+        @media (max-width: 560px) {
+          .assessment-progress-label { font-size: 0 !important; }
+          .assessment-goal-grid { grid-template-columns: minmax(0, 1fr) !important; }
+        }
+      `}</style>
     </div>
+    </SiteLayout>
   );
 }
 
@@ -1164,7 +1443,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: "4px",
   border: "1px solid var(--nx-border)",
   backgroundColor: "#FFFFFF",
-  fontFamily: "'Inter', sans-serif",
+  fontFamily: "'General Sans', system-ui, sans-serif",
   fontSize: "15px",
   color: "var(--nx-fg)",
   lineHeight: 1.5,

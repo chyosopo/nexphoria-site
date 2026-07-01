@@ -70,12 +70,12 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
         style={{ borderColor: "var(--nx-border)", backgroundColor: "var(--nx-bg-cream)" }}
       >
         <div className="nx-container flex items-center gap-2">
-          <Link href={`/${gender}/peptides`} className="flex items-center gap-1 no-underline" style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)" }}>
+          <Link href={`/${gender}/peptides`} className="flex items-center gap-1 no-underline" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)" }}>
             <ArrowLeft size={14} />
             {gender === "women" ? "Women's peptides" : "Men's peptides"}
           </Link>
           <span style={{ color: "var(--nx-border)", fontSize: "13px" }}>/</span>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", color: "var(--nx-fg)" }}>{peptide.name}</span>
+          <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg)" }}>{peptide.name}</span>
         </div>
       </div>
 
@@ -89,7 +89,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                 <p className="nx-eyebrow mb-3">{CATEGORY_LABELS[peptide.category]}</p>
                 <h1
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     fontSize: "clamp(2.5rem, 5vw, 4rem)",
                     color: "var(--nx-fg)",
@@ -99,7 +99,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                 >
                   {peptide.name}
                 </h1>
-                <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontSize: "1.25rem", color: "var(--nx-fg-graphite)", marginBottom: "1.5rem" }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontSize: "1.25rem", color: "var(--nx-fg-graphite)", marginBottom: "1.5rem" }}>
                   {peptide.tagline}
                 </p>
                 <p className="nx-body mb-8">{peptide.summary}</p>
@@ -109,10 +109,10 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                   className="p-4 rounded-xl mb-8"
                   style={{ backgroundColor: "var(--nx-cobalt-soft)", border: "1px solid #D6D2C4" }}
                 >
-                  <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
                     {genderContext.contextLabel}
                   </p>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                     {genderContext.contextNote}
                   </p>
                 </div>
@@ -130,7 +130,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                       <div>
                         <div
                           style={{
-                            fontFamily: "'DM Mono', monospace",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "10px",
                             letterSpacing: "0.18em",
                             textTransform: "uppercase",
@@ -143,7 +143,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                         <div className="flex items-baseline gap-2">
                           <span
                             style={{
-                              fontFamily: "'Fraunces', serif",
+                              fontFamily: "'General Sans', system-ui, sans-serif",
                               fontSize: "2rem",
                               fontWeight: 500,
                               color: "var(--nx-fg)",
@@ -155,7 +155,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                           {p.badge && (
                             <span
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "'General Sans', system-ui, sans-serif",
                                 fontSize: "9px",
                                 letterSpacing: "0.16em",
                                 textTransform: "uppercase",
@@ -168,7 +168,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                         </div>
                         <div
                           style={{
-                            fontFamily: "'Inter', sans-serif",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "12px",
                             color: "var(--nx-fg-graphite)",
                             marginTop: 4,
@@ -208,8 +208,8 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                       <div key={label} className="flex items-start gap-3">
                         <Icon size={16} style={{ color: "var(--nx-cobalt)", marginTop: "2px", flexShrink: 0 }} />
                         <div>
-                          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "9px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
-                          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>{value}</p>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)" }}>{value}</p>
                         </div>
                       </div>
                     ))}
@@ -230,8 +230,8 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                             </linearGradient>
                           </defs>
                           <CartesianGrid strokeDasharray="3 3" stroke="#E5E5E2" vertical={false} />
-                          <XAxis dataKey="week" tick={{ fontSize: 9, fill: "#8A8A8A", fontFamily: "'DM Mono', monospace" }} axisLine={false} tickLine={false} />
-                          <YAxis tick={{ fontSize: 9, fill: "#8A8A8A", fontFamily: "'DM Mono', monospace" }} axisLine={false} tickLine={false} />
+                          <XAxis dataKey="week" tick={{ fontSize: 9, fill: "#8A8A8A", fontFamily: "'General Sans', system-ui, sans-serif" }} axisLine={false} tickLine={false} />
+                          <YAxis tick={{ fontSize: 9, fill: "#8A8A8A", fontFamily: "'General Sans', system-ui, sans-serif" }} axisLine={false} tickLine={false} />
                           <Area type="monotone" dataKey="score" stroke="#0A0A0A" strokeWidth={2} fill="url(#detailGrad)" dot={false} />
                         </AreaChart>
                       </ResponsiveContainer>
@@ -271,11 +271,11 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                     style={{ borderBottom: i < peptide.timeline.length - 1 ? "1px solid var(--nx-border)" : "none" }}
                   >
                     <div style={{ flexShrink: 0, width: "60px" }}>
-                      <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", color: "var(--nx-cobalt)", textTransform: "uppercase" }}>
+                      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", color: "var(--nx-cobalt)", textTransform: "uppercase" }}>
                         {entry.week}
                       </p>
                     </div>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "15px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "15px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                       {entry.effect}
                     </p>
                   </div>
@@ -305,10 +305,10 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                     style={{ border: "1px solid var(--nx-border)", backgroundColor: "#FFFFFF" }}
                     data-testid={`study-link-${i}`}
                   >
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "4px", lineHeight: 1.4 }}>{study.title}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "4px", lineHeight: 1.4 }}>{study.title}</p>
                     <div className="flex gap-3">
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", letterSpacing: "0.08em", color: "var(--nx-cobalt)" }}>{study.source}</span>
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "10px", letterSpacing: "0.08em", color: "var(--nx-fg-muted)" }}>{study.year}</span>
+                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", letterSpacing: "0.08em", color: "var(--nx-cobalt)" }}>{study.source}</span>
+                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", letterSpacing: "0.08em", color: "var(--nx-fg-muted)" }}>{study.year}</span>
                     </div>
                   </a>
                 </Reveal>
@@ -335,7 +335,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                     key={pairSlug}
                     href={`/${gender}/peptides/${pairSlug}`}
                     className="px-4 py-2.5 rounded-full no-underline transition-all hover:shadow-sm"
-                    style={{ border: "1px solid var(--nx-border)", fontFamily: "'Inter', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)", backgroundColor: "#fff" }}
+                    style={{ border: "1px solid var(--nx-border)", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--nx-fg)", backgroundColor: "#fff" }}
                     data-testid={`pair-link-${pairSlug}`}
                   >
                     {paired.name} →
@@ -351,7 +351,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
       <div className="nx-container pb-8">
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "12px",
             color: "var(--nx-fg-muted)",
             lineHeight: 1.6,

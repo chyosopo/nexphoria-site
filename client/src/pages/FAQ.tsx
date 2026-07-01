@@ -4,6 +4,8 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { Plus, Minus } from "lucide-react";
 import { useSeo } from "@/lib/seo";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { PillBadge } from "@/components/PillBadge";
 
 interface FAQItem {
   q: string;
@@ -12,23 +14,124 @@ interface FAQItem {
 
 const categories: { label: string; items: FAQItem[] }[] = [
   {
+    label: "Products",
+    items: [
+      {
+        q: "What is a peptide?",
+        a: "Peptides are short chains of amino acids — the same building blocks as proteins — that act as precise biological messengers. They signal cells to perform specific functions: repair tissue, stimulate hormone release, reduce inflammation, or regulate metabolism. Unlike hormone replacement, most peptides instruct your body to produce or optimize what it already makes.",
+      },
+      {
+        q: "How is this different from buying research peptides online?",
+        a: "Research-grade peptides sold online are not intended for human use, lack sterility testing, and have no dosing oversight. Nexphoria protocols are prescribed by a board-certified physician, compounded in a licensed 503A US pharmacy under sterile conditions, batch-tested for potency and purity, and shipped cold-chain. The compound you administer is the compound you were prescribed — not an unverified powder.",
+      },
+      {
+        q: "What compounds do you offer?",
+        a: "Our formulary includes GLP-1 agonists (semaglutide, tirzepatide), growth hormone secretagogues (CJC-1295, Ipamorelin, Sermorelin, Tesamorelin), tissue repair peptides (BPC-157, TB-500, GHK-Cu), cognitive peptides (Selank, Semax), HPG-axis modulators (Enclomiphene, Kisspeptin), and longevity protocols (NAD+, Epitalon, MOTS-c). Final compound selection is made by your physician after reviewing your labs.",
+      },
+      {
+        q: "What does a 503A-licensed pharmacy mean?",
+        a: "503A pharmacies compound medications for individual patients under a valid physician prescription. This allows dosage and formulation customization that mass-manufactured products cannot provide. Every Nexphoria compound is sterile-prepared in an ISO-compliant cleanroom, batch-tested for potency and purity, and ships with a certificate of analysis.",
+      },
+    ],
+  },
+  {
+    label: "Process",
+    items: [
+      {
+        q: "How does the process work start to finish?",
+        a: "Complete the 5-minute intake assessment. A Quest Diagnostics lab requisition is generated in your member portal. Draw at any of 2,500+ Quest locations nationwide. A board-certified physician reviews your labs and intake within 24–48 hours. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
+      },
+      {
+        q: "What if the physician declines my protocol?",
+        a: "If your physician determines a requested protocol is clinically inappropriate, the prescription is not issued. The physician may propose a modified protocol or a different compound. You are not charged for pharmacy compounding if no prescription is issued. Declinations are documented in your file with clinical rationale.",
+      },
+      {
+        q: "What labs do I need?",
+        a: "A 38-biomarker Quest Diagnostics panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
+      },
+      {
+        q: "Who reviews my bloodwork?",
+        a: "Your assigned board-certified physician reviews your Quest Diagnostics results within 24 hours of receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
+      },
+      {
+        q: "How quickly will I see results?",
+        a: "Onset depends on compound and individual response. GLP-1 protocols show measurable weight change within 4–8 weeks. GHS protocols show IGF-1 elevation at 6–8 weeks; lean mass changes at 12–16 weeks. Tissue repair protocols (BPC-157) vary by indication. Your physician sets realistic outcome expectations at consultation.",
+      },
+    ],
+  },
+  {
+    label: "Pricing",
+    items: [
+      {
+        q: "What does a Nexphoria protocol cost?",
+        a: "Protocols start from $249/month (single cognitive peptides) to $389/month (longevity stacks). 6-month plans save 10%. 12-month plans save 20% and are our best-value option. Your physician consult, lab interpretation, and cold-chain shipping are included — there are no hidden fees.",
+      },
+      {
+        q: "Can I cancel after the first month?",
+        a: "Yes. No long-term contracts or early termination fees. Cancel from your member portal; cancellation takes effect at end of your current cycle. Dispensed medications cannot be returned under pharmacy regulations.",
+      },
+      {
+        q: "Can I use insurance or FSA/HSA?",
+        a: "Nexphoria is self-pay. Insurance reimbursement for compounded off-label peptides is not available. Many compounded prescriptions qualify as FSA/HSA-eligible medical expenses. We provide itemized receipts meeting FSA/HSA documentation requirements. Confirm eligibility with your plan administrator.",
+      },
+      {
+        q: "Is the physician consult included?",
+        a: "Yes. Initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consult fee charged to your card.",
+      },
+    ],
+  },
+  {
     label: "Safety",
     items: [
       {
         q: "What if I have a pre-existing condition?",
-        a: "Pre-existing conditions are assessed by your assigned physician after reviewing your full intake and laboratory results. Some conditions — active cancer, uncontrolled cardiovascular disease, pregnancy — are absolute contraindications for specific peptide protocols. Others require modified dosing, additional monitoring, or a different compound selection. Honesty in your intake is clinically essential; your physician uses that information to protect you, not to exclude you.",
+        a: "Pre-existing conditions are assessed by your physician after reviewing your full intake and lab results. Active cancer, uncontrolled cardiovascular disease, and pregnancy are absolute contraindications for specific protocols. Others require modified dosing or additional monitoring. Your physician uses this information to protect you, not to exclude you.",
       },
       {
-        q: "How do I store the peptides?",
-        a: "Most compounded peptides require refrigeration at 2–8°C (36–46°F). Lyophilized (freeze-dried) formulations are stable at room temperature until reconstituted, then require refrigeration. Your shipping kit includes temperature indicators; if the indicator has been breached during transit, do not use the medication. Your physician's instructions will specify handling requirements for your specific compounds.",
+        q: "What are common side effects?",
+        a: "Side effects vary by compound. GLP-1 agonists commonly cause mild nausea and reduced appetite during dose titration — typically resolving within 2–4 weeks. GH secretagogues may cause transient water retention. BPC-157 is generally well tolerated. Your physician reviews your history to identify compound-specific risk factors before prescribing.",
+      },
+      {
+        q: "What should I do if I have an adverse reaction?",
+        a: "For non-urgent symptoms, contact your physician via secure portal message. For urgent symptoms — chest pain, difficulty breathing, severe allergic reaction — seek emergency care immediately. Do not wait for portal response in an emergency. Contact your physician afterward to document the event for protocol review.",
+      },
+      {
+        q: "How do I store my peptides?",
+        a: "Most compounded peptides require refrigeration at 2–8°C (36–46°F). Lyophilized formulations are stable at room temperature until reconstituted. Your shipping kit includes temperature indicators. If the indicator shows breach during transit, do not use the medication. Your prescription instructions specify handling requirements.",
+      },
+    ],
+  },
+  {
+    label: "Shipping",
+    items: [
+      {
+        q: "How are peptides shipped?",
+        a: "All orders ship cold-chain overnight with temperature-monitored packaging and temperature indicator cards. We currently ship to the contiguous 48 US states. Each shipment includes your prescription label, a certificate of analysis, and administration instructions from your physician.",
+      },
+      {
+        q: "How long does it take to receive my order?",
+        a: "After physician approval and pharmacy compounding (typically 3–5 business days), your order ships overnight. Total time from approval to delivery is typically 4–7 business days. Expedited compounding is available on select protocols — ask your physician.",
+      },
+      {
+        q: "Can I travel with my peptides?",
+        a: "Yes, domestically, with a copy of your prescription. For air travel, TSA permits medically necessary liquids above 3.4 oz with physician documentation. International travel is subject to destination country import laws — Nexphoria does not advise on international regulatory compliance.",
+      },
+    ],
+  },
+  {
+    label: "Refills",
+    items: [
+      {
+        q: "How do refills work?",
+        a: "Active subscribers receive automatic refill shipments based on their protocol cadence. Your physician reviews your labs before each refill cycle and may adjust dosing. You can pause or reschedule refills from your member portal with at least 5 business days' notice.",
+      },
+      {
+        q: "What if I want to change my protocol?",
+        a: "Request a protocol modification through your member portal. Your physician reviews the request and your most recent labs before approving any change. Protocol changes may require a new lab draw if your last panel is more than 90 days old.",
       },
       {
         q: "What if I miss a dose?",
-        a: "For most protocols, a single missed dose does not require correction — resume your regular schedule at the next scheduled time. Do not double-dose to compensate. GLP-1 protocols (semaglutide, tirzepatide) administered weekly: if fewer than 5 days have passed since the missed dose, administer as soon as you remember and resume your weekly schedule. If more than 5 days have passed, skip that dose and resume at your next scheduled injection date.",
-      },
-      {
-        q: "Can I travel with peptides?",
-        a: "Compounded peptides may be transported domestically with a copy of your prescription. For air travel, peptides requiring refrigeration may be packed with a physician's letter in an insulated carry-on container — TSA allows medically necessary liquids exceeding 3.4 oz with appropriate documentation. International travel is subject to destination country regulations and import restrictions on compounded medications; Nexphoria does not advise on international regulatory compliance.",
+        a: "For most protocols, a single missed dose does not require correction — resume your regular schedule at the next scheduled time. Do not double-dose. GLP-1 protocols administered weekly: if fewer than 5 days have passed since the missed dose, administer as soon as you remember. If more than 5 days have passed, skip that dose and resume at your next scheduled date.",
       },
     ],
   },
@@ -37,62 +140,15 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "Are peptides legal?",
-        a: "Compounded peptides prescribed by a licensed US physician and prepared by a 503A-licensed US compounding pharmacy are legal to obtain and possess in the United States. The regulatory status of individual compounds varies: tirzepatide and semaglutide have FDA approval for specific indications and may also be compounded off-label; BPC-157 and TB-500 are compounded off-label without FDA approval for any indication. Legality of possession and import varies by country. Nexphoria operates within US federal and state pharmacy law.",
+        a: "Compounded peptides prescribed by a licensed US physician and prepared by a 503A-licensed US compounding pharmacy are legal to obtain and possess in the United States. Tirzepatide and semaglutide have FDA approval for specific indications and may also be compounded off-label. BPC-157, TB-500, CJC-1295, and Ipamorelin are compounded off-label without FDA approval for any indication. Nexphoria operates within US federal and state pharmacy law.",
       },
       {
         q: "Is this FDA-approved?",
-        a: "Tirzepatide (Mounjaro, Zepbound) and semaglutide (Ozempic, Wegovy) are FDA-approved drugs that may also be compounded under certain conditions. Most other peptides in our formulary — BPC-157, TB-500, CJC-1295, Ipamorelin, Selank, Semax — are prescribed off-label and are not FDA-approved for any indication. They are compounded by 503A pharmacies under a physician's prescription. Off-label prescribing is a standard, legal component of clinical practice in the United States.",
+        a: "Tirzepatide and semaglutide are FDA-approved drugs that may also be compounded. Most other peptides in our formulary are prescribed off-label — not FDA-approved for any specific indication. Off-label prescribing is a legal, routine component of clinical practice in the United States. Compounding under a physician's prescription is regulated by state pharmacy boards and the FDA.",
       },
       {
         q: "Do you ship internationally?",
-        a: "No. Nexphoria ships within the United States only. We serve members in states where our physicians hold active licensure. International shipping of compounded medications is prohibited under US export law and the laws of most destination countries.",
-      },
-    ],
-  },
-  {
-    label: "Process",
-    items: [
-      {
-        q: "What if the physician declines my protocol?",
-        a: "If your assigned physician determines that a requested protocol is clinically inappropriate based on your labs or health history, the prescription will not be issued. The physician may propose a modified protocol, a different compound, or recommend evaluation by a specialist before proceeding. Declinations are documented in your file. You are not charged for pharmacy compounding if no prescription is issued.",
-      },
-      {
-        q: "What labs do I need?",
-        a: "A 38-biomarker Quest Diagnostics panel is required before any prescription is written. The panel covers hormones, metabolic markers, inflammation, nutrients, cardiovascular markers, thyroid, kidney and liver function, and a complete blood count. Your requisition is generated in your member portal. You draw at any Quest Diagnostics patient service center or arrange a home draw. If you have comprehensive lab results from within the past 30 days from a CLIA-certified laboratory, your physician may accept them in lieu of a new draw — subject to physician discretion.",
-      },
-      {
-        q: "How quickly will I see results?",
-        a: "Onset depends on the compound and your individual response. GLP-1 agonist protocols (semaglutide, tirzepatide) typically produce measurable weight reduction within 4–8 weeks at therapeutic dose; full efficacy is assessed at 12–16 weeks. Growth hormone secretagogue protocols show IGF-1 elevation within 4–6 weeks; lean-mass changes are typically measurable at 12–16 weeks. Tissue repair protocols such as BPC-157 vary significantly by indication and tissue type. Your physician will set outcome expectations at your initial consultation based on your baseline biomarkers.",
-      },
-      {
-        q: "Who reviews my bloodwork?",
-        a: "Your assigned board-certified physician reviews your Quest Diagnostics results within 24 hours of receipt in the member portal. Lab results are not reviewed by algorithms, nurses, or non-physician staff as the primary clinical reviewer. Your physician sends a structured response via secure portal message — either a prescription, a request for additional information, or a follow-up question about your health history.",
-      },
-    ],
-  },
-  {
-    label: "Pricing",
-    items: [
-      {
-        q: "Can I cancel after the first month?",
-        a: "Yes. There are no long-term contracts or early termination fees. Cancel anytime from your member portal; cancellation takes effect at the end of your current billing cycle. Compounded medications that have already been dispensed cannot be returned or refunded under pharmacy regulations. Upcoming shipments scheduled after your cancellation date will not be processed.",
-      },
-      {
-        q: "Can I use insurance or FSA/HSA?",
-        a: "Nexphoria protocols are self-pay. Insurance reimbursement for compounded off-label peptides is not available. For FSA/HSA accounts: many compounded prescriptions qualify as eligible medical expenses. We provide itemized receipts at checkout that meet FSA/HSA documentation requirements. Consult your FSA/HSA plan administrator to confirm eligibility for your specific protocol.",
-      },
-    ],
-  },
-  {
-    label: "Side Effects",
-    items: [
-      {
-        q: "What are the common side effects?",
-        a: "Side effects vary by compound. GLP-1 agonists (semaglutide, tirzepatide) most commonly cause nausea, reduced appetite, and mild GI disturbance during dose titration — typically resolving within 2–4 weeks. Growth hormone secretagogues may cause water retention and mild joint discomfort during initial weeks. BPC-157 is generally well tolerated with limited reported adverse effects in human case series. Your physician reviews your health history specifically to identify patients at elevated risk for compound-specific adverse effects.",
-      },
-      {
-        q: "What should I do if I have an adverse reaction?",
-        a: "For non-urgent symptoms such as mild nausea, site irritation, or fatigue, contact your physician via secure portal message. For urgent or severe symptoms — chest pain, difficulty breathing, allergic reaction, severe abdominal pain — seek emergency medical care immediately and do not wait for portal response. Nexphoria does not provide emergency medical services. After an acute event, contact your physician via portal with a description of the event so your protocol can be reviewed.",
+        a: "No. Nexphoria ships within the United States only to states where our physicians hold active licensure. International shipping of compounded medications is prohibited under US export law and the laws of most destination countries.",
       },
     ],
   },
@@ -133,8 +189,8 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
       >
         <p
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
-            fontStyle: isOpen ? "italic" : "normal",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontStyle: isOpen ? "" : "normal",
             fontWeight: 500,
             fontSize: "clamp(1rem, 2vw, 1.375rem)",
             color: isOpen ? "var(--nx-cobalt)" : "var(--nx-fg)",
@@ -175,7 +231,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
         >
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1rem",
               color: "#4A4A4A",
               lineHeight: 1.7,
@@ -203,84 +259,53 @@ export default function FAQPage() {
   };
 
   const categoryHeadings: Record<string, string> = {
-    Safety: "Safety and administration.",
-    Legality: "Legal status and compliance.",
+    Products: "What you're getting.",
     Process: "Clinical process and monitoring.",
     Pricing: "Pricing, billing, and cancellation.",
-    "Side Effects": "Adverse effects and response.",
+    Safety: "Safety, storage, and administration.",
+    Shipping: "Cold-chain shipping and delivery.",
+    Refills: "Refills, changes, and protocol adjustments.",
+    Legality: "Legal status and compliance.",
   };
 
   return (
-    <SiteLayout navVariant="gate">
-      {/* ── Hero ── */}
-      <section
-        className="py-32 md:py-40"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p
-              style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1.25rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-              }}
-            >
-              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              FAQ
-            </p>
-            <h1
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontWeight: 500,
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.05,
-                marginBottom: "0.5rem",
-              }}
-            >
-              Direct answers.
-            </h1>
-            <p
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontWeight: 500,
-                fontStyle: "italic",
-                fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.05,
-                marginBottom: "1.5rem",
-              }}
-            >
-              No spin.
-            </p>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1rem, 2vw, 1.0625rem)",
-                color: "#4A4A4A",
-                lineHeight: 1.65,
-                maxWidth: "560px",
-              }}
-            >
-              If the answer is no or it depends, we say so. Peptide therapy involves real
-              pharmacology, real regulatory complexity, and real clinical judgment. These
-              questions deserve accurate answers.{" "}
-              <a href="#/contact" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
-                Contact us
-              </a>{" "}
-              if your question isn't here.
-            </p>
-          </Reveal>
+    <SiteLayout navVariant="showcase">
+      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+        <div className="mx-page">
+          <MxHeader
+            badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
+            headline={
+              <>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Everything you wanted</span><br />
+                <span>to ask your doctor.</span>
+              </>
+            }
+            subtitle="Answers on dosing, safety, side effects, shipping, insurance, and what to expect. Still curious? Message your physician any time."
+          />
+
+          <div className="mx-grid">
+            <ColoredHeroTile
+              href="/faq"
+              tone="sand"
+              glyph={TileGlyphs.hex}
+              label={<>Protocol questions<br /><span>dosing &amp; timing</span></>}
+              caption="Most common asks"
+              ctaLabel="See answers"
+            />
+            <ColoredHeroTile
+              href="/faq"
+              tone="sky"
+              glyph={TileGlyphs.circle}
+              label={<>Safety &amp; science<br /><span>peer-reviewed</span></>}
+              caption="Most common asks"
+              ctaLabel="See answers"
+            />
+          </div>
         </div>
-      </section>
+      </main>
+
+      {/* EVERYTHING BELOW STAYS UNCHANGED */}
+
 
       {/* ── FAQ categories + accordion ── */}
       <section
@@ -307,7 +332,7 @@ export default function FAQPage() {
               >
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
@@ -328,7 +353,7 @@ export default function FAQPage() {
                           border: "none",
                           cursor: "pointer",
                           padding: "0.5rem 0",
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "14px",
                           fontWeight: activeCategory === i ? 600 : 400,
                           color: activeCategory === i ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
@@ -351,7 +376,7 @@ export default function FAQPage() {
                         {cat.label}
                         <span
                           style={{
-                            fontFamily: "'DM Mono', monospace",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "9px",
                             color: "var(--nx-fg-muted)",
                           }}
@@ -370,7 +395,7 @@ export default function FAQPage() {
               <Reveal>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -383,9 +408,9 @@ export default function FAQPage() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
-                    fontStyle: "italic",
+                    
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,

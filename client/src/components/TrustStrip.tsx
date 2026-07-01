@@ -61,7 +61,7 @@ export function TrustStrip() {
         <div className="flex flex-wrap items-center gap-x-8 gap-y-2 justify-center md:justify-start">
           <p
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "9px",
               fontWeight: 500,
               letterSpacing: "0.14em",
@@ -88,7 +88,7 @@ export function TrustStrip() {
               />
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "10px",
                   fontWeight: 500,
                   letterSpacing: "0.08em",
@@ -124,7 +124,7 @@ export function TrustStrip() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
@@ -136,7 +136,7 @@ export function TrustStrip() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "12px",
                     color: "var(--nx-fg-graphite)",
                     marginTop: "2px",

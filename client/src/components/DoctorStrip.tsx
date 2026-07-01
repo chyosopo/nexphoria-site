@@ -22,7 +22,7 @@ export function DoctorStrip() {
             />
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
@@ -36,7 +36,7 @@ export function DoctorStrip() {
 
           <h2
             style={{
-              fontFamily: "'Fraunces', Georgia, serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 500,
               fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
               color: "var(--nx-fg)",
@@ -48,7 +48,7 @@ export function DoctorStrip() {
           </h2>
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1rem",
               color: "var(--nx-fg-graphite)",
               maxWidth: "560px",
@@ -93,11 +93,11 @@ export function DoctorStrip() {
                   />
                 </div>
 
-                {/* Name — Playfair italic */}
+                {/* Name — Playfair */}
                 <p
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontStyle: "italic",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    
                     fontWeight: 500,
                     fontSize: "1rem",
                     color: "var(--nx-fg)",
@@ -122,7 +122,7 @@ export function DoctorStrip() {
                 {/* Credential */}
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "9px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
@@ -135,7 +135,7 @@ export function DoctorStrip() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "12px",
                     color: "var(--nx-fg-graphite)",
                     marginTop: "2px",

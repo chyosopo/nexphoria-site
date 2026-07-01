@@ -24,7 +24,7 @@ export default function Legal() {
             </p>
             <h1 className="nx-display text-foreground mb-6 leading-[0.95]">
               Terms, privacy, and{" "}
-              <span className="font-serif italic text-primary">medical disclaimers.</span>
+              <span className="text-primary">medical disclaimers.</span>
             </h1>
             <p className="text-sm font-mono text-muted-foreground uppercase tracking-widest">
               {lastUpdated}

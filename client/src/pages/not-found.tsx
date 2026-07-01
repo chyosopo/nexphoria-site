@@ -8,7 +8,7 @@ export default function NotFound() {
         <p className="nx-eyebrow mb-4">404</p>
         <h1
           style={{
-            fontFamily: "'Fraunces', Georgia, serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 500,
             fontSize: "clamp(2.5rem, 5vw, 4rem)",
             color: "var(--nx-fg)",
@@ -20,7 +20,7 @@ export default function NotFound() {
         </h1>
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "1rem",
             color: "var(--nx-fg-graphite)",
             marginBottom: "2.5rem",
@@ -34,11 +34,17 @@ export default function NotFound() {
           <Link href="/" className="nx-cta-cobalt" data-testid="not-found-home-link">
             Return home →
           </Link>
-          <Link href="/women" className="nx-cta-ghost" data-testid="not-found-women-link">
-            For women
+          <Link href="/peptides" className="nx-cta-ghost" data-testid="not-found-peptides-link">
+            Browse peptides
           </Link>
-          <Link href="/men" className="nx-cta-ghost" data-testid="not-found-men-link">
-            For men
+          <Link href="/assessment" className="nx-cta-ghost" data-testid="not-found-assessment-link">
+            Take the assessment
+          </Link>
+          <Link href="/journal" className="nx-cta-ghost" data-testid="not-found-journal-link">
+            Journal
+          </Link>
+          <Link href="/contact" className="nx-cta-ghost" data-testid="not-found-contact-link">
+            Contact us
           </Link>
         </div>
       </div>

@@ -4,28 +4,67 @@ import { useSeo } from "@/lib/seo";
 export default function Privacy() {
   useSeo({
     title: "Privacy Policy | Nexphoria",
-    description: "How we collect, use, and protect your personal and health information. HIPAA-compliant.",
+    description: "How Nexphoria collects, uses, and protects your personal and health information. HIPAA-compliant.",
     path: "/legal/privacy",
   });
   return (
     <LegalLayout title="Privacy Policy" lastUpdated="June 2026">
-      <LegalSection title="1. Information We Collect">
-        <LegalP>We collect personal information you provide during registration and intake, including name, date of birth, email address, and health information. We also collect lab results uploaded to or ordered through our platform.</LegalP>
+      <LegalSection title="1. Introduction">
+        <LegalP>This Privacy Policy describes how Nexphoria, Inc. ("Nexphoria," "we," "us," or "our") collects, uses, discloses, and protects information about individuals who use our website, patient portal, telehealth services, and related platforms (collectively, the "Services"). Nexphoria operates as a covered entity under the Health Insurance Portability and Accountability Act ("HIPAA") and is committed to safeguarding the confidentiality, integrity, and availability of your protected health information ("PHI").</LegalP>
+        <LegalP>This policy applies to all visitors, prospective patients, and active members of the Nexphoria platform. By using our Services, you acknowledge that you have read and understood this policy. If you do not agree, please do not use the Services.</LegalP>
       </LegalSection>
-      <LegalSection title="2. How We Use Your Information">
-        <LegalP>Your information is used to provide telehealth services, connect you with licensed physicians, process prescriptions, and facilitate pharmacy compounding. We do not sell your personal health information.</LegalP>
+
+      <LegalSection title="2. Information We Collect">
+        <LegalP><strong>Identifying information.</strong> When you create an account or complete an intake assessment, we collect your full legal name, date of birth, sex assigned at birth, mailing address, shipping address, email address, and phone number. We also collect a government-issued photo identification when required to verify your identity prior to a telehealth consultation.</LegalP>
+        <LegalP><strong>Health information.</strong> We collect health history, current medications, allergies, lifestyle data, fitness goals, symptoms, and any other clinical information you provide during intake or follow-up communications. We collect laboratory results uploaded by you or ordered through our network of CLIA-certified laboratories, including Quest Diagnostics. We collect prescription history and dispensing records from our compounding pharmacy partners.</LegalP>
+        <LegalP><strong>Payment information.</strong> Payment card information is collected and processed by our PCI-DSS-compliant payment processor. Nexphoria does not store full card numbers on its servers; we retain only tokenized references, the last four digits, and the card brand to support future transactions and customer service.</LegalP>
+        <LegalP><strong>Technical and usage data.</strong> We automatically collect device type, browser type, IP address, operating system, referring page, pages viewed, session duration, and similar diagnostic information. We use cookies and similar technologies as described in Section 9.</LegalP>
       </LegalSection>
-      <LegalSection title="3. HIPAA Compliance">
-        <LegalP>Nexphoria operates as a HIPAA-covered entity. We maintain administrative, physical, and technical safeguards to protect your protected health information (PHI) as required by law.</LegalP>
+
+      <LegalSection title="3. How We Use Your Information">
+        <LegalP>We use your information to operate the Services, including: (a) verifying your identity and eligibility; (b) facilitating telehealth consultations with licensed physicians through our Bask Health telehealth platform partner; (c) ordering laboratory testing and receiving results; (d) transmitting prescriptions to 503A compounding pharmacy partners for dispensing; (e) coordinating cold-chain shipment and delivery; (f) processing payments and managing subscriptions; (g) communicating with you about your care, including refills, follow-up consultations, and lab schedules; (h) responding to support inquiries; (i) improving the quality and safety of our Services; and (j) complying with applicable legal, regulatory, and accreditation obligations.</LegalP>
+        <LegalP>We do not sell your personal health information. We do not use PHI for third-party advertising. We do not share your protected health information with social media platforms, advertising networks, or data brokers.</LegalP>
       </LegalSection>
-      <LegalSection title="4. Data Sharing">
-        <LegalP>We share your health information only with your treating physician, the compounding pharmacy fulfilling your prescription, and laboratory services processing your blood panel. We do not share your PHI with third-party advertisers.</LegalP>
+
+      <LegalSection title="4. HIPAA Compliance and Safeguards">
+        <LegalP>Nexphoria maintains administrative, physical, and technical safeguards designed to protect the confidentiality, integrity, and availability of PHI as required by the HIPAA Privacy Rule (45 CFR Part 164, Subpart E) and the HIPAA Security Rule (45 CFR Part 164, Subpart C). These include role-based access controls, mandatory multi-factor authentication for all workforce members, encryption of PHI in transit using TLS 1.2 or higher and at rest using AES-256, audit logging of access to PHI, annual workforce training, and a written information security program reviewed at least annually.</LegalP>
+        <LegalP>We execute Business Associate Agreements ("BAAs") with every vendor, partner, or service provider that may access or transmit PHI on our behalf — including our telehealth platform, compounding pharmacies, laboratory partners, payment processor, and cloud infrastructure provider — as required by 45 CFR 164.504(e).</LegalP>
       </LegalSection>
-      <LegalSection title="5. Data Retention">
-        <LegalP>We retain your health records for a minimum of seven years or as required by applicable state law, whichever is longer. You may request a copy of your records at any time.</LegalP>
+
+      <LegalSection title="5. How We Share Information">
+        <LegalP>We share your health information only with: (a) the independent licensed physician treating you through the Nexphoria platform; (b) the 503A FDA-registered compounding pharmacy fulfilling your prescription; (c) the CLIA-certified laboratory processing your blood panel; (d) the shipping carrier delivering your medication, limited to the information necessary to complete delivery; and (e) any other party you specifically authorize in writing.</LegalP>
+        <LegalP>We may disclose PHI without your authorization when required by law, including in response to a valid subpoena, court order, or other legal process; to public health authorities for reporting communicable diseases or adverse events; to law enforcement when required by applicable statute; or to avert a serious and imminent threat to health or safety in accordance with 45 CFR 164.512(j).</LegalP>
+        <LegalP>In the event of a corporate transaction such as a merger, acquisition, or sale of assets, your information may be transferred to the successor entity, subject to the protections of this policy and applicable law.</LegalP>
       </LegalSection>
-      <LegalSection title="6. Your Rights">
-        <LegalP>You have the right to access, correct, or delete your personal information, subject to legal retention requirements. Submit requests to hello@nexphoria.com. This policy is governed by the laws of the State of New York.</LegalP>
+
+      <LegalSection title="6. Data Retention">
+        <LegalP>We retain medical records for the longer of seven (7) years from the date of your last interaction with the Services or the period required by the state in which your treating physician is licensed. Some states require longer retention for minor patients or specific record types; we honor the most stringent applicable requirement. We retain payment and transaction records for seven years to satisfy tax and accounting obligations.</LegalP>
+        <LegalP>When the applicable retention period expires, we securely destroy or de-identify your information in accordance with NIST 800-88 media sanitization guidelines.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="7. Your Rights">
+        <LegalP>Subject to applicable law and legitimate retention obligations, you have the right to: (a) request access to your protected health information; (b) request an amendment of inaccurate information; (c) request a copy of your records in electronic format; (d) request an accounting of disclosures made for purposes other than treatment, payment, or healthcare operations; (e) request restrictions on certain uses and disclosures; and (f) request confidential communications through alternate means or at alternate locations.</LegalP>
+        <LegalP>To exercise any of these rights, contact our Privacy Officer at privacy@nexphoria.com. We will respond to written requests within 30 days, with a single 30-day extension as permitted by 45 CFR 164.524(b)(2). Residents of California, Colorado, Connecticut, Virginia, and other states with applicable privacy statutes have additional rights as described in their respective state laws; please contact us to exercise these rights.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="8. Children's Privacy">
+        <LegalP>Our Services are intended exclusively for adults aged 21 and older. We do not knowingly collect personal information from individuals under 18. If we become aware that we have collected information from a person under 18, we will promptly delete it and terminate any associated account.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="9. Cookies and Tracking Technologies">
+        <LegalP>We use first-party cookies, local storage, and similar technologies to authenticate sessions, remember preferences, measure traffic, and improve performance. We use a limited set of privacy-respecting analytics that do not collect PHI. We do not place third-party advertising trackers on pages that display PHI. Your browser settings allow you to refuse cookies; however, certain features of the Services may not function correctly without them.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="10. Data Breach Notification">
+        <LegalP>In the event of a breach of unsecured PHI, we will notify affected individuals without unreasonable delay and no later than 60 days from discovery, as required by the HIPAA Breach Notification Rule (45 CFR 164.404). We will also notify the Secretary of Health and Human Services and, where required, prominent media outlets in the affected jurisdiction.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="11. Changes to This Policy">
+        <LegalP>We may update this policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. Material changes will be communicated by email to active members and by prominent notice on this page at least 30 days before the effective date. Your continued use of the Services after the effective date constitutes acceptance of the updated policy.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="12. Contact">
+        <LegalP>Privacy questions, complaints, or requests should be directed to our Privacy Officer at privacy@nexphoria.com. You also have the right to file a complaint with the U.S. Department of Health and Human Services Office for Civil Rights at hhs.gov/ocr. This policy is governed by the laws of the State of New York and applicable federal law.</LegalP>
       </LegalSection>
     </LegalLayout>
   );

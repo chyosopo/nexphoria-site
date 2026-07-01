@@ -4,28 +4,53 @@ import { useSeo } from "@/lib/seo";
 export default function TelehealthConsent() {
   useSeo({
     title: "Telehealth Consent | Nexphoria",
-    description: "Your consent to receive care via telehealth and off-label prescribing. State-specific requirements.",
+    description: "Your consent to receive care via telehealth and off-label prescribing of compounded peptides. State-specific requirements.",
     path: "/legal/telehealth-consent",
   });
   return (
-    <LegalLayout title="Telehealth Consent" lastUpdated="June 2026">
-      <LegalSection title="1. Telehealth Services">
-        <LegalP>By using Nexphoria's telehealth services, you consent to receive medical care through electronic communications, including video, audio, and asynchronous messaging. Telehealth services are provided by independent licensed physicians.</LegalP>
+    <LegalLayout title="Telehealth Informed Consent" lastUpdated="June 2026">
+      <LegalSection title="1. Nature of Telehealth Services">
+        <LegalP>By using the Nexphoria platform, you ("Patient," "you") consent to receive medical evaluation, consultation, and prescription services through telehealth. Telehealth services are delivered through Bask Health, our licensed telehealth platform partner, and are conducted by independent physicians licensed to practice in your state of residence. Services may include real-time video consultations, audio-only consultations where permitted by state law, secure messaging, asynchronous (store-and-forward) review of submitted health information, electronic ordering of laboratory testing, and electronic prescribing of compounded medications dispensed by 503A FDA-registered compounding pharmacies.</LegalP>
+        <LegalP>You understand that the physicians reviewing your case are independent licensed clinicians and not employees of Nexphoria. Nexphoria coordinates access to and administration of the platform; it does not practice medicine or supervise the clinical judgment of treating physicians.</LegalP>
       </LegalSection>
-      <LegalSection title="2. Nature of Telehealth">
-        <LegalP>You understand that telehealth is not the same as in-person care. There are potential risks including technological failures, limitations in physical examination, and interruptions to service. Your physician will determine if telehealth is appropriate for your care.</LegalP>
+
+      <LegalSection title="2. Differences Between Telehealth and In-Person Care">
+        <LegalP>Telehealth is not the same as an in-person visit. You acknowledge and accept the following differences and limitations: (a) your physician cannot perform a physical examination; (b) certain physical findings may be missed or imperfectly evaluated through video or photographs; (c) technological failures, connectivity interruptions, video resolution limitations, and audio quality issues may impair the quality of the visit; (d) prescription decisions are based on the history, symptoms, and laboratory results you provide and authorize, and may be different from those that would result from an in-person evaluation; and (e) information transmitted electronically, despite reasonable security safeguards, carries inherent risk of unauthorized access despite safeguards in place.</LegalP>
+        <LegalP>If at any point your physician determines that telehealth is not appropriate for your condition, you will be advised to seek in-person care.</LegalP>
       </LegalSection>
-      <LegalSection title="3. Off-Label Prescribing">
-        <LegalP>Many peptide protocols offered by Nexphoria involve off-label use of compounded medications — meaning they are prescribed for uses beyond an FDA-approved indication. Your physician will discuss the rationale, evidence, and risks before prescribing.</LegalP>
+
+      <LegalSection title="3. Off-Label Use of Compounded Peptides">
+        <LegalP>You understand that many of the peptide therapies prescribed through Nexphoria represent off-label use of compounded medications. "Off-label" means a use of a medication other than one specifically approved by the U.S. Food and Drug Administration ("FDA"). Compounded medications are not themselves FDA-approved drug products; the FDA does not verify the safety, effectiveness, or quality of compounded preparations in the same manner as commercially manufactured products. The clinical evidence supporting various peptide therapies is still evolving and varies by indication.</LegalP>
+        <LegalP>Before initiating any compounded peptide protocol, your physician will discuss with you: the proposed therapeutic rationale, the current state of clinical evidence, known and theoretical risks, expected benefits, reasonable alternatives, and the importance of laboratory monitoring. You have the right to ask questions and decline any recommended treatment. By proceeding with a prescription, you affirm that you have had the opportunity to discuss these matters with your physician and that you accept the off-label nature of any compounded prescription.</LegalP>
       </LegalSection>
-      <LegalSection title="4. Emergency Care">
-        <LegalP>Telehealth is not appropriate for medical emergencies. If you are experiencing a medical emergency, call 911 or go to your nearest emergency room. Nexphoria physicians cannot provide emergency care.</LegalP>
+
+      <LegalSection title="4. Risks, Benefits, and Alternatives">
+        <LegalP>The benefits of telehealth include convenience, expanded geographic access to specialized peptide-trained physicians, reduced travel time, and continuity of care between visits. The risks of telehealth include — but are not limited to — limitations of remote examination, dependence on technology, the possibility that follow-up in person may still be required, and the potential for delays in diagnosis or treatment if a condition cannot be safely managed remotely. Alternatives to telehealth include in-person consultation with a primary care physician, endocrinologist, or sports medicine physician in your local community.</LegalP>
       </LegalSection>
-      <LegalSection title="5. State-Specific Requirements">
-        <LegalP>Telehealth regulations vary by state. Your physician is licensed to practice in your state of residence. By proceeding, you confirm that you are located in a state where Nexphoria currently operates.</LegalP>
+
+      <LegalSection title="5. Emergency Care">
+        <LegalP>Telehealth is not appropriate for emergencies. If you are experiencing a medical emergency — including but not limited to chest pain, severe allergic reaction, signs of stroke, severe injury, suicidal ideation, or any condition that requires immediate medical attention — call 911 immediately or proceed to the nearest emergency department. Nexphoria physicians cannot provide emergency care, do not maintain on-call coverage, and may not be available outside of scheduled telehealth windows.</LegalP>
       </LegalSection>
-      <LegalSection title="6. Withdrawal of Consent">
-        <LegalP>You may withdraw consent to telehealth services at any time by contacting hello@nexphoria.com. Withdrawal does not affect care received prior to withdrawal.</LegalP>
+
+      <LegalSection title="6. State-Specific Requirements">
+        <LegalP>Telehealth and prescribing regulations vary substantially by state. Your treating physician is licensed in your state of residence at the time of your consultation. By proceeding, you confirm that (a) you are located within a U.S. state where Nexphoria currently operates, and (b) you will not relocate to a state where the physician is not licensed without first notifying us so that care may be coordinated with an appropriately licensed clinician. We may decline service or pause prescribing if you relocate to a jurisdiction we cannot lawfully serve.</LegalP>
+        <LegalP>Several states impose additional consent disclosures (including but not limited to California, New York, Texas, and Florida). If you are a resident of such a state, additional state-specific consent language will be presented to you prior to your first consultation and is incorporated by reference into this consent.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="7. Confidentiality and Recording">
+        <LegalP>Information shared during a telehealth visit is treated with the same confidentiality standards as in-person care and is protected by HIPAA and applicable state privacy laws. Visits are not recorded by Nexphoria absent your explicit written consent. You agree that you will not record any telehealth visit without first notifying your physician and obtaining written consent.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="8. Laboratory Monitoring">
+        <LegalP>Many peptide protocols require baseline laboratory testing before prescribing and follow-up testing during therapy. Laboratory orders will be issued electronically to Quest Diagnostics or another CLIA-certified laboratory. You consent to the release of laboratory results directly to your treating Nexphoria physician. Refusal or failure to complete required laboratory monitoring may result in suspension or discontinuation of therapy at the discretion of your physician.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="9. Withdrawal of Consent">
+        <LegalP>You may withdraw consent to telehealth services at any time, for any reason, by contacting hello@nexphoria.com or by canceling within your member portal. Withdrawal of consent does not affect treatment provided or charges incurred prior to withdrawal. Cessation of prescribed therapy should be discussed with your physician where clinically indicated.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="10. Acknowledgement">
+        <LegalP>By using the Nexphoria platform, you acknowledge that you have read this Telehealth Informed Consent, that the risks and benefits of telehealth and compounded peptide therapy have been explained or made available to you, that you have had the opportunity to have your questions answered, and that you voluntarily consent to receive telehealth services through Nexphoria. This consent is governed by the laws of the State of New York and the state in which you are located at the time of your visit. Questions may be directed to hello@nexphoria.com.</LegalP>
       </LegalSection>
     </LegalLayout>
   );

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { X, Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import type { CadenceKey } from "@/data/pricing";
@@ -11,6 +11,13 @@ import { CADENCE_DISCOUNTS } from "@/data/pricing";
 
 export function CartDrawer() {
   const { isOpen, close, lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
+  const [location] = useLocation();
+
+  // Close drawer on route change so it never blocks the page after navigation
+  useEffect(() => {
+    if (isOpen) close();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   // Close on Escape
   useEffect(() => {
@@ -49,12 +56,13 @@ export function CartDrawer() {
       {/* Drawer */}
       <aside
         className={`fixed top-0 right-0 z-[101] h-full w-full sm:w-[440px] transform transition-transform duration-300 ease-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+          isOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
         }`}
         style={{ background: "var(--nx-bg)", borderLeft: "1px solid var(--nx-border)" }}
         role="dialog"
         aria-label="Shopping cart"
         aria-modal="true"
+        aria-hidden={!isOpen}
         data-testid="cart-drawer"
       >
         <div className="flex flex-col h-full">
@@ -66,13 +74,13 @@ export function CartDrawer() {
             <div>
               <div
                 className="text-[10px] uppercase tracking-[0.18em] mb-1"
-                style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
               >
                 Your Pharmacy
               </div>
               <h2
                 className="text-xl"
-                style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
               >
                 {itemCount === 0 ? "Cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"}`}
               </h2>
@@ -106,7 +114,7 @@ export function CartDrawer() {
                         <div
                           className="text-[9px] uppercase tracking-[0.2em] mb-1.5"
                           style={{
-                            fontFamily: "'DM Mono', monospace",
+                            fontFamily: "'General Sans', system-ui, sans-serif",
                             color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B",
                           }}
                         >
@@ -114,13 +122,13 @@ export function CartDrawer() {
                         </div>
                         <div
                           className="text-base mb-1"
-                          style={{ fontFamily: "'Inter', sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+                          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
                         >
                           {line.name}
                         </div>
                         <div
                           className="text-sm"
-                          style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
+                          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
                         >
                           {formatUSD(line.unitPrice)} <span className="text-xs">/ month supply</span>
                         </div>
@@ -128,7 +136,7 @@ export function CartDrawer() {
                           <div
                             className="text-xs mt-1"
                             style={{
-                              fontFamily: "'DM Mono', monospace",
+                              fontFamily: "'General Sans', system-ui, sans-serif",
                               color: "#8B5A2B",
                               letterSpacing: "0.05em",
                             }}
@@ -141,7 +149,7 @@ export function CartDrawer() {
                       <div className="text-right">
                         <div
                           className="text-base mb-2"
-                          style={{ fontFamily: "'Inter', sans-serif", color: "#0A0A0A", fontWeight: 600 }}
+                          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 600 }}
                         >
                           {formatUSD(line.lineTotal)}
                         </div>
@@ -161,7 +169,7 @@ export function CartDrawer() {
                     <div className="mt-3">
                       <div
                         className="text-[9px] uppercase tracking-[0.18em] mb-1.5"
-                        style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
+                        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
                       >
                         Billing cadence
                       </div>
@@ -183,7 +191,7 @@ export function CartDrawer() {
                               onClick={() => updateCadence(line.slug, line.type, c)}
                               className="flex-1 px-2 py-1.5 text-[10px] uppercase tracking-[0.1em] transition-colors"
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "'General Sans', system-ui, sans-serif",
                                 background: active ? "#0A0A0A" : "transparent",
                                 color: active ? "#FAF7F0" : "#0A0A0A",
                               }}
@@ -225,7 +233,7 @@ export function CartDrawer() {
                         </button>
                         <span
                           className="px-3 text-sm min-w-[28px] text-center"
-                          style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
+                          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A" }}
                           data-testid={`text-qty-${line.type}-${line.slug}`}
                         >
                           {line.qty}
@@ -242,7 +250,7 @@ export function CartDrawer() {
                       </div>
                       <span
                         className="text-[10px] uppercase tracking-[0.15em]"
-                        style={{ fontFamily: "'DM Mono', monospace", color: "#6B6B6B" }}
+                        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
                       >
                         {line.cadenceLabel} · billed monthly
                       </span>
@@ -263,13 +271,13 @@ export function CartDrawer() {
                 <div className="flex items-center justify-between mb-2">
                   <span
                     className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                    style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
                   >
                     You save
                   </span>
                   <span
                     className="text-sm"
-                    style={{ fontFamily: "'DM Mono', monospace", color: "#8B5A2B" }}
+                    style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
                   >
                     −{formatUSD(totalSavings)}
                   </span>
@@ -278,13 +286,13 @@ export function CartDrawer() {
               <div className="flex items-center justify-between mb-4">
                 <span
                   className="text-sm uppercase tracking-[0.12em]"
-                  style={{ fontFamily: "'DM Mono', monospace", color: "#0A0A0A" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A" }}
                 >
                   Subtotal · monthly
                 </span>
                 <span
                   className="text-2xl"
-                  style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
                   data-testid="text-cart-subtotal"
                 >
                   {formatUSD(subtotal)}
@@ -299,7 +307,7 @@ export function CartDrawer() {
                     key={label}
                     className="text-[9px] uppercase tracking-[0.18em] px-2 py-1"
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       background: "#FAF7F0",
                       color: "#0A0A0A",
                       border: "1px solid var(--nx-border)",
@@ -311,38 +319,38 @@ export function CartDrawer() {
               </div>
               <p
                 className="text-[11px] mb-4 leading-relaxed"
-                style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B" }}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
               >
                 Physician oversight, lab interpretation, and shipping included. Cancel or change cadence anytime.
               </p>
-              <Link href="/checkout" onClick={close}>
-                <a
-                  className="block w-full text-center px-6 py-3.5 transition-all"
-                  style={{
-                    background: "#0A0A0A",
-                    color: "#FAF7F0",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 500,
-                    fontSize: "0.875rem",
-                    letterSpacing: "0.02em",
-                  }}
-                  data-testid="button-checkout"
-                >
-                  Continue to checkout →
-                </a>
+              <Link
+                href="/checkout"
+                onClick={close}
+                className="block w-full text-center px-6 py-3.5 transition-all no-underline"
+                style={{
+                  background: "#0A0A0A",
+                  color: "#FAF7F0",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "0.875rem",
+                  letterSpacing: "0.02em",
+                }}
+                data-testid="button-checkout"
+              >
+                Continue to checkout →
               </Link>
-              <Link href="/cart" onClick={close}>
-                <a
-                  className="block w-full text-center px-6 py-2.5 mt-2 transition-colors hover:bg-black/5"
-                  style={{
-                    color: "#0A0A0A",
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "0.8125rem",
-                  }}
-                  data-testid="button-view-cart"
-                >
-                  View full cart
-                </a>
+              <Link
+                href="/cart"
+                onClick={close}
+                className="block w-full text-center px-6 py-2.5 mt-2 transition-colors hover:bg-black/5 no-underline"
+                style={{
+                  color: "#0A0A0A",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "0.8125rem",
+                }}
+                data-testid="button-view-cart"
+              >
+                View full cart
               </Link>
             </footer>
           ) : null}
@@ -363,45 +371,45 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
       </div>
       <h3
         className="text-lg mb-2"
-        style={{ fontFamily: "'Fraunces', serif", color: "#0A0A0A", fontWeight: 500 }}
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
       >
         Your pharmacy is empty
       </h3>
       <p
         className="text-sm mb-6 max-w-xs"
-        style={{ fontFamily: "'Inter', sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
       >
         Browse single peptides, doctor-curated stacks, or take the intake to receive a custom protocol.
       </p>
       <div className="flex flex-col gap-2 w-full max-w-[200px]">
-        <Link href="/stacks" onClick={onClose}>
-          <a
-            className="block w-full text-center px-4 py-2.5 transition-all"
-            style={{
-              background: "#0A0A0A",
-              color: "#FAF7F0",
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8125rem",
-              fontWeight: 500,
-            }}
-            data-testid="link-browse-stacks"
-          >
-            Browse stacks
-          </a>
+        <Link
+          href="/stacks"
+          onClick={onClose}
+          className="block w-full text-center px-4 py-2.5 transition-all no-underline"
+          style={{
+            background: "#0A0A0A",
+            color: "#FAF7F0",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontSize: "0.8125rem",
+            fontWeight: 500,
+          }}
+          data-testid="link-browse-stacks"
+        >
+          Browse stacks
         </Link>
-        <Link href="/women/peptides" onClick={onClose}>
-          <a
-            className="block w-full text-center px-4 py-2.5 transition-colors hover:bg-black/5"
-            style={{
-              color: "#0A0A0A",
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.8125rem",
-              border: "1px solid var(--nx-border)",
-            }}
-            data-testid="link-browse-peptides"
-          >
-            Single peptides
-          </a>
+        <Link
+          href="/women/peptides"
+          onClick={onClose}
+          className="block w-full text-center px-4 py-2.5 transition-colors hover:bg-black/5 no-underline"
+          style={{
+            color: "#0A0A0A",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontSize: "0.8125rem",
+            border: "1px solid var(--nx-border)",
+          }}
+          data-testid="link-browse-peptides"
+        >
+          Single peptides
         </Link>
       </div>
     </div>

@@ -46,7 +46,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               />
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "10px",
                   fontWeight: 600,
                   letterSpacing: "0.14em",
@@ -61,7 +61,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
             {/* Headline */}
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "clamp(2.25rem, 4vw, 3.5rem)",
                 color: "var(--nx-fg)",
@@ -72,13 +72,13 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               }}
             >
               Every protocol begins with bloodwork.{" "}
-              <em>Every 90 days, it repeats.</em>
+              <span>Every 90 days, it repeats.</span>
             </h2>
 
             {/* Body */}
             <p
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "17px",
                 fontWeight: 400,
                 color: "var(--nx-fg-graphite)",
@@ -102,7 +102,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
                 <span
                   key={label}
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "9px",
                     fontWeight: 600,
                     letterSpacing: "0.13em",
@@ -124,7 +124,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               href="#how-we-read-labs"
               data-testid="bloodwork-how-we-read-link"
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "14px",
                 fontWeight: 500,
                 color: "var(--nx-fg)",

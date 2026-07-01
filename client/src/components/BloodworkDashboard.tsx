@@ -83,7 +83,7 @@ function TrendArrow({ trend }: { trend: TrendDir }) {
     return (
       <span
         style={{
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: "10px",
           color: "var(--nx-fg-muted)",
           marginLeft: "6px",
@@ -159,7 +159,7 @@ export function BloodworkDashboard() {
       >
         <span
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "10px",
             fontWeight: 600,
             letterSpacing: "0.14em",
@@ -171,7 +171,7 @@ export function BloodworkDashboard() {
         </span>
         <span
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "9px",
             fontWeight: 500,
             letterSpacing: "0.12em",
@@ -193,7 +193,7 @@ export function BloodworkDashboard() {
       >
         <span
           style={{
-            fontFamily: "'DM Mono', monospace",
+            fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "9px",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
@@ -219,7 +219,7 @@ export function BloodworkDashboard() {
           <span
             key={col}
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "8.5px",
               fontWeight: 600,
               letterSpacing: "0.13em",
@@ -255,7 +255,7 @@ export function BloodworkDashboard() {
               <div>
                 <span
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.08em",
@@ -272,7 +272,7 @@ export function BloodworkDashboard() {
                 {hasAnnotation && (
                   <span
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "8.5px",
                       letterSpacing: "0.06em",
                       color: "#8B5A2B",
@@ -287,7 +287,7 @@ export function BloodworkDashboard() {
               {/* Value */}
               <span
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "13px",
                   fontWeight: 700,
                   color: "var(--nx-fg)",
@@ -305,7 +305,7 @@ export function BloodworkDashboard() {
               {/* Reference range */}
               <span
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "9.5px",
                   color: "var(--nx-fg-muted)",
                   letterSpacing: "0.04em",
@@ -335,8 +335,8 @@ export function BloodworkDashboard() {
       >
         <span
           style={{
-            fontFamily: "'DM Mono', monospace",
-            fontStyle: "italic",
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            
             fontSize: "9px",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
