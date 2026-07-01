@@ -199,6 +199,7 @@ export interface VialTileProps {
   cycle?: string;
   ctaLabel?: string;
   badge?: string;      // e.g. "In Wolverine stack" or "Best-seller"
+  fdaStatus?: string;  // regulatory status text (Wave 8)
   testId?: string;
 }
 
@@ -217,8 +218,18 @@ export function VialTile({
   cycle,
   ctaLabel = "See details",
   badge,
+  fdaStatus,
   testId,
 }: VialTileProps) {
+  // Wave 8 · Regulatory chip classifier
+  const reg = (() => {
+    if (!fdaStatus) return null;
+    const s = fdaStatus.toLowerCase();
+    if (s.startsWith("fda-approved")) return { label: "FDA-approved", bg: "#EAF6E6", color: "#2E6B24", border: "#B7DDB0" };
+    if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#F5EEDA", color: "#7A5A0F", border: "#DFC98A" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
+  })();
   const [flipped, setFlipped] = useState(false);
   const isTouch = useIsTouch();
   const tileId = testId ?? name.toLowerCase().replace(/[^a-z0-9]/g, "-");
@@ -347,6 +358,26 @@ export function VialTile({
                   }}
                 >
                   Tier {evidenceTier}
+                </span>
+              )}
+              {reg && (
+                <span
+                  data-testid={`regulatory-chip-${tileId}`}
+                  title={fdaStatus}
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: 10,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                    color: reg.color,
+                    padding: "5px 10px",
+                    background: reg.bg,
+                    border: `1px solid ${reg.border}`,
+                    borderRadius: 999,
+                  }}
+                >
+                  {reg.label}
                 </span>
               )}
             </div>

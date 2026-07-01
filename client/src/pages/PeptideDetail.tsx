@@ -535,6 +535,202 @@ function MechanismDiagram({ peptide }: { peptide: Peptide }) {
   );
 }
 
+/* ── How It Works — full-width animated mechanism (Wave 8) ─── */
+type MechFamily = "glp1" | "gh" | "healing" | "melanocortin" | "nootropic" | "sleep" | "longevity" | "gerneric";
+
+function mechFamily(peptide: Peptide): MechFamily {
+  const s = peptide.slug;
+  if (["tirzepatide", "retatrutide", "semaglutide"].includes(s)) return "glp1";
+  if (["ipamorelin", "cjc-1295", "tesamorelin", "aod-9604"].includes(s)) return "gh";
+  if (["bpc-157", "tb-500", "ghk-cu", "thymosin-alpha-1"].includes(s)) return "healing";
+  if (["semax", "selank"].includes(s)) return "nootropic";
+  if (["dsip"].includes(s)) return "sleep";
+  if (["epitalon", "nad+", "mots-c"].includes(s)) return "longevity";
+  return "gerneric";
+}
+
+function mechStory(peptide: Peptide): { title: string; steps: { label: string; detail: string }[]; result: string } {
+  const fam = mechFamily(peptide);
+  const n = peptide.name;
+  if (fam === "glp1") return {
+    title: "How it quiets appetite",
+    steps: [
+      { label: "1. Enters the bloodstream", detail: `${n} circulates via subcutaneous injection.` },
+      { label: "2. Activates GLP-1 receptors", detail: "Binds receptors in the gut, pancreas, and brainstem." },
+      { label: "3. Slows gastric emptying", detail: "Food stays in the stomach longer — you feel full sooner." },
+      { label: "4. Restores insulin rhythm", detail: "Pancreatic β-cells release insulin more precisely with meals." },
+    ],
+    result: "Result: appetite signals quiet down · blood sugar steadies · body composition shifts toward lean mass.",
+  };
+  if (fam === "gh") return {
+    title: "How it restores growth-hormone rhythm",
+    steps: [
+      { label: "1. Signals the pituitary", detail: `${n} binds GHRH or ghrelin receptors on pituitary cells.` },
+      { label: "2. Pulses growth hormone", detail: "GH is released in natural, sleep-timed pulses — not a flat flood." },
+      { label: "3. Liver produces IGF-1", detail: "IGF-1 is the downstream anabolic signal in muscle and connective tissue." },
+      { label: "4. Deep-sleep repair", detail: "Recovery, tissue turnover, and body composition improve over weeks." },
+    ],
+    result: "Result: physiologic GH rhythm restored · deep sleep deepens · lean mass and recovery improve.",
+  };
+  if (fam === "healing") return {
+    title: "How it accelerates repair",
+    steps: [
+      { label: "1. Reaches injured tissue", detail: `${n} localizes to the site of inflammation or damage.` },
+      { label: "2. Upregulates angiogenesis", detail: "New capillary networks form — blood, oxygen, and nutrients reach the wound." },
+      { label: "3. Modulates growth factors", detail: "VEGF, FGF, and TGF-β signaling shift toward regeneration over scarring." },
+      { label: "4. Speeds tissue turnover", detail: "Fibroblasts, tenocytes, and epithelial cells proliferate faster." },
+    ],
+    result: "Result: soft-tissue healing accelerates · inflammation resolves · tissue remodels more completely.",
+  };
+  if (fam === "nootropic") return {
+    title: "How it modulates cognition",
+    steps: [
+      { label: "1. Crosses the blood-brain barrier", detail: `${n} is a short peptide small enough to enter the CNS.` },
+      { label: "2. Increases BDNF/NGF", detail: "Neurotrophic factors rise — supporting neuron survival and synaptic plasticity." },
+      { label: "3. Modulates serotonin & dopamine", detail: "Downstream monoamine tone shifts toward calmer focus." },
+      { label: "4. Preserves under stress", detail: "Cognitive performance holds up during fatigue, sleep deficit, or high load." },
+    ],
+    result: "Result: focus sharpens · stress reactivity dampens · working memory holds up under load.",
+  };
+  if (fam === "sleep") return {
+    title: "How it deepens sleep",
+    steps: [
+      { label: "1. Enters the hypothalamus", detail: `${n} acts on sleep-regulating centers in the brain.` },
+      { label: "2. Shifts EEG toward delta", detail: "Slow-wave, deep-sleep activity increases." },
+      { label: "3. Reduces sleep latency", detail: "Time to fall asleep — and to reach deep stages — drops." },
+      { label: "4. Preserves REM architecture", detail: "Unlike sedatives, natural REM cycles are not suppressed." },
+    ],
+    result: "Result: deep sleep deepens · time-to-sleep shortens · morning cortisol curve normalizes.",
+  };
+  if (fam === "longevity") return {
+    title: "How it targets cellular aging",
+    steps: [
+      { label: "1. Signals the mitochondria", detail: `${n} acts on cellular energy and repair pathways.` },
+      { label: "2. Restores NAD+ or telomere signaling", detail: "Longevity-associated pathways are re-activated." },
+      { label: "3. Supports DNA repair", detail: "Sirtuins, PARPs, and repair enzymes function more efficiently." },
+      { label: "4. Slows senescent drift", detail: "Cells resist stress and maintain function longer." },
+    ],
+    result: "Result: cellular energy rises · repair pathways activate · senescent drift slows.",
+  };
+  return {
+    title: `How ${n} works`,
+    steps: [
+      { label: "1. Reaches the target tissue", detail: `${n} circulates to its receptor site.` },
+      { label: "2. Binds its receptor", detail: "The peptide-receptor complex triggers a specific downstream signal." },
+      { label: "3. Modulates the pathway", detail: "Gene expression, enzyme activity, or ion channels shift in the desired direction." },
+      { label: "4. Restores function", detail: "Weeks of consistent dosing produce measurable, reversible change." },
+    ],
+    result: `Result: the target pathway is restored to its intended set point.`,
+  };
+}
+
+function MechanismPulseSVG({ family }: { family: MechFamily }) {
+  // Universal 4-node schematic: peptide → receptor → signal → effect. Animated pulse dot travels along the path.
+  const dotStyle: React.CSSProperties = { animation: "nx-mech-pulse 4.5s linear infinite" };
+  return (
+    <svg viewBox="0 0 640 200" className="w-full h-auto" role="img" aria-label={`${family} mechanism schematic`}>
+      <defs>
+        <style>{`
+          @keyframes nx-mech-pulse {
+            0% { offset-distance: 0%; opacity: 0; }
+            8% { opacity: 1; }
+            92% { opacity: 1; }
+            100% { offset-distance: 100%; opacity: 0; }
+          }
+          @keyframes nx-mech-glow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+          }
+          .nx-node-glow { animation: nx-mech-glow 3s ease-in-out infinite; }
+        `}</style>
+      </defs>
+      {/* Connecting path — invisible but used for offset-path animation */}
+      <path id="mech-path" d="M 90 100 L 250 100 L 410 100 L 570 100" fill="none" stroke="rgba(10,10,10,0.12)" strokeWidth="1.5" strokeDasharray="3 4" />
+      {/* Arrow heads */}
+      {[240, 400, 560].map((x) => (
+        <polyline key={x} points={`${x - 6},94 ${x + 2},100 ${x - 6},106`} fill="none" stroke="rgba(10,10,10,0.35)" strokeWidth="1.4" />
+      ))}
+      {/* 4 nodes */}
+      {[
+        { cx: 90, label: "Peptide", sub: "delivered" },
+        { cx: 250, label: "Receptor", sub: "binds" },
+        { cx: 410, label: "Signal", sub: "activates" },
+        { cx: 570, label: "Effect", sub: "restores" },
+      ].map((n, i) => (
+        <g key={n.cx}>
+          <circle cx={n.cx} cy={100} r={30} fill="#FFFFFA" stroke="#0A0A0A" strokeWidth="1.6" />
+          {i === 3 && <circle cx={n.cx} cy={100} r={30} fill="#C6F184" opacity="0.35" className="nx-node-glow" />}
+          <circle cx={n.cx} cy={100} r={4} fill="#0A0A0A" />
+          <text x={n.cx} y={148} textAnchor="middle" fontSize="11" fontFamily="'General Sans', system-ui, sans-serif" fontWeight="500" fill="#0A0A0A">{n.label}</text>
+          <text x={n.cx} y={164} textAnchor="middle" fontSize="9" fontFamily="'JetBrains Mono', ui-monospace, monospace" letterSpacing="0.12em" fill="rgba(10,10,10,0.5)" style={{ textTransform: "uppercase" }}>{n.sub}</text>
+        </g>
+      ))}
+      {/* Animated pulse dot traveling along path */}
+      <circle r="6" fill="#C6F184" stroke="#0A0A0A" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')" }} />
+      {/* Second dot delayed */}
+      <circle r="6" fill="#C6F184" stroke="#0A0A0A" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')", animationDelay: "2.25s" }} />
+    </svg>
+  );
+}
+
+function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
+  const story = mechStory(peptide);
+  const fam = mechFamily(peptide);
+  return (
+    <section id="mechanism" className="scroll-mt-32" style={{ backgroundColor: "#FFFFFA", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-mechanism">
+      <div className="nx-container py-16 md:py-24">
+        <div className="grid lg:grid-cols-[minmax(280px,380px)_1fr] gap-12 lg:gap-20 items-start">
+          {/* Left column — narrative */}
+          <div>
+            <p className="nx-eyebrow mb-4" style={{ color: INK }}>How it works</p>
+            <h2
+              className="text-3xl md:text-4xl mb-6"
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
+              data-testid="mechanism-title"
+            >
+              {story.title}
+            </h2>
+            <p className="text-base leading-relaxed" style={{ color: "var(--nx-fg-graphite)" }}>
+              {story.result}
+            </p>
+          </div>
+          {/* Right column — animated diagram + steps */}
+          <div>
+            <div
+              className="rounded-3xl p-6 md:p-10 mb-8"
+              style={{ backgroundColor: "var(--nx-rock, #E8E9DB)", border: "1px solid var(--nx-border)" }}
+              data-testid="mechanism-schematic"
+            >
+              <MechanismPulseSVG family={fam} />
+            </div>
+            <ol className="grid sm:grid-cols-2 gap-5 md:gap-6" data-testid="mechanism-steps">
+              {story.steps.map((step, i) => (
+                <li key={i} className="flex gap-4" data-testid={`mechanism-step-${i}`}>
+                  <div
+                    className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: "#0A0A0A", color: "#C6F184", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: "12px", fontWeight: 600 }}
+                    aria-hidden="true"
+                  >
+                    {i + 1}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-1" style={{ color: "var(--nx-fg)", fontFamily: "'General Sans', system-ui, sans-serif" }}>
+                      {step.label.replace(/^\d+\.\s*/, "")}
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--nx-fg-graphite)" }}>
+                      {step.detail}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Injection / dosage quick card (polish 3) ────────────────── */
 function InjectionQuickCard({ peptide }: { peptide: Peptide }) {
   const rows = injectionCard(peptide);
@@ -1413,6 +1609,9 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
           </h2>
         </div>
       </section>
+
+      {/* 4b · HOW IT WORKS — animated mechanism explainer */}
+      <HowItWorksMechanism peptide={peptide} />
 
       {/* 5 · COBALT INFO CARD — medical summary, 6 rows with checks */}
       <section id="evidence" style={{ backgroundColor: CREAM }} className="pb-4 scroll-mt-32">

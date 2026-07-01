@@ -1310,6 +1310,17 @@ function PeptideCard({
   };
   const tintBg = CATEGORY_TINT[peptide.category] ?? "#ffffff";
 
+  // Regulatory chip — classify fdaStatus into a compact 3-state label
+  const fdaStatus = (peptide as any).evidenceTier?.fdaStatus as string | undefined;
+  const reg = (() => {
+    if (!fdaStatus) return null;
+    const s = fdaStatus.toLowerCase();
+    if (s.startsWith("fda-approved")) return { label: "FDA-approved", bg: "#EAF6E6", color: "#2E6B24", border: "#B7DDB0" };
+    if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#F5EEDA", color: "#7A5A0F", border: "#DFC98A" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx · Compounded", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
+  })();
+
   return (
     <article
       className={`group relative h-full text-foreground rounded-3xl p-6 nx-tile overflow-hidden flex flex-col border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.10)] ${
@@ -1335,6 +1346,16 @@ function PeptideCard({
               data-testid={`badge-${peptide.slug}`}
             >
               {badge}
+            </span>
+          )}
+          {reg && (
+            <span
+              className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-[9px] uppercase tracking-[0.12em]"
+              style={{ background: reg.bg, color: reg.color, border: `1px solid ${reg.border}` }}
+              title={fdaStatus}
+              data-testid={`regulatory-chip-${peptide.slug}`}
+            >
+              {reg.label}
             </span>
           )}
         </div>
@@ -1487,6 +1508,7 @@ function PeptideVialTile({ peptide }: { peptide: Peptide }) {
       cycle={peptide.cycleLength}
       ctaLabel="See protocol"
       badge={badge ?? undefined}
+      fdaStatus={(peptide as any).evidenceTier?.fdaStatus}
       testId={peptide.slug}
     />
   );
