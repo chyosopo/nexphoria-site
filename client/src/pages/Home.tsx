@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Link } from "wouter";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -49,6 +50,7 @@ export default function Home() {
 
   return (
     <SiteLayout navVariant="showcase">
+      <PromoBar />
       <Hero />
       <TrustBar />
       <GoalTiles />
@@ -63,6 +65,98 @@ export default function Home() {
       <MorningRitual />
       <FinalCta />
     </SiteLayout>
+  );
+}
+
+
+/* ── 0 · PROMO BAR (Wave 9 · Pattern 13) ─────────────────────── */
+function PromoBar() {
+  const [i, setI] = React.useState(0);
+  const promos = [
+    { text: "Free physician review with your first month · limited-time", href: "/assessment", cta: "Start intake" },
+    { text: "New: Bloodwork panels bundled with every recovery protocol", href: "/bloodwork", cta: "See panels" },
+    { text: "Discreet 3\u20135 day shipping · U.S. 503A compounding", href: "/how-it-works", cta: "Learn more" },
+  ];
+  React.useEffect(() => {
+    const id = window.setInterval(() => setI((v) => (v + 1) % promos.length), 6000);
+    return () => window.clearInterval(id);
+  }, [promos.length]);
+  const p = promos[i];
+  return (
+    <div
+      style={{
+        background: "var(--nx-black)",
+        color: "var(--nx-ceramic)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}
+      data-testid="promo-bar"
+    >
+      <div className="nx-container flex flex-wrap items-center justify-center gap-x-4 gap-y-1 py-2.5" style={{
+        fontFamily: "'General Sans', system-ui, sans-serif",
+        fontSize: 12.5,
+        letterSpacing: "0.02em",
+      }}>
+        <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }} />
+        <span style={{ opacity: 0.9 }}>{p.text}</span>
+        <Link href={p.href} className="inline-flex items-center gap-1" style={{ color: "var(--nx-acid)", fontWeight: 600 }} data-testid="promo-bar-cta">
+          {p.cta}
+          <ArrowRight size={12} strokeWidth={2} />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+/* ── HERO · Floating Result Cards (Wave 9 · Pattern 01) ──────── */
+function FloatingResultCards() {
+  const cards: { top: string; left?: string; right?: string; label: string; delta: string; state: string; delay: number }[] = [
+    { top: "6%", left: "6%",  label: "IGF-1",           delta: "+23%", state: "Optimal range", delay: 0.2 },
+    { top: "46%", right: "6%", label: "Recovery index", delta: "+2 wk",  state: "Back in range", delay: 0.5 },
+    { top: "80%", left: "12%", label: "Deep sleep",     delta: "+38%", state: "Trending up",   delay: 0.8 },
+  ];
+  return (
+    <div className="pointer-events-none absolute inset-0" data-testid="floating-result-cards">
+      {cards.map((c, idx) => (
+        <div
+          key={idx}
+          data-testid={`result-card-${idx}`}
+          style={{
+            position: "absolute",
+            top: c.top,
+            left: c.left,
+            right: c.right,
+            background: "rgba(255,255,250,0.72)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(10,10,10,0.08)",
+            borderRadius: 12,
+            padding: "10px 14px",
+            minWidth: 152,
+            boxShadow: "0 8px 28px rgba(10,10,10,0.14)",
+            animation: `nx-float-in 640ms ease-out ${c.delay}s both`,
+            fontFamily: "'General Sans', system-ui, sans-serif",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
+            <span style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-muted)", fontWeight: 600 }}>{c.label}</span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: "var(--nx-black)", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{c.delta}</span>
+          </div>
+          <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 6 }}>
+            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "#3B7A2A", display: "inline-block" }} />
+            <span style={{ fontSize: 12, color: "var(--nx-fg-graphite)" }}>{c.state}</span>
+          </div>
+        </div>
+      ))}
+      <style>{`
+        @keyframes nx-float-in {
+          0%   { opacity: 0; transform: translateY(8px) scale(0.98); }
+          100% { opacity: 1; transform: translateY(0)  scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          [data-testid="floating-result-cards"] > div { animation: none !important; }
+        }
+      `}</style>
+    </div>
   );
 }
 
@@ -181,6 +275,7 @@ function Hero() {
           <div
             className="relative rounded-[16px] overflow-hidden bg-nx-rock"
             style={{ aspectRatio: "4 / 5" }}
+            data-testid="hero-image-frame"
           >
             <img
               src={heroVials}
@@ -189,6 +284,7 @@ function Hero() {
               loading="eager"
               decoding="async"
             />
+            <FloatingResultCards />
           </div>
         </div>
       </div>
