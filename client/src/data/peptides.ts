@@ -147,6 +147,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["bpc-157"],
     inStacks: ["wolverine"],
+    evidenceTier: {
+      grade: "Preclinical",
+      description: "Rodent cardiac + wound-healing models · human trials are limited to topical/veterinary use",
+      studyCount: 32,
+      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy or cancer history (angiogenic risk) · uncontrolled diabetic retinopathy · recent DVT or PE · competitive athletes under WADA testing · <18 yrs",
   },
   {
     slug: "ghk-cu",
@@ -176,6 +184,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["bpc-157"],
     inStacks: ["glow"],
+    evidenceTier: {
+      grade: "B",
+      description: "Human dermatology trials (topical) · dozens of gene-expression + wound-healing papers",
+      studyCount: 27,
+      fdaStatus: "Not FDA-approved as a drug · GRAS-listed cosmetic ingredient · injectable form compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · Wilson's disease or copper-metabolism disorders · known copper allergy · active melanoma or pigmented skin lesions (defer injectable near lesions) · <18 yrs",
   },
   {
     slug: "semax",
@@ -242,6 +258,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["semax"],
     inStacks: ["sleep"],
+    evidenceTier: {
+      grade: "B-",
+      description: "Human anxiolytic trials in Russia · no US Phase 2/3 trials",
+      studyCount: 12,
+      fdaStatus: "Not FDA-approved · registered as a drug in Russia · compounded in US by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · recent sinus or trans-sphenoidal surgery · active rhinosinusitis or nasal polyps · known or suspected CSF leak · concurrent MAOI or SSRI use without physician guidance · <18 yrs",
   },
   {
     slug: "tesamorelin",
@@ -308,6 +332,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["cjc-1295", "tesamorelin"],
     inStacks: ["sleep"],
+    evidenceTier: {
+      grade: "B",
+      description: "Small human RCTs (GH pulse pharmacology) · widely used clinically",
+      studyCount: 18,
+      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy · Prader-Willi syndrome with severe obesity or respiratory impairment · uncontrolled type 2 diabetes · use with caution alongside insulin or glucocorticoids · <18 yrs",
   },
   {
     slug: "cjc-1295",
@@ -337,6 +369,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["ipamorelin", "tesamorelin"],
     inStacks: ["sleep"],
+    evidenceTier: {
+      grade: "B",
+      description: "Phase 1 human PK/PD trials (DAC form) · endocrine safety data",
+      studyCount: 15,
+      fdaStatus: "Not FDA-approved · development halted after 2007 fatal cardiac event during Phase 2 · non-DAC form compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy · history of cardiac arrhythmia or QT prolongation · uncontrolled hypertension · concurrent glucocorticoid therapy without physician oversight · <18 yrs",
   },
   {
     slug: "epitalon",
@@ -366,6 +406,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["nad-plus", "mots-c", "thymosin-a1"],
     inStacks: ["longevity"],
+    evidenceTier: {
+      grade: "B-",
+      description: "Russian gerontology cohorts (Khavinson et al.) · limited Western replication",
+      studyCount: 11,
+      fdaStatus: "Not FDA-approved · used clinically in Russia and CIS states · compounded in US by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy or hematologic cancer history · known telomerase-related conditions · concurrent immunosuppressive therapy without physician oversight · <18 yrs",
   },
   {
     slug: "thymosin-a1",
@@ -395,6 +443,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["epitalon", "nad-plus"],
     inStacks: ["longevity"],
+    evidenceTier: {
+      grade: "B+",
+      description: "Approved in >30 countries (Zadaxin / thymalfasin) for hepatitis B/C, cancer adjunct · US access is off-label",
+      studyCount: 24,
+      fdaStatus: "Not FDA-approved in the US (orphan-drug designation only) · approved abroad · compounded in US by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · organ-transplant recipients on immunosuppression · active autoimmune flare · known thymalfasin hypersensitivity · <18 yrs",
   },
   {
     slug: "nad-plus",
@@ -424,6 +480,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["epitalon", "mots-c"],
     inStacks: ["longevity"],
+    evidenceTier: {
+      grade: "B",
+      description: "Human PK trials + early clinical NAD-precursor cohorts · IV NAD+ trials for neurodegeneration ongoing",
+      studyCount: 20,
+      fdaStatus: "Not FDA-approved as a drug · marketed as a dietary-supplement precursor (NR/NMN) · injectable NAD+ compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy (theoretical proliferative risk) · severe cardiovascular disease (IV push-related BP swings) · concurrent chemotherapy without oncology oversight · <18 yrs",
   },
   {
     slug: "mots-c",
@@ -453,6 +517,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["nad-plus", "epitalon"],
     inStacks: ["longevity"],
+    evidenceTier: {
+      grade: "B-",
+      description: "Mechanistic human + rodent metabolic studies · no Phase 2/3 RCTs",
+      studyCount: 13,
+      fdaStatus: "Not FDA-approved · investigational mitochondrial-derived peptide · compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy · severe mitochondrial disease · uncontrolled type 2 diabetes without physician oversight · <18 yrs",
   },
   {
     slug: "dsip",
@@ -482,6 +554,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["ipamorelin", "selank", "cjc-1295"],
     inStacks: ["sleep"],
+    evidenceTier: {
+      grade: "B-",
+      description: "Human sleep-lab EEG + polysomnography studies from the 1970s-90s · limited modern trials",
+      studyCount: 9,
+      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · severe untreated sleep apnea · concurrent benzodiazepine or opioid use without physician oversight · <18 yrs",
   },
   {
     slug: "tirzepatide",
@@ -511,6 +591,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["retatrutide", "aod-9604", "tesamorelin"],
     inStacks: ["lean"],
+    evidenceTier: {
+      grade: "A",
+      description: "FDA-approved (Mounjaro / Zepbound) · SURPASS + SURMOUNT Phase 3 program",
+      studyCount: 40,
+      fdaStatus: "FDA-approved for type 2 diabetes (Mounjaro) and chronic weight management (Zepbound)",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · personal or family history of medullary thyroid carcinoma · Multiple Endocrine Neoplasia syndrome type 2 (MEN-2) · history of pancreatitis · severe gastroparesis · known tirzepatide hypersensitivity · <18 yrs",
   },
   {
     slug: "retatrutide",
@@ -540,6 +628,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["tirzepatide", "aod-9604"],
     inStacks: ["lean"],
+    evidenceTier: {
+      grade: "A-",
+      description: "Phase 2 RCTs published in NEJM (2023) · Phase 3 program (TRIUMPH) ongoing at Lilly",
+      studyCount: 8,
+      fdaStatus: "Not yet FDA-approved · Phase 3 investigational · compounded triple-agonist by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · personal or family history of medullary thyroid carcinoma · MEN-2 · history of pancreatitis · severe gastroparesis · use with caution alongside sulfonylureas or insulin · <18 yrs",
   },
   {
     slug: "aod-9604",
@@ -569,6 +665,14 @@ export const peptides: Peptide[] = [
     ],
     pairsWith: ["tirzepatide", "tesamorelin"],
     inStacks: ["lean"],
+    evidenceTier: {
+      grade: "C+",
+      description: "Small human RCTs showed no clinically meaningful fat loss · osteoarthritis Phase 2 signals",
+      studyCount: 7,
+      fdaStatus: "Not FDA-approved · investigational · FDA declined GRAS petition (2014) · compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy · active malignancy · Prader-Willi syndrome · known hypersensitivity to GH-fragment peptides · <18 yrs",
   },
 ];
 
