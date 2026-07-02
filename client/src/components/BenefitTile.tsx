@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
-   BenefitTile — Maximus-style square tile
+   BenefitTile — reference-grade square tile
    Small, square, benefit-first. No decoration. Copy leads.
 
    Use in tight grids (2/3/4 col) across category grids,
@@ -273,7 +273,7 @@ export function BenefitTile({
 }
 
 /* ──────────────────────────────────────────────────────────────
-   BenefitTileGrid — helper wrapper enforcing the Maximus grid.
+   BenefitTileGrid — helper wrapper enforcing the reference grid.
    Renders a 2/3/4 responsive column grid with tight gaps.
    ────────────────────────────────────────────────────────────── */
 

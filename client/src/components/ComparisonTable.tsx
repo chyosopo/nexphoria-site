@@ -7,7 +7,7 @@ import { analytics } from "@/lib/analytics";
  * ComparisonTable — Nexphoria vs. the category.
  *
  * Competitor positioning is factual-as-of-build and intentionally conservative.
- * Columns: Nexphoria (acid-green highlight) · Maximus · Function Health · Levels · DIY.
+ * Columns: Nexphoria (acid-green highlight) · reference · Function Health · Levels · DIY.
  * Fires analytics.comparisonViewed once when scrolled into view.
  *
  * Cell value type: `true` (yes / included), `false` (no / not offered), or string (qualified).

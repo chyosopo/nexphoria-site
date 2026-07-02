@@ -9,7 +9,7 @@ interface FAQItem {
 }
 
 /**
- * FAQAccordion — Maximus pattern: 10-12 questions.
+ * FAQAccordion — reference pattern: 10-12 questions.
  * Categories: Safety · Legality · Efficacy · Pricing · Process · Side effects.
  * Tone: direct and confident, not defensive.
  * Direct answers. No hedging on the science, honest on limitations.

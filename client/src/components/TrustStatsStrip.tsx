@@ -2,7 +2,7 @@ import { motion, useInView, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 /* ─────────────────────────────────────────────────────────────
-   TrustStatsStrip — Maximus-style proof-strip with animated
+   TrustStatsStrip — reference-grade proof-strip with animated
    counters. Drops into Home, About, Physicians, Pharmacy.
    ───────────────────────────────────────────────────────────── */
 

@@ -9,7 +9,7 @@ interface FinalCTAStripProps {
 }
 
 /**
- * FinalCTAStrip — Maximus pattern: full-bleed Deep Sage background, ~280-320px tall.
+ * FinalCTAStrip — reference pattern: full-bleed Deep Sage background, ~280-320px tall.
  * Centered headline in cream + 1-sentence subhead + cream CTA button.
  * Scroll-fade entrance via Reveal.
  */

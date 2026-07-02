@@ -34,15 +34,9 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
-const Peptides = lazy(() => import("@/pages/Peptides"));
 const Category = lazy(() => import("@/pages/Category"));
-const PeptideDetail = lazy(() => import("@/pages/PeptideDetail"));
-const GenderPeptides = lazy(() => import("@/pages/GenderPeptides"));
-const GenderPeptideDetail = lazy(() => import("@/pages/GenderPeptideDetail"));
 const GenderProtocols = lazy(() => import("@/pages/GenderProtocols"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
-const StackIndex = lazy(() => import("@/pages/StackIndex"));
-const StackDetail = lazy(() => import("@/pages/StackDetail"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
 const BloodPanels = lazy(() => import("@/pages/BloodPanels"));
@@ -61,7 +55,7 @@ function AppRouter() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
-        {/* Home — new V3 landing (Maximus tiles + Bask cinematics) */}
+        {/* Home — new V3 landing (reference tiles + Bask cinematics) */}
         <Route path="/" component={Gate} />
 
         {/* Gender-neutral pharmacy shelf */}

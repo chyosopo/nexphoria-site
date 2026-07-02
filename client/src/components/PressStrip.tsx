@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/Reveal";
 
 /**
- * PressStrip — Maximus pattern: monochrome press wordmarks.
+ * PressStrip — reference pattern: monochrome press wordmarks.
  * "As seen in:" + publication names in mono low-opacity treatment.
  * No logos — pure typographic marks.
  */

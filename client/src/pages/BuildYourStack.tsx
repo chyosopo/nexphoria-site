@@ -90,7 +90,7 @@ const GOALS: Goal[] = [
     blurb: "Stress resilience, clarity, attention without stimulants.",
     categories: ["cognition"],
     recommended: ["semax", "selank"],
-    curatorNote: "Two Russian nootropics with decades of clinical literature. Calm focus, not stimulation.",
+    curatorNote: "Two Russian cognitive peptides with decades of clinical literature. Calm focus, not stimulation.",
   },
   {
     id: "longevity",

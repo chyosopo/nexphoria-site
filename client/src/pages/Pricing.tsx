@@ -469,7 +469,7 @@ export default function Pricing() {
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
       <PricingTiers />
 
-      {/* ── Maximus-style benefit tile grid: what every plan includes ── */}
+      {/* ── reference-grade benefit tile grid: what every plan includes ── */}
       <section
         className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}

@@ -40,7 +40,7 @@ const bloodworkHero = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCG
 
 /* ────────────────────────────────────────────────────────────────
    NEXPHORIA · HOME · V3
-   Locked design direction: Maximus tile grammar + Bask cinematics
+   Locked design direction: reference tile grammar + Bask cinematics
    Eight sections. One idea per section. ADHD-proof.
    1. Hero            — Peptides, prescribed.
    2. Trust bar       — 5 short signals

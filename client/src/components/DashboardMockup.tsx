@@ -5,7 +5,7 @@ import outcomeScore from "@/assets/v2/outcome-score-card.webp";
 import cycleTimeline from "@/assets/v2/cycle-timeline-chart.webp";
 
 /**
- * DashboardMockup — Maximus-style outcome-score showcase.
+ * DashboardMockup — reference-grade outcome-score showcase.
  * Two layered devices on a dark gradient, scroll-driven parallax.
  */
 export function DashboardMockup() {

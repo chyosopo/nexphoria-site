@@ -1,7 +1,7 @@
 /* ═══ SOLO PDP — P5 wave 2 · doc data, our grammar ═══
-   Renders the 19-solo catalog. Slugs not in the new catalog fall
-   through to the legacy PeptideDetail so nothing breaks. */
-import { lazy, Suspense, useState } from "react";
+   Renders the 19-solo catalog. Unknown slugs show an in-world
+   not-found state (no legacy dependency). */
+import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -10,7 +10,6 @@ import { getSolo } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock } from "lucide-react";
 
-const LegacyDetail = lazy(() => import("@/pages/PeptideDetail"));
 
 const F = "'General Sans', system-ui, sans-serif";
 const S = "'Fraunces', Georgia, serif";
@@ -20,12 +19,19 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const solo = getSolo(slug);
   const [tier, setTier] = useState<"m1" | "m3" | "m12">("m3");
 
-  // Not yet migrated → legacy PDP, untouched.
   if (!solo) {
     return (
-      <Suspense fallback={<div style={{ minHeight: "60vh" }} />}>
-        <LegacyDetail />
-      </Suspense>
+      <SiteLayout variant={world ?? "showcase"}>
+        <div style={{ maxWidth: 640, margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
+          <h1 style={{ fontFamily: S, fontSize: 32, color: "var(--nx-fg)", marginBottom: 12 }}>Peptide not found</h1>
+          <p style={{ fontFamily: F, fontSize: 16, color: "var(--nx-muted)", marginBottom: 28 }}>
+            That entry isn’t in the current formulary. Browse the full catalog or start an assessment.
+          </p>
+          <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: 15, fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
+            ← All peptides
+          </Link>
+        </div>
+      </SiteLayout>
     );
   }
 

@@ -1,7 +1,7 @@
 import { Stethoscope, FlaskConical, Package, TestTube, Award, ShieldCheck } from "lucide-react";
 
 /**
- * TrustStrip — Maximus pharmacy-certs-first pattern.
+ * TrustStrip — reference pharmacy-certs-first pattern.
  * Top row: 5 compliance certs as small monochrome marks.
  * Bottom row: 4 pillar icons + label + sub.
  * Comes IMMEDIATELY after hero (Maximus: trust architecture before doctor cards).

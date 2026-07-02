@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 /* ─────────────────────────────────────────────────────────────
-   ProcessStrip — Maximus-style 4-step protocol journey
+   ProcessStrip — reference-grade 4-step protocol journey
    Editorial typography with numbered steps and connecting line.
    ───────────────────────────────────────────────────────────── */
 

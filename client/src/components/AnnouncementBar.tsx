@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
-   AnnouncementBar — Maximus-style sticky promo strip.
+   AnnouncementBar — reference-grade sticky promo strip.
    Sits above the nav. Cobalt (ink) background, cream text,
    one rust accent. Dismissable, no localStorage (session only).
    ────────────────────────────────────────────────────────────── */

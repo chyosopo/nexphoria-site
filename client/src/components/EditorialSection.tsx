@@ -5,7 +5,7 @@ const lifestyleWindowPortrait = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 
 /**
- * EditorialSection — Maximus "Why Peptides" pattern.
+ * EditorialSection — reference "Why Peptides" pattern.
  * Long-form 2-column block with serif pull quote centered.
  * Reads like New Yorker copy, not marketing.
  * One editorial image as supporting visual.
@@ -105,7 +105,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
                 {content.body1}
               </p>
 
-              {/* Pull quote — Maximus pattern: serif italic, in middle of copy */}
+              {/* Pull quote — reference pattern: serif italic, in middle of copy */}
               <blockquote
                 style={{
                   borderLeft: "2px solid var(--nx-cobalt)",

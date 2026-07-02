@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { analytics } from "@/lib/analytics";
 
 /**
- * GoalSelector — Maximus-style "Why are you here?" interactive picker.
+ * GoalSelector — reference-grade "Why are you here?" interactive picker.
  * User chooses a primary goal; we surface the recommended stack + protocol depth.
  */
 const goals = [

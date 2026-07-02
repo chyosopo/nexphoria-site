@@ -6,7 +6,7 @@ import { stacks, computeStackPrice } from "@/data/stacks";
 import { pricing, CADENCE_DISCOUNTS } from "@/data/pricing";
 
 /* ──────────────────────────────────────────────────────────────
-   CadenceSelector — Maximus-style billing cadence picker.
+   CadenceSelector — reference-grade billing cadence picker.
    Three radio cards (Monthly / Quarterly / Annual) with savings,
    "Most popular" + "Best value" badges, and an Add-to-Cart button
    that respects the selected cadence.
