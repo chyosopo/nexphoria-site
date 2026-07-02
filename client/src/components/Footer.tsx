@@ -1,57 +1,106 @@
 import { Link } from "wouter";
+import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 
 interface FooterProps {
   variant?: "women" | "men" | "shared";
 }
 
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+interface FooterColumn {
+  heading: string;
+  testid: string;
+  links: FooterLink[];
+}
+
 export function Footer({ variant = "shared" }: FooterProps) {
-  const pharmacyBase = variant === "men" ? "/men/peptides" : "/women/peptides";
+  const pharmacyBase =
+    variant === "men" ? "/men/peptides" :
+    variant === "women" ? "/women/peptides" :
+    "/peptides";
   const assessmentBase = "/assessment";
 
-  const col1 = {
-    heading: "PHARMACY",
-    links: [
-      { label: "All peptides", href: pharmacyBase },
-      { label: "BPC-157", href: `${pharmacyBase}/bpc-157` },
-      { label: "GHK-Cu", href: `${pharmacyBase}/ghk-cu` },
-      { label: "Tirzepatide", href: `${pharmacyBase}/tirzepatide` },
-      { label: "NAD+", href: `${pharmacyBase}/nad-plus` },
-    ],
-  };
-
-  const col2 = {
-    heading: "STACKS",
-    links: [
-      { label: "All stacks", href: "/stacks" },
-      { label: "Wolverine — Recovery", href: "/stacks/wolverine" },
-      { label: "Glow — Skin", href: "/stacks/glow" },
-      { label: "Restore — Sleep", href: "/stacks/sleep" },
-      { label: "Longevity", href: "/stacks/longevity" },
-      { label: "Build your own stack", href: "/stacks/build" },
-      { label: "Custom protocol", href: assessmentBase },
-    ],
-  };
+  // 4-column editorial footer — Product / Company / Legal / Contact.
+  const columns: FooterColumn[] = [
+    {
+      heading: "Product",
+      testid: "footer-col-product",
+      links: [
+        { label: "All peptides", href: pharmacyBase },
+        { label: "Doctor-built stacks", href: "/stacks" },
+        { label: "Build a stack", href: "/stacks/build" },
+        { label: "Bloodwork", href: "/bloodwork" },
+        { label: "Custom protocol", href: assessmentBase },
+        { label: "Pricing", href: "/pricing" },
+      ],
+    },
+    {
+      heading: "Company",
+      testid: "footer-col-company",
+      links: [
+        { label: "About", href: "/about" },
+        { label: "Physicians", href: "/physicians" },
+        { label: "The science", href: "/science" },
+        { label: "How it works", href: "/how-it-works" },
+        { label: "Journal", href: "/journal" },
+        { label: "Lab testing", href: "/lab-testing" },
+      ],
+    },
+    {
+      heading: "Legal",
+      testid: "footer-col-legal",
+      links: [
+        { label: "Terms of service", href: "/legal/terms" },
+        { label: "Privacy policy", href: "/legal/privacy" },
+        { label: "Telehealth consent", href: "/legal/telehealth-consent" },
+        { label: "Refund policy", href: "/legal/refund-policy" },
+      ],
+    },
+    {
+      heading: "Contact",
+      testid: "footer-col-contact",
+      links: [
+        { label: "Support center", href: "/contact" },
+        { label: "FAQ", href: "/faq" },
+        { label: "care@nexphoria.com", href: "mailto:care@nexphoria.com" },
+        { label: "Member login", href: "/assessment" },
+      ],
+    },
+  ];
 
   return (
     <footer className="nx-footer" data-testid="footer">
       <div className="nx-container py-16">
-        {/* Top row */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 pb-12 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-          {/* Brand + email */}
-          <div className="md:col-span-2">
-            <Logo variant="light" />
-            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'General Sans', system-ui, sans-serif", lineHeight: 1.6 }}>
-              Early access to new protocols, research, and member-only pricing.
+        {/* Top row — brand/newsletter (left) + 4 nav columns (right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] gap-12 pb-12 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+          {/* Brand + newsletter capture */}
+          <div>
+            <Logo variant="light" markSize={26} />
+            <p
+              className="mt-4 text-sm"
+              style={{
+                color: "rgba(255,255,255,0.6)",
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                lineHeight: 1.6,
+                maxWidth: "34ch",
+              }}
+            >
+              Early access to new protocols, published research, and member-only pricing.
             </p>
             <form
-              className="mt-4 flex gap-2"
+              className="mt-5 flex gap-2 max-w-sm"
               onSubmit={(e) => e.preventDefault()}
+              data-testid="footer-newsletter-form"
             >
               <input
                 type="email"
                 placeholder="Your email"
-                className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50"
+                aria-label="Email address for the newsletter"
+                className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 transition-colors"
                 style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
                 data-testid="footer-email-input"
               />
@@ -60,8 +109,8 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  backgroundColor: "#c6f184",
-                  color: "#0A0A0A",
+                  backgroundColor: "var(--nx-acid)",
+                  color: "var(--nx-black)",
                   letterSpacing: "0.04em",
                 }}
                 data-testid="footer-email-submit"
@@ -71,25 +120,15 @@ export function Footer({ variant = "shared" }: FooterProps) {
             </form>
           </div>
 
-          {/* Nav columns */}
-          <FooterCol heading={col1.heading} links={col1.links} />
-          <FooterCol heading={col2.heading} links={col2.links} />
-          <FooterCol
-            heading="COMPANY"
-            links={[
-              { label: "About", href: "/about" },
-              { label: "Physicians", href: "/physicians" },
-              { label: "Science", href: "/science" },
-              { label: "How it works", href: "/how-it-works" },
-              { label: "Lab testing", href: "/lab-testing" },
-              { label: "Pricing", href: "/pricing" },
-              { label: "FAQ", href: "/faq" },
-              { label: "Contact", href: "/contact" },
-            ]}
-          />
+          {/* 4 nav columns */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {columns.map((col) => (
+              <FooterCol key={col.heading} column={col} />
+            ))}
+          </div>
         </div>
 
-        {/* Trust badges row */}
+        {/* Regulatory / trust badges row */}
         <div
           className="py-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 border-b"
           style={{ borderColor: "rgba(255,255,255,0.08)" }}
@@ -133,11 +172,18 @@ export function Footer({ variant = "shared" }: FooterProps) {
           ))}
         </div>
 
-        {/* Bottom row */}
+        {/* Bottom bar — copyright + small logo repeat + quick legal */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}>
-            © 2026 Nexphoria · All rights reserved
-          </p>
+          <div className="flex items-center gap-3">
+            <Logo variant="light" withSubmark={false} markSize={18} />
+            <span
+              className="text-xs"
+              style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+              data-testid="footer-copyright"
+            >
+              © 2026 Nexphoria · All rights reserved
+            </span>
+          </div>
           <div className="flex flex-wrap gap-4">
             {[
               { label: "Terms", href: "/legal/terms" },
@@ -150,6 +196,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 href={href}
                 className="text-xs no-underline hover:text-white transition-colors"
                 style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                data-testid={`footer-legal-${label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 {label}
               </Link>
@@ -157,9 +204,13 @@ export function Footer({ variant = "shared" }: FooterProps) {
           </div>
         </div>
 
-        {/* Disclaimer */}
-        <p className="mt-6 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "680px" }} data-testid="footer-fda-disclaimer">
-          These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in FDA-registered 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
+        {/* Regulatory disclaimers */}
+        <p
+          className="mt-6 text-xs leading-relaxed"
+          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
+          data-testid="footer-research-disclaimer"
+        >
+          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in FDA-registered 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
         </p>
         <p
           className="mt-3 text-xs"
@@ -173,15 +224,9 @@ export function Footer({ variant = "shared" }: FooterProps) {
   );
 }
 
-function FooterCol({
-  heading,
-  links,
-}: {
-  heading: string;
-  links: { label: string; href: string }[];
-}) {
+function FooterCol({ column }: { column: FooterColumn }) {
   return (
-    <div>
+    <div data-testid={column.testid}>
       <p
         className="mb-4"
         style={{
@@ -193,20 +238,31 @@ function FooterCol({
           color: "rgba(255,255,255,0.4)",
         }}
       >
-        {heading}
+        {column.heading}
       </p>
-      <ul className="flex flex-col gap-2 list-none">
-        {links.map(({ label, href }) => (
-          <li key={label}>
-            <Link
-              href={href}
-              className="text-sm no-underline hover:text-white transition-colors"
-              style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'General Sans', system-ui, sans-serif" }}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
+      <ul className="flex flex-col gap-2 list-none m-0">
+        {column.links.map(({ label, href }) => {
+          const external = href.startsWith("mailto:") || href.startsWith("http");
+          const testid = `footer-link-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+          const cls = "group inline-flex items-center gap-1 text-sm no-underline hover:text-white transition-colors";
+          const style = { color: "rgba(255,255,255,0.65)", fontFamily: "'General Sans', system-ui, sans-serif" };
+          if (external) {
+            return (
+              <li key={label}>
+                <a href={href} className={cls} style={style} data-testid={testid}>
+                  {label}
+                </a>
+              </li>
+            );
+          }
+          return (
+            <li key={label}>
+              <Link href={href} className={cls} style={style} data-testid={testid}>
+                {label}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
