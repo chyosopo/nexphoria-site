@@ -11,7 +11,8 @@ import { ArrowRight, Lock } from "lucide-react";
 const F = "'General Sans', system-ui, sans-serif";
 const S = "'Fraunces', Georgia, serif";
 
-export default function PeptidesCatalog() {
+export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
+  const base = world ? `/${world}` : "";
   const [filter, setFilter] = useState<string>("All");
   useSeo({
     title: "Peptides — The Full Catalog | Nexphoria",
@@ -54,7 +55,7 @@ export default function PeptidesCatalog() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
           {shown.map((s, i) => (
             <Reveal key={s.slug} delay={i * 40}>
-              <Link href={`/peptides/${s.slug}`} className="nx-glass-tile" data-testid={`peptide-${s.slug}`} style={{ height: "100%", display: "block" }}>
+              <Link href={`${base}/peptides/${s.slug}`} className="nx-glass-tile" data-testid={`peptide-${s.slug}`} style={{ height: "100%", display: "block" }}>
                 <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
                   <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
                   {s.gated && <Lock size={13} style={{ color: "var(--nx-fg-muted)" }} />}

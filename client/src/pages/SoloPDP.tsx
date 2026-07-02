@@ -15,7 +15,8 @@ const LegacyDetail = lazy(() => import("@/pages/PeptideDetail"));
 const F = "'General Sans', system-ui, sans-serif";
 const S = "'Fraunces', Georgia, serif";
 
-export default function SoloPDP({ slug }: { slug: string }) {
+export default function SoloPDP({ slug, world }: { slug: string; world?: "men" | "women" }) {
+  const base = world ? `/${world}` : "";
   const solo = getSolo(slug);
   const [tier, setTier] = useState<"m1" | "m3" | "m12">("m3");
 
@@ -49,7 +50,7 @@ export default function SoloPDP({ slug }: { slug: string }) {
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.4rem) 0 clamp(1.6rem,3vw,2.2rem)", zIndex: 1 }}>
-          <Link href="/peptides" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: 13, fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
+          <Link href={`${base}/peptides`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: 13, fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
             <ArrowLeft size={15} /> All peptides
           </Link>
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.1rem" }}>{solo.category}</p>

@@ -74,10 +74,10 @@ function AppRouter() {
         {/* Women routes */}
         <Route path="/women" component={WomenHome} />
         <Route path="/women/peptides">
-          {() => <GenderPeptides gender="women" />}
+          {() => <PeptidesCatalog world="women" />}
         </Route>
         <Route path="/women/peptides/:slug">
-          {(params) => <GenderPeptideDetail gender="women" slug={(params as { slug: string }).slug} />}
+          {(params) => <SoloPDP world="women" slug={(params as { slug: string }).slug} />}
         </Route>
         <Route path="/women/protocols">
           {() => <GenderProtocols gender="women" />}
@@ -86,10 +86,10 @@ function AppRouter() {
         {/* Men routes */}
         <Route path="/men" component={MenHome} />
         <Route path="/men/peptides">
-          {() => <GenderPeptides gender="men" />}
+          {() => <PeptidesCatalog world="men" />}
         </Route>
         <Route path="/men/peptides/:slug">
-          {(params) => <GenderPeptideDetail gender="men" slug={(params as { slug: string }).slug} />}
+          {(params) => <SoloPDP world="men" slug={(params as { slug: string }).slug} />}
         </Route>
         <Route path="/men/protocols">
           {() => <GenderProtocols gender="men" />}
@@ -116,7 +116,7 @@ function AppRouter() {
         <Route path="/bloodwork" component={Bloodwork} />
         <Route path="/protocols" component={ProtocolsIndex} />
         <Route path="/blood-work" component={BloodPanels} />
-        <Route path="/catalog" component={PeptidesCatalog} />
+        <Route path="/catalog">{() => <PeptidesCatalog />}</Route>
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />
