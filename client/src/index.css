@@ -1022,3 +1022,43 @@ body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   .nx-chain-path, .nx-chain-node { animation: none; stroke-dashoffset: 0; opacity: 1; }
 }
+
+/* ═══ EXPERIENCE LAYER — the site responds to you ═══ */
+
+/* Scroll choreography: cards and tiles rise softly into view */
+@supports (animation-timeline: view()) {
+  .nx-glass-card, .nx-icon-chip ~ *, [data-testid^="cat-item"], [data-testid^="goal-tile"] {
+    animation: nx-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+@keyframes nx-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards breathe under the cursor */
+.nx-glass-card { transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
+a.nx-glass-card:hover, .nx-glass-card:has(> a):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -18px rgba(122,78,18,0.22), 0 2px 8px rgba(28,24,21,0.05);
+}
+
+/* Buttons feel physical */
+.nx-cta-cobalt, .nx-cta-ghost { transition: transform 0.18s ease, box-shadow 0.25s ease, opacity 0.2s ease; }
+.nx-cta-cobalt:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(28,24,21,0.35); }
+.nx-cta-cobalt:active, .nx-cta-ghost:active { transform: scale(0.975); }
+
+/* Signature details people feel before they notice */
+::selection { background: #F3C87A; color: #1C1815; }
+html { scrollbar-color: #DFD3BC #FAF7F0; scrollbar-width: thin; }
+:focus-visible { outline: 2px solid #B97C24; outline-offset: 3px; border-radius: 4px; }
+
+/* Links get the quiet underline slide */
+.nx-container a:not([class]):hover { text-decoration-color: #B97C24; text-underline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-glass-card, [data-testid^="cat-item"], [data-testid^="goal-tile"] { animation: none; }
+  .nx-glass-card, .nx-cta-cobalt, .nx-cta-ghost { transition: none; }
+}
