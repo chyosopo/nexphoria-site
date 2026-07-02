@@ -23,17 +23,17 @@ const PANEL_ICONS: Record<string, any> = {
 
 /* Porcelain-kintsugi organ artwork — one per system */
 const PANEL_ART: Record<string, string> = {
-  "heart": "https://www.trybloom.ai/img/c33549a7-834a-4f61-8822-b3f12907559f",
-  "metabolism": "https://www.trybloom.ai/img/9ce93b0e-125f-4273-b41c-01acd52de4d3",
-  "hormones": "https://www.trybloom.ai/img/b5f765d2-0b68-4ba6-9069-d6723f601cac",
-  "stress": "https://www.trybloom.ai/img/e1dadb74-bc6b-4b4a-844f-df9b64503a04",
-  "thyroid": "https://www.trybloom.ai/img/e512b053-c330-4499-a258-e7239909a336",
-  "kidneys": "https://www.trybloom.ai/img/80eccd2c-610f-4258-ae14-c951b4d86cb9",
-  "liver": "https://www.trybloom.ai/img/d3c2dd7e-fdc3-4e87-a532-c4bae254b154",
-  "immunity": "https://www.trybloom.ai/img/51483a3a-4722-4a52-8a4d-d2543c195450",
-  "nutrients": "https://www.trybloom.ai/img/6135add4-e216-4d81-9655-83065972be08",
-  "blood": "https://www.trybloom.ai/img/4d274de8-80a5-40bb-b973-f320d930d1b6",
-  "bio-age": "https://www.trybloom.ai/img/90678457-66d6-4535-8321-551f92190a27",
+  "heart": "img/img_08bfaa5f6c9d.webp",
+  "metabolism": "img/img_ffdd72440251.webp",
+  "hormones": "img/img_427d5e7427b9.webp",
+  "stress": "img/img_e9c5c7ee0119.webp",
+  "thyroid": "img/img_6bee78326414.webp",
+  "kidneys": "img/img_b4724ee2f1a5.webp",
+  "liver": "img/img_73925dec188f.webp",
+  "immunity": "img/img_0b920f85116d.webp",
+  "nutrients": "img/img_3a64b1f2aca5.webp",
+  "blood": "img/img_e5ee8619d3f5.webp",
+  "bio-age": "img/img_c4bef27c5b72.webp",
 };
 
 const FONT = "'General Sans', system-ui, sans-serif";
@@ -311,8 +311,8 @@ function Hero() {
       <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
         <div className="relative overflow-hidden" style={{ borderRadius: "24px", boxShadow: "0 30px 70px -28px rgba(21, 24, 28,0.5)" }} data-testid="bloodwork-video-band">
           <video autoPlay muted loop playsInline
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060612_bafa2a0a-9bcc-400c-8cd3-35fae70369e8.mp4"
-            poster="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png"
+            src="img/img_6d36ae1989c8.mp4"
+            poster="img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
             aria-label="Quest Diagnostics lab work — every 90 days" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
@@ -1157,9 +1157,9 @@ function OfferStack() {
 function ActionPlan() {
   return (
     <section id="plan" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+      <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
+      <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
         <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "var(--nx-bg)" }}>
           <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
@@ -1210,7 +1210,7 @@ function GlowingBody() {
     <section id="surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_155120_6ebcb99a-6685-491b-b11b-f63f4dad450c.png" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
+          <img src="img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
             <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "var(--nx-bg)" : "rgba(243, 245, 247,0.4)", border: `1px solid ${p.hot ? "rgba(243, 245, 247,0.55)" : "rgba(243, 245, 247,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(22, 27, 32,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}

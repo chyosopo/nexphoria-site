@@ -13,8 +13,8 @@ import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 
 /* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
-const heroVideo  = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152428_51189ba6-7467-43fe-a313-236ccd37d8f2.mp4";
-const heroPoster = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png";
+const heroVideo  = "img/img_2724ef984ae9.mp4";
+const heroPoster = "img/img_beb6d78848a2.webp";
 
 /* V3 imagery — locked editorial palette */
 import heroVials from "@/assets/nx_polish_hero_vials.webp";
@@ -28,15 +28,15 @@ import tileBalance from "@/assets/nx_v11_tile_balance.webp";
 import tileRecover from "@/assets/nx_v3_tile_recover.webp";
 import tileBurn from "@/assets/nx_v3_tile_burnfat.webp";
 import tileSleep from "@/assets/nx_v3_tile_sleep.webp";
-const doctorShot = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png";
-const productHero = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png";
+const doctorShot = "img/img_20e1e1d49da4.webp";
+const productHero = "img/img_b02fe34b47f7.webp";
 import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
 import moleculeShot from "@/assets/nx_v3_molecule.webp";
 import prescriptionShot from "@/assets/nx_v3_prescription.webp";
-const physicianPortrait = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_204bece6-e72e-4928-b636-18e2100df141.png";
-const labPrecision = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png";
-const morningRitual = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png";
-const bloodworkHero = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031340_b607f3ff-ada3-44cb-aed6-613a36ca3ef4.png";
+const physicianPortrait = "img/img_334cb24acfa5.webp";
+const labPrecision = "img/img_b9ec00db43d6.webp";
+const morningRitual = "img/img_6bbc99ce7347.webp";
+const bloodworkHero = "img/img_dbc2b8fe6999.webp";
 
 /* ────────────────────────────────────────────────────────────────
    NEXPHORIA · HOME · V3
@@ -2216,11 +2216,11 @@ function ProofBento() {
             <p style={{ fontFamily: F, fontSize: 15, color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
-            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png" alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_b02fe34b47f7.webp" alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: 14, color: "var(--nx-bg)", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
           </div>
           <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
-            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_20e1e1d49da4.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(40px,5vw,62px)", color: "var(--nx-bg)", lineHeight: 1 }}>24–48h</div>
@@ -2230,13 +2230,13 @@ function ProofBento() {
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(24px,2.6vw,32px)", color: "var(--nx-black)", lineHeight: 1.25 }}>
               Physician
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_204bece6-e72e-4928-b636-18e2100df141.png" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: 999, objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
+              <img src="img/img_334cb24acfa5.webp" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: 999, objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
               follow-ups
             </p>
             <p style={{ fontFamily: F, fontSize: 14, color: "var(--nx-fg-graphite)", marginTop: 10 }}>Message your prescriber anytime through the portal.</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 200 }}>
-            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_b9ec00db43d6.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "rgba(21, 24, 28,0.35)" }} />
             <div style={{ position: "absolute", left: 20, bottom: 18 }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-bg)", lineHeight: 1 }}>Every 90 days</div>

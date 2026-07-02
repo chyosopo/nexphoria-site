@@ -17,14 +17,14 @@ export default function MenHome() {
       config={{
         world: "men",
         tileArt: {
-          growth: "https://www.trybloom.ai/img/4f8d5177-ba34-4f5c-b95c-d9271b2813b6",
-          recovery: "https://www.trybloom.ai/img/ace22acf-b023-4522-a773-c0671f5aaf37",
-          metabolic: "https://www.trybloom.ai/img/bd229679-e0cc-4e85-affb-59f40f25da4c",
-          longevity: "https://www.trybloom.ai/img/80b00897-8b9e-4c60-b488-845ad2a7873d",
-          cognition: "https://www.trybloom.ai/img/44a95318-984c-4c77-8384-201b86ab9a3d",
-          sleep: "https://www.trybloom.ai/img/e5a8ed3d-a365-4f27-b254-98db2d8adeba",
+          growth: "img/img_7c9efa52850f.webp",
+          recovery: "img/img_a915b4cd2f81.webp",
+          metabolic: "img/img_9f1200687463.webp",
+          longevity: "img/img_9d16f24a50b6.webp",
+          cognition: "img/img_91f68fd387ee.webp",
+          sleep: "img/img_7be56150fc2e.webp",
         },
-        vialArt: "https://www.trybloom.ai/img/354a63d7-16ff-498f-b9a3-cae919bfa098",
+        vialArt: "img/img_275e18d2b1d5.webp",
         eyebrow: "Nexphoria for Men",
         h1: (
           <>

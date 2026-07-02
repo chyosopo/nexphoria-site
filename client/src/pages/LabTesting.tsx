@@ -4,9 +4,9 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 
-const editorialBloodwork = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031340_b607f3ff-ada3-44cb-aed6-613a36ca3ef4.png";
-const lifestyleLabVials = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png";
-const lifestyleBloodworkDashboard = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031406_76ac0920-bcb8-4951-b8cb-8515775c5752.png";
+const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
+const lifestyleLabVials = "img/img_b9ec00db43d6.webp";
+const lifestyleBloodworkDashboard = "img/img_e03de0ca48d9.webp";
 import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
 import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
 import { Link } from "wouter";

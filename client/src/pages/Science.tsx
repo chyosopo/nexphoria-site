@@ -11,7 +11,7 @@ import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
 
-const lifestyleBloodworkDashboard = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031406_76ac0920-bcb8-4951-b8cb-8515775c5752.png";
+const lifestyleBloodworkDashboard = "img/img_e03de0ca48d9.webp";
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 
 const MONO = "'General Sans', system-ui, sans-serif";

@@ -7,37 +7,45 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: design/azure }
-      - name: Download all manifest assets
+      - name: Install webp tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq webp file
+      - name: Download, optimize, map (idempotent)
         run: |
-          set -e
-          mkdir -p client/public/img
-          echo "{" > client/public/img/asset-map.json
-          first=1
+          rm -rf client/public/img && mkdir -p client/public/img
+          R=scripts/asset-report.txt
+          echo "asset localization+optimization — $(date -u)" > $R
+          MAP=client/public/img/asset-map.json
+          echo "{" > $MAP; first=1; ok=0; bad=0
           while IFS= read -r url; do
             [ -z "$url" ] && continue
             name="img_$(echo -n "$url" | sha1sum | cut -c1-12)"
             tmp="/tmp/$name"
-            code=$(curl -sL --retry 3 --max-time 60 -o "$tmp" -w '%{http_code}' "$url")
-            [ "$code" = "200" ] || { echo "FAIL $code $url"; exit 1; }
-            mime=$(file -b --mime-type "$tmp")
+            code=$(curl -sL --retry 2 --max-time 90 -H "Accept: image/*,video/*" -o "$tmp" -w '%{http_code}' "$url" || echo "curlfail")
+            mime=$(file -b --mime-type "$tmp" 2>/dev/null || echo none)
+            out=""; ext=""
             case "$mime" in
-              image/webp) ext=webp;; image/png) ext=png;;
-              image/jpeg) ext=jpg;;  image/avif) ext=avif;;
-              *) echo "UNKNOWN MIME $mime for $url"; exit 1;;
+              image/png|image/jpeg|image/webp)
+                ext=webp; out="client/public/img/$name.webp"
+                cwebp -quiet -q 82 -resize 1600 0 "$tmp" -o "$out" || { cwebp -quiet -q 82 "$tmp" -o "$out" || out=""; } ;;
+              image/avif|image/gif) ext="${mime#image/}"; out="client/public/img/$name.$ext"; mv "$tmp" "$out" ;;
+              video/mp4)  ext=mp4;  out="client/public/img/$name.mp4";  mv "$tmp" "$out" ;;
+              video/webm) ext=webm; out="client/public/img/$name.webm"; mv "$tmp" "$out" ;;
             esac
-            mv "$tmp" "client/public/img/$name.$ext"
-            [ $first = 1 ] || echo "," >> client/public/img/asset-map.json
-            first=0
-            printf '  "%s": "img/%s.%s"' "$url" "$name" "$ext" >> client/public/img/asset-map.json
-            echo "OK  $name.$ext  ← $url"
+            if [ "$code" = "200" ] && [ -n "$out" ] && [ -s "$out" ]; then
+              [ $first = 1 ] || echo "," >> $MAP; first=0
+              printf '  "%s": "img/%s.%s"' "$url" "$name" "$ext" >> $MAP
+              echo "OK   $mime → $name.$ext ($(du -h "$out" | cut -f1)) $url" >> $R; ok=$((ok+1))
+            else
+              echo "BAD  code=$code mime=$mime $url" >> $R; bad=$((bad+1))
+            fi
           done < scripts/asset-manifest.txt
-          echo "" >> client/public/img/asset-map.json
-          echo "}" >> client/public/img/asset-map.json
-          ls -la client/public/img | tail -5
-      - name: Commit assets
+          echo "" >> $MAP; echo "}" >> $MAP
+          echo "TOTAL ok=$ok bad=$bad size=$(du -sh client/public/img | cut -f1)" >> $R
+          tail -2 $R
+      - name: Commit optimized set
         run: |
           git config user.name "asset-localizer"
           git config user.email "assets@nexphoria"
-          git add client/public/img
-          git commit -m "Localize 39 external CDN assets into repo (asset-map.json included)"
+          git add -A client/public/img scripts/asset-report.txt
+          git commit -m "Optimized asset localization: WebP q82 ≤1600w, videos passthrough" || echo "nothing to commit"
           git push origin design/azure
