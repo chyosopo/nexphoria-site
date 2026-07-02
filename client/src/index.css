@@ -1079,3 +1079,14 @@ html { scrollbar-color: #DFD3BC #FAF7F0; scrollbar-width: thin; }
 @media (prefers-reduced-motion: reduce) {
   .nx-float, .nx-pulse-chip, .nx-pulse-dot, .nx-spark, .nx-ring-arc { animation: none; stroke-dashoffset: 0; }
 }
+
+/* ═══ Wave E — Bloodwork crown ═══ */
+@supports (animation-timeline: view()) {
+  .nx-ring-arc-lg { animation: nx-ring-spin-lg 1.1s cubic-bezier(0.22,1,0.36,1) both; animation-timeline: view(); animation-range: entry 0% entry 90%; }
+}
+@keyframes nx-ring-spin-lg { from { stroke-dashoffset: 597; } }
+.nx-drift { animation: nx-drift 26s ease-in-out infinite alternate; }
+.nx-drift.reverse { animation-direction: alternate-reverse; }
+@keyframes nx-drift { from { transform: translateX(1.6%); } to { transform: translateX(-1.6%); } }
+.nx-pills { position: sticky; top: 68px; z-index: 30; }
+@media (prefers-reduced-motion: reduce) { .nx-drift, .nx-ring-arc-lg { animation: none; stroke-dashoffset: 0; } }

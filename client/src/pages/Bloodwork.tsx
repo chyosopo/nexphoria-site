@@ -49,8 +49,21 @@ function Hero() {
   return (
     <section
       data-testid="bloodwork-hero"
-      style={{ backgroundColor: "var(--nx-bg-dark)", color: "#FFFFF3" }}
+      className="relative overflow-hidden" style={{ backgroundColor: "var(--nx-bg-dark)", color: "#FFFFF3" }}
     >
+      {/* Hero score ring — the 76 moment */}
+      <div className="hidden lg:block absolute pointer-events-none" style={{ right: "5%", top: "50%", transform: "translateY(-50%)" }} aria-hidden>
+        <svg width="300" height="300" viewBox="0 0 220 220">
+          <g transform="rotate(-90 110 110)">
+            <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(250,247,240,0.08)" strokeWidth="10" />
+            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#A8C69A" strokeWidth="10" strokeLinecap="round" strokeDasharray="453 597" />
+            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#F3C87A" strokeWidth="10" strokeLinecap="round" strokeDasharray="92 597" strokeDashoffset="-461" style={{ animationDelay: "0.2s" }} />
+            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#D07A52" strokeWidth="10" strokeLinecap="round" strokeDasharray="36 597" strokeDashoffset="-559" style={{ animationDelay: "0.4s" }} />
+          </g>
+          <text x="110" y="104" textAnchor="middle" fill="#FAF7F0" style={{ font: "500 52px 'Fraunces', Georgia, serif" }}>76</text>
+          <text x="110" y="132" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 13px 'General Sans', system-ui, sans-serif" }}>markers · one draw</text>
+        </svg>
+      </div>
       <div
         className="nx-container"
         style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3rem, 6vw, 5rem)" }}
@@ -969,6 +982,7 @@ export default function Bloodwork() {
     <SiteLayout navVariant="showcase">
       <main id="main-content">
         <Hero />
+        <SectionPills />
         <SystemsMosaic />
         <ResultsDashboard />
         <ActionPlan />
@@ -1002,7 +1016,7 @@ const TINTS: Record<string, [string, string]> = {
 
 function SystemsMosaic() {
   return (
-    <section className="nx-section" style={{ background: "var(--nx-bg)" }}>
+    <section id="panel" className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
         <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-black)", maxWidth: "18ch", marginTop: "0.7rem" }}>
@@ -1053,7 +1067,7 @@ function ResultsDashboard() {
   const spark = [96, 91, 82, 72];
   const pts = spark.map((v, i) => `${20 + i * 86},${104 - (v - 60) * 1.6}`).join(" ");
   return (
-    <section className="nx-section" style={{ background: "var(--nx-black)" }}>
+    <section id="results" className="nx-section" style={{ background: "var(--nx-black)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow" style={{ color: "rgba(250,247,240,0.55)" }}>Your results</p>
         <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "#FAF7F0", marginTop: "0.7rem" }}>
@@ -1113,7 +1127,7 @@ function OfferStack() {
     "Draw at 2,000+ partner locations, on your schedule",
   ];
   return (
-    <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-line)" }}>
+    <section id="offer" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-line)" }}>
       <div className="nx-container">
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4.5vw,3.4rem)" }}>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
@@ -1152,7 +1166,7 @@ function OfferStack() {
 /* ══ ACTION PLAN — guidance cards floating over life ══ */
 function ActionPlan() {
   return (
-    <section className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
+    <section id="plan" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(28,24,21,0.25) 0%, rgba(28,24,21,0.05) 35%, rgba(28,24,21,0.62) 100%)" }} />
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
@@ -1203,7 +1217,7 @@ const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[] = [
 ];
 function GlowingBody() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "#241A12" }}>
+    <section id="surface" className="relative overflow-hidden" style={{ background: "#241A12" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_155120_6ebcb99a-6685-491b-b11b-f63f4dad450c.png" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
@@ -1242,7 +1256,7 @@ function MarkerWall() {
     <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
       <div aria-hidden style={{ textAlign: "center" }}>
         {rows.map((r, i) => (
-          <p key={i} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "#7A4E12", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
+          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "#7A4E12", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
             {r.join(",  ")},
           </p>
         ))}
@@ -1258,5 +1272,22 @@ function MarkerWall() {
         </svg>
       </div>
     </section>
+  );
+}
+
+
+/* ══ Sticky pill sub-nav ══ */
+function SectionPills() {
+  const items = [["The panel", "#panel"], ["Your results", "#results"], ["Your plan", "#plan"], ["What it surfaces", "#surface"], ["Get started", "#offer"]];
+  return (
+    <div className="nx-pills" style={{ background: "rgba(250,247,240,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-line)" }}>
+      <div className="nx-container flex gap-2 overflow-x-auto" style={{ padding: "10px 0", scrollbarWidth: "none" }}>
+        {items.map(([t, h]) => (
+          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#5E3C0D", background: "rgba(243,200,122,0.18)", border: "1px solid rgba(185,124,36,0.2)", borderRadius: 999, padding: "7px 15px" }}>
+            {t}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }
