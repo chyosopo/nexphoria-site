@@ -969,6 +969,10 @@ export default function Bloodwork() {
     <SiteLayout navVariant="showcase">
       <main id="main-content">
         <Hero />
+        <SystemsMosaic />
+        <ResultsDashboard />
+        <OfferStack />
+        <div id="explore" />
         <PanelExplorer />
         <LiveTrajectory />
         <HowItWorks />
@@ -979,5 +983,164 @@ export default function Bloodwork() {
         />
       </main>
     </SiteLayout>
+  );
+}
+
+
+/* ══ SYSTEMS MOSAIC — twelve warm-tinted windows ══ */
+const TINTS: Record<string, [string, string]> = {
+  heart: ["#F6E2DE", "#8A4038"], metabolism: ["#F6E5CE", "#8A5A22"],
+  hormones: ["#F7EAD2", "#8B5A2B"], stress: ["#EFDDD0", "#7A452E"],
+  thyroid: ["#F7E3D3", "#8A4B2A"], kidneys: ["#EFE9DC", "#6B5B4A"],
+  liver: ["#F3EBD3", "#77521B"], immunity: ["#E9E7D2", "#5B5A34"],
+  nutrients: ["#E6EAD9", "#4E5B3E"], blood: ["#F6E2DE", "#8A4038"],
+  "bio-age": ["#F3E7D2", "#7A4E12"],
+};
+
+function SystemsMosaic() {
+  return (
+    <section className="nx-section" style={{ background: "var(--nx-bg)" }}>
+      <div className="nx-container">
+        <p className="nx-eyebrow">The panel</p>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.08, color: "var(--nx-black)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+          One draw. <em style={{ fontStyle: "italic", color: "#B97C24" }}>Eleven</em> windows into you.
+        </h2>
+        <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {BIOMARKER_PANEL.map((cat) => {
+            const [bg, ink] = TINTS[cat.id] ?? TINTS["bio-age"];
+            return (
+              <a key={cat.id} href="#explore" className="group block no-underline overflow-hidden" style={{ background: bg, borderRadius: 18, padding: 10 }} data-testid={`mosaic-${cat.id}`}>
+                <span className="block overflow-hidden" style={{ borderRadius: 12, aspectRatio: "1 / 1" }}>
+                  <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy" className="w-full h-full transition-transform duration-700 group-hover:scale-[1.05]" style={{ objectFit: "cover" }} />
+                </span>
+                <span className="block px-1.5 pt-2.5 pb-1">
+                  <span className="flex items-baseline justify-between gap-2">
+                    <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-black)" }}>{cat.name}</span>
+                    <span style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: ink, whiteSpace: "nowrap" }}>{cat.markers.length} markers</span>
+                  </span>
+                  <span className="block mt-0.5" style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.4, color: ink, opacity: 0.85 }}>
+                    {cat.markers.slice(0, 2).map((m) => m.name.split(" (")[0]).join(" · ")}
+                  </span>
+                </span>
+              </a>
+            );
+          })}
+          <a href="/#/assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-black)", borderRadius: 18, padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
+            <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 19, lineHeight: 1.15, color: "#FAF7F0" }}>
+              Re-tested every <em style={{ fontStyle: "italic", color: "#F3C87A" }}>90 days.</em>
+            </span>
+            <span className="inline-flex items-center gap-1.5 mt-4" style={{ fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#F3C87A" }}>
+              Book your baseline <ArrowRight size={14} strokeWidth={2.2} />
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ══ RESULTS DASHBOARD — rendered live, not a screenshot ══ */
+function ResultsDashboard() {
+  const rows = [
+    { m: "Apolipoprotein B", v: 72, lo: 40, hi: 130, opt: [40, 80], unit: "mg/dL", s: "Optimal" },
+    { m: "hs-CRP", v: 0.8, lo: 0, hi: 5, opt: [0, 1], unit: "mg/L", s: "Optimal" },
+    { m: "Free T3", v: 3.1, lo: 2.0, hi: 4.4, opt: [3.0, 4.0], unit: "pg/mL", s: "In range" },
+    { m: "HbA1c", v: 5.6, lo: 4.0, hi: 7.0, opt: [4.0, 5.4], unit: "%", s: "Watch" },
+  ];
+  const spark = [96, 91, 82, 72];
+  const pts = spark.map((v, i) => `${20 + i * 86},${104 - (v - 60) * 1.6}`).join(" ");
+  return (
+    <section className="nx-section" style={{ background: "var(--nx-black)" }}>
+      <div className="nx-container">
+        <p className="nx-eyebrow" style={{ color: "rgba(250,247,240,0.55)" }}>Your results</p>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.08, color: "#FAF7F0", marginTop: "0.7rem" }}>
+          Not a PDF. <em style={{ fontStyle: "italic", color: "#F3C87A" }}>A plan.</em>
+        </h2>
+        <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
+          <div style={{ background: "rgba(250,247,240,0.05)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
+            {rows.map((r) => {
+              const pct = ((r.v - r.lo) / (r.hi - r.lo)) * 100;
+              const oL = ((r.opt[0] - r.lo) / (r.hi - r.lo)) * 100, oW = ((r.opt[1] - r.opt[0]) / (r.hi - r.lo)) * 100;
+              return (
+                <div key={r.m} className="py-3.5" style={{ borderBottom: "1px solid rgba(250,247,240,0.08)" }}>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "#FAF7F0" }}>{r.m}</span>
+                    <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 600, color: r.s === "Watch" ? "#DE9A3C" : "#A8C69A" }}>{r.s} · {r.v} {r.unit}</span>
+                  </div>
+                  <div className="relative mt-2.5" style={{ height: 6, borderRadius: 999, background: "rgba(250,247,240,0.12)" }}>
+                    <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: 999, background: "rgba(168,198,154,0.35)" }} />
+                    <span className="absolute" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: 999, background: "#F3C87A", boxShadow: "0 0 0 3px rgba(243,200,122,0.25)" }} />
+                  </div>
+                </div>
+              );
+            })}
+            <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.4)", marginTop: "0.9rem" }}>Illustration of the member dashboard.</p>
+          </div>
+          <div style={{ background: "rgba(250,247,240,0.05)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
+            <div className="flex items-baseline justify-between">
+              <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "#FAF7F0" }}>ApoB · 12 months</span>
+              <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 700, color: "#A8C69A" }}>−25%</span>
+            </div>
+            <svg viewBox="0 0 300 120" className="mt-4 w-full" style={{ height: 120 }}>
+              <polyline points={pts} fill="none" stroke="#F3C87A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              {spark.map((v, i) => (
+                <circle key={i} cx={20 + i * 86} cy={104 - (v - 60) * 1.6} r="4" fill="#1C1815" stroke="#F3C87A" strokeWidth="2" />
+              ))}
+            </svg>
+            <div className="flex justify-between" style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.45)" }}>
+              <span>Baseline</span><span>Q2</span><span>Q3</span><span>Q4</span>
+            </div>
+            <p style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.55, color: "rgba(250,247,240,0.75)", marginTop: "1rem" }}>
+              Every 90 days your physician reviews the trend — and adjusts the protocol against it. Numbers first. Always.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ══ OFFER STACK — the close ══ */
+function OfferStack() {
+  const items = [
+    `${PANEL_TOTAL_MARKERS} biomarkers across 11 systems — heart to biological age`,
+    "Every marker reviewed by a U.S.-licensed physician",
+    "A written action plan, not a raw lab report",
+    "Re-tested every 90 days to prove what's working",
+    "Draw at 2,000+ partner locations, on your schedule",
+  ];
+  return (
+    <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-line)" }}>
+      <div className="nx-container">
+        <div className="nx-glass-card" style={{ padding: "clamp(2rem,4.5vw,3.4rem)" }}>
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+            <div>
+              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-black)" }}>
+                Everything your body has been <em style={{ fontStyle: "italic", color: "#B97C24" }}>trying to tell you.</em>
+              </h2>
+              <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
+                {items.map((t) => (
+                  <li key={t} className="flex gap-2.5 items-start" style={{ fontFamily: FONT, fontSize: 15, lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>
+                    <Check size={16} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "#B97C24" }} /> {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#7A4E12" }}>Included with every protocol. Available standalone.</p>
+              <div className="mt-4 flex flex-col gap-2.5">
+                <a href="/#/assessment" className="nx-cta-cobalt inline-flex items-center justify-center gap-2" data-testid="offer-cta">
+                  Book your baseline panel <ArrowRight size={16} strokeWidth={2.2} />
+                </a>
+                <a href="/#/how-it-works" className="nx-cta-ghost inline-flex items-center justify-center">See how protocols work</a>
+              </div>
+              <p style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.5, color: "var(--nx-fg-muted)", marginTop: "1.1rem" }}>
+                Panels require eligibility review and a physician order. Results inform your protocol; they are not a standalone diagnosis. Availability varies by state.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
