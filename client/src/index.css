@@ -989,3 +989,12 @@
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
 body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── Biomarker marquee ── */
+.nx-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.nx-marquee-track { display: flex; gap: 10px; width: max-content; animation: nx-marquee-scroll 60s linear infinite; }
+.nx-marquee-track.reverse { animation-direction: reverse; }
+.nx-marquee:hover .nx-marquee-track { animation-play-state: paused; }
+.nx-marquee-chip { font-family: 'General Sans', system-ui, sans-serif; font-size: 13px; color: rgba(28,24,21,0.72); background: rgba(255,255,253,0.7); border: 1px solid rgba(28,24,21,0.07); border-radius: 999px; padding: 8px 14px; white-space: nowrap; }
+@keyframes nx-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .nx-marquee-track { animation: none; } .nx-marquee { overflow-x: auto; } }

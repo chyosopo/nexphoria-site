@@ -10,6 +10,7 @@ import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { Beaker, Stethoscope, Truck, ShieldCheck } from "lucide-react";
 import { peptides as ALL_PEPTIDES } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
+import { BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 
 /* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
 const heroVideo  = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030852_5be30905-1215-4081-841d-6586f6fdc483.mp4";
@@ -98,10 +99,12 @@ export default function Home() {
       <PeptideTilesStrip />
       <HowItWorks />
       <FeaturedStack />
+      <BiomarkerMarquee />
       <BloodworkPillar />
       <PhysicianStrip />
       <MorningRitual />
       <HomeFAQSection />
+      <GuideCapture />
       <FinalCta />
     </SiteLayout>
   );
@@ -2186,6 +2189,68 @@ function HomeComparisonSection() {
             Verdict: Nexphoria is the only peptide telehealth platform combining 16+ compounds, mandatory quarterly bloodwork, 503A compounding, and COA verification in a single subscription.
           </p>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+
+/* ── Biomarker marquee — living data texture (hims-Labs grammar, our 76 real markers) ── */
+function BiomarkerMarquee() {
+  const rows = [
+    BIOMARKER_PANEL.slice(0, 5).flatMap((c) => c.markers.map((m) => ({ n: m.name, c: c.name }))),
+    BIOMARKER_PANEL.slice(5).flatMap((c) => c.markers.map((m) => ({ n: m.name, c: c.name }))),
+  ];
+  return (
+    <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "3.5rem 0 3rem", borderTop: "1px solid var(--nx-line)" }}>
+      <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
+          76 biomarkers · tracked every 90 days
+        </p>
+      </div>
+      {rows.map((row, i) => (
+        <div key={i} className="nx-marquee" style={{ marginBottom: i === 0 ? 10 : 0 }}>
+          <div className={`nx-marquee-track ${i === 1 ? "reverse" : ""}`}>
+            {[...row, ...row].map((m, j) => (
+              <span key={j} className="nx-marquee-chip">
+                <span style={{ color: "#B97C24", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+/* ── Guide capture — hims lead-magnet grammar ── */
+function GuideCapture() {
+  const [sent, setSent] = React.useState(false);
+  return (
+    <section style={{ background: "var(--nx-bg)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <div className="nx-container">
+        <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", display: "flex", flexWrap: "wrap", gap: "1.6rem", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ maxWidth: 520 }}>
+            <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(1.5rem,2.6vw,2.1rem)", color: "var(--nx-black)", margin: 0, lineHeight: 1.12 }}>
+              The Peptide Starter Guide, <em style={{ fontStyle: "italic", color: "#B97C24" }}>free.</em>
+            </h3>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, color: "rgba(28,24,21,0.62)", marginTop: 10 }}>
+              What peptides are, how physician-directed protocols work, and the questions to ask before starting. Reviewed by licensed physicians.
+            </p>
+          </div>
+          {sent ? (
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, color: "#7A4E12" }}>Check your inbox — it's on the way.</p>
+          ) : (
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <input type="email" placeholder="you@example.com" aria-label="Email address"
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-line)", background: "#FFFFFD", minWidth: 240, outline: "none" }} />
+              <button onClick={() => setSent(true)}
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-black)", color: "var(--nx-cream, #FAF7F0)", cursor: "pointer" }}>
+                Get the guide
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
