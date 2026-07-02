@@ -998,3 +998,27 @@ body { overflow-x: clip; }
 .nx-marquee-chip { font-family: 'General Sans', system-ui, sans-serif; font-size: 13px; color: rgba(28,24,21,0.72); background: rgba(255,255,253,0.7); border: 1px solid rgba(28,24,21,0.07); border-radius: 999px; padding: 8px 14px; white-space: nowrap; }
 @keyframes nx-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .nx-marquee-track { animation: none; } .nx-marquee { overflow-x: auto; } }
+
+/* ── Peptide-chain scroll draw (CSS scroll-driven; static fallback) ── */
+.nx-chain-path { stroke-dashoffset: 0; }
+.nx-chain-node { transform-origin: center; }
+@supports (animation-timeline: view()) {
+  .nx-chain-path {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: nx-chain-draw 1s linear forwards;
+    animation-timeline: view();
+    animation-range: entry 10% cover 45%;
+  }
+  .nx-chain-node {
+    opacity: 0;
+    animation: nx-chain-pop 0.5s ease forwards;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
+  }
+}
+@keyframes nx-chain-draw { to { stroke-dashoffset: 0; } }
+@keyframes nx-chain-pop { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .nx-chain-path, .nx-chain-node { animation: none; stroke-dashoffset: 0; opacity: 1; }
+}

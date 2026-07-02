@@ -254,6 +254,16 @@ export default function HowItWorks() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={eyebrow}>{eyebrowRule}Four steps</p>
+
+            {/* ── Peptide-chain draw — bonds form as you scroll ── */}
+            <div className="nx-chain" aria-hidden style={{ margin: "1.6rem 0 0.4rem" }}>
+              <svg viewBox="0 0 800 44" preserveAspectRatio="none" style={{ width: "100%", height: 44, display: "block" }}>
+                <path className="nx-chain-path" d="M 10 22 C 110 4, 190 40, 270 22 C 350 4, 430 40, 530 22 C 610 8, 690 36, 790 22" fill="none" stroke="rgba(185,124,36,0.5)" strokeWidth="2" strokeDasharray="3 8" strokeLinecap="round" />
+                {[10, 270, 530, 790].map((x) => (
+                  <circle key={x} className="nx-chain-node" cx={x} cy="22" r="6" fill="#F3C87A" stroke="#B97C24" strokeWidth="1.5" />
+                ))}
+              </svg>
+            </div>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3.5rem" }}>
               From questionnaire to your first dose.
             </h2>
