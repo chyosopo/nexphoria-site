@@ -11,6 +11,10 @@ import { Beaker, Stethoscope, Truck, ShieldCheck } from "lucide-react";
 import { peptides as ALL_PEPTIDES } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
 
+/* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
+const heroVideo  = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030852_5be30905-1215-4081-841d-6586f6fdc483.mp4";
+const heroPoster = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_021713_56fc5fd7-54f9-4b1e-96a1-1633308d4be2.png";
+
 /* V3 imagery — locked editorial palette */
 import heroVials from "@/assets/nx_polish_hero_vials.webp";
 import tileWolverine from "@/assets/nx_v11_tile_wolverine.webp";
@@ -28,10 +32,10 @@ import productHero from "@/assets/nx_v3_product_hero.webp";
 import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
 import moleculeShot from "@/assets/nx_v3_molecule.webp";
 import prescriptionShot from "@/assets/nx_v3_prescription.webp";
-import physicianPortrait from "@/assets/nx_v3_physician_portrait.webp";
-import labPrecision from "@/assets/nx_v3_lab_precision.webp";
-import morningRitual from "@/assets/nx_v3_morning_ritual.webp";
-import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
+const physicianPortrait = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_204bece6-e72e-4928-b636-18e2100df141.png";
+const labPrecision = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png";
+const morningRitual = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png";
+const bloodworkHero = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031340_b607f3ff-ada3-44cb-aed6-613a36ca3ef4.png";
 
 /* ────────────────────────────────────────────────────────────────
    NEXPHORIA · HOME · V3
@@ -206,7 +210,7 @@ function Hero() {
   const conditionTiles = [
     { pre: "Recover", accent: "faster",   accentColor: "var(--nx-acid)", href: "/stacks/wolverine", testId: "cond-tile-recover",   image: tileWolverine },
     { pre: "Look",    accent: "radiant",  accentColor: "#E8B05F",         href: "/stacks/glow",       testId: "cond-tile-radiant",   image: tileGlow },
-    { pre: "Think",   accent: "sharper",  accentColor: "#7FB0FF",         href: "/stacks/clarity",    testId: "cond-tile-sharper",   image: tileClarity },
+    { pre: "Think",   accent: "sharper",  accentColor: "#C98A3B",         href: "/stacks/clarity",    testId: "cond-tile-sharper",   image: tileClarity },
     { pre: "Get your",accent: "bloodwork",accentColor: "var(--nx-acid)", href: "/bloodwork",         testId: "cond-tile-bloodwork", image: bloodworkHero },
   ];
 
@@ -249,11 +253,11 @@ function Hero() {
         <h1
           id="home-h1"
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontWeight: 500,
-            fontSize: "clamp(52px, 7.8vw, 104px)",
-            lineHeight: 0.98,
-            letterSpacing: "-0.035em",
+            fontSize: "clamp(50px, 7.2vw, 96px)",
+            lineHeight: 1.04,
+            letterSpacing: "-0.015em",
             color: "var(--nx-black)",
             margin: 0,
             maxWidth: "18ch",
@@ -261,7 +265,7 @@ function Hero() {
           data-testid="text-hero-headline"
         >
           The best version of you,{" "}
-          <span style={{ color: "var(--nx-fg-muted)" }}>prescribed.</span>
+          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#B97C24" }}>prescribed.</span>
         </h1>
 
         <p
@@ -320,6 +324,45 @@ function Hero() {
           >
             No commitment · Physician-reviewed in 24–48h · 5-min intake
           </span>
+        </div>
+
+        {/* ── Cinematic living hero — hims-grammar video band ── */}
+        <div
+          className="mt-12 md:mt-16 relative overflow-hidden"
+          style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
+          data-testid="hero-video-band"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroPoster}
+            src={heroVideo}
+            className="w-full h-auto block"
+            style={{ aspectRatio: "3 / 1.55", objectFit: "cover" }}
+            aria-label="Warm morning light — the Nexphoria standard of care"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))" }}
+          />
+          <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
+            <p
+              style={{
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 2.4vw, 28px)",
+                color: "#FAF7F0",
+                textShadow: "0 2px 18px rgba(28,24,21,0.45)",
+                margin: 0,
+              }}
+            >
+              Care that feels like morning light.
+            </p>
+          </div>
         </div>
 
         {/* Maximus-style benefit-stat tile strip — leads with hard proof, not fluff */}
