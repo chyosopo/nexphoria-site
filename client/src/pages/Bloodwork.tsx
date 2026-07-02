@@ -1153,7 +1153,7 @@ function OfferStack() {
 function ActionPlan() {
   return (
     <section className="relative overflow-hidden" style={{ minHeight: 560 }}>
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060542_6021ad2d-59a3-45cd-8e59-24d51fd05329.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(28,24,21,0.25) 0%, rgba(28,24,21,0.05) 35%, rgba(28,24,21,0.62) 100%)" }} />
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
         <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#FAF7F0" }}>

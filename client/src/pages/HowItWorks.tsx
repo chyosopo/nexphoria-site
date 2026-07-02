@@ -1035,7 +1035,7 @@ export default function HowItWorks() {
       {/* ════════════════ FAQ ════════════════ */}
       {/* ── Care tracker composite — UI over film ── */}
       <section className="relative overflow-hidden" style={{ minHeight: 520 }}>
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031151_85aa8200-13c1-4bb1-9a2e-4a2e56690f10.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.6) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)" }} />
         <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
           <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.08, color: "#FAF7F0", maxWidth: "16ch" }}>

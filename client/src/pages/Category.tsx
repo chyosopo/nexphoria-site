@@ -90,6 +90,16 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
   },
 };
 
+
+const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: string }> = {
+  recovery: { label: "Tissue recovery", status: "On track", pos: "26%" },
+  skin: { label: "Collagen support", status: "Improving", pos: "30%" },
+  growth: { label: "Lean mass", status: "Building", pos: "34%" },
+  longevity: { label: "Cellular energy", status: "Optimal", pos: "18%" },
+  cognition: { label: "Focus & clarity", status: "Steady", pos: "24%" },
+  metabolic: { label: "Glucose control", status: "Improving", pos: "32%" },
+};
+
 const STEPS: [string, string][] = [
   ["Share your history", "A private 5-minute intake covering your goals, training, and medical history."],
   ["Get evaluated", "Baseline bloodwork plus review by a U.S.-licensed physician — the only person who decides if a prescription is appropriate."],
@@ -167,6 +177,27 @@ export default function Category() {
           <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12.5, color: "var(--nx-fg-muted)", marginTop: "1.2rem" }}>
             †{IF_RX}
           </p>
+        </div>
+      </section>
+
+      {/* ── Goal composite — UI over film ── */}
+      <section className="relative overflow-hidden" style={{ minHeight: 420 }}>
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.55) 0%, rgba(28,24,21,0.1) 60%, transparent 100%)" }} />
+        <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,3.8vw,44px)", lineHeight: 1.1, color: "#FAF7F0", maxWidth: "16ch" }}>
+            Progress you can <em style={{ fontStyle: "italic", color: "#F3C87A" }}>point to.</em>
+          </h2>
+          <div className="mt-6" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
+            <div className="flex items-center justify-between gap-4">
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#FAF7F0" }}>{GOAL_CHIP[slug]?.label}</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
+            </div>
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
+              <span className="absolute" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0", boxShadow: "0 0 0 3px rgba(250,247,240,0.3)" }} />
+            </div>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(250,247,240,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
+          </div>
         </div>
       </section>
 
