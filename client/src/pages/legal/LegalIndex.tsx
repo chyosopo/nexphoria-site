@@ -20,8 +20,8 @@ const legalPages = [
 
 export default function LegalIndex() {
   useSeo({
-    title: "Legal | Nexphoria",
-    description: "Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy for Nexphoria.",
+    title: "Legal — Terms, Privacy, Telehealth Consent, Refund Policy",
+    description: "Nexphoria legal documents: Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy. Physician-prescribed peptide therapy governed by U.S. telehealth and compounding pharmacy law.",
     path: "/legal",
   });
   return (

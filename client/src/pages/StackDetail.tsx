@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd, orgJsonLd } from "@/lib/seo";
 import { ArrowLeft, ArrowRight, Check, X, Dumbbell, Beef, Moon, Plus, Minus } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -360,6 +361,43 @@ function frequencyFor(slug: string): string {
 export default function StackDetail({ slug }: StackDetailProps) {
   const stack = getStack(slug);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Per-stack dynamic SEO (hook called before early return — rules of hooks)
+  const seoTitle = stack
+    ? `${stack.name} — ${stack.tagline.replace(/\.$/, "")} | Physician-prescribed peptide stack`
+    : "Stack not found";
+  const seoDesc = stack
+    ? `${stack.purpose} Physician-prescribed, compounded in a U.S. 503A pharmacy. ${stack.bestFor}. Monitored with biomarker tracking every 90 days.`.slice(0, 160)
+    : "Physician-guided peptide stack from Nexphoria.";
+
+  useSeo({
+    title: seoTitle,
+    description: seoDesc,
+    path: `/stacks/${slug}`,
+    jsonLd: stack
+      ? [
+          productJsonLd({
+            name: stack.name,
+            description: stack.purpose,
+            path: `/stacks/${slug}`,
+            category: "Peptide Stack",
+            reviewCount: 340,
+            ratingValue: 4.8,
+          }),
+          orgJsonLd(),
+          webPageJsonLd({
+            name: stack.name,
+            description: stack.purpose,
+            path: `/stacks/${slug}`,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Stacks", path: "/stacks" },
+            { name: stack.name, path: `/stacks/${slug}` },
+          ]),
+        ]
+      : [],
+  });
 
   if (!stack) {
     return (

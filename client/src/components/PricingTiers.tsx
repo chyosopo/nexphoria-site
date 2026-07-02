@@ -19,8 +19,8 @@ export function PricingTiers({
   return (
     <div className="grid md:grid-cols-3 gap-4 md:gap-6">
       {tiers.map((tier) => {
-        const isPopular = tier.badge === "MOST POPULAR";
-        const isBest = tier.badge === "BEST VALUE";
+        const isPopular = tier.badge === "MOST POPULAR" || tier.badge === "Most popular";
+        const isBest = tier.badge === "BEST VALUE" || tier.badge === "Best value";
 
         return (
           <div

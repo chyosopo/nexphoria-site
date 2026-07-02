@@ -1,0 +1,113 @@
+[
+  {
+    "route": "/men",
+    "name": "men",
+    "overflowX": 32,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "svg",
+        "cls": "[object SVGAnimatedString]",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "svg",
+        "cls": "[object SVGAnimatedString]",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "path",
+        "cls": "[object SVGAnimatedString]",
+        "width": 185,
+        "right": 389
+      }
+    ]
+  },
+  {
+    "route": "/women",
+    "name": "women",
+    "overflowX": 32,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "nx-reveal  ",
+        "width": 140,
+        "right": 468
+      },
+      {
+        "tag": "A",
+        "cls": "block no-underline group",
+        "width": 140,
+        "right": 468
+      },
+      {
+        "tag": "DIV",
+        "cls": "group-hover:scale-[1.02]",
+        "width": 140,
+        "right": 468
+      },
+      {
+        "tag": "IMG",
+        "cls": "group-hover:brightness-110",
+        "width": 140,
+        "right": 468
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "width": 140,
+        "right": 468
+      }
+    ]
+  },
+  {
+    "route": "/lab-testing",
+    "name": "labtesting",
+    "overflowX": 44,
+    "offenders": [
+      {
+        "tag": "DIV",
+        "cls": "",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "svg",
+        "cls": "[object SVGAnimatedString]",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "svg",
+        "cls": "[object SVGAnimatedString]",
+        "width": 206,
+        "right": 399
+      },
+      {
+        "tag": "circle",
+        "cls": "[object SVGAnimatedString]",
+        "width": 165,
+        "right": 378
+      }
+    ]
+  }
+]

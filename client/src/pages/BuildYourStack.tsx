@@ -5,7 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { getStack } from "@/data/stacks";
 import { getStackPortrait } from "@/lib/stackPortraits";
@@ -155,8 +155,14 @@ type Step = 1 | 2 | 3;
 
 export default function BuildYourStack() {
   useSeo({
-    title: "Build your own peptide stack — Nexphoria",
-    description: "Build a custom physician-reviewed peptide stack in three steps. Pick your goal, choose 2–4 compatible peptides, lock in a bundle discount, and add it to your cart.",
+    title: "Build your own peptide stack — custom, physician-reviewed",
+    description: "Pick your goal, choose 2–4 compatible peptides, lock in a bundle discount. Every custom stack is reviewed by a board-certified physician and compounded in a U.S. 503A pharmacy before dispensing.",
+    path: "/stacks/build",
+    jsonLd: [webPageJsonLd({
+      name: "Build Your Peptide Stack",
+      description: "Custom physician-reviewed peptide stack builder. Choose your goal, select compounds, get physician review.",
+      path: "/stacks/build",
+    })],
   });
 
   const cart = useCart();

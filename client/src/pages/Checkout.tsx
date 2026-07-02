@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,6 +37,21 @@ export default function Checkout() {
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);
   const [step, setStep] = useState(0); // 0 Address, 1 Payment, 2 Review
+
+  // Checkout is a private transactional page — noindex
+  useEffect(() => {
+    document.title = "Checkout | Nexphoria";
+    let metaRobots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement("meta");
+      metaRobots.setAttribute("name", "robots");
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute("content", "noindex, nofollow");
+    return () => {
+      metaRobots?.setAttribute("content", "index, follow, max-image-preview:large");
+    };
+  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),

@@ -1,7 +1,29 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
+import { useSeo } from "@/lib/seo";
 
 export default function NotFound() {
+  useSeo({
+    title: "Page not found",
+    description: "This page doesn’t exist or has moved. Browse physician-prescribed peptide protocols at Nexphoria.",
+    path: "/404",
+  });
+
+  // noindex — 404 page should never be crawled
+  useEffect(() => {
+    let metaRobots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement("meta");
+      metaRobots.setAttribute("name", "robots");
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute("content", "noindex, nofollow");
+    return () => {
+      metaRobots?.setAttribute("content", "index, follow, max-image-preview:large");
+    };
+  }, []);
+
   return (
     <SiteLayout navVariant="gate" hideFooter>
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-6" data-testid="not-found-page">

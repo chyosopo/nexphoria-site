@@ -79,9 +79,13 @@ export function StartIntakeButton({
     }
   };
 
+  // NOTE: the anchor href points to the bare route (no query) because wouter's
+  // hash-location matcher does not strip query strings from the pathname on cold
+  // load. The onClick handler still preserves source/stack via setLocation, and the
+  // resulting URL will contain the query as location.search for analytics/personalization.
   return (
     <a
-      href={`#${target}`}
+      href={`#${INTAKE_ROUTE}`}
       onClick={handleClick}
       data-testid={`button-intake-${source || productSlug || "generic"}`}
       className={cn(

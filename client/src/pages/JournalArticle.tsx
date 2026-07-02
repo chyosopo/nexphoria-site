@@ -8,6 +8,7 @@ import {
   getRelatedArticles,
   JOURNAL_CATEGORIES,
 } from "@/data/journal";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 /* ─────────────────────────────────────────────────────────────
    JournalArticle — Long-form editorial article page with
@@ -20,6 +21,39 @@ export default function JournalArticle() {
   const slug = params?.slug ?? "";
   const article = getArticleBySlug(slug);
   const [activeSection, setActiveSection] = useState<string>("");
+
+  // Dynamic per-article SEO
+  const seoTitle = article
+    ? article.title.length > 55
+      ? article.title.slice(0, 52) + "..."
+      : article.title
+    : "Article not found";
+  const seoDescription = article
+    ? article.dek.length > 155
+      ? article.dek.slice(0, 152) + "..."
+      : article.dek
+    : "Physician-reviewed peptide science from the Nexphoria Journal.";
+
+  useSeo({
+    title: seoTitle,
+    description: seoDescription,
+    path: `/journal/${slug}`,
+    jsonLd: article
+      ? [
+          webPageJsonLd({
+            name: article.title,
+            description: article.dek,
+            path: `/journal/${slug}`,
+            type: "MedicalWebPage",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Journal", path: "/journal" },
+            { name: article.title, path: `/journal/${slug}` },
+          ]),
+        ]
+      : [],
+  });
 
   /* Scroll-spy for sticky TOC */
   useEffect(() => {

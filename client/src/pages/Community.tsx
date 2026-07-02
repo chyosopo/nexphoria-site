@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -125,9 +125,14 @@ const programFeatures = [
 
 export default function Community() {
   useSeo({
-    title: "Knowledge Community | Nexphoria",
-    description: "Monthly clinical roundtables. Patient outcomes. Educational webinars.",
+    title: "Nexphoria community — clinical roundtables, outcomes, and education",
+    description: "Monthly clinical roundtables with board-certified physicians, peer outcome reports, and educational webinars on peptide therapy. Stay current on the science that drives your protocol.",
     path: "/community",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Community",
+      description: "Clinical roundtables, patient outcomes, and physician-led education for Nexphoria members.",
+      path: "/community",
+    })],
   });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);

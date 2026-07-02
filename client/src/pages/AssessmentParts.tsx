@@ -8,6 +8,8 @@ import {
   ShieldCheck,
   Info,
 } from "lucide-react";
+// Note: AssessmentParts exports shared UI pieces used by Assessment.tsx.
+// SEO for the assessment flow is set in Assessment.tsx.
 
 // Labels for the top progress bar — one per intake topic (7 steps)
 export const STEP_LABELS = [

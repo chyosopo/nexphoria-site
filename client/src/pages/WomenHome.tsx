@@ -30,7 +30,7 @@ import lifestyleMorningRoutine from "@/assets/brand/lifestyle-morning-routine.we
 import lifestyleWindowPortrait from "@/assets/brand/lifestyle-window-light-portrait.webp";
 import lifestyleCoupleKitchen from "@/assets/brand/lifestyle-couple-kitchen.webp";
 import lifestyleEveningProtocol from "@/assets/brand/lifestyle-evening-protocol.webp";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -43,79 +43,56 @@ const womenCategoryTiles = [
   {
     label: "Skin",
     description: "GHK-Cu · BPC-157",
-    href: "/women/peptides?cat=skin",
+    href: "/women/peptides",
     image: womenCardSkin,
   },
   {
     label: "Metabolic",
     description: "GLP-1 · Tirzepatide",
-    href: "/women/peptides?cat=metabolic",
+    href: "/women/peptides",
     image: womenCardWeight,
   },
   {
     label: "Longevity",
     description: "NAD+ · Epitalon",
-    href: "/women/peptides?cat=longevity",
+    href: "/women/peptides",
     image: womenCardLongevity,
   },
   {
     label: "Hormonal",
     description: "MOTS-c · Selank",
-    href: "/women/peptides?cat=hormonal",
+    href: "/women/peptides",
     image: womenCardWeight,
   },
 ];
 
 export default function WomenHome() {
   useSeo({
-    title: "For Her — Nexphoria Peptide Protocols",
-    description: "Metabolic, skin, longevity, hormonal. Lab-driven peptide protocols for women, supervised by U.S. board-certified physicians.",
+    title: "Peptide protocols for women — glow, metabolic, longevity",
+    description: "Smoother skin, leaner metabolism, deeper sleep, sharper cognition. Physician-prescribed peptide protocols for women — GHK-Cu, Tirzepatide, Epitalon and more. 503A compounded, lab-monitored.",
     path: "/women",
+    jsonLd: [
+      webPageJsonLd({ name: "Nexphoria for Women", description: "Physician-prescribed peptide protocols for women: skin, metabolic, sleep, and longevity stacks.", path: "/women" }),
+      orgJsonLd(),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "For Women", path: "/women" }]),
+    ],
   });
   const [wordIdx, setWordIdx] = useState(0);
 
   return (
     <SiteLayout navVariant="showcase" footerVariant="women">
-      {/* ── 1. Hero — Maximus tile pattern ── */}
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">For her · female physiology</PillBadge>}
-            headline={
-              <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Protocols</span> designed <br />
-                <span>for female physiology.</span>
-              </>
-            }
-            subtitle="Hormone-aware peptide therapy. Skin, sleep, longevity, and metabolic protocols dosed for women — not just scaled-down men's plans."
-          />
-
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/#/stacks/glow"
-              tone="butter"
-              glyph={TileGlyphs.circle}
-              label={<>Glow stack <br /><span>skin &amp; longevity</span></>}
-              caption="GHK-Cu + Epitalon + BPC-157"
-              ctaLabel="Explore stack"
-            />
-            <ColoredHeroTile
-              href="/#/women/peptides"
-              tone="rose"
-              glyph={TileGlyphs.leaf}
-              label={<>Women's library <br /><span>all peptides</span></>}
-              caption="GHK-Cu + Epitalon + BPC-157"
-              ctaLabel="Explore stack"
-            />
-          </div>
-        </div>
+      {/* ── 1. Hero — Hims-Labs dark cobalt ── */}
+      <main id="main-content">
+        <WomenHeroDark />
       </main>
 
       {/* ── 1b. Three-tier pharmacy menu — Single | Stacks | Custom ── */}
       <ThreeTierMenu gender="women" />
 
       {/* ── 2. Category tiles — 4-up, right below hero (Maximus pattern) ── */}
-      <CategoryTiles tiles={womenCategoryTiles} eyebrow="EXPLORE BY GOAL" />
+      <div id="women-categories">
+        <CategoryTiles tiles={womenCategoryTiles} eyebrow="EXPLORE BY GOAL" />
+      </div>
 
       {/* ── 3. BLOODWORK CENTERPIECE — dark section, dashboard mockup ── */}
       <BloodworkSection gender="women" />
@@ -1439,6 +1416,278 @@ function TestimonialStrip() {
           Collected from verified Nexphoria patients. Individual results vary.
         </p>
       </div>
+    </section>
+  );
+}
+
+// ── WomenHeroDark — Warm apothecary hero for /women (differentiated from men) ──
+function WomenHeroDark() {
+  const tiles = [
+    { label: "Skin", price: "$95 / mo", desc: "GHK-Cu · BPC-157", href: "/women/peptides", img: womenCardSkin },
+    { label: "Metabolic", price: "$140 / mo", desc: "GLP-1 · Tirzepatide", href: "/women/peptides", img: womenCardWeight },
+    { label: "Longevity", price: "$120 / mo", desc: "NAD+ · Epitalon", href: "/women/peptides", img: womenCardLongevity },
+    { label: "Hormonal", price: "$110 / mo", desc: "MOTS-c · Selank", href: "/women/peptides", img: womenCardWeight },
+  ];
+  const chips = [
+    "Hormone-aware dosing",
+    "Female-specific research",
+    "MD-reviewed protocols",
+    "Ships every 30 days",
+  ];
+  return (
+    <section
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        background: "linear-gradient(180deg, #F5EFE4 0%, #EDE5D5 55%, #E8DEC9 100%)",
+        color: "#2A2418",
+        fontFamily: "'General Sans', system-ui, sans-serif",
+      }}
+    >
+      {/* warm ambient washes */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background:
+            "radial-gradient(1200px 500px at 88% 12%, rgba(196,120,140,0.16), transparent 60%), radial-gradient(900px 500px at 10% 92%, rgba(214,178,102,0.20), transparent 60%)",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "88px 32px 72px",
+          display: "grid",
+          gridTemplateColumns: "1.05fr 1fr",
+          gap: 56,
+          alignItems: "center",
+        }}
+        className="women-hero-grid"
+      >
+        {/* LEFT: copy */}
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
+            <span style={{ width: 28, height: 1, background: "#8A6A3E" }} />
+            <span
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.28em",
+                color: "#8A6A3E",
+                textTransform: "uppercase",
+                fontWeight: 600,
+              }}
+            >
+              For her · Female physiology
+            </span>
+          </div>
+          <h1
+            style={{
+              fontSize: "clamp(48px, 6.4vw, 84px)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.028em",
+              fontWeight: 500,
+              margin: 0,
+              color: "#1E1811",
+              fontFamily: "'Instrument Serif', Georgia, serif",
+            }}
+          >
+            Protocols tuned to <br />
+            <span style={{ color: "#B25778", fontWeight: 500 }}>her</span> physiology.
+          </h1>
+          <p
+            style={{
+              fontSize: "1.08rem",
+              lineHeight: 1.6,
+              color: "rgba(42,36,24,0.72)",
+              maxWidth: 540,
+              margin: "26px 0 30px",
+            }}
+          >
+            Hormone-aware peptide therapy. Skin, sleep, longevity, metabolic — dosed for women,
+            not scaled-down men's plans. Physician-reviewed, biomarker-driven, shipped monthly.
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 32 }}>
+            {chips.map((c) => (
+              <span
+                key={c}
+                style={{
+                  fontSize: 12,
+                  padding: "8px 14px",
+                  borderRadius: 999,
+                  background: "rgba(255,255,255,0.55)",
+                  border: "1px solid rgba(138,106,62,0.22)",
+                  color: "rgba(42,36,24,0.82)",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <StartIntakeButton variant="primary" source="women-hero">
+              Start medical intake
+            </StartIntakeButton>
+            <a
+              href="#women-categories"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("women-categories")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "14px 22px",
+                borderRadius: 999,
+                border: "1px solid rgba(30,24,17,0.22)",
+                color: "#1E1811",
+                fontSize: 14,
+                fontWeight: 500,
+                textDecoration: "none",
+                background: "rgba(255,255,255,0.35)",
+              }}
+            >
+              Explore protocols ↓
+            </a>
+          </div>
+        </div>
+
+        {/* RIGHT: 4 category preview tiles — softer treatment */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 14,
+          }}
+          className="women-hero-tiles"
+        >
+          {tiles.map((t) => (
+            <Link key={t.label} href={t.href}>
+              <a
+                style={{
+                  position: "relative",
+                  display: "block",
+                  aspectRatio: "1 / 1.05",
+                  borderRadius: 22,
+                  overflow: "hidden",
+                  border: "1px solid rgba(138,106,62,0.18)",
+                  background: "rgba(255,253,247,0.4)",
+                  textDecoration: "none",
+                  color: "#1E1811",
+                  boxShadow: "0 6px 24px -12px rgba(138,106,62,0.35)",
+                }}
+              >
+                <img
+                  src={t.img}
+                  alt={`${t.label} peptide protocol for women`}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    opacity: 0.92,
+                  }}
+                />
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(180deg, rgba(245,239,228,0.05) 0%, rgba(30,24,17,0.15) 55%, rgba(30,24,17,0.72) 100%)",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 16,
+                    right: 16,
+                    bottom: 14,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 4,
+                    color: "#FFFFFF",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: "0.16em",
+                      color: "#F3D7A6",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {t.price}
+                  </div>
+                  <div style={{ fontSize: 24, fontWeight: 500, letterSpacing: "-0.01em", fontFamily: "'Instrument Serif', Georgia, serif" }}>
+                    {t.label}
+                  </div>
+                  <div style={{ fontSize: 12, color: "rgba(255,255,255,0.85)" }}>{t.desc}</div>
+                </div>
+              </a>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* bottom stat strip — warm palette */}
+      <div
+        style={{
+          position: "relative",
+          borderTop: "1px solid rgba(138,106,62,0.20)",
+          background: "rgba(255,253,247,0.4)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1400,
+            margin: "0 auto",
+            padding: "22px 32px",
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: 24,
+          }}
+          className="women-hero-stats"
+        >
+          {[
+            { k: "8", v: "Female-tuned peptides" },
+            { k: "38", v: "Biomarkers reviewed" },
+            { k: "5", v: "MDs on protocol" },
+            { k: "50", v: "States shipped" },
+          ].map((s) => (
+            <div key={s.v}>
+              <div style={{ fontSize: 30, fontWeight: 500, color: "#1E1811", letterSpacing: "-0.02em", fontFamily: "'Instrument Serif', Georgia, serif" }}>
+                {s.k}
+              </div>
+              <div
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "rgba(42,36,24,0.6)",
+                  marginTop: 4,
+                }}
+              >
+                {s.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .women-hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding: 56px 20px 48px !important; }
+          .women-hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+      `}</style>
     </section>
   );
 }

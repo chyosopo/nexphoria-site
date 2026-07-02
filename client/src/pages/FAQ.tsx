@@ -3,7 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { Plus, Minus } from "lucide-react";
-import { useSeo } from "@/lib/seo";
+import { useSeo, faqJsonLd, webPageJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -152,6 +152,27 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
     ],
   },
+  {
+    label: "Nexphoria vs. Alternatives",
+    items: [
+      {
+        q: "Is Nexphoria legit?",
+        a: "Nexphoria is a physician-supervised peptide provider that routes every prescription through a board-certified clinician via the Bask Health telehealth platform. Compounds are prepared in a U.S. 503A-licensed compounding pharmacy under sterile ISO conditions, batch-tested with a Certificate of Analysis on file, and shipped cold-chain. No prescription is dispensed without physician sign-off.",
+      },
+      {
+        q: "How does Nexphoria compare to Hims or Maximus for peptide therapy?",
+        a: "Nexphoria is the only platform combining 16+ physician-prescribed peptides, mandatory quarterly Quest Diagnostics monitoring, 503A-compounded sterile formulations, and COA documentation in a single subscription. Hims and Ro focus on TRT, GLP-1, and hair loss with limited peptide breadth. Maximus specializes in testosterone optimization. Neither provides Nexphoria's scope of peptide protocols or biomarker follow-up.",
+      },
+      {
+        q: "What is the difference between Nexphoria and buying peptides from a research chemical site?",
+        a: "Research-grade peptides sold online are labeled 'not for human use,' lack sterility certification, and carry no dosing guidance or physician oversight. Nexphoria peptides are prescribed by a board-certified clinician, compounded in a 503A-licensed sterile facility, batch-tested for potency and purity, and shipped cold-chain with full chain-of-custody documentation. The compound you inject is the compound you were prescribed.",
+      },
+      {
+        q: "What is the difference between GLP-1 (Ozempic/Wegovy) and Retatrutide from Nexphoria?",
+        a: "Semaglutide (Ozempic, Wegovy) is a GLP-1 receptor agonist producing ~15% body-weight reduction. Tirzepatide adds dual GIP/GLP-1 agonism, producing 18–28% reduction in trials. Retatrutide is a triple GIP/GLP-1/glucagon agonist showing 24–28% weight reduction in Phase 2 trials — with additional metabolic and NASH benefits. Nexphoria physicians prescribe based on your labs and clinical profile, not one-size-fits-all dosing.",
+      },
+    ],
+  },
 ];
 
 interface AccordionItemProps {
@@ -246,10 +267,17 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
 }
 
 export default function FAQPage() {
+  // Flatten all FAQ items for JSON-LD
+  const allFaqItems = categories.flatMap((c) => c.items);
+
   useSeo({
-    title: "Frequently Asked Questions | Nexphoria",
-    description: "Safety. Legality. Pricing. Process. Side effects. Direct answers.",
+    title: "Peptide therapy FAQ — safety, legality, pricing, process",
+    description: "Answers to the most common questions about physician-prescribed peptide therapy: 503A compounding, side effects, pricing, how bloodwork works, and what to expect.",
     path: "/faq",
+    jsonLd: [
+      webPageJsonLd({ name: "Nexphoria FAQ", description: "Frequently asked questions about physician-prescribed peptide therapy at Nexphoria.", path: "/faq", type: "MedicalWebPage" }),
+      faqJsonLd(allFaqItems),
+    ],
   });
   const [openItem, setOpenItem] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState(0);
@@ -266,6 +294,7 @@ export default function FAQPage() {
     Shipping: "Cold-chain shipping and delivery.",
     Refills: "Refills, changes, and protocol adjustments.",
     Legality: "Legal status and compliance.",
+    "Nexphoria vs. Alternatives": "How Nexphoria compares.",
   };
 
   return (

@@ -28,7 +28,7 @@ import {
   Stethoscope,
   Truck,
 } from "lucide-react";
-import { useSeo, productJsonLd } from "@/lib/seo";
+import { useSeo, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 /* Cinematic per-stack hero images */
 import heroWolverine from "@/assets/brand/protocol-hero-wolverine.webp";
@@ -168,20 +168,25 @@ export default function StackReveal() {
   const stack = params.slug ? getStackBySlug(params.slug) : undefined;
   useSeo({
     title: stack
-      ? `${stack.name} Protocol — Science you can feel. Results you can measure.`
+      ? `${stack.name} — ${stack.tagline.replace(/\.$/, "")} | Physician-prescribed stack`
       : "Protocol — Nexphoria",
     description: stack
-      ? `${stack.name}: ${stack.tagline} Physician-prescribed, compounded in U.S. pharmacies, with ongoing medical oversight.`
+      ? `${stack.purpose} Physician-prescribed and compounded in a U.S. 503A pharmacy. ${stack.bestFor}. Physician-monitored with biomarker draws every 90 days.`.slice(0, 160)
       : "Physician-guided peptide protocols from Nexphoria.",
     path: stack ? `/protocols/${stack.slug}` : "/protocols",
     jsonLd: stack
       ? [
           productJsonLd({
             name: `${stack.name} Protocol`,
-            description: stack.tagline,
+            description: stack.purpose,
             path: `/protocols/${stack.slug}`,
             category: "Peptide therapy protocol",
           }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Protocols", path: "/protocols" },
+            { name: stack.name, path: `/protocols/${stack.slug}` },
+          ]),
         ]
       : undefined,
   });

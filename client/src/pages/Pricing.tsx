@@ -6,9 +6,11 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { Check, X } from "lucide-react";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
+import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
+import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 
 const protocols = [
   {
@@ -65,7 +67,7 @@ const billingTerms = [
   {
     label: "12-Month",
     discount: "Save 20%",
-    badge: "BEST VALUE",
+    badge: "Best value",
     note: "Paid in full. Lowest per-month cost of any term.",
   },
 ];
@@ -166,7 +168,7 @@ function PricingTiers() {
             }}
           >
             <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-            CHOOSE YOUR PATH
+            Your plan
           </p>
           <h2
             style={{
@@ -179,7 +181,7 @@ function PricingTiers() {
               marginBottom: "0.75rem",
             }}
           >
-            One peptide, a curated stack, or a custom protocol.
+            One peptide or a full protocol. Physician and labs included either way.
           </h2>
           <p
             style={{
@@ -389,11 +391,44 @@ function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: nu
   );
 }
 
+/* ── Pricing FAQ data — drives FAQPage JSON-LD ───────────────── */
+const PRICING_FAQ_ITEMS = [
+  {
+    q: "How much does Nexphoria cost per month?",
+    a: "Nexphoria monthly subscriptions start at $249/month for cognitive peptide protocols (Selank, Semax) and range up to $389/month for longevity protocols (NAD+, MOTS-c, Epitalon). All plans include your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and Quest Diagnostics labs every 90 days. There are no hidden fees.",
+  },
+  {
+    q: "Is the physician consultation included in the subscription price?",
+    a: "Yes. Your initial board-certified physician consultation and all follow-up consultations within your active subscription cycle are included in the plan price. There is no separate consultation fee. If your physician declines to issue a prescription, you are not charged for pharmacy compounding.",
+  },
+  {
+    q: "Can I save money by prepaying?",
+    a: "Yes. A 6-month prepay saves 10% off the monthly rate. A 12-month annual plan saves 20% — the lowest per-month cost available. Both prepay options include the same physician consultations, quarterly bloodwork, and compounding benefits as monthly plans.",
+  },
+  {
+    q: "Is peptide therapy FSA or HSA eligible?",
+    a: "Compounded prescription medications and physician consultations are generally FSA/HSA-eligible medical expenses. Nexphoria provides itemized receipts at checkout that identify the prescription component separately from shipping. Confirm eligibility with your plan administrator before purchase, as rules vary by FSA/HSA type.",
+  },
+  {
+    q: "What if I want to switch peptides mid-subscription?",
+    a: "Protocol changes require a physician re-evaluation, which is included in your subscription. Your physician will review updated labs and goals before modifying your compound selection. Simple dose adjustments within the same compound can typically be handled via secure portal message without a full consult.",
+  },
+];
+
 export default function Pricing() {
   useSeo({
-    title: "Pricing | Nexphoria",
-    description: "Transparent pricing. Everything included. No labs upsell.",
+    title: "Peptide therapy pricing — transparent, all-in, no lab upsell",
+    description: "Single peptides from $149/mo, physician-curated stacks bundled at 12% off. Quest bloodwork, physician consult, and refills all included. No hidden fees. Cancel before dispense.",
     path: "/pricing",
+    jsonLd: [
+      webPageJsonLd({
+        name: "Nexphoria Pricing",
+        description: "Transparent all-in pricing for physician-prescribed peptide therapy — single peptides, bundles, and stacks.",
+        path: "/pricing",
+      }),
+      orgJsonLd(),
+      faqJsonLd(PRICING_FAQ_ITEMS),
+    ],
   });
   return (
     <SiteLayout navVariant="showcase">
@@ -434,6 +469,110 @@ export default function Pricing() {
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
       <PricingTiers />
 
+      {/* ── Maximus-style benefit tile grid: what every plan includes ── */}
+      <section
+        className="py-24 md:py-32"
+        style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "var(--nx-cobalt)",
+                marginBottom: "1rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+              }}
+            >
+              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+              Every plan
+            </p>
+            <h2
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+                marginBottom: "0.75rem",
+              }}
+            >
+              Everything bundled. Nothing upsold.
+            </h2>
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "1.0625rem",
+                color: "#4A4A4A",
+                lineHeight: 1.6,
+                maxWidth: "640px",
+                marginBottom: "3rem",
+              }}
+            >
+              Six things every Nexphoria plan already includes — no add-ons, no lab upsell, no consultation fee.
+            </p>
+          </Reveal>
+
+          <BenefitTileGrid cols={3}>
+            <BenefitTile
+              tone="cream"
+              eyebrow="Physician"
+              icon={<Stethoscope size={18} strokeWidth={1.5} />}
+              headline="Board-certified US physician on every case."
+              sub="Not a form. A licensed physician reviews your intake and labs before anything ships."
+              testId="pricing-tile-physician"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Labs"
+              icon={<FlaskConical size={18} strokeWidth={1.5} />}
+              headline="Quest Diagnostics bloodwork every 90 days."
+              sub="Full biomarker panels included in every plan. No à la carte lab bills."
+              testId="pricing-tile-labs"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Pharmacy"
+              icon={<ShieldCheck size={18} strokeWidth={1.5} />}
+              headline="503A US-licensed compounding pharmacy only."
+              sub="Every vial compounded in a US facility we vet. No overseas peptides."
+              testId="pricing-tile-pharmacy"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Shipping"
+              icon={<Truck size={18} strokeWidth={1.5} />}
+              headline="Cold-chain overnight, discreet."
+              sub="Temperature-controlled overnight shipping in plain packaging. Signature confirmed."
+              testId="pricing-tile-shipping"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Adjustments"
+              icon={<ChevronsDownUp size={18} strokeWidth={1.5} />}
+              headline="Physician re-titrates each cycle."
+              sub="Every 90 days, your physician reviews your labs and adjusts your dose. No extra visit fee."
+              testId="pricing-tile-titration"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Receipts"
+              icon={<Receipt size={18} strokeWidth={1.5} />}
+              headline="FSA/HSA itemized receipts, every month."
+              sub="Pre-tax dollars for medical care. Automatic receipts, no requests, no friction."
+              testId="pricing-tile-fsahsa"
+            />
+          </BenefitTileGrid>
+        </div>
+      </section>
+
       {/* ── Protocol pricing table ── */}
       <section
         className="py-24 md:py-32"
@@ -456,7 +595,7 @@ export default function Pricing() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              PROTOCOLS
+              Protocol pricing
             </p>
             <h2
               style={{
@@ -469,7 +608,7 @@ export default function Pricing() {
                 marginBottom: "2rem",
               }}
             >
-              Starting prices by protocol category.
+              What you pay. What you get. No surprises.
             </h2>
           </Reveal>
 
@@ -721,7 +860,7 @@ export default function Pricing() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              ALWAYS INCLUDED
+              Always included
             </p>
             <h2
               style={{
@@ -817,7 +956,7 @@ export default function Pricing() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              HOW WE COMPARE
+              How we compare
             </p>
             <h2
               style={{
@@ -1025,7 +1164,7 @@ export default function Pricing() {
           <Reveal delay={80}>
             <div className="mt-12 pt-8" style={{ borderTop: "1px solid var(--nx-border)" }}>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.375rem, 3vw, 2rem)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "1.25rem" }}>
-                Peak Potential, Pinnacle Performance.
+                Your protocol, built on your labs.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
                 Start with a 5-minute assessment. Your physician will review your intake and design a protocol around your labs, your goals, and your physiology — not a template.
@@ -1044,5 +1183,66 @@ export default function Pricing() {
         sub="Start your intake. Physician review within 48 hours of your Quest Diagnostics draw."
       />
     </SiteLayout>
+  );
+}
+
+/* ── PRICING PLAN COMPARISON TABLE — semantic, AI-liftable ──────── */
+const PLAN_COMPARISON_ROWS = [
+  { feature: "Monthly cost (per peptide)", solo: "From $149/mo", stack: "From $279/mo", custom: "From $349/mo" },
+  { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
+  { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
+  { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
+  { feature: "Quest Diagnostics labs (38 markers)", solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
+  { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
+  { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
+  { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },
+  { feature: "Verdict", solo: "Best for single-goal starters", stack: "Best value for most patients", custom: "Best for complex protocols" },
+];
+
+export function PricingPlanTable() {
+  const FONT = "'General Sans', system-ui, sans-serif";
+  return (
+    <section
+      aria-labelledby="pricing-plan-table-heading"
+      style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3rem, 6vw, 5rem) 0" }}
+    >
+      <div className="nx-container" style={{ maxWidth: "900px" }}>
+        <Reveal>
+          <h2
+            id="pricing-plan-table-heading"
+            style={{ fontFamily: FONT, fontWeight: 600, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "2rem" }}
+          >
+            Plan comparison at a glance.
+          </h2>
+        </Reveal>
+        <Reveal delay={60}>
+          <div style={{ overflowX: "auto" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "13px" }}>
+              <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "11px", color: "var(--nx-fg-muted)" }}>
+                Nexphoria plan comparison: Solo Peptide vs. Curated Stack vs. Custom Protocol. Save 10% (6-month) or 20% (12-month) with prepay.
+              </caption>
+              <thead>
+                <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Solo Peptide</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "#FFFFFF", fontWeight: 700, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>★ Curated Stack</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Custom Protocol</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PLAN_COMPARISON_ROWS.map((row, i) => (
+                  <tr key={row.feature} style={{ backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
+                    <th scope="row" style={{ padding: "0.875rem 1rem", textAlign: "left", fontWeight: row.feature === "Verdict" ? 700 : 500, color: row.feature === "Verdict" ? "var(--nx-cobalt)" : "var(--nx-fg)" }}>{row.feature}</th>
+                    <td style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-fg-muted)", fontWeight: row.feature === "Verdict" ? 600 : 400 }}>{row.solo}</td>
+                    <td style={{ padding: "0.875rem 1rem", textAlign: "center", fontWeight: 600, color: row.feature === "Verdict" ? "var(--nx-cobalt)" : "var(--nx-fg)" }}>{row.stack}</td>
+                    <td style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-fg-muted)", fontWeight: row.feature === "Verdict" ? 600 : 400 }}>{row.custom}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }

@@ -2,7 +2,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 
 import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
 import lifestyleLabVials from "@/assets/brand/lifestyle-lab-vials.webp";
@@ -92,9 +92,15 @@ const biomarkerCards = [
 
 export default function LabTesting() {
   useSeo({
-    title: "Lab Testing | Nexphoria",
-    description: "38 biomarkers per draw. Quest Diagnostics. Every 90 days. Always included.",
+    title: "At-home lab testing — 38 biomarkers, Quest Diagnostics, every 90 days",
+    description: "Requisition in your portal, draw at 2,500+ Quest locations, physician-reviewed results in 48 hours. 38 biomarkers calibrate and track your peptide protocol from first dose to completion.",
     path: "/lab-testing",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Lab Testing",
+      description: "38-biomarker Quest Diagnostics panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician within 48 hours.",
+      path: "/lab-testing",
+      type: "MedicalWebPage",
+    })],
   });
   return (
     <SiteLayout navVariant="showcase">
@@ -163,7 +169,7 @@ export default function LabTesting() {
                     marginBottom: "0.75rem",
                   }}
                 >
-                  QUEST DIAGNOSTICS PARTNERSHIP
+                  Quest Diagnostics
                 </p>
                 <h2
                   style={{
@@ -216,7 +222,7 @@ export default function LabTesting() {
                     marginBottom: "0.75rem",
                   }}
                 >
-                  ON REFERENCE RANGES
+                  Reference ranges
                 </p>
                 <h2
                   style={{
@@ -315,7 +321,7 @@ export default function LabTesting() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              YOUR PANEL
+              Your panel
             </p>
             <h2
               style={{
@@ -493,7 +499,7 @@ export default function LabTesting() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              KEY BIOMARKERS EXPLAINED
+              Key biomarkers
             </p>
             <h2
               style={{
@@ -592,7 +598,7 @@ export default function LabTesting() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              RETEST CADENCE
+              Retest cadence
             </p>
             <h2
               style={{
@@ -689,7 +695,7 @@ export default function LabTesting() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              SAMPLE REPORT
+              Sample report
             </p>
             <h2
               style={{
@@ -865,7 +871,7 @@ export default function LabTesting() {
               style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              LAB TESTING PRICING
+              Lab testing pricing
             </p>
           </Reveal>
 
@@ -1246,7 +1252,8 @@ function BloodworkPricing() {
         "30-minute 1-on-1 physician review call",
       ],
       cta: "Add Deep Panel",
-      href: "/assessment?panel=deep",
+      href: "/assessment",
+      hrefQuery: "panel=deep",
     },
     {
       badge: "Recurring",
@@ -1265,7 +1272,8 @@ function BloodworkPricing() {
         "10% off all protocols and add-ons",
       ],
       cta: "Join membership",
-      href: "/assessment?plan=membership",
+      href: "/assessment",
+      hrefQuery: "plan=membership",
     },
   ];
 

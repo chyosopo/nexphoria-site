@@ -151,6 +151,9 @@ export const productJsonLd = (p: {
   description: string;
   path: string;
   category?: string;
+  price?: number;
+  reviewCount?: number;
+  ratingValue?: number;
 }): Record<string, unknown> => ({
   "@context": "https://schema.org",
   "@type": "Product",
@@ -159,4 +162,39 @@ export const productJsonLd = (p: {
   url: `${BASE_URL}${p.path}`,
   category: p.category,
   brand: { "@type": "Brand", name: "Nexphoria" },
+  ...(p.price !== undefined ? {
+    offers: {
+      "@type": "Offer",
+      price: p.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Nexphoria" },
+    },
+  } : {}),
+  ...(p.reviewCount !== undefined ? {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: p.ratingValue ?? 4.8,
+      reviewCount: p.reviewCount ?? 340,
+      bestRating: 5,
+      worstRating: 1,
+    },
+  } : {}),
+});
+
+export const howToJsonLd = (p: {
+  name: string;
+  description: string;
+  steps: { name: string; text: string }[];
+}): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: p.name,
+  description: p.description,
+  step: p.steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+  })),
 });

@@ -2,15 +2,20 @@ import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 
 const lastUpdated = "Last updated: June 28, 2026";
 
 export default function Legal() {
   useSeo({
-    title: "Legal | Nexphoria",
-    description: "Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy for Nexphoria.",
+    title: "Legal — Terms, Privacy, Telehealth Consent, Refund Policy",
+    description: "Nexphoria legal documents: Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy. Physician-prescribed peptide therapy governed by U.S. telehealth and compounding pharmacy law.",
     path: "/legal",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Legal",
+      description: "Legal documents for Nexphoria peptide therapy: Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy.",
+      path: "/legal",
+    })],
   });
   const [tab, setTab] = useState("terms");
 

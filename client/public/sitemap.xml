@@ -1,24 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nexphoria.pplx.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/women</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/women/peptides</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/women/protocols</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/men</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/men/peptides</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/men/protocols</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/how-it-works</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/science</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/physicians</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/lab-testing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/pricing</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/faq</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/community</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/assessment</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/legal/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/legal/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/legal/telehealth-consent</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://nexphoria.pplx.app/#/legal/refund-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <!-- Core -->
+  <url><loc>https://nexphoria.pplx.app/</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/men</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/assessment</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/pricing</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- Peptide library + PDPs -->
+  <url><loc>https://nexphoria.pplx.app/#/peptides</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/bpc-157</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/tb-500</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/ghk-cu</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/tirzepatide</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/retatrutide</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/cjc-1295</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/ipamorelin</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/tesamorelin</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/semax</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/selank</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/epitalon</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/nad-plus</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/mots-c</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/dsip</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/aod-9604</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/peptides/thymosin-a1</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Gender peptide catalogs -->
+  <url><loc>https://nexphoria.pplx.app/#/men/peptides</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women/peptides</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/men/peptides/bpc-157</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/men/peptides/ipamorelin</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/men/peptides/tirzepatide</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/men/peptides/nad-plus</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/men/peptides/semax</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women/peptides/ghk-cu</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women/peptides/tirzepatide</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women/peptides/epitalon</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women/peptides/bpc-157</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- Stacks catalog + detail pages -->
+  <url><loc>https://nexphoria.pplx.app/#/stacks</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/wolverine</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/glow</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/restore</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/clarity</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/prime</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/balance</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/stacks/build</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Protocols (reveal pages) -->
+  <url><loc>https://nexphoria.pplx.app/#/protocols</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/protocols/wolverine</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/protocols/glow</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/protocols/restore</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/protocols/clarity</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/protocols/prime</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/protocols/balance</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Gender protocols -->
+  <url><loc>https://nexphoria.pplx.app/#/men/protocols</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/women/protocols</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- Education + Science -->
+  <url><loc>https://nexphoria.pplx.app/#/science</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/how-it-works</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/bloodwork</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/lab-testing</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/faq</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Journal hub + articles -->
+  <url><loc>https://nexphoria.pplx.app/#/journal</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/what-is-a-peptide</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/reading-your-bloodwork</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/side-effects-and-contraindications</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/legal-landscape-compounded-peptides-2026</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/subq-injection-technique</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/gh-secretagogues-complete-guide</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/longevity-nad-mots-c</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/journal/bpc-157-tissue-repair-evidence</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- Trust + Company -->
+  <url><loc>https://nexphoria.pplx.app/#/physicians</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/about</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/community</loc><lastmod>2026-07-01</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/contact</loc><lastmod>2026-07-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Legal -->
+  <url><loc>https://nexphoria.pplx.app/#/legal</loc><lastmod>2026-07-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/legal/terms</loc><lastmod>2026-07-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/legal/privacy</loc><lastmod>2026-07-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/legal/telehealth-consent</loc><lastmod>2026-07-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://nexphoria.pplx.app/#/legal/refund-policy</loc><lastmod>2026-07-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
 </urlset>

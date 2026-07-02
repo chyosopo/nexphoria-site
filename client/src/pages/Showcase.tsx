@@ -20,6 +20,8 @@ import { PillBadge } from "@/components/PillBadge";
 import { GiantStatPanel } from "@/components/GiantStatPanel";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { useEffect } from "react";
+import { useSeo } from "@/lib/seo";
 
 import objTirz from "@/assets/maximus/mx_obj_tirz_480.webp";
 import objRecovery from "@/assets/maximus/mx_obj_recovery_480.webp";
@@ -29,6 +31,26 @@ import objSkin from "@/assets/maximus/mx_obj_skin_480.webp";
 import findYourFocusImg from "@/assets/brand/find-your-focus-clean.png";
 
 export default function Showcase() {
+  // Showcase is an internal design/component preview — noindex
+  useSeo({
+    title: "Component Showcase | Nexphoria",
+    description: "Internal component showcase for Nexphoria. Not for public consumption.",
+    path: "/showcase",
+  });
+
+  useEffect(() => {
+    let metaRobots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement("meta");
+      metaRobots.setAttribute("name", "robots");
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute("content", "noindex, nofollow");
+    return () => {
+      metaRobots?.setAttribute("content", "index, follow, max-image-preview:large");
+    };
+  }, []);
+
   return (
     <SiteLayout navVariant="showcase">
       <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>

@@ -30,7 +30,7 @@ import {
   type Peptide,
 } from "@/data/peptides";
 import { pricing, getPrice, formatUSD } from "@/data/pricing";
-import { useSeo, orgJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
+import { useSeo, orgJsonLd, medicalBusinessJsonLd, webPageJsonLd } from "@/lib/seo";
 
 /* ────────────────────────────────────────────────────────────────
    Derived metadata layer — peptides.ts is read-only, so we map the
@@ -319,11 +319,11 @@ export default function Peptides() {
   const cart = useCart();
 
   useSeo({
-    title: "Peptide Library — Science you can feel. Results you can measure.",
+    title: "Peptide catalog — BPC-157, GLP-1, NAD+, Epitalon and 16 more",
     description:
-      "Explore the Nexphoria peptide library: BPC-157, TB-500, GHK-Cu, Epitalon, NAD+, MOTS-c, Tirzepatide, Retatrutide, and more. Filter by goal, evidence tier, route, and price. Mechanism, dosing, timelines, and references for each.",
+      "Browse 16+ physician-prescribed peptides: BPC-157, TB-500, GHK-Cu, Tirzepatide, Epitalon, NAD+, MOTS-c. Filter by goal, evidence tier, and route. Every compound compounded in a U.S. 503A pharmacy.",
     path: "/peptides",
-    jsonLd: [orgJsonLd(), medicalBusinessJsonLd()],
+    jsonLd: [orgJsonLd(), medicalBusinessJsonLd(), webPageJsonLd({ name: "Nexphoria Peptide Library", description: "Physician-prescribed peptide catalog with mechanism, dosing, timelines, and clinical references.", path: "/peptides" })],
   });
 
   const toggle = <T,>(arr: T[], v: T, set: (x: T[]) => void) =>
@@ -899,7 +899,7 @@ export default function Peptides() {
             Let a <span className="font-medium text-primary">physician</span> decide.
           </h2>
           <StartIntakeButton size="xl" source="peptides_index" variant="primary">
-            Start the 4-minute assessment
+            Start your assessment
           </StartIntakeButton>
         </div>
       </section>

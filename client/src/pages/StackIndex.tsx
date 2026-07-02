@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ArrowRight, FlaskConical, Layers, Stethoscope, Plus, Minus } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { stacks, computeStackPrice } from "@/data/stacks";
@@ -78,6 +79,24 @@ const FAQ_ITEMS = [
 
 export default function StackIndex() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  useSeo({
+    title: "Physician-curated peptide stacks — repair, sleep, metabolic, longevity",
+    description: "Six physician-designed peptide stacks — Wolverine, Glow, Restore, Clarity, Prime, Balance. Each bundled and lab-gated. Prescribed, compounded in a U.S. 503A pharmacy, monitored every 90 days.",
+    path: "/stacks",
+    jsonLd: [
+      webPageJsonLd({
+        name: "Nexphoria Peptide Stacks",
+        description: "Physician-curated multi-peptide stacks for recovery, skin, sleep, cognition, metabolic health, and longevity.",
+        path: "/stacks",
+      }),
+      faqJsonLd(FAQ_ITEMS),
+      breadcrumbJsonLd([
+        { name: "Home", path: "/" },
+        { name: "Stacks", path: "/stacks" },
+      ]),
+    ],
+  });
 
   return (
     <SiteLayout navVariant="showcase">
@@ -485,7 +504,7 @@ export default function StackIndex() {
                   Take the 5-minute assessment.
                 </h2>
                 <p className="text-base max-w-lg" style={{ fontFamily: SANS, color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>
-                  Our physicians design a peptide protocol around your bloodwork, goals, and medical history — no guesswork required. Dare to defy. Find your focus.
+                  Our physicians design a protocol around your bloodwork, goals, and medical history — not a template.
                 </p>
               </div>
               <Link asChild href="/assessment">

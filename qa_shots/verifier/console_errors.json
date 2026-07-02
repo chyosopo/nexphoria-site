@@ -1,0 +1,266 @@
+{
+  "home": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/home_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/home_mobile.png"
+    }
+  },
+  "peptides": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/peptides_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/peptides_mobile.png"
+    }
+  },
+  "peptides_tirzepatide": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/peptides_tirzepatide_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/peptides_tirzepatide_mobile.png"
+    }
+  },
+  "stacks": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/stacks_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/stacks_mobile.png"
+    }
+  },
+  "stacks_wolverine": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/stacks_wolverine_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/stacks_wolverine_mobile.png"
+    }
+  },
+  "how-it-works": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/how-it-works_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/how-it-works_mobile.png"
+    }
+  },
+  "pricing": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/pricing_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/pricing_mobile.png"
+    }
+  },
+  "bloodwork": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/bloodwork_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/bloodwork_mobile.png"
+    }
+  },
+  "about": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/about_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/about_mobile.png"
+    }
+  },
+  "science": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/science_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/science_mobile.png"
+    }
+  },
+  "physicians": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/physicians_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/physicians_mobile.png"
+    }
+  },
+  "faq": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/faq_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/faq_mobile.png"
+    }
+  },
+  "lab-testing": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/lab-testing_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/lab-testing_mobile.png"
+    }
+  },
+  "men": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/men_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/men_mobile.png"
+    }
+  },
+  "women": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/women_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/women_mobile.png"
+    }
+  },
+  "men_peptides": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/men_peptides_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/men_peptides_mobile.png"
+    }
+  },
+  "women_peptides": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/women_peptides_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/women_peptides_mobile.png"
+    }
+  },
+  "assessment": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/assessment_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/assessment_mobile.png"
+    }
+  },
+  "cart": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/cart_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/cart_mobile.png"
+    }
+  },
+  "checkout": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/checkout_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/checkout_mobile.png"
+    }
+  },
+  "privacy": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/privacy_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/privacy_mobile.png"
+    }
+  },
+  "terms": {
+    "desktop": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/terms_desktop.png"
+    },
+    "mobile": {
+      "status": "ok",
+      "consoleErrors": [],
+      "screenshot": "/home/user/workspace/nexphoria-site/qa_shots/verifier/terms_mobile.png"
+    }
+  }
+}

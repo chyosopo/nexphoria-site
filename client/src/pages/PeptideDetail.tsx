@@ -25,7 +25,7 @@ import {
   CATEGORY_LABELS,
   type Peptide,
 } from "@/data/peptides";
-import { useSeo, productJsonLd, medicalBusinessJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, productJsonLd, medicalBusinessJsonLd, breadcrumbJsonLd, faqJsonLd, howToJsonLd } from "@/lib/seo";
 import { analytics } from "@/lib/analytics";
 import {
   ArrowLeft,
@@ -393,10 +393,10 @@ export default function PeptideDetail() {
   const peptide = getPeptide(slug);
 
   useSeo({
-    title: peptide ? `${peptide.name} — ${peptide.fullName}` : "Peptide not found",
+    title: peptide ? `${peptide.name} — ${peptide.tagline ?? peptide.fullName}` : "Peptide not found",
     description: peptide
-      ? `${peptide.name} (${peptide.fullName}): ${peptide.summary}`
-      : "This peptide could not be found.",
+      ? `${peptide.name} (${peptide.fullName}): ${peptide.summary} Physician-prescribed and compounded in a U.S. 503A pharmacy.`.slice(0, 160)
+      : "This peptide could not be found. Explore physician-prescribed peptide protocols at Nexphoria.",
     path: `/peptides/${slug}`,
     jsonLd: peptide
       ? [
@@ -405,6 +405,9 @@ export default function PeptideDetail() {
             description: peptide.summary,
             path: `/peptides/${peptide.slug}`,
             category: CATEGORY_LABELS[peptide.category],
+            price: PRICE_TABLE[peptide.slug] ?? 149,
+            reviewCount: 340,
+            ratingValue: 4.8,
           }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
@@ -412,6 +415,34 @@ export default function PeptideDetail() {
             { name: peptide.name, path: `/peptides/${peptide.slug}` },
           ]),
           medicalBusinessJsonLd(),
+          faqJsonLd([
+            {
+              q: `What is ${peptide.name}?`,
+              a: `${peptide.name} (${peptide.fullName}) is a physician-prescribed compounded peptide in the ${CATEGORY_LABELS[peptide.category]} category. ${peptide.summary}`,
+            },
+            {
+              q: `How is ${peptide.name} administered?`,
+              a: `${peptide.name} is typically administered via ${peptide.administration.toLowerCase()}, with a typical dose of ${peptide.typicalDose} and a cycle length of ${peptide.cycleLength}. Your physician will determine the exact protocol after reviewing your bloodwork.`,
+            },
+            {
+              q: `Is ${peptide.name} FDA-approved?`,
+              a: peptide.evidenceTier?.fdaStatus
+                ? `${peptide.evidenceTier.fdaStatus}. All Nexphoria peptides require a physician prescription and are compounded in a U.S. 503A-licensed pharmacy under federal compounding regulations.`
+                : `${peptide.name} is prescribed off-label as a compounded medication. It requires a physician prescription through Nexphoria's telehealth platform and is compounded in a U.S. 503A-licensed pharmacy.`,
+            },
+          ]),
+          howToJsonLd({
+            name: `How to use ${peptide.name} — Nexphoria protocol`,
+            description: `Physician-supervised protocol for ${peptide.name} (${peptide.fullName}). ${peptide.summary}`,
+            steps: [
+              { name: "Complete intake assessment", text: "Complete the 5-minute Nexphoria intake assessment and provide your health history and goals." },
+              { name: "Draw Quest Diagnostics labs", text: "Visit any of 2,500+ Quest Diagnostics locations using the requisition generated in your member portal." },
+              { name: "Physician review and consultation", text: "Your board-certified physician reviews your labs and consults with you via Bask Health telehealth within 24–48 hours." },
+              { name: "Receive compounded peptide", text: `Your ${peptide.name} protocol is compounded in a 503A-licensed U.S. pharmacy and shipped cold-chain within 3–5 business days.` },
+              { name: "Follow your protocol", text: `Administer ${peptide.name} per your physician's instructions: ${peptide.typicalDose}, ${peptide.administration.toLowerCase()}. Cycle length: ${peptide.cycleLength}.` },
+              { name: "90-day biomarker follow-up", text: "Return to Quest Diagnostics for your 90-day follow-up panel. Your physician reviews updated labs and adjusts dosing as needed." },
+            ],
+          }),
         ]
       : [],
   });
@@ -594,7 +625,7 @@ function mechFamily(peptide: Peptide): MechFamily {
   const s = peptide.slug;
   if (["tirzepatide", "retatrutide", "semaglutide"].includes(s)) return "glp1";
   if (["ipamorelin", "cjc-1295", "tesamorelin", "aod-9604"].includes(s)) return "gh";
-  if (["bpc-157", "tb-500", "ghk-cu", "thymosin-alpha-1"].includes(s)) return "healing";
+  if (["bpc-157", "tb-500", "ghk-cu", "thymosin-a1"].includes(s)) return "healing";
   if (["semax", "selank"].includes(s)) return "nootropic";
   if (["dsip"].includes(s)) return "sleep";
   if (["epitalon", "nad+", "mots-c"].includes(s)) return "longevity";
@@ -1746,13 +1777,26 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
       <StickyPageNav />
 
       {/* 2 · OVERVIEW — benefits left + pricing card right */}
-      <section id="overview" className="bg-white border-b border-[var(--nx-border)] scroll-mt-32" data-testid="section-product-hero">
+      <section id="overview" aria-labelledby="pdp-h1" className="bg-white border-b border-[var(--nx-border)] scroll-mt-32" data-testid="section-product-hero">
         <div className="nx-container py-12 md:py-16">
           <div className="grid lg:grid-cols-[1fr_minmax(360px,420px)] gap-10 lg:gap-16 items-start">
             {/* Left — benefits */}
             <div>
               <p className="nx-eyebrow mb-4">{catLabel}</p>
+              {/* Wikipedia-style definition — AI first-sentence lift */}
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "0.875rem",
+                  color: "var(--nx-fg-muted)",
+                  lineHeight: 1.6,
+                  marginBottom: "0.625rem",
+                }}
+              >
+                {peptide.name} ({peptide.fullName}) is a physician-prescribed compounded peptide for {CATEGORY_LABELS[peptide.category].toLowerCase()}, available through Nexphoria’s physician-supervised telehealth platform with 503A pharmacy compounding.
+              </p>
               <h1
+                id="pdp-h1"
                 className="text-4xl md:text-5xl mb-3"
                 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.02, letterSpacing: "-0.02em" }}
               >

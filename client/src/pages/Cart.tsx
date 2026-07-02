@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -9,6 +10,21 @@ const FONT = "'General Sans', system-ui, sans-serif";
 
 export default function Cart() {
   const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
+
+  // Cart is a private transactional page — noindex to keep crawl budget on content pages
+  useEffect(() => {
+    document.title = "Your Cart | Nexphoria";
+    let metaRobots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!metaRobots) {
+      metaRobots = document.createElement("meta");
+      metaRobots.setAttribute("name", "robots");
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.setAttribute("content", "noindex, nofollow");
+    return () => {
+      metaRobots?.setAttribute("content", "index, follow, max-image-preview:large");
+    };
+  }, []);
 
   return (
     <SiteLayout variant="gate">
@@ -258,7 +274,7 @@ export default function Cart() {
                       </div>
                       <Link asChild href="/lab-testing">
                         <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#0A0A0A", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-labs">
-                          Learn more
+                          See panel details
                         </a>
                       </Link>
                     </div>

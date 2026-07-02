@@ -13,9 +13,11 @@
     <title>Nexphoria — The One-Stop Peptides Pharmacy. Education-First. Lab-Driven.</title>
     <meta name="description" content="Compounded peptide protocols supervised by U.S. board-certified physicians. Quest Diagnostics labs every 90 days. 503A licensed pharmacy. Education-first. Lab-driven." />
     <meta name="author" content="Nexphoria" />
-    <meta name="theme-color" content="#FAF7F0" />
+    <meta name="theme-color" content="#FAF7F0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://nexphoria.pplx.app/" />
+    <link rel="alternate" hreflang="en-US" href="https://nexphoria.pplx.app/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -59,10 +61,17 @@
 }
     </script>
 
+    <!-- Preload critical OG image for faster LCP on social crawlers -->
+    <link rel="preload" as="image" href="/og/og-default.png" />
+
     <!-- Fonts: General Sans (single family, weights 400/500/600) via Fontshare -->
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+    <!-- Instrument Serif: for women's editorial accents -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-white text-nx-fg antialiased">
     <div id="root"></div>

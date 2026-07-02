@@ -8,6 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { CartProvider } from "@/contexts/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 // Pages — eagerly loaded (fast/common paths)
 import Home from "@/pages/Home";
@@ -119,6 +120,9 @@ function AppRouter() {
         <Route path="/legal/privacy" component={Privacy} />
         <Route path="/legal/telehealth-consent" component={TelehealthConsent} />
         <Route path="/legal/refund-policy" component={RefundPolicy} />
+        {/* Short-path aliases so external links to /privacy and /terms resolve */}
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
 
         {/* 404 */}
         <Route component={NotFound} />
@@ -133,6 +137,7 @@ function App() {
       <TooltipProvider>
         <CartProvider>
           <Toaster />
+          <ScrollProgress />
           <Router hook={useHashLocation}>
             <AppRouter />
             <CartDrawer />

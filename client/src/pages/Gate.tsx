@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gateHer from "@/assets/brand/gate-her.webp";
 import gateHim from "@/assets/brand/gate-him.webp";
 import { Logo } from "@/components/Logo";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 
 const reducedMotion =
   typeof window !== "undefined" &&
@@ -12,9 +12,14 @@ const reducedMotion =
 
 export default function Gate() {
   useSeo({
-    title: "Nexphoria — The Peptides Pharmacy",
-    description: "Single peptides, physician-built stacks, or a custom protocol. Compounded in FDA-registered 503A pharmacies, supervised by U.S. board-certified physicians.",
+    title: "Nexphoria — peptide therapy, physician-prescribed and lab-monitored",
+    description: "Single peptides, physician-curated stacks, or a fully custom protocol. Every compound prescribed by a board-certified physician and compounded in a U.S. 503A pharmacy. Tell us your goals.",
     path: "/",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Gateway",
+      description: "Choose your path: single peptides, physician-curated stacks, or a custom protocol.",
+      path: "/",
+    })],
   });
   const [, setLocation] = useLocation();
   const [chosen, setChosen] = useState<null | "her" | "him">(null);

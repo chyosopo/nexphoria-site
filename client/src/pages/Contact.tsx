@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -51,9 +51,14 @@ const reasons = [
 
 export default function Contact() {
   useSeo({
-    title: "Contact | Nexphoria",
-    description: "We answer in 24 hours, Monday-Friday.",
+    title: "Contact Nexphoria — physician questions, protocol support",
+    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message within 24 hours, Monday to Friday. Physician-guided support from a real team.",
     path: "/contact",
+    jsonLd: [webPageJsonLd({
+      name: "Contact Nexphoria",
+      description: "Reach the Nexphoria team for questions about peptide therapy, protocols, or getting started. 24-hour response, Mon–Fri.",
+      path: "/contact",
+    })],
   });
   const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -106,7 +111,7 @@ export default function Contact() {
 
           <div className="mx-grid">
             <ColoredHeroTile
-              href="/contact/support"
+              href="mailto:support@nexphoria.com"
               tone="sky"
               glyph={TileGlyphs.circle}
               label={<>Patient support<br /><span>24/7 available</span></>}
@@ -114,7 +119,7 @@ export default function Contact() {
               ctaLabel="Message us"
             />
             <ColoredHeroTile
-              href="/contact/press"
+              href="mailto:press@nexphoria.com"
               tone="sage"
               glyph={TileGlyphs.wave}
               label={<>Press & partners<br /><span>media kit</span></>}

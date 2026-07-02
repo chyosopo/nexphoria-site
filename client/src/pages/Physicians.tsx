@@ -4,7 +4,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { physicians, type Physician } from "@/data/physicians";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 import physicianTrustHero from "@/assets/nx_v11_trust_physician_hero.webp";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
@@ -12,45 +12,19 @@ import { PillBadge } from "@/components/PillBadge";
 
 export default function Physicians() {
   useSeo({
-    title: "Our Physicians | Nexphoria",
-    description: "Board-certified U.S. physicians. Cleveland Clinic, Mayo, UCSF, Hopkins, Stanford.",
+    title: "Nexphoria physicians — board-certified, Cleveland Clinic to Stanford",
+    description: "Every Nexphoria protocol is reviewed by a board-certified U.S. physician trained at Cleveland Clinic, Mayo, UCSF, Hopkins, or Stanford. No algorithms, no auto-approval — a real physician reads your file.",
     path: "/physicians",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Physicians",
+      description: "Board-certified U.S. physicians from Cleveland Clinic, Mayo, UCSF, Hopkins, and Stanford reviewing every peptide protocol.",
+      path: "/physicians",
+      type: "MedicalWebPage",
+    })],
   });
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">Medical team</PillBadge>}
-            headline={
-              <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Physicians who</span><br />
-                <span>understand peptides.</span>
-              </>
-            }
-            subtitle="Every protocol is reviewed and signed by a board-certified U.S. physician who reads your bloodwork first. Direct message your prescribing doctor through the patient portal."
-          />
-
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/physicians"
-              tone="sky"
-              glyph={TileGlyphs.circle}
-              label={<>Physician-led<br /><span>every protocol</span></>}
-              caption="Board-certified MDs"
-              ctaLabel="Meet the team"
-            />
-            <ColoredHeroTile
-              href="/physicians"
-              tone="sand"
-              glyph={TileGlyphs.leaf}
-              label={<>Direct access<br /><span>zero gatekeeping</span></>}
-              caption="Board-certified MDs"
-              ctaLabel="Meet the team"
-            />
-          </div>
-        </div>
-      </main>
+      <PhysiciansHeroDark />
 
       {/* ── Benefit-encoded editorial portrait band ── */}
       <section
@@ -99,7 +73,7 @@ export default function Physicians() {
                   }}
                 >
                   <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                  LABS BEFORE Rx
+                  Labs before your prescription
                 </p>
                 <h2
                   style={{
@@ -153,7 +127,7 @@ export default function Physicians() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              THE PANEL
+              The panel
             </p>
             <h2
               style={{
@@ -230,7 +204,7 @@ export default function Physicians() {
                   }}
                 >
                   <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                  OUR STANDARDS
+                  Our standards
                 </p>
                 <h2
                   style={{
@@ -413,7 +387,7 @@ export default function Physicians() {
               style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              HOW REVIEW WORKS
+              How review works
             </p>
             <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
               Three steps.
@@ -463,7 +437,7 @@ export default function Physicians() {
                 Your physician review is included with every protocol. Take the assessment and our team will match you with the right physician for your state and goals.
               </p>
               <StartIntakeButton source="physicians-page" size="lg">
-                Begin physician-led intake
+                Start your intake
               </StartIntakeButton>
             </div>
           </Reveal>
@@ -489,6 +463,299 @@ export default function Physicians() {
 // ─────────────────────────────────────────────
 // PhysicianCard — expandable, with extended bio + focus + publications
 // ─────────────────────────────────────────────
+
+// =============================================================
+// PhysiciansHeroDark — Hims-Labs style dark cobalt hero
+// =============================================================
+
+function PhysiciansHeroDark() {
+  return (
+    <section
+      data-testid="physicians-hero-dark"
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        background: "linear-gradient(135deg, #0A0A0A 0%, #101010 55%, #1A1A1A 100%)",
+        color: "#F5F5F0",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}
+    >
+      {/* Ambient acid glow */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "radial-gradient(1200px 500px at 82% 12%, rgba(179,255,102,0.14), transparent 60%), radial-gradient(700px 400px at 5% 90%, rgba(60,120,255,0.12), transparent 65%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div
+        className="nx-container max-w-screen-xl"
+        style={{
+          position: "relative",
+          paddingTop: "clamp(4rem, 9vw, 7rem)",
+          paddingBottom: "clamp(3.5rem, 7vw, 5.5rem)",
+        }}
+      >
+        <div
+          className="physicians-hero-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.1fr 1fr",
+            gap: "clamp(2rem, 5vw, 4rem)",
+            alignItems: "center",
+          }}
+        >
+          {/* LEFT: copy */}
+          <div>
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                color: "#C6F184",
+                marginBottom: "1.25rem",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.65rem",
+              }}
+            >
+              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "#C6F184" }} />
+              The medical team
+            </p>
+            <h1
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "clamp(2.4rem, 5.4vw, 4.5rem)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.02em",
+                color: "#F5F5F0",
+                marginBottom: "1.5rem",
+              }}
+            >
+              Meet the physicians<br />
+              <span style={{ color: "#C6F184" }}>behind your protocol.</span>
+            </h1>
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "1.0625rem",
+                lineHeight: 1.6,
+                color: "rgba(245,245,240,0.72)",
+                maxWidth: "38rem",
+                marginBottom: "2rem",
+              }}
+            >
+              Five board-certified U.S. physicians. Cleveland Clinic, Mayo, UCSF, Hopkins, Stanford. Every peptide protocol is reviewed against your bloodwork and signed by the doctor licensed in your state.
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
+              {[
+                "Reads your labs first",
+                "Signs every refill",
+                "Direct portal messaging",
+                "Licensed in your state",
+              ].map((chip) => (
+                <span
+                  key={chip}
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    letterSpacing: "0.02em",
+                    padding: "0.4rem 0.85rem",
+                    borderRadius: "999px",
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    color: "rgba(245,245,240,0.9)",
+                  }}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+              <StartIntakeButton variant="primary" source="physicians-hero">
+                Start your assessment
+              </StartIntakeButton>
+              <a
+                href="#physicians-grid"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("physicians-grid")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                  color: "#F5F5F0",
+                  border: "1px solid rgba(255,255,255,0.28)",
+                  padding: "0.85rem 1.25rem",
+                  borderRadius: "999px",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.35rem",
+                  background: "rgba(255,255,255,0.04)",
+                }}
+              >
+                Meet the team ↓
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT: physician face grid */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "0.65rem",
+              position: "relative",
+            }}
+          >
+            {physicians.slice(0, 5).map((doc, i) => (
+              <div
+                key={doc.name}
+                style={{
+                  aspectRatio: "4/5",
+                  borderRadius: "14px",
+                  overflow: "hidden",
+                  border: "1px solid rgba(255,255,255,0.10)",
+                  background: "rgba(255,255,255,0.03)",
+                  position: "relative",
+                  gridColumn: i === 0 ? "1 / 3" : i === 4 ? "2 / 4" : "auto",
+                  gridRow: i === 0 ? "1 / 3" : "auto",
+                }}
+              >
+                <img
+                  src={doc.photo}
+                  alt={doc.name}
+                  loading="eager"
+                  decoding="async"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "top center",
+                    display: "block",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(180deg, transparent 45%, rgba(11,18,32,0.85) 100%)",
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "0.7rem",
+                    right: "0.7rem",
+                    bottom: "0.6rem",
+                    color: "#F5F5F0",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 600,
+                      fontSize: i === 0 ? "0.95rem" : "0.78rem",
+                      lineHeight: 1.15,
+                      marginBottom: "0.15rem",
+                    }}
+                  >
+                    {doc.name.replace(/, MD.*/, "")}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: i === 0 ? "10px" : "8.5px",
+                      fontWeight: 500,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: "#C6F184",
+                    }}
+                  >
+                    {doc.institution}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom stat strip */}
+      <div
+        style={{
+          position: "relative",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+          background: "rgba(0,0,0,0.15)",
+        }}
+      >
+        <div
+          className="nx-container max-w-screen-xl"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "1rem",
+            padding: "1.5rem 0",
+          }}
+        >
+          {[
+            { k: "5", v: "Board-certified MDs" },
+            { k: "18+", v: "Avg years in practice" },
+            { k: "38", v: "Biomarkers reviewed" },
+            { k: "50", v: "States licensed" },
+          ].map((s) => (
+            <div key={s.v} style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.4rem, 2.6vw, 2rem)",
+                  color: "#F5F5F0",
+                  lineHeight: 1,
+                  marginBottom: "0.35rem",
+                }}
+              >
+                {s.k}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "10px",
+                  fontWeight: 500,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "rgba(245,245,240,0.55)",
+                }}
+              >
+                {s.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .physicians-hero-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
 
 function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
   const [open, setOpen] = useState(false);

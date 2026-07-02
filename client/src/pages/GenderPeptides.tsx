@@ -12,7 +12,7 @@ import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
 import { getPrice, formatUSD } from "@/data/pricing";
 import { AddToCartButton } from "@/components/AddToCartButton";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 
 type PriceRange = "all" | "under-200" | "200-300" | "over-300";
 
@@ -26,9 +26,18 @@ interface GenderPeptidesProps {
 
 export default function GenderPeptides({ gender }: GenderPeptidesProps) {
   useSeo({
-    title: "Peptide Catalog | Nexphoria",
-    description: "Browse our complete catalog of compounded peptides. Each protocol is physician-reviewed and lab-driven.",
+    title: gender === "men"
+      ? "Peptides for men — BPC-157, Ipamorelin, GLP-1, NAD+ and more"
+      : "Peptides for women — GHK-Cu, Tirzepatide, Epitalon and more",
+    description: gender === "men"
+      ? "Physician-prescribed peptides for men: strength, fat loss, recovery, cognition. Every compound 503A compounded, batch-tested, and lab-monitored by a board-certified physician."
+      : "Physician-prescribed peptides for women: skin, metabolic, longevity, hormonal balance. Every compound 503A compounded, batch-tested, and lab-monitored by a board-certified physician.",
     path: `/${gender}/peptides`,
+    jsonLd: [webPageJsonLd({
+      name: gender === "men" ? "Nexphoria Peptides for Men" : "Nexphoria Peptides for Women",
+      description: `Physician-prescribed peptide catalog for ${gender} at Nexphoria.`,
+      path: `/${gender}/peptides`,
+    })],
   });
   const relevantCategories = gender === "women" ? womenCategories : menCategories;
   const filteredPeptides = peptides.filter((p) => relevantCategories.includes(p.category));
@@ -66,20 +75,8 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
 
   return (
     <SiteLayout navVariant={navVariant} footerVariant={gender}>
-      {/* Page header */}
-      <section
-        className="py-16"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid={`${gender}-peptides-header`}
-      >
-        <div className="nx-container">
-          <Reveal>
-            <p className="nx-eyebrow mb-4">{eyebrow}</p>
-            <h1 className="nx-heading mb-3" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>{heading}</h1>
-            <p className="nx-body" style={{ maxWidth: "520px" }}>{sub}</p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Page header — gender-differentiated */}
+      {gender === "men" ? <MenPeptidesHero count={filteredPeptides.length} cats={usedCategories.length} sub={sub} /> : <WomenPeptidesHero count={filteredPeptides.length} cats={usedCategories.length} sub={sub} />}
 
       {/* Filter bar */}
       <section className="sticky top-14 z-40 bg-white border-b" style={{ borderColor: "var(--nx-border)" }}>
@@ -282,5 +279,321 @@ function MetaChip({ label, value }: { label: string; value: string }) {
       <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
       <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", fontWeight: 600, color: "var(--nx-fg)" }}>{value}</p>
     </div>
+  );
+}
+
+/* ── MEN — Obsidian pharmacy grid: hard, dense, ember accent ── */
+function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; sub: string }) {
+  const chips = ["Growth · Recovery · Metabolic", "GLP-1 · GHS · TB-500 · NAD+", "Testosterone-safe", "Compounded 503A"];
+  return (
+    <section
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        background: "linear-gradient(180deg, #0A0A0A 0%, #111111 60%, #1A1815 100%)",
+        color: "#F5F0E4",
+        fontFamily: "'General Sans', system-ui, sans-serif",
+        borderBottom: "1px solid #1F1D1A",
+      }}
+    >
+      {/* engineering grid backdrop */}
+      <svg
+        aria-hidden
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.11 }}
+      >
+        <defs>
+          <pattern id="menGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#E28A3D" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#menGrid)" />
+      </svg>
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background:
+            "radial-gradient(700px 320px at 92% 10%, rgba(226,138,61,0.16), transparent 65%), radial-gradient(500px 300px at 4% 100%, rgba(226,138,61,0.08), transparent 65%)",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "72px 32px 56px",
+          display: "grid",
+          gridTemplateColumns: "1.5fr 1fr",
+          gap: 48,
+          alignItems: "end",
+        }}
+        className="gp-hero-grid"
+      >
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
+            <span style={{ width: 32, height: 2, background: "#E28A3D" }} />
+            <span
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.28em",
+                color: "#E28A3D",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              Nexphoria · For men
+            </span>
+          </div>
+          <h1
+            style={{
+              fontSize: "clamp(44px, 6vw, 76px)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.03em",
+              fontWeight: 700,
+              margin: 0,
+              color: "#FFFFFF",
+            }}
+          >
+            Built for <br />
+            the <span style={{ color: "#E28A3D" }}>male</span> engine.
+          </h1>
+          <p
+            style={{
+              fontSize: "1.02rem",
+              lineHeight: 1.55,
+              color: "rgba(245,240,228,0.68)",
+              maxWidth: 560,
+              margin: "22px 0 24px",
+            }}
+          >
+            {sub} Compounded protocols for strength, recovery, sleep, cognition, and fat-loss — dosed for a male HPG axis and reviewed by MDs before every refill.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {chips.map((c) => (
+              <span
+                key={c}
+                style={{
+                  fontSize: 11,
+                  padding: "7px 12px",
+                  borderRadius: 4,
+                  background: "rgba(226,138,61,0.06)",
+                  border: "1px solid rgba(226,138,61,0.28)",
+                  color: "rgba(245,240,228,0.9)",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
+                }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+        {/* Right — stat block, harder edges */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 0,
+            border: "1px solid rgba(226,138,61,0.28)",
+          }}
+          className="gp-hero-stats"
+        >
+          {[
+            { k: String(count).padStart(2, "0"), v: "Compounds" },
+            { k: String(cats).padStart(2, "0"), v: "Categories" },
+            { k: "05", v: "MDs on file" },
+            { k: "503A", v: "US pharmacy" },
+          ].map((s, i) => (
+            <div
+              key={s.v}
+              style={{
+                padding: "22px 20px",
+                borderRight: i % 2 === 0 ? "1px solid rgba(226,138,61,0.20)" : "none",
+                borderBottom: i < 2 ? "1px solid rgba(226,138,61,0.20)" : "none",
+                background: "rgba(255,255,255,0.015)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 30,
+                  fontWeight: 700,
+                  color: "#FFFFFF",
+                  letterSpacing: "-0.02em",
+                  fontFamily: "'JetBrains Mono', ui-monospace, monospace",
+                }}
+              >
+                {s.k}
+              </div>
+              <div
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "rgba(245,240,228,0.55)",
+                  marginTop: 6,
+                }}
+              >
+                {s.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`
+        @media (max-width: 900px) {
+          .gp-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 48px 20px 40px !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+/* ── WOMEN — Warm apothecary: cream backdrop, editorial serif, butter/rose accent ── */
+function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; sub: string }) {
+  const chips = ["Skin · Metabolic · Longevity", "Hormone-aware dosing", "MD-reviewed protocols", "Female research base"];
+  return (
+    <section
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        background: "linear-gradient(180deg, #F5EFE4 0%, #EDE5D5 55%, #E8DEC9 100%)",
+        color: "#2A2418",
+        fontFamily: "'General Sans', system-ui, sans-serif",
+        borderBottom: "1px solid #D9CDB6",
+      }}
+    >
+      <div
+        aria-hidden
+        style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background:
+            "radial-gradient(1000px 400px at 90% 18%, rgba(196,120,140,0.14), transparent 65%), radial-gradient(700px 400px at 8% 92%, rgba(214,178,102,0.18), transparent 65%)",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          maxWidth: 1400,
+          margin: "0 auto",
+          padding: "80px 32px 64px",
+          display: "grid",
+          gridTemplateColumns: "1.4fr 1fr",
+          gap: 56,
+          alignItems: "end",
+        }}
+        className="gp-hero-grid"
+      >
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
+            <span style={{ width: 28, height: 1, background: "#8A6A3E" }} />
+            <span
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.28em",
+                color: "#8A6A3E",
+                textTransform: "uppercase",
+                fontWeight: 600,
+              }}
+            >
+              Nexphoria · For women
+            </span>
+          </div>
+          <h1
+            style={{
+              fontSize: "clamp(44px, 6vw, 76px)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.03em",
+              fontWeight: 500,
+              margin: 0,
+              color: "#1E1811",
+              fontFamily: "'Instrument Serif', 'General Sans', Georgia, serif",
+            }}
+          >
+            Peptides tuned to <br />
+            <span style={{ color: "#B25778", fontWeight: 500 }}>her</span> physiology.
+          </h1>
+          <p
+            style={{
+              fontSize: "1.05rem",
+              lineHeight: 1.6,
+              color: "rgba(42,36,24,0.72)",
+              maxWidth: 560,
+              margin: "24px 0 26px",
+            }}
+          >
+            {sub} Skin, sleep, longevity, metabolic — dosed for the female endocrine system. Physician-reviewed, biomarker-driven, shipped monthly.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {chips.map((c) => (
+              <span
+                key={c}
+                style={{
+                  fontSize: 12,
+                  padding: "8px 14px",
+                  borderRadius: 999,
+                  background: "rgba(255,255,255,0.55)",
+                  border: "1px solid rgba(138,106,62,0.22)",
+                  color: "rgba(42,36,24,0.82)",
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+        {/* Right — soft rounded stat block */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 12,
+          }}
+          className="gp-hero-stats"
+        >
+          {[
+            { k: String(count), v: "Compounded peptides" },
+            { k: String(cats), v: "Protocol categories" },
+            { k: "5 MDs", v: "Reviewing every order" },
+            { k: "503A", v: "US compounding pharmacy" },
+          ].map((s) => (
+            <div
+              key={s.v}
+              style={{
+                padding: "22px 20px",
+                borderRadius: 18,
+                border: "1px solid rgba(138,106,62,0.18)",
+                background: "rgba(255,253,247,0.65)",
+                backdropFilter: "blur(2px)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 30,
+                  fontWeight: 500,
+                  color: "#1E1811",
+                  letterSpacing: "-0.02em",
+                  fontFamily: "'Instrument Serif', Georgia, serif",
+                }}
+              >
+                {s.k}
+              </div>
+              <div
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "rgba(42,36,24,0.55)",
+                  marginTop: 6,
+                }}
+              >
+                {s.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

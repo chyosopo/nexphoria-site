@@ -2,10 +2,12 @@ import * as React from "react";
 import { Link } from "wouter";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo, orgJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
+import { useSeo, orgJsonLd, medicalBusinessJsonLd, webPageJsonLd, faqJsonLd } from "@/lib/seo";
 import { Reveal } from "@/components/Reveal";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { VialTile, categoryToTone } from "@/components/VialTile";
+import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
+import { Beaker, Stethoscope, Truck, ShieldCheck } from "lucide-react";
 import { peptides as ALL_PEPTIDES } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
 
@@ -45,13 +47,42 @@ import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
    8. Final CTA       — one line, one button
    ──────────────────────────────────────────────────────────────── */
 
+/* ── Home FAQ data — also drives FAQPage JSON-LD ─────────────── */
+const HOME_FAQ_ITEMS = [
+  {
+    q: "Is Nexphoria legit?",
+    a: "Nexphoria is a physician-supervised peptide provider that routes every prescription through a board-certified clinician via the Bask Health telehealth platform. Compounds are prepared in a U.S. 503A-licensed compounding pharmacy under sterile ISO conditions, batch-tested with a Certificate of Analysis on file, and shipped cold-chain. No prescription is dispensed without physician sign-off.",
+  },
+  {
+    q: "How much does Nexphoria cost?",
+    a: "Nexphoria protocols start at $249/month for cognitive peptides, $279/month for tissue-repair stacks, and up to $389/month for longevity protocols. All plans include physician consultation, compounded peptides from a U.S. 503A pharmacy, Quest Diagnostics labs every 90 days, and cold-chain shipping. Save 10% with a 6-month prepay or 20% with an annual plan.",
+  },
+  {
+    q: "Is BPC-157 legal in the United States?",
+    a: "BPC-157 is legal in the U.S. when prescribed by a licensed physician and compounded by a 503A-licensed pharmacy under federal compounding law. It is not FDA-approved as a standalone drug — it is dispensed off-label as a compounded medication. Nexphoria's BPC-157 protocols require a physician consultation and valid prescription before dispensing.",
+  },
+  {
+    q: "How does Nexphoria compare to Hims or Maximus?",
+    a: "Nexphoria focuses exclusively on peptide therapy with mandatory 90-day biomarker monitoring. Hims and Ro primarily offer TRT, GLP-1, and hair-loss medications. Maximus focuses on testosterone optimization. Nexphoria is the only platform combining peptide breadth (16+ compounds), physician-supervised compounding, and quarterly Quest Diagnostics follow-up in a single subscription.",
+  },
+  {
+    q: "Does Nexphoria provide Certificates of Analysis?",
+    a: "Yes. Every compounded batch ships with a Certificate of Analysis (COA) confirming potency, sterility, and purity from third-party testing. COAs are available in your member portal and on request. Nexphoria only dispenses from 503A-licensed pharmacies operating under FDA oversight.",
+  },
+];
+
 export default function Home() {
   useSeo({
-    title: "Nexphoria — Peptides, prescribed. Physician-guided protocols.",
+    title: "Peptide therapy that works — physician-prescribed, lab-monitored",
     description:
-      "Physician-guided peptide protocols. Compounded in U.S. 503A pharmacies. Delivered to your door. Pick a goal — we handle the rest.",
+      "Repair faster, sleep deeper, lose fat, sharpen focus. Physician-prescribed peptide protocols compounded in U.S. 503A pharmacies. Quest bloodwork every 90 days. Results you can measure.",
     path: "/",
-    jsonLd: [orgJsonLd(), medicalBusinessJsonLd()],
+    jsonLd: [
+      orgJsonLd(),
+      medicalBusinessJsonLd(),
+      webPageJsonLd({ name: "Nexphoria Home", description: "Physician-prescribed peptide therapy for recovery, metabolic health, longevity, and cognition.", path: "/" }),
+      faqJsonLd(HOME_FAQ_ITEMS),
+    ],
   });
 
   return (
@@ -60,6 +91,7 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <GoalTiles />
+      <FlagshipDark />
       <PeptideTilesStrip />
       <HowItWorks />
       <ScienceStrip />
@@ -69,6 +101,8 @@ export default function Home() {
       <BloodworkPillar />
       <PhysicianStrip />
       <MorningRitual />
+      <HomeFAQSection />
+      <HomeComparisonSection />
       <FinalCta />
     </SiteLayout>
   );
@@ -79,7 +113,7 @@ export default function Home() {
 function PromoBar() {
   const [i, setI] = React.useState(0);
   const promos = [
-    { text: "Free physician review with your first month · limited-time", href: "/assessment", cta: "Start intake" },
+    { text: "Free physician review with your first month · limited-time", href: "/assessment", cta: "Start your intake" },
     { text: "New: Bloodwork panels bundled with every recovery protocol", href: "/bloodwork", cta: "See panels" },
     { text: "Discreet 3\u20135 day shipping · U.S. 503A compounding", href: "/how-it-works", cta: "Learn more" },
   ];
@@ -167,130 +201,369 @@ function FloatingResultCards() {
 
 /* ── 1 · HERO ─────────────────────────────────────────────────── */
 function Hero() {
+  // Hims-grammar hero: emotional headline + two large feature cards + 4 condition tiles.
+  // Ref: /tmp/hims_labs/homepage/TEARDOWN.md sections 1B, 1C.
+  const conditionTiles = [
+    { pre: "Recover", accent: "faster",   accentColor: "var(--nx-acid)", href: "/stacks/wolverine", testId: "cond-tile-recover",   image: tileWolverine },
+    { pre: "Look",    accent: "radiant",  accentColor: "#E8B05F",         href: "/stacks/glow",       testId: "cond-tile-radiant",   image: tileGlow },
+    { pre: "Think",   accent: "sharper",  accentColor: "#7FB0FF",         href: "/stacks/clarity",    testId: "cond-tile-sharper",   image: tileClarity },
+    { pre: "Get your",accent: "bloodwork",accentColor: "var(--nx-acid)", href: "/bloodwork",         testId: "cond-tile-bloodwork", image: bloodworkHero },
+  ];
+
   return (
-    <section className="relative bg-nx-ceramic overflow-hidden">
-      {/* subtle top spacer to clear the fixed nav */}
-      <div className="h-16 md:h-20" />
-      <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pb-16 md:pb-24 lg:pb-28">
-        <div className="lg:col-span-7 pt-8 md:pt-12">
-          <div
-            className="inline-flex items-center gap-2 mb-8"
-            style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontWeight: 500,
-              fontSize: "13px",
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "var(--nx-fg-muted)",
-            }}
-          >
-            <span
-              aria-hidden
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: "var(--nx-acid)",
-                display: "inline-block",
-              }}
-            />
-            Physician-Guided Peptide Therapy
-          </div>
+    <section className="relative bg-nx-ceramic overflow-hidden" aria-labelledby="home-h1">
+      <div className="h-10 md:h-14" />
+      <div className="nx-container pb-10 md:pb-16">
+        {/* Eyebrow */}
+        <div
+          className="inline-flex items-center gap-2 mb-8"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 500,
+            fontSize: "13px",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--nx-fg-muted)",
+          }}
+        >
+          <span aria-hidden style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }} />
+          Physician-Guided Peptide Therapy
+        </div>
 
-          <h1
+        {/* Wikipedia-style definition — AI parseable first sentence */}
+        <p
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontSize: "0.9375rem",
+            fontWeight: 400,
+            color: "var(--nx-fg-muted)",
+            lineHeight: 1.6,
+            maxWidth: "48rem",
+            marginBottom: "1rem",
+          }}
+        >
+          Nexphoria is a U.S.-based physician-supervised peptide therapy service delivering third-party-tested compounded peptides with 90-day biomarker follow-up.
+        </p>
+
+        {/* Big emotional headline — Hims Canela grammar */}
+        <h1
+          id="home-h1"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 500,
+            fontSize: "clamp(52px, 7.8vw, 104px)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.035em",
+            color: "var(--nx-black)",
+            margin: 0,
+            maxWidth: "18ch",
+          }}
+          data-testid="text-hero-headline"
+        >
+          The best version of you,{" "}
+          <span style={{ color: "var(--nx-fg-muted)" }}>prescribed.</span>
+        </h1>
+
+        <p
+          className="mt-8 max-w-2xl"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 400,
+            fontSize: "19px",
+            lineHeight: 1.5,
+            color: "var(--nx-fg-graphite)",
+          }}
+        >
+          Physician-guided peptide protocols. Compounded in U.S. 503A pharmacies.
+          Delivered to your door. Pick a goal — we handle the rest.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href="/assessment"
+            className="inline-flex items-center gap-2"
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontWeight: 600,
-              fontSize: "clamp(56px, 8vw, 108px)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.035em",
+              background: "var(--nx-acid)",
               color: "var(--nx-black)",
-              margin: 0,
+              padding: "14px 22px",
+              borderRadius: "999px",
+              fontWeight: 600,
+              fontSize: "15px",
+              letterSpacing: "-0.01em",
             }}
-            data-testid="text-hero-headline"
+            data-testid="button-hero-start"
           >
-            Peptides,
-            <br />
-            prescribed.
-          </h1>
-
-          <p
-            className="mt-8 max-w-xl"
+            Start assessment
+            <ArrowRight size={18} strokeWidth={2} />
+          </Link>
+          <Link
+            href="/how-it-works"
+            className="inline-flex items-center gap-2 border rounded-full px-6 py-3.5"
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontWeight: 400,
-              fontSize: "18px",
-              lineHeight: 1.55,
-              color: "var(--nx-fg-graphite)",
+              borderColor: "rgba(10,10,10,0.14)",
+              color: "var(--nx-black)",
+              fontWeight: 500,
+              fontSize: "15px",
             }}
+            data-testid="link-hero-how"
           >
-            Physician-guided protocols. Compounded in U.S. pharmacies.
-            Delivered to your door. Pick a goal — we handle the rest.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              href="/assessment"
-              className="inline-flex items-center gap-2"
-              style={{
-                background: "var(--nx-acid)",
-                color: "var(--nx-black)",
-                padding: "16px 24px",
-                borderRadius: "999px",
-                fontWeight: 600,
-                fontSize: "15px",
-                letterSpacing: "-0.01em",
-              }}
-              data-testid="button-hero-start"
-            >
-              Start assessment
-              <ArrowRight size={18} strokeWidth={2} />
-            </Link>
-
-            <Link
-              href="/how-it-works"
-              className="inline-flex items-center gap-2 border rounded-full px-6 py-4"
-              style={{
-                borderColor: "rgba(10,10,10,0.14)",
-                color: "var(--nx-black)",
-                fontWeight: 500,
-                fontSize: "15px",
-              }}
-              data-testid="link-hero-how"
-            >
-              How it works
-              <ArrowUpRight size={16} strokeWidth={2} />
-            </Link>
-          </div>
-
-          <div
-            className="mt-8"
+            How it works
+            <ArrowUpRight size={16} strokeWidth={2} />
+          </Link>
+          <span
+            className="ml-1"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "13px",
-              letterSpacing: "0.02em",
               color: "var(--nx-fg-muted)",
             }}
           >
             No commitment · Physician-reviewed in 24–48h · 5-min intake
-          </div>
+          </span>
         </div>
 
-        <div className="lg:col-span-5">
-          <div
-            className="relative rounded-[16px] overflow-hidden bg-nx-rock"
-            style={{ aspectRatio: "4 / 5" }}
-            data-testid="hero-image-frame"
+        {/* Maximus-style benefit-stat tile strip — leads with hard proof, not fluff */}
+        <div className="mt-14 md:mt-16">
+          <div className="flex items-baseline justify-between mb-5">
+            <div className="text-[10px] uppercase tracking-[0.22em]" style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: "#8B5A2B", fontWeight: 600 }}>
+              What you actually get
+            </div>
+            <div className="hidden md:block text-[10px] uppercase tracking-[0.18em]" style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: "#8A8A8A" }}>
+              Every order · every state · every time
+            </div>
+          </div>
+          <BenefitTileGrid cols={4}>
+            <BenefitTile
+              tone="cream"
+              eyebrow="01 · Rx"
+              icon={<Stethoscope size={16} strokeWidth={2} />}
+              metric="24"
+              metricUnit="HR REVIEW"
+              headline="Board-certified physician on every protocol"
+              sub="US-licensed MDs review intake, cart, and labs before any peptide ships. No cookie-cutter regimens."
+              href="/physicians"
+              cta="Meet the team"
+              testId="benefit-tile-physician"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="02 · Pharmacy"
+              icon={<Beaker size={16} strokeWidth={2} />}
+              metric="503A"
+              metricUnit="US COMPOUND"
+              headline="Sterile-compounded to research-grade purity"
+              sub="Every batch third-party COA tested for peptide identity, purity, endotoxins. Never grey-market vials."
+              href="/science"
+              cta="See the lab"
+              testId="benefit-tile-pharmacy"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="03 · Ship"
+              icon={<Truck size={16} strokeWidth={2} />}
+              metric="50"
+              metricUnit="STATES"
+              headline="Cold-chain overnight to your door"
+              sub="Discreet packaging, temperature-controlled, tracked. Peptides arrive intact — as pharma-grade requires."
+              href="/how-it-works"
+              cta="Track a shipment"
+              testId="benefit-tile-ship"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="04 · Data"
+              icon={<ShieldCheck size={16} strokeWidth={2} />}
+              metric="90"
+              metricUnit="DAY LABS"
+              headline="Bloodwork-guided dosing you actually own"
+              sub="Quest labs at intake and 90 days. HIPAA-encrypted. You see the biomarkers — physicians adjust the protocol in-app."
+              href="/bloodwork"
+              cta="See the dashboard"
+              testId="benefit-tile-data"
+            />
+          </BenefitTileGrid>
+        </div>
+
+        {/* Two large flagship feature cards — Hims Type A grammar */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          {/* LEFT: Wolverine — dark cobalt */}
+          <Link
+            href="/stacks/wolverine"
+            className="group relative block overflow-hidden rounded-[16px]"
+            style={{ background: "var(--nx-cobalt, #0F1F3D)", aspectRatio: "16 / 9", minHeight: 240 }}
+            data-testid="hero-card-wolverine"
           >
             <img
-              src={heroVials}
-              alt="Five peptide vials on a warm cream pedestal beneath the Nexphoria wordmark"
-              className="absolute inset-0 w-full h-full object-cover object-center"
+              src={tileWolverine}
+              alt="Wolverine stack — recovery peptides"
+              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-[1.04]"
               loading="eager"
               decoding="async"
             />
-            <FloatingResultCards />
-          </div>
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(90deg, rgba(15,31,61,0.94) 0%, rgba(15,31,61,0.60) 45%, rgba(15,31,61,0.15) 100%)" }}
+            />
+            <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+              <div
+                className="inline-flex items-center gap-2 self-start"
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "11px",
+                  letterSpacing: "0.09em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-acid)",
+                }}
+              >
+                <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }} />
+                Flagship · Recovery
+              </div>
+              <div className="flex items-end justify-between gap-4">
+                <div className="min-w-0">
+                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 400, fontSize: "14px", color: "rgba(255,255,243,0.72)", marginBottom: 6 }}>
+                    Start your
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "clamp(26px, 3.4vw, 40px)",
+                      lineHeight: 1.02,
+                      letterSpacing: "-0.02em",
+                      color: "#fffff3",
+                    }}
+                  >
+                    recovery today
+                  </div>
+                  <div className="mt-3" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13.5px", color: "rgba(255,255,243,0.78)" }}>
+                    Wolverine · BPC-157 · TB-500 · From $189/mo
+                  </div>
+                </div>
+                <span
+                  aria-hidden
+                  className="shrink-0 inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
+                  style={{ width: 46, height: 46, background: "var(--nx-acid)", color: "var(--nx-black)" }}
+                >
+                  <ArrowRight size={18} strokeWidth={2.2} />
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          {/* RIGHT: Glow — warm tan */}
+          <Link
+            href="/stacks/glow"
+            className="group relative block overflow-hidden rounded-[16px]"
+            style={{ background: "#B89066", aspectRatio: "16 / 9", minHeight: 240 }}
+            data-testid="hero-card-glow"
+          >
+            <img
+              src={tileGlow}
+              alt="Glow stack — beauty peptides"
+              className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.04]"
+              loading="eager"
+              decoding="async"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(90deg, rgba(184,144,102,0.85) 0%, rgba(184,144,102,0.35) 55%, rgba(184,144,102,0.08) 100%)" }}
+            />
+            <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+              <div
+                className="inline-flex items-center gap-2 self-start"
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: "11px",
+                  letterSpacing: "0.09em",
+                  textTransform: "uppercase",
+                  color: "#fffff3",
+                }}
+              >
+                <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#fffff3", display: "inline-block" }} />
+                Flagship · Beauty
+              </div>
+              <div className="flex items-end justify-between gap-4">
+                <div className="min-w-0">
+                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 400, fontSize: "14px", color: "rgba(255,255,243,0.85)", marginBottom: 6 }}>
+                    See how much you can
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "clamp(26px, 3.4vw, 40px)",
+                      lineHeight: 1.02,
+                      letterSpacing: "-0.02em",
+                      color: "#fffff3",
+                    }}
+                  >
+                    glow up
+                  </div>
+                  <div className="mt-3" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13.5px", color: "rgba(255,255,243,0.9)" }}>
+                    Glow · GHK-Cu · GHRP-2 · From $169/mo
+                  </div>
+                </div>
+                <span
+                  aria-hidden
+                  className="shrink-0 inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
+                  style={{ width: 46, height: 46, background: "#fffff3", color: "var(--nx-black)" }}
+                >
+                  <ArrowRight size={18} strokeWidth={2.2} />
+                </span>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Condition tile row — Hims Type B */}
+        <div className="mt-3 md:mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {conditionTiles.map((t) => (
+            <Link
+              key={t.testId}
+              href={t.href}
+              data-testid={t.testId}
+              className="group relative flex items-center justify-between overflow-hidden rounded-[14px] px-4 py-4"
+              style={{
+                background: "#F1EDE4",
+                border: "1px solid rgba(10,10,10,0.06)",
+              }}
+            >
+              <div className="min-w-0 pr-2">
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(15px, 1.4vw, 18px)",
+                    letterSpacing: "-0.01em",
+                    color: "var(--nx-black)",
+                    lineHeight: 1.15,
+                  }}
+                >
+                  {t.pre}{" "}
+                  <span style={{ fontWeight: 700, color: t.accentColor }}>
+                    {t.accent}
+                  </span>
+                </div>
+              </div>
+              <div
+                className="relative shrink-0 overflow-hidden rounded-[10px]"
+                style={{ width: 52, height: 52, background: "var(--nx-rock)" }}
+                aria-hidden
+              >
+                <img
+                  src={t.image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>
@@ -570,6 +843,75 @@ function GoalTiles() {
   );
 }
 
+/* -- 3.5 - FLAGSHIP DARK (Hims weight-loss pattern) --------- */
+function FlagshipDark() {
+  const F = "'General Sans', system-ui, sans-serif";
+  return (
+    <section
+      data-testid="flagship-dark"
+      style={{
+        backgroundColor: "var(--nx-black)",
+        color: "#FFFFF3",
+        paddingTop: "clamp(4rem, 7vw, 6.5rem)",
+        paddingBottom: "clamp(4rem, 7vw, 6.5rem)",
+      }}
+    >
+      <div className="nx-container">
+        <Reveal>
+          <div
+            style={{ display: "grid", gap: "3rem", alignItems: "center" }}
+            className="md:grid-cols-[1fr_1fr]"
+          >
+            <div>
+              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "1.5rem" }}>
+                Recovery stack
+              </p>
+              <h2 style={{ fontFamily: F, fontSize: "clamp(2rem, 4.4vw, 3.6rem)", lineHeight: 1.02, fontWeight: 500, letterSpacing: "-0.02em", marginBottom: "1.25rem" }}>
+                Tissue repair, <span style={{ color: "var(--nx-acid)" }}>accelerated.</span>
+              </h2>
+              <p style={{ fontFamily: F, fontSize: "clamp(1rem, 1.15vw, 1.15rem)", lineHeight: 1.6, color: "rgba(255,255,243,0.75)", maxWidth: 520, marginBottom: "2rem" }}>
+                BPC-157 + TB-500 + CJC-1295 / Ipamorelin. Four peptides that repair connective tissue, kill inflammation, and rebuild lean mass - one physician-supervised protocol, recalibrated every 90 days against your bloodwork.
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "grid", gap: "0.75rem", maxWidth: 480 }}>
+                {[
+                  "Down 81% inflammation (hs-CRP) in 90 days",
+                  "IGF-1 shift into upper-quartile recovery band",
+                  "Physician review + bloodwork bundled every quarter",
+                ].map((line) => (
+                  <li key={line} style={{ fontFamily: F, fontSize: 14, lineHeight: 1.5, color: "rgba(255,255,243,0.85)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "var(--nx-acid)", flexShrink: 0 }} />
+                    {line}
+                  </li>
+                ))}
+              </ul>
+              <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
+                <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-black)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  See Wolverine <ArrowRight size={14} strokeWidth={2} />
+                </Link>
+                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, letterSpacing: "0.02em", color: "#FFFFF3", padding: "0.9rem 1.4rem", border: "1px solid rgba(255,255,243,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                  See the bloodwork <ArrowRight size={14} strokeWidth={1.75} />
+                </Link>
+              </div>
+            </div>
+            <div style={{ background: "linear-gradient(150deg, #0F1B3A 0%, #050914 100%)", border: "1px solid rgba(255,255,243,0.12)", borderRadius: 20, padding: "1.6rem", position: "relative", overflow: "hidden" }}>
+              <div style={{ aspectRatio: "4 / 3", backgroundImage: "linear-gradient(145deg,#132352,#0A1230)", backgroundSize: "cover", backgroundPosition: "center", borderRadius: 12, marginBottom: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
+                <div style={{ fontFamily: F, fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, color: "rgba(255,255,243,0.14)", letterSpacing: "-0.02em" }}>WOLVERINE</div>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                <div>
+                  <p style={{ fontFamily: F, fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,243,0.55)", marginBottom: "0.4rem" }}>Nexphoria Wolverine</p>
+                  <p style={{ fontFamily: F, fontSize: 18, fontWeight: 500, color: "#FFFFF3", letterSpacing: "-0.01em" }}>Recovery - Longevity - Repair</p>
+                </div>
+                <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: "var(--nx-acid)", letterSpacing: "0.02em", fontVariantNumeric: "tabular-nums" }}>from $349/mo</div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ── 4 · HOW IT WORKS ─────────────────────────────────────────── */
 function HowItWorks() {
   const steps = [
@@ -591,6 +933,7 @@ function HowItWorks() {
   ];
   return (
     <section
+      aria-labelledby="how-it-works-heading"
       className="py-24 md:py-32 border-t"
       style={{
         background: "var(--nx-black)",
@@ -624,6 +967,7 @@ function HowItWorks() {
             How it works
           </div>
           <h2
+            id="how-it-works-heading"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 600,
@@ -854,7 +1198,7 @@ function FeaturedStack() {
                   display: "inline-block",
                 }}
               />
-              Featured protocol
+              Recovery protocol
             </div>
             <h2
               style={{
@@ -867,7 +1211,7 @@ function FeaturedStack() {
                 margin: 0,
               }}
             >
-              The Wolverine stack.
+              Faster tissue repair. Less inflammation.
             </h2>
             <p
               className="mt-6 max-w-md"
@@ -1078,7 +1422,7 @@ function PhysicianStrip() {
                 display: "inline-block",
               }}
             />
-            The physicians
+            Your physicians
           </div>
           <h2
             style={{
@@ -1347,7 +1691,7 @@ function MorningRitual() {
                 display: "inline-block",
               }}
             />
-            The ritual
+            Daily dose
           </div>
 
           <h2
@@ -1471,7 +1815,7 @@ function BloodworkPillar() {
                     display: "inline-block",
                   }}
                 />
-                The Bloodwork Pillar
+                Your bloodwork
               </div>
             </Reveal>
 
@@ -1557,7 +1901,7 @@ function BloodworkPillar() {
                   <ArrowUpRight size={18} strokeWidth={2} />
                 </Link>
                 <Link
-                  href="/bloodwork#bloodwork-pricing"
+                  href="/bloodwork"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -1803,6 +2147,253 @@ function PeptideTilesStrip() {
             );
           })}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── HOME FAQ SECTION ──────────────────────────────────────────────── */
+function HomeFAQSection() {
+  const [open, setOpen] = React.useState<number | null>(null);
+  const FONT = "'General Sans', system-ui, sans-serif";
+  return (
+    <section
+      aria-labelledby="home-faq-heading"
+      style={{
+        backgroundColor: "var(--nx-bg-cream)",
+        borderTop: "1px solid var(--nx-border)",
+        padding: "clamp(4rem, 8vw, 6rem) 0",
+      }}
+    >
+      <div className="nx-container" style={{ maxWidth: "740px" }}>
+        <p
+          style={{
+            fontFamily: FONT,
+            fontSize: "11px",
+            fontWeight: 500,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "var(--nx-cobalt)",
+            marginBottom: "1rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.75rem",
+          }}
+        >
+          <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+          Common questions
+        </p>
+        <h2
+          id="home-faq-heading"
+          style={{
+            fontFamily: FONT,
+            fontWeight: 600,
+            fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+            color: "var(--nx-fg)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.02em",
+            marginBottom: "0.75rem",
+          }}
+        >
+          Questions about Nexphoria.
+        </h2>
+        <p
+          style={{
+            fontFamily: FONT,
+            fontSize: "1.0625rem",
+            color: "var(--nx-fg-muted)",
+            lineHeight: 1.65,
+            marginBottom: "2.5rem",
+          }}
+        >
+          Nexphoria is a U.S.-based physician-supervised peptide therapy service delivering third-party-tested compounded peptides with 90-day biomarker follow-up.
+        </p>
+        <div>
+          {HOME_FAQ_ITEMS.map((item, i) => (
+            <div
+              key={i}
+              style={{
+                borderTop: "1px solid var(--nx-border)",
+                padding: "1.25rem 0",
+              }}
+            >
+              <button
+                onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
+                style={{
+                  width: "100%",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  gap: "1rem",
+                  textAlign: "left",
+                  padding: 0,
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: FONT,
+                    fontWeight: 600,
+                    fontSize: "1.0625rem",
+                    color: "var(--nx-fg)",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {item.q}
+                </span>
+                <span
+                  style={{
+                    flexShrink: 0,
+                    fontFamily: FONT,
+                    fontSize: "1.25rem",
+                    fontWeight: 300,
+                    color: "var(--nx-cobalt)",
+                    lineHeight: 1,
+                  }}
+                >
+                  {open === i ? "−" : "+"}
+                </span>
+              </button>
+              {open === i && (
+                <p
+                  style={{
+                    fontFamily: FONT,
+                    fontSize: "1rem",
+                    color: "var(--nx-fg-muted)",
+                    lineHeight: 1.7,
+                    marginTop: "0.875rem",
+                  }}
+                >
+                  {item.a}
+                </p>
+              )}
+            </div>
+          ))}
+          <div style={{ borderTop: "1px solid var(--nx-border)" }} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── HOME COMPARISON TABLE ─────────────────────────────────────────── */
+const HOME_COMPARISON_ROWS = [
+  { feature: "Physician prescription required", nexphoria: "Yes — board-certified", hims: "Yes — GLP-1 only", research: "No — no oversight" },
+  { feature: "503A U.S. compounding pharmacy", nexphoria: "Yes — sterile ISO", hims: "Yes — limited compounds", research: "No — unverified" },
+  { feature: "Certificate of Analysis (COA)", nexphoria: "Every batch", hims: "Varies", research: "Rarely" },
+  { feature: "Quest Diagnostics labs included", nexphoria: "Every 90 days", hims: "Not standard", research: "None" },
+  { feature: "Peptide breadth (compounds)", nexphoria: "16+ compounds", hims: "3–5 compounds", research: "Unlimited (unregulated)" },
+  { feature: "Cold-chain shipping", nexphoria: "Yes — 3–5 days", hims: "Yes", research: "No" },
+  { feature: "Physician declines if inappropriate", nexphoria: "Always", hims: "Varies", research: "N/A" },
+];
+
+function HomeComparisonSection() {
+  const FONT = "'General Sans', system-ui, sans-serif";
+  return (
+    <section
+      aria-labelledby="home-comparison-heading"
+      style={{
+        backgroundColor: "var(--nx-bg)",
+        borderTop: "1px solid var(--nx-border)",
+        padding: "clamp(4rem, 8vw, 6rem) 0",
+      }}
+    >
+      <div className="nx-container" style={{ maxWidth: "860px" }}>
+        <Reveal>
+          <p
+            style={{
+              fontFamily: FONT,
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--nx-cobalt)",
+              marginBottom: "1rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
+          >
+            <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+            How we compare
+          </p>
+          <h2
+            id="home-comparison-heading"
+            style={{
+              fontFamily: FONT,
+              fontWeight: 600,
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              color: "var(--nx-fg)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+              marginBottom: "2rem",
+            }}
+          >
+            Nexphoria vs. the alternatives.
+          </h2>
+        </Reveal>
+        <Reveal delay={60}>
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                fontFamily: FONT,
+                fontSize: "13px",
+              }}
+            >
+              <caption
+                style={{
+                  captionSide: "bottom",
+                  textAlign: "left",
+                  paddingTop: "0.75rem",
+                  fontSize: "11px",
+                  color: "var(--nx-fg-muted)",
+                }}
+              >
+                Nexphoria vs. Hims/Ro telehealth vs. research chemical sites. All Nexphoria peptides are physician-prescribed, 503A-compounded, and COA-verified.
+              </caption>
+              <thead>
+                <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "#FFFFFF", fontWeight: 700, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Nexphoria</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Hims / Ro</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Research Sites</th>
+                </tr>
+              </thead>
+              <tbody>
+                {HOME_COMPARISON_ROWS.map((row, i) => (
+                  <tr
+                    key={row.feature}
+                    style={{
+                      backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                      borderBottom: "1px solid var(--nx-border)",
+                    }}
+                  >
+                    <th scope="row" style={{ padding: "0.875rem 1rem", textAlign: "left", fontWeight: 500, color: "var(--nx-fg)" }}>{row.feature}</th>
+                    <td style={{ padding: "0.875rem 1rem", textAlign: "center", fontWeight: 600, color: "var(--nx-cobalt)" }}>{row.nexphoria}</td>
+                    <td style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-fg-muted)" }}>{row.hims}</td>
+                    <td style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-fg-muted)" }}>{row.research}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p
+            style={{
+              marginTop: "1.25rem",
+              fontFamily: FONT,
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "var(--nx-cobalt)",
+            }}
+          >
+            Verdict: Nexphoria is the only peptide telehealth platform combining 16+ compounds, mandatory quarterly bloodwork, 503A compounding, and COA verification in a single subscription.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

@@ -18,22 +18,22 @@ const certMarks = [
 const pillars = [
   {
     icon: Stethoscope,
-    label: "MEDICAL EVALUATION",
+    label: "Medical evaluation",
     sub: "Board-certified US physicians",
   },
   {
     icon: FlaskConical,
-    label: "STERILE COMPOUNDING",
+    label: "Sterile compounding",
     sub: "FDA-registered 503A pharmacies",
   },
   {
     icon: Package,
-    label: "CLINICAL READINESS",
+    label: "Clinical readiness",
     sub: "Cold-chain ready-to-inject delivery",
   },
   {
     icon: TestTube,
-    label: "LAB TESTED",
+    label: "Lab tested",
     sub: "Blood panels pre and post protocol",
   },
 ];

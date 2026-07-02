@@ -4,7 +4,7 @@ import { PillBadge } from "@/components/PillBadge";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, orgJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo";
 import {
   ClipboardList,
   Stethoscope,
@@ -188,10 +188,30 @@ const HOW_FAQS = [
 
 export default function HowItWorks() {
   useSeo({
-    title: "How It Works | Nexphoria",
+    title: "How peptide therapy works — intake, physician review, compound, deliver",
     description:
-      "From 12-minute intake to physician review to USP <797> compounding and cold-chain delivery — in four clinical steps.",
+      "12-minute intake. Board-certified physician reviews your bloodwork within 24 hours. Protocol compounded in a USP <797> 503A pharmacy and cold-chain shipped to your door. Four steps from assessment to first dose.",
     path: "/how-it-works",
+    jsonLd: [
+      webPageJsonLd({
+        name: "How Nexphoria Works",
+        description: "The four-step Nexphoria clinical process: intake, physician review, 503A compounding, and cold-chain delivery.",
+        path: "/how-it-works",
+        type: "MedicalWebPage",
+      }),
+      orgJsonLd(),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "How It Works", path: "/how-it-works" }]),
+      howToJsonLd({
+        name: "How to start peptide therapy at Nexphoria",
+        description: "A four-step physician-supervised process from intake assessment to your first dose, including bloodwork, telehealth consult, and 503A compounding.",
+        steps: [
+          { name: "Complete the 5-minute intake assessment", text: "Answer questions about your health history, goals, and current medications at nexphoria.pplx.app/#/assessment. No clinic visit required." },
+          { name: "Draw Quest Diagnostics labs", text: "A 38-biomarker lab requisition is generated in your member portal. Visit any of 2,500+ Quest Diagnostics locations nationwide." },
+          { name: "Physician review and telehealth consultation", text: "A board-certified physician reviews your labs and intake within 24\u201348 hours via the Bask Health telehealth platform. Your protocol is prescribed if clinically appropriate." },
+          { name: "Compounding and cold-chain delivery", text: "Your peptides are compounded in a U.S. 503A-licensed sterile pharmacy, batch-tested with a Certificate of Analysis, and shipped cold-chain to your door in 3\u20135 business days." },
+        ],
+      }),
+    ],
   });
 
   return (
@@ -200,7 +220,7 @@ export default function HowItWorks() {
         <div className="mx-page">
           <MxHeader
             badge={<PillBadge tone="acid">How it works</PillBadge>}
-            headline={<>Four steps <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>from intake</span><br/><span>to your front door.</span></>}
+            headline={<>Your protocol <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>in your hands</span><br/><span>within seven days.</span></>}
             subtitle="Assessment → physician review → 503A compounding pharmacy → discreet delivery. Every step physician-supervised."
           />
 
@@ -209,7 +229,7 @@ export default function HowItWorks() {
               href="/how-it-works"
               tone="sand"
               glyph={TileGlyphs.circle}
-              label={<>Built for<br/>performance</>}
+              label={<>Repair.<br/>Sleep. Focus.</>}
               caption="Recovery, sleep, focus"
               ctaLabel="See the steps"
             />
@@ -217,7 +237,7 @@ export default function HowItWorks() {
               href="/how-it-works"
               tone="sky"
               glyph={TileGlyphs.wave}
-              label={<>Built for<br/>longevity</>}
+              label={<>Backed by<br/>your labs.</>}
               caption="Recovery, sleep, focus"
               ctaLabel="See the steps"
             />
@@ -233,7 +253,7 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}THE FOUR-STEP PROCESS</p>
+            <p style={eyebrow}>{eyebrowRule}Four steps</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3.5rem" }}>
               From questionnaire to your first dose.
             </h2>
@@ -355,7 +375,7 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}INSIDE THE INTAKE</p>
+            <p style={eyebrow}>{eyebrowRule}Your intake</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "0.75rem" }}>
               Four questions that shape your protocol.
             </h2>
@@ -444,7 +464,7 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}MEET YOUR DOCTOR</p>
+            <p style={eyebrow}>{eyebrowRule}Your physician</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
               A named physician — not a checkout flow.
             </h2>
@@ -591,9 +611,9 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}INSIDE THE PHARMACY</p>
+            <p style={eyebrow}>{eyebrowRule}The pharmacy</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "0.75rem" }}>
-              503A compounding, under USP &lt;797&gt; oversight.
+              Sterile-compounded to 0.0001g accuracy.
             </h2>
             <p style={{ ...bodyCopy, maxWidth: "560px", marginBottom: "3rem" }}>
               Every compound is sterile-prepared, batch-tested for identity, potency, and sterility,
@@ -641,7 +661,7 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}SHIPPING & DELIVERY</p>
+            <p style={eyebrow}>{eyebrowRule}Cold-chain delivery</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
               2°C to 8°C, from cleanroom to your door.
             </h2>
@@ -760,7 +780,7 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}ONGOING CARE</p>
+            <p style={eyebrow}>{eyebrowRule}Ongoing care</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "0.75rem" }}>
               Monitoring is the standard, not the upsell.
             </h2>
@@ -846,9 +866,9 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}HOW WE COMPARE</p>
+            <p style={eyebrow}>{eyebrowRule}How we compare</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "0.75rem" }}>
-              Nexphoria vs. typical telehealth vs. clinic visit.
+              Bloodwork and physician review. Most platforms skip one.
             </h2>
             <p style={{ ...bodyCopy, maxWidth: "560px", marginBottom: "3rem" }}>
               Most telehealth platforms skip the labs. Most clinics skip the follow-up.
@@ -935,7 +955,7 @@ export default function HowItWorks() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}WHO THIS IS FOR</p>
+            <p style={eyebrow}>{eyebrowRule}Who this is for</p>
             <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
               We are not for everyone. That is not an apology.
             </h2>
@@ -1020,7 +1040,7 @@ export default function HowItWorks() {
                 marginBottom: "1rem",
               }}
             >
-              — BEGIN YOUR INTAKE
+              Start today
             </p>
             <h2
               style={{
@@ -1032,7 +1052,7 @@ export default function HowItWorks() {
                 marginBottom: "0.25rem",
               }}
             >
-              The intake takes twelve minutes.
+              Twelve minutes now. Your protocol in seven days.
             </h2>
             <h2
               style={{
@@ -1061,7 +1081,7 @@ export default function HowItWorks() {
               no additional charge.
             </p>
             <StartIntakeButton productSlug="how-it-works-cta" source="how-it-works" size="xl">
-              START YOUR INTAKE →
+              Start your intake
             </StartIntakeButton>
           </Reveal>
         </div>

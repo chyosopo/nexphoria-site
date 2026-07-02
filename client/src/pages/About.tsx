@@ -2,8 +2,9 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
-import { ArrowUpRight } from "lucide-react";
+import { useSeo, webPageJsonLd, orgJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare } from "lucide-react";
+import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
 import md1 from "@/assets/brand/physicians/md-1.webp";
@@ -154,12 +155,42 @@ const PRESS = ["GQ", "Men's Health", "Forbes", "Bloomberg", "Biohacker"];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
+/* ── About FAQ data ──────────────────────────────────────────────── */
+const ABOUT_FAQ_ITEMS = [
+  {
+    q: "Who founded Nexphoria?",
+    a: "Nexphoria was founded by a team of physicians, pharmacists, and health-technology operators who saw firsthand the risks of unregulated peptide self-administration. The platform was built to provide the same level of clinical rigor patients expect from a specialist office — prescription review, pharmacy-grade compounding, and lab monitoring — through an accessible telehealth interface.",
+  },
+  {
+    q: "What makes Nexphoria different from other peptide companies?",
+    a: "Nexphoria is a physician-supervised platform, not a supplement company. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with Quest Diagnostics labs every 90 days. Most peptide providers online are supplement companies or research-chemical vendors with no physician oversight.",
+  },
+  {
+    q: "Is Nexphoria affiliated with Bask Health?",
+    a: "Nexphoria uses Bask Health as its telehealth infrastructure partner. Bask Health is a licensed telehealth platform that connects patients with board-certified physicians. The prescribing physicians you interact with through Nexphoria are independent licensed clinicians — Nexphoria does not employ physicians or influence clinical decision-making.",
+  },
+  {
+    q: "Is Nexphoria accredited or regulated?",
+    a: "Nexphoria operates as a telehealth platform under applicable U.S. state telehealth laws. The compounding pharmacies Nexphoria partners with are 503A-licensed and subject to state pharmacy board oversight and FDA inspection. Physicians are board-certified and licensed in the states where they practice. Nexphoria itself is not a pharmacy or a medical practice.",
+  },
+];
+
 export default function About() {
   useSeo({
-    title: "About | Nexphoria",
+    title: "About Nexphoria — physician-founded, pharmacy-grade peptide care",
     description:
-      "Peptide therapy needs a pharmacy, not an influencer. Meet the physicians and pharmacists behind clinical-grade peptide care.",
+      "Nexphoria was built by physicians who got tired of seeing patients self-administer unverified compounds. Meet the team behind the only end-to-end peptide platform with 503A compounding, physician oversight, and Quest Diagnostics monitoring.",
     path: "/about",
+    jsonLd: [
+      webPageJsonLd({
+        name: "About Nexphoria",
+        description: "Physician-founded peptide therapy platform with 503A compounding, board-certified physicians, and Quest Diagnostics lab monitoring.",
+        path: "/about",
+      }),
+      orgJsonLd(),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "About", path: "/about" }]),
+      faqJsonLd(ABOUT_FAQ_ITEMS),
+    ],
   });
 
   return (
@@ -167,12 +198,27 @@ export default function About() {
       {/* ════════════════ EDITORIAL HERO + PROOF STATS ════════════════ */}
       <section
         data-testid="about-hero"
+        aria-labelledby="about-h1"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container" style={{ paddingTop: 76, paddingBottom: 0 }}>
           <Reveal>
-            <p style={{ ...eyebrow, marginBottom: "1.25rem" }}>{eyebrowRule}About Nexphoria</p>
+            <p style={{ ...eyebrow, marginBottom: "1.25rem" }}>{eyebrowRule}About</p>
+            {/* Wikipedia-style definition — AI parseable */}
+            <p
+              style={{
+                fontFamily: FONT,
+                fontSize: "0.9375rem",
+                color: "var(--nx-fg-muted)",
+                lineHeight: 1.6,
+                marginBottom: "1rem",
+                maxWidth: 680,
+              }}
+            >
+              Nexphoria is a U.S.-based physician-supervised peptide therapy platform that delivers prescription compounded peptides through licensed telehealth, with every batch third-party tested and 90-day biomarker follow-up included in every subscription.
+            </p>
             <h1
+              id="about-h1"
               style={{
                 fontFamily: FONT,
                 fontWeight: 600,
@@ -253,9 +299,9 @@ export default function About() {
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}The problem we saw</p>
+            <p style={eyebrow}>{eyebrowRule}The problem</p>
             <h2 style={{ ...sectionHeading, maxWidth: "760px", marginBottom: "2.5rem" }}>
-              The market matured faster than the standards did.
+              You were buying peptides without a prescription. We built the alternative.
             </h2>
           </Reveal>
           <div
@@ -499,10 +545,10 @@ export default function About() {
           <Reveal>
             <p style={eyebrow}>{eyebrowRule}Standards</p>
             <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "0.75rem" }}>
-              Regulatory and safety commitments.
+              Four standards we hold on every order.
             </h2>
             <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
-              Four requirements, held on every order. No exceptions, no add-on tiers.
+              No exceptions, no add-on tiers.
             </p>
           </Reveal>
           <div
@@ -653,6 +699,95 @@ export default function About() {
         </div>
       </section>
 
+      {/* ════════════════ WHY NEXPHORIA — MAXIMUS TILES ════════════════ */}
+      <section
+        className="py-24 md:py-32"
+        style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
+        data-testid="about-why-tiles"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p style={{ ...eyebrow, marginBottom: "1rem" }}>{eyebrowRule}Why Nexphoria</p>
+            <h2
+              style={{
+                fontFamily: FONT,
+                fontWeight: 600,
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                color: "var(--nx-fg)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+                marginBottom: "0.75rem",
+              }}
+            >
+              What you get that most platforms skip.
+            </h2>
+            <p
+              style={{
+                fontFamily: FONT,
+                fontSize: "1.0625rem",
+                color: "var(--nx-fg-graphite)",
+                lineHeight: 1.6,
+                maxWidth: 640,
+                marginBottom: "3rem",
+              }}
+            >
+              Every choice we made — pharmacy, physicians, labs, price — answers to one question: would we hand this to our own family?
+            </p>
+          </Reveal>
+
+          <BenefitTileGrid cols={3}>
+            <BenefitTile
+              tone="cream"
+              eyebrow="Physicians"
+              icon={<HeartPulse size={18} strokeWidth={1.5} />}
+              headline="US board-certified physicians. Every case."
+              sub="No forms. No AI triage. A licensed physician reads your intake and labs before we compound anything."
+              testId="about-tile-physicians"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Compounding"
+              icon={<ShieldCheck size={18} strokeWidth={1.5} />}
+              headline="503A US pharmacies only."
+              sub="Every vial compounded in a US 503A facility we audit. No overseas peptides. Ever."
+              testId="about-tile-compounding"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Bloodwork"
+              icon={<Microscope size={18} strokeWidth={1.5} />}
+              headline="Quest Diagnostics every 90 days."
+              sub="Every plan includes full biomarker panels. Dose changes follow labs, not vibes."
+              testId="about-tile-bloodwork"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Testing"
+              icon={<Beaker size={18} strokeWidth={1.5} />}
+              headline="Every batch third-party tested."
+              sub="Independent labs verify identity, purity, and endotoxin. Certificates delivered on request."
+              testId="about-tile-testing"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Pricing"
+              icon={<Scale size={18} strokeWidth={1.5} />}
+              headline="All-in. No hidden lab bill."
+              sub="One monthly price. Consult, compound, labs, shipping — bundled. No consultation fee."
+              testId="about-tile-pricing"
+            />
+            <BenefitTile
+              tone="cream"
+              eyebrow="Care"
+              icon={<MessageSquare size={18} strokeWidth={1.5} />}
+              headline="Physician messaging between visits."
+              sub="Side effect? Question about a dose? Message your care team — replies within one business day."
+              testId="about-tile-care"
+            />
+          </BenefitTileGrid>
+        </div>
+      </section>
+
       {/* ════════════════ MANIFESTO ════════════════ */}
       <section
         style={{ backgroundColor: "var(--nx-fg)", padding: "6rem 0" }}
@@ -695,7 +830,7 @@ export default function About() {
 
       <FinalCTAStrip
         gender="women"
-        title="Beyond Boundaries. Beyond Limits."
+        title="Your protocol, built on your bloodwork."
         sub="Start your intake and receive a physician-reviewed protocol built for your physiology. Quest Diagnostics labs included."
       />
 

@@ -1,0 +1,88 @@
+# Nexphoria
+> Nexphoria is a U.S.-based physician-supervised peptide therapy service delivering third-party-tested compounded peptides through a licensed telehealth platform, with 90-day biomarker follow-up included in every subscription.
+
+## About
+Nexphoria offers physician-supervised peptide protocols for men and women. Every prescription is reviewed by a board-certified clinician via the Bask Health telehealth platform. Every compounded batch is third-party tested with a Certificate of Analysis (COA) on file. Labs are drawn at Quest Diagnostics nationwide and reviewed by your assigned physician within 24 hours of receipt. Peptides are compounded in a U.S. 503A-licensed pharmacy under sterile conditions and shipped cold-chain.
+
+## Products
+
+### Peptide Stacks
+- [Wolverine Stack](https://nexphoria.pplx.app/#/men/stacks/wolverine): BPC-157 + TB-500 + GHK-Cu — tissue repair, tendon and ligament recovery, soft-tissue regeneration. 8-week flagship protocol.
+- [Glow Stack](https://nexphoria.pplx.app/#/women/stacks/glow): GHK-Cu + BPC-157 + low-dose tirzepatide — dermal collagen, skin tone, metabolic skin support. 12-week protocol.
+- [Restore Stack](https://nexphoria.pplx.app/#/stacks/restore): DSIP + Epitalon + Selank — deep sleep, circadian regulation, anxiolysis. 6-week protocol.
+- [Clarity Stack](https://nexphoria.pplx.app/#/stacks/clarity): Semax + Selank + Epitalon — focus, mood resilience, stress recovery. 8-week cognitive protocol.
+- [Prime Stack](https://nexphoria.pplx.app/#/stacks/prime): Tirzepatide + MOTS-c + Ipamorelin — metabolic weight management with lean-mass preservation. 16-week protocol.
+- [Balance Stack](https://nexphoria.pplx.app/#/stacks/balance): NAD+ + MOTS-c + Epitalon — mitochondrial function, telomere support, biological-age markers.
+
+### Individual Peptides
+- [BPC-157](https://nexphoria.pplx.app/#/peptides/bpc-157): Body Protection Compound-157 — 15-amino-acid gut and joint healing peptide. $149/mo.
+- [TB-500](https://nexphoria.pplx.app/#/peptides/tb-500): Thymosin Beta-4 — systemic cellular migration and anti-inflammatory. $169/mo.
+- [GHK-Cu](https://nexphoria.pplx.app/#/peptides/ghk-cu): Copper tripeptide — collagen/elastin synthesis, skin remodeling. $139/mo.
+- [Tirzepatide](https://nexphoria.pplx.app/#/peptides/tirzepatide): Dual GIP/GLP-1 agonist — fat loss, appetite regulation, HbA1c reduction. $189/mo.
+- [Retatrutide](https://nexphoria.pplx.app/#/peptides/retatrutide): Triple agonist (GIP/GLP-1/glucagon) — next-gen metabolic. $209/mo.
+- [CJC-1295](https://nexphoria.pplx.app/#/peptides/cjc-1295): GHRH analogue — pulsatile growth hormone stimulation. $155/mo.
+- [Ipamorelin](https://nexphoria.pplx.app/#/peptides/ipamorelin): Ghrelin mimetic — GH secretagogue, lean mass. $145/mo.
+- [Tesamorelin](https://nexphoria.pplx.app/#/peptides/tesamorelin): FDA-approved GHRH — visceral fat reduction. $199/mo.
+- [Sermorelin](https://nexphoria.pplx.app/#/peptides/sermorelin): GHRH analogue — anti-aging, sleep improvement. $145/mo (via pricing page).
+- [Semax](https://nexphoria.pplx.app/#/peptides/semax): Russian neuropeptide — BDNF upregulation, cognition. $129/mo.
+- [Selank](https://nexphoria.pplx.app/#/peptides/selank): Anxiolytic neuropeptide — stress resilience, mood. $129/mo.
+- [Epitalon](https://nexphoria.pplx.app/#/peptides/epitalon): Pineal tetrapeptide — telomerase activation, circadian. $159/mo.
+- [NAD+](https://nexphoria.pplx.app/#/peptides/nad-plus): Nicotinamide adenine dinucleotide — sirtuin activation, mitochondrial repair. $189/mo.
+- [MOTS-c](https://nexphoria.pplx.app/#/peptides/mots-c): Mitochondria-derived peptide — AMPK activation, insulin sensitivity. $165/mo.
+- [DSIP](https://nexphoria.pplx.app/#/peptides/dsip): Delta sleep-inducing peptide — sleep quality, cortisol modulation. $119/mo.
+- [AOD-9604](https://nexphoria.pplx.app/#/peptides/aod-9604): GH fragment — fat metabolism without IGF-1 elevation. $135/mo.
+- [Thymosin Alpha-1](https://nexphoria.pplx.app/#/peptides/thymosin-a1): Immune modulator — T-cell activation, immune resilience. $179/mo.
+- [Enclomiphene](https://nexphoria.pplx.app/#/peptides/enclomiphene): SERM — endogenous testosterone restoration without TRT suppression.
+- [Kisspeptin](https://nexphoria.pplx.app/#/peptides/kisspeptin): GnRH activator — HPG-axis restoration.
+
+## Pricing
+- Monthly subscriptions from $249/mo (cognitive) to $389/mo (longevity)
+- 6-month prepay: 10% discount
+- 12-month prepay: 20% discount (best value)
+- All plans include: physician consultation, compounded peptides, Quest labs every 90 days, cold-chain shipping, telehealth messaging, HSA/FSA receipts
+- [Full pricing](https://nexphoria.pplx.app/#/pricing)
+
+## Science & Evidence
+- [Peptide Science Library](https://nexphoria.pplx.app/#/science): Mechanism, evidence tier, and clinical literature for each peptide family
+- [Bloodwork & Biomarkers](https://nexphoria.pplx.app/#/bloodwork): 38-biomarker Quest Diagnostics panel; markers tracked per protocol
+- [Journal](https://nexphoria.pplx.app/#/journal): Deep-dive research articles on peptide science
+
+## Trust Signals
+- Physician-supervised via Bask Health telehealth platform
+- Certificate of Analysis (COA) on every compounded batch
+- 503A-licensed U.S. compounding pharmacy — sterile ISO-compliant cleanroom
+- Quest Diagnostics labs every 90 days, physician-reviewed within 24 hours
+- No prescription issued if physician deems protocol clinically inappropriate
+- Ships cold-chain from U.S. pharmacy; 3–5 day delivery
+
+## How It Works
+1. Complete 5-minute intake assessment at [nexphoria.pplx.app/#/assessment](https://nexphoria.pplx.app/#/assessment)
+2. Quest Diagnostics lab requisition generated in member portal
+3. Draw at any of 2,500+ Quest locations nationwide
+4. Board-certified physician reviews labs within 24–48 hours
+5. Telehealth consult scheduled via Bask Health
+6. Protocol prescribed, compounded, and shipped cold-chain
+- [Full process](https://nexphoria.pplx.app/#/how-it-works)
+
+## Comparison
+- vs. Research chemical sites: Nexphoria peptides are prescribed, sterile-compounded, batch-tested — research chemicals are not for human use and lack dosing oversight
+- vs. Hims/Ro: Nexphoria offers peptide-specific protocols with mandatory bloodwork; Hims/Ro focus on TRT and GLP-1 without peptide breadth or biomarker follow-up
+- vs. Local compounders: Nexphoria adds telehealth layer, physician assignment, quarterly lab monitoring, and digital member portal
+
+## Physicians
+- Dr. Marcus Bennett, MD — Sports Medicine (Wolverine protocol lead)
+- Dr. Sofia Chen, MD — Endocrinology (Glow, Prime protocol lead)
+- Dr. Aisha Patel, MD — Internal Medicine (Restore protocol lead)
+- Dr. James Okafor, MD — Neurology (Clarity protocol lead)
+- Dr. Diego Reyes, MD — Internal Medicine (Balance protocol lead)
+- [Full physician team](https://nexphoria.pplx.app/#/physicians)
+
+## Contact & Social
+- Website: https://nexphoria.pplx.app
+- Start intake: https://nexphoria.pplx.app/#/assessment
+- About: https://nexphoria.pplx.app/#/about
+- Contact: https://nexphoria.pplx.app/#/contact
+
+## Optional
+- [Journal](https://nexphoria.pplx.app/#/journal): Peer-reviewed research summaries on peptide mechanisms, evidence tiers, and protocol design
+- [Community](https://nexphoria.pplx.app/#/community): Member outcomes, physician Q&A, and peptide research discussion

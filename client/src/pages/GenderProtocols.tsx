@@ -6,7 +6,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 
 interface Protocol {
   slug: string;
@@ -131,9 +131,18 @@ interface GenderProtocolsProps {
 
 export default function GenderProtocols({ gender }: GenderProtocolsProps) {
   useSeo({
-    title: "Protocols | Nexphoria",
-    description: "Multi-peptide stacks designed for specific clinical outcomes.",
+    title: gender === "men"
+      ? "Peptide stacks for men — recovery, metabolic, longevity, cognitive"
+      : "Peptide stacks for women — skin, metabolic, longevity, hormonal",
+    description: gender === "men"
+      ? "Physician-designed multi-peptide stacks for men. Wolverine (repair), Prime (metabolic), Clarity (cognitive), Balance (longevity). 503A compounded, lab-gated, physician-monitored."
+      : "Physician-designed multi-peptide stacks for women. Glow (skin), Prime (metabolic), Restore (sleep), Balance (longevity). 503A compounded, lab-gated, physician-monitored.",
     path: `/${gender}/protocols`,
+    jsonLd: [webPageJsonLd({
+      name: gender === "men" ? "Nexphoria Protocols for Men" : "Nexphoria Protocols for Women",
+      description: `Physician-designed peptide stacks for ${gender} at Nexphoria.`,
+      path: `/${gender}/protocols`,
+    })],
   });
   const protocols = gender === "women" ? womenProtocols : menProtocols;
   const eyebrow = gender === "women" ? "NEXPHORIA · FOR WOMEN" : "NEXPHORIA · FOR MEN";

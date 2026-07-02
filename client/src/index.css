@@ -89,6 +89,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -97,11 +98,17 @@
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
-  /* Kill ALL italic. Zero tolerance. */
-  em, i, cite, address, dfn, var {
-    font-style: normal;
+  /* Kill ALL italic. Zero tolerance. !important beats inline styles. */
+  em, i, cite, address, dfn, var,
+  em *, i *, cite *, address *, dfn *, var * {
+    font-style: normal !important;
+  }
+  [style*="italic"] {
+    font-style: normal !important;
   }
   .italic {
     font-style: normal !important;
@@ -429,11 +436,46 @@
   /* Start at full opacity so content is always visible (Playwright + crawlers + reduced-motion); use a subtle translate for the in-view animation. */
   .nx-reveal {
     opacity: 1;
-    transform: translateY(12px);
-    transition: transform 0.6s ease-out;
+    transform: translateY(18px);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .nx-reveal.visible {
     transform: translateY(0);
+  }
+
+  /* Variants — set via className on Reveal component */
+  .nx-reveal.nx-reveal-lift {
+    transform: translateY(32px);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nx-reveal-lift.visible { transform: translateY(0); }
+
+  .nx-reveal.nx-reveal-scale {
+    transform: scale(0.96);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nx-reveal-scale.visible { transform: scale(1); }
+
+  /* ── Scroll progress indicator ── */
+  .nx-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--nx-acid, #C6F184);
+    z-index: 100;
+    transform-origin: 0 50%;
+    transform: scaleX(var(--nx-scroll-progress, 0));
+    transition: transform 60ms linear;
+    pointer-events: none;
+  }
+
+  /* ── Sticky section header pattern ── */
+  .nx-section-sticky {
+    position: sticky;
+    top: 88px;
+    z-index: 5;
+    background: var(--nx-bg);
   }
 
   /* ── Nav dropdown ── */

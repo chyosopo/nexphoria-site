@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { apiRequest } from "@/lib/queryClient";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
 import { SiteLayout } from "@/components/SiteLayout";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
@@ -344,9 +344,15 @@ function CheckboxRow({
 
 export default function Assessment() {
   useSeo({
-    title: "Begin Assessment | Nexphoria",
-    description: "5-minute medical intake. Physician review in 24-48 hours.",
+    title: "Start your peptide protocol — 5-minute intake, physician review in 24h",
+    description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol within 24 hours. No algorithms, no auto-approvals.",
     path: "/assessment",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Medical Intake Assessment",
+      description: "5-minute intake for physician-prescribed peptide therapy. Board-certified physician review within 24 hours.",
+      path: "/assessment",
+      type: "MedicalWebPage",
+    })],
   });
   const [, navigate] = useLocation();
   const prefersReducedMotion = useReducedMotion();

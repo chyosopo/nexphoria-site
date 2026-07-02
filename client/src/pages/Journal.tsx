@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd } from "@/lib/seo";
 import {
   JOURNAL_ARTICLES,
   JOURNAL_CATEGORIES,
@@ -28,10 +28,16 @@ const eyebrow: React.CSSProperties = {
 
 export default function Journal() {
   useSeo({
-    title: "The Journal | Nexphoria",
+    title: "Nexphoria Journal — peptide science, protocols, and physician notes",
     description:
-      "Evidence reviews, protocol explainers, and physician notes on the peptides we compound. Peptide science, plainly written.",
+      "Long-form evidence reviews, protocol explainers, and physician notes on every peptide we prescribe. The science behind BPC-157, GLP-1, NAD+, Epitalon, and more — plainly written, rigorously sourced.",
     path: "/journal",
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Journal",
+      description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
+      path: "/journal",
+      type: "MedicalWebPage",
+    })],
   });
 
   const [activeCategory, setActiveCategory] = useState<JournalCategory | "all">("all");

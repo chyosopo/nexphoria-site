@@ -28,7 +28,7 @@ import menCardWeight from "@/assets/brand/men-card-weight.webp";
 import menCardLongevity from "@/assets/brand/men-card-longevity.webp";
 import lifestyleManProtocol from "@/assets/brand/lifestyle-man-protocol.webp";
 import lifestyleProtocolCounter from "@/assets/brand/lifestyle-protocol-counter.webp";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -41,56 +41,51 @@ const menCategoryTiles = [
   {
     label: "Strength",
     description: "CJC-1295 · Ipamorelin",
-    href: "/men/peptides?cat=strength",
+    href: "/men/peptides",
     image: menCardStrength,
   },
   {
     label: "Metabolic",
     description: "GLP-1 · Tirzepatide",
-    href: "/men/peptides?cat=metabolic",
+    href: "/men/peptides",
     image: menCardWeight,
   },
   {
     label: "Longevity",
     description: "NAD+ · Sermorelin",
-    href: "/men/peptides?cat=longevity",
+    href: "/men/peptides",
     image: menCardLongevity,
   },
   {
     label: "Cognitive",
     description: "Selank · Semax",
-    href: "/men/peptides?cat=cognitive",
+    href: "/men/peptides",
     image: menCardStrength,
   },
 ];
 
 export default function MenHome() {
   useSeo({
-    title: "For Him — Nexphoria Peptide Protocols",
-    description: "Strength, metabolic, longevity, cognitive. Lab-driven peptide protocols for men, supervised by U.S. board-certified physicians.",
+    title: "Peptide protocols for men — strength, fat loss, recovery, drive",
+    description: "Build muscle, cut fat, recover faster, sharpen focus. Physician-prescribed peptide protocols for men — GLP-1, BPC-157, Ipamorelin and more. 503A compounded, lab-monitored.",
     path: "/men",
+    jsonLd: [
+      webPageJsonLd({ name: "Nexphoria for Men", description: "Physician-prescribed peptide protocols for men: metabolic, recovery, cognitive, and longevity stacks.", path: "/men" }),
+      orgJsonLd(),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "For Men", path: "/men" }]),
+    ],
   });
   const [wordIdx, setWordIdx] = useState(0);
 
   return (
     <SiteLayout navVariant="showcase" footerVariant="men">
-      {/* ── 1. Hero — Maximus tile pattern ── */}
+      {/* ── 1. Hero — Hims-grammar dark full-bleed + Maximus tile duo ── */}
+      <MenHeroDark />
       <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">For him · male physiology</PillBadge>}
-            headline={
-              <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Built for</span> performance. <br />
-                <span>Engineered for recovery.</span>
-              </>
-            }
-            subtitle="Testosterone-aware peptide therapy. Recovery, strength, longevity, and metabolic protocols dosed for men — physician-supervised, pharmacy-grade."
-          />
-
           <div className="mx-grid">
             <ColoredHeroTile
-              href="/#/stacks/wolverine"
+              href="/stacks/wolverine"
               tone="cobalt"
               glyph={TileGlyphs.hex}
               label={<>Wolverine stack <br /><span>repair &amp; recovery</span></>}
@@ -98,12 +93,12 @@ export default function MenHome() {
               ctaLabel="Explore stack"
             />
             <ColoredHeroTile
-              href="/#/men/peptides"
+              href="/men/peptides"
               tone="sage"
               glyph={TileGlyphs.wave}
               label={<>Men's library <br /><span>all peptides</span></>}
-              caption="BPC-157 + TB-500 + Ipamorelin"
-              ctaLabel="Explore stack"
+              caption="16 compounds · From $149/mo · À la carte"
+              ctaLabel="Browse peptides"
             />
           </div>
         </div>
@@ -173,6 +168,220 @@ export default function MenHome() {
         sub="Complete your intake in 4 minutes. Blood panel included with every protocol."
       />
     </SiteLayout>
+  );
+}
+
+/* ── Men Hero Dark — Hims-grammar full-bleed ─────────────────── */
+function MenHeroDark() {
+  return (
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, #0A0A0A 0%, #101010 55%, #1A1A1A 100%)",
+        color: "#fffff3",
+      }}
+      data-testid="men-hero-dark"
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(60% 45% at 82% 30%, rgba(197,255,79,0.14) 0%, rgba(197,255,79,0) 60%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          background:
+            "radial-gradient(80% 60% at 15% 90%, rgba(80,140,220,0.22) 0%, rgba(80,140,220,0) 55%)",
+        }}
+      />
+
+      <div className="mx-auto max-w-[1360px] px-6 md:px-10 pt-16 md:pt-24 pb-14 md:pb-20 relative">
+        <div className="grid grid-cols-1 md:grid-cols-[1.05fr,0.95fr] gap-10 md:gap-14 items-center">
+          <div>
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
+              style={{
+                background: "rgba(197,255,79,0.10)",
+                border: "1px solid rgba(197,255,79,0.28)",
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: 11,
+                letterSpacing: "0.10em",
+                textTransform: "uppercase",
+                color: "#C5FF4F",
+              }}
+            >
+              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#C5FF4F" }} />
+              For him · male physiology
+            </div>
+
+            <h1
+              className="mt-6"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 600,
+                fontSize: "clamp(44px, 6.4vw, 88px)",
+                lineHeight: 0.96,
+                letterSpacing: "-0.03em",
+                color: "#fffff3",
+              }}
+            >
+              Peak <span style={{ color: "#C5FF4F" }}>performance</span>,
+              <br />
+              engineered for men.
+            </h1>
+
+            <p
+              className="mt-6 max-w-[560px]"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "clamp(16px, 1.15vw, 19px)",
+                lineHeight: 1.55,
+                color: "rgba(255,255,243,0.78)",
+              }}
+            >
+              Testosterone-aware peptide therapy — recovery, strength, longevity, and metabolic
+              protocols dosed for male physiology. Physician-supervised. Compounded in U.S. 503A pharmacies. Delivered to your door.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {[
+                "+21% IGF-1 in 12 wks",
+                "Recovery in days, not weeks",
+                "Physician-reviewed 24–48h",
+                "503A cold-chain",
+              ].map((b) => (
+                <span
+                  key={b}
+                  className="px-3 py-1.5 rounded-full text-[12.5px]"
+                  style={{
+                    background: "rgba(255,255,243,0.06)",
+                    border: "1px solid rgba(255,255,243,0.14)",
+                    color: "rgba(255,255,243,0.90)",
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                  }}
+                >
+                  {b}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <StartIntakeButton variant="primary" size="lg" source="men-hero-dark">
+                Start intake — 4 min
+              </StartIntakeButton>
+              <Link
+                href="/stacks/wolverine"
+                className="inline-flex items-center gap-2 text-[14px] font-medium"
+                style={{
+                  color: "#fffff3",
+                  borderBottom: "1px solid rgba(255,255,243,0.35)",
+                  paddingBottom: 2,
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                }}
+                data-testid="link-see-wolverine"
+              >
+                See the Wolverine protocol <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            <div
+              className="mt-8 text-[13px]"
+              style={{
+                color: "rgba(255,255,243,0.55)",
+                fontFamily: "'General Sans', system-ui, sans-serif",
+              }}
+            >
+              Free physician consult on your first protocol · No commitment · HSA/FSA eligible
+            </div>
+          </div>
+
+          <div className="relative">
+            <div
+              className="relative overflow-hidden rounded-[20px]"
+              style={{
+                aspectRatio: "4/5",
+                border: "1px solid rgba(255,255,243,0.10)",
+                boxShadow: "0 30px 80px rgba(0,0,0,0.45)",
+              }}
+            >
+              <img
+                src={lifestyleManProtocol}
+                alt="Male peptide protocol lifestyle"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(11,18,32,0.0) 45%, rgba(11,18,32,0.85) 100%)",
+                }}
+              />
+              <div
+                className="absolute left-5 right-5 bottom-5 md:left-7 md:right-7 md:bottom-7 rounded-[14px] p-5 md:p-6"
+                style={{
+                  background: "rgba(11,18,32,0.72)",
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,243,0.12)",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: 11,
+                    letterSpacing: "0.10em",
+                    textTransform: "uppercase",
+                    color: "#C5FF4F",
+                    marginBottom: 8,
+                  }}
+                >
+                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#C5FF4F", marginRight: 8 }} />
+                  Flagship · Wolverine
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(22px, 2.6vw, 30px)",
+                    lineHeight: 1.06,
+                    letterSpacing: "-0.02em",
+                    color: "#fffff3",
+                  }}
+                >
+                  Repair, recover, come back stronger.
+                </div>
+                <div
+                  className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: 13,
+                    color: "rgba(255,255,243,0.85)",
+                  }}
+                >
+                  <span>BPC-157</span>
+                  <span style={{ opacity: 0.4 }}>·</span>
+                  <span>TB-500</span>
+                  <span style={{ opacity: 0.4 }}>·</span>
+                  <span>Ipamorelin</span>
+                  <span style={{ opacity: 0.4 }}>·</span>
+                  <span style={{ color: "#C5FF4F", fontWeight: 600 }}>From $189/mo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -51,9 +51,9 @@ export default function Protocols() {
   const [filter, setFilter] = useState<FilterKey>("all");
 
   useSeo({
-    title: "Protocols — Science you can feel. Results you can measure.",
+    title: "Peptide protocols — recovery, skin, sleep, metabolic, longevity",
     description:
-      "Five physician-designed peptide protocols for recovery, skin, longevity, sleep, and metabolic health. Prescribed, compounded, and supported end to end.",
+      "Six physician-designed peptide stacks for recovery, skin, sleep, cognition, metabolic health, and longevity. 503A compounded, lab-gated, and physician-monitored from first dose to final draw.",
     path: "/protocols",
     jsonLd: [
       webPageJsonLd({
