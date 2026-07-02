@@ -212,10 +212,10 @@ function MenHeroDark() {
                 fontSize: 11,
                 letterSpacing: "0.10em",
                 textTransform: "uppercase",
-                color: "#C5FF4F",
+                color: "#F3C87A",
               }}
             >
-              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#C5FF4F" }} />
+              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#F3C87A" }} />
               For him · male physiology
             </div>
 
@@ -230,7 +230,7 @@ function MenHeroDark() {
                 color: "#fffff3",
               }}
             >
-              Peak <span style={{ color: "#C5FF4F" }}>performance</span>,
+              Peak <span style={{ color: "#F3C87A" }}>performance</span>,
               <br />
               engineered for men.
             </h1>
@@ -341,11 +341,11 @@ function MenHeroDark() {
                     fontSize: 11,
                     letterSpacing: "0.10em",
                     textTransform: "uppercase",
-                    color: "#C5FF4F",
+                    color: "#F3C87A",
                     marginBottom: 8,
                   }}
                 >
-                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#C5FF4F", marginRight: 8 }} />
+                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#F3C87A", marginRight: 8 }} />
                   Flagship · Wolverine
                 </div>
                 <div
@@ -374,7 +374,7 @@ function MenHeroDark() {
                   <span style={{ opacity: 0.4 }}>·</span>
                   <span>Ipamorelin</span>
                   <span style={{ opacity: 0.4 }}>·</span>
-                  <span style={{ color: "#C5FF4F", fontWeight: 600 }}>From $189/mo</span>
+                  <span style={{ color: "#F3C87A", fontWeight: 600 }}>From $189/mo</span>
                 </div>
               </div>
             </div>

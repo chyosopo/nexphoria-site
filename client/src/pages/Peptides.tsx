@@ -163,8 +163,8 @@ function RouteIcon({ route }: { route: Route }) {
 }
 
 function evidenceBadgeStyle(tier: EvidenceTier): { bg: string; color: string } {
-  if (tier === "A") return { bg: "#1C1815", color: "#c6f184" };
-  if (tier === "B+") return { bg: "#1a3a1a", color: "#c6f184" };
+  if (tier === "A") return { bg: "#1C1815", color: "#F3C87A" };
+  if (tier === "B+") return { bg: "#1a3a1a", color: "#F3C87A" };
   if (tier === "B") return { bg: "#f5f4ef", color: "#3a3a3a" };
   return { bg: "#f5f0ec", color: "#7a4a2a" };
 }
@@ -687,12 +687,12 @@ export default function Peptides() {
                   data-testid="empty-state"
                 >
                   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" className="mx-auto mb-6" aria-hidden>
-                    <circle cx="36" cy="36" r="35" stroke="#e8e9db" strokeWidth="1.5" />
+                    <circle cx="36" cy="36" r="35" stroke="#EDE6D8" strokeWidth="1.5" />
                     <circle cx="36" cy="28" r="10" stroke="#c6c8ba" strokeWidth="1.5" strokeDasharray="3 3" />
                     <line x1="22" y1="46" x2="50" y2="46" stroke="#c6c8ba" strokeWidth="1.5" strokeLinecap="round" />
                     <line x1="27" y1="52" x2="45" y2="52" stroke="#c6c8ba" strokeWidth="1.5" strokeLinecap="round" />
-                    <line x1="32" y1="22" x2="32" y2="34" stroke="#c6f184" strokeWidth="2" strokeLinecap="round" />
-                    <line x1="26" y1="28" x2="38" y2="28" stroke="#c6f184" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="32" y1="22" x2="32" y2="34" stroke="#F3C87A" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="26" y1="28" x2="38" y2="28" stroke="#F3C87A" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                   <h3 className="font-display text-fluid-2xl tracking-tight mb-2">
                     No peptides match those filters.
@@ -720,7 +720,7 @@ export default function Peptides() {
                       style={{ background: "#1C1815", borderColor: "#1C1815" }}
                     >
                       <div>
-                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: "#c6f184" }}>
+                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: "#F3C87A" }}>
                           Not sure where to start?
                         </div>
                         <h3 className="font-display text-fluid-xl leading-tight tracking-tight text-white">
@@ -733,7 +733,7 @@ export default function Peptides() {
                       <div className="flex-shrink-0">
                         <span
                           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-[0.14em] transition-all group-hover:gap-3"
-                          style={{ background: "#c6f184", color: "#1C1815" }}
+                          style={{ background: "#F3C87A", color: "#1C1815" }}
                         >
                           Start <ArrowRight className="h-4 w-4" strokeWidth={2} />
                         </span>
@@ -1319,7 +1319,7 @@ function PeptideCard({
     sleep: "#EAE6F1",      // dusk
     growth: "#F2EDDE",     // butter
     longevity: "#E8EFEC",  // cobalt-soft
-    metabolic: "#EEF1F4",  // mineral
+    metabolic: "#F0E9DC",  // mineral
   };
   const tintBg = CATEGORY_TINT[peptide.category] ?? "#ffffff";
 
@@ -1330,8 +1330,8 @@ function PeptideCard({
     const s = fdaStatus.toLowerCase();
     if (s.startsWith("fda-approved")) return { label: "FDA-approved", bg: "#EAF6E6", color: "#2E6B24", border: "#B7DDB0" };
     if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#F5EEDA", color: "#7A5A0F", border: "#DFC98A" };
-    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx · Compounded", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
-    return { label: "Rx", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx · Compounded", bg: "#F0E9DC", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "#F0E9DC", color: "#3D4A5C", border: "#C6D0DC" };
   })();
 
   return (
@@ -1436,7 +1436,7 @@ function PeptideCard({
       {/* Accent underline on hover */}
       <div
         className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 rounded-b-3xl"
-        style={{ background: "#c6f184" }}
+        style={{ background: "#F3C87A" }}
         aria-hidden
       />
 

@@ -27,7 +27,7 @@ const TONE_MAP: Record<Tone, { bg: string; ink: string; liquid: string; label: s
   dusk:    { bg: "#EAE6F1", ink: "#1C1815", liquid: "#B5A8CF", label: "Sleep" },
   butter:  { bg: "#F2EDDE", ink: "#1C1815", liquid: "#DDBF6E", label: "Growth" },
   cobalt:  { bg: "#E8EFEC", ink: "#1C1815", liquid: "#8AB6A6", label: "Longevity" },
-  mineral: { bg: "#EEF1F4", ink: "#1C1815", liquid: "#9DB3C2", label: "Metabolic" },
+  mineral: { bg: "#F0E9DC", ink: "#1C1815", liquid: "#9DB3C2", label: "Metabolic" },
 };
 
 /* Detect touch — we swap hover behavior for tap on mobile */
@@ -227,8 +227,8 @@ export function VialTile({
     const s = fdaStatus.toLowerCase();
     if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "#EAF6E6", color: "#2E6B24", border: "#B7DDB0" };
     if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#F5EEDA", color: "#7A5A0F", border: "#DFC98A" };
-    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
-    return { label: "Rx", bg: "#EEF1F4", color: "#3D4A5C", border: "#C6D0DC" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "#F0E9DC", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "#F0E9DC", color: "#3D4A5C", border: "#C6D0DC" };
   })();
   const [flipped, setFlipped] = useState(false);
   const isTouch = useIsTouch();

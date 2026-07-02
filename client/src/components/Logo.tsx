@@ -29,7 +29,7 @@ export function Logo({
   markSize = 28,
 }: LogoProps) {
   const ink =
-    variant === "light" ? "#FFFFFF" : variant === "green" ? "#c6f184" : "#1C1815";
+    variant === "light" ? "#FFFFFF" : variant === "green" ? "#F3C87A" : "#1C1815";
   const sub =
     variant === "light"
       ? "rgba(255,255,255,0.7)"

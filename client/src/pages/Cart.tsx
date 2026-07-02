@@ -349,7 +349,7 @@ export default function Cart() {
                           <span style={{ color: "#8B5A2B" }}>{icon}</span>
                           {text}
                         </span>
-                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#1D6F42" }}>
+                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#2E6B47" }}>
                           Included
                         </span>
                       </div>

@@ -121,7 +121,7 @@ const MEN_TOKENS = {
   text: "#F5F0E4",
   textMuted: "rgba(245,240,228,0.62)",
   textFaint: "rgba(245,240,228,0.42)",
-  accent: "#E28A3D",
+  accent: "#DE9A3C",
   accentSoft: "rgba(226,138,61,0.14)",
   accentInk: "#1C1815",
   fontDisplay: "'General Sans', system-ui, sans-serif",

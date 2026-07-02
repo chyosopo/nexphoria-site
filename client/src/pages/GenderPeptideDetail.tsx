@@ -24,7 +24,7 @@ const IDENTITY = {
   men: {
     heroBg: "linear-gradient(180deg, #1C1815 0%, #111111 60%, #1A1815 100%)",
     heroGlow: "radial-gradient(700px 320px at 92% 10%, rgba(226,138,61,0.16), transparent 65%)",
-    accent: "#E28A3D",
+    accent: "#DE9A3C",
     accentSoft: "rgba(226,138,61,0.14)",
     text: "#F5F0E4",
     textMuted: "rgba(245,240,228,0.62)",

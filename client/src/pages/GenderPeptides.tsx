@@ -303,7 +303,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       >
         <defs>
           <pattern id="menGrid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#E28A3D" strokeWidth="0.5" />
+            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#DE9A3C" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#menGrid)" />
@@ -331,12 +331,12 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       >
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
-            <span style={{ width: 32, height: 2, background: "#E28A3D" }} />
+            <span style={{ width: 32, height: 2, background: "#DE9A3C" }} />
             <span
               style={{
                 fontSize: 11,
                 letterSpacing: "0.28em",
-                color: "#E28A3D",
+                color: "#DE9A3C",
                 textTransform: "uppercase",
                 fontWeight: 700,
               }}
@@ -355,7 +355,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
             }}
           >
             Built for <br />
-            the <span style={{ color: "#E28A3D" }}>male</span> engine.
+            the <span style={{ color: "#DE9A3C" }}>male</span> engine.
           </h1>
           <p
             style={{

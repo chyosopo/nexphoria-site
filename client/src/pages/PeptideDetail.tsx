@@ -775,7 +775,7 @@ function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
           <div>
             <div
               className="rounded-3xl p-6 md:p-10 mb-8"
-              style={{ backgroundColor: "var(--nx-rock, #E8E9DB)", border: "1px solid var(--nx-border)" }}
+              style={{ backgroundColor: "var(--nx-rock, #EDE6D8)", border: "1px solid var(--nx-border)" }}
               data-testid="mechanism-schematic"
             >
               <MechanismPulseSVG family={fam} />

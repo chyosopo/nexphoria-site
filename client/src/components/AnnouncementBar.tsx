@@ -44,7 +44,7 @@ export function AnnouncementBar({
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             color: "#1C1815",
-            background: "#c6f184",
+            background: "#F3C87A",
             letterSpacing: "0.22em",
             fontWeight: 600,
           }}

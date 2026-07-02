@@ -115,8 +115,8 @@ export default function Showcase() {
                   width: 6,
                   height: 6,
                   borderRadius: 999,
-                  background: "var(--nx-acid, #c6f184)",
-                  boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, #c6f184) 30%, transparent)",
+                  background: "var(--nx-acid, #F3C87A)",
+                  boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, #F3C87A) 30%, transparent)",
                 }}
               />
               No commitment · Physician-reviewed in 24–48h
@@ -297,7 +297,7 @@ export default function Showcase() {
                 <div className="mx-tile-head">
                   <span
                     className="mx-pill"
-                    style={{ background: "#c6f184", color: "#1C1815" }}
+                    style={{ background: "#F3C87A", color: "#1C1815" }}
                   >
                     Build a stack
                   </span>
@@ -420,7 +420,7 @@ export default function Showcase() {
                       width: 6,
                       height: 6,
                       borderRadius: 999,
-                      background: "var(--nx-acid, #c6f184)",
+                      background: "var(--nx-acid, #F3C87A)",
                       boxShadow: "0 0 0 3px rgba(243,200,122,0.28)",
                     }}
                   />

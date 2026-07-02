@@ -252,7 +252,7 @@ function TOCSidebar({ activeId }: { activeId: string }) {
 }
 
 function tierColor(t: Tier): string {
-  return t === "Established" ? "#1D6F42" : t === "Emerging" ? "#8B5A2B" : "#6B6B6B";
+  return t === "Established" ? "#2E6B47" : t === "Emerging" ? "#8B5A2B" : "#6B6B6B";
 }
 
 /* ── Science FAQ data — drives FAQPage JSON-LD ───────────────── */
@@ -328,8 +328,8 @@ export default function Science() {
       <section style={{ backgroundColor: "#000", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "4.5rem 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#c6f184", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#c6f184" }} />
+            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#F3C87A", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#F3C87A" }} />
               Evidence grading
             </p>
             <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FFFFF3", lineHeight: 1.15, marginBottom: "0.75rem" }}>
@@ -348,7 +348,7 @@ export default function Science() {
               {
                 tier: "Tier A",
                 key: "a",
-                color: "#c6f184",
+                color: "#F3C87A",
                 strength: 100,
                 label: "Established",
                 desc: "Multiple Phase III RCTs in humans. FDA approval for at least one indication.",
@@ -560,8 +560,8 @@ export default function Science() {
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
-              <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#c6f184", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#c6f184" }} />
+              <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#F3C87A", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#F3C87A" }} />
                 Why it matters
               </p>
               <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FFFFF3", lineHeight: 1.12, marginBottom: "1.25rem" }}>
@@ -584,7 +584,7 @@ export default function Science() {
                 ].map((row) => (
                   <div key={row.phase} style={{ backgroundColor: "#1C1815", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
                     <div style={{ flexShrink: 0, minWidth: "90px" }}>
-                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184" }}>{row.phase}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#F3C87A" }}>{row.phase}</p>
                       <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(255,255,243,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
                     </div>
                     <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.65)", lineHeight: 1.6 }}>{row.desc}</p>

@@ -740,7 +740,7 @@ export default function StackReveal() {
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
             backgroundImage:
-              "radial-gradient(circle at 20% 30%, #c6f184 0%, transparent 50%), radial-gradient(circle at 80% 70%, #a8a8a0 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 30%, #F3C87A 0%, transparent 50%), radial-gradient(circle at 80% 70%, #a8a8a0 0%, transparent 50%)",
           }}
           aria-hidden
         />

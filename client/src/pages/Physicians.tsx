@@ -796,7 +796,7 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
         </p>
 
         {open && (
-          <div style={{ marginTop: "0.5rem", marginBottom: "1rem", paddingTop: "1rem", borderTop: "1px solid #E8E9DB" }}>
+          <div style={{ marginTop: "0.5rem", marginBottom: "1rem", paddingTop: "1rem", borderTop: "1px solid #EDE6D8" }}>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.7, marginBottom: "1rem" }}>
               {doc.extendedBio}
             </p>

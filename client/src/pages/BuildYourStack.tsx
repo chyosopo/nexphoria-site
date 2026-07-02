@@ -253,9 +253,9 @@ export default function BuildYourStack() {
           role="status"
           aria-live="polite"
         >
-          <ShoppingBag size={15} style={{ color: "#c6f184" }} />
+          <ShoppingBag size={15} style={{ color: "#F3C87A" }} />
           <span>Stack added to cart</span>
-          <span style={{ color: "#c6f184", fontWeight: 600 }}>✓</span>
+          <span style={{ color: "#F3C87A", fontWeight: 600 }}>✓</span>
         </div>
       )}
       <div style={{ background: "var(--mx-page-bg, #fffff3)", minHeight: "100vh", paddingTop: 80 }}>
@@ -300,10 +300,10 @@ export default function BuildYourStack() {
           {/* Step indicator with progress bar */}
           <div className="mt-12" data-testid="step-indicator">
             {/* Progress bar */}
-            <div className="relative h-1 rounded-full mb-5" style={{ background: "#e8e9db" }}>
+            <div className="relative h-1 rounded-full mb-5" style={{ background: "#EDE6D8" }}>
               <div
                 className="absolute left-0 top-0 h-full rounded-full transition-all duration-500"
-                style={{ width: `${((step - 1) / 2) * 100}%`, background: "#c6f184" }}
+                style={{ width: `${((step - 1) / 2) * 100}%`, background: "#F3C87A" }}
               />
             </div>
             <div className="flex items-center gap-3 md:gap-5">
@@ -322,7 +322,7 @@ export default function BuildYourStack() {
                         borderRadius: 999,
                         background: step >= (s.n as Step) ? "#1C1815" : "transparent",
                         border: step >= (s.n as Step) ? "1px solid #1C1815" : "1px solid #bbae9f",
-                        color: step >= (s.n as Step) ? "#c6f184" : "#7a7974",
+                        color: step >= (s.n as Step) ? "#F3C87A" : "#7a7974",
                         fontFamily: MONO,
                         fontSize: 11,
                         fontWeight: 600,
@@ -348,7 +348,7 @@ export default function BuildYourStack() {
                   {i < 2 && (
                     <span
                       className="h-px w-8 md:w-16"
-                      style={{ background: step > (s.n as Step) ? "#c6f184" : "#d4cfc1", transition: "background 300ms" }}
+                      style={{ background: step > (s.n as Step) ? "#F3C87A" : "#d4cfc1", transition: "background 300ms" }}
                     />
                   )}
                 </div>
@@ -370,13 +370,13 @@ export default function BuildYourStack() {
                   data-testid={`button-goal-${g.id}`}
                   style={{
                     background: "#fff",
-                    border: "1px solid #e8e9db",
+                    border: "1px solid #EDE6D8",
                     borderRadius: 4,
                     padding: "28px 24px",
                     fontFamily: SANS,
                   }}
                   onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#1C1815"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#e8e9db"; e.currentTarget.style.transform = "translateY(0)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#EDE6D8"; e.currentTarget.style.transform = "translateY(0)"; }}
                 >
                   <div className="flex items-center justify-between mb-5">
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", color: "#a4a4a0", textTransform: "uppercase" }}>
@@ -449,7 +449,7 @@ export default function BuildYourStack() {
                 style={{ background: "#1C1815", borderRadius: 4, color: "#fff" }}
               >
                 <div>
-                  <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "#c6f184", textTransform: "uppercase", marginBottom: 6 }}>
+                  <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "#F3C87A", textTransform: "uppercase", marginBottom: 6 }}>
                     Curator's note · {goal.title}
                   </p>
                   <p style={{ fontFamily: SANS, fontSize: 14, lineHeight: 1.55, color: "rgba(255,255,255,0.85)", maxWidth: 720 }}>
@@ -487,7 +487,7 @@ export default function BuildYourStack() {
                   <div className="p-5 md:p-6 flex flex-col justify-center">
                     <div className="flex items-start justify-between gap-4">
                       <div className="min-w-0">
-                        <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "#c6f184", textTransform: "uppercase", marginBottom: 8 }}>
+                        <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "#F3C87A", textTransform: "uppercase", marginBottom: 8 }}>
                           <ShieldCheck size={11} className="inline-block mr-1.5 -mt-0.5" />
                           Physician-curated match
                         </p>
@@ -506,7 +506,7 @@ export default function BuildYourStack() {
 
                       {/* Confidence dial */}
                       <div className="flex-shrink-0 text-right" data-testid="confidence-score">
-                        <p style={{ fontFamily: SERIF, fontSize: 34, fontWeight: 600, lineHeight: 1, color: "#c6f184", letterSpacing: "-0.02em" }}>
+                        <p style={{ fontFamily: SERIF, fontSize: 34, fontWeight: 600, lineHeight: 1, color: "#F3C87A", letterSpacing: "-0.02em" }}>
                           {confidence}<span style={{ fontSize: 16, fontWeight: 500 }}>%</span>
                         </p>
                         <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
@@ -519,7 +519,7 @@ export default function BuildYourStack() {
                     <div className="mt-4 relative h-1 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
                       <div
                         className="absolute left-0 top-0 h-full rounded-full transition-all duration-700"
-                        style={{ width: `${confidence}%`, background: "#c6f184" }}
+                        style={{ width: `${confidence}%`, background: "#F3C87A" }}
                         data-testid="confidence-meter"
                       />
                     </div>
@@ -529,7 +529,7 @@ export default function BuildYourStack() {
                         href={`/stacks/${matchedStack.slug}`}
                         className="inline-flex items-center gap-2"
                         data-testid="link-view-matched-stack"
-                        style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, color: "#1C1815", background: "#c6f184", padding: "9px 16px", borderRadius: 999 }}
+                        style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, color: "#1C1815", background: "#F3C87A", padding: "9px 16px", borderRadius: 999 }}
                       >
                         See the {matchedStack.name} protocol <ArrowRight size={13} />
                       </Link>
@@ -562,7 +562,7 @@ export default function BuildYourStack() {
 
                 {/* Empty-state hint before any picks */}
                 {picked.length < 2 && (
-                  <div className="mb-4 px-4 py-2.5 rounded" style={{ background: "#f5f4ef", border: "1px solid #e8e9db" }}>
+                  <div className="mb-4 px-4 py-2.5 rounded" style={{ background: "#f5f4ef", border: "1px solid #EDE6D8" }}>
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", color: "#7a7974", textTransform: "uppercase" }}>
                       Pick at least 2 peptides to continue
                     </p>
@@ -590,7 +590,7 @@ export default function BuildYourStack() {
                         style={{
                           background: isPicked ? "#1C1815" : "#fff",
                           color: isPicked ? "#fff" : "#1C1815",
-                          border: isPicked ? "1px solid #1C1815" : isRecommended ? "2px solid #c6f184" : "1px solid #e8e9db",
+                          border: isPicked ? "1px solid #1C1815" : isRecommended ? "2px solid #F3C87A" : "1px solid #EDE6D8",
                           borderRadius: 4,
                           padding: "18px 18px",
                           fontFamily: SANS,
@@ -598,7 +598,7 @@ export default function BuildYourStack() {
                         }}
                       >
                         {isRecommended && (
-                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: MONO, fontSize: 8.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1C1815", background: "#c6f184", padding: "2px 6px", borderRadius: 2 }}>
+                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: MONO, fontSize: 8.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1C1815", background: "#F3C87A", padding: "2px 6px", borderRadius: 2 }}>
                             Recommended
                           </span>
                         )}
@@ -617,7 +617,7 @@ export default function BuildYourStack() {
                               <ul className="mt-2 space-y-0.5">
                                 {bullets.map((b, bi) => (
                                   <li key={bi} style={{ fontSize: 11.5, color: isPicked ? "rgba(255,255,255,0.65)" : "#3a3a3a", lineHeight: 1.4, display: "flex", gap: 5 }}>
-                                    <span style={{ color: "#c6f184", flexShrink: 0 }}>·</span>{b}
+                                    <span style={{ color: "#F3C87A", flexShrink: 0 }}>·</span>{b}
                                   </li>
                                 ))}
                               </ul>
@@ -634,8 +634,8 @@ export default function BuildYourStack() {
                               width: 24,
                               height: 24,
                               borderRadius: 999,
-                              background: isPicked ? "#c6f184" : "transparent",
-                              border: isPicked ? "1px solid #c6f184" : "1px solid #d4cfc1",
+                              background: isPicked ? "#F3C87A" : "transparent",
+                              border: isPicked ? "1px solid #F3C87A" : "1px solid #d4cfc1",
                               color: "#1C1815",
                             }}
                           >
@@ -658,7 +658,7 @@ export default function BuildYourStack() {
 
               {/* Sticky summary */}
               <aside className="lg:sticky lg:top-24 self-start">
-                <div style={{ background: "#fff", border: "1px solid #e8e9db", borderRadius: 4 }}>
+                <div style={{ background: "#fff", border: "1px solid #EDE6D8", borderRadius: 4 }}>
                   <div className="p-5 border-b" style={{ borderColor: "#f0eee7" }}>
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "#a4a4a0", textTransform: "uppercase", marginBottom: 6 }}>
                       Your stack
@@ -686,7 +686,7 @@ export default function BuildYourStack() {
                             data-testid={`button-cadence-${c}`}
                             style={{
                               padding: "10px 8px",
-                              border: active ? "1px solid #1C1815" : "1px solid #e8e9db",
+                              border: active ? "1px solid #1C1815" : "1px solid #EDE6D8",
                               background: active ? "#1C1815" : "#fff",
                               color: active ? "#fff" : "#3a3a3a",
                               fontFamily: MONO,
@@ -698,7 +698,7 @@ export default function BuildYourStack() {
                           >
                             <div>{c === "1mo" ? "Monthly" : c === "3mo" ? "Quarterly" : "Annual"}</div>
                             {pct > 0 && (
-                              <div style={{ color: active ? "#c6f184" : "#7a7974", fontSize: 9.5, marginTop: 2 }}>
+                              <div style={{ color: active ? "#F3C87A" : "#7a7974", fontSize: 9.5, marginTop: 2 }}>
                                 Save {pct}%
                               </div>
                             )}
@@ -756,7 +756,7 @@ export default function BuildYourStack() {
                       data-testid="button-continue-step2"
                       style={{
                         background: "#1C1815",
-                        color: "#c6f184",
+                        color: "#F3C87A",
                         padding: "13px 18px",
                         fontFamily: MONO,
                         fontSize: 11.5,
@@ -817,7 +817,7 @@ export default function BuildYourStack() {
                       <div
                         key={slug}
                         className="flex items-start gap-4 p-5"
-                        style={{ background: "#fff", border: "1px solid #e8e9db", borderRadius: 4 }}
+                        style={{ background: "#fff", border: "1px solid #EDE6D8", borderRadius: 4 }}
                       >
                         <div className="flex-shrink-0" style={{ width: 56, height: 56, background: "#f5f4ef", borderRadius: 4, display: "grid", placeItems: "center" }}>
                           <MolecularGlyph glyph={p.glyph} size={36} />
@@ -850,7 +850,7 @@ export default function BuildYourStack() {
                 </div>
 
                 {/* Protocol timeline — 12 weeks */}
-                <div className="mt-10 p-6" style={{ background: "#fff", border: "1px solid #e8e9db", borderRadius: 4 }}>
+                <div className="mt-10 p-6" style={{ background: "#fff", border: "1px solid #EDE6D8", borderRadius: 4 }}>
                   <p style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.18em", color: "#7a7974", textTransform: "uppercase", marginBottom: 14 }}>
                     Protocol timeline
                   </p>
@@ -863,8 +863,8 @@ export default function BuildYourStack() {
                     ].map((row, i, arr) => (
                       <div key={i} className="flex gap-4 items-start">
                         <div className="flex flex-col items-center" style={{ width: 24 }}>
-                          <div style={{ width: 10, height: 10, borderRadius: 999, background: "#c6f184", flexShrink: 0, marginTop: 3 }} />
-                          {i < arr.length - 1 && <div style={{ width: 1, flex: 1, minHeight: 20, background: "#e8e9db" }} />}
+                          <div style={{ width: 10, height: 10, borderRadius: 999, background: "#F3C87A", flexShrink: 0, marginTop: 3 }} />
+                          {i < arr.length - 1 && <div style={{ width: 1, flex: 1, minHeight: 20, background: "#EDE6D8" }} />}
                         </div>
                         <div className="pb-4">
                           <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#1C1815", marginBottom: 2 }}>
@@ -878,7 +878,7 @@ export default function BuildYourStack() {
                 </div>
 
                 {/* What happens next */}
-                <div className="mt-8 p-6" style={{ background: "#fffff3", border: "1px solid #e8e9db", borderRadius: 4 }}>
+                <div className="mt-8 p-6" style={{ background: "#fffff3", border: "1px solid #EDE6D8", borderRadius: 4 }}>
                   <p style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.18em", color: "#7a7974", textTransform: "uppercase", marginBottom: 12 }}>
                     What happens next
                   </p>
@@ -928,7 +928,7 @@ export default function BuildYourStack() {
                       <span>Subtotal</span><span>{formatUSD(subtotal)}/mo</span>
                     </div>
                     {discount > 0 && (
-                      <div className="flex justify-between" style={{ fontFamily: MONO, fontSize: 12, color: "#c6f184" }}>
+                      <div className="flex justify-between" style={{ fontFamily: MONO, fontSize: 12, color: "#F3C87A" }}>
                         <span>Bundle {Math.round(discount * 100)}% off</span>
                         <span>-{formatUSD(bundleSavings)}/mo</span>
                       </div>
@@ -954,7 +954,7 @@ export default function BuildYourStack() {
                       className="w-full inline-flex items-center justify-center gap-2"
                       data-testid="button-add-bundle-to-cart"
                       style={{
-                        background: added ? "#c6f184" : "#fff",
+                        background: added ? "#F3C87A" : "#fff",
                         color: "#1C1815",
                         padding: "14px 18px",
                         fontFamily: MONO,
@@ -982,7 +982,7 @@ export default function BuildYourStack() {
                   </div>
                 </div>
 
-                <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "#fff", border: "1px solid #e8e9db", borderRadius: 4 }}>
+                <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "#fff", border: "1px solid #EDE6D8", borderRadius: 4 }}>
                   <FlaskConical size={16} style={{ color: "#1C1815", flexShrink: 0, marginTop: 2 }} />
                   <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.55, color: "#5a5957" }}>
                     Want a physician to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "#1C1815" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your labs and goals.

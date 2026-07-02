@@ -113,7 +113,7 @@ export default function Checkout() {
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-16 md:py-24 max-w-2xl">
             <div className="text-center">
-              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "#1D6F42" }}>
+              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "#2E6B47" }}>
                 <Check size={32} strokeWidth={1.5} />
               </div>
               <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "#8B5A2B" }}>
@@ -293,7 +293,7 @@ export default function Checkout() {
                       className="flex items-center gap-2 p-3 mb-5"
                       style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                     >
-                      <Lock size={13} style={{ color: "#1D6F42", flexShrink: 0 }} />
+                      <Lock size={13} style={{ color: "#2E6B47", flexShrink: 0 }} />
                       <p className="text-xs" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.5 }}>
                         <strong style={{ color: "#1C1815" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
                       </p>

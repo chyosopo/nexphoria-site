@@ -16,7 +16,7 @@ import { getPeptide } from "@/data/peptides";
 
 /* ── Curator badges — awarded to 3 stacks based on outcomes data ───────── */
 const CURATOR_BADGE: Record<string, { label: string; color: string; bg: string }> = {
-  wolverine: { label: "Doctor's pick", color: "#1C1815", bg: "#c6f184" },
+  wolverine: { label: "Doctor's pick", color: "#1C1815", bg: "#F3C87A" },
   metabolic: { label: "Most popular", color: "#fff", bg: "#1C1815" },
   cognitive: { label: "Staff favourite", color: "#1C1815", bg: "#f0ede6" },
 };
@@ -187,7 +187,7 @@ export default function StackIndex() {
                 wolverine: "#E8EFEC",  // cobalt-soft (recovery/men)
                 glow: "#F7ECE6",       // rose (skin/her)
                 longevity: "#F0F2E6",  // sage
-                "weight-loss": "#EEF1F4", // mineral
+                "weight-loss": "#F0E9DC", // mineral
                 sleep: "#EAE6F1",      // dusk
                 vitality: "#F2EDDE",   // butter
                 cognition: "#E8EEF1",  // sky
@@ -330,15 +330,15 @@ export default function StackIndex() {
                 <div className="aspect-[16/10] w-full relative flex items-center justify-center" style={{ background: "#1C1815" }}>
                   {/* Acid grid decoration */}
                   <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden style={{ opacity: 0.2 }}>
-                    <circle cx="60" cy="60" r="50" stroke="#c6f184" strokeWidth="1" strokeDasharray="4 4" />
-                    <circle cx="60" cy="60" r="30" stroke="#c6f184" strokeWidth="1" />
-                    <line x1="60" y1="10" x2="60" y2="110" stroke="#c6f184" strokeWidth="0.75" />
-                    <line x1="10" y1="60" x2="110" y2="60" stroke="#c6f184" strokeWidth="0.75" />
+                    <circle cx="60" cy="60" r="50" stroke="#F3C87A" strokeWidth="1" strokeDasharray="4 4" />
+                    <circle cx="60" cy="60" r="30" stroke="#F3C87A" strokeWidth="1" />
+                    <line x1="60" y1="10" x2="60" y2="110" stroke="#F3C87A" strokeWidth="0.75" />
+                    <line x1="10" y1="60" x2="110" y2="60" stroke="#F3C87A" strokeWidth="0.75" />
                   </svg>
                   <div className="absolute" style={{ textAlign: "center" }}>
                     <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(243,200,122,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
-                    <div className="inline-flex items-center justify-center" style={{ width: 48, height: 48, borderRadius: 999, border: "1.5px solid #c6f184" }}>
-                      <Plus size={22} style={{ color: "#c6f184" }} />
+                    <div className="inline-flex items-center justify-center" style={{ width: 48, height: 48, borderRadius: 999, border: "1.5px solid #F3C87A" }}>
+                      <Plus size={22} style={{ color: "#F3C87A" }} />
                     </div>
                   </div>
                 </div>
@@ -354,7 +354,7 @@ export default function StackIndex() {
                   </p>
                   <div
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full group-hover:gap-3 transition-all"
-                    style={{ background: "#c6f184", color: "#1C1815", fontFamily: MONO, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}
+                    style={{ background: "#F3C87A", color: "#1C1815", fontFamily: MONO, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}
                   >
                     Start building <ArrowRight size={13} strokeWidth={2.5} />
                   </div>
@@ -510,7 +510,7 @@ export default function StackIndex() {
               <Link asChild href="/assessment">
                 <a
                   className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5"
-                  style={{ background: "#c6f184", color: "#1C1815", fontFamily: MONO, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}
+                  style={{ background: "#F3C87A", color: "#1C1815", fontFamily: MONO, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}
                   data-testid="link-assessment-cta"
                 >
                   Start assessment <ArrowRight size={14} strokeWidth={2.5} />
@@ -542,7 +542,7 @@ function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string
         />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(28,24,21,0.82) 0%, rgba(28,24,21,0.15) 46%, transparent 72%)" }} aria-hidden />
         <div className="absolute left-6 right-6 bottom-6">
-          <div className="text-[11px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#c6f184" }}>
+          <div className="text-[11px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#F3C87A" }}>
             Flagship stack
           </div>
           <h3 className="mb-2" style={{ fontFamily: SERIF, color: "#FFFFF3", fontWeight: 600, fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
@@ -551,7 +551,7 @@ function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string
           <p className="text-sm mb-4 max-w-[34ch]" style={{ fontFamily: SANS, color: "rgba(255,255,243,0.85)", lineHeight: 1.4 }}>
             {proof}
           </p>
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] px-4 py-2 group-hover:gap-3 transition-all" style={{ fontFamily: MONO, color: "#1C1815", background: "#c6f184", borderRadius: 999, fontWeight: 600 }}>
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] px-4 py-2 group-hover:gap-3 transition-all" style={{ fontFamily: MONO, color: "#1C1815", background: "#F3C87A", borderRadius: 999, fontWeight: 600 }}>
             Explore stack <ArrowRight size={13} strokeWidth={2.5} />
           </span>
         </div>

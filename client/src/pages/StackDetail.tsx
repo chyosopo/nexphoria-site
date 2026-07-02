@@ -162,7 +162,7 @@ function BiomarkerTooltip({ active, payload }: any) {
   const p = payload[0].payload;
   return (
     <div style={{ background: "#1C1815", border: "1px solid rgba(255,255,243,0.16)", borderRadius: 10, padding: "10px 12px" }}>
-      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184", marginBottom: 4 }}>{p.marker}</div>
+      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#F3C87A", marginBottom: 4 }}>{p.marker}</div>
       <div style={{ fontFamily: SANS, fontSize: 13, color: "#FFFFF3" }}>Baseline {p.baseline} → {p.endOfCourse}</div>
       <div style={{ fontFamily: SANS, fontSize: 13, color: "#FFFFF3", fontWeight: 600 }}>{p.delta}</div>
     </div>
@@ -483,7 +483,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
               {/* Left: editorial text column */}
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6" style={{ borderRadius: 999, border: "1px solid rgba(255,255,243,0.18)" }}>
-                  <span className="text-[11px] uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "#c6f184" }}>
+                  <span className="text-[11px] uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "#F3C87A" }}>
                     Doctor-curated protocol
                   </span>
                   <span className="text-[11px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(255,255,243,0.6)" }}>
@@ -540,7 +540,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   style={{ background: "rgba(28,24,21,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(255,255,243,0.12)" }}
                   data-testid="text-portrait-proof"
                 >
-                  <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "#c6f184" }}>
+                  <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "#F3C87A" }}>
                     {stack.name} · documented outcome
                   </div>
                   <div className="text-sm" style={{ fontFamily: SANS, color: "#FFFFF3", fontWeight: 500, lineHeight: 1.35 }}>
@@ -562,7 +562,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                     style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(255,255,243,0.12)" }}
                     data-testid={`stat-card-${i}`}
                   >
-                    <div className="mb-1.5" style={{ fontFamily: SERIF, color: "#c6f184", fontWeight: 600, fontSize: "clamp(28px, 3.4vw, 44px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                    <div className="mb-1.5" style={{ fontFamily: SERIF, color: "#F3C87A", fontWeight: 600, fontSize: "clamp(28px, 3.4vw, 44px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
                       {s.value}
                     </div>
                     <div className="text-sm mb-1" style={{ fontFamily: SANS, color: "#FFFFF3", fontWeight: 500, lineHeight: 1.3 }}>
@@ -699,7 +699,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                         <X size={16} strokeWidth={2.4} style={{ color: "#C97A4A", display: "inline" }} />
                       </td>
                       <td className="px-4 py-3.5 text-center" style={{ borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>
-                        <Check size={16} strokeWidth={2.6} style={{ color: "#1D6F42", display: "inline" }} />
+                        <Check size={16} strokeWidth={2.6} style={{ color: "#2E6B47", display: "inline" }} />
                       </td>
                     </tr>
                   ))}
@@ -736,13 +736,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
           <div className="nx-container max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
               <div className="p-7 md:p-9" style={{ background: "var(--nx-bg)" }}>
-                <div className="text-[11px] uppercase tracking-[0.2em] mb-4 inline-flex items-center gap-2" style={{ fontFamily: MONO, color: "#1D6F42" }}>
+                <div className="text-[11px] uppercase tracking-[0.2em] mb-4 inline-flex items-center gap-2" style={{ fontFamily: MONO, color: "#2E6B47" }}>
                   <Check size={13} strokeWidth={2.6} /> Who this is for
                 </div>
                 <ul className="space-y-3">
                   {goodFit.map((g) => (
                     <li key={g} className="flex gap-2.5 text-sm" style={{ fontFamily: SANS, color: "#28251D", lineHeight: 1.55 }}>
-                      <Check size={15} strokeWidth={2.4} style={{ color: "#1D6F42", flexShrink: 0, marginTop: 2 }} /> <span>{g}</span>
+                      <Check size={15} strokeWidth={2.4} style={{ color: "#2E6B47", flexShrink: 0, marginTop: 2 }} /> <span>{g}</span>
                     </li>
                   ))}
                 </ul>
@@ -910,7 +910,7 @@ function OutcomeTimeline({ weeks, milestones }: { weeks: number; milestones: Mil
         {milestones.map((m, i) => (
           <g key={i}>
             <line x1={x(m.weekPct)} y1={y(m.valuePct)} x2={x(m.weekPct)} y2={y(0)} stroke="#DDD9CE" strokeWidth={1} strokeDasharray="3 4" />
-            <circle cx={x(m.weekPct)} cy={y(m.valuePct)} r={6} fill="#c6f184" stroke="#1C1815" strokeWidth={2} />
+            <circle cx={x(m.weekPct)} cy={y(m.valuePct)} r={6} fill="#F3C87A" stroke="#1C1815" strokeWidth={2} />
             <text x={x(m.weekPct)} y={y(m.valuePct) - 26} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, fill: "#8B5A2B" }}>{m.week}</text>
             <text x={x(m.weekPct)} y={y(m.valuePct) - 12} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11, fill: "#1C1815" }}>{m.label}</text>
           </g>

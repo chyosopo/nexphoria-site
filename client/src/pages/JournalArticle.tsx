@@ -671,7 +671,7 @@ export default function JournalArticle() {
         <div className="nx-container" style={{ maxWidth: 1180, margin: "0 auto" }}>
           <div
             style={{
-              backgroundColor: "#c6f184",
+              backgroundColor: "#F3C87A",
               borderRadius: 4,
               padding: "48px 56px",
               display: "flex",
@@ -728,7 +728,7 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 8,
                   backgroundColor: "#000",
-                  color: "#c6f184",
+                  color: "#F3C87A",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 10,
                   fontWeight: 500,

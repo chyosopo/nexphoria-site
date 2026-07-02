@@ -19,7 +19,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
   dark: {
     bg: "#1C1815",
     fg: "#FAF7F0",
-    eyebrow: "#E28A3D",
+    eyebrow: "#DE9A3C",
     sub: "rgba(250,247,240,0.62)",
     border: "rgba(226,138,61,0.22)",
     hover: "#141311",
@@ -51,7 +51,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
   ember: {
     bg: "linear-gradient(180deg, #141311 0%, #1A1815 100%)",
     fg: "#F5F0E4",
-    eyebrow: "#E28A3D",
+    eyebrow: "#DE9A3C",
     sub: "rgba(245,240,228,0.62)",
     border: "rgba(226,138,61,0.28)",
     hover: "#1E1B18",
@@ -163,7 +163,7 @@ export function BenefitTile({
             className="text-[9px] uppercase"
             style={{
               fontFamily: MONO,
-              color: hasImage ? "#E28A3D" : t.eyebrow,
+              color: hasImage ? "#DE9A3C" : t.eyebrow,
               letterSpacing: "0.18em",
               fontWeight: 600,
             }}
@@ -195,7 +195,7 @@ export function BenefitTile({
             {metricUnit ? (
               <span
                 className="text-[11px] md:text-xs uppercase tracking-[0.14em]"
-                style={{ fontFamily: MONO, color: hasImage ? "#E28A3D" : t.eyebrow, fontWeight: 600 }}
+                style={{ fontFamily: MONO, color: hasImage ? "#DE9A3C" : t.eyebrow, fontWeight: 600 }}
               >
                 {metricUnit}
               </span>
@@ -250,7 +250,7 @@ export function BenefitTile({
           </span>
           <ArrowUpRight
             size={16}
-            style={{ color: hasImage ? "#E28A3D" : t.eyebrow }}
+            style={{ color: hasImage ? "#DE9A3C" : t.eyebrow }}
             className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </div>
