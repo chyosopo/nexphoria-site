@@ -22,7 +22,7 @@ jobs:
             mime=$(file -b --mime-type "$tmp" 2>/dev/null || echo "none")
             case "$mime" in
               image/webp) ext=webp;; image/png) ext=png;;
-              image/jpeg) ext=jpg;;  image/avif) ext=avif;; image/gif) ext=gif;;
+              image/jpeg) ext=jpg;;  image/avif) ext=avif;; image/gif) ext=gif;; video/mp4) ext=mp4;; video/webm) ext=webm;;
               *) ext="";;
             esac
             if [ "$code" = "200" ] && [ -n "$ext" ]; then
