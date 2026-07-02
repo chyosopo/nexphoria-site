@@ -179,7 +179,7 @@ function EveningProtocolStrip() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to right, rgba(21, 24, 28,0.65) 0%, rgba(21, 24, 28,0.15) 60%)",
+          background: "linear-gradient(to right, rgba(28, 21, 24,0.65) 0%, rgba(28, 21, 24,0.15) 60%)",
         }}
       />
       <div
@@ -199,7 +199,7 @@ function EveningProtocolStrip() {
               fontWeight: 500,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(240, 244, 250,0.6)",
+              color: "rgba(250, 240, 244,0.6)",
               marginBottom: "1rem",
             }}
           >
@@ -211,7 +211,7 @@ function EveningProtocolStrip() {
               
               fontWeight: 400,
               fontSize: "clamp(1.375rem, 2.5vw, 2rem)",
-              color: "#F2F7FD",
+              color: "#FDF3F7",
               lineHeight: 1.4,
             }}
           >
@@ -249,7 +249,7 @@ function EditorialBannerWomen() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(21, 24, 28,0.52)",
+          backgroundColor: "rgba(28, 21, 24,0.52)",
         }}
       />
       {/* Pull quote centered */}
@@ -269,7 +269,7 @@ function EditorialBannerWomen() {
             
             fontWeight: 400,
             fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
-            color: "#F2F7FD",
+            color: "#FDF3F7",
             lineHeight: 1.35,
             letterSpacing: "-0.01em",
             textAlign: "center",
@@ -291,7 +291,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
         style={{
           width: "40px",
           height: "1px",
-          backgroundColor: light ? "rgba(240, 244, 250,0.35)" : "var(--nx-cobalt)",
+          backgroundColor: light ? "rgba(250, 240, 244,0.35)" : "var(--nx-cobalt)",
           flexShrink: 0,
         }}
       />
@@ -302,7 +302,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
           fontWeight: 500,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: light ? "rgba(240, 244, 250,0.6)" : "var(--nx-cobalt)",
+          color: light ? "rgba(250, 240, 244,0.6)" : "var(--nx-cobalt)",
         }}
       >
         {children}
@@ -492,7 +492,7 @@ function HeroSection_REMOVED({
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to right, rgba(240, 244, 250,0.35) 0%, rgba(21, 24, 28,0) 25%)",
+              background: "linear-gradient(to right, rgba(250, 240, 244,0.35) 0%, rgba(28, 21, 24,0) 25%)",
             }}
           />
         </div>
@@ -560,7 +560,7 @@ function FlagshipCards() {
                     overflow: "hidden",
                     borderRadius: "16px",
                     height: "600px",
-                    backgroundColor: "#0E2447",
+                    backgroundColor: "#3C1830",
                     cursor: "pointer",
                   }}
                 >
@@ -597,7 +597,7 @@ function FlagshipCards() {
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(21, 24, 28,0.88) 0%, rgba(21, 24, 28,0.42) 48%, rgba(21, 24, 28,0) 72%)",
+                        "linear-gradient(to top, rgba(28, 21, 24,0.88) 0%, rgba(28, 21, 24,0.42) 48%, rgba(28, 21, 24,0) 72%)",
                     }}
                   />
                   {/* Label slides up 4px on hover (Maximus spec) */}
@@ -619,7 +619,7 @@ function FlagshipCards() {
                         fontWeight: 500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "rgba(240, 244, 250,0.55)",
+                        color: "rgba(250, 240, 244,0.55)",
                         marginBottom: "0.75rem",
                       }}
                     >
@@ -631,7 +631,7 @@ function FlagshipCards() {
                         
                         fontWeight: 500,
                         fontSize: "clamp(1.875rem, 3vw, 2.75rem)",
-                        color: "#F2F7FD",
+                        color: "#FDF3F7",
                         lineHeight: 1.08,
                         marginBottom: "0.625rem",
                         whiteSpace: "pre-line",
@@ -643,7 +643,7 @@ function FlagshipCards() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "13px",
-                        color: "rgba(240, 244, 250,0.68)",
+                        color: "rgba(250, 240, 244,0.68)",
                         lineHeight: 1.5,
                         marginBottom: "1.25rem",
                       }}
@@ -656,7 +656,7 @@ function FlagshipCards() {
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "13px",
                           fontWeight: 600,
-                          color: "rgba(240, 244, 250,0.9)",
+                          color: "rgba(250, 240, 244,0.9)",
                         }}
                       >
                         From {card.from}
@@ -669,12 +669,12 @@ function FlagshipCards() {
                           width: "32px",
                           height: "32px",
                           borderRadius: "50%",
-                          border: "1px solid rgba(240, 244, 250,0.3)",
+                          border: "1px solid rgba(250, 240, 244,0.3)",
                           transition: "transform 200ms ease, border-color 200ms ease",
                         }}
                         className="group-hover:translate-x-1 group-hover:border-white/60"
                       >
-                        <ArrowRight size={14} color="#F2F7FD" />
+                        <ArrowRight size={14} color="#FDF3F7" />
                       </div>
                     </div>
                   </div>
@@ -984,26 +984,26 @@ function SplitSectionWeightLoss() {
                 <AreaChart data={bodyFatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGrad1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0E2447" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#0E2447" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#3C1830" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#3C1830" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#A58594" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
+                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#A58594" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#A58594" }}
                     axisLine={false}
                     tickLine={false}
                     unit="%"
                   />
-                  <Area type="monotone" dataKey="fat" stroke="#0E2447" strokeWidth={2.5} fill="url(#inkGrad1)" dot={false} name="Nexphoria" />
-                  <Line type="monotone" dataKey="avg" stroke="#B0B9C5" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
+                  <Area type="monotone" dataKey="fat" stroke="#3C1830" strokeWidth={2.5} fill="url(#inkGrad1)" dot={false} name="Nexphoria" />
+                  <Line type="monotone" dataKey="avg" stroke="#C5B0B9" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
                   />
@@ -1044,17 +1044,17 @@ function SplitSectionSkin() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "#A58594", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "#A58594", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
                     domain={[0, 100]}
                   />
-                  <Bar dataKey="elasticity" fill="#0E2447" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="elasticity" fill="#3C1830" radius={[4, 4, 0, 0]} />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </BarChart>
               </ResponsiveContainer>
@@ -1160,19 +1160,19 @@ function SplitSectionLongevity() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "#A58594", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
+                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#A58594" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "#A58594", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
                     domain={[43, 48]}
                   />
-                  <Line type="monotone" dataKey="bioAge" stroke="#0E2447" strokeWidth={2.5} dot={false} name="Bio Age" />
-                  <Line type="monotone" dataKey="chrono" stroke="#B0B9C5" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Chrono Age" />
+                  <Line type="monotone" dataKey="bioAge" stroke="#3C1830" strokeWidth={2.5} dot={false} name="Bio Age" />
+                  <Line type="monotone" dataKey="chrono" stroke="#C5B0B9" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Chrono Age" />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
@@ -1439,8 +1439,8 @@ function WomenHeroDark() {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(180deg, #E4ECF5 0%, #D5E0ED 55%, #C9D7E8 100%)",
-        color: "#18202A",
+        background: "linear-gradient(180deg, #F5E4EB 0%, #EDD5DF 55%, #E8C9D6 100%)",
+        color: "#2A181F",
         fontFamily: "'General Sans', system-ui, sans-serif",
       }}
     >
@@ -1450,7 +1450,7 @@ function WomenHeroDark() {
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           background:
-            "radial-gradient(1200px 500px at 88% 12%, rgba(120, 148, 196,0.16), transparent 60%), radial-gradient(900px 500px at 10% 92%, rgba(102, 152, 214,0.20), transparent 60%)",
+            "radial-gradient(1200px 500px at 88% 12%, rgba(196, 120, 152,0.16), transparent 60%), radial-gradient(900px 500px at 10% 92%, rgba(214, 102, 149,0.20), transparent 60%)",
         }}
       />
       <div
@@ -1469,12 +1469,12 @@ function WomenHeroDark() {
         {/* LEFT: copy */}
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
-            <span style={{ width: 28, height: 1, background: "#3E608A" }} />
+            <span style={{ width: 28, height: 1, background: "#8A3E5E" }} />
             <span
               style={{
                 fontSize: 11,
                 letterSpacing: "0.28em",
-                color: "#3E608A",
+                color: "#8A3E5E",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
@@ -1489,18 +1489,18 @@ function WomenHeroDark() {
               letterSpacing: "-0.028em",
               fontWeight: 500,
               margin: 0,
-              color: "#0B1D3C",
+              color: "#3C0B1F",
               fontFamily: "'Instrument Serif', Georgia, serif",
             }}
           >
             Protocols tuned to <br />
-            <span style={{ color: "#5778B2", fontWeight: 500 }}>her</span> physiology.
+            <span style={{ color: "#B2577D", fontWeight: 500 }}>her</span> physiology.
           </h1>
           <p
             style={{
               fontSize: "1.08rem",
               lineHeight: 1.6,
-              color: "rgba(24, 32, 42,0.72)",
+              color: "rgba(42, 24, 31,0.72)",
               maxWidth: 540,
               margin: "26px 0 30px",
             }}
@@ -1518,8 +1518,8 @@ function WomenHeroDark() {
                   padding: "8px 14px",
                   borderRadius: 999,
                   background: "rgba(255,255,255,0.55)",
-                  border: "1px solid rgba(62, 96, 138,0.22)",
-                  color: "rgba(24, 32, 42,0.82)",
+                  border: "1px solid rgba(138, 62, 94,0.22)",
+                  color: "rgba(42, 24, 31,0.82)",
                   letterSpacing: "0.02em",
                 }}
               >
@@ -1544,8 +1544,8 @@ function WomenHeroDark() {
                 gap: 8,
                 padding: "14px 22px",
                 borderRadius: 999,
-                border: "1px solid rgba(17, 23, 30,0.22)",
-                color: "#0B1D3C",
+                border: "1px solid rgba(30, 17, 22,0.22)",
+                color: "#3C0B1F",
                 fontSize: 14,
                 fontWeight: 500,
                 textDecoration: "none",
@@ -1575,11 +1575,11 @@ function WomenHeroDark() {
                   aspectRatio: "1 / 1.05",
                   borderRadius: 22,
                   overflow: "hidden",
-                  border: "1px solid rgba(62, 96, 138,0.18)",
-                  background: "rgba(247, 251, 255,0.4)",
+                  border: "1px solid rgba(138, 62, 94,0.18)",
+                  background: "rgba(255, 247, 250,0.4)",
                   textDecoration: "none",
-                  color: "#0B1D3C",
-                  boxShadow: "0 6px 24px -12px rgba(62, 96, 138,0.35)",
+                  color: "#3C0B1F",
+                  boxShadow: "0 6px 24px -12px rgba(138, 62, 94,0.35)",
                 }}
               >
                 <img
@@ -1600,7 +1600,7 @@ function WomenHeroDark() {
                     position: "absolute",
                     inset: 0,
                     background:
-                      "linear-gradient(180deg, rgba(228, 236, 245,0.05) 0%, rgba(17, 23, 30,0.15) 55%, rgba(17, 23, 30,0.72) 100%)",
+                      "linear-gradient(180deg, rgba(245, 228, 235,0.05) 0%, rgba(30, 17, 22,0.15) 55%, rgba(30, 17, 22,0.72) 100%)",
                   }}
                 />
                 <div
@@ -1619,7 +1619,7 @@ function WomenHeroDark() {
                     style={{
                       fontSize: 11,
                       letterSpacing: "0.16em",
-                      color: "#A6C9F3",
+                      color: "#F3A6C6",
                       textTransform: "uppercase",
                       fontWeight: 600,
                     }}
@@ -1641,8 +1641,8 @@ function WomenHeroDark() {
       <div
         style={{
           position: "relative",
-          borderTop: "1px solid rgba(62, 96, 138,0.20)",
-          background: "rgba(247, 251, 255,0.4)",
+          borderTop: "1px solid rgba(138, 62, 94,0.20)",
+          background: "rgba(255, 247, 250,0.4)",
         }}
       >
         <div
@@ -1663,7 +1663,7 @@ function WomenHeroDark() {
             { k: "50", v: "States shipped" },
           ].map((s) => (
             <div key={s.v}>
-              <div style={{ fontSize: 30, fontWeight: 500, color: "#0B1D3C", letterSpacing: "-0.02em", fontFamily: "'Instrument Serif', Georgia, serif" }}>
+              <div style={{ fontSize: 30, fontWeight: 500, color: "#3C0B1F", letterSpacing: "-0.02em", fontFamily: "'Instrument Serif', Georgia, serif" }}>
                 {s.k}
               </div>
               <div
@@ -1671,7 +1671,7 @@ function WomenHeroDark() {
                   fontSize: 11,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: "rgba(24, 32, 42,0.6)",
+                  color: "rgba(42, 24, 31,0.6)",
                   marginTop: 4,
                 }}
               >
