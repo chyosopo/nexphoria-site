@@ -23,17 +23,17 @@ const PANEL_ICONS: Record<string, any> = {
 
 /* Porcelain-kintsugi organ artwork — one per system */
 const PANEL_ART: Record<string, string> = {
-  "heart": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152043_c505a7ff-5c11-4ace-95c9-7181e35bc8d4.png",
-  "metabolism": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152051_874517d2-49c0-4611-a684-1caf378c8fc8.png",
-  "hormones": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152059_c0f88e93-bfe0-4f4a-b540-aff3d34350f8.png",
-  "stress": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152108_4c838823-37f2-468f-860b-58a4513b3750.png",
-  "thyroid": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152115_ac9456e0-62a7-4e9c-8519-c0a62c72ee11.png",
-  "kidneys": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152123_9100d54b-9142-46b5-ac02-a436ecce5dfc.png",
-  "liver": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152130_a06b685b-6bd6-42c7-bd9b-341833691d72.png",
-  "immunity": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152137_9c659ee5-1f32-44e1-8ef5-4be7086fb367.png",
-  "nutrients": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152145_e83ce276-f545-4338-bb46-9c605a42e74c.png",
-  "blood": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152153_e93d95ec-41d4-48c0-84d7-4564d0ac2f74.png",
-  "bio-age": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152202_0658e816-204c-41ff-8729-419cdf508334.png",
+  "heart": "https://www.trybloom.ai/img/c33549a7-834a-4f61-8822-b3f12907559f",
+  "metabolism": "https://www.trybloom.ai/img/9ce93b0e-125f-4273-b41c-01acd52de4d3",
+  "hormones": "https://www.trybloom.ai/img/b5f765d2-0b68-4ba6-9069-d6723f601cac",
+  "stress": "https://www.trybloom.ai/img/e1dadb74-bc6b-4b4a-844f-df9b64503a04",
+  "thyroid": "https://www.trybloom.ai/img/e512b053-c330-4499-a258-e7239909a336",
+  "kidneys": "https://www.trybloom.ai/img/80eccd2c-610f-4258-ae14-c951b4d86cb9",
+  "liver": "https://www.trybloom.ai/img/d3c2dd7e-fdc3-4e87-a532-c4bae254b154",
+  "immunity": "https://www.trybloom.ai/img/51483a3a-4722-4a52-8a4d-d2543c195450",
+  "nutrients": "https://www.trybloom.ai/img/6135add4-e216-4d81-9655-83065972be08",
+  "blood": "https://www.trybloom.ai/img/4d274de8-80a5-40bb-b973-f320d930d1b6",
+  "bio-age": "https://www.trybloom.ai/img/90678457-66d6-4535-8321-551f92190a27",
 };
 
 const FONT = "'General Sans', system-ui, sans-serif";
