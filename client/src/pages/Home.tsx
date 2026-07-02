@@ -10,11 +10,17 @@ import { peptides as ALL_PEPTIDES } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
 
 /* V3 imagery — locked editorial palette */
-import heroVials from "@/assets/nx_v3_hero_vials.webp";
+import heroVials from "@/assets/nx_polish_hero_vials.webp";
+import tileWolverine from "@/assets/nx_polish_tile_wolverine.webp";
+import tileGlow from "@/assets/nx_polish_tile_glow.webp";
+import tileRestore from "@/assets/nx_polish_tile_restore.webp";
+import tileClarity from "@/assets/nx_polish_tile_clarity.webp";
+import tilePrime from "@/assets/nx_polish_tile_prime.webp";
+import tileBalance from "@/assets/nx_polish_tile_balance.webp";
+/* Legacy imports kept for other sections below */
 import tileRecover from "@/assets/nx_v3_tile_recover.webp";
 import tileBurn from "@/assets/nx_v3_tile_burnfat.webp";
 import tileSleep from "@/assets/nx_v3_tile_sleep.webp";
-import tileGlow from "@/assets/nx_v3_tile_glow.webp";
 import doctorShot from "@/assets/nx_v3_doctor.webp";
 import productHero from "@/assets/nx_v3_product_hero.webp";
 import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
@@ -49,7 +55,7 @@ export default function Home() {
   });
 
   return (
-    <SiteLayout navVariant="showcase">
+    <SiteLayout navVariant="showcase" hideTrustBar>
       <PromoBar />
       <Hero />
       <TrustBar />
@@ -110,9 +116,8 @@ function PromoBar() {
 /* ── HERO · Floating Result Cards (Wave 9 · Pattern 01) ──────── */
 function FloatingResultCards() {
   const cards: { top: string; left?: string; right?: string; label: string; delta: string; state: string; delay: number }[] = [
-    { top: "6%", left: "6%",  label: "IGF-1",           delta: "+23%", state: "Optimal range", delay: 0.2 },
-    { top: "46%", right: "6%", label: "Recovery index", delta: "+2 wk",  state: "Back in range", delay: 0.5 },
-    { top: "80%", left: "12%", label: "Deep sleep",     delta: "+38%", state: "Trending up",   delay: 0.8 },
+    { top: "4%", left: "4%",   label: "IGF-1",           delta: "+23%", state: "Optimal range", delay: 0.2 },
+    { top: "88%", right: "4%", label: "Deep sleep",      delta: "+38%", state: "Trending up",   delay: 0.6 },
   ];
   return (
     <div className="pointer-events-none absolute inset-0" data-testid="floating-result-cards">
@@ -279,8 +284,8 @@ function Hero() {
           >
             <img
               src={heroVials}
-              alt="Peptide vials on a ceramic surface"
-              className="w-full h-full object-cover"
+              alt="Five peptide vials on a warm cream pedestal beneath the Nexphoria wordmark"
+              className="absolute inset-0 w-full h-full object-cover object-center"
               loading="eager"
               decoding="async"
             />
@@ -292,58 +297,75 @@ function Hero() {
   );
 }
 
-/* ── 2 · TRUST BAR ────────────────────────────────────────────── */
+/* ── 2 · TRUST TICKER (Wave 10 · Polish Race) ────────────────── */
 function TrustBar() {
   const items = [
-    "Board-certified physicians",
-    "US 503A pharmacies",
-    "HIPAA-compliant",
-    "Discreet 3–5 day shipping",
-    "Money-back guarantee",
+    "LICENSED PROVIDERS",
+    "PRESCRIPTION REQUIRED",
+    "CLINICAL-GRADE PEPTIDES",
+    "THIRD-PARTY TESTED",
+    "DISCREET SHIPPING",
+    "U.S. 503A PHARMACIES",
+    "HIPAA-COMPLIANT",
+    "PHYSICIAN-REVIEWED",
   ];
+  const doubled = [...items, ...items];
   return (
     <section
-      className="border-y"
+      aria-label="Trust signals"
       style={{
-        borderColor: "rgba(10,10,10,0.08)",
-        background: "var(--nx-ceramic)",
+        background: "var(--nx-black)",
+        color: "var(--nx-ceramic)",
+        overflow: "hidden",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
+      data-testid="trust-ticker"
     >
-      <div
-        className="nx-container flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5"
-        style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "12px",
-          fontWeight: 500,
-          textTransform: "uppercase",
-          letterSpacing: "0.08em",
-          color: "var(--nx-fg-muted)",
-        }}
-      >
-        {items.map((label, i) => (
-          <span key={label} className="inline-flex items-center gap-3">
-            <span
-              aria-hidden
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "var(--nx-acid)",
-                display: "inline-block",
-              }}
-            />
-            {label}
-            {i < items.length - 1 && (
+      <style>{`
+        @keyframes nx-marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .nx-marquee-track {
+          display: inline-flex;
+          align-items: center;
+          gap: 48px;
+          padding: 18px 0;
+          animation: nx-marquee 45s linear infinite;
+          white-space: nowrap;
+          will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .nx-marquee-track { animation: none; }
+        }
+      `}</style>
+      <div style={{ width: "100%", overflow: "hidden" }}>
+        <div
+          className="nx-marquee-track"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontSize: "12.5px",
+            fontWeight: 500,
+            letterSpacing: "0.14em",
+          }}
+        >
+          {doubled.map((label, i) => (
+            <span key={i} className="inline-flex items-center" style={{ gap: 20 }}>
               <span
                 aria-hidden
-                className="hidden md:inline"
-                style={{ color: "rgba(10,10,10,0.18)", marginLeft: 12 }}
-              >
-                ·
-              </span>
-            )}
-          </span>
-        ))}
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: "var(--nx-acid)",
+                  display: "inline-block",
+                }}
+              />
+              <span style={{ opacity: 0.92 }}>{label}</span>
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -353,36 +375,52 @@ function TrustBar() {
 function GoalTiles() {
   const tiles = [
     {
-      eyebrow: "Recovery",
-      title: "Recover faster",
-      copy: "Wolverine stack — BPC-157 · TB-500",
-      image: tileRecover,
+      eyebrow: "Performance",
+      title: "Wolverine",
+      copy: "Recover faster — BPC-157 · TB-500",
+      image: tileWolverine,
       href: "/stacks/wolverine",
-      testId: "tile-recover",
+      testId: "tile-wolverine",
     },
     {
-      eyebrow: "Body Composition",
-      title: "Burn fat",
-      copy: "GLP-1 protocols — semaglutide · tirzepatide",
-      image: tileBurn,
-      href: "/stacks/glp1",
-      testId: "tile-burn",
-    },
-    {
-      eyebrow: "Sleep · Recovery",
-      title: "Sleep deeper",
-      copy: "Growth peptides — CJC-1295 · ipamorelin",
-      image: tileSleep,
-      href: "/stacks/growth",
-      testId: "tile-sleep",
-    },
-    {
-      eyebrow: "Skin · Hair",
-      title: "Glow inside out",
-      copy: "Glow stack — GHK-Cu · topicals",
+      eyebrow: "Beauty",
+      title: "Glow",
+      copy: "Skin, hair, radiance — GHK-Cu · GHRP-2",
       image: tileGlow,
       href: "/stacks/glow",
       testId: "tile-glow",
+    },
+    {
+      eyebrow: "Longevity",
+      title: "Restore",
+      copy: "Growth hormone — CJC-1295 · ipamorelin",
+      image: tileRestore,
+      href: "/stacks/growth",
+      testId: "tile-restore",
+    },
+    {
+      eyebrow: "Focus",
+      title: "Clarity",
+      copy: "Cognitive support — semax · selank",
+      image: tileClarity,
+      href: "/stacks/clarity",
+      testId: "tile-clarity",
+    },
+    {
+      eyebrow: "Weight",
+      title: "Prime",
+      copy: "GLP-1 protocols — semaglutide · tirzepatide",
+      image: tilePrime,
+      href: "/stacks/glp1",
+      testId: "tile-prime",
+    },
+    {
+      eyebrow: "Wellness",
+      title: "Balance",
+      copy: "Sleep, mood, calm — DSIP · epitalon",
+      image: tileBalance,
+      href: "/stacks/balance",
+      testId: "tile-balance",
     },
   ];
 
@@ -431,7 +469,7 @@ function GoalTiles() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {tiles.map((t) => (
             <Link
               key={t.title}
@@ -440,7 +478,7 @@ function GoalTiles() {
               className="group relative block rounded-[16px] overflow-hidden"
               style={{
                 background: "var(--nx-rock)",
-                aspectRatio: "4 / 3",
+                aspectRatio: "3 / 4",
               }}
             >
               <img
