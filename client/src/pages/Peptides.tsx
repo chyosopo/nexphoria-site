@@ -435,13 +435,13 @@ export default function Peptides() {
           />
 
           {/* ── Cinematic vial — the product, breathing (Higgsfield kling3.0) ── */}
-          <div className="relative overflow-hidden mb-6 md:mb-7" style={{ borderRadius: "22px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }} data-testid="peptides-video-band">
+          <div className="relative mb-10 md:mb-12" style={{ borderRadius: "22px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }} data-testid="peptides-video-band">
             <video autoPlay muted loop playsInline
               src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031439_b4719d02-b185-452d-b110-947e30840bd4.mp4"
               poster="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png"
-              className="w-full h-auto block" style={{ aspectRatio: "21 / 6", objectFit: "cover" }}
+              className="w-full h-auto block" style={{ aspectRatio: "21 / 6", objectFit: "cover", borderRadius: "22px" }}
               aria-label="Nexphoria compounded peptide vial" />
-            <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(28,24,21,0.30))" }} />
+            <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(28,24,21,0.30))", borderRadius: "22px" }} />
             <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#FAF7F0", textShadow: "0 2px 16px rgba(28,24,21,0.45)", margin: 0 }}>
               Compounded. Tested. Prescribed.
             </p>
@@ -450,7 +450,7 @@ export default function Peptides() {
               <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#FAF7F0" }}>USP &lt;797&gt; · 503A compounded</div>
               <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(250,247,240,0.65)", marginTop: 2 }}>Sterility &amp; potency tested per batch</div>
             </div>
-            <div className="hidden md:flex absolute bottom-4 right-5 items-center gap-2.5" style={{ background: "rgba(255,254,251,0.94)", borderRadius: 14, padding: "10px 15px", boxShadow: "0 14px 34px -14px rgba(28,24,21,0.4)" }}>
+            <div className="hidden md:flex absolute right-8 items-center gap-2.5"  style={{ bottom: -22, background: "rgba(255,254,251,0.98)", borderRadius: 14, padding: "11px 16px", boxShadow: "0 18px 40px -14px rgba(28,24,21,0.45)", zIndex: 2 }}>
               <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: 999, background: "#A8C69A" }} aria-hidden />
               <div>
                 <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#1C1815" }}>Pairs well: BPC-157 + TB-500</div>
