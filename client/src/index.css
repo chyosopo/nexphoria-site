@@ -1027,7 +1027,7 @@ body { overflow-x: clip; }
 
 /* Scroll choreography: cards and tiles rise softly into view */
 @supports (animation-timeline: view()) {
-  .nx-glass-card, .nx-icon-chip ~ *, [data-testid^="cat-item"], [data-testid^="goal-tile"] {
+  .nx-glass-card, .nx-icon-chip ~ *, [data-testid^="cat-item"], [data-testid^="goal-tile"], [data-testid^="mosaic-"] {
     animation: nx-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
     animation-timeline: view();
     animation-range: entry 0% entry 60%;
@@ -1061,4 +1061,21 @@ html { scrollbar-color: #DFD3BC #FAF7F0; scrollbar-width: thin; }
 @media (prefers-reduced-motion: reduce) {
   .nx-glass-card, [data-testid^="cat-item"], [data-testid^="goal-tile"] { animation: none; }
   .nx-glass-card, .nx-cta-cobalt, .nx-cta-ghost { transition: none; }
+}
+
+/* ═══ COMPOSITE LIFE — v2 craft layer ═══ */
+@keyframes nx-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes nx-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(168,198,154,0.5); } 60% { box-shadow: 0 0 0 9px rgba(168,198,154,0); } }
+@keyframes nx-pulse-honey { 0%,100% { box-shadow: 0 0 0 3px rgba(243,200,122,0.25); } 55% { box-shadow: 0 0 0 8px rgba(243,200,122,0); } }
+.nx-float { animation: nx-float 5.5s ease-in-out infinite; }
+.nx-pulse-chip { animation: nx-pulse 2.8s ease-out infinite; }
+.nx-pulse-dot { animation: nx-pulse-honey 2.4s ease-out infinite; }
+@supports (animation-timeline: view()) {
+  .nx-spark { stroke-dasharray: 100; stroke-dashoffset: 100; animation: nx-spark-draw 1s ease-out forwards; animation-timeline: view(); animation-range: entry 20% cover 55%; }
+  .nx-ring-arc { animation: nx-ring-spin 0.9s cubic-bezier(0.22,1,0.36,1) both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+}
+@keyframes nx-spark-draw { to { stroke-dashoffset: 0; } }
+@keyframes nx-ring-spin { from { stroke-dashoffset: 188.5; } }
+@media (prefers-reduced-motion: reduce) {
+  .nx-float, .nx-pulse-chip, .nx-pulse-dot, .nx-spark, .nx-ring-arc { animation: none; stroke-dashoffset: 0; }
 }

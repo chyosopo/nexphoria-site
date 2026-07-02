@@ -332,9 +332,9 @@ function Hero() {
             <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
               <g transform="rotate(-90 38 38)">
                 <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(250,247,240,0.12)" strokeWidth="6" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#A8C69A" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#F3C87A" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#D07A52" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" />
+                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="#A8C69A" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#F3C87A" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#D07A52" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
               </g>
               <text x="38" y="36" textAnchor="middle" fill="#FAF7F0" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
               <text x="38" y="49" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
@@ -351,7 +351,7 @@ function Hero() {
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
             </div>
             <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
-              <span className="absolute" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0", boxShadow: "0 0 0 3px rgba(250,247,240,0.3)" }} />
+              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0" }} />
             </div>
           </div>
           <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">

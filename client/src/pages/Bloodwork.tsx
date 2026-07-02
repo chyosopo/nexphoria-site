@@ -1072,7 +1072,7 @@ function ResultsDashboard() {
                   </div>
                   <div className="relative mt-2.5" style={{ height: 6, borderRadius: 999, background: "rgba(250,247,240,0.12)" }}>
                     <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: 999, background: "rgba(168,198,154,0.35)" }} />
-                    <span className="absolute" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: 999, background: "#F3C87A", boxShadow: "0 0 0 3px rgba(243,200,122,0.25)" }} />
+                    <span className="absolute nx-pulse-dot" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: 999, background: "#F3C87A" }} data-pulse />
                   </div>
                 </div>
               );
@@ -1085,7 +1085,7 @@ function ResultsDashboard() {
               <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 700, color: "#A8C69A" }}>−25%</span>
             </div>
             <svg viewBox="0 0 300 120" className="mt-4 w-full" style={{ height: 120 }}>
-              <polyline points={pts} fill="none" stroke="#F3C87A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <polyline className="nx-spark" pathLength={100} points={pts} fill="none" stroke="#F3C87A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               {spark.map((v, i) => (
                 <circle key={i} cx={20 + i * 86} cy={104 - (v - 60) * 1.6} r="4" fill="#1C1815" stroke="#F3C87A" strokeWidth="2" />
               ))}
@@ -1206,12 +1206,12 @@ function GlowingBody() {
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_155120_6ebcb99a-6685-491b-b11b-f63f4dad450c.png" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
-          {SURFACE_PILLS.map((p) => (
-            <span key={p.t} className="hidden sm:inline-block absolute" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "#FAF7F0" : "rgba(250,247,240,0.4)", border: `1px solid ${p.hot ? "rgba(250,247,240,0.55)" : "rgba(250,247,240,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(36,26,18,0.35)", backdropFilter: "blur(6px)" }}>
+          {SURFACE_PILLS.map((p, pi) => (
+            <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "#FAF7F0" : "rgba(250,247,240,0.4)", border: `1px solid ${p.hot ? "rgba(250,247,240,0.55)" : "rgba(250,247,240,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(36,26,18,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}
             </span>
           ))}
-          <span className="absolute left-1/2 -translate-x-1/2" style={{ top: "44%", fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#1C1815", background: "#FFFEFB", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
+          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#1C1815", background: "#FFFEFB", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
             <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: 999, background: "#A8C69A", color: "#1C1815", textAlign: "center", lineHeight: "16px", fontSize: 11, marginRight: 8 }}>✓</span>
             All 76 reviewed by a physician
           </span>
