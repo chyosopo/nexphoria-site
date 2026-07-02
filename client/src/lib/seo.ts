@@ -146,6 +146,44 @@ export const breadcrumbJsonLd = (
   })),
 });
 
+export const physicianJsonLd = (p: {
+  name: string;
+  jobTitle?: string;
+  medicalSpecialty?: string;
+  alumniOf?: string;
+  credentials?: string;
+  description?: string;
+}): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  name: p.name,
+  ...(p.jobTitle ? { jobTitle: p.jobTitle } : {}),
+  ...(p.medicalSpecialty ? { medicalSpecialty: p.medicalSpecialty } : {}),
+  ...(p.alumniOf ? { alumniOf: { "@type": "CollegeOrUniversity", name: p.alumniOf } } : {}),
+  ...(p.credentials ? { hasCredential: p.credentials } : {}),
+  ...(p.description ? { description: p.description } : {}),
+  worksFor: { "@type": "MedicalBusiness", name: "Nexphoria", url: BASE_URL },
+});
+
+export const itemListJsonLd = (p: {
+  name: string;
+  description?: string;
+  items: { name: string; path: string; description?: string }[];
+}): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: p.name,
+  ...(p.description ? { description: p.description } : {}),
+  numberOfItems: p.items.length,
+  itemListElement: p.items.map((it, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `${BASE_URL}${it.path}`,
+    name: it.name,
+    ...(it.description ? { description: it.description } : {}),
+  })),
+});
+
 export const productJsonLd = (p: {
   name: string;
   description: string;

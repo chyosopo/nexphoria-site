@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { ArrowRight, FlaskConical, Layers, Stethoscope, Plus, Minus } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { stacks, computeStackPrice } from "@/data/stacks";
@@ -89,6 +89,15 @@ export default function StackIndex() {
         name: "Nexphoria Peptide Stacks",
         description: "Physician-curated multi-peptide stacks for recovery, skin, sleep, cognition, metabolic health, and longevity.",
         path: "/stacks",
+      }),
+      itemListJsonLd({
+        name: "Nexphoria physician-curated stacks",
+        description: "Six flagship stacks: Wolverine, Glow, Restore, Clarity, Prime, Balance.",
+        items: stacks.map((s) => ({
+          name: s.name,
+          path: `/stacks/${s.slug}`,
+          description: s.purpose,
+        })),
       }),
       faqJsonLd(FAQ_ITEMS),
       breadcrumbJsonLd([

@@ -27,6 +27,8 @@ export interface Stack {
   gender: "her" | "him" | "both";
   /** badge */
   badge?: "Flagship" | "Bestseller" | "New";
+  /** "from" price for schema/JSON-LD — best-value per-month rate. */
+  startingPrice?: number;
 }
 
 export const stacks: Stack[] = [
@@ -44,6 +46,7 @@ export const stacks: Stack[] = [
     image: "stack-wolverine",
     gender: "him",
     badge: "Flagship",
+    startingPrice: 262,
   },
   {
     slug: "glow",
@@ -59,6 +62,7 @@ export const stacks: Stack[] = [
     image: "stack-glow",
     gender: "her",
     badge: "Flagship",
+    startingPrice: 187,
   },
   {
     slug: "restore",
@@ -73,6 +77,7 @@ export const stacks: Stack[] = [
     bestFor: "Adults with chronic sleep onset issues, shift workers, frequent travelers",
     image: "stack-sleep",
     gender: "both",
+    startingPrice: 228,
   },
   {
     slug: "clarity",
@@ -87,6 +92,7 @@ export const stacks: Stack[] = [
     bestFor: "High-performers managing chronic stress, founders, executives",
     image: "lifestyle-cognition",
     gender: "both",
+    startingPrice: 229,
   },
   {
     slug: "prime",
@@ -102,6 +108,7 @@ export const stacks: Stack[] = [
     image: "stack-weightloss",
     gender: "both",
     badge: "Bestseller",
+    startingPrice: 398,
   },
   {
     slug: "balance",
@@ -116,6 +123,7 @@ export const stacks: Stack[] = [
     bestFor: "Adults 40+ optimizing healthspan with biomarker tracking",
     image: "stack-longevity",
     gender: "both",
+    startingPrice: 348,
   },
 ];
 

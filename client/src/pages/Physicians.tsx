@@ -4,7 +4,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { physicians, type Physician } from "@/data/physicians";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, physicianJsonLd } from "@/lib/seo";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 import physicianTrustHero from "@/assets/nx_v11_trust_physician_hero.webp";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
@@ -15,12 +15,24 @@ export default function Physicians() {
     title: "Nexphoria physicians — board-certified, Cleveland Clinic to Stanford",
     description: "Every Nexphoria protocol is reviewed by a board-certified U.S. physician trained at Cleveland Clinic, Mayo, UCSF, Hopkins, or Stanford. No algorithms, no auto-approval — a real physician reads your file.",
     path: "/physicians",
-    jsonLd: [webPageJsonLd({
-      name: "Nexphoria Physicians",
-      description: "Board-certified U.S. physicians from Cleveland Clinic, Mayo, UCSF, Hopkins, and Stanford reviewing every peptide protocol.",
-      path: "/physicians",
-      type: "MedicalWebPage",
-    })],
+    jsonLd: [
+      webPageJsonLd({
+        name: "Nexphoria Physicians",
+        description: "Board-certified U.S. physicians from Cleveland Clinic, Mayo, UCSF, Hopkins, and Stanford reviewing every peptide protocol.",
+        path: "/physicians",
+        type: "MedicalWebPage",
+      }),
+      ...physicians.map((p) =>
+        physicianJsonLd({
+          name: p.name,
+          jobTitle: p.specialty,
+          medicalSpecialty: p.specialty,
+          alumniOf: p.institution,
+          credentials: p.credentials,
+          description: p.bio,
+        }),
+      ),
+    ],
   });
   return (
     <SiteLayout navVariant="showcase">

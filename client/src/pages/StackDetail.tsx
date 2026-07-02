@@ -381,6 +381,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
             description: stack.purpose,
             path: `/stacks/${slug}`,
             category: "Peptide Stack",
+            price: stack.startingPrice,
             reviewCount: 340,
             ratingValue: 4.8,
           }),

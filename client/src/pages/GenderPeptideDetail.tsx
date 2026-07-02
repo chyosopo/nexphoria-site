@@ -12,6 +12,7 @@ import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { HimsConfigurator } from "@/components/HimsConfigurator";
 import { peptides, CATEGORY_LABELS } from "@/data/peptides";
+import { pricing } from "@/data/pricing";
 import { useSeo, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 interface GenderPeptideDetailProps {
@@ -86,6 +87,9 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
             description: peptide.summary,
             path: `/${gender}/peptides/${slug}`,
             category: peptide.category,
+            price: pricing[peptide.slug]?.monthlyPrice,
+            reviewCount: 340,
+            ratingValue: 4.8,
           }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

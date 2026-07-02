@@ -30,7 +30,7 @@ import {
   type Peptide,
 } from "@/data/peptides";
 import { pricing, getPrice, formatUSD } from "@/data/pricing";
-import { useSeo, orgJsonLd, medicalBusinessJsonLd, webPageJsonLd } from "@/lib/seo";
+import { useSeo, orgJsonLd, medicalBusinessJsonLd, webPageJsonLd, itemListJsonLd } from "@/lib/seo";
 
 /* ────────────────────────────────────────────────────────────────
    Derived metadata layer — peptides.ts is read-only, so we map the
@@ -323,7 +323,20 @@ export default function Peptides() {
     description:
       "Browse 16+ physician-prescribed peptides: BPC-157, TB-500, GHK-Cu, Tirzepatide, Epitalon, NAD+, MOTS-c. Filter by goal, evidence tier, and route. Every compound compounded in a U.S. 503A pharmacy.",
     path: "/peptides",
-    jsonLd: [orgJsonLd(), medicalBusinessJsonLd(), webPageJsonLd({ name: "Nexphoria Peptide Library", description: "Physician-prescribed peptide catalog with mechanism, dosing, timelines, and clinical references.", path: "/peptides" })],
+    jsonLd: [
+      orgJsonLd(),
+      medicalBusinessJsonLd(),
+      webPageJsonLd({ name: "Nexphoria Peptide Library", description: "Physician-prescribed peptide catalog with mechanism, dosing, timelines, and clinical references.", path: "/peptides" }),
+      itemListJsonLd({
+        name: "Nexphoria peptide catalog",
+        description: "Physician-prescribed peptides available through Nexphoria's telehealth platform.",
+        items: peptides.map((p) => ({
+          name: p.name,
+          path: `/peptides/${p.slug}`,
+          description: p.summary,
+        })),
+      }),
+    ],
   });
 
   const toggle = <T,>(arr: T[], v: T, set: (x: T[]) => void) =>

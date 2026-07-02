@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, itemListJsonLd } from "@/lib/seo";
 import {
   JOURNAL_ARTICLES,
   JOURNAL_CATEGORIES,
@@ -32,12 +32,23 @@ export default function Journal() {
     description:
       "Long-form evidence reviews, protocol explainers, and physician notes on every peptide we prescribe. The science behind BPC-157, GLP-1, NAD+, Epitalon, and more — plainly written, rigorously sourced.",
     path: "/journal",
-    jsonLd: [webPageJsonLd({
-      name: "Nexphoria Journal",
-      description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
-      path: "/journal",
-      type: "MedicalWebPage",
-    })],
+    jsonLd: [
+      webPageJsonLd({
+        name: "Nexphoria Journal",
+        description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
+        path: "/journal",
+        type: "MedicalWebPage",
+      }),
+      itemListJsonLd({
+        name: "Nexphoria Journal articles",
+        description: "Long-form, physician-reviewed writing on peptide science and protocols.",
+        items: JOURNAL_ARTICLES.map((a) => ({
+          name: a.title,
+          path: `/journal/${a.slug}`,
+          description: a.dek,
+        })),
+      }),
+    ],
   });
 
   const [activeCategory, setActiveCategory] = useState<JournalCategory | "all">("all");
