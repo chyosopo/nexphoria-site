@@ -2212,6 +2212,13 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
           </div>
         </div>
       </section>
+
+      {/* ── Sticky mobile intake CTA — hims PDP grammar ── */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ background: "rgba(252,250,245,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(28,24,21,0.08)", padding: "10px 16px calc(10px + env(safe-area-inset-bottom))" }} data-testid="pdp-sticky-cta">
+        <a href="#/assessment" className="flex items-center justify-center no-underline" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, background: "var(--nx-black)", color: "#FAF7F0", borderRadius: 999, padding: "13px 20px" }}>
+          Start your intake — free evaluation
+        </a>
+      </div>
     </SiteLayout>
   );
 }

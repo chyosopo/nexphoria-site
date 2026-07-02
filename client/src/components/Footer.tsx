@@ -210,7 +210,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
           style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
           data-testid="footer-research-disclaimer"
         >
-          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in state-licensed 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
+          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in state-licensed 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease. From-pricing shown throughout the site; medication is dispensed only if a licensed provider determines a prescription is appropriate. Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Ozempic®, Wegovy®, Mounjaro®, and Zepbound® are registered trademarks of their respective owners; Nexphoria is not affiliated with, or endorsed by, Novo Nordisk or Eli Lilly.
         </p>
         <p
           className="mt-3 text-xs"

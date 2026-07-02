@@ -613,7 +613,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
         className="text-lg mb-2"
         style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
       >
-        Your pharmacy is empty
+        Your protocol is empty
       </h3>
       <p
         className="text-sm mb-6 max-w-xs"

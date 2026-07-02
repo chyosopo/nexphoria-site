@@ -49,7 +49,7 @@ export default function Cart() {
               style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.6 }}
             >
               {itemCount === 0
-                ? "Your pharmacy is empty. Add single peptides or a curated stack to begin."
+                ? "Your protocol is empty. Add single peptides or a curated stack to begin."
                 : "Confirm your selections, then continue to checkout for physician review and shipping."}
             </p>
           </div>
@@ -507,7 +507,7 @@ function EmptyCart() {
         <ShoppingBag size={32} strokeWidth={1.25} />
       </div>
       <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}>
-        Your pharmacy is empty
+        Your protocol is empty
       </h2>
       <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
         Start with a curated stack, browse single peptides, or take the assessment for a custom physician-built protocol.

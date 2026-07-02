@@ -1886,7 +1886,7 @@ function PeptideTilesStrip() {
                 maxWidth: 520,
               }}
             >
-              Every peptide in our pharmacy lists its mechanism, dose, and monthly cost up front. No fine print.
+              Every peptide in our catalog lists its mechanism, dose, and monthly cost up front. No fine print.
             </p>
           </div>
           <Link
