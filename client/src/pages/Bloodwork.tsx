@@ -1005,7 +1005,7 @@ function SystemsMosaic() {
     <section className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.08, color: "var(--nx-black)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-black)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           One draw. <em style={{ fontStyle: "italic", color: "#B97C24" }}>Eleven</em> windows into you.
         </h2>
         <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1056,7 +1056,7 @@ function ResultsDashboard() {
     <section className="nx-section" style={{ background: "var(--nx-black)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow" style={{ color: "rgba(250,247,240,0.55)" }}>Your results</p>
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.08, color: "#FAF7F0", marginTop: "0.7rem" }}>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "#FAF7F0", marginTop: "0.7rem" }}>
           Not a PDF. <em style={{ fontStyle: "italic", color: "#F3C87A" }}>A plan.</em>
         </h2>
         <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
@@ -1152,7 +1152,7 @@ function OfferStack() {
 /* ══ ACTION PLAN — guidance cards floating over life ══ */
 function ActionPlan() {
   return (
-    <section className="relative overflow-hidden" style={{ minHeight: 560 }}>
+    <section className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(28,24,21,0.25) 0%, rgba(28,24,21,0.05) 35%, rgba(28,24,21,0.62) 100%)" }} />
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
@@ -1204,7 +1204,7 @@ const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[] = [
 function GlowingBody() {
   return (
     <section className="relative overflow-hidden" style={{ background: "#241A12" }}>
-      <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3rem" }}>
+      <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_155120_6ebcb99a-6685-491b-b11b-f63f4dad450c.png" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
@@ -1217,7 +1217,7 @@ function GlowingBody() {
             All 76 reviewed by a physician
           </span>
         </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+        <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[["One draw", "5-minute booking, 2,000+ locations"], ["76 markers", "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(250,247,240,0.94)", borderRadius: 16, padding: "1.1rem 1.2rem" }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 22, color: "#5E3C0D" }}>{t}</div>
@@ -1239,7 +1239,7 @@ function MarkerWall() {
   const rows = [names.slice(0, 5), names.slice(9, 13), names.slice(18, 22), names.slice(27, 31), names.slice(36, 40), names.slice(45, 49), names.slice(54, 58)];
   const ops = [0.16, 0.3, 0.5, 0.75, 0.5, 0.3, 0.16];
   return (
-    <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "4rem 0" }}>
+    <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
       <div aria-hidden style={{ textAlign: "center" }}>
         {rows.map((r, i) => (
           <p key={i} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "#7A4E12", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>

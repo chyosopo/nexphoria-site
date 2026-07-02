@@ -425,12 +425,12 @@ export default function StackIndex() {
 
         {/* ── Why stacked protocols work better — editorial band ── */}
         {/* ── Stack-builder composite — UI over film ── */}
-        <section className="relative overflow-hidden" style={{ minHeight: 480 }}>
+        <section className="relative overflow-hidden flex items-center" style={{ minHeight: "72vh" }}>
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
           <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(28,24,21,0.2) 45%, rgba(28,24,21,0.62) 100%)" }} />
           <div className="nx-container relative" style={{ paddingTop: "3.2rem", paddingBottom: "3.2rem", display: "flex", justifyContent: "flex-end" }}>
             <div style={{ maxWidth: 400 }}>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,3.6vw,42px)", lineHeight: 1.1, color: "#FAF7F0" }}>
+              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.2vw,52px)", lineHeight: 1.1, color: "#FAF7F0" }}>
                 Balanced like a <em style={{ fontStyle: "italic", color: "#F3C87A" }}>formula.</em>
               </h2>
               <div className="mt-6" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)" }}>

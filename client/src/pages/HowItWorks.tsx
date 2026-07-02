@@ -1034,11 +1034,11 @@ export default function HowItWorks() {
 
       {/* ════════════════ FAQ ════════════════ */}
       {/* ── Care tracker composite — UI over film ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: 520 }}>
+      <section className="relative overflow-hidden flex items-center" style={{ minHeight: "78vh" }}>
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.6) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)" }} />
         <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.08, color: "#FAF7F0", maxWidth: "16ch" }}>
+          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(32px,4.6vw,58px)", lineHeight: 1.08, color: "#FAF7F0", maxWidth: "16ch" }}>
             Intake to first dose, <em style={{ fontStyle: "italic", color: "#F3C87A" }}>watched</em> the whole way.
           </h2>
           <div className="mt-8" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", maxWidth: 380, boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)" }}>
