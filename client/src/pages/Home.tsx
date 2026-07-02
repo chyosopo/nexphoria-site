@@ -11,12 +11,12 @@ import { getPrice } from "@/data/pricing";
 
 /* V3 imagery — locked editorial palette */
 import heroVials from "@/assets/nx_polish_hero_vials.webp";
-import tileWolverine from "@/assets/nx_polish_tile_wolverine.webp";
-import tileGlow from "@/assets/nx_polish_tile_glow.webp";
-import tileRestore from "@/assets/nx_polish_tile_restore.webp";
-import tileClarity from "@/assets/nx_polish_tile_clarity.webp";
-import tilePrime from "@/assets/nx_polish_tile_prime.webp";
-import tileBalance from "@/assets/nx_polish_tile_balance.webp";
+import tileWolverine from "@/assets/nx_v11_tile_wolverine.webp";
+import tileGlow from "@/assets/nx_v11_tile_glow.webp";
+import tileRestore from "@/assets/nx_v11_tile_restore.webp";
+import tileClarity from "@/assets/nx_v11_tile_clarity.webp";
+import tilePrime from "@/assets/nx_v11_tile_prime.webp";
+import tileBalance from "@/assets/nx_v11_tile_balance.webp";
 /* Legacy imports kept for other sections below */
 import tileRecover from "@/assets/nx_v3_tile_recover.webp";
 import tileBurn from "@/assets/nx_v3_tile_burnfat.webp";
@@ -469,13 +469,13 @@ function GoalTiles() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
           {tiles.map((t) => (
             <Link
               key={t.title}
               href={t.href}
               data-testid={t.testId}
-              className="group relative block rounded-[16px] overflow-hidden"
+              className="group relative block rounded-[14px] overflow-hidden"
               style={{
                 background: "var(--nx-rock)",
                 aspectRatio: "3 / 4",
@@ -499,11 +499,11 @@ function GoalTiles() {
 
               {/* top-left eyebrow */}
               <div
-                className="absolute top-6 left-6 inline-flex items-center gap-2"
+                className="absolute top-3 left-3 inline-flex items-center gap-1.5"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 500,
-                  fontSize: "12px",
+                  fontSize: "10px",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color: "#fffff3",
@@ -512,8 +512,8 @@ function GoalTiles() {
                 <span
                   aria-hidden
                   style={{
-                    width: 6,
-                    height: 6,
+                    width: 5,
+                    height: 5,
                     borderRadius: "50%",
                     background: "var(--nx-acid)",
                     display: "inline-block",
@@ -522,14 +522,14 @@ function GoalTiles() {
                 {t.eyebrow}
               </div>
 
-              {/* bottom-left title + copy + arrow */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
-                <div>
+              {/* bottom-left title + benefit + arrow (tighter Hims-scale) */}
+              <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+                <div className="min-w-0">
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 600,
-                      fontSize: "clamp(28px, 3.4vw, 40px)",
+                      fontSize: "clamp(18px, 1.6vw, 22px)",
                       lineHeight: 1.02,
                       letterSpacing: "-0.02em",
                       color: "#fffff3",
@@ -538,12 +538,12 @@ function GoalTiles() {
                     {t.title}
                   </div>
                   <div
-                    className="mt-2"
+                    className="mt-1 truncate"
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 400,
-                      fontSize: "14px",
-                      color: "rgba(255,255,243,0.78)",
+                      fontSize: "11px",
+                      color: "rgba(255,255,243,0.82)",
                     }}
                   >
                     {t.copy}
@@ -553,13 +553,13 @@ function GoalTiles() {
                   aria-hidden
                   className="shrink-0 inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
                   style={{
-                    width: 44,
-                    height: 44,
+                    width: 28,
+                    height: 28,
                     background: "var(--nx-acid)",
                     color: "var(--nx-black)",
                   }}
                 >
-                  <ArrowUpRight size={20} strokeWidth={2} />
+                  <ArrowUpRight size={14} strokeWidth={2} />
                 </span>
               </div>
             </Link>
