@@ -7,42 +7,45 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: design/azure }
-      - name: Download all manifest assets (tolerant, self-reporting)
+      - name: Install webp tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq webp file
+      - name: Download, optimize, map (idempotent)
         run: |
-          mkdir -p client/public/img
+          rm -rf client/public/img && mkdir -p client/public/img
           R=scripts/asset-report.txt
-          echo "asset localization report — $(date -u)" > $R
+          echo "asset localization+optimization — $(date -u)" > $R
           MAP=client/public/img/asset-map.json
           echo "{" > $MAP; first=1; ok=0; bad=0
           while IFS= read -r url; do
             [ -z "$url" ] && continue
             name="img_$(echo -n "$url" | sha1sum | cut -c1-12)"
             tmp="/tmp/$name"
-            code=$(curl -sL --retry 2 --max-time 60 -H "Accept: image/*" -o "$tmp" -w '%{http_code}' "$url" || echo "curlfail")
-            mime=$(file -b --mime-type "$tmp" 2>/dev/null || echo "none")
+            code=$(curl -sL --retry 2 --max-time 90 -H "Accept: image/*,video/*" -o "$tmp" -w '%{http_code}' "$url" || echo "curlfail")
+            mime=$(file -b --mime-type "$tmp" 2>/dev/null || echo none)
+            out=""; ext=""
             case "$mime" in
-              image/webp) ext=webp;; image/png) ext=png;;
-              image/jpeg) ext=jpg;;  image/avif) ext=avif;; image/gif) ext=gif;; video/mp4) ext=mp4;; video/webm) ext=webm;;
-              *) ext="";;
+              image/png|image/jpeg|image/webp)
+                ext=webp; out="client/public/img/$name.webp"
+                cwebp -quiet -q 82 -resize 1600 0 "$tmp" -o "$out" || { cwebp -quiet -q 82 "$tmp" -o "$out" || out=""; } ;;
+              image/avif|image/gif) ext="${mime#image/}"; out="client/public/img/$name.$ext"; mv "$tmp" "$out" ;;
+              video/mp4)  ext=mp4;  out="client/public/img/$name.mp4";  mv "$tmp" "$out" ;;
+              video/webm) ext=webm; out="client/public/img/$name.webm"; mv "$tmp" "$out" ;;
             esac
-            if [ "$code" = "200" ] && [ -n "$ext" ]; then
-              mv "$tmp" "client/public/img/$name.$ext"
+            if [ "$code" = "200" ] && [ -n "$out" ] && [ -s "$out" ]; then
               [ $first = 1 ] || echo "," >> $MAP; first=0
               printf '  "%s": "img/%s.%s"' "$url" "$name" "$ext" >> $MAP
-              echo "OK   $code $mime $name.$ext $url" >> $R; ok=$((ok+1))
+              echo "OK   $mime → $name.$ext ($(du -h "$out" | cut -f1)) $url" >> $R; ok=$((ok+1))
             else
-              hdr=$(curl -sIL --max-time 30 -H "Accept: image/*" "$url" | grep -i "^content-type" | tail -1 | tr -d '\r')
-              snip=$(head -c 120 "$tmp" 2>/dev/null | tr -d '\n\r' | cut -c1-120)
-              echo "BAD  $code mime=$mime [$hdr] snip=[$snip] $url" >> $R; bad=$((bad+1))
+              echo "BAD  code=$code mime=$mime $url" >> $R; bad=$((bad+1))
             fi
           done < scripts/asset-manifest.txt
           echo "" >> $MAP; echo "}" >> $MAP
-          echo "TOTAL ok=$ok bad=$bad" >> $R
-          cat $R | tail -3
-      - name: Commit whatever succeeded + the report
+          echo "TOTAL ok=$ok bad=$bad size=$(du -sh client/public/img | cut -f1)" >> $R
+          tail -2 $R
+      - name: Commit optimized set
         run: |
           git config user.name "asset-localizer"
           git config user.email "assets@nexphoria"
-          git add client/public/img scripts/asset-report.txt || true
-          git commit -m "Asset localization run: assets + report" || echo "nothing to commit"
-          git push origin design/azure || true
+          git add -A client/public/img scripts/asset-report.txt
+          git commit -m "Optimized asset localization: WebP q82 ≤1600w, videos passthrough" || echo "nothing to commit"
+          git push origin design/azure
