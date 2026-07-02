@@ -17,6 +17,15 @@ export default function WomenHome() {
     <WorldHome
       config={{
         world: "women",
+        tileArt: {
+          skin: "https://www.trybloom.ai/img/0e80b3a5-04e7-469b-aa07-f4a4ffe30179",
+          recovery: "https://www.trybloom.ai/img/5d2dd8ef-cf5e-4fdc-85a7-6b87d85df16d",
+          metabolic: "https://www.trybloom.ai/img/0951d178-5de6-4211-ade2-df2e7bd36fbd",
+          longevity: "https://www.trybloom.ai/img/ae1cf698-e42c-4c3a-8994-fe4e7b8c23f3",
+          cognition: "https://www.trybloom.ai/img/57983c14-9014-446c-bde8-7682be16ffb4",
+          sleep: "https://www.trybloom.ai/img/547fe46b-bfec-4a57-8841-a48db10b1975",
+        },
+        vialArt: "https://www.trybloom.ai/img/8af95628-e4ce-42a2-ade7-538102843091",
         eyebrow: "Nexphoria for Women",
         h1: (
           <>

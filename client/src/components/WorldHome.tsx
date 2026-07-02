@@ -26,6 +26,10 @@ const CATEGORY_JOBS: Record<PeptideCategory, string> = {
 
 export interface WorldHomeConfig {
   world: "men" | "women";
+  /** porcelain-sculpture category art — the tile's working surface */
+  tileArt: Partial<Record<PeptideCategory, string>>;
+  /** master vial render — anchors the formulary as a physical, compounded product */
+  vialArt: string;
   eyebrow: string;
   h1: React.ReactNode;
   sub: string;
@@ -81,19 +85,24 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
             {config.categories.map((cat, i) => (
               <Reveal key={cat} delay={i * 60}>
-                <Link href={`${base}/peptides`} className="nx-glass-tile" data-testid={`${world}-goal-${cat}`}>
-                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(20px,2.2vw,24px)", color: "var(--nx-fg)", lineHeight: 1.15 }}>
-                      {CATEGORY_LABELS[cat]}
-                    </h2>
-                    <ArrowRight size={17} strokeWidth={2.2} style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
+                <Link href={`${base}/peptides`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
+                  {config.tileArt[cat] && (
+                    <img src={config.tileArt[cat]} alt="" aria-hidden loading="lazy" />
+                  )}
+                  <div className="nx-art-chip">
+                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
+                      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.1vw,23px)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
+                        {CATEGORY_LABELS[cat]}
+                      </h2>
+                      <ArrowRight size={16} strokeWidth={2.2} style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
+                    </div>
+                    <p style={{ fontFamily: F, fontSize: 13, lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
+                      {CATEGORY_JOBS[cat]}
+                    </p>
+                    <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.55rem" }}>
+                      {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
+                    </p>
                   </div>
-                  <p style={{ fontFamily: F, fontSize: 13.5, lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.45rem" }}>
-                    {CATEGORY_JOBS[cat]}
-                  </p>
-                  <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.85rem" }}>
-                    {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
-                  </p>
                 </Link>
               </Reveal>
             ))}
@@ -111,7 +120,21 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             The complete catalog →
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 14, marginTop: "1.4rem" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr]" style={{ gap: 14, marginTop: "1.4rem", alignItems: "stretch" }}>
+          <Reveal>
+            <div className="relative" style={{ borderRadius: 20, overflow: "hidden", minHeight: 320, height: "100%", boxShadow: "0 18px 40px -24px color-mix(in srgb, var(--nx-fg) 45%, transparent)" }}>
+              <img src={config.vialArt} alt="" aria-hidden loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+              <div className="nx-art-chip" style={{ maxWidth: 260 }}>
+                <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                  Compounded per prescription
+                </p>
+                <p style={{ fontFamily: F, fontSize: 13, lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
+                  Prepared for you in state-licensed 503A pharmacies. Batch-documented.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 14 }}>
           {cards.map((p, i) => {
             const pricing = getPrice(p.slug);
             return (
@@ -134,6 +157,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               </Reveal>
             );
           })}
+          </div>
         </div>
       </section>
 
