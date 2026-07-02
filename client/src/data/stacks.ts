@@ -61,7 +61,7 @@ export const stacks: Stack[] = [
     badge: "Flagship",
   },
   {
-    slug: "sleep",
+    slug: "restore",
     name: "Restore",
     tagline: "The sleep stack.",
     purpose: "Deeper sleep, faster onset, more restorative REM cycles.",
@@ -75,7 +75,7 @@ export const stacks: Stack[] = [
     gender: "both",
   },
   {
-    slug: "cognitive",
+    slug: "clarity",
     name: "Clarity",
     tagline: "The cognitive stack.",
     purpose: "Improved focus, mood resilience, and stress recovery without stimulants.",
@@ -89,9 +89,9 @@ export const stacks: Stack[] = [
     gender: "both",
   },
   {
-    slug: "metabolic",
-    name: "Metabolic",
-    tagline: "The GLP-1 stack.",
+    slug: "prime",
+    name: "Prime",
+    tagline: "The metabolic stack.",
     purpose: "Sustainable weight loss with muscle preservation and metabolic monitoring.",
     curator: "Dr. Sofia Chen, MD — Endocrinology",
     description: "Tirzepatide titrated by your physician, paired with MOTS-c for mitochondrial support and Ipamorelin to preserve lean mass during the deficit. Full metabolic panel monitored monthly.",
@@ -104,8 +104,8 @@ export const stacks: Stack[] = [
     badge: "Bestseller",
   },
   {
-    slug: "longevity",
-    name: "Longevity",
+    slug: "balance",
+    name: "Balance",
     tagline: "The cellular stack.",
     purpose: "Mitochondrial function, telomere health, and biological-age regression markers.",
     curator: "Dr. Diego Reyes, MD — Internal Medicine",
@@ -119,8 +119,25 @@ export const stacks: Stack[] = [
   },
 ];
 
+/** Slug aliases so old marketing/nav links keep resolving. */
+const SLUG_ALIASES: Record<string, string> = {
+  // legacy data slugs
+  sleep: "restore",
+  cognitive: "clarity",
+  metabolic: "prime",
+  longevity: "balance",
+  // early marketing variants that shipped in Home tiles / other pages
+  growth: "balance",
+  glp1: "prime",
+};
+
+export function resolveStackSlug(slug: string): string {
+  return SLUG_ALIASES[slug] ?? slug;
+}
+
 export function getStack(slug: string): Stack | undefined {
-  return stacks.find((s) => s.slug === slug);
+  const resolved = resolveStackSlug(slug);
+  return stacks.find((s) => s.slug === resolved);
 }
 
 export function getStacksForGender(g: "her" | "him"): Stack[] {
