@@ -21,6 +21,21 @@ const PANEL_ICONS: Record<string, any> = {
   nutrients: Apple, blood: TestTube, "bio-age": Hourglass,
 };
 
+/* Porcelain-kintsugi organ artwork — one per system */
+const PANEL_ART: Record<string, string> = {
+  "heart": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151212_130e06ad-009a-4360-940c-418a83691d68.png",
+  "metabolism": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151221_39722700-319f-427d-a372-45dd5c06baf6.png",
+  "hormones": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151230_1a09b948-2c15-43cd-8a38-2613808e58f0.png",
+  "stress": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151241_5a06bf30-24bc-4bd2-a534-c4e3477d785c.png",
+  "thyroid": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151249_62d48b6c-2d0b-4ac7-836c-75569432c795.png",
+  "kidneys": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151255_c7a8a162-d564-4b16-8016-3fbf7a531765.png",
+  "liver": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151306_e02af3ca-3d75-4682-b19a-f32999358c2f.png",
+  "immunity": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151313_2e5882f1-9c42-45d2-9ff1-97003443478e.png",
+  "nutrients": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151320_43a3ad34-d96c-4d24-8326-44a6343a1ddc.png",
+  "blood": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151328_199f36b7-5d48-47cb-af3a-31e960986804.png",
+  "bio-age": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151335_0ab08414-ee76-4213-8017-6beda0004fbe.png",
+};
+
 const FONT = "'General Sans', system-ui, sans-serif";
 const NUM: React.CSSProperties = {
   fontVariantNumeric: "tabular-nums lining-nums",
@@ -429,14 +444,16 @@ function PanelExplorer() {
                   minHeight: 320,
                 }}
               >
+                {PANEL_ART[cat.id] && (
+                  <span className="block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "#F7F2EA" }}>
+                    <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy"
+                      className="w-full h-full transition-transform duration-700"
+                      style={{ objectFit: "cover" }} />
+                  </span>
+                )}
                 {/* Card header */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.9rem" }}>
                   <div style={{ display: "flex", gap: "0.85rem", alignItems: "flex-start" }}>
-                    {(() => { const Ico = PANEL_ICONS[cat.id] ?? Activity; return (
-                      <span className="nx-icon-chip" aria-hidden>
-                        <Ico size={22} strokeWidth={1.7} />
-                      </span>
-                    ); })()}
                   <div>
                     <p
                       style={{
