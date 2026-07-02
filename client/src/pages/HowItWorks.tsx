@@ -1033,6 +1033,38 @@ export default function HowItWorks() {
       </section>
 
       {/* ════════════════ FAQ ════════════════ */}
+      {/* ── Care tracker composite — UI over film ── */}
+      <section className="relative overflow-hidden" style={{ minHeight: 520 }}>
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031151_85aa8200-13c1-4bb1-9a2e-4a2e56690f10.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.6) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)" }} />
+        <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,4vw,48px)", lineHeight: 1.08, color: "#FAF7F0", maxWidth: "16ch" }}>
+            Intake to first dose, <em style={{ fontStyle: "italic", color: "#F3C87A" }}>watched</em> the whole way.
+          </h2>
+          <div className="mt-8" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", maxWidth: 380, boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)" }}>
+            {[
+              ["Intake received", "done"],
+              ["Physician review", "done"],
+              ["Compounding & testing", "active"],
+              ["Cold-chain shipment", "next"],
+              ["First dose + 90-day labs", "next"],
+            ].map(([t, st], i, arr) => (
+              <div key={t} className="flex items-center gap-3" style={{ padding: "9px 0", borderBottom: i < arr.length - 1 ? "1px solid rgba(28,24,21,0.06)" : "none" }}>
+                <span aria-hidden style={{ width: 18, height: 18, borderRadius: 999, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, background: st === "done" ? "#A8C69A" : st === "active" ? "#F3C87A" : "rgba(28,24,21,0.08)", color: st === "next" ? "rgba(28,24,21,0.35)" : "#1C1815", boxShadow: st === "active" ? "0 0 0 4px rgba(243,200,122,0.3)" : "none" }}>
+                  {st === "done" ? "✓" : st === "active" ? "•" : ""}
+                </span>
+                <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14, fontWeight: st === "next" ? 500 : 600, color: st === "next" ? "rgba(28,24,21,0.45)" : "#1C1815" }}>{t}</span>
+              </div>
+            ))}
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(28,24,21,0.4)", marginTop: 10, marginBottom: 0 }}>Illustration of the member portal.</p>
+          </div>
+          <div className="hidden md:block absolute top-8 right-8" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 14, padding: "10px 15px" }}>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#FAF7F0" }}>Discreet packaging</div>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(250,247,240,0.65)", marginTop: 2 }}>Cold-chain · signature optional</div>
+          </div>
+        </div>
+      </section>
+
       <FAQAccordion items={HOW_FAQS} title="How it works — your questions." showCategories />
 
       {/* ════════════════ CTA ════════════════ */}

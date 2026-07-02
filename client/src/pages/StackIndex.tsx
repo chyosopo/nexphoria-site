@@ -424,6 +424,33 @@ export default function StackIndex() {
         </section>
 
         {/* ── Why stacked protocols work better — editorial band ── */}
+        {/* ── Stack-builder composite — UI over film ── */}
+        <section className="relative overflow-hidden" style={{ minHeight: 480 }}>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031024_5639d05f-14b0-4a44-bd6e-6d1b06a7b25f.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(28,24,21,0.2) 45%, rgba(28,24,21,0.62) 100%)" }} />
+          <div className="nx-container relative" style={{ paddingTop: "3.2rem", paddingBottom: "3.2rem", display: "flex", justifyContent: "flex-end" }}>
+            <div style={{ maxWidth: 400 }}>
+              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,3.6vw,42px)", lineHeight: 1.1, color: "#FAF7F0" }}>
+                Balanced like a <em style={{ fontStyle: "italic", color: "#F3C87A" }}>formula.</em>
+              </h2>
+              <div className="mt-6" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)" }}>
+                <div className="flex items-center justify-between">
+                  <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 700, fontSize: 14, color: "#1C1815" }}>The Wolverine Stack</span>
+                  <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 10.5, color: "#5E3C0D", background: "#F7EAD2", borderRadius: 999, padding: "3px 9px" }}>Recovery</span>
+                </div>
+                {[["BPC-157", "systemic repair signal"], ["TB-500", "tissue flexibility"], ["GHK-Cu", "collagen support"]].map(([n, d]) => (
+                  <div key={n} className="flex items-center gap-2.5" style={{ padding: "8px 0", borderTop: "1px solid rgba(28,24,21,0.06)", marginTop: 4 }}>
+                    <span aria-hidden style={{ width: 16, height: 16, borderRadius: 999, background: "#A8C69A", color: "#1C1815", fontSize: 10, fontWeight: 700, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>✓</span>
+                    <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13.5, fontWeight: 600, color: "#1C1815" }}>{n}</span>
+                    <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(28,24,21,0.5)" }}>{d}</span>
+                  </div>
+                ))}
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(28,24,21,0.55)", marginTop: 10, marginBottom: 0 }}>Balanced by a physician · one shipment · if prescribed</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="nx-container py-16 md:py-24" data-testid="section-why-stacked">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
