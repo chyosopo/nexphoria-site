@@ -41,7 +41,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
     hover: "#FBF5EA",
   },
   cobalt: {
-    bg: "linear-gradient(160deg, #0A1730 0%, #142344 65%, #1A2D57 100%)",
+    bg: "linear-gradient(160deg, #241A12 0%, #2E2418 65%, #3A2C1C 100%)",
     fg: "#F5F0E4",
     eyebrow: "#5591C7",
     sub: "rgba(245,240,228,0.68)",

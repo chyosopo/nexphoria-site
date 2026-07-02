@@ -148,7 +148,7 @@ export function CartDrawer() {
                 className="text-[10px] uppercase tracking-[0.22em] mb-1"
                 style={{ fontFamily: FONT, color: "#8B5A2B", fontWeight: 500 }}
               >
-                Your Pharmacy
+                Your Protocol
               </div>
               <h2
                 className="text-[1.35rem] leading-tight"

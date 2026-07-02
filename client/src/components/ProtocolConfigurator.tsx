@@ -5,7 +5,7 @@ import { cadenceCardsFor, formatUSD, type CadenceKey, getPrice } from "@/data/pr
 import { peptides } from "@/data/peptides";
 
 /* ──────────────────────────────────────────────────────────────
-   HimsConfigurator — Hims-style PDP product configurator.
+   ProtocolConfigurator — Hims-style PDP product configurator.
 
    Full "build-your-plan" experience:
      1. Dose selector (dropdown, peptide-specific)
@@ -21,7 +21,7 @@ import { peptides } from "@/data/peptides";
 
 type Gender = "men" | "women" | "neutral";
 
-interface HimsConfiguratorProps {
+interface ProtocolConfiguratorProps {
   slug: string;
   productName: string;
   category: string;
@@ -171,14 +171,14 @@ const NEUTRAL_TOKENS = {
   weightBold: 600,
 };
 
-export function HimsConfigurator({
+export function ProtocolConfigurator({
   slug,
   productName,
   category,
   gender = "neutral",
   pairsWith = [],
   typicalDose,
-}: HimsConfiguratorProps) {
+}: ProtocolConfiguratorProps) {
   const t = gender === "men" ? MEN_TOKENS : gender === "women" ? WOMEN_TOKENS : NEUTRAL_TOKENS;
   const { addPeptide } = useCart();
 

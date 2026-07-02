@@ -10,7 +10,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
-import { HimsConfigurator } from "@/components/HimsConfigurator";
+import { ProtocolConfigurator } from "@/components/ProtocolConfigurator";
 import { peptides, CATEGORY_LABELS } from "@/data/peptides";
 import { useSeo, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
@@ -19,7 +19,7 @@ interface GenderPeptideDetailProps {
   slug: string;
 }
 
-/* ── Gender-identity tokens (mirror HimsConfigurator) */
+/* ── Gender-identity tokens (mirror ProtocolConfigurator) */
 const IDENTITY = {
   men: {
     heroBg: "linear-gradient(180deg, #1C1815 0%, #111111 60%, #1A1815 100%)",
@@ -433,7 +433,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
             {/* RIGHT — configurator */}
             <div>
               <Reveal delay={120}>
-                <HimsConfigurator
+                <ProtocolConfigurator
                   slug={slug}
                   productName={peptide.name}
                   category={peptide.category}
