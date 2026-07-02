@@ -984,3 +984,8 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
+
+/* ── Scroll discipline (sitewide) ── */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { overflow-x: clip; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -95,18 +95,13 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <GoalTiles />
-      <FlagshipDark />
       <PeptideTilesStrip />
       <HowItWorks />
-      <ScienceStrip />
       <FeaturedStack />
-      <Numbers />
-      <PrecisionStrip />
       <BloodworkPillar />
       <PhysicianStrip />
       <MorningRitual />
       <HomeFAQSection />
-      <HomeComparisonSection />
       <FinalCta />
     </SiteLayout>
   );
@@ -115,17 +110,12 @@ export default function Home() {
 
 /* ── 0 · PROMO BAR (Wave 9 · Pattern 13) ─────────────────────── */
 function PromoBar() {
-  const [i, setI] = React.useState(0);
   const promos = [
     { text: "Free physician review with your first month · limited-time", href: "/assessment", cta: "Start your intake" },
     { text: "New: Bloodwork panels bundled with every recovery protocol", href: "/bloodwork", cta: "See panels" },
     { text: "Discreet 3\u20135 day shipping · U.S. 503A compounding", href: "/how-it-works", cta: "Learn more" },
   ];
-  React.useEffect(() => {
-    const id = window.setInterval(() => setI((v) => (v + 1) % promos.length), 6000);
-    return () => window.clearInterval(id);
-  }, [promos.length]);
-  const p = promos[i];
+  const p = promos[0];
   return (
     <div
       style={{
@@ -235,17 +225,7 @@ function Hero() {
         </div>
 
         {/* Wikipedia-style definition — AI parseable first sentence */}
-        <p
-          style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "0.9375rem",
-            fontWeight: 400,
-            color: "var(--nx-fg-muted)",
-            lineHeight: 1.6,
-            maxWidth: "48rem",
-            marginBottom: "1rem",
-          }}
-        >
+        <p className="sr-only">
           Nexphoria is a U.S.-based physician-supervised peptide therapy service delivering third-party-tested compounded peptides with 90-day biomarker follow-up.
         </p>
 
@@ -348,6 +328,25 @@ function Hero() {
             className="absolute inset-0 pointer-events-none"
             style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))" }}
           />
+          {/* Glass panels — hims-Labs grammar */}
+          <div className="hidden md:flex absolute top-5 right-5 items-center gap-3 nx-glass-card" style={{ padding: "12px 16px", borderRadius: 16 }}>
+            <span className="nx-icon-chip" style={{ width: 38, height: 38 }} aria-hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>
+            </span>
+            <div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 14, color: "var(--nx-black)", lineHeight: 1.2 }}>76 biomarkers</div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(28,24,21,0.55)" }}>Quest labs · every 90 days</div>
+            </div>
+          </div>
+          <div className="hidden md:flex absolute bottom-5 right-5 items-center gap-3 nx-glass-card" style={{ padding: "12px 16px", borderRadius: 16 }}>
+            <span className="nx-icon-chip" style={{ width: 38, height: 38 }} aria-hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 14, color: "var(--nx-black)", lineHeight: 1.2 }}>Physician-reviewed</div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(28,24,21,0.55)" }}>Every order · 24–48h</div>
+            </div>
+          </div>
           <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
             <p
               style={{
@@ -365,202 +364,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Maximus-style benefit-stat tile strip — leads with hard proof, not fluff */}
-        <div className="mt-14 md:mt-16">
-          <div className="flex items-baseline justify-between mb-5">
-            <div className="text-[10px] uppercase tracking-[0.22em]" style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: "#8B5A2B", fontWeight: 600 }}>
-              What you actually get
-            </div>
-            <div className="hidden md:block text-[10px] uppercase tracking-[0.18em]" style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace", color: "#8A8A8A" }}>
-              Every order · every state · every time
-            </div>
-          </div>
-          <BenefitTileGrid cols={4}>
-            <BenefitTile
-              tone="cream"
-              eyebrow="01 · Rx"
-              icon={<Stethoscope size={16} strokeWidth={2} />}
-              metric="24"
-              metricUnit="HR REVIEW"
-              headline="Board-certified physician on every protocol"
-              sub="US-licensed MDs review intake, cart, and labs before any peptide ships. No cookie-cutter regimens."
-              href="/physicians"
-              cta="Meet the team"
-              testId="benefit-tile-physician"
-            />
-            <BenefitTile
-              tone="cream"
-              eyebrow="02 · Pharmacy"
-              icon={<Beaker size={16} strokeWidth={2} />}
-              metric="503A"
-              metricUnit="US COMPOUND"
-              headline="Sterile-compounded to research-grade purity"
-              sub="Every batch third-party COA tested for peptide identity, purity, endotoxins. Never grey-market vials."
-              href="/science"
-              cta="See the lab"
-              testId="benefit-tile-pharmacy"
-            />
-            <BenefitTile
-              tone="cream"
-              eyebrow="03 · Ship"
-              icon={<Truck size={16} strokeWidth={2} />}
-              metric="50"
-              metricUnit="STATES"
-              headline="Cold-chain overnight to your door"
-              sub="Discreet packaging, temperature-controlled, tracked. Peptides arrive intact — as pharma-grade requires."
-              href="/how-it-works"
-              cta="Track a shipment"
-              testId="benefit-tile-ship"
-            />
-            <BenefitTile
-              tone="cream"
-              eyebrow="04 · Data"
-              icon={<ShieldCheck size={16} strokeWidth={2} />}
-              metric="90"
-              metricUnit="DAY LABS"
-              headline="Bloodwork-guided dosing you actually own"
-              sub="Quest labs at intake and 90 days. HIPAA-encrypted. You see the biomarkers — physicians adjust the protocol in-app."
-              href="/bloodwork"
-              cta="See the dashboard"
-              testId="benefit-tile-data"
-            />
-          </BenefitTileGrid>
-        </div>
-
-        {/* Two large flagship feature cards — Hims Type A grammar */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-          {/* LEFT: Wolverine — dark cobalt */}
-          <Link
-            href="/stacks/wolverine"
-            className="group relative block overflow-hidden rounded-[16px]"
-            style={{ background: "var(--nx-cobalt, #0F1F3D)", aspectRatio: "16 / 9", minHeight: 240 }}
-            data-testid="hero-card-wolverine"
-          >
-            <img
-              src={tileWolverine}
-              alt="Wolverine stack — recovery peptides"
-              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-[1.04]"
-              loading="eager"
-              decoding="async"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(90deg, rgba(15,31,61,0.94) 0%, rgba(15,31,61,0.60) 45%, rgba(15,31,61,0.15) 100%)" }}
-            />
-            <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
-              <div
-                className="inline-flex items-center gap-2 self-start"
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "11px",
-                  letterSpacing: "0.09em",
-                  textTransform: "uppercase",
-                  color: "var(--nx-acid)",
-                }}
-              >
-                <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }} />
-                Flagship · Recovery
-              </div>
-              <div className="flex items-end justify-between gap-4">
-                <div className="min-w-0">
-                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 400, fontSize: "14px", color: "rgba(255,255,243,0.72)", marginBottom: 6 }}>
-                    Start your
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "clamp(26px, 3.4vw, 40px)",
-                      lineHeight: 1.02,
-                      letterSpacing: "-0.02em",
-                      color: "#fffff3",
-                    }}
-                  >
-                    recovery today
-                  </div>
-                  <div className="mt-3" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13.5px", color: "rgba(255,255,243,0.78)" }}>
-                    Wolverine · BPC-157 · TB-500 · From $189/mo
-                  </div>
-                </div>
-                <span
-                  aria-hidden
-                  className="shrink-0 inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
-                  style={{ width: 46, height: 46, background: "var(--nx-acid)", color: "var(--nx-black)" }}
-                >
-                  <ArrowRight size={18} strokeWidth={2.2} />
-                </span>
-              </div>
-            </div>
-          </Link>
-
-          {/* RIGHT: Glow — warm tan */}
-          <Link
-            href="/stacks/glow"
-            className="group relative block overflow-hidden rounded-[16px]"
-            style={{ background: "#B89066", aspectRatio: "16 / 9", minHeight: 240 }}
-            data-testid="hero-card-glow"
-          >
-            <img
-              src={tileGlow}
-              alt="Glow stack — beauty peptides"
-              className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.04]"
-              loading="eager"
-              decoding="async"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{ background: "linear-gradient(90deg, rgba(184,144,102,0.85) 0%, rgba(184,144,102,0.35) 55%, rgba(184,144,102,0.08) 100%)" }}
-            />
-            <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
-              <div
-                className="inline-flex items-center gap-2 self-start"
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "11px",
-                  letterSpacing: "0.09em",
-                  textTransform: "uppercase",
-                  color: "#fffff3",
-                }}
-              >
-                <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#fffff3", display: "inline-block" }} />
-                Flagship · Beauty
-              </div>
-              <div className="flex items-end justify-between gap-4">
-                <div className="min-w-0">
-                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 400, fontSize: "14px", color: "rgba(255,255,243,0.85)", marginBottom: 6 }}>
-                    See how much you can
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "clamp(26px, 3.4vw, 40px)",
-                      lineHeight: 1.02,
-                      letterSpacing: "-0.02em",
-                      color: "#fffff3",
-                    }}
-                  >
-                    glow up
-                  </div>
-                  <div className="mt-3" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13.5px", color: "rgba(255,255,243,0.9)" }}>
-                    Glow · GHK-Cu · GHRP-2 · From $169/mo
-                  </div>
-                </div>
-                <span
-                  aria-hidden
-                  className="shrink-0 inline-flex items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1"
-                  style={{ width: 46, height: 46, background: "#fffff3", color: "var(--nx-black)" }}
-                >
-                  <ArrowRight size={18} strokeWidth={2.2} />
-                </span>
-              </div>
-            </div>
-          </Link>
-        </div>
 
         {/* Condition tile row — Hims Type B */}
         <div className="mt-3 md:mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
