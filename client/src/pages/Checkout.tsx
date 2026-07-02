@@ -4,14 +4,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
+import { ArrowLeft, Check, Shield, Stethoscope, Truck, Lock, CreditCard } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
-/* Local form schema — server validates on submit via insertCheckoutSchema */
+const FONT = "'General Sans', system-ui, sans-serif";
+
+/* Local form schema — server validates on submit via insertCheckoutSchema.
+   DO NOT change these fields — checkout schema is locked. */
 const formSchema = z.object({
   name: z.string().min(2, "Enter your full name"),
   email: z.string().email("Enter a valid email"),
@@ -27,13 +30,17 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 
+const STEPS = ["Address", "Payment", "Review"] as const;
+
 export default function Checkout() {
   const { lines, subtotal, totalSavings, itemCount, clear } = useCart();
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);
+  const [step, setStep] = useState(0); // 0 Address, 1 Payment, 2 Review
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+    mode: "onTouched",
     defaultValues: {
       name: "",
       email: "",
@@ -76,67 +83,71 @@ export default function Checkout() {
 
   const onSubmit = (values: FormValues) => mutation.mutate(values);
 
-  /* ─── Success screen ─── */
+  /* Advance the step indicator after validating the current step's fields */
+  const goNext = async () => {
+    let fields: (keyof FormValues)[] = [];
+    if (step === 0) fields = ["name", "email", "age", "shippingAddress", "city", "state", "zip"];
+    const ok = fields.length ? await form.trigger(fields) : true;
+    if (ok) setStep((s) => Math.min(s + 1, 2));
+  };
+
+  /* ─── Success screen (intake-complete confirmation) ─── */
   if (submittedId !== null) {
     return (
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-16 md:py-24 max-w-2xl">
             <div className="text-center">
-              <div
-                className="inline-flex p-5 rounded-full mb-6"
-                style={{ background: "var(--nx-bg-cream)", color: "#8B5A2B" }}
-              >
+              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "#1D6F42" }}>
                 <Check size={32} strokeWidth={1.5} />
               </div>
-              <div
-                className="text-[11px] uppercase tracking-[0.22em] mb-3"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
-              >
+              <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "#8B5A2B" }}>
                 Submission #{submittedId.toString().padStart(5, "0")}
               </div>
               <h1
                 className="text-4xl md:text-5xl mb-5"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+                style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.02em" }}
               >
-                Submitted for <span style={{  }}>physician review</span>
+                Intake complete
               </h1>
               <p
                 className="text-base mb-8 max-w-lg mx-auto"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.7 }}
+                style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.7 }}
               >
                 Your cart and intake are now with our physician team. You'll receive an email within 24–48 hours
-                with either an approval (and final payment link) or a request for additional information.
+                with either an approval and final payment link, or a request for additional information.
               </p>
+
+              {/* Progress: complete */}
+              <div className="max-w-md mx-auto mb-8">
+                <StepBar current={3} labels={[...STEPS, "Physician"]} />
+              </div>
+
               <div
                 className="text-left p-6 mb-8 max-w-md mx-auto"
-                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)" }}
+                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 16 }}
               >
-                <div
-                  className="text-[10px] uppercase tracking-[0.2em] mb-3"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
-                >
+                <div className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#8B5A2B" }}>
                   What happens next
                 </div>
-                <ul
-                  className="space-y-2 text-sm list-none p-0"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}
-                >
-                  <li>→ Physician reviews intake + cart (24–48 hours)</li>
-                  <li>→ You'll receive a secure approval link by email</li>
-                  <li>→ Bloodwork ordered to your nearest Quest Diagnostics</li>
-                  <li>→ Compounded shipment in cold-chain packaging</li>
+                <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.6 }}>
+                  {[
+                    "Physician reviews intake and cart (24–48 hours)",
+                    "You receive a secure approval link by email",
+                    "Bloodwork ordered to your nearest Quest Diagnostics",
+                    "Compounded shipment sent in cold-chain packaging",
+                  ].map((t, i) => (
+                    <li key={i} className="flex gap-2.5 items-start">
+                      <span style={{ color: "#8B5A2B", fontWeight: 600, fontSize: 11, marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
+                      <span>{t}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <Link asChild href="/">
                 <a
                   className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
-                  style={{
-                    color: "#0A0A0A",
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "0.875rem",
-                    border: "1px solid var(--nx-border)",
-                  }}
+                  style={{ color: "#0A0A0A", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                   data-testid="link-back-home"
                 >
                   <ArrowLeft size={14} /> Back to Nexphoria
@@ -155,27 +166,16 @@ export default function Checkout() {
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-20 max-w-md text-center">
-            <h1
-              className="text-3xl mb-4"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
-            >
+            <h1 className="text-3xl mb-4" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}>
               Your cart is empty
             </h1>
-            <p
-              className="text-base mb-6"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A" }}
-            >
+            <p className="text-base mb-6" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
               Add a peptide or curated stack before checkout.
             </p>
             <Link asChild href="/stacks">
               <a
                 className="inline-block px-6 py-3"
-                style={{
-                  background: "#0A0A0A",
-                  color: "#FAF7F0",
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "0.875rem",
-                }}
+                style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.875rem", borderRadius: 12 }}
                 data-testid="link-empty-checkout-stacks"
               >
                 Browse stacks
@@ -198,255 +198,221 @@ export default function Checkout() {
           <Link asChild href="/cart">
             <a
               className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] mb-6 hover:underline"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
+              style={{ fontFamily: FONT, color: "#6B6B6B" }}
               data-testid="link-back-to-cart"
             >
               <ArrowLeft size={12} /> Back to cart
             </a>
           </Link>
 
-          {/* Header */}
-          <div className="mb-10 max-w-2xl">
-            <div
-              className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
-            >
-              Checkout · Intake
+          {/* Header + progress indicator */}
+          <div className="mb-8 max-w-2xl">
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "#8B5A2B" }}>
+              Checkout
             </div>
             <h1
               className="text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.02em" }}
             >
-              Submit for <span style={{  }}>physician review</span>
+              Submit for physician review
             </h1>
-            <p
-              className="text-base mb-4"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
-            >
-              Every order is reviewed by a licensed physician before it ships. The questions below help us flag
-              contraindications and recommend monitoring. No card is charged today.
+            <p className="text-base" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.65 }}>
+              Every order is reviewed by a licensed physician before it ships. No card is charged today.
             </p>
-            {/* Bask handoff disclaimer */}
-            <div
-              className="p-4 max-w-2xl"
-              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "4px" }}
-            >
-              <p className="text-xs" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>
-                IMPORTANT — LEAD CAPTURE ONLY
-              </p>
-              <p className="text-sm" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.6 }}>
-                This form captures your interest and health overview. Actual checkout, payment, and prescription fulfillment happen through <strong>Bask Health</strong>, our licensed telehealth partner. A physician will contact you within 24–48 hours to continue the process.
-              </p>
-            </div>
+          </div>
+
+          <div className="mb-10 max-w-xl">
+            <StepBar current={step} labels={[...STEPS]} onStep={(i) => i < step && setStep(i)} />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-start">
             {/* Form */}
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
-              {/* About you */}
-              <Section title="About you" eyebrow="Step 01">
-                <Row>
-                  <Field label="Full name" error={errors.name?.message}>
-                    <input
-                      {...form.register("name")}
-                      type="text"
-                      className="nx-input"
-                      data-testid="input-name"
-                      autoComplete="name"
-                    />
-                  </Field>
-                  <Field label="Email" error={errors.email?.message}>
-                    <input
-                      {...form.register("email")}
-                      type="email"
-                      className="nx-input"
-                      data-testid="input-email"
-                      autoComplete="email"
-                    />
-                  </Field>
-                </Row>
-                <Row>
-                  <Field label="Age" error={errors.age?.message}>
-                    <input
-                      {...form.register("age", { valueAsNumber: true })}
-                      type="number"
-                      min={18}
-                      max={110}
-                      className="nx-input max-w-[120px]"
-                      data-testid="input-age"
-                    />
-                  </Field>
-                </Row>
-              </Section>
-
-              {/* Health screening */}
-              <Section title="Health screening" eyebrow="Step 02">
-                <p
-                  className="text-sm mb-5 max-w-xl"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
-                >
-                  Answer honestly — this informs physician approval and is covered by HIPAA-aligned data handling.
-                </p>
-                <div className="space-y-3">
-                  <YesNoField
-                    label="History of cardiac events, stroke, or untreated hypertension"
-                    helper="Includes prior MI, stent, arrhythmia under treatment, or BP > 160/100 untreated."
-                    {...form.register("cardiacHistory")}
-                    testId="checkbox-cardiac"
-                  />
-                  <YesNoField
-                    label="Type 1 or 2 diabetes (currently treated)"
-                    helper="Includes insulin, metformin, GLP-1 agonist, or SGLT2 inhibitor."
-                    {...form.register("diabetic")}
-                    testId="checkbox-diabetic"
-                  />
-                  <YesNoField
-                    label="Currently taking hormonal medication"
-                    helper="HRT, TRT, oral contraceptives, thyroid hormone, or active oncology Rx."
-                    {...form.register("hormonalRx")}
-                    testId="checkbox-hormonal"
-                  />
-                </div>
-                <div className="mt-5">
-                  <Field
-                    label="Known allergies"
-                    helper="Optional — preservatives, latex, peptide-class reactions, or N/A"
-                    error={errors.allergies?.message}
-                  >
-                    <input
-                      {...form.register("allergies")}
-                      type="text"
-                      placeholder="None known"
-                      className="nx-input"
-                      data-testid="input-allergies"
-                    />
-                  </Field>
-                </div>
-              </Section>
-
-              {/* Shipping */}
-              <Section title="Shipping" eyebrow="Step 03">
-                <p
-                  className="text-sm mb-5 max-w-xl"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}
-                >
-                  Cold-chain shipped overnight after physician approval. We currently ship to all US states except
-                  LA, AK, and HI.
-                </p>
-                <Field label="Street address" error={errors.shippingAddress?.message}>
-                  <input
-                    {...form.register("shippingAddress")}
-                    type="text"
-                    className="nx-input"
-                    data-testid="input-address"
-                    autoComplete="street-address"
-                  />
-                </Field>
-                <div className="grid grid-cols-2 md:grid-cols-[1fr_120px_140px] gap-4 mt-4">
-                  <Field label="City" error={errors.city?.message}>
-                    <input
-                      {...form.register("city")}
-                      type="text"
-                      className="nx-input"
-                      data-testid="input-city"
-                      autoComplete="address-level2"
-                    />
-                  </Field>
-                  <Field label="State" error={errors.state?.message}>
-                    <input
-                      {...form.register("state")}
-                      type="text"
-                      maxLength={2}
-                      placeholder="NY"
-                      className="nx-input uppercase"
-                      data-testid="input-state"
-                      autoComplete="address-level1"
-                    />
-                  </Field>
-                  <Field label="ZIP" error={errors.zip?.message}>
-                    <input
-                      {...form.register("zip")}
-                      type="text"
-                      className="nx-input"
-                      data-testid="input-zip"
-                      autoComplete="postal-code"
-                    />
-                  </Field>
-                </div>
-              </Section>
-
-              {/* What happens next preview */}
-              <div className="pt-6 pb-4">
-                <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}>WHAT HAPPENS AFTER YOU SUBMIT</p>
-                <div className="space-y-2">
-                  {[
-                    { n: "01", t: "Physician reviews your cart + intake within 24–48 hours" },
-                    { n: "02", t: "You receive a secure approval link via email from Bask Health" },
-                    { n: "03", t: "Quest Diagnostics lab requisition issued to your member portal" },
-                    { n: "04", t: "Protocol compounded and shipped cold-chain overnight" },
-                  ].map(({ n, t }) => (
-                    <div key={n} className="flex gap-3 items-start">
-                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, color: "#8B5A2B", flexShrink: 0, marginTop: "2px" }}>{n}</span>
-                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.55 }}>{t}</span>
+              {/* STEP 1 — ADDRESS + about you */}
+              {step === 0 && (
+                <>
+                  <Section title="Where should we ship?" eyebrow="Step 01 · Address">
+                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
+                      Cold-chain shipped overnight after physician approval. We ship to all US states except LA, AK, and HI.
+                    </p>
+                    <Row>
+                      <Field label="Full name" error={errors.name?.message}>
+                        <input {...form.register("name")} type="text" className="nx-input" data-testid="input-name" autoComplete="name" />
+                      </Field>
+                      <Field label="Email" error={errors.email?.message}>
+                        <input {...form.register("email")} type="email" className="nx-input" data-testid="input-email" autoComplete="email" />
+                      </Field>
+                    </Row>
+                    <Field label="Street address" error={errors.shippingAddress?.message}>
+                      <input {...form.register("shippingAddress")} type="text" className="nx-input" data-testid="input-address" autoComplete="street-address" />
+                    </Field>
+                    <div className="grid grid-cols-2 md:grid-cols-[1fr_120px_140px] gap-4 mt-4">
+                      <Field label="City" error={errors.city?.message}>
+                        <input {...form.register("city")} type="text" className="nx-input" data-testid="input-city" autoComplete="address-level2" />
+                      </Field>
+                      <Field label="State" error={errors.state?.message}>
+                        <input {...form.register("state")} type="text" maxLength={2} placeholder="NY" className="nx-input uppercase" data-testid="input-state" autoComplete="address-level1" />
+                      </Field>
+                      <Field label="ZIP" error={errors.zip?.message}>
+                        <input {...form.register("zip")} type="text" className="nx-input" data-testid="input-zip" autoComplete="postal-code" />
+                      </Field>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div className="mt-4">
+                      <Field label="Age" error={errors.age?.message}>
+                        <input {...form.register("age", { valueAsNumber: true })} type="number" min={18} max={110} className="nx-input max-w-[120px]" data-testid="input-age" />
+                      </Field>
+                    </div>
+                  </Section>
 
-              {/* Submit */}
-              <div className="pt-4">
-                <button
-                  type="submit"
-                  disabled={mutation.isPending}
-                  className="w-full md:w-auto px-8 py-4 transition-all disabled:opacity-60"
-                  style={{
-                    background: "#0A0A0A",
-                    color: "#FAF7F0",
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "0.9375rem",
-                    fontWeight: 500,
-                    letterSpacing: "0.02em",
-                  }}
-                  data-testid="button-submit-checkout"
-                >
-                  {mutation.isPending ? "Submitting…" : "Submit for physician approval →"}
-                </button>
-                <p
-                  className="text-xs mt-3 max-w-md"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
-                >
-                  By submitting, you consent to physician review and HIPAA-aligned data handling. No payment is
-                  collected today — final invoice is sent after approval.
-                </p>
-                {Object.keys(errors).length > 0 ? (
-                  <div
-                    className="mt-4 p-3 text-sm"
-                    style={{
-                      background: "#FBEAE5",
-                      border: "1px solid #E2B6AB",
-                      color: "#8B2E1A",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                    }}
-                    data-testid="text-form-errors"
-                  >
-                    Please review the highlighted fields above.
+                  <StepNav>
+                    <PrimaryBtn onClick={goNext} testId="button-step-payment">Continue to payment →</PrimaryBtn>
+                  </StepNav>
+                </>
+              )}
+
+              {/* STEP 2 — PAYMENT (token-styled inputs, no browser chrome) */}
+              {step === 1 && (
+                <>
+                  <Section title="Payment method" eyebrow="Step 02 · Payment">
+                    <div
+                      className="flex items-center gap-2 p-3 mb-5"
+                      style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                    >
+                      <Lock size={13} style={{ color: "#1D6F42", flexShrink: 0 }} />
+                      <p className="text-xs" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.5 }}>
+                        <strong style={{ color: "#0A0A0A" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
+                      </p>
+                    </div>
+
+                    <Field label="Cardholder name">
+                      <input type="text" className="nx-input" placeholder="Name on card" data-testid="input-card-name" autoComplete="cc-name" />
+                    </Field>
+                    <div className="mt-4">
+                      <Field label="Card number">
+                        <div style={{ position: "relative" }}>
+                          <input type="text" inputMode="numeric" className="nx-input" placeholder="1234 1234 1234 1234" data-testid="input-card-number" autoComplete="cc-number" style={{ paddingRight: 44 }} />
+                          <CreditCard size={16} style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "#8A8A8A" }} />
+                        </div>
+                      </Field>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                      <Field label="Expiry">
+                        <input type="text" inputMode="numeric" className="nx-input" placeholder="MM / YY" data-testid="input-card-expiry" autoComplete="cc-exp" />
+                      </Field>
+                      <Field label="CVC">
+                        <input type="text" inputMode="numeric" className="nx-input" placeholder="CVC" data-testid="input-card-cvc" autoComplete="cc-csc" />
+                      </Field>
+                    </div>
+                    <p className="text-[11px] mt-4" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
+                      Billing handled by Bask Health, our licensed telehealth partner. 256-bit encryption. PCI-DSS compliant.
+                    </p>
+                  </Section>
+
+                  <StepNav>
+                    <GhostBtn onClick={() => setStep(0)} testId="button-step-back-address">← Back</GhostBtn>
+                    <PrimaryBtn onClick={() => setStep(2)} testId="button-step-review">Continue to review →</PrimaryBtn>
+                  </StepNav>
+                </>
+              )}
+
+              {/* STEP 3 — REVIEW (health screening + confirm) */}
+              {step === 2 && (
+                <>
+                  <Section title="Health screening" eyebrow="Step 03 · Review">
+                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
+                      Answer honestly — this informs physician approval and is covered by HIPAA-aligned data handling.
+                    </p>
+                    <div className="space-y-3">
+                      <YesNoField
+                        label="History of cardiac events, stroke, or untreated hypertension"
+                        helper="Includes prior MI, stent, arrhythmia under treatment, or BP > 160/100 untreated."
+                        {...form.register("cardiacHistory")}
+                        testId="checkbox-cardiac"
+                      />
+                      <YesNoField
+                        label="Type 1 or 2 diabetes (currently treated)"
+                        helper="Includes insulin, metformin, GLP-1 agonist, or SGLT2 inhibitor."
+                        {...form.register("diabetic")}
+                        testId="checkbox-diabetic"
+                      />
+                      <YesNoField
+                        label="Currently taking hormonal medication"
+                        helper="HRT, TRT, oral contraceptives, thyroid hormone, or active oncology Rx."
+                        {...form.register("hormonalRx")}
+                        testId="checkbox-hormonal"
+                      />
+                    </div>
+                    <div className="mt-5">
+                      <Field label="Known allergies" helper="Optional — preservatives, latex, peptide-class reactions, or N/A" error={errors.allergies?.message}>
+                        <input {...form.register("allergies")} type="text" placeholder="None known" className="nx-input" data-testid="input-allergies" />
+                      </Field>
+                    </div>
+                  </Section>
+
+                  {/* Order recap */}
+                  <div className="pt-2">
+                    <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#8B5A2B" }}>Confirm your order</p>
+                    <div style={{ border: "1px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}>
+                      {lines.map((line) => (
+                        <div
+                          key={`${line.type}-${line.slug}`}
+                          className="flex items-center justify-between px-4 py-3"
+                          style={{ borderBottom: "1px solid var(--nx-border)", background: "#fff" }}
+                        >
+                          <span className="text-sm" style={{ fontFamily: FONT, color: "#0A0A0A" }}>
+                            {line.name} <span style={{ color: "#8A8A8A" }}>· {line.cadenceLabel} · qty {line.qty}</span>
+                          </span>
+                          <span className="text-sm" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>{formatUSD(line.lineTotal)}</span>
+                        </div>
+                      ))}
+                      <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
+                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0A0A0A" }}>Total · monthly</span>
+                        <span className="text-lg" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
+                      </div>
+                    </div>
                   </div>
-                ) : null}
-              </div>
+
+                  {/* Submit */}
+                  <div className="pt-2">
+                    <div className="flex flex-wrap gap-3">
+                      <GhostBtn onClick={() => setStep(1)} testId="button-step-back-payment">← Back</GhostBtn>
+                      <button
+                        type="submit"
+                        disabled={mutation.isPending}
+                        className="px-8 py-4 transition-all disabled:opacity-60"
+                        style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+                        data-testid="button-submit-checkout"
+                      >
+                        {mutation.isPending ? "Submitting…" : "Submit for physician approval →"}
+                      </button>
+                    </div>
+                    <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                      By submitting, you consent to physician review and HIPAA-aligned data handling. No payment is collected today — final invoice is sent after approval.
+                    </p>
+                    {Object.keys(errors).length > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => setStep(0)}
+                        className="mt-4 block w-full text-left p-3 text-sm"
+                        style={{ background: "#FBEAE5", border: "1px solid #E2B6AB", color: "#8B2E1A", fontFamily: FONT, borderRadius: 12 }}
+                        data-testid="text-form-errors"
+                      >
+                        Some address fields need attention. Tap to review Step 01.
+                      </button>
+                    ) : null}
+                  </div>
+                </>
+              )}
             </form>
 
-            {/* Order summary */}
+            {/* Order summary — sticky right rail */}
             <aside
               className="lg:sticky lg:top-24 p-7"
-              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)" }}
+              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 20 }}
             >
               <div
                 className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  color: "#8B5A2B",
-                  borderBottom: "1px solid var(--nx-border)",
-                }}
+                style={{ fontFamily: FONT, color: "#8B5A2B", borderBottom: "1px solid var(--nx-border)" }}
               >
                 Your order · {itemCount}
               </div>
@@ -455,61 +421,27 @@ export default function Checkout() {
                 {lines.map((line) => {
                   const stack = line.type === "stack" ? stacks.find((s) => s.slug === line.slug) : null;
                   return (
-                    <li
-                      key={`${line.type}-${line.slug}`}
-                      className="pb-3"
-                      style={{ borderBottom: "1px solid var(--nx-border)" }}
-                    >
+                    <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <div
-                            className="text-[9px] uppercase tracking-[0.2em] mb-0.5"
-                            style={{
-                              fontFamily: "'General Sans', system-ui, sans-serif",
-                              color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B",
-                            }}
-                          >
+                          <div className="text-[9px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B" }}>
                             {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
-                          <div
-                            className="text-sm leading-tight"
-                            style={{
-                              fontFamily: "'General Sans', system-ui, sans-serif",
-                              color: "#0A0A0A",
-                              fontWeight: 500,
-                            }}
-                          >
+                          <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>
                             {line.name}
                           </div>
                           {stack ? (
-                            <div
-                              className="text-[10px] mt-0.5"
-                              style={{
-                                fontFamily: "'General Sans', system-ui, sans-serif",
-                                color: "#6B6B6B",
-                                letterSpacing: "0.05em",
-                              }}
-                            >
+                            <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "#6B6B6B", letterSpacing: "0.05em" }}>
                               {stack.peptides.length} peptides
                             </div>
                           ) : null}
                           {line.savings && line.savings > 0 ? (
-                            <div
-                              className="text-[10px] mt-1"
-                              style={{
-                                fontFamily: "'General Sans', system-ui, sans-serif",
-                                color: "#8B5A2B",
-                                letterSpacing: "0.05em",
-                              }}
-                            >
+                            <div className="text-[10px] mt-1" style={{ fontFamily: FONT, color: "#8B5A2B", letterSpacing: "0.05em" }}>
                               −{formatUSD(line.savings)} saved
                             </div>
                           ) : null}
                         </div>
-                        <div
-                          className="text-sm flex-shrink-0"
-                          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A" }}
-                        >
+                        <div className="text-sm flex-shrink-0" style={{ fontFamily: FONT, color: "#0A0A0A" }}>
                           {formatUSD(line.lineTotal)}
                         </div>
                       </div>
@@ -520,49 +452,20 @@ export default function Checkout() {
 
               {totalSavings > 0 ? (
                 <div className="flex items-baseline justify-between py-1.5">
-                  <span
-                    className="text-xs uppercase tracking-[0.15em]"
-                    style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
-                  >
-                    Stack savings
-                  </span>
-                  <span
-                    className="text-sm"
-                    style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
-                  >
-                    −{formatUSD(totalSavings)}
-                  </span>
+                  <span className="text-xs uppercase tracking-[0.15em]" style={{ fontFamily: FONT, color: "#8B5A2B" }}>Stack savings</span>
+                  <span className="text-sm" style={{ fontFamily: FONT, color: "#8B5A2B" }}>−{formatUSD(totalSavings)}</span>
                 </div>
               ) : null}
 
-              <div
-                className="flex items-baseline justify-between mt-3 pt-3"
-                style={{ borderTop: "1px solid var(--nx-border)" }}
-              >
-                <span
-                  className="text-sm uppercase tracking-[0.12em]"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A" }}
-                >
-                  Total · monthly
-                </span>
-                <span
-                  className="text-2xl"
-                  style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    color: "#0A0A0A",
-                    fontWeight: 500,
-                  }}
-                  data-testid="text-checkout-total"
-                >
+              <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
+                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0A0A0A" }}>Total · monthly</span>
+                <span className="text-2xl" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }} data-testid="text-checkout-total">
                   {formatUSD(subtotal)}
                 </span>
               </div>
 
               {/* Trust marks */}
-              <div
-                className="mt-6 pt-6 space-y-3"
-                style={{ borderTop: "1px solid var(--nx-border)" }}
-              >
+              <div className="mt-6 pt-6 space-y-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
                 <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · 256-bit encryption" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
@@ -570,8 +473,7 @@ export default function Checkout() {
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 
-              {/* Money-back note */}
-              <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.6 }}>
+              <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
                 <p>No payment collected today. Final pricing confirmed after physician approval. Bask Health handles all billing.</p>
               </div>
             </aside>
@@ -584,19 +486,98 @@ export default function Checkout() {
 
 /* ─── UI helpers ─── */
 
+function StepBar({ current, labels, onStep }: { current: number; labels: readonly string[]; onStep?: (i: number) => void }) {
+  return (
+    <div className="flex items-center">
+      {labels.map((label, i) => {
+        const done = i < current;
+        const active = i === current;
+        const clickable = !!onStep && done;
+        return (
+          <div key={label} className="flex items-center" style={{ flex: i === labels.length - 1 ? "0 0 auto" : "1 1 auto" }}>
+            <button
+              type="button"
+              onClick={() => clickable && onStep?.(i)}
+              className="flex items-center gap-2"
+              style={{ cursor: clickable ? "pointer" : "default", background: "none", border: "none", padding: 0 }}
+              data-testid={`button-step-indicator-${i}`}
+              aria-current={active ? "step" : undefined}
+            >
+              <span
+                className="inline-flex items-center justify-center text-[11px]"
+                style={{
+                  width: 26,
+                  height: 26,
+                  borderRadius: 999,
+                  fontFamily: FONT,
+                  fontWeight: 600,
+                  background: done ? "#8B5A2B" : active ? "#0A0A0A" : "transparent",
+                  color: done || active ? "#FAF7F0" : "#8A8A8A",
+                  border: done || active ? "none" : "1px solid var(--nx-border)",
+                  flexShrink: 0,
+                }}
+              >
+                {done ? <Check size={13} /> : i + 1}
+              </span>
+              <span
+                className="text-[11px] uppercase tracking-[0.14em] hidden sm:inline"
+                style={{ fontFamily: FONT, color: active ? "#0A0A0A" : done ? "#4A4A4A" : "#8A8A8A", fontWeight: active ? 600 : 500 }}
+              >
+                {label}
+              </span>
+            </button>
+            {i < labels.length - 1 && (
+              <span
+                className="mx-3"
+                style={{ flex: 1, height: 1, minWidth: 20, background: done ? "#8B5A2B" : "var(--nx-border)" }}
+              />
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function StepNav({ children }: { children: React.ReactNode }) {
+  return <div className="flex flex-wrap gap-3 pt-2">{children}</div>;
+}
+
+function PrimaryBtn({ children, onClick, testId }: { children: React.ReactNode; onClick: () => void; testId: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="px-8 py-4 transition-all"
+      style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+      data-testid={testId}
+    >
+      {children}
+    </button>
+  );
+}
+
+function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; onClick: () => void; testId: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="px-6 py-4 transition-colors hover:bg-black/5"
+      style={{ color: "#0A0A0A", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: 12 }}
+      data-testid={testId}
+    >
+      {children}
+    </button>
+  );
+}
+
 function Section({ title, eyebrow, children }: { title: string; eyebrow: string; children: React.ReactNode }) {
   return (
     <section>
-      <div
-        className="text-[10px] uppercase tracking-[0.22em] mb-1"
-        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
-      >
+      <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "#8B5A2B" }}>
         {eyebrow}
       </div>
-      <h2
-        className="text-2xl mb-5"
-        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
-      >
+      <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}>
         {title}
       </h2>
       {children}
@@ -608,39 +589,20 @@ function Row({ children }: { children: React.ReactNode }) {
   return <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">{children}</div>;
 }
 
-function Field({
-  label,
-  helper,
-  error,
-  children,
-}: {
-  label: string;
-  helper?: string;
-  error?: string;
-  children: React.ReactNode;
-}) {
+function Field({ label, helper, error, children }: { label: string; helper?: string; error?: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span
-        className="block text-[11px] uppercase tracking-[0.15em] mb-1.5"
-        style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A" }}
-      >
+      <span className="block text-[11px] uppercase tracking-[0.15em] mb-1.5" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
         {label}
       </span>
       {helper ? (
-        <span
-          className="block text-xs mb-2"
-          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
-        >
+        <span className="block text-xs mb-2" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
           {helper}
         </span>
       ) : null}
       {children}
       {error ? (
-        <span
-          className="block text-xs mt-1.5"
-          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B2E1A" }}
-        >
+        <span className="block text-xs mt-1.5" style={{ fontFamily: FONT, color: "#8B2E1A" }}>
           {error}
         </span>
       ) : null}
@@ -660,29 +622,15 @@ const YesNoField = ({
   testId: string;
 } & React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
-    <label
-      className="block p-4 cursor-pointer transition-colors hover:bg-black/5"
-      style={{ background: "#fff", border: "1px solid var(--nx-border)" }}
-    >
+    <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
       <div className="flex items-start gap-3">
-        <input
-          type="checkbox"
-          className="mt-1 accent-[#0A0A0A]"
-          data-testid={testId}
-          {...rest}
-        />
+        <input type="checkbox" className="mt-1 accent-[#0A0A0A]" data-testid={testId} {...rest} />
         <div className="flex-1">
-          <div
-            className="text-sm"
-            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
-          >
+          <div className="text-sm" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>
             {label}
           </div>
           {helper ? (
-            <div
-              className="text-xs mt-1"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B", lineHeight: 1.5 }}
-            >
+            <div className="text-xs mt-1" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.5 }}>
               {helper}
             </div>
           ) : null}
@@ -694,10 +642,7 @@ const YesNoField = ({
 
 function TrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div
-      className="flex items-start gap-2.5 text-xs"
-      style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.5 }}
-    >
+    <div className="flex items-start gap-2.5 text-xs" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.5 }}>
       <span style={{ color: "#8B5A2B", marginTop: 1 }}>{icon}</span>
       <span>{text}</span>
     </div>

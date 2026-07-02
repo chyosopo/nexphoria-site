@@ -11,6 +11,7 @@ import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/Ma
 import { GoalVialTile, GOAL_TILE_CONFIG } from "@/components/GoalVialTile";
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
+import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -487,6 +488,97 @@ export default function Assessment() {
           </div>
         </div>
       </main>
+
+      {/* ── Benefit-encoded landing band (landing/step 0 only) ── */}
+      {step === 0 && (
+        <section
+          data-testid="assessment-landing-band"
+          style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+        >
+          <div
+            className="assessment-landing-band-grid"
+            style={{
+              maxWidth: "1120px",
+              margin: "0 auto",
+              padding: "3.5rem 1.5rem",
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              gap: "2.5rem",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                aspectRatio: "4/3",
+                overflow: "hidden",
+                borderRadius: "20px",
+                border: "1px solid var(--nx-border)",
+                backgroundColor: "var(--nx-bg-cream)",
+              }}
+            >
+              <img
+                src={assessmentTrustHero}
+                alt="A 38-biomarker peptide lab panel and physician dashboard used to calibrate your protocol"
+                loading="eager"
+                decoding="async"
+                data-testid="assessment-landing-image"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+            <div data-testid="assessment-landing-copy">
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "11px",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                  marginBottom: "1rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+                WHAT YOUR INTAKE BUILDS
+              </p>
+              <h2
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                  color: "var(--nx-fg)",
+                  lineHeight: 1.1,
+                  marginBottom: "1.25rem",
+                }}
+              >
+                Every answer maps to a biomarker your physician will calibrate against.
+              </h2>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "1.0625rem",
+                  color: "#4A4A4A",
+                  lineHeight: 1.7,
+                }}
+              >
+                The intake takes about four minutes. It feeds a 38-marker lab panel, a
+                physician review, and a compounded protocol dosed to your measured IGF-1,
+                metabolic, and hormonal numbers. No questionnaire-only prescribing.
+              </p>
+            </div>
+          </div>
+          <style>{`
+            @media (min-width: 768px) {
+              .assessment-landing-band-grid {
+                grid-template-columns: 1.1fr 1fr !important;
+                gap: 4rem !important;
+              }
+            }
+          `}</style>
+        </section>
+      )}
 
       {/* ════════════════ ASSESSMENT FORM ════════════════ */}
       <div

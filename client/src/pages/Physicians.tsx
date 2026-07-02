@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { physicians, type Physician } from "@/data/physicians";
 import { useSeo } from "@/lib/seo";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
+import physicianTrustHero from "@/assets/nx_v11_trust_physician_hero.webp";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -23,11 +24,11 @@ export default function Physicians() {
             badge={<PillBadge tone="acid">Medical team</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Board-certified</span> physicians<br />
-                <span>who actually answer.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Physicians who</span><br />
+                <span>understand peptides.</span>
               </>
             }
-            subtitle="Every protocol is reviewed and signed by a licensed U.S. physician. Direct message your prescribing doctor through the patient portal."
+            subtitle="Every protocol is reviewed and signed by a board-certified U.S. physician who reads your bloodwork first. Direct message your prescribing doctor through the patient portal."
           />
 
           <div className="mx-grid">
@@ -50,6 +51,85 @@ export default function Physicians() {
           </div>
         </div>
       </main>
+
+      {/* ── Benefit-encoded editorial portrait band ── */}
+      <section
+        data-testid="physicians-editorial-band"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container max-w-screen-xl" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+          <div
+            className="physicians-band-grid"
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "center" }}
+          >
+            <Reveal>
+              <div
+                style={{
+                  aspectRatio: "4/3",
+                  overflow: "hidden",
+                  borderRadius: "20px",
+                  border: "1px solid var(--nx-border)",
+                  backgroundColor: "var(--nx-bg-cream)",
+                }}
+              >
+                <img
+                  src={physicianTrustHero}
+                  alt="Board-certified physician reviewing a 38-biomarker peptide lab panel before prescribing"
+                  loading="eager"
+                  decoding="async"
+                  data-testid="physicians-hero-portrait"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "var(--nx-cobalt)",
+                    marginBottom: "1rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.75rem",
+                  }}
+                >
+                  <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+                  LABS BEFORE Rx
+                </p>
+                <h2
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontWeight: 500,
+                    fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                    color: "var(--nx-fg)",
+                    lineHeight: 1.1,
+                    marginBottom: "1.25rem",
+                  }}
+                >
+                  Your physician reads a 38-biomarker panel before writing anything.
+                </h2>
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "1.0625rem",
+                    color: "#4A4A4A",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  Peptide medicine is precision pharmacology. The physicians on our panel do not
+                  prescribe from a questionnaire — they calibrate dose against your measured
+                  IGF-1, metabolic, and hormonal markers, then monitor and adjust every 90 days.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
       {/* ── Doctor grid ── */}
       <section
@@ -103,6 +183,7 @@ export default function Physicians() {
           </Reveal>
 
           <div
+            data-testid="physicians-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
@@ -389,11 +470,18 @@ export default function Physicians() {
         </div>
       </section>
 
+      <PhysicianCredentials />
+
       <FinalCTAStrip
         gender="women"
         title="Your physician review is included."
         sub="Quest Diagnostics labs drawn first. Board-certified MD review within 48 hours."
       />
+      <style>{`
+        @media (min-width: 768px) {
+          .physicians-band-grid { grid-template-columns: 1.1fr 1fr !important; gap: 4rem !important; }
+        }
+      `}</style>
     </SiteLayout>
   );
 }
@@ -499,6 +587,162 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
         </button>
       </div>
     </div>
+  );
+}
+
+// PhysicianCredentials — partner-org training + board certs as clean type
+const eyebrowStyle: React.CSSProperties = {
+  fontFamily: "'General Sans', system-ui, sans-serif",
+  fontSize: "11px",
+  fontWeight: 500,
+  letterSpacing: "0.18em",
+  textTransform: "uppercase",
+  color: "var(--nx-cobalt)",
+  marginBottom: "1rem",
+  display: "flex",
+  alignItems: "center",
+  gap: "0.75rem",
+};
+
+function PhysicianCredentials() {
+  const institutions = ["Cleveland Clinic", "Mayo Clinic", "UCSF", "Johns Hopkins", "Stanford Medicine"];
+  const boards = [
+    { abbr: "ABIM", full: "American Board of Internal Medicine", note: "Internal medicine and endocrinology" },
+    { abbr: "ABFM", full: "American Board of Family Medicine", note: "Primary and preventative care" },
+    { abbr: "DEA", full: "Drug Enforcement Administration", note: "Active prescribing registration" },
+    { abbr: "State licensure", full: "Matched to your state of residence", note: "Physician licensed where you live" },
+  ];
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      data-testid="physicians-credentials"
+    >
+      <div className="nx-container max-w-screen-xl">
+        <Reveal>
+          <p style={eyebrowStyle}>
+            <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+            TRAINED AND CERTIFIED
+          </p>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+              color: "var(--nx-fg)",
+              lineHeight: 1.1,
+              marginBottom: "0.75rem",
+            }}
+          >
+            Where our physicians trained.
+          </h2>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "1.0625rem",
+              color: "#4A4A4A",
+              lineHeight: 1.65,
+              maxWidth: "560px",
+              marginBottom: "3rem",
+            }}
+          >
+            Residency and fellowship training from top U.S. academic medical centers. Every
+            physician holds active board certification and state licensure.
+          </p>
+        </Reveal>
+
+        <div
+          data-testid="physicians-institutions"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+            gap: "1.5px",
+            backgroundColor: "var(--nx-border)",
+            border: "1.5px solid var(--nx-border)",
+            marginBottom: "3.5rem",
+          }}
+        >
+          {institutions.map((org) => (
+            <div
+              key={org}
+              data-testid={`physicians-institution-${org.replace(/\s+/g, "-").toLowerCase()}`}
+              style={{
+                backgroundColor: "var(--nx-bg)",
+                padding: "1.75rem 1.25rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  letterSpacing: "-0.01em",
+                  color: "var(--nx-fg)",
+                  lineHeight: 1.2,
+                }}
+              >
+                {org}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div
+          data-testid="physicians-boards"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+            gap: "1.5rem",
+          }}
+        >
+          {boards.map((c) => (
+            <div
+              key={c.abbr}
+              data-testid={`physicians-board-${c.abbr.replace(/\s+/g, "-").toLowerCase()}`}
+              style={{ borderTop: "2px solid var(--nx-cobalt)", paddingTop: "1rem" }}
+            >
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "1.125rem",
+                  fontWeight: 600,
+                  color: "var(--nx-fg)",
+                  marginBottom: "0.35rem",
+                }}
+              >
+                {c.abbr}
+              </p>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  color: "var(--nx-fg)",
+                  lineHeight: 1.4,
+                  marginBottom: "0.25rem",
+                }}
+              >
+                {c.full}
+              </p>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "12px",
+                  color: "var(--nx-fg-muted)",
+                  lineHeight: 1.45,
+                }}
+              >
+                {c.note}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

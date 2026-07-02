@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { Check, X } from "lucide-react";
 import { useSeo } from "@/lib/seo";
@@ -80,6 +80,59 @@ const included = [
   "Itemized receipts for FSA/HSA submission",
 ];
 
+const tiers = [
+  {
+    key: "solo",
+    name: "Solo Peptide",
+    tagline: "One targeted compound, one goal.",
+    priceFrom: 149,
+    recommended: false,
+    features: [
+      "Single physician-selected peptide",
+      "Board-certified physician review",
+      "503A US-compounded vial",
+      "Cold-chain overnight shipping",
+      "Secure telehealth messaging",
+    ],
+    cta: "Browse peptides",
+    href: "/peptides",
+  },
+  {
+    key: "stack",
+    name: "Curated Stack",
+    tagline: "Physician-built combinations that work in concert.",
+    priceFrom: 279,
+    recommended: true,
+    features: [
+      "2\u20134 synergistic peptides",
+      "Everything in Solo",
+      "Quest Diagnostics labs every 90 days",
+      "Physician re-evaluation each lab cycle",
+      "Protocol tuned to your biomarkers",
+      "FSA/HSA itemized receipts",
+    ],
+    cta: "Browse stacks",
+    href: "/stacks",
+  },
+  {
+    key: "custom",
+    name: "Custom Protocol",
+    tagline: "A protocol designed around your labs and physiology.",
+    priceFrom: 349,
+    recommended: false,
+    features: [
+      "Fully bespoke compound selection",
+      "Everything in Stack",
+      "Extended biomarker + epigenetic panels",
+      "Dedicated physician case ownership",
+      "Quarterly dose titration",
+      "Priority telehealth response",
+    ],
+    cta: "Start assessment",
+    href: null,
+  },
+];
+
 const comparison = [
   { feature: "Quest Diagnostics labs included", nexphoria: true, others: false },
   { feature: "Board-certified US physician on every case", nexphoria: true, others: "varies" },
@@ -89,6 +142,231 @@ const comparison = [
   { feature: "FSA/HSA receipts provided", nexphoria: true, others: false },
   { feature: "Physician declines if inappropriate", nexphoria: true, others: "rarely" },
 ];
+
+function PricingTiers() {
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+    >
+      <div className="nx-container max-w-screen-xl">
+        <Reveal>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--nx-cobalt)",
+              marginBottom: "1rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
+          >
+            <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+            CHOOSE YOUR PATH
+          </p>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              color: "var(--nx-fg)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+              marginBottom: "0.75rem",
+            }}
+          >
+            One peptide, a curated stack, or a custom protocol.
+          </h2>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "1.0625rem",
+              color: "#4A4A4A",
+              lineHeight: 1.6,
+              maxWidth: "640px",
+              marginBottom: "3rem",
+            }}
+          >
+            Every path includes physician review, US-compounded medication, and transparent pricing. No consultation fee.
+          </p>
+        </Reveal>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "1.5rem",
+            alignItems: "stretch",
+          }}
+        >
+          {tiers.map((tier, i) => (
+            <Reveal key={tier.key} delay={i * 60}>
+              <div
+                data-testid={`tier-card-${tier.key}`}
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  background: tier.recommended ? "var(--nx-fg)" : "#FFFFFF",
+                  border: tier.recommended ? "1.5px solid var(--nx-fg)" : "1px solid var(--nx-border)",
+                  borderRadius: "20px",
+                  padding: "2rem",
+                  position: "relative",
+                }}
+              >
+                {tier.recommended && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-11px",
+                      left: "2rem",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "10px",
+                      fontWeight: 600,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      color: "var(--nx-fg)",
+                      background: "var(--nx-acid)",
+                      padding: "4px 12px",
+                      borderRadius: "999px",
+                    }}
+                    data-testid={`tier-badge-${tier.key}`}
+                  >
+                    Recommended
+                  </span>
+                )}
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "1.375rem",
+                    fontWeight: 600,
+                    letterSpacing: "-0.01em",
+                    color: tier.recommended ? "var(--nx-bg-cream)" : "var(--nx-fg)",
+                    marginBottom: "0.4rem",
+                  }}
+                >
+                  {tier.name}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "13px",
+                    color: tier.recommended ? "rgba(255,255,255,0.6)" : "#6B6B6B",
+                    lineHeight: 1.5,
+                    marginBottom: "1.5rem",
+                    minHeight: "39px",
+                  }}
+                >
+                  {tier.tagline}
+                </p>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", marginBottom: "1.75rem" }}>
+                  <span
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "10px",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.12em",
+                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#8A8A8A",
+                    }}
+                  >
+                    From
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "2.25rem",
+                      fontWeight: 600,
+                      letterSpacing: "-0.02em",
+                      color: tier.recommended ? "#FFFFFF" : "var(--nx-fg)",
+                    }}
+                    data-testid={`tier-price-${tier.key}`}
+                  >
+                    ${tier.priceFrom}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "12px",
+                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#8A8A8A",
+                    }}
+                  >
+                    /mo
+                  </span>
+                </div>
+
+                <div style={{ flex: 1, marginBottom: "1.75rem" }}>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "9px",
+                      fontWeight: 500,
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#8A8A8A",
+                      marginBottom: "0.875rem",
+                    }}
+                  >
+                    What's included
+                  </p>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    {tier.features.map((f) => (
+                      <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem" }}>
+                        <Check
+                          size={14}
+                          style={{ color: tier.recommended ? "var(--nx-acid)" : "var(--nx-success)", flexShrink: 0, marginTop: "2px" }}
+                        />
+                        <span
+                          style={{
+                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontSize: "13px",
+                            color: tier.recommended ? "var(--nx-bg-cream)" : "#4A4A4A",
+                            lineHeight: 1.45,
+                          }}
+                        >
+                          {f}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {tier.href ? (
+                  <Link asChild href={tier.href}>
+                    <a
+                      style={{
+                        display: "block",
+                        textAlign: "center",
+                        padding: "0.875rem 1.5rem",
+                        borderRadius: "12px",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "0.875rem",
+                        fontWeight: 500,
+                        letterSpacing: "0.02em",
+                        background: tier.recommended ? "var(--nx-acid)" : "var(--nx-fg)",
+                        color: tier.recommended ? "var(--nx-fg)" : "var(--nx-bg-cream)",
+                      }}
+                      data-testid={`link-tier-${tier.key}`}
+                    >
+                      {tier.cta}
+                    </a>
+                  </Link>
+                ) : (
+                  <StartIntakeButton source={`pricing-tier-${tier.key}`} size="lg" className="w-full justify-center">
+                    {tier.cta}
+                  </StartIntakeButton>
+                )}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: number }) {
   const [open, setOpen] = React.useState(false);
@@ -153,8 +431,8 @@ export default function Pricing() {
         </div>
       </main>
 
-      {/* EVERYTHING BELOW STAYS UNCHANGED */}
-
+      {/* ── Tier comparison: Solo / Stack / Custom ── */}
+      <PricingTiers />
 
       {/* ── Protocol pricing table ── */}
       <section

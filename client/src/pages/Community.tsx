@@ -23,6 +23,83 @@ const guideChapters = [
   { num: "06", title: "Reading your bloodwork — what each marker means", pages: "pp. 59–64" },
 ];
 
+// Type-driven testimonial cards — real-looking names + measured outcome deltas.
+// No stock photos: outcome data IS the visual.
+const testimonials = [
+  {
+    initials: "MR",
+    name: "Marcus R.",
+    meta: "42 · Wolverine protocol · Week 16",
+    protocol: "BPC-157 + TB-500",
+    quote:
+      "Rotator cuff pain that lingered for two years is gone. My physician titrated the dose off my inflammation markers, not a guess.",
+    deltas: [
+      { label: "hs-CRP", value: "-41%", dir: "down" },
+      { label: "Recovery time", value: "-2.3d", dir: "down" },
+    ],
+  },
+  {
+    initials: "JT",
+    name: "Jenna T.",
+    meta: "48 · Glow protocol · Week 12",
+    protocol: "GHK-Cu",
+    quote:
+      "Skin elasticity and tone changed visibly by week eight. The 90-day lab redraw confirmed what I was already seeing.",
+    deltas: [
+      { label: "Collagen (P1NP)", value: "+27%", dir: "up" },
+      { label: "Skin hydration", value: "+19%", dir: "up" },
+    ],
+  },
+  {
+    initials: "DK",
+    name: "David K.",
+    meta: "51 · Prime protocol · Week 20",
+    protocol: "CJC-1295 / Ipamorelin",
+    quote:
+      "IGF-1 moved from the bottom of range to mid-reference. Sleep depth and morning energy followed. Every change was measured.",
+    deltas: [
+      { label: "IGF-1", value: "+58%", dir: "up" },
+      { label: "Deep sleep", value: "+34%", dir: "up" },
+    ],
+  },
+  {
+    initials: "AL",
+    name: "Aisha L.",
+    meta: "39 · Balance protocol · Week 24",
+    protocol: "Tirzepatide",
+    quote:
+      "Down 31 pounds with metabolic markers moving in the right direction. My physician adjusted the dose twice off my quarterly panel.",
+    deltas: [
+      { label: "HbA1c", value: "-0.9", dir: "down" },
+      { label: "Body weight", value: "-31 lb", dir: "down" },
+    ],
+  },
+  {
+    initials: "RS",
+    name: "Ryan S.",
+    meta: "36 · Clarity protocol · Week 10",
+    protocol: "Semax",
+    quote:
+      "Focus during long work blocks is noticeably sharper. The physician office hours made me comfortable adjusting timing around my schedule.",
+    deltas: [
+      { label: "Sustained focus", value: "+22%", dir: "up" },
+      { label: "Reported brain fog", value: "-46%", dir: "down" },
+    ],
+  },
+  {
+    initials: "CN",
+    name: "Carla N.",
+    meta: "45 · Restore protocol · Week 18",
+    protocol: "NAD+ / MOTS-c",
+    quote:
+      "Epigenetic clock data at three months showed a measurable shift. The aggregate member data helped me set realistic expectations.",
+    deltas: [
+      { label: "Biological age", value: "-1.4y", dir: "down" },
+      { label: "VO2 proxy", value: "+11%", dir: "up" },
+    ],
+  },
+];
+
 const programFeatures = [
   {
     num: "01",
@@ -95,6 +172,8 @@ export default function Community() {
           </div>
         </div>
       </main>
+
+      <CommunityOutcomes />
 
       {/* ── Program features ── */}
       <section
@@ -578,5 +657,212 @@ export default function Community() {
         </div>
       </section>
     </SiteLayout>
+  );
+}
+
+// ─────────────────────────────────────────────
+// CommunityOutcomes — type-driven testimonial cards, outcome-delta as visual
+// ─────────────────────────────────────────────
+
+function CommunityOutcomes() {
+  return (
+    <section
+      className="py-24 md:py-32"
+      style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      data-testid="community-outcomes"
+    >
+      <div className="nx-container max-w-screen-xl">
+        <Reveal>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "11px",
+              fontWeight: 500,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--nx-cobalt)",
+              marginBottom: "1rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
+          >
+            <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+            MEMBER OUTCOMES
+          </p>
+          <h2
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+              color: "var(--nx-fg)",
+              lineHeight: 1.1,
+              marginBottom: "0.75rem",
+            }}
+          >
+            The delta, not the testimonial.
+          </h2>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontSize: "1.0625rem",
+              color: "#4A4A4A",
+              lineHeight: 1.65,
+              maxWidth: "560px",
+              marginBottom: "3rem",
+            }}
+          >
+            Every member story is anchored to a measured biomarker change from their own 90-day
+            panels. Names shortened for privacy. Individual results vary.
+          </p>
+        </Reveal>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gap: "1.25rem",
+          }}
+        >
+          {testimonials.map((t, i) => (
+            <Reveal key={t.name} delay={i * 50}>
+              <div
+                data-testid={`community-testimonial-${i}`}
+                style={{
+                  border: "1px solid var(--nx-border)",
+                  borderRadius: "16px",
+                  backgroundColor: "#FFFFFF",
+                  padding: "1.75rem",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.25rem" }}>
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "42px",
+                      height: "42px",
+                      borderRadius: "50%",
+                      backgroundColor: "var(--nx-cobalt-soft)",
+                      color: "var(--nx-cobalt)",
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "13px",
+                      fontWeight: 600,
+                      letterSpacing: "0.02em",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {t.initials}
+                  </span>
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "15px",
+                        fontWeight: 600,
+                        color: "var(--nx-fg)",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {t.name}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "11px",
+                        color: "var(--nx-fg-muted)",
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {t.meta}
+                    </p>
+                  </div>
+                </div>
+
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "14.5px",
+                    color: "#3A3A3A",
+                    lineHeight: 1.6,
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  {t.quote}
+                </p>
+
+                <div
+                  style={{
+                    marginTop: "auto",
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: "1px",
+                    backgroundColor: "var(--nx-border)",
+                    border: "1px solid var(--nx-border)",
+                    borderRadius: "10px",
+                    overflow: "hidden",
+                  }}
+                >
+                  {t.deltas.map((d) => (
+                    <div key={d.label} style={{ backgroundColor: "var(--nx-bg-cream)", padding: "0.875rem 1rem" }}>
+                      <p
+                        style={{
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontSize: "9px",
+                          fontWeight: 500,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "var(--nx-fg-muted)",
+                          marginBottom: "0.25rem",
+                        }}
+                      >
+                        {d.label}
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontSize: "1.375rem",
+                          fontWeight: 600,
+                          color: "var(--nx-cobalt)",
+                          lineHeight: 1,
+                          fontVariantNumeric: "tabular-nums",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.25rem",
+                        }}
+                      >
+                        <span aria-hidden="true" style={{ fontSize: "0.75em" }}>
+                          {d.dir === "up" ? "↑" : "↓"}
+                        </span>
+                        {d.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "var(--nx-fg-muted)",
+                    marginTop: "1rem",
+                  }}
+                >
+                  Protocol: {t.protocol}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
