@@ -445,6 +445,18 @@ export default function Peptides() {
             <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#FAF7F0", textShadow: "0 2px 16px rgba(28,24,21,0.45)", margin: 0 }}>
               Compounded. Tested. Prescribed.
             </p>
+            {/* UI-over-film chips — composite grammar */}
+            <div className="hidden md:block absolute top-4 right-5" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 14, padding: "10px 15px" }}>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#FAF7F0" }}>USP &lt;797&gt; · 503A compounded</div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(250,247,240,0.65)", marginTop: 2 }}>Sterility &amp; potency tested per batch</div>
+            </div>
+            <div className="hidden md:flex absolute bottom-4 right-5 items-center gap-2.5" style={{ background: "rgba(255,254,251,0.94)", borderRadius: 14, padding: "10px 15px", boxShadow: "0 14px 34px -14px rgba(28,24,21,0.4)" }}>
+              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: 999, background: "#A8C69A" }} aria-hidden />
+              <div>
+                <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#1C1815" }}>Pairs well: BPC-157 + TB-500</div>
+                <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(28,24,21,0.55)", marginTop: 1 }}>Physician-directed · if prescribed</div>
+              </div>
+            </div>
           </div>
 
           {/* ── Hero tile pair ── */}
