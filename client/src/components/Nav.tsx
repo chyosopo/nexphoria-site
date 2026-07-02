@@ -18,7 +18,7 @@ interface NavLink {
 }
 
 const showcaseLinks: NavLink[] = [
-  { label: "Pharmacy", href: "/peptides", mega: true },
+  { label: "Peptides", href: "/peptides", mega: true },
   { label: "Stacks", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
   { label: "Science", href: "/science" },
@@ -27,7 +27,7 @@ const showcaseLinks: NavLink[] = [
 ];
 
 const womenLinks: NavLink[] = [
-  { label: "Pharmacy", href: "/women/peptides", mega: true },
+  { label: "Peptides", href: "/women/peptides", mega: true },
   { label: "Stacks", href: "/stacks" },
   { label: "Custom Protocol", href: "/assessment" },
   { label: "Bloodwork", href: "/bloodwork" },
@@ -36,7 +36,7 @@ const womenLinks: NavLink[] = [
 ];
 
 const menLinks: NavLink[] = [
-  { label: "Pharmacy", href: "/men/peptides", mega: true },
+  { label: "Peptides", href: "/men/peptides", mega: true },
   { label: "Stacks", href: "/stacks" },
   { label: "Custom Protocol", href: "/assessment" },
   { label: "Bloodwork", href: "/bloodwork" },
@@ -243,9 +243,10 @@ export function Nav({ variant = "gate" }: NavProps) {
           <div
             className="shadow-lg"
             style={{
-              background: "#ffffff",
+              background: "#FFFEFB",
               borderTop: "1px solid var(--nx-border)",
               borderBottom: "1px solid var(--nx-border)",
+              boxShadow: "0 24px 48px -24px rgba(28,24,21,0.14)",
             }}
           >
             <div className="nx-container py-8 grid grid-cols-[1.6fr_1fr] gap-10">
@@ -321,13 +322,49 @@ export function Nav({ variant = "gate" }: NavProps) {
                   data-testid="mega-view-all"
                   onClick={() => setMegaOpen(false)}
                 >
-                  View the full pharmacy
+                  View all peptides
                   <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
                 </Link>
               </div>
 
               {/* Featured peptides */}
               <div style={{ borderLeft: "1px solid var(--nx-border)", paddingLeft: "2.5rem" }}>
+                <Link
+                  href="/stacks/wolverine"
+                  className="group block no-underline mb-5"
+                  onClick={() => setMegaOpen(false)}
+                  data-testid="mega-featured-card"
+                >
+                  <span className="block overflow-hidden" style={{ borderRadius: 14, aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
+                    <img
+                      src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png"
+                      alt="Nexphoria compounded peptide vial"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span className="mt-3 flex items-center justify-between">
+                    <span>
+                      <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-fg)" }}>
+                        The Recovery Protocol
+                      </span>
+                      <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12.5, color: "var(--nx-fg-muted)" }}>
+                        Physician-directed · if prescribed
+                      </span>
+                    </span>
+                    <ArrowRight size={16} strokeWidth={2} style={{ color: "#7A4E12" }} aria-hidden="true" />
+                  </span>
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex items-center gap-1.5 no-underline mb-5"
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#7A4E12" }}
+                  onClick={() => setMegaOpen(false)}
+                  data-testid="mega-education-link"
+                >
+                  New to peptides? Start here
+                  <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
+                </Link>
                 <p
                   className="mb-4 text-[11px] uppercase"
                   style={{
