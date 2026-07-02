@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, Check, X, Dumbbell, Beef, Moon, Plus, Minus } from "lucide-react";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Cell,
+  LabelList,
+} from "recharts";
 import { SiteLayout } from "@/components/SiteLayout";
 import { getStack, computeStackPrice, stacks } from "@/data/stacks";
 import { pricing, formatUSD, getPrice } from "@/data/pricing";
 import { getPeptide } from "@/data/peptides";
 import { AddToCartButton } from "@/components/AddToCartButton";
-import { CadenceSelector } from "@/components/CadenceSelector";
-import { getStackImage } from "@/lib/stackImages";
+import { getStackPortrait, getPortraitProof } from "@/lib/stackPortraits";
+import { benefitStats, biomarkerSeries } from "@/lib/stackBiomarkers";
 import { physicians } from "@/data/physicians";
-import { ColoredHeroTile, TileGlyphs, HeroTile, MxHeader } from "@/components/MaximusTile";
 
 /* Stack detail page — full clinical case + add-to-cart + customize */
 
@@ -143,6 +153,76 @@ function resultsData(stack: { slug: string; peptides: string[]; duration: string
     ],
     disclaimer: "Outcome ranges reflect published literature and physician-observed cohort averages.",
   };
+}
+
+/* ── Expected results — Recharts biomarker deltas (baseline vs end-of-course) ── */
+function BiomarkerTooltip({ active, payload }: any) {
+  if (!active || !payload || !payload.length) return null;
+  const p = payload[0].payload;
+  return (
+    <div style={{ background: "#0A0A0A", border: "1px solid rgba(255,255,243,0.16)", borderRadius: 10, padding: "10px 12px" }}>
+      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184", marginBottom: 4 }}>{p.marker}</div>
+      <div style={{ fontFamily: SANS, fontSize: 13, color: "#FFFFF3" }}>Baseline {p.baseline} → {p.endOfCourse}</div>
+      <div style={{ fontFamily: SANS, fontSize: 13, color: "#FFFFF3", fontWeight: 600 }}>{p.delta}</div>
+    </div>
+  );
+}
+
+function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: string }; weeks: number }) {
+  const series = biomarkerSeries(stack.slug);
+  /* Flatten to a paired dataset for a grouped bar chart. */
+  const data = series.map((d) => ({
+    marker: d.marker,
+    baseline: d.baseline,
+    endOfCourse: d.endOfCourse,
+    direction: d.direction,
+    delta: d.delta,
+  }));
+  return (
+    <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-expected-results">
+      <div className="nx-container max-w-5xl">
+        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Expected results</div>
+        <h2 className="text-3xl md:text-4xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+          Where your biomarkers move over {weeks} weeks.
+        </h2>
+        <p className="text-sm mb-8 max-w-2xl" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.65 }}>
+          Projected baseline versus end-of-course, indexed to a common scale so improvements read at a glance. Each
+          marker is drawn at intake and at intervals — your physician confirms the actual trajectory from your labs.
+        </p>
+
+        <div className="flex items-center gap-5 mb-4">
+          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
+            <span style={{ width: 14, height: 8, background: "#C9CFC2", display: "inline-block", borderRadius: 2 }} /> Baseline
+          </span>
+          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#0A0A0A" }}>
+            <span style={{ width: 14, height: 8, background: "#0A0A0A", display: "inline-block", borderRadius: 2 }} /> End of course
+          </span>
+        </div>
+
+        <div style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 16, padding: "1.25rem 0.5rem 0.75rem" }} data-testid="chart-biomarker-deltas">
+          <ResponsiveContainer width="100%" height={340}>
+            <BarChart data={data} margin={{ top: 24, right: 16, left: 0, bottom: 8 }} barGap={4} barCategoryGap="26%">
+              <CartesianGrid vertical={false} stroke="#EDE8DC" />
+              <XAxis dataKey="marker" tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: "#4A4A4A" }} tickLine={false} axisLine={{ stroke: "#DDD9CE" }} interval={0} />
+              <YAxis tick={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fill: "#9A9A95" }} tickLine={false} axisLine={false} domain={[0, 100]} />
+              <Tooltip cursor={{ fill: "rgba(10,10,10,0.04)" }} content={<BiomarkerTooltip />} />
+              <Bar dataKey="baseline" fill="#C9CFC2" radius={[3, 3, 0, 0]} isAnimationActive={false} />
+              <Bar dataKey="endOfCourse" radius={[3, 3, 0, 0]} isAnimationActive={false}>
+                {data.map((d, i) => (
+                  <Cell key={i} fill={d.direction === "up" ? "#0A0A0A" : "#0A0A0A"} />
+                ))}
+                <LabelList dataKey="delta" position="top" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, fill: "#8B5A2B" }} />
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <p className="mt-5 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "#8A8A8A", lineHeight: 1.6 }}>
+          Indexed projections from published trial medians and physician-observed cohorts. Directional deltas, not
+          guaranteed endpoints — individual results depend on baseline labs, dose adherence, and lifestyle inputs.
+        </p>
+      </div>
+    </section>
+  );
 }
 
 function ResultsSection({ stack }: { stack: { slug: string; name: string; peptides: string[]; duration: string } }) {
@@ -340,57 +420,131 @@ export default function StackDetail({ slug }: StackDetailProps) {
     { q: "What if a peptide doesn't agree with me?", a: "Message your physician through the portal. Most side effects are dose-related and resolve with a titration change. If a specific compound is the problem, your physician can substitute or remove it and re-balance the rest of the stack. Unused medication can be returned to the pharmacy." },
   ];
 
-  /* Pick tone + glyph: rose/butter for her/glow stacks, cobalt/sage for everything else */
-  const heroTone: "rose" | "cobalt" = stack.gender === "her" ? "rose" : "cobalt";
-  const heroGlyph = stack.gender === "her" ? TileGlyphs.leaf : TileGlyphs.hex;
+  /* v11 benefit-encoded portrait for the editorial hero */
+  const portrait = getStackPortrait(stack.slug);
+  const proof = getPortraitProof(stack.slug);
+  const stats = benefitStats(stack.slug);
 
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          {/* Back nav */}
-          <div style={{ paddingTop: 16, paddingBottom: 4 }}>
+      {/* ── Editorial data-hero (pattern B): dark full-bleed, giant headline + v11 portrait ── */}
+      <main id="main-content">
+        <section
+          style={{ background: "#0A0A0A", color: "#FFFFF3", paddingTop: 96 }}
+          data-testid="section-stack-hero"
+        >
+          <div className="nx-container">
+            {/* Back nav */}
             <Link asChild href="/stacks">
-              <a className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "#6B6B6B" }} data-testid="link-back-stack-index">
+              <a className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] mb-8" style={{ fontFamily: MONO, color: "rgba(255,255,243,0.55)" }} data-testid="link-back-stack-index">
                 <ArrowLeft size={12} strokeWidth={2} /> All stacks
               </a>
             </Link>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(340px,40%)] gap-10 lg:gap-14 items-center pb-14 md:pb-16">
+              {/* Left: editorial text column */}
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6" style={{ borderRadius: 999, border: "1px solid rgba(255,255,243,0.18)" }}>
+                  <span className="text-[11px] uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "#c6f184" }}>
+                    Doctor-curated protocol
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(255,255,243,0.6)" }}>
+                    {audienceLabel}
+                  </span>
+                </div>
+                <h1
+                  className="mb-5"
+                  style={{ fontFamily: SERIF, color: "#FFFFF3", fontWeight: 600, fontSize: "clamp(48px, 7vw, 92px)", letterSpacing: "-0.035em", lineHeight: 0.98 }}
+                  data-testid="text-stack-name"
+                >
+                  The {stack.name}<br />stack
+                </h1>
+                <p className="text-lg md:text-xl mb-5 max-w-xl" style={{ fontFamily: SANS, color: "rgba(255,255,243,0.82)", lineHeight: 1.5 }}>
+                  {stack.purpose}
+                </p>
+                <div className="flex flex-wrap items-center gap-3 mb-8">
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "#FFFFF3", background: "rgba(255,255,243,0.08)", borderRadius: 999 }}>
+                    {stack.peptides.length} peptides
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "#FFFFF3", background: "rgba(255,255,243,0.08)", borderRadius: 999 }}>
+                    {stack.duration.split(",")[0]}
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "#FFFFF3", background: "rgba(255,255,243,0.08)", borderRadius: 999 }}>
+                    From {formatUSD(bundle)}/mo
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <AddToCartButton slug={stack.slug} type="stack" variant="primary" label={`Add stack — ${formatUSD(bundle)}`} />
+                  <a
+                    className="inline-flex items-center gap-2 px-5 py-3 text-sm cursor-pointer"
+                    style={{ fontFamily: SANS, color: "#FFFFF3", border: "1px solid rgba(255,255,243,0.28)", borderRadius: 12, fontWeight: 500 }}
+                    onClick={() => document.getElementById("stack-protocol")?.scrollIntoView({ behavior: "smooth" })}
+                    data-testid="button-view-protocol"
+                  >
+                    See the protocol <ArrowRight size={14} strokeWidth={2.2} />
+                  </a>
+                </div>
+              </div>
+
+              {/* Right: v11 benefit-encoded portrait with proof caption */}
+              <div className="relative" data-testid="stack-hero-portrait">
+                <div className="overflow-hidden" style={{ borderRadius: 20, aspectRatio: "4 / 5", background: "#141414" }}>
+                  <img
+                    src={portrait}
+                    alt={`${stack.name} stack — ${proof}`}
+                    className="w-full h-full object-cover"
+                    // @ts-ignore — fetchpriority is valid HTML
+                    fetchpriority="high"
+                  />
+                </div>
+                <div
+                  className="absolute left-4 right-4 bottom-4 px-4 py-3"
+                  style={{ background: "rgba(10,10,10,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(255,255,243,0.12)" }}
+                  data-testid="text-portrait-proof"
+                >
+                  <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "#c6f184" }}>
+                    {stack.name} · documented outcome
+                  </div>
+                  <div className="text-sm" style={{ fontFamily: SANS, color: "#FFFFF3", fontWeight: 500, lineHeight: 1.35 }}>
+                    {proof}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <MxHeader
-            eyebrow={`Doctor-curated protocol · ${audienceLabel}`}
-            headline={<>The {stack.name} <span>stack</span></>}
-            subtitle={stack.tagline}
-          />
-
-          <div className="mx-grid">
-            <HeroTile
-              href={`/stacks/${stack.slug}`}
-              imgSrc={getStackImage(stack.image)}
-              imgSrcSm={getStackImage(stack.image)}
-              alt={`${stack.name} stack`}
-              priority
-              label={<>{stack.name}<br /><span>{stack.tagline}</span></>}
-              caption={`${stack.peptides.length} peptides · ${stack.duration.split(",")[0]}`}
-              ctaLabel="View protocol"
-              dark={stack.gender === "her"}
-            />
-            <ColoredHeroTile
-              href={`/stacks/${stack.slug}`}
-              tone={heroTone}
-              glyph={heroGlyph}
-              label={<>Doctor-curated<br /><span>peptide protocol</span></>}
-              caption={`${audienceLabel} · ${stack.duration.split(",")[0]}`}
-              ctaLabel="Start intake"
-            />
+          {/* ── Benefit stat row — 4 headline figures ── */}
+          <div style={{ borderTop: "1px solid rgba(255,255,243,0.12)" }}>
+            <div className="nx-container">
+              <div className="grid grid-cols-2 lg:grid-cols-4" data-testid="stat-row">
+                {stats.map((s, i) => (
+                  <div
+                    key={s.label}
+                    className="py-7 md:py-9 px-2 md:px-6"
+                    style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(255,255,243,0.12)" }}
+                    data-testid={`stat-card-${i}`}
+                  >
+                    <div className="mb-1.5" style={{ fontFamily: SERIF, color: "#c6f184", fontWeight: 600, fontSize: "clamp(28px, 3.4vw, 44px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                      {s.value}
+                    </div>
+                    <div className="text-sm mb-1" style={{ fontFamily: SANS, color: "#FFFFF3", fontWeight: 500, lineHeight: 1.3 }}>
+                      {s.label}
+                    </div>
+                    <div className="text-[11px]" style={{ fontFamily: MONO, color: "rgba(255,255,243,0.5)", lineHeight: 1.4 }}>
+                      {s.note}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </main>
 
       <div style={{ background: "var(--mx-page-bg)", minHeight: "100vh" }}>
 
         {/* ── Included peptides — detailed table ── */}
-        <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-included-peptides">
+        <section id="stack-protocol" className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-included-peptides">
           <div className="nx-container">
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Included peptides · {stack.peptides.length}</div>
             <h2 className="text-3xl md:text-4xl mb-10 max-w-3xl leading-[1.1]" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
@@ -473,6 +627,9 @@ export default function StackDetail({ slug }: StackDetailProps) {
             </p>
           </div>
         </section>
+
+        {/* ── Expected results — Recharts biomarker deltas ── */}
+        <BiomarkerDeltaSection stack={stack} weeks={weeks} />
 
         {/* ── VS DIY / competitors ── */}
         <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-vs-diy">
@@ -643,15 +800,6 @@ export default function StackDetail({ slug }: StackDetailProps) {
         </section>
       </div>
     </SiteLayout>
-  );
-}
-
-function MetaRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[120px_1fr] gap-4 py-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
-      <dt className="text-[10px] uppercase tracking-[0.2em] pt-0.5" style={{ fontFamily: MONO, color: "#6B6B6B" }}>{label}</dt>
-      <dd className="text-sm" style={{ fontFamily: SANS, color: "#28251D", lineHeight: 1.55 }}>{value}</dd>
-    </div>
   );
 }
 

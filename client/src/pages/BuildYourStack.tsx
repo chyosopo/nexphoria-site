@@ -1,12 +1,14 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, Check, FlaskConical, Plus, Minus, Sparkles, Zap, AlertCircle, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, FlaskConical, Plus, Minus, Sparkles, ShoppingBag, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
 import { useSeo } from "@/lib/seo";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
+import { getStack } from "@/data/stacks";
+import { getStackPortrait } from "@/lib/stackPortraits";
 
 const cadencePctOf = (c: CadenceKey): number => (CADENCE_DISCOUNTS[c]?.pct ?? 0);
 
@@ -109,6 +111,33 @@ const GOALS: Goal[] = [
 ];
 
 /* ──────────────────────────────────────────────────────────────
+   Goal → matched flagship stack. When a user selects a goal we can
+   surface the physician-curated stack that already targets it, with
+   a confidence score derived from how closely their live selection
+   overlaps the curated formula.
+   ────────────────────────────────────────────────────────────── */
+const GOAL_TO_STACK: Record<string, string> = {
+  recovery: "wolverine",
+  skin: "glow",
+  weight: "metabolic",
+  sleep: "sleep",
+  cognitive: "cognitive",
+  longevity: "longevity",
+  performance: "metabolic",
+};
+
+/* Confidence = base match for a curated goal + overlap between the
+   user's live picks and the flagship formula. Bounded 60–99 so the
+   surface always reads as a strong, honest recommendation. */
+function stackConfidence(stackPeptides: string[], picked: string[]): number {
+  if (stackPeptides.length === 0) return 0;
+  const overlap = stackPeptides.filter((s) => picked.includes(s)).length;
+  const coverage = overlap / stackPeptides.length; // 0–1
+  const raw = 72 + Math.round(coverage * 26); // 72 → 98
+  return Math.max(60, Math.min(99, raw));
+}
+
+/* ──────────────────────────────────────────────────────────────
    Custom-stack bundle pricing — same 12% bundle discount as flagship
    stacks, scaled with size: 2 = 10%, 3 = 12%, 4+ = 15%.
    ────────────────────────────────────────────────────────────── */
@@ -146,6 +175,17 @@ export default function BuildYourStack() {
   }, [toast]);
 
   const goal = useMemo(() => GOALS.find((g) => g.id === goalId) ?? null, [goalId]);
+
+  // Physician-curated flagship stack that matches the chosen goal, plus a
+  // live confidence score reflecting how closely the current picks overlap it.
+  const matchedStack = useMemo(
+    () => (goalId ? getStack(GOAL_TO_STACK[goalId] ?? "") ?? null : null),
+    [goalId],
+  );
+  const confidence = useMemo(
+    () => (matchedStack ? stackConfidence(matchedStack.peptides, picked) : 0),
+    [matchedStack, picked],
+  );
 
   // Available peptides for the chosen goal (whole catalog if no goal yet)
   const eligible = useMemo(() => {
@@ -418,6 +458,86 @@ export default function BuildYourStack() {
                 >
                   ← Change goal
                 </button>
+              </div>
+            )}
+
+            {/* Recommended flagship stack — surfaces with a live confidence score */}
+            {matchedStack && (
+              <div
+                className="mb-8 overflow-hidden"
+                style={{ background: "#0A0A0A", borderRadius: 4, border: "1px solid #1c1c1c" }}
+                data-testid="recommended-stack-surface"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-[132px_1fr] items-stretch">
+                  {/* Portrait proof */}
+                  <div
+                    className="relative hidden sm:block"
+                    style={{ minHeight: 172, backgroundImage: `url(${getStackPortrait(matchedStack.slug)})`, backgroundSize: "cover", backgroundPosition: "center top" }}
+                    aria-hidden="true"
+                  >
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(10,10,10,0) 55%, #0A0A0A 100%)" }} />
+                  </div>
+
+                  <div className="p-5 md:p-6 flex flex-col justify-center">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "#c6f184", textTransform: "uppercase", marginBottom: 8 }}>
+                          <ShieldCheck size={11} className="inline-block mr-1.5 -mt-0.5" />
+                          Physician-curated match
+                        </p>
+                        <div className="flex items-baseline gap-3 flex-wrap">
+                          <h3 style={{ fontFamily: SERIF, fontSize: 24, fontWeight: 500, letterSpacing: "-0.01em", color: "#fff", lineHeight: 1.1 }} data-testid="text-matched-stack-name">
+                            The {matchedStack.name} stack
+                          </h3>
+                          <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
+                            {matchedStack.peptides.length} peptides · {matchedStack.duration.split(",")[0]}
+                          </span>
+                        </div>
+                        <p style={{ fontFamily: SANS, fontSize: 13.5, lineHeight: 1.55, color: "rgba(255,255,255,0.78)", marginTop: 8, maxWidth: 560 }}>
+                          {matchedStack.purpose}
+                        </p>
+                      </div>
+
+                      {/* Confidence dial */}
+                      <div className="flex-shrink-0 text-right" data-testid="confidence-score">
+                        <p style={{ fontFamily: SERIF, fontSize: 34, fontWeight: 600, lineHeight: 1, color: "#c6f184", letterSpacing: "-0.02em" }}>
+                          {confidence}<span style={{ fontSize: 16, fontWeight: 500 }}>%</span>
+                        </p>
+                        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
+                          Goal match
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Confidence meter */}
+                    <div className="mt-4 relative h-1 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
+                      <div
+                        className="absolute left-0 top-0 h-full rounded-full transition-all duration-700"
+                        style={{ width: `${confidence}%`, background: "#c6f184" }}
+                        data-testid="confidence-meter"
+                      />
+                    </div>
+
+                    <div className="mt-4 flex items-center gap-4 flex-wrap">
+                      <Link
+                        href={`/stacks/${matchedStack.slug}`}
+                        className="inline-flex items-center gap-2"
+                        data-testid="link-view-matched-stack"
+                        style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, color: "#0A0A0A", background: "#c6f184", padding: "9px 16px", borderRadius: 999 }}
+                      >
+                        See the {matchedStack.name} protocol <ArrowRight size={13} />
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setPicked(matchedStack.peptides)}
+                        data-testid="button-use-matched-formula"
+                        style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", textDecoration: "underline", textDecorationStyle: "dotted", textUnderlineOffset: 4 }}
+                      >
+                        Use the exact formula
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
 

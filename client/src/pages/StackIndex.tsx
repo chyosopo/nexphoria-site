@@ -5,8 +5,8 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { stacks, computeStackPrice } from "@/data/stacks";
 import { pricing, formatUSD } from "@/data/pricing";
 import { AddToCartButton } from "@/components/AddToCartButton";
-import { getStackImage } from "@/lib/stackImages";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { getStackPortrait, getPortraitProof } from "@/lib/stackPortraits";
+import { MxHeader } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { getPeptide } from "@/data/peptides";
@@ -90,22 +90,18 @@ export default function StackIndex() {
             subtitle="Six flagship stacks designed by our medical directors — each tested against published clinical literature and our internal outcomes data. Add full stacks to cart or customize before checkout."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <StackHeroTile
               href="/stacks/wolverine"
-              tone="cobalt"
-              glyph={TileGlyphs.hex}
-              label={<>The Wolverine<br /><span>stack</span></>}
-              caption="Recovery · performance · sleep"
-              ctaLabel="Explore stack"
+              slug="wolverine"
+              name="Wolverine"
+              proof={getPortraitProof("wolverine")}
             />
-            <ColoredHeroTile
+            <StackHeroTile
               href="/stacks/glow"
-              tone="rose"
-              glyph={TileGlyphs.leaf}
-              label={<>The Glow<br /><span>stack</span></>}
-              caption="Skin · sleep · longevity"
-              ctaLabel="Explore stack"
+              slug="glow"
+              name="Glow"
+              proof={getPortraitProof("glow")}
             />
           </div>
 
@@ -185,14 +181,15 @@ export default function StackIndex() {
                     style={{ background: cardTint, border: "1px solid var(--nx-border)", textDecoration: "none" }}
                     data-testid={`card-stack-${stack.slug}`}
                   >
-                    {/* Image + overlay panel */}
-                    <div className="aspect-[16/10] w-full overflow-hidden relative" style={{ background: "var(--nx-bg-cream)" }}>
+                    {/* Benefit-encoded portrait + overlay panel */}
+                    <div className="aspect-[4/5] w-full overflow-hidden relative" style={{ background: "var(--nx-bg-cream)" }}>
                       <img
-                        src={getStackImage(stack.image)}
-                        alt={`${stack.name} stack`}
+                        src={getStackPortrait(stack.slug)}
+                        alt={`${stack.name} stack — ${getPortraitProof(stack.slug)}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.12) 42%, transparent 68%)" }} aria-hidden />
                       {/* Curator / flagship badge */}
                       <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                         {CURATOR_BADGE[stack.slug] && (
@@ -209,13 +206,13 @@ export default function StackIndex() {
                           </span>
                         )}
                       </div>
-                      {/* Includes overlay panel */}
-                      <div
-                        className="absolute bottom-0 left-0 right-0 px-4 py-2.5"
-                        style={{ background: "rgba(10,10,10,0.78)", backdropFilter: "blur(2px)" }}
-                      >
-                        <div className="text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#FAF7F0" }}>
-                          Includes: {stack.peptides.length} peptides · {meta.course} protocol · From {formatUSD(bundle)}/mo
+                      {/* Benefit-proof + includes overlay panel */}
+                      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-3">
+                        <div className="text-[13px] mb-2 max-w-[92%]" style={{ fontFamily: SANS, color: "#FFFFF3", fontWeight: 500, lineHeight: 1.35 }} data-testid={`proof-${stack.slug}`}>
+                          {getPortraitProof(stack.slug)}
+                        </div>
+                        <div className="text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(255,255,243,0.72)" }}>
+                          {stack.peptides.length} peptides · {meta.course} protocol · From {formatUSD(bundle)}/mo
                         </div>
                       </div>
                     </div>
@@ -505,6 +502,42 @@ export default function StackIndex() {
         </section>
       </div>
     </SiteLayout>
+  );
+}
+
+/* Editorial portrait hero tile for the index (Wolverine / Glow) — the v11
+   portrait proves the benefit; label + proof sit in a glass panel. */
+function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string; name: string; proof: string }) {
+  return (
+    <Link asChild href={href}>
+      <a
+        className="block group relative overflow-hidden"
+        style={{ borderRadius: 20, aspectRatio: "4 / 5", background: "#141414", textDecoration: "none" }}
+        data-testid={`hero-stack-${slug}`}
+      >
+        <img
+          src={getStackPortrait(slug)}
+          alt={`${name} stack — ${proof}`}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="eager"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.15) 46%, transparent 72%)" }} aria-hidden />
+        <div className="absolute left-6 right-6 bottom-6">
+          <div className="text-[11px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#c6f184" }}>
+            Flagship stack
+          </div>
+          <h3 className="mb-2" style={{ fontFamily: SERIF, color: "#FFFFF3", fontWeight: 600, fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+            The {name} stack
+          </h3>
+          <p className="text-sm mb-4 max-w-[34ch]" style={{ fontFamily: SANS, color: "rgba(255,255,243,0.85)", lineHeight: 1.4 }}>
+            {proof}
+          </p>
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] px-4 py-2 group-hover:gap-3 transition-all" style={{ fontFamily: MONO, color: "#0A0A0A", background: "#c6f184", borderRadius: 999, fontWeight: 600 }}>
+            Explore stack <ArrowRight size={13} strokeWidth={2.5} />
+          </span>
+        </div>
+      </a>
+    </Link>
   );
 }
 
