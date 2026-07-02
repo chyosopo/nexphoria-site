@@ -1463,7 +1463,7 @@ function DataHero({
               }}
               data-testid="text-hero-tagline"
             >
-              {tagline(peptide)}
+              {tagline(peptide).lead} {tagline(peptide).accent}
             </p>
 
             {/* GIANT BENEFIT STAT */}
