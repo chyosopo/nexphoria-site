@@ -23,17 +23,17 @@ const PANEL_ICONS: Record<string, any> = {
 
 /* Porcelain-kintsugi organ artwork — one per system */
 const PANEL_ART: Record<string, string> = {
-  "heart": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151212_130e06ad-009a-4360-940c-418a83691d68.png",
-  "metabolism": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151221_39722700-319f-427d-a372-45dd5c06baf6.png",
-  "hormones": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151230_1a09b948-2c15-43cd-8a38-2613808e58f0.png",
-  "stress": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151241_5a06bf30-24bc-4bd2-a534-c4e3477d785c.png",
-  "thyroid": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151249_62d48b6c-2d0b-4ac7-836c-75569432c795.png",
-  "kidneys": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151255_c7a8a162-d564-4b16-8016-3fbf7a531765.png",
-  "liver": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151306_e02af3ca-3d75-4682-b19a-f32999358c2f.png",
-  "immunity": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151313_2e5882f1-9c42-45d2-9ff1-97003443478e.png",
-  "nutrients": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151320_43a3ad34-d96c-4d24-8326-44a6343a1ddc.png",
-  "blood": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151328_199f36b7-5d48-47cb-af3a-31e960986804.png",
-  "bio-age": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_151335_0ab08414-ee76-4213-8017-6beda0004fbe.png",
+  "heart": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152043_c505a7ff-5c11-4ace-95c9-7181e35bc8d4.png",
+  "metabolism": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152051_874517d2-49c0-4611-a684-1caf378c8fc8.png",
+  "hormones": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152059_c0f88e93-bfe0-4f4a-b540-aff3d34350f8.png",
+  "stress": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152108_4c838823-37f2-468f-860b-58a4513b3750.png",
+  "thyroid": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152115_ac9456e0-62a7-4e9c-8519-c0a62c72ee11.png",
+  "kidneys": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152123_9100d54b-9142-46b5-ac02-a436ecce5dfc.png",
+  "liver": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152130_a06b685b-6bd6-42c7-bd9b-341833691d72.png",
+  "immunity": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152137_9c659ee5-1f32-44e1-8ef5-4be7086fb367.png",
+  "nutrients": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152145_e83ce276-f545-4338-bb46-9c605a42e74c.png",
+  "blood": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152153_e93d95ec-41d4-48c0-84d7-4564d0ac2f74.png",
+  "bio-age": "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152202_0658e816-204c-41ff-8729-419cdf508334.png",
 };
 
 const FONT = "'General Sans', system-ui, sans-serif";

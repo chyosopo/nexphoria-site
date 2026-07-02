@@ -13,8 +13,8 @@ import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 
 /* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
-const heroVideo  = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030852_5be30905-1215-4081-841d-6586f6fdc483.mp4";
-const heroPoster = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_021713_56fc5fd7-54f9-4b1e-96a1-1633308d4be2.png";
+const heroVideo  = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152428_51189ba6-7467-43fe-a313-236ccd37d8f2.mp4";
+const heroPoster = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png";
 
 /* V3 imagery — locked editorial palette */
 import heroVials from "@/assets/nx_polish_hero_vials.webp";
