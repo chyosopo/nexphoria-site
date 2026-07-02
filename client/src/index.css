@@ -1121,3 +1121,34 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
 @keyframes nx-drift { from { transform: translateX(1.6%); } to { transform: translateX(-1.6%); } }
 .nx-pills { position: sticky; top: 68px; z-index: 30; }
 @media (prefers-reduced-motion: reduce) { .nx-drift, .nx-ring-arc-lg { animation: none; stroke-dashoffset: 0; } }
+
+/* ═══ P3 — Aurora field + tinted glass (world-aware: everything derives from --nx-* tokens) ═══ */
+.nx-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.nx-aurora i { position: absolute; border-radius: 50%; filter: blur(72px); opacity: 0.55; will-change: transform; }
+.nx-aurora i:nth-child(1) { width: 46vw; height: 46vw; left: -12%; top: -24%; background: color-mix(in srgb, var(--nx-accent) 26%, transparent); animation: nxAur 34s ease-in-out infinite alternate; }
+.nx-aurora i:nth-child(2) { width: 38vw; height: 38vw; right: -10%; top: 4%; background: color-mix(in srgb, var(--nx-acid) 40%, transparent); animation: nxAur 28s ease-in-out infinite alternate-reverse; }
+.nx-aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 34%; bottom: -32%; background: color-mix(in srgb, var(--nx-rust) 30%, transparent); animation: nxAur 40s ease-in-out infinite alternate; }
+@keyframes nxAur { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(4%,6%,0) scale(1.08); } }
+
+.nx-glass-tile { position: relative; display: block; border-radius: 20px; padding: 1.35rem 1.45rem; text-decoration: none;
+  background: color-mix(in srgb, var(--nx-ceramic) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 22%, transparent);
+  backdrop-filter: blur(14px) saturate(1.35); -webkit-backdrop-filter: blur(14px) saturate(1.35);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 55%, transparent), 0 18px 40px -24px color-mix(in srgb, var(--nx-fg) 45%, transparent);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, background 0.35s ease; }
+.nx-glass-tile:hover { transform: translateY(-4px);
+  background: color-mix(in srgb, var(--nx-accent) 11%, color-mix(in srgb, var(--nx-ceramic) 55%, transparent));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 65%, transparent), 0 26px 52px -24px color-mix(in srgb, var(--nx-accent) 55%, transparent); }
+
+.nx-glass-btn { display: inline-block; font-weight: 600; border-radius: 999px; padding: 14px 26px; text-decoration: none; color: var(--nx-fg);
+  background: color-mix(in srgb, var(--nx-ceramic) 46%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 30%, transparent);
+  backdrop-filter: blur(10px) saturate(1.3); -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 60%, transparent);
+  transition: background 0.3s ease, transform 0.3s ease; }
+.nx-glass-btn:hover { background: color-mix(in srgb, var(--nx-accent) 14%, transparent); transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-aurora i { animation: none; }
+  .nx-glass-tile:hover, .nx-glass-btn:hover { transform: none; }
+}
