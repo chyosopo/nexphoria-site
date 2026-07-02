@@ -35,8 +35,6 @@ export function SiteLayout({
       </a>
       {!hideAnnouncementBar && <AnnouncementBar />}
       <Nav variant={resolvedNavVariant} />
-      {/* Spacer for fixed nav */}
-      <div className="pt-14" aria-hidden="true" />
       {!hideTrustBar && <TrustBar />}
       <main id="main-content" className="flex-1">{children}</main>
       {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
