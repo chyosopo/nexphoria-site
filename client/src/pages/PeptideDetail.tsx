@@ -258,13 +258,7 @@ function stepUpSchedule(p: Peptide): [string, string][] {
       ["Weeks 9–12", "7.5 mg / week"],
       ["Maintenance", "10–15 mg / week"],
     ];
-  if (p.slug === "retatrutide")
-    return [
-      ["Weeks 1–4", "2 mg / week"],
-      ["Weeks 5–8", "4 mg / week"],
-      ["Weeks 9–12", "8 mg / week"],
-      ["Maintenance", "Per physician"],
-    ];
+  // Retatrutide is investigational — no approved dosing exists; physician-directed only.
   // Generic titration framing for non-metabolic peptides.
   return [
     ["Weeks 1–2", "Starting dose, assess tolerance"],
@@ -427,7 +421,7 @@ export default function PeptideDetail() {
             {
               q: `Is ${peptide.name} FDA-approved?`,
               a: peptide.evidenceTier?.fdaStatus
-                ? `${peptide.evidenceTier.fdaStatus}. All Nexphoria peptides require a physician prescription and are compounded in a U.S. 503A-licensed pharmacy under federal compounding regulations.`
+                ? `${peptide.evidenceTier.fdaStatus}. All Nexphoria peptides require a physician prescription and are compounded by a state-licensed 503A compounding pharmacy. Compounded medications are not FDA-approved.`
                 : `${peptide.name} is prescribed off-label as a compounded medication. It requires a physician prescription through Nexphoria's telehealth platform and is compounded in a U.S. 503A-licensed pharmacy.`,
             },
           ]),
