@@ -2,11 +2,8 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { useSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
-import { PillBadge } from "@/components/PillBadge";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
 import md1 from "@/assets/brand/physicians/md-1.webp";
@@ -14,10 +11,19 @@ import md2 from "@/assets/brand/physicians/md-2.webp";
 import md3 from "@/assets/brand/physicians/md-3.webp";
 import md4 from "@/assets/brand/physicians/md-4.webp";
 
+/* ─────────────────────────────────────────────────────────────
+   About — founder + mission narrative. Maximus-tier.
+   Hero + proof stats → The problem we saw → Our approach (3 pillars)
+   → The team → Standards → manifesto + CTA.
+   General Sans throughout. No italics. No serif.
+   ───────────────────────────────────────────────────────────── */
+
+const FONT = "'General Sans', system-ui, sans-serif";
+
 // ─── Shared style helpers ──────────────────────────────────────────────────
 
 const eyebrow: React.CSSProperties = {
-  fontFamily: "'General Sans', system-ui, sans-serif",
+  fontFamily: FONT,
   fontSize: "11px",
   fontWeight: 500,
   letterSpacing: "0.18em",
@@ -34,24 +40,24 @@ const eyebrowRule = (
 );
 
 const sectionHeading: React.CSSProperties = {
-  fontFamily: "'General Sans', system-ui, sans-serif",
-  fontWeight: 500,
-  
-  fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+  fontFamily: FONT,
+  fontWeight: 600,
+  fontSize: "clamp(2rem, 4.2vw, 3.25rem)",
+  letterSpacing: "-0.03em",
   color: "var(--nx-fg)",
-  lineHeight: 1.12,
+  lineHeight: 1.04,
   marginBottom: "1.25rem",
 };
 
 const bodyCopy: React.CSSProperties = {
-  fontFamily: "'General Sans', system-ui, sans-serif",
+  fontFamily: FONT,
   fontSize: "1.0625rem",
-  color: "#4A4A4A",
+  color: "var(--nx-fg-graphite)",
   lineHeight: 1.7,
 };
 
 const monoCaption: React.CSSProperties = {
-  fontFamily: "'General Sans', system-ui, sans-serif",
+  fontFamily: FONT,
   fontSize: "10px",
   fontWeight: 500,
   letterSpacing: "0.12em",
@@ -61,20 +67,29 @@ const monoCaption: React.CSSProperties = {
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const STATS = [
-  { label: "Founded", value: "2024" },
-  { label: "Team", value: "12 people" },
-  { label: "Medical advisors", value: "5" },
-  { label: "Headquarters", value: "New York City" },
+const PROOF_STATS = [
+  { value: "38", label: "Biomarkers per panel" },
+  { value: "503A", label: "FDA-registered pharmacy" },
+  { value: "90 days", label: "Recalibration cadence" },
+  { value: "5", label: "Board-certified advisors" },
 ];
 
-const TIMELINE = [
-  { date: "2024 · Q1", title: "Founded", desc: "Nexphoria incorporated in New York with a pharmacy-first thesis." },
-  { date: "2024 · Q3", title: "First 100 patients", desc: "Initial cohort onboarded under full physician supervision." },
-  { date: "2025 · Q2", title: "Medical advisory board", desc: "Five board-certified specialists formalized clinical governance." },
-  { date: "2025 · Q4", title: "Pharmacy partnership", desc: "Exclusive 503A compounding partnership under USP <797>." },
-  { date: "2026 · Q1", title: "Telehealth license expansion", desc: "Physician licensure extended across 15 states." },
-  { date: "2026 · Q2", title: "Third-party labs", desc: "Independent batch verification added to every release." },
+const PILLARS = [
+  {
+    num: "01",
+    title: "Physician-guided",
+    desc: "Board-certified US physicians review your labs and write every prescription. A patient, not a checkout flow. Protocols are designed by MDs reading your bloodwork, never by marketing or testimonial.",
+  },
+  {
+    num: "02",
+    title: "Compounded",
+    desc: "Sterile-prepared in an FDA-registered 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
+  },
+  {
+    num: "03",
+    title: "Measured",
+    desc: "A 38-biomarker Quest panel is required before any prescription. Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on.",
+  },
 ];
 
 const LEADERSHIP = [
@@ -82,19 +97,19 @@ const LEADERSHIP = [
     photo: md4,
     name: "Chiya Yosopov",
     title: "Founder & CEO",
-    bio: "New York City. Built Nexphoria after watching the peptide market scale on testimonial instead of clinical evidence. The conviction: if peptide therapy is a clinical practice, it requires a pharmacy, a physician, and laboratory accountability behind it — not a personality. Chiya structured the company in the order a clinic would: physician oversight first, 503A compounding second, labs gating everything. Peak Potential, Pinnacle Performance — through mechanism, not marketing.",
+    bio: "Built Nexphoria after watching the peptide market scale on testimonial instead of clinical evidence. Structured the company in the order a clinic would: physician oversight first, 503A compounding second, labs gating everything.",
   },
   {
     photo: md1,
     name: "Dr. Sarah Chen, MD",
     title: "Chief Medical Officer",
-    bio: "ABIM board-certified endocrinologist, 12 years at NYU Langone; sets all clinical protocols.",
+    bio: "ABIM board-certified endocrinologist, 12 years at NYU Langone. Sets all clinical protocols.",
   },
   {
     photo: md2,
     name: "Marcus Torres",
     title: "Head of Pharmacy Ops",
-    bio: "Two decades in 503A sterile compounding; owns cold-chain integrity end to end.",
+    bio: "Two decades in 503A sterile compounding. Owns cold-chain integrity end to end.",
   },
   {
     photo: md3,
@@ -112,94 +127,134 @@ const ADVISORS = [
   { name: "Dr. Maya Lindqvist, MD", cred: "Preventive Medicine", inst: "Cleveland Clinic" },
 ];
 
-const MISSION = [
-  { num: "01", title: "Clinical-grade above all", desc: "Every protocol meets the standard a physician would accept for their own patient. No shortcuts for conversion." },
-  { num: "02", title: "Physician oversight, not influencers", desc: "Protocols are designed by board-certified MDs reviewing your labs — never by marketing or testimonial." },
-  { num: "03", title: "Transparency in compounding", desc: "503A, USP <797>, batch-tested, third-party verified. We publish what's in the vial and who made it." },
-  { num: "04", title: "Patient agency through data", desc: "You see your own biomarkers and the reasoning behind every dose. Mechanism before marketing claim." },
+const STANDARDS = [
+  {
+    num: "01",
+    title: "HIPAA-compliant",
+    detail: "PHI encrypted in transit and at rest. Business Associate Agreements with every partner touching your data.",
+  },
+  {
+    num: "02",
+    title: "503A / USP <797>",
+    detail: "Every prescription compounded to sterile-preparation standards in an FDA-registered US pharmacy.",
+  },
+  {
+    num: "03",
+    title: "Third-party batch testing",
+    detail: "Independent identity, purity, sterility, and endotoxin verification on every release.",
+  },
+  {
+    num: "04",
+    title: "Laboratory-gated prescribing",
+    detail: "No labs, no protocol. Quest Diagnostics panels required before and throughout therapy.",
+  },
 ];
 
 const PRESS = ["GQ", "Men's Health", "Forbes", "Bloomberg", "Biohacker"];
-
-const PRO_QUOTES = [
-  {
-    quote: "Finally a peptide provider that gates everything on bloodwork. This is how compounded therapy is supposed to work.",
-    name: "Dr. R. Alvarez, MD",
-    role: "Internal Medicine",
-  },
-  {
-    quote: "The 503A compliance and batch testing put Nexphoria in a different category from the gray-market sellers.",
-    name: "Dr. K. Mbeki, PharmD",
-    role: "Clinical Pharmacology",
-  },
-  {
-    quote: "Quarterly recalibration off measured labs — not symptom report — is the part most providers skip. They don't.",
-    name: "Dr. L. Tanaka, MD",
-    role: "Preventive Medicine",
-  },
-];
-
-const FEATURED_IN = [
-  { outlet: "GQ", line: "On the men\'s health category growing up: physician-supervised peptide protocols as the next tier of personal optimization." },
-  { outlet: "Men\'s Health", line: "Profiled as part of a wave of clinical-grade alternatives to the gray-market peptide supplement sector." },
-  { outlet: "Forbes", line: "Named among clinical-first health startups rewriting the rules of compounded therapy." },
-  { outlet: "Bloomberg", line: "Cited for its 503A pharmacy standards, batch-testing transparency, and cold-chain logistics infrastructure." },
-  { outlet: "Biohacker", line: "Featured for insisting on laboratory accountability as a prerequisite rather than a premium add-on." },
-];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function About() {
   useSeo({
     title: "About | Nexphoria",
-    description: "Peptide therapy needs a pharmacy, not an influencer. Meet the team behind clinical-grade peptide care.",
+    description:
+      "Peptide therapy needs a pharmacy, not an influencer. Meet the physicians and pharmacists behind clinical-grade peptide care.",
     path: "/about",
   });
 
   return (
     <SiteLayout navVariant="showcase">
-      {/* ════════════════ MAXIMUS HERO ════════════════ */}
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">About Nexphoria</PillBadge>}
-            headline={
-              <><span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>A pharmacy for people</span><br /><span>who refuse to settle</span>.</>
-            }
-            subtitle="We build physician-supervised peptide protocols for performance, longevity, and recovery. Built by clinicians. Compounded in U.S. 503A pharmacies."
-          />
+      {/* ════════════════ EDITORIAL HERO + PROOF STATS ════════════════ */}
+      <section
+        data-testid="about-hero"
+        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
+      >
+        <div className="nx-container" style={{ paddingTop: 76, paddingBottom: 0 }}>
+          <Reveal>
+            <p style={{ ...eyebrow, marginBottom: "1.25rem" }}>{eyebrowRule}About Nexphoria</p>
+            <h1
+              style={{
+                fontFamily: FONT,
+                fontWeight: 600,
+                fontSize: "clamp(2.75rem, 6vw, 4.75rem)",
+                lineHeight: 0.98,
+                letterSpacing: "-0.035em",
+                color: "var(--nx-fg)",
+                maxWidth: 960,
+              }}
+            >
+              <span style={{ color: "color-mix(in oklab, var(--nx-fg) 34%, transparent)" }}>
+                Peptide therapy needs a pharmacy,
+              </span>{" "}
+              not an influencer.
+            </h1>
+            <p
+              style={{
+                fontFamily: FONT,
+                fontSize: 19,
+                lineHeight: 1.55,
+                color: "var(--nx-fg-graphite)",
+                maxWidth: 660,
+                marginTop: 26,
+              }}
+            >
+              We build physician-supervised peptide protocols for performance, longevity, and
+              recovery. Designed by clinicians. Compounded in US 503A pharmacies. Gated on your
+              bloodwork, not a testimonial.
+            </p>
+          </Reveal>
+        </div>
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/about"
-              tone="sand"
-              glyph={TileGlyphs.leaf}
-              label={<>Physician-led</>}
-              caption="Board-certified medical directors"
-              ctaLabel="Our team"
-            />
-            <ColoredHeroTile
-              href="/about"
-              tone="sage"
-              glyph={TileGlyphs.wave}
-              label={<>Pharmacy-grade</>}
-              caption="Board-certified medical directors"
-              ctaLabel="Our team"
-            />
+        {/* Proof stat row */}
+        <div className="nx-container" style={{ paddingTop: 56, paddingBottom: 0 }}>
+          <div
+            className="about-proof-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              borderTop: "1px solid var(--nx-border)",
+            }}
+          >
+            {PROOF_STATS.map((s, i) => (
+              <div
+                key={s.label}
+                data-testid={`about-proof-${i}`}
+                className={`about-proof-cell about-proof-cell-${i}`}
+                style={{
+                  padding: "2rem 1.5rem 2.25rem",
+                  borderBottom: "1px solid var(--nx-border)",
+                }}
+              >
+                <p
+                  style={{
+                    fontFamily: FONT,
+                    fontWeight: 600,
+                    fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
+                    letterSpacing: "-0.03em",
+                    color: "var(--nx-fg)",
+                    lineHeight: 1,
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {s.value}
+                </p>
+                <p style={monoCaption}>{s.label}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </main>
+      </section>
 
-      {/* ════════════════ ORIGIN STORY (editorial, 2 columns) ════════════════ */}
+      {/* ════════════════ THE PROBLEM WE SAW ════════════════ */}
       <section
         className="py-20 md:py-28"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-origin"
+        data-testid="about-problem"
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}WHY WE EXIST</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "700px", marginBottom: "2.5rem" }}>
+            <p style={eyebrow}>{eyebrowRule}The problem we saw</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "760px", marginBottom: "2.5rem" }}>
               The market matured faster than the standards did.
             </h2>
           </Reveal>
@@ -213,121 +268,116 @@ export default function About() {
                   For years, the peptide market operated in an unregulated gray zone — powders of
                   unknown provenance, unstated concentrations, no physician involvement, and no
                   laboratory accountability. Consumers were left to source, reconstitute, and
-                  self-administer compounds with no pharmacist or physician in the chain. The primary
-                  distribution channel was influencer testimonial, not clinical evidence.
+                  self-administer compounds with no pharmacist or physician in the chain. The
+                  primary distribution channel was influencer testimonial, not clinical evidence.
                 </p>
                 <p style={bodyCopy}>
                   We started Nexphoria from a single conviction: peptide therapy is a clinical
-                  practice, and a clinical practice needs a pharmacy behind it — not a personality.
+                  practice, and a clinical practice needs a pharmacy behind it, not a personality.
                   A pharmacy is accountable to regulators, to sterility standards, to a chain of
                   custody. An influencer is accountable to an algorithm.
                 </p>
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                 <p style={bodyCopy}>
                   So we built the company in the order a clinic would: physician oversight first,
                   503A compounding under USP &lt;797&gt; second, laboratory accountability gating
                   everything. Labs before guesswork. Physicians before protocols. Mechanism before
                   marketing claim.
                 </p>
-                <div
-                  style={{
-                    borderRadius: "6px",
-                    overflow: "hidden",
-                    aspectRatio: "4/3",
-                    border: "1px solid var(--nx-border)",
-                  }}
-                >
-                  <img
-                    src={lifestylePharmacyShelf}
-                    alt="Licensed 503A compounding pharmacy shelf with labeled peptide preparations"
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  />
-                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div
+                style={{
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  aspectRatio: "4/5",
+                  border: "1px solid var(--nx-border)",
+                  height: "100%",
+                }}
+              >
+                <img
+                  src={lifestylePharmacyShelf}
+                  alt="Licensed 503A compounding pharmacy shelf with labeled peptide preparations"
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ════════════════ TIMELINE ════════════════ */}
+      {/* ════════════════ OUR APPROACH — 3 PILLARS ════════════════ */}
       <section
         className="py-20 md:py-28"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-timeline"
+        data-testid="about-approach"
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}THE MILESTONES</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
-              How we got here, in order.
+            <p style={eyebrow}>{eyebrowRule}Our approach</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
+              Physician-guided. Compounded. Measured.
             </h2>
           </Reveal>
-          <div className="about-timeline-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}>
-            {TIMELINE.map((m, i) => (
-              <Reveal key={m.date} delay={i * 40}>
-                <div
-                  data-testid={`about-milestone-${i}`}
+          <div
+            className="about-pillars-grid"
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}
+          >
+            {PILLARS.map((p, i) => (
+              <div
+                key={p.num}
+                data-testid={`about-pillar-${i}`}
+                style={{ backgroundColor: "#FFFFF3", padding: "2.75rem 2.25rem" }}
+              >
+                <p
                   style={{
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "6px",
-                    backgroundColor: "#FFFFFF",
-                    padding: "1.75rem 1.5rem",
-                    height: "100%",
-                    position: "relative",
+                    fontFamily: FONT,
+                    fontSize: "11px",
+                    fontWeight: 500,
+                    letterSpacing: "0.15em",
+                    color: "var(--nx-rust)",
+                    marginBottom: "1.25rem",
                   }}
                 >
-                  <span
-                    style={{
-                      display: "inline-flex",
-                      width: "10px",
-                      height: "10px",
-                      borderRadius: "50%",
-                      backgroundColor: "var(--nx-cobalt)",
-                      marginBottom: "1rem",
-                    }}
-                  />
-                  <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "0.625rem" }}>{m.date}</p>
-                  <h3
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
-                      fontWeight: 500,
-                      fontSize: "1.375rem",
-                      color: "var(--nx-fg)",
-                      lineHeight: 1.15,
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    {m.title}
-                  </h3>
-                  <p style={{ ...bodyCopy, fontSize: "0.875rem" }}>{m.desc}</p>
-                </div>
-              </Reveal>
+                  {p.num}
+                </p>
+                <h3
+                  style={{
+                    fontFamily: FONT,
+                    fontWeight: 600,
+                    fontSize: "1.625rem",
+                    letterSpacing: "-0.02em",
+                    color: "var(--nx-fg)",
+                    lineHeight: 1.1,
+                    marginBottom: "0.875rem",
+                  }}
+                >
+                  {p.title}
+                </h3>
+                <p style={{ ...bodyCopy, fontSize: "0.9375rem" }}>{p.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ════════════════ LEADERSHIP ════════════════ */}
+      {/* ════════════════ THE TEAM ════════════════ */}
       <section
         className="py-20 md:py-28"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-leadership"
+        data-testid="about-team"
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}LEADERSHIP</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
+            <p style={eyebrow}>{eyebrowRule}The team</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
               The people accountable for your care.
             </h2>
           </Reveal>
           <div
             className="about-leadership-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }}
           >
             {LEADERSHIP.map((p, i) => (
               <Reveal key={p.name} delay={i * 50}>
@@ -335,13 +385,13 @@ export default function About() {
                   data-testid={`about-leader-${i}`}
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "6px",
+                    borderRadius: "16px",
                     overflow: "hidden",
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: "#FFFFF3",
                     height: "100%",
                   }}
                 >
-                  <div style={{ aspectRatio: "1/1", overflow: "hidden", backgroundColor: "var(--nx-bg-cream)" }}>
+                  <div style={{ aspectRatio: "4/5", overflow: "hidden", backgroundColor: "var(--nx-bg-cream)" }}>
                     <img
                       src={p.photo}
                       alt={p.name}
@@ -349,12 +399,13 @@ export default function About() {
                       style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                     />
                   </div>
-                  <div style={{ padding: "1.5rem 1.375rem" }}>
+                  <div style={{ padding: "1.5rem 1.5rem" }}>
                     <h3
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontWeight: 500,
+                        fontFamily: FONT,
+                        fontWeight: 600,
                         fontSize: "1.25rem",
+                        letterSpacing: "-0.01em",
                         color: "var(--nx-fg)",
                         lineHeight: 1.15,
                         marginBottom: "0.25rem",
@@ -362,161 +413,147 @@ export default function About() {
                     >
                       {p.name}
                     </h3>
-                    <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "0.875rem" }}>{p.title}</p>
-                    <p style={{ ...bodyCopy, fontSize: "0.8125rem" }}>{p.bio}</p>
+                    <p style={{ ...monoCaption, color: "var(--nx-rust)", marginBottom: "0.875rem" }}>
+                      {p.title}
+                    </p>
+                    <p style={{ ...bodyCopy, fontSize: "0.875rem" }}>{p.bio}</p>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ════════════════ MEDICAL ADVISORY BOARD ════════════════ */}
-      <section
-        className="py-20 md:py-28"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-advisory"
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p style={eyebrow}>{eyebrowRule}MEDICAL ADVISORY BOARD</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
-              Clinical governance, by name.
-            </h2>
-          </Reveal>
-          <div
-            className="about-advisory-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1rem" }}
-          >
-            {ADVISORS.map((a, i) => (
-              <Reveal key={a.name} delay={i * 40}>
-                <div
-                  data-testid={`about-advisor-${i}`}
-                  style={{
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "6px",
-                    backgroundColor: "#FFFFFF",
-                    padding: "1.75rem 1.5rem",
-                    height: "100%",
-                  }}
-                >
-                  <span
+          {/* Advisory board — compact list */}
+          <div style={{ marginTop: "4rem" }}>
+            <Reveal>
+              <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "1.5rem" }}>
+                Medical advisory board
+              </p>
+            </Reveal>
+            <div
+              className="about-advisory-grid"
+              style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1rem" }}
+            >
+              {ADVISORS.map((a, i) => (
+                <Reveal key={a.name} delay={i * 40}>
+                  <div
+                    data-testid={`about-advisor-${i}`}
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "46px",
-                      height: "46px",
-                      borderRadius: "50%",
-                      backgroundColor: "var(--nx-cobalt-soft)",
-                      color: "var(--nx-fg)",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
-                      fontWeight: 500,
-                      fontSize: "1.125rem",
-                      marginBottom: "1rem",
-                    }}
-                    aria-hidden="true"
-                  >
-                    {a.name.split(" ")[1]?.[0] ?? a.name[0]}
-                  </span>
-                  <h3
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontWeight: 500,
-                      fontSize: "1.125rem",
-                      color: "var(--nx-fg)",
-                      lineHeight: 1.2,
-                      marginBottom: "0.5rem",
+                      border: "1px solid var(--nx-border)",
+                      borderRadius: "12px",
+                      backgroundColor: "#FFFFF3",
+                      padding: "1.5rem 1.25rem",
+                      height: "100%",
                     }}
                   >
-                    {a.name}
-                  </h3>
-                  <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "0.25rem" }}>{a.cred}</p>
-                  <p style={{ ...monoCaption }}>{a.inst}</p>
-                </div>
-              </Reveal>
-            ))}
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "44px",
+                        height: "44px",
+                        borderRadius: "50%",
+                        backgroundColor: "var(--nx-cobalt-soft)",
+                        color: "var(--nx-fg)",
+                        fontFamily: FONT,
+                        fontWeight: 600,
+                        fontSize: "1.0625rem",
+                        marginBottom: "1rem",
+                      }}
+                      aria-hidden="true"
+                    >
+                      {a.name.split(" ")[1]?.[0] ?? a.name[0]}
+                    </span>
+                    <h4
+                      style={{
+                        fontFamily: FONT,
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                        color: "var(--nx-fg)",
+                        lineHeight: 1.2,
+                        marginBottom: "0.4rem",
+                      }}
+                    >
+                      {a.name}
+                    </h4>
+                    <p style={{ ...monoCaption, color: "var(--nx-rust)", marginBottom: "0.2rem" }}>
+                      {a.cred}
+                    </p>
+                    <p style={monoCaption}>{a.inst}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════ MISSION TILES ════════════════ */}
+      {/* ════════════════ STANDARDS ════════════════ */}
       <section
         className="py-20 md:py-28"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-mission"
+        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
+        data-testid="about-standards"
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}OUR PRINCIPLES</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "3rem" }}>
-              Four commitments. No exceptions.
+            <p style={eyebrow}>{eyebrowRule}Standards</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "0.75rem" }}>
+              Regulatory and safety commitments.
             </h2>
+            <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
+              Four requirements, held on every order. No exceptions, no add-on tiers.
+            </p>
           </Reveal>
           <div
+            className="about-standards-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(2, 1fr)",
               gap: "1.5px",
               backgroundColor: "var(--nx-border)",
               border: "1.5px solid var(--nx-border)",
+              borderRadius: 16,
+              overflow: "hidden",
             }}
           >
-            {MISSION.map((m, i) => (
+            {STANDARDS.map((item, i) => (
               <div
-                key={m.num}
-                data-testid={`about-mission-${i}`}
-                style={{ backgroundColor: "var(--nx-bg-cream)", padding: "2.5rem 2rem" }}
+                key={item.num}
+                data-testid={`about-standard-${i}`}
+                style={{ backgroundColor: "#FFFFF3", padding: "2.5rem 2rem" }}
               >
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
-                    fontWeight: 700,
+                    fontFamily: FONT,
+                    fontSize: "11px",
+                    fontWeight: 500,
                     letterSpacing: "0.15em",
-                    color: "var(--nx-cobalt)",
+                    color: "var(--nx-rust)",
                     marginBottom: "1rem",
                   }}
                 >
-                  {m.num}
+                  {item.num}
                 </p>
                 <h3
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
-                    fontWeight: 500,
+                    fontFamily: FONT,
+                    fontWeight: 600,
                     fontSize: "1.375rem",
+                    letterSpacing: "-0.02em",
                     color: "var(--nx-fg)",
-                    lineHeight: 1.2,
+                    lineHeight: 1.15,
                     marginBottom: "0.75rem",
                   }}
                 >
-                  {m.title}
+                  {item.title}
                 </h3>
-                <p style={{ ...bodyCopy, fontSize: "14px" }}>{m.desc}</p>
+                <p style={{ ...bodyCopy, fontSize: "0.9375rem" }}>{item.detail}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ════════════════ PRESS + RECOGNITION ════════════════ */}
-      <section
-        className="py-20 md:py-28"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-press"
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p style={eyebrow}>{eyebrowRule}PRESS & RECOGNITION</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "640px", marginBottom: "2.5rem" }}>
-              Covered for the standard, not the hype.
-            </h2>
-          </Reveal>
-
-          {/* Press wordmarks */}
+          {/* Press strip */}
           <Reveal>
             <div
               data-testid="about-press-strip"
@@ -525,17 +562,17 @@ export default function About() {
                 flexWrap: "wrap",
                 alignItems: "center",
                 gap: "1.5rem 2.5rem",
-                paddingBottom: "2.5rem",
-                borderBottom: "1px solid var(--nx-border)",
-                marginBottom: "3rem",
+                marginTop: "3.5rem",
+                paddingTop: "2.5rem",
+                borderTop: "1px solid var(--nx-border)",
               }}
             >
-              <span style={{ ...monoCaption, flexShrink: 0 }}>FEATURED IN —</span>
+              <span style={{ ...monoCaption, flexShrink: 0 }}>Featured in —</span>
               {PRESS.map((p) => (
                 <span
                   key={p}
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: FONT,
                     fontWeight: 500,
                     fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
                     color: "var(--nx-fg)",
@@ -547,163 +584,13 @@ export default function About() {
               ))}
             </div>
           </Reveal>
-
-          {/* 3-quote testimonial row */}
-          <div
-            className="about-quotes-grid"
-            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1rem", marginBottom: "3rem" }}
-          >
-            {PRO_QUOTES.map((q, i) => (
-              <Reveal key={i} delay={i * 50}>
-                <figure
-                  data-testid={`about-quote-${i}`}
-                  style={{
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "6px",
-                    backgroundColor: "#FFFFFF",
-                    padding: "1.75rem",
-                    height: "100%",
-                    margin: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <blockquote
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
-                      fontWeight: 400,
-                      fontSize: "1.0625rem",
-                      color: "var(--nx-fg)",
-                      lineHeight: 1.5,
-                      margin: 0,
-                      marginBottom: "1.5rem",
-                    }}
-                  >
-                    "{q.quote}"
-                  </blockquote>
-                  <figcaption style={{ marginTop: "auto" }}>
-                    <p
-                      style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "0.875rem",
-                        fontWeight: 600,
-                        color: "var(--nx-fg)",
-                      }}
-                    >
-                      {q.name}
-                    </p>
-                    <p style={{ ...monoCaption }}>{q.role}</p>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Detailed featured-in list */}
-          <Reveal>
-            <div
-              data-testid="about-featured-list"
-              style={{
-                border: "1px solid var(--nx-border)",
-                borderRadius: "6px",
-                overflow: "hidden",
-                backgroundColor: "#FFFFFF",
-              }}
-            >
-              {FEATURED_IN.map((f, i) => (
-                <div
-                  key={f.outlet}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.25rem",
-                    padding: "1.25rem 1.5rem",
-                    borderBottom: i < FEATURED_IN.length - 1 ? "1px solid var(--nx-border)" : "none",
-                  }}
-                  className="about-featured-row"
-                >
-                  <p
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontWeight: 500,
-                      fontSize: "1.0625rem",
-                      color: "var(--nx-fg)",
-                    }}
-                  >
-                    {f.outlet}
-                  </p>
-                  <p style={{ ...bodyCopy, fontSize: "0.875rem" }}>{f.line}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ════════════════ THE NEXPHORIA STANDARD (retained) ════════════════ */}
-      <section
-        className="py-20 md:py-28"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-standard"
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p style={eyebrow}>{eyebrowRule}THE NEXPHORIA STANDARD</p>
-            <h2 style={{ ...sectionHeading, marginBottom: "3rem" }}>Four requirements. No exceptions.</h2>
-          </Reveal>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-              gap: "1.5px",
-              backgroundColor: "var(--nx-border)",
-              border: "1.5px solid var(--nx-border)",
-            }}
-          >
-            {[
-              { num: "01", title: "Laboratory-gated", detail: "A 38-biomarker Quest panel is required before any prescription is issued. No labs, no protocol." },
-              { num: "02", title: "Physician-prescribed", detail: "Board-certified US physicians review your labs and write your prescription. A patient, not a checkout flow." },
-              { num: "03", title: "503A-compounded", detail: "Sterile-prepared in an FDA-registered 503A US pharmacy under USP <797>. Batch-tested, cold-chain shipped." },
-              { num: "04", title: "Monitored quarterly", detail: "Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on." },
-            ].map((item) => (
-              <div key={item.num} style={{ backgroundColor: "var(--nx-bg-cream)", padding: "2.5rem 2rem" }}>
-                <p
-                  style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    letterSpacing: "0.15em",
-                    color: "var(--nx-cobalt)",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {item.num}
-                </p>
-                <h3
-                  style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
-                    fontWeight: 500,
-                    fontSize: "1.375rem",
-                    color: "var(--nx-fg)",
-                    lineHeight: 1.2,
-                    marginBottom: "0.75rem",
-                  }}
-                >
-                  {item.title}
-                </h3>
-                <p style={{ ...bodyCopy, fontSize: "14px" }}>{item.detail}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
       {/* ════════════════ CONTACT CTA ════════════════ */}
       <section
         className="py-20 md:py-24"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
+        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-contact-cta"
       >
         <div className="nx-container max-w-screen-xl">
@@ -713,8 +600,8 @@ export default function About() {
                 className="about-contact-tile"
                 style={{
                   border: "1px solid var(--nx-border)",
-                  borderRadius: "8px",
-                  backgroundColor: "#FFFFFF",
+                  borderRadius: "16px",
+                  backgroundColor: "#FFFFF3",
                   padding: "2.5rem 2.25rem",
                   display: "flex",
                   flexWrap: "wrap",
@@ -725,16 +612,17 @@ export default function About() {
                 }}
               >
                 <div>
-                  <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}>
-                    QUESTIONS BEFORE YOU START?
+                  <p style={{ ...monoCaption, color: "var(--nx-rust)", marginBottom: "0.75rem" }}>
+                    Questions before you start?
                   </p>
                   <h3
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontWeight: 500,
+                      fontFamily: FONT,
+                      fontWeight: 600,
                       fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                      letterSpacing: "-0.02em",
                       color: "var(--nx-fg)",
-                      lineHeight: 1.1,
+                      lineHeight: 1.05,
                     }}
                   >
                     Talk to our team.
@@ -747,17 +635,17 @@ export default function About() {
                     gap: "0.5rem",
                     backgroundColor: "var(--nx-fg)",
                     color: "var(--nx-bg-cream)",
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: FONT,
                     fontSize: "11px",
-                    fontWeight: 700,
+                    fontWeight: 600,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     padding: "0.875rem 1.75rem",
-                    borderRadius: "100px",
+                    borderRadius: "999px",
                     flexShrink: 0,
                   }}
                 >
-                  CONTACT US <ArrowUpRight size={14} />
+                  Contact us <ArrowUpRight size={14} />
                 </span>
               </div>
             </Link>
@@ -765,122 +653,45 @@ export default function About() {
         </div>
       </section>
 
-
-      {/* ════════════════ WHO WE SERVE ════════════════ */}
+      {/* ════════════════ MANIFESTO ════════════════ */}
       <section
-        className="py-20 md:py-28"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
-        data-testid="about-who-we-serve"
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p style={eyebrow}>{eyebrowRule}DARE TO DEFY</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "700px", marginBottom: "2.5rem" }}>
-              We serve the ones who <span>refuse to accept the average.</span>
-            </h2>
-          </Reveal>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5rem" }} className="md:grid-cols-2">
-            <Reveal>
-              <div
-                style={{
-                  border: "1px solid var(--nx-border)",
-                  borderRadius: 6,
-                  backgroundColor: "#FFFFFF",
-                  padding: "2.5rem 2rem",
-                  height: "100%",
-                }}
-              >
-                <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "1.25rem" }}>WHO WE\'RE BUILT FOR</p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
-                  {[
-                    "High-performers who want clinical-grade protocols backed by mechanism, not influencer endorsement.",
-                    "Athletes and executives who measure outcomes with bloodwork, not subjective feeling.",
-                    "Anyone who has maxed out lifestyle optimization and wants the next level of physiological precision.",
-                    "Patients who want a physician who actually reads their labs before prescribing.",
-                    "The type of person who asks \"why\" before \"how much\".",
-                  ].map((item, i) => (
-                    <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                      <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", backgroundColor: "var(--nx-cobalt)", flexShrink: 0, marginTop: 7 }} />
-                      <p style={{ ...bodyCopy, fontSize: "0.9375rem", margin: 0 }}>{item}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div
-                style={{
-                  border: "1px solid var(--nx-border)",
-                  borderRadius: 6,
-                  backgroundColor: "var(--nx-bg-cream)",
-                  padding: "2.5rem 2rem",
-                  height: "100%",
-                }}
-              >
-                <p style={{ ...monoCaption, color: "#8B5A2B", marginBottom: "1.25rem" }}>WHO WE\'RE NOT FOR</p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
-                  {[
-                    "Anyone who wants to skip bloodwork and go straight to a protocol. That is not how this works.",
-                    "Patients seeking a physician who will approve whatever they request.",
-                    "Those expecting overnight results from a two-week cycle with no follow-up.",
-                    "Anyone sourcing from overseas research suppliers or gray-market providers.",
-                  ].map((item, i) => (
-                    <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                      <span style={{ display: "inline-block", width: 8, height: 2, backgroundColor: "#8B5A2B", flexShrink: 0, marginTop: 10 }} />
-                      <p style={{ ...bodyCopy, fontSize: "0.9375rem", margin: 0, color: "#6B6B6B" }}>{item}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════ Manifesto + stats + final CTA (retained) ════════════════ */}
-      <section
-        style={{ backgroundColor: "var(--nx-cobalt)", padding: "6rem 0", borderTop: "1px solid rgba(255,255,255,0.1)" }}
+        style={{ backgroundColor: "var(--nx-fg)", padding: "6rem 0" }}
+        data-testid="about-manifesto"
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                
-                fontWeight: 400,
+                fontFamily: FONT,
+                fontWeight: 500,
                 fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
-                color: "#FFFFFF",
-                lineHeight: 1.4,
-                maxWidth: "800px",
+                letterSpacing: "-0.02em",
+                color: "#FFFFF3",
+                lineHeight: 1.25,
+                maxWidth: "860px",
               }}
             >
               "Precision medicine is not a marketing category. It is a commitment to treating every
-              patient as a unique biological system — not a population average. Labs before
+              patient as a unique biological system, not a population average. Labs before
               guesswork. Physicians before protocols. Mechanism before marketing claim. That is
               Nexphoria."
             </p>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: FONT,
                 fontSize: "10px",
-                fontWeight: 700,
+                fontWeight: 500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.55)",
+                color: "rgba(255,255,243,0.55)",
                 marginTop: "2.5rem",
               }}
             >
-              THE NEXPHORIA MEDICAL TEAM
+              The Nexphoria medical team
             </p>
           </Reveal>
         </div>
       </section>
-
-      <TrustStatsStrip
-        eyebrow="By the numbers"
-        heading="The Nexphoria record — in receipts, not adjectives."
-        variant="dark"
-      />
 
       <FinalCTAStrip
         gender="women"
@@ -890,18 +701,14 @@ export default function About() {
 
       <style>{`
         @media (min-width: 768px) {
-          .about-stat-grid { grid-template-columns: repeat(4, 1fr) !important; }
-          .about-stat-grid .about-stat-cell { border-top: none !important; }
-          .about-stat-grid .about-stat-cell-0 { border-left: none !important; }
-          .about-stat-grid .about-stat-cell-1,
-          .about-stat-grid .about-stat-cell-2,
-          .about-stat-grid .about-stat-cell-3 { border-left: 1px solid var(--nx-border) !important; }
-          .about-timeline-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .about-proof-grid { grid-template-columns: repeat(4, 1fr) !important; }
+          .about-proof-cell { border-right: 1px solid var(--nx-border) !important; }
+          .about-proof-cell-3 { border-right: none !important; }
+          .about-pillars-grid { grid-template-columns: repeat(3, 1fr) !important; }
           .about-leadership-grid { grid-template-columns: repeat(4, 1fr) !important; }
           .about-advisory-grid { grid-template-columns: repeat(5, 1fr) !important; }
-          .about-quotes-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
-        .about-contact-tile:hover { border-color: var(--nx-cobalt) !important; }
+        .about-contact-tile:hover { border-color: var(--nx-fg) !important; }
       `}</style>
     </SiteLayout>
   );

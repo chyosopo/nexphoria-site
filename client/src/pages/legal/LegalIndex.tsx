@@ -2,6 +2,14 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
+import { ArrowUpRight } from "lucide-react";
+
+/* ─────────────────────────────────────────────────────────────
+   LegalIndex — visual chrome only. Document copy is LOCKED.
+   General Sans, no italics, no serif.
+   ───────────────────────────────────────────────────────────── */
+
+const FONT = "'General Sans', system-ui, sans-serif";
 
 const legalPages = [
   { label: "Terms of Service", href: "/legal/terms", desc: "Service agreements, user eligibility, and platform terms." },
@@ -18,36 +26,115 @@ export default function LegalIndex() {
   });
   return (
     <SiteLayout navVariant="gate">
-      <section className="py-20" style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
+      <section
+        style={{
+          backgroundColor: "var(--nx-bg)",
+          borderBottom: "1px solid var(--nx-border)",
+          paddingTop: "4.5rem",
+          paddingBottom: "3rem",
+        }}
+      >
         <div className="nx-container">
           <Reveal>
-            <p className="nx-eyebrow mb-4">LEGAL</p>
-            <h1 className="nx-heading mb-4" style={{ fontSize: "clamp(2.25rem, 4vw, 3.5rem)" }}>Legal documents.</h1>
+            <p
+              style={{
+                fontFamily: FONT,
+                fontSize: "11px",
+                fontWeight: 500,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "var(--nx-fg-muted)",
+                marginBottom: "1rem",
+              }}
+            >
+              Legal
+            </p>
+            <h1
+              style={{
+                fontFamily: FONT,
+                fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+                fontWeight: 600,
+                letterSpacing: "-0.03em",
+                color: "var(--nx-fg)",
+                lineHeight: 1.02,
+                marginBottom: "0.75rem",
+              }}
+            >
+              Legal documents.
+            </h1>
+            <p
+              style={{
+                fontFamily: FONT,
+                fontSize: "17px",
+                lineHeight: 1.6,
+                color: "var(--nx-fg-graphite)",
+                maxWidth: 560,
+              }}
+            >
+              The agreements, policies, and consents that govern your care at Nexphoria.
+            </p>
           </Reveal>
         </div>
       </section>
-      <section className="nx-section">
+
+      <section style={{ backgroundColor: "var(--nx-bg)", paddingTop: "3.5rem", paddingBottom: "5rem" }}>
         <div className="nx-container max-w-2xl">
-          <div className="flex flex-col gap-0">
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {legalPages.map(({ label, href, desc }, i) => (
               <Reveal key={label} delay={i * 60}>
                 <Link
                   href={href}
-                  className="flex items-start justify-between py-6 no-underline group"
-                  style={{ borderBottom: "1px solid var(--nx-border)" }}
-                  data-testid={`legal-link-${href.split('/').pop()}`}
+                  className="no-underline legal-index-card"
+                  data-testid={`legal-link-${href.split("/").pop()}`}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                    padding: "1.5rem 1.75rem",
+                    border: "1px solid var(--nx-border)",
+                    borderRadius: "16px",
+                    backgroundColor: "#FFFFF3",
+                  }}
                 >
                   <div>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "17px", fontWeight: 600, color: "var(--nx-fg)", marginBottom: "4px" }}>{label}</p>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)" }}>{desc}</p>
+                    <p
+                      style={{
+                        fontFamily: FONT,
+                        fontSize: "1.125rem",
+                        fontWeight: 600,
+                        letterSpacing: "-0.01em",
+                        color: "var(--nx-fg)",
+                        marginBottom: "0.25rem",
+                      }}
+                    >
+                      {label}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: FONT,
+                        fontSize: "14px",
+                        lineHeight: 1.55,
+                        color: "var(--nx-fg-graphite)",
+                      }}
+                    >
+                      {desc}
+                    </p>
                   </div>
-                  <span style={{ color: "var(--nx-cobalt)", marginTop: "4px", flexShrink: 0, marginLeft: "1rem" }}>→</span>
+                  <span style={{ color: "var(--nx-fg)", marginTop: "2px", flexShrink: 0 }}>
+                    <ArrowUpRight size={18} />
+                  </span>
                 </Link>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <style>{`
+        .legal-index-card { transition: border-color 0.2s ease; }
+        .legal-index-card:hover { border-color: var(--nx-fg) !important; }
+      `}</style>
     </SiteLayout>
   );
 }
