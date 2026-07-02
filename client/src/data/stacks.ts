@@ -129,6 +129,8 @@ const SLUG_ALIASES: Record<string, string> = {
   // early marketing variants that shipped in Home tiles / other pages
   growth: "balance",
   glp1: "prime",
+  // marketing / protocol slug from lib/protocols.ts — Lean metabolic protocol maps to Prime
+  lean: "prime",
 };
 
 export function resolveStackSlug(slug: string): string {
