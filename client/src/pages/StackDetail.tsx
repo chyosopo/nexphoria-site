@@ -206,7 +206,7 @@ function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: 
               <CartesianGrid vertical={false} stroke="#EDE8DC" />
               <XAxis dataKey="marker" tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: "#4A4A4A" }} tickLine={false} axisLine={{ stroke: "#DDD9CE" }} interval={0} />
               <YAxis tick={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fill: "#9A9A95" }} tickLine={false} axisLine={false} domain={[0, 100]} />
-              <Tooltip cursor={{ fill: "rgba(10,10,10,0.04)" }} content={<BiomarkerTooltip />} />
+              <Tooltip cursor={{ fill: "rgba(28,24,21,0.04)" }} content={<BiomarkerTooltip />} />
               <Bar dataKey="baseline" fill="#C9CFC2" radius={[3, 3, 0, 0]} isAnimationActive={false} />
               <Bar dataKey="endOfCourse" radius={[3, 3, 0, 0]} isAnimationActive={false}>
                 {data.map((d, i) => (
@@ -537,7 +537,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 </div>
                 <div
                   className="absolute left-4 right-4 bottom-4 px-4 py-3"
-                  style={{ background: "rgba(10,10,10,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(255,255,243,0.12)" }}
+                  style={{ background: "rgba(28,24,21,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(255,255,243,0.12)" }}
                   data-testid="text-portrait-proof"
                 >
                   <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "#c6f184" }}>

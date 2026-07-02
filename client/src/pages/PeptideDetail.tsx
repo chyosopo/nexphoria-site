@@ -728,10 +728,10 @@ function MechanismPulseSVG({ family }: { family: MechFamily }) {
         `}</style>
       </defs>
       {/* Connecting path — invisible but used for offset-path animation */}
-      <path id="mech-path" d="M 90 100 L 250 100 L 410 100 L 570 100" fill="none" stroke="rgba(10,10,10,0.12)" strokeWidth="1.5" strokeDasharray="3 4" />
+      <path id="mech-path" d="M 90 100 L 250 100 L 410 100 L 570 100" fill="none" stroke="rgba(28,24,21,0.12)" strokeWidth="1.5" strokeDasharray="3 4" />
       {/* Arrow heads */}
       {[240, 400, 560].map((x) => (
-        <polyline key={x} points={`${x - 6},94 ${x + 2},100 ${x - 6},106`} fill="none" stroke="rgba(10,10,10,0.35)" strokeWidth="1.4" />
+        <polyline key={x} points={`${x - 6},94 ${x + 2},100 ${x - 6},106`} fill="none" stroke="rgba(28,24,21,0.35)" strokeWidth="1.4" />
       ))}
       {/* 4 nodes */}
       {[
@@ -745,7 +745,7 @@ function MechanismPulseSVG({ family }: { family: MechFamily }) {
           {i === 3 && <circle cx={n.cx} cy={100} r={30} fill="#F3C87A" opacity="0.35" className="nx-node-glow" />}
           <circle cx={n.cx} cy={100} r={4} fill="#1C1815" />
           <text x={n.cx} y={148} textAnchor="middle" fontSize="11" fontFamily="'General Sans', system-ui, sans-serif" fontWeight="500" fill="#1C1815">{n.label}</text>
-          <text x={n.cx} y={164} textAnchor="middle" fontSize="9" fontFamily="'JetBrains Mono', ui-monospace, monospace" letterSpacing="0.12em" fill="rgba(10,10,10,0.5)" style={{ textTransform: "uppercase" }}>{n.sub}</text>
+          <text x={n.cx} y={164} textAnchor="middle" fontSize="9" fontFamily="'JetBrains Mono', ui-monospace, monospace" letterSpacing="0.12em" fill="rgba(28,24,21,0.5)" style={{ textTransform: "uppercase" }}>{n.sub}</text>
         </g>
       ))}
       {/* Animated pulse dot traveling along path */}
@@ -2258,7 +2258,7 @@ function PricingCard({
   return (
     <div
       id="pricing-card"
-      className="rounded-3xl border border-[var(--nx-border)] bg-white p-6 md:p-8 shadow-[0_8px_40px_-12px_rgba(10,10,10,0.18)]"
+      className="rounded-3xl border border-[var(--nx-border)] bg-white p-6 md:p-8 shadow-[0_8px_40px_-12px_rgba(28,24,21,0.18)]"
       data-testid="pricing-card"
     >
       <div className="flex items-center justify-between mb-4">

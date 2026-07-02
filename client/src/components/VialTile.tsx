@@ -84,7 +84,7 @@ export function VialArt({
           width: "58%",
           height: 14,
           borderRadius: "50%",
-          background: "rgba(10,10,10,0.14)",
+          background: "rgba(28,24,21,0.14)",
           filter: "blur(8px)",
         }}
       />
@@ -299,10 +299,10 @@ export function VialTile({
             background: t.bg,
             color: t.ink,
             textDecoration: "none",
-            border: "1px solid rgba(10,10,10,0.08)",
+            border: "1px solid rgba(28,24,21,0.08)",
             boxShadow: flipped
-              ? "0 30px 60px -20px rgba(10,10,10,0.25)"
-              : "0 4px 18px -6px rgba(10,10,10,0.10)",
+              ? "0 30px 60px -20px rgba(28,24,21,0.25)"
+              : "0 4px 18px -6px rgba(28,24,21,0.10)",
             transition: "box-shadow 500ms",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -331,7 +331,7 @@ export function VialTile({
                     color: t.ink,
                     opacity: 0.62,
                     padding: "5px 10px",
-                    border: "1px solid rgba(10,10,10,0.12)",
+                    border: "1px solid rgba(28,24,21,0.12)",
                     borderRadius: 999,
                     background: "rgba(255,255,255,0.6)",
                     whiteSpace: "nowrap",
@@ -353,7 +353,7 @@ export function VialTile({
                     fontWeight: 600,
                     color: t.ink,
                     padding: "5px 10px",
-                    background: "rgba(198,241,132,0.55)",
+                    background: "rgba(243,200,122,0.55)",
                     borderRadius: 999,
                   }}
                 >
@@ -517,7 +517,7 @@ export function VialTile({
                 width: 28,
                 height: 28,
                 borderRadius: "50%",
-                background: "rgba(10,10,10,0.06)",
+                background: "rgba(28,24,21,0.06)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -551,7 +551,7 @@ export function VialTile({
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             border: "1px solid rgba(255,255,243,0.10)",
-            boxShadow: "0 30px 60px -20px rgba(10,10,10,0.35)",
+            boxShadow: "0 30px 60px -20px rgba(28,24,21,0.35)",
             overflow: "hidden",
           }}
         >
@@ -565,7 +565,7 @@ export function VialTile({
               width: 240,
               height: 240,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(198,241,132,0.24), rgba(198,241,132,0) 70%)",
+              background: "radial-gradient(circle, rgba(243,200,122,0.24), rgba(243,200,122,0) 70%)",
               pointerEvents: "none",
             }}
           />

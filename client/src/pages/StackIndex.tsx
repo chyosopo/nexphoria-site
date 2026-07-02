@@ -208,7 +208,7 @@ export default function StackIndex() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.12) 42%, transparent 68%)" }} aria-hidden />
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(28,24,21,0.72) 0%, rgba(28,24,21,0.12) 42%, transparent 68%)" }} aria-hidden />
                       {/* Curator / flagship badge */}
                       <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                         {CURATOR_BADGE[stack.slug] && (
@@ -336,14 +336,14 @@ export default function StackIndex() {
                     <line x1="10" y1="60" x2="110" y2="60" stroke="#c6f184" strokeWidth="0.75" />
                   </svg>
                   <div className="absolute" style={{ textAlign: "center" }}>
-                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(198,241,132,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
+                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(243,200,122,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
                     <div className="inline-flex items-center justify-center" style={{ width: 48, height: 48, borderRadius: 999, border: "1.5px solid #c6f184" }}>
                       <Plus size={22} style={{ color: "#c6f184" }} />
                     </div>
                   </div>
                 </div>
                 <div className="p-6 md:p-7">
-                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(198,241,132,0.75)", textTransform: "uppercase", marginBottom: 8 }}>
+                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(243,200,122,0.75)", textTransform: "uppercase", marginBottom: 8 }}>
                     Build your own stack
                   </div>
                   <h2 className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
@@ -497,7 +497,7 @@ export default function StackIndex() {
           <div className="p-8 md:p-12 max-w-4xl mx-auto" style={{ background: "#1C1815" }}>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "rgba(198,241,132,0.8)" }}>
+                <div className="text-[10px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "rgba(243,200,122,0.8)" }}>
                   Not sure which stack?
                 </div>
                 <h2 className="text-2xl md:text-3xl mb-3" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
@@ -540,7 +540,7 @@ function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.15) 46%, transparent 72%)" }} aria-hidden />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(28,24,21,0.82) 0%, rgba(28,24,21,0.15) 46%, transparent 72%)" }} aria-hidden />
         <div className="absolute left-6 right-6 bottom-6">
           <div className="text-[11px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#c6f184" }}>
             Flagship stack

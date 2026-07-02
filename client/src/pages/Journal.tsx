@@ -143,7 +143,7 @@ export default function Journal() {
                       top: 20,
                       left: 20,
                       padding: "7px 14px",
-                      backgroundColor: "rgba(10,10,10,0.92)",
+                      backgroundColor: "rgba(28,24,21,0.92)",
                       color: "#FFFFF3",
                       fontFamily: FONT,
                       fontSize: 11,

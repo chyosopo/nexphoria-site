@@ -161,11 +161,11 @@ function FloatingResultCards() {
             background: "rgba(255,255,250,0.72)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(10,10,10,0.08)",
+            border: "1px solid rgba(28,24,21,0.08)",
             borderRadius: 12,
             padding: "10px 14px",
             minWidth: 152,
-            boxShadow: "0 8px 28px rgba(10,10,10,0.14)",
+            boxShadow: "0 8px 28px rgba(28,24,21,0.14)",
             animation: `nx-float-in 640ms ease-out ${c.delay}s both`,
             fontFamily: "'General Sans', system-ui, sans-serif",
           }}
@@ -278,7 +278,7 @@ function Hero() {
             href="/how-it-works"
             className="inline-flex items-center gap-2 border rounded-full px-6 py-3.5"
             style={{
-              borderColor: "rgba(10,10,10,0.14)",
+              borderColor: "rgba(28,24,21,0.14)",
               color: "var(--nx-black)",
               fontWeight: 500,
               fontSize: "15px",
@@ -906,7 +906,7 @@ function ScienceStrip() {
               <div
                 key={s.label}
                 className="pt-5 border-t"
-                style={{ borderColor: "rgba(10,10,10,0.14)" }}
+                style={{ borderColor: "rgba(28,24,21,0.14)" }}
               >
                 <div
                   style={{
@@ -945,7 +945,7 @@ function ScienceStrip() {
                 fontWeight: 500,
                 fontSize: "15px",
                 color: "var(--nx-black)",
-                borderBottom: "1px solid rgba(10,10,10,0.3)",
+                borderBottom: "1px solid rgba(28,24,21,0.3)",
                 paddingBottom: 2,
               }}
               data-testid="link-science-home"
@@ -1253,7 +1253,7 @@ function PhysicianStrip() {
                 fontWeight: 500,
                 fontSize: "15px",
                 color: "var(--nx-black)",
-                borderBottom: "1px solid rgba(10,10,10,0.3)",
+                borderBottom: "1px solid rgba(28,24,21,0.3)",
                 paddingBottom: 2,
               }}
               data-testid="link-physicians"
@@ -1524,7 +1524,7 @@ function MorningRitual() {
                 fontWeight: 500,
                 fontSize: "15px",
                 color: "var(--nx-black)",
-                borderBottom: "1px solid rgba(10,10,10,0.3)",
+                borderBottom: "1px solid rgba(28,24,21,0.3)",
                 paddingBottom: 2,
               }}
               data-testid="link-ritual-more"
@@ -1790,7 +1790,7 @@ function BloodworkPillar() {
                   top: 20,
                   left: 20,
                   padding: "8px 14px",
-                  background: "rgba(10,10,10,0.72)",
+                  background: "rgba(28,24,21,0.72)",
                   color: "var(--nx-acid)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 11,

@@ -118,7 +118,7 @@ export default function Protocols() {
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "linear-gradient(180deg,rgba(10,10,10,.45) 0%,transparent 38%,transparent 58%,rgba(10,10,10,.88) 100%)" }}
+          style={{ background: "linear-gradient(180deg,rgba(28,24,21,.45) 0%,transparent 38%,transparent 58%,rgba(28,24,21,.88) 100%)" }}
         />
         <div className="absolute inset-0 flex items-end">
           <div className="nx-container pb-10 md:pb-14 w-full">

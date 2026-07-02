@@ -489,7 +489,7 @@
   }
   .nx-tile:hover {
     transform: scale(1.01);
-    box-shadow: 0 14px 40px rgba(10,10,10,0.12);
+    box-shadow: 0 14px 40px rgba(28,24,21,0.12);
   }
 
   /* ── Trust-bar marquee ── */

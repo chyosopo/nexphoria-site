@@ -481,7 +481,7 @@ export default function BuildYourStack() {
                     style={{ minHeight: 172, backgroundImage: `url(${getStackPortrait(matchedStack.slug)})`, backgroundSize: "cover", backgroundPosition: "center top" }}
                     aria-hidden="true"
                   >
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(10,10,10,0) 55%, #1C1815 100%)" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(28,24,21,0) 55%, #1C1815 100%)" }} />
                   </div>
 
                   <div className="p-5 md:p-6 flex flex-col justify-center">
@@ -623,7 +623,7 @@ export default function BuildYourStack() {
                               </ul>
                             )}
                             {synergies.length > 0 && (
-                              <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: isPicked ? "rgba(198,241,132,0.9)" : "#7a9a7a", textTransform: "uppercase", marginTop: 6 }}>
+                              <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: isPicked ? "rgba(243,200,122,0.9)" : "#7a9a7a", textTransform: "uppercase", marginTop: 6 }}>
                                 ⚡ Synergy with {synergies.join(" & ")}
                               </p>
                             )}
@@ -902,7 +902,7 @@ export default function BuildYourStack() {
               <aside className="lg:sticky lg:top-24 self-start">
                 <div style={{ background: "#1C1815", color: "#fff", borderRadius: 4 }}>
                   <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "rgba(198,241,132,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
+                    <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "rgba(243,200,122,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
                     </p>
                     <p style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 500 }}>
@@ -934,7 +934,7 @@ export default function BuildYourStack() {
                       </div>
                     )}
                     {cadencePct > 0 && (
-                      <div className="flex justify-between" style={{ fontFamily: MONO, fontSize: 11, color: "rgba(198,241,132,0.7)" }}>
+                      <div className="flex justify-between" style={{ fontFamily: MONO, fontSize: 11, color: "rgba(243,200,122,0.7)" }}>
                         <span>Cadence saving ({cadencePct}%)</span>
                         <span>applied</span>
                       </div>

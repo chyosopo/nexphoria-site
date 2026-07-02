@@ -115,7 +115,7 @@ export function CartDrawer() {
         className={`fixed inset-0 z-[100] transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
-        style={{ background: "rgba(10,10,10,0.55)", backdropFilter: "blur(3px)" }}
+        style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(3px)" }}
         onClick={close}
         aria-hidden={!isOpen}
         data-testid="cart-overlay"
@@ -129,7 +129,7 @@ export function CartDrawer() {
         style={{
           background: "var(--nx-bg)",
           borderLeft: "1px solid var(--nx-border)",
-          boxShadow: "-24px 0 60px rgba(10,10,10,0.18)",
+          boxShadow: "-24px 0 60px rgba(28,24,21,0.18)",
         }}
         role="dialog"
         aria-label="Shopping cart"
@@ -548,7 +548,7 @@ export function CartDrawer() {
                   fontSize: "0.9375rem",
                   letterSpacing: "0.02em",
                   borderRadius: 12,
-                  boxShadow: "0 2px 8px rgba(10,10,10,0.15)",
+                  boxShadow: "0 2px 8px rgba(28,24,21,0.15)",
                 }}
                 data-testid="button-checkout"
               >

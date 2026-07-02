@@ -86,7 +86,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
           fontWeight: 500,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(10,10,10,0.5)",
+          color: "rgba(28,24,21,0.5)",
           marginBottom: "16px",
         }}
       >
@@ -116,8 +116,8 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                 border: isSelected
                   ? "1px solid #1C1815"
                   : isMostPopular
-                  ? "1px solid rgba(10,10,10,0.45)"
-                  : "1px solid var(--nx-border, rgba(10,10,10,0.15))",
+                  ? "1px solid rgba(28,24,21,0.45)"
+                  : "1px solid var(--nx-border, rgba(28,24,21,0.15))",
                 cursor: "pointer",
                 textAlign: "left",
                 transition: "all 0.18s ease",
@@ -129,7 +129,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                   width: "16px",
                   height: "16px",
                   borderRadius: "50%",
-                  border: isSelected ? "1px solid #FAF7F0" : "1px solid rgba(10,10,10,0.4)",
+                  border: isSelected ? "1px solid #FAF7F0" : "1px solid rgba(28,24,21,0.4)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -174,7 +174,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                           ? "rgba(250,247,240,0.18)"
                           : card.badge === "Best value"
                           ? "rgba(139,90,43,0.12)"
-                          : "rgba(10,10,10,0.08)",
+                          : "rgba(28,24,21,0.08)",
                         color: isSelected
                           ? "#FAF7F0"
                           : card.badge === "Best value"
@@ -190,7 +190,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                   style={{
                     ...fontMono,
                     fontSize: "10.5px",
-                    color: isSelected ? "rgba(250,247,240,0.6)" : "rgba(10,10,10,0.5)",
+                    color: isSelected ? "rgba(250,247,240,0.6)" : "rgba(28,24,21,0.5)",
                     marginTop: "3px",
                     letterSpacing: "0.04em",
                   }}
@@ -215,7 +215,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                   style={{
                     ...fontMono,
                     fontSize: "9px",
-                    color: isSelected ? "rgba(250,247,240,0.55)" : "rgba(10,10,10,0.45)",
+                    color: isSelected ? "rgba(250,247,240,0.55)" : "rgba(28,24,21,0.45)",
                     marginTop: "3px",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
@@ -234,7 +234,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
         style={{
           ...fontMono,
           fontSize: "9.5px",
-          color: "rgba(10,10,10,0.45)",
+          color: "rgba(28,24,21,0.45)",
           letterSpacing: "0.08em",
           textTransform: "uppercase",
           marginBottom: "18px",
@@ -281,7 +281,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
         style={{
           ...fontMono,
           fontSize: "9.5px",
-          color: "rgba(10,10,10,0.4)",
+          color: "rgba(28,24,21,0.4)",
           letterSpacing: "0.06em",
           marginTop: "12px",
           textAlign: "center",

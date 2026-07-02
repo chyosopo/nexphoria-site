@@ -131,7 +131,7 @@ export function BenefitTile({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.92) 100%)",
+                "linear-gradient(180deg, rgba(28,24,21,0.05) 0%, rgba(28,24,21,0.55) 60%, rgba(28,24,21,0.92) 100%)",
             }}
             aria-hidden="true"
           />

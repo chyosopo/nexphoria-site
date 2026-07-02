@@ -817,7 +817,7 @@ export default function Assessment() {
                     padding: "1.25rem 1.25rem",
                     borderRadius: "4px",
                     border: "1px solid var(--nx-border)",
-                    backgroundColor: "rgba(198, 241, 132, 0.06)",
+                    backgroundColor: "rgba(243,200,122, 0.06)",
                     marginBottom: "1.75rem",
                   }}
                 >

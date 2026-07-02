@@ -187,7 +187,7 @@ export function ExitIntentModal() {
                 style={{
                   padding: "14px 16px",
                   borderRadius: 4,
-                  backgroundColor: "rgba(198, 241, 132, 0.18)",
+                  backgroundColor: "rgba(243,200,122, 0.18)",
                   border: "1px solid var(--nx-acid, #c6f184)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "0.9375rem",

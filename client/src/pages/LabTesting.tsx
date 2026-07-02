@@ -294,7 +294,7 @@ export default function LabTesting() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.35) 100%)",
+            background: "linear-gradient(to bottom, rgba(28,24,21,0.05) 0%, rgba(28,24,21,0.35) 100%)",
           }}
         />
       </section>
@@ -1283,7 +1283,7 @@ function BloodworkPricing() {
       className="py-24 md:py-32 border-t"
       style={{
         background: "var(--nx-rock)",
-        borderColor: "rgba(10,10,10,0.08)",
+        borderColor: "rgba(28,24,21,0.08)",
       }}
     >
       <div className="nx-container">
@@ -1345,8 +1345,8 @@ function BloodworkPricing() {
                 color: t.dark ? "var(--nx-ceramic)" : "var(--nx-black)",
                 borderRadius: 20,
                 padding: "36px 32px",
-                border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(10,10,10,0.08)",
-                boxShadow: t.accent ? "0 30px 60px -20px rgba(198,241,132,0.35)" : "none",
+                border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(28,24,21,0.08)",
+                boxShadow: t.accent ? "0 30px 60px -20px rgba(243,200,122,0.35)" : "none",
               }}
             >
               {t.badge && (
@@ -1491,7 +1491,7 @@ function BloodworkInsurance() {
   return (
     <section
       className="py-24 md:py-32 border-t"
-      style={{ background: "var(--nx-ceramic)", borderColor: "rgba(10,10,10,0.08)" }}
+      style={{ background: "var(--nx-ceramic)", borderColor: "rgba(28,24,21,0.08)" }}
     >
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div className="lg:col-span-6 group order-2 lg:order-1">

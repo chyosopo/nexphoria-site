@@ -146,7 +146,7 @@ export function GoalVialTile({
         textAlign: "left",
         transition: "border-color 0.18s ease, transform 0.25s ease, box-shadow 0.25s ease",
         transform: hovered && !selected ? "translateY(-2px)" : "translateY(0)",
-        boxShadow: hovered && !selected ? "0 8px 24px rgba(10, 10, 10, 0.08)" : "none",
+        boxShadow: hovered && !selected ? "0 8px 24px rgba(28,24,21, 0.08)" : "none",
         overflow: "hidden",
         minHeight: "168px",
       }}

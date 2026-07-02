@@ -179,7 +179,7 @@ function EveningProtocolStrip() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(to right, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.15) 60%)",
+          background: "linear-gradient(to right, rgba(28,24,21,0.65) 0%, rgba(28,24,21,0.15) 60%)",
         }}
       />
       <div
@@ -249,7 +249,7 @@ function EditorialBannerWomen() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(10,10,10,0.52)",
+          backgroundColor: "rgba(28,24,21,0.52)",
         }}
       />
       {/* Pull quote centered */}
@@ -597,7 +597,7 @@ function FlagshipCards() {
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.42) 48%, rgba(28,24,21,0) 72%)",
+                        "linear-gradient(to top, rgba(28,24,21,0.88) 0%, rgba(28,24,21,0.42) 48%, rgba(28,24,21,0) 72%)",
                     }}
                   />
                   {/* Label slides up 4px on hover (Maximus spec) */}

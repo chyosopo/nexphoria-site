@@ -167,7 +167,7 @@ export default function JournalArticle() {
               maxWidth: 1080,
               marginLeft: "auto",
               marginRight: "auto",
-              boxShadow: "0 24px 48px -16px rgba(10,10,10,0.18)",
+              boxShadow: "0 24px 48px -16px rgba(28,24,21,0.18)",
             }}
           >
             <img

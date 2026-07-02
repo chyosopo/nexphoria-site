@@ -411,7 +411,7 @@ function EditorialBannerMen() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(10,10,10,0.50)",
+          backgroundColor: "rgba(28,24,21,0.50)",
         }}
       />
       <div
@@ -757,7 +757,7 @@ function FlagshipCards() {
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.42) 48%, rgba(28,24,21,0) 72%)",
+                        "linear-gradient(to top, rgba(28,24,21,0.88) 0%, rgba(28,24,21,0.42) 48%, rgba(28,24,21,0) 72%)",
                     }}
                   />
                   {/* Label slides up 4px on hover (Maximus spec) */}

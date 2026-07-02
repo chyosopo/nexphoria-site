@@ -371,7 +371,7 @@ export default function Showcase() {
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(90deg, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.62) 30%, rgba(10,10,10,0.28) 55%, rgba(10,10,10,0.0) 90%), linear-gradient(180deg, rgba(10,10,10,0.10) 0%, rgba(10,10,10,0.10) 55%, rgba(10,10,10,0.68) 100%)",
+                    "linear-gradient(90deg, rgba(28,24,21,0.88) 0%, rgba(28,24,21,0.62) 30%, rgba(28,24,21,0.28) 55%, rgba(28,24,21,0.0) 90%), linear-gradient(180deg, rgba(28,24,21,0.10) 0%, rgba(28,24,21,0.10) 55%, rgba(28,24,21,0.68) 100%)",
                   zIndex: 1,
                 }}
               />
@@ -421,7 +421,7 @@ export default function Showcase() {
                       height: 6,
                       borderRadius: 999,
                       background: "var(--nx-acid, #c6f184)",
-                      boxShadow: "0 0 0 3px rgba(198,241,132,0.28)",
+                      boxShadow: "0 0 0 3px rgba(243,200,122,0.28)",
                     }}
                   />
                   Your protocol · begins here

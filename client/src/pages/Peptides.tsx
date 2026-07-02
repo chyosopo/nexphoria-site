@@ -429,10 +429,23 @@ export default function Peptides() {
         <div className="mx-page">
           {/* ── Maximus header ── */}
           <MxHeader
-            badge={<PillBadge tone="acid">Physician-directed pharmacy</PillBadge>}
+            badge={<PillBadge tone="acid">Physician-directed protocols</PillBadge>}
             headline={<>{total} molecules.<br /><span>Each one a </span><span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>specific</span><span> instruction</span> to your body.</>}
             subtitle="Every peptide below is prescription-only, compounded in a U.S. 503A pharmacy, and dispensed under physician oversight. Browse by goal, by category, or by molecule."
           />
+
+          {/* ── Cinematic vial — the product, breathing (Higgsfield kling3.0) ── */}
+          <div className="relative overflow-hidden mb-8 md:mb-10" style={{ borderRadius: "22px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }} data-testid="peptides-video-band">
+            <video autoPlay muted loop playsInline
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031439_b4719d02-b185-452d-b110-947e30840bd4.mp4"
+              poster="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png"
+              className="w-full h-auto block" style={{ aspectRatio: "16 / 6", objectFit: "cover" }}
+              aria-label="Nexphoria compounded peptide vial" />
+            <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(28,24,21,0.30))" }} />
+            <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#FAF7F0", textShadow: "0 2px 16px rgba(28,24,21,0.45)", margin: 0 }}>
+              Compounded. Tested. Prescribed.
+            </p>
+          </div>
 
           {/* ── Hero tile pair ── */}
           <div className="mx-grid">
