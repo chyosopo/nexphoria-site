@@ -202,6 +202,7 @@ export default function StackIndex() {
                   >
                     {/* Benefit-encoded portrait + overlay panel */}
                     <div className="aspect-[4/5] w-full overflow-hidden relative" style={{ background: "var(--nx-bg-cream)" }}>
+                      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png" alt="" aria-hidden className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-[1.05]" style={{ objectFit: "cover" }} loading="lazy" />
                       <img
                         src={getStackPortrait(stack.slug)}
                         alt={`${stack.name} stack — ${getPortraitProof(stack.slug)}`}

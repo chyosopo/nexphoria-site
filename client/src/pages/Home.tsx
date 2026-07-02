@@ -96,6 +96,7 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <GoalTiles />
+      <HeroFilm />
       <PeptideTilesStrip />
       <HowItWorks />
       <FeaturedStack />
@@ -305,72 +306,7 @@ function Hero() {
         </div>
 
         {/* ── Cinematic living hero — hims-grammar video band ── */}
-        <div
-          className="mt-14 md:mt-16 mb-1 relative"
-          style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
-          data-testid="hero-video-band"
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={heroPoster}
-            src={heroVideo}
-            className="w-full h-auto block"
-            style={{ aspectRatio: "21 / 8", objectFit: "cover", borderRadius: "26px"}}
-            aria-label="Warm morning light — the Nexphoria standard of care"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))", borderRadius: "26px" }}
-          />
-          {/* Glass panels — hims-Labs grammar */}
-          {/* Ring dashboard — UI over film, hims composite grammar */}
-          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(28,24,21,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px" }}>
-            <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
-              <g transform="rotate(-90 38 38)">
-                <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(250,247,240,0.12)" strokeWidth="6" />
-                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="#A8C69A" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#F3C87A" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#D07A52" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
-              </g>
-              <text x="38" y="36" textAnchor="middle" fill="#FAF7F0" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
-              <text x="38" y="49" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
-            </svg>
-            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, lineHeight: 1.9 }}>
-              <div><span style={{ color: "#A8C69A", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Optimal</span></div>
-              <div><span style={{ color: "#F3C87A", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>In range</span></div>
-              <div><span style={{ color: "#D07A52", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Out of range</span></div>
-            </div>
-          </div>
-          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
-            <div className="flex items-center justify-between gap-4">
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#FAF7F0" }}>Hormones</span>
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
-            </div>
-            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
-              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0" }} />
-            </div>
-          </div>
-          <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
-            <p
-              style={{
-                fontFamily: "'Fraunces', Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 500,
-                fontSize: "clamp(18px, 2.4vw, 28px)",
-                color: "#FAF7F0",
-                textShadow: "0 2px 18px rgba(28,24,21,0.45)",
-                margin: 0,
-              }}
-            >
-              Care that feels like morning light.
-            </p>
-          </div>
-        </div>
-      </div>
+        
     </section>
   );
 }
@@ -2306,6 +2242,81 @@ function ProofBento() {
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#FAF7F0", lineHeight: 1 }}>Every 90 days</div>
               <p style={{ fontFamily: F, fontSize: 13.5, color: "rgba(250,247,240,0.85)", marginTop: 5 }}>your labs re-run, your protocol re-tuned</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* ══ Hero film — re-seated below the goal tiles ══ */
+function HeroFilm() {
+  return (
+    <section className="nx-container" style={{ marginTop: "0.5rem" }}>
+<div
+          className="mt-14 md:mt-16 mb-1 relative"
+          style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
+          data-testid="hero-video-band"
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroPoster}
+            src={heroVideo}
+            className="w-full h-auto block"
+            style={{ aspectRatio: "21 / 8", objectFit: "cover", borderRadius: "26px"}}
+            aria-label="Warm morning light — the Nexphoria standard of care"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))", borderRadius: "26px" }}
+          />
+          {/* Glass panels — hims-Labs grammar */}
+          {/* Ring dashboard — UI over film, hims composite grammar */}
+          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(28,24,21,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px" }}>
+            <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
+              <g transform="rotate(-90 38 38)">
+                <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(250,247,240,0.12)" strokeWidth="6" />
+                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="#A8C69A" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#F3C87A" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#D07A52" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
+              </g>
+              <text x="38" y="36" textAnchor="middle" fill="#FAF7F0" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
+              <text x="38" y="49" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
+            </svg>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, lineHeight: 1.9 }}>
+              <div><span style={{ color: "#A8C69A", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Optimal</span></div>
+              <div><span style={{ color: "#F3C87A", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>In range</span></div>
+              <div><span style={{ color: "#D07A52", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Out of range</span></div>
+            </div>
+          </div>
+          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
+            <div className="flex items-center justify-between gap-4">
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#FAF7F0" }}>Hormones</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
+            </div>
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
+              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0" }} />
+            </div>
+          </div>
+          <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
+            <p
+              style={{
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: "clamp(18px, 2.4vw, 28px)",
+                color: "#FAF7F0",
+                textShadow: "0 2px 18px rgba(28,24,21,0.45)",
+                margin: 0,
+              }}
+            >
+              Care that feels like morning light.
+            </p>
           </div>
         </div>
       </div>
