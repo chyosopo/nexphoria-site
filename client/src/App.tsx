@@ -32,6 +32,7 @@ import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
 const Peptides = lazy(() => import("@/pages/Peptides"));
+const Category = lazy(() => import("@/pages/Category"));
 const PeptideDetail = lazy(() => import("@/pages/PeptideDetail"));
 const GenderPeptides = lazy(() => import("@/pages/GenderPeptides"));
 const GenderPeptideDetail = lazy(() => import("@/pages/GenderPeptideDetail"));
@@ -59,6 +60,7 @@ function AppRouter() {
         {/* Gender-neutral pharmacy shelf */}
         <Route path="/peptides" component={Peptides} />
         <Route path="/peptides/:slug" component={PeptideDetail} />
+        <Route path="/goals/:slug" component={Category} />
 
         {/* Old gender gate — kept reachable at /gate but not the home */}
         <Route path="/gate" component={Gate} />

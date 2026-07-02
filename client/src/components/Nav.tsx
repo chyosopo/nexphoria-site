@@ -268,7 +268,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   {MEGA_CATEGORIES.map((c) => (
                     <Link
                       key={c.key}
-                      href={`${pharmacyBase}?category=${c.key}`}
+                      href={`/goals/${c.key}`}
                       className="group block no-underline transition-colors"
                       style={{
                         border: "1px solid var(--nx-border)",
@@ -499,7 +499,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               {MEGA_CATEGORIES.map((c) => (
                 <Link
                   key={c.key}
-                  href={`${pharmacyBase}?category=${c.key}`}
+                  href={`/goals/${c.key}`}
                   className="no-underline"
                   style={{
                     border: "1px solid var(--nx-border)",
