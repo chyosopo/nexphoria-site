@@ -33,7 +33,7 @@ export default function MenHome() {
         ),
         sub: "Seventy-six biomarkers, a licensed physician who reads them, and protocols compounded in state-licensed 503A pharmacies — adjusted against your own bloodwork every ninety days.",
         categories: ["growth", "recovery", "metabolic", "longevity", "cognition", "sleep"],
-        featured: ["bpc-157", "ipamorelin", "tirzepatide", "nad-plus"],
+        featured: ["bpc-157", "ipamorelin", "tesamorelin", "nad-plus"],
         nightEyebrow: "The standard",
         nightH2: (
           <>

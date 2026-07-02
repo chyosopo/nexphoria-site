@@ -46,6 +46,8 @@ const StackDetail = lazy(() => import("@/pages/StackDetail"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
 const BloodPanels = lazy(() => import("@/pages/BloodPanels"));
+const SoloPDP = lazy(() => import("@/pages/SoloPDP"));
+const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
 const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
@@ -64,7 +66,7 @@ function AppRouter() {
 
         {/* Gender-neutral pharmacy shelf */}
         <Route path="/peptides">{() => <R to="/men/peptides" />}</Route>
-        <Route path="/peptides/:slug" component={PeptideDetail} />
+        <Route path="/peptides/:slug">{(p) => <SoloPDP slug={(p as {slug:string}).slug} />}</Route>
         <Route path="/goals/:slug" component={Category} />
 
         {/* Old gender gate — kept reachable at /gate but not the home */}
@@ -114,6 +116,7 @@ function AppRouter() {
         <Route path="/bloodwork" component={Bloodwork} />
         <Route path="/protocols" component={ProtocolsIndex} />
         <Route path="/blood-work" component={BloodPanels} />
+        <Route path="/catalog" component={PeptidesCatalog} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />

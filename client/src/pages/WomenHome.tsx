@@ -34,7 +34,7 @@ export default function WomenHome() {
         ),
         sub: "Seventy-six biomarkers, a licensed physician who reads them against your history, and protocols compounded for you in state-licensed 503A pharmacies — reviewed against your own results every ninety days.",
         categories: ["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"],
-        featured: ["ghk-cu", "bpc-157", "tirzepatide", "epitalon"],
+        featured: ["ghk-cu", "bpc-157", "nad-plus", "epitalon"],
         nightEyebrow: "The standard",
         nightH2: (
           <>
