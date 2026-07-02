@@ -305,8 +305,8 @@ function Hero() {
           </span>
         </div>
 
-        {/* ── Cinematic living hero — hims-grammar video band ── */}
-        
+        {/* film → HeroFilm, below GoalTiles */}
+      </div>
     </section>
   );
 }
@@ -2319,7 +2319,6 @@ function HeroFilm() {
             </p>
           </div>
         </div>
-      </div>
     </section>
   );
 }
