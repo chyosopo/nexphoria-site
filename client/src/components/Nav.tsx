@@ -13,12 +13,12 @@ interface NavProps {
 interface NavLink {
   label: string;
   href: string;
-  /** When true, this item opens the Pharmacy mega-menu on hover (desktop). */
+  /** When true, this item opens the Peptides mega-menu on hover (desktop). */
   mega?: boolean;
 }
 
 const showcaseLinks: NavLink[] = [
-  { label: "Pharmacy", href: "/peptides", mega: true },
+  { label: "Peptides", href: "/peptides", mega: true },
   { label: "Stacks", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
   { label: "Science", href: "/science" },
@@ -27,7 +27,7 @@ const showcaseLinks: NavLink[] = [
 ];
 
 const womenLinks: NavLink[] = [
-  { label: "Pharmacy", href: "/women/peptides", mega: true },
+  { label: "Peptides", href: "/women/peptides", mega: true },
   { label: "Stacks", href: "/stacks" },
   { label: "Custom Protocol", href: "/assessment" },
   { label: "Bloodwork", href: "/bloodwork" },
@@ -36,7 +36,7 @@ const womenLinks: NavLink[] = [
 ];
 
 const menLinks: NavLink[] = [
-  { label: "Pharmacy", href: "/men/peptides", mega: true },
+  { label: "Peptides", href: "/men/peptides", mega: true },
   { label: "Stacks", href: "/stacks" },
   { label: "Custom Protocol", href: "/assessment" },
   { label: "Bloodwork", href: "/bloodwork" },
@@ -54,7 +54,7 @@ const gateLinks: NavLink[] = [
   { label: "Journal", href: "/journal" },
 ];
 
-/* Six category tiles for the Pharmacy mega-menu. Order + copy tuned for
+/* Six category tiles for the Peptides mega-menu. Order + copy tuned for
    the Hims-style "quiet mega-menu on hover" pattern: six restrained tiles,
    each a benefit line, plus a featured-peptides column on the right. */
 const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = [
@@ -130,7 +130,7 @@ export function Nav({ variant = "gate" }: NavProps) {
     variant === "men" ? "men-assessment" :
     "assessment";
 
-  // Pharmacy base path drives every mega-menu link so women/men stay scoped.
+  // Peptides base path drives every mega-menu link so women/men stay scoped.
   const pharmacyBase =
     variant === "women" ? "/women/peptides" :
     variant === "men" ? "/men/peptides" :
@@ -232,7 +232,7 @@ export function Nav({ variant = "gate" }: NavProps) {
         </div>
       </nav>
 
-      {/* ── Desktop Pharmacy mega-menu ── */}
+      {/* ── Desktop Peptides mega-menu ── */}
       {megaOpen && (
         <div
           className="hidden md:block absolute left-0 right-0 top-full"

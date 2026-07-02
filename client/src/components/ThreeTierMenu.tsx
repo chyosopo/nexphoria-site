@@ -78,7 +78,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
           className="text-[11px] uppercase tracking-[0.24em] mb-3"
           style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
         >
-          The Pharmacy · Three ways to start
+          The Protocols · Three ways to start
         </div>
 
         {/* Headline */}
@@ -93,7 +93,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
             className="mt-5 text-base md:text-lg max-w-2xl"
             style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
           >
-            Nexphoria is a peptide pharmacy. We don't lock you into a single bundle — pick à la carte,
+            Nexphoria is a physician-led peptide platform. We don't lock you into a single bundle — pick à la carte,
             grab a physician-curated stack, or have your doctor build something custom.
           </p>
         </div>

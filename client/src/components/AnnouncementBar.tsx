@@ -19,7 +19,7 @@ interface AnnouncementBarProps {
 
 export function AnnouncementBar({
   message = "Free physician consult on your first protocol \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
-  tag = "Pharmacy",
+  tag = "Peptides",
   ctaLabel = "Start intake",
   ctaHref = "/assessment",
 }: AnnouncementBarProps) {

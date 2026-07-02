@@ -148,7 +148,7 @@ export function CartDrawer() {
                 className="text-[10px] uppercase tracking-[0.22em] mb-1"
                 style={{ fontFamily: FONT, color: "#8B5A2B", fontWeight: 500 }}
               >
-                Your Pharmacy
+                Your Cart
               </div>
               <h2
                 className="text-[1.35rem] leading-tight"
@@ -613,7 +613,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
         className="text-lg mb-2"
         style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}
       >
-        Your pharmacy is empty
+        Your cart is empty
       </h3>
       <p
         className="text-sm mb-6 max-w-xs"

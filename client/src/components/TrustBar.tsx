@@ -10,7 +10,7 @@ import { ShieldCheck, Stethoscope, FlaskConical, Package, Star } from "lucide-re
 
 const items = [
   { icon: Stethoscope, label: "Board-certified physicians" },
-  { icon: FlaskConical, label: "US-compounded, 503A pharmacy" },
+  { icon: FlaskConical, label: "US-compounded via 503A partners" },
   { icon: ShieldCheck, label: "HIPAA-compliant" },
   { icon: Package, label: "Discreet 3–5 day shipping" },
   { icon: Star, label: "Money-back guarantee" },

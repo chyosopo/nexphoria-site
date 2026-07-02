@@ -3,7 +3,7 @@ import { Link } from "wouter";
 interface LogoProps {
   variant?: "dark" | "light" | "green";
   className?: string;
-  /** Show the "Peptide Pharmacy" sub-mark beside the wordmark */
+  /** Show the "Peptide Protocols" sub-mark beside the wordmark */
   withSubmark?: boolean;
   /** Size of the mark in pixels (height) */
   markSize?: number;
@@ -42,7 +42,7 @@ export function Logo({
       href="/"
       className={`inline-flex items-center gap-2.5 no-underline ${className}`}
       data-testid="logo-nexphoria"
-      aria-label="Nexphoria — Peptide Pharmacy"
+      aria-label="Nexphoria — Peptide Protocols"
     >
       {/* Official Nexphoria mark — three linked cells */}
       <svg
@@ -87,7 +87,7 @@ export function Logo({
         Nexphoria
       </span>
 
-      {/* Submark: "Peptide Pharmacy" */}
+      {/* Submark: "Peptide Protocols" */}
       {withSubmark && (
         <>
           <span
@@ -107,7 +107,7 @@ export function Logo({
               lineHeight: 1,
             }}
           >
-            Peptide Pharmacy
+            Peptide Protocols
           </span>
         </>
       )}

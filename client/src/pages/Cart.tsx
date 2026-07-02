@@ -36,7 +36,7 @@ export default function Cart() {
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
               style={{ fontFamily: FONT, color: "#8B5A2B" }}
             >
-              Your Pharmacy
+              Your Cart
             </div>
             <h1
               className="text-4xl md:text-5xl"
@@ -49,7 +49,7 @@ export default function Cart() {
               style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.6 }}
             >
               {itemCount === 0
-                ? "Your pharmacy is empty. Add single peptides or a curated stack to begin."
+                ? "Your cart is empty. Add single peptides or a curated stack to begin."
                 : "Confirm your selections, then continue to checkout for physician review and shipping."}
             </p>
           </div>
@@ -507,7 +507,7 @@ function EmptyCart() {
         <ShoppingBag size={32} strokeWidth={1.25} />
       </div>
       <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}>
-        Your pharmacy is empty
+        Your cart is empty
       </h2>
       <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
         Start with a curated stack, browse single peptides, or take the assessment for a custom physician-built protocol.

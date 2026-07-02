@@ -12,7 +12,7 @@ const certMarks = [
   "CLIA-Certified Labs",
   "USP-Compliant Compounding",
   "Quest Diagnostics Partner",
-  "503A Licensed Pharmacy",
+  "503A Pharmacy Partners",
 ];
 
 const pillars = [
@@ -24,7 +24,7 @@ const pillars = [
   {
     icon: FlaskConical,
     label: "Sterile compounding",
-    sub: "FDA-registered 503A pharmacies",
+    sub: "Partnered with FDA-registered 503A pharmacies",
   },
   {
     icon: Package,

@@ -135,7 +135,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
           data-testid="footer-trust-badges"
         >
           {[
-            { label: "503A · FDA-registered", sub: "Compounding pharmacy" },
+            { label: "503A · FDA-registered", sub: "Compounding partners" },
             { label: "All 50 states", sub: "US-licensed physicians" },
             { label: "HIPAA", sub: "Encrypted intake" },
             { label: "Quest Diagnostics", sub: "Lab partner" },

@@ -101,7 +101,7 @@ export const medicalBusinessJsonLd = (): Record<string, unknown> => ({
   name: "Nexphoria",
   url: BASE_URL,
   description:
-    "Telehealth peptide therapy prescribed by board-certified physicians and compounded in U.S. 503A pharmacies.",
+    "Telehealth peptide therapy prescribed by board-certified physicians, partnered with U.S. state-licensed 503A compounding pharmacies.",
   medicalSpecialty: ["Endocrinology", "SportsMedicine", "InternalMedicine"],
   areaServed: "US",
 });
