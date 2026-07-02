@@ -121,6 +121,65 @@ const evidenceRows: { family: string; mechanism: string; indication: string; tie
   { family: "Cognitive (Selank / Semax)", mechanism: "BDNF + GABAergic modulation", indication: "Anxiety, cognition", tier: "Emerging", studies: "Approved in RU; limited Western RCT", fda: "Off-label compounded (US)" },
 ];
 
+/* ── Safety profile data table — AGENT-3 ─────────────────────────────────── */
+type SafetyLevel = "Low" | "Low–Moderate" | "Moderate";
+const SAFETY_ROWS: {
+  family: string;
+  common: string;
+  contraindications: string;
+  monitoring: string;
+  risk: SafetyLevel;
+}[] = [
+  {
+    family: "GLP-1 / GIP agonists",
+    common: "Nausea, early satiety, transient GI upset during titration",
+    contraindications: "Personal/family history of medullary thyroid carcinoma or MEN 2; pregnancy",
+    monitoring: "HbA1c, fasting glucose, lipase if symptomatic",
+    risk: "Low–Moderate",
+  },
+  {
+    family: "GH secretagogues",
+    common: "Transient water retention, tingling, mild injection-site reaction",
+    contraindications: "Active malignancy; uncontrolled diabetes; pregnancy",
+    monitoring: "IGF-1, fasting glucose, HbA1c",
+    risk: "Low",
+  },
+  {
+    family: "Tissue repair (BPC-157 / TB-500)",
+    common: "Generally well tolerated; occasional injection-site soreness",
+    contraindications: "Active malignancy (theoretical, via angiogenesis); pregnancy",
+    monitoring: "hs-CRP, CBC, symptom response",
+    risk: "Low",
+  },
+  {
+    family: "Copper peptide (GHK-Cu)",
+    common: "Mild transient skin irritation (topical); rare at clinical doses",
+    contraindications: "Known copper sensitivity; Wilson's disease",
+    monitoring: "Serum copper if used at high systemic dose",
+    risk: "Low",
+  },
+  {
+    family: "Longevity (NAD+ / MOTS-c / Epitalon)",
+    common: "Flushing or warmth with rapid NAD+ infusion; otherwise minimal",
+    contraindications: "Active malignancy; pregnancy; limited long-term human data",
+    monitoring: "CMP, fasting insulin, HOMA-IR",
+    risk: "Low–Moderate",
+  },
+  {
+    family: "Cognitive (Selank / Semax)",
+    common: "Rare; no sedation or dependence reported in the literature",
+    contraindications: "Pregnancy; limited Western RCT data",
+    monitoring: "Symptom-based; no routine lab required",
+    risk: "Low",
+  },
+];
+
+function safetyRiskColor(r: SafetyLevel): string {
+  if (r === "Low") return "var(--nx-success)";
+  if (r === "Moderate") return "var(--nx-warning)";
+  return "#8B5A2B";
+}
+
 /* ── References — ~20, each with an abstract that expands ─────────────────── */
 const references = [
   { num: 1, cite: "Jastreboff AM et al. Tirzepatide once weekly for the treatment of obesity. N Engl J Med. 2022;387(3):205–216.", abstract: "SURMOUNT-1: in 2,539 adults with obesity, tirzepatide produced mean weight reductions of 15–21% over 72 weeks, substantially exceeding placebo and establishing dual GIP/GLP-1 agonism as a leading pharmacotherapy for chronic weight management." },
@@ -636,6 +695,49 @@ export default function Science() {
                     </tbody>
                   </table>
                 </div>
+              </Reveal>
+            </section>
+
+            {/* ── Safety profile data table — AGENT-3 ── */}
+            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
+              <Reveal>
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
+                  SAFETY PROFILE
+                </p>
+                <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1rem" }}>
+                  Side effects, contraindications, monitoring.
+                </h2>
+                <p style={{ fontFamily: SANS, fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.6, maxWidth: 620, marginBottom: "2rem" }}>
+                  Every family carries a specific risk profile. Your physician screens for contraindications before prescribing and monitors the listed markers on each 90-day draw.
+                </p>
+                <div style={{ width: "100%", overflowX: "auto" }}>
+                  <table className="border-separate border-spacing-0" style={{ width: "100%", minWidth: 900, background: "var(--nx-bg)", border: "1px solid var(--nx-border)", fontVariantNumeric: "tabular-nums lining-nums", fontFeatureSettings: "'tnum'" }} data-testid="table-safety">
+                    <thead>
+                      <tr>
+                        {["Peptide family", "Common effects", "Key contraindications", "Monitored markers", "Risk"].map((h) => (
+                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {SAFETY_ROWS.map((r) => (
+                        <tr key={r.family} data-testid={`safety-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
+                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 14, fontWeight: 500, color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.common}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.contraindications}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.monitoring}</td>
+                          <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>
+                            <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: safetyRiskColor(r.risk), border: `1px solid ${safetyRiskColor(r.risk)}`, padding: "3px 8px", borderRadius: 2, whiteSpace: "nowrap" }}>{r.risk}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p style={{ fontFamily: SANS, fontSize: 11, color: "var(--nx-fg-muted)", marginTop: "1.25rem", lineHeight: 1.5, maxWidth: 720 }}>
+                  This table is educational and not a substitute for medical advice. Contraindications are screened during your physician intake. Report any new symptom through your secure member portal.
+                </p>
               </Reveal>
             </section>
 

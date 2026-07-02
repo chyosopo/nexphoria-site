@@ -21,6 +21,7 @@ import Journal from "@/pages/Journal";
 import JournalArticle from "@/pages/JournalArticle";
 import Physicians from "@/pages/Physicians";
 import LabTesting from "@/pages/LabTesting";
+import Bloodwork from "@/pages/Bloodwork";
 import Pricing from "@/pages/Pricing";
 import FAQPage from "@/pages/FAQ";
 import About from "@/pages/About";
@@ -103,7 +104,7 @@ function AppRouter() {
         <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />
         <Route path="/lab-testing" component={LabTesting} />
-        <Route path="/bloodwork" component={LabTesting} />
+        <Route path="/bloodwork" component={Bloodwork} />
         <Route path="/testing" component={LabTesting} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />

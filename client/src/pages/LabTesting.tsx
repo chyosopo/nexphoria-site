@@ -10,7 +10,8 @@ import lifestyleBloodworkDashboard from "@/assets/brand/lifestyle-bloodwork-dash
 import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
 import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
 import { Link } from "wouter";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, MapPin, Clock, Home, Building2, FlaskConical, Truck } from "lucide-react";
+import atHomeKit from "@/assets/nx_v11_bloodwork_athome_kit.webp";
 import { ColoredHeroTile, TileGlyphs, MxHeader } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -260,6 +261,9 @@ export default function LabTesting() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── Partner labs · draw options · turnaround — AGENT-3 ── */}
+      <PartnerLabsSection />
 
       {/* ── Bloodwork dashboard mood image ── */}
       <section
@@ -1612,6 +1616,356 @@ function BloodworkInsurance() {
             We provide the documentation you need to submit.
           </p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PartnerLabsSection — AGENT-3
+   Partner labs (Quest + Labcorp), three draw options incl. at-home
+   kit, and a turnaround timeline. Tokens only. No italics.
+   ───────────────────────────────────────────────────────────── */
+const PL_FONT = "'General Sans', system-ui, sans-serif";
+const PL_NUM: React.CSSProperties = {
+  fontVariantNumeric: "tabular-nums lining-nums",
+  fontFeatureSettings: "'tnum'",
+};
+
+const PARTNER_LABS = [
+  {
+    name: "Quest Diagnostics",
+    stat: "2,500+",
+    statLabel: "Patient service centers",
+    detail: "Primary draw network. Walk-in at most locations, no appointment required.",
+  },
+  {
+    name: "Labcorp",
+    stat: "2,000+",
+    statLabel: "Patient service centers",
+    detail: "Secondary network for coverage where a Quest center is not nearby.",
+  },
+];
+
+const DRAW_OPTIONS = [
+  {
+    icon: Building2,
+    title: "Walk-in draw",
+    body: "Bring your portal requisition to any Quest or Labcorp center. Most locations accept walk-ins; the draw takes under ten minutes.",
+    meta: "No appointment · nationwide",
+  },
+  {
+    icon: Home,
+    title: "At-home collection kit",
+    body: "A pre-paid kit ships to your door with a guided collection card, lancet, and return mailer. Post it back the same day.",
+    meta: "Free shipping both ways",
+  },
+  {
+    icon: Truck,
+    title: "Mobile phlebotomist",
+    body: "A certified phlebotomist comes to your home or office and performs a full venous draw at a time you choose.",
+    meta: "Select metros · scheduled",
+  },
+];
+
+const TURNAROUND = [
+  { day: "Day 0", label: "Collection", desc: "Sample drawn at a center, at home, or by a mobile phlebotomist." },
+  { day: "Day 1–2", label: "Lab analysis", desc: "Partner lab runs the full panel and transmits results to your physician." },
+  { day: "Day 2–3", label: "Physician review", desc: "Board-certified physician reads every marker within 24 hours of receipt." },
+  { day: "Day 3", label: "In your portal", desc: "Results, interpretation, and any dose change appear in your member portal." },
+];
+
+function PartnerLabsSection() {
+  return (
+    <section
+      className="py-16 md:py-24"
+      style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+      data-testid="section-partner-labs"
+    >
+      <div className="nx-container max-w-screen-xl">
+        <Reveal>
+          <p
+            style={{
+              fontFamily: PL_FONT,
+              fontSize: "10px",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "var(--nx-cobalt)",
+              marginBottom: "0.75rem",
+            }}
+          >
+            PARTNER LABS
+          </p>
+          <h2
+            style={{
+              fontFamily: PL_FONT,
+              fontWeight: 500,
+              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              color: "var(--nx-fg)",
+              lineHeight: 1.1,
+              marginBottom: "0.75rem",
+            }}
+          >
+            Two national labs. One requisition.
+          </h2>
+          <p
+            style={{
+              fontFamily: PL_FONT,
+              fontSize: "1.0625rem",
+              color: "#4A4A4A",
+              lineHeight: 1.65,
+              maxWidth: 560,
+              marginBottom: "2.5rem",
+            }}
+          >
+            Your portal requisition works at both Quest Diagnostics and Labcorp, so a draw
+            site is always within reach — or we bring the draw to you.
+          </p>
+        </Reveal>
+
+        {/* Partner lab brand cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ marginBottom: "3.5rem" }}>
+          {PARTNER_LABS.map((lab, i) => (
+            <Reveal key={lab.name} delay={i * 60}>
+              <div
+                data-testid={`partner-lab-${lab.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                style={{
+                  border: "1px solid var(--nx-border)",
+                  borderRadius: 16,
+                  padding: "1.75rem",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1.5rem",
+                  backgroundColor: "var(--nx-bg-cream)",
+                }}
+              >
+                <div
+                  aria-hidden="true"
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: 12,
+                    backgroundColor: "var(--nx-cobalt)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <FlaskConical size={24} style={{ color: "#FFFFF3" }} strokeWidth={1.75} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p
+                    style={{
+                      fontFamily: PL_FONT,
+                      fontSize: 20,
+                      fontWeight: 600,
+                      color: "var(--nx-fg)",
+                      letterSpacing: "-0.01em",
+                      marginBottom: 4,
+                    }}
+                  >
+                    {lab.name}
+                  </p>
+                  <p style={{ fontFamily: PL_FONT, fontSize: 13.5, color: "#4A4A4A", lineHeight: 1.5 }}>
+                    {lab.detail}
+                  </p>
+                </div>
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <p
+                    style={{
+                      fontFamily: PL_FONT,
+                      fontSize: 26,
+                      fontWeight: 600,
+                      color: "var(--nx-fg)",
+                      letterSpacing: "-0.02em",
+                      ...PL_NUM,
+                    }}
+                  >
+                    {lab.stat}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: PL_FONT,
+                      fontSize: 10,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "var(--nx-fg-muted)",
+                      marginTop: 2,
+                    }}
+                  >
+                    {lab.statLabel}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Three draw options */}
+        <Reveal>
+          <p
+            style={{
+              fontFamily: PL_FONT,
+              fontSize: "10px",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "var(--nx-cobalt)",
+              marginBottom: "1.25rem",
+            }}
+          >
+            THREE WAYS TO DRAW
+          </p>
+        </Reveal>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4" style={{ marginBottom: "1rem" }}>
+          {DRAW_OPTIONS.map((opt, i) => {
+            const Icon = opt.icon;
+            const isKit = opt.title === "At-home collection kit";
+            return (
+              <Reveal key={opt.title} delay={i * 60}>
+                <div
+                  data-testid={`draw-option-${opt.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                  style={{
+                    border: "1px solid var(--nx-border)",
+                    borderRadius: 20,
+                    overflow: "hidden",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    backgroundColor: "#FFFFFF",
+                  }}
+                >
+                  {isKit && (
+                    <div style={{ aspectRatio: "4 / 3", overflow: "hidden" }}>
+                      <img
+                        src={atHomeKit}
+                        alt="Nexphoria at-home blood collection kit — matte box, lancet, collection card, alcohol wipe, and pre-paid return mailer laid out on a warm surface."
+                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", flex: 1 }}>
+                    <Icon size={22} strokeWidth={1.6} style={{ color: "var(--nx-cobalt)", marginBottom: 14 }} />
+                    <h3
+                      style={{
+                        fontFamily: PL_FONT,
+                        fontSize: 19,
+                        fontWeight: 600,
+                        color: "var(--nx-fg)",
+                        letterSpacing: "-0.01em",
+                        marginBottom: 8,
+                      }}
+                    >
+                      {opt.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: PL_FONT,
+                        fontSize: 14,
+                        color: "#4A4A4A",
+                        lineHeight: 1.55,
+                        marginBottom: 14,
+                        flex: 1,
+                      }}
+                    >
+                      {opt.body}
+                    </p>
+                    <span
+                      style={{
+                        fontFamily: PL_FONT,
+                        fontSize: 10.5,
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        color: "var(--nx-cobalt)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 6,
+                      }}
+                    >
+                      <MapPin size={12} strokeWidth={2} />
+                      {opt.meta}
+                    </span>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Turnaround timeline */}
+        <Reveal>
+          <div
+            data-testid="turnaround-timeline"
+            style={{
+              marginTop: "3.5rem",
+              border: "1px solid var(--nx-border)",
+              borderRadius: 20,
+              padding: "1.75rem",
+              backgroundColor: "var(--nx-bg-cream)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "1.5rem" }}>
+              <Clock size={18} strokeWidth={1.8} style={{ color: "var(--nx-cobalt)" }} />
+              <p
+                style={{
+                  fontFamily: PL_FONT,
+                  fontSize: "10px",
+                  fontWeight: 700,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                }}
+              >
+                TURNAROUND · 48–72 HOURS END TO END
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {TURNAROUND.map((t, i) => (
+                <div
+                  key={t.day}
+                  data-testid={`turnaround-step-${i}`}
+                  style={{
+                    paddingTop: "1rem",
+                    borderTop: "2px solid var(--nx-cobalt)",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: PL_FONT,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
+                      color: "var(--nx-cobalt)",
+                      marginBottom: 6,
+                      ...PL_NUM,
+                    }}
+                  >
+                    {t.day}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: PL_FONT,
+                      fontSize: 15,
+                      fontWeight: 600,
+                      color: "var(--nx-fg)",
+                      marginBottom: 6,
+                    }}
+                  >
+                    {t.label}
+                  </p>
+                  <p style={{ fontFamily: PL_FONT, fontSize: 13, color: "#4A4A4A", lineHeight: 1.5 }}>
+                    {t.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
