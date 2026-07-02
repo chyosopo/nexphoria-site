@@ -1,3 +1,4 @@
+import { useLocation } from "wouter";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { AnnouncementBar } from "./AnnouncementBar";
@@ -24,9 +25,11 @@ export function SiteLayout({
   hideTrustBar = false,
   variant,
 }: SiteLayoutProps) {
+  const [__loc] = useLocation();
+  const __world = __loc.startsWith("/women") ? "women" : "men";
   const resolvedNavVariant = navVariant ?? variant ?? "showcase";
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" data-world={__world}>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-[var(--nx-fg)] focus:text-[var(--nx-bg)] focus:px-4 focus:py-2 focus:z-50"

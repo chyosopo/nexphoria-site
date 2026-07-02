@@ -83,6 +83,35 @@
     --text-hero: clamp(3rem, 5.5vw, 5rem);
   }
 
+  /* ═══ ORCHID WORLD — activates under /women routes ═══ */
+  [data-world="women"] {
+    --nx-bg:           #FDF3F7;
+    --nx-bg-cream:     #F3E2EA;
+    --nx-bg-dark:      #3C1830;
+    --nx-fg:           #3C1830;
+    --nx-fg-graphite:  #7E5A6C;
+    --nx-fg-muted:     #A58594;
+    --nx-border:       #E3D2DA;
+    --nx-cobalt:       #7A1F4C;
+    --nx-cobalt-hover: #5E1439;
+    --nx-cobalt-soft:  #F5DCE7;
+    --nx-amber:        #C93A73;
+    --nx-success:      #C4487E;
+    --nx-warning:      #C93A73;
+    --nx-ice:          #F5E4EC;
+    --nx-ice-edge:     #E0C4D2;
+    --nx-peach:        #F6DFE9;
+    --nx-peach-edge:   #E4C1D1;
+    --nx-sage:         #EBDDE2;
+    --nx-sage-edge:    #D4C0C8;
+    --nx-rust:         #E289AC;
+    --nx-black:        #3C1830;
+    --nx-ceramic:      #FFFDFE;
+    --nx-rock:         #F2DCE6;
+    --nx-acid:         #FFB3D4;
+  }
+
+
   * { @apply border-border; }
 
   html {

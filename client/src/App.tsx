@@ -55,7 +55,8 @@ function AppRouter() {
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
         {/* Home — new V3 landing (Maximus tiles + Bask cinematics) */}
-        <Route path="/" component={Home} />
+        <Route path="/" component={Gate} />
+        <Route path="/home" component={Home} />
         <Route path="/showcase" component={Showcase} />
 
         {/* Gender-neutral pharmacy shelf */}
