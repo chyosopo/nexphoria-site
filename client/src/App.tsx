@@ -43,6 +43,9 @@ const GenderProtocols = lazy(() => import("@/pages/GenderProtocols"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackIndex = lazy(() => import("@/pages/StackIndex"));
 const StackDetail = lazy(() => import("@/pages/StackDetail"));
+const StackPage = lazy(() => import("@/pages/StackPage"));
+const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
+const BloodPanels = lazy(() => import("@/pages/BloodPanels"));
 const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
@@ -91,10 +94,10 @@ function AppRouter() {
         </Route>
 
         {/* Stacks (pharmacy tier 2) */}
-        <Route path="/stacks" component={StackIndex} />
+        <Route path="/stacks" component={ProtocolsIndex} />
         <Route path="/stacks/build" component={BuildYourStack} />
         <Route path="/stacks/:slug">
-          {(params) => <StackDetail slug={(params as { slug: string }).slug} />}
+          {(params) => <StackPage slug={(params as { slug: string }).slug} />}
         </Route>
 
         {/* Cart + Checkout (pharmacy flow) */}
@@ -109,6 +112,8 @@ function AppRouter() {
         <Route path="/physicians" component={Physicians} />
         <Route path="/lab-testing">{() => <R to="/bloodwork" />}</Route>
         <Route path="/bloodwork" component={Bloodwork} />
+        <Route path="/protocols" component={ProtocolsIndex} />
+        <Route path="/blood-work" component={BloodPanels} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />

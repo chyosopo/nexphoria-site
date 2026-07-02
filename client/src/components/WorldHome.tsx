@@ -77,6 +77,9 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <Link href="/bloodwork" className="nx-glass-btn" data-testid={`${world}-hero-panel`} style={{ fontFamily: F, fontSize: 15 }}>
               See the 76-marker panel
             </Link>
+            <Link href="/stacks" className="nx-glass-btn" data-testid={`${world}-hero-protocols`} style={{ fontFamily: F, fontSize: 15 }}>
+              The seven protocols
+            </Link>
           </div>
         </div>
 
