@@ -184,8 +184,9 @@ export default function Category() {
       <section className="relative overflow-hidden" style={{ minHeight: 420 }}>
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.55) 0%, rgba(28,24,21,0.1) 60%, transparent 100%)" }} />
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
         <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,3.8vw,44px)", lineHeight: 1.1, color: "#FAF7F0", maxWidth: "16ch" }}>
+          <h2 className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,3.8vw,44px)", lineHeight: 1.1, color: "#FAF7F0", maxWidth: "16ch", zIndex: 2 }}>
             Progress you can <em style={{ fontStyle: "italic", color: "#F3C87A" }}>point to.</em>
           </h2>
           <div className="mt-6" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>

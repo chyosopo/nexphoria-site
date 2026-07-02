@@ -1155,6 +1155,7 @@ function ActionPlan() {
     <section className="relative overflow-hidden" style={{ minHeight: 560 }}>
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(28,24,21,0.25) 0%, rgba(28,24,21,0.05) 35%, rgba(28,24,21,0.62) 100%)" }} />
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
         <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#FAF7F0" }}>
           <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
@@ -1174,7 +1175,7 @@ function ActionPlan() {
             <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#B97C24", marginTop: 8 }}>Supports 6 metabolic markers</p>
           </div>
         </div>
-        <div style={{ marginTop: "4.5rem" }}>
+        <div className="relative" style={{ marginTop: "4.5rem", zIndex: 2 }}>
           <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "#FAF7F0", maxWidth: "14ch" }}>
             Doctor-developed. <em style={{ fontStyle: "italic", color: "#F3C87A" }}>You</em>-specific.
           </h2>
