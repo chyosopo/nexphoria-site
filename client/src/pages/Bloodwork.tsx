@@ -972,7 +972,9 @@ export default function Bloodwork() {
         <SystemsMosaic />
         <ResultsDashboard />
         <ActionPlan />
+        <GlowingBody />
         <OfferStack />
+        <MarkerWall />
         <div id="explore" />
         <PanelExplorer />
         <LiveTrajectory />
@@ -1181,6 +1183,78 @@ function ActionPlan() {
           </p>
           <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.5)", marginTop: "1.2rem" }}>Illustration of member guidance.</p>
         </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* ══ GLOWING BODY — what one draw can surface ══ */
+const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[] = [
+  { t: "Insulin resistance", x: "4%", y: "12%", hot: true },
+  { t: "Chronic inflammation", x: "62%", y: "8%", hot: true },
+  { t: "Low testosterone", x: "72%", y: "30%" },
+  { t: "Hypothyroidism", x: "2%", y: "36%" },
+  { t: "Vitamin D deficiency", x: "68%", y: "56%", hot: true },
+  { t: "Elevated ApoB", x: "6%", y: "62%", hot: true },
+  { t: "B12 deficiency", x: "70%", y: "78%" },
+  { t: "Liver stress", x: "8%", y: "84%" },
+];
+function GlowingBody() {
+  return (
+    <section className="relative overflow-hidden" style={{ background: "#241A12" }}>
+      <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3rem" }}>
+        <div className="relative mx-auto" style={{ maxWidth: 880 }}>
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_155120_6ebcb99a-6685-491b-b11b-f63f4dad450c.png" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
+          {SURFACE_PILLS.map((p) => (
+            <span key={p.t} className="hidden sm:inline-block absolute" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "#FAF7F0" : "rgba(250,247,240,0.4)", border: `1px solid ${p.hot ? "rgba(250,247,240,0.55)" : "rgba(250,247,240,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(36,26,18,0.35)", backdropFilter: "blur(6px)" }}>
+              {p.t}
+            </span>
+          ))}
+          <span className="absolute left-1/2 -translate-x-1/2" style={{ top: "44%", fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#1C1815", background: "#FFFEFB", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
+            <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: 999, background: "#A8C69A", color: "#1C1815", textAlign: "center", lineHeight: "16px", fontSize: 11, marginRight: 8 }}>✓</span>
+            All 76 reviewed by a physician
+          </span>
+        </div>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          {[["One draw", "5-minute booking, 2,000+ locations"], ["76 markers", "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
+            <div key={t} style={{ background: "rgba(250,247,240,0.94)", borderRadius: 16, padding: "1.1rem 1.2rem" }}>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 22, color: "#5E3C0D" }}>{t}</div>
+              <p style={{ fontFamily: FONT, fontSize: 13.5, color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontFamily: FONT, fontSize: 11.5, color: "rgba(250,247,240,0.45)", marginTop: "1.2rem" }}>
+          Lab results alone do not diagnose any condition. Out-of-range markers are conversations to have with your physician.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ══ MARKER WALL — the language of your body ══ */
+function MarkerWall() {
+  const names = BIOMARKER_PANEL.flatMap((c) => c.markers.map((m) => m.name.split(" (")[0]));
+  const rows = [names.slice(0, 5), names.slice(9, 13), names.slice(18, 22), names.slice(27, 31), names.slice(36, 40), names.slice(45, 49), names.slice(54, 58)];
+  const ops = [0.16, 0.3, 0.5, 0.75, 0.5, 0.3, 0.16];
+  return (
+    <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "4rem 0" }}>
+      <div aria-hidden style={{ textAlign: "center" }}>
+        {rows.map((r, i) => (
+          <p key={i} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "#7A4E12", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
+            {r.join(",  ")},
+          </p>
+        ))}
+      </div>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "#FFFEFB", borderRadius: 20, padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(28,24,21,0.35)", minWidth: 260 }}>
+        <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-black)", margin: 0 }}>Out of range → In range</p>
+        <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
+          <line x1="30" y1="22" x2="180" y2="48" stroke="#B97C24" strokeWidth="1.6" strokeDasharray="4 5" />
+          <circle cx="30" cy="22" r="7" fill="#FFFEFB" stroke="#D07A52" strokeWidth="2.5" />
+          <circle cx="180" cy="48" r="9" fill="#F3C87A" stroke="#B97C24" strokeWidth="2.5" />
+          <text x="30" y="64" textAnchor="middle" fill="rgba(28,24,21,0.5)" style={{ font: "500 10px " + FONT }}>Baseline</text>
+          <text x="180" y="16" textAnchor="middle" fill="rgba(28,24,21,0.5)" style={{ font: "500 10px " + FONT }}>90 days</text>
+        </svg>
       </div>
     </section>
   );

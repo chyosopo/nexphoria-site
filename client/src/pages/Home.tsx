@@ -99,6 +99,7 @@ export default function Home() {
       <PeptideTilesStrip />
       <HowItWorks />
       <FeaturedStack />
+      <ProofBento />
       <BiomarkerMarquee />
       <BloodworkPillar />
       <PhysicianStrip />
@@ -2259,6 +2260,53 @@ function GuideCapture() {
               </button>
             </div>
           )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* ══ PROOF BENTO — real numbers, mixed media ══ */
+function ProofBento() {
+  const F = "'General Sans', system-ui, sans-serif";
+  const tile: React.CSSProperties = { background: "#F7F2EA", borderRadius: 22, overflow: "hidden" };
+  return (
+    <section className="nx-section" style={{ background: "var(--nx-bg)" }}>
+      <div className="nx-container">
+        <div className="grid gap-3 md:grid-cols-2">
+          <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.6rem)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", minHeight: 220 }}>
+            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,5vw,64px)", color: "#7A4E12", lineHeight: 1 }}>76</div>
+            <p style={{ fontFamily: F, fontSize: 15, color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
+          </div>
+          <div style={{ ...tile, position: "relative", minHeight: 220 }}>
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png" alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: 14, color: "#FAF7F0", background: "rgba(28,24,21,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
+          </div>
+          <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031117_661b5d99-93c7-4e83-a763-38f7f31f2b6e.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.55) 0%, transparent 60%)" }} />
+            <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(40px,5vw,62px)", color: "#FAF7F0", lineHeight: 1 }}>24–48h</div>
+              <p style={{ fontFamily: F, fontSize: 15, color: "rgba(250,247,240,0.85)", marginTop: 8, maxWidth: "26ch" }}>from intake to a licensed physician's review</p>
+            </div>
+          </div>
+          <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(24px,2.6vw,32px)", color: "var(--nx-black)", lineHeight: 1.25 }}>
+              Physician
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030957_204bece6-92c8-4e6d-8f39-04f45318818b.png" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: 999, objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
+              follow-ups
+            </p>
+            <p style={{ fontFamily: F, fontSize: 14, color: "var(--nx-fg-graphite)", marginTop: 10 }}>Message your prescriber anytime through the portal.</p>
+          </div>
+          <div style={{ ...tile, position: "relative", minHeight: 200 }}>
+            <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031047_70395d8a-3f6b-45c6-b8b3-06b8e0a53a44.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <div className="absolute inset-0" style={{ background: "rgba(28,24,21,0.35)" }} />
+            <div style={{ position: "absolute", left: 20, bottom: 18 }}>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#FAF7F0", lineHeight: 1 }}>Every 90 days</div>
+              <p style={{ fontFamily: F, fontSize: 13.5, color: "rgba(250,247,240,0.85)", marginTop: 5 }}>your labs re-run, your protocol re-tuned</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
