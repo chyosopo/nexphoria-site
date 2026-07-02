@@ -439,7 +439,7 @@ export default function Assessment() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      await apiRequest("POST", "/api/intake", form);
+      await apiRequest("/api/intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
     } catch {
       // Endpoint may not exist yet — treat as success
     }

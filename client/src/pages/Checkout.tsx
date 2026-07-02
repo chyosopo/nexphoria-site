@@ -8,6 +8,8 @@ import { ArrowLeft, Check, Shield, Stethoscope, Truck, Lock, CreditCard } from "
 import { SiteLayout } from "@/components/SiteLayout";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
+import { isGLP1Excluded, getStack } from "@/data/stacksCatalog";
+import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,6 +36,10 @@ const STEPS = ["Address", "Payment", "Review"] as const;
 
 export default function Checkout() {
   const { lines, subtotal, totalSavings, itemCount, clear } = useCart();
+
+  /* ─── GLP-1 state gate (defense-in-depth: PDPs already gate; this enforces at checkout) ─── */
+  const cartHasGLP1 = lines.some((l) => getSolo(l.slug)?.gated || getStack(l.slug)?.gated);
+
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);
   const [step, setStep] = useState(0); // 0 Address, 1 Payment, 2 Review
@@ -96,13 +102,20 @@ export default function Checkout() {
     },
   });
 
-  const onSubmit = (values: FormValues) => mutation.mutate(values);
+  const enteredState = form.watch("state") || "";
+  const glp1Blocked = cartHasGLP1 && enteredState.length === 2 && isGLP1Excluded(enteredState);
+
+  const onSubmit = (values: FormValues) => {
+    if (glp1Blocked) return; // hard stop — server will also validate
+    mutation.mutate(values);
+  };
 
   /* Advance the step indicator after validating the current step's fields */
   const goNext = async () => {
     let fields: (keyof FormValues)[] = [];
     if (step === 0) fields = ["name", "email", "age", "shippingAddress", "city", "state", "zip"];
     const ok = fields.length ? await form.trigger(fields) : true;
+    if (ok && step === 0 && glp1Blocked) return; // notice below the address explains why
     if (ok) setStep((s) => Math.min(s + 1, 2));
   };
 
@@ -272,6 +285,26 @@ export default function Checkout() {
                         <input {...form.register("zip")} type="text" className="nx-input" data-testid="input-zip" autoComplete="postal-code" />
                       </Field>
                     </div>
+                    {glp1Blocked && (
+                      <div
+                        role="alert"
+                        data-testid="notice-glp1-state"
+                        className="mt-4 p-4 rounded-lg"
+                        style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-line)", fontFamily: FONT }}
+                      >
+                        <div className="text-sm font-semibold mb-1" style={{ color: "var(--nx-fg)" }}>
+                          Not available in {enteredState.toUpperCase()}
+                        </div>
+                        <p className="text-sm" style={{ color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                          One or more items in your order involve GLP-1 therapy, which we do not currently
+                          offer in your state. Remove those items to continue, or{" "}
+                          <Link href="/contact" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+                            contact our clinical team
+                          </Link>{" "}
+                          about alternatives.
+                        </p>
+                      </div>
+                    )}
                     <div className="mt-4">
                       <Field label="Age" error={errors.age?.message}>
                         <input {...form.register("age", { valueAsNumber: true })} type="number" min={18} max={110} className="nx-input max-w-[120px]" data-testid="input-age" />

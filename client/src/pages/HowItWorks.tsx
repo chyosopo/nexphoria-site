@@ -21,7 +21,7 @@ export default function HowItWorks() {
   useSeo({
     title: "How It Works — Nexphoria",
     description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.",
-    jsonLd: [webPageJsonLd({ name: "How It Works", url: "/how-it-works" })],
+    jsonLd: [webPageJsonLd({ name: "How It Works", description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.", path: "/how-it-works" })],
   });
   return (
     <SiteLayout>

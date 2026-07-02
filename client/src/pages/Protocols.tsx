@@ -75,7 +75,7 @@ export default function Protocols() {
   const shown = filter === "all" ? ordered : ordered.filter((s) => s.goal === filter);
 
   return (
-    <SiteLayout navVariant="light">
+    <SiteLayout navVariant="showcase">
       {/* Hero */}
       <section className="relative bg-background pt-24 pb-14 md:pt-32 md:pb-20 overflow-hidden">
         <div

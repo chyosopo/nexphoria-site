@@ -12,9 +12,9 @@
 - **ASSET INDEPENDENCE: zero external CDN references.** 39 assets localized → WebP q82 ≤1600w (153MB→11MB), served from repo
 
 ## 🔧 REMAINING — site-side (small, no blockers)
-- [ ] 12 pre-existing tsc errors (Assessment, PricingTiers, etc.) — cosmetic types, build unaffected
+- [x] ~~12 pre-existing tsc errors~~ — **FIXED: tsc = 0 across the entire repo**
 - [ ] Data unification (later, carefully): legacy `stacks.ts`/`peptides.ts` still power cart/checkout/nav; new `stacksCatalog`/`soloCatalog` power PDPs. Two sources of truth = drift risk once real orders flow
-- [ ] Checkout-level GLP-1 state block (`isGLP1Excluded` stub) — wire when checkout is real
+- [x] ~~Checkout-level GLP-1 state block~~ — **WIRED: address step hard-blocks the 6 excluded states when cart contains GLP-1 (derived from catalog `gated` flags, not hardcoded); bank-voice notice; onSubmit double-guard. Server-side validation still required when a real backend exists.**
 - [ ] Git history carries one 153MB asset commit — squash `design/azure` before production merge if repo size matters
 - [ ] Delete `.github/workflows/localize-assets.yml` + manifest after production merge (job done)
 

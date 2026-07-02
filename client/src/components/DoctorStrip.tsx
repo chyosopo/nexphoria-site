@@ -89,7 +89,6 @@ export function DoctorStrip() {
                       objectFit: "cover",
                       objectPosition: "center top",
                     }}
-                    loading="lazy"
                   />
                 </div>
 

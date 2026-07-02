@@ -60,7 +60,13 @@ export function VialArt({
     | "branch"
     | "ghrh"
     | "secretagogue"
-    | "fragment";
+    | "fragment"
+    | "flask"
+    | "leaf"
+    | "spark"
+    | "crescent"
+    | "bolt"
+    | "drop";
   size?: number;
 }) {
   const t = TONE_MAP[tone];
@@ -190,7 +196,13 @@ export interface VialTileProps {
     | "branch"
     | "ghrh"
     | "secretagogue"
-    | "fragment";
+    | "fragment"
+    | "flask"
+    | "leaf"
+    | "spark"
+    | "crescent"
+    | "bolt"
+    | "drop";
   price?: number;      // $/mo
   categoryLabel?: string;
   evidenceTier?: "A" | "B" | "C";

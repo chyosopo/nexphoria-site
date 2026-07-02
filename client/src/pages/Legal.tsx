@@ -20,7 +20,7 @@ export default function Legal() {
   const [tab, setTab] = useState("terms");
 
   return (
-    <SiteLayout navVariant="light">
+    <SiteLayout navVariant="showcase">
       <section className="bg-background pt-32 pb-16 md:pt-40 md:pb-20">
         <div className="nx-container max-w-5xl">
           <Reveal>

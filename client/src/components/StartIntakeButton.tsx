@@ -41,6 +41,7 @@ export function StartIntakeButton({
   variant = "primary",
   size = "lg",
   className,
+  style,
   children = "Start your assessment",
   showArrow = true,
 }: {
@@ -49,6 +50,7 @@ export function StartIntakeButton({
   variant?: Variant;
   size?: Size;
   className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
   showArrow?: boolean;
 }) {
@@ -96,6 +98,7 @@ export function StartIntakeButton({
         sizeClasses[size],
         className,
       )}
+      style={style}
     >
       <span>{children}</span>
       {showArrow && (

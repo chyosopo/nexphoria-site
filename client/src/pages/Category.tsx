@@ -94,6 +94,7 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
 const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: string }> = {
   recovery: { label: "Tissue recovery", status: "On track", pos: "26%" },
   skin: { label: "Collagen support", status: "Improving", pos: "30%" },
+  sleep: { label: "Sleep architecture", status: "Improving", pos: "34%" },
   growth: { label: "Lean mass", status: "Building", pos: "34%" },
   longevity: { label: "Cellular energy", status: "Optimal", pos: "18%" },
   cognition: { label: "Focus & clarity", status: "Steady", pos: "24%" },

@@ -17,7 +17,14 @@ type GlyphId =
   | "branch"
   | "ghrh"
   | "secretagogue"
-  | "fragment";
+  | "fragment"
+  // Goal-tile glyph names — intentionally render the default (ring) form.
+  | "flask"
+  | "leaf"
+  | "spark"
+  | "crescent"
+  | "bolt"
+  | "drop";
 
 export function MolecularGlyph({
   glyph,
