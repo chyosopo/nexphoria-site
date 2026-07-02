@@ -197,15 +197,9 @@ function FloatingResultCards() {
 function Hero() {
   // Hims-grammar hero: emotional headline + two large feature cards + 4 condition tiles.
   // Ref: /tmp/hims_labs/homepage/TEARDOWN.md sections 1B, 1C.
-  const conditionTiles = [
-    { pre: "Recover", accent: "faster",   accentColor: "var(--nx-acid)", href: "/stacks/wolverine", testId: "cond-tile-recover",   image: tileWolverine },
-    { pre: "Look",    accent: "radiant",  accentColor: "#E8B05F",         href: "/stacks/glow",       testId: "cond-tile-radiant",   image: tileGlow },
-    { pre: "Think",   accent: "sharper",  accentColor: "#C98A3B",         href: "/stacks/clarity",    testId: "cond-tile-sharper",   image: tileClarity },
-    { pre: "Get your",accent: "bloodwork",accentColor: "var(--nx-acid)", href: "/bloodwork",         testId: "cond-tile-bloodwork", image: bloodworkHero },
-  ];
 
   return (
-    <section className="relative bg-nx-ceramic overflow-hidden" aria-labelledby="home-h1">
+    <section className="relative overflow-hidden" aria-labelledby="home-h1" style={{ background: "linear-gradient(180deg, #FFFEF8 0%, var(--nx-bg) 100%)" }}>
       <div className="h-10 md:h-14" />
       <div className="nx-container pb-10 md:pb-16">
         {/* Eyebrow */}
@@ -308,7 +302,7 @@ function Hero() {
 
         {/* ── Cinematic living hero — hims-grammar video band ── */}
         <div
-          className="mt-12 md:mt-16 relative overflow-hidden"
+          className="mt-12 md:mt-14 mb-2 relative overflow-hidden"
           style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
           data-testid="hero-video-band"
         >
@@ -362,54 +356,6 @@ function Hero() {
               Care that feels like morning light.
             </p>
           </div>
-        </div>
-
-
-        {/* Condition tile row — Hims Type B */}
-        <div className="mt-3 md:mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {conditionTiles.map((t) => (
-            <Link
-              key={t.testId}
-              href={t.href}
-              data-testid={t.testId}
-              className="group relative flex items-center justify-between overflow-hidden rounded-[14px] px-4 py-4"
-              style={{
-                background: "#F1EDE4",
-                border: "1px solid rgba(10,10,10,0.06)",
-              }}
-            >
-              <div className="min-w-0 pr-2">
-                <div
-                  style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontWeight: 500,
-                    fontSize: "clamp(15px, 1.4vw, 18px)",
-                    letterSpacing: "-0.01em",
-                    color: "var(--nx-black)",
-                    lineHeight: 1.15,
-                  }}
-                >
-                  {t.pre}{" "}
-                  <span style={{ fontWeight: 700, color: t.accentColor }}>
-                    {t.accent}
-                  </span>
-                </div>
-              </div>
-              <div
-                className="relative shrink-0 overflow-hidden rounded-[10px]"
-                style={{ width: 52, height: 52, background: "var(--nx-rock)" }}
-                aria-hidden
-              >
-                <img
-                  src={t.image}
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </Link>
-          ))}
         </div>
       </div>
     </section>
