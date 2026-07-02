@@ -38,7 +38,7 @@ export function HeroVariantPicker() {
         <StartIntakeButton size="xl" source="home_hero" variant="primary">
           Start your assessment
         </StartIntakeButton>
-        <Link href="/protocols">
+        <Link href="/stacks">
           <button
             data-testid="button-hero-explore"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-fluid-base border border-foreground/30 hover:border-foreground/60 hover:bg-background/5 transition-all group"

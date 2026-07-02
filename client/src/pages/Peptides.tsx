@@ -644,7 +644,7 @@ export default function Peptides() {
                     </Reveal>
                   ))}
                   <Reveal delay={Math.min(filtered.length, 9) * 40}>
-                    <Link href="/protocols" data-testid="card-peptide-guide">
+                    <Link href="/stacks" data-testid="card-peptide-guide">
                       <article className="group h-full rounded-3xl p-8 border border-primary/35 bg-primary/[0.05] hover:bg-primary/[0.09] transition-colors cursor-pointer flex flex-col justify-between min-h-[300px] nx-tile">
                         <div className="flex items-start justify-between">
                           <div className="nx-eyebrow text-primary">

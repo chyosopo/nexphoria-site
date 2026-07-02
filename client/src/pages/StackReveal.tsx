@@ -776,7 +776,7 @@ export default function StackReveal() {
               </StartIntakeButton>
             </div>
             <Link
-              href="/protocols"
+              href="/stacks"
               className="inline-block mt-8 text-foreground/60 hover:text-primary transition-colors text-sm font-mono uppercase tracking-[0.16em]"
               data-testid="link-other-protocols"
             >

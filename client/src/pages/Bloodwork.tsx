@@ -12,7 +12,14 @@ import {
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
 import { Link } from "wouter";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, HeartPulse, Flame, Activity, Brain, Gauge, Droplets, Filter, Shield, Apple, TestTube, Hourglass } from "lucide-react";
+
+/* Organ/system icon map — hims-Labs tile grammar */
+const PANEL_ICONS: Record<string, any> = {
+  heart: HeartPulse, metabolism: Flame, hormones: Activity, stress: Brain,
+  thyroid: Gauge, kidneys: Droplets, liver: Filter, immunity: Shield,
+  nutrients: Apple, blood: TestTube, "bio-age": Hourglass,
+};
 
 const FONT = "'General Sans', system-ui, sans-serif";
 const NUM: React.CSSProperties = {
@@ -414,10 +421,8 @@ function PanelExplorer() {
             <Reveal key={cat.id}>
               <article
                 data-testid={`panel-card-${cat.id}`}
+                className="nx-glass-card"
                 style={{
-                  backgroundColor: "var(--nx-surface)",
-                  border: "1px solid var(--nx-line)",
-                  borderRadius: 12,
                   padding: "1.5rem 1.4rem",
                   display: "flex",
                   flexDirection: "column",
@@ -425,7 +430,13 @@ function PanelExplorer() {
                 }}
               >
                 {/* Card header */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.9rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.9rem" }}>
+                  <div style={{ display: "flex", gap: "0.85rem", alignItems: "flex-start" }}>
+                    {(() => { const Ico = PANEL_ICONS[cat.id] ?? Activity; return (
+                      <span className="nx-icon-chip" aria-hidden>
+                        <Ico size={22} strokeWidth={1.7} />
+                      </span>
+                    ); })()}
                   <div>
                     <p
                       style={{
@@ -451,6 +462,7 @@ function PanelExplorer() {
                     >
                       {cat.name}
                     </h3>
+                  </div>
                   </div>
                   <div
                     style={{

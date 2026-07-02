@@ -144,7 +144,7 @@ export function EducationHub() {
 
           {/* Explore all link */}
           <a
-            href="/education"
+            href="/journal"
             data-testid="education-hub-explore-all-link"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
