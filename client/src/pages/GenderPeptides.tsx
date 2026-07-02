@@ -185,7 +185,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                           <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "4px" }}>
                             {CATEGORY_LABELS[p.category]}
                           </p>
-                          <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "18px", fontWeight: 700, color: "var(--nx-fg)", lineHeight: 1.2 }}>
+                          <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "18px", fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
                             {p.name}
                           </h2>
                           {price?.badge && (

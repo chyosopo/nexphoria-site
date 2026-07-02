@@ -196,7 +196,7 @@ export default function GenderProtocols({ gender }: GenderProtocolsProps) {
                   </div>
 
                   <div className="mt-auto pt-4 flex items-center justify-between border-t" style={{ borderColor: "var(--nx-border)" }}>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "16px", fontWeight: 700, color: "var(--nx-fg)" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "16px", fontWeight: 600, color: "var(--nx-fg)", fontVariantNumeric: "tabular-nums" }}>
                       {protocol.price}
                     </p>
                     <StartIntakeButton productSlug={protocol.slug} source={`${gender}-protocols`} size="sm">

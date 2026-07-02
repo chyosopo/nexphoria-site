@@ -174,7 +174,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                             marginTop: 4,
                           }}
                         >
-                          {p.vialSpec} — {p.vialDuration}
+                          {p.vialSpec} · {p.vialDuration}
                         </div>
                       </div>
                     </div>

@@ -16,7 +16,6 @@ function planToCadence(plan: "m1" | "m3" | "m6"): CadenceKey {
   return plan === "m1" ? "1mo" : plan === "m3" ? "3mo" : "12mo";
 }
 import { SiteLayout } from "@/components/SiteLayout";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import NotFound from "@/pages/not-found";
@@ -56,7 +55,27 @@ import { getStack, stacks } from "@/data/stacks";
 import { VialTile, categoryToTone } from "@/components/VialTile";
 import { PillBadge } from "@/components/PillBadge";
 import { getPrice } from "@/data/pricing";
-import { getPeptideHeroImage } from "@/lib/peptideImages";
+
+/* ── Category benefit portraits (Wave 11 · data-hero) ──────────
+   Each image ENCODES its category's benefit — no decoration.
+   Keyed by peptide.category. */
+import pdpRecovery from "@/assets/nx_v11_pdp_recovery.webp";
+import pdpSkin from "@/assets/nx_v11_pdp_skin.webp";
+import pdpCognition from "@/assets/nx_v11_pdp_cognition.webp";
+import pdpSleep from "@/assets/nx_v11_pdp_sleep.webp";
+import pdpGrowth from "@/assets/nx_v11_pdp_growth.webp";
+import pdpLongevity from "@/assets/nx_v11_pdp_longevity.webp";
+import pdpMetabolic from "@/assets/nx_v11_pdp_metabolic.webp";
+
+const CATEGORY_HERO: Record<Peptide["category"], string> = {
+  recovery: pdpRecovery,
+  skin: pdpSkin,
+  cognition: pdpCognition,
+  sleep: pdpSleep,
+  growth: pdpGrowth,
+  longevity: pdpLongevity,
+  metabolic: pdpMetabolic,
+};
 
 const INK = "var(--nx-cobalt)";
 const CREAM = "var(--nx-bg)";
@@ -167,6 +186,39 @@ function onsetCourse(p: Peptide) {
   const onset =
     p.timeline[0]?.week?.replace(/Week\s*/i, "").replace(/Night\s*/i, "Nights ") ?? "1–2 weeks";
   return { onset, course: p.cycleLength.split(",")[0] };
+}
+
+/* ── Data-hero benefit stat (Wave 11) ─────────────────────
+   Promotes the clinical endpoint into the giant hero number.
+   Parses outcomeCurve().endpointLabel, e.g.
+     "+28% recovery speed at wk 12"  -> { value: "+28%", label: "recovery speed", window: "at week 12" }
+     "-14% bodyweight at wk 12"       -> { value: "-14%", label: "bodyweight", window: "at week 12" }
+     "3.1× IGF-1 response at wk 12"    -> { value: "3.1×", label: "IGF-1 response", window: "at week 12" }  */
+function heroStat(p: Peptide): { value: string; label: string; window: string; attribution: string } {
+  const oc = outcomeCurve(p);
+  const raw = oc.endpointLabel.trim();
+  // value = leading token (±NN% or N.N×)
+  const m = raw.match(/^([+−-]?\d+(?:\.\d+)?\s*(?:%|×|x))\s+(.*)$/i);
+  let value = raw;
+  let rest = "";
+  if (m) {
+    value = m[1].replace(/\s+/g, "").replace(/x$/i, "×");
+    rest = m[2];
+  }
+  // split trailing window ("at wk 12" / "at week 12")
+  const wm = rest.match(/^(.*?)\s+(at\s+wk\.?\s*\d+|at\s+week\s*\d+)\s*$/i);
+  let label = rest;
+  let window = "";
+  if (wm) {
+    label = wm[1];
+    window = wm[2].replace(/\bwk\.?\b/i, "week");
+  }
+  return {
+    value,
+    label: label.trim() || "measured response",
+    window: window.trim() || "at week 12",
+    attribution: oc.attribution,
+  };
 }
 
 /* Dosing micro-detail row (polish 8). */
@@ -1325,7 +1377,322 @@ function RelatedStacksPanel({ peptide }: { peptide: Peptide }) {
   );
 }
 
+function DataHero({
+  peptide,
+  onSeePricing,
+  onSeeEvidence,
+}: {
+  peptide: Peptide;
+  onSeePricing: () => void;
+  onSeeEvidence: () => void;
+}) {
+  const catLabel = CATEGORY_LABELS[peptide.category];
+  const stat = heroStat(peptide);
+  const tier = evidenceTier(peptide);
+  const oc = onsetCourse(peptide);
+  const portrait = CATEGORY_HERO[peptide.category];
 
+  const callouts = [
+    { k: "Evidence tier", v: `${tier.grade} · ${tier.studies} studies` },
+    { k: "Onset", v: oc.onset },
+    { k: "Full course", v: oc.course },
+  ];
+
+  const FF = "'General Sans', system-ui, sans-serif";
+  const ACID = "var(--nx-acid, #C6F184)";
+
+  return (
+    <main
+      id="main-content"
+      style={{ backgroundColor: INK, color: CREAM }}
+      data-testid="section-data-hero"
+    >
+      <div className="nx-container py-14 md:py-20">
+        <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-[1.05fr_minmax(300px,440px)]">
+          {/* LEFT — copy + giant benefit stat */}
+          <div>
+            <div className="flex items-center gap-3">
+              <PillBadge
+                tone="acid"
+                style={{
+                  border:
+                    "1px solid color-mix(in oklab, #FAF7F0 30%, transparent)",
+                  color: "color-mix(in oklab, #FAF7F0 82%, transparent)",
+                }}
+              >
+                {catLabel}
+              </PillBadge>
+              <span
+                style={{
+                  fontFamily: FF,
+                  fontSize: 12,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "color-mix(in oklab, #FAF7F0 60%, transparent)",
+                }}
+                data-testid="text-hero-fullname"
+              >
+                {peptide.fullName ?? peptide.name}
+              </span>
+            </div>
+
+            <h1
+              data-testid="text-hero-peptide-name"
+              style={{
+                fontFamily: FF,
+                fontSize: "clamp(34px, 4.6vw, 60px)",
+                fontWeight: 600,
+                lineHeight: 1.02,
+                letterSpacing: "0.035em",
+                color: CREAM,
+                marginTop: 22,
+              }}
+            >
+              {peptide.name}
+            </h1>
+
+            <p
+              style={{
+                fontFamily: FF,
+                fontSize: "clamp(15px, 1.5vw, 18px)",
+                lineHeight: 1.5,
+                fontWeight: 400,
+                color: "color-mix(in oklab, #FAF7F0 72%, transparent)",
+                marginTop: 16,
+                maxWidth: 520,
+              }}
+              data-testid="text-hero-tagline"
+            >
+              {tagline(peptide)}
+            </p>
+
+            {/* GIANT BENEFIT STAT */}
+            <div style={{ marginTop: 34 }}>
+              <div
+                data-testid="text-hero-stat-value"
+                style={{
+                  fontFamily: FF,
+                  fontSize: "clamp(64px, 9.5vw, 132px)",
+                  fontWeight: 600,
+                  lineHeight: 0.92,
+                  letterSpacing: "-0.01em",
+                  color: ACID,
+                  fontVariantNumeric: "tabular-nums",
+                }}
+              >
+                {stat.value}
+              </div>
+              <div
+                data-testid="text-hero-stat-label"
+                style={{
+                  fontFamily: FF,
+                  fontSize: "clamp(15px, 1.6vw, 19px)",
+                  fontWeight: 500,
+                  color: CREAM,
+                  marginTop: 10,
+                }}
+              >
+                {stat.label}{" "}
+                <span
+                  style={{
+                    color: "color-mix(in oklab, #FAF7F0 55%, transparent)",
+                    fontWeight: 400,
+                  }}
+                >
+                  {stat.window}
+                </span>
+              </div>
+              <div
+                data-testid="text-hero-stat-attribution"
+                style={{
+                  fontFamily: FF,
+                  fontSize: 12.5,
+                  letterSpacing: "0.02em",
+                  color: "color-mix(in oklab, #FAF7F0 48%, transparent)",
+                  marginTop: 8,
+                }}
+              >
+                {stat.attribution}
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3" style={{ marginTop: 32 }}>
+              <button
+                type="button"
+                data-testid="button-hero-start"
+                onClick={onSeePricing}
+                style={{
+                  fontFamily: FF,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: INK,
+                  backgroundColor: ACID,
+                  border: "none",
+                  borderRadius: 12,
+                  padding: "14px 26px",
+                  cursor: "pointer",
+                }}
+              >
+                Start protocol
+              </button>
+              <button
+                type="button"
+                data-testid="button-hero-evidence"
+                onClick={onSeeEvidence}
+                style={{
+                  fontFamily: FF,
+                  fontSize: 15,
+                  fontWeight: 500,
+                  color: CREAM,
+                  backgroundColor: "transparent",
+                  border:
+                    "1px solid color-mix(in oklab, #FAF7F0 36%, transparent)",
+                  borderRadius: 12,
+                  padding: "14px 26px",
+                  cursor: "pointer",
+                }}
+              >
+                See the evidence
+              </button>
+            </div>
+          </div>
+
+          {/* RIGHT — benefit portrait */}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 440,
+              aspectRatio: "3 / 4",
+              borderRadius: 20,
+              overflow: "hidden",
+              justifySelf: "end",
+              boxShadow: "0 30px 80px -30px rgba(0,0,0,0.6)",
+            }}
+          >
+            <img
+              src={portrait}
+              alt={`${peptide.name} — ${catLabel} outcome`}
+              data-testid="img-hero-portrait"
+              loading="eager"
+              decoding="async"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 30%",
+                display: "block",
+              }}
+            />
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(180deg, transparent 40%, color-mix(in oklab, #0A0A0A 78%, transparent) 100%)",
+              }}
+            />
+            {/* Floating endpoint tag */}
+            <div
+              data-testid="tag-hero-endpoint"
+              style={{
+                position: "absolute",
+                left: 16,
+                bottom: 16,
+                right: 16,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: FF,
+                  fontSize: 30,
+                  fontWeight: 600,
+                  color: ACID,
+                  lineHeight: 1,
+                  fontVariantNumeric: "tabular-nums",
+                }}
+              >
+                {stat.value}
+              </div>
+              <div
+                style={{
+                  fontFamily: FF,
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: CREAM,
+                  marginTop: 6,
+                }}
+              >
+                {stat.label}
+              </div>
+              <div
+                style={{
+                  fontFamily: FF,
+                  fontSize: 11,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "color-mix(in oklab, #FAF7F0 60%, transparent)",
+                  marginTop: 4,
+                }}
+              >
+                {catLabel} · {stat.window}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CALLOUT BAND */}
+        <div
+          data-testid="hero-callout-band"
+          className="grid gap-px sm:grid-cols-3"
+          style={{
+            marginTop: 48,
+            borderTop:
+              "1px solid color-mix(in oklab, #FAF7F0 16%, transparent)",
+          }}
+        >
+          {callouts.map((c, i) => (
+            <div
+              key={c.k}
+              data-testid={`hero-callout-${i}`}
+              style={{
+                paddingTop: 22,
+                paddingBottom: 6,
+                paddingRight: 24,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: FF,
+                  fontSize: 11,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "color-mix(in oklab, #FAF7F0 54%, transparent)",
+                }}
+              >
+                {c.k}
+              </div>
+              <div
+                style={{
+                  fontFamily: FF,
+                  fontSize: "clamp(18px, 2vw, 22px)",
+                  fontWeight: 500,
+                  color: CREAM,
+                  marginTop: 8,
+                  fontVariantNumeric: "tabular-nums",
+                }}
+              >
+                {c.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
 
 function PeptidePage({ peptide }: { peptide: Peptide }) {
   const price = planPricing(peptide);
@@ -1356,59 +1723,10 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
     }
   }
 
-  /* ── Tone + glyph by category ── */
-  const categoryTone: "sage" | "cobalt" | "rose" | "butter" | "sky" | "sand" =
-    peptide.category === "recovery" ? "sage"
-    : peptide.category === "metabolic" ? "cobalt"
-    : peptide.category === "growth" ? "butter"
-    : peptide.category === "cognition" ? "sky"
-    : peptide.category === "skin" ? "rose"
-    : "sand";
-  const categoryGlyph =
-    peptide.category === "recovery" ? TileGlyphs.wave
-    : peptide.category === "metabolic" ? TileGlyphs.hex
-    : peptide.category === "growth" ? TileGlyphs.circle
-    : peptide.category === "cognition" ? TileGlyphs.vial
-    : peptide.category === "skin" ? TileGlyphs.leaf
-    : TileGlyphs.drop;
-
   return (
     <SiteLayout navVariant="showcase">
-      {/* ── Maximus hero band ── */}
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">{catLabel} · Peptide library</PillBadge>}
-            headline={<>{peptide.name} <span>— {peptide.tagline}</span></>}
-            subtitle={lay}
-          />
-
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href={`/peptides/${peptide.slug}`}
-              tone={categoryTone}
-              glyph={categoryGlyph}
-              priority
-              label={
-                <>
-                  {peptide.name}<br />
-                  <span style={{  fontWeight: 400 }}>{catLabel}</span>
-                </>
-              }
-              caption={peptide.tagline}
-              ctaLabel="View dosing"
-            />
-            <ColoredHeroTile
-              href="/peptides"
-              tone="sand"
-              glyph={TileGlyphs.circle}
-              label={<>Peptide<br />library</>}
-              caption="Browse all molecules"
-              ctaLabel="Explore library"
-            />
-          </div>
-        </div>
-      </main>
+      {/* ── DATA-HERO (Pattern B) — full-bleed ink, giant benefit stat + benefit portrait ── */}
+      <DataHero peptide={peptide} onSeePricing={() => scrollToPricing()} onSeeEvidence={() => scrollToSection("evidence")} />
 
       {/* 1 · BREADCRUMB PILL */}
       <div style={{ backgroundColor: CREAM }} className="border-b border-[var(--nx-border)]">
@@ -1427,47 +1745,8 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
       {/* Sticky in-page nav (polish 10) */}
       <StickyPageNav />
 
-      {/* 2 · HERO — editorial image band (if available), then benefits left + pricing card right */}
+      {/* 2 · OVERVIEW — benefits left + pricing card right */}
       <section id="overview" className="bg-white border-b border-[var(--nx-border)] scroll-mt-32" data-testid="section-product-hero">
-        {(() => {
-          const heroImg = getPeptideHeroImage(peptide.slug);
-          if (!heroImg) return null;
-          return (
-            <div
-              className="relative w-full overflow-hidden"
-              style={{
-                aspectRatio: "16 / 6",
-                backgroundColor: "var(--nx-rock, #E8E9DB)",
-                borderBottom: "1px solid var(--nx-border)",
-              }}
-              data-testid="hero-editorial-image"
-            >
-              <img
-                src={heroImg}
-                alt={`Editorial photograph of ${peptide.name} preparation on a physician-grade apothecary surface.`}
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: "center 55%" }}
-              />
-              {/* Editorial caption overlay — bottom left corner, restrained */}
-              <div
-                className="absolute left-0 bottom-0 px-6 py-4 md:px-10 md:py-5"
-                style={{
-                  fontFamily: "'JetBrains Mono', ui-monospace, monospace",
-                  fontSize: "10px",
-                  fontWeight: 500,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: "rgba(10,10,10,0.55)",
-                }}
-              >
-                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "rgba(10,10,10,0.55)", marginRight: "0.5rem", verticalAlign: "middle" }} />
-                {catLabel} · Compounded under USP-797
-              </div>
-            </div>
-          );
-        })()}
         <div className="nx-container py-12 md:py-16">
           <div className="grid lg:grid-cols-[1fr_minmax(360px,420px)] gap-10 lg:gap-16 items-start">
             {/* Left — benefits */}
