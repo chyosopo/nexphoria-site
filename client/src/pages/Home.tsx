@@ -203,8 +203,8 @@ function Hero() {
 
   return (
     <section className="relative overflow-hidden" aria-labelledby="home-h1" style={{ background: "linear-gradient(180deg, #FFFEF8 0%, var(--nx-bg) 100%)" }}>
-      <div className="h-10 md:h-14" />
-      <div className="nx-container pb-10 md:pb-16">
+      <div className="h-6 md:h-8" />
+      <div className="nx-container pb-8 md:pb-10">
         {/* Eyebrow */}
         <div
           className="inline-flex items-center gap-2 mb-8"
@@ -246,7 +246,7 @@ function Hero() {
         </h1>
 
         <p
-          className="mt-8 max-w-2xl"
+          className="mt-6 max-w-2xl"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 400,
@@ -305,7 +305,7 @@ function Hero() {
 
         {/* ── Cinematic living hero — hims-grammar video band ── */}
         <div
-          className="mt-12 md:mt-14 mb-2 relative overflow-hidden"
+          className="mt-8 md:mt-10 mb-1 relative overflow-hidden"
           style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
           data-testid="hero-video-band"
         >
@@ -317,7 +317,7 @@ function Hero() {
             poster={heroPoster}
             src={heroVideo}
             className="w-full h-auto block"
-            style={{ aspectRatio: "3 / 1.55", objectFit: "cover" }}
+            style={{ aspectRatio: "21 / 8", objectFit: "cover" }}
             aria-label="Warm morning light — the Nexphoria standard of care"
           />
           <div
