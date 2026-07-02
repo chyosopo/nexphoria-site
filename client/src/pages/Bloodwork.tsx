@@ -971,6 +971,7 @@ export default function Bloodwork() {
         <Hero />
         <SystemsMosaic />
         <ResultsDashboard />
+        <ActionPlan />
         <OfferStack />
         <div id="explore" />
         <PanelExplorer />
@@ -1139,6 +1140,46 @@ function OfferStack() {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* ══ ACTION PLAN — guidance cards floating over life ══ */
+function ActionPlan() {
+  return (
+    <section className="relative overflow-hidden" style={{ minHeight: 560 }}>
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060542_6021ad2d-59a3-45cd-8e59-24d51fd05329.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(28,24,21,0.25) 0%, rgba(28,24,21,0.05) 35%, rgba(28,24,21,0.62) 100%)" }} />
+      <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#FAF7F0" }}>
+          <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
+          <span className="inline-flex items-center gap-2"><Apple size={16} strokeWidth={2} /> Nutrition</span>
+          <span className="inline-flex items-center gap-2"><Brain size={16} strokeWidth={2} /> Recovery</span>
+          <span className="inline-flex items-center gap-2"><Shield size={16} strokeWidth={2} /> Protocol</span>
+        </div>
+        <div className="relative mt-10 max-w-xl">
+          <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(250,247,240,0.45)", borderRadius: 18, filter: "blur(0.5px)" }} aria-hidden />
+          <div className="relative" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(28,24,21,0.45)" }}>
+            <div className="flex items-center justify-between gap-4">
+              <p style={{ fontFamily: FONT, fontSize: 16, lineHeight: 1.5, color: "var(--nx-black)", fontWeight: 500, margin: 0 }}>
+                Front-load protein within an hour of waking — steadier glucose, stronger recovery.
+              </p>
+              <ArrowRight size={18} strokeWidth={2} style={{ color: "#7A4E12", flexShrink: 0 }} />
+            </div>
+            <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#B97C24", marginTop: 8 }}>Supports 6 metabolic markers</p>
+          </div>
+        </div>
+        <div style={{ marginTop: "4.5rem" }}>
+          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "#FAF7F0", maxWidth: "14ch" }}>
+            Doctor-developed. <em style={{ fontStyle: "italic", color: "#F3C87A" }}>You</em>-specific.
+          </h2>
+          <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.55, color: "rgba(250,247,240,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
+            Every panel becomes a written plan — movement, nutrition, recovery, and if appropriate, a prescribed protocol. Reviewed against your next draw.
+          </p>
+          <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.5)", marginTop: "1.2rem" }}>Illustration of member guidance.</p>
         </div>
       </div>
     </section>

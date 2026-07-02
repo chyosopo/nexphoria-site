@@ -326,22 +326,31 @@ function Hero() {
             style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))" }}
           />
           {/* Glass panels — hims-Labs grammar */}
-          <div className="hidden md:flex absolute top-5 right-5 items-center gap-3 nx-glass-card" style={{ padding: "12px 16px", borderRadius: 16 }}>
-            <span className="nx-icon-chip" style={{ width: 38, height: 38 }} aria-hidden>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>
-            </span>
-            <div>
-              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 14, color: "var(--nx-black)", lineHeight: 1.2 }}>76 biomarkers</div>
-              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(28,24,21,0.55)" }}>Quest labs · every 90 days</div>
+          {/* Ring dashboard — UI over film, hims composite grammar */}
+          <div className="hidden md:flex absolute top-5 right-5 items-center gap-4" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px" }}>
+            <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
+              <g transform="rotate(-90 38 38)">
+                <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(250,247,240,0.12)" strokeWidth="6" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#A8C69A" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#F3C87A" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#D07A52" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" />
+              </g>
+              <text x="38" y="36" textAnchor="middle" fill="#FAF7F0" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
+              <text x="38" y="49" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
+            </svg>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, lineHeight: 1.9 }}>
+              <div><span style={{ color: "#A8C69A", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Optimal</span></div>
+              <div><span style={{ color: "#F3C87A", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>In range</span></div>
+              <div><span style={{ color: "#D07A52", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Out of range</span></div>
             </div>
           </div>
-          <div className="hidden md:flex absolute bottom-5 right-5 items-center gap-3 nx-glass-card" style={{ padding: "12px 16px", borderRadius: 16 }}>
-            <span className="nx-icon-chip" style={{ width: 38, height: 38 }} aria-hidden>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
-            </span>
-            <div>
-              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 14, color: "var(--nx-black)", lineHeight: 1.2 }}>Physician-reviewed</div>
-              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(28,24,21,0.55)" }}>Every order · 24–48h</div>
+          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
+            <div className="flex items-center justify-between gap-4">
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#FAF7F0" }}>Hormones</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
+            </div>
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
+              <span className="absolute" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0", boxShadow: "0 0 0 3px rgba(250,247,240,0.3)" }} />
             </div>
           </div>
           <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
