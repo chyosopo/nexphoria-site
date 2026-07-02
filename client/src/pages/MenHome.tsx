@@ -307,7 +307,7 @@ function MenHeroDark() {
               style={{
                 aspectRatio: "4/5",
                 border: "1px solid rgba(255,255,243,0.10)",
-                boxShadow: "0 30px 80px rgba(0,0,0,0.45)",
+                boxShadow: "0 30px 80px rgba(28,24,21,0.45)",
               }}
             >
               <img
@@ -652,7 +652,7 @@ function HeroSection_REMOVED({
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to right, rgba(250,247,240,0.35) 0%, rgba(0,0,0,0) 25%)",
+              background: "linear-gradient(to right, rgba(250,247,240,0.35) 0%, rgba(28,24,21,0) 25%)",
             }}
           />
         </div>
@@ -757,7 +757,7 @@ function FlagshipCards() {
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.42) 48%, rgba(0,0,0,0) 72%)",
+                        "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.42) 48%, rgba(28,24,21,0) 72%)",
                     }}
                   />
                   {/* Label slides up 4px on hover (Maximus spec) */}

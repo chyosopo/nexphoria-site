@@ -569,7 +569,7 @@ export default function Peptides() {
                       <ul
                         role="listbox"
                         data-testid="menu-sort"
-                        className="absolute right-0 top-[calc(100%+0.5rem)] z-40 min-w-[220px] rounded-xl border border-border bg-white p-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)]"
+                        className="absolute right-0 top-[calc(100%+0.5rem)] z-40 min-w-[220px] rounded-xl border border-border bg-white p-1.5 shadow-[0_8px_32px_rgba(28,24,21,0.08)]"
                       >
                         {(Object.keys(SORT_LABELS) as SortKey[]).map((k) => (
                           <li key={k}>
@@ -960,7 +960,7 @@ export default function Peptides() {
           data-testid="compare-bar"
         >
           <div className="nx-container py-3">
-            <div className="rounded-2xl bg-[var(--nx-fg)] text-white shadow-[0_8px_40px_rgba(0,0,0,0.25)] px-5 py-3 flex items-center justify-between gap-4 flex-wrap">
+            <div className="rounded-2xl bg-[var(--nx-fg)] text-white shadow-[0_8px_40px_rgba(28,24,21,0.25)] px-5 py-3 flex items-center justify-between gap-4 flex-wrap">
               <div className="flex items-center gap-3 flex-wrap">
                 <span className="text-fluid-sm">
                   <span className="font-medium">{compareList.length}</span>{" "}
@@ -1323,7 +1323,7 @@ function PeptideCard({
 
   return (
     <article
-      className={`group relative h-full text-foreground rounded-3xl p-6 nx-tile overflow-hidden flex flex-col border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.10)] ${
+      className={`group relative h-full text-foreground rounded-3xl p-6 nx-tile overflow-hidden flex flex-col border transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(28,24,21,0.10)] ${
         selected ? "border-primary ring-1 ring-primary" : "border-border"
       }`}
       style={{ background: tintBg }}

@@ -329,13 +329,13 @@ function GateCard({
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 55%, transparent 100%)",
+            "linear-gradient(to top, rgba(28,24,21,0.45) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)",
           pointerEvents: "none",
         }}
         animate={{
           background: isHovered && !isChosen
-            ? "linear-gradient(to top, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.2) 55%, transparent 100%)"
-            : "linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.15) 55%, transparent 100%)",
+            ? "linear-gradient(to top, rgba(28,24,21,0.58) 0%, rgba(28,24,21,0.2) 55%, transparent 100%)"
+            : "linear-gradient(to top, rgba(28,24,21,0.45) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)",
         }}
         transition={{ duration: 0.5 }}
       />
@@ -407,7 +407,7 @@ function GateCard({
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
               border: "1px solid rgba(255,255,243,0.14)",
-              boxShadow: "0 24px 48px -16px rgba(0,0,0,0.5)",
+              boxShadow: "0 24px 48px -16px rgba(28,24,21,0.5)",
               pointerEvents: "none",
             }}
             initial={reducedMotion ? { opacity: 0 } : { opacity: 0, x: side === "her" ? 12 : -12 }}

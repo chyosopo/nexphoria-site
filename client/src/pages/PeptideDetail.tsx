@@ -1599,7 +1599,7 @@ function DataHero({
               borderRadius: 20,
               overflow: "hidden",
               justifySelf: "end",
-              boxShadow: "0 30px 80px -30px rgba(0,0,0,0.6)",
+              boxShadow: "0 30px 80px -30px rgba(28,24,21,0.6)",
             }}
           >
             <img

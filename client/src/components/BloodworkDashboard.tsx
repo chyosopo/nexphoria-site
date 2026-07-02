@@ -137,7 +137,7 @@ export function BloodworkDashboard() {
         backgroundColor: "var(--nx-bg-cream)",
         border: "1px solid var(--nx-fg)",
         borderRadius: "2px",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+        boxShadow: "0 1px 3px rgba(28,24,21,0.08)",
         maxWidth: "860px",
         minWidth: "560px",
         width: "100%",

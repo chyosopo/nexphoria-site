@@ -103,7 +103,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)",
+                        "linear-gradient(to top, rgba(28,24,21,0.75) 0%, rgba(28,24,21,0.2) 50%, rgba(28,24,21,0) 100%)",
                     }}
                   />
 

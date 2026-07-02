@@ -89,7 +89,7 @@ export function ExitIntentModal() {
               position: "fixed",
               inset: 0,
               zIndex: 200,
-              backgroundColor: "rgba(0,0,0,0.55)",
+              backgroundColor: "rgba(28,24,21,0.55)",
               backdropFilter: "blur(4px)",
             }}
             data-testid="exit-intent-backdrop"
@@ -112,7 +112,7 @@ export function ExitIntentModal() {
               width: "min(460px, calc(100vw - 32px))",
               backgroundColor: "var(--nx-bg-cream, #FFFFF3)",
               borderRadius: "6px",
-              boxShadow: "0 40px 80px -20px rgba(0,0,0,0.35)",
+              boxShadow: "0 40px 80px -20px rgba(28,24,21,0.35)",
               padding: "36px 32px 28px",
               border: "1px solid var(--nx-border)",
             }}

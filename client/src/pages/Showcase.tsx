@@ -436,7 +436,7 @@ export default function Showcase() {
                     letterSpacing: "-0.015em",
                     color: "#fffff3",
                     marginBottom: 22,
-                    textShadow: "0 2px 24px rgba(0,0,0,0.5)",
+                    textShadow: "0 2px 24px rgba(28,24,21,0.5)",
                   }}
                 >
                   Ready when<br />you are.
@@ -449,7 +449,7 @@ export default function Showcase() {
                     maxWidth: 440,
                     marginBottom: 32,
                     lineHeight: 1.55,
-                    textShadow: "0 1px 12px rgba(0,0,0,0.4)",
+                    textShadow: "0 1px 12px rgba(28,24,21,0.4)",
                   }}
                 >
                   Take the 5-minute assessment. No card needed. We&rsquo;ll match you to a doctor-designed protocol or build one with you from the library.

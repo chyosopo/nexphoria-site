@@ -689,7 +689,7 @@ export default function JournalArticle() {
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(0,0,0,0.55)",
+                  color: "rgba(28,24,21,0.55)",
                   marginBottom: 12,
                 }}
               >
@@ -712,7 +712,7 @@ export default function JournalArticle() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 16,
                   lineHeight: 1.6,
-                  color: "rgba(0,0,0,0.7)",
+                  color: "rgba(28,24,21,0.7)",
                   maxWidth: 440,
                 }}
               >

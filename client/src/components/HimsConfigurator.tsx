@@ -528,7 +528,7 @@ export function HimsConfigurator({
                           padding: "3px 7px",
                           borderRadius: isMen ? 2 : 999,
                           background: isSelected
-                            ? "rgba(0,0,0,0.14)"
+                            ? "rgba(28,24,21,0.14)"
                             : card.badge === "Best value"
                             ? t.accentSoft
                             : "rgba(255,255,255,0.06)",
@@ -544,7 +544,7 @@ export function HimsConfigurator({
                     style={{
                       fontFamily: t.fontMono,
                       fontSize: "10.5px",
-                      color: isSelected ? "rgba(0,0,0,0.65)" : t.textMuted,
+                      color: isSelected ? "rgba(28,24,21,0.65)" : t.textMuted,
                       marginTop: "3px",
                     }}
                   >
@@ -568,7 +568,7 @@ export function HimsConfigurator({
                     style={{
                       fontFamily: t.fontMono,
                       fontSize: "9px",
-                      color: isSelected ? "rgba(0,0,0,0.55)" : t.textFaint,
+                      color: isSelected ? "rgba(28,24,21,0.55)" : t.textFaint,
                       marginTop: "3px",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",

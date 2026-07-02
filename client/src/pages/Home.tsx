@@ -534,13 +534,13 @@ function GoalTiles() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {tiles.map((t) => (
             <Link
               key={t.title}
               href={t.href}
               data-testid={t.testId}
-              className="group relative block rounded-[14px] overflow-hidden"
+              className="group relative block rounded-[18px] overflow-hidden"
               style={{
                 background: "var(--nx-rock)",
                 aspectRatio: "3 / 4",
@@ -549,7 +549,7 @@ function GoalTiles() {
               <img
                 src={t.image}
                 alt={t.title}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 loading="eager"
                 decoding="async"
               />
@@ -558,7 +558,7 @@ function GoalTiles() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%)",
+                    "linear-gradient(180deg, rgba(28,24,21,0) 40%, rgba(28,24,21,0.55) 100%)",
                 }}
               />
 
@@ -1091,7 +1091,7 @@ function FeaturedStack() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.15) 100%)",
+                    "linear-gradient(180deg, rgba(28,24,21,0) 60%, rgba(28,24,21,0.15) 100%)",
                 }}
               />
             </div>
@@ -1183,7 +1183,7 @@ function PhysicianStrip() {
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 color: "var(--nx-ceramic)",
-                textShadow: "0 1px 8px rgba(0,0,0,0.35)",
+                textShadow: "0 1px 8px rgba(28,24,21,0.35)",
               }}
             >
               <span>Dr. R. Alvarez, MD</span>

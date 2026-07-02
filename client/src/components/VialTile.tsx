@@ -100,7 +100,7 @@ export function VialArt({
             <stop offset="0%" stopColor="rgba(255,255,255,0.85)" />
             <stop offset="30%" stopColor="rgba(255,255,255,0.15)" />
             <stop offset="70%" stopColor="rgba(255,255,255,0.05)" />
-            <stop offset="100%" stopColor="rgba(0,0,0,0.10)" />
+            <stop offset="100%" stopColor="rgba(28,24,21,0.10)" />
           </linearGradient>
           <linearGradient id={`liquid-${tone}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={t.liquid} stopOpacity="0.55" />
@@ -142,12 +142,12 @@ export function VialArt({
         {/* Highlight (left) */}
         <rect x="34" y="70" width="4" height="130" rx="2" fill="rgba(255,255,255,0.7)" />
         {/* Shadow (right) */}
-        <rect x="72" y="70" width="3" height="130" rx="1.5" fill="rgba(0,0,0,0.08)" />
+        <rect x="72" y="70" width="3" height="130" rx="1.5" fill="rgba(28,24,21,0.08)" />
 
         {/* Label band */}
         <rect x="30" y="135" width="50" height="42" fill="rgba(255,255,243,0.94)" />
-        <rect x="30" y="135" width="50" height="1" fill="rgba(0,0,0,0.08)" />
-        <rect x="30" y="176" width="50" height="1" fill="rgba(0,0,0,0.08)" />
+        <rect x="30" y="135" width="50" height="1" fill="rgba(28,24,21,0.08)" />
+        <rect x="30" y="176" width="50" height="1" fill="rgba(28,24,21,0.08)" />
 
         {/* Glyph inside label */}
         <g transform="translate(37, 141) scale(0.18)">
@@ -167,7 +167,7 @@ export function VialArt({
         <path
           d="M 30 60 L 30 200 Q 30 210 40 210 L 70 210 Q 80 210 80 200 L 80 60 Z"
           fill="none"
-          stroke="rgba(0,0,0,0.12)"
+          stroke="rgba(28,24,21,0.12)"
           strokeWidth="1"
         />
       </svg>

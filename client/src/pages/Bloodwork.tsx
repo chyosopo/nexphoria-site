@@ -281,7 +281,7 @@ function Hero() {
 
       {/* ── Cinematic lab — living proof band (Higgsfield kling3.0) ── */}
       <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
-        <div className="relative overflow-hidden" style={{ borderRadius: "24px", boxShadow: "0 30px 70px -28px rgba(0,0,0,0.5)" }} data-testid="bloodwork-video-band">
+        <div className="relative overflow-hidden" style={{ borderRadius: "24px", boxShadow: "0 30px 70px -28px rgba(28,24,21,0.5)" }} data-testid="bloodwork-video-band">
           <video autoPlay muted loop playsInline
             src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060612_bafa2a0a-9bcc-400c-8cd3-35fae70369e8.mp4"
             poster="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png"
