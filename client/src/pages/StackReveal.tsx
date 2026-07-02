@@ -515,13 +515,13 @@ export default function StackReveal() {
                         A state-licensed 503A pharmacy in Texas.
                       </p>
                       <p className="text-foreground/75 leading-relaxed text-[15px] mb-5">
-                        Your {stack.name} protocol is prepared to prescription by an FDA-registered,
+                        Your {stack.name} protocol is prepared to prescription by an state-licensed,
                         state-board-licensed 503A compounding pharmacy — then batch-verified before it
                         ships cold-chain to your door.
                       </p>
                       <ul className="space-y-2.5">
                         {[
-                          "FDA-registered facility",
+                          "state-licensed facility",
                           "USP &lt;797&gt; sterile compounding",
                           "Batch potency + sterility tested",
                         ].map((item) => (
@@ -623,7 +623,7 @@ export default function StackReveal() {
                       </p>
                       <ul className="space-y-3.5">
                         {[
-                          "Pharmacy-compounded by an FDA-registered 503A facility",
+                          "Pharmacy-compounded by an state-licensed 503A facility",
                           "Real physician oversight, not AI prescribing",
                           "Lab work covered when needed",
                           "60-day satisfaction guarantee",

@@ -32,7 +32,7 @@ export default function Privacy() {
       </LegalSection>
 
       <LegalSection title="5. How We Share Information">
-        <LegalP>We share your health information only with: (a) the independent licensed physician treating you through the Nexphoria platform; (b) the 503A FDA-registered compounding pharmacy fulfilling your prescription; (c) the CLIA-certified laboratory processing your blood panel; (d) the shipping carrier delivering your medication, limited to the information necessary to complete delivery; and (e) any other party you specifically authorize in writing.</LegalP>
+        <LegalP>We share your health information only with: (a) the independent licensed physician treating you through the Nexphoria platform; (b) the 503A state-licensed compounding pharmacy fulfilling your prescription; (c) the CLIA-certified laboratory processing your blood panel; (d) the shipping carrier delivering your medication, limited to the information necessary to complete delivery; and (e) any other party you specifically authorize in writing.</LegalP>
         <LegalP>We may disclose PHI without your authorization when required by law, including in response to a valid subpoena, court order, or other legal process; to public health authorities for reporting communicable diseases or adverse events; to law enforcement when required by applicable statute; or to avert a serious and imminent threat to health or safety in accordance with 45 CFR 164.512(j).</LegalP>
         <LegalP>In the event of a corporate transaction such as a merger, acquisition, or sale of assets, your information may be transferred to the successor entity, subject to the protections of this policy and applicable law.</LegalP>
       </LegalSection>

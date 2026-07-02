@@ -64,7 +64,7 @@ export default function Legal() {
                 <P>You must be at least 18 years old and a resident of a U.S. state where our prescribing physicians are licensed. By creating an account, you represent that all information you provide is accurate and complete, and that you will keep it updated.</P>
 
                 <H>2. The Service</H>
-                <P>Nexphoria provides a technology platform that connects patients with independent licensed healthcare providers and FDA-registered compounding pharmacies. We are not a healthcare provider. Our healthcare provider network is operated by independently licensed clinicians who make their own clinical decisions.</P>
+                <P>Nexphoria provides a technology platform that connects patients with independent licensed healthcare providers and state-licensed compounding pharmacies. We are not a healthcare provider. Our healthcare provider network is operated by independently licensed clinicians who make their own clinical decisions.</P>
 
                 <H>3. Accounts and Security</H>
                 <P>You are responsible for maintaining the confidentiality of your account credentials. You agree to notify us immediately of any unauthorized access. We may suspend or terminate your account if we suspect fraud, misuse, or violation of these terms.</P>
@@ -134,7 +134,7 @@ export default function Legal() {
                 <P>If you are experiencing a medical emergency, call 911 or go to the nearest emergency room. Do not use Nexphoria's messaging system for emergencies.</P>
 
                 <H>FDA statements</H>
-                <P>Statements on this site have not been evaluated by the FDA except where explicitly noted. Compounded medications are not FDA-approved in the same way commercial drugs are; they are exempt from certain requirements under federal law when produced by FDA-registered 503A or 503B pharmacies pursuant to a valid prescription.</P>
+                <P>Statements on this site have not been evaluated by the FDA except where explicitly noted. Compounded medications are not FDA-approved in the same way commercial drugs are; they are exempt from certain requirements under federal law when produced by state-licensed 503A or 503B pharmacies pursuant to a valid prescription.</P>
               </Section>
             </TabsContent>
 

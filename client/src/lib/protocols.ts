@@ -587,7 +587,7 @@ export const stacks: Stack[] = [
       { q: "Is Lean right for me?", a: "It's built for a BMI of 27+, visceral-fat carriers, and plateau-breakers who want recomposition — not just a smaller number. Intake and MD review confirm fit, and baseline metabolic labs are usually part of it." },
       { q: "What if I have a pre-existing condition?", a: "Our intake screens for contraindications including a personal or family history of medullary thyroid carcinoma or MEN2, active GI disease or pancreatitis history, and pregnancy or breastfeeding. A physician reviews every case before prescribing GLP-class therapy." },
       { q: "How long until I see results?", a: "Appetite and cravings typically fall during the week 1–4 titration. Steady fat loss follows across weeks 5–12, with DEXA confirming preserved lean mass by the consolidation phase." },
-      { q: "Why is this cheaper than getting Tirzepatide elsewhere?", a: "Lean uses pharmacy-compounded GLP-class therapy through an FDA-registered 503A facility, which removes brand markup — with real physician oversight, not a rubber stamp. The crossed-out anchor reflects sourcing the molecules separately." },
+      { q: "Why is this cheaper than getting Tirzepatide elsewhere?", a: "Lean uses pharmacy-compounded GLP-class therapy through an state-licensed 503A facility, which removes brand markup — with real physician oversight, not a rubber stamp. The crossed-out anchor reflects sourcing the molecules separately." },
       { q: "What's included in the price?", a: "Physician consult and review, the compounded Tirzepatide / Retatrutide / AOD-9604 / Tesamorelin protocol with titration, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. No hidden fees." },
     ],
   },

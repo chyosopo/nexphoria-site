@@ -2206,7 +2206,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
           {/* Credential strip (polish 15) */}
           <div className="mt-10 flex flex-col items-center gap-2.5" data-testid="closer-credential-strip">
             {[
-              "FDA-registered facility",
+              "state-licensed facility",
               "USP <797> sterile compounding",
               "Batch potency + sterility tested",
             ].map((c) => (

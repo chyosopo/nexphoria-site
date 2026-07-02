@@ -179,7 +179,7 @@ export function ExitIntentModal() {
               }}
             >
               We&rsquo;ll email you when your peptide protocol is ready to prescribe.
-              Physician-reviewed, FDA-registered compounding, no commitment.
+              Physician-reviewed, state-licensed compounding, no commitment.
             </p>
 
             {state === "done" ? (

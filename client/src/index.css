@@ -564,12 +564,12 @@
     --mx-cream:       #EFEBE3;    /* unified tile background */
     --mx-cream-deep:  #E6E0D4;    /* hover tint */
     --mx-page-bg:     #F4EFE6;    /* page-level pharmacy cream */
-    --mx-navy:        #15233A;    /* label color on photo tiles */
-    --mx-ink:         #0E0E0F;    /* serif labels, pills */
-    --mx-pill:        #0E0E0F;
+    --mx-navy:        #2E2A24;   /* warm deep ink — was cool navy */    /* label color on photo tiles */
+    --mx-ink:         #1C1815;   /* warm ink */    /* serif labels, pills */
+    --mx-pill:        #1C1815;
     --mx-pill-text:   #F4EFE6;
-    --mx-dark:        #1A1916;    /* dark tile bg */
-    --mx-dark-hover:  #232220;
+    --mx-dark:        #241F1A;   /* warm espresso dark tile */    /* dark tile bg */
+    --mx-dark-hover:  #2E2822;
     --mx-dark-text:   #F0EBE0;
     --mx-radius:      22px;
     --mx-radius-sm:   16px;
@@ -591,20 +591,21 @@
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(14, 14, 15, 0.55);
+    color: #7A4E12;
   }
   .mx-headline {
-    font-family: 'General Sans', system-ui, sans-serif;
-    font-weight: 400;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
     font-size: clamp(40px, 5.4vw, 72px);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    line-height: 1.06;
+    letter-spacing: -0.015em;
     color: var(--mx-ink);
   }
   .mx-headline em {
-    
-    font-weight: 400;
-    color: rgba(14, 14, 15, 0.55);
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #B97C24;   /* warm honey italic accent */
   }
   .mx-subtitle {
     max-width: 580px;
@@ -667,11 +668,11 @@
     backdrop-filter: blur(14px) saturate(1.1);
     -webkit-backdrop-filter: blur(14px) saturate(1.1);
     border-radius: 14px;
-    font-family: 'General Sans', system-ui, sans-serif;
-    font-weight: 400;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
     font-size: clamp(22px, 2vw, 32px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
     color: var(--mx-navy);
     max-width: 70%;
   }

@@ -135,7 +135,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
           data-testid="footer-trust-badges"
         >
           {[
-            { label: "503A · FDA-registered", sub: "Compounding pharmacy" },
+            { label: "503A · state-licensed", sub: "Compounding pharmacy" },
             { label: "All 50 states", sub: "US-licensed physicians" },
             { label: "HIPAA", sub: "Encrypted intake" },
             { label: "Quest Diagnostics", sub: "Lab partner" },
@@ -210,7 +210,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
           style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
           data-testid="footer-research-disclaimer"
         >
-          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in FDA-registered 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
+          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in state-licensed 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
         </p>
         <p
           className="mt-3 text-xs"

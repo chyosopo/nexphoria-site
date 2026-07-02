@@ -70,7 +70,7 @@ const monoCaption: React.CSSProperties = {
 
 const PROOF_STATS = [
   { value: "38", label: "Biomarkers per panel" },
-  { value: "503A", label: "FDA-registered pharmacy" },
+  { value: "503A", label: "state-licensed pharmacy" },
   { value: "90 days", label: "Recalibration cadence" },
   { value: "5", label: "Board-certified advisors" },
 ];
@@ -84,7 +84,7 @@ const PILLARS = [
   {
     num: "02",
     title: "Compounded",
-    desc: "Sterile-prepared in an FDA-registered 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
+    desc: "Sterile-prepared in an state-licensed 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
   },
   {
     num: "03",
@@ -137,7 +137,7 @@ const STANDARDS = [
   {
     num: "02",
     title: "503A / USP <797>",
-    detail: "Every prescription compounded to sterile-preparation standards in an FDA-registered US pharmacy.",
+    detail: "Every prescription compounded to sterile-preparation standards in an state-licensed US pharmacy.",
   },
   {
     num: "03",

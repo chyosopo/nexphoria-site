@@ -227,7 +227,7 @@ function HeroSection() {
    ════════════════════════════════════════════════════════════════ */
 function SecondaryTrustBand() {
   const items = [
-    "FDA-registered facility",
+    "state-licensed facility",
     "USP <797> sterile",
     "503A pharmacy",
     "Cold-chain shipping",

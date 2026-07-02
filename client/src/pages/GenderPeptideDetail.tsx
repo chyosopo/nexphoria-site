@@ -854,7 +854,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
           >
             <strong style={{ color: id.textMuted }}>Disclaimer:</strong> This information is for
             educational purposes only. {peptide.name} is prescribed off-label by licensed U.S.
-            physicians and compounded by FDA-registered 503A pharmacies. It has not been evaluated
+            physicians and compounded by state-licensed 503A pharmacies. It has not been evaluated
             by the FDA for all indications listed. Individual results vary. Consult your Nexphoria
             physician.
           </p>

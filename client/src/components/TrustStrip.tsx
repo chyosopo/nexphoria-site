@@ -24,7 +24,7 @@ const pillars = [
   {
     icon: FlaskConical,
     label: "Sterile compounding",
-    sub: "FDA-registered 503A pharmacies",
+    sub: "state-licensed 503A pharmacies",
   },
   {
     icon: Package,

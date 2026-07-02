@@ -338,7 +338,7 @@ function HeroSection_REMOVED({
         >
           <div style={{ maxWidth: "600px", width: "100%" }}>
             {/* Eyebrow — pharmacy positioning */}
-            <SectionEyebrow>One-Stop Peptides Pharmacy</SectionEyebrow>
+            <SectionEyebrow>Physician-Led Peptide Protocols</SectionEyebrow>
 
             {/* Hero headline — "two-color" = roman + (Maximus pattern, ink version) */}
             <h1
