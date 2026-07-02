@@ -27,7 +27,7 @@ import womenCardWeight from "@/assets/brand/women-card-weight.webp";
 import womenCardSkin from "@/assets/brand/women-card-skin.webp";
 import womenCardLongevity from "@/assets/brand/women-card-longevity.webp";
 import lifestyleMorningRoutine from "@/assets/brand/lifestyle-morning-routine.webp";
-import lifestyleWindowPortrait from "@/assets/brand/lifestyle-window-light-portrait.webp";
+const lifestyleWindowPortrait = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_021713_45c52586-6350-45b1-b676-54fa57078490.png";
 import lifestyleCoupleKitchen from "@/assets/brand/lifestyle-couple-kitchen.webp";
 import lifestyleEveningProtocol from "@/assets/brand/lifestyle-evening-protocol.webp";
 import { useSeo, webPageJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";

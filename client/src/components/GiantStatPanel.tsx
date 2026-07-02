@@ -53,7 +53,7 @@ export function GiantStatPanel({
       )}
       <div
         style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
+          fontFamily: "'Fraunces', Georgia, serif",
           fontWeight: 500,
           fontSize: "clamp(64px, 12vw, 180px)",
           lineHeight: 0.94,

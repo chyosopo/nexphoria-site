@@ -4,9 +4,9 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
-import lifestyleLabVials from "@/assets/brand/lifestyle-lab-vials.webp";
-import lifestyleBloodworkDashboard from "@/assets/brand/lifestyle-bloodwork-dashboard-mood.webp";
+const editorialBloodwork = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031340_b607f3ff-ada3-44cb-aed6-613a36ca3ef4.png";
+const lifestyleLabVials = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png";
+const lifestyleBloodworkDashboard = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031406_76ac0920-bcb8-4951-b8cb-8515775c5752.png";
 import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
 import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
 import { Link } from "wouter";
@@ -977,7 +977,7 @@ function BloodworkManifesto() {
 
           <h1
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(48px, 7vw, 96px)",
               lineHeight: 0.98,
@@ -1152,7 +1152,7 @@ function BloodworkPillars() {
 
         <h2
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontWeight: 600,
             fontSize: "clamp(40px, 5vw, 64px)",
             lineHeight: 1.02,
@@ -1308,7 +1308,7 @@ function BloodworkPricing() {
             </div>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
                 fontSize: "clamp(40px, 5vw, 64px)",
                 lineHeight: 1.02,
@@ -1530,7 +1530,7 @@ function BloodworkInsurance() {
 
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,

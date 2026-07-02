@@ -22,7 +22,7 @@ import { BloodworkSection } from "@/components/BloodworkSection";
 import { DoctorChoiceBadge } from "@/components/DoctorChoiceBadge";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { peptides } from "@/data/peptides";
-import menHeroBg from "@/assets/brand/men-hero-bg.webp";
+const menHeroBg = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060557_6021ad2d-4161-421e-9705-0cf200fe9de8.png";
 import menCardStrength from "@/assets/brand/men-card-strength.webp";
 import menCardWeight from "@/assets/brand/men-card-weight.webp";
 import menCardLongevity from "@/assets/brand/men-card-longevity.webp";
@@ -222,7 +222,7 @@ function MenHeroDark() {
             <h1
               className="mt-6"
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
                 fontSize: "clamp(44px, 6.4vw, 88px)",
                 lineHeight: 0.96,

@@ -27,8 +27,8 @@ import tileBalance from "@/assets/nx_v11_tile_balance.webp";
 import tileRecover from "@/assets/nx_v3_tile_recover.webp";
 import tileBurn from "@/assets/nx_v3_tile_burnfat.webp";
 import tileSleep from "@/assets/nx_v3_tile_sleep.webp";
-import doctorShot from "@/assets/nx_v3_doctor.webp";
-import productHero from "@/assets/nx_v3_product_hero.webp";
+const doctorShot = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png";
+const productHero = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png";
 import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
 import moleculeShot from "@/assets/nx_v3_molecule.webp";
 import prescriptionShot from "@/assets/nx_v3_prescription.webp";
@@ -772,7 +772,7 @@ function GoalTiles() {
           </div>
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(40px, 5.2vw, 64px)",
               lineHeight: 1.02,
@@ -1012,7 +1012,7 @@ function HowItWorks() {
           <h2
             id="how-it-works-heading"
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(40px, 5.2vw, 64px)",
               lineHeight: 1.02,
@@ -1125,7 +1125,7 @@ function ScienceStrip() {
           </div>
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
@@ -1245,7 +1245,7 @@ function FeaturedStack() {
             </div>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
                 fontSize: "clamp(40px, 5vw, 60px)",
                 lineHeight: 1.02,
@@ -1373,7 +1373,7 @@ function Numbers() {
           <div key={s.label} className="border-t pt-6" style={{ borderColor: "rgba(255,255,243,0.14)" }}>
             <div
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
                 fontSize: "clamp(56px, 6.5vw, 92px)",
                 lineHeight: 1,
@@ -1469,7 +1469,7 @@ function PhysicianStrip() {
           </div>
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
@@ -1533,7 +1533,7 @@ function FinalCta() {
       <div className="nx-container text-center">
         <h2
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: "'Fraunces', Georgia, serif",
             fontWeight: 600,
             fontSize: "clamp(56px, 8vw, 128px)",
             lineHeight: 0.98,
@@ -1635,7 +1635,7 @@ function PrecisionStrip() {
 
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
@@ -1739,7 +1739,7 @@ function MorningRitual() {
 
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
@@ -1865,7 +1865,7 @@ function BloodworkPillar() {
             <Reveal delay={0.05}>
               <h2
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "'Fraunces', Georgia, serif",
                   fontWeight: 600,
                   fontSize: "clamp(44px, 6vw, 84px)",
                   lineHeight: 0.98,
@@ -2113,7 +2113,7 @@ function PeptideTilesStrip() {
             </div>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
                 fontSize: "clamp(36px, 4.8vw, 60px)",
                 lineHeight: 1.02,

@@ -7,7 +7,7 @@ import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, Messa
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
-import md1 from "@/assets/brand/physicians/md-1.webp";
+const md1 = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_204bece6-e72e-4928-b636-18e2100df141.png";
 import md2 from "@/assets/brand/physicians/md-2.webp";
 import md3 from "@/assets/brand/physicians/md-3.webp";
 import md4 from "@/assets/brand/physicians/md-4.webp";

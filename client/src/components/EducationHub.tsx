@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { EducationCard } from "@/components/EducationCard";
 
 /* Editorial brand images */
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
-import editorialPrescription from "@/assets/brand/editorial-prescription.webp";
+const editorialBloodwork = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031340_b607f3ff-ada3-44cb-aed6-613a36ca3ef4.png";
+const editorialPrescription = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_1ca2d5ed-b10e-458c-9583-d03b61bbc96e.png";
 import editorialProtocolKit from "@/assets/brand/editorial-protocol-kit.webp";
 import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
 

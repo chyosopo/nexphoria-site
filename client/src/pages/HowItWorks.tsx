@@ -20,14 +20,14 @@ import {
 } from "lucide-react";
 
 // Editorial images
-import editorialPrescription from "@/assets/brand/editorial-prescription.webp";
-import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
+const editorialPrescription = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_1ca2d5ed-b10e-458c-9583-d03b61bbc96e.png";
+const editorialBloodwork = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031340_b607f3ff-ada3-44cb-aed6-613a36ca3ef4.png";
 import lifestyleCompoundingRoom from "@/assets/brand/lifestyle-compounding-room.webp";
 import lifestyleShippingPackage from "@/assets/brand/lifestyle-shipping-package.webp";
-import lifestyleLabVials from "@/assets/brand/lifestyle-lab-vials.webp";
+const lifestyleLabVials = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png";
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
 import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
-import mdPhoto from "@/assets/brand/physicians/md-1.webp";
+const mdPhoto = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_204bece6-e72e-4928-b636-18e2100df141.png";
 
 // ─── Shared style helpers ──────────────────────────────────────────────────
 

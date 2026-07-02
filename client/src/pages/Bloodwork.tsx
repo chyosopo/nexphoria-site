@@ -271,6 +271,21 @@ function Hero() {
           </Reveal>
         </div>
       </div>
+
+      {/* ── Cinematic lab — living proof band (Higgsfield kling3.0) ── */}
+      <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+        <div className="relative overflow-hidden" style={{ borderRadius: "24px", boxShadow: "0 30px 70px -28px rgba(0,0,0,0.5)" }} data-testid="bloodwork-video-band">
+          <video autoPlay muted loop playsInline
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060612_bafa2a0a-9bcc-400c-8cd3-35fae70369e8.mp4"
+            poster="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png"
+            className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
+            aria-label="Quest Diagnostics lab work — every 90 days" />
+          <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.30))" }} />
+          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#FAF7F0", textShadow: "0 2px 16px rgba(28,24,21,0.45)", margin: 0 }}>
+            Your numbers, every 90 days.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
