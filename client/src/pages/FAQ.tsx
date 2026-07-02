@@ -187,7 +187,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
     <div
       style={{
         borderBottom: "1px solid var(--nx-cobalt)",
-        borderColor: "rgba(45,74,43,0.15)",
+        borderColor: "rgba(43, 66, 74,0.15)",
       }}
     >
       <button
@@ -254,7 +254,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1rem",
-              color: "#4A4A4A",
+              color: "#4A6690",
               lineHeight: 1.7,
             }}
           >

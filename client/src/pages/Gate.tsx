@@ -43,7 +43,7 @@ export default function Gate() {
         width: "100vw",
         height: "100dvh",
         overflow: "hidden",
-        backgroundColor: "var(--nx-bg, #FFFFF3)",
+        backgroundColor: "var(--nx-bg, #FBFDFF)",
       }}
       data-testid="gate-page"
     >
@@ -329,13 +329,13 @@ function GateCard({
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to top, rgba(28,24,21,0.45) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)",
+            "linear-gradient(to top, rgba(21, 24, 28,0.45) 0%, rgba(21, 24, 28,0.15) 55%, transparent 100%)",
           pointerEvents: "none",
         }}
         animate={{
           background: isHovered && !isChosen
-            ? "linear-gradient(to top, rgba(28,24,21,0.58) 0%, rgba(28,24,21,0.2) 55%, transparent 100%)"
-            : "linear-gradient(to top, rgba(28,24,21,0.45) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)",
+            ? "linear-gradient(to top, rgba(21, 24, 28,0.58) 0%, rgba(21, 24, 28,0.2) 55%, transparent 100%)"
+            : "linear-gradient(to top, rgba(21, 24, 28,0.45) 0%, rgba(21, 24, 28,0.15) 55%, transparent 100%)",
         }}
         transition={{ duration: 0.5 }}
       />
@@ -354,10 +354,10 @@ function GateCard({
           gap: 8,
           padding: "8px 12px",
           borderRadius: 999,
-          backgroundColor: "rgba(28,24,21,0.45)",
+          backgroundColor: "rgba(21, 24, 28,0.45)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
-          border: "1px solid rgba(255,255,243,0.12)",
+          border: "1px solid rgba(243, 248, 255,0.12)",
         }}
         animate={{ opacity: isChosen ? 0 : 1 }}
         transition={{ duration: 0.2 }}
@@ -368,7 +368,7 @@ function GateCard({
             width: 6,
             height: 6,
             borderRadius: "50%",
-            backgroundColor: "#C97A4A",
+            backgroundColor: "#6FA3CC",
           }}
           animate={reducedMotion ? {} : { opacity: [1, 0.35, 1], scale: [1, 0.85, 1] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
@@ -380,7 +380,7 @@ function GateCard({
             fontWeight: 500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#FFFFF3",
+            color: "#FBFDFF",
           }}
         >
           3 Flagship Protocols
@@ -403,11 +403,11 @@ function GateCard({
               width: 320,
               padding: "24px 24px 20px",
               borderRadius: 4,
-              backgroundColor: "rgba(28,24,21,0.72)",
+              backgroundColor: "rgba(21, 24, 28,0.72)",
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
-              border: "1px solid rgba(255,255,243,0.14)",
-              boxShadow: "0 24px 48px -16px rgba(28,24,21,0.5)",
+              border: "1px solid rgba(243, 248, 255,0.14)",
+              boxShadow: "0 24px 48px -16px rgba(21, 24, 28,0.5)",
               pointerEvents: "none",
             }}
             initial={reducedMotion ? { opacity: 0 } : { opacity: 0, x: side === "her" ? 12 : -12 }}
@@ -422,7 +422,7 @@ function GateCard({
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,243,0.55)",
+                color: "rgba(243, 248, 255,0.55)",
                 marginBottom: 16,
               }}
             >
@@ -440,7 +440,7 @@ function GateCard({
                     flexDirection: "column",
                     gap: 2,
                     paddingBottom: i < stacks.length - 1 ? 14 : 0,
-                    borderBottom: i < stacks.length - 1 ? "1px solid rgba(255,255,243,0.08)" : "none",
+                    borderBottom: i < stacks.length - 1 ? "1px solid rgba(243, 248, 255,0.08)" : "none",
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
@@ -450,7 +450,7 @@ function GateCard({
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           
                           fontSize: 13,
-                          color: "#C97A4A",
+                          color: "#6FA3CC",
                           letterSpacing: "-0.01em",
                           lineHeight: 1,
                         }}
@@ -462,7 +462,7 @@ function GateCard({
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: 14,
                           fontWeight: 600,
-                          color: "#FFFFF3",
+                          color: "#FBFDFF",
                           letterSpacing: "-0.01em",
                         }}
                       >
@@ -474,7 +474,7 @@ function GateCard({
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 11,
                         fontWeight: 500,
-                        color: "rgba(255,255,243,0.75)",
+                        color: "rgba(243, 248, 255,0.75)",
                         whiteSpace: "nowrap",
                       }}
                     >
@@ -485,7 +485,7 @@ function GateCard({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 12,
-                      color: "rgba(255,255,243,0.6)",
+                      color: "rgba(243, 248, 255,0.6)",
                       letterSpacing: "0.01em",
                     }}
                   >
@@ -539,7 +539,7 @@ function GateCard({
             fontWeight: 400,
             fontSize: "clamp(3.5rem, 6vw, 6rem)",
             lineHeight: 1.0,
-            color: "#FFFFF3",
+            color: "#FBFDFF",
             marginBottom: "20px",
           }}
         >
@@ -572,7 +572,7 @@ function GateCard({
           >
             <path
               d="M3 8h10M9 4l4 4-4 4"
-              stroke="#FFFFF3"
+              stroke="#FBFDFF"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"

@@ -565,7 +565,7 @@ export default function Assessment() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "1.0625rem",
-                  color: "#4A4A4A",
+                  color: "#4A6690",
                   lineHeight: 1.7,
                 }}
               >
@@ -817,7 +817,7 @@ export default function Assessment() {
                     padding: "1.25rem 1.25rem",
                     borderRadius: "4px",
                     border: "1px solid var(--nx-border)",
-                    backgroundColor: "rgba(243,200,122, 0.06)",
+                    backgroundColor: "rgba(122, 176, 243, 0.06)",
                     marginBottom: "1.75rem",
                   }}
                 >
@@ -1223,7 +1223,7 @@ export default function Assessment() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
-                      color: "#4A4A4A",
+                      color: "#4A6690",
                       lineHeight: 1.6,
                       margin: 0,
                     }}
@@ -1320,7 +1320,7 @@ export default function Assessment() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13px",
-                      color: "#B91C1C",
+                      color: "#1C56B9",
                       marginBottom: "1rem",
                     }}
                   >
@@ -1412,7 +1412,7 @@ export default function Assessment() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "15px",
-                    color: "#4A4A4A",
+                    color: "#4A6690",
                     lineHeight: 1.7,
                     maxWidth: "420px",
                     margin: "0 auto 2.5rem",
@@ -1444,12 +1444,12 @@ export default function Assessment() {
                   const cfg = GOAL_TILE_CONFIG[form.goal];
                   const tone = categoryToTone(cfg.category);
                   const tintBg: Record<string, string> = {
-                    cream: "#F8F4E8", sage: "#EBF2E5", rose: "#F6E4E1", sky: "#DDE9F0",
-                    dusk: "#E4E1EC", butter: "#F8EED2", cobalt: "#D9E2F2", mineral: "#E4E9EC",
+                    cream: "#E8EFF8", sage: "#E5EFF2", rose: "#E1E9F6", sky: "#DDE9F0",
+                    dusk: "#E4E1EC", butter: "#D2E3F8", cobalt: "#D9E2F2", mineral: "#E4E9EC",
                   };
                   const tintInk: Record<string, string> = {
-                    cream: "#3E2A18", sage: "#2E4432", rose: "#5C2A2C", sky: "#1F3B52",
-                    dusk: "#3A2F4E", butter: "#4A3A16", cobalt: "#1E2A55", mineral: "#2A3841",
+                    cream: "#18293E", sage: "#2E3E44", rose: "#2A3C5C", sky: "#1F3B52",
+                    dusk: "#3A2F4E", butter: "#162D4A", cobalt: "#1E2A55", mineral: "#2A3841",
                   };
                   return (
                     <div

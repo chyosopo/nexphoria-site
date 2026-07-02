@@ -49,19 +49,19 @@ function Hero() {
   return (
     <section
       data-testid="bloodwork-hero"
-      className="relative overflow-hidden" style={{ backgroundColor: "var(--nx-bg-dark)", color: "#FFFFF3" }}
+      className="relative overflow-hidden" style={{ backgroundColor: "var(--nx-bg-dark)", color: "#FBFDFF" }}
     >
       {/* Hero score ring — the 76 moment */}
       <div className="hidden lg:block absolute pointer-events-none" style={{ right: "5%", top: "50%", transform: "translateY(-50%)" }} aria-hidden>
         <svg width="300" height="300" viewBox="0 0 220 220">
           <g transform="rotate(-90 110 110)">
-            <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(250,247,240,0.08)" strokeWidth="10" />
-            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#A8C69A" strokeWidth="10" strokeLinecap="round" strokeDasharray="453 597" />
-            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#F3C87A" strokeWidth="10" strokeLinecap="round" strokeDasharray="92 597" strokeDashoffset="-461" style={{ animationDelay: "0.2s" }} />
-            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#D07A52" strokeWidth="10" strokeLinecap="round" strokeDasharray="36 597" strokeDashoffset="-559" style={{ animationDelay: "0.4s" }} />
+            <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(240, 244, 250,0.08)" strokeWidth="10" />
+            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#2FA7C4" strokeWidth="10" strokeLinecap="round" strokeDasharray="453 597" />
+            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#8FC6FF" strokeWidth="10" strokeLinecap="round" strokeDasharray="92 597" strokeDashoffset="-461" style={{ animationDelay: "0.2s" }} />
+            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="#6FA3CC" strokeWidth="10" strokeLinecap="round" strokeDasharray="36 597" strokeDashoffset="-559" style={{ animationDelay: "0.4s" }} />
           </g>
-          <text x="110" y="104" textAnchor="middle" fill="#FAF7F0" style={{ font: "500 52px 'Fraunces', Georgia, serif" }}>76</text>
-          <text x="110" y="132" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 13px 'General Sans', system-ui, sans-serif" }}>markers · one draw</text>
+          <text x="110" y="104" textAnchor="middle" fill="#F2F7FD" style={{ font: "500 52px 'Fraunces', Georgia, serif" }}>76</text>
+          <text x="110" y="132" textAnchor="middle" fill="rgba(240, 244, 250,0.6)" style={{ font: "500 13px 'General Sans', system-ui, sans-serif" }}>markers · one draw</text>
         </svg>
       </div>
       <div
@@ -110,7 +110,7 @@ function Hero() {
                   fontFamily: FONT,
                   fontSize: "clamp(1rem, 1.15vw, 1.15rem)",
                   lineHeight: 1.55,
-                  color: "rgba(255,255,243,0.75)",
+                  color: "rgba(243, 248, 255,0.75)",
                   maxWidth: 520,
                   marginBottom: "2rem",
                 }}
@@ -135,9 +135,9 @@ function Hero() {
                     fontSize: 14,
                     fontWeight: 500,
                     letterSpacing: "0.02em",
-                    color: "#FFFFF3",
+                    color: "#FBFDFF",
                     padding: "0.9rem 1.4rem",
-                    border: "1px solid rgba(255,255,243,0.28)",
+                    border: "1px solid rgba(243, 248, 255,0.28)",
                     borderRadius: 999,
                     display: "inline-flex",
                     alignItems: "center",
@@ -162,7 +162,7 @@ function Hero() {
                   { n: PANEL_CATEGORY_COUNT.toString(), l: "Panels" },
                   { n: "2×/yr", l: "Retest cadence" },
                 ].map((k) => (
-                  <div key={k.l} style={{ borderTop: "1px solid rgba(255,255,243,0.16)", paddingTop: 12 }}>
+                  <div key={k.l} style={{ borderTop: "1px solid rgba(243, 248, 255,0.16)", paddingTop: 12 }}>
                     <div
                       style={{
                         ...NUM,
@@ -182,7 +182,7 @@ function Hero() {
                         fontWeight: 500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "rgba(255,255,243,0.6)",
+                        color: "rgba(243, 248, 255,0.6)",
                         marginTop: 4,
                       }}
                     >
@@ -199,8 +199,8 @@ function Hero() {
             <div
               style={{
                 background:
-                  "linear-gradient(160deg, rgba(255,255,243,0.06) 0%, rgba(255,255,243,0.02) 100%)",
-                border: "1px solid rgba(255,255,243,0.14)",
+                  "linear-gradient(160deg, rgba(243, 248, 255,0.06) 0%, rgba(243, 248, 255,0.02) 100%)",
+                border: "1px solid rgba(243, 248, 255,0.14)",
                 borderRadius: 16,
                 padding: "1.6rem 1.6rem 1.4rem",
                 backdropFilter: "blur(10px)",
@@ -221,7 +221,7 @@ function Hero() {
                     fontWeight: 500,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,243,0.55)",
+                    color: "rgba(243, 248, 255,0.55)",
                   }}
                 >
                   Live panel · sample
@@ -265,13 +265,13 @@ function Hero() {
                     gridTemplateColumns: "1.4fr 1fr auto",
                     alignItems: "center",
                     padding: "0.7rem 0",
-                    borderTop: i === 0 ? "none" : "1px solid rgba(255,255,243,0.09)",
+                    borderTop: i === 0 ? "none" : "1px solid rgba(243, 248, 255,0.09)",
                     fontFamily: FONT,
                     fontSize: 13,
                   }}
                 >
-                  <div style={{ color: "rgba(255,255,243,0.9)", fontWeight: 500 }}>{r.m}</div>
-                  <div style={{ ...NUM, color: "rgba(255,255,243,0.7)" }}>
+                  <div style={{ color: "rgba(243, 248, 255,0.9)", fontWeight: 500 }}>{r.m}</div>
+                  <div style={{ ...NUM, color: "rgba(243, 248, 255,0.7)" }}>
                     {r.v} <span style={{ fontSize: 11, opacity: 0.6 }}>{r.u}</span>
                   </div>
                   <div
@@ -291,10 +291,10 @@ function Hero() {
                 style={{
                   marginTop: "1.1rem",
                   paddingTop: "1rem",
-                  borderTop: "1px solid rgba(255,255,243,0.09)",
+                  borderTop: "1px solid rgba(243, 248, 255,0.09)",
                   fontFamily: FONT,
                   fontSize: 11,
-                  color: "rgba(255,255,243,0.5)",
+                  color: "rgba(243, 248, 255,0.5)",
                   letterSpacing: "0.02em",
                   lineHeight: 1.5,
                 }}
@@ -309,14 +309,14 @@ function Hero() {
 
       {/* ── Cinematic lab — living proof band (Higgsfield kling3.0) ── */}
       <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
-        <div className="relative overflow-hidden" style={{ borderRadius: "24px", boxShadow: "0 30px 70px -28px rgba(28,24,21,0.5)" }} data-testid="bloodwork-video-band">
+        <div className="relative overflow-hidden" style={{ borderRadius: "24px", boxShadow: "0 30px 70px -28px rgba(21, 24, 28,0.5)" }} data-testid="bloodwork-video-band">
           <video autoPlay muted loop playsInline
             src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_060612_bafa2a0a-9bcc-400c-8cd3-35fae70369e8.mp4"
             poster="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
             aria-label="Quest Diagnostics lab work — every 90 days" />
-          <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.30))" }} />
-          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#FAF7F0", textShadow: "0 2px 16px rgba(28,24,21,0.45)", margin: 0 }}>
+          <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
+          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#F2F7FD", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
             Your numbers, every 90 days.
           </p>
         </div>
@@ -426,7 +426,7 @@ function PanelExplorer() {
                   borderRadius: 999,
                   border: `1px solid ${isActive ? "var(--nx-ink)" : "var(--nx-line)"}`,
                   backgroundColor: isActive ? "var(--nx-ink)" : "transparent",
-                  color: isActive ? "#FFFFF3" : "var(--nx-ink)",
+                  color: isActive ? "#FBFDFF" : "var(--nx-ink)",
                   cursor: "pointer",
                   transition: "all 200ms cubic-bezier(0.2, 0.65, 0.3, 1)",
                 }}
@@ -458,7 +458,7 @@ function PanelExplorer() {
                 }}
               >
                 {PANEL_ART[cat.id] && (
-                  <span className="block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "#F7F2EA" }}>
+                  <span className="block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "#EAF0F7" }}>
                     <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy"
                       className="w-full h-full transition-transform duration-700"
                       style={{ objectFit: "cover" }} />
@@ -660,7 +660,7 @@ function LiveTrajectory() {
       data-testid="bloodwork-live"
       style={{
         backgroundColor: "var(--nx-bg-dark)",
-        color: "#FFFFF3",
+        color: "#FBFDFF",
         paddingTop: "clamp(4rem, 6vw, 6rem)",
         paddingBottom: "clamp(4rem, 6vw, 6rem)",
       }}
@@ -698,7 +698,7 @@ function LiveTrajectory() {
                 fontFamily: FONT,
                 fontSize: "clamp(0.95rem, 1.05vw, 1.05rem)",
                 lineHeight: 1.6,
-                color: "rgba(255,255,243,0.7)",
+                color: "rgba(243, 248, 255,0.7)",
               }}
             >
               Illustrative trajectory of one Nexphoria patient across the first quarter — reference
@@ -1006,12 +1006,12 @@ export default function Bloodwork() {
 
 /* ══ SYSTEMS MOSAIC — twelve warm-tinted windows ══ */
 const TINTS: Record<string, [string, string]> = {
-  heart: ["#F6E2DE", "#8A4038"], metabolism: ["#F6E5CE", "#8A5A22"],
-  hormones: ["#F7EAD2", "#8B5A2B"], stress: ["#EFDDD0", "#7A452E"],
-  thyroid: ["#F7E3D3", "#8A4B2A"], kidneys: ["#EFE9DC", "#6B5B4A"],
-  liver: ["#F3EBD3", "#77521B"], immunity: ["#E9E7D2", "#5B5A34"],
-  nutrients: ["#E6EAD9", "#4E5B3E"], blood: ["#F6E2DE", "#8A4038"],
-  "bio-age": ["#F3E7D2", "#7A4E12"],
+  heart: ["#DEE7F6", "#38568A"], metabolism: ["#CEE0F6", "#22518A"],
+  hormones: ["#D2E3F7", "#1F5FD0"], stress: ["#D0DEEF", "#2E507A"],
+  thyroid: ["#D3E3F7", "#2A558A"], kidneys: ["#DCE5EF", "#4A596B"],
+  liver: ["#D3E1F3", "#1B4477"], immunity: ["#D2DCE9", "#34465B"],
+  nutrients: ["#D9E1EA", "#3E545B"], blood: ["#DEE7F6", "#38568A"],
+  "bio-age": ["#D2E1F3", "#163E8C"],
 };
 
 function SystemsMosaic() {
@@ -1020,7 +1020,7 @@ function SystemsMosaic() {
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
         <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-black)", maxWidth: "18ch", marginTop: "0.7rem" }}>
-          One draw. <em style={{ fontStyle: "italic", color: "#B97C24" }}>Eleven</em> windows into you.
+          One draw. <em style={{ fontStyle: "italic", color: "#1F5FD0" }}>Eleven</em> windows into you.
         </h2>
         <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {BIOMARKER_PANEL.map((cat) => {
@@ -1043,10 +1043,10 @@ function SystemsMosaic() {
             );
           })}
           <a href="/#/assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-black)", borderRadius: 18, padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
-            <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 19, lineHeight: 1.15, color: "#FAF7F0" }}>
-              Re-tested every <em style={{ fontStyle: "italic", color: "#F3C87A" }}>90 days.</em>
+            <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 19, lineHeight: 1.15, color: "#F2F7FD" }}>
+              Re-tested every <em style={{ fontStyle: "italic", color: "#8FC6FF" }}>90 days.</em>
             </span>
-            <span className="inline-flex items-center gap-1.5 mt-4" style={{ fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#F3C87A" }}>
+            <span className="inline-flex items-center gap-1.5 mt-4" style={{ fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#8FC6FF" }}>
               Book your baseline <ArrowRight size={14} strokeWidth={2.2} />
             </span>
           </a>
@@ -1069,45 +1069,45 @@ function ResultsDashboard() {
   return (
     <section id="results" className="nx-section" style={{ background: "var(--nx-black)" }}>
       <div className="nx-container">
-        <p className="nx-eyebrow" style={{ color: "rgba(250,247,240,0.55)" }}>Your results</p>
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "#FAF7F0", marginTop: "0.7rem" }}>
-          Not a PDF. <em style={{ fontStyle: "italic", color: "#F3C87A" }}>A plan.</em>
+        <p className="nx-eyebrow" style={{ color: "rgba(240, 244, 250,0.55)" }}>Your results</p>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "#F2F7FD", marginTop: "0.7rem" }}>
+          Not a PDF. <em style={{ fontStyle: "italic", color: "#8FC6FF" }}>A plan.</em>
         </h2>
         <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
-          <div style={{ background: "rgba(250,247,240,0.05)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
+          <div style={{ background: "rgba(240, 244, 250,0.05)", border: "1px solid rgba(240, 244, 250,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
             {rows.map((r) => {
               const pct = ((r.v - r.lo) / (r.hi - r.lo)) * 100;
               const oL = ((r.opt[0] - r.lo) / (r.hi - r.lo)) * 100, oW = ((r.opt[1] - r.opt[0]) / (r.hi - r.lo)) * 100;
               return (
-                <div key={r.m} className="py-3.5" style={{ borderBottom: "1px solid rgba(250,247,240,0.08)" }}>
+                <div key={r.m} className="py-3.5" style={{ borderBottom: "1px solid rgba(240, 244, 250,0.08)" }}>
                   <div className="flex items-baseline justify-between gap-3">
-                    <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "#FAF7F0" }}>{r.m}</span>
-                    <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 600, color: r.s === "Watch" ? "#DE9A3C" : "#A8C69A" }}>{r.s} · {r.v} {r.unit}</span>
+                    <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "#F2F7FD" }}>{r.m}</span>
+                    <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 600, color: r.s === "Watch" ? "#2E7BF0" : "#2FA7C4" }}>{r.s} · {r.v} {r.unit}</span>
                   </div>
-                  <div className="relative mt-2.5" style={{ height: 6, borderRadius: 999, background: "rgba(250,247,240,0.12)" }}>
-                    <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: 999, background: "rgba(168,198,154,0.35)" }} />
-                    <span className="absolute nx-pulse-dot" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: 999, background: "#F3C87A" }} data-pulse />
+                  <div className="relative mt-2.5" style={{ height: 6, borderRadius: 999, background: "rgba(240, 244, 250,0.12)" }}>
+                    <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: 999, background: "rgba(154, 187, 198,0.35)" }} />
+                    <span className="absolute nx-pulse-dot" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: 999, background: "#8FC6FF" }} data-pulse />
                   </div>
                 </div>
               );
             })}
-            <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.4)", marginTop: "0.9rem" }}>Illustration of the member dashboard.</p>
+            <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(240, 244, 250,0.4)", marginTop: "0.9rem" }}>Illustration of the member dashboard.</p>
           </div>
-          <div style={{ background: "rgba(250,247,240,0.05)", border: "1px solid rgba(250,247,240,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
+          <div style={{ background: "rgba(240, 244, 250,0.05)", border: "1px solid rgba(240, 244, 250,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
             <div className="flex items-baseline justify-between">
-              <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "#FAF7F0" }}>ApoB · 12 months</span>
-              <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 700, color: "#A8C69A" }}>−25%</span>
+              <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "#F2F7FD" }}>ApoB · 12 months</span>
+              <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 700, color: "#2FA7C4" }}>−25%</span>
             </div>
             <svg viewBox="0 0 300 120" className="mt-4 w-full" style={{ height: 120 }}>
-              <polyline className="nx-spark" pathLength={100} points={pts} fill="none" stroke="#F3C87A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <polyline className="nx-spark" pathLength={100} points={pts} fill="none" stroke="#8FC6FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               {spark.map((v, i) => (
-                <circle key={i} cx={20 + i * 86} cy={104 - (v - 60) * 1.6} r="4" fill="#1C1815" stroke="#F3C87A" strokeWidth="2" />
+                <circle key={i} cx={20 + i * 86} cy={104 - (v - 60) * 1.6} r="4" fill="#0E2447" stroke="#8FC6FF" strokeWidth="2" />
               ))}
             </svg>
-            <div className="flex justify-between" style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.45)" }}>
+            <div className="flex justify-between" style={{ fontFamily: FONT, fontSize: 11, color: "rgba(240, 244, 250,0.45)" }}>
               <span>Baseline</span><span>Q2</span><span>Q3</span><span>Q4</span>
             </div>
-            <p style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.55, color: "rgba(250,247,240,0.75)", marginTop: "1rem" }}>
+            <p style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.55, color: "rgba(240, 244, 250,0.75)", marginTop: "1rem" }}>
               Every 90 days your physician reviews the trend — and adjusts the protocol against it. Numbers first. Always.
             </p>
           </div>
@@ -1133,18 +1133,18 @@ function OfferStack() {
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
               <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-black)" }}>
-                Everything your body has been <em style={{ fontStyle: "italic", color: "#B97C24" }}>trying to tell you.</em>
+                Everything your body has been <em style={{ fontStyle: "italic", color: "#1F5FD0" }}>trying to tell you.</em>
               </h2>
               <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
                 {items.map((t) => (
                   <li key={t} className="flex gap-2.5 items-start" style={{ fontFamily: FONT, fontSize: 15, lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>
-                    <Check size={16} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "#B97C24" }} /> {t}
+                    <Check size={16} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "#1F5FD0" }} /> {t}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#7A4E12" }}>Included with every protocol. Available standalone.</p>
+              <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#163E8C" }}>Included with every protocol. Available standalone.</p>
               <div className="mt-4 flex flex-col gap-2.5">
                 <a href="/#/assessment" className="nx-cta-cobalt inline-flex items-center justify-center gap-2" data-testid="offer-cta">
                   Book your baseline panel <ArrowRight size={16} strokeWidth={2.2} />
@@ -1168,35 +1168,35 @@ function ActionPlan() {
   return (
     <section id="plan" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(28,24,21,0.25) 0%, rgba(28,24,21,0.05) 35%, rgba(28,24,21,0.62) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
       <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
-        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#FAF7F0" }}>
+        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "#F2F7FD" }}>
           <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
           <span className="inline-flex items-center gap-2"><Apple size={16} strokeWidth={2} /> Nutrition</span>
           <span className="inline-flex items-center gap-2"><Brain size={16} strokeWidth={2} /> Recovery</span>
           <span className="inline-flex items-center gap-2"><Shield size={16} strokeWidth={2} /> Protocol</span>
         </div>
         <div className="relative mt-10 max-w-xl">
-          <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(250,247,240,0.45)", borderRadius: 18, filter: "blur(0.5px)" }} aria-hidden />
-          <div className="relative nx-rise" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(28,24,21,0.45)" }}>
+          <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(240, 244, 250,0.45)", borderRadius: 18, filter: "blur(0.5px)" }} aria-hidden />
+          <div className="relative nx-rise" style={{ background: "#FDFEFF", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(21, 24, 28,0.45)" }}>
             <div className="flex items-center justify-between gap-4">
               <p style={{ fontFamily: FONT, fontSize: 16, lineHeight: 1.5, color: "var(--nx-black)", fontWeight: 500, margin: 0 }}>
                 Front-load protein within an hour of waking — steadier glucose, stronger recovery.
               </p>
-              <ArrowRight size={18} strokeWidth={2} style={{ color: "#7A4E12", flexShrink: 0 }} />
+              <ArrowRight size={18} strokeWidth={2} style={{ color: "#163E8C", flexShrink: 0 }} />
             </div>
-            <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#B97C24", marginTop: 8 }}>Supports 6 metabolic markers</p>
+            <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#1F5FD0", marginTop: 8 }}>Supports 6 metabolic markers</p>
           </div>
         </div>
         <div className="relative" style={{ marginTop: "4.5rem", zIndex: 2 }}>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "#FAF7F0", maxWidth: "14ch" }}>
-            Doctor-developed. <em style={{ fontStyle: "italic", color: "#F3C87A" }}>You</em>-specific.
+          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "#F2F7FD", maxWidth: "14ch" }}>
+            Doctor-developed. <em style={{ fontStyle: "italic", color: "#8FC6FF" }}>You</em>-specific.
           </h2>
-          <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.55, color: "rgba(250,247,240,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
+          <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.55, color: "rgba(240, 244, 250,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
             Every panel becomes a written plan — movement, nutrition, recovery, and if appropriate, a prescribed protocol. Reviewed against your next draw.
           </p>
-          <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(250,247,240,0.5)", marginTop: "1.2rem" }}>Illustration of member guidance.</p>
+          <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(240, 244, 250,0.5)", marginTop: "1.2rem" }}>Illustration of member guidance.</p>
         </div>
       </div>
     </section>
@@ -1217,29 +1217,29 @@ const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[] = [
 ];
 function GlowingBody() {
   return (
-    <section id="surface" className="relative overflow-hidden" style={{ background: "#241A12" }}>
+    <section id="surface" className="relative overflow-hidden" style={{ background: "#0C224A" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_155120_6ebcb99a-6685-491b-b11b-f63f4dad450c.png" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
-            <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "#FAF7F0" : "rgba(250,247,240,0.4)", border: `1px solid ${p.hot ? "rgba(250,247,240,0.55)" : "rgba(250,247,240,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(36,26,18,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
+            <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "#F2F7FD" : "rgba(240, 244, 250,0.4)", border: `1px solid ${p.hot ? "rgba(240, 244, 250,0.55)" : "rgba(240, 244, 250,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(18, 26, 36,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}
             </span>
           ))}
-          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#1C1815", background: "#FFFEFB", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
-            <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: 999, background: "#A8C69A", color: "#1C1815", textAlign: "center", lineHeight: "16px", fontSize: 11, marginRight: 8 }}>✓</span>
+          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "#0E2447", background: "#FDFEFF", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
+            <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: 999, background: "#2FA7C4", color: "#0E2447", textAlign: "center", lineHeight: "16px", fontSize: 11, marginRight: 8 }}>✓</span>
             All 76 reviewed by a physician
           </span>
         </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[["One draw", "5-minute booking, 2,000+ locations"], ["76 markers", "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
-            <div key={t} style={{ background: "rgba(250,247,240,0.94)", borderRadius: 16, padding: "1.1rem 1.2rem" }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 22, color: "#5E3C0D" }}>{t}</div>
+            <div key={t} style={{ background: "rgba(240, 244, 250,0.94)", borderRadius: 16, padding: "1.1rem 1.2rem" }}>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 22, color: "#0D315E" }}>{t}</div>
               <p style={{ fontFamily: FONT, fontSize: 13.5, color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>
             </div>
           ))}
         </div>
-        <p style={{ fontFamily: FONT, fontSize: 11.5, color: "rgba(250,247,240,0.45)", marginTop: "1.2rem" }}>
+        <p style={{ fontFamily: FONT, fontSize: 11.5, color: "rgba(240, 244, 250,0.45)", marginTop: "1.2rem" }}>
           Lab results alone do not diagnose any condition. Out-of-range markers are conversations to have with your physician.
         </p>
       </div>
@@ -1256,19 +1256,19 @@ function MarkerWall() {
     <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
       <div aria-hidden style={{ textAlign: "center" }}>
         {rows.map((r, i) => (
-          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "#7A4E12", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
+          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "#163E8C", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
             {r.join(",  ")},
           </p>
         ))}
       </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "#FFFEFB", borderRadius: 20, padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(28,24,21,0.35)", minWidth: 260 }}>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "#FDFEFF", borderRadius: 20, padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)", minWidth: 260 }}>
         <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-black)", margin: 0 }}>Out of range → In range</p>
         <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
-          <line x1="30" y1="22" x2="180" y2="48" stroke="#B97C24" strokeWidth="1.6" strokeDasharray="4 5" />
-          <circle cx="30" cy="22" r="7" fill="#FFFEFB" stroke="#D07A52" strokeWidth="2.5" />
-          <circle cx="180" cy="48" r="9" fill="#F3C87A" stroke="#B97C24" strokeWidth="2.5" />
-          <text x="30" y="64" textAnchor="middle" fill="rgba(28,24,21,0.5)" style={{ font: "500 10px " + FONT }}>Baseline</text>
-          <text x="180" y="16" textAnchor="middle" fill="rgba(28,24,21,0.5)" style={{ font: "500 10px " + FONT }}>90 days</text>
+          <line x1="30" y1="22" x2="180" y2="48" stroke="#1F5FD0" strokeWidth="1.6" strokeDasharray="4 5" />
+          <circle cx="30" cy="22" r="7" fill="#FDFEFF" stroke="#6FA3CC" strokeWidth="2.5" />
+          <circle cx="180" cy="48" r="9" fill="#8FC6FF" stroke="#1F5FD0" strokeWidth="2.5" />
+          <text x="30" y="64" textAnchor="middle" fill="rgba(21, 24, 28,0.5)" style={{ font: "500 10px " + FONT }}>Baseline</text>
+          <text x="180" y="16" textAnchor="middle" fill="rgba(21, 24, 28,0.5)" style={{ font: "500 10px " + FONT }}>90 days</text>
         </svg>
       </div>
     </section>
@@ -1280,10 +1280,10 @@ function MarkerWall() {
 function SectionPills() {
   const items = [["The panel", "#panel"], ["Your results", "#results"], ["Your plan", "#plan"], ["What it surfaces", "#surface"], ["Get started", "#offer"]];
   return (
-    <div className="nx-pills" style={{ background: "rgba(250,247,240,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-line)" }}>
+    <div className="nx-pills" style={{ background: "rgba(240, 244, 250,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-line)" }}>
       <div className="nx-container flex gap-2 overflow-x-auto" style={{ padding: "10px 0", scrollbarWidth: "none" }}>
         {items.map(([t, h]) => (
-          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#5E3C0D", background: "rgba(243,200,122,0.18)", border: "1px solid rgba(185,124,36,0.2)", borderRadius: 999, padding: "7px 15px" }}>
+          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "#0D315E", background: "rgba(122, 176, 243,0.18)", border: "1px solid rgba(36, 103, 185,0.2)", borderRadius: 999, padding: "7px 15px" }}>
             {t}
           </a>
         ))}

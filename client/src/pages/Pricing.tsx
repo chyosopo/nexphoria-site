@@ -187,7 +187,7 @@ function PricingTiers() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1.0625rem",
-              color: "#4A4A4A",
+              color: "#4A6690",
               lineHeight: 1.6,
               maxWidth: "640px",
               marginBottom: "3rem",
@@ -257,7 +257,7 @@ function PricingTiers() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "13px",
-                    color: tier.recommended ? "rgba(255,255,255,0.6)" : "#6B6B6B",
+                    color: tier.recommended ? "rgba(255,255,255,0.6)" : "#5C77A0",
                     lineHeight: 1.5,
                     marginBottom: "1.5rem",
                     minHeight: "39px",
@@ -272,7 +272,7 @@ function PricingTiers() {
                       fontSize: "10px",
                       textTransform: "uppercase",
                       letterSpacing: "0.12em",
-                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#8A8A8A",
+                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#7C90A6",
                     }}
                   >
                     From
@@ -293,7 +293,7 @@ function PricingTiers() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
-                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#8A8A8A",
+                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#7C90A6",
                     }}
                   >
                     /mo
@@ -308,7 +308,7 @@ function PricingTiers() {
                       fontWeight: 500,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
-                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#8A8A8A",
+                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "#7C90A6",
                       marginBottom: "0.875rem",
                     }}
                   >
@@ -325,7 +325,7 @@ function PricingTiers() {
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: "13px",
-                            color: tier.recommended ? "var(--nx-bg-cream)" : "#4A4A4A",
+                            color: tier.recommended ? "var(--nx-bg-cream)" : "#4A6690",
                             lineHeight: 1.45,
                           }}
                         >
@@ -384,7 +384,7 @@ function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: nu
       </button>
       {open && (
         <div style={{ paddingBottom: "1.25rem" }}>
-          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "0.9375rem", color: "#4A4A4A", lineHeight: 1.7 }}>{item.a}</p>
+          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "0.9375rem", color: "#4A6690", lineHeight: 1.7 }}>{item.a}</p>
         </div>
       )}
     </div>
@@ -510,7 +510,7 @@ export default function Pricing() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1.0625rem",
-                color: "#4A4A4A",
+                color: "#4A6690",
                 lineHeight: 1.6,
                 maxWidth: "640px",
                 marginBottom: "3rem",
@@ -724,7 +724,7 @@ export default function Pricing() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "12px",
-                        color: "#4A4A4A",
+                        color: "#4A6690",
                         lineHeight: 1.5,
                       }}
                     >
@@ -1073,7 +1073,7 @@ export default function Pricing() {
                         {row.others}
                       </span>
                     ) : (
-                      <X size={16} style={{ color: "#C2440E" }} />
+                      <X size={16} style={{ color: "#1F5FD0" }} />
                     )}
                   </div>
                 </div>
@@ -1108,7 +1108,7 @@ export default function Pricing() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "1.0625rem",
-                  color: "#4A4A4A",
+                  color: "#4A6690",
                   lineHeight: 1.7,
                 }}
               >
@@ -1166,7 +1166,7 @@ export default function Pricing() {
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.375rem, 3vw, 2rem)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "1.25rem" }}>
                 Your protocol, built on your labs.
               </p>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A6690", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
                 Start with a 5-minute assessment. Your physician will review your intake and design a protocol around your labs, your goals, and your physiology — not a template.
               </p>
               <StartIntakeButton source="pricing-page" size="lg">

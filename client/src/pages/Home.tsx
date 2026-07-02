@@ -163,14 +163,14 @@ function FloatingResultCards() {
             top: c.top,
             left: c.left,
             right: c.right,
-            background: "rgba(255,255,250,0.72)",
+            background: "rgba(250, 252, 255,0.72)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(28,24,21,0.08)",
+            border: "1px solid rgba(21, 24, 28,0.08)",
             borderRadius: 12,
             padding: "10px 14px",
             minWidth: 152,
-            boxShadow: "0 8px 28px rgba(28,24,21,0.14)",
+            boxShadow: "0 8px 28px rgba(21, 24, 28,0.14)",
             animation: `nx-float-in 640ms ease-out ${c.delay}s both`,
             fontFamily: "'General Sans', system-ui, sans-serif",
           }}
@@ -180,7 +180,7 @@ function FloatingResultCards() {
             <span style={{ fontSize: 15, fontWeight: 700, color: "var(--nx-black)", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{c.delta}</span>
           </div>
           <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 6 }}>
-            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "#3B7A2A", display: "inline-block" }} />
+            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "#2A667A", display: "inline-block" }} />
             <span style={{ fontSize: 12, color: "var(--nx-fg-graphite)" }}>{c.state}</span>
           </div>
         </div>
@@ -204,7 +204,7 @@ function Hero() {
   // Ref: /tmp/hims_labs/homepage/TEARDOWN.md sections 1B, 1C.
 
   return (
-    <section className="relative overflow-hidden" aria-labelledby="home-h1" style={{ background: "linear-gradient(180deg, #FFFEF8 0%, var(--nx-bg) 100%)" }}>
+    <section className="relative overflow-hidden" aria-labelledby="home-h1" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }}>
       <div className="h-6 md:h-8" />
       <div className="nx-container pb-8 md:pb-10">
         {/* Eyebrow */}
@@ -244,7 +244,7 @@ function Hero() {
           data-testid="text-hero-headline"
         >
           The best version of you,{" "}
-          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#B97C24" }}>prescribed.</span>
+          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#1F5FD0" }}>prescribed.</span>
         </h1>
 
         <p
@@ -283,7 +283,7 @@ function Hero() {
             href="/how-it-works"
             className="inline-flex items-center gap-2 border rounded-full px-6 py-3.5"
             style={{
-              borderColor: "rgba(28,24,21,0.14)",
+              borderColor: "rgba(21, 24, 28,0.14)",
               color: "var(--nx-black)",
               fontWeight: 500,
               fontSize: "15px",
@@ -507,7 +507,7 @@ function GoalTiles() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(28,24,21,0) 40%, rgba(28,24,21,0.55) 100%)",
+                    "linear-gradient(180deg, rgba(21, 24, 28,0) 40%, rgba(21, 24, 28,0.55) 100%)",
                 }}
               />
 
@@ -520,7 +520,7 @@ function GoalTiles() {
                   fontSize: "10px",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  color: "#fffff3",
+                  color: "#FBFDFF",
                 }}
               >
                 <span
@@ -546,7 +546,7 @@ function GoalTiles() {
                       fontSize: "clamp(18px, 1.6vw, 22px)",
                       lineHeight: 1.02,
                       letterSpacing: "-0.02em",
-                      color: "#fffff3",
+                      color: "#FBFDFF",
                     }}
                   >
                     {t.title}
@@ -557,7 +557,7 @@ function GoalTiles() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 400,
                       fontSize: "11px",
-                      color: "rgba(255,255,243,0.82)",
+                      color: "rgba(243, 248, 255,0.82)",
                     }}
                   >
                     {t.copy}
@@ -592,7 +592,7 @@ function FlagshipDark() {
       data-testid="flagship-dark"
       style={{
         backgroundColor: "var(--nx-black)",
-        color: "#FFFFF3",
+        color: "#FBFDFF",
         paddingTop: "clamp(4rem, 7vw, 6.5rem)",
         paddingBottom: "clamp(4rem, 7vw, 6.5rem)",
       }}
@@ -610,7 +610,7 @@ function FlagshipDark() {
               <h2 style={{ fontFamily: F, fontSize: "clamp(2rem, 4.4vw, 3.6rem)", lineHeight: 1.02, fontWeight: 500, letterSpacing: "-0.02em", marginBottom: "1.25rem" }}>
                 Tissue repair, <span style={{ color: "var(--nx-acid)" }}>accelerated.</span>
               </h2>
-              <p style={{ fontFamily: F, fontSize: "clamp(1rem, 1.15vw, 1.15rem)", lineHeight: 1.6, color: "rgba(255,255,243,0.75)", maxWidth: 520, marginBottom: "2rem" }}>
+              <p style={{ fontFamily: F, fontSize: "clamp(1rem, 1.15vw, 1.15rem)", lineHeight: 1.6, color: "rgba(243, 248, 255,0.75)", maxWidth: 520, marginBottom: "2rem" }}>
                 BPC-157 + TB-500 + CJC-1295 / Ipamorelin. Four peptides that repair connective tissue, kill inflammation, and rebuild lean mass - one physician-supervised protocol, recalibrated every 90 days against your bloodwork.
               </p>
               <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "grid", gap: "0.75rem", maxWidth: 480 }}>
@@ -619,7 +619,7 @@ function FlagshipDark() {
                   "IGF-1 shift into upper-quartile recovery band",
                   "Physician review + bloodwork bundled every quarter",
                 ].map((line) => (
-                  <li key={line} style={{ fontFamily: F, fontSize: 14, lineHeight: 1.5, color: "rgba(255,255,243,0.85)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <li key={line} style={{ fontFamily: F, fontSize: 14, lineHeight: 1.5, color: "rgba(243, 248, 255,0.85)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
                     <span style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "var(--nx-acid)", flexShrink: 0 }} />
                     {line}
                   </li>
@@ -629,19 +629,19 @@ function FlagshipDark() {
                 <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-black)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See Wolverine <ArrowRight size={14} strokeWidth={2} />
                 </Link>
-                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, letterSpacing: "0.02em", color: "#FFFFF3", padding: "0.9rem 1.4rem", border: "1px solid rgba(255,255,243,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, letterSpacing: "0.02em", color: "#FBFDFF", padding: "0.9rem 1.4rem", border: "1px solid rgba(243, 248, 255,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See the bloodwork <ArrowRight size={14} strokeWidth={1.75} />
                 </Link>
               </div>
             </div>
-            <div style={{ background: "linear-gradient(150deg, #0F1B3A 0%, #050914 100%)", border: "1px solid rgba(255,255,243,0.12)", borderRadius: 20, padding: "1.6rem", position: "relative", overflow: "hidden" }}>
+            <div style={{ background: "linear-gradient(150deg, #0F1B3A 0%, #050914 100%)", border: "1px solid rgba(243, 248, 255,0.12)", borderRadius: 20, padding: "1.6rem", position: "relative", overflow: "hidden" }}>
               <div style={{ aspectRatio: "4 / 3", backgroundImage: "linear-gradient(145deg,#132352,#0A1230)", backgroundSize: "cover", backgroundPosition: "center", borderRadius: 12, marginBottom: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
-                <div style={{ fontFamily: F, fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, color: "rgba(255,255,243,0.14)", letterSpacing: "-0.02em" }}>WOLVERINE</div>
+                <div style={{ fontFamily: F, fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 500, color: "rgba(243, 248, 255,0.14)", letterSpacing: "-0.02em" }}>WOLVERINE</div>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                 <div>
-                  <p style={{ fontFamily: F, fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,243,0.55)", marginBottom: "0.4rem" }}>Nexphoria Wolverine</p>
-                  <p style={{ fontFamily: F, fontSize: 18, fontWeight: 500, color: "#FFFFF3", letterSpacing: "-0.01em" }}>Recovery - Longevity - Repair</p>
+                  <p style={{ fontFamily: F, fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(243, 248, 255,0.55)", marginBottom: "0.4rem" }}>Nexphoria Wolverine</p>
+                  <p style={{ fontFamily: F, fontSize: 18, fontWeight: 500, color: "#FBFDFF", letterSpacing: "-0.01em" }}>Recovery - Longevity - Repair</p>
                 </div>
                 <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: "var(--nx-acid)", letterSpacing: "0.02em", fontVariantNumeric: "tabular-nums" }}>from $349/mo</div>
               </div>
@@ -678,7 +678,7 @@ function HowItWorks() {
       className="py-24 md:py-32 border-t"
       style={{
         background: "var(--nx-black)",
-        borderColor: "rgba(255,255,243,0.06)",
+        borderColor: "rgba(243, 248, 255,0.06)",
         color: "var(--nx-ceramic)",
       }}
     >
@@ -692,7 +692,7 @@ function HowItWorks() {
               fontSize: "13px",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(255,255,243,0.55)",
+              color: "rgba(243, 248, 255,0.55)",
             }}
           >
             <span
@@ -728,7 +728,7 @@ function HowItWorks() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-14">
           {steps.map((s) => (
             <Reveal key={s.n}>
-              <div className="border-t pt-6" style={{ borderColor: "rgba(255,255,243,0.14)" }}>
+              <div className="border-t pt-6" style={{ borderColor: "rgba(243, 248, 255,0.14)" }}>
                 <div
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
@@ -760,7 +760,7 @@ function HowItWorks() {
                     fontWeight: 400,
                     fontSize: "16px",
                     lineHeight: 1.55,
-                    color: "rgba(255,255,243,0.7)",
+                    color: "rgba(243, 248, 255,0.7)",
                   }}
                 >
                   {s.copy}
@@ -855,7 +855,7 @@ function ScienceStrip() {
               <div
                 key={s.label}
                 className="pt-5 border-t"
-                style={{ borderColor: "rgba(28,24,21,0.14)" }}
+                style={{ borderColor: "rgba(21, 24, 28,0.14)" }}
               >
                 <div
                   style={{
@@ -894,7 +894,7 @@ function ScienceStrip() {
                 fontWeight: 500,
                 fontSize: "15px",
                 color: "var(--nx-black)",
-                borderBottom: "1px solid rgba(28,24,21,0.3)",
+                borderBottom: "1px solid rgba(21, 24, 28,0.3)",
                 paddingBottom: 2,
               }}
               data-testid="link-science-home"
@@ -1040,7 +1040,7 @@ function FeaturedStack() {
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(28,24,21,0) 60%, rgba(28,24,21,0.15) 100%)",
+                    "linear-gradient(180deg, rgba(21, 24, 28,0) 60%, rgba(21, 24, 28,0.15) 100%)",
                 }}
               />
             </div>
@@ -1063,12 +1063,12 @@ function Numbers() {
       className="py-20 md:py-28 border-t"
       style={{
         background: "var(--nx-black)",
-        borderColor: "rgba(255,255,243,0.06)",
+        borderColor: "rgba(243, 248, 255,0.06)",
       }}
     >
       <div className="nx-container grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
         {stats.map((s) => (
-          <div key={s.label} className="border-t pt-6" style={{ borderColor: "rgba(255,255,243,0.14)" }}>
+          <div key={s.label} className="border-t pt-6" style={{ borderColor: "rgba(243, 248, 255,0.14)" }}>
             <div
               style={{
                 fontFamily: "'Fraunces', Georgia, serif",
@@ -1089,7 +1089,7 @@ function Numbers() {
                 fontSize: "14px",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,243,0.55)",
+                color: "rgba(243, 248, 255,0.55)",
               }}
             >
               {s.label}
@@ -1132,7 +1132,7 @@ function PhysicianStrip() {
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 color: "var(--nx-ceramic)",
-                textShadow: "0 1px 8px rgba(28,24,21,0.35)",
+                textShadow: "0 1px 8px rgba(21, 24, 28,0.35)",
               }}
             >
               <span>Dr. R. Alvarez, MD</span>
@@ -1202,7 +1202,7 @@ function PhysicianStrip() {
                 fontWeight: 500,
                 fontSize: "15px",
                 color: "var(--nx-black)",
-                borderBottom: "1px solid rgba(28,24,21,0.3)",
+                borderBottom: "1px solid rgba(21, 24, 28,0.3)",
                 paddingBottom: 2,
               }}
               data-testid="link-physicians"
@@ -1224,7 +1224,7 @@ function FinalCta() {
       className="py-32 md:py-44 border-t"
       style={{
         background: "var(--nx-black)",
-        borderColor: "rgba(255,255,243,0.06)",
+        borderColor: "rgba(243, 248, 255,0.06)",
         color: "var(--nx-ceramic)",
       }}
     >
@@ -1249,7 +1249,7 @@ function FinalCta() {
             fontWeight: 400,
             fontSize: "18px",
             lineHeight: 1.6,
-            color: "rgba(255,255,243,0.7)",
+            color: "rgba(243, 248, 255,0.7)",
           }}
         >
           Answer a few questions. A physician reviews within 24–48 hours. Your
@@ -1287,7 +1287,7 @@ function PrecisionStrip() {
       style={{
         background: "var(--nx-black)",
         color: "var(--nx-ceramic)",
-        borderColor: "rgba(255,255,243,0.06)",
+        borderColor: "rgba(243, 248, 255,0.06)",
       }}
     >
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -1315,7 +1315,7 @@ function PrecisionStrip() {
               fontSize: "13px",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(255,255,243,0.55)",
+              color: "rgba(243, 248, 255,0.55)",
             }}
           >
             <span
@@ -1352,7 +1352,7 @@ function PrecisionStrip() {
               fontWeight: 400,
               fontSize: "17px",
               lineHeight: 1.6,
-              color: "rgba(255,255,243,0.72)",
+              color: "rgba(243, 248, 255,0.72)",
               maxWidth: "36ch",
             }}
           >
@@ -1362,7 +1362,7 @@ function PrecisionStrip() {
 
           <div
             className="mt-10 grid grid-cols-3 gap-6"
-            style={{ borderTop: "1px solid rgba(255,255,243,0.14)", paddingTop: 22 }}
+            style={{ borderTop: "1px solid rgba(243, 248, 255,0.14)", paddingTop: 22 }}
           >
             {[
               { k: "503A", v: "U.S. pharmacy" },
@@ -1388,7 +1388,7 @@ function PrecisionStrip() {
                     fontWeight: 400,
                     fontSize: "13px",
                     letterSpacing: "0.02em",
-                    color: "rgba(255,255,243,0.55)",
+                    color: "rgba(243, 248, 255,0.55)",
                   }}
                 >
                   {s.v}
@@ -1473,7 +1473,7 @@ function MorningRitual() {
                 fontWeight: 500,
                 fontSize: "15px",
                 color: "var(--nx-black)",
-                borderBottom: "1px solid rgba(28,24,21,0.3)",
+                borderBottom: "1px solid rgba(21, 24, 28,0.3)",
                 paddingBottom: 2,
               }}
               data-testid="link-ritual-more"
@@ -1582,7 +1582,7 @@ function BloodworkPillar() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 19,
                   lineHeight: 1.55,
-                  color: "rgba(255,255,243,0.72)",
+                  color: "rgba(243, 248, 255,0.72)",
                   marginTop: 28,
                   maxWidth: 560,
                 }}
@@ -1599,7 +1599,7 @@ function BloodworkPillar() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 15,
                   lineHeight: 1.6,
-                  color: "rgba(255,255,243,0.55)",
+                  color: "rgba(243, 248, 255,0.55)",
                   marginTop: 20,
                   maxWidth: 560,
                 }}
@@ -1655,7 +1655,7 @@ function BloodworkPillar() {
                     fontWeight: 500,
                     fontSize: 16,
                     textDecoration: "none",
-                    border: "1px solid rgba(255,255,243,0.22)",
+                    border: "1px solid rgba(243, 248, 255,0.22)",
                   }}
                   data-testid="link-home-bloodwork-pricing"
                 >
@@ -1678,7 +1678,7 @@ function BloodworkPillar() {
                 <Reveal key={s.label} delay={0.25 + i * 0.04}>
                   <div
                     style={{
-                      borderTop: "1px solid rgba(255,255,243,0.14)",
+                      borderTop: "1px solid rgba(243, 248, 255,0.14)",
                       paddingTop: 18,
                     }}
                   >
@@ -1698,7 +1698,7 @@ function BloodworkPillar() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 13,
-                        color: "rgba(255,255,243,0.58)",
+                        color: "rgba(243, 248, 255,0.58)",
                         letterSpacing: "0.02em",
                         marginTop: 8,
                       }}
@@ -1739,7 +1739,7 @@ function BloodworkPillar() {
                   top: 20,
                   left: 20,
                   padding: "8px 14px",
-                  background: "rgba(28,24,21,0.72)",
+                  background: "rgba(21, 24, 28,0.72)",
                   color: "var(--nx-acid)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 11,
@@ -2150,7 +2150,7 @@ function BiomarkerMarquee() {
   return (
     <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "3.5rem 0 3rem", borderTop: "1px solid var(--nx-line)" }}>
       <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1F5FD0" }}>
           76 biomarkers · tracked every 90 days
         </p>
       </div>
@@ -2159,7 +2159,7 @@ function BiomarkerMarquee() {
           <div className={`nx-marquee-track ${i === 1 ? "reverse" : ""}`}>
             {[...row, ...row].map((m, j) => (
               <span key={j} className="nx-marquee-chip">
-                <span style={{ color: "#B97C24", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
+                <span style={{ color: "#1F5FD0", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
               </span>
             ))}
           </div>
@@ -2178,20 +2178,20 @@ function GuideCapture() {
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", display: "flex", flexWrap: "wrap", gap: "1.6rem", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ maxWidth: 520 }}>
             <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(1.5rem,2.6vw,2.1rem)", color: "var(--nx-black)", margin: 0, lineHeight: 1.12 }}>
-              The Peptide Starter Guide, <em style={{ fontStyle: "italic", color: "#B97C24" }}>free.</em>
+              The Peptide Starter Guide, <em style={{ fontStyle: "italic", color: "#1F5FD0" }}>free.</em>
             </h3>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, color: "rgba(28,24,21,0.62)", marginTop: 10 }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, color: "rgba(21, 24, 28,0.62)", marginTop: 10 }}>
               What peptides are, how physician-directed protocols work, and the questions to ask before starting. Reviewed by licensed physicians.
             </p>
           </div>
           {sent ? (
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, color: "#7A4E12" }}>Check your inbox — it's on the way.</p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, color: "#163E8C" }}>Check your inbox — it's on the way.</p>
           ) : (
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <input type="email" placeholder="you@example.com" aria-label="Email address"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-line)", background: "#FFFFFD", minWidth: 240, outline: "none" }} />
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-line)", background: "#FDFEFF", minWidth: 240, outline: "none" }} />
               <button onClick={() => setSent(true)}
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-black)", color: "var(--nx-cream, #FAF7F0)", cursor: "pointer" }}>
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-black)", color: "var(--nx-cream, #F2F7FD)", cursor: "pointer" }}>
                 Get the guide
               </button>
             </div>
@@ -2206,25 +2206,25 @@ function GuideCapture() {
 /* ══ PROOF BENTO — real numbers, mixed media ══ */
 function ProofBento() {
   const F = "'General Sans', system-ui, sans-serif";
-  const tile: React.CSSProperties = { background: "#F7F2EA", borderRadius: 22, overflow: "hidden" };
+  const tile: React.CSSProperties = { background: "#EAF0F7", borderRadius: 22, overflow: "hidden" };
   return (
     <section className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <div className="grid gap-3 md:grid-cols-2">
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.6rem)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", minHeight: 220 }}>
-            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,5vw,64px)", color: "#7A4E12", lineHeight: 1 }}>76</div>
+            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,5vw,64px)", color: "#163E8C", lineHeight: 1 }}>76</div>
             <p style={{ fontFamily: F, fontSize: 15, color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png" alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: 14, color: "#FAF7F0", background: "rgba(28,24,21,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
+            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: 14, color: "#F2F7FD", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
           </div>
           <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.55) 0%, transparent 60%)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(40px,5vw,62px)", color: "#FAF7F0", lineHeight: 1 }}>24–48h</div>
-              <p style={{ fontFamily: F, fontSize: 15, color: "rgba(250,247,240,0.85)", marginTop: 8, maxWidth: "26ch" }}>from intake to a licensed physician's review</p>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(40px,5vw,62px)", color: "#F2F7FD", lineHeight: 1 }}>24–48h</div>
+              <p style={{ fontFamily: F, fontSize: 15, color: "rgba(240, 244, 250,0.85)", marginTop: 8, maxWidth: "26ch" }}>from intake to a licensed physician's review</p>
             </div>
           </div>
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -2237,10 +2237,10 @@ function ProofBento() {
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 200 }}>
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-            <div className="absolute inset-0" style={{ background: "rgba(28,24,21,0.35)" }} />
+            <div className="absolute inset-0" style={{ background: "rgba(21, 24, 28,0.35)" }} />
             <div style={{ position: "absolute", left: 20, bottom: 18 }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#FAF7F0", lineHeight: 1 }}>Every 90 days</div>
-              <p style={{ fontFamily: F, fontSize: 13.5, color: "rgba(250,247,240,0.85)", marginTop: 5 }}>your labs re-run, your protocol re-tuned</p>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#F2F7FD", lineHeight: 1 }}>Every 90 days</div>
+              <p style={{ fontFamily: F, fontSize: 13.5, color: "rgba(240, 244, 250,0.85)", marginTop: 5 }}>your labs re-run, your protocol re-tuned</p>
             </div>
           </div>
         </div>
@@ -2256,7 +2256,7 @@ function HeroFilm() {
     <section className="nx-container" style={{ marginTop: "0.5rem" }}>
 <div
           className="mt-14 md:mt-16 mb-1 relative"
-          style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
+          style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(21, 24, 28,0.28)" }}
           data-testid="hero-video-band"
         >
           <video
@@ -2273,34 +2273,34 @@ function HeroFilm() {
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))", borderRadius: "26px" }}
+            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.32))", borderRadius: "26px" }}
           />
           {/* Glass panels — hims-Labs grammar */}
           {/* Ring dashboard — UI over film, hims composite grammar */}
-          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(28,24,21,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px" }}>
+          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(21, 24, 28,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 18, padding: "14px 18px" }}>
             <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
               <g transform="rotate(-90 38 38)">
-                <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(250,247,240,0.12)" strokeWidth="6" />
-                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="#A8C69A" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#F3C87A" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#D07A52" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(240, 244, 250,0.12)" strokeWidth="6" />
+                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="#2FA7C4" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#8FC6FF" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="#6FA3CC" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
               </g>
-              <text x="38" y="36" textAnchor="middle" fill="#FAF7F0" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
-              <text x="38" y="49" textAnchor="middle" fill="rgba(250,247,240,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
+              <text x="38" y="36" textAnchor="middle" fill="#F2F7FD" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
+              <text x="38" y="49" textAnchor="middle" fill="rgba(240, 244, 250,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
             </svg>
             <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, lineHeight: 1.9 }}>
-              <div><span style={{ color: "#A8C69A", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Optimal</span></div>
-              <div><span style={{ color: "#F3C87A", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>In range</span></div>
-              <div><span style={{ color: "#D07A52", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(250,247,240,0.75)" }}>Out of range</span></div>
+              <div><span style={{ color: "#2FA7C4", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>Optimal</span></div>
+              <div><span style={{ color: "#8FC6FF", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>In range</span></div>
+              <div><span style={{ color: "#6FA3CC", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>Out of range</span></div>
             </div>
           </div>
-          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
+          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
             <div className="flex items-center justify-between gap-4">
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#FAF7F0" }}>Hormones</span>
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#F2F7FD" }}>Hormones</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#0E2447", background: "#2FA7C4", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
             </div>
-            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
-              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0" }} />
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#2FA7C4,#8FC6FF,#6FA3CC)" }}>
+              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#F2F7FD" }} />
             </div>
           </div>
           <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
@@ -2310,8 +2310,8 @@ function HeroFilm() {
                 fontStyle: "italic",
                 fontWeight: 500,
                 fontSize: "clamp(18px, 2.4vw, 28px)",
-                color: "#FAF7F0",
-                textShadow: "0 2px 18px rgba(28,24,21,0.45)",
+                color: "#F2F7FD",
+                textShadow: "0 2px 18px rgba(21, 24, 28,0.45)",
                 margin: 0,
               }}
             >

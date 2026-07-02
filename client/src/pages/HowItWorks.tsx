@@ -61,7 +61,7 @@ const sectionHeading: React.CSSProperties = {
 const bodyCopy: React.CSSProperties = {
   fontFamily: "'General Sans', system-ui, sans-serif",
   fontSize: "1.0625rem",
-  color: "#4A4A4A",
+  color: "#4A6690",
   lineHeight: 1.7,
 };
 
@@ -258,9 +258,9 @@ export default function HowItWorks() {
             {/* ── Peptide-chain draw — bonds form as you scroll ── */}
             <div className="nx-chain" aria-hidden style={{ margin: "1.6rem 0 0.4rem" }}>
               <svg viewBox="0 0 800 44" preserveAspectRatio="none" style={{ width: "100%", height: 44, display: "block" }}>
-                <path className="nx-chain-path" d="M 10 22 C 110 4, 190 40, 270 22 C 350 4, 430 40, 530 22 C 610 8, 690 36, 790 22" fill="none" stroke="rgba(185,124,36,0.5)" strokeWidth="2" strokeDasharray="3 8" strokeLinecap="round" />
+                <path className="nx-chain-path" d="M 10 22 C 110 4, 190 40, 270 22 C 350 4, 430 40, 530 22 C 610 8, 690 36, 790 22" fill="none" stroke="rgba(36, 103, 185,0.5)" strokeWidth="2" strokeDasharray="3 8" strokeLinecap="round" />
                 {[10, 270, 530, 790].map((x) => (
-                  <circle key={x} className="nx-chain-node" cx={x} cy="22" r="6" fill="#F3C87A" stroke="#B97C24" strokeWidth="1.5" />
+                  <circle key={x} className="nx-chain-node" cx={x} cy="22" r="6" fill="#8FC6FF" stroke="#1F5FD0" strokeWidth="1.5" />
                 ))}
               </svg>
             </div>
@@ -942,10 +942,10 @@ export default function HowItWorks() {
                       <td style={{ padding: "14px 18px", textAlign: "center", fontSize: 13, color: "var(--nx-cobalt)", fontWeight: 600, borderBottom: "1px solid var(--nx-border)", borderRight: "1px solid var(--nx-border)", backgroundColor: "var(--nx-cobalt-soft)" }}>
                         {row.nexphoria}
                       </td>
-                      <td style={{ padding: "14px 18px", textAlign: "center", fontSize: 13, color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)", borderRight: "1px solid var(--nx-border)" }}>
+                      <td style={{ padding: "14px 18px", textAlign: "center", fontSize: 13, color: "#5C77A0", borderBottom: "1px solid var(--nx-border)", borderRight: "1px solid var(--nx-border)" }}>
                         {row.telehealth}
                       </td>
-                      <td style={{ padding: "14px 18px", textAlign: "center", fontSize: 13, color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)" }}>
+                      <td style={{ padding: "14px 18px", textAlign: "center", fontSize: 13, color: "#5C77A0", borderBottom: "1px solid var(--nx-border)" }}>
                         {row.clinic}
                       </td>
                     </tr>
@@ -1011,7 +1011,7 @@ export default function HowItWorks() {
                   height: "100%",
                 }}
               >
-                <p style={{ ...monoCaption, color: "#8B5A2B", marginBottom: "1.25rem" }}>WHO WE ARE NOT FOR</p>
+                <p style={{ ...monoCaption, color: "#1F5FD0", marginBottom: "1.25rem" }}>WHO WE ARE NOT FOR</p>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.875rem" }}>
                   {[
                     "Patients who want to self-prescribe based on influencer content.",
@@ -1021,8 +1021,8 @@ export default function HowItWorks() {
                     "Anyone looking for a quick fix with no physician oversight or follow-up.",
                   ].map((item, i) => (
                     <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                      <span style={{ display: "inline-block", width: 8, height: 2, backgroundColor: "#8B5A2B", flexShrink: 0, marginTop: 10 }} />
-                      <p style={{ ...bodyCopy, fontSize: "0.9375rem", margin: 0, color: "#6B6B6B" }}>{item}</p>
+                      <span style={{ display: "inline-block", width: 8, height: 2, backgroundColor: "#1F5FD0", flexShrink: 0, marginTop: 10 }} />
+                      <p style={{ ...bodyCopy, fontSize: "0.9375rem", margin: 0, color: "#5C77A0" }}>{item}</p>
                     </li>
                   ))}
                 </ul>
@@ -1036,12 +1036,12 @@ export default function HowItWorks() {
       {/* ── Care tracker composite — UI over film ── */}
       <section className="relative flex items-center" style={{ minHeight: "78vh" }}>
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.6) 0%, rgba(28,24,21,0.15) 55%, transparent 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.6) 0%, rgba(21, 24, 28,0.15) 55%, transparent 100%)" }} />
         <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(32px,4.6vw,58px)", lineHeight: 1.08, color: "#FAF7F0", maxWidth: "16ch" }}>
-            Intake to first dose, <em style={{ fontStyle: "italic", color: "#F3C87A" }}>watched</em> the whole way.
+          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(32px,4.6vw,58px)", lineHeight: 1.08, color: "#F2F7FD", maxWidth: "16ch" }}>
+            Intake to first dose, <em style={{ fontStyle: "italic", color: "#8FC6FF" }}>watched</em> the whole way.
           </h2>
-          <div className="mt-8 relative nx-rise" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", maxWidth: 380, boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)", marginBottom: "-6.5rem", zIndex: 3 }}>
+          <div className="mt-8 relative nx-rise" style={{ background: "#FDFEFF", borderRadius: 18, padding: "1.2rem 1.4rem", maxWidth: 380, boxShadow: "0 24px 50px -18px rgba(21, 24, 28,0.5)", marginBottom: "-6.5rem", zIndex: 3 }}>
             {[
               ["Intake received", "done"],
               ["Physician review", "done"],
@@ -1049,18 +1049,18 @@ export default function HowItWorks() {
               ["Cold-chain shipment", "next"],
               ["First dose + 90-day labs", "next"],
             ].map(([t, st], i, arr) => (
-              <div key={t} className="flex items-center gap-3" style={{ padding: "9px 0", borderBottom: i < arr.length - 1 ? "1px solid rgba(28,24,21,0.06)" : "none" }}>
-                <span aria-hidden style={{ width: 18, height: 18, borderRadius: 999, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, background: st === "done" ? "#A8C69A" : st === "active" ? "#F3C87A" : "rgba(28,24,21,0.08)", color: st === "next" ? "rgba(28,24,21,0.35)" : "#1C1815", boxShadow: "none" }} className={st === "active" ? "nx-pulse-dot" : undefined}>
+              <div key={t} className="flex items-center gap-3" style={{ padding: "9px 0", borderBottom: i < arr.length - 1 ? "1px solid rgba(21, 24, 28,0.06)" : "none" }}>
+                <span aria-hidden style={{ width: 18, height: 18, borderRadius: 999, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, background: st === "done" ? "#2FA7C4" : st === "active" ? "#8FC6FF" : "rgba(21, 24, 28,0.08)", color: st === "next" ? "rgba(21, 24, 28,0.35)" : "#0E2447", boxShadow: "none" }} className={st === "active" ? "nx-pulse-dot" : undefined}>
                   {st === "done" ? "✓" : st === "active" ? "•" : ""}
                 </span>
-                <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14, fontWeight: st === "next" ? 500 : 600, color: st === "next" ? "rgba(28,24,21,0.45)" : "#1C1815" }}>{t}</span>
+                <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14, fontWeight: st === "next" ? 500 : 600, color: st === "next" ? "rgba(21, 24, 28,0.45)" : "#0E2447" }}>{t}</span>
               </div>
             ))}
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(28,24,21,0.4)", marginTop: 10, marginBottom: 0 }}>Illustration of the member portal.</p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(21, 24, 28,0.4)", marginTop: 10, marginBottom: 0 }}>Illustration of the member portal.</p>
           </div>
-          <div className="hidden md:block absolute top-8 right-8" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 14, padding: "10px 15px" }}>
-            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#FAF7F0" }}>Discreet packaging</div>
-            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(250,247,240,0.65)", marginTop: 2 }}>Cold-chain · signature optional</div>
+          <div className="hidden md:block absolute top-8 right-8" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 14, padding: "10px 15px" }}>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#F2F7FD" }}>Discreet packaging</div>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(240, 244, 250,0.65)", marginTop: 2 }}>Cold-chain · signature optional</div>
           </div>
         </div>
       </section>

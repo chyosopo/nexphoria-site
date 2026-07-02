@@ -113,17 +113,17 @@ function getDoseOptions(slug: string, typicalDose?: string): DoseOption[] {
 
 const MEN_TOKENS = {
   bg: "#111111",
-  bgSoft: "#1A1815",
+  bgSoft: "#0C2040",
   surface: "#161513",
   surfaceHover: "#1F1D1A",
-  border: "rgba(226,138,61,0.22)",
-  borderStrong: "rgba(226,138,61,0.45)",
-  text: "#F5F0E4",
-  textMuted: "rgba(245,240,228,0.62)",
-  textFaint: "rgba(245,240,228,0.42)",
-  accent: "#DE9A3C",
-  accentSoft: "rgba(226,138,61,0.14)",
-  accentInk: "#1C1815",
+  border: "rgba(61, 135, 226,0.22)",
+  borderStrong: "rgba(61, 135, 226,0.45)",
+  text: "#EDF4FB",
+  textMuted: "rgba(228, 236, 245,0.62)",
+  textFaint: "rgba(228, 236, 245,0.42)",
+  accent: "#2E7BF0",
+  accentSoft: "rgba(61, 135, 226,0.14)",
+  accentInk: "#0E2447",
   fontDisplay: "'General Sans', system-ui, sans-serif",
   fontMono: "'JetBrains Mono', ui-monospace, monospace",
   fontBody: "'General Sans', system-ui, sans-serif",
@@ -132,18 +132,18 @@ const MEN_TOKENS = {
 };
 
 const WOMEN_TOKENS = {
-  bg: "#FBF5EA",
-  bgSoft: "#F5EFE4",
-  surface: "#FFFDF7",
-  surfaceHover: "#FFFCF0",
-  border: "rgba(138,106,62,0.22)",
-  borderStrong: "rgba(178,87,120,0.55)",
-  text: "#2A2418",
-  textMuted: "rgba(42,36,24,0.62)",
-  textFaint: "rgba(42,36,24,0.42)",
-  accent: "#B25778",
-  accentSoft: "rgba(178,87,120,0.12)",
-  accentInk: "#FFFDF7",
+  bg: "#EAF2FB",
+  bgSoft: "#E4ECF5",
+  surface: "#F7FBFF",
+  surfaceHover: "#F0F7FF",
+  border: "rgba(62, 96, 138,0.22)",
+  borderStrong: "rgba(87, 120, 178,0.55)",
+  text: "#18202A",
+  textMuted: "rgba(24, 32, 42,0.62)",
+  textFaint: "rgba(24, 32, 42,0.42)",
+  accent: "#5778B2",
+  accentSoft: "rgba(87, 120, 178,0.12)",
+  accentInk: "#F7FBFF",
   fontDisplay: "'Instrument Serif', Georgia, serif",
   fontMono: "'General Sans', system-ui, sans-serif",
   fontBody: "'General Sans', system-ui, sans-serif",
@@ -152,18 +152,18 @@ const WOMEN_TOKENS = {
 };
 
 const NEUTRAL_TOKENS = {
-  bg: "#FAF7F0",
-  bgSoft: "#F5F1E6",
+  bg: "#F2F7FD",
+  bgSoft: "#E6EDF5",
   surface: "#FFFFFF",
-  surfaceHover: "#FBFAF6",
-  border: "rgba(28,24,21,0.14)",
-  borderStrong: "rgba(28,24,21,0.6)",
-  text: "#1C1815",
-  textMuted: "rgba(28,24,21,0.62)",
-  textFaint: "rgba(28,24,21,0.4)",
-  accent: "#1C1815",
-  accentSoft: "rgba(28,24,21,0.06)",
-  accentInk: "#FAF7F0",
+  surfaceHover: "#F6F8FB",
+  border: "rgba(21, 24, 28,0.14)",
+  borderStrong: "rgba(21, 24, 28,0.6)",
+  text: "#0E2447",
+  textMuted: "rgba(21, 24, 28,0.62)",
+  textFaint: "rgba(21, 24, 28,0.4)",
+  accent: "#0E2447",
+  accentSoft: "rgba(21, 24, 28,0.06)",
+  accentInk: "#F2F7FD",
   fontDisplay: "'General Sans', system-ui, sans-serif",
   fontMono: "'General Sans', system-ui, sans-serif",
   fontBody: "'General Sans', system-ui, sans-serif",
@@ -528,7 +528,7 @@ export function ProtocolConfigurator({
                           padding: "3px 7px",
                           borderRadius: isMen ? 2 : 999,
                           background: isSelected
-                            ? "rgba(28,24,21,0.14)"
+                            ? "rgba(21, 24, 28,0.14)"
                             : card.badge === "Best value"
                             ? t.accentSoft
                             : "rgba(255,255,255,0.06)",
@@ -544,7 +544,7 @@ export function ProtocolConfigurator({
                     style={{
                       fontFamily: t.fontMono,
                       fontSize: "10.5px",
-                      color: isSelected ? "rgba(28,24,21,0.65)" : t.textMuted,
+                      color: isSelected ? "rgba(21, 24, 28,0.65)" : t.textMuted,
                       marginTop: "3px",
                     }}
                   >
@@ -568,7 +568,7 @@ export function ProtocolConfigurator({
                     style={{
                       fontFamily: t.fontMono,
                       fontSize: "9px",
-                      color: isSelected ? "rgba(28,24,21,0.55)" : t.textFaint,
+                      color: isSelected ? "rgba(21, 24, 28,0.55)" : t.textFaint,
                       marginTop: "3px",
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -696,7 +696,7 @@ export function ProtocolConfigurator({
       <div
         style={{
           padding: "18px 20px",
-          background: isMen ? "#1C1815" : t.bgSoft,
+          background: isMen ? "#0E2447" : t.bgSoft,
           border: `1px solid ${t.borderStrong}`,
           borderRadius: t.radius,
           marginBottom: "16px",
@@ -792,8 +792,8 @@ export function ProtocolConfigurator({
         style={{
           width: "100%",
           padding: "18px 20px",
-          background: justAdded ? t.accent : isMen ? t.accent : "#1C1815",
-          color: justAdded ? t.accentInk : isMen ? t.accentInk : "#FAF7F0",
+          background: justAdded ? t.accent : isMen ? t.accent : "#0E2447",
+          color: justAdded ? t.accentInk : isMen ? t.accentInk : "#F2F7FD",
           border: "none",
           borderRadius: t.radius,
           fontFamily: t.fontBody,

@@ -17,14 +17,14 @@ import { PillBadge } from "@/components/PillBadge";
 
 type PanelTone = { bg: string; accent: string; ring: string };
 const PANEL_TONES: Record<string, PanelTone> = {
-  Hormones:       { bg: "#F2DDD0", accent: "#8E4A26", ring: "#D8B69A" }, // rose/terracotta
+  Hormones:       { bg: "#D0DFF2", accent: "#26558E", ring: "#9AB6D8" }, // rose/terracotta
   Metabolic:      { bg: "#D6E2E8", accent: "#2D5663", ring: "#A8BFCB" }, // sky
-  Inflammation:   { bg: "#F0D4C8", accent: "#A23E1F", ring: "#D8AC97" }, // terra
-  Nutrients:      { bg: "#E2E6C8", accent: "#566526", ring: "#BDC498" }, // sage
-  Cardiovascular: { bg: "#DCD0C0", accent: "#5E4421", ring: "#BFAB8C" }, // sand
-  Thyroid:        { bg: "#E6DFC1", accent: "#615620", ring: "#C1B68C" }, // butter
-  "Kidney & Liver": { bg: "#CFDFD8", accent: "#2D5046", ring: "#9DB8AB" }, // cobalt-soft
-  "Blood Count":  { bg: "#E2D2C2", accent: "#6A3A22", ring: "#C1A286" }, // clay
+  Inflammation:   { bg: "#C8DAF0", accent: "#1F5AA2", ring: "#97B4D8" }, // terra
+  Nutrients:      { bg: "#C8D6E6", accent: "#264265", ring: "#98ACC4" }, // sage
+  Cardiovascular: { bg: "#C0CDDC", accent: "#213C5E", ring: "#8CA3BF" }, // sand
+  Thyroid:        { bg: "#C1D2E6", accent: "#203D61", ring: "#8CA4C1" }, // butter
+  "Kidney & Liver": { bg: "#CFDBDF", accent: "#2D4750", ring: "#9DB1B8" }, // cobalt-soft
+  "Blood Count":  { bg: "#C2D0E2", accent: "#22426A", ring: "#86A1C1" }, // clay
 };
 
 const panels = [
@@ -53,14 +53,14 @@ const sampleReport = [
 
 const statusColor: Record<string, string> = {
   normal: "var(--nx-success)",
-  low: "#C2440E",
-  high: "#C2440E",
+  low: "#1F5FD0",
+  high: "#1F5FD0",
 };
 
 const statusBg: Record<string, string> = {
-  normal: "#EDFAF1",
-  low: "#FEF2EC",
-  high: "#FEF2EC",
+  normal: "#EDF7FA",
+  low: "#ECF4FE",
+  high: "#ECF4FE",
 };
 
 const biomarkerCards = [
@@ -188,7 +188,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A4A4A",
+                    color: "#4A6690",
                     lineHeight: 1.7,
                     marginBottom: "1rem",
                   }}
@@ -202,7 +202,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A4A4A",
+                    color: "#4A6690",
                     lineHeight: 1.7,
                   }}
                 >
@@ -241,7 +241,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A4A4A",
+                    color: "#4A6690",
                     lineHeight: 1.7,
                     marginBottom: "1rem",
                   }}
@@ -255,7 +255,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A4A4A",
+                    color: "#4A6690",
                     lineHeight: 1.7,
                   }}
                 >
@@ -294,7 +294,7 @@ export default function LabTesting() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to bottom, rgba(28,24,21,0.05) 0%, rgba(28,24,21,0.35) 100%)",
+            background: "linear-gradient(to bottom, rgba(21, 24, 28,0.05) 0%, rgba(21, 24, 28,0.35) 100%)",
           }}
         />
       </section>
@@ -438,7 +438,7 @@ export default function LabTesting() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "12px",
-                        color: "#4A4A4A",
+                        color: "#4A6690",
                         lineHeight: 1.5,
                         display: "flex",
                         alignItems: "center",
@@ -563,7 +563,7 @@ export default function LabTesting() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13.5px",
-                      color: "#4A4A4A",
+                      color: "#4A6690",
                       lineHeight: 1.65,
                     }}
                   >
@@ -661,7 +661,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "13px",
-                    color: "#4A4A4A",
+                    color: "#4A6690",
                     lineHeight: 1.6,
                   }}
                 >
@@ -714,7 +714,7 @@ export default function LabTesting() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1rem",
-                color: "#4A4A4A",
+                color: "#4A6690",
                 lineHeight: 1.6,
                 maxWidth: "560px",
                 marginBottom: "2.5rem",
@@ -823,7 +823,7 @@ export default function LabTesting() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: row.status === "normal" ? "var(--nx-fg)" : "#C2440E",
+                      color: row.status === "normal" ? "var(--nx-fg)" : "#1F5FD0",
                     }}
                   >
                     {row.value}
@@ -903,7 +903,7 @@ export default function LabTesting() {
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2.25rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1, marginBottom: "0.25rem" }}>{price}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.65 }}>{detail}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A6690", lineHeight: 1.65 }}>{detail}</p>
                 </div>
               </Reveal>
             ))}
@@ -915,7 +915,7 @@ export default function LabTesting() {
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
                 Clarity Unlocks Power. Unleash the Extraordinary.
               </p>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A6690", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
                 Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your Quest Diagnostics requisition within 24 hours.
               </p>
               <StartIntakeButton source="labtesting-page" size="lg">
@@ -962,7 +962,7 @@ function BloodworkManifesto() {
               fontSize: "13px",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(255,255,243,0.55)",
+              color: "rgba(243, 248, 255,0.55)",
             }}
           >
             <span
@@ -997,7 +997,7 @@ function BloodworkManifesto() {
               fontWeight: 400,
               fontSize: "19px",
               lineHeight: 1.55,
-              color: "rgba(255,255,243,0.75)",
+              color: "rgba(243, 248, 255,0.75)",
               maxWidth: "56ch",
             }}
           >
@@ -1033,7 +1033,7 @@ function BloodworkManifesto() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500, fontSize: "15px",
                 color: "var(--nx-ceramic)",
-                borderBottom: "1px solid rgba(255,255,243,0.35)",
+                borderBottom: "1px solid rgba(243, 248, 255,0.35)",
                 paddingBottom: 2,
               }}
               data-testid="link-blood-assessment"
@@ -1045,7 +1045,7 @@ function BloodworkManifesto() {
 
           <div
             className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8"
-            style={{ borderTop: "1px solid rgba(255,255,243,0.12)", paddingTop: 28 }}
+            style={{ borderTop: "1px solid rgba(243, 248, 255,0.12)", paddingTop: 28 }}
           >
             {[
               { k: "80+", v: "Biomarkers" },
@@ -1072,7 +1072,7 @@ function BloodworkManifesto() {
                     fontWeight: 400, fontSize: "12px",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,243,0.55)",
+                    color: "rgba(243, 248, 255,0.55)",
                   }}
                 >
                   {s.v}
@@ -1283,7 +1283,7 @@ function BloodworkPricing() {
       className="py-24 md:py-32 border-t"
       style={{
         background: "var(--nx-rock)",
-        borderColor: "rgba(28,24,21,0.08)",
+        borderColor: "rgba(21, 24, 28,0.08)",
       }}
     >
       <div className="nx-container">
@@ -1345,8 +1345,8 @@ function BloodworkPricing() {
                 color: t.dark ? "var(--nx-ceramic)" : "var(--nx-black)",
                 borderRadius: 20,
                 padding: "36px 32px",
-                border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(28,24,21,0.08)",
-                boxShadow: t.accent ? "0 30px 60px -20px rgba(243,200,122,0.35)" : "none",
+                border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(21, 24, 28,0.08)",
+                boxShadow: t.accent ? "0 30px 60px -20px rgba(122, 176, 243,0.35)" : "none",
               }}
             >
               {t.badge && (
@@ -1400,7 +1400,7 @@ function BloodworkPricing() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 400,
                     fontSize: "14px",
-                    color: t.dark ? "rgba(255,255,243,0.55)" : "var(--nx-fg-muted)",
+                    color: t.dark ? "rgba(243, 248, 255,0.55)" : "var(--nx-fg-muted)",
                   }}
                 >
                   {t.priceNote}
@@ -1412,7 +1412,7 @@ function BloodworkPricing() {
                     fontWeight: 500,
                     fontSize: "12px",
                     letterSpacing: "0.04em",
-                    color: t.accent ? "var(--nx-acid)" : (t.dark ? "rgba(255,255,243,0.55)" : "var(--nx-fg-muted)"),
+                    color: t.accent ? "var(--nx-acid)" : (t.dark ? "rgba(243, 248, 255,0.55)" : "var(--nx-fg-muted)"),
                   }}
                 >
                   {t.valueNote}
@@ -1428,7 +1428,7 @@ function BloodworkPricing() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "14px",
                       lineHeight: 1.5,
-                      color: t.dark ? "rgba(255,255,243,0.85)" : "var(--nx-fg-graphite)",
+                      color: t.dark ? "rgba(243, 248, 255,0.85)" : "var(--nx-fg-graphite)",
                     }}
                   >
                     <Check
@@ -1491,7 +1491,7 @@ function BloodworkInsurance() {
   return (
     <section
       className="py-24 md:py-32 border-t"
-      style={{ background: "var(--nx-ceramic)", borderColor: "rgba(28,24,21,0.08)" }}
+      style={{ background: "var(--nx-ceramic)", borderColor: "rgba(21, 24, 28,0.08)" }}
     >
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div className="lg:col-span-6 group order-2 lg:order-1">
@@ -1721,7 +1721,7 @@ function PartnerLabsSection() {
             style={{
               fontFamily: PL_FONT,
               fontSize: "1.0625rem",
-              color: "#4A4A4A",
+              color: "#4A6690",
               lineHeight: 1.65,
               maxWidth: 560,
               marginBottom: "2.5rem",
@@ -1761,7 +1761,7 @@ function PartnerLabsSection() {
                     flexShrink: 0,
                   }}
                 >
-                  <FlaskConical size={24} style={{ color: "#FFFFF3" }} strokeWidth={1.75} />
+                  <FlaskConical size={24} style={{ color: "#FBFDFF" }} strokeWidth={1.75} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <p
@@ -1776,7 +1776,7 @@ function PartnerLabsSection() {
                   >
                     {lab.name}
                   </p>
-                  <p style={{ fontFamily: PL_FONT, fontSize: 13.5, color: "#4A4A4A", lineHeight: 1.5 }}>
+                  <p style={{ fontFamily: PL_FONT, fontSize: 13.5, color: "#4A6690", lineHeight: 1.5 }}>
                     {lab.detail}
                   </p>
                 </div>
@@ -1873,7 +1873,7 @@ function PartnerLabsSection() {
                       style={{
                         fontFamily: PL_FONT,
                         fontSize: 14,
-                        color: "#4A4A4A",
+                        color: "#4A6690",
                         lineHeight: 1.55,
                         marginBottom: 14,
                         flex: 1,
@@ -1966,7 +1966,7 @@ function PartnerLabsSection() {
                   >
                     {t.label}
                   </p>
-                  <p style={{ fontFamily: PL_FONT, fontSize: 13, color: "#4A4A4A", lineHeight: 1.5 }}>
+                  <p style={{ fontFamily: PL_FONT, fontSize: 13, color: "#4A6690", lineHeight: 1.5 }}>
                     {t.desc}
                   </p>
                 </div>

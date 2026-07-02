@@ -72,7 +72,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                     height: "220px",
                     borderRadius: "12px",
                     overflow: "hidden",
-                    backgroundColor: "#1C1815",
+                    backgroundColor: "#0E2447",
                     cursor: "pointer",
                     transition: "transform 400ms cubic-bezier(0.22,1,0.36,1)",
                   }}
@@ -103,7 +103,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(28,24,21,0.75) 0%, rgba(28,24,21,0.2) 50%, rgba(28,24,21,0) 100%)",
+                        "linear-gradient(to top, rgba(21, 24, 28,0.75) 0%, rgba(21, 24, 28,0.2) 50%, rgba(21, 24, 28,0) 100%)",
                     }}
                   />
 

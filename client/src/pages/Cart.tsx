@@ -34,19 +34,19 @@ export default function Cart() {
           <div className="mb-10">
             <div
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: FONT, color: "#8B5A2B" }}
+              style={{ fontFamily: FONT, color: "#1F5FD0" }}
             >
               Your Pharmacy
             </div>
             <h1
               className="text-4xl md:text-5xl"
-              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.02em" }}
             >
               Review your cart
             </h1>
             <p
               className="mt-3 text-base max-w-xl"
-              style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.6 }}
+              style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.6 }}
             >
               {itemCount === 0
                 ? "Your protocol is empty. Add single peptides or a curated stack to begin."
@@ -62,7 +62,7 @@ export default function Cart() {
               <section>
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
-                  style={{ fontFamily: FONT, color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)" }}
+                  style={{ fontFamily: FONT, color: "#5C77A0", borderBottom: "1px solid var(--nx-border)" }}
                 >
                   Items · {itemCount}
                 </div>
@@ -98,30 +98,30 @@ export default function Cart() {
                           <div className="flex-1 min-w-0">
                             <div
                               className="text-[10px] uppercase tracking-[0.2em] mb-1.5"
-                              style={{ fontFamily: FONT, color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B" }}
+                              style={{ fontFamily: FONT, color: line.type === "stack" ? "#1F5FD0" : "#5C77A0" }}
                             >
                               {line.type === "stack" ? "Curated Stack" : "Single Peptide"}
                             </div>
                             <h3
                               className="text-lg md:text-xl mb-1"
-                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
+                              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.01em" }}
                             >
                               {line.name}
                             </h3>
 
                             {/* Dose + protocol */}
                             {spec ? (
-                              <p className="text-[13px] mb-2" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.5 }}>
+                              <p className="text-[13px] mb-2" style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.5 }}>
                                 {spec.vialSpec}
-                                <span style={{ color: "#8A8A8A" }}> · {spec.vialDuration}</span>
+                                <span style={{ color: "#7C90A6" }}> · {spec.vialDuration}</span>
                               </p>
                             ) : line.type === "stack" ? (
                               <StackContents slug={line.slug} />
                             ) : null}
 
-                            <p className="text-sm" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
-                              <span style={{ color: "#1C1815", fontWeight: 500 }}>{formatUSD(line.unitPrice)}</span>
-                              <span className="text-xs" style={{ color: "#6B6B6B" }}> / month supply</span>
+                            <p className="text-sm" style={{ fontFamily: FONT, color: "#4A6690" }}>
+                              <span style={{ color: "#0E2447", fontWeight: 500 }}>{formatUSD(line.unitPrice)}</span>
+                              <span className="text-xs" style={{ color: "#5C77A0" }}> / month supply</span>
                             </p>
 
                             {/* Chips */}
@@ -138,7 +138,7 @@ export default function Cart() {
                             <div className="mt-4">
                               <div
                                 className="text-[9px] uppercase tracking-[0.2em] mb-1.5"
-                                style={{ fontFamily: FONT, color: "#6B6B6B" }}
+                                style={{ fontFamily: FONT, color: "#5C77A0" }}
                               >
                                 Billing cadence
                               </div>
@@ -161,8 +161,8 @@ export default function Cart() {
                                       className="px-3.5 py-1.5 text-[10px] uppercase tracking-[0.12em] transition-colors"
                                       style={{
                                         fontFamily: FONT,
-                                        background: active ? "#1C1815" : "transparent",
-                                        color: active ? "#FAF7F0" : "#1C1815",
+                                        background: active ? "#0E2447" : "transparent",
+                                        color: active ? "#F2F7FD" : "#0E2447",
                                         borderRight: c === "12mo" ? "none" : "1px solid var(--nx-border)",
                                       }}
                                       data-testid={`button-cadence-page-${c}-${line.type}-${line.slug}`}
@@ -171,7 +171,7 @@ export default function Cart() {
                                       {meta.savePct > 0 ? (
                                         <span
                                           className="ml-1.5 text-[9px]"
-                                          style={{ color: active ? "#FAF7F0" : "#8B5A2B", opacity: active ? 0.85 : 1 }}
+                                          style={{ color: active ? "#F2F7FD" : "#1F5FD0", opacity: active ? 0.85 : 1 }}
                                         >
                                           −{meta.savePct}%
                                         </span>
@@ -186,7 +186,7 @@ export default function Cart() {
                           <div className="text-right flex-shrink-0">
                             <div
                               className="text-xl mb-3"
-                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}
+                              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}
                               data-testid={`text-line-total-${line.type}-${line.slug}`}
                             >
                               {formatUSD(line.lineTotal)}
@@ -201,7 +201,7 @@ export default function Cart() {
                                 className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
                                 aria-label="Decrease quantity"
                                 data-testid={`button-qty-decrease-page-${line.type}-${line.slug}`}
-                                style={{ color: "#1C1815" }}
+                                style={{ color: "#0E2447" }}
                               >
                                 <Minus size={12} />
                               </button>
@@ -217,7 +217,7 @@ export default function Cart() {
                                 className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
                                 aria-label="Increase quantity"
                                 data-testid={`button-qty-increase-page-${line.type}-${line.slug}`}
-                                style={{ color: "#1C1815" }}
+                                style={{ color: "#0E2447" }}
                               >
                                 <Plus size={12} />
                               </button>
@@ -226,7 +226,7 @@ export default function Cart() {
                               <button
                                 onClick={() => removeItem(line.slug, line.type)}
                                 className="text-xs inline-flex items-center gap-1 hover:underline"
-                                style={{ fontFamily: FONT, color: "#8B5A2B" }}
+                                style={{ fontFamily: FONT, color: "#1F5FD0" }}
                                 data-testid={`button-remove-page-${line.type}-${line.slug}`}
                               >
                                 <Trash2 size={11} /> Remove
@@ -243,7 +243,7 @@ export default function Cart() {
                   <Link asChild href="/stacks">
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
-                      style={{ fontFamily: FONT, color: "#1C1815", border: "1px solid var(--nx-border)", borderRadius: 999 }}
+                      style={{ fontFamily: FONT, color: "#0E2447", border: "1px solid var(--nx-border)", borderRadius: 999 }}
                       data-testid="link-continue-stacks"
                     >
                       Browse more stacks
@@ -252,7 +252,7 @@ export default function Cart() {
                   <Link asChild href="/peptides">
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
-                      style={{ fontFamily: FONT, color: "#1C1815", border: "1px solid var(--nx-border)", borderRadius: 999 }}
+                      style={{ fontFamily: FONT, color: "#0E2447", border: "1px solid var(--nx-border)", borderRadius: 999 }}
                       data-testid="link-continue-peptides"
                     >
                       Add single peptides
@@ -262,30 +262,30 @@ export default function Cart() {
 
                 {/* Add-on suggestions */}
                 <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                  <p className="text-[10px] uppercase tracking-[0.2em] mb-4" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                  <p className="text-[10px] uppercase tracking-[0.2em] mb-4" style={{ fontFamily: FONT, color: "#5C77A0" }}>
                     Recommended add-ons
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "#8B5A2B" }}>Lab Testing Add-On</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "#1C1815" }}>Quest Diagnostics 38-Biomarker Panel</p>
-                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "#6B6B6B" }}>Required before your first prescription. Included with most protocols.</p>
+                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "#1F5FD0" }}>Lab Testing Add-On</p>
+                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "#0E2447" }}>Quest Diagnostics 38-Biomarker Panel</p>
+                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "#5C77A0" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
                       <Link asChild href="/lab-testing">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#1C1815", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-labs">
+                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#0E2447", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-labs">
                           See panel details
                         </a>
                       </Link>
                     </div>
                     <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "#8B5A2B" }}>Recovery Support</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "#1C1815" }}>BPC-157 — Tissue Repair Adjunct</p>
-                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "#6B6B6B" }}>Commonly paired with performance and metabolic protocols.</p>
+                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "#1F5FD0" }}>Recovery Support</p>
+                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "#0E2447" }}>BPC-157 — Tissue Repair Adjunct</p>
+                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "#5C77A0" }}>Commonly paired with performance and metabolic protocols.</p>
                       </div>
                       <Link asChild href="/stacks">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#1C1815", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
+                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#0E2447", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
                           View stack
                         </a>
                       </Link>
@@ -301,7 +301,7 @@ export default function Cart() {
               >
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
-                  style={{ fontFamily: FONT, color: "#8B5A2B", borderBottom: "1px solid var(--nx-border)" }}
+                  style={{ fontFamily: FONT, color: "#1F5FD0", borderBottom: "1px solid var(--nx-border)" }}
                 >
                   Order summary
                 </div>
@@ -315,18 +315,18 @@ export default function Cart() {
                   className="flex items-baseline justify-between mt-5 pt-5"
                   style={{ borderTop: "1px solid var(--nx-border)" }}
                 >
-                  <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#1C1815" }}>
+                  <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0E2447" }}>
                     Subtotal
                   </span>
                   <span
                     className="text-3xl"
-                    style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}
+                    style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}
                     data-testid="text-cart-page-subtotal"
                   >
                     {formatUSD(subtotal)}
                   </span>
                 </div>
-                <p className="text-[11px] mt-2 mb-5 leading-relaxed" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                <p className="text-[11px] mt-2 mb-5 leading-relaxed" style={{ fontFamily: FONT, color: "#5C77A0" }}>
                   Final pricing confirmed after intake review.
                 </p>
 
@@ -335,7 +335,7 @@ export default function Cart() {
                   className="mb-5 p-4"
                   style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                 >
-                  <p className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                  <p className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#5C77A0" }}>
                     Included at no extra cost
                   </p>
                   <div className="space-y-2.5">
@@ -345,11 +345,11 @@ export default function Cart() {
                       { icon: <RefreshCw size={13} />, text: "Quarterly lab re-evaluation" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-2 text-[12px]" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
-                          <span style={{ color: "#8B5A2B" }}>{icon}</span>
+                        <span className="flex items-center gap-2 text-[12px]" style={{ fontFamily: FONT, color: "#4A6690" }}>
+                          <span style={{ color: "#1F5FD0" }}>{icon}</span>
                           {text}
                         </span>
-                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#2E6B47" }}>
+                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#1F7F9C" }}>
                           Included
                         </span>
                       </div>
@@ -361,8 +361,8 @@ export default function Cart() {
                   <a
                     className="block w-full text-center px-6 py-3.5 transition-all"
                     style={{
-                      background: "#1C1815",
-                      color: "#FAF7F0",
+                      background: "#0E2447",
+                      color: "#F2F7FD",
                       fontFamily: FONT,
                       fontWeight: 500,
                       fontSize: "0.875rem",
@@ -382,8 +382,8 @@ export default function Cart() {
                     { icon: <ShieldCheck size={13} />, text: "US-compounded · 503A pharmacy" },
                     { icon: <Stethoscope size={13} />, text: "Licensed US physicians on every case" },
                   ].map(({ icon, text }) => (
-                    <div key={text} className="flex items-center gap-2 text-[11px]" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
-                      <span style={{ color: "#8B5A2B" }}>{icon}</span>
+                    <div key={text} className="flex items-center gap-2 text-[11px]" style={{ fontFamily: FONT, color: "#4A6690" }}>
+                      <span style={{ color: "#1F5FD0" }}>{icon}</span>
                       <span>{text}</span>
                     </div>
                   ))}
@@ -391,7 +391,7 @@ export default function Cart() {
 
                 <div
                   className="mt-4 pt-4 text-[11px] space-y-1.5"
-                  style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}
+                  style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}
                 >
                   <p>Intake screening at checkout (~3 min)</p>
                   <p>Physician sign-off in 24–48 hours</p>
@@ -411,7 +411,7 @@ export default function Cart() {
           <Link asChild href="/checkout">
             <a
               className="block w-full text-center py-3.5 font-medium"
-              style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", letterSpacing: "0.02em", borderRadius: 12 }}
+              style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: FONT, fontSize: "0.9375rem", letterSpacing: "0.02em", borderRadius: 12 }}
               data-testid="button-checkout-mobile"
             >
               Checkout — {formatUSD(subtotal)}
@@ -428,16 +428,16 @@ function VialGlyph({ label }: { label: string }) {
   return (
     <svg width="52" height="76" viewBox="0 0 52 76" fill="none" aria-hidden="true">
       {/* cap */}
-      <rect x="16" y="2" width="20" height="8" rx="2" fill="#1C1815" />
-      <rect x="14" y="9" width="24" height="6" rx="2" fill="#8B5A2B" />
+      <rect x="16" y="2" width="20" height="8" rx="2" fill="#0E2447" />
+      <rect x="14" y="9" width="24" height="6" rx="2" fill="#1F5FD0" />
       {/* body */}
-      <rect x="12" y="15" width="28" height="56" rx="6" fill="#fff" stroke="#1C1815" strokeWidth="1.5" />
+      <rect x="12" y="15" width="28" height="56" rx="6" fill="#fff" stroke="#0E2447" strokeWidth="1.5" />
       {/* fill line */}
       <rect x="14" y="40" width="24" height="29" rx="4" fill="var(--nx-bg-cream)" />
-      <line x1="14" y1="40" x2="38" y2="40" stroke="#1C1815" strokeWidth="1" opacity="0.4" />
+      <line x1="14" y1="40" x2="38" y2="40" stroke="#0E2447" strokeWidth="1" opacity="0.4" />
       {/* label band */}
-      <rect x="12" y="46" width="28" height="16" fill="#1C1815" />
-      <text x="26" y="57" textAnchor="middle" fill="#FAF7F0" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 8, fontWeight: 600, letterSpacing: "0.05em" }}>
+      <rect x="12" y="46" width="28" height="16" fill="#0E2447" />
+      <text x="26" y="57" textAnchor="middle" fill="#F2F7FD" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 8, fontWeight: 600, letterSpacing: "0.05em" }}>
         {label}
       </text>
     </svg>
@@ -463,12 +463,12 @@ function Chip({ children, icon, tone = "ink" }: { children: React.ReactNode; ico
       style={{
         fontFamily: FONT,
         borderRadius: 999,
-        border: `1px solid ${isAmber ? "#E2C9B3" : "var(--nx-border)"}`,
+        border: `1px solid ${isAmber ? "#B3C8E2" : "var(--nx-border)"}`,
         background: isAmber ? "var(--nx-bg-cream)" : "#fff",
-        color: isAmber ? "#8B5A2B" : "#1C1815",
+        color: isAmber ? "#1F5FD0" : "#0E2447",
       }}
     >
-      {icon ? <span style={{ color: isAmber ? "#8B5A2B" : "#8B5A2B" }}>{icon}</span> : null}
+      {icon ? <span style={{ color: isAmber ? "#1F5FD0" : "#1F5FD0" }}>{icon}</span> : null}
       {children}
     </span>
   );
@@ -478,7 +478,7 @@ function StackContents({ slug }: { slug: string }) {
   const stack = stacks.find((s) => s.slug === slug);
   if (!stack) return null;
   return (
-    <p className="text-xs mb-2" style={{ fontFamily: FONT, color: "#6B6B6B", letterSpacing: "0.05em" }}>
+    <p className="text-xs mb-2" style={{ fontFamily: FONT, color: "#5C77A0", letterSpacing: "0.05em" }}>
       INCLUDES · {stack.peptides.map((p) => p.toUpperCase()).join(" + ")}
     </p>
   );
@@ -487,10 +487,10 @@ function StackContents({ slug }: { slug: string }) {
 function SummaryRow({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
   return (
     <div className="flex items-baseline justify-between py-1.5">
-      <span className="text-sm" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
+      <span className="text-sm" style={{ fontFamily: FONT, color: "#4A6690" }}>
         {label}
       </span>
-      <span className="text-sm" style={{ fontFamily: FONT, color: accent ? "#8B5A2B" : "#1C1815" }}>
+      <span className="text-sm" style={{ fontFamily: FONT, color: accent ? "#1F5FD0" : "#0E2447" }}>
         {value}
       </span>
     </div>
@@ -503,20 +503,20 @@ function EmptyCart() {
       className="py-20 text-center max-w-md mx-auto"
       style={{ border: "1px solid var(--nx-border)", background: "#fff", borderRadius: 20 }}
     >
-      <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "#8B5A2B" }}>
+      <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "#1F5FD0" }}>
         <ShoppingBag size={32} strokeWidth={1.25} />
       </div>
-      <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}>
+      <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}>
         Your protocol is empty
       </h2>
-      <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
+      <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}>
         Start with a curated stack, browse single peptides, or take the assessment for a custom physician-built protocol.
       </p>
       <div className="flex flex-col gap-2 max-w-[240px] mx-auto">
         <Link asChild href="/stacks">
           <a
             className="block w-full px-5 py-3 transition-all text-center"
-            style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.875rem", fontWeight: 500, borderRadius: 12 }}
+            style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: FONT, fontSize: "0.875rem", fontWeight: 500, borderRadius: 12 }}
             data-testid="link-empty-browse-stacks"
           >
             Browse curated stacks
@@ -525,7 +525,7 @@ function EmptyCart() {
         <Link asChild href="/assessment">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "#1C1815", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+            style={{ color: "#0E2447", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
             data-testid="link-empty-take-assessment"
           >
             Take the assessment
@@ -534,7 +534,7 @@ function EmptyCart() {
         <Link asChild href="/peptides">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "#6B6B6B", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+            style={{ color: "#5C77A0", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
             data-testid="link-empty-browse-peptides"
           >
             Browse single peptides

@@ -120,7 +120,7 @@ export default function Journal() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1.05fr 0.95fr",
-                  backgroundColor: "#FFFFF3",
+                  backgroundColor: "#FBFDFF",
                   border: "1px solid var(--nx-border)",
                   borderRadius: 20,
                   overflow: "hidden",
@@ -143,8 +143,8 @@ export default function Journal() {
                       top: 20,
                       left: 20,
                       padding: "7px 14px",
-                      backgroundColor: "rgba(28,24,21,0.92)",
-                      color: "#FFFFF3",
+                      backgroundColor: "rgba(21, 24, 28,0.92)",
+                      color: "#FBFDFF",
                       fontFamily: FONT,
                       fontSize: 11,
                       fontWeight: 500,
@@ -373,7 +373,7 @@ export default function Journal() {
                   fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)",
                   lineHeight: 1.05,
                   letterSpacing: "-0.03em",
-                  color: "#FFFFF3",
+                  color: "#FBFDFF",
                   marginBottom: 16,
                 }}
               >
@@ -384,7 +384,7 @@ export default function Journal() {
                   fontFamily: FONT,
                   fontSize: 16,
                   lineHeight: 1.6,
-                  color: "rgba(255,255,243,0.72)",
+                  color: "rgba(243, 248, 255,0.72)",
                   maxWidth: 480,
                 }}
               >
@@ -402,7 +402,7 @@ export default function Journal() {
                   justifyContent: "center",
                   gap: 8,
                   backgroundColor: "var(--nx-acid)",
-                  color: "#1C1815",
+                  color: "#0E2447",
                   fontFamily: FONT,
                   fontSize: 13,
                   fontWeight: 600,
@@ -420,7 +420,7 @@ export default function Journal() {
                   fontFamily: FONT,
                   fontSize: 11,
                   letterSpacing: "0.06em",
-                  color: "rgba(255,255,243,0.5)",
+                  color: "rgba(243, 248, 255,0.5)",
                   textAlign: "center",
                 }}
               >
@@ -476,7 +476,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
         borderRadius: 999,
         border: `1px solid ${isActive ? "var(--nx-fg)" : "var(--nx-border)"}`,
         backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
-        color: isActive ? "#FFFFF3" : "var(--nx-fg)",
+        color: isActive ? "#FBFDFF" : "var(--nx-fg)",
         fontFamily: FONT,
         fontSize: 12,
         fontWeight: 500,
@@ -516,7 +516,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
           transition={{ delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
           whileHover={{ y: -4 }}
           style={{
-            backgroundColor: "#FFFFF3",
+            backgroundColor: "#FBFDFF",
             border: "1px solid var(--nx-border)",
             borderRadius: 16,
             overflow: "hidden",

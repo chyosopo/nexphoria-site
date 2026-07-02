@@ -2,12 +2,12 @@
  * MolecularGlyph — hand-drawn, monoline line-art suggestive of molecular
  * structure. NOT chemically accurate; each glyph is a distinct, recognizable
  * silhouette per peptide family. Strokes use currentColor; key functional
- * groups are accented in acid green (#F3C87A). Respects the brand palette only.
+ * groups are accented in acid green (#8FC6FF). Respects the brand palette only.
  *
  * One <svg> per glyph id (matches Peptide.glyph). 200x200 viewBox.
  */
 
-const ACID = "#F3C87A";
+const ACID = "#8FC6FF";
 
 type GlyphId =
   | "chain"

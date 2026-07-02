@@ -115,7 +115,7 @@ export function CartDrawer() {
         className={`fixed inset-0 z-[100] transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
-        style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(3px)" }}
+        style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(3px)" }}
         onClick={close}
         aria-hidden={!isOpen}
         data-testid="cart-overlay"
@@ -129,7 +129,7 @@ export function CartDrawer() {
         style={{
           background: "var(--nx-bg)",
           borderLeft: "1px solid var(--nx-border)",
-          boxShadow: "-24px 0 60px rgba(28,24,21,0.18)",
+          boxShadow: "-24px 0 60px rgba(21, 24, 28,0.18)",
         }}
         role="dialog"
         aria-label="Shopping cart"
@@ -146,13 +146,13 @@ export function CartDrawer() {
             <div>
               <div
                 className="text-[10px] uppercase tracking-[0.22em] mb-1"
-                style={{ fontFamily: FONT, color: "#8B5A2B", fontWeight: 500 }}
+                style={{ fontFamily: FONT, color: "#1F5FD0", fontWeight: 500 }}
               >
                 Your Protocol
               </div>
               <h2
                 className="text-[1.35rem] leading-tight"
-                style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
+                style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.01em" }}
               >
                 {itemCount === 0 ? "Cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"} · pending physician review`}
               </h2>
@@ -162,7 +162,7 @@ export function CartDrawer() {
               className="p-2 -m-2 rounded-full transition-colors hover:bg-black/5"
               aria-label="Close cart"
               data-testid="button-close-cart"
-              style={{ color: "#1C1815" }}
+              style={{ color: "#0E2447" }}
             >
               <X size={20} />
             </button>
@@ -174,9 +174,9 @@ export function CartDrawer() {
               className="flex items-center gap-2.5 px-6 py-3"
               style={{ background: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
             >
-              <Stethoscope size={14} style={{ color: "#8B5A2B", flexShrink: 0 }} />
-              <p className="text-[11px]" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.45 }}>
-                <strong style={{ color: "#1C1815", fontWeight: 600 }}>No charge today.</strong>{" "}
+              <Stethoscope size={14} style={{ color: "#1F5FD0", flexShrink: 0 }} />
+              <p className="text-[11px]" style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.45 }}>
+                <strong style={{ color: "#0E2447", fontWeight: 600 }}>No charge today.</strong>{" "}
                 Card is held — physician reviews then bills through Bask Health.
               </p>
             </div>
@@ -211,8 +211,8 @@ export function CartDrawer() {
                                 className="text-[9px] uppercase tracking-[0.2em] px-1.5 py-0.5"
                                 style={{
                                   fontFamily: FONT,
-                                  background: line.type === "stack" ? "#1C1815" : "var(--nx-bg-cream)",
-                                  color: line.type === "stack" ? "#FAF7F0" : "#8B5A2B",
+                                  background: line.type === "stack" ? "#0E2447" : "var(--nx-bg-cream)",
+                                  color: line.type === "stack" ? "#F2F7FD" : "#1F5FD0",
                                   border: line.type === "stack" ? "none" : "1px solid var(--nx-border)",
                                   fontWeight: 600,
                                   borderRadius: 3,
@@ -226,8 +226,8 @@ export function CartDrawer() {
                                   style={{
                                     fontFamily: FONT,
                                     background: "transparent",
-                                    color: "#8B5A2B",
-                                    border: "1px solid #E8D9C4",
+                                    color: "#1F5FD0",
+                                    border: "1px solid #C4D4E8",
                                     fontWeight: 600,
                                     borderRadius: 3,
                                   }}
@@ -238,14 +238,14 @@ export function CartDrawer() {
                             </div>
                             <div
                               className="text-base leading-tight mb-1"
-                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
+                              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.01em" }}
                             >
                               {line.name}
                             </div>
                             {spec ? (
                               <div
                                 className="text-[11px]"
-                                style={{ fontFamily: MONO, color: "#6B6B6B", letterSpacing: "0.02em" }}
+                                style={{ fontFamily: MONO, color: "#5C77A0", letterSpacing: "0.02em" }}
                               >
                                 {spec.vialSpec}
                               </div>
@@ -255,13 +255,13 @@ export function CartDrawer() {
                           <div className="text-right flex-shrink-0">
                             <div
                               className="text-base leading-none"
-                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 700 }}
+                              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 700 }}
                             >
                               {formatUSD(line.lineTotal)}
                             </div>
                             <div
                               className="text-[10px] mt-1"
-                              style={{ fontFamily: FONT, color: "#6B6B6B", letterSpacing: "0.05em" }}
+                              style={{ fontFamily: FONT, color: "#5C77A0", letterSpacing: "0.05em" }}
                             >
                               {formatUSD(line.unitPrice)}/mo
                             </div>
@@ -274,9 +274,9 @@ export function CartDrawer() {
                             className="text-[11px] mb-3 inline-flex items-center gap-1 px-2 py-0.5"
                             style={{
                               fontFamily: FONT,
-                              color: "#8B5A2B",
+                              color: "#1F5FD0",
                               background: "var(--nx-bg-cream)",
-                              border: "1px solid #E8D9C4",
+                              border: "1px solid #C4D4E8",
                               borderRadius: 3,
                               letterSpacing: "0.04em",
                               fontWeight: 500,
@@ -290,7 +290,7 @@ export function CartDrawer() {
                         <div className="mt-3">
                           <div
                             className="text-[9px] uppercase tracking-[0.18em] mb-1.5"
-                            style={{ fontFamily: FONT, color: "#8A8A8A", fontWeight: 600 }}
+                            style={{ fontFamily: FONT, color: "#7C90A6", fontWeight: 600 }}
                           >
                             Billing cadence
                           </div>
@@ -313,8 +313,8 @@ export function CartDrawer() {
                                   className="px-2 py-2 text-[10px] uppercase tracking-[0.1em] transition-colors"
                                   style={{
                                     fontFamily: FONT,
-                                    background: active ? "#1C1815" : "transparent",
-                                    color: active ? "#FAF7F0" : "#1C1815",
+                                    background: active ? "#0E2447" : "transparent",
+                                    color: active ? "#F2F7FD" : "#0E2447",
                                     fontWeight: active ? 600 : 500,
                                   }}
                                   data-testid={`button-cadence-${c}-${line.type}-${line.slug}`}
@@ -323,14 +323,14 @@ export function CartDrawer() {
                                   {meta.savePct > 0 ? (
                                     <span
                                       className="block text-[8px] mt-0.5"
-                                      style={{ color: active ? "#F5D9A8" : "#8B5A2B", opacity: 1, fontWeight: 600 }}
+                                      style={{ color: active ? "#A8CBF5" : "#1F5FD0", opacity: 1, fontWeight: 600 }}
                                     >
                                       SAVE {meta.savePct}%
                                     </span>
                                   ) : (
                                     <span
                                       className="block text-[8px] mt-0.5"
-                                      style={{ opacity: 0.6, color: active ? "#F5D9A8" : "#8A8A8A" }}
+                                      style={{ opacity: 0.6, color: active ? "#A8CBF5" : "#7C90A6" }}
                                     >
                                       Flex
                                     </span>
@@ -352,13 +352,13 @@ export function CartDrawer() {
                               className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
                               aria-label="Decrease quantity"
                               data-testid={`button-qty-decrease-${line.type}-${line.slug}`}
-                              style={{ color: "#1C1815" }}
+                              style={{ color: "#0E2447" }}
                             >
                               <Minus size={12} />
                             </button>
                             <span
                               className="px-3 text-sm min-w-[28px] text-center"
-                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}
+                              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}
                               data-testid={`text-qty-${line.type}-${line.slug}`}
                             >
                               {line.qty}
@@ -368,7 +368,7 @@ export function CartDrawer() {
                               className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
                               aria-label="Increase quantity"
                               data-testid={`button-qty-increase-${line.type}-${line.slug}`}
-                              style={{ color: "#1C1815" }}
+                              style={{ color: "#0E2447" }}
                             >
                               <Plus size={12} />
                             </button>
@@ -378,7 +378,7 @@ export function CartDrawer() {
                             className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.14em] px-2 py-1.5 rounded-md transition-colors hover:bg-black/5"
                             aria-label={`Remove ${line.name}`}
                             data-testid={`button-remove-${line.type}-${line.slug}`}
-                            style={{ color: "#8B5A2B", fontFamily: FONT, fontWeight: 500 }}
+                            style={{ color: "#1F5FD0", fontFamily: FONT, fontWeight: 500 }}
                           >
                             <Trash2 size={11} /> Remove
                           </button>
@@ -394,15 +394,15 @@ export function CartDrawer() {
                     className="mt-6 p-4"
                     style={{
                       background: "var(--nx-bg-cream)",
-                      border: "1px dashed #D4B98F",
+                      border: "1px dashed #8FAED4",
                       borderRadius: 14,
                     }}
                   >
                     <div className="flex items-center gap-2 mb-3">
-                      <Beaker size={13} style={{ color: "#8B5A2B" }} />
+                      <Beaker size={13} style={{ color: "#1F5FD0" }} />
                       <span
                         className="text-[10px] uppercase tracking-[0.2em]"
-                        style={{ fontFamily: FONT, color: "#8B5A2B", fontWeight: 600 }}
+                        style={{ fontFamily: FONT, color: "#1F5FD0", fontWeight: 600 }}
                       >
                         Physicians often pair with
                       </span>
@@ -421,19 +421,19 @@ export function CartDrawer() {
                             <div className="flex-1 min-w-0">
                               <div
                                 className="text-sm leading-tight mb-0.5"
-                                style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}
+                                style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}
                               >
                                 {PEPTIDE_LABELS[s.slug] || s.slug}
                               </div>
                               <div
                                 className="text-[11px] leading-snug"
-                                style={{ fontFamily: FONT, color: "#6B6B6B" }}
+                                style={{ fontFamily: FONT, color: "#5C77A0" }}
                               >
                                 {s.reason}
                               </div>
                               <div
                                 className="text-[10px] mt-1"
-                                style={{ fontFamily: MONO, color: "#8B5A2B", letterSpacing: "0.02em", fontWeight: 600 }}
+                                style={{ fontFamily: MONO, color: "#1F5FD0", letterSpacing: "0.02em", fontWeight: 600 }}
                               >
                                 from {formatUSD(p.monthlyPrice)}/mo
                               </div>
@@ -444,8 +444,8 @@ export function CartDrawer() {
                               className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[10px] uppercase tracking-[0.15em] transition-all hover:opacity-90"
                               style={{
                                 fontFamily: FONT,
-                                background: "#1C1815",
-                                color: "#FAF7F0",
+                                background: "#0E2447",
+                                color: "#F2F7FD",
                                 fontWeight: 600,
                                 borderRadius: 8,
                               }}
@@ -473,13 +473,13 @@ export function CartDrawer() {
                 <div className="flex items-center justify-between mb-1.5">
                   <span
                     className="text-[11px] uppercase tracking-[0.15em]"
-                    style={{ fontFamily: FONT, color: "#8B5A2B", fontWeight: 600 }}
+                    style={{ fontFamily: FONT, color: "#1F5FD0", fontWeight: 600 }}
                   >
                     You save
                   </span>
                   <span
                     className="text-sm"
-                    style={{ fontFamily: FONT, color: "#8B5A2B", fontWeight: 600 }}
+                    style={{ fontFamily: FONT, color: "#1F5FD0", fontWeight: 600 }}
                   >
                     −{formatUSD(totalSavings)}
                   </span>
@@ -489,20 +489,20 @@ export function CartDrawer() {
                 <div>
                   <div
                     className="text-[11px] uppercase tracking-[0.12em] mb-0.5"
-                    style={{ fontFamily: FONT, color: "#6B6B6B", fontWeight: 500 }}
+                    style={{ fontFamily: FONT, color: "#5C77A0", fontWeight: 500 }}
                   >
                     Subtotal
                   </div>
                   <div
                     className="text-[10px]"
-                    style={{ fontFamily: FONT, color: "#8A8A8A" }}
+                    style={{ fontFamily: FONT, color: "#7C90A6" }}
                   >
                     Billed monthly · physician oversight included
                   </div>
                 </div>
                 <span
                   className="text-[1.75rem] leading-none"
-                  style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 700, letterSpacing: "-0.02em" }}
+                  style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 700, letterSpacing: "-0.02em" }}
                   data-testid="text-cart-subtotal"
                 >
                   {formatUSD(subtotal)}
@@ -522,15 +522,15 @@ export function CartDrawer() {
                     style={{
                       fontFamily: FONT,
                       background: "var(--nx-bg-cream)",
-                      color: "#1C1815",
+                      color: "#0E2447",
                       border: "1px solid var(--nx-border)",
                       borderRadius: 4,
                       fontWeight: 600,
                     }}
                   >
-                    <Check size={9} strokeWidth={3} style={{ color: "#8B5A2B" }} />
+                    <Check size={9} strokeWidth={3} style={{ color: "#1F5FD0" }} />
                     <span>{b.label}</span>
-                    <span style={{ color: "#8A8A8A", fontWeight: 500 }}>· {b.detail}</span>
+                    <span style={{ color: "#7C90A6", fontWeight: 500 }}>· {b.detail}</span>
                   </span>
                 ))}
               </div>
@@ -541,14 +541,14 @@ export function CartDrawer() {
                 onClick={close}
                 className="block w-full text-center px-6 py-4 transition-all no-underline hover:opacity-95"
                 style={{
-                  background: "#1C1815",
-                  color: "#FAF7F0",
+                  background: "#0E2447",
+                  color: "#F2F7FD",
                   fontFamily: FONT,
                   fontWeight: 600,
                   fontSize: "0.9375rem",
                   letterSpacing: "0.02em",
                   borderRadius: 12,
-                  boxShadow: "0 2px 8px rgba(28,24,21,0.15)",
+                  boxShadow: "0 2px 8px rgba(21, 24, 28,0.15)",
                 }}
                 data-testid="button-checkout"
               >
@@ -570,7 +570,7 @@ export function CartDrawer() {
                 onClick={close}
                 className="block w-full text-center px-6 py-2 mt-3 text-[11px] uppercase tracking-[0.14em] transition-colors no-underline hover:underline"
                 style={{
-                  color: "#6B6B6B",
+                  color: "#5C77A0",
                   fontFamily: FONT,
                   fontWeight: 500,
                 }}
@@ -589,10 +589,10 @@ export function CartDrawer() {
 function TrustMini({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex flex-col items-center text-center gap-1">
-      <span style={{ color: "#8B5A2B" }}>{icon}</span>
+      <span style={{ color: "#1F5FD0" }}>{icon}</span>
       <span
         className="text-[9px] uppercase tracking-[0.1em] leading-tight"
-        style={{ fontFamily: FONT, color: "#4A4A4A", fontWeight: 600 }}
+        style={{ fontFamily: FONT, color: "#4A6690", fontWeight: 600 }}
       >
         {label}
       </span>
@@ -605,19 +605,19 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <div
         className="mb-5 p-5 rounded-full"
-        style={{ background: "var(--nx-bg-cream)", color: "#8B5A2B" }}
+        style={{ background: "var(--nx-bg-cream)", color: "#1F5FD0" }}
       >
         <ShoppingBag size={32} strokeWidth={1.25} />
       </div>
       <h3
         className="text-lg mb-2"
-        style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
+        style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.01em" }}
       >
         Your protocol is empty
       </h3>
       <p
         className="text-sm mb-6 max-w-xs"
-        style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.55 }}
+        style={{ fontFamily: FONT, color: "#5C77A0", lineHeight: 1.55 }}
       >
         Browse single peptides, doctor-curated stacks, or take the intake to receive a custom protocol.
       </p>
@@ -627,8 +627,8 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           className="block w-full text-center px-4 py-3 transition-all no-underline"
           style={{
-            background: "#1C1815",
-            color: "#FAF7F0",
+            background: "#0E2447",
+            color: "#F2F7FD",
             fontFamily: FONT,
             fontSize: "0.8125rem",
             fontWeight: 600,
@@ -643,7 +643,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           className="block w-full text-center px-4 py-3 transition-colors hover:bg-black/5 no-underline"
           style={{
-            color: "#1C1815",
+            color: "#0E2447",
             fontFamily: FONT,
             fontSize: "0.8125rem",
             fontWeight: 500,

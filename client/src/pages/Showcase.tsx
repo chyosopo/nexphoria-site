@@ -115,8 +115,8 @@ export default function Showcase() {
                   width: 6,
                   height: 6,
                   borderRadius: 999,
-                  background: "var(--nx-acid, #F3C87A)",
-                  boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, #F3C87A) 30%, transparent)",
+                  background: "var(--nx-acid, #8FC6FF)",
+                  boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, #8FC6FF) 30%, transparent)",
                 }}
               />
               No commitment · Physician-reviewed in 24–48h
@@ -224,7 +224,7 @@ export default function Showcase() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] transition-transform"
                 style={{
                   background: "var(--nx-fg)",
-                  color: "var(--nx-bg-cream, #fffff3)",
+                  color: "var(--nx-bg-cream, #FBFDFF)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                 }}
                 data-testid="link-full-library"
@@ -297,7 +297,7 @@ export default function Showcase() {
                 <div className="mx-tile-head">
                   <span
                     className="mx-pill"
-                    style={{ background: "#F3C87A", color: "#1C1815" }}
+                    style={{ background: "#8FC6FF", color: "#0E2447" }}
                   >
                     Build a stack
                   </span>
@@ -343,7 +343,7 @@ export default function Showcase() {
                 alignItems: "flex-end",
                 justifyContent: "flex-start",
                 isolation: "isolate",
-                backgroundColor: "#1C1815",
+                backgroundColor: "#0E2447",
               }}
               data-testid="home-final-cta"
             >
@@ -371,7 +371,7 @@ export default function Showcase() {
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(90deg, rgba(28,24,21,0.88) 0%, rgba(28,24,21,0.62) 30%, rgba(28,24,21,0.28) 55%, rgba(28,24,21,0.0) 90%), linear-gradient(180deg, rgba(28,24,21,0.10) 0%, rgba(28,24,21,0.10) 55%, rgba(28,24,21,0.68) 100%)",
+                    "linear-gradient(90deg, rgba(21, 24, 28,0.88) 0%, rgba(21, 24, 28,0.62) 30%, rgba(21, 24, 28,0.28) 55%, rgba(21, 24, 28,0.0) 90%), linear-gradient(180deg, rgba(21, 24, 28,0.10) 0%, rgba(21, 24, 28,0.10) 55%, rgba(21, 24, 28,0.68) 100%)",
                   zIndex: 1,
                 }}
               />
@@ -406,7 +406,7 @@ export default function Showcase() {
                     fontWeight: 500,
                     letterSpacing: "0.24em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,243,0.7)",
+                    color: "rgba(243, 248, 255,0.7)",
                     marginBottom: 20,
                     display: "flex",
                     alignItems: "center",
@@ -420,8 +420,8 @@ export default function Showcase() {
                       width: 6,
                       height: 6,
                       borderRadius: 999,
-                      background: "var(--nx-acid, #F3C87A)",
-                      boxShadow: "0 0 0 3px rgba(243,200,122,0.28)",
+                      background: "var(--nx-acid, #8FC6FF)",
+                      boxShadow: "0 0 0 3px rgba(122, 176, 243,0.28)",
                     }}
                   />
                   Your protocol · begins here
@@ -434,9 +434,9 @@ export default function Showcase() {
                     fontSize: "clamp(32px, 4.4vw, 56px)",
                     lineHeight: 1.02,
                     letterSpacing: "-0.015em",
-                    color: "#fffff3",
+                    color: "#FBFDFF",
                     marginBottom: 22,
-                    textShadow: "0 2px 24px rgba(28,24,21,0.5)",
+                    textShadow: "0 2px 24px rgba(21, 24, 28,0.5)",
                   }}
                 >
                   Ready when<br />you are.
@@ -445,11 +445,11 @@ export default function Showcase() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: 15,
-                    color: "rgba(255,255,243,0.85)",
+                    color: "rgba(243, 248, 255,0.85)",
                     maxWidth: 440,
                     marginBottom: 32,
                     lineHeight: 1.55,
-                    textShadow: "0 1px 12px rgba(28,24,21,0.4)",
+                    textShadow: "0 1px 12px rgba(21, 24, 28,0.4)",
                   }}
                 >
                   Take the 5-minute assessment. No card needed. We&rsquo;ll match you to a doctor-designed protocol or build one with you from the library.
@@ -470,7 +470,7 @@ export default function Showcase() {
                     fontSize: 9,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,243,0.55)",
+                    color: "rgba(243, 248, 255,0.55)",
                   }}
                 >
                   Physician-reviewed · 24–48h response

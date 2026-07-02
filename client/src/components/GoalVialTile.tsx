@@ -58,22 +58,22 @@ export function GoalVialTile({
   // Tint helpers — pull the tone palette from VialArt so tile + vial share a hue.
   // We keep VialArt as the source of truth; local defaults just mirror the visible cream/ink used inside VialArt so the surface reads as tinted at low density.
   const tintBg: Record<Tone, string> = {
-    cream:   "#F8F4E8",
-    sage:    "#EBF2E5",
-    rose:    "#F6E4E1",
+    cream:   "#E8EFF8",
+    sage:    "#E5EFF2",
+    rose:    "#E1E9F6",
     sky:     "#DDE9F0",
     dusk:    "#E4E1EC",
-    butter:  "#F8EED2",
+    butter:  "#D2E3F8",
     cobalt:  "#D9E2F2",
     mineral: "#E4E9EC",
   };
   const tintInk: Record<Tone, string> = {
-    cream:   "#3E2A18",
-    sage:    "#2E4432",
-    rose:    "#5C2A2C",
+    cream:   "#18293E",
+    sage:    "#2E3E44",
+    rose:    "#2A3C5C",
     sky:     "#1F3B52",
     dusk:    "#3A2F4E",
-    butter:  "#4A3A16",
+    butter:  "#162D4A",
     cobalt:  "#1E2A55",
     mineral: "#2A3841",
   };
@@ -146,7 +146,7 @@ export function GoalVialTile({
         textAlign: "left",
         transition: "border-color 0.18s ease, transform 0.25s ease, box-shadow 0.25s ease",
         transform: hovered && !selected ? "translateY(-2px)" : "translateY(0)",
-        boxShadow: hovered && !selected ? "0 8px 24px rgba(28,24,21, 0.08)" : "none",
+        boxShadow: hovered && !selected ? "0 8px 24px rgba(21, 24, 28, 0.08)" : "none",
         overflow: "hidden",
         minHeight: "168px",
       }}

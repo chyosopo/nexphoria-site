@@ -89,7 +89,7 @@ export function ExitIntentModal() {
               position: "fixed",
               inset: 0,
               zIndex: 200,
-              backgroundColor: "rgba(28,24,21,0.55)",
+              backgroundColor: "rgba(21, 24, 28,0.55)",
               backdropFilter: "blur(4px)",
             }}
             data-testid="exit-intent-backdrop"
@@ -110,9 +110,9 @@ export function ExitIntentModal() {
               transform: "translate(-50%, -50%)",
               zIndex: 201,
               width: "min(460px, calc(100vw - 32px))",
-              backgroundColor: "var(--nx-bg-cream, #FFFFF3)",
+              backgroundColor: "var(--nx-bg-cream, #FBFDFF)",
               borderRadius: "6px",
-              boxShadow: "0 40px 80px -20px rgba(28,24,21,0.35)",
+              boxShadow: "0 40px 80px -20px rgba(21, 24, 28,0.35)",
               padding: "36px 32px 28px",
               border: "1px solid var(--nx-border)",
             }}
@@ -187,8 +187,8 @@ export function ExitIntentModal() {
                 style={{
                   padding: "14px 16px",
                   borderRadius: 4,
-                  backgroundColor: "rgba(243,200,122, 0.18)",
-                  border: "1px solid var(--nx-acid, #F3C87A)",
+                  backgroundColor: "rgba(122, 176, 243, 0.18)",
+                  border: "1px solid var(--nx-acid, #8FC6FF)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "0.9375rem",
                   color: "var(--nx-fg)",
@@ -216,7 +216,7 @@ export function ExitIntentModal() {
                       flex: 1,
                       padding: "0.75rem 1rem",
                       borderRadius: 4,
-                      border: state === "err" ? "1px solid #c0392b" : "1px solid var(--nx-border)",
+                      border: state === "err" ? "1px solid #2B62C0" : "1px solid var(--nx-border)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "0.9375rem",
                       backgroundColor: "#FFFFFF",
@@ -235,7 +235,7 @@ export function ExitIntentModal() {
                       borderRadius: 4,
                       border: "none",
                       backgroundColor: "var(--nx-fg)",
-                      color: "var(--nx-bg-cream, #FFFFF3)",
+                      color: "var(--nx-bg-cream, #FBFDFF)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 11,
                       fontWeight: 600,
@@ -254,7 +254,7 @@ export function ExitIntentModal() {
                       marginTop: 8,
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 12,
-                      color: "#c0392b",
+                      color: "#2B62C0",
                     }}
                   >
                     Please enter a valid email.

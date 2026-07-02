@@ -243,10 +243,10 @@ export function Nav({ variant = "gate" }: NavProps) {
           <div
             className="shadow-lg"
             style={{
-              background: "#FFFEFB",
+              background: "#FDFEFF",
               borderTop: "1px solid var(--nx-border)",
               borderBottom: "1px solid var(--nx-border)",
-              boxShadow: "0 24px 48px -24px rgba(28,24,21,0.14)",
+              boxShadow: "0 24px 48px -24px rgba(21, 24, 28,0.14)",
             }}
           >
             <div className="nx-container py-8 grid grid-cols-[1.6fr_1fr] gap-10">
@@ -352,13 +352,13 @@ export function Nav({ variant = "gate" }: NavProps) {
                         Physician-directed · if prescribed
                       </span>
                     </span>
-                    <ArrowRight size={16} strokeWidth={2} style={{ color: "#7A4E12" }} aria-hidden="true" />
+                    <ArrowRight size={16} strokeWidth={2} style={{ color: "#163E8C" }} aria-hidden="true" />
                   </span>
                 </Link>
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-1.5 no-underline mb-5"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#7A4E12" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "#163E8C" }}
                   onClick={() => setMegaOpen(false)}
                   data-testid="mega-education-link"
                 >

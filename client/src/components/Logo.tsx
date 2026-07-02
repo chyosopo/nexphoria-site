@@ -29,13 +29,13 @@ export function Logo({
   markSize = 28,
 }: LogoProps) {
   const ink =
-    variant === "light" ? "#FFFFFF" : variant === "green" ? "#F3C87A" : "#1C1815";
+    variant === "light" ? "#FFFFFF" : variant === "green" ? "#8FC6FF" : "#0E2447";
   const sub =
     variant === "light"
       ? "rgba(255,255,255,0.7)"
       : variant === "green"
-      ? "rgba(243,200,122,0.75)"
-      : "rgba(28,24,21,0.65)";
+      ? "rgba(122, 176, 243,0.75)"
+      : "rgba(21, 24, 28,0.65)";
 
   return (
     <Link

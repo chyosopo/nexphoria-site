@@ -76,7 +76,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
         {/* Eyebrow */}
         <div
           className="text-[11px] uppercase tracking-[0.24em] mb-3"
-          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
+          style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#1F5FD0" }}
         >
           The Pharmacy · Three ways to start
         </div>
@@ -85,13 +85,13 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2
             className="text-4xl md:text-5xl leading-[1.05]"
-            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#1C1815", fontWeight: 500 }}
+            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0E2447", fontWeight: 500 }}
           >
             Choose the compounds. <span style={{  }}>Or let us choose for you.</span>
           </h2>
           <p
             className="mt-5 text-base md:text-lg max-w-2xl"
-            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
+            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A6690", lineHeight: 1.65 }}
           >
             Nexphoria is a peptide pharmacy. We don't lock you into a single bundle — pick à la carte,
             grab a physician-curated stack, or have your doctor build something custom.
@@ -116,7 +116,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
               >
                 <div
                   className="text-[10px] uppercase tracking-[0.22em] mb-5"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#8B5A2B" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#1F5FD0" }}
                 >
                   {t.eyebrow}
                 </div>
@@ -125,7 +125,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
                   className="text-[3.5rem] leading-[0.9] mb-6"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    color: "#1C1815",
+                    color: "#0E2447",
                     fontWeight: 500,
                   }}
                 >
@@ -135,7 +135,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
                     style={{
                       
                       fontWeight: 400,
-                      color: "#4A4A4A",
+                      color: "#4A6690",
                     }}
                   >
                     {t.italic}
@@ -144,14 +144,14 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
 
                 <p
                   className="text-sm mb-6 flex-1"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A4A4A", lineHeight: 1.65 }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#4A6690", lineHeight: 1.65 }}
                 >
                   {t.body}
                 </p>
 
                 <div
                   className="text-[10px] uppercase tracking-[0.18em] mb-4"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#6B6B6B" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#5C77A0" }}
                 >
                   {t.meta}
                 </div>
@@ -160,7 +160,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
                   className="inline-flex items-center gap-1.5 text-sm transition-colors group-hover:gap-2.5"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    color: "#1C1815",
+                    color: "#0E2447",
                     fontWeight: 500,
                     borderTop: "1px solid var(--nx-border)",
                     paddingTop: "1.25rem",

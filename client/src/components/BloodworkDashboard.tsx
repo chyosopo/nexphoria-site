@@ -137,7 +137,7 @@ export function BloodworkDashboard() {
         backgroundColor: "var(--nx-bg-cream)",
         border: "1px solid var(--nx-fg)",
         borderRadius: "2px",
-        boxShadow: "0 1px 3px rgba(28,24,21,0.08)",
+        boxShadow: "0 1px 3px rgba(21, 24, 28,0.08)",
         maxWidth: "860px",
         minWidth: "560px",
         width: "100%",
@@ -147,7 +147,7 @@ export function BloodworkDashboard() {
       {/* ── Header bar ──────────────────────────────────── */}
       <div
         style={{
-          backgroundColor: "#E6E0D4",
+          backgroundColor: "#D4DCE6",
           borderBottom: "1px solid var(--nx-fg)",
           padding: "10px 20px",
           display: "flex",
@@ -212,7 +212,7 @@ export function BloodworkDashboard() {
           gridTemplateColumns: "1fr 110px 130px 64px",
           padding: "7px 20px",
           borderBottom: "1px solid var(--nx-border)",
-          backgroundColor: "#EAE4D8",
+          backgroundColor: "#D8E0EA",
         }}
       >
         {["BIOMARKER", "VALUE", "REF RANGE", "TREND"].map((col) => (
@@ -248,7 +248,7 @@ export function BloodworkDashboard() {
                 padding: hasAnnotation ? "10px 20px 6px" : "9px 20px",
                 borderBottom: i < biomarkers.length - 1 ? "1px solid var(--nx-border)" : "none",
                 alignItems: "start",
-                backgroundColor: i % 2 === 0 ? "var(--nx-bg-cream)" : "rgba(240,235,224,0.4)",
+                backgroundColor: i % 2 === 0 ? "var(--nx-bg-cream)" : "rgba(224, 231, 240,0.4)",
               }}
             >
               {/* Biomarker name */}
@@ -263,7 +263,7 @@ export function BloodworkDashboard() {
                     color: "var(--nx-fg)",
                     display: "block",
                     paddingBottom: hasAnnotation ? "4px" : "0",
-                    borderBottom: hasAnnotation ? `1px solid #8B5A2B` : "none",
+                    borderBottom: hasAnnotation ? `1px solid #1F5FD0` : "none",
                     marginBottom: hasAnnotation ? "4px" : "0",
                   }}
                 >
@@ -275,7 +275,7 @@ export function BloodworkDashboard() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "8.5px",
                       letterSpacing: "0.06em",
-                      color: "#8B5A2B",
+                      color: "#1F5FD0",
                       display: "block",
                     }}
                   >
@@ -330,7 +330,7 @@ export function BloodworkDashboard() {
         style={{
           borderTop: "1px solid var(--nx-border)",
           padding: "10px 20px",
-          backgroundColor: "#E6E0D4",
+          backgroundColor: "#D4DCE6",
         }}
       >
         <span

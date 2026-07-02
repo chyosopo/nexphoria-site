@@ -17,44 +17,44 @@ export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";
 
 const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: string; border: string; hover: string }> = {
   dark: {
-    bg: "#1C1815",
-    fg: "#FAF7F0",
-    eyebrow: "#DE9A3C",
-    sub: "rgba(250,247,240,0.62)",
-    border: "rgba(226,138,61,0.22)",
+    bg: "#0E2447",
+    fg: "#F2F7FD",
+    eyebrow: "#2E7BF0",
+    sub: "rgba(240, 244, 250,0.62)",
+    border: "rgba(61, 135, 226,0.22)",
     hover: "#141311",
   },
   cream: {
     bg: "var(--nx-bg-cream)",
-    fg: "#1C1815",
-    eyebrow: "#8B5A2B",
-    sub: "#4A4A4A",
+    fg: "#0E2447",
+    eyebrow: "#1F5FD0",
+    sub: "#4A6690",
     border: "var(--nx-border)",
-    hover: "#F0E9D8",
+    hover: "#D8E3F0",
   },
   white: {
     bg: "#fff",
-    fg: "#1C1815",
-    eyebrow: "#8B5A2B",
-    sub: "#4A4A4A",
+    fg: "#0E2447",
+    eyebrow: "#1F5FD0",
+    sub: "#4A6690",
     border: "var(--nx-border)",
-    hover: "#FBF5EA",
+    hover: "#EAF2FB",
   },
   cobalt: {
-    bg: "linear-gradient(160deg, #241A12 0%, #2E2418 65%, #3A2C1C 100%)",
-    fg: "#F5F0E4",
+    bg: "linear-gradient(160deg, #0C224A 0%, #18222E 65%, #1C293A 100%)",
+    fg: "#EDF4FB",
     eyebrow: "#5591C7",
-    sub: "rgba(245,240,228,0.68)",
+    sub: "rgba(228, 236, 245,0.68)",
     border: "rgba(85,145,199,0.28)",
     hover: "#0F1D3A",
   },
   ember: {
-    bg: "linear-gradient(180deg, #141311 0%, #1A1815 100%)",
-    fg: "#F5F0E4",
-    eyebrow: "#DE9A3C",
-    sub: "rgba(245,240,228,0.62)",
-    border: "rgba(226,138,61,0.28)",
-    hover: "#1E1B18",
+    bg: "linear-gradient(180deg, #141311 0%, #0C2040 100%)",
+    fg: "#EDF4FB",
+    eyebrow: "#2E7BF0",
+    sub: "rgba(228, 236, 245,0.62)",
+    border: "rgba(61, 135, 226,0.28)",
+    hover: "#181B1E",
   },
 };
 
@@ -107,7 +107,7 @@ export function BenefitTile({
     <div
       className="benefit-tile group relative flex flex-col h-full w-full p-5 md:p-6 overflow-hidden transition-all duration-300"
       style={{
-        background: hasImage ? "#1C1815" : t.bg,
+        background: hasImage ? "#0E2447" : t.bg,
         color: t.fg,
         border: `1px solid ${t.border}`,
         borderRadius: 10,
@@ -131,7 +131,7 @@ export function BenefitTile({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(28,24,21,0.05) 0%, rgba(28,24,21,0.55) 60%, rgba(28,24,21,0.92) 100%)",
+                "linear-gradient(180deg, rgba(21, 24, 28,0.05) 0%, rgba(21, 24, 28,0.55) 60%, rgba(21, 24, 28,0.92) 100%)",
             }}
             aria-hidden="true"
           />
@@ -146,10 +146,10 @@ export function BenefitTile({
             style={{
               width: 32,
               height: 32,
-              background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(139,90,43,0.10)",
-              color: isDark || hasImage ? t.eyebrow : "#8B5A2B",
+              background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(43, 86, 139,0.10)",
+              color: isDark || hasImage ? t.eyebrow : "#1F5FD0",
               borderRadius: 6,
-              border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(139,90,43,0.18)"}`,
+              border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(43, 86, 139,0.18)"}`,
               flexShrink: 0,
             }}
           >
@@ -163,7 +163,7 @@ export function BenefitTile({
             className="text-[9px] uppercase"
             style={{
               fontFamily: MONO,
-              color: hasImage ? "#DE9A3C" : t.eyebrow,
+              color: hasImage ? "#2E7BF0" : t.eyebrow,
               letterSpacing: "0.18em",
               fontWeight: 600,
             }}
@@ -187,7 +187,7 @@ export function BenefitTile({
                     : "clamp(2.25rem, 4vw, 3.25rem)",
                 fontWeight: 700,
                 letterSpacing: "-0.03em",
-                color: hasImage ? "#FAF7F0" : t.fg,
+                color: hasImage ? "#F2F7FD" : t.fg,
               }}
             >
               {metric}
@@ -195,7 +195,7 @@ export function BenefitTile({
             {metricUnit ? (
               <span
                 className="text-[11px] md:text-xs uppercase tracking-[0.14em]"
-                style={{ fontFamily: MONO, color: hasImage ? "#DE9A3C" : t.eyebrow, fontWeight: 600 }}
+                style={{ fontFamily: MONO, color: hasImage ? "#2E7BF0" : t.eyebrow, fontWeight: 600 }}
               >
                 {metricUnit}
               </span>
@@ -210,7 +210,7 @@ export function BenefitTile({
             fontSize: metric ? "0.9375rem" : "clamp(1.125rem, 1.6vw, 1.375rem)",
             fontWeight: metric ? 500 : 600,
             letterSpacing: "-0.015em",
-            color: hasImage ? "#FAF7F0" : t.fg,
+            color: hasImage ? "#F2F7FD" : t.fg,
           }}
         >
           {headline}
@@ -222,7 +222,7 @@ export function BenefitTile({
             style={{
               fontFamily: FONT,
               fontSize: "0.8125rem",
-              color: hasImage ? "rgba(250,247,240,0.75)" : t.sub,
+              color: hasImage ? "rgba(240, 244, 250,0.75)" : t.sub,
               lineHeight: 1.5,
             }}
           >
@@ -241,7 +241,7 @@ export function BenefitTile({
             className="text-[10px] uppercase"
             style={{
               fontFamily: MONO,
-              color: hasImage ? "rgba(250,247,240,0.85)" : t.sub,
+              color: hasImage ? "rgba(240, 244, 250,0.85)" : t.sub,
               letterSpacing: "0.15em",
               fontWeight: 600,
             }}
@@ -250,7 +250,7 @@ export function BenefitTile({
           </span>
           <ArrowUpRight
             size={16}
-            style={{ color: hasImage ? "#DE9A3C" : t.eyebrow }}
+            style={{ color: hasImage ? "#2E7BF0" : t.eyebrow }}
             className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </div>

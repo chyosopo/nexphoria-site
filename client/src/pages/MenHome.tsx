@@ -177,8 +177,8 @@ function MenHeroDark() {
     <section
       className="relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #1C1815 0%, #101010 55%, #1A1A1A 100%)",
-        color: "#fffff3",
+        background: "linear-gradient(180deg, #0E2447 0%, #101010 55%, #1A1A1A 100%)",
+        color: "#FBFDFF",
       }}
       data-testid="men-hero-dark"
     >
@@ -187,7 +187,7 @@ function MenHeroDark() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 45% at 82% 30%, rgba(197,255,79,0.14) 0%, rgba(197,255,79,0) 60%)",
+            "radial-gradient(60% 45% at 82% 30%, rgba(79, 211, 255,0.14) 0%, rgba(79, 211, 255,0) 60%)",
         }}
       />
       <div
@@ -205,17 +205,17 @@ function MenHeroDark() {
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
               style={{
-                background: "rgba(197,255,79,0.10)",
-                border: "1px solid rgba(197,255,79,0.28)",
+                background: "rgba(79, 211, 255,0.10)",
+                border: "1px solid rgba(79, 211, 255,0.28)",
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 600,
                 fontSize: 11,
                 letterSpacing: "0.10em",
                 textTransform: "uppercase",
-                color: "#F3C87A",
+                color: "#8FC6FF",
               }}
             >
-              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#F3C87A" }} />
+              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#8FC6FF" }} />
               For him · male physiology
             </div>
 
@@ -227,10 +227,10 @@ function MenHeroDark() {
                 fontSize: "clamp(44px, 6.4vw, 88px)",
                 lineHeight: 0.96,
                 letterSpacing: "-0.03em",
-                color: "#fffff3",
+                color: "#FBFDFF",
               }}
             >
-              Peak <span style={{ color: "#F3C87A" }}>performance</span>,
+              Peak <span style={{ color: "#8FC6FF" }}>performance</span>,
               <br />
               engineered for men.
             </h1>
@@ -241,7 +241,7 @@ function MenHeroDark() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "clamp(16px, 1.15vw, 19px)",
                 lineHeight: 1.55,
-                color: "rgba(255,255,243,0.78)",
+                color: "rgba(243, 248, 255,0.78)",
               }}
             >
               Testosterone-aware peptide therapy — recovery, strength, longevity, and metabolic
@@ -259,9 +259,9 @@ function MenHeroDark() {
                   key={b}
                   className="px-3 py-1.5 rounded-full text-[12.5px]"
                   style={{
-                    background: "rgba(255,255,243,0.06)",
-                    border: "1px solid rgba(255,255,243,0.14)",
-                    color: "rgba(255,255,243,0.90)",
+                    background: "rgba(243, 248, 255,0.06)",
+                    border: "1px solid rgba(243, 248, 255,0.14)",
+                    color: "rgba(243, 248, 255,0.90)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                   }}
@@ -279,8 +279,8 @@ function MenHeroDark() {
                 href="/stacks/wolverine"
                 className="inline-flex items-center gap-2 text-[14px] font-medium"
                 style={{
-                  color: "#fffff3",
-                  borderBottom: "1px solid rgba(255,255,243,0.35)",
+                  color: "#FBFDFF",
+                  borderBottom: "1px solid rgba(243, 248, 255,0.35)",
                   paddingBottom: 2,
                   fontFamily: "'General Sans', system-ui, sans-serif",
                 }}
@@ -293,7 +293,7 @@ function MenHeroDark() {
             <div
               className="mt-8 text-[13px]"
               style={{
-                color: "rgba(255,255,243,0.55)",
+                color: "rgba(243, 248, 255,0.55)",
                 fontFamily: "'General Sans', system-ui, sans-serif",
               }}
             >
@@ -306,8 +306,8 @@ function MenHeroDark() {
               className="relative overflow-hidden rounded-[20px]"
               style={{
                 aspectRatio: "4/5",
-                border: "1px solid rgba(255,255,243,0.10)",
-                boxShadow: "0 30px 80px rgba(28,24,21,0.45)",
+                border: "1px solid rgba(243, 248, 255,0.10)",
+                boxShadow: "0 30px 80px rgba(21, 24, 28,0.45)",
               }}
             >
               <img
@@ -331,7 +331,7 @@ function MenHeroDark() {
                   background: "rgba(11,18,32,0.72)",
                   backdropFilter: "blur(12px)",
                   WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,243,0.12)",
+                  border: "1px solid rgba(243, 248, 255,0.12)",
                 }}
               >
                 <div
@@ -341,11 +341,11 @@ function MenHeroDark() {
                     fontSize: 11,
                     letterSpacing: "0.10em",
                     textTransform: "uppercase",
-                    color: "#F3C87A",
+                    color: "#8FC6FF",
                     marginBottom: 8,
                   }}
                 >
-                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#F3C87A", marginRight: 8 }} />
+                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#8FC6FF", marginRight: 8 }} />
                   Flagship · Wolverine
                 </div>
                 <div
@@ -355,7 +355,7 @@ function MenHeroDark() {
                     fontSize: "clamp(22px, 2.6vw, 30px)",
                     lineHeight: 1.06,
                     letterSpacing: "-0.02em",
-                    color: "#fffff3",
+                    color: "#FBFDFF",
                   }}
                 >
                   Repair, recover, come back stronger.
@@ -365,7 +365,7 @@ function MenHeroDark() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: 13,
-                    color: "rgba(255,255,243,0.85)",
+                    color: "rgba(243, 248, 255,0.85)",
                   }}
                 >
                   <span>BPC-157</span>
@@ -374,7 +374,7 @@ function MenHeroDark() {
                   <span style={{ opacity: 0.4 }}>·</span>
                   <span>Ipamorelin</span>
                   <span style={{ opacity: 0.4 }}>·</span>
-                  <span style={{ color: "#F3C87A", fontWeight: 600 }}>From $189/mo</span>
+                  <span style={{ color: "#8FC6FF", fontWeight: 600 }}>From $189/mo</span>
                 </div>
               </div>
             </div>
@@ -411,7 +411,7 @@ function EditorialBannerMen() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundColor: "rgba(28,24,21,0.50)",
+          backgroundColor: "rgba(21, 24, 28,0.50)",
         }}
       />
       <div
@@ -430,7 +430,7 @@ function EditorialBannerMen() {
             
             fontWeight: 400,
             fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
-            color: "#FAF7F0",
+            color: "#F2F7FD",
             lineHeight: 1.35,
             letterSpacing: "-0.01em",
             textAlign: "center",
@@ -451,7 +451,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
         style={{
           width: "40px",
           height: "1px",
-          backgroundColor: light ? "rgba(250,247,240,0.35)" : "var(--nx-cobalt)",
+          backgroundColor: light ? "rgba(240, 244, 250,0.35)" : "var(--nx-cobalt)",
           flexShrink: 0,
         }}
       />
@@ -462,7 +462,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
           fontWeight: 500,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: light ? "rgba(250,247,240,0.6)" : "var(--nx-cobalt)",
+          color: light ? "rgba(240, 244, 250,0.6)" : "var(--nx-cobalt)",
         }}
       >
         {children}
@@ -652,7 +652,7 @@ function HeroSection_REMOVED({
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to right, rgba(250,247,240,0.35) 0%, rgba(28,24,21,0) 25%)",
+              background: "linear-gradient(to right, rgba(240, 244, 250,0.35) 0%, rgba(21, 24, 28,0) 25%)",
             }}
           />
         </div>
@@ -720,7 +720,7 @@ function FlagshipCards() {
                     overflow: "hidden",
                     borderRadius: "16px",
                     height: "600px",
-                    backgroundColor: "#1C1815",
+                    backgroundColor: "#0E2447",
                     cursor: "pointer",
                   }}
                 >
@@ -757,7 +757,7 @@ function FlagshipCards() {
                       position: "absolute",
                       inset: 0,
                       background:
-                        "linear-gradient(to top, rgba(28,24,21,0.88) 0%, rgba(28,24,21,0.42) 48%, rgba(28,24,21,0) 72%)",
+                        "linear-gradient(to top, rgba(21, 24, 28,0.88) 0%, rgba(21, 24, 28,0.42) 48%, rgba(21, 24, 28,0) 72%)",
                     }}
                   />
                   {/* Label slides up 4px on hover (Maximus spec) */}
@@ -779,7 +779,7 @@ function FlagshipCards() {
                         fontWeight: 500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "rgba(250,247,240,0.55)",
+                        color: "rgba(240, 244, 250,0.55)",
                         marginBottom: "0.75rem",
                       }}
                     >
@@ -791,7 +791,7 @@ function FlagshipCards() {
                         
                         fontWeight: 500,
                         fontSize: "clamp(1.875rem, 3vw, 2.75rem)",
-                        color: "#FAF7F0",
+                        color: "#F2F7FD",
                         lineHeight: 1.08,
                         marginBottom: "0.625rem",
                         whiteSpace: "pre-line",
@@ -803,7 +803,7 @@ function FlagshipCards() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "13px",
-                        color: "rgba(250,247,240,0.68)",
+                        color: "rgba(240, 244, 250,0.68)",
                         lineHeight: 1.5,
                         marginBottom: "1.25rem",
                       }}
@@ -816,7 +816,7 @@ function FlagshipCards() {
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "13px",
                           fontWeight: 600,
-                          color: "rgba(250,247,240,0.9)",
+                          color: "rgba(240, 244, 250,0.9)",
                         }}
                       >
                         From {card.from}
@@ -829,12 +829,12 @@ function FlagshipCards() {
                           width: "32px",
                           height: "32px",
                           borderRadius: "50%",
-                          border: "1px solid rgba(250,247,240,0.3)",
+                          border: "1px solid rgba(240, 244, 250,0.3)",
                           transition: "transform 200ms ease, border-color 200ms ease",
                         }}
                         className="group-hover:translate-x-1 group-hover:border-white/60"
                       >
-                        <ArrowRight size={14} color="#FAF7F0" />
+                        <ArrowRight size={14} color="#F2F7FD" />
                       </div>
                     </div>
                   </div>
@@ -1145,27 +1145,27 @@ function SplitSectionPerformance() {
                 <AreaChart data={igf1Data} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGradM1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#1C1815" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#1C1815" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#0E2447" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#0E2447" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
+                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
                     axisLine={false}
                     tickLine={false}
                     unit=" ng/mL"
                     width={60}
                   />
-                  <Area type="monotone" dataKey="igf" stroke="#1C1815" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
-                  <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
+                  <Area type="monotone" dataKey="igf" stroke="#0E2447" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
+                  <Line type="monotone" dataKey="avg" stroke="#B0B9C5" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
                   />
@@ -1207,20 +1207,20 @@ function SplitSectionTestosterone() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
+                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#8A8A8A", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
                     domain={[250, 650]}
                     unit=" ng/dL"
                     width={60}
                   />
-                  <Line type="monotone" dataKey="total" stroke="#1C1815" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
+                  <Line type="monotone" dataKey="total" stroke="#0E2447" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
@@ -1376,26 +1376,26 @@ function SplitSectionWeightLoss() {
                 <AreaChart data={menBodyFatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGradM2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#1C1815" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#1C1815" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#0E2447" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#0E2447" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#8A8A8A" }}
+                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#8A8A8A" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
                     axisLine={false}
                     tickLine={false}
                     unit="%"
                   />
-                  <Area type="monotone" dataKey="fat" stroke="#1C1815" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
-                  <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
+                  <Area type="monotone" dataKey="fat" stroke="#0E2447" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
+                  <Line type="monotone" dataKey="avg" stroke="#B0B9C5" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
                   />

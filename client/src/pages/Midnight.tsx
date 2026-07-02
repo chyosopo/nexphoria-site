@@ -99,7 +99,7 @@ export default function Midnight() {
         note="Steel blue as the only accent — clinical, cool, disciplined. This is the signature's exact world." />
 
       {/* B — midnight + candlelight */}
-      <Sample p={A} accent="#DE9A3C" accentSoft="#F3C87A" name="Variant B · Midnight + candlelight"
+      <Sample p={A} accent="#2E7BF0" accentSoft="#8FC6FF" name="Variant B · Midnight + candlelight"
         note="Same midnight architecture — but the accent stays honey. The signature italic, the buttons, the data dots: warm light in a dark room. Keeps brand continuity with everything built so far." />
 
       {/* Verdict notes */}

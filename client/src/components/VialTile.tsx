@@ -20,14 +20,14 @@ import { MolecularGlyph } from "@/components/MolecularGlyph";
 export type Tone = "cream" | "sage" | "rose" | "sky" | "dusk" | "butter" | "cobalt" | "mineral";
 
 const TONE_MAP: Record<Tone, { bg: string; ink: string; liquid: string; label: string }> = {
-  cream:   { bg: "#FFFFF3", ink: "#1C1815", liquid: "#F3C87A", label: "Peptide" },
-  sage:    { bg: "#F0F2E6", ink: "#1C1815", liquid: "#B7D18A", label: "Recovery" },
-  rose:    { bg: "#F7ECE6", ink: "#1C1815", liquid: "#E4B7A2", label: "Skin" },
-  sky:     { bg: "#E8EEF1", ink: "#1C1815", liquid: "#A6C3D0", label: "Cognition" },
-  dusk:    { bg: "#EAE6F1", ink: "#1C1815", liquid: "#B5A8CF", label: "Sleep" },
-  butter:  { bg: "#F2EDDE", ink: "#1C1815", liquid: "#DDBF6E", label: "Growth" },
-  cobalt:  { bg: "#E8EFEC", ink: "#1C1815", liquid: "#8AB6A6", label: "Longevity" },
-  mineral: { bg: "#F0E9DC", ink: "#1C1815", liquid: "#9DB3C2", label: "Metabolic" },
+  cream:   { bg: "#FBFDFF", ink: "#0E2447", liquid: "#8FC6FF", label: "Peptide" },
+  sage:    { bg: "#E6EBF2", ink: "#0E2447", liquid: "#8ABFD1", label: "Recovery" },
+  rose:    { bg: "#E6EEF7", ink: "#0E2447", liquid: "#A2C0E4", label: "Skin" },
+  sky:     { bg: "#E8EEF1", ink: "#0E2447", liquid: "#A6C3D0", label: "Cognition" },
+  dusk:    { bg: "#EAE6F1", ink: "#0E2447", liquid: "#B5A8CF", label: "Sleep" },
+  butter:  { bg: "#DEE7F2", ink: "#0E2447", liquid: "#6EA0DD", label: "Growth" },
+  cobalt:  { bg: "#E8EDEF", ink: "#0E2447", liquid: "#8AABB6", label: "Longevity" },
+  mineral: { bg: "#E4EEF8", ink: "#0E2447", liquid: "#9DB3C2", label: "Metabolic" },
 };
 
 /* Detect touch — we swap hover behavior for tap on mobile */
@@ -84,7 +84,7 @@ export function VialArt({
           width: "58%",
           height: 14,
           borderRadius: "50%",
-          background: "rgba(28,24,21,0.14)",
+          background: "rgba(21, 24, 28,0.14)",
           filter: "blur(8px)",
         }}
       />
@@ -100,7 +100,7 @@ export function VialArt({
             <stop offset="0%" stopColor="rgba(255,255,255,0.85)" />
             <stop offset="30%" stopColor="rgba(255,255,255,0.15)" />
             <stop offset="70%" stopColor="rgba(255,255,255,0.05)" />
-            <stop offset="100%" stopColor="rgba(28,24,21,0.10)" />
+            <stop offset="100%" stopColor="rgba(21, 24, 28,0.10)" />
           </linearGradient>
           <linearGradient id={`liquid-${tone}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={t.liquid} stopOpacity="0.55" />
@@ -142,12 +142,12 @@ export function VialArt({
         {/* Highlight (left) */}
         <rect x="34" y="70" width="4" height="130" rx="2" fill="rgba(255,255,255,0.7)" />
         {/* Shadow (right) */}
-        <rect x="72" y="70" width="3" height="130" rx="1.5" fill="rgba(28,24,21,0.08)" />
+        <rect x="72" y="70" width="3" height="130" rx="1.5" fill="rgba(21, 24, 28,0.08)" />
 
         {/* Label band */}
-        <rect x="30" y="135" width="50" height="42" fill="rgba(255,255,243,0.94)" />
-        <rect x="30" y="135" width="50" height="1" fill="rgba(28,24,21,0.08)" />
-        <rect x="30" y="176" width="50" height="1" fill="rgba(28,24,21,0.08)" />
+        <rect x="30" y="135" width="50" height="42" fill="rgba(243, 248, 255,0.94)" />
+        <rect x="30" y="135" width="50" height="1" fill="rgba(21, 24, 28,0.08)" />
+        <rect x="30" y="176" width="50" height="1" fill="rgba(21, 24, 28,0.08)" />
 
         {/* Glyph inside label */}
         <g transform="translate(37, 141) scale(0.18)">
@@ -167,7 +167,7 @@ export function VialArt({
         <path
           d="M 30 60 L 30 200 Q 30 210 40 210 L 70 210 Q 80 210 80 200 L 80 60 Z"
           fill="none"
-          stroke="rgba(28,24,21,0.12)"
+          stroke="rgba(21, 24, 28,0.12)"
           strokeWidth="1"
         />
       </svg>
@@ -225,10 +225,10 @@ export function VialTile({
   const reg = (() => {
     if (!fdaStatus) return null;
     const s = fdaStatus.toLowerCase();
-    if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "#EAF6E6", color: "#2E6B24", border: "#B7DDB0" };
-    if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#F5EEDA", color: "#7A5A0F", border: "#DFC98A" };
-    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "#F0E9DC", color: "#3D4A5C", border: "#C6D0DC" };
-    return { label: "Rx", bg: "#F0E9DC", color: "#3D4A5C", border: "#C6D0DC" };
+    if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "#E6F2F6", color: "#24596B", border: "#B0D2DD" };
+    if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#DAE6F5", color: "#0F3F7A", border: "#8AB0DF" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "#E4EEF8", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "#E4EEF8", color: "#3D4A5C", border: "#C6D0DC" };
   })();
   const [flipped, setFlipped] = useState(false);
   const isTouch = useIsTouch();
@@ -299,10 +299,10 @@ export function VialTile({
             background: t.bg,
             color: t.ink,
             textDecoration: "none",
-            border: "1px solid rgba(28,24,21,0.08)",
+            border: "1px solid rgba(21, 24, 28,0.08)",
             boxShadow: flipped
-              ? "0 30px 60px -20px rgba(28,24,21,0.25)"
-              : "0 4px 18px -6px rgba(28,24,21,0.10)",
+              ? "0 30px 60px -20px rgba(21, 24, 28,0.25)"
+              : "0 4px 18px -6px rgba(21, 24, 28,0.10)",
             transition: "box-shadow 500ms",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -331,7 +331,7 @@ export function VialTile({
                     color: t.ink,
                     opacity: 0.62,
                     padding: "5px 10px",
-                    border: "1px solid rgba(28,24,21,0.12)",
+                    border: "1px solid rgba(21, 24, 28,0.12)",
                     borderRadius: 999,
                     background: "rgba(255,255,255,0.6)",
                     whiteSpace: "nowrap",
@@ -353,7 +353,7 @@ export function VialTile({
                     fontWeight: 600,
                     color: t.ink,
                     padding: "5px 10px",
-                    background: "rgba(243,200,122,0.55)",
+                    background: "rgba(122, 176, 243,0.55)",
                     borderRadius: 999,
                   }}
                 >
@@ -389,9 +389,9 @@ export function VialTile({
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   fontWeight: 600,
-                  color: "#FFFFF3",
+                  color: "#FBFDFF",
                   padding: "5px 10px",
-                  background: "#1C1815",
+                  background: "#0E2447",
                   borderRadius: 999,
                 }}
               >
@@ -517,7 +517,7 @@ export function VialTile({
                 width: 28,
                 height: 28,
                 borderRadius: "50%",
-                background: "rgba(28,24,21,0.06)",
+                background: "rgba(21, 24, 28,0.06)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -545,13 +545,13 @@ export function VialTile({
             justifyContent: "space-between",
             padding: "clamp(22px, 2.4vw, 32px)",
             borderRadius: 24,
-            background: "#1C1815",
-            color: "#FFFFF3",
+            background: "#0E2447",
+            color: "#FBFDFF",
             transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
-            border: "1px solid rgba(255,255,243,0.10)",
-            boxShadow: "0 30px 60px -20px rgba(28,24,21,0.35)",
+            border: "1px solid rgba(243, 248, 255,0.10)",
+            boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)",
             overflow: "hidden",
           }}
         >
@@ -565,7 +565,7 @@ export function VialTile({
               width: 240,
               height: 240,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(243,200,122,0.24), rgba(243,200,122,0) 70%)",
+              background: "radial-gradient(circle, rgba(122, 176, 243,0.24), rgba(122, 176, 243,0) 70%)",
               pointerEvents: "none",
             }}
           />
@@ -584,12 +584,12 @@ export function VialTile({
                   width: 40,
                   height: 40,
                   borderRadius: 10,
-                  background: "rgba(255,255,243,0.06)",
-                  border: "1px solid rgba(255,255,243,0.14)",
+                  background: "rgba(243, 248, 255,0.06)",
+                  border: "1px solid rgba(243, 248, 255,0.14)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#F3C87A",
+                  color: "#8FC6FF",
                 }}
               >
                 <MolecularGlyph glyph={glyph} size={26} title={`${name} glyph`} />
@@ -601,7 +601,7 @@ export function VialTile({
                     fontWeight: 600,
                     fontSize: 18,
                     letterSpacing: "-0.01em",
-                    color: "#FFFFF3",
+                    color: "#FBFDFF",
                     lineHeight: 1,
                   }}
                 >
@@ -613,7 +613,7 @@ export function VialTile({
                     fontSize: 10,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#F3C87A",
+                    color: "#8FC6FF",
                     marginTop: 4,
                   }}
                 >
@@ -628,7 +628,7 @@ export function VialTile({
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 14,
                   lineHeight: 1.5,
-                  color: "rgba(255,255,243,0.82)",
+                  color: "rgba(243, 248, 255,0.82)",
                   margin: 0,
                 }}
               >
@@ -640,7 +640,7 @@ export function VialTile({
             <div
               style={{
                 marginTop: 22,
-                borderTop: "1px solid rgba(255,255,243,0.10)",
+                borderTop: "1px solid rgba(243, 248, 255,0.10)",
                 paddingTop: 16,
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
@@ -655,7 +655,7 @@ export function VialTile({
                       fontSize: 10,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,243,0.42)",
+                      color: "rgba(243, 248, 255,0.42)",
                     }}
                   >
                     Typical dose
@@ -664,7 +664,7 @@ export function VialTile({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
-                      color: "#FFFFF3",
+                      color: "#FBFDFF",
                       marginTop: 4,
                       lineHeight: 1.3,
                     }}
@@ -681,7 +681,7 @@ export function VialTile({
                       fontSize: 10,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,243,0.42)",
+                      color: "rgba(243, 248, 255,0.42)",
                     }}
                   >
                     Cycle
@@ -690,7 +690,7 @@ export function VialTile({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
-                      color: "#FFFFF3",
+                      color: "#FBFDFF",
                       marginTop: 4,
                       lineHeight: 1.3,
                     }}
@@ -711,7 +711,7 @@ export function VialTile({
                   justifyContent: "space-between",
                   alignItems: "baseline",
                   paddingBottom: 14,
-                  borderBottom: "1px solid rgba(255,255,243,0.10)",
+                  borderBottom: "1px solid rgba(243, 248, 255,0.10)",
                   marginBottom: 14,
                 }}
               >
@@ -721,7 +721,7 @@ export function VialTile({
                     fontSize: 11,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,243,0.48)",
+                    color: "rgba(243, 248, 255,0.48)",
                   }}
                 >
                   Starts at
@@ -731,7 +731,7 @@ export function VialTile({
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: 22,
-                    color: "#FFFFF3",
+                    color: "#FBFDFF",
                     letterSpacing: "-0.02em",
                   }}
                 >
@@ -739,7 +739,7 @@ export function VialTile({
                   <span
                     style={{
                       fontSize: 12,
-                      color: "rgba(255,255,243,0.48)",
+                      color: "rgba(243, 248, 255,0.48)",
                       marginLeft: 4,
                     }}
                   >
@@ -756,8 +756,8 @@ export function VialTile({
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                background: "#F3C87A",
-                color: "#1C1815",
+                background: "#8FC6FF",
+                color: "#0E2447",
                 padding: "14px 22px",
                 borderRadius: 999,
                 fontFamily: "'General Sans', system-ui, sans-serif",

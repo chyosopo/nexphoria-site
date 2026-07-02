@@ -186,7 +186,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                             {p.name}
                           </h2>
                           {price?.badge && (
-                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
+                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#1F5FD0" }}>
                               {price.badge}
                             </span>
                           )}
@@ -290,8 +290,8 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(180deg, #1C1815 0%, #111111 60%, #1A1815 100%)",
-        color: "#F5F0E4",
+        background: "linear-gradient(180deg, #0E2447 0%, #111111 60%, #0C2040 100%)",
+        color: "#EDF4FB",
         fontFamily: "'General Sans', system-ui, sans-serif",
         borderBottom: "1px solid #1F1D1A",
       }}
@@ -303,7 +303,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       >
         <defs>
           <pattern id="menGrid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#DE9A3C" strokeWidth="0.5" />
+            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#2E7BF0" strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#menGrid)" />
@@ -313,7 +313,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           background:
-            "radial-gradient(700px 320px at 92% 10%, rgba(226,138,61,0.16), transparent 65%), radial-gradient(500px 300px at 4% 100%, rgba(226,138,61,0.08), transparent 65%)",
+            "radial-gradient(700px 320px at 92% 10%, rgba(61, 135, 226,0.16), transparent 65%), radial-gradient(500px 300px at 4% 100%, rgba(61, 135, 226,0.08), transparent 65%)",
         }}
       />
       <div
@@ -331,12 +331,12 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       >
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
-            <span style={{ width: 32, height: 2, background: "#DE9A3C" }} />
+            <span style={{ width: 32, height: 2, background: "#2E7BF0" }} />
             <span
               style={{
                 fontSize: 11,
                 letterSpacing: "0.28em",
-                color: "#DE9A3C",
+                color: "#2E7BF0",
                 textTransform: "uppercase",
                 fontWeight: 700,
               }}
@@ -355,13 +355,13 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
             }}
           >
             Built for <br />
-            the <span style={{ color: "#DE9A3C" }}>male</span> engine.
+            the <span style={{ color: "#2E7BF0" }}>male</span> engine.
           </h1>
           <p
             style={{
               fontSize: "1.02rem",
               lineHeight: 1.55,
-              color: "rgba(245,240,228,0.68)",
+              color: "rgba(228, 236, 245,0.68)",
               maxWidth: 560,
               margin: "22px 0 24px",
             }}
@@ -376,9 +376,9 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
                   fontSize: 11,
                   padding: "7px 12px",
                   borderRadius: 4,
-                  background: "rgba(226,138,61,0.06)",
-                  border: "1px solid rgba(226,138,61,0.28)",
-                  color: "rgba(245,240,228,0.9)",
+                  background: "rgba(61, 135, 226,0.06)",
+                  border: "1px solid rgba(61, 135, 226,0.28)",
+                  color: "rgba(228, 236, 245,0.9)",
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
                   fontWeight: 500,
@@ -395,7 +395,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
             gap: 0,
-            border: "1px solid rgba(226,138,61,0.28)",
+            border: "1px solid rgba(61, 135, 226,0.28)",
           }}
           className="gp-hero-stats"
         >
@@ -409,8 +409,8 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
               key={s.v}
               style={{
                 padding: "22px 20px",
-                borderRight: i % 2 === 0 ? "1px solid rgba(226,138,61,0.20)" : "none",
-                borderBottom: i < 2 ? "1px solid rgba(226,138,61,0.20)" : "none",
+                borderRight: i % 2 === 0 ? "1px solid rgba(61, 135, 226,0.20)" : "none",
+                borderBottom: i < 2 ? "1px solid rgba(61, 135, 226,0.20)" : "none",
                 background: "rgba(255,255,255,0.015)",
               }}
             >
@@ -430,7 +430,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
                   fontSize: 10,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(245,240,228,0.55)",
+                  color: "rgba(228, 236, 245,0.55)",
                   marginTop: 6,
                 }}
               >
@@ -457,10 +457,10 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(180deg, #F5EFE4 0%, #EDE5D5 55%, #E8DEC9 100%)",
-        color: "#2A2418",
+        background: "linear-gradient(180deg, #E4ECF5 0%, #D5E0ED 55%, #C9D7E8 100%)",
+        color: "#18202A",
         fontFamily: "'General Sans', system-ui, sans-serif",
-        borderBottom: "1px solid #D9CDB6",
+        borderBottom: "1px solid #B6C6D9",
       }}
     >
       <div
@@ -468,7 +468,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           background:
-            "radial-gradient(1000px 400px at 90% 18%, rgba(196,120,140,0.14), transparent 65%), radial-gradient(700px 400px at 8% 92%, rgba(214,178,102,0.18), transparent 65%)",
+            "radial-gradient(1000px 400px at 90% 18%, rgba(120, 148, 196,0.14), transparent 65%), radial-gradient(700px 400px at 8% 92%, rgba(102, 152, 214,0.18), transparent 65%)",
         }}
       />
       <div
@@ -486,12 +486,12 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
       >
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
-            <span style={{ width: 28, height: 1, background: "#8A6A3E" }} />
+            <span style={{ width: 28, height: 1, background: "#3E608A" }} />
             <span
               style={{
                 fontSize: 11,
                 letterSpacing: "0.28em",
-                color: "#8A6A3E",
+                color: "#3E608A",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
@@ -506,18 +506,18 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
               letterSpacing: "-0.03em",
               fontWeight: 500,
               margin: 0,
-              color: "#1E1811",
+              color: "#0B1D3C",
               fontFamily: "'Instrument Serif', 'General Sans', Georgia, serif",
             }}
           >
             Peptides tuned to <br />
-            <span style={{ color: "#B25778", fontWeight: 500 }}>her</span> physiology.
+            <span style={{ color: "#5778B2", fontWeight: 500 }}>her</span> physiology.
           </h1>
           <p
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.6,
-              color: "rgba(42,36,24,0.72)",
+              color: "rgba(24, 32, 42,0.72)",
               maxWidth: 560,
               margin: "24px 0 26px",
             }}
@@ -533,8 +533,8 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
                   padding: "8px 14px",
                   borderRadius: 999,
                   background: "rgba(255,255,255,0.55)",
-                  border: "1px solid rgba(138,106,62,0.22)",
-                  color: "rgba(42,36,24,0.82)",
+                  border: "1px solid rgba(62, 96, 138,0.22)",
+                  color: "rgba(24, 32, 42,0.82)",
                   letterSpacing: "0.02em",
                 }}
               >
@@ -563,8 +563,8 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
               style={{
                 padding: "22px 20px",
                 borderRadius: 18,
-                border: "1px solid rgba(138,106,62,0.18)",
-                background: "rgba(255,253,247,0.65)",
+                border: "1px solid rgba(62, 96, 138,0.18)",
+                background: "rgba(247, 251, 255,0.65)",
                 backdropFilter: "blur(2px)",
               }}
             >
@@ -572,7 +572,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
                 style={{
                   fontSize: 30,
                   fontWeight: 500,
-                  color: "#1E1811",
+                  color: "#0B1D3C",
                   letterSpacing: "-0.02em",
                   fontFamily: "'Instrument Serif', Georgia, serif",
                 }}
@@ -584,7 +584,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
                   fontSize: 10,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(42,36,24,0.55)",
+                  color: "rgba(24, 32, 42,0.55)",
                   marginTop: 6,
                 }}
               >

@@ -22,10 +22,10 @@ export function PillBadge({
 } & React.HTMLAttributes<HTMLSpanElement>) {
   const dotColor =
     tone === "acid"
-      ? "var(--nx-acid, #F3C87A)"
+      ? "var(--nx-acid, #8FC6FF)"
       : tone === "cobalt"
-      ? "var(--nx-cobalt, #1C1815)"
-      : "var(--nx-acid, #F3C87A)";
+      ? "var(--nx-cobalt, #0E2447)"
+      : "var(--nx-acid, #8FC6FF)";
 
   return (
     <span

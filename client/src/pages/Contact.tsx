@@ -254,7 +254,7 @@ export default function Contact() {
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.5rem" }}>
                   Nexphoria Health, LLC
                 </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "#4A4A4A", lineHeight: 1.6 }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "#4A6690", lineHeight: 1.6 }}>
                   800 Third Ave, Suite 1000 · New York, NY 10022
                 </p>
               </div>
@@ -365,14 +365,14 @@ export default function Contact() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "14px",
-                      color: "#4A4A4A",
+                      color: "#4A6690",
                       lineHeight: 1.65,
                     }}
                   >
                     We'll respond within 24 hours on business days (Monday through Friday ET). Clinical questions are routed to a physician within 48 hours.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B5A2B", marginTop: "1rem" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#1F5FD0", marginTop: "1rem" }}>
                       Note: For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}

@@ -167,7 +167,7 @@ export default function JournalArticle() {
               maxWidth: 1080,
               marginLeft: "auto",
               marginRight: "auto",
-              boxShadow: "0 24px 48px -16px rgba(28,24,21,0.18)",
+              boxShadow: "0 24px 48px -16px rgba(21, 24, 28,0.18)",
             }}
           >
             <img
@@ -238,7 +238,7 @@ export default function JournalArticle() {
                       fontWeight: activeSection === `sec-${s.id}` ? 600 : 400,
                       textDecoration: "none",
                       paddingLeft: 12,
-                      borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "#C97A4A" : "transparent"}`,
+                      borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "#6FA3CC" : "transparent"}`,
                       transition: "all 0.2s ease",
                     }}
                   >
@@ -284,7 +284,7 @@ export default function JournalArticle() {
                 {s.callout && (
                   <aside
                     style={{
-                      borderLeft: "3px solid #C97A4A",
+                      borderLeft: "3px solid #6FA3CC",
                       paddingLeft: 24,
                       marginTop: 28,
                       marginBottom: 28,
@@ -331,7 +331,7 @@ export default function JournalArticle() {
                             fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: 13,
                             fontWeight: 500,
-                            color: "#C97A4A",
+                            color: "#6FA3CC",
                             letterSpacing: "0.05em",
                           }}
                         >
@@ -527,7 +527,7 @@ export default function JournalArticle() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 11,
-                        color: "#C97A4A",
+                        color: "#6FA3CC",
                       }}
                     >
                       [{ref.n}]
@@ -558,7 +558,7 @@ export default function JournalArticle() {
         <section
           data-testid="article-related"
           style={{
-            backgroundColor: "#FFFFF3",
+            backgroundColor: "#FBFDFF",
             borderTop: "1px solid var(--nx-border)",
             paddingTop: 80,
             paddingBottom: 120,
@@ -572,7 +572,7 @@ export default function JournalArticle() {
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#C97A4A",
+                color: "#6FA3CC",
                 marginBottom: 16,
               }}
             >
@@ -620,7 +620,7 @@ export default function JournalArticle() {
                         fontWeight: 500,
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
-                        color: "#C97A4A",
+                        color: "#6FA3CC",
                         marginBottom: 16,
                       }}
                     >
@@ -671,7 +671,7 @@ export default function JournalArticle() {
         <div className="nx-container" style={{ maxWidth: 1180, margin: "0 auto" }}>
           <div
             style={{
-              backgroundColor: "#F3C87A",
+              backgroundColor: "#8FC6FF",
               borderRadius: 4,
               padding: "48px 56px",
               display: "flex",
@@ -689,7 +689,7 @@ export default function JournalArticle() {
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(28,24,21,0.55)",
+                  color: "rgba(21, 24, 28,0.55)",
                   marginBottom: 12,
                 }}
               >
@@ -712,7 +712,7 @@ export default function JournalArticle() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 16,
                   lineHeight: 1.6,
-                  color: "rgba(28,24,21,0.7)",
+                  color: "rgba(21, 24, 28,0.7)",
                   maxWidth: 440,
                 }}
               >
@@ -728,7 +728,7 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 8,
                   backgroundColor: "#000",
-                  color: "#F3C87A",
+                  color: "#8FC6FF",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 10,
                   fontWeight: 500,

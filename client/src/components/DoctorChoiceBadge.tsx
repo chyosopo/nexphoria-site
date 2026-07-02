@@ -35,10 +35,10 @@ export function DoctorChoiceBadge({
   const isSm = size === "sm";
 
   // Color tokens
-  const bg = isDark ? "rgba(28,24,21,0.92)" : "#FAF7F0";
-  const fg = isDark ? "#FAF7F0" : "var(--nx-cobalt)";
-  const dotColor = "#C97A4A"; // brand rust — used for "Limited" tag etc.
-  const border = isDark ? "1px solid rgba(250,247,240,0.18)" : "1px solid rgba(28,24,21,0.10)";
+  const bg = isDark ? "rgba(21, 24, 28,0.92)" : "#F2F7FD";
+  const fg = isDark ? "#F2F7FD" : "var(--nx-cobalt)";
+  const dotColor = "#6FA3CC"; // brand rust — used for "Limited" tag etc.
+  const border = isDark ? "1px solid rgba(240, 244, 250,0.18)" : "1px solid rgba(21, 24, 28,0.10)";
 
   return (
     <div

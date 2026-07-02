@@ -84,7 +84,7 @@ export function FinalCTAStrip({
               
               fontWeight: 500,
               fontSize: "clamp(2rem, 4.5vw, 3.625rem)",
-              color: "#FFFFF3",
+              color: "#FBFDFF",
               lineHeight: 1.1,
               letterSpacing: "-0.01em",
               marginBottom: "1.25rem",
@@ -100,7 +100,7 @@ export function FinalCTAStrip({
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1.0625rem",
-              color: "rgba(255,255,243,0.72)",
+              color: "rgba(243, 248, 255,0.72)",
               lineHeight: 1.6,
               maxWidth: "480px",
               margin: "0 auto 2.75rem",
@@ -123,9 +123,9 @@ export function FinalCTAStrip({
               productSlug={`${gender}-final-cta`}
               source="final-cta-strip"
               style={{
-                backgroundColor: "#FFFFF3",
+                backgroundColor: "#FBFDFF",
                 color: "var(--nx-cobalt)",
-                borderColor: "#FFFFF3",
+                borderColor: "#FBFDFF",
                 padding: "0.875rem 2rem",
               }}
             >

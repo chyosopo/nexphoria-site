@@ -16,9 +16,9 @@ import { getPeptide } from "@/data/peptides";
 
 /* ── Curator badges — awarded to 3 stacks based on outcomes data ───────── */
 const CURATOR_BADGE: Record<string, { label: string; color: string; bg: string }> = {
-  wolverine: { label: "Doctor's pick", color: "#1C1815", bg: "#F3C87A" },
-  metabolic: { label: "Most popular", color: "#fff", bg: "#1C1815" },
-  cognitive: { label: "Staff favourite", color: "#1C1815", bg: "#f0ede6" },
+  wolverine: { label: "Doctor's pick", color: "#0E2447", bg: "#8FC6FF" },
+  metabolic: { label: "Most popular", color: "#fff", bg: "#0E2447" },
+  cognitive: { label: "Staff favourite", color: "#0E2447", bg: "#E6EBF0" },
 };
 
 /* ── Derived metadata per stack (difficulty + evidence tier + goal) ─────────
@@ -137,10 +137,10 @@ export default function StackIndex() {
                 style={{ background: "#fff", borderRadius: 16, border: "1px solid rgba(14,14,15,0.08)" }}
                 data-testid={`kpi-${k.label.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}
               >
-                <div className="text-3xl md:text-4xl leading-none mb-1.5" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
+                <div className="text-3xl md:text-4xl leading-none mb-1.5" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
                   {k.value}
                 </div>
-                <div className="text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
+                <div className="text-[10px] uppercase tracking-[0.16em]" style={{ fontFamily: MONO, color: "#5C77A0" }}>
                   {k.label}
                 </div>
               </div>
@@ -150,10 +150,10 @@ export default function StackIndex() {
 
         {/* ── Stack Anatomy explainer band ── */}
         <section className="nx-container pt-14 md:pt-20 pb-2" data-testid="section-stack-anatomy">
-          <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
+          <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
             Stack anatomy
           </div>
-          <h2 className="text-2xl md:text-3xl mb-8 max-w-3xl leading-[1.12]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
+          <h2 className="text-2xl md:text-3xl mb-8 max-w-3xl leading-[1.12]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
             What makes a <span style={{  }}>stack</span> different from a pile of peptides.
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
@@ -162,13 +162,13 @@ export default function StackIndex() {
               return (
                 <div key={a.n} className="p-6 md:p-7 relative" style={{ background: "var(--nx-bg)" }} data-testid={`anatomy-tile-${i}`}>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] tracking-[0.2em]" style={{ fontFamily: MONO, color: "#8B5A2B" }}>{a.n}</span>
-                    <Icon size={18} strokeWidth={1.6} style={{ color: "#1C1815" }} />
+                    <span className="text-[10px] tracking-[0.2em]" style={{ fontFamily: MONO, color: "#1F5FD0" }}>{a.n}</span>
+                    <Icon size={18} strokeWidth={1.6} style={{ color: "#0E2447" }} />
                   </div>
-                  <h3 className="text-lg mb-2" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>{a.title}</h3>
-                  <p className="text-sm" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.55 }}>{a.body}</p>
+                  <h3 className="text-lg mb-2" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>{a.title}</h3>
+                  <p className="text-sm" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.55 }}>{a.body}</p>
                   {i < ANATOMY.length - 1 && (
-                    <ArrowRight size={14} strokeWidth={2} className="hidden lg:block absolute" style={{ color: "#8B5A2B", right: -7, top: "50%" }} aria-hidden />
+                    <ArrowRight size={14} strokeWidth={2} className="hidden lg:block absolute" style={{ color: "#1F5FD0", right: -7, top: "50%" }} aria-hidden />
                   )}
                 </div>
               );
@@ -184,12 +184,12 @@ export default function StackIndex() {
               const meta = metaFor(stack.slug);
               // Subtle tint by stack identity so each card has its own quiet color
               const STACK_TINT: Record<string, string> = {
-                wolverine: "#E8EFEC",  // cobalt-soft (recovery/men)
-                glow: "#F7ECE6",       // rose (skin/her)
-                longevity: "#F0F2E6",  // sage
-                "weight-loss": "#F0E9DC", // mineral
+                wolverine: "#E8EDEF",  // cobalt-soft (recovery/men)
+                glow: "#E6EEF7",       // rose (skin/her)
+                longevity: "#E6EBF2",  // sage
+                "weight-loss": "#E4EEF8", // mineral
                 sleep: "#EAE6F1",      // dusk
-                vitality: "#F2EDDE",   // butter
+                vitality: "#DEE7F2",   // butter
                 cognition: "#E8EEF1",  // sky
               };
               const cardTint = STACK_TINT[stack.slug] ?? "#fff";
@@ -209,7 +209,7 @@ export default function StackIndex() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(28,24,21,0.72) 0%, rgba(28,24,21,0.12) 42%, transparent 68%)" }} aria-hidden />
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(21, 24, 28,0.72) 0%, rgba(21, 24, 28,0.12) 42%, transparent 68%)" }} aria-hidden />
                       {/* Curator / flagship badge */}
                       <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                         {CURATOR_BADGE[stack.slug] && (
@@ -221,17 +221,17 @@ export default function StackIndex() {
                           </span>
                         )}
                         {stack.badge && (
-                          <span className="px-2 py-1 text-[9px] uppercase tracking-[0.2em]" style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: MONO }}>
+                          <span className="px-2 py-1 text-[9px] uppercase tracking-[0.2em]" style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: MONO }}>
                             {stack.badge}
                           </span>
                         )}
                       </div>
                       {/* Benefit-proof + includes overlay panel */}
                       <div className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-3">
-                        <div className="text-[13px] mb-2 max-w-[92%]" style={{ fontFamily: SANS, color: "#FFFFF3", fontWeight: 500, lineHeight: 1.35 }} data-testid={`proof-${stack.slug}`}>
+                        <div className="text-[13px] mb-2 max-w-[92%]" style={{ fontFamily: SANS, color: "#FBFDFF", fontWeight: 500, lineHeight: 1.35 }} data-testid={`proof-${stack.slug}`}>
                           {getPortraitProof(stack.slug)}
                         </div>
-                        <div className="text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(255,255,243,0.72)" }}>
+                        <div className="text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.72)" }}>
                           {stack.peptides.length} peptides · {meta.course} protocol · From {formatUSD(bundle)}/mo
                         </div>
                       </div>
@@ -239,22 +239,22 @@ export default function StackIndex() {
 
                     {/* Body */}
                     <div className="p-6 md:p-7">
-                      <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
+                      <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
                         {stack.peptides.length} peptides · {stack.gender === "him" ? "For Him" : stack.gender === "her" ? "For Her" : "Unisex"}
                       </div>
-                      <h2 className="text-3xl mb-1.5" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
+                      <h2 className="text-3xl mb-1.5" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
                         {stack.name}
                       </h2>
-                      <p className="text-base mb-3" style={{ fontFamily: SERIF, color: "#4A4A4A",  }}>
+                      <p className="text-base mb-3" style={{ fontFamily: SERIF, color: "#4A6690",  }}>
                         {stack.tagline}
                       </p>
-                      <p className="text-sm mb-4" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.6 }}>
+                      <p className="text-sm mb-4" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.6 }}>
                         {stack.purpose}
                       </p>
 
                       {/* BEST FOR mono line */}
-                      <div className="text-[10px] uppercase tracking-[0.14em] mb-4 pb-4" style={{ fontFamily: MONO, color: "#1C1815", borderBottom: "1px solid var(--nx-border)" }}>
-                        <span style={{ color: "#8B5A2B" }}>Best for:</span> {meta.goal}
+                      <div className="text-[10px] uppercase tracking-[0.14em] mb-4 pb-4" style={{ fontFamily: MONO, color: "#0E2447", borderBottom: "1px solid var(--nx-border)" }}>
+                        <span style={{ color: "#1F5FD0" }}>Best for:</span> {meta.goal}
                       </div>
 
                       {/* Peptide vial cluster */}
@@ -279,7 +279,7 @@ export default function StackIndex() {
                                   fontSize: 9,
                                   letterSpacing: "0.12em",
                                   textTransform: "uppercase",
-                                  color: "#4A4A4A",
+                                  color: "#4A6690",
                                 }}
                               >
                                 {pep.name}
@@ -292,14 +292,14 @@ export default function StackIndex() {
                       {/* Price + actions */}
                       <div className="flex items-end justify-between pt-5" style={{ borderTop: "1px solid var(--nx-border)" }}>
                         <div>
-                          <div className="text-[10px] uppercase tracking-[0.18em] mb-0.5" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
+                          <div className="text-[10px] uppercase tracking-[0.18em] mb-0.5" style={{ fontFamily: MONO, color: "#5C77A0" }}>
                             Monthly · stack price
                           </div>
                           <div className="flex items-baseline gap-2">
-                            <span className="text-2xl" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>{formatUSD(bundle)}</span>
-                            <span className="text-sm line-through" style={{ fontFamily: MONO, color: "#9A9A95" }}>{formatUSD(sum)}</span>
+                            <span className="text-2xl" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>{formatUSD(bundle)}</span>
+                            <span className="text-sm line-through" style={{ fontFamily: MONO, color: "#93A8BE" }}>{formatUSD(sum)}</span>
                           </div>
-                          <div className="text-[10px] uppercase tracking-[0.12em] mt-0.5" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
+                          <div className="text-[10px] uppercase tracking-[0.12em] mt-0.5" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
                             Save {formatUSD(savings)}
                           </div>
                         </div>
@@ -311,7 +311,7 @@ export default function StackIndex() {
                       {/* View stack CTA */}
                       <div
                         className="mt-4 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] group-hover:gap-2.5 transition-all"
-                        style={{ fontFamily: MONO, color: "#1C1815" }}
+                        style={{ fontFamily: MONO, color: "#0E2447" }}
                       >
                         View stack <ArrowRight size={12} strokeWidth={2.4} />
                       </div>
@@ -325,26 +325,26 @@ export default function StackIndex() {
             <Link asChild href="/stacks/build">
               <a
                 className="block group transition-all hover:shadow-lg"
-                style={{ background: "#1C1815", border: "1px solid #1C1815", textDecoration: "none" }}
+                style={{ background: "#0E2447", border: "1px solid #0E2447", textDecoration: "none" }}
                 data-testid="card-build-your-own"
               >
-                <div className="aspect-[16/10] w-full relative flex items-center justify-center" style={{ background: "#1C1815" }}>
+                <div className="aspect-[16/10] w-full relative flex items-center justify-center" style={{ background: "#0E2447" }}>
                   {/* Acid grid decoration */}
                   <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden style={{ opacity: 0.2 }}>
-                    <circle cx="60" cy="60" r="50" stroke="#F3C87A" strokeWidth="1" strokeDasharray="4 4" />
-                    <circle cx="60" cy="60" r="30" stroke="#F3C87A" strokeWidth="1" />
-                    <line x1="60" y1="10" x2="60" y2="110" stroke="#F3C87A" strokeWidth="0.75" />
-                    <line x1="10" y1="60" x2="110" y2="60" stroke="#F3C87A" strokeWidth="0.75" />
+                    <circle cx="60" cy="60" r="50" stroke="#8FC6FF" strokeWidth="1" strokeDasharray="4 4" />
+                    <circle cx="60" cy="60" r="30" stroke="#8FC6FF" strokeWidth="1" />
+                    <line x1="60" y1="10" x2="60" y2="110" stroke="#8FC6FF" strokeWidth="0.75" />
+                    <line x1="10" y1="60" x2="110" y2="60" stroke="#8FC6FF" strokeWidth="0.75" />
                   </svg>
                   <div className="absolute" style={{ textAlign: "center" }}>
-                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(243,200,122,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
-                    <div className="inline-flex items-center justify-center" style={{ width: 48, height: 48, borderRadius: 999, border: "1.5px solid #F3C87A" }}>
-                      <Plus size={22} style={{ color: "#F3C87A" }} />
+                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(122, 176, 243,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
+                    <div className="inline-flex items-center justify-center" style={{ width: 48, height: 48, borderRadius: 999, border: "1.5px solid #8FC6FF" }}>
+                      <Plus size={22} style={{ color: "#8FC6FF" }} />
                     </div>
                   </div>
                 </div>
                 <div className="p-6 md:p-7">
-                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(243,200,122,0.75)", textTransform: "uppercase", marginBottom: 8 }}>
+                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(122, 176, 243,0.75)", textTransform: "uppercase", marginBottom: 8 }}>
                     Build your own stack
                   </div>
                   <h2 className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
@@ -355,7 +355,7 @@ export default function StackIndex() {
                   </p>
                   <div
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full group-hover:gap-3 transition-all"
-                    style={{ background: "#F3C87A", color: "#1C1815", fontFamily: MONO, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}
+                    style={{ background: "#8FC6FF", color: "#0E2447", fontFamily: MONO, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600 }}
                   >
                     Start building <ArrowRight size={13} strokeWidth={2.5} />
                   </div>
@@ -372,10 +372,10 @@ export default function StackIndex() {
           data-testid="section-stack-comparison"
         >
           <div className="nx-container">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
               Compare all six
             </div>
-            <h2 className="text-2xl md:text-3xl mb-8 max-w-3xl leading-[1.12]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
+            <h2 className="text-2xl md:text-3xl mb-8 max-w-3xl leading-[1.12]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
               Every stack, <span style={{  }}>side by side</span>.
             </h2>
 
@@ -384,7 +384,7 @@ export default function StackIndex() {
                 <thead>
                   <tr>
                     {["Stack", "Goal", "Peptides", "Course", "Price", "Difficulty", "Evidence tier"].map((h) => (
-                      <th key={h} className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>
+                      <th key={h} className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "#5C77A0", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>
                         {h}
                       </th>
                     ))}
@@ -398,13 +398,13 @@ export default function StackIndex() {
                       <tr key={s.slug} data-testid={`comparison-row-${s.slug}`}>
                         <td className="px-4 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                           <Link asChild href={`/stacks/${s.slug}`}>
-                            <a className="text-base" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500, textDecoration: "none" }}>{s.name}</a>
+                            <a className="text-base" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500, textDecoration: "none" }}>{s.name}</a>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: SANS, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{m.goal}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#1C1815", borderBottom: "1px solid var(--nx-border)" }}>{s.peptides.length}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#1C1815", borderBottom: "1px solid var(--nx-border)" }}>{m.course}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500, borderBottom: "1px solid var(--nx-border)" }}>{formatUSD(bundle)}<span className="text-[10px]" style={{ fontFamily: MONO, color: "#6B6B6B" }}> /mo</span></td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: SANS, color: "#4A6690", borderBottom: "1px solid var(--nx-border)" }}>{m.goal}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#0E2447", borderBottom: "1px solid var(--nx-border)" }}>{s.peptides.length}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#0E2447", borderBottom: "1px solid var(--nx-border)" }}>{m.course}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500, borderBottom: "1px solid var(--nx-border)" }}>{formatUSD(bundle)}<span className="text-[10px]" style={{ fontFamily: MONO, color: "#5C77A0" }}> /mo</span></td>
                         <td className="px-4 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                           <Pill text={m.difficulty} />
                         </td>
@@ -417,7 +417,7 @@ export default function StackIndex() {
                 </tbody>
               </table>
             </div>
-            <p className="mt-5 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "#8A8A8A", lineHeight: 1.6 }}>
+            <p className="mt-5 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "#7C90A6", lineHeight: 1.6 }}>
               Difficulty reflects titration complexity and monitoring intensity; evidence tier reflects the depth of
               published human data for the stack's core compounds. Your physician confirms suitability at intake.
             </p>
@@ -428,25 +428,25 @@ export default function StackIndex() {
         {/* ── Stack-builder composite — UI over film ── */}
         <section className="relative flex items-center" style={{ minHeight: "72vh" }}>
           <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031355_5639d05f-e892-4fa7-9b7e-bf4e1f0053db.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(28,24,21,0.2) 45%, rgba(28,24,21,0.62) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21, 24, 28,0.2) 45%, rgba(21, 24, 28,0.62) 100%)" }} />
           <div className="nx-container relative" style={{ paddingTop: "3.2rem", paddingBottom: "3.2rem", display: "flex", justifyContent: "flex-end" }}>
             <div style={{ maxWidth: 400 }}>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.2vw,52px)", lineHeight: 1.1, color: "#FAF7F0" }}>
-                Balanced like a <em style={{ fontStyle: "italic", color: "#F3C87A" }}>formula.</em>
+              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.2vw,52px)", lineHeight: 1.1, color: "#F2F7FD" }}>
+                Balanced like a <em style={{ fontStyle: "italic", color: "#8FC6FF" }}>formula.</em>
               </h2>
-              <div className="mt-6 relative nx-rise" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)", marginBottom: "-5.5rem", zIndex: 3 }}>
+              <div className="mt-6 relative nx-rise" style={{ background: "#FDFEFF", borderRadius: 18, padding: "1.2rem 1.4rem", boxShadow: "0 24px 50px -18px rgba(21, 24, 28,0.5)", marginBottom: "-5.5rem", zIndex: 3 }}>
                 <div className="flex items-center justify-between">
-                  <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 700, fontSize: 14, color: "#1C1815" }}>The Wolverine Stack</span>
-                  <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 10.5, color: "#5E3C0D", background: "#F7EAD2", borderRadius: 999, padding: "3px 9px" }}>Recovery</span>
+                  <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 700, fontSize: 14, color: "#0E2447" }}>The Wolverine Stack</span>
+                  <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 10.5, color: "#0D315E", background: "#D2E3F7", borderRadius: 999, padding: "3px 9px" }}>Recovery</span>
                 </div>
                 {[["BPC-157", "systemic repair signal"], ["TB-500", "tissue flexibility"], ["GHK-Cu", "collagen support"]].map(([n, d]) => (
-                  <div key={n} className="flex items-center gap-2.5" style={{ padding: "8px 0", borderTop: "1px solid rgba(28,24,21,0.06)", marginTop: 4 }}>
-                    <span aria-hidden style={{ width: 16, height: 16, borderRadius: 999, background: "#A8C69A", color: "#1C1815", fontSize: 10, fontWeight: 700, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>✓</span>
-                    <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13.5, fontWeight: 600, color: "#1C1815" }}>{n}</span>
-                    <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(28,24,21,0.5)" }}>{d}</span>
+                  <div key={n} className="flex items-center gap-2.5" style={{ padding: "8px 0", borderTop: "1px solid rgba(21, 24, 28,0.06)", marginTop: 4 }}>
+                    <span aria-hidden style={{ width: 16, height: 16, borderRadius: 999, background: "#2FA7C4", color: "#0E2447", fontSize: 10, fontWeight: 700, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>✓</span>
+                    <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13.5, fontWeight: 600, color: "#0E2447" }}>{n}</span>
+                    <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, color: "rgba(21, 24, 28,0.5)" }}>{d}</span>
                   </div>
                 ))}
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(28,24,21,0.55)", marginTop: 10, marginBottom: 0 }}>Balanced by a physician · one shipment · if prescribed</p>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(21, 24, 28,0.55)", marginTop: 10, marginBottom: 0 }}>Balanced by a physician · one shipment · if prescribed</p>
               </div>
             </div>
           </div>
@@ -455,13 +455,13 @@ export default function StackIndex() {
         <section className="nx-container pb-16 md:pb-24" style={{ paddingTop: "8.5rem" }} data-testid="section-why-stacked">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <div>
-              <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
+              <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
                 Why stacked protocols work better
               </div>
-              <h2 className="text-2xl md:text-4xl mb-6 leading-[1.1]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
+              <h2 className="text-2xl md:text-4xl mb-6 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
                 One peptide moves a pathway. A stack moves a <span style={{  }}>system</span>.
               </h2>
-              <div className="space-y-4 text-base" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.7 }}>
+              <div className="space-y-4 text-base" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.7 }}>
                 <p>
                   Most physiology is not governed by a single switch. Tissue repair needs local signaling <span>and</span> systemic
                   cell migration <span>and</span> collagen synthesis. Sleep needs faster onset <span>and</span> deeper slow-wave architecture
@@ -491,10 +491,10 @@ export default function StackIndex() {
         {/* ── FAQ tail ── */}
         <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-stack-faq">
           <div className="nx-container" style={{ maxWidth: 760, margin: "0 auto" }}>
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
               Stack questions
             </div>
-            <h2 className="text-2xl md:text-3xl mb-8" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
+            <h2 className="text-2xl md:text-3xl mb-8" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
               Before you add to cart.
             </h2>
             <div>
@@ -506,11 +506,11 @@ export default function StackIndex() {
                     aria-expanded={openFaq === i}
                     data-testid={`stack-faq-item-${i}`}
                   >
-                    <span className="text-base" style={{ fontFamily: SANS, fontWeight: 500, color: "#1C1815", lineHeight: 1.4 }}>{item.q}</span>
-                    {openFaq === i ? <Minus size={16} style={{ color: "#8B5A2B", flexShrink: 0, marginTop: 3 }} /> : <Plus size={16} style={{ color: "#4A4A4A", flexShrink: 0, marginTop: 3 }} />}
+                    <span className="text-base" style={{ fontFamily: SANS, fontWeight: 500, color: "#0E2447", lineHeight: 1.4 }}>{item.q}</span>
+                    {openFaq === i ? <Minus size={16} style={{ color: "#1F5FD0", flexShrink: 0, marginTop: 3 }} /> : <Plus size={16} style={{ color: "#4A6690", flexShrink: 0, marginTop: 3 }} />}
                   </button>
                   {openFaq === i && (
-                    <p className="pb-5 text-sm" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.7, maxWidth: 640 }} data-testid={`stack-faq-answer-${i}`}>
+                    <p className="pb-5 text-sm" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.7, maxWidth: 640 }} data-testid={`stack-faq-answer-${i}`}>
                       {item.a}
                     </p>
                   )}
@@ -522,10 +522,10 @@ export default function StackIndex() {
 
         {/* ── Footer CTA — assessment ── */}
         <section className="nx-container py-16 md:py-20">
-          <div className="p-8 md:p-12 max-w-4xl mx-auto" style={{ background: "#1C1815" }}>
+          <div className="p-8 md:p-12 max-w-4xl mx-auto" style={{ background: "#0E2447" }}>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "rgba(243,200,122,0.8)" }}>
+                <div className="text-[10px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "rgba(122, 176, 243,0.8)" }}>
                   Not sure which stack?
                 </div>
                 <h2 className="text-2xl md:text-3xl mb-3" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
@@ -538,7 +538,7 @@ export default function StackIndex() {
               <Link asChild href="/assessment">
                 <a
                   className="flex-shrink-0 inline-flex items-center gap-2 px-7 py-3.5"
-                  style={{ background: "#F3C87A", color: "#1C1815", fontFamily: MONO, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}
+                  style={{ background: "#8FC6FF", color: "#0E2447", fontFamily: MONO, fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", whiteSpace: "nowrap" }}
                   data-testid="link-assessment-cta"
                 >
                   Start assessment <ArrowRight size={14} strokeWidth={2.5} />
@@ -568,18 +568,18 @@ function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="eager"
         />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(28,24,21,0.82) 0%, rgba(28,24,21,0.15) 46%, transparent 72%)" }} aria-hidden />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(21, 24, 28,0.82) 0%, rgba(21, 24, 28,0.15) 46%, transparent 72%)" }} aria-hidden />
         <div className="absolute left-6 right-6 bottom-6">
-          <div className="text-[11px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#F3C87A" }}>
+          <div className="text-[11px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#8FC6FF" }}>
             Flagship stack
           </div>
-          <h3 className="mb-2" style={{ fontFamily: SERIF, color: "#FFFFF3", fontWeight: 600, fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+          <h3 className="mb-2" style={{ fontFamily: SERIF, color: "#FBFDFF", fontWeight: 600, fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
             The {name} stack
           </h3>
-          <p className="text-sm mb-4 max-w-[34ch]" style={{ fontFamily: SANS, color: "rgba(255,255,243,0.85)", lineHeight: 1.4 }}>
+          <p className="text-sm mb-4 max-w-[34ch]" style={{ fontFamily: SANS, color: "rgba(243, 248, 255,0.85)", lineHeight: 1.4 }}>
             {proof}
           </p>
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] px-4 py-2 group-hover:gap-3 transition-all" style={{ fontFamily: MONO, color: "#1C1815", background: "#F3C87A", borderRadius: 999, fontWeight: 600 }}>
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] px-4 py-2 group-hover:gap-3 transition-all" style={{ fontFamily: MONO, color: "#0E2447", background: "#8FC6FF", borderRadius: 999, fontWeight: 600 }}>
             Explore stack <ArrowRight size={13} strokeWidth={2.5} />
           </span>
         </div>
@@ -590,7 +590,7 @@ function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string
 
 function Pill({ text }: { text: string }) {
   return (
-    <span className="inline-block px-2.5 py-1 text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "#1C1815", background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)" }}>
+    <span className="inline-block px-2.5 py-1 text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "#0E2447", background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)" }}>
       {text}
     </span>
   );
@@ -610,11 +610,11 @@ function VsSingleChart() {
   return (
     <div style={{ background: "#fff", border: "1px solid var(--nx-border)", padding: "1.5rem" }}>
       <div className="flex items-center gap-5 mb-4">
-        <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
-          <span style={{ width: 14, height: 6, background: "#C9CFC2", display: "inline-block" }} /> Single peptide
+        <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#5C77A0" }}>
+          <span style={{ width: 14, height: 6, background: "#C2CCCF", display: "inline-block" }} /> Single peptide
         </span>
-        <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#1C1815" }}>
-          <span style={{ width: 14, height: 6, background: "#1C1815", display: "inline-block" }} /> Full stack
+        <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#0E2447" }}>
+          <span style={{ width: 14, height: 6, background: "#0E2447", display: "inline-block" }} /> Full stack
         </span>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Outcome completeness — single peptide versus full stack">
@@ -623,16 +623,16 @@ function VsSingleChart() {
           const y = top + i * rowH;
           return (
             <g key={l.name}>
-              <text x={padL} y={y - 8} style={{ fontFamily: MONO, fontSize: 11, fill: "#1C1815" }}>{l.name}</text>
-              <rect x={padL} y={y} width={(l.single / 100) * maxW} height={barH} fill="#C9CFC2" rx={1} />
-              <text x={padL + (l.single / 100) * maxW + 6} y={y + barH - 1} style={{ fontFamily: MONO, fontSize: 9, fill: "#8A8A8A" }}>{l.single}</text>
-              <rect x={padL} y={y + barH + gap} width={(l.stack / 100) * maxW} height={barH} fill="#1C1815" rx={1} />
-              <text x={padL + (l.stack / 100) * maxW + 6} y={y + barH * 2 + gap - 1} style={{ fontFamily: MONO, fontSize: 9, fill: "#8B5A2B" }}>{l.stack}</text>
+              <text x={padL} y={y - 8} style={{ fontFamily: MONO, fontSize: 11, fill: "#0E2447" }}>{l.name}</text>
+              <rect x={padL} y={y} width={(l.single / 100) * maxW} height={barH} fill="#C2CCCF" rx={1} />
+              <text x={padL + (l.single / 100) * maxW + 6} y={y + barH - 1} style={{ fontFamily: MONO, fontSize: 9, fill: "#7C90A6" }}>{l.single}</text>
+              <rect x={padL} y={y + barH + gap} width={(l.stack / 100) * maxW} height={barH} fill="#0E2447" rx={1} />
+              <text x={padL + (l.stack / 100) * maxW + 6} y={y + barH * 2 + gap - 1} style={{ fontFamily: MONO, fontSize: 9, fill: "#1F5FD0" }}>{l.stack}</text>
             </g>
           );
         })}
       </svg>
-      <p className="mt-3 text-[11px]" style={{ fontFamily: SANS, color: "#8A8A8A", lineHeight: 1.5 }}>
+      <p className="mt-3 text-[11px]" style={{ fontFamily: SANS, color: "#7C90A6", lineHeight: 1.5 }}>
         Illustrative — relative completeness of outcome across levers, not a clinical endpoint. Individual results vary
         and depend on your baseline labs.
       </p>

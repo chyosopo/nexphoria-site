@@ -134,12 +134,12 @@ export default function Category() {
   return (
     <SiteLayout>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #FFFEF8 0%, var(--nx-bg) 100%)" }}>
+      <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }}>
         <div className="nx-container" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(2.5rem,5vw,4rem)" }}>
           <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
           <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-black)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
             {cfg.pre}{" "}
-            <em style={{ fontStyle: "italic", color: "#B97C24" }}>{cfg.accent}</em>
+            <em style={{ fontStyle: "italic", color: "#1F5FD0" }}>{cfg.accent}</em>
           </h1>
           <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.4rem" }}>
             {cfg.sub}
@@ -153,7 +153,7 @@ export default function Category() {
           {/* goal chips */}
           <div className="mt-8 flex flex-wrap gap-2">
             {cfg.chips.map((c) => (
-              <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "#7A4E12", background: "rgba(243,200,122,0.22)", border: "1px solid rgba(185,124,36,0.22)", borderRadius: 999, padding: "7px 14px" }}>
+              <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "#163E8C", background: "rgba(122, 176, 243,0.22)", border: "1px solid rgba(36, 103, 185,0.22)", borderRadius: 999, padding: "7px 14px" }}>
                 {c}
               </span>
             ))}
@@ -168,7 +168,7 @@ export default function Category() {
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map(([t, d], i) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.6rem 1.5rem" }}>
-                <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#B97C24", lineHeight: 1 }}>{i + 1}</div>
+                <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#1F5FD0", lineHeight: 1 }}>{i + 1}</div>
                 <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: "var(--nx-black)", marginTop: "0.8rem" }}>{t}</h3>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
               </div>
@@ -183,21 +183,21 @@ export default function Category() {
       {/* ── Goal composite — UI over film ── */}
       <section className="relative overflow-hidden flex items-center" style={{ minHeight: "70vh" }}>
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_152222_271d9e81-0e8b-4523-919e-f87170779650.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(28,24,21,0.55) 0%, rgba(28,24,21,0.1) 60%, transparent 100%)" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, rgba(21, 24, 28,0.1) 60%, transparent 100%)" }} />
         <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_170611_9a4e8cf6-4a78-4757-97f4-18aed47a8cc5.png" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
         <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-          <h2 className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "#FAF7F0", maxWidth: "16ch", zIndex: 2 }}>
-            Progress you can <em style={{ fontStyle: "italic", color: "#F3C87A" }}>point to.</em>
+          <h2 className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "#F2F7FD", maxWidth: "16ch", zIndex: 2 }}>
+            Progress you can <em style={{ fontStyle: "italic", color: "#8FC6FF" }}>point to.</em>
           </h2>
-          <div className="mt-6" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
+          <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
             <div className="flex items-center justify-between gap-4">
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#FAF7F0" }}>{GOAL_CHIP[slug]?.label}</span>
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#F2F7FD" }}>{GOAL_CHIP[slug]?.label}</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#0E2447", background: "#2FA7C4", borderRadius: 999, padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
             </div>
-            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
-              <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0", boxShadow: "0 0 0 3px rgba(250,247,240,0.3)" }} />
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#2FA7C4,#8FC6FF,#6FA3CC)" }}>
+              <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#F2F7FD", boxShadow: "0 0 0 3px rgba(240, 244, 250,0.3)" }} />
             </div>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(250,247,240,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(240, 244, 250,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
           </div>
         </div>
       </section>
@@ -226,7 +226,7 @@ export default function Category() {
           </div>
           {list.length === 0 && (
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "var(--nx-fg-graphite)" }}>
-              Protocols in this area are physician-designed per patient. <Link href="/assessment" style={{ color: "#7A4E12", fontWeight: 600 }}>Start your intake</Link>.
+              Protocols in this area are physician-designed per patient. <Link href="/assessment" style={{ color: "#163E8C", fontWeight: 600 }}>Start your intake</Link>.
             </p>
           )}
         </div>
@@ -241,7 +241,7 @@ export default function Category() {
               <details key={f.q} className="group" style={{ borderBottom: "1px solid var(--nx-line)", padding: "1.1rem 0" }}>
                 <summary className="flex items-center justify-between cursor-pointer list-none" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16.5, color: "var(--nx-black)" }}>
                   {f.q}
-                  <span aria-hidden className="transition-transform duration-300 group-open:rotate-45" style={{ color: "#7A4E12", fontSize: 22, lineHeight: 1 }}>+</span>
+                  <span aria-hidden className="transition-transform duration-300 group-open:rotate-45" style={{ color: "#163E8C", fontSize: 22, lineHeight: 1 }}>+</span>
                 </summary>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.7rem", maxWidth: "62ch" }}>{f.a}</p>
               </details>
@@ -255,7 +255,7 @@ export default function Category() {
         <div className="nx-container">
           <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", textAlign: "center" }}>
             <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-black)" }}>
-              One intake. <em style={{ fontStyle: "italic", color: "#B97C24" }}>Your</em> protocol.
+              One intake. <em style={{ fontStyle: "italic", color: "#1F5FD0" }}>Your</em> protocol.
             </h2>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 16, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>
               Free evaluation. You only pay if a physician prescribes.

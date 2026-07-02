@@ -339,7 +339,7 @@ function safetySnapshot(p: Peptide): {
   return [
     { level: "Common", dot: "var(--nx-rust)", short: cols[0].items[0], full: cols[0].items },
     { level: "Less common", dot: "var(--nx-amber)", short: cols[1].items[0], full: cols[1].items },
-    { level: "Rare", dot: "#B23A2E", short: cols[2].items[0], full: cols[2].items },
+    { level: "Rare", dot: "#2E5EB2", short: cols[2].items[0], full: cols[2].items },
   ];
 }
 
@@ -722,10 +722,10 @@ function MechanismPulseSVG({ family }: { family: MechFamily }) {
         `}</style>
       </defs>
       {/* Connecting path — invisible but used for offset-path animation */}
-      <path id="mech-path" d="M 90 100 L 250 100 L 410 100 L 570 100" fill="none" stroke="rgba(28,24,21,0.12)" strokeWidth="1.5" strokeDasharray="3 4" />
+      <path id="mech-path" d="M 90 100 L 250 100 L 410 100 L 570 100" fill="none" stroke="rgba(21, 24, 28,0.12)" strokeWidth="1.5" strokeDasharray="3 4" />
       {/* Arrow heads */}
       {[240, 400, 560].map((x) => (
-        <polyline key={x} points={`${x - 6},94 ${x + 2},100 ${x - 6},106`} fill="none" stroke="rgba(28,24,21,0.35)" strokeWidth="1.4" />
+        <polyline key={x} points={`${x - 6},94 ${x + 2},100 ${x - 6},106`} fill="none" stroke="rgba(21, 24, 28,0.35)" strokeWidth="1.4" />
       ))}
       {/* 4 nodes */}
       {[
@@ -735,17 +735,17 @@ function MechanismPulseSVG({ family }: { family: MechFamily }) {
         { cx: 570, label: "Effect", sub: "restores" },
       ].map((n, i) => (
         <g key={n.cx}>
-          <circle cx={n.cx} cy={100} r={30} fill="#FFFFFA" stroke="#1C1815" strokeWidth="1.6" />
-          {i === 3 && <circle cx={n.cx} cy={100} r={30} fill="#F3C87A" opacity="0.35" className="nx-node-glow" />}
-          <circle cx={n.cx} cy={100} r={4} fill="#1C1815" />
-          <text x={n.cx} y={148} textAnchor="middle" fontSize="11" fontFamily="'General Sans', system-ui, sans-serif" fontWeight="500" fill="#1C1815">{n.label}</text>
-          <text x={n.cx} y={164} textAnchor="middle" fontSize="9" fontFamily="'JetBrains Mono', ui-monospace, monospace" letterSpacing="0.12em" fill="rgba(28,24,21,0.5)" style={{ textTransform: "uppercase" }}>{n.sub}</text>
+          <circle cx={n.cx} cy={100} r={30} fill="#FAFCFF" stroke="#0E2447" strokeWidth="1.6" />
+          {i === 3 && <circle cx={n.cx} cy={100} r={30} fill="#8FC6FF" opacity="0.35" className="nx-node-glow" />}
+          <circle cx={n.cx} cy={100} r={4} fill="#0E2447" />
+          <text x={n.cx} y={148} textAnchor="middle" fontSize="11" fontFamily="'General Sans', system-ui, sans-serif" fontWeight="500" fill="#0E2447">{n.label}</text>
+          <text x={n.cx} y={164} textAnchor="middle" fontSize="9" fontFamily="'JetBrains Mono', ui-monospace, monospace" letterSpacing="0.12em" fill="rgba(21, 24, 28,0.5)" style={{ textTransform: "uppercase" }}>{n.sub}</text>
         </g>
       ))}
       {/* Animated pulse dot traveling along path */}
-      <circle r="6" fill="#F3C87A" stroke="#1C1815" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')" }} />
+      <circle r="6" fill="#8FC6FF" stroke="#0E2447" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')" }} />
       {/* Second dot delayed */}
-      <circle r="6" fill="#F3C87A" stroke="#1C1815" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')", animationDelay: "2.25s" }} />
+      <circle r="6" fill="#8FC6FF" stroke="#0E2447" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')", animationDelay: "2.25s" }} />
     </svg>
   );
 }
@@ -754,7 +754,7 @@ function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
   const story = mechStory(peptide);
   const fam = mechFamily(peptide);
   return (
-    <section id="mechanism" className="scroll-mt-32" style={{ backgroundColor: "#FFFFFA", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-mechanism">
+    <section id="mechanism" className="scroll-mt-32" style={{ backgroundColor: "#FAFCFF", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-mechanism">
       <div className="nx-container py-16 md:py-24">
         <div className="grid lg:grid-cols-[minmax(280px,380px)_1fr] gap-12 lg:gap-20 items-start">
           {/* Left column — narrative */}
@@ -775,7 +775,7 @@ function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
           <div>
             <div
               className="rounded-3xl p-6 md:p-10 mb-8"
-              style={{ backgroundColor: "var(--nx-rock, #EDE6D8)", border: "1px solid var(--nx-border)" }}
+              style={{ backgroundColor: "var(--nx-rock, #DCE8F5)", border: "1px solid var(--nx-border)" }}
               data-testid="mechanism-schematic"
             >
               <MechanismPulseSVG family={fam} />
@@ -785,7 +785,7 @@ function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
                 <li key={i} className="flex gap-4" data-testid={`mechanism-step-${i}`}>
                   <div
                     className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "#1C1815", color: "#F3C87A", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: "12px", fontWeight: 600 }}
+                    style={{ backgroundColor: "#0E2447", color: "#8FC6FF", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: "12px", fontWeight: 600 }}
                     aria-hidden="true"
                   >
                     {i + 1}
@@ -1424,7 +1424,7 @@ function DataHero({
   ];
 
   const FF = "'General Sans', system-ui, sans-serif";
-  const ACID = "var(--nx-acid, #F3C87A)";
+  const ACID = "var(--nx-acid, #8FC6FF)";
 
   return (
     <main
@@ -1441,8 +1441,8 @@ function DataHero({
                 tone="acid"
                 style={{
                   border:
-                    "1px solid color-mix(in oklab, #FAF7F0 30%, transparent)",
-                  color: "color-mix(in oklab, #FAF7F0 82%, transparent)",
+                    "1px solid color-mix(in oklab, #F2F7FD 30%, transparent)",
+                  color: "color-mix(in oklab, #F2F7FD 82%, transparent)",
                 }}
               >
                 {catLabel}
@@ -1453,7 +1453,7 @@ function DataHero({
                   fontSize: 12,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: "color-mix(in oklab, #FAF7F0 60%, transparent)",
+                  color: "color-mix(in oklab, #F2F7FD 60%, transparent)",
                 }}
                 data-testid="text-hero-fullname"
               >
@@ -1482,7 +1482,7 @@ function DataHero({
                 fontSize: "clamp(15px, 1.5vw, 18px)",
                 lineHeight: 1.5,
                 fontWeight: 400,
-                color: "color-mix(in oklab, #FAF7F0 72%, transparent)",
+                color: "color-mix(in oklab, #F2F7FD 72%, transparent)",
                 marginTop: 16,
                 maxWidth: 520,
               }}
@@ -1520,7 +1520,7 @@ function DataHero({
                 {stat.label}{" "}
                 <span
                   style={{
-                    color: "color-mix(in oklab, #FAF7F0 55%, transparent)",
+                    color: "color-mix(in oklab, #F2F7FD 55%, transparent)",
                     fontWeight: 400,
                   }}
                 >
@@ -1533,7 +1533,7 @@ function DataHero({
                   fontFamily: FF,
                   fontSize: 12.5,
                   letterSpacing: "0.02em",
-                  color: "color-mix(in oklab, #FAF7F0 48%, transparent)",
+                  color: "color-mix(in oklab, #F2F7FD 48%, transparent)",
                   marginTop: 8,
                 }}
               >
@@ -1572,7 +1572,7 @@ function DataHero({
                   color: CREAM,
                   backgroundColor: "transparent",
                   border:
-                    "1px solid color-mix(in oklab, #FAF7F0 36%, transparent)",
+                    "1px solid color-mix(in oklab, #F2F7FD 36%, transparent)",
                   borderRadius: 12,
                   padding: "14px 26px",
                   cursor: "pointer",
@@ -1593,7 +1593,7 @@ function DataHero({
               borderRadius: 20,
               overflow: "hidden",
               justifySelf: "end",
-              boxShadow: "0 30px 80px -30px rgba(28,24,21,0.6)",
+              boxShadow: "0 30px 80px -30px rgba(21, 24, 28,0.6)",
             }}
           >
             <img
@@ -1616,7 +1616,7 @@ function DataHero({
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(180deg, transparent 40%, color-mix(in oklab, #1C1815 78%, transparent) 100%)",
+                  "linear-gradient(180deg, transparent 40%, color-mix(in oklab, #0E2447 78%, transparent) 100%)",
               }}
             />
             {/* Floating endpoint tag */}
@@ -1658,7 +1658,7 @@ function DataHero({
                   fontSize: 11,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: "color-mix(in oklab, #FAF7F0 60%, transparent)",
+                  color: "color-mix(in oklab, #F2F7FD 60%, transparent)",
                   marginTop: 4,
                 }}
               >
@@ -1675,7 +1675,7 @@ function DataHero({
           style={{
             marginTop: 48,
             borderTop:
-              "1px solid color-mix(in oklab, #FAF7F0 16%, transparent)",
+              "1px solid color-mix(in oklab, #F2F7FD 16%, transparent)",
           }}
         >
           {callouts.map((c, i) => (
@@ -1694,7 +1694,7 @@ function DataHero({
                   fontSize: 11,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: "color-mix(in oklab, #FAF7F0 54%, transparent)",
+                  color: "color-mix(in oklab, #F2F7FD 54%, transparent)",
                 }}
               >
                 {c.k}
@@ -1892,8 +1892,8 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
                 className="rounded-full px-2.5 md:px-3 py-1 text-[11px] md:text-xs font-mono uppercase tracking-wider transition-colors"
                 style={{
                   backgroundColor: plan === c.id ? CREAM : "transparent",
-                  color: plan === c.id ? INK : "rgba(250,247,240,0.75)",
-                  border: `1px solid ${plan === c.id ? CREAM : "rgba(250,247,240,0.3)"}`,
+                  color: plan === c.id ? INK : "rgba(240, 244, 250,0.75)",
+                  border: `1px solid ${plan === c.id ? CREAM : "rgba(240, 244, 250,0.3)"}`,
                 }}
                 data-testid={`sticky-plan-${c.id === "m1" ? 1 : c.id === "m3" ? 3 : 6}`}
               >
@@ -1906,7 +1906,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             type="button"
             onClick={() => handleAddToCart(false)}
             className="rounded-full px-4 md:px-5 py-2 text-sm font-medium whitespace-nowrap transition-opacity hover:opacity-90 shrink-0"
-            style={{ backgroundColor: adding ? "#8B5A2B" : CREAM, color: adding ? CREAM : INK }}
+            style={{ backgroundColor: adding ? "#1F5FD0" : CREAM, color: adding ? CREAM : INK }}
             data-testid="anchor-cta"
           >
             {adding ? "✓ Added" : "Add to cart"}
@@ -1922,7 +1922,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             className="text-3xl md:text-5xl mx-auto max-w-[20ch]"
             style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.01em" }}
           >
-            {tag.lead} <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#B97C24" }}>{tag.accent}</span>
+            {tag.lead} <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#1F5FD0" }}>{tag.accent}</span>
           </h2>
         </div>
       </section>
@@ -1938,7 +1938,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             style={{ backgroundColor: INK }}
             data-testid="section-info-card"
           >
-            <p className="nx-eyebrow mb-6" style={{ color: "rgba(250,247,240,0.6)" }}>
+            <p className="nx-eyebrow mb-6" style={{ color: "rgba(240, 244, 250,0.6)" }}>
               Medical summary
             </p>
             <div className="grid md:grid-cols-2 gap-x-12 gap-y-5">
@@ -1954,11 +1954,11 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
                   <Check size={15} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "var(--nx-rust)" }} />
                   <span
                     className="font-mono text-[11px] uppercase tracking-[0.14em] shrink-0 w-24 pt-1"
-                    style={{ color: "rgba(250,247,240,0.5)" }}
+                    style={{ color: "rgba(240, 244, 250,0.5)" }}
                   >
                     {row.l}
                   </span>
-                  <span className="text-sm md:text-base leading-relaxed" style={{ color: "rgba(250,247,240,0.92)" }}>
+                  <span className="text-sm md:text-base leading-relaxed" style={{ color: "rgba(240, 244, 250,0.92)" }}>
                     {row.v}
                   </span>
                 </div>
@@ -2052,12 +2052,12 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
                 <div key={i} className="flex items-start gap-4" data-testid={`benefit-callout-${i}`}>
                   <Icon size={26} strokeWidth={1.5} className="shrink-0" style={{ color: "var(--nx-rust)" }} />
                   <div>
-                    <p className="text-base md:text-lg leading-snug" style={{ color: "rgba(250,247,240,0.92)" }}>
+                    <p className="text-base md:text-lg leading-snug" style={{ color: "rgba(240, 244, 250,0.92)" }}>
                       {b.text}
                     </p>
                     <p
                       className="mt-2 text-[10px] uppercase tracking-[0.12em]"
-                      style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "rgba(250,247,240,0.5)" }}
+                      style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "rgba(240, 244, 250,0.5)" }}
                     >
                       {b.sub}
                     </p>
@@ -2172,7 +2172,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             Not just supplements.{" "}
             <span style={{  color: "var(--nx-rust)" }}>Prescription medicine.</span>
           </h2>
-          <p className="text-base md:text-lg max-w-[48ch] mx-auto mb-9" style={{ color: "rgba(250,247,240,0.7)" }}>
+          <p className="text-base md:text-lg max-w-[48ch] mx-auto mb-9" style={{ color: "rgba(240, 244, 250,0.7)" }}>
             {peptide.name} is dispensed only after a board-certified physician
             confirms it fits your case. No guesswork, no research powders — a
             prescribed, compounded protocol.
@@ -2182,7 +2182,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
               type="button"
               onClick={() => handleAddToCart(true)}
               className="rounded-full px-7 py-3.5 text-sm font-medium transition-opacity hover:opacity-90"
-              style={{ backgroundColor: adding ? "#8B5A2B" : CREAM, color: adding ? CREAM : INK }}
+              style={{ backgroundColor: adding ? "#1F5FD0" : CREAM, color: adding ? CREAM : INK }}
               data-testid="closer-start-intake"
             >
               {adding ? "✓ Added — review cart" : `Add to cart · $${price.perMo(plan)}/mo`}
@@ -2190,7 +2190,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             <Link
               href="/contact"
               className="rounded-full px-7 py-3.5 text-sm font-medium border transition-colors"
-              style={{ borderColor: "rgba(250,247,240,0.4)", color: CREAM, display: "inline-block" }}
+              style={{ borderColor: "rgba(240, 244, 250,0.4)", color: CREAM, display: "inline-block" }}
               data-testid="closer-talk-provider"
             >
               Talk to a provider
@@ -2204,7 +2204,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
               "USP <797> sterile compounding",
               "Batch potency + sterility tested",
             ].map((c) => (
-              <p key={c} className="flex items-center gap-2 text-sm" style={{ color: "rgba(250,247,240,0.82)" }}>
+              <p key={c} className="flex items-center gap-2 text-sm" style={{ color: "rgba(240, 244, 250,0.82)" }}>
                 <Check size={15} strokeWidth={2.4} style={{ color: CREAM }} />
                 {c}
               </p>
@@ -2214,8 +2214,8 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
       </section>
 
       {/* ── Sticky mobile intake CTA — hims PDP grammar ── */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ background: "rgba(252,250,245,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(28,24,21,0.08)", padding: "10px 16px calc(10px + env(safe-area-inset-bottom))" }} data-testid="pdp-sticky-cta">
-        <a href="#/assessment" className="flex items-center justify-center no-underline" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, background: "var(--nx-black)", color: "#FAF7F0", borderRadius: 999, padding: "13px 20px" }}>
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ background: "rgba(245, 248, 252,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(21, 24, 28,0.08)", padding: "10px 16px calc(10px + env(safe-area-inset-bottom))" }} data-testid="pdp-sticky-cta">
+        <a href="#/assessment" className="flex items-center justify-center no-underline" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, background: "var(--nx-black)", color: "#F2F7FD", borderRadius: 999, padding: "13px 20px" }}>
           Start your intake — free evaluation
         </a>
       </div>
@@ -2259,7 +2259,7 @@ function PricingCard({
   return (
     <div
       id="pricing-card"
-      className="rounded-3xl border border-[var(--nx-border)] bg-white p-6 md:p-8 shadow-[0_8px_40px_-12px_rgba(28,24,21,0.18)]"
+      className="rounded-3xl border border-[var(--nx-border)] bg-white p-6 md:p-8 shadow-[0_8px_40px_-12px_rgba(21, 24, 28,0.18)]"
       data-testid="pricing-card"
     >
       <div className="flex items-center justify-between mb-4">
@@ -2338,7 +2338,7 @@ function PricingCard({
         type="button"
         onClick={onAdd}
         className="nx-cta-cobalt w-full justify-center inline-flex items-center gap-2"
-        style={adding ? { backgroundColor: "#8B5A2B" } : undefined}
+        style={adding ? { backgroundColor: "#1F5FD0" } : undefined}
         data-testid="pricing-start-intake"
       >
         {adding ? (
@@ -2953,7 +2953,7 @@ function SAFETY_COLUMNS(peptide: Peptide) {
   return [
     { key: "common", title: "Most common", dot: "var(--nx-sage-edge)", items: common },
     { key: "less", title: "Less common — talk to provider", dot: "var(--nx-rust)", items: less },
-    { key: "rare", title: "Rare but serious — stop and seek care", dot: "#B23A2E", items: rare },
+    { key: "rare", title: "Rare but serious — stop and seek care", dot: "#2E5EB2", items: rare },
   ];
 }
 

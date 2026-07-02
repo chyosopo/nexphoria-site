@@ -188,12 +188,12 @@ const TONE_PALETTE: Record<
   ColoredHeroTileProps["tone"],
   { bg: string; ink: string; accent: string; shadow: string }
 > = {
-  sage:   { bg: "linear-gradient(135deg, #eef0e3 0%, #dde2cf 100%)", ink: "#2d3624", accent: "#7c8e5c", shadow: "rgba(120,140,90,0.18)" },
-  rose:   { bg: "linear-gradient(135deg, #f5e8e1 0%, #ead4c8 100%)", ink: "#3a2820", accent: "#b06b4f", shadow: "rgba(176,107,79,0.18)" },
-  sand:   { bg: "linear-gradient(135deg, #f1ece1 0%, #e2d9c4 100%)", ink: "#3a3526", accent: "#8c7a4e", shadow: "rgba(140,122,78,0.18)" },
+  sage:   { bg: "linear-gradient(135deg, #E3E9F0 0%, #CFDDE2 100%)", ink: "#243136", accent: "#5C828E", shadow: "rgba(90, 128, 140,0.18)" },
+  rose:   { bg: "linear-gradient(135deg, #E1EAF5 0%, #C8D7EA 100%)", ink: "#202C3A", accent: "#4F7BB0", shadow: "rgba(79, 123, 176,0.18)" },
+  sand:   { bg: "linear-gradient(135deg, #E1E8F1 0%, #C4D2E2 100%)", ink: "#262F3A", accent: "#4E6A8C", shadow: "rgba(78, 106, 140,0.18)" },
   sky:    { bg: "linear-gradient(135deg, #e6edec 0%, #c9d6d4 100%)", ink: "#1f2c2b", accent: "#456764", shadow: "rgba(69,103,100,0.20)" },
   cobalt: { bg: "linear-gradient(135deg, #dde4e8 0%, #b9c6d0 100%)", ink: "#1c2733", accent: "#345470", shadow: "rgba(52,84,112,0.22)" },
-  butter: { bg: "linear-gradient(135deg, #f4ecdb 0%, #e7d8b9 100%)", ink: "#3a3015", accent: "#a0823c", shadow: "rgba(160,130,60,0.18)" },
+  butter: { bg: "linear-gradient(135deg, #DBE6F4 0%, #B9CEE7 100%)", ink: "#15263A", accent: "#3C69A0", shadow: "rgba(60, 105, 160,0.18)" },
 };
 
 export function ColoredHeroTile({
@@ -234,14 +234,14 @@ export function ColoredHeroTile({
       )}
       <div
         className="mx-hero-label"
-        style={{ background: "rgba(255,253,247,0.92)", color: p.ink, boxShadow: `0 12px 32px ${p.shadow}` }}
+        style={{ background: "rgba(247, 251, 255,0.92)", color: p.ink, boxShadow: `0 12px 32px ${p.shadow}` }}
       >
         {label}
         <small style={{ color: p.accent }}>{caption}</small>
       </div>
       <div
         className="mx-hero-cta"
-        style={{ background: p.ink, color: "#fffff3" }}
+        style={{ background: p.ink, color: "#FBFDFF" }}
       >
         {ctaLabel}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -269,7 +269,7 @@ export const TileGlyphs = {
   leaf: (
     <svg viewBox="0 0 200 200" fill="currentColor">
       <path d="M40 160 C40 80 100 30 160 40 C150 100 100 160 40 160 Z" />
-      <path d="M40 160 C80 130 120 90 160 40" stroke="#fffff3" strokeWidth="2" fill="none" />
+      <path d="M40 160 C80 130 120 90 160 40" stroke="#FBFDFF" strokeWidth="2" fill="none" />
     </svg>
   ),
   hex: (
@@ -288,7 +288,7 @@ export const TileGlyphs = {
     <svg viewBox="0 0 200 200" fill="currentColor">
       <rect x="80" y="30" width="40" height="140" rx="8" />
       <rect x="70" y="20" width="60" height="18" rx="4" />
-      <rect x="80" y="130" width="40" height="40" fill="#fffff3" opacity="0.4" />
+      <rect x="80" y="130" width="40" height="40" fill="#FBFDFF" opacity="0.4" />
     </svg>
   ),
 };

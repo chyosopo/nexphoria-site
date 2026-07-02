@@ -30,9 +30,9 @@ export function AnnouncementBar({
     <div
       className="w-full"
       style={{
-        background: "#1C1815",
-        color: "#FAF7F0",
-        borderBottom: "1px solid rgba(250,247,240,0.08)",
+        background: "#0E2447",
+        color: "#F2F7FD",
+        borderBottom: "1px solid rgba(240, 244, 250,0.08)",
       }}
       data-testid="announcement-bar"
       role="region"
@@ -43,8 +43,8 @@ export function AnnouncementBar({
           className="hidden sm:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-[0.22em]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#1C1815",
-            background: "#F3C87A",
+            color: "#0E2447",
+            background: "#8FC6FF",
             letterSpacing: "0.22em",
             fontWeight: 600,
           }}
@@ -55,7 +55,7 @@ export function AnnouncementBar({
           className="flex-1 text-[11px] sm:text-[12px] leading-tight"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#FAF7F0",
+            color: "#F2F7FD",
             fontWeight: 400,
           }}
         >
@@ -66,8 +66,8 @@ export function AnnouncementBar({
           className="hidden sm:inline text-[10px] uppercase tracking-[0.18em] hover:opacity-80 transition-opacity"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#FAF7F0",
-            borderBottom: "1px solid rgba(250,247,240,0.4)",
+            color: "#F2F7FD",
+            borderBottom: "1px solid rgba(240, 244, 250,0.4)",
             paddingBottom: 1,
           }}
           data-testid="link-announcement-cta"
@@ -80,7 +80,7 @@ export function AnnouncementBar({
           className="p-1 -mr-1 hover:opacity-70 transition-opacity"
           aria-label="Dismiss announcement"
           data-testid="button-dismiss-announcement"
-          style={{ color: "#FAF7F0" }}
+          style={{ color: "#F2F7FD" }}
         >
           <X size={14} />
         </button>
