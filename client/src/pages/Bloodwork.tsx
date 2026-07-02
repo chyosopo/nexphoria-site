@@ -458,30 +458,20 @@ function PanelExplorer() {
                 }}
               >
                 {PANEL_ART[cat.id] && (
-                  <span className="block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "#EAF0F7" }}>
+                  <span className="relative block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "#EAF0F7" }}>
                     <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy"
                       className="w-full h-full transition-transform duration-700"
                       style={{ objectFit: "cover" }} />
+                    <span className="absolute inset-0 flex items-end p-3" style={{ background: "linear-gradient(180deg, rgba(10,20,35,0) 52%, rgba(10,20,35,0.58))" }}>
+                      <span style={{ fontFamily: FONT, fontSize: 10, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#FFFFFF" }}>{cat.eyebrow}</span>
+                    </span>
                   </span>
                 )}
                 {/* Card header */}
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.9rem" }}>
                   <div style={{ display: "flex", gap: "0.85rem", alignItems: "flex-start" }}>
                   <div>
-                    <p
-                      style={{
-                        fontFamily: FONT,
-                        fontSize: 10,
-                        fontWeight: 500,
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "var(--nx-ink-2)",
-                        marginBottom: "0.4rem",
-                      }}
-                    >
-                      {cat.eyebrow}
-                    </p>
-                    <h3
+                                        <h3
                       style={{
                         fontFamily: FONT,
                         fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)",

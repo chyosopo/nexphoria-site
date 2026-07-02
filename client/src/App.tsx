@@ -1,3 +1,7 @@
+
+function R({ to }: { to: string }) { const [, __n] = __uL(); useEffect(() => { __n(to, { replace: true }); }, []); return null; }
+import { useEffect } from "react";
+import { useLocation as __uL } from "wouter";
 import { Suspense, lazy } from "react";
 import { Switch, Route, Router } from "wouter";
 import { useHashLocation } from "wouter/use-hash-location";
@@ -12,7 +16,6 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 
 // Pages — eagerly loaded (fast/common paths)
 import Home from "@/pages/Home";
-import Showcase from "@/pages/Showcase";
 import Gate from "@/pages/Gate";
 import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
@@ -34,7 +37,6 @@ import NotFound from "@/pages/not-found";
 const Peptides = lazy(() => import("@/pages/Peptides"));
 const Category = lazy(() => import("@/pages/Category"));
 const PeptideDetail = lazy(() => import("@/pages/PeptideDetail"));
-const Midnight = lazy(() => import("@/pages/Midnight"));
 const GenderPeptides = lazy(() => import("@/pages/GenderPeptides"));
 const GenderPeptideDetail = lazy(() => import("@/pages/GenderPeptideDetail"));
 const GenderProtocols = lazy(() => import("@/pages/GenderProtocols"));
@@ -56,17 +58,13 @@ function AppRouter() {
       <Switch>
         {/* Home — new V3 landing (Maximus tiles + Bask cinematics) */}
         <Route path="/" component={Gate} />
-        <Route path="/home" component={Home} />
-        <Route path="/showcase" component={Showcase} />
 
         {/* Gender-neutral pharmacy shelf */}
-        <Route path="/peptides" component={Peptides} />
+        <Route path="/peptides">{() => <R to="/men/peptides" />}</Route>
         <Route path="/peptides/:slug" component={PeptideDetail} />
-      <Route path="/midnight" component={Midnight} />
         <Route path="/goals/:slug" component={Category} />
 
         {/* Old gender gate — kept reachable at /gate but not the home */}
-        <Route path="/gate" component={Gate} />
 
         {/* Women routes */}
         <Route path="/women" component={WomenHome} />
@@ -109,9 +107,8 @@ function AppRouter() {
         <Route path="/journal" component={Journal} />
         <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />
-        <Route path="/lab-testing" component={LabTesting} />
+        <Route path="/lab-testing">{() => <R to="/bloodwork" />}</Route>
         <Route path="/bloodwork" component={Bloodwork} />
-        <Route path="/testing" component={LabTesting} />
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />
