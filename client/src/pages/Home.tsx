@@ -67,8 +67,8 @@ const HOME_FAQ_ITEMS = [
     a: "BPC-157 is legal in the U.S. when prescribed by a licensed physician and compounded by a 503A-licensed pharmacy under federal compounding law. It is not FDA-approved as a standalone drug — it is dispensed off-label as a compounded medication. Nexphoria's BPC-157 protocols require a physician consultation and valid prescription before dispensing.",
   },
   {
-    q: "How does Nexphoria compare to Hims or Maximus?",
-    a: "Nexphoria focuses exclusively on peptide therapy with mandatory 90-day biomarker monitoring. Hims and Ro primarily offer TRT, GLP-1, and hair-loss medications. Maximus focuses on testosterone optimization. Nexphoria is the only platform combining peptide breadth (16+ compounds), physician-supervised compounding, and quarterly Quest Diagnostics follow-up in a single subscription.",
+    q: "How is Nexphoria different from other telehealth platforms?",
+    a: "Nexphoria is built exclusively around physician-directed peptide protocols — not a general telehealth menu. Every protocol is gated by comprehensive bloodwork at a CLIA-certified lab before the first dose and re-tested every 90 days, with 16+ compounds available through state-licensed 503A compounding pharmacies, in a single subscription.",
   },
   {
     q: "Does Nexphoria provide Certificates of Analysis?",

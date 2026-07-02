@@ -9,7 +9,7 @@ export function StackCard({ stack, variant = "light" }: { stack: Stack; variant?
   const isDark = variant === "dark";
 
   return (
-    <Link href={`/protocols/${stack.slug}`} data-testid={`card-stack-${stack.slug}`}>
+    <Link href={`/stacks/${stack.slug}`} data-testid={`card-stack-${stack.slug}`}>
       <article className={`group relative h-full rounded-3xl p-8 md:p-10 nx-card-lift nx-lift-premium overflow-hidden cursor-pointer ${
         isDark
           ? "bg-background/[0.04] border border-foreground/15 hover:border-primary/40"

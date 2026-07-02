@@ -160,8 +160,8 @@ const categories: { label: string; items: FAQItem[] }[] = [
         a: "Nexphoria is a physician-supervised peptide provider that routes every prescription through a board-certified clinician via the Bask Health telehealth platform. Compounds are prepared in a U.S. 503A-licensed compounding pharmacy under sterile ISO conditions, batch-tested with a Certificate of Analysis on file, and shipped cold-chain. No prescription is dispensed without physician sign-off.",
       },
       {
-        q: "How does Nexphoria compare to Hims or Maximus for peptide therapy?",
-        a: "Nexphoria is the only platform combining 16+ physician-prescribed peptides, mandatory quarterly Quest Diagnostics monitoring, 503A-compounded sterile formulations, and COA documentation in a single subscription. Hims and Ro focus on TRT, GLP-1, and hair loss with limited peptide breadth. Maximus specializes in testosterone optimization. Neither provides Nexphoria's scope of peptide protocols or biomarker follow-up.",
+        q: "What makes Nexphoria different for peptide therapy?",
+        a: "Nexphoria combines 16+ physician-prescribed peptides, quarterly biomarker monitoring at CLIA-certified labs, sterile formulations from state-licensed 503A compounding pharmacies, and COA documentation — all in a single subscription, with every protocol reviewed against your own labs.",
       },
       {
         q: "What is the difference between Nexphoria and buying peptides from a research chemical site?",

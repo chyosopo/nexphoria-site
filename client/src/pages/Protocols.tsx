@@ -181,7 +181,7 @@ export default function Protocols() {
               const from = Math.min(...stack.pricing.map((t) => t.pricePerMonth));
               return (
                 <Reveal key={stack.slug} delay={idx * 70}>
-                  <Link href={`/protocols/${stack.slug}`}>
+                  <Link href={`/stacks/${stack.slug}`}>
                     <div
                       className="nx-card group relative h-full p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
                       data-testid={`card-protocol-${stack.slug}`}

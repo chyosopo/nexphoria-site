@@ -68,6 +68,16 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
+  sleep: {
+    pre: "Deeper nights,", accent: "better days.",
+    sub: "Physician-directed protocols oriented around sleep quality, onset, and overnight recovery — matched to your labs and adjusted to how you actually respond.",
+    chips: ["Sleep quality", "Sleep onset", "Overnight recovery", "Morning energy"],
+    faqs: [
+      { q: "How do sleep protocols start?", a: "With a private online intake and baseline bloodwork reviewed by a licensed physician, who prescribes a protocol only if appropriate. " + IF_RX },
+      { q: "How is progress tracked?", a: "Through your own reporting and quarterly labs — protocols are held, adjusted, or tapered against real markers." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
+    ],
+  },
   metabolic: {
     pre: "Metabolic health,", accent: "on your terms.",
     sub: "Medically supervised protocols oriented around appetite, weight, and glucose control — with real labs before the first dose and every 90 days after.",
