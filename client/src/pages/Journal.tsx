@@ -120,7 +120,7 @@ export default function Journal() {
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1.05fr 0.95fr",
-                  backgroundColor: "#FBFDFF",
+                  backgroundColor: "var(--nx-ceramic)",
                   border: "1px solid var(--nx-border)",
                   borderRadius: 20,
                   overflow: "hidden",
@@ -144,7 +144,7 @@ export default function Journal() {
                       left: 20,
                       padding: "7px 14px",
                       backgroundColor: "rgba(21, 24, 28,0.92)",
-                      color: "#FBFDFF",
+                      color: "var(--nx-ceramic)",
                       fontFamily: FONT,
                       fontSize: 11,
                       fontWeight: 500,
@@ -373,7 +373,7 @@ export default function Journal() {
                   fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)",
                   lineHeight: 1.05,
                   letterSpacing: "-0.03em",
-                  color: "#FBFDFF",
+                  color: "var(--nx-ceramic)",
                   marginBottom: 16,
                 }}
               >
@@ -402,7 +402,7 @@ export default function Journal() {
                   justifyContent: "center",
                   gap: 8,
                   backgroundColor: "var(--nx-acid)",
-                  color: "#0E2447",
+                  color: "var(--nx-fg)",
                   fontFamily: FONT,
                   fontSize: 13,
                   fontWeight: 600,
@@ -476,7 +476,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
         borderRadius: 999,
         border: `1px solid ${isActive ? "var(--nx-fg)" : "var(--nx-border)"}`,
         backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
-        color: isActive ? "#FBFDFF" : "var(--nx-fg)",
+        color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
         fontFamily: FONT,
         fontSize: 12,
         fontWeight: 500,
@@ -516,7 +516,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
           transition={{ delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
           whileHover={{ y: -4 }}
           style={{
-            backgroundColor: "#FBFDFF",
+            backgroundColor: "var(--nx-ceramic)",
             border: "1px solid var(--nx-border)",
             borderRadius: 16,
             overflow: "hidden",

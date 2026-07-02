@@ -115,8 +115,8 @@ export default function Showcase() {
                   width: 6,
                   height: 6,
                   borderRadius: 999,
-                  background: "var(--nx-acid, #8FC6FF)",
-                  boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, #8FC6FF) 30%, transparent)",
+                  background: "var(--nx-acid, var(--nx-acid))",
+                  boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, var(--nx-acid)) 30%, transparent)",
                 }}
               />
               No obligation · Reviewed by a licensed physician
@@ -224,7 +224,7 @@ export default function Showcase() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[13px] font-semibold uppercase tracking-[0.08em] transition-transform"
                 style={{
                   background: "var(--nx-fg)",
-                  color: "var(--nx-bg-cream, #FBFDFF)",
+                  color: "var(--nx-bg-cream, var(--nx-ceramic))",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                 }}
                 data-testid="link-full-library"
@@ -297,7 +297,7 @@ export default function Showcase() {
                 <div className="mx-tile-head">
                   <span
                     className="mx-pill"
-                    style={{ background: "#8FC6FF", color: "#0E2447" }}
+                    style={{ background: "var(--nx-acid)", color: "var(--nx-fg)" }}
                   >
                     Build a stack
                   </span>
@@ -343,7 +343,7 @@ export default function Showcase() {
                 alignItems: "flex-end",
                 justifyContent: "flex-start",
                 isolation: "isolate",
-                backgroundColor: "#0E2447",
+                backgroundColor: "var(--nx-fg)",
               }}
               data-testid="home-final-cta"
             >
@@ -420,7 +420,7 @@ export default function Showcase() {
                       width: 6,
                       height: 6,
                       borderRadius: 999,
-                      background: "var(--nx-acid, #8FC6FF)",
+                      background: "var(--nx-acid, var(--nx-acid))",
                       boxShadow: "0 0 0 3px rgba(122, 176, 243,0.28)",
                     }}
                   />
@@ -434,7 +434,7 @@ export default function Showcase() {
                     fontSize: "clamp(32px, 4.4vw, 56px)",
                     lineHeight: 1.02,
                     letterSpacing: "-0.015em",
-                    color: "#FBFDFF",
+                    color: "var(--nx-ceramic)",
                     marginBottom: 22,
                     textShadow: "0 2px 24px rgba(21, 24, 28,0.5)",
                   }}

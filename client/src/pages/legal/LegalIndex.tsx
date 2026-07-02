@@ -94,7 +94,7 @@ export default function LegalIndex() {
                     padding: "1.5rem 1.75rem",
                     border: "1px solid var(--nx-border)",
                     borderRadius: "16px",
-                    backgroundColor: "#FBFDFF",
+                    backgroundColor: "var(--nx-ceramic)",
                   }}
                 >
                   <div>

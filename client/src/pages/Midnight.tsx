@@ -9,7 +9,7 @@ const F = "'General Sans', system-ui, sans-serif";
 const SERIF = "'Fraunces', Georgia, serif";
 
 /* Palette A — the spec, no substitutions */
-const A = { base: "#0B1420", surface: "#121E2E", elevated: "#16212B", border: "#1E2C3E", steel: "#3E6C8E", hover: "#6FA3CC", ice: "#9FC2DE", muted: "#8FA3B8", faint: "#56687C", white: "#FFFFFF" };
+const A = { base: "#0B1420", surface: "#121E2E", elevated: "#16212B", border: "#1E2C3E", steel: "#3E6C8E", hover: "var(--nx-rust)", ice: "#9FC2DE", muted: "#8FA3B8", faint: "#56687C", white: "#FFFFFF" };
 
 function Sample({ p, accent, accentSoft, name, note }: { p: typeof A; accent: string; accentSoft: string; name: string; note: string }) {
   return (
@@ -99,7 +99,7 @@ export default function Midnight() {
         note="Steel blue as the only accent — clinical, cool, disciplined. This is the signature's exact world." />
 
       {/* B — midnight + candlelight */}
-      <Sample p={A} accent="#2E7BF0" accentSoft="#8FC6FF" name="Variant B · Midnight + candlelight"
+      <Sample p={A} accent="var(--nx-accent)" accentSoft="var(--nx-acid)" name="Variant B · Midnight + candlelight"
         note="Same midnight architecture — but the accent stays honey. The signature italic, the buttons, the data dots: warm light in a dark room. Keeps brand continuity with everything built so far." />
 
       {/* Verdict notes */}

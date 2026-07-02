@@ -244,7 +244,7 @@ function Hero() {
           data-testid="text-hero-headline"
         >
           The best version of you,{" "}
-          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#1F5FD0" }}>prescribed.</span>
+          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "var(--nx-amber)" }}>prescribed.</span>
         </h1>
 
         <p
@@ -520,7 +520,7 @@ function GoalTiles() {
                   fontSize: "10px",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  color: "#FBFDFF",
+                  color: "var(--nx-ceramic)",
                 }}
               >
                 <span
@@ -546,7 +546,7 @@ function GoalTiles() {
                       fontSize: "clamp(18px, 1.6vw, 22px)",
                       lineHeight: 1.02,
                       letterSpacing: "-0.02em",
-                      color: "#FBFDFF",
+                      color: "var(--nx-ceramic)",
                     }}
                   >
                     {t.title}
@@ -592,7 +592,7 @@ function FlagshipDark() {
       data-testid="flagship-dark"
       style={{
         backgroundColor: "var(--nx-black)",
-        color: "#FBFDFF",
+        color: "var(--nx-ceramic)",
         paddingTop: "clamp(4rem, 7vw, 6.5rem)",
         paddingBottom: "clamp(4rem, 7vw, 6.5rem)",
       }}
@@ -629,7 +629,7 @@ function FlagshipDark() {
                 <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-black)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See Wolverine <ArrowRight size={14} strokeWidth={2} />
                 </Link>
-                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, letterSpacing: "0.02em", color: "#FBFDFF", padding: "0.9rem 1.4rem", border: "1px solid rgba(243, 248, 255,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, letterSpacing: "0.02em", color: "var(--nx-ceramic)", padding: "0.9rem 1.4rem", border: "1px solid rgba(243, 248, 255,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See the bloodwork <ArrowRight size={14} strokeWidth={1.75} />
                 </Link>
               </div>
@@ -641,7 +641,7 @@ function FlagshipDark() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                 <div>
                   <p style={{ fontFamily: F, fontSize: 10, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(243, 248, 255,0.55)", marginBottom: "0.4rem" }}>Nexphoria Wolverine</p>
-                  <p style={{ fontFamily: F, fontSize: 18, fontWeight: 500, color: "#FBFDFF", letterSpacing: "-0.01em" }}>Recovery - Longevity - Repair</p>
+                  <p style={{ fontFamily: F, fontSize: 18, fontWeight: 500, color: "var(--nx-ceramic)", letterSpacing: "-0.01em" }}>Recovery - Longevity - Repair</p>
                 </div>
                 <div style={{ fontFamily: F, fontSize: 13, fontWeight: 500, color: "var(--nx-acid)", letterSpacing: "0.02em", fontVariantNumeric: "tabular-nums" }}>from $349/mo</div>
               </div>
@@ -2150,7 +2150,7 @@ function BiomarkerMarquee() {
   return (
     <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "3.5rem 0 3rem", borderTop: "1px solid var(--nx-line)" }}>
       <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1F5FD0" }}>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-amber)" }}>
           76 biomarkers · tracked every 90 days
         </p>
       </div>
@@ -2159,7 +2159,7 @@ function BiomarkerMarquee() {
           <div className={`nx-marquee-track ${i === 1 ? "reverse" : ""}`}>
             {[...row, ...row].map((m, j) => (
               <span key={j} className="nx-marquee-chip">
-                <span style={{ color: "#1F5FD0", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
+                <span style={{ color: "var(--nx-amber)", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
               </span>
             ))}
           </div>
@@ -2178,20 +2178,20 @@ function GuideCapture() {
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", display: "flex", flexWrap: "wrap", gap: "1.6rem", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ maxWidth: 520 }}>
             <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(1.5rem,2.6vw,2.1rem)", color: "var(--nx-black)", margin: 0, lineHeight: 1.12 }}>
-              The Peptide Starter Guide, <em style={{ fontStyle: "italic", color: "#1F5FD0" }}>free.</em>
+              The Peptide Starter Guide, <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>free.</em>
             </h3>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, color: "rgba(21, 24, 28,0.62)", marginTop: 10 }}>
               What peptides are, how physician-directed protocols work, and the questions to ask before starting. Reviewed by licensed physicians.
             </p>
           </div>
           {sent ? (
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, color: "#163E8C" }}>Check your inbox — it's on the way.</p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, color: "var(--nx-cobalt)" }}>Check your inbox — it's on the way.</p>
           ) : (
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <input type="email" placeholder="you@example.com" aria-label="Email address"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-line)", background: "#FDFEFF", minWidth: 240, outline: "none" }} />
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-line)", background: "var(--nx-ceramic)", minWidth: 240, outline: "none" }} />
               <button onClick={() => setSent(true)}
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-black)", color: "var(--nx-cream, #F2F7FD)", cursor: "pointer" }}>
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-black)", color: "var(--nx-cream, var(--nx-bg))", cursor: "pointer" }}>
                 Get the guide
               </button>
             </div>
@@ -2212,18 +2212,18 @@ function ProofBento() {
       <div className="nx-container">
         <div className="grid gap-3 md:grid-cols-2">
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.6rem)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", minHeight: 220 }}>
-            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,5vw,64px)", color: "#163E8C", lineHeight: 1 }}>76</div>
+            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,5vw,64px)", color: "var(--nx-cobalt)", lineHeight: 1 }}>76</div>
             <p style={{ fontFamily: F, fontSize: 15, color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png" alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: 14, color: "#F2F7FD", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
+            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: 14, color: "var(--nx-bg)", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
           </div>
           <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(40px,5vw,62px)", color: "#F2F7FD", lineHeight: 1 }}>24–48h</div>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(40px,5vw,62px)", color: "var(--nx-bg)", lineHeight: 1 }}>24–48h</div>
               <p style={{ fontFamily: F, fontSize: 15, color: "rgba(240, 244, 250,0.85)", marginTop: 8, maxWidth: "26ch" }}>from intake to a licensed physician's review</p>
             </div>
           </div>
@@ -2239,7 +2239,7 @@ function ProofBento() {
             <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031339_70395d8a-d7d1-4eb0-881e-43d519542b6a.png" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "rgba(21, 24, 28,0.35)" }} />
             <div style={{ position: "absolute", left: 20, bottom: 18 }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "#F2F7FD", lineHeight: 1 }}>Every 90 days</div>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-bg)", lineHeight: 1 }}>Every 90 days</div>
               <p style={{ fontFamily: F, fontSize: 13.5, color: "rgba(240, 244, 250,0.85)", marginTop: 5 }}>your labs re-run, your protocol re-tuned</p>
             </div>
           </div>
@@ -2281,26 +2281,26 @@ function HeroFilm() {
             <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
               <g transform="rotate(-90 38 38)">
                 <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(240, 244, 250,0.12)" strokeWidth="6" />
-                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="#2FA7C4" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#8FC6FF" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="#6FA3CC" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
+                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="var(--nx-success)" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="var(--nx-acid)" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="var(--nx-rust)" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
               </g>
-              <text x="38" y="36" textAnchor="middle" fill="#F2F7FD" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
+              <text x="38" y="36" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
               <text x="38" y="49" textAnchor="middle" fill="rgba(240, 244, 250,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
             </svg>
             <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, lineHeight: 1.9 }}>
-              <div><span style={{ color: "#2FA7C4", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>Optimal</span></div>
-              <div><span style={{ color: "#8FC6FF", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>In range</span></div>
-              <div><span style={{ color: "#6FA3CC", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>Out of range</span></div>
+              <div><span style={{ color: "var(--nx-success)", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>Optimal</span></div>
+              <div><span style={{ color: "var(--nx-acid)", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>In range</span></div>
+              <div><span style={{ color: "var(--nx-rust)", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(240, 244, 250,0.75)" }}>Out of range</span></div>
             </div>
           </div>
           <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
             <div className="flex items-center justify-between gap-4">
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "#F2F7FD" }}>Hormones</span>
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#0E2447", background: "#2FA7C4", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "var(--nx-bg)" }}>Hormones</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
             </div>
-            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#2FA7C4,#8FC6FF,#6FA3CC)" }}>
-              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#F2F7FD" }} />
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,var(--nx-success),var(--nx-acid),var(--nx-rust))" }}>
+              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "var(--nx-bg)" }} />
             </div>
           </div>
           <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
@@ -2310,7 +2310,7 @@ function HeroFilm() {
                 fontStyle: "italic",
                 fontWeight: 500,
                 fontSize: "clamp(18px, 2.4vw, 28px)",
-                color: "#F2F7FD",
+                color: "var(--nx-bg)",
                 textShadow: "0 2px 18px rgba(21, 24, 28,0.45)",
                 margin: 0,
               }}

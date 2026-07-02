@@ -38,10 +38,10 @@ function PhysicianAttribution({ curator }: { curator: string }) {
       data-testid="section-physician-attribution"
     >
       <div className="nx-container max-w-5xl">
-        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
+        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>
           Protocol curator
         </div>
-        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
           Designed by a <span style={{  }}>board-certified physician</span>.
         </h2>
         <div className="flex flex-col md:flex-row gap-8 items-start" style={{ background: "#fff", border: "1px solid var(--nx-border)", padding: "2rem" }}>
@@ -56,20 +56,20 @@ function PhysicianAttribution({ curator }: { curator: string }) {
             </div>
           )}
           <div className="flex-1">
-            <div className="text-[10px] uppercase tracking-[0.2em] mb-1" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
+            <div className="text-[10px] uppercase tracking-[0.2em] mb-1" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>
               {physician.credentials}
             </div>
-            <h3 className="text-xl mb-1" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+            <h3 className="text-xl mb-1" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
               {physician.name}
             </h3>
-            <p className="text-sm mb-4" style={{ fontFamily: MONO, color: "#5C77A0" }}>
+            <p className="text-sm mb-4" style={{ fontFamily: MONO, color: "var(--nx-fg-graphite)" }}>
               {physician.specialty} · {physician.institution}
             </p>
-            <p className="text-sm leading-relaxed max-w-[56ch]" style={{ fontFamily: SANS, color: "#4A6690" }}>
+            <p className="text-sm leading-relaxed max-w-[56ch]" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)" }}>
               {physician.bio}
             </p>
             <div className="mt-5 pt-4" style={{ borderTop: "1px solid var(--nx-border)" }}>
-              <p className="text-xs" style={{ fontFamily: SANS, color: "#5C77A0" }}>
+              <p className="text-xs" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)" }}>
                 "Clarity Unlocks Power. Unleash the Extraordinary." — the standard we hold every protocol to.
               </p>
             </div>
@@ -161,10 +161,10 @@ function BiomarkerTooltip({ active, payload }: any) {
   if (!active || !payload || !payload.length) return null;
   const p = payload[0].payload;
   return (
-    <div style={{ background: "#0E2447", border: "1px solid rgba(243, 248, 255,0.16)", borderRadius: 10, padding: "10px 12px" }}>
-      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8FC6FF", marginBottom: 4 }}>{p.marker}</div>
-      <div style={{ fontFamily: SANS, fontSize: 13, color: "#FBFDFF" }}>Baseline {p.baseline} → {p.endOfCourse}</div>
-      <div style={{ fontFamily: SANS, fontSize: 13, color: "#FBFDFF", fontWeight: 600 }}>{p.delta}</div>
+    <div style={{ background: "var(--nx-fg)", border: "1px solid rgba(243, 248, 255,0.16)", borderRadius: 10, padding: "10px 12px" }}>
+      <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: 4 }}>{p.marker}</div>
+      <div style={{ fontFamily: SANS, fontSize: 13, color: "var(--nx-ceramic)" }}>Baseline {p.baseline} → {p.endOfCourse}</div>
+      <div style={{ fontFamily: SANS, fontSize: 13, color: "var(--nx-ceramic)", fontWeight: 600 }}>{p.delta}</div>
     </div>
   );
 }
@@ -182,21 +182,21 @@ function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: 
   return (
     <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-expected-results">
       <div className="nx-container max-w-5xl">
-        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Expected results</div>
-        <h2 className="text-3xl md:text-4xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Expected results</div>
+        <h2 className="text-3xl md:text-4xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
           Where your biomarkers move over {weeks} weeks.
         </h2>
-        <p className="text-sm mb-8 max-w-2xl" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.65 }}>
+        <p className="text-sm mb-8 max-w-2xl" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
           Projected baseline versus end-of-course, indexed to a common scale so improvements read at a glance. Each
           marker is drawn at intake and at intervals — your physician confirms the actual trajectory from your labs.
         </p>
 
         <div className="flex items-center gap-5 mb-4">
-          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#5C77A0" }}>
+          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "var(--nx-fg-graphite)" }}>
             <span style={{ width: 14, height: 8, background: "#C2CCCF", display: "inline-block", borderRadius: 2 }} /> Baseline
           </span>
-          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#0E2447" }}>
-            <span style={{ width: 14, height: 8, background: "#0E2447", display: "inline-block", borderRadius: 2 }} /> End of course
+          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "var(--nx-fg)" }}>
+            <span style={{ width: 14, height: 8, background: "var(--nx-fg)", display: "inline-block", borderRadius: 2 }} /> End of course
           </span>
         </div>
 
@@ -204,20 +204,20 @@ function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: 
           <ResponsiveContainer width="100%" height={340}>
             <BarChart data={data} margin={{ top: 24, right: 16, left: 0, bottom: 8 }} barGap={4} barCategoryGap="26%">
               <CartesianGrid vertical={false} stroke="#DCE4ED" />
-              <XAxis dataKey="marker" tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: "#4A6690" }} tickLine={false} axisLine={{ stroke: "#CED5DD" }} interval={0} />
-              <YAxis tick={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fill: "#93A8BE" }} tickLine={false} axisLine={false} domain={[0, 100]} />
+              <XAxis dataKey="marker" tick={{ fontFamily: "'Inter', sans-serif", fontSize: 11, fill: "var(--nx-fg-graphite)" }} tickLine={false} axisLine={{ stroke: "#CED5DD" }} interval={0} />
+              <YAxis tick={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fill: "var(--nx-fg-muted)" }} tickLine={false} axisLine={false} domain={[0, 100]} />
               <Tooltip cursor={{ fill: "rgba(21, 24, 28,0.04)" }} content={<BiomarkerTooltip />} />
               <Bar dataKey="baseline" fill="#C2CCCF" radius={[3, 3, 0, 0]} isAnimationActive={false} />
               <Bar dataKey="endOfCourse" radius={[3, 3, 0, 0]} isAnimationActive={false}>
                 {data.map((d, i) => (
-                  <Cell key={i} fill={d.direction === "up" ? "#0E2447" : "#0E2447"} />
+                  <Cell key={i} fill={d.direction === "up" ? "var(--nx-fg)" : "var(--nx-fg)"} />
                 ))}
-                <LabelList dataKey="delta" position="top" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, fill: "#1F5FD0" }} />
+                <LabelList dataKey="delta" position="top" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, fill: "var(--nx-amber)" }} />
               </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <p className="mt-5 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "#7C90A6", lineHeight: 1.6 }}>
+        <p className="mt-5 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "var(--nx-fg-muted)", lineHeight: 1.6 }}>
           Indexed projections from published trial medians and physician-observed cohorts. Directional deltas, not
           guaranteed endpoints — individual results depend on baseline labs, dose adherence, and lifestyle inputs.
         </p>
@@ -235,13 +235,13 @@ function ResultsSection({ stack }: { stack: { slug: string; name: string; peptid
       data-testid="section-results"
     >
       <div className="nx-container max-w-5xl">
-        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
+        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>
           Research outcomes
         </div>
-        <h2 className="text-2xl md:text-3xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+        <h2 className="text-2xl md:text-3xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
           {data.headline}
         </h2>
-        <p className="text-sm mb-10 max-w-2xl" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.65 }}>
+        <p className="text-sm mb-10 max-w-2xl" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
           Peer-reviewed research and physician-observed cohort data — not testimonials. Outcome ranges reflect
           what patients on comparable protocols have documented. Your results depend on dose adherence, baseline labs,
           and lifestyle inputs.
@@ -250,20 +250,20 @@ function ResultsSection({ stack }: { stack: { slug: string; name: string; peptid
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
           {data.metrics.map((metric) => (
             <div key={metric.label} className="p-6 md:p-7" style={{ background: "#fff" }} data-testid={`result-metric-${metric.label.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
-              <div className="text-[10px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#5C77A0" }}>
+              <div className="text-[10px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "var(--nx-fg-graphite)" }}>
                 {metric.label}
               </div>
-              <div className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+              <div className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
                 {metric.range}
               </div>
-              <div className="text-xs leading-relaxed" style={{ fontFamily: SANS, color: "#7C90A6" }}>
+              <div className="text-xs leading-relaxed" style={{ fontFamily: SANS, color: "var(--nx-fg-muted)" }}>
                 {metric.note}
               </div>
             </div>
           ))}
         </div>
 
-        <p className="mt-6 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "#7C90A6", lineHeight: 1.65 }}>
+        <p className="mt-6 text-xs max-w-2xl" style={{ fontFamily: SANS, color: "var(--nx-fg-muted)", lineHeight: 1.65 }}>
           {data.disclaimer}
         </p>
       </div>
@@ -281,10 +281,10 @@ function OtherStacksCrossSell({ currentSlug }: { currentSlug: string }) {
       data-testid="section-other-stacks"
     >
       <div className="nx-container max-w-5xl">
-        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
+        <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>
           Explore the library
         </div>
-        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
           Other protocols <span style={{  }}>worth considering</span>.
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -297,21 +297,21 @@ function OtherStacksCrossSell({ currentSlug }: { currentSlug: string }) {
               data-testid={`crosssell-stack-${s.slug}`}
             >
               {s.badge && (
-                <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
+                <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>
                   {s.badge}
                 </div>
               )}
-              <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+              <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
                 {s.name}
               </h3>
-              <p className="text-xs mb-4" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.55 }}>
+              <p className="text-xs mb-4" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.55 }}>
                 {s.purpose}
               </p>
               <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "#5C77A0" }}>
+                <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "var(--nx-fg-graphite)" }}>
                   {s.peptides.length} peptides · {s.duration.split(",")[0]}
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ fontFamily: MONO, color: "#0E2447" }}>
+                <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ fontFamily: MONO, color: "var(--nx-fg)" }}>
                   View →
                 </span>
               </div>
@@ -404,9 +404,9 @@ export default function StackDetail({ slug }: StackDetailProps) {
       <SiteLayout navVariant="showcase">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 120 }}>
           <div className="nx-container py-20 text-center">
-            <h1 className="text-4xl mb-4" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>Stack not found</h1>
+            <h1 className="text-4xl mb-4" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>Stack not found</h1>
             <Link asChild href="/stacks">
-              <a className="inline-block px-6 py-3 text-sm" style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: SANS, fontWeight: 500 }} data-testid="link-back-to-stacks">
+              <a className="inline-block px-6 py-3 text-sm" style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: SANS, fontWeight: 500 }} data-testid="link-back-to-stacks">
                 Browse all stacks
               </a>
             </Link>
@@ -468,7 +468,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
       {/* ── Editorial data-hero (pattern B): dark full-bleed, giant headline + v11 portrait ── */}
       <main id="main-content">
         <section
-          style={{ background: "#0E2447", color: "#FBFDFF", paddingTop: 96 }}
+          style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)", paddingTop: 96 }}
           data-testid="section-stack-hero"
         >
           <div className="nx-container">
@@ -483,7 +483,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
               {/* Left: editorial text column */}
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6" style={{ borderRadius: 999, border: "1px solid rgba(243, 248, 255,0.18)" }}>
-                  <span className="text-[11px] uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "#8FC6FF" }}>
+                  <span className="text-[11px] uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "var(--nx-acid)" }}>
                     Doctor-curated protocol
                   </span>
                   <span className="text-[11px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.6)" }}>
@@ -492,7 +492,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 </div>
                 <h1
                   className="mb-5"
-                  style={{ fontFamily: SERIF, color: "#FBFDFF", fontWeight: 600, fontSize: "clamp(48px, 7vw, 92px)", letterSpacing: "-0.035em", lineHeight: 0.98 }}
+                  style={{ fontFamily: SERIF, color: "var(--nx-ceramic)", fontWeight: 600, fontSize: "clamp(48px, 7vw, 92px)", letterSpacing: "-0.035em", lineHeight: 0.98 }}
                   data-testid="text-stack-name"
                 >
                   The {stack.name}<br />stack
@@ -501,13 +501,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   {stack.purpose}
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-8">
-                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "#FBFDFF", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
                     {stack.peptides.length} peptides
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "#FBFDFF", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
                     {stack.duration.split(",")[0]}
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "#FBFDFF", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
                     From {formatUSD(bundle)}/mo
                   </span>
                 </div>
@@ -515,7 +515,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   <AddToCartButton slug={stack.slug} type="stack" variant="primary" label={`Add stack — ${formatUSD(bundle)}`} />
                   <a
                     className="inline-flex items-center gap-2 px-5 py-3 text-sm cursor-pointer"
-                    style={{ fontFamily: SANS, color: "#FBFDFF", border: "1px solid rgba(243, 248, 255,0.28)", borderRadius: 12, fontWeight: 500 }}
+                    style={{ fontFamily: SANS, color: "var(--nx-ceramic)", border: "1px solid rgba(243, 248, 255,0.28)", borderRadius: 12, fontWeight: 500 }}
                     onClick={() => document.getElementById("stack-protocol")?.scrollIntoView({ behavior: "smooth" })}
                     data-testid="button-view-protocol"
                   >
@@ -540,10 +540,10 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   style={{ background: "rgba(21, 24, 28,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(243, 248, 255,0.12)" }}
                   data-testid="text-portrait-proof"
                 >
-                  <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "#8FC6FF" }}>
+                  <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "var(--nx-acid)" }}>
                     {stack.name} · documented outcome
                   </div>
-                  <div className="text-sm" style={{ fontFamily: SANS, color: "#FBFDFF", fontWeight: 500, lineHeight: 1.35 }}>
+                  <div className="text-sm" style={{ fontFamily: SANS, color: "var(--nx-ceramic)", fontWeight: 500, lineHeight: 1.35 }}>
                     {proof}
                   </div>
                 </div>
@@ -562,10 +562,10 @@ export default function StackDetail({ slug }: StackDetailProps) {
                     style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(243, 248, 255,0.12)" }}
                     data-testid={`stat-card-${i}`}
                   >
-                    <div className="mb-1.5" style={{ fontFamily: SERIF, color: "#8FC6FF", fontWeight: 600, fontSize: "clamp(28px, 3.4vw, 44px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                    <div className="mb-1.5" style={{ fontFamily: SERIF, color: "var(--nx-acid)", fontWeight: 600, fontSize: "clamp(28px, 3.4vw, 44px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
                       {s.value}
                     </div>
-                    <div className="text-sm mb-1" style={{ fontFamily: SANS, color: "#FBFDFF", fontWeight: 500, lineHeight: 1.3 }}>
+                    <div className="text-sm mb-1" style={{ fontFamily: SANS, color: "var(--nx-ceramic)", fontWeight: 500, lineHeight: 1.3 }}>
                       {s.label}
                     </div>
                     <div className="text-[11px]" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.5)", lineHeight: 1.4 }}>
@@ -584,8 +584,8 @@ export default function StackDetail({ slug }: StackDetailProps) {
         {/* ── Included peptides — detailed table ── */}
         <section id="stack-protocol" className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-included-peptides">
           <div className="nx-container">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Included peptides · {stack.peptides.length}</div>
-            <h2 className="text-3xl md:text-4xl mb-10 max-w-3xl leading-[1.1]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Included peptides · {stack.peptides.length}</div>
+            <h2 className="text-3xl md:text-4xl mb-10 max-w-3xl leading-[1.1]" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
               The active compounds, <span style={{  }}>and how the protocol runs them</span>.
             </h2>
 
@@ -594,7 +594,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 <thead>
                   <tr>
                     {["Peptide", "Role in stack", "Dosage", "Frequency", "Starts"].map((h) => (
-                      <th key={h} className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "#5C77A0", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                      <th key={h} className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -607,15 +607,15 @@ export default function StackDetail({ slug }: StackDetailProps) {
                       <tr key={pslug} data-testid={`peptide-row-${pslug}`}>
                         <td className="px-4 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                           <Link asChild href={`/peptides/${pslug}`}>
-                            <a className="text-base inline-flex items-center gap-1.5" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500, textDecoration: "none" }}>
-                              {name} <ArrowRight size={11} strokeWidth={2.4} style={{ color: "#1F5FD0" }} />
+                            <a className="text-base inline-flex items-center gap-1.5" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500, textDecoration: "none" }}>
+                              {name} <ArrowRight size={11} strokeWidth={2.4} style={{ color: "var(--nx-amber)" }} />
                             </a>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: SANS, color: "#4A6690", borderBottom: "1px solid var(--nx-border)", maxWidth: 220 }}>{roleFor(pslug)}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#0E2447", borderBottom: "1px solid var(--nx-border)" }}>{p?.typicalDose ?? price?.vialSpec ?? "—"}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#0E2447", borderBottom: "1px solid var(--nx-border)" }}>{frequencyFor(pslug)}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#1F5FD0", borderBottom: "1px solid var(--nx-border)" }}>{startWeeks[i]}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", maxWidth: 220 }}>{roleFor(pslug)}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)" }}>{p?.typicalDose ?? price?.vialSpec ?? "—"}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)" }}>{frequencyFor(pslug)}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}>{startWeeks[i]}</td>
                       </tr>
                     );
                   })}
@@ -632,14 +632,14 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 return (
                   <Link asChild key={peptideSlug} href={`/peptides/${peptideSlug}`}>
                     <a className="block p-6 transition-all hover:shadow-md" style={{ background: "#fff", border: "1px solid var(--nx-border)", textDecoration: "none" }} data-testid={`card-peptide-${peptideSlug}`}>
-                      <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "#1F5FD0" }}>{pr.badge || "Active compound"}</div>
-                      <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500, letterSpacing: "-0.01em" }}>{p?.name ?? pr.slug.toUpperCase()}</h3>
-                      <div className="text-xs mb-3" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.5 }}>{pr.vialSpec}</div>
+                      <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>{pr.badge || "Active compound"}</div>
+                      <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500, letterSpacing: "-0.01em" }}>{p?.name ?? pr.slug.toUpperCase()}</h3>
+                      <div className="text-xs mb-3" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>{pr.vialSpec}</div>
                       <div className="flex items-end justify-between pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                        <div className="text-lg" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
-                          {formatUSD(pr.monthlyPrice)}<span className="text-[10px] ml-1 uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "#5C77A0" }}>/ mo</span>
+                        <div className="text-lg" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
+                          {formatUSD(pr.monthlyPrice)}<span className="text-[10px] ml-1 uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "var(--nx-fg-graphite)" }}>/ mo</span>
                         </div>
-                        <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1" style={{ fontFamily: MONO, color: "#0E2447" }}>
+                        <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1" style={{ fontFamily: MONO, color: "var(--nx-fg)" }}>
                           Details <ArrowRight size={10} strokeWidth={2.5} />
                         </span>
                       </div>
@@ -654,12 +654,12 @@ export default function StackDetail({ slug }: StackDetailProps) {
         {/* ── Outcome timeline — SVG line chart ── */}
         <section className="py-16 md:py-20" data-testid="section-outcome-timeline">
           <div className="nx-container max-w-5xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Outcome timeline</div>
-            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Outcome timeline</div>
+            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
               What the <span style={{  }}>{weeks} weeks</span> typically look like.
             </h2>
             <OutcomeTimeline weeks={weeks} milestones={milestones} />
-            <p className="mt-6 text-sm max-w-2xl" style={{ fontFamily: SANS, color: "#7C90A6", lineHeight: 1.6 }}>
+            <p className="mt-6 text-sm max-w-2xl" style={{ fontFamily: SANS, color: "var(--nx-fg-muted)", lineHeight: 1.6 }}>
               Illustrative trajectory of cumulative response, not a guaranteed clinical endpoint. Your physician confirms
               progress with interval bloodwork; individual timelines vary with baseline labs, dose, and lifestyle inputs.
             </p>
@@ -672,17 +672,17 @@ export default function StackDetail({ slug }: StackDetailProps) {
         {/* ── VS DIY / competitors ── */}
         <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-vs-diy">
           <div className="nx-container max-w-4xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Stack vs. doing it yourself</div>
-            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Stack vs. doing it yourself</div>
+            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
               Same molecules. <span style={{  }}>Very different protocol.</span>
             </h2>
             <div className="w-full overflow-x-auto">
               <table className="w-full min-w-[560px] border-separate border-spacing-0" data-testid="table-vs-diy" style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)" }}>
                 <thead>
                   <tr>
-                    <th className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#5C77A0", borderBottom: "1px solid var(--nx-border)" }}>What you get</th>
-                    <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#5C77A0", borderBottom: "1px solid var(--nx-border)" }}>Buying separately</th>
-                    <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0E2447", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{stack.name} Stack</th>
+                    <th className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>What you get</th>
+                    <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>Buying separately</th>
+                    <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{stack.name} Stack</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -696,10 +696,10 @@ export default function StackDetail({ slug }: StackDetailProps) {
                     <tr key={label} data-testid={`vs-row-${label.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
                       <td className="px-4 py-3.5 text-sm" style={{ fontFamily: SANS, color: "#1D2228", borderBottom: "1px solid var(--nx-border)" }}>{label}</td>
                       <td className="px-4 py-3.5 text-center" style={{ borderBottom: "1px solid var(--nx-border)" }}>
-                        <X size={16} strokeWidth={2.4} style={{ color: "#6FA3CC", display: "inline" }} />
+                        <X size={16} strokeWidth={2.4} style={{ color: "var(--nx-rust)", display: "inline" }} />
                       </td>
                       <td className="px-4 py-3.5 text-center" style={{ borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>
-                        <Check size={16} strokeWidth={2.6} style={{ color: "#1F7F9C", display: "inline" }} />
+                        <Check size={16} strokeWidth={2.6} style={{ color: "var(--nx-success)", display: "inline" }} />
                       </td>
                     </tr>
                   ))}
@@ -712,8 +712,8 @@ export default function StackDetail({ slug }: StackDetailProps) {
         {/* ── Meal / lifestyle companion strip ── */}
         <section className="py-16 md:py-20" data-testid="section-lifestyle">
           <div className="nx-container max-w-5xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Pair this stack with</div>
-            <h2 className="text-2xl md:text-3xl mb-8 leading-[1.12] max-w-2xl" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Pair this stack with</div>
+            <h2 className="text-2xl md:text-3xl mb-8 leading-[1.12] max-w-2xl" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
               Peptides do their best work on top of the basics.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
@@ -721,9 +721,9 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 const Icon = c.icon;
                 return (
                   <div key={c.title} className="p-6 md:p-7" style={{ background: "var(--nx-bg)" }} data-testid={`lifestyle-card-${c.title.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
-                    <Icon size={22} strokeWidth={1.6} style={{ color: "#0E2447", marginBottom: 14 }} />
-                    <h3 className="text-lg mb-2" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>{c.title}</h3>
-                    <p className="text-sm" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.55 }}>{c.body}</p>
+                    <Icon size={22} strokeWidth={1.6} style={{ color: "var(--nx-fg)", marginBottom: 14 }} />
+                    <h3 className="text-lg mb-2" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>{c.title}</h3>
+                    <p className="text-sm" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.55 }}>{c.body}</p>
                   </div>
                 );
               })}
@@ -736,25 +736,25 @@ export default function StackDetail({ slug }: StackDetailProps) {
           <div className="nx-container max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
               <div className="p-7 md:p-9" style={{ background: "var(--nx-bg)" }}>
-                <div className="text-[11px] uppercase tracking-[0.2em] mb-4 inline-flex items-center gap-2" style={{ fontFamily: MONO, color: "#1F7F9C" }}>
+                <div className="text-[11px] uppercase tracking-[0.2em] mb-4 inline-flex items-center gap-2" style={{ fontFamily: MONO, color: "var(--nx-success)" }}>
                   <Check size={13} strokeWidth={2.6} /> Who this is for
                 </div>
                 <ul className="space-y-3">
                   {goodFit.map((g) => (
                     <li key={g} className="flex gap-2.5 text-sm" style={{ fontFamily: SANS, color: "#1D2228", lineHeight: 1.55 }}>
-                      <Check size={15} strokeWidth={2.4} style={{ color: "#1F7F9C", flexShrink: 0, marginTop: 2 }} /> <span>{g}</span>
+                      <Check size={15} strokeWidth={2.4} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} /> <span>{g}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="p-7 md:p-9" style={{ background: "var(--nx-bg)" }}>
-                <div className="text-[11px] uppercase tracking-[0.2em] mb-4 inline-flex items-center gap-2" style={{ fontFamily: MONO, color: "#1F5FD0" }}>
+                <div className="text-[11px] uppercase tracking-[0.2em] mb-4 inline-flex items-center gap-2" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>
                   <X size={13} strokeWidth={2.6} /> Who it's not for
                 </div>
                 <ul className="space-y-3">
                   {notFit.map((n) => (
                     <li key={n} className="flex gap-2.5 text-sm" style={{ fontFamily: SANS, color: "#1D2228", lineHeight: 1.55 }}>
-                      <X size={15} strokeWidth={2.4} style={{ color: "#1F5FD0", flexShrink: 0, marginTop: 2 }} /> <span>{n}</span>
+                      <X size={15} strokeWidth={2.4} style={{ color: "var(--nx-amber)", flexShrink: 0, marginTop: 2 }} /> <span>{n}</span>
                     </li>
                   ))}
                 </ul>
@@ -766,19 +766,19 @@ export default function StackDetail({ slug }: StackDetailProps) {
         {/* Lab markers tracked */}
         <section className="py-16 md:py-20">
           <div className="nx-container max-w-5xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Bloodwork tracked</div>
-            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Bloodwork tracked</div>
+            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>
               The biomarkers <span style={{  }}>that confirm the protocol is working</span>.
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px" style={{ background: "var(--nx-border)" }}>
               {stack.labMarkers.map((marker) => (
                 <div key={marker} className="p-5 md:p-6" style={{ background: "var(--nx-bg)" }} data-testid={`marker-${marker.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
-                  <div className="text-[10px] uppercase tracking-[0.18em] mb-1.5" style={{ fontFamily: MONO, color: "#5C77A0" }}>Marker</div>
-                  <div className="text-base" style={{ fontFamily: SANS, color: "#0E2447", fontWeight: 500 }}>{marker}</div>
+                  <div className="text-[10px] uppercase tracking-[0.18em] mb-1.5" style={{ fontFamily: MONO, color: "var(--nx-fg-graphite)" }}>Marker</div>
+                  <div className="text-base" style={{ fontFamily: SANS, color: "var(--nx-fg)", fontWeight: 500 }}>{marker}</div>
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-sm max-w-2xl" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.65 }}>
+            <p className="mt-8 text-sm max-w-2xl" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
               Bloodwork is drawn at baseline and at intervals throughout the protocol. Results return to your physician,
               who adjusts the stack based on what your body is doing — not what the average patient does.
             </p>
@@ -788,17 +788,17 @@ export default function StackDetail({ slug }: StackDetailProps) {
         {/* ── FAQ (6) ── */}
         <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-stack-detail-faq">
           <div className="nx-container" style={{ maxWidth: 760, margin: "0 auto" }}>
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Questions about this stack</div>
-            <h2 className="text-2xl md:text-3xl mb-8" style={{ fontFamily: SERIF, color: "#0E2447", fontWeight: 500 }}>Everything else.</h2>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Questions about this stack</div>
+            <h2 className="text-2xl md:text-3xl mb-8" style={{ fontFamily: SERIF, color: "var(--nx-fg)", fontWeight: 500 }}>Everything else.</h2>
             <div>
               {faqItems.map((item, i) => (
                 <div key={i} style={{ borderBottom: "1px solid var(--nx-border)" }}>
                   <button className="w-full flex items-start justify-between gap-4 text-left py-5" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} data-testid={`detail-faq-item-${i}`}>
-                    <span className="text-base" style={{ fontFamily: SANS, fontWeight: 500, color: "#0E2447", lineHeight: 1.4 }}>{item.q}</span>
-                    {openFaq === i ? <Minus size={16} style={{ color: "#1F5FD0", flexShrink: 0, marginTop: 3 }} /> : <Plus size={16} style={{ color: "#4A6690", flexShrink: 0, marginTop: 3 }} />}
+                    <span className="text-base" style={{ fontFamily: SANS, fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
+                    {openFaq === i ? <Minus size={16} style={{ color: "var(--nx-amber)", flexShrink: 0, marginTop: 3 }} /> : <Plus size={16} style={{ color: "var(--nx-fg-graphite)", flexShrink: 0, marginTop: 3 }} />}
                   </button>
                   {openFaq === i && (
-                    <p className="pb-5 text-sm" style={{ fontFamily: SANS, color: "#4A6690", lineHeight: 1.7, maxWidth: 640 }} data-testid={`detail-faq-answer-${i}`}>{item.a}</p>
+                    <p className="pb-5 text-sm" style={{ fontFamily: SANS, color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: 640 }} data-testid={`detail-faq-answer-${i}`}>{item.a}</p>
                   )}
                 </div>
               ))}
@@ -816,19 +816,19 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <OtherStacksCrossSell currentSlug={stack.slug} />
 
         {/* Final CTA bar */}
-        <section className="py-14 md:py-16" style={{ background: "#0E2447", color: "#F2F7FD" }}>
+        <section className="py-14 md:py-16" style={{ background: "var(--nx-fg)", color: "var(--nx-bg)" }}>
           <div className="nx-container max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] mb-2" style={{ fontFamily: MONO, color: "#1F5FD0" }}>Ready to start?</div>
-                <h2 className="text-3xl md:text-4xl leading-[1.1]" style={{ fontFamily: SERIF, color: "#F2F7FD", fontWeight: 500 }}>
+                <div className="text-[10px] uppercase tracking-[0.22em] mb-2" style={{ fontFamily: MONO, color: "var(--nx-amber)" }}>Ready to start?</div>
+                <h2 className="text-3xl md:text-4xl leading-[1.1]" style={{ fontFamily: SERIF, color: "var(--nx-bg)", fontWeight: 500 }}>
                   Add <span style={{  }}>{stack.name}</span> to cart — physician consult included.
                 </h2>
               </div>
               <div className="flex flex-wrap gap-3">
                 <AddToCartButton slug={stack.slug} type="stack" variant="primary" label={`Add — ${formatUSD(bundle)}`} />
                 <Link asChild href="/assessment">
-                  <a className="inline-flex items-center justify-center px-5 py-3 text-sm" style={{ fontFamily: SANS, color: "#F2F7FD", border: "1px solid rgba(240, 244, 250,0.3)", fontWeight: 500 }} data-testid="link-take-assessment">
+                  <a className="inline-flex items-center justify-center px-5 py-3 text-sm" style={{ fontFamily: SANS, color: "var(--nx-bg)", border: "1px solid rgba(240, 244, 250,0.3)", fontWeight: 500 }} data-testid="link-take-assessment">
                     Or take the 5-min intake →
                   </a>
                 </Link>
@@ -894,25 +894,25 @@ function OutcomeTimeline({ weeks, milestones }: { weeks: number; milestones: Mil
         {[0, 25, 50, 75, 100].map((g) => (
           <g key={g}>
             <line x1={padL} y1={y(g)} x2={W - padR} y2={y(g)} stroke="#DCE4ED" strokeWidth={1} />
-            <text x={padL - 8} y={y(g) + 3} textAnchor="end" style={{ fontFamily: MONO, fontSize: 9, fill: "#93A8BE" }}>{g}</text>
+            <text x={padL - 8} y={y(g) + 3} textAnchor="end" style={{ fontFamily: MONO, fontSize: 9, fill: "var(--nx-fg-muted)" }}>{g}</text>
           </g>
         ))}
         {/* x labels */}
         {[0, 25, 50, 75, 100].map((g) => (
-          <text key={g} x={x(g)} y={H - padB + 18} textAnchor="middle" style={{ fontFamily: MONO, fontSize: 9, fill: "#93A8BE" }}>
+          <text key={g} x={x(g)} y={H - padB + 18} textAnchor="middle" style={{ fontFamily: MONO, fontSize: 9, fill: "var(--nx-fg-muted)" }}>
             wk {Math.round((g / 100) * weeks)}
           </text>
         ))}
         {/* area + line */}
-        <path d={area} fill="#0E2447" opacity={0.05} />
-        <path d={path} fill="none" stroke="#0E2447" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
+        <path d={area} fill="var(--nx-fg)" opacity={0.05} />
+        <path d={path} fill="none" stroke="var(--nx-fg)" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
         {/* milestone markers + callouts */}
         {milestones.map((m, i) => (
           <g key={i}>
             <line x1={x(m.weekPct)} y1={y(m.valuePct)} x2={x(m.weekPct)} y2={y(0)} stroke="#CED5DD" strokeWidth={1} strokeDasharray="3 4" />
-            <circle cx={x(m.weekPct)} cy={y(m.valuePct)} r={6} fill="#8FC6FF" stroke="#0E2447" strokeWidth={2} />
-            <text x={x(m.weekPct)} y={y(m.valuePct) - 26} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, fill: "#1F5FD0" }}>{m.week}</text>
-            <text x={x(m.weekPct)} y={y(m.valuePct) - 12} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11, fill: "#0E2447" }}>{m.label}</text>
+            <circle cx={x(m.weekPct)} cy={y(m.valuePct)} r={6} fill="var(--nx-acid)" stroke="var(--nx-fg)" strokeWidth={2} />
+            <text x={x(m.weekPct)} y={y(m.valuePct) - 26} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, fill: "var(--nx-amber)" }}>{m.week}</text>
+            <text x={x(m.weekPct)} y={y(m.valuePct) - 12} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11, fill: "var(--nx-fg)" }}>{m.label}</text>
           </g>
         ))}
       </svg>

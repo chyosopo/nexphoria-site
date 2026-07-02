@@ -66,7 +66,7 @@ export function ProcessStrip({
       data-testid="process-strip"
       style={{
         backgroundColor: isDark ? "var(--nx-cobalt)" : "var(--nx-bg-cream)",
-        color: isDark ? "#FBFDFF" : "var(--nx-cobalt)",
+        color: isDark ? "var(--nx-ceramic)" : "var(--nx-cobalt)",
         paddingTop: 120,
         paddingBottom: 120,
         borderTop: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
@@ -142,7 +142,7 @@ export function ProcessStrip({
               left: 0,
               right: 0,
               height: 2,
-              backgroundColor: "#6FA3CC",
+              backgroundColor: "var(--nx-rust)",
               transformOrigin: "left center",
             }}
           />
@@ -208,7 +208,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
             fontWeight: 400,
             fontSize: 56,
             lineHeight: 1,
-            color: "#6FA3CC",
+            color: "var(--nx-rust)",
             letterSpacing: "-0.02em",
           }}
         >
@@ -234,7 +234,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
           fontWeight: 500,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "#6FA3CC",
+          color: "var(--nx-rust)",
           marginBottom: 12,
         }}
       >

@@ -37,7 +37,7 @@ export function GiantStatPanel({
         marginBottom: 96,
         borderRadius: "var(--mx-tile-radius, 20px)",
         padding: "clamp(64px, 8vw, 128px) clamp(24px, 4vw, 64px)",
-        background: isDark ? "#0E2447" : "color-mix(in oklab, var(--nx-fg) 3%, var(--nx-bg-cream, #FBFDFF))",
+        background: isDark ? "var(--nx-fg)" : "color-mix(in oklab, var(--nx-fg) 3%, var(--nx-bg-cream, var(--nx-ceramic)))",
         border: isDark
           ? "1px solid rgba(243, 248, 255,0.06)"
           : "1px solid color-mix(in oklab, var(--nx-fg) 8%, transparent)",
@@ -58,7 +58,7 @@ export function GiantStatPanel({
           fontSize: "clamp(64px, 12vw, 180px)",
           lineHeight: 0.94,
           letterSpacing: "-0.04em",
-          color: isDark ? "#FBFDFF" : "var(--nx-fg)",
+          color: isDark ? "var(--nx-ceramic)" : "var(--nx-fg)",
           fontVariantNumeric: "tabular-nums lining-nums",
         }}
       >

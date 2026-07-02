@@ -265,7 +265,7 @@ export default function Community() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13.5px",
-                      color: "#4A6690",
+                      color: "var(--nx-fg-graphite)",
                       lineHeight: 1.65,
                     }}
                   >
@@ -589,7 +589,7 @@ export default function Community() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1.0625rem",
-                color: "#4A6690",
+                color: "var(--nx-fg-graphite)",
                 lineHeight: 1.65,
                 maxWidth: "480px",
                 marginBottom: "2.5rem",
@@ -711,7 +711,7 @@ function CommunityOutcomes() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1.0625rem",
-              color: "#4A6690",
+              color: "var(--nx-fg-graphite)",
               lineHeight: 1.65,
               maxWidth: "560px",
               marginBottom: "3rem",
@@ -793,7 +793,7 @@ function CommunityOutcomes() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "14.5px",
-                    color: "#35507A",
+                    color: "var(--nx-fg)",
                     lineHeight: 1.6,
                     marginBottom: "1.5rem",
                   }}

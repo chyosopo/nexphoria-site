@@ -44,10 +44,10 @@ const STATUS_META: Record<
   BiomarkerStatus,
   { label: string; color: string; bg: string }
 > = {
-  optimal: { label: "OPTIMAL", color: "#0E2447", bg: "var(--nx-acid)" },
-  "in-range": { label: "IN RANGE", color: "#4A6690", bg: "var(--nx-rock)" },
-  watch: { label: "WATCH", color: "#1F5FD0", bg: "#D6E4F6" },
-  low: { label: "BELOW TARGET", color: "#1F5FD0", bg: "#D6E4F6" },
+  optimal: { label: "OPTIMAL", color: "var(--nx-fg)", bg: "var(--nx-acid)" },
+  "in-range": { label: "IN RANGE", color: "var(--nx-fg-graphite)", bg: "var(--nx-rock)" },
+  watch: { label: "WATCH", color: "var(--nx-amber)", bg: "#D6E4F6" },
+  low: { label: "BELOW TARGET", color: "var(--nx-amber)", bg: "#D6E4F6" },
 };
 
 function deltaPct(history: number[]): number {

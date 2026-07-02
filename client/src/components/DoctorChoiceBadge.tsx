@@ -35,9 +35,9 @@ export function DoctorChoiceBadge({
   const isSm = size === "sm";
 
   // Color tokens
-  const bg = isDark ? "rgba(21, 24, 28,0.92)" : "#F2F7FD";
-  const fg = isDark ? "#F2F7FD" : "var(--nx-cobalt)";
-  const dotColor = "#6FA3CC"; // brand rust — used for "Limited" tag etc.
+  const bg = isDark ? "rgba(21, 24, 28,0.92)" : "var(--nx-bg)";
+  const fg = isDark ? "var(--nx-bg)" : "var(--nx-cobalt)";
+  const dotColor = "var(--nx-rust)"; // brand rust — used for "Limited" tag etc.
   const border = isDark ? "1px solid rgba(240, 244, 250,0.18)" : "1px solid rgba(21, 24, 28,0.10)";
 
   return (

@@ -17,41 +17,41 @@ export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";
 
 const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: string; border: string; hover: string }> = {
   dark: {
-    bg: "#0E2447",
-    fg: "#F2F7FD",
-    eyebrow: "#2E7BF0",
+    bg: "var(--nx-fg)",
+    fg: "var(--nx-bg)",
+    eyebrow: "var(--nx-accent)",
     sub: "rgba(240, 244, 250,0.62)",
     border: "rgba(61, 135, 226,0.22)",
     hover: "#141311",
   },
   cream: {
     bg: "var(--nx-bg-cream)",
-    fg: "#0E2447",
-    eyebrow: "#1F5FD0",
-    sub: "#4A6690",
+    fg: "var(--nx-fg)",
+    eyebrow: "var(--nx-amber)",
+    sub: "var(--nx-fg-graphite)",
     border: "var(--nx-border)",
     hover: "#D8E3F0",
   },
   white: {
     bg: "#fff",
-    fg: "#0E2447",
-    eyebrow: "#1F5FD0",
-    sub: "#4A6690",
+    fg: "var(--nx-fg)",
+    eyebrow: "var(--nx-amber)",
+    sub: "var(--nx-fg-graphite)",
     border: "var(--nx-border)",
     hover: "#EAF2FB",
   },
   cobalt: {
-    bg: "linear-gradient(160deg, #0C224A 0%, #18222E 65%, #1C293A 100%)",
-    fg: "#EDF4FB",
+    bg: "linear-gradient(160deg, var(--nx-bg-dark) 0%, #18222E 65%, #1C293A 100%)",
+    fg: "var(--nx-bg)",
     eyebrow: "#5591C7",
     sub: "rgba(228, 236, 245,0.68)",
     border: "rgba(85,145,199,0.28)",
     hover: "#0F1D3A",
   },
   ember: {
-    bg: "linear-gradient(180deg, #141311 0%, #0C2040 100%)",
-    fg: "#EDF4FB",
-    eyebrow: "#2E7BF0",
+    bg: "linear-gradient(180deg, #141311 0%, var(--nx-bg-dark) 100%)",
+    fg: "var(--nx-bg)",
+    eyebrow: "var(--nx-accent)",
     sub: "rgba(228, 236, 245,0.62)",
     border: "rgba(61, 135, 226,0.28)",
     hover: "#181B1E",
@@ -107,7 +107,7 @@ export function BenefitTile({
     <div
       className="benefit-tile group relative flex flex-col h-full w-full p-5 md:p-6 overflow-hidden transition-all duration-300"
       style={{
-        background: hasImage ? "#0E2447" : t.bg,
+        background: hasImage ? "var(--nx-fg)" : t.bg,
         color: t.fg,
         border: `1px solid ${t.border}`,
         borderRadius: 10,
@@ -147,7 +147,7 @@ export function BenefitTile({
               width: 32,
               height: 32,
               background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(43, 86, 139,0.10)",
-              color: isDark || hasImage ? t.eyebrow : "#1F5FD0",
+              color: isDark || hasImage ? t.eyebrow : "var(--nx-amber)",
               borderRadius: 6,
               border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(43, 86, 139,0.18)"}`,
               flexShrink: 0,
@@ -163,7 +163,7 @@ export function BenefitTile({
             className="text-[9px] uppercase"
             style={{
               fontFamily: MONO,
-              color: hasImage ? "#2E7BF0" : t.eyebrow,
+              color: hasImage ? "var(--nx-accent)" : t.eyebrow,
               letterSpacing: "0.18em",
               fontWeight: 600,
             }}
@@ -187,7 +187,7 @@ export function BenefitTile({
                     : "clamp(2.25rem, 4vw, 3.25rem)",
                 fontWeight: 700,
                 letterSpacing: "-0.03em",
-                color: hasImage ? "#F2F7FD" : t.fg,
+                color: hasImage ? "var(--nx-bg)" : t.fg,
               }}
             >
               {metric}
@@ -195,7 +195,7 @@ export function BenefitTile({
             {metricUnit ? (
               <span
                 className="text-[11px] md:text-xs uppercase tracking-[0.14em]"
-                style={{ fontFamily: MONO, color: hasImage ? "#2E7BF0" : t.eyebrow, fontWeight: 600 }}
+                style={{ fontFamily: MONO, color: hasImage ? "var(--nx-accent)" : t.eyebrow, fontWeight: 600 }}
               >
                 {metricUnit}
               </span>
@@ -210,7 +210,7 @@ export function BenefitTile({
             fontSize: metric ? "0.9375rem" : "clamp(1.125rem, 1.6vw, 1.375rem)",
             fontWeight: metric ? 500 : 600,
             letterSpacing: "-0.015em",
-            color: hasImage ? "#F2F7FD" : t.fg,
+            color: hasImage ? "var(--nx-bg)" : t.fg,
           }}
         >
           {headline}
@@ -250,7 +250,7 @@ export function BenefitTile({
           </span>
           <ArrowUpRight
             size={16}
-            style={{ color: hasImage ? "#2E7BF0" : t.eyebrow }}
+            style={{ color: hasImage ? "var(--nx-accent)" : t.eyebrow }}
             className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </div>

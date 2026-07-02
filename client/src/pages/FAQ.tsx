@@ -254,7 +254,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1rem",
-              color: "#4A6690",
+              color: "var(--nx-fg-graphite)",
               lineHeight: 1.7,
             }}
           >

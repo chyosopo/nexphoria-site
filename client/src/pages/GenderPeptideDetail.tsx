@@ -22,11 +22,11 @@ interface GenderPeptideDetailProps {
 /* ── Gender-identity tokens (mirror ProtocolConfigurator) */
 const IDENTITY = {
   men: {
-    heroBg: ((gender === "women") ? "linear-gradient(180deg, #3C1830 0%, #111111 60%, #3E1030 100%)" : "linear-gradient(180deg, #0E2447 0%, #111111 60%, #0C2040 100%)"),
+    heroBg: ((gender === "women") ? "linear-gradient(180deg, #3C1830 0%, #111111 60%, #3E1030 100%)" : "linear-gradient(180deg, var(--nx-fg) 0%, #111111 60%, var(--nx-bg-dark) 100%)"),
     heroGlow: "radial-gradient(700px 320px at 92% 10%, rgba(61, 135, 226,0.16), transparent 65%)",
-    accent: ((gender === "women") ? "#E8558F" : "#2E7BF0"),
+    accent: ((gender === "women") ? "#E8558F" : "var(--nx-accent)"),
     accentSoft: "rgba(61, 135, 226,0.14)",
-    text: ((gender === "women") ? "#FAF0F5" : "#EDF4FB"),
+    text: ((gender === "women") ? "#FAF0F5" : "var(--nx-bg)"),
     textMuted: "rgba(228, 236, 245,0.62)",
     textFaint: "rgba(228, 236, 245,0.42)",
     border: "rgba(61, 135, 226,0.22)",
@@ -34,7 +34,7 @@ const IDENTITY = {
     chipBg: "rgba(61, 135, 226,0.06)",
     chipBorder: "rgba(61, 135, 226,0.28)",
     surface: "#141311",
-    surfaceCard: ((gender === "women") ? "#3E1030" : "#0C2040"),
+    surfaceCard: ((gender === "women") ? "#3E1030" : "var(--nx-bg-dark)"),
     display: "'General Sans', system-ui, sans-serif",
     mono: "'JetBrains Mono', ui-monospace, monospace",
     body: "'General Sans', system-ui, sans-serif",
@@ -48,7 +48,7 @@ const IDENTITY = {
     heroGlow: "radial-gradient(1000px 400px at 88% 18%, rgba(120, 148, 196,0.14), transparent 65%)",
     accent: ((gender === "women") ? "#B2577D" : "#5778B2"),
     accentSoft: "rgba(87, 120, 178,0.12)",
-    text: ((gender === "women") ? "#3C0B1F" : "#0B1D3C"),
+    text: ((gender === "women") ? "#3C0B1F" : "var(--nx-bg-dark)"),
     textMuted: "rgba(17, 23, 30,0.62)",
     textFaint: "rgba(17, 23, 30,0.4)",
     border: "rgba(62, 96, 138,0.22)",
@@ -557,7 +557,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
               style={{
                 marginBottom: "32px",
                 padding: "20px",
-                background: isMen ? ((gender === "women") ? "#3C1830" : "#0E2447") : "rgba(255,255,255,0.5)",
+                background: isMen ? ((gender === "women") ? "#3C1830" : "var(--nx-fg)") : "rgba(255,255,255,0.5)",
                 border: `1px solid ${id.border}`,
                 borderRadius: id.radius,
                 backdropFilter: isWomen ? "blur(2px)" : "none",

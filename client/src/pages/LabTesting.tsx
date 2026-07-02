@@ -53,8 +53,8 @@ const sampleReport = [
 
 const statusColor: Record<string, string> = {
   normal: "var(--nx-success)",
-  low: "#1F5FD0",
-  high: "#1F5FD0",
+  low: "var(--nx-amber)",
+  high: "var(--nx-amber)",
 };
 
 const statusBg: Record<string, string> = {
@@ -188,7 +188,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A6690",
+                    color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                     marginBottom: "1rem",
                   }}
@@ -202,7 +202,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A6690",
+                    color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                   }}
                 >
@@ -241,7 +241,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A6690",
+                    color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                     marginBottom: "1rem",
                   }}
@@ -255,7 +255,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.0625rem",
-                    color: "#4A6690",
+                    color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                   }}
                 >
@@ -438,7 +438,7 @@ export default function LabTesting() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "12px",
-                        color: "#4A6690",
+                        color: "var(--nx-fg-graphite)",
                         lineHeight: 1.5,
                         display: "flex",
                         alignItems: "center",
@@ -563,7 +563,7 @@ export default function LabTesting() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "13.5px",
-                      color: "#4A6690",
+                      color: "var(--nx-fg-graphite)",
                       lineHeight: 1.65,
                     }}
                   >
@@ -661,7 +661,7 @@ export default function LabTesting() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "13px",
-                    color: "#4A6690",
+                    color: "var(--nx-fg-graphite)",
                     lineHeight: 1.6,
                   }}
                 >
@@ -714,7 +714,7 @@ export default function LabTesting() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1rem",
-                color: "#4A6690",
+                color: "var(--nx-fg-graphite)",
                 lineHeight: 1.6,
                 maxWidth: "560px",
                 marginBottom: "2.5rem",
@@ -823,7 +823,7 @@ export default function LabTesting() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
                       fontWeight: 600,
-                      color: row.status === "normal" ? "var(--nx-fg)" : "#1F5FD0",
+                      color: row.status === "normal" ? "var(--nx-fg)" : "var(--nx-amber)",
                     }}
                   >
                     {row.value}
@@ -903,7 +903,7 @@ export default function LabTesting() {
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2.25rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1, marginBottom: "0.25rem" }}>{price}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A6690", lineHeight: 1.65 }}>{detail}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>{detail}</p>
                 </div>
               </Reveal>
             ))}
@@ -915,7 +915,7 @@ export default function LabTesting() {
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
                 Clarity Unlocks Power. Unleash the Extraordinary.
               </p>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A6690", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
                 Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your Quest Diagnostics requisition within 24 hours.
               </p>
               <StartIntakeButton source="labtesting-page" size="lg">
@@ -1721,7 +1721,7 @@ function PartnerLabsSection() {
             style={{
               fontFamily: PL_FONT,
               fontSize: "1.0625rem",
-              color: "#4A6690",
+              color: "var(--nx-fg-graphite)",
               lineHeight: 1.65,
               maxWidth: 560,
               marginBottom: "2.5rem",
@@ -1761,7 +1761,7 @@ function PartnerLabsSection() {
                     flexShrink: 0,
                   }}
                 >
-                  <FlaskConical size={24} style={{ color: "#FBFDFF" }} strokeWidth={1.75} />
+                  <FlaskConical size={24} style={{ color: "var(--nx-ceramic)" }} strokeWidth={1.75} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <p
@@ -1776,7 +1776,7 @@ function PartnerLabsSection() {
                   >
                     {lab.name}
                   </p>
-                  <p style={{ fontFamily: PL_FONT, fontSize: 13.5, color: "#4A6690", lineHeight: 1.5 }}>
+                  <p style={{ fontFamily: PL_FONT, fontSize: 13.5, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
                     {lab.detail}
                   </p>
                 </div>
@@ -1873,7 +1873,7 @@ function PartnerLabsSection() {
                       style={{
                         fontFamily: PL_FONT,
                         fontSize: 14,
-                        color: "#4A6690",
+                        color: "var(--nx-fg-graphite)",
                         lineHeight: 1.55,
                         marginBottom: 14,
                         flex: 1,
@@ -1966,7 +1966,7 @@ function PartnerLabsSection() {
                   >
                     {t.label}
                   </p>
-                  <p style={{ fontFamily: PL_FONT, fontSize: 13, color: "#4A6690", lineHeight: 1.5 }}>
+                  <p style={{ fontFamily: PL_FONT, fontSize: 13, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
                     {t.desc}
                   </p>
                 </div>

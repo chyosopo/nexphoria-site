@@ -84,7 +84,7 @@ export function FinalCTAStrip({
               
               fontWeight: 500,
               fontSize: "clamp(2rem, 4.5vw, 3.625rem)",
-              color: "#FBFDFF",
+              color: "var(--nx-ceramic)",
               lineHeight: 1.1,
               letterSpacing: "-0.01em",
               marginBottom: "1.25rem",
@@ -123,9 +123,9 @@ export function FinalCTAStrip({
               productSlug={`${gender}-final-cta`}
               source="final-cta-strip"
               style={{
-                backgroundColor: "#FBFDFF",
+                backgroundColor: "var(--nx-ceramic)",
                 color: "var(--nx-cobalt)",
-                borderColor: "#FBFDFF",
+                borderColor: "var(--nx-ceramic)",
                 padding: "0.875rem 2rem",
               }}
             >

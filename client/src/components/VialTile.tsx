@@ -20,14 +20,14 @@ import { MolecularGlyph } from "@/components/MolecularGlyph";
 export type Tone = "cream" | "sage" | "rose" | "sky" | "dusk" | "butter" | "cobalt" | "mineral";
 
 const TONE_MAP: Record<Tone, { bg: string; ink: string; liquid: string; label: string }> = {
-  cream:   { bg: "#FBFDFF", ink: "#0E2447", liquid: "#8FC6FF", label: "Peptide" },
-  sage:    { bg: "#E6EBF2", ink: "#0E2447", liquid: "#8ABFD1", label: "Recovery" },
-  rose:    { bg: "#E6EEF7", ink: "#0E2447", liquid: "#A2C0E4", label: "Skin" },
-  sky:     { bg: "#E8EEF1", ink: "#0E2447", liquid: "#A6C3D0", label: "Cognition" },
-  dusk:    { bg: "#EAE6F1", ink: "#0E2447", liquid: "#B5A8CF", label: "Sleep" },
-  butter:  { bg: "#DEE7F2", ink: "#0E2447", liquid: "#6EA0DD", label: "Growth" },
-  cobalt:  { bg: "#E8EDEF", ink: "#0E2447", liquid: "#8AABB6", label: "Longevity" },
-  mineral: { bg: "#E4EEF8", ink: "#0E2447", liquid: "#9DB3C2", label: "Metabolic" },
+  cream:   { bg: "var(--nx-ceramic)", ink: "var(--nx-fg)", liquid: "var(--nx-acid)", label: "Peptide" },
+  sage:    { bg: "#E6EBF2", ink: "var(--nx-fg)", liquid: "#8ABFD1", label: "Recovery" },
+  rose:    { bg: "#E6EEF7", ink: "var(--nx-fg)", liquid: "#A2C0E4", label: "Skin" },
+  sky:     { bg: "#E8EEF1", ink: "var(--nx-fg)", liquid: "#A6C3D0", label: "Cognition" },
+  dusk:    { bg: "#EAE6F1", ink: "var(--nx-fg)", liquid: "#B5A8CF", label: "Sleep" },
+  butter:  { bg: "#DEE7F2", ink: "var(--nx-fg)", liquid: "#6EA0DD", label: "Growth" },
+  cobalt:  { bg: "#E8EDEF", ink: "var(--nx-fg)", liquid: "#8AABB6", label: "Longevity" },
+  mineral: { bg: "var(--nx-ice)", ink: "var(--nx-fg)", liquid: "#9DB3C2", label: "Metabolic" },
 };
 
 /* Detect touch — we swap hover behavior for tap on mobile */
@@ -227,8 +227,8 @@ export function VialTile({
     const s = fdaStatus.toLowerCase();
     if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "#E6F2F6", color: "#24596B", border: "#B0D2DD" };
     if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#DAE6F5", color: "#0F3F7A", border: "#8AB0DF" };
-    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "#E4EEF8", color: "#3D4A5C", border: "#C6D0DC" };
-    return { label: "Rx", bg: "#E4EEF8", color: "#3D4A5C", border: "#C6D0DC" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "var(--nx-ice)", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "var(--nx-ice)", color: "#3D4A5C", border: "#C6D0DC" };
   })();
   const [flipped, setFlipped] = useState(false);
   const isTouch = useIsTouch();
@@ -389,9 +389,9 @@ export function VialTile({
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   fontWeight: 600,
-                  color: "#FBFDFF",
+                  color: "var(--nx-ceramic)",
                   padding: "5px 10px",
-                  background: "#0E2447",
+                  background: "var(--nx-fg)",
                   borderRadius: 999,
                 }}
               >
@@ -545,8 +545,8 @@ export function VialTile({
             justifyContent: "space-between",
             padding: "clamp(22px, 2.4vw, 32px)",
             borderRadius: 24,
-            background: "#0E2447",
-            color: "#FBFDFF",
+            background: "var(--nx-fg)",
+            color: "var(--nx-ceramic)",
             transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
@@ -589,7 +589,7 @@ export function VialTile({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#8FC6FF",
+                  color: "var(--nx-acid)",
                 }}
               >
                 <MolecularGlyph glyph={glyph} size={26} title={`${name} glyph`} />
@@ -601,7 +601,7 @@ export function VialTile({
                     fontWeight: 600,
                     fontSize: 18,
                     letterSpacing: "-0.01em",
-                    color: "#FBFDFF",
+                    color: "var(--nx-ceramic)",
                     lineHeight: 1,
                   }}
                 >
@@ -613,7 +613,7 @@ export function VialTile({
                     fontSize: 10,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#8FC6FF",
+                    color: "var(--nx-acid)",
                     marginTop: 4,
                   }}
                 >
@@ -664,7 +664,7 @@ export function VialTile({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
-                      color: "#FBFDFF",
+                      color: "var(--nx-ceramic)",
                       marginTop: 4,
                       lineHeight: 1.3,
                     }}
@@ -690,7 +690,7 @@ export function VialTile({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
-                      color: "#FBFDFF",
+                      color: "var(--nx-ceramic)",
                       marginTop: 4,
                       lineHeight: 1.3,
                     }}
@@ -731,7 +731,7 @@ export function VialTile({
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: 22,
-                    color: "#FBFDFF",
+                    color: "var(--nx-ceramic)",
                     letterSpacing: "-0.02em",
                   }}
                 >
@@ -756,8 +756,8 @@ export function VialTile({
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                background: "#8FC6FF",
-                color: "#0E2447",
+                background: "var(--nx-acid)",
+                color: "var(--nx-fg)",
                 padding: "14px 22px",
                 borderRadius: 999,
                 fontFamily: "'General Sans', system-ui, sans-serif",

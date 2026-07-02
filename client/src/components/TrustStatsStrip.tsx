@@ -45,8 +45,8 @@ export function TrustStatsStrip({
     <section
       data-testid="trust-stats-strip"
       style={{
-        backgroundColor: isDark ? "var(--nx-cobalt)" : "#FBFDFF",
-        color: isDark ? "#FBFDFF" : "var(--nx-cobalt)",
+        backgroundColor: isDark ? "var(--nx-cobalt)" : "var(--nx-ceramic)",
+        color: isDark ? "var(--nx-ceramic)" : "var(--nx-cobalt)",
         borderTop: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
         borderBottom: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
         paddingTop: 96,
@@ -182,7 +182,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
               fontStyle: "normal",
               fontSize: "0.45em",
               fontWeight: 500,
-              color: "#6FA3CC",
+              color: "var(--nx-rust)",
               marginLeft: 4,
               verticalAlign: "top",
               position: "relative",

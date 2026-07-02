@@ -30,8 +30,8 @@ export function AnnouncementBar({
     <div
       className="w-full"
       style={{
-        background: "#0E2447",
-        color: "#F2F7FD",
+        background: "var(--nx-fg)",
+        color: "var(--nx-bg)",
         borderBottom: "1px solid rgba(240, 244, 250,0.08)",
       }}
       data-testid="announcement-bar"
@@ -43,8 +43,8 @@ export function AnnouncementBar({
           className="hidden sm:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-[0.22em]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#0E2447",
-            background: "#8FC6FF",
+            color: "var(--nx-fg)",
+            background: "var(--nx-acid)",
             letterSpacing: "0.22em",
             fontWeight: 600,
           }}
@@ -55,7 +55,7 @@ export function AnnouncementBar({
           className="flex-1 text-[11px] sm:text-[12px] leading-tight"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#F2F7FD",
+            color: "var(--nx-bg)",
             fontWeight: 400,
           }}
         >
@@ -66,7 +66,7 @@ export function AnnouncementBar({
           className="hidden sm:inline text-[10px] uppercase tracking-[0.18em] hover:opacity-80 transition-opacity"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#F2F7FD",
+            color: "var(--nx-bg)",
             borderBottom: "1px solid rgba(240, 244, 250,0.4)",
             paddingBottom: 1,
           }}
@@ -80,7 +80,7 @@ export function AnnouncementBar({
           className="p-1 -mr-1 hover:opacity-70 transition-opacity"
           aria-label="Dismiss announcement"
           data-testid="button-dismiss-announcement"
-          style={{ color: "#F2F7FD" }}
+          style={{ color: "var(--nx-bg)" }}
         >
           <X size={14} />
         </button>

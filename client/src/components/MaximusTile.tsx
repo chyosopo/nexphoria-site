@@ -241,7 +241,7 @@ export function ColoredHeroTile({
       </div>
       <div
         className="mx-hero-cta"
-        style={{ background: p.ink, color: "#FBFDFF" }}
+        style={{ background: p.ink, color: "var(--nx-ceramic)" }}
       >
         {ctaLabel}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -269,7 +269,7 @@ export const TileGlyphs = {
   leaf: (
     <svg viewBox="0 0 200 200" fill="currentColor">
       <path d="M40 160 C40 80 100 30 160 40 C150 100 100 160 40 160 Z" />
-      <path d="M40 160 C80 130 120 90 160 40" stroke="#FBFDFF" strokeWidth="2" fill="none" />
+      <path d="M40 160 C80 130 120 90 160 40" stroke="var(--nx-ceramic)" strokeWidth="2" fill="none" />
     </svg>
   ),
   hex: (
@@ -288,7 +288,7 @@ export const TileGlyphs = {
     <svg viewBox="0 0 200 200" fill="currentColor">
       <rect x="80" y="30" width="40" height="140" rx="8" />
       <rect x="70" y="20" width="60" height="18" rx="4" />
-      <rect x="80" y="130" width="40" height="40" fill="#FBFDFF" opacity="0.4" />
+      <rect x="80" y="130" width="40" height="40" fill="var(--nx-ceramic)" opacity="0.4" />
     </svg>
   ),
 };

@@ -71,7 +71,7 @@ export function GoalSelector() {
       {/* Background glow */}
       <div
         className="absolute top-1/2 -translate-y-1/2 right-0 w-[500px] h-[500px] rounded-full opacity-10 blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, #8FC6FF 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, var(--nx-acid) 0%, transparent 70%)" }}
       />
 
       <div className="nx-container relative">

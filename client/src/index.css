@@ -46,7 +46,8 @@
     --nx-black:        #0E2447;
     --nx-ceramic:      #FBFDFF;
     --nx-rock:         #DCE8F5;
-    --nx-acid:         #8FC6FF;  /* honey chip — was acid green */
+    --nx-acid:         #8FC6FF;
+    --nx-accent:       #2E7BF0;  /* primary azure accent */  /* honey chip — was acid green */
 
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
@@ -109,6 +110,7 @@
     --nx-ceramic:      #FFFDFE;
     --nx-rock:         #F2DCE6;
     --nx-acid:         #FFB3D4;
+    --nx-accent:       #E8558F;
   }
 
 

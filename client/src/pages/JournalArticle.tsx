@@ -238,7 +238,7 @@ export default function JournalArticle() {
                       fontWeight: activeSection === `sec-${s.id}` ? 600 : 400,
                       textDecoration: "none",
                       paddingLeft: 12,
-                      borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "#6FA3CC" : "transparent"}`,
+                      borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "var(--nx-rust)" : "transparent"}`,
                       transition: "all 0.2s ease",
                     }}
                   >
@@ -284,7 +284,7 @@ export default function JournalArticle() {
                 {s.callout && (
                   <aside
                     style={{
-                      borderLeft: "3px solid #6FA3CC",
+                      borderLeft: "3px solid var(--nx-rust)",
                       paddingLeft: 24,
                       marginTop: 28,
                       marginBottom: 28,
@@ -331,7 +331,7 @@ export default function JournalArticle() {
                             fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: 13,
                             fontWeight: 500,
-                            color: "#6FA3CC",
+                            color: "var(--nx-rust)",
                             letterSpacing: "0.05em",
                           }}
                         >
@@ -527,7 +527,7 @@ export default function JournalArticle() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 11,
-                        color: "#6FA3CC",
+                        color: "var(--nx-rust)",
                       }}
                     >
                       [{ref.n}]
@@ -558,7 +558,7 @@ export default function JournalArticle() {
         <section
           data-testid="article-related"
           style={{
-            backgroundColor: "#FBFDFF",
+            backgroundColor: "var(--nx-ceramic)",
             borderTop: "1px solid var(--nx-border)",
             paddingTop: 80,
             paddingBottom: 120,
@@ -572,7 +572,7 @@ export default function JournalArticle() {
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#6FA3CC",
+                color: "var(--nx-rust)",
                 marginBottom: 16,
               }}
             >
@@ -620,7 +620,7 @@ export default function JournalArticle() {
                         fontWeight: 500,
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
-                        color: "#6FA3CC",
+                        color: "var(--nx-rust)",
                         marginBottom: 16,
                       }}
                     >
@@ -671,7 +671,7 @@ export default function JournalArticle() {
         <div className="nx-container" style={{ maxWidth: 1180, margin: "0 auto" }}>
           <div
             style={{
-              backgroundColor: "#8FC6FF",
+              backgroundColor: "var(--nx-acid)",
               borderRadius: 4,
               padding: "48px 56px",
               display: "flex",
@@ -728,7 +728,7 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 8,
                   backgroundColor: "#000",
-                  color: "#8FC6FF",
+                  color: "var(--nx-acid)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 10,
                   fontWeight: 500,

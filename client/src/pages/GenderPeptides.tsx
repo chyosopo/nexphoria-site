@@ -186,7 +186,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                             {p.name}
                           </h2>
                           {price?.badge && (
-                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: ((gender === "women") ? "#C93A73" : "#1F5FD0") }}>
+                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: ((gender === "women") ? "#C93A73" : "var(--nx-amber)") }}>
                               {price.badge}
                             </span>
                           )}
@@ -290,8 +290,8 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       style={{
         position: "relative",
         overflow: "hidden",
-        background: ((gender === "women") ? "linear-gradient(180deg, #3C1830 0%, #111111 60%, #3E1030 100%)" : "linear-gradient(180deg, #0E2447 0%, #111111 60%, #0C2040 100%)"),
-        color: ((gender === "women") ? "#FAF0F5" : "#EDF4FB"),
+        background: ((gender === "women") ? "linear-gradient(180deg, #3C1830 0%, #111111 60%, #3E1030 100%)" : "linear-gradient(180deg, var(--nx-fg) 0%, #111111 60%, var(--nx-bg-dark) 100%)"),
+        color: ((gender === "women") ? "#FAF0F5" : "var(--nx-bg)"),
         fontFamily: "'General Sans', system-ui, sans-serif",
         borderBottom: "1px solid #1F1D1A",
       }}
@@ -303,7 +303,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       >
         <defs>
           <pattern id="menGrid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M 48 0 L 0 0 0 48" fill="none" stroke={(gender === "women") ? "#E8558F" : "#2E7BF0"} strokeWidth="0.5" />
+            <path d="M 48 0 L 0 0 0 48" fill="none" stroke={(gender === "women") ? "#E8558F" : "var(--nx-accent)"} strokeWidth="0.5" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#menGrid)" />
@@ -331,12 +331,12 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       >
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 22 }}>
-            <span style={{ width: 32, height: 2, background: ((gender === "women") ? "#E8558F" : "#2E7BF0") }} />
+            <span style={{ width: 32, height: 2, background: ((gender === "women") ? "#E8558F" : "var(--nx-accent)") }} />
             <span
               style={{
                 fontSize: 11,
                 letterSpacing: "0.28em",
-                color: ((gender === "women") ? "#E8558F" : "#2E7BF0"),
+                color: ((gender === "women") ? "#E8558F" : "var(--nx-accent)"),
                 textTransform: "uppercase",
                 fontWeight: 700,
               }}
@@ -355,7 +355,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
             }}
           >
             Built for <br />
-            the <span style={{ color: ((gender === "women") ? "#E8558F" : "#2E7BF0") }}>male</span> engine.
+            the <span style={{ color: ((gender === "women") ? "#E8558F" : "var(--nx-accent)") }}>male</span> engine.
           </h1>
           <p
             style={{
@@ -506,7 +506,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
               letterSpacing: "-0.03em",
               fontWeight: 500,
               margin: 0,
-              color: ((gender === "women") ? "#3C0B1F" : "#0B1D3C"),
+              color: ((gender === "women") ? "#3C0B1F" : "var(--nx-bg-dark)"),
               fontFamily: "'Instrument Serif', 'General Sans', Georgia, serif",
             }}
           >
@@ -572,7 +572,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
                 style={{
                   fontSize: 30,
                   fontWeight: 500,
-                  color: ((gender === "women") ? "#3C0B1F" : "#0B1D3C"),
+                  color: ((gender === "women") ? "#3C0B1F" : "var(--nx-bg-dark)"),
                   letterSpacing: "-0.02em",
                   fontFamily: "'Instrument Serif', Georgia, serif",
                 }}

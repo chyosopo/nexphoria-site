@@ -163,9 +163,9 @@ function RouteIcon({ route }: { route: Route }) {
 }
 
 function evidenceBadgeStyle(tier: EvidenceTier): { bg: string; color: string } {
-  if (tier === "A") return { bg: "#0E2447", color: "#8FC6FF" };
-  if (tier === "B+") return { bg: "#1A323A", color: "#8FC6FF" };
-  if (tier === "B") return { bg: "#EFF2F5", color: "#35507A" };
+  if (tier === "A") return { bg: "var(--nx-fg)", color: "var(--nx-acid)" };
+  if (tier === "B+") return { bg: "#1A323A", color: "var(--nx-acid)" };
+  if (tier === "B") return { bg: "#EFF2F5", color: "var(--nx-fg)" };
   return { bg: "#ECF0F5", color: "#2A4E7A" };
 }
 
@@ -175,7 +175,7 @@ const SHIMMER_CSS = `
   100% { background-position: 400px 0; }
 }
 .nx-shimmer {
-  background: linear-gradient(90deg, #EBF2F9 25%, #DFE3E8 50%, #EBF2F9 75%);
+  background: linear-gradient(90deg, var(--nx-bg) 25%, #DFE3E8 50%, var(--nx-bg) 75%);
   background-size: 800px 100%;
   animation: nx-shimmer 1.4s infinite linear;
 }
@@ -442,18 +442,18 @@ export default function Peptides() {
               className="w-full h-auto block" style={{ aspectRatio: "21 / 6", objectFit: "cover", borderRadius: "22px" }}
               aria-label="Nexphoria compounded peptide vial" />
             <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 60%, rgba(21, 24, 28,0.30))", borderRadius: "22px" }} />
-            <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "#F2F7FD", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
+            <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
               Compounded. Tested. Prescribed.
             </p>
             {/* UI-over-film chips — composite grammar */}
             <div className="hidden md:block absolute top-4 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 14, padding: "10px 15px" }}>
-              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#F2F7FD" }}>USP &lt;797&gt; · 503A compounded</div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "var(--nx-bg)" }}>USP &lt;797&gt; · 503A compounded</div>
               <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(240, 244, 250,0.65)", marginTop: 2 }}>Sterility &amp; potency tested per batch</div>
             </div>
             <div className="hidden md:flex absolute right-8 items-center gap-2.5"  style={{ bottom: -22, background: "rgba(251, 253, 255,0.98)", borderRadius: 14, padding: "11px 16px", boxShadow: "0 18px 40px -14px rgba(21, 24, 28,0.45)", zIndex: 2 }}>
-              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: 999, background: "#2FA7C4" }} aria-hidden />
+              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: 999, background: "var(--nx-success)" }} aria-hidden />
               <div>
-                <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "#0E2447" }}>Pairs well: BPC-157 + TB-500</div>
+                <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "var(--nx-fg)" }}>Pairs well: BPC-157 + TB-500</div>
                 <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(21, 24, 28,0.55)", marginTop: 1 }}>Physician-directed · if prescribed</div>
               </div>
             </div>
@@ -508,7 +508,7 @@ export default function Peptides() {
                 </div>
                 <div
                   className="mt-2 text-[10px] uppercase"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.16em", color: "#5C77A0" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.16em", color: "var(--nx-fg-graphite)" }}
                 >
                   {kpi.k}
                 </div>
@@ -699,12 +699,12 @@ export default function Peptides() {
                   data-testid="empty-state"
                 >
                   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" className="mx-auto mb-6" aria-hidden>
-                    <circle cx="36" cy="36" r="35" stroke="#DCE8F5" strokeWidth="1.5" />
+                    <circle cx="36" cy="36" r="35" stroke="var(--nx-rock)" strokeWidth="1.5" />
                     <circle cx="36" cy="28" r="10" stroke="#BAC0C8" strokeWidth="1.5" strokeDasharray="3 3" />
                     <line x1="22" y1="46" x2="50" y2="46" stroke="#BAC0C8" strokeWidth="1.5" strokeLinecap="round" />
                     <line x1="27" y1="52" x2="45" y2="52" stroke="#BAC0C8" strokeWidth="1.5" strokeLinecap="round" />
-                    <line x1="32" y1="22" x2="32" y2="34" stroke="#8FC6FF" strokeWidth="2" strokeLinecap="round" />
-                    <line x1="26" y1="28" x2="38" y2="28" stroke="#8FC6FF" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="32" y1="22" x2="32" y2="34" stroke="var(--nx-acid)" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="26" y1="28" x2="38" y2="28" stroke="var(--nx-acid)" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                   <h3 className="font-display text-fluid-2xl tracking-tight mb-2">
                     No peptides match those filters.
@@ -729,10 +729,10 @@ export default function Peptides() {
                   <Link href="/assessment" data-testid="card-assessment-cta">
                     <article
                       className="group rounded-3xl p-8 flex items-center justify-between gap-6 nx-tile cursor-pointer border transition-all mt-8"
-                      style={{ background: "#0E2447", borderColor: "#0E2447" }}
+                      style={{ background: "var(--nx-fg)", borderColor: "var(--nx-fg)" }}
                     >
                       <div>
-                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: "#8FC6FF" }}>
+                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: "var(--nx-acid)" }}>
                           Not sure where to start?
                         </div>
                         <h3 className="font-display text-fluid-xl leading-tight tracking-tight text-white">
@@ -745,7 +745,7 @@ export default function Peptides() {
                       <div className="flex-shrink-0">
                         <span
                           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-[0.14em] transition-all group-hover:gap-3"
-                          style={{ background: "#8FC6FF", color: "#0E2447" }}
+                          style={{ background: "var(--nx-acid)", color: "var(--nx-fg)" }}
                         >
                           Start <ArrowRight className="h-4 w-4" strokeWidth={2} />
                         </span>
@@ -1331,7 +1331,7 @@ function PeptideCard({
     sleep: "#EAE6F1",      // dusk
     growth: "#DEE7F2",     // butter
     longevity: "#E8EDEF",  // cobalt-soft
-    metabolic: "#E4EEF8",  // mineral
+    metabolic: "var(--nx-ice)",  // mineral
   };
   const tintBg = CATEGORY_TINT[peptide.category] ?? "#ffffff";
 
@@ -1342,8 +1342,8 @@ function PeptideCard({
     const s = fdaStatus.toLowerCase();
     if (s.startsWith("fda-approved")) return { label: "FDA-approved", bg: "#E6F2F6", color: "#24596B", border: "#B0D2DD" };
     if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#DAE6F5", color: "#0F3F7A", border: "#8AB0DF" };
-    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx · Compounded", bg: "#E4EEF8", color: "#3D4A5C", border: "#C6D0DC" };
-    return { label: "Rx", bg: "#E4EEF8", color: "#3D4A5C", border: "#C6D0DC" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx · Compounded", bg: "var(--nx-ice)", color: "#3D4A5C", border: "#C6D0DC" };
+    return { label: "Rx", bg: "var(--nx-ice)", color: "#3D4A5C", border: "#C6D0DC" };
   })();
 
   return (
@@ -1448,7 +1448,7 @@ function PeptideCard({
       {/* Accent underline on hover */}
       <div
         className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500 rounded-b-3xl"
-        style={{ background: "#8FC6FF" }}
+        style={{ background: "var(--nx-acid)" }}
         aria-hidden
       />
 

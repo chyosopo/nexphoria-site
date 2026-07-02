@@ -113,21 +113,21 @@ export default function Checkout() {
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-16 md:py-24 max-w-2xl">
             <div className="text-center">
-              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "#1F7F9C" }}>
+              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-success)" }}>
                 <Check size={32} strokeWidth={1.5} />
               </div>
-              <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "#1F5FD0" }}>
+              <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                 Submission #{submittedId.toString().padStart(5, "0")}
               </div>
               <h1
                 className="text-4xl md:text-5xl mb-5"
-                style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.02em" }}
+                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.02em" }}
               >
                 Intake complete
               </h1>
               <p
                 className="text-base mb-8 max-w-lg mx-auto"
-                style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.7 }}
+                style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}
               >
                 Your cart and intake are now with our physician team. You'll receive an email by a licensed physician
                 with either an approval and final payment link, or a request for additional information.
@@ -142,10 +142,10 @@ export default function Checkout() {
                 className="text-left p-6 mb-8 max-w-md mx-auto"
                 style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 16 }}
               >
-                <div className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#1F5FD0" }}>
+                <div className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                   What happens next
                 </div>
-                <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.6 }}>
+                <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                   {[
                     "Physician reviews intake and cart (24–48 hours)",
                     "You receive a secure approval link by email",
@@ -153,7 +153,7 @@ export default function Checkout() {
                     "Compounded shipment sent in cold-chain packaging",
                   ].map((t, i) => (
                     <li key={i} className="flex gap-2.5 items-start">
-                      <span style={{ color: "#1F5FD0", fontWeight: 600, fontSize: 11, marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
+                      <span style={{ color: "var(--nx-amber)", fontWeight: 600, fontSize: 11, marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
                       <span>{t}</span>
                     </li>
                   ))}
@@ -162,7 +162,7 @@ export default function Checkout() {
               <Link asChild href="/">
                 <a
                   className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
-                  style={{ color: "#0E2447", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                  style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                   data-testid="link-back-home"
                 >
                   <ArrowLeft size={14} /> Back to Nexphoria
@@ -181,16 +181,16 @@ export default function Checkout() {
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-20 max-w-md text-center">
-            <h1 className="text-3xl mb-4" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}>
+            <h1 className="text-3xl mb-4" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>
               Your cart is empty
             </h1>
-            <p className="text-base mb-6" style={{ fontFamily: FONT, color: "#4A6690" }}>
+            <p className="text-base mb-6" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
               Add a peptide or curated stack before checkout.
             </p>
             <Link asChild href="/stacks">
               <a
                 className="inline-block px-6 py-3"
-                style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: FONT, fontSize: "0.875rem", borderRadius: 12 }}
+                style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.875rem", borderRadius: 12 }}
                 data-testid="link-empty-checkout-stacks"
               >
                 Browse stacks
@@ -213,7 +213,7 @@ export default function Checkout() {
           <Link asChild href="/cart">
             <a
               className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] mb-6 hover:underline"
-              style={{ fontFamily: FONT, color: "#5C77A0" }}
+              style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
               data-testid="link-back-to-cart"
             >
               <ArrowLeft size={12} /> Back to cart
@@ -222,16 +222,16 @@ export default function Checkout() {
 
           {/* Header + progress indicator */}
           <div className="mb-8 max-w-2xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "#1F5FD0" }}>
+            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
               Checkout
             </div>
             <h1
               className="text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.02em" }}
             >
               Submit for physician review
             </h1>
-            <p className="text-base" style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.65 }}>
+            <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
               Every order is reviewed by a licensed physician before it ships. No card is charged today.
             </p>
           </div>
@@ -247,7 +247,7 @@ export default function Checkout() {
               {step === 0 && (
                 <>
                   <Section title="Where should we ship?" eyebrow="Step 01 · Address">
-                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}>
+                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                       Cold-chain shipped overnight after physician approval. We ship to all US states except LA, AK, and HI.
                     </p>
                     <Row>
@@ -293,9 +293,9 @@ export default function Checkout() {
                       className="flex items-center gap-2 p-3 mb-5"
                       style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                     >
-                      <Lock size={13} style={{ color: "#1F7F9C", flexShrink: 0 }} />
-                      <p className="text-xs" style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.5 }}>
-                        <strong style={{ color: "#0E2447" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
+                      <Lock size={13} style={{ color: "var(--nx-success)", flexShrink: 0 }} />
+                      <p className="text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
+                        <strong style={{ color: "var(--nx-fg)" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
                       </p>
                     </div>
 
@@ -306,7 +306,7 @@ export default function Checkout() {
                       <Field label="Card number">
                         <div style={{ position: "relative" }}>
                           <input type="text" inputMode="numeric" className="nx-input" placeholder="1234 1234 1234 1234" data-testid="input-card-number" autoComplete="cc-number" style={{ paddingRight: 44 }} />
-                          <CreditCard size={16} style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "#7C90A6" }} />
+                          <CreditCard size={16} style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "var(--nx-fg-muted)" }} />
                         </div>
                       </Field>
                     </div>
@@ -318,7 +318,7 @@ export default function Checkout() {
                         <input type="text" inputMode="numeric" className="nx-input" placeholder="CVC" data-testid="input-card-cvc" autoComplete="cc-csc" />
                       </Field>
                     </div>
-                    <p className="text-[11px] mt-4" style={{ fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}>
+                    <p className="text-[11px] mt-4" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                       Billing handled by Bask Health, our licensed telehealth partner. 256-bit encryption. PCI-DSS compliant.
                     </p>
                   </Section>
@@ -334,7 +334,7 @@ export default function Checkout() {
               {step === 2 && (
                 <>
                   <Section title="Health screening" eyebrow="Step 03 · Review">
-                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}>
+                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                       Answer honestly — this informs physician approval and is covered by HIPAA-aligned data handling.
                     </p>
                     <div className="space-y-3">
@@ -366,7 +366,7 @@ export default function Checkout() {
 
                   {/* Order recap */}
                   <div className="pt-2">
-                    <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#1F5FD0" }}>Confirm your order</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
                     <div style={{ border: "1px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}>
                       {lines.map((line) => (
                         <div
@@ -374,15 +374,15 @@ export default function Checkout() {
                           className="flex items-center justify-between px-4 py-3"
                           style={{ borderBottom: "1px solid var(--nx-border)", background: "#fff" }}
                         >
-                          <span className="text-sm" style={{ fontFamily: FONT, color: "#0E2447" }}>
-                            {line.name} <span style={{ color: "#7C90A6" }}>· {line.cadenceLabel} · qty {line.qty}</span>
+                          <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
+                            {line.name} <span style={{ color: "var(--nx-fg-muted)" }}>· {line.cadenceLabel} · qty {line.qty}</span>
                           </span>
-                          <span className="text-sm" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 500 }}>{formatUSD(line.lineTotal)}</span>
+                          <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>{formatUSD(line.lineTotal)}</span>
                         </div>
                       ))}
                       <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
-                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0E2447" }}>Total · monthly</span>
-                        <span className="text-lg" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
+                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · monthly</span>
+                        <span className="text-lg" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
                       </div>
                     </div>
                   </div>
@@ -395,13 +395,13 @@ export default function Checkout() {
                         type="submit"
                         disabled={mutation.isPending}
                         className="px-8 py-4 transition-all disabled:opacity-60"
-                        style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+                        style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
                         data-testid="button-submit-checkout"
                       >
                         {mutation.isPending ? "Submitting…" : "Submit for physician approval →"}
                       </button>
                     </div>
-                    <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "#5C77A0" }}>
+                    <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                       By submitting, you consent to physician review and HIPAA-aligned data handling. No payment is collected today — final invoice is sent after approval.
                     </p>
                     {Object.keys(errors).length > 0 ? (
@@ -427,7 +427,7 @@ export default function Checkout() {
             >
               <div
                 className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
-                style={{ fontFamily: FONT, color: "#1F5FD0", borderBottom: "1px solid var(--nx-border)" }}
+                style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
               >
                 Your order · {itemCount}
               </div>
@@ -439,24 +439,24 @@ export default function Checkout() {
                     <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <div className="text-[9px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "#1F5FD0" : "#5C77A0" }}>
+                          <div className="text-[9px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
                             {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
-                          <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 500 }}>
+                          <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
                             {line.name}
                           </div>
                           {stack ? (
-                            <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "#5C77A0", letterSpacing: "0.05em" }}>
+                            <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
                               {stack.peptides.length} peptides
                             </div>
                           ) : null}
                           {line.savings && line.savings > 0 ? (
-                            <div className="text-[10px] mt-1" style={{ fontFamily: FONT, color: "#1F5FD0", letterSpacing: "0.05em" }}>
+                            <div className="text-[10px] mt-1" style={{ fontFamily: FONT, color: "var(--nx-amber)", letterSpacing: "0.05em" }}>
                               −{formatUSD(line.savings)} saved
                             </div>
                           ) : null}
                         </div>
-                        <div className="text-sm flex-shrink-0" style={{ fontFamily: FONT, color: "#0E2447" }}>
+                        <div className="text-sm flex-shrink-0" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
                           {formatUSD(line.lineTotal)}
                         </div>
                       </div>
@@ -467,14 +467,14 @@ export default function Checkout() {
 
               {totalSavings > 0 ? (
                 <div className="flex items-baseline justify-between py-1.5">
-                  <span className="text-xs uppercase tracking-[0.15em]" style={{ fontFamily: FONT, color: "#1F5FD0" }}>Stack savings</span>
-                  <span className="text-sm" style={{ fontFamily: FONT, color: "#1F5FD0" }}>−{formatUSD(totalSavings)}</span>
+                  <span className="text-xs uppercase tracking-[0.15em]" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Stack savings</span>
+                  <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>−{formatUSD(totalSavings)}</span>
                 </div>
               ) : null}
 
               <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0E2447" }}>Total · monthly</span>
-                <span className="text-2xl" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600 }} data-testid="text-checkout-total">
+                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · monthly</span>
+                <span className="text-2xl" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }} data-testid="text-checkout-total">
                   {formatUSD(subtotal)}
                 </span>
               </div>
@@ -488,7 +488,7 @@ export default function Checkout() {
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 
-              <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}>
+              <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                 <p>No payment collected today. Final pricing confirmed after physician approval. Bask Health handles all billing.</p>
               </div>
             </aside>
@@ -526,8 +526,8 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
                   borderRadius: 999,
                   fontFamily: FONT,
                   fontWeight: 600,
-                  background: done ? "#1F5FD0" : active ? "#0E2447" : "transparent",
-                  color: done || active ? "#F2F7FD" : "#7C90A6",
+                  background: done ? "var(--nx-amber)" : active ? "var(--nx-fg)" : "transparent",
+                  color: done || active ? "var(--nx-bg)" : "var(--nx-fg-muted)",
                   border: done || active ? "none" : "1px solid var(--nx-border)",
                   flexShrink: 0,
                 }}
@@ -536,7 +536,7 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
               </span>
               <span
                 className="text-[11px] uppercase tracking-[0.14em] hidden sm:inline"
-                style={{ fontFamily: FONT, color: active ? "#0E2447" : done ? "#4A6690" : "#7C90A6", fontWeight: active ? 600 : 500 }}
+                style={{ fontFamily: FONT, color: active ? "var(--nx-fg)" : done ? "var(--nx-fg-graphite)" : "var(--nx-fg-muted)", fontWeight: active ? 600 : 500 }}
               >
                 {label}
               </span>
@@ -544,7 +544,7 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
             {i < labels.length - 1 && (
               <span
                 className="mx-3"
-                style={{ flex: 1, height: 1, minWidth: 20, background: done ? "#1F5FD0" : "var(--nx-border)" }}
+                style={{ flex: 1, height: 1, minWidth: 20, background: done ? "var(--nx-amber)" : "var(--nx-border)" }}
               />
             )}
           </div>
@@ -564,7 +564,7 @@ function PrimaryBtn({ children, onClick, testId }: { children: React.ReactNode; 
       type="button"
       onClick={onClick}
       className="px-8 py-4 transition-all"
-      style={{ background: "#0E2447", color: "#F2F7FD", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+      style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
       data-testid={testId}
     >
       {children}
@@ -578,7 +578,7 @@ function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; on
       type="button"
       onClick={onClick}
       className="px-6 py-4 transition-colors hover:bg-black/5"
-      style={{ color: "#0E2447", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: 12 }}
+      style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: 12 }}
       data-testid={testId}
     >
       {children}
@@ -589,10 +589,10 @@ function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; on
 function Section({ title, eyebrow, children }: { title: string; eyebrow: string; children: React.ReactNode }) {
   return (
     <section>
-      <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "#1F5FD0" }}>
+      <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
         {eyebrow}
       </div>
-      <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 600, letterSpacing: "-0.01em" }}>
+      <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}>
         {title}
       </h2>
       {children}
@@ -607,11 +607,11 @@ function Row({ children }: { children: React.ReactNode }) {
 function Field({ label, helper, error, children }: { label: string; helper?: string; error?: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="block text-[11px] uppercase tracking-[0.15em] mb-1.5" style={{ fontFamily: FONT, color: "#4A6690" }}>
+      <span className="block text-[11px] uppercase tracking-[0.15em] mb-1.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
         {label}
       </span>
       {helper ? (
-        <span className="block text-xs mb-2" style={{ fontFamily: FONT, color: "#5C77A0" }}>
+        <span className="block text-xs mb-2" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
           {helper}
         </span>
       ) : null}
@@ -639,13 +639,13 @@ const YesNoField = ({
   return (
     <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
       <div className="flex items-start gap-3">
-        <input type="checkbox" className="mt-1 accent-[#0E2447]" data-testid={testId} {...rest} />
+        <input type="checkbox" className="mt-1 accent-[var(--nx-fg)]" data-testid={testId} {...rest} />
         <div className="flex-1">
-          <div className="text-sm" style={{ fontFamily: FONT, color: "#0E2447", fontWeight: 500 }}>
+          <div className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
             {label}
           </div>
           {helper ? (
-            <div className="text-xs mt-1" style={{ fontFamily: FONT, color: "#5C77A0", lineHeight: 1.5 }}>
+            <div className="text-xs mt-1" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
               {helper}
             </div>
           ) : null}
@@ -657,8 +657,8 @@ const YesNoField = ({
 
 function TrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-start gap-2.5 text-xs" style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.5 }}>
-      <span style={{ color: "#1F5FD0", marginTop: 1 }}>{icon}</span>
+    <div className="flex items-start gap-2.5 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
+      <span style={{ color: "var(--nx-amber)", marginTop: 1 }}>{icon}</span>
       <span>{text}</span>
     </div>
   );

@@ -263,7 +263,7 @@ export function BloodworkDashboard() {
                     color: "var(--nx-fg)",
                     display: "block",
                     paddingBottom: hasAnnotation ? "4px" : "0",
-                    borderBottom: hasAnnotation ? `1px solid #1F5FD0` : "none",
+                    borderBottom: hasAnnotation ? `1px solid var(--nx-amber)` : "none",
                     marginBottom: hasAnnotation ? "4px" : "0",
                   }}
                 >
@@ -275,7 +275,7 @@ export function BloodworkDashboard() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "8.5px",
                       letterSpacing: "0.06em",
-                      color: "#1F5FD0",
+                      color: "var(--nx-amber)",
                       display: "block",
                     }}
                   >

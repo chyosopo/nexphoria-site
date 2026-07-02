@@ -177,8 +177,8 @@ function MenHeroDark() {
     <section
       className="relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #0E2447 0%, #101010 55%, #1A1A1A 100%)",
-        color: "#FBFDFF",
+        background: "linear-gradient(180deg, var(--nx-fg) 0%, #101010 55%, #1A1A1A 100%)",
+        color: "var(--nx-ceramic)",
       }}
       data-testid="men-hero-dark"
     >
@@ -212,10 +212,10 @@ function MenHeroDark() {
                 fontSize: 11,
                 letterSpacing: "0.10em",
                 textTransform: "uppercase",
-                color: "#8FC6FF",
+                color: "var(--nx-acid)",
               }}
             >
-              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "#8FC6FF" }} />
+              <span aria-hidden style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--nx-acid)" }} />
               For him · male physiology
             </div>
 
@@ -227,10 +227,10 @@ function MenHeroDark() {
                 fontSize: "clamp(44px, 6.4vw, 88px)",
                 lineHeight: 0.96,
                 letterSpacing: "-0.03em",
-                color: "#FBFDFF",
+                color: "var(--nx-ceramic)",
               }}
             >
-              Peak <span style={{ color: "#8FC6FF" }}>performance</span>,
+              Peak <span style={{ color: "var(--nx-acid)" }}>performance</span>,
               <br />
               engineered for men.
             </h1>
@@ -279,7 +279,7 @@ function MenHeroDark() {
                 href="/stacks/wolverine"
                 className="inline-flex items-center gap-2 text-[14px] font-medium"
                 style={{
-                  color: "#FBFDFF",
+                  color: "var(--nx-ceramic)",
                   borderBottom: "1px solid rgba(243, 248, 255,0.35)",
                   paddingBottom: 2,
                   fontFamily: "'General Sans', system-ui, sans-serif",
@@ -341,11 +341,11 @@ function MenHeroDark() {
                     fontSize: 11,
                     letterSpacing: "0.10em",
                     textTransform: "uppercase",
-                    color: "#8FC6FF",
+                    color: "var(--nx-acid)",
                     marginBottom: 8,
                   }}
                 >
-                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#8FC6FF", marginRight: 8 }} />
+                  <span aria-hidden style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "var(--nx-acid)", marginRight: 8 }} />
                   Flagship · Wolverine
                 </div>
                 <div
@@ -355,7 +355,7 @@ function MenHeroDark() {
                     fontSize: "clamp(22px, 2.6vw, 30px)",
                     lineHeight: 1.06,
                     letterSpacing: "-0.02em",
-                    color: "#FBFDFF",
+                    color: "var(--nx-ceramic)",
                   }}
                 >
                   Repair, recover, come back stronger.
@@ -374,7 +374,7 @@ function MenHeroDark() {
                   <span style={{ opacity: 0.4 }}>·</span>
                   <span>Ipamorelin</span>
                   <span style={{ opacity: 0.4 }}>·</span>
-                  <span style={{ color: "#8FC6FF", fontWeight: 600 }}>From $189/mo</span>
+                  <span style={{ color: "var(--nx-acid)", fontWeight: 600 }}>From $189/mo</span>
                 </div>
               </div>
             </div>
@@ -430,7 +430,7 @@ function EditorialBannerMen() {
             
             fontWeight: 400,
             fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
-            color: "#F2F7FD",
+            color: "var(--nx-bg)",
             lineHeight: 1.35,
             letterSpacing: "-0.01em",
             textAlign: "center",
@@ -720,7 +720,7 @@ function FlagshipCards() {
                     overflow: "hidden",
                     borderRadius: "16px",
                     height: "600px",
-                    backgroundColor: "#0E2447",
+                    backgroundColor: "var(--nx-fg)",
                     cursor: "pointer",
                   }}
                 >
@@ -791,7 +791,7 @@ function FlagshipCards() {
                         
                         fontWeight: 500,
                         fontSize: "clamp(1.875rem, 3vw, 2.75rem)",
-                        color: "#F2F7FD",
+                        color: "var(--nx-bg)",
                         lineHeight: 1.08,
                         marginBottom: "0.625rem",
                         whiteSpace: "pre-line",
@@ -834,7 +834,7 @@ function FlagshipCards() {
                         }}
                         className="group-hover:translate-x-1 group-hover:border-white/60"
                       >
-                        <ArrowRight size={14} color="#F2F7FD" />
+                        <ArrowRight size={14} color="var(--nx-bg)" />
                       </div>
                     </div>
                   </div>
@@ -1145,26 +1145,26 @@ function SplitSectionPerformance() {
                 <AreaChart data={igf1Data} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGradM1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0E2447" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#0E2447" stopOpacity={0} />
+                      <stop offset="5%" stopColor="var(--nx-fg)" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="var(--nx-fg)" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "var(--nx-fg-muted)" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
+                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "var(--nx-fg-muted)" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "var(--nx-fg-muted)" }}
                     axisLine={false}
                     tickLine={false}
                     unit=" ng/mL"
                     width={60}
                   />
-                  <Area type="monotone" dataKey="igf" stroke="#0E2447" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
+                  <Area type="monotone" dataKey="igf" stroke="var(--nx-fg)" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#B0B9C5" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
@@ -1207,20 +1207,20 @@ function SplitSectionTestosterone() {
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="month"
-                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "var(--nx-fg-muted)", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
+                    label={{ value: "Months", position: "insideBottom", offset: -2, fontSize: 10, fill: "var(--nx-fg-muted)" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fill: "#7C90A6", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                    tick={{ fontSize: 10, fill: "var(--nx-fg-muted)", fontFamily: "'General Sans', system-ui, sans-serif" }}
                     axisLine={false}
                     tickLine={false}
                     domain={[250, 650]}
                     unit=" ng/dL"
                     width={60}
                   />
-                  <Line type="monotone" dataKey="total" stroke="#0E2447" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
+                  <Line type="monotone" dataKey="total" stroke="var(--nx-fg)" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
@@ -1376,25 +1376,25 @@ function SplitSectionWeightLoss() {
                 <AreaChart data={menBodyFatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGradM2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0E2447" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#0E2447" stopOpacity={0} />
+                      <stop offset="5%" stopColor="var(--nx-fg)" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="var(--nx-fg)" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
                   <XAxis
                     dataKey="week"
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "var(--nx-fg-muted)" }}
                     axisLine={false}
                     tickLine={false}
-                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "#7C90A6" }}
+                    label={{ value: "Weeks", position: "insideBottom", offset: -2, fontSize: 10, fill: "var(--nx-fg-muted)" }}
                   />
                   <YAxis
-                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "#7C90A6" }}
+                    tick={{ fontSize: 10, fontFamily: "'General Sans', system-ui, sans-serif", fill: "var(--nx-fg-muted)" }}
                     axisLine={false}
                     tickLine={false}
                     unit="%"
                   />
-                  <Area type="monotone" dataKey="fat" stroke="#0E2447" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
+                  <Area type="monotone" dataKey="fat" stroke="var(--nx-fg)" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#B0B9C5" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}

@@ -179,7 +179,7 @@ const SAFETY_ROWS: {
 function safetyRiskColor(r: SafetyLevel): string {
   if (r === "Low") return "var(--nx-success)";
   if (r === "Moderate") return "var(--nx-warning)";
-  return "#1F5FD0";
+  return "var(--nx-amber)";
 }
 
 /* ── References — ~20, each with an abstract that expands ─────────────────── */
@@ -252,7 +252,7 @@ function TOCSidebar({ activeId }: { activeId: string }) {
 }
 
 function tierColor(t: Tier): string {
-  return t === "Established" ? "#1F7F9C" : t === "Emerging" ? "#1F5FD0" : "#5C77A0";
+  return t === "Established" ? "var(--nx-success)" : t === "Emerging" ? "var(--nx-amber)" : "var(--nx-fg-graphite)";
 }
 
 /* ── Science FAQ data — drives FAQPage JSON-LD ───────────────── */
@@ -328,11 +328,11 @@ export default function Science() {
       <section style={{ backgroundColor: "#000", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "4.5rem 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#8FC6FF", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#8FC6FF" }} />
+            <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
               Evidence grading
             </p>
-            <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "#FBFDFF", lineHeight: 1.15, marginBottom: "0.75rem" }}>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "var(--nx-ceramic)", lineHeight: 1.15, marginBottom: "0.75rem" }}>
               We grade every claim. <span style={{  }}>Honestly.</span>
             </h2>
             <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(243, 248, 255,0.65)", lineHeight: 1.65, maxWidth: "560px", marginBottom: "3rem" }}>
@@ -348,7 +348,7 @@ export default function Science() {
               {
                 tier: "Tier A",
                 key: "a",
-                color: "#8FC6FF",
+                color: "var(--nx-acid)",
                 strength: 100,
                 label: "Established",
                 desc: "Multiple Phase III RCTs in humans. FDA approval for at least one indication.",
@@ -387,7 +387,7 @@ export default function Science() {
               {
                 tier: "Tier B\u2212",
                 key: "b-minus",
-                color: "#5C77A0",
+                color: "var(--nx-fg-graphite)",
                 strength: 35,
                 label: "Investigational",
                 desc: "Strong animal or in vitro evidence; limited controlled human data. Prescribed at physician discretion after explicit risk/benefit discussion.",
@@ -401,10 +401,10 @@ export default function Science() {
               <div
                 key={t.tier}
                 data-testid={`tier-card-${t.key}`}
-                style={{ backgroundColor: "#0E2447", padding: "2rem 1.75rem", display: "flex", flexDirection: "column" }}
+                style={{ backgroundColor: "var(--nx-fg)", padding: "2rem 1.75rem", display: "flex", flexDirection: "column" }}
               >
                 <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: t.color, marginBottom: "0.5rem" }}>{t.tier}</p>
-                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "#FBFDFF", marginBottom: "0.875rem", lineHeight: 1.2 }}>{t.label}</p>
+                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "var(--nx-ceramic)", marginBottom: "0.875rem", lineHeight: 1.2 }}>{t.label}</p>
                 <div
                   aria-hidden="true"
                   style={{
@@ -451,7 +451,7 @@ export default function Science() {
                         }}
                         onMouseEnter={(e) => {
                           (e.currentTarget as HTMLElement).style.background = t.color;
-                          (e.currentTarget as HTMLElement).style.color = "#0E2447";
+                          (e.currentTarget as HTMLElement).style.color = "var(--nx-fg)";
                           (e.currentTarget as HTMLElement).style.borderColor = t.color;
                         }}
                         onMouseLeave={(e) => {
@@ -478,12 +478,12 @@ export default function Science() {
             <Reveal>
               <div>
                 <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}>WHAT IS A PEPTIDE?</p>
-                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.7, marginBottom: "1rem" }}>
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, marginBottom: "1rem" }}>
                   A peptide is a chain of 2–50 amino acids linked by peptide bonds. Proteins are larger chains (50+ amino
                   acids); peptides are smaller and more targeted in their receptor interactions. The body produces
                   thousands of endogenous peptides — insulin (51 aa), oxytocin (9 aa), and glucagon (29 aa) are all peptides.
                 </p>
-                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.7 }}>
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>
                   Therapeutic peptides either mimic endogenous signaling molecules or modulate the pathways those molecules
                   activate. They are administered subcutaneously, intranasally, or — in limited cases — orally, depending on
                   whether the compound survives gastrointestinal proteolysis.
@@ -493,12 +493,12 @@ export default function Science() {
             <Reveal delay={80}>
               <div>
                 <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}>WHY COMPOUNDING?</p>
-                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.7, marginBottom: "1rem" }}>
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, marginBottom: "1rem" }}>
                   Most peptides used in clinical practice are not manufactured as FDA-approved commercial drugs. 503A-licensed
                   compounding pharmacies prepare patient-specific formulations under a physician's prescription. This is the
                   same regulatory framework used for compounded hormones, topical preparations, and many ophthalmic drugs.
                 </p>
-                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.7 }}>
+                <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>
                   USP-797 sterile compounding standards govern the preparation environment. Batch testing confirms identity,
                   potency, and sterility before any compound is released for patient use.
                 </p>
@@ -540,14 +540,14 @@ export default function Science() {
             {mechanismCards.map((m, i) => (
               <Reveal key={m.id} delay={i * 40}>
                 <div className="p-7 h-full" style={{ background: "var(--nx-bg)" }} data-testid={`mechanism-card-${m.id}`}>
-                  <div style={{ color: "#0E2447", marginBottom: "1rem" }}>
+                  <div style={{ color: "var(--nx-fg)", marginBottom: "1rem" }}>
                     <MolecularGlyph glyph={m.glyph} size={72} title={`${m.title} glyph`} />
                   </div>
                   <h3 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.25rem", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>{m.title}</h3>
-                  <p style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#1F5FD0", marginBottom: "0.85rem" }}>
+                  <p style={{ fontFamily: MONO, fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-amber)", marginBottom: "0.85rem" }}>
                     Receptor · {m.receptor}
                   </p>
-                  <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A6690", lineHeight: 1.6 }}>{m.how}</p>
+                  <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>{m.how}</p>
                 </div>
               </Reveal>
             ))}
@@ -560,11 +560,11 @@ export default function Science() {
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
-              <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "#8FC6FF", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "#8FC6FF" }} />
+              <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
                 Why it matters
               </p>
-              <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#FBFDFF", lineHeight: 1.12, marginBottom: "1.25rem" }}>
+              <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "var(--nx-ceramic)", lineHeight: 1.12, marginBottom: "1.25rem" }}>
                 Science without labs is <span style={{  }}>conjecture</span>.
               </h2>
               <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(243, 248, 255,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
@@ -582,9 +582,9 @@ export default function Science() {
                   { phase: "180-DAY DRAW", timing: "Active protocol", desc: "Trend line established. Protocol extended, modified, or concluded based on biomarker trajectory and clinical goals." },
                   { phase: "ONGOING", timing: "Every 90 days", desc: "As long as you're active, your labs run quarterly. Data-driven medicine is a loop, not a one-time consult." },
                 ].map((row) => (
-                  <div key={row.phase} style={{ backgroundColor: "#0E2447", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
+                  <div key={row.phase} style={{ backgroundColor: "var(--nx-fg)", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
                     <div style={{ flexShrink: 0, minWidth: "90px" }}>
-                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#8FC6FF" }}>{row.phase}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-acid)" }}>{row.phase}</p>
                       <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(243, 248, 255,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
                     </div>
                     <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(243, 248, 255,0.65)", lineHeight: 1.6 }}>{row.desc}</p>
@@ -642,19 +642,19 @@ export default function Science() {
 
                     <div style={{ marginBottom: "1.75rem" }}>
                       <p style={{ fontFamily: SANS, fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>MECHANISM OF ACTION</p>
-                      <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.7, maxWidth: "680px" }}>{family.mechanism}</p>
+                      <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "680px" }}>{family.mechanism}</p>
                     </div>
 
                     <div style={{ marginBottom: "1.75rem" }}>
                       <p style={{ fontFamily: SANS, fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>TYPICAL PROTOCOL</p>
-                      <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.7, maxWidth: "680px" }}>{family.protocol}</p>
+                      <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "680px" }}>{family.protocol}</p>
                     </div>
 
                     <FamilyOutcomesViz outcomes={family.outcomes} />
 
                     <div style={{ marginBottom: "2.5rem" }}>
                       <p style={{ fontFamily: SANS, fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>EVIDENCE STATUS</p>
-                      <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A6690", lineHeight: 1.65, maxWidth: "680px",  }}>{family.evidenceNote}</p>
+                      <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.65, maxWidth: "680px",  }}>{family.evidenceNote}</p>
                     </div>
 
                     <blockquote style={{ borderLeft: "2px solid var(--nx-cobalt)", paddingLeft: "1.5rem", margin: 0 }}>
@@ -680,21 +680,21 @@ export default function Science() {
                     <thead>
                       <tr>
                         {["Peptide family", "Mechanism", "Indication", "Evidence tier", "Studies", "FDA status"].map((h) => (
-                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#5C77A0", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {evidenceRows.map((r) => (
                         <tr key={r.family} data-testid={`evidence-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
-                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 15, fontWeight: 500, color: "#0E2447", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)" }}>{r.mechanism}</td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)" }}>{r.indication}</td>
+                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 15, fontWeight: 500, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.mechanism}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.indication}</td>
                           <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)" }}>
                             <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: tierColor(r.tier), border: `1px solid ${tierColor(r.tier)}`, padding: "3px 8px", borderRadius: 2, whiteSpace: "nowrap" }}>{r.tier}</span>
                           </td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)" }}>{r.studies}</td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)" }}>{r.fda}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.studies}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.fda}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -713,7 +713,7 @@ export default function Science() {
                 <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1rem" }}>
                   Side effects, contraindications, monitoring.
                 </h2>
-                <p style={{ fontFamily: SANS, fontSize: "1rem", color: "#4A6690", lineHeight: 1.6, maxWidth: 620, marginBottom: "2rem" }}>
+                <p style={{ fontFamily: SANS, fontSize: "1rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: 620, marginBottom: "2rem" }}>
                   Every family carries a specific risk profile. Your physician screens for contraindications before prescribing and monitors the listed markers on each 90-day draw.
                 </p>
                 <div style={{ width: "100%", overflowX: "auto" }}>
@@ -721,17 +721,17 @@ export default function Science() {
                     <thead>
                       <tr>
                         {["Peptide family", "Common effects", "Key contraindications", "Monitored markers", "Risk"].map((h) => (
-                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#5C77A0", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {SAFETY_ROWS.map((r) => (
                         <tr key={r.family} data-testid={`safety-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
-                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 14, fontWeight: 500, color: "#0E2447", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.common}</td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.contraindications}</td>
-                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A6690", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.monitoring}</td>
+                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 14, fontWeight: 500, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.common}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.contraindications}</td>
+                          <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.monitoring}</td>
                           <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>
                             <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: safetyRiskColor(r.risk), border: `1px solid ${safetyRiskColor(r.risk)}`, padding: "3px 8px", borderRadius: 2, whiteSpace: "nowrap" }}>{r.risk}</span>
                           </td>
@@ -766,13 +766,13 @@ export default function Science() {
                         style={{ width: "100%", display: "flex", gap: "0.75rem", alignItems: "flex-start", justifyContent: "space-between", padding: "1rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
                       >
                         <span style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                          <span style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, color: "#1F5FD0", flexShrink: 0, marginTop: "3px" }}>{ref.num}.</span>
+                          <span style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, color: "var(--nx-amber)", flexShrink: 0, marginTop: "3px" }}>{ref.num}.</span>
                           <span style={{ fontFamily: SANS, fontSize: "13px", color: "#1D2228", lineHeight: 1.6 }}>{ref.cite}</span>
                         </span>
-                        {openRef === i ? <Minus size={14} style={{ color: "#1F5FD0", flexShrink: 0, marginTop: 4 }} /> : <Plus size={14} style={{ color: "#93A8BE", flexShrink: 0, marginTop: 4 }} />}
+                        {openRef === i ? <Minus size={14} style={{ color: "var(--nx-amber)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={14} style={{ color: "var(--nx-fg-muted)", flexShrink: 0, marginTop: 4 }} />}
                       </button>
                       {openRef === i && (
-                        <p data-testid={`reference-abstract-${ref.num}`} style={{ fontFamily: SANS, fontSize: "13px", color: "#4A6690", lineHeight: 1.7, paddingLeft: "1.85rem", paddingBottom: "1rem", maxWidth: 720 }}>
+                        <p data-testid={`reference-abstract-${ref.num}`} style={{ fontFamily: SANS, fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.7, paddingLeft: "1.85rem", paddingBottom: "1rem", maxWidth: 720 }}>
                           {ref.abstract}
                         </p>
                       )}
@@ -797,10 +797,10 @@ export default function Science() {
                     <div key={i} style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <button onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} data-testid={`science-faq-item-${i}`} style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.25rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
                         <span style={{ fontFamily: SANS, fontSize: "1rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
-                        {openFaq === i ? <Minus size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={16} style={{ color: "#4A6690", flexShrink: 0, marginTop: 4 }} />}
+                        {openFaq === i ? <Minus size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={16} style={{ color: "var(--nx-fg-graphite)", flexShrink: 0, marginTop: 4 }} />}
                       </button>
                       {openFaq === i && (
-                        <p data-testid={`science-faq-answer-${i}`} style={{ fontFamily: SANS, fontSize: "0.9375rem", lineHeight: 1.75, color: "#4A6690", maxWidth: 680, paddingBottom: "1.5rem" }}>{item.a}</p>
+                        <p data-testid={`science-faq-answer-${i}`} style={{ fontFamily: SANS, fontSize: "0.9375rem", lineHeight: 1.75, color: "var(--nx-fg-graphite)", maxWidth: 680, paddingBottom: "1.5rem" }}>{item.a}</p>
                       )}
                     </div>
                   ))}
@@ -830,10 +830,10 @@ export default function Science() {
                 <Reveal key={t.title} delay={i * 50}>
                   <Link asChild href="/contact">
                     <a className="group block p-7 h-full" style={{ background: "var(--nx-bg)", textDecoration: "none" }} data-testid={`research-tile-${t.title.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
-                      <Icon size={22} strokeWidth={1.6} style={{ color: "#0E2447", marginBottom: 16 }} />
+                      <Icon size={22} strokeWidth={1.6} style={{ color: "var(--nx-fg)", marginBottom: 16 }} />
                       <h3 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.25rem", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>{t.title}</h3>
-                      <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A6690", lineHeight: 1.6, marginBottom: "1rem" }}>{t.body}</p>
-                      <span className="inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "#0E2447" }}>
+                      <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginBottom: "1rem" }}>{t.body}</p>
+                      <span className="inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg)" }}>
                         Get in touch <ArrowRight size={12} strokeWidth={2.4} />
                       </span>
                     </a>
@@ -860,7 +860,7 @@ export default function Science() {
             </p>
             <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>Science without labs is conjecture.</h2>
             <h2 style={{ fontFamily: SERIF, fontWeight: 500,  fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
-            <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "#4A6690", lineHeight: 1.65, maxWidth: "480px" }}>
+            <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "var(--nx-fg-graphite)", lineHeight: 1.65, maxWidth: "480px" }}>
               Every Nexphoria protocol begins with a 38-biomarker Quest Diagnostics draw. Mechanism explains what a peptide
               does. Your bloodwork tells your physician what it will do for you specifically.
             </p>
@@ -891,8 +891,8 @@ function ScienceHeroDark() {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #0E2447 0%, #101010 55%, #1A1A1A 100%)",
-        color: "#EFF5FB",
+        background: "linear-gradient(135deg, var(--nx-fg) 0%, #101010 55%, #1A1A1A 100%)",
+        color: "var(--nx-bg)",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
@@ -924,7 +924,7 @@ function ScienceHeroDark() {
       >
         <defs>
           <pattern id="molgrid" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-            <circle cx="4" cy="4" r="0.35" fill="#8FC6FF" />
+            <circle cx="4" cy="4" r="0.35" fill="var(--nx-acid)" />
             <line x1="4" y1="4" x2="12" y2="4" stroke="rgba(102, 217, 255,0.28)" strokeWidth="0.06" />
             <line x1="4" y1="4" x2="4" y2="12" stroke="rgba(102, 217, 255,0.28)" strokeWidth="0.06" />
           </pattern>
@@ -958,14 +958,14 @@ function ScienceHeroDark() {
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#8FC6FF",
+                color: "var(--nx-acid)",
                 marginBottom: "1.25rem",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.65rem",
               }}
             >
-              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "#8FC6FF" }} />
+              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
               The science
             </p>
             {/* Wikipedia-style definition — lifted verbatim by AI search */}
@@ -989,12 +989,12 @@ function ScienceHeroDark() {
                 fontSize: "clamp(2.4rem, 5.4vw, 4.5rem)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.02em",
-                color: "#EFF5FB",
+                color: "var(--nx-bg)",
                 marginBottom: "1.5rem",
               }}
             >
               Molecules that talk<br />
-              <span style={{ color: "#8FC6FF" }}>to your body.</span>
+              <span style={{ color: "var(--nx-acid)" }}>to your body.</span>
             </h1>
             <p
               style={{
@@ -1049,7 +1049,7 @@ function ScienceHeroDark() {
                   fontWeight: 600,
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
-                  color: "#EFF5FB",
+                  color: "var(--nx-bg)",
                   border: "1px solid rgba(255,255,255,0.28)",
                   padding: "0.85rem 1.25rem",
                   borderRadius: "999px",
@@ -1074,11 +1074,11 @@ function ScienceHeroDark() {
             }}
           >
             {[
-              { fam: "GLP-1", tag: "Metabolic", grade: "A", accent: "#8FC6FF" },
+              { fam: "GLP-1", tag: "Metabolic", grade: "A", accent: "var(--nx-acid)" },
               { fam: "GHS", tag: "Growth axis", grade: "A−", accent: "#7EE0FF" },
               { fam: "BPC-157", tag: "Tissue repair", grade: "B+", accent: "#53A0FF" },
               { fam: "NAD+", tag: "Longevity", grade: "B", accent: "#9BC0FF" },
-              { fam: "Enclomiphene", tag: "HPG axis", grade: "A−", accent: "#8FC6FF" },
+              { fam: "Enclomiphene", tag: "HPG axis", grade: "A−", accent: "var(--nx-acid)" },
               { fam: "Ipamorelin", tag: "GH pulse", grade: "B+", accent: "#7EE0FF" },
             ].map((tile) => (
               <div
@@ -1132,7 +1132,7 @@ function ScienceHeroDark() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "1.1rem",
                     fontWeight: 600,
-                    color: "#EFF5FB",
+                    color: "var(--nx-bg)",
                     lineHeight: 1.1,
                     marginBottom: "0.15rem",
                   }}
@@ -1185,7 +1185,7 @@ function ScienceHeroDark() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 600,
                   fontSize: "clamp(1.4rem, 2.6vw, 2rem)",
-                  color: "#EFF5FB",
+                  color: "var(--nx-bg)",
                   lineHeight: 1,
                   marginBottom: "0.35rem",
                 }}

@@ -111,10 +111,10 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                 justifyContent: "space-between",
                 gap: "16px",
                 padding: "18px 20px",
-                background: isSelected ? "#0E2447" : "transparent",
-                color: isSelected ? "#F2F7FD" : "#0E2447",
+                background: isSelected ? "var(--nx-fg)" : "transparent",
+                color: isSelected ? "var(--nx-bg)" : "var(--nx-fg)",
                 border: isSelected
-                  ? "1px solid #0E2447"
+                  ? "1px solid var(--nx-fg)"
                   : isMostPopular
                   ? "1px solid rgba(21, 24, 28,0.45)"
                   : "1px solid var(--nx-border, rgba(21, 24, 28,0.15))",
@@ -129,7 +129,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                   width: "16px",
                   height: "16px",
                   borderRadius: "50%",
-                  border: isSelected ? "1px solid #F2F7FD" : "1px solid rgba(21, 24, 28,0.4)",
+                  border: isSelected ? "1px solid var(--nx-bg)" : "1px solid rgba(21, 24, 28,0.4)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -142,7 +142,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      background: "#F2F7FD",
+                      background: "var(--nx-bg)",
                     }}
                   />
                 )}
@@ -176,10 +176,10 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                           ? "rgba(43, 86, 139,0.12)"
                           : "rgba(21, 24, 28,0.08)",
                         color: isSelected
-                          ? "#F2F7FD"
+                          ? "var(--nx-bg)"
                           : card.badge === "Best value"
-                          ? "#1F5FD0"
-                          : "#0E2447",
+                          ? "var(--nx-amber)"
+                          : "var(--nx-fg)",
                       }}
                     >
                       {card.badge}
@@ -252,8 +252,8 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
           ...fontSans,
           width: "100%",
           padding: "16px 20px",
-          background: justAdded ? "#1F5FD0" : "#0E2447",
-          color: "#F2F7FD",
+          background: justAdded ? "var(--nx-amber)" : "var(--nx-fg)",
+          color: "var(--nx-bg)",
           border: "none",
           fontSize: "13px",
           fontWeight: 600,

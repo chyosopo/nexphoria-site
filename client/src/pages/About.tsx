@@ -374,7 +374,7 @@ export default function About() {
               <div
                 key={p.num}
                 data-testid={`about-pillar-${i}`}
-                style={{ backgroundColor: "#FBFDFF", padding: "2.75rem 2.25rem" }}
+                style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.75rem 2.25rem" }}
               >
                 <p
                   style={{
@@ -433,7 +433,7 @@ export default function About() {
                     border: "1px solid var(--nx-border)",
                     borderRadius: "16px",
                     overflow: "hidden",
-                    backgroundColor: "#FBFDFF",
+                    backgroundColor: "var(--nx-ceramic)",
                     height: "100%",
                   }}
                 >
@@ -487,7 +487,7 @@ export default function About() {
                     style={{
                       border: "1px solid var(--nx-border)",
                       borderRadius: "12px",
-                      backgroundColor: "#FBFDFF",
+                      backgroundColor: "var(--nx-ceramic)",
                       padding: "1.5rem 1.25rem",
                       height: "100%",
                     }}
@@ -567,7 +567,7 @@ export default function About() {
               <div
                 key={item.num}
                 data-testid={`about-standard-${i}`}
-                style={{ backgroundColor: "#FBFDFF", padding: "2.5rem 2rem" }}
+                style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.5rem 2rem" }}
               >
                 <p
                   style={{
@@ -647,7 +647,7 @@ export default function About() {
                 style={{
                   border: "1px solid var(--nx-border)",
                   borderRadius: "16px",
-                  backgroundColor: "#FBFDFF",
+                  backgroundColor: "var(--nx-ceramic)",
                   padding: "2.5rem 2.25rem",
                   display: "flex",
                   flexWrap: "wrap",
@@ -801,7 +801,7 @@ export default function About() {
                 fontWeight: 500,
                 fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
                 letterSpacing: "-0.02em",
-                color: "#FBFDFF",
+                color: "var(--nx-ceramic)",
                 lineHeight: 1.25,
                 maxWidth: "860px",
               }}

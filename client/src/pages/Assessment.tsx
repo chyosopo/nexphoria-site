@@ -565,7 +565,7 @@ export default function Assessment() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "1.0625rem",
-                  color: "#4A6690",
+                  color: "var(--nx-fg-graphite)",
                   lineHeight: 1.7,
                 }}
               >
@@ -1223,7 +1223,7 @@ export default function Assessment() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
-                      color: "#4A6690",
+                      color: "var(--nx-fg-graphite)",
                       lineHeight: 1.6,
                       margin: 0,
                     }}
@@ -1412,7 +1412,7 @@ export default function Assessment() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "15px",
-                    color: "#4A6690",
+                    color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                     maxWidth: "420px",
                     margin: "0 auto 2.5rem",

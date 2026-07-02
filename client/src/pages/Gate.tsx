@@ -43,7 +43,7 @@ export default function Gate() {
         width: "100vw",
         height: "100dvh",
         overflow: "hidden",
-        backgroundColor: "var(--nx-bg, #FBFDFF)",
+        backgroundColor: "var(--nx-bg, var(--nx-ceramic))",
       }}
       data-testid="gate-page"
     >
@@ -368,7 +368,7 @@ function GateCard({
             width: 6,
             height: 6,
             borderRadius: "50%",
-            backgroundColor: "#6FA3CC",
+            backgroundColor: "var(--nx-rust)",
           }}
           animate={reducedMotion ? {} : { opacity: [1, 0.35, 1], scale: [1, 0.85, 1] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
@@ -380,7 +380,7 @@ function GateCard({
             fontWeight: 500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: "#FBFDFF",
+            color: "var(--nx-ceramic)",
           }}
         >
           3 Flagship Protocols
@@ -450,7 +450,7 @@ function GateCard({
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           
                           fontSize: 13,
-                          color: "#6FA3CC",
+                          color: "var(--nx-rust)",
                           letterSpacing: "-0.01em",
                           lineHeight: 1,
                         }}
@@ -462,7 +462,7 @@ function GateCard({
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: 14,
                           fontWeight: 600,
-                          color: "#FBFDFF",
+                          color: "var(--nx-ceramic)",
                           letterSpacing: "-0.01em",
                         }}
                       >
@@ -539,7 +539,7 @@ function GateCard({
             fontWeight: 400,
             fontSize: "clamp(3.5rem, 6vw, 6rem)",
             lineHeight: 1.0,
-            color: "#FBFDFF",
+            color: "var(--nx-ceramic)",
             marginBottom: "20px",
           }}
         >
@@ -572,7 +572,7 @@ function GateCard({
           >
             <path
               d="M3 8h10M9 4l4 4-4 4"
-              stroke="#FBFDFF"
+              stroke="var(--nx-ceramic)"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"

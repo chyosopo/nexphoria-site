@@ -72,7 +72,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                     height: "220px",
                     borderRadius: "12px",
                     overflow: "hidden",
-                    backgroundColor: "#0E2447",
+                    backgroundColor: "var(--nx-fg)",
                     cursor: "pointer",
                     transition: "transform 400ms cubic-bezier(0.22,1,0.36,1)",
                   }}
