@@ -58,7 +58,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
       title: "Custom",
       italic: "protocol",
       body:
-        "Take the 5-minute intake. Our physicians design a peptide protocol around your bloodwork, goals, and medical history — no off-the-shelf bundle required.",
+        "Take the structured intake. Our physicians design a peptide protocol around your bloodwork, goals, and medical history — no off-the-shelf bundle required.",
       cta: "Take the intake",
       href: "/assessment",
       testid: "tier-custom",

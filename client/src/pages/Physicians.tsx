@@ -13,7 +13,7 @@ import { PillBadge } from "@/components/PillBadge";
 export default function Physicians() {
   useSeo({
     title: "Nexphoria physicians — board-certified, Cleveland Clinic to Stanford",
-    description: "Every Nexphoria protocol is reviewed by a board-certified U.S. physician trained at Cleveland Clinic, Mayo, UCSF, Hopkins, or Stanford. No algorithms, no auto-approval — a real physician reads your file.",
+    description: "Every Nexphoria protocol is reviewed by a board-certified U.S. physician trained at Cleveland Clinic, Mayo, UCSF, Hopkins, or Stanford. No algorithms, no auto-approval — a licensed physician reads your file.",
     path: "/physicians",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Physicians",

@@ -297,7 +297,7 @@ function MenHeroDark() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
               }}
             >
-              Free physician consult on your first protocol · No commitment · HSA/FSA eligible
+              Free physician consult on your first protocol · No obligation · HSA/FSA eligible
             </div>
           </div>
 
@@ -853,12 +853,12 @@ const howItWorksSteps = [
   {
     num: "01",
     title: "Assessment",
-    body: "Complete our 5-minute online intake — health history, current medications, goals, and lifestyle factors. No appointment required. Your answers go directly to your physician's review queue. This is the first clinical conversation: not a checkout flow, not a marketing funnel. We ask the questions a board-certified MD would ask.",
+    body: "Complete our A structured intake — health history, current medications, goals, and lifestyle factors. No appointment required. Your answers go directly to your physician's review queue. This is the first clinical conversation: not a checkout flow, not a marketing funnel. We ask the questions a board-certified MD would ask.",
   },
   {
     num: "02",
     title: "Physician Review",
-    body: "A board-certified US physician reviews your intake and blood panel within 24–48 hours. If your labs show a contraindication, they explain it and suggest an alternative. If everything checks out, they write your prescription with a protocol note covering dosing schedule, injection technique, expected timeline, and monitoring parameters.",
+    body: "A board-certified US physician reviews your intake and blood panel by a licensed physician. If your labs show a contraindication, they explain it and suggest an alternative. If everything checks out, they write your prescription with a protocol note covering dosing schedule, injection technique, expected timeline, and monitoring parameters.",
   },
   {
     num: "03",

@@ -431,7 +431,7 @@ export default function PeptideDetail() {
             steps: [
               { name: "Complete intake assessment", text: "Complete the 5-minute Nexphoria intake assessment and provide your health history and goals." },
               { name: "Draw Quest Diagnostics labs", text: "Visit any of 2,500+ Quest Diagnostics locations using the requisition generated in your member portal." },
-              { name: "Physician review and consultation", text: "Your board-certified physician reviews your labs and consults with you via Bask Health telehealth within 24–48 hours." },
+              { name: "Physician review and consultation", text: "Your board-certified physician reviews your labs and consults with you via Bask Health telehealth by a licensed physician." },
               { name: "Receive compounded peptide", text: `Your ${peptide.name} protocol is compounded in a 503A-licensed U.S. pharmacy and shipped cold-chain within 3–5 business days.` },
               { name: "Follow your protocol", text: `Administer ${peptide.name} per your physician's instructions: ${peptide.typicalDose}, ${peptide.administration.toLowerCase()}. Cycle length: ${peptide.cycleLength}.` },
               { name: "90-day biomarker follow-up", text: "Return to Quest Diagnostics for your 90-day follow-up panel. Your physician reviews updated labs and adjusts dosing as needed." },

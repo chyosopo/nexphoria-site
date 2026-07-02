@@ -301,7 +301,7 @@ function Hero() {
               color: "var(--nx-fg-muted)",
             }}
           >
-            No commitment · Physician-reviewed in 24–48h · 5-min intake
+            Licensed physicians · State-licensed 503A pharmacies · One dashboard
           </span>
         </div>
 
@@ -664,7 +664,7 @@ function HowItWorks() {
     {
       n: "02",
       title: "Physician review",
-      copy: "A board-certified MD writes your prescription within 24–48 hours.",
+      copy: "A board-certified MD writes your prescription by a licensed physician.",
     },
     {
       n: "03",
@@ -1252,7 +1252,7 @@ function FinalCta() {
             color: "rgba(243, 248, 255,0.7)",
           }}
         >
-          Answer a few questions. A physician reviews within 24–48 hours. Your
+          Answer a few questions. A physician reviews by a licensed physician. Your
           protocol ships to your door.
         </p>
         <div className="mt-10 inline-flex">

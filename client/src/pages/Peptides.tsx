@@ -736,7 +736,7 @@ export default function Peptides() {
                           Not sure where to start?
                         </div>
                         <h3 className="font-display text-fluid-xl leading-tight tracking-tight text-white">
-                          Take the 5-minute assessment.
+                          Take the structured assessment.
                         </h3>
                         <p className="text-fluid-xs leading-relaxed mt-1" style={{ color: "rgba(255,255,255,0.55)" }}>
                           A physician maps your labs and goals to the right peptide — not a quiz.

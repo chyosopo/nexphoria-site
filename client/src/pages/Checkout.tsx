@@ -89,7 +89,7 @@ export default function Checkout() {
       setSubmittedId(data.id);
       queryClient.invalidateQueries({ queryKey: ["/api/checkout"] });
       clear();
-      toast({ title: "Submitted for physician review", description: "We'll be in touch in 24–48 hours." });
+      toast({ title: "Submitted for physician review", description: "We'll be in touch upon review." });
     },
     onError: (err: Error) => {
       toast({ title: "Submission failed", description: err.message, variant: "destructive" });
@@ -129,7 +129,7 @@ export default function Checkout() {
                 className="text-base mb-8 max-w-lg mx-auto"
                 style={{ fontFamily: FONT, color: "#4A6690", lineHeight: 1.7 }}
               >
-                Your cart and intake are now with our physician team. You'll receive an email within 24–48 hours
+                Your cart and intake are now with our physician team. You'll receive an email by a licensed physician
                 with either an approval and final payment link, or a request for additional information.
               </p>
 
@@ -484,7 +484,7 @@ export default function Checkout() {
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
                 <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · 256-bit encryption" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
-                <TrustRow icon={<Check size={14} />} text="Free consult — you pay only if prescribed" />
+                <TrustRow icon={<Check size={14} />} text="The consultation carries no charge. You pay only if prescribed." />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 

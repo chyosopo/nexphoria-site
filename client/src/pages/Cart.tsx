@@ -394,7 +394,7 @@ export default function Cart() {
                   style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "#5C77A0", lineHeight: 1.6 }}
                 >
                   <p>Intake screening at checkout (~3 min)</p>
-                  <p>Physician sign-off in 24–48 hours</p>
+                  <p>Physician sign-off upon review</p>
                   <p>Cold-chain packaging with temp indicators</p>
                 </div>
               </aside>

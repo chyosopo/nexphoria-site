@@ -101,7 +101,7 @@ const STEPS = [
     sub: "PHYSICIAN REVIEW",
     title: "Physician review.",
     detail:
-      "A board-certified MD licensed in your state reviews your complete laboratory panel and medical history, then designs a protocol calibrated to your physiology. Review is completed within 24–48 hours. If a requested protocol is clinically inappropriate, the physician declines it or proposes a modified one. Physician discretion is final.",
+      "A board-certified MD licensed in your state reviews your complete laboratory panel and medical history, then designs a protocol calibrated to your physiology. Review is completed by a licensed physician. If a requested protocol is clinically inappropriate, the physician declines it or proposes a modified one. Physician discretion is final.",
     timeline: "24–48 hours",
     image: editorialBloodwork,
     imageAlt: "Physician reviewing patient laboratory results",
@@ -155,7 +155,7 @@ const HOW_FAQS = [
   {
     category: "PROCESS",
     q: "How fast can I start?",
-    a: "The intake takes about 12 minutes and your at-home lab kit ships the same day. Once your bloodwork is returned, a board-certified physician completes review within 24–48 hours. Most patients receive a compounded, cold-chain-shipped protocol within 5–7 business days of returning labs.",
+    a: "The intake takes about 12 minutes and your at-home lab kit ships the same day. Once your bloodwork is returned, a board-certified physician completes review by a licensed physician. Most patients receive a compounded, cold-chain-shipped protocol within 5–7 business days of returning labs.",
   },
   {
     category: "PROCESS",
@@ -205,7 +205,7 @@ export default function HowItWorks() {
         name: "How to start peptide therapy at Nexphoria",
         description: "A four-step physician-supervised process from intake assessment to your first dose, including bloodwork, telehealth consult, and 503A compounding.",
         steps: [
-          { name: "Complete the 5-minute intake assessment", text: "Answer questions about your health history, goals, and current medications at nexphoria.pplx.app/#/assessment. No clinic visit required." },
+          { name: "Complete the a structured medical intake", text: "Answer questions about your health history, goals, and current medications at nexphoria.pplx.app/#/assessment. No clinic visit required." },
           { name: "Draw Quest Diagnostics labs", text: "A 38-biomarker lab requisition is generated in your member portal. Visit any of 2,500+ Quest Diagnostics locations nationwide." },
           { name: "Physician review and telehealth consultation", text: "A board-certified physician reviews your labs and intake within 24\u201348 hours via the Bask Health telehealth platform. Your protocol is prescribed if clinically appropriate." },
           { name: "Compounding and cold-chain delivery", text: "Your peptides are compounded in a U.S. 503A-licensed sterile pharmacy, batch-tested with a Certificate of Analysis, and shipped cold-chain to your door in 3\u20135 business days." },

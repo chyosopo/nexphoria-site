@@ -296,7 +296,7 @@ export default function Protocols() {
                 them), and contraindications, then routes you to the right protocol.
               </p>
               <StartIntakeButton variant="primary" size="lg" source="protocols_closing">
-                Start free intake
+                Start intake
               </StartIntakeButton>
             </div>
           </Reveal>

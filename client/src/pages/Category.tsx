@@ -23,7 +23,7 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: "Physician-directed peptide protocols oriented around tissue recovery, joint comfort, and training resilience — calibrated to your bloodwork, not a guess.",
     chips: ["Post-injury support", "Joint comfort", "Training load", "Tendon & tissue"],
     faqs: [
-      { q: "How do recovery protocols start?", a: "With a 5-minute online intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
+      { q: "How do recovery protocols start?", a: "With a A structured intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
       { q: "How soon are protocols adjusted?", a: "Labs are re-run every 90 days. Your physician reviews the change in your markers and adjusts, holds, or tapers the protocol accordingly." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies and prescribed off-label by licensed physicians." },
     ],
@@ -101,7 +101,7 @@ const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: s
 };
 
 const STEPS: [string, string][] = [
-  ["Share your history", "A private 5-minute intake covering your goals, training, and medical history."],
+  ["Share your history", "A private structured intake covering your goals, training, and medical history."],
   ["Get evaluated", "Baseline bloodwork plus review by a U.S.-licensed physician — the only person who decides if a prescription is appropriate."],
   ["Start & stay monitored", "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with labs re-run every 90 days."],
 ];
@@ -146,7 +146,7 @@ export default function Category() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
-              Start your free intake <ArrowRight size={17} strokeWidth={2} />
+              Begin your intake <ArrowRight size={17} strokeWidth={2} />
             </Link>
             <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
           </div>
@@ -261,7 +261,7 @@ export default function Category() {
               Free evaluation. You only pay if a physician prescribes.
             </p>
             <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2 mt-6">
-              Start your free intake <ArrowRight size={17} strokeWidth={2} />
+              Begin your intake <ArrowRight size={17} strokeWidth={2} />
             </Link>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>
               Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Availability varies by state.

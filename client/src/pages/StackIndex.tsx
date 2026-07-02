@@ -529,7 +529,7 @@ export default function StackIndex() {
                   Not sure which stack?
                 </div>
                 <h2 className="text-2xl md:text-3xl mb-3" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
-                  Take the 5-minute assessment.
+                  Take the structured assessment.
                 </h2>
                 <p className="text-base max-w-lg" style={{ fontFamily: SANS, color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>
                   Our physicians design a protocol around your bloodwork, goals, and medical history — not a template.

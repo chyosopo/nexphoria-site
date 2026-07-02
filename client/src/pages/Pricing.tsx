@@ -1167,7 +1167,7 @@ export default function Pricing() {
                 Your protocol, built on your labs.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A6690", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
-                Start with a 5-minute assessment. Your physician will review your intake and design a protocol around your labs, your goals, and your physiology — not a template.
+                Start with a structured assessment. Your physician will review your intake and design a protocol around your labs, your goals, and your physiology — not a template.
               </p>
               <StartIntakeButton source="pricing-page" size="lg">
                 Start your assessment

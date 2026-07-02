@@ -39,7 +39,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does the process work start to finish?",
-        a: "Complete the 5-minute intake assessment. A Quest Diagnostics lab requisition is generated in your member portal. Draw at any of 2,500+ Quest locations nationwide. A board-certified physician reviews your labs and intake within 24–48 hours. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
+        a: "Complete the a structured medical intake. A Quest Diagnostics lab requisition is generated in your member portal. Draw at any of 2,500+ Quest locations nationwide. A board-certified physician reviews your labs and intake by a licensed physician. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
       },
       {
         q: "What if the physician declines my protocol?",

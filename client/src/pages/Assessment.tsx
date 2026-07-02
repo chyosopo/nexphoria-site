@@ -344,12 +344,12 @@ function CheckboxRow({
 
 export default function Assessment() {
   useSeo({
-    title: "Start your peptide protocol — 5-minute intake, physician review in 24h",
+    title: "Start your peptide protocol — structured intake, physician review in 24h",
     description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol within 24 hours. No algorithms, no auto-approvals.",
     path: "/assessment",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Medical Intake Assessment",
-      description: "5-minute intake for physician-prescribed peptide therapy. Board-certified physician review within 24 hours.",
+      description: "structured intake for physician-prescribed peptide therapy. Board-certified physician review within 24 hours.",
       path: "/assessment",
       type: "MedicalWebPage",
     })],
@@ -1081,7 +1081,7 @@ export default function Assessment() {
                 <p style={monoEyebrow}>STEP 06 OF 07</p>
                 <h2 style={playfairQuestion}>Where should your physician reach you?</h2>
                 <p style={subCopy}>
-                  Your physician will review your intake within 24–48 hours and contact you to schedule a consult.
+                  Your physician will review your intake by a licensed physician and contact you to schedule a consult.
                 </p>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2.5rem" }}>
@@ -1427,7 +1427,7 @@ export default function Assessment() {
                     WHAT HAPPENS NEXT
                   </p>
                   {[
-                    { n: "01", t: "Physician reviews your intake within 24–48 hours" },
+                    { n: "01", t: "Physician reviews your intake by a licensed physician" },
                     { n: "02", t: "Quest Diagnostics requisition generated in your member portal" },
                     { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
                     { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },

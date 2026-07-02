@@ -143,7 +143,7 @@ function PurchaseCard({ stack }: { stack: Stack }) {
         source="protocol-rail"
         className="w-full font-bold"
       >
-        Start free intake
+        Start intake
       </StartIntakeButton>
       <StartIntakeButton
         variant="outline-dark"
@@ -157,7 +157,7 @@ function PurchaseCard({ stack }: { stack: Stack }) {
       </StartIntakeButton>
 
       <p className="font-mono text-[11px] text-nx-faint text-center mt-5 leading-relaxed">
-        60-day guarantee · No commitments · MD review in 24h
+        60-day guarantee · No obligations · MD review in 24h
       </p>
     </div>
   );
@@ -753,7 +753,7 @@ export default function StackReveal() {
               protocol.
             </h2>
             <p className="nx-body text-foreground/70 mb-10 max-w-2xl mx-auto">
-              5-minute intake. MD review within 48 hours. Your first kit ships in under a week.
+              structured intake. MD review within 48 hours. Your first kit ships in under a week.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <StartIntakeButton
@@ -763,7 +763,7 @@ export default function StackReveal() {
                 source="protocol-hero"
                 className="font-bold"
               >
-                Start free intake
+                Start intake
               </StartIntakeButton>
               <StartIntakeButton
                 variant="outline-dark"

@@ -26,7 +26,7 @@ function Sample({ p, accent, accentSoft, name, note }: { p: typeof A; accent: st
           Physician-directed peptide protocols, gated by 76 biomarkers and re-tested every 90 days.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
-          <span style={{ fontFamily: F, fontWeight: 600, fontSize: 15, background: accent, color: p.base, borderRadius: 999, padding: "13px 24px", display: "inline-block" }}>Start your free intake</span>
+          <span style={{ fontFamily: F, fontWeight: 600, fontSize: 15, background: accent, color: p.base, borderRadius: 999, padding: "13px 24px", display: "inline-block" }}>Begin your intake</span>
           <span style={{ fontFamily: F, fontWeight: 600, fontSize: 15, color: p.ice, border: `1px solid ${p.border}`, borderRadius: 999, padding: "13px 24px", display: "inline-block" }}>See the bloodwork</span>
         </div>
 

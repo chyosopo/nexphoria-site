@@ -119,7 +119,7 @@ export default function Showcase() {
                   boxShadow: "0 0 0 3px color-mix(in oklab, var(--nx-acid, #8FC6FF) 30%, transparent)",
                 }}
               />
-              No commitment · Physician-reviewed in 24–48h
+              No obligation · Reviewed by a licensed physician
             </span>
           </div>
 
@@ -452,7 +452,7 @@ export default function Showcase() {
                     textShadow: "0 1px 12px rgba(21, 24, 28,0.4)",
                   }}
                 >
-                  Take the 5-minute assessment. No card needed. We&rsquo;ll match you to a doctor-designed protocol or build one with you from the library.
+                  Take the structured assessment. No card needed. We&rsquo;ll match you to a doctor-designed protocol or build one with you from the library.
                 </p>
                 <StartIntakeButton
                   source="home_final_cta"
