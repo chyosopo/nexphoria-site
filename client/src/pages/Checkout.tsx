@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { ArrowLeft, Check, Shield, Stethoscope, Truck, Lock, CreditCard } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
 import { isGLP1Excluded, getStack } from "@/data/stacksCatalog";
@@ -35,6 +36,7 @@ type FormValues = z.infer<typeof formSchema>;
 const STEPS = ["Address", "Payment", "Review"] as const;
 
 export default function Checkout() {
+  useSeo({ title: "Secure intake — Nexphoria", description: "Submit your information for physician review. No charge until a licensed physician approves your protocol." });
   const { lines, subtotal, totalSavings, itemCount, clear } = useCart();
 
   /* ─── GLP-1 state gate (defense-in-depth: PDPs already gate; this enforces at checkout) ─── */

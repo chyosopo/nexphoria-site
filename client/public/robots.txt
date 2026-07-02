@@ -32,4 +32,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://nexphoria.pplx.app/sitemap.xml
+Sitemap: https://chyosopo.github.io/nexphoria-site/sitemap.xml

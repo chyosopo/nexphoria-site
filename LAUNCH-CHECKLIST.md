@@ -11,6 +11,14 @@
 - Zero banned tokens: no acid-green, no pure-black, no "Maximus"/"Beyond Boundaries"/hype in copy
 - **ASSET INDEPENDENCE: zero external CDN references.** 39 assets localized → WebP q82 ≤1600w (153MB→11MB), served from repo
 
+## ✅ FULL AUDIT LEVEL-UP (this wave)
+- **Route smoke harness** (`npm run smoke`): renders all 37 routes through Vite SSR under jsdom — 37/37 pass. Catches runtime crashes statically-impossible to find. Found + killed: dead `Protocols.tsx` carrying a missing-PNG import.
+- **Performance**: 13 eagerly-imported pages → lazy. Main bundle **556KB → 223KB (−60%)**. 509KB recharts chunk no longer preloaded for every visitor (manualChunk removed; now rides only the lazy Bloodwork route).
+- **SEO**: sitemap regenerated — 99 URLs on the live host (was 73 URLs on the dead `nexphoria.pplx.app` domain); robots.txt sitemap pointer fixed; Cart/Checkout given titles/descriptions.
+- **A11y**: tag-span audit — **0 images missing alt** (line-grep false alarm); h1-per-page verified on core templates; skip-link + aria coverage confirmed.
+- **Link safety**: all `target="_blank"` carry `rel="noopener noreferrer"`.
+- **More dead weight**: `Legal.tsx` (superseded by legal/ suite), `Protocols.tsx`, unused shadcn `ui/chart.tsx` — deleted.
+
 ## 🔧 REMAINING — site-side (small, no blockers)
 - [x] ~~12 pre-existing tsc errors~~ — **FIXED: tsc = 0 across the entire repo**
 - [ ] Data unification (later, carefully): legacy `stacks.ts`/`peptides.ts` still power cart/checkout/nav; new `stacksCatalog`/`soloCatalog` power PDPs. Two sources of truth = drift risk once real orders flow

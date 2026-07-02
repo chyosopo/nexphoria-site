@@ -22,7 +22,7 @@ export default defineConfig({
           react: ["react", "react-dom"],
           motion: ["framer-motion"],
           router: ["wouter"],
-          charts: ["recharts"],
+
         },
       },
     },

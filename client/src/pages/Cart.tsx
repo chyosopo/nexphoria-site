@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
 import { CADENCE_DISCOUNTS, pricing, type CadenceKey } from "@/data/pricing";
@@ -9,6 +10,7 @@ import { CADENCE_DISCOUNTS, pricing, type CadenceKey } from "@/data/pricing";
 const FONT = "'General Sans', system-ui, sans-serif";
 
 export default function Cart() {
+  useSeo({ title: "Your cart — Nexphoria", description: "Review your selected protocols before physician intake." });
   const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
 
   // Cart is a private transactional page — noindex to keep crawl budget on content pages

@@ -16,21 +16,9 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 
 // Pages — eagerly loaded (fast/common paths)
 import Home from "@/pages/Home";
-import Gate from "@/pages/Gate";
 import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
-import HowItWorks from "@/pages/HowItWorks";
-import Science from "@/pages/Science";
-import Journal from "@/pages/Journal";
-import JournalArticle from "@/pages/JournalArticle";
-import Physicians from "@/pages/Physicians";
-import LabTesting from "@/pages/LabTesting";
-import Bloodwork from "@/pages/Bloodwork";
-import Pricing from "@/pages/Pricing";
-import FAQPage from "@/pages/FAQ";
-import About from "@/pages/About";
-import Community from "@/pages/Community";
-import Contact from "@/pages/Contact";
+
 import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
@@ -45,6 +33,19 @@ const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
 const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
+const Gate = lazy(() => import("@/pages/Gate"));
+const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
+const Science = lazy(() => import("@/pages/Science"));
+const Journal = lazy(() => import("@/pages/Journal"));
+const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
+const Physicians = lazy(() => import("@/pages/Physicians"));
+const LabTesting = lazy(() => import("@/pages/LabTesting"));
+const Pricing = lazy(() => import("@/pages/Pricing"));
+const About = lazy(() => import("@/pages/About"));
+const Community = lazy(() => import("@/pages/Community"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const FAQPage = lazy(() => import("@/pages/FAQ"));
+const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
