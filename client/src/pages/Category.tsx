@@ -195,7 +195,7 @@ export default function Category() {
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "#1C1815", background: "#A8C69A", borderRadius: 999, padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
             </div>
             <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,#A8C69A,#F3C87A,#D07A52)" }}>
-              <span className="absolute" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0", boxShadow: "0 0 0 3px rgba(250,247,240,0.3)" }} />
+              <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "#FAF7F0", boxShadow: "0 0 0 3px rgba(250,247,240,0.3)" }} />
             </div>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(250,247,240,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
           </div>

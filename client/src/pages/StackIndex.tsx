@@ -433,7 +433,7 @@ export default function StackIndex() {
               <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.2vw,52px)", lineHeight: 1.1, color: "#FAF7F0" }}>
                 Balanced like a <em style={{ fontStyle: "italic", color: "#F3C87A" }}>formula.</em>
               </h2>
-              <div className="mt-6 relative" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)", marginBottom: "-5.5rem", zIndex: 3 }}>
+              <div className="mt-6 relative nx-rise" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)", marginBottom: "-5.5rem", zIndex: 3 }}>
                 <div className="flex items-center justify-between">
                   <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 700, fontSize: 14, color: "#1C1815" }}>The Wolverine Stack</span>
                   <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 10.5, color: "#5E3C0D", background: "#F7EAD2", borderRadius: 999, padding: "3px 9px" }}>Recovery</span>

@@ -1041,7 +1041,7 @@ export default function HowItWorks() {
           <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(32px,4.6vw,58px)", lineHeight: 1.08, color: "#FAF7F0", maxWidth: "16ch" }}>
             Intake to first dose, <em style={{ fontStyle: "italic", color: "#F3C87A" }}>watched</em> the whole way.
           </h2>
-          <div className="mt-8 relative" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", maxWidth: 380, boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)", marginBottom: "-6.5rem", zIndex: 3 }}>
+          <div className="mt-8 relative nx-rise" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.2rem 1.4rem", maxWidth: 380, boxShadow: "0 24px 50px -18px rgba(28,24,21,0.5)", marginBottom: "-6.5rem", zIndex: 3 }}>
             {[
               ["Intake received", "done"],
               ["Physician review", "done"],
@@ -1050,7 +1050,7 @@ export default function HowItWorks() {
               ["First dose + 90-day labs", "next"],
             ].map(([t, st], i, arr) => (
               <div key={t} className="flex items-center gap-3" style={{ padding: "9px 0", borderBottom: i < arr.length - 1 ? "1px solid rgba(28,24,21,0.06)" : "none" }}>
-                <span aria-hidden style={{ width: 18, height: 18, borderRadius: 999, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, background: st === "done" ? "#A8C69A" : st === "active" ? "#F3C87A" : "rgba(28,24,21,0.08)", color: st === "next" ? "rgba(28,24,21,0.35)" : "#1C1815", boxShadow: st === "active" ? "0 0 0 4px rgba(243,200,122,0.3)" : "none" }}>
+                <span aria-hidden style={{ width: 18, height: 18, borderRadius: 999, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, background: st === "done" ? "#A8C69A" : st === "active" ? "#F3C87A" : "rgba(28,24,21,0.08)", color: st === "next" ? "rgba(28,24,21,0.35)" : "#1C1815", boxShadow: "none" }} className={st === "active" ? "nx-pulse-dot" : undefined}>
                   {st === "done" ? "✓" : st === "active" ? "•" : ""}
                 </span>
                 <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14, fontWeight: st === "next" ? 500 : 600, color: st === "next" ? "rgba(28,24,21,0.45)" : "#1C1815" }}>{t}</span>

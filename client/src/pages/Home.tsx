@@ -306,7 +306,7 @@ function Hero() {
 
         {/* ── Cinematic living hero — hims-grammar video band ── */}
         <div
-          className="mt-8 md:mt-10 mb-1 relative overflow-hidden"
+          className="mt-14 md:mt-16 mb-1 relative"
           style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(28,24,21,0.28)" }}
           data-testid="hero-video-band"
         >
@@ -318,17 +318,17 @@ function Hero() {
             poster={heroPoster}
             src={heroVideo}
             className="w-full h-auto block"
-            style={{ aspectRatio: "21 / 8", objectFit: "cover" }}
+            style={{ aspectRatio: "21 / 8", objectFit: "cover", borderRadius: "26px"}}
             aria-label="Warm morning light — the Nexphoria standard of care"
           />
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))" }}
+            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(28,24,21,0.32))", borderRadius: "26px" }}
           />
           {/* Glass panels — hims-Labs grammar */}
           {/* Ring dashboard — UI over film, hims composite grammar */}
-          <div className="hidden md:flex absolute top-5 right-5 items-center gap-4" style={{ background: "rgba(28,24,21,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px" }}>
+          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(28,24,21,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(250,247,240,0.14)", borderRadius: 18, padding: "14px 18px" }}>
             <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
               <g transform="rotate(-90 38 38)">
                 <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(250,247,240,0.12)" strokeWidth="6" />

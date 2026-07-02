@@ -1179,7 +1179,7 @@ function ActionPlan() {
         </div>
         <div className="relative mt-10 max-w-xl">
           <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(250,247,240,0.45)", borderRadius: 18, filter: "blur(0.5px)" }} aria-hidden />
-          <div className="relative" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(28,24,21,0.45)" }}>
+          <div className="relative nx-rise" style={{ background: "#FFFEFB", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(28,24,21,0.45)" }}>
             <div className="flex items-center justify-between gap-4">
               <p style={{ fontFamily: FONT, fontSize: 16, lineHeight: 1.5, color: "var(--nx-black)", fontWeight: 500, margin: 0 }}>
                 Front-load protein within an hour of waking — steadier glucose, stronger recovery.
