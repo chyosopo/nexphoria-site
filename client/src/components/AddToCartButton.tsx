@@ -42,7 +42,7 @@ export function AddToCartButton({ slug, type, variant = "primary", label, classN
         className={`${baseClass} px-3 py-1.5 text-xs ${className}`}
         style={{
           ...fontStyle,
-          background: justAdded ? "#8B5A2B" : "#0A0A0A",
+          background: justAdded ? "#8B5A2B" : "#1C1815",
           color: "#FAF7F0",
           fontWeight: 500,
           letterSpacing: "0.02em",
@@ -70,7 +70,7 @@ export function AddToCartButton({ slug, type, variant = "primary", label, classN
         className={`${baseClass} px-5 py-2.5 text-sm hover:bg-black/5 ${className}`}
         style={{
           ...fontStyle,
-          color: "#0A0A0A",
+          color: "#1C1815",
           border: "1px solid var(--nx-border)",
           fontWeight: 500,
         }}
@@ -97,7 +97,7 @@ export function AddToCartButton({ slug, type, variant = "primary", label, classN
       className={`${baseClass} px-6 py-3 text-sm ${className}`}
       style={{
         ...fontStyle,
-        background: justAdded ? "#8B5A2B" : "#0A0A0A",
+        background: justAdded ? "#8B5A2B" : "#1C1815",
         color: "#FAF7F0",
         fontWeight: 500,
         letterSpacing: "0.02em",

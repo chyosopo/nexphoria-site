@@ -177,7 +177,7 @@ function MenHeroDark() {
     <section
       className="relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #101010 55%, #1A1A1A 100%)",
+        background: "linear-gradient(180deg, #1C1815 0%, #101010 55%, #1A1A1A 100%)",
         color: "#fffff3",
       }}
       data-testid="men-hero-dark"
@@ -720,7 +720,7 @@ function FlagshipCards() {
                     overflow: "hidden",
                     borderRadius: "16px",
                     height: "600px",
-                    backgroundColor: "#0A0A0A",
+                    backgroundColor: "#1C1815",
                     cursor: "pointer",
                   }}
                 >
@@ -1145,8 +1145,8 @@ function SplitSectionPerformance() {
                 <AreaChart data={igf1Data} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGradM1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0A0A0A" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#0A0A0A" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#1C1815" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#1C1815" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
@@ -1164,7 +1164,7 @@ function SplitSectionPerformance() {
                     unit=" ng/mL"
                     width={60}
                   />
-                  <Area type="monotone" dataKey="igf" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
+                  <Area type="monotone" dataKey="igf" stroke="#1C1815" strokeWidth={2.5} fill="url(#inkGradM1)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
@@ -1220,7 +1220,7 @@ function SplitSectionTestosterone() {
                     unit=" ng/dL"
                     width={60}
                   />
-                  <Line type="monotone" dataKey="total" stroke="#0A0A0A" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
+                  <Line type="monotone" dataKey="total" stroke="#1C1815" strokeWidth={2.5} dot={false} name="Total T (ng/dL)" />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
@@ -1376,8 +1376,8 @@ function SplitSectionWeightLoss() {
                 <AreaChart data={menBodyFatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGradM2" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0A0A0A" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#0A0A0A" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#1C1815" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#1C1815" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
@@ -1394,7 +1394,7 @@ function SplitSectionWeightLoss() {
                     tickLine={false}
                     unit="%"
                   />
-                  <Area type="monotone" dataKey="fat" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
+                  <Area type="monotone" dataKey="fat" stroke="#1C1815" strokeWidth={2.5} fill="url(#inkGradM2)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}

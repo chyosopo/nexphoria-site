@@ -152,7 +152,7 @@ export function CartDrawer() {
               </div>
               <h2
                 className="text-[1.35rem] leading-tight"
-                style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}
+                style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
               >
                 {itemCount === 0 ? "Cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"} · pending physician review`}
               </h2>
@@ -162,7 +162,7 @@ export function CartDrawer() {
               className="p-2 -m-2 rounded-full transition-colors hover:bg-black/5"
               aria-label="Close cart"
               data-testid="button-close-cart"
-              style={{ color: "#0A0A0A" }}
+              style={{ color: "#1C1815" }}
             >
               <X size={20} />
             </button>
@@ -176,7 +176,7 @@ export function CartDrawer() {
             >
               <Stethoscope size={14} style={{ color: "#8B5A2B", flexShrink: 0 }} />
               <p className="text-[11px]" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.45 }}>
-                <strong style={{ color: "#0A0A0A", fontWeight: 600 }}>No charge today.</strong>{" "}
+                <strong style={{ color: "#1C1815", fontWeight: 600 }}>No charge today.</strong>{" "}
                 Card is held — physician reviews then bills through Bask Health.
               </p>
             </div>
@@ -211,7 +211,7 @@ export function CartDrawer() {
                                 className="text-[9px] uppercase tracking-[0.2em] px-1.5 py-0.5"
                                 style={{
                                   fontFamily: FONT,
-                                  background: line.type === "stack" ? "#0A0A0A" : "var(--nx-bg-cream)",
+                                  background: line.type === "stack" ? "#1C1815" : "var(--nx-bg-cream)",
                                   color: line.type === "stack" ? "#FAF7F0" : "#8B5A2B",
                                   border: line.type === "stack" ? "none" : "1px solid var(--nx-border)",
                                   fontWeight: 600,
@@ -238,7 +238,7 @@ export function CartDrawer() {
                             </div>
                             <div
                               className="text-base leading-tight mb-1"
-                              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}
+                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
                             >
                               {line.name}
                             </div>
@@ -255,7 +255,7 @@ export function CartDrawer() {
                           <div className="text-right flex-shrink-0">
                             <div
                               className="text-base leading-none"
-                              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 700 }}
+                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 700 }}
                             >
                               {formatUSD(line.lineTotal)}
                             </div>
@@ -313,8 +313,8 @@ export function CartDrawer() {
                                   className="px-2 py-2 text-[10px] uppercase tracking-[0.1em] transition-colors"
                                   style={{
                                     fontFamily: FONT,
-                                    background: active ? "#0A0A0A" : "transparent",
-                                    color: active ? "#FAF7F0" : "#0A0A0A",
+                                    background: active ? "#1C1815" : "transparent",
+                                    color: active ? "#FAF7F0" : "#1C1815",
                                     fontWeight: active ? 600 : 500,
                                   }}
                                   data-testid={`button-cadence-${c}-${line.type}-${line.slug}`}
@@ -352,13 +352,13 @@ export function CartDrawer() {
                               className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
                               aria-label="Decrease quantity"
                               data-testid={`button-qty-decrease-${line.type}-${line.slug}`}
-                              style={{ color: "#0A0A0A" }}
+                              style={{ color: "#1C1815" }}
                             >
                               <Minus size={12} />
                             </button>
                             <span
                               className="px-3 text-sm min-w-[28px] text-center"
-                              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}
+                              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}
                               data-testid={`text-qty-${line.type}-${line.slug}`}
                             >
                               {line.qty}
@@ -368,7 +368,7 @@ export function CartDrawer() {
                               className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
                               aria-label="Increase quantity"
                               data-testid={`button-qty-increase-${line.type}-${line.slug}`}
-                              style={{ color: "#0A0A0A" }}
+                              style={{ color: "#1C1815" }}
                             >
                               <Plus size={12} />
                             </button>
@@ -421,7 +421,7 @@ export function CartDrawer() {
                             <div className="flex-1 min-w-0">
                               <div
                                 className="text-sm leading-tight mb-0.5"
-                                style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}
+                                style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}
                               >
                                 {PEPTIDE_LABELS[s.slug] || s.slug}
                               </div>
@@ -444,7 +444,7 @@ export function CartDrawer() {
                               className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[10px] uppercase tracking-[0.15em] transition-all hover:opacity-90"
                               style={{
                                 fontFamily: FONT,
-                                background: "#0A0A0A",
+                                background: "#1C1815",
                                 color: "#FAF7F0",
                                 fontWeight: 600,
                                 borderRadius: 8,
@@ -502,7 +502,7 @@ export function CartDrawer() {
                 </div>
                 <span
                   className="text-[1.75rem] leading-none"
-                  style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 700, letterSpacing: "-0.02em" }}
+                  style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 700, letterSpacing: "-0.02em" }}
                   data-testid="text-cart-subtotal"
                 >
                   {formatUSD(subtotal)}
@@ -522,7 +522,7 @@ export function CartDrawer() {
                     style={{
                       fontFamily: FONT,
                       background: "var(--nx-bg-cream)",
-                      color: "#0A0A0A",
+                      color: "#1C1815",
                       border: "1px solid var(--nx-border)",
                       borderRadius: 4,
                       fontWeight: 600,
@@ -541,7 +541,7 @@ export function CartDrawer() {
                 onClick={close}
                 className="block w-full text-center px-6 py-4 transition-all no-underline hover:opacity-95"
                 style={{
-                  background: "#0A0A0A",
+                  background: "#1C1815",
                   color: "#FAF7F0",
                   fontFamily: FONT,
                   fontWeight: 600,
@@ -611,7 +611,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
       </div>
       <h3
         className="text-lg mb-2"
-        style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}
+        style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}
       >
         Your pharmacy is empty
       </h3>
@@ -627,7 +627,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           className="block w-full text-center px-4 py-3 transition-all no-underline"
           style={{
-            background: "#0A0A0A",
+            background: "#1C1815",
             color: "#FAF7F0",
             fontFamily: FONT,
             fontSize: "0.8125rem",
@@ -643,7 +643,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           className="block w-full text-center px-4 py-3 transition-colors hover:bg-black/5 no-underline"
           style={{
-            color: "#0A0A0A",
+            color: "#1C1815",
             fontFamily: FONT,
             fontSize: "0.8125rem",
             fontWeight: 500,

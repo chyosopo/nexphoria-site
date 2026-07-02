@@ -111,10 +111,10 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                 justifyContent: "space-between",
                 gap: "16px",
                 padding: "18px 20px",
-                background: isSelected ? "#0A0A0A" : "transparent",
-                color: isSelected ? "#FAF7F0" : "#0A0A0A",
+                background: isSelected ? "#1C1815" : "transparent",
+                color: isSelected ? "#FAF7F0" : "#1C1815",
                 border: isSelected
-                  ? "1px solid #0A0A0A"
+                  ? "1px solid #1C1815"
                   : isMostPopular
                   ? "1px solid rgba(10,10,10,0.45)"
                   : "1px solid var(--nx-border, rgba(10,10,10,0.15))",
@@ -179,7 +179,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                           ? "#FAF7F0"
                           : card.badge === "Best value"
                           ? "#8B5A2B"
-                          : "#0A0A0A",
+                          : "#1C1815",
                       }}
                     >
                       {card.badge}
@@ -252,7 +252,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
           ...fontSans,
           width: "100%",
           padding: "16px 20px",
-          background: justAdded ? "#8B5A2B" : "#0A0A0A",
+          background: justAdded ? "#8B5A2B" : "#1C1815",
           color: "#FAF7F0",
           border: "none",
           fontSize: "13px",

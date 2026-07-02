@@ -20,14 +20,14 @@ import { MolecularGlyph } from "@/components/MolecularGlyph";
 export type Tone = "cream" | "sage" | "rose" | "sky" | "dusk" | "butter" | "cobalt" | "mineral";
 
 const TONE_MAP: Record<Tone, { bg: string; ink: string; liquid: string; label: string }> = {
-  cream:   { bg: "#FFFFF3", ink: "#0A0A0A", liquid: "#C6F184", label: "Peptide" },
-  sage:    { bg: "#F0F2E6", ink: "#0A0A0A", liquid: "#B7D18A", label: "Recovery" },
-  rose:    { bg: "#F7ECE6", ink: "#0A0A0A", liquid: "#E4B7A2", label: "Skin" },
-  sky:     { bg: "#E8EEF1", ink: "#0A0A0A", liquid: "#A6C3D0", label: "Cognition" },
-  dusk:    { bg: "#EAE6F1", ink: "#0A0A0A", liquid: "#B5A8CF", label: "Sleep" },
-  butter:  { bg: "#F2EDDE", ink: "#0A0A0A", liquid: "#DDBF6E", label: "Growth" },
-  cobalt:  { bg: "#E8EFEC", ink: "#0A0A0A", liquid: "#8AB6A6", label: "Longevity" },
-  mineral: { bg: "#EEF1F4", ink: "#0A0A0A", liquid: "#9DB3C2", label: "Metabolic" },
+  cream:   { bg: "#FFFFF3", ink: "#1C1815", liquid: "#F3C87A", label: "Peptide" },
+  sage:    { bg: "#F0F2E6", ink: "#1C1815", liquid: "#B7D18A", label: "Recovery" },
+  rose:    { bg: "#F7ECE6", ink: "#1C1815", liquid: "#E4B7A2", label: "Skin" },
+  sky:     { bg: "#E8EEF1", ink: "#1C1815", liquid: "#A6C3D0", label: "Cognition" },
+  dusk:    { bg: "#EAE6F1", ink: "#1C1815", liquid: "#B5A8CF", label: "Sleep" },
+  butter:  { bg: "#F2EDDE", ink: "#1C1815", liquid: "#DDBF6E", label: "Growth" },
+  cobalt:  { bg: "#E8EFEC", ink: "#1C1815", liquid: "#8AB6A6", label: "Longevity" },
+  mineral: { bg: "#EEF1F4", ink: "#1C1815", liquid: "#9DB3C2", label: "Metabolic" },
 };
 
 /* Detect touch — we swap hover behavior for tap on mobile */
@@ -391,7 +391,7 @@ export function VialTile({
                   fontWeight: 600,
                   color: "#FFFFF3",
                   padding: "5px 10px",
-                  background: "#0A0A0A",
+                  background: "#1C1815",
                   borderRadius: 999,
                 }}
               >
@@ -545,7 +545,7 @@ export function VialTile({
             justifyContent: "space-between",
             padding: "clamp(22px, 2.4vw, 32px)",
             borderRadius: 24,
-            background: "#0A0A0A",
+            background: "#1C1815",
             color: "#FFFFF3",
             transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
@@ -589,7 +589,7 @@ export function VialTile({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#C6F184",
+                  color: "#F3C87A",
                 }}
               >
                 <MolecularGlyph glyph={glyph} size={26} title={`${name} glyph`} />
@@ -613,7 +613,7 @@ export function VialTile({
                     fontSize: 10,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#C6F184",
+                    color: "#F3C87A",
                     marginTop: 4,
                   }}
                 >
@@ -756,8 +756,8 @@ export function VialTile({
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                background: "#C6F184",
-                color: "#0A0A0A",
+                background: "#F3C87A",
+                color: "#1C1815",
                 padding: "14px 22px",
                 borderRadius: 999,
                 fontFamily: "'General Sans', system-ui, sans-serif",

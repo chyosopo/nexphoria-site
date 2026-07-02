@@ -475,7 +475,7 @@ function PhysiciansHeroDark() {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #0A0A0A 0%, #101010 55%, #1A1A1A 100%)",
+        background: "linear-gradient(135deg, #1C1815 0%, #101010 55%, #1A1A1A 100%)",
         color: "#F5F5F0",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
@@ -518,14 +518,14 @@ function PhysiciansHeroDark() {
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#C6F184",
+                color: "#F3C87A",
                 marginBottom: "1.25rem",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.65rem",
               }}
             >
-              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "#C6F184" }} />
+              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "#F3C87A" }} />
               The medical team
             </p>
             <h1
@@ -540,7 +540,7 @@ function PhysiciansHeroDark() {
               }}
             >
               Meet the physicians<br />
-              <span style={{ color: "#C6F184" }}>behind your protocol.</span>
+              <span style={{ color: "#F3C87A" }}>behind your protocol.</span>
             </h1>
             <p
               style={{
@@ -682,7 +682,7 @@ function PhysiciansHeroDark() {
                       fontWeight: 500,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "#C6F184",
+                      color: "#F3C87A",
                     }}
                   >
                     {doc.institution}

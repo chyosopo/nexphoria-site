@@ -17,7 +17,7 @@ export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";
 
 const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: string; border: string; hover: string }> = {
   dark: {
-    bg: "#0A0A0A",
+    bg: "#1C1815",
     fg: "#FAF7F0",
     eyebrow: "#E28A3D",
     sub: "rgba(250,247,240,0.62)",
@@ -26,7 +26,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
   },
   cream: {
     bg: "var(--nx-bg-cream)",
-    fg: "#0A0A0A",
+    fg: "#1C1815",
     eyebrow: "#8B5A2B",
     sub: "#4A4A4A",
     border: "var(--nx-border)",
@@ -34,7 +34,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
   },
   white: {
     bg: "#fff",
-    fg: "#0A0A0A",
+    fg: "#1C1815",
     eyebrow: "#8B5A2B",
     sub: "#4A4A4A",
     border: "var(--nx-border)",
@@ -107,7 +107,7 @@ export function BenefitTile({
     <div
       className="benefit-tile group relative flex flex-col h-full w-full p-5 md:p-6 overflow-hidden transition-all duration-300"
       style={{
-        background: hasImage ? "#0A0A0A" : t.bg,
+        background: hasImage ? "#1C1815" : t.bg,
         color: t.fg,
         border: `1px solid ${t.border}`,
         borderRadius: 10,

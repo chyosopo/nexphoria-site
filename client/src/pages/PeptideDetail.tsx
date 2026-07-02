@@ -741,17 +741,17 @@ function MechanismPulseSVG({ family }: { family: MechFamily }) {
         { cx: 570, label: "Effect", sub: "restores" },
       ].map((n, i) => (
         <g key={n.cx}>
-          <circle cx={n.cx} cy={100} r={30} fill="#FFFFFA" stroke="#0A0A0A" strokeWidth="1.6" />
-          {i === 3 && <circle cx={n.cx} cy={100} r={30} fill="#C6F184" opacity="0.35" className="nx-node-glow" />}
-          <circle cx={n.cx} cy={100} r={4} fill="#0A0A0A" />
-          <text x={n.cx} y={148} textAnchor="middle" fontSize="11" fontFamily="'General Sans', system-ui, sans-serif" fontWeight="500" fill="#0A0A0A">{n.label}</text>
+          <circle cx={n.cx} cy={100} r={30} fill="#FFFFFA" stroke="#1C1815" strokeWidth="1.6" />
+          {i === 3 && <circle cx={n.cx} cy={100} r={30} fill="#F3C87A" opacity="0.35" className="nx-node-glow" />}
+          <circle cx={n.cx} cy={100} r={4} fill="#1C1815" />
+          <text x={n.cx} y={148} textAnchor="middle" fontSize="11" fontFamily="'General Sans', system-ui, sans-serif" fontWeight="500" fill="#1C1815">{n.label}</text>
           <text x={n.cx} y={164} textAnchor="middle" fontSize="9" fontFamily="'JetBrains Mono', ui-monospace, monospace" letterSpacing="0.12em" fill="rgba(10,10,10,0.5)" style={{ textTransform: "uppercase" }}>{n.sub}</text>
         </g>
       ))}
       {/* Animated pulse dot traveling along path */}
-      <circle r="6" fill="#C6F184" stroke="#0A0A0A" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')" }} />
+      <circle r="6" fill="#F3C87A" stroke="#1C1815" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')" }} />
       {/* Second dot delayed */}
-      <circle r="6" fill="#C6F184" stroke="#0A0A0A" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')", animationDelay: "2.25s" }} />
+      <circle r="6" fill="#F3C87A" stroke="#1C1815" strokeWidth="1.5" style={{ ...dotStyle, offsetPath: "path('M 90 100 L 250 100 L 410 100 L 570 100')", animationDelay: "2.25s" }} />
     </svg>
   );
 }
@@ -791,7 +791,7 @@ function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
                 <li key={i} className="flex gap-4" data-testid={`mechanism-step-${i}`}>
                   <div
                     className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: "#0A0A0A", color: "#C6F184", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: "12px", fontWeight: 600 }}
+                    style={{ backgroundColor: "#1C1815", color: "#F3C87A", fontFamily: "'JetBrains Mono', ui-monospace, monospace", fontSize: "12px", fontWeight: 600 }}
                     aria-hidden="true"
                   >
                     {i + 1}
@@ -1430,7 +1430,7 @@ function DataHero({
   ];
 
   const FF = "'General Sans', system-ui, sans-serif";
-  const ACID = "var(--nx-acid, #C6F184)";
+  const ACID = "var(--nx-acid, #F3C87A)";
 
   return (
     <main
@@ -1622,7 +1622,7 @@ function DataHero({
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(180deg, transparent 40%, color-mix(in oklab, #0A0A0A 78%, transparent) 100%)",
+                  "linear-gradient(180deg, transparent 40%, color-mix(in oklab, #1C1815 78%, transparent) 100%)",
               }}
             />
             {/* Floating endpoint tag */}

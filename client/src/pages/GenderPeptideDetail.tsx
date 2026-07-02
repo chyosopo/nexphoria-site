@@ -22,7 +22,7 @@ interface GenderPeptideDetailProps {
 /* ── Gender-identity tokens (mirror HimsConfigurator) */
 const IDENTITY = {
   men: {
-    heroBg: "linear-gradient(180deg, #0A0A0A 0%, #111111 60%, #1A1815 100%)",
+    heroBg: "linear-gradient(180deg, #1C1815 0%, #111111 60%, #1A1815 100%)",
     heroGlow: "radial-gradient(700px 320px at 92% 10%, rgba(226,138,61,0.16), transparent 65%)",
     accent: "#E28A3D",
     accentSoft: "rgba(226,138,61,0.14)",
@@ -557,7 +557,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
               style={{
                 marginBottom: "32px",
                 padding: "20px",
-                background: isMen ? "#0A0A0A" : "rgba(255,255,255,0.5)",
+                background: isMen ? "#1C1815" : "rgba(255,255,255,0.5)",
                 border: `1px solid ${id.border}`,
                 borderRadius: id.radius,
                 backdropFilter: isWomen ? "blur(2px)" : "none",

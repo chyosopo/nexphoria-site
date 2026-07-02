@@ -402,7 +402,7 @@ export default function Journal() {
                   justifyContent: "center",
                   gap: 8,
                   backgroundColor: "var(--nx-acid)",
-                  color: "#0A0A0A",
+                  color: "#1C1815",
                   fontFamily: FONT,
                   fontSize: 13,
                   fontWeight: 600,

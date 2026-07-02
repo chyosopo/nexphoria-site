@@ -560,7 +560,7 @@ function FlagshipCards() {
                     overflow: "hidden",
                     borderRadius: "16px",
                     height: "600px",
-                    backgroundColor: "#0A0A0A",
+                    backgroundColor: "#1C1815",
                     cursor: "pointer",
                   }}
                 >
@@ -984,8 +984,8 @@ function SplitSectionWeightLoss() {
                 <AreaChart data={bodyFatData} margin={{ top: 8, right: 8, bottom: 0, left: -20 }}>
                   <defs>
                     <linearGradient id="inkGrad1" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#0A0A0A" stopOpacity={0.12} />
-                      <stop offset="95%" stopColor="#0A0A0A" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#1C1815" stopOpacity={0.12} />
+                      <stop offset="95%" stopColor="#1C1815" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="var(--nx-border)" vertical={false} />
@@ -1002,7 +1002,7 @@ function SplitSectionWeightLoss() {
                     tickLine={false}
                     unit="%"
                   />
-                  <Area type="monotone" dataKey="fat" stroke="#0A0A0A" strokeWidth={2.5} fill="url(#inkGrad1)" dot={false} name="Nexphoria" />
+                  <Area type="monotone" dataKey="fat" stroke="#1C1815" strokeWidth={2.5} fill="url(#inkGrad1)" dot={false} name="Nexphoria" />
                   <Line type="monotone" dataKey="avg" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Average" />
                   <Tooltip
                     contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8, border: "1px solid var(--nx-border)" }}
@@ -1054,7 +1054,7 @@ function SplitSectionSkin() {
                     tickLine={false}
                     domain={[0, 100]}
                   />
-                  <Bar dataKey="elasticity" fill="#0A0A0A" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="elasticity" fill="#1C1815" radius={[4, 4, 0, 0]} />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </BarChart>
               </ResponsiveContainer>
@@ -1171,7 +1171,7 @@ function SplitSectionLongevity() {
                     tickLine={false}
                     domain={[43, 48]}
                   />
-                  <Line type="monotone" dataKey="bioAge" stroke="#0A0A0A" strokeWidth={2.5} dot={false} name="Bio Age" />
+                  <Line type="monotone" dataKey="bioAge" stroke="#1C1815" strokeWidth={2.5} dot={false} name="Bio Age" />
                   <Line type="monotone" dataKey="chrono" stroke="#C5BFB0" strokeWidth={1.5} dot={false} strokeDasharray="4 4" name="Chrono Age" />
                   <Tooltip contentStyle={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, borderRadius: 8 }} />
                 </LineChart>

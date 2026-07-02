@@ -290,7 +290,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(180deg, #0A0A0A 0%, #111111 60%, #1A1815 100%)",
+        background: "linear-gradient(180deg, #1C1815 0%, #111111 60%, #1A1815 100%)",
         color: "#F5F0E4",
         fontFamily: "'General Sans', system-ui, sans-serif",
         borderBottom: "1px solid #1F1D1A",

@@ -249,7 +249,7 @@ export default function BuildYourStack() {
       {toast && (
         <div
           className="fixed bottom-6 right-6 z-[80] flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl"
-          style={{ background: "#0A0A0A", color: "#fff", fontFamily: MONO, fontSize: 12, letterSpacing: "0.08em" }}
+          style={{ background: "#1C1815", color: "#fff", fontFamily: MONO, fontSize: 12, letterSpacing: "0.08em" }}
           role="status"
           aria-live="polite"
         >
@@ -272,7 +272,7 @@ export default function BuildYourStack() {
                 fontSize: "clamp(36px, 5vw, 64px)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.02em",
-                color: "#0A0A0A",
+                color: "#1C1815",
                 fontWeight: 400,
               }}
               data-testid="text-build-title"
@@ -320,8 +320,8 @@ export default function BuildYourStack() {
                         width: 26,
                         height: 26,
                         borderRadius: 999,
-                        background: step >= (s.n as Step) ? "#0A0A0A" : "transparent",
-                        border: step >= (s.n as Step) ? "1px solid #0A0A0A" : "1px solid #bbae9f",
+                        background: step >= (s.n as Step) ? "#1C1815" : "transparent",
+                        border: step >= (s.n as Step) ? "1px solid #1C1815" : "1px solid #bbae9f",
                         color: step >= (s.n as Step) ? "#c6f184" : "#7a7974",
                         fontFamily: MONO,
                         fontSize: 11,
@@ -338,7 +338,7 @@ export default function BuildYourStack() {
                         fontSize: 10.5,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: step >= (s.n as Step) ? "#0A0A0A" : "#a4a4a0",
+                        color: step >= (s.n as Step) ? "#1C1815" : "#a4a4a0",
                         transition: "color 300ms",
                       }}
                     >
@@ -375,16 +375,16 @@ export default function BuildYourStack() {
                     padding: "28px 24px",
                     fontFamily: SANS,
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#0A0A0A"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#1C1815"; e.currentTarget.style.transform = "translateY(-2px)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#e8e9db"; e.currentTarget.style.transform = "translateY(0)"; }}
                 >
                   <div className="flex items-center justify-between mb-5">
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", color: "#a4a4a0", textTransform: "uppercase" }}>
                       {g.id === "performance" ? "07" : g.id === "longevity" ? "06" : g.id === "cognitive" ? "05" : g.id === "sleep" ? "04" : g.id === "weight" ? "03" : g.id === "skin" ? "02" : "01"} / 07
                     </p>
-                    <ArrowRight size={16} style={{ color: "#0A0A0A", opacity: 0.4 }} className="group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    <ArrowRight size={16} style={{ color: "#1C1815", opacity: 0.4 }} className="group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </div>
-                  <h3 style={{ fontFamily: SERIF, fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.01em", fontWeight: 500, color: "#0A0A0A" }}>
+                  <h3 style={{ fontFamily: SERIF, fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.01em", fontWeight: 500, color: "#1C1815" }}>
                     {g.title}
                   </h3>
                   <p style={{ fontSize: 14, color: "#5a5957", marginTop: 8, lineHeight: 1.5 }}>
@@ -446,7 +446,7 @@ export default function BuildYourStack() {
             {goal && (
               <div
                 className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 p-5"
-                style={{ background: "#0A0A0A", borderRadius: 4, color: "#fff" }}
+                style={{ background: "#1C1815", borderRadius: 4, color: "#fff" }}
               >
                 <div>
                   <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "#c6f184", textTransform: "uppercase", marginBottom: 6 }}>
@@ -471,7 +471,7 @@ export default function BuildYourStack() {
             {matchedStack && (
               <div
                 className="mb-8 overflow-hidden"
-                style={{ background: "#0A0A0A", borderRadius: 4, border: "1px solid #1c1c1c" }}
+                style={{ background: "#1C1815", borderRadius: 4, border: "1px solid #1c1c1c" }}
                 data-testid="recommended-stack-surface"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-[132px_1fr] items-stretch">
@@ -481,7 +481,7 @@ export default function BuildYourStack() {
                     style={{ minHeight: 172, backgroundImage: `url(${getStackPortrait(matchedStack.slug)})`, backgroundSize: "cover", backgroundPosition: "center top" }}
                     aria-hidden="true"
                   >
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(10,10,10,0) 55%, #0A0A0A 100%)" }} />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(10,10,10,0) 55%, #1C1815 100%)" }} />
                   </div>
 
                   <div className="p-5 md:p-6 flex flex-col justify-center">
@@ -529,7 +529,7 @@ export default function BuildYourStack() {
                         href={`/stacks/${matchedStack.slug}`}
                         className="inline-flex items-center gap-2"
                         data-testid="link-view-matched-stack"
-                        style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, color: "#0A0A0A", background: "#c6f184", padding: "9px 16px", borderRadius: 999 }}
+                        style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 600, color: "#1C1815", background: "#c6f184", padding: "9px 16px", borderRadius: 999 }}
                       >
                         See the {matchedStack.name} protocol <ArrowRight size={13} />
                       </Link>
@@ -588,9 +588,9 @@ export default function BuildYourStack() {
                         className="text-left transition-all"
                         data-testid={`button-pick-${p.slug}`}
                         style={{
-                          background: isPicked ? "#0A0A0A" : "#fff",
-                          color: isPicked ? "#fff" : "#0A0A0A",
-                          border: isPicked ? "1px solid #0A0A0A" : isRecommended ? "2px solid #c6f184" : "1px solid #e8e9db",
+                          background: isPicked ? "#1C1815" : "#fff",
+                          color: isPicked ? "#fff" : "#1C1815",
+                          border: isPicked ? "1px solid #1C1815" : isRecommended ? "2px solid #c6f184" : "1px solid #e8e9db",
                           borderRadius: 4,
                           padding: "18px 18px",
                           fontFamily: SANS,
@@ -598,7 +598,7 @@ export default function BuildYourStack() {
                         }}
                       >
                         {isRecommended && (
-                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: MONO, fontSize: 8.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0A0A0A", background: "#c6f184", padding: "2px 6px", borderRadius: 2 }}>
+                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: MONO, fontSize: 8.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1C1815", background: "#c6f184", padding: "2px 6px", borderRadius: 2 }}>
                             Recommended
                           </span>
                         )}
@@ -636,7 +636,7 @@ export default function BuildYourStack() {
                               borderRadius: 999,
                               background: isPicked ? "#c6f184" : "transparent",
                               border: isPicked ? "1px solid #c6f184" : "1px solid #d4cfc1",
-                              color: "#0A0A0A",
+                              color: "#1C1815",
                             }}
                           >
                             {isPicked ? <Check size={13} strokeWidth={3} /> : <Plus size={13} />}
@@ -686,8 +686,8 @@ export default function BuildYourStack() {
                             data-testid={`button-cadence-${c}`}
                             style={{
                               padding: "10px 8px",
-                              border: active ? "1px solid #0A0A0A" : "1px solid #e8e9db",
-                              background: active ? "#0A0A0A" : "#fff",
+                              border: active ? "1px solid #1C1815" : "1px solid #e8e9db",
+                              background: active ? "#1C1815" : "#fff",
                               color: active ? "#fff" : "#3a3a3a",
                               fontFamily: MONO,
                               fontSize: 10.5,
@@ -714,7 +714,7 @@ export default function BuildYourStack() {
                       <ul className="space-y-2.5">
                         {lines.map((l) => (
                           <li key={l.slug} className="flex items-center justify-between gap-3 text-sm">
-                            <span style={{ fontFamily: SANS, color: "#0A0A0A" }}>{l.name}</span>
+                            <span style={{ fontFamily: SANS, color: "#1C1815" }}>{l.name}</span>
                             <span style={{ fontFamily: MONO, fontSize: 12, color: "#3a3a3a" }}>{formatUSD(l.monthly)}/mo</span>
                           </li>
                         ))}
@@ -733,7 +733,7 @@ export default function BuildYourStack() {
                         <span style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.1em", color: "#7a7974", textTransform: "uppercase" }}>
                           Bundle ({picked.length}×) -{Math.round(discount * 100)}%
                         </span>
-                        <span style={{ fontFamily: MONO, fontSize: 13, color: "#0A0A0A" }}>-{formatUSD(bundleSavings)}/mo</span>
+                        <span style={{ fontFamily: MONO, fontSize: 13, color: "#1C1815" }}>-{formatUSD(bundleSavings)}/mo</span>
                       </div>
                     )}
                     {cadencePct > 0 && (
@@ -755,7 +755,7 @@ export default function BuildYourStack() {
                       className="w-full mt-5 inline-flex items-center justify-center gap-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                       data-testid="button-continue-step2"
                       style={{
-                        background: "#0A0A0A",
+                        background: "#1C1815",
                         color: "#c6f184",
                         padding: "13px 18px",
                         fontFamily: MONO,
@@ -867,7 +867,7 @@ export default function BuildYourStack() {
                           {i < arr.length - 1 && <div style={{ width: 1, flex: 1, minHeight: 20, background: "#e8e9db" }} />}
                         </div>
                         <div className="pb-4">
-                          <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#0A0A0A", marginBottom: 2 }}>
+                          <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase", color: "#1C1815", marginBottom: 2 }}>
                             {row.weeks} · <span style={{ color: "#7a7974" }}>{row.phase}</span>
                           </p>
                           <p style={{ fontFamily: SANS, fontSize: 13, color: "#5a5957", lineHeight: 1.5 }}>{row.note}</p>
@@ -890,7 +890,7 @@ export default function BuildYourStack() {
                       "You message your physician any time through the member portal — protocols can be adjusted at every reassessment.",
                     ].map((line, i) => (
                       <li key={i} className="flex gap-3" style={{ fontFamily: SANS, fontSize: 14, lineHeight: 1.55, color: "#3a3a3a" }}>
-                        <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 600, color: "#0A0A0A", minWidth: 22 }}>0{i + 1}</span>
+                        <span style={{ fontFamily: MONO, fontSize: 11, fontWeight: 600, color: "#1C1815", minWidth: 22 }}>0{i + 1}</span>
                         {line}
                       </li>
                     ))}
@@ -900,7 +900,7 @@ export default function BuildYourStack() {
 
               {/* Order summary */}
               <aside className="lg:sticky lg:top-24 self-start">
-                <div style={{ background: "#0A0A0A", color: "#fff", borderRadius: 4 }}>
+                <div style={{ background: "#1C1815", color: "#fff", borderRadius: 4 }}>
                   <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "rgba(198,241,132,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
@@ -955,7 +955,7 @@ export default function BuildYourStack() {
                       data-testid="button-add-bundle-to-cart"
                       style={{
                         background: added ? "#c6f184" : "#fff",
-                        color: "#0A0A0A",
+                        color: "#1C1815",
                         padding: "14px 18px",
                         fontFamily: MONO,
                         fontSize: 11.5,
@@ -983,9 +983,9 @@ export default function BuildYourStack() {
                 </div>
 
                 <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "#fff", border: "1px solid #e8e9db", borderRadius: 4 }}>
-                  <FlaskConical size={16} style={{ color: "#0A0A0A", flexShrink: 0, marginTop: 2 }} />
+                  <FlaskConical size={16} style={{ color: "#1C1815", flexShrink: 0, marginTop: 2 }} />
                   <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.55, color: "#5a5957" }}>
-                    Want a physician to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "#0A0A0A" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your labs and goals.
+                    Want a physician to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "#1C1815" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your labs and goals.
                   </p>
                 </div>
               </aside>

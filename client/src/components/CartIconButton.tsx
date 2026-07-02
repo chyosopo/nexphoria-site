@@ -12,7 +12,7 @@ export function CartIconButton({ className = "" }: { className?: string }) {
       className={`relative p-2 -m-2 transition-colors hover:bg-black/5 rounded ${className}`}
       aria-label={`Open cart, ${itemCount} ${itemCount === 1 ? "item" : "items"}`}
       data-testid="button-open-cart"
-      style={{ color: "#0A0A0A" }}
+      style={{ color: "#1C1815" }}
     >
       <ShoppingBag size={18} strokeWidth={1.5} />
       {itemCount > 0 ? (

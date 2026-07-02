@@ -44,7 +44,7 @@ const STATUS_META: Record<
   BiomarkerStatus,
   { label: string; color: string; bg: string }
 > = {
-  optimal: { label: "OPTIMAL", color: "#0A0A0A", bg: "var(--nx-acid)" },
+  optimal: { label: "OPTIMAL", color: "#1C1815", bg: "var(--nx-acid)" },
   "in-range": { label: "IN RANGE", color: "#4A4A4A", bg: "var(--nx-rock)" },
   watch: { label: "WATCH", color: "#C2440E", bg: "#F6E2D6" },
   low: { label: "BELOW TARGET", color: "#C2440E", bg: "#F6E2D6" },

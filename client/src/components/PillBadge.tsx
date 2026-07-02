@@ -24,7 +24,7 @@ export function PillBadge({
     tone === "acid"
       ? "var(--nx-acid, #c6f184)"
       : tone === "cobalt"
-      ? "var(--nx-cobalt, #0A0A0A)"
+      ? "var(--nx-cobalt, #1C1815)"
       : "var(--nx-acid, #c6f184)";
 
   return (

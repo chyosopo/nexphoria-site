@@ -30,7 +30,7 @@ export function AnnouncementBar({
     <div
       className="w-full"
       style={{
-        background: "#0A0A0A",
+        background: "#1C1815",
         color: "#FAF7F0",
         borderBottom: "1px solid rgba(250,247,240,0.08)",
       }}
@@ -43,7 +43,7 @@ export function AnnouncementBar({
           className="hidden sm:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-[0.22em]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#0A0A0A",
+            color: "#1C1815",
             background: "#c6f184",
             letterSpacing: "0.22em",
             fontWeight: 600,

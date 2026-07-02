@@ -41,7 +41,7 @@ function PhysicianAttribution({ curator }: { curator: string }) {
         <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
           Protocol curator
         </div>
-        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
           Designed by a <span style={{  }}>board-certified physician</span>.
         </h2>
         <div className="flex flex-col md:flex-row gap-8 items-start" style={{ background: "#fff", border: "1px solid var(--nx-border)", padding: "2rem" }}>
@@ -59,7 +59,7 @@ function PhysicianAttribution({ curator }: { curator: string }) {
             <div className="text-[10px] uppercase tracking-[0.2em] mb-1" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
               {physician.credentials}
             </div>
-            <h3 className="text-xl mb-1" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+            <h3 className="text-xl mb-1" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
               {physician.name}
             </h3>
             <p className="text-sm mb-4" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
@@ -161,7 +161,7 @@ function BiomarkerTooltip({ active, payload }: any) {
   if (!active || !payload || !payload.length) return null;
   const p = payload[0].payload;
   return (
-    <div style={{ background: "#0A0A0A", border: "1px solid rgba(255,255,243,0.16)", borderRadius: 10, padding: "10px 12px" }}>
+    <div style={{ background: "#1C1815", border: "1px solid rgba(255,255,243,0.16)", borderRadius: 10, padding: "10px 12px" }}>
       <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184", marginBottom: 4 }}>{p.marker}</div>
       <div style={{ fontFamily: SANS, fontSize: 13, color: "#FFFFF3" }}>Baseline {p.baseline} → {p.endOfCourse}</div>
       <div style={{ fontFamily: SANS, fontSize: 13, color: "#FFFFF3", fontWeight: 600 }}>{p.delta}</div>
@@ -183,7 +183,7 @@ function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: 
     <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-expected-results">
       <div className="nx-container max-w-5xl">
         <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Expected results</div>
-        <h2 className="text-3xl md:text-4xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+        <h2 className="text-3xl md:text-4xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
           Where your biomarkers move over {weeks} weeks.
         </h2>
         <p className="text-sm mb-8 max-w-2xl" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.65 }}>
@@ -195,8 +195,8 @@ function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: 
           <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
             <span style={{ width: 14, height: 8, background: "#C9CFC2", display: "inline-block", borderRadius: 2 }} /> Baseline
           </span>
-          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#0A0A0A" }}>
-            <span style={{ width: 14, height: 8, background: "#0A0A0A", display: "inline-block", borderRadius: 2 }} /> End of course
+          <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "#1C1815" }}>
+            <span style={{ width: 14, height: 8, background: "#1C1815", display: "inline-block", borderRadius: 2 }} /> End of course
           </span>
         </div>
 
@@ -210,7 +210,7 @@ function BiomarkerDeltaSection({ stack, weeks }: { stack: { slug: string; name: 
               <Bar dataKey="baseline" fill="#C9CFC2" radius={[3, 3, 0, 0]} isAnimationActive={false} />
               <Bar dataKey="endOfCourse" radius={[3, 3, 0, 0]} isAnimationActive={false}>
                 {data.map((d, i) => (
-                  <Cell key={i} fill={d.direction === "up" ? "#0A0A0A" : "#0A0A0A"} />
+                  <Cell key={i} fill={d.direction === "up" ? "#1C1815" : "#1C1815"} />
                 ))}
                 <LabelList dataKey="delta" position="top" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, fill: "#8B5A2B" }} />
               </Bar>
@@ -238,7 +238,7 @@ function ResultsSection({ stack }: { stack: { slug: string; name: string; peptid
         <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
           Research outcomes
         </div>
-        <h2 className="text-2xl md:text-3xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+        <h2 className="text-2xl md:text-3xl mb-3 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
           {data.headline}
         </h2>
         <p className="text-sm mb-10 max-w-2xl" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.65 }}>
@@ -253,7 +253,7 @@ function ResultsSection({ stack }: { stack: { slug: string; name: string; peptid
               <div className="text-[10px] uppercase tracking-[0.18em] mb-2" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
                 {metric.label}
               </div>
-              <div className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+              <div className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
                 {metric.range}
               </div>
               <div className="text-xs leading-relaxed" style={{ fontFamily: SANS, color: "#8A8A8A" }}>
@@ -284,7 +284,7 @@ function OtherStacksCrossSell({ currentSlug }: { currentSlug: string }) {
         <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>
           Explore the library
         </div>
-        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+        <h2 className="text-2xl md:text-3xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
           Other protocols <span style={{  }}>worth considering</span>.
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -301,7 +301,7 @@ function OtherStacksCrossSell({ currentSlug }: { currentSlug: string }) {
                   {s.badge}
                 </div>
               )}
-              <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+              <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
                 {s.name}
               </h3>
               <p className="text-xs mb-4" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.55 }}>
@@ -311,7 +311,7 @@ function OtherStacksCrossSell({ currentSlug }: { currentSlug: string }) {
                 <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "#6B6B6B" }}>
                   {s.peptides.length} peptides · {s.duration.split(",")[0]}
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ fontFamily: MONO, color: "#0A0A0A" }}>
+                <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1 group-hover:gap-2 transition-all" style={{ fontFamily: MONO, color: "#1C1815" }}>
                   View →
                 </span>
               </div>
@@ -404,9 +404,9 @@ export default function StackDetail({ slug }: StackDetailProps) {
       <SiteLayout navVariant="showcase">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 120 }}>
           <div className="nx-container py-20 text-center">
-            <h1 className="text-4xl mb-4" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>Stack not found</h1>
+            <h1 className="text-4xl mb-4" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>Stack not found</h1>
             <Link asChild href="/stacks">
-              <a className="inline-block px-6 py-3 text-sm" style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: SANS, fontWeight: 500 }} data-testid="link-back-to-stacks">
+              <a className="inline-block px-6 py-3 text-sm" style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: SANS, fontWeight: 500 }} data-testid="link-back-to-stacks">
                 Browse all stacks
               </a>
             </Link>
@@ -468,7 +468,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
       {/* ── Editorial data-hero (pattern B): dark full-bleed, giant headline + v11 portrait ── */}
       <main id="main-content">
         <section
-          style={{ background: "#0A0A0A", color: "#FFFFF3", paddingTop: 96 }}
+          style={{ background: "#1C1815", color: "#FFFFF3", paddingTop: 96 }}
           data-testid="section-stack-hero"
         >
           <div className="nx-container">
@@ -585,7 +585,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <section id="stack-protocol" className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-included-peptides">
           <div className="nx-container">
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Included peptides · {stack.peptides.length}</div>
-            <h2 className="text-3xl md:text-4xl mb-10 max-w-3xl leading-[1.1]" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+            <h2 className="text-3xl md:text-4xl mb-10 max-w-3xl leading-[1.1]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
               The active compounds, <span style={{  }}>and how the protocol runs them</span>.
             </h2>
 
@@ -607,14 +607,14 @@ export default function StackDetail({ slug }: StackDetailProps) {
                       <tr key={pslug} data-testid={`peptide-row-${pslug}`}>
                         <td className="px-4 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                           <Link asChild href={`/peptides/${pslug}`}>
-                            <a className="text-base inline-flex items-center gap-1.5" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500, textDecoration: "none" }}>
+                            <a className="text-base inline-flex items-center gap-1.5" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500, textDecoration: "none" }}>
                               {name} <ArrowRight size={11} strokeWidth={2.4} style={{ color: "#8B5A2B" }} />
                             </a>
                           </Link>
                         </td>
                         <td className="px-4 py-4 text-sm" style={{ fontFamily: SANS, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", maxWidth: 220 }}>{roleFor(pslug)}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)" }}>{p?.typicalDose ?? price?.vialSpec ?? "—"}</td>
-                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)" }}>{frequencyFor(pslug)}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#1C1815", borderBottom: "1px solid var(--nx-border)" }}>{p?.typicalDose ?? price?.vialSpec ?? "—"}</td>
+                        <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#1C1815", borderBottom: "1px solid var(--nx-border)" }}>{frequencyFor(pslug)}</td>
                         <td className="px-4 py-4 text-sm" style={{ fontFamily: MONO, color: "#8B5A2B", borderBottom: "1px solid var(--nx-border)" }}>{startWeeks[i]}</td>
                       </tr>
                     );
@@ -633,13 +633,13 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   <Link asChild key={peptideSlug} href={`/peptides/${peptideSlug}`}>
                     <a className="block p-6 transition-all hover:shadow-md" style={{ background: "#fff", border: "1px solid var(--nx-border)", textDecoration: "none" }} data-testid={`card-peptide-${peptideSlug}`}>
                       <div className="text-[10px] uppercase tracking-[0.2em] mb-2" style={{ fontFamily: MONO, color: "#8B5A2B" }}>{pr.badge || "Active compound"}</div>
-                      <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500, letterSpacing: "-0.01em" }}>{p?.name ?? pr.slug.toUpperCase()}</h3>
+                      <h3 className="text-xl mb-2" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500, letterSpacing: "-0.01em" }}>{p?.name ?? pr.slug.toUpperCase()}</h3>
                       <div className="text-xs mb-3" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.5 }}>{pr.vialSpec}</div>
                       <div className="flex items-end justify-between pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                        <div className="text-lg" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+                        <div className="text-lg" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
                           {formatUSD(pr.monthlyPrice)}<span className="text-[10px] ml-1 uppercase tracking-[0.12em]" style={{ fontFamily: MONO, color: "#6B6B6B" }}>/ mo</span>
                         </div>
-                        <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1" style={{ fontFamily: MONO, color: "#0A0A0A" }}>
+                        <span className="text-[10px] uppercase tracking-[0.16em] inline-flex items-center gap-1" style={{ fontFamily: MONO, color: "#1C1815" }}>
                           Details <ArrowRight size={10} strokeWidth={2.5} />
                         </span>
                       </div>
@@ -655,7 +655,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <section className="py-16 md:py-20" data-testid="section-outcome-timeline">
           <div className="nx-container max-w-5xl">
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Outcome timeline</div>
-            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1] max-w-3xl" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
               What the <span style={{  }}>{weeks} weeks</span> typically look like.
             </h2>
             <OutcomeTimeline weeks={weeks} milestones={milestones} />
@@ -673,7 +673,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} data-testid="section-vs-diy">
           <div className="nx-container max-w-4xl">
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Stack vs. doing it yourself</div>
-            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
               Same molecules. <span style={{  }}>Very different protocol.</span>
             </h2>
             <div className="w-full overflow-x-auto">
@@ -682,7 +682,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   <tr>
                     <th className="text-left px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)" }}>What you get</th>
                     <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)" }}>Buying separately</th>
-                    <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{stack.name} Stack</th>
+                    <th className="text-center px-4 py-3.5" style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#1C1815", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{stack.name} Stack</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -713,7 +713,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <section className="py-16 md:py-20" data-testid="section-lifestyle">
           <div className="nx-container max-w-5xl">
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Pair this stack with</div>
-            <h2 className="text-2xl md:text-3xl mb-8 leading-[1.12] max-w-2xl" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+            <h2 className="text-2xl md:text-3xl mb-8 leading-[1.12] max-w-2xl" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
               Peptides do their best work on top of the basics.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
@@ -721,8 +721,8 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 const Icon = c.icon;
                 return (
                   <div key={c.title} className="p-6 md:p-7" style={{ background: "var(--nx-bg)" }} data-testid={`lifestyle-card-${c.title.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
-                    <Icon size={22} strokeWidth={1.6} style={{ color: "#0A0A0A", marginBottom: 14 }} />
-                    <h3 className="text-lg mb-2" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>{c.title}</h3>
+                    <Icon size={22} strokeWidth={1.6} style={{ color: "#1C1815", marginBottom: 14 }} />
+                    <h3 className="text-lg mb-2" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>{c.title}</h3>
                     <p className="text-sm" style={{ fontFamily: SANS, color: "#4A4A4A", lineHeight: 1.55 }}>{c.body}</p>
                   </div>
                 );
@@ -767,14 +767,14 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <section className="py-16 md:py-20">
           <div className="nx-container max-w-5xl">
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Bloodwork tracked</div>
-            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>
+            <h2 className="text-3xl md:text-4xl mb-10 leading-[1.1]" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>
               The biomarkers <span style={{  }}>that confirm the protocol is working</span>.
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px" style={{ background: "var(--nx-border)" }}>
               {stack.labMarkers.map((marker) => (
                 <div key={marker} className="p-5 md:p-6" style={{ background: "var(--nx-bg)" }} data-testid={`marker-${marker.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
                   <div className="text-[10px] uppercase tracking-[0.18em] mb-1.5" style={{ fontFamily: MONO, color: "#6B6B6B" }}>Marker</div>
-                  <div className="text-base" style={{ fontFamily: SANS, color: "#0A0A0A", fontWeight: 500 }}>{marker}</div>
+                  <div className="text-base" style={{ fontFamily: SANS, color: "#1C1815", fontWeight: 500 }}>{marker}</div>
                 </div>
               ))}
             </div>
@@ -789,12 +789,12 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <section className="py-16 md:py-20" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }} data-testid="section-stack-detail-faq">
           <div className="nx-container" style={{ maxWidth: 760, margin: "0 auto" }}>
             <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "#8B5A2B" }}>Questions about this stack</div>
-            <h2 className="text-2xl md:text-3xl mb-8" style={{ fontFamily: SERIF, color: "#0A0A0A", fontWeight: 500 }}>Everything else.</h2>
+            <h2 className="text-2xl md:text-3xl mb-8" style={{ fontFamily: SERIF, color: "#1C1815", fontWeight: 500 }}>Everything else.</h2>
             <div>
               {faqItems.map((item, i) => (
                 <div key={i} style={{ borderBottom: "1px solid var(--nx-border)" }}>
                   <button className="w-full flex items-start justify-between gap-4 text-left py-5" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} data-testid={`detail-faq-item-${i}`}>
-                    <span className="text-base" style={{ fontFamily: SANS, fontWeight: 500, color: "#0A0A0A", lineHeight: 1.4 }}>{item.q}</span>
+                    <span className="text-base" style={{ fontFamily: SANS, fontWeight: 500, color: "#1C1815", lineHeight: 1.4 }}>{item.q}</span>
                     {openFaq === i ? <Minus size={16} style={{ color: "#8B5A2B", flexShrink: 0, marginTop: 3 }} /> : <Plus size={16} style={{ color: "#4A4A4A", flexShrink: 0, marginTop: 3 }} />}
                   </button>
                   {openFaq === i && (
@@ -816,7 +816,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
         <OtherStacksCrossSell currentSlug={stack.slug} />
 
         {/* Final CTA bar */}
-        <section className="py-14 md:py-16" style={{ background: "#0A0A0A", color: "#FAF7F0" }}>
+        <section className="py-14 md:py-16" style={{ background: "#1C1815", color: "#FAF7F0" }}>
           <div className="nx-container max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
               <div>
@@ -904,15 +904,15 @@ function OutcomeTimeline({ weeks, milestones }: { weeks: number; milestones: Mil
           </text>
         ))}
         {/* area + line */}
-        <path d={area} fill="#0A0A0A" opacity={0.05} />
-        <path d={path} fill="none" stroke="#0A0A0A" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
+        <path d={area} fill="#1C1815" opacity={0.05} />
+        <path d={path} fill="none" stroke="#1C1815" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" />
         {/* milestone markers + callouts */}
         {milestones.map((m, i) => (
           <g key={i}>
             <line x1={x(m.weekPct)} y1={y(m.valuePct)} x2={x(m.weekPct)} y2={y(0)} stroke="#DDD9CE" strokeWidth={1} strokeDasharray="3 4" />
-            <circle cx={x(m.weekPct)} cy={y(m.valuePct)} r={6} fill="#c6f184" stroke="#0A0A0A" strokeWidth={2} />
+            <circle cx={x(m.weekPct)} cy={y(m.valuePct)} r={6} fill="#c6f184" stroke="#1C1815" strokeWidth={2} />
             <text x={x(m.weekPct)} y={y(m.valuePct) - 26} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: MONO, fontSize: 10, fontWeight: 700, fill: "#8B5A2B" }}>{m.week}</text>
-            <text x={x(m.weekPct)} y={y(m.valuePct) - 12} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11, fill: "#0A0A0A" }}>{m.label}</text>
+            <text x={x(m.weekPct)} y={y(m.valuePct) - 12} textAnchor={i === milestones.length - 1 ? "end" : "middle"} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11, fill: "#1C1815" }}>{m.label}</text>
           </g>
         ))}
       </svg>

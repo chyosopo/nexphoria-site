@@ -167,7 +167,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
                   borderRadius: "12px",
                   overflow: "hidden",
                   aspectRatio: "3/4",
-                  backgroundColor: "#0A0A0A",
+                  backgroundColor: "#1C1815",
                 }}
               >
                 <img

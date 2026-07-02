@@ -163,7 +163,7 @@ function RouteIcon({ route }: { route: Route }) {
 }
 
 function evidenceBadgeStyle(tier: EvidenceTier): { bg: string; color: string } {
-  if (tier === "A") return { bg: "#0A0A0A", color: "#c6f184" };
+  if (tier === "A") return { bg: "#1C1815", color: "#c6f184" };
   if (tier === "B+") return { bg: "#1a3a1a", color: "#c6f184" };
   if (tier === "B") return { bg: "#f5f4ef", color: "#3a3a3a" };
   return { bg: "#f5f0ec", color: "#7a4a2a" };
@@ -704,7 +704,7 @@ export default function Peptides() {
                   <Link href="/assessment" data-testid="card-assessment-cta">
                     <article
                       className="group rounded-3xl p-8 flex items-center justify-between gap-6 nx-tile cursor-pointer border transition-all mt-8"
-                      style={{ background: "#0A0A0A", borderColor: "#0A0A0A" }}
+                      style={{ background: "#1C1815", borderColor: "#1C1815" }}
                     >
                       <div>
                         <div className="font-mono text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: "#c6f184" }}>
@@ -720,7 +720,7 @@ export default function Peptides() {
                       <div className="flex-shrink-0">
                         <span
                           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-[11px] uppercase tracking-[0.14em] transition-all group-hover:gap-3"
-                          style={{ background: "#c6f184", color: "#0A0A0A" }}
+                          style={{ background: "#c6f184", color: "#1C1815" }}
                         >
                           Start <ArrowRight className="h-4 w-4" strokeWidth={2} />
                         </span>

@@ -401,7 +401,7 @@ export default function Science() {
               <div
                 key={t.tier}
                 data-testid={`tier-card-${t.key}`}
-                style={{ backgroundColor: "#0A0A0A", padding: "2rem 1.75rem", display: "flex", flexDirection: "column" }}
+                style={{ backgroundColor: "#1C1815", padding: "2rem 1.75rem", display: "flex", flexDirection: "column" }}
               >
                 <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: t.color, marginBottom: "0.5rem" }}>{t.tier}</p>
                 <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "#FFFFF3", marginBottom: "0.875rem", lineHeight: 1.2 }}>{t.label}</p>
@@ -451,7 +451,7 @@ export default function Science() {
                         }}
                         onMouseEnter={(e) => {
                           (e.currentTarget as HTMLElement).style.background = t.color;
-                          (e.currentTarget as HTMLElement).style.color = "#0A0A0A";
+                          (e.currentTarget as HTMLElement).style.color = "#1C1815";
                           (e.currentTarget as HTMLElement).style.borderColor = t.color;
                         }}
                         onMouseLeave={(e) => {
@@ -540,7 +540,7 @@ export default function Science() {
             {mechanismCards.map((m, i) => (
               <Reveal key={m.id} delay={i * 40}>
                 <div className="p-7 h-full" style={{ background: "var(--nx-bg)" }} data-testid={`mechanism-card-${m.id}`}>
-                  <div style={{ color: "#0A0A0A", marginBottom: "1rem" }}>
+                  <div style={{ color: "#1C1815", marginBottom: "1rem" }}>
                     <MolecularGlyph glyph={m.glyph} size={72} title={`${m.title} glyph`} />
                   </div>
                   <h3 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.25rem", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>{m.title}</h3>
@@ -582,7 +582,7 @@ export default function Science() {
                   { phase: "180-DAY DRAW", timing: "Active protocol", desc: "Trend line established. Protocol extended, modified, or concluded based on biomarker trajectory and clinical goals." },
                   { phase: "ONGOING", timing: "Every 90 days", desc: "As long as you're active, your labs run quarterly. Data-driven medicine is a loop, not a one-time consult." },
                 ].map((row) => (
-                  <div key={row.phase} style={{ backgroundColor: "#0A0A0A", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
+                  <div key={row.phase} style={{ backgroundColor: "#1C1815", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
                     <div style={{ flexShrink: 0, minWidth: "90px" }}>
                       <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184" }}>{row.phase}</p>
                       <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(255,255,243,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
@@ -687,7 +687,7 @@ export default function Science() {
                     <tbody>
                       {evidenceRows.map((r) => (
                         <tr key={r.family} data-testid={`evidence-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
-                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 15, fontWeight: 500, color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</td>
+                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 15, fontWeight: 500, color: "#1C1815", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</td>
                           <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{r.mechanism}</td>
                           <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)" }}>{r.indication}</td>
                           <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)" }}>
@@ -728,7 +728,7 @@ export default function Science() {
                     <tbody>
                       {SAFETY_ROWS.map((r) => (
                         <tr key={r.family} data-testid={`safety-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
-                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 14, fontWeight: 500, color: "#0A0A0A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</td>
+                          <td style={{ padding: "14px", fontFamily: SERIF, fontSize: 14, fontWeight: 500, color: "#1C1815", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</td>
                           <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.common}</td>
                           <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.contraindications}</td>
                           <td style={{ padding: "14px", fontFamily: SANS, fontSize: 13, color: "#4A4A4A", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.monitoring}</td>
@@ -830,10 +830,10 @@ export default function Science() {
                 <Reveal key={t.title} delay={i * 50}>
                   <Link asChild href="/contact">
                     <a className="group block p-7 h-full" style={{ background: "var(--nx-bg)", textDecoration: "none" }} data-testid={`research-tile-${t.title.replace(/[^a-z0-9]/gi, "-").toLowerCase()}`}>
-                      <Icon size={22} strokeWidth={1.6} style={{ color: "#0A0A0A", marginBottom: 16 }} />
+                      <Icon size={22} strokeWidth={1.6} style={{ color: "#1C1815", marginBottom: 16 }} />
                       <h3 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.25rem", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>{t.title}</h3>
                       <p style={{ fontFamily: SANS, fontSize: "0.9375rem", color: "#4A4A4A", lineHeight: 1.6, marginBottom: "1rem" }}>{t.body}</p>
-                      <span className="inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "#0A0A0A" }}>
+                      <span className="inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all" style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: "#1C1815" }}>
                         Get in touch <ArrowRight size={12} strokeWidth={2.4} />
                       </span>
                     </a>
@@ -891,7 +891,7 @@ function ScienceHeroDark() {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(135deg, #0A0A0A 0%, #101010 55%, #1A1A1A 100%)",
+        background: "linear-gradient(135deg, #1C1815 0%, #101010 55%, #1A1A1A 100%)",
         color: "#F5F5F0",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
@@ -924,7 +924,7 @@ function ScienceHeroDark() {
       >
         <defs>
           <pattern id="molgrid" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-            <circle cx="4" cy="4" r="0.35" fill="#C6F184" />
+            <circle cx="4" cy="4" r="0.35" fill="#F3C87A" />
             <line x1="4" y1="4" x2="12" y2="4" stroke="rgba(179,255,102,0.28)" strokeWidth="0.06" />
             <line x1="4" y1="4" x2="4" y2="12" stroke="rgba(179,255,102,0.28)" strokeWidth="0.06" />
           </pattern>
@@ -958,14 +958,14 @@ function ScienceHeroDark() {
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#C6F184",
+                color: "#F3C87A",
                 marginBottom: "1.25rem",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "0.65rem",
               }}
             >
-              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "#C6F184" }} />
+              <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "#F3C87A" }} />
               The science
             </p>
             {/* Wikipedia-style definition — lifted verbatim by AI search */}
@@ -994,7 +994,7 @@ function ScienceHeroDark() {
               }}
             >
               Molecules that talk<br />
-              <span style={{ color: "#C6F184" }}>to your body.</span>
+              <span style={{ color: "#F3C87A" }}>to your body.</span>
             </h1>
             <p
               style={{
@@ -1074,11 +1074,11 @@ function ScienceHeroDark() {
             }}
           >
             {[
-              { fam: "GLP-1", tag: "Metabolic", grade: "A", accent: "#C6F184" },
+              { fam: "GLP-1", tag: "Metabolic", grade: "A", accent: "#F3C87A" },
               { fam: "GHS", tag: "Growth axis", grade: "A−", accent: "#7EE0FF" },
               { fam: "BPC-157", tag: "Tissue repair", grade: "B+", accent: "#FFC553" },
               { fam: "NAD+", tag: "Longevity", grade: "B", accent: "#FF9BB8" },
-              { fam: "Enclomiphene", tag: "HPG axis", grade: "A−", accent: "#C6F184" },
+              { fam: "Enclomiphene", tag: "HPG axis", grade: "A−", accent: "#F3C87A" },
               { fam: "Ipamorelin", tag: "GH pulse", grade: "B+", accent: "#7EE0FF" },
             ].map((tile) => (
               <div

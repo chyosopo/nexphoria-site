@@ -297,7 +297,7 @@ export default function Showcase() {
                 <div className="mx-tile-head">
                   <span
                     className="mx-pill"
-                    style={{ background: "#c6f184", color: "#0A0A0A" }}
+                    style={{ background: "#c6f184", color: "#1C1815" }}
                   >
                     Build a stack
                   </span>
@@ -343,7 +343,7 @@ export default function Showcase() {
                 alignItems: "flex-end",
                 justifyContent: "flex-start",
                 isolation: "isolate",
-                backgroundColor: "#0A0A0A",
+                backgroundColor: "#1C1815",
               }}
               data-testid="home-final-cta"
             >

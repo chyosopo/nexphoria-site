@@ -85,7 +85,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
         <div className="max-w-3xl mb-12 md:mb-16">
           <h2
             className="text-4xl md:text-5xl leading-[1.05]"
-            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#0A0A0A", fontWeight: 500 }}
+            style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "#1C1815", fontWeight: 500 }}
           >
             Choose the compounds. <span style={{  }}>Or let us choose for you.</span>
           </h2>
@@ -125,7 +125,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
                   className="text-[3.5rem] leading-[0.9] mb-6"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    color: "#0A0A0A",
+                    color: "#1C1815",
                     fontWeight: 500,
                   }}
                 >
@@ -160,7 +160,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
                   className="inline-flex items-center gap-1.5 text-sm transition-colors group-hover:gap-2.5"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    color: "#0A0A0A",
+                    color: "#1C1815",
                     fontWeight: 500,
                     borderTop: "1px solid var(--nx-border)",
                     paddingTop: "1.25rem",

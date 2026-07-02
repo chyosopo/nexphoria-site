@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
-   NEXPHORIA — LOCKED DESIGN SYSTEM v4
-   Ink on warm cream. Editorial pharmacy authority.
-   Type: Fraunces (serif/display) · Inter (body) · DM Mono (labels)
-   Accent: INK (#0A0A0A) — color comes from photography and data, not UI chrome
+   NEXPHORIA — DESIGN SYSTEM v5 · HIMS LANE (single source of truth)
+   Warm editorial pharmacy. Cream canvas, warm ink, honey accent.
+   Type: Fraunces (display serif, italic allowed) · General Sans (body)
+   Accent: HONEY-BROWN — warm, disciplined, never neon
    ───────────────────────────────────────────────────────────── */
 
 @layer base {
@@ -15,15 +15,15 @@
     /* BACKGROUND — warm cream palette */
     --nx-bg:           #FAF7F0;   /* warm cream — primary canvas */
     --nx-bg-cream:     #F0EBE0;   /* deeper cream for alternating sections */
-    --nx-bg-dark:      #0A0A0A;  /* footer / dark sections */
-    --nx-fg:           #0A0A0A;  /* primary ink text */
+    --nx-bg-dark:      #1C1815;  /* footer / dark sections */
+    --nx-fg:           #1C1815;  /* primary ink text */
     --nx-fg-graphite:  #4A4A4A;  /* secondary body copy */
     --nx-fg-muted:     #8A8A8A;  /* tertiary / captions */
     --nx-border:       #DDD9CE;  /* warm hairline borders */
     /* ACCENT: INK — the accent IS the typography weight + photography */
-    --nx-cobalt:       #0A0A0A;  /* ink accent — eyebrows, CTAs, underlines */
-    --nx-cobalt-hover: #2A2A2A;  /* slightly lighter ink on hover */
-    --nx-cobalt-soft:  #E8E4D8;  /* warm cream tint for soft bg fills */
+    --nx-cobalt:       #7A4E12;  /* warm honey-brown — CTAs, eyebrows, links */  /* ink accent — eyebrows, CTAs, underlines */
+    --nx-cobalt-hover: #5E3C0D;  /* slightly lighter ink on hover */
+    --nx-cobalt-soft:  #F3E7D2;  /* warm cream tint for soft bg fills */
     /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
     --nx-amber:        #8B5A2B;  /* burnt amber — very small accents only */
     --nx-success:      #1D6F42;
@@ -31,8 +31,8 @@
 
     /* ── Maximus-style paneled pastels, derived from cobalt+rust ── */
     /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
-    --nx-ice:          #E6EEF4;
-    --nx-ice-edge:     #C9D8E2;
+    --nx-ice:          #F0E9DC;  /* warmed — was cool blue */
+    --nx-ice-edge:     #DFD3BC;
     /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
     --nx-peach:        #F4E2D2;
     --nx-peach-edge:   #E2C9B3;
@@ -43,10 +43,10 @@
     --nx-rust:         #C97A4A;
 
     /* ── V3 tokens — locked minimal palette (Maximus × Bask) ── */
-    --nx-black:        #0A0A0A;
+    --nx-black:        #1C1815;
     --nx-ceramic:      #FFFFF3;
-    --nx-rock:         #E8E9DB;
-    --nx-acid:         #C6F184;
+    --nx-rock:         #EDE6D8;
+    --nx-acid:         #F3C87A;  /* honey chip — was acid green */
 
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
@@ -55,20 +55,20 @@
     --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
-    --primary: 0 0% 4%;              /* ink #0A0A0A */
+    --primary: 0 0% 4%;              /* ink #1C1815 */
     --primary-foreground: 0 0% 100%;
     --secondary: 60 6% 97%;
     --secondary-foreground: 0 0% 4%;
     --muted: 60 6% 97%;
     --muted-foreground: 0 0% 54%;
-    --accent: 224 79% 46%;
+    --accent: 35 66% 40%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 60 5% 89%;
     --input: 60 5% 89%;
-    --ring: 224 79% 46%;
-    --radius: 0.5rem;
+    --ring: 35 66% 40%;
+    --radius: 0.75rem;
 
     /* ── Fluid type scale ── */
     --text-xs:   0.75rem;
@@ -93,7 +93,8 @@
   }
 
   body {
-    @apply bg-white text-nx-fg;
+    @apply text-nx-fg;
+    background-color: var(--nx-bg);
     font-family: 'General Sans', system-ui, sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
@@ -102,23 +103,11 @@
     max-width: 100vw;
   }
 
-  /* Kill ALL italic. Zero tolerance. !important beats inline styles. */
-  em, i, cite, address, dfn, var,
-  em *, i *, cite *, address *, dfn *, var * {
-    font-style: normal !important;
-  }
-  [style*="italic"] {
-    font-style: normal !important;
-  }
-  .italic {
-    font-style: normal !important;
-  }
-
   h1, h2, h3 {
-    font-family: 'General Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
     font-feature-settings: "ss01";
   }
 }
@@ -137,7 +126,7 @@
 
   /* ── Section rhythm ── */
   .nx-section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
 
   /* ── Eyebrow label (mono caps cobalt) ── */
@@ -152,7 +141,7 @@
 
   /* ── Section heading ── */
   .nx-heading {
-    font-family: 'General Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--nx-fg);
@@ -162,7 +151,7 @@
 
   /* ── Hero heading ── */
   .nx-hero-heading {
-    font-family: 'General Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
     font-size: clamp(2.75rem, 6vw, 5.5rem);
     color: var(--nx-fg);
@@ -170,13 +159,13 @@
     letter-spacing: -0.035em;
   }
 
-  /* ── Accent word: honest weight + color, NO italic, NO serif ── */
+  /* ── Accent word: Fraunces italic in warm honey — the editorial moment ── */
   .nx-italic-accent {
-    font-family: 'General Sans', system-ui, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    color: var(--nx-cobalt);
-    letter-spacing: -0.02em;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #B97C24;
+    letter-spacing: -0.01em;
   }
 
   /* ── Sub-headline (Inter graphite) ── */
@@ -206,10 +195,10 @@
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
     font-family: 'General Sans', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     border-radius: 9999px;
     border: 1px solid var(--nx-cobalt);
     transition: background-color 0.2s ease, transform 0.15s ease;
@@ -231,10 +220,10 @@
     background-color: transparent;
     color: var(--nx-fg);
     font-family: 'General Sans', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     border-radius: 9999px;
     border: 1px solid var(--nx-border);
     transition: border-color 0.2s ease, color 0.2s ease;
@@ -278,10 +267,10 @@
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
     font-family: 'General Sans', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     border-radius: 9999px;
     border: 1px solid var(--nx-cobalt);
     transition: background-color 0.2s ease, transform 0.15s ease;
@@ -462,7 +451,7 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: var(--nx-acid, #C6F184);
+    background: var(--nx-acid, #F3C87A);
     z-index: 100;
     transform-origin: 0 50%;
     transform: scaleX(var(--nx-scroll-progress, 0));
@@ -546,7 +535,7 @@
     border-radius: 0;
     font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.9375rem;
-    color: #0A0A0A;
+    color: #1C1815;
     transition: border-color 150ms ease, box-shadow 150ms ease;
   }
   .nx-input::placeholder {
@@ -554,8 +543,8 @@
   }
   .nx-input:focus {
     outline: none;
-    border-color: #0A0A0A;
-    box-shadow: 0 0 0 1px #0A0A0A;
+    border-color: #1C1815;
+    box-shadow: 0 0 0 1px #1C1815;
   }
   .nx-input:disabled {
     opacity: 0.5;

@@ -121,7 +121,7 @@ export default function Checkout() {
               </div>
               <h1
                 className="text-4xl md:text-5xl mb-5"
-                style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.02em" }}
+                style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.02em" }}
               >
                 Intake complete
               </h1>
@@ -162,7 +162,7 @@ export default function Checkout() {
               <Link asChild href="/">
                 <a
                   className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
-                  style={{ color: "#0A0A0A", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                  style={{ color: "#1C1815", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                   data-testid="link-back-home"
                 >
                   <ArrowLeft size={14} /> Back to Nexphoria
@@ -181,7 +181,7 @@ export default function Checkout() {
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-20 max-w-md text-center">
-            <h1 className="text-3xl mb-4" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}>
+            <h1 className="text-3xl mb-4" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}>
               Your cart is empty
             </h1>
             <p className="text-base mb-6" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
@@ -190,7 +190,7 @@ export default function Checkout() {
             <Link asChild href="/stacks">
               <a
                 className="inline-block px-6 py-3"
-                style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.875rem", borderRadius: 12 }}
+                style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.875rem", borderRadius: 12 }}
                 data-testid="link-empty-checkout-stacks"
               >
                 Browse stacks
@@ -227,7 +227,7 @@ export default function Checkout() {
             </div>
             <h1
               className="text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.02em" }}
             >
               Submit for physician review
             </h1>
@@ -295,7 +295,7 @@ export default function Checkout() {
                     >
                       <Lock size={13} style={{ color: "#1D6F42", flexShrink: 0 }} />
                       <p className="text-xs" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.5 }}>
-                        <strong style={{ color: "#0A0A0A" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
+                        <strong style={{ color: "#1C1815" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
                       </p>
                     </div>
 
@@ -374,15 +374,15 @@ export default function Checkout() {
                           className="flex items-center justify-between px-4 py-3"
                           style={{ borderBottom: "1px solid var(--nx-border)", background: "#fff" }}
                         >
-                          <span className="text-sm" style={{ fontFamily: FONT, color: "#0A0A0A" }}>
+                          <span className="text-sm" style={{ fontFamily: FONT, color: "#1C1815" }}>
                             {line.name} <span style={{ color: "#8A8A8A" }}>· {line.cadenceLabel} · qty {line.qty}</span>
                           </span>
-                          <span className="text-sm" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>{formatUSD(line.lineTotal)}</span>
+                          <span className="text-sm" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 500 }}>{formatUSD(line.lineTotal)}</span>
                         </div>
                       ))}
                       <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
-                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0A0A0A" }}>Total · monthly</span>
-                        <span className="text-lg" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
+                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#1C1815" }}>Total · monthly</span>
+                        <span className="text-lg" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
                       </div>
                     </div>
                   </div>
@@ -395,7 +395,7 @@ export default function Checkout() {
                         type="submit"
                         disabled={mutation.isPending}
                         className="px-8 py-4 transition-all disabled:opacity-60"
-                        style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+                        style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
                         data-testid="button-submit-checkout"
                       >
                         {mutation.isPending ? "Submitting…" : "Submit for physician approval →"}
@@ -442,7 +442,7 @@ export default function Checkout() {
                           <div className="text-[9px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B" }}>
                             {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
-                          <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>
+                          <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 500 }}>
                             {line.name}
                           </div>
                           {stack ? (
@@ -456,7 +456,7 @@ export default function Checkout() {
                             </div>
                           ) : null}
                         </div>
-                        <div className="text-sm flex-shrink-0" style={{ fontFamily: FONT, color: "#0A0A0A" }}>
+                        <div className="text-sm flex-shrink-0" style={{ fontFamily: FONT, color: "#1C1815" }}>
                           {formatUSD(line.lineTotal)}
                         </div>
                       </div>
@@ -473,8 +473,8 @@ export default function Checkout() {
               ) : null}
 
               <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0A0A0A" }}>Total · monthly</span>
-                <span className="text-2xl" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }} data-testid="text-checkout-total">
+                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#1C1815" }}>Total · monthly</span>
+                <span className="text-2xl" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600 }} data-testid="text-checkout-total">
                   {formatUSD(subtotal)}
                 </span>
               </div>
@@ -526,7 +526,7 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
                   borderRadius: 999,
                   fontFamily: FONT,
                   fontWeight: 600,
-                  background: done ? "#8B5A2B" : active ? "#0A0A0A" : "transparent",
+                  background: done ? "#8B5A2B" : active ? "#1C1815" : "transparent",
                   color: done || active ? "#FAF7F0" : "#8A8A8A",
                   border: done || active ? "none" : "1px solid var(--nx-border)",
                   flexShrink: 0,
@@ -536,7 +536,7 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
               </span>
               <span
                 className="text-[11px] uppercase tracking-[0.14em] hidden sm:inline"
-                style={{ fontFamily: FONT, color: active ? "#0A0A0A" : done ? "#4A4A4A" : "#8A8A8A", fontWeight: active ? 600 : 500 }}
+                style={{ fontFamily: FONT, color: active ? "#1C1815" : done ? "#4A4A4A" : "#8A8A8A", fontWeight: active ? 600 : 500 }}
               >
                 {label}
               </span>
@@ -564,7 +564,7 @@ function PrimaryBtn({ children, onClick, testId }: { children: React.ReactNode; 
       type="button"
       onClick={onClick}
       className="px-8 py-4 transition-all"
-      style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+      style={{ background: "#1C1815", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
       data-testid={testId}
     >
       {children}
@@ -578,7 +578,7 @@ function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; on
       type="button"
       onClick={onClick}
       className="px-6 py-4 transition-colors hover:bg-black/5"
-      style={{ color: "#0A0A0A", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: 12 }}
+      style={{ color: "#1C1815", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: 12 }}
       data-testid={testId}
     >
       {children}
@@ -592,7 +592,7 @@ function Section({ title, eyebrow, children }: { title: string; eyebrow: string;
       <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "#8B5A2B" }}>
         {eyebrow}
       </div>
-      <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}>
+      <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 600, letterSpacing: "-0.01em" }}>
         {title}
       </h2>
       {children}
@@ -639,9 +639,9 @@ const YesNoField = ({
   return (
     <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
       <div className="flex items-start gap-3">
-        <input type="checkbox" className="mt-1 accent-[#0A0A0A]" data-testid={testId} {...rest} />
+        <input type="checkbox" className="mt-1 accent-[#1C1815]" data-testid={testId} {...rest} />
         <div className="flex-1">
-          <div className="text-sm" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>
+          <div className="text-sm" style={{ fontFamily: FONT, color: "#1C1815", fontWeight: 500 }}>
             {label}
           </div>
           {helper ? (

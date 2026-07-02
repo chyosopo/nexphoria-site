@@ -37,7 +37,7 @@ export function GiantStatPanel({
         marginBottom: 96,
         borderRadius: "var(--mx-tile-radius, 20px)",
         padding: "clamp(64px, 8vw, 128px) clamp(24px, 4vw, 64px)",
-        background: isDark ? "#0A0A0A" : "color-mix(in oklab, var(--nx-fg) 3%, var(--nx-bg-cream, #fffff3))",
+        background: isDark ? "#1C1815" : "color-mix(in oklab, var(--nx-fg) 3%, var(--nx-bg-cream, #fffff3))",
         border: isDark
           ? "1px solid rgba(255,255,243,0.06)"
           : "1px solid color-mix(in oklab, var(--nx-fg) 8%, transparent)",
