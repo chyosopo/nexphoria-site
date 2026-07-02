@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   Journal data — Maximus-tier editorial hub
+   Journal data — reference-tier editorial hub
    Categories mirror what serious peptide patients actually search.
    Each article is a long-form, clinically rigorous read.
    ───────────────────────────────────────────────────────────── */

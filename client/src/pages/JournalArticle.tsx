@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import {
   getArticleBySlug,
   getRelatedArticles,

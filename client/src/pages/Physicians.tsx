@@ -7,7 +7,7 @@ import { physicians, type Physician } from "@/data/physicians";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 const physicianTrustHero = "https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 
 export default function Physicians() {

@@ -13,7 +13,7 @@ import md3 from "@/assets/brand/physicians/md-3.webp";
 import md4 from "@/assets/brand/physicians/md-4.webp";
 
 /* ─────────────────────────────────────────────────────────────
-   About — founder + mission narrative. Maximus-tier.
+   About — founder + mission narrative. reference-tier.
    Hero + proof stats → The problem we saw → Our approach (3 pillars)
    → The team → Standards → manifesto + CTA.
    General Sans throughout. No italics. No serif.

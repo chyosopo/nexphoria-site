@@ -4,7 +4,7 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { Plus, Minus } from "lucide-react";
 import { useSeo, faqJsonLd, webPageJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 
 interface FAQItem {

@@ -15,7 +15,7 @@ interface CategoryTilesProps {
 }
 
 /**
- * CategoryTiles — Maximus-pattern horizontal 4-tile row.
+ * CategoryTiles — reference-pattern horizontal 4-tile row.
  * Each tile has image background + label + arrow.
  * Hover: lifts + brightens (scale 1.03, brightness 1.05).
  * Used directly below hero on /women and /men.

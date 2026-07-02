@@ -12,7 +12,7 @@ import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
 import { Link } from "wouter";
 import { ArrowRight, ArrowUpRight, Check, MapPin, Clock, Home, Building2, FlaskConical, Truck } from "lucide-react";
 import atHomeKit from "@/assets/nx_v11_bloodwork_athome_kit.webp";
-import { ColoredHeroTile, TileGlyphs, MxHeader } from "@/components/MaximusTile";
+import { ColoredHeroTile, TileGlyphs, MxHeader } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 
 type PanelTone = { bg: string; accent: string; ring: string };

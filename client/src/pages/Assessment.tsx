@@ -7,7 +7,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
 import { SiteLayout } from "@/components/SiteLayout";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { GoalVialTile, GOAL_TILE_CONFIG } from "@/components/GoalVialTile";
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";

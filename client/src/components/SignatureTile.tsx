@@ -1,5 +1,5 @@
 /* ──────────────────────────────────────────────────────────────
-   MaximusTile — reusable tile primitives matching the approved
+   SignatureTile — reusable tile primitives matching the approved
    home_maximus mockup. Three variants:
      <HeroTile />     5:4 photo hero with glass label + CTA
      <ProductTile />  1:1.15 cream tile with floating product object

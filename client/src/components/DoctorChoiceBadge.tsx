@@ -1,5 +1,5 @@
 /**
- * DoctorChoiceBadge — Maximus-tier trust signal
+ * DoctorChoiceBadge — reference-tier trust signal
  *
  * A pill with a tiny pulsing dot + "DOCTOR'S CHOICE" label.
  * Used on flagship product cards and the most-prescribed PDPs.

@@ -3,7 +3,7 @@
    Pricing reflects compounded research-grade vial cost / 4-week supply.
    All peptides require physician sign-off at checkout intake.
 
-   SUBSCRIPTION CADENCE (Maximus-style):
+   SUBSCRIPTION CADENCE (reference-style):
      1 month   → full price (showcased as "Flexible")
      3 months  → ~25% off / month ("Most popular")
      12 months → ~50% off / month ("Best value", billed monthly)

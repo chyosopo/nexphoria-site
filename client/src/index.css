@@ -29,7 +29,7 @@
     --nx-success:      #3D7C94;
     --nx-warning:      #3D6C94;
 
-    /* ── Maximus-style paneled pastels, derived from cobalt+rust ── */
+    /* ── reference-style paneled pastels, derived from cobalt+rust ── */
     /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
     --nx-ice:          #DEE8F0;  /* warmed — was cool blue */
     --nx-ice-edge:     #BBCBD9;
@@ -42,7 +42,7 @@
     /* Rust accent for callouts */
     --nx-rust:         #7FA3C0;
 
-    /* ── V3 tokens — locked minimal palette (Maximus × Bask) ── */
+    /* ── V3 tokens — locked minimal palette (locked palette) ── */
     --nx-black:        #16283E;
     --nx-ceramic:      #F7F3E9;
     --nx-rock:         #D5DFE8;

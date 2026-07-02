@@ -1,0 +1,43 @@
+name: Localize external assets
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+jobs:
+  localize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: design/azure }
+      - name: Download all manifest assets
+        run: |
+          set -e
+          mkdir -p client/public/img
+          echo "{" > client/public/img/asset-map.json
+          first=1
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
+            name="img_$(echo -n "$url" | sha1sum | cut -c1-12)"
+            tmp="/tmp/$name"
+            code=$(curl -sL --retry 3 --max-time 60 -o "$tmp" -w '%{http_code}' "$url")
+            [ "$code" = "200" ] || { echo "FAIL $code $url"; exit 1; }
+            mime=$(file -b --mime-type "$tmp")
+            case "$mime" in
+              image/webp) ext=webp;; image/png) ext=png;;
+              image/jpeg) ext=jpg;;  image/avif) ext=avif;;
+              *) echo "UNKNOWN MIME $mime for $url"; exit 1;;
+            esac
+            mv "$tmp" "client/public/img/$name.$ext"
+            [ $first = 1 ] || echo "," >> client/public/img/asset-map.json
+            first=0
+            printf '  "%s": "img/%s.%s"' "$url" "$name" "$ext" >> client/public/img/asset-map.json
+            echo "OK  $name.$ext  ← $url"
+          done < scripts/asset-manifest.txt
+          echo "" >> client/public/img/asset-map.json
+          echo "}" >> client/public/img/asset-map.json
+          ls -la client/public/img | tail -5
+      - name: Commit assets
+        run: |
+          git config user.name "asset-localizer"
+          git config user.email "assets@nexphoria"
+          git add client/public/img
+          git commit -m "Localize 39 external CDN assets into repo (asset-map.json included)"
+          git push origin design/azure

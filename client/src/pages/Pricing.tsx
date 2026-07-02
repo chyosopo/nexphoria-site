@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
