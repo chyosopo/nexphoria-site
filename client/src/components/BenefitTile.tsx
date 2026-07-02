@@ -20,8 +20,8 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
     bg: "var(--nx-fg)",
     fg: "var(--nx-bg)",
     eyebrow: "var(--nx-accent)",
-    sub: "rgba(240, 244, 250,0.62)",
-    border: "rgba(61, 135, 226,0.22)",
+    sub: "rgba(243, 245, 247,0.62)",
+    border: "rgba(102, 143, 185,0.22)",
     hover: "#141311",
   },
   cream: {
@@ -44,16 +44,16 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
     bg: "linear-gradient(160deg, var(--nx-bg-dark) 0%, #18222E 65%, #1C293A 100%)",
     fg: "var(--nx-bg)",
     eyebrow: "#5591C7",
-    sub: "rgba(228, 236, 245,0.68)",
-    border: "rgba(85,145,199,0.28)",
+    sub: "rgba(232, 237, 241,0.68)",
+    border: "rgba(114, 142, 171,0.28)",
     hover: "#0F1D3A",
   },
   ember: {
     bg: "linear-gradient(180deg, #141311 0%, var(--nx-bg-dark) 100%)",
     fg: "var(--nx-bg)",
     eyebrow: "var(--nx-accent)",
-    sub: "rgba(228, 236, 245,0.62)",
-    border: "rgba(61, 135, 226,0.28)",
+    sub: "rgba(232, 237, 241,0.62)",
+    border: "rgba(102, 143, 185,0.28)",
     hover: "#181B1E",
   },
 };
@@ -146,10 +146,10 @@ export function BenefitTile({
             style={{
               width: 32,
               height: 32,
-              background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(43, 86, 139,0.10)",
+              background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(67, 91, 115,0.10)",
               color: isDark || hasImage ? t.eyebrow : "var(--nx-amber)",
               borderRadius: 6,
-              border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(43, 86, 139,0.18)"}`,
+              border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(67, 91, 115,0.18)"}`,
               flexShrink: 0,
             }}
           >
@@ -222,7 +222,7 @@ export function BenefitTile({
             style={{
               fontFamily: FONT,
               fontSize: "0.8125rem",
-              color: hasImage ? "rgba(240, 244, 250,0.75)" : t.sub,
+              color: hasImage ? "rgba(243, 245, 247,0.75)" : t.sub,
               lineHeight: 1.5,
             }}
           >
@@ -241,7 +241,7 @@ export function BenefitTile({
             className="text-[10px] uppercase"
             style={{
               fontFamily: MONO,
-              color: hasImage ? "rgba(240, 244, 250,0.85)" : t.sub,
+              color: hasImage ? "rgba(243, 245, 247,0.85)" : t.sub,
               letterSpacing: "0.15em",
               fontWeight: 600,
             }}

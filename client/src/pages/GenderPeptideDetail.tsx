@@ -23,16 +23,16 @@ interface GenderPeptideDetailProps {
 const IDENTITY = {
   men: {
     heroBg: ((gender === "women") ? "linear-gradient(180deg, #3C1830 0%, #111111 60%, #3E1030 100%)" : "linear-gradient(180deg, var(--nx-fg) 0%, #111111 60%, var(--nx-bg-dark) 100%)"),
-    heroGlow: "radial-gradient(700px 320px at 92% 10%, rgba(61, 135, 226,0.16), transparent 65%)",
+    heroGlow: "radial-gradient(700px 320px at 92% 10%, rgba(102, 143, 185,0.16), transparent 65%)",
     accent: ((gender === "women") ? "#E8558F" : "var(--nx-accent)"),
-    accentSoft: "rgba(61, 135, 226,0.14)",
+    accentSoft: "rgba(102, 143, 185,0.14)",
     text: ((gender === "women") ? "#FAF0F5" : "var(--nx-bg)"),
-    textMuted: "rgba(228, 236, 245,0.62)",
-    textFaint: "rgba(228, 236, 245,0.42)",
-    border: "rgba(61, 135, 226,0.22)",
-    borderStrong: "rgba(61, 135, 226,0.4)",
-    chipBg: "rgba(61, 135, 226,0.06)",
-    chipBorder: "rgba(61, 135, 226,0.28)",
+    textMuted: "rgba(232, 237, 241,0.62)",
+    textFaint: "rgba(232, 237, 241,0.42)",
+    border: "rgba(102, 143, 185,0.22)",
+    borderStrong: "rgba(102, 143, 185,0.4)",
+    chipBg: "rgba(102, 143, 185,0.06)",
+    chipBorder: "rgba(102, 143, 185,0.28)",
     surface: "#141311",
     surfaceCard: ((gender === "women") ? "#3E1030" : "var(--nx-bg-dark)"),
     display: "'General Sans', system-ui, sans-serif",
@@ -41,20 +41,20 @@ const IDENTITY = {
     weight: 700,
     radius: 4,
     uppercase: "uppercase" as const,
-    grid: "linear-gradient(rgba(61, 135, 226,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(61, 135, 226,0.05) 1px, transparent 1px)",
+    grid: "linear-gradient(rgba(102, 143, 185,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(102, 143, 185,0.05) 1px, transparent 1px)",
   },
   women: {
     heroBg: ((gender === "women") ? "linear-gradient(180deg, #F5E4EB 0%, #EDD5DF 55%, #E8C9D6 100%)" : "linear-gradient(180deg, #E4ECF5 0%, #D5E0ED 55%, #C9D7E8 100%)"),
-    heroGlow: "radial-gradient(1000px 400px at 88% 18%, rgba(120, 148, 196,0.14), transparent 65%)",
+    heroGlow: "radial-gradient(1000px 400px at 88% 18%, rgba(139, 158, 177,0.14), transparent 65%)",
     accent: ((gender === "women") ? "#B2577D" : "#5778B2"),
-    accentSoft: "rgba(87, 120, 178,0.12)",
+    accentSoft: "rgba(110, 132, 155,0.12)",
     text: ((gender === "women") ? "#3C0B1F" : "var(--nx-bg-dark)"),
-    textMuted: "rgba(17, 23, 30,0.62)",
-    textFaint: "rgba(17, 23, 30,0.4)",
-    border: "rgba(62, 96, 138,0.22)",
-    borderStrong: "rgba(87, 120, 178,0.5)",
+    textMuted: "rgba(20, 23, 27,0.62)",
+    textFaint: "rgba(20, 23, 27,0.4)",
+    border: "rgba(81, 100, 119,0.22)",
+    borderStrong: "rgba(110, 132, 155,0.5)",
     chipBg: "rgba(255,255,255,0.55)",
-    chipBorder: "rgba(62, 96, 138,0.22)",
+    chipBorder: "rgba(81, 100, 119,0.22)",
     surface: ((gender === "women") ? "#FBEAF1" : "#EAF2FB"),
     surfaceCard: ((gender === "women") ? "#FFF7FA" : "#F7FBFF"),
     display: "'Instrument Serif', Georgia, serif",
@@ -127,7 +127,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
   const timelineData = peptide.timeline.map((t, i) => ({ week: t.week, score: 40 + i * 8 }));
 
   const chartStroke = id.accent;
-  const chartGridStroke = isMen ? "rgba(228, 236, 245,0.08)" : "rgba(17, 23, 30,0.08)";
+  const chartGridStroke = isMen ? "rgba(232, 237, 241,0.08)" : "rgba(20, 23, 27,0.08)";
 
   return (
     <SiteLayout navVariant={gender} footerVariant={gender}>
@@ -330,7 +330,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                 <div
                   style={{
                     padding: "16px 18px",
-                    background: isMen ? "rgba(61, 135, 226,0.06)" : "rgba(255,255,255,0.55)",
+                    background: isMen ? "rgba(102, 143, 185,0.06)" : "rgba(255,255,255,0.55)",
                     border: `1px solid ${id.border}`,
                     borderRadius: id.radius,
                     marginBottom: "32px",
@@ -391,7 +391,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                       key={label}
                       style={{
                         padding: "14px 16px",
-                        background: isMen ? "rgba(61, 135, 226,0.04)" : "rgba(255,255,255,0.5)",
+                        background: isMen ? "rgba(102, 143, 185,0.04)" : "rgba(255,255,255,0.5)",
                         border: `1px solid ${id.border}`,
                         borderRadius: id.radius,
                         backdropFilter: isWomen ? "blur(2px)" : "none",

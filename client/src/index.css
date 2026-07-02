@@ -13,41 +13,41 @@
   :root {
     /* ── Nexphoria brand tokens ── */
     /* BACKGROUND — warm cream palette */
-    --nx-bg:           #F2F7FD;   /* warm cream — primary canvas */
-    --nx-bg-cream:     #E0E7F0;   /* deeper cream for alternating sections */
-    --nx-bg-dark:      #0E2447;  /* footer / dark sections */
-    --nx-fg:           #0E2447;  /* primary ink text */
-    --nx-fg-graphite:  #4A6690;  /* secondary body copy */
-    --nx-fg-muted:     #7C90A6;  /* tertiary / captions */
-    --nx-border:       #CED5DD;  /* warm hairline borders */
+    --nx-bg:           #E9EFF5;   /* warm cream — primary canvas */
+    --nx-bg-cream:     #DCE6EE;   /* deeper cream for alternating sections */
+    --nx-bg-dark:      #22384E;  /* footer / dark sections */
+    --nx-fg:           #16283E;  /* primary ink text */
+    --nx-fg-graphite:  #46607A;  /* secondary body copy */
+    --nx-fg-muted:     #7288A0;  /* tertiary / captions */
+    --nx-border:       #C9D5E0;  /* warm hairline borders */
     /* ACCENT: INK — the accent IS the typography weight + photography */
-    --nx-cobalt:       #163E8C;  /* warm honey-brown — CTAs, eyebrows, links */  /* ink accent — eyebrows, CTAs, underlines */
-    --nx-cobalt-hover: #0D315E;  /* slightly lighter ink on hover */
-    --nx-cobalt-soft:  #D2E1F3;  /* warm cream tint for soft bg fills */
+    --nx-cobalt:       #2E5877;  /* warm honey-brown — CTAs, eyebrows, links */  /* ink accent — eyebrows, CTAs, underlines */
+    --nx-cobalt-hover: #1E4560;  /* slightly lighter ink on hover */
+    --nx-cobalt-soft:  #D9E4EC;  /* warm cream tint for soft bg fills */
     /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
-    --nx-amber:        #1F5FD0;  /* burnt amber — very small accents only */
-    --nx-success:      #1F7F9C;
-    --nx-warning:      #1F5FD0;
+    --nx-amber:        #3D6C94;  /* burnt amber — very small accents only */
+    --nx-success:      #3D7C94;
+    --nx-warning:      #3D6C94;
 
     /* ── Maximus-style paneled pastels, derived from cobalt+rust ── */
     /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
-    --nx-ice:          #E4EEF8;  /* warmed — was cool blue */
-    --nx-ice-edge:     #BCCCDF;
+    --nx-ice:          #DEE8F0;  /* warmed — was cool blue */
+    --nx-ice-edge:     #BBCBD9;
     /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
-    --nx-peach:        #D2E1F4;
-    --nx-peach-edge:   #B3C8E2;
+    --nx-peach:        #F7F3E9;
+    --nx-peach-edge:   #E4DCC9;
     /* Sage — cream's deeper alternate. Used for recovery/sleep panels.  */
-    --nx-sage:         #DAE1E3;
-    --nx-sage-edge:    #BCC6C9;
+    --nx-sage:         #DCE4E6;
+    --nx-sage-edge:    #C2CDD1;
     /* Rust accent for callouts */
-    --nx-rust:         #6FA3CC;
+    --nx-rust:         #7FA3C0;
 
     /* ── V3 tokens — locked minimal palette (Maximus × Bask) ── */
-    --nx-black:        #0E2447;
-    --nx-ceramic:      #FBFDFF;
-    --nx-rock:         #DCE8F5;
-    --nx-acid:         #8FC6FF;
-    --nx-accent:       #2E7BF0;  /* primary azure accent */  /* honey chip — was acid green */
+    --nx-black:        #16283E;
+    --nx-ceramic:      #F7F3E9;
+    --nx-rock:         #D5DFE8;
+    --nx-acid:         #A9C6DE;
+    --nx-accent:       #2E5877;  /* primary azure accent */  /* honey chip — was acid green */
 
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
@@ -86,31 +86,31 @@
 
   /* ═══ ORCHID WORLD — activates under /women routes ═══ */
   [data-world="women"] {
-    --nx-bg:           #FDF3F7;
-    --nx-bg-cream:     #F3E2EA;
-    --nx-bg-dark:      #3C1830;
-    --nx-fg:           #3C1830;
-    --nx-fg-graphite:  #7E5A6C;
-    --nx-fg-muted:     #A58594;
-    --nx-border:       #E3D2DA;
-    --nx-cobalt:       #7A1F4C;
-    --nx-cobalt-hover: #5E1439;
-    --nx-cobalt-soft:  #F5DCE7;
-    --nx-amber:        #C93A73;
-    --nx-success:      #C4487E;
-    --nx-warning:      #C93A73;
-    --nx-ice:          #F5E4EC;
-    --nx-ice-edge:     #E0C4D2;
-    --nx-peach:        #F6DFE9;
-    --nx-peach-edge:   #E4C1D1;
-    --nx-sage:         #EBDDE2;
-    --nx-sage-edge:    #D4C0C8;
-    --nx-rust:         #E289AC;
-    --nx-black:        #3C1830;
-    --nx-ceramic:      #FFFDFE;
-    --nx-rock:         #F2DCE6;
-    --nx-acid:         #FFB3D4;
-    --nx-accent:       #E8558F;
+    --nx-bg:           #FAF4F7;
+    --nx-bg-cream:     #F3ECEF;
+    --nx-bg-dark:      #35212E;
+    --nx-fg:           #35212E;
+    --nx-fg-graphite:  #78646E;
+    --nx-fg-muted:     #A18F97;
+    --nx-border:       #E3DBDF;
+    --nx-cobalt:       #68354E;
+    --nx-cobalt-hover: #4F253A;
+    --nx-cobalt-soft:  #F3E8EC;
+    --nx-amber:        #AB5E7C;
+    --nx-success:      #AA6784;
+    --nx-warning:      #AB5E7C;
+    --nx-ice:          #F5EEF1;
+    --nx-ice-edge:     #DDCFD6;
+    --nx-peach:        #F4EAEF;
+    --nx-peach-edge:   #DFCED6;
+    --nx-sage:         #ECE5E8;
+    --nx-sage-edge:    #D3C9CD;
+    --nx-rust:         #D0A2B4;
+    --nx-black:        #35212E;
+    --nx-ceramic:      #FCF3F7;
+    --nx-rock:         #F1E7EB;
+    --nx-acid:         #F0CBDB;
+    --nx-accent:       #C97B99;
   }
 
 

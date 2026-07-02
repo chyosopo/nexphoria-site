@@ -623,7 +623,7 @@ export default function BuildYourStack() {
                               </ul>
                             )}
                             {synergies.length > 0 && (
-                              <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: isPicked ? "rgba(122, 176, 243,0.9)" : "#7A929A", textTransform: "uppercase", marginTop: 6 }}>
+                              <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: isPicked ? "rgba(152, 182, 213,0.9)" : "#7A929A", textTransform: "uppercase", marginTop: 6 }}>
                                 ⚡ Synergy with {synergies.join(" & ")}
                               </p>
                             )}
@@ -902,7 +902,7 @@ export default function BuildYourStack() {
               <aside className="lg:sticky lg:top-24 self-start">
                 <div style={{ background: "var(--nx-fg)", color: "#fff", borderRadius: 4 }}>
                   <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "rgba(122, 176, 243,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
+                    <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "rgba(152, 182, 213,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
                     </p>
                     <p style={{ fontFamily: SERIF, fontSize: 22, fontWeight: 500 }}>
@@ -934,7 +934,7 @@ export default function BuildYourStack() {
                       </div>
                     )}
                     {cadencePct > 0 && (
-                      <div className="flex justify-between" style={{ fontFamily: MONO, fontSize: 11, color: "rgba(122, 176, 243,0.7)" }}>
+                      <div className="flex justify-between" style={{ fontFamily: MONO, fontSize: 11, color: "rgba(152, 182, 213,0.7)" }}>
                         <span>Cadence saving ({cadencePct}%)</span>
                         <span>applied</span>
                       </div>

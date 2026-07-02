@@ -188,12 +188,12 @@ const TONE_PALETTE: Record<
   ColoredHeroTileProps["tone"],
   { bg: string; ink: string; accent: string; shadow: string }
 > = {
-  sage:   { bg: "linear-gradient(135deg, #E3E9F0 0%, #CFDDE2 100%)", ink: "#243136", accent: "#5C828E", shadow: "rgba(90, 128, 140,0.18)" },
-  rose:   { bg: "linear-gradient(135deg, #E1EAF5 0%, #C8D7EA 100%)", ink: "#202C3A", accent: "#4F7BB0", shadow: "rgba(79, 123, 176,0.18)" },
-  sand:   { bg: "linear-gradient(135deg, #E1E8F1 0%, #C4D2E2 100%)", ink: "#262F3A", accent: "#4E6A8C", shadow: "rgba(78, 106, 140,0.18)" },
+  sage:   { bg: "linear-gradient(135deg, #E3E9F0 0%, #CFDDE2 100%)", ink: "#243136", accent: "#5C828E", shadow: "rgba(103, 115, 128,0.18)" },
+  rose:   { bg: "linear-gradient(135deg, #E1EAF5 0%, #C8D7EA 100%)", ink: "#202C3A", accent: "#4F7BB0", shadow: "rgba(103, 127, 152,0.18)" },
+  sand:   { bg: "linear-gradient(135deg, #E1E8F1 0%, #C4D2E2 100%)", ink: "#262F3A", accent: "#4E6A8C", shadow: "rgba(94, 109, 125,0.18)" },
   sky:    { bg: "linear-gradient(135deg, #e6edec 0%, #c9d6d4 100%)", ink: "#1f2c2b", accent: "#456764", shadow: "rgba(69,103,100,0.20)" },
-  cobalt: { bg: "linear-gradient(135deg, #dde4e8 0%, #b9c6d0 100%)", ink: "#1c2733", accent: "#345470", shadow: "rgba(52,84,112,0.22)" },
-  butter: { bg: "linear-gradient(135deg, #DBE6F4 0%, #B9CEE7 100%)", ink: "#15263A", accent: "#3C69A0", shadow: "rgba(60, 105, 160,0.18)" },
+  cobalt: { bg: "linear-gradient(135deg, #dde4e8 0%, #b9c6d0 100%)", ink: "#1c2733", accent: "#345470", shadow: "rgba(67, 82, 97,0.22)" },
+  butter: { bg: "linear-gradient(135deg, #DBE6F4 0%, #B9CEE7 100%)", ink: "#15263A", accent: "#3C69A0", shadow: "rgba(85, 110, 135,0.18)" },
 };
 
 export function ColoredHeroTile({
@@ -234,7 +234,7 @@ export function ColoredHeroTile({
       )}
       <div
         className="mx-hero-label"
-        style={{ background: "rgba(247, 251, 255,0.92)", color: p.ink, boxShadow: `0 12px 32px ${p.shadow}` }}
+        style={{ background: "rgba(249, 251, 253,0.92)", color: p.ink, boxShadow: `0 12px 32px ${p.shadow}` }}
       >
         {label}
         <small style={{ color: p.accent }}>{caption}</small>

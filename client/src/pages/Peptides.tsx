@@ -446,11 +446,11 @@ export default function Peptides() {
               Compounded. Tested. Prescribed.
             </p>
             {/* UI-over-film chips — composite grammar */}
-            <div className="hidden md:block absolute top-4 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 14, padding: "10px 15px" }}>
+            <div className="hidden md:block absolute top-4 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 14, padding: "10px 15px" }}>
               <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "var(--nx-bg)" }}>USP &lt;797&gt; · 503A compounded</div>
-              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(240, 244, 250,0.65)", marginTop: 2 }}>Sterility &amp; potency tested per batch</div>
+              <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(243, 245, 247,0.65)", marginTop: 2 }}>Sterility &amp; potency tested per batch</div>
             </div>
-            <div className="hidden md:flex absolute right-8 items-center gap-2.5"  style={{ bottom: -22, background: "rgba(251, 253, 255,0.98)", borderRadius: 14, padding: "11px 16px", boxShadow: "0 18px 40px -14px rgba(21, 24, 28,0.45)", zIndex: 2 }}>
+            <div className="hidden md:flex absolute right-8 items-center gap-2.5"  style={{ bottom: -22, background: "rgba(252, 253, 254,0.98)", borderRadius: 14, padding: "11px 16px", boxShadow: "0 18px 40px -14px rgba(21, 24, 28,0.45)", zIndex: 2 }}>
               <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: 999, background: "var(--nx-success)" }} aria-hidden />
               <div>
                 <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "var(--nx-fg)" }}>Pairs well: BPC-157 + TB-500</div>

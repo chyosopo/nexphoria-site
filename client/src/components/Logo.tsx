@@ -34,7 +34,7 @@ export function Logo({
     variant === "light"
       ? "rgba(255,255,255,0.7)"
       : variant === "green"
-      ? "rgba(122, 176, 243,0.75)"
+      ? "rgba(152, 182, 213,0.75)"
       : "rgba(21, 24, 28,0.65)";
 
   return (

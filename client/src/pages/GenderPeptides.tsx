@@ -313,7 +313,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           background:
-            "radial-gradient(700px 320px at 92% 10%, rgba(61, 135, 226,0.16), transparent 65%), radial-gradient(500px 300px at 4% 100%, rgba(61, 135, 226,0.08), transparent 65%)",
+            "radial-gradient(700px 320px at 92% 10%, rgba(102, 143, 185,0.16), transparent 65%), radial-gradient(500px 300px at 4% 100%, rgba(102, 143, 185,0.08), transparent 65%)",
         }}
       />
       <div
@@ -361,7 +361,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
             style={{
               fontSize: "1.02rem",
               lineHeight: 1.55,
-              color: "rgba(228, 236, 245,0.68)",
+              color: "rgba(232, 237, 241,0.68)",
               maxWidth: 560,
               margin: "22px 0 24px",
             }}
@@ -376,9 +376,9 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
                   fontSize: 11,
                   padding: "7px 12px",
                   borderRadius: 4,
-                  background: "rgba(61, 135, 226,0.06)",
-                  border: "1px solid rgba(61, 135, 226,0.28)",
-                  color: "rgba(228, 236, 245,0.9)",
+                  background: "rgba(102, 143, 185,0.06)",
+                  border: "1px solid rgba(102, 143, 185,0.28)",
+                  color: "rgba(232, 237, 241,0.9)",
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
                   fontWeight: 500,
@@ -395,7 +395,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
             gap: 0,
-            border: "1px solid rgba(61, 135, 226,0.28)",
+            border: "1px solid rgba(102, 143, 185,0.28)",
           }}
           className="gp-hero-stats"
         >
@@ -409,8 +409,8 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
               key={s.v}
               style={{
                 padding: "22px 20px",
-                borderRight: i % 2 === 0 ? "1px solid rgba(61, 135, 226,0.20)" : "none",
-                borderBottom: i < 2 ? "1px solid rgba(61, 135, 226,0.20)" : "none",
+                borderRight: i % 2 === 0 ? "1px solid rgba(102, 143, 185,0.20)" : "none",
+                borderBottom: i < 2 ? "1px solid rgba(102, 143, 185,0.20)" : "none",
                 background: "rgba(255,255,255,0.015)",
               }}
             >
@@ -430,7 +430,7 @@ function MenPeptidesHero({ count, cats, sub }: { count: number; cats: number; su
                   fontSize: 10,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(228, 236, 245,0.55)",
+                  color: "rgba(232, 237, 241,0.55)",
                   marginTop: 6,
                 }}
               >
@@ -468,7 +468,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
           background:
-            "radial-gradient(1000px 400px at 90% 18%, rgba(120, 148, 196,0.14), transparent 65%), radial-gradient(700px 400px at 8% 92%, rgba(102, 152, 214,0.18), transparent 65%)",
+            "radial-gradient(1000px 400px at 90% 18%, rgba(139, 158, 177,0.14), transparent 65%), radial-gradient(700px 400px at 8% 92%, rgba(130, 158, 186,0.18), transparent 65%)",
         }}
       />
       <div
@@ -517,7 +517,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
             style={{
               fontSize: "1.05rem",
               lineHeight: 1.6,
-              color: "rgba(24, 32, 42,0.72)",
+              color: "rgba(28, 33, 38,0.72)",
               maxWidth: 560,
               margin: "24px 0 26px",
             }}
@@ -533,8 +533,8 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
                   padding: "8px 14px",
                   borderRadius: 999,
                   background: "rgba(255,255,255,0.55)",
-                  border: "1px solid rgba(62, 96, 138,0.22)",
-                  color: "rgba(24, 32, 42,0.82)",
+                  border: "1px solid rgba(81, 100, 119,0.22)",
+                  color: "rgba(28, 33, 38,0.82)",
                   letterSpacing: "0.02em",
                 }}
               >
@@ -563,8 +563,8 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
               style={{
                 padding: "22px 20px",
                 borderRadius: 18,
-                border: "1px solid rgba(62, 96, 138,0.18)",
-                background: "rgba(247, 251, 255,0.65)",
+                border: "1px solid rgba(81, 100, 119,0.18)",
+                background: "rgba(249, 251, 253,0.65)",
                 backdropFilter: "blur(2px)",
               }}
             >
@@ -584,7 +584,7 @@ function WomenPeptidesHero({ count, cats, sub }: { count: number; cats: number; 
                   fontSize: 10,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "rgba(24, 32, 42,0.55)",
+                  color: "rgba(28, 33, 38,0.55)",
                   marginTop: 6,
                 }}
               >

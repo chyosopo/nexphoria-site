@@ -258,7 +258,7 @@ export default function HowItWorks() {
             {/* ── Peptide-chain draw — bonds form as you scroll ── */}
             <div className="nx-chain" aria-hidden style={{ margin: "1.6rem 0 0.4rem" }}>
               <svg viewBox="0 0 800 44" preserveAspectRatio="none" style={{ width: "100%", height: 44, display: "block" }}>
-                <path className="nx-chain-path" d="M 10 22 C 110 4, 190 40, 270 22 C 350 4, 430 40, 530 22 C 610 8, 690 36, 790 22" fill="none" stroke="rgba(36, 103, 185,0.5)" strokeWidth="2" strokeDasharray="3 8" strokeLinecap="round" />
+                <path className="nx-chain-path" d="M 10 22 C 110 4, 190 40, 270 22 C 350 4, 430 40, 530 22 C 610 8, 690 36, 790 22" fill="none" stroke="rgba(73, 110, 148,0.5)" strokeWidth="2" strokeDasharray="3 8" strokeLinecap="round" />
                 {[10, 270, 530, 790].map((x) => (
                   <circle key={x} className="nx-chain-node" cx={x} cy="22" r="6" fill="var(--nx-acid)" stroke="var(--nx-amber)" strokeWidth="1.5" />
                 ))}
@@ -1058,9 +1058,9 @@ export default function HowItWorks() {
             ))}
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(21, 24, 28,0.4)", marginTop: 10, marginBottom: 0 }}>Illustration of the member portal.</p>
           </div>
-          <div className="hidden md:block absolute top-8 right-8" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 14, padding: "10px 15px" }}>
+          <div className="hidden md:block absolute top-8 right-8" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 14, padding: "10px 15px" }}>
             <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13, color: "var(--nx-bg)" }}>Discreet packaging</div>
-            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(240, 244, 250,0.65)", marginTop: 2 }}>Cold-chain · signature optional</div>
+            <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "rgba(243, 245, 247,0.65)", marginTop: 2 }}>Cold-chain · signature optional</div>
           </div>
         </div>
       </section>

@@ -384,7 +384,7 @@ export default function Journal() {
                   fontFamily: FONT,
                   fontSize: 16,
                   lineHeight: 1.6,
-                  color: "rgba(243, 248, 255,0.72)",
+                  color: "rgba(246, 249, 252,0.72)",
                   maxWidth: 480,
                 }}
               >
@@ -420,7 +420,7 @@ export default function Journal() {
                   fontFamily: FONT,
                   fontSize: 11,
                   letterSpacing: "0.06em",
-                  color: "rgba(243, 248, 255,0.5)",
+                  color: "rgba(246, 249, 252,0.5)",
                   textAlign: "center",
                 }}
               >

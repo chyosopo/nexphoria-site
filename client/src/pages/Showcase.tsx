@@ -406,7 +406,7 @@ export default function Showcase() {
                     fontWeight: 500,
                     letterSpacing: "0.24em",
                     textTransform: "uppercase",
-                    color: "rgba(243, 248, 255,0.7)",
+                    color: "rgba(246, 249, 252,0.7)",
                     marginBottom: 20,
                     display: "flex",
                     alignItems: "center",
@@ -421,7 +421,7 @@ export default function Showcase() {
                       height: 6,
                       borderRadius: 999,
                       background: "var(--nx-acid, var(--nx-acid))",
-                      boxShadow: "0 0 0 3px rgba(122, 176, 243,0.28)",
+                      boxShadow: "0 0 0 3px rgba(152, 182, 213,0.28)",
                     }}
                   />
                   Your protocol · begins here
@@ -445,7 +445,7 @@ export default function Showcase() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: 15,
-                    color: "rgba(243, 248, 255,0.85)",
+                    color: "rgba(246, 249, 252,0.85)",
                     maxWidth: 440,
                     marginBottom: 32,
                     lineHeight: 1.55,
@@ -470,7 +470,7 @@ export default function Showcase() {
                     fontSize: 9,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "rgba(243, 248, 255,0.55)",
+                    color: "rgba(246, 249, 252,0.55)",
                   }}
                 >
                   Physician-reviewed · 24–48h response

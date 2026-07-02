@@ -32,7 +32,7 @@ export function AnnouncementBar({
       style={{
         background: "var(--nx-fg)",
         color: "var(--nx-bg)",
-        borderBottom: "1px solid rgba(240, 244, 250,0.08)",
+        borderBottom: "1px solid rgba(243, 245, 247,0.08)",
       }}
       data-testid="announcement-bar"
       role="region"
@@ -67,7 +67,7 @@ export function AnnouncementBar({
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             color: "var(--nx-bg)",
-            borderBottom: "1px solid rgba(240, 244, 250,0.4)",
+            borderBottom: "1px solid rgba(243, 245, 247,0.4)",
             paddingBottom: 1,
           }}
           data-testid="link-announcement-cta"

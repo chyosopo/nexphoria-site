@@ -335,7 +335,7 @@ export default function Science() {
             <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "var(--nx-ceramic)", lineHeight: 1.15, marginBottom: "0.75rem" }}>
               We grade every claim. <span style={{  }}>Honestly.</span>
             </h2>
-            <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(243, 248, 255,0.65)", lineHeight: 1.65, maxWidth: "560px", marginBottom: "3rem" }}>
+            <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(246, 249, 252,0.65)", lineHeight: 1.65, maxWidth: "560px", marginBottom: "3rem" }}>
               Every peptide in our catalog carries a tier rating reflecting the depth of its clinical evidence. The framework is the same one our physicians apply when reviewing a new compound for the formulary.
             </p>
           </Reveal>
@@ -425,8 +425,8 @@ export default function Science() {
                     }}
                   />
                 </div>
-                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(243, 248, 255,0.6)", lineHeight: 1.6, marginBottom: "1.25rem", flexGrow: 1 }}>{t.desc}</p>
-                <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(243, 248, 255,0.4)", marginBottom: "0.625rem" }}>In our catalog</p>
+                <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(246, 249, 252,0.6)", lineHeight: 1.6, marginBottom: "1.25rem", flexGrow: 1 }}>{t.desc}</p>
+                <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(246, 249, 252,0.4)", marginBottom: "0.625rem" }}>In our catalog</p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
                   {t.examples.map((ex) => (
                     <Link
@@ -567,10 +567,10 @@ export default function Science() {
               <h2 style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "var(--nx-ceramic)", lineHeight: 1.12, marginBottom: "1.25rem" }}>
                 Science without labs is <span style={{  }}>conjecture</span>.
               </h2>
-              <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(243, 248, 255,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
+              <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
                 Every protocol begins with a 38-biomarker Quest Diagnostics draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
               </p>
-              <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(243, 248, 255,0.7)", lineHeight: 1.7 }}>
+              <p style={{ fontFamily: SANS, fontSize: "1.0625rem", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7 }}>
                 Redrawn every 90 days. Results, not marketing copy, determine whether a protocol continues, adjusts, or stops.
               </p>
             </Reveal>
@@ -585,9 +585,9 @@ export default function Science() {
                   <div key={row.phase} style={{ backgroundColor: "var(--nx-fg)", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
                     <div style={{ flexShrink: 0, minWidth: "90px" }}>
                       <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-acid)" }}>{row.phase}</p>
-                      <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(243, 248, 255,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(246, 249, 252,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
                     </div>
-                    <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(243, 248, 255,0.65)", lineHeight: 1.6 }}>{row.desc}</p>
+                    <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(246, 249, 252,0.65)", lineHeight: 1.6 }}>{row.desc}</p>
                   </div>
                 ))}
               </div>
@@ -903,7 +903,7 @@ function ScienceHeroDark() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(1100px 500px at 88% 18%, rgba(102, 217, 255,0.12), transparent 60%), radial-gradient(700px 400px at 8% 92%, rgba(60,120,255,0.14), transparent 65%)",
+            "radial-gradient(1100px 500px at 88% 18%, rgba(140, 178, 217,0.12), transparent 60%), radial-gradient(700px 400px at 8% 92%, rgba(109, 157, 206,0.14), transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -925,8 +925,8 @@ function ScienceHeroDark() {
         <defs>
           <pattern id="molgrid" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
             <circle cx="4" cy="4" r="0.35" fill="var(--nx-acid)" />
-            <line x1="4" y1="4" x2="12" y2="4" stroke="rgba(102, 217, 255,0.28)" strokeWidth="0.06" />
-            <line x1="4" y1="4" x2="4" y2="12" stroke="rgba(102, 217, 255,0.28)" strokeWidth="0.06" />
+            <line x1="4" y1="4" x2="12" y2="4" stroke="rgba(140, 178, 217,0.28)" strokeWidth="0.06" />
+            <line x1="4" y1="4" x2="4" y2="12" stroke="rgba(140, 178, 217,0.28)" strokeWidth="0.06" />
           </pattern>
         </defs>
         <rect x="0" y="0" width="100" height="100" fill="url(#molgrid)" />
@@ -974,7 +974,7 @@ function ScienceHeroDark() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "0.9375rem",
                 lineHeight: 1.6,
-                color: "rgba(240, 242, 245,0.55)",
+                color: "rgba(241, 243, 244,0.55)",
                 maxWidth: "38rem",
                 marginBottom: "0.875rem",
               }}
@@ -1001,7 +1001,7 @@ function ScienceHeroDark() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1.0625rem",
                 lineHeight: 1.6,
-                color: "rgba(240, 242, 245,0.72)",
+                color: "rgba(241, 243, 244,0.72)",
                 maxWidth: "38rem",
                 marginBottom: "2rem",
               }}
@@ -1026,7 +1026,7 @@ function ScienceHeroDark() {
                     borderRadius: "999px",
                     background: "rgba(255,255,255,0.06)",
                     border: "1px solid rgba(255,255,255,0.14)",
-                    color: "rgba(240, 242, 245,0.9)",
+                    color: "rgba(241, 243, 244,0.9)",
                   }}
                 >
                   {chip}
@@ -1144,7 +1144,7 @@ function ScienceHeroDark() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "11px",
                     fontWeight: 500,
-                    color: "rgba(240, 242, 245,0.6)",
+                    color: "rgba(241, 243, 244,0.6)",
                     letterSpacing: "0.02em",
                   }}
                 >
@@ -1199,7 +1199,7 @@ function ScienceHeroDark() {
                   fontWeight: 500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: "rgba(240, 242, 245,0.55)",
+                  color: "rgba(241, 243, 244,0.55)",
                 }}
               >
                 {s.v}

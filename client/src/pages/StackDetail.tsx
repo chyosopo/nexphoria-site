@@ -161,7 +161,7 @@ function BiomarkerTooltip({ active, payload }: any) {
   if (!active || !payload || !payload.length) return null;
   const p = payload[0].payload;
   return (
-    <div style={{ background: "var(--nx-fg)", border: "1px solid rgba(243, 248, 255,0.16)", borderRadius: 10, padding: "10px 12px" }}>
+    <div style={{ background: "var(--nx-fg)", border: "1px solid rgba(246, 249, 252,0.16)", borderRadius: 10, padding: "10px 12px" }}>
       <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: 4 }}>{p.marker}</div>
       <div style={{ fontFamily: SANS, fontSize: 13, color: "var(--nx-ceramic)" }}>Baseline {p.baseline} → {p.endOfCourse}</div>
       <div style={{ fontFamily: SANS, fontSize: 13, color: "var(--nx-ceramic)", fontWeight: 600 }}>{p.delta}</div>
@@ -474,7 +474,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
           <div className="nx-container">
             {/* Back nav */}
             <Link asChild href="/stacks">
-              <a className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] mb-8" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.55)" }} data-testid="link-back-stack-index">
+              <a className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] mb-8" style={{ fontFamily: MONO, color: "rgba(246, 249, 252,0.55)" }} data-testid="link-back-stack-index">
                 <ArrowLeft size={12} strokeWidth={2} /> All stacks
               </a>
             </Link>
@@ -482,11 +482,11 @@ export default function StackDetail({ slug }: StackDetailProps) {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(340px,40%)] gap-10 lg:gap-14 items-center pb-14 md:pb-16">
               {/* Left: editorial text column */}
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6" style={{ borderRadius: 999, border: "1px solid rgba(243, 248, 255,0.18)" }}>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6" style={{ borderRadius: 999, border: "1px solid rgba(246, 249, 252,0.18)" }}>
                   <span className="text-[11px] uppercase tracking-[0.18em]" style={{ fontFamily: MONO, color: "var(--nx-acid)" }}>
                     Doctor-curated protocol
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.6)" }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(246, 249, 252,0.6)" }}>
                     {audienceLabel}
                   </span>
                 </div>
@@ -497,17 +497,17 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 >
                   The {stack.name}<br />stack
                 </h1>
-                <p className="text-lg md:text-xl mb-5 max-w-xl" style={{ fontFamily: SANS, color: "rgba(243, 248, 255,0.82)", lineHeight: 1.5 }}>
+                <p className="text-lg md:text-xl mb-5 max-w-xl" style={{ fontFamily: SANS, color: "rgba(246, 249, 252,0.82)", lineHeight: 1.5 }}>
                   {stack.purpose}
                 </p>
                 <div className="flex flex-wrap items-center gap-3 mb-8">
-                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(246, 249, 252,0.08)", borderRadius: 999 }}>
                     {stack.peptides.length} peptides
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(246, 249, 252,0.08)", borderRadius: 999 }}>
                     {stack.duration.split(",")[0]}
                   </span>
-                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(243, 248, 255,0.08)", borderRadius: 999 }}>
+                  <span className="text-[11px] uppercase tracking-[0.14em] px-3 py-1.5" style={{ fontFamily: MONO, color: "var(--nx-ceramic)", background: "rgba(246, 249, 252,0.08)", borderRadius: 999 }}>
                     From {formatUSD(bundle)}/mo
                   </span>
                 </div>
@@ -515,7 +515,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                   <AddToCartButton slug={stack.slug} type="stack" variant="primary" label={`Add stack — ${formatUSD(bundle)}`} />
                   <a
                     className="inline-flex items-center gap-2 px-5 py-3 text-sm cursor-pointer"
-                    style={{ fontFamily: SANS, color: "var(--nx-ceramic)", border: "1px solid rgba(243, 248, 255,0.28)", borderRadius: 12, fontWeight: 500 }}
+                    style={{ fontFamily: SANS, color: "var(--nx-ceramic)", border: "1px solid rgba(246, 249, 252,0.28)", borderRadius: 12, fontWeight: 500 }}
                     onClick={() => document.getElementById("stack-protocol")?.scrollIntoView({ behavior: "smooth" })}
                     data-testid="button-view-protocol"
                   >
@@ -537,7 +537,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                 </div>
                 <div
                   className="absolute left-4 right-4 bottom-4 px-4 py-3"
-                  style={{ background: "rgba(21, 24, 28,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(243, 248, 255,0.12)" }}
+                  style={{ background: "rgba(21, 24, 28,0.82)", backdropFilter: "blur(4px)", borderRadius: 12, border: "1px solid rgba(246, 249, 252,0.12)" }}
                   data-testid="text-portrait-proof"
                 >
                   <div className="text-[10px] uppercase tracking-[0.16em] mb-0.5" style={{ fontFamily: MONO, color: "var(--nx-acid)" }}>
@@ -552,14 +552,14 @@ export default function StackDetail({ slug }: StackDetailProps) {
           </div>
 
           {/* ── Benefit stat row — 4 headline figures ── */}
-          <div style={{ borderTop: "1px solid rgba(243, 248, 255,0.12)" }}>
+          <div style={{ borderTop: "1px solid rgba(246, 249, 252,0.12)" }}>
             <div className="nx-container">
               <div className="grid grid-cols-2 lg:grid-cols-4" data-testid="stat-row">
                 {stats.map((s, i) => (
                   <div
                     key={s.label}
                     className="py-7 md:py-9 px-2 md:px-6"
-                    style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(243, 248, 255,0.12)" }}
+                    style={{ borderLeft: i === 0 ? "none" : "1px solid rgba(246, 249, 252,0.12)" }}
                     data-testid={`stat-card-${i}`}
                   >
                     <div className="mb-1.5" style={{ fontFamily: SERIF, color: "var(--nx-acid)", fontWeight: 600, fontSize: "clamp(28px, 3.4vw, 44px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
@@ -568,7 +568,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
                     <div className="text-sm mb-1" style={{ fontFamily: SANS, color: "var(--nx-ceramic)", fontWeight: 500, lineHeight: 1.3 }}>
                       {s.label}
                     </div>
-                    <div className="text-[11px]" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.5)", lineHeight: 1.4 }}>
+                    <div className="text-[11px]" style={{ fontFamily: MONO, color: "rgba(246, 249, 252,0.5)", lineHeight: 1.4 }}>
                       {s.note}
                     </div>
                   </div>
@@ -828,7 +828,7 @@ export default function StackDetail({ slug }: StackDetailProps) {
               <div className="flex flex-wrap gap-3">
                 <AddToCartButton slug={stack.slug} type="stack" variant="primary" label={`Add — ${formatUSD(bundle)}`} />
                 <Link asChild href="/assessment">
-                  <a className="inline-flex items-center justify-center px-5 py-3 text-sm" style={{ fontFamily: SANS, color: "var(--nx-bg)", border: "1px solid rgba(240, 244, 250,0.3)", fontWeight: 500 }} data-testid="link-take-assessment">
+                  <a className="inline-flex items-center justify-center px-5 py-3 text-sm" style={{ fontFamily: SANS, color: "var(--nx-bg)", border: "1px solid rgba(243, 245, 247,0.3)", fontWeight: 500 }} data-testid="link-take-assessment">
                     Or take the 5-min intake →
                   </a>
                 </Link>

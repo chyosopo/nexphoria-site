@@ -145,7 +145,7 @@ export function VialArt({
         <rect x="72" y="70" width="3" height="130" rx="1.5" fill="rgba(21, 24, 28,0.08)" />
 
         {/* Label band */}
-        <rect x="30" y="135" width="50" height="42" fill="rgba(243, 248, 255,0.94)" />
+        <rect x="30" y="135" width="50" height="42" fill="rgba(246, 249, 252,0.94)" />
         <rect x="30" y="135" width="50" height="1" fill="rgba(21, 24, 28,0.08)" />
         <rect x="30" y="176" width="50" height="1" fill="rgba(21, 24, 28,0.08)" />
 
@@ -353,7 +353,7 @@ export function VialTile({
                     fontWeight: 600,
                     color: t.ink,
                     padding: "5px 10px",
-                    background: "rgba(122, 176, 243,0.55)",
+                    background: "rgba(152, 182, 213,0.55)",
                     borderRadius: 999,
                   }}
                 >
@@ -550,7 +550,7 @@ export function VialTile({
             transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
-            border: "1px solid rgba(243, 248, 255,0.10)",
+            border: "1px solid rgba(246, 249, 252,0.10)",
             boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)",
             overflow: "hidden",
           }}
@@ -565,7 +565,7 @@ export function VialTile({
               width: 240,
               height: 240,
               borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(122, 176, 243,0.24), rgba(122, 176, 243,0) 70%)",
+              background: "radial-gradient(circle, rgba(152, 182, 213,0.24), rgba(152, 182, 213,0) 70%)",
               pointerEvents: "none",
             }}
           />
@@ -584,8 +584,8 @@ export function VialTile({
                   width: 40,
                   height: 40,
                   borderRadius: 10,
-                  background: "rgba(243, 248, 255,0.06)",
-                  border: "1px solid rgba(243, 248, 255,0.14)",
+                  background: "rgba(246, 249, 252,0.06)",
+                  border: "1px solid rgba(246, 249, 252,0.14)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -628,7 +628,7 @@ export function VialTile({
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 14,
                   lineHeight: 1.5,
-                  color: "rgba(243, 248, 255,0.82)",
+                  color: "rgba(246, 249, 252,0.82)",
                   margin: 0,
                 }}
               >
@@ -640,7 +640,7 @@ export function VialTile({
             <div
               style={{
                 marginTop: 22,
-                borderTop: "1px solid rgba(243, 248, 255,0.10)",
+                borderTop: "1px solid rgba(246, 249, 252,0.10)",
                 paddingTop: 16,
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
@@ -655,7 +655,7 @@ export function VialTile({
                       fontSize: 10,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      color: "rgba(243, 248, 255,0.42)",
+                      color: "rgba(246, 249, 252,0.42)",
                     }}
                   >
                     Typical dose
@@ -681,7 +681,7 @@ export function VialTile({
                       fontSize: 10,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
-                      color: "rgba(243, 248, 255,0.42)",
+                      color: "rgba(246, 249, 252,0.42)",
                     }}
                   >
                     Cycle
@@ -711,7 +711,7 @@ export function VialTile({
                   justifyContent: "space-between",
                   alignItems: "baseline",
                   paddingBottom: 14,
-                  borderBottom: "1px solid rgba(243, 248, 255,0.10)",
+                  borderBottom: "1px solid rgba(246, 249, 252,0.10)",
                   marginBottom: 14,
                 }}
               >
@@ -721,7 +721,7 @@ export function VialTile({
                     fontSize: 11,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "rgba(243, 248, 255,0.48)",
+                    color: "rgba(246, 249, 252,0.48)",
                   }}
                 >
                   Starts at
@@ -739,7 +739,7 @@ export function VialTile({
                   <span
                     style={{
                       fontSize: 12,
-                      color: "rgba(243, 248, 255,0.48)",
+                      color: "rgba(246, 249, 252,0.48)",
                       marginLeft: 4,
                     }}
                   >

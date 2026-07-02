@@ -962,7 +962,7 @@ function BloodworkManifesto() {
               fontSize: "13px",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "rgba(243, 248, 255,0.55)",
+              color: "rgba(246, 249, 252,0.55)",
             }}
           >
             <span
@@ -997,7 +997,7 @@ function BloodworkManifesto() {
               fontWeight: 400,
               fontSize: "19px",
               lineHeight: 1.55,
-              color: "rgba(243, 248, 255,0.75)",
+              color: "rgba(246, 249, 252,0.75)",
               maxWidth: "56ch",
             }}
           >
@@ -1033,7 +1033,7 @@ function BloodworkManifesto() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500, fontSize: "15px",
                 color: "var(--nx-ceramic)",
-                borderBottom: "1px solid rgba(243, 248, 255,0.35)",
+                borderBottom: "1px solid rgba(246, 249, 252,0.35)",
                 paddingBottom: 2,
               }}
               data-testid="link-blood-assessment"
@@ -1045,7 +1045,7 @@ function BloodworkManifesto() {
 
           <div
             className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-8"
-            style={{ borderTop: "1px solid rgba(243, 248, 255,0.12)", paddingTop: 28 }}
+            style={{ borderTop: "1px solid rgba(246, 249, 252,0.12)", paddingTop: 28 }}
           >
             {[
               { k: "80+", v: "Biomarkers" },
@@ -1072,7 +1072,7 @@ function BloodworkManifesto() {
                     fontWeight: 400, fontSize: "12px",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
-                    color: "rgba(243, 248, 255,0.55)",
+                    color: "rgba(246, 249, 252,0.55)",
                   }}
                 >
                   {s.v}
@@ -1346,7 +1346,7 @@ function BloodworkPricing() {
                 borderRadius: 20,
                 padding: "36px 32px",
                 border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(21, 24, 28,0.08)",
-                boxShadow: t.accent ? "0 30px 60px -20px rgba(122, 176, 243,0.35)" : "none",
+                boxShadow: t.accent ? "0 30px 60px -20px rgba(152, 182, 213,0.35)" : "none",
               }}
             >
               {t.badge && (
@@ -1400,7 +1400,7 @@ function BloodworkPricing() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 400,
                     fontSize: "14px",
-                    color: t.dark ? "rgba(243, 248, 255,0.55)" : "var(--nx-fg-muted)",
+                    color: t.dark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
                   }}
                 >
                   {t.priceNote}
@@ -1412,7 +1412,7 @@ function BloodworkPricing() {
                     fontWeight: 500,
                     fontSize: "12px",
                     letterSpacing: "0.04em",
-                    color: t.accent ? "var(--nx-acid)" : (t.dark ? "rgba(243, 248, 255,0.55)" : "var(--nx-fg-muted)"),
+                    color: t.accent ? "var(--nx-acid)" : (t.dark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)"),
                   }}
                 >
                   {t.valueNote}
@@ -1428,7 +1428,7 @@ function BloodworkPricing() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "14px",
                       lineHeight: 1.5,
-                      color: t.dark ? "rgba(243, 248, 255,0.85)" : "var(--nx-fg-graphite)",
+                      color: t.dark ? "rgba(246, 249, 252,0.85)" : "var(--nx-fg-graphite)",
                     }}
                   >
                     <Check

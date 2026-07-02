@@ -1892,8 +1892,8 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
                 className="rounded-full px-2.5 md:px-3 py-1 text-[11px] md:text-xs font-mono uppercase tracking-wider transition-colors"
                 style={{
                   backgroundColor: plan === c.id ? CREAM : "transparent",
-                  color: plan === c.id ? INK : "rgba(240, 244, 250,0.75)",
-                  border: `1px solid ${plan === c.id ? CREAM : "rgba(240, 244, 250,0.3)"}`,
+                  color: plan === c.id ? INK : "rgba(243, 245, 247,0.75)",
+                  border: `1px solid ${plan === c.id ? CREAM : "rgba(243, 245, 247,0.3)"}`,
                 }}
                 data-testid={`sticky-plan-${c.id === "m1" ? 1 : c.id === "m3" ? 3 : 6}`}
               >
@@ -1938,7 +1938,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             style={{ backgroundColor: INK }}
             data-testid="section-info-card"
           >
-            <p className="nx-eyebrow mb-6" style={{ color: "rgba(240, 244, 250,0.6)" }}>
+            <p className="nx-eyebrow mb-6" style={{ color: "rgba(243, 245, 247,0.6)" }}>
               Medical summary
             </p>
             <div className="grid md:grid-cols-2 gap-x-12 gap-y-5">
@@ -1954,11 +1954,11 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
                   <Check size={15} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "var(--nx-rust)" }} />
                   <span
                     className="font-mono text-[11px] uppercase tracking-[0.14em] shrink-0 w-24 pt-1"
-                    style={{ color: "rgba(240, 244, 250,0.5)" }}
+                    style={{ color: "rgba(243, 245, 247,0.5)" }}
                   >
                     {row.l}
                   </span>
-                  <span className="text-sm md:text-base leading-relaxed" style={{ color: "rgba(240, 244, 250,0.92)" }}>
+                  <span className="text-sm md:text-base leading-relaxed" style={{ color: "rgba(243, 245, 247,0.92)" }}>
                     {row.v}
                   </span>
                 </div>
@@ -2052,12 +2052,12 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
                 <div key={i} className="flex items-start gap-4" data-testid={`benefit-callout-${i}`}>
                   <Icon size={26} strokeWidth={1.5} className="shrink-0" style={{ color: "var(--nx-rust)" }} />
                   <div>
-                    <p className="text-base md:text-lg leading-snug" style={{ color: "rgba(240, 244, 250,0.92)" }}>
+                    <p className="text-base md:text-lg leading-snug" style={{ color: "rgba(243, 245, 247,0.92)" }}>
                       {b.text}
                     </p>
                     <p
                       className="mt-2 text-[10px] uppercase tracking-[0.12em]"
-                      style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "rgba(240, 244, 250,0.5)" }}
+                      style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "rgba(243, 245, 247,0.5)" }}
                     >
                       {b.sub}
                     </p>
@@ -2172,7 +2172,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             Not just supplements.{" "}
             <span style={{  color: "var(--nx-rust)" }}>Prescription medicine.</span>
           </h2>
-          <p className="text-base md:text-lg max-w-[48ch] mx-auto mb-9" style={{ color: "rgba(240, 244, 250,0.7)" }}>
+          <p className="text-base md:text-lg max-w-[48ch] mx-auto mb-9" style={{ color: "rgba(243, 245, 247,0.7)" }}>
             {peptide.name} is dispensed only after a board-certified physician
             confirms it fits your case. No guesswork, no research powders — a
             prescribed, compounded protocol.
@@ -2190,7 +2190,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
             <Link
               href="/contact"
               className="rounded-full px-7 py-3.5 text-sm font-medium border transition-colors"
-              style={{ borderColor: "rgba(240, 244, 250,0.4)", color: CREAM, display: "inline-block" }}
+              style={{ borderColor: "rgba(243, 245, 247,0.4)", color: CREAM, display: "inline-block" }}
               data-testid="closer-talk-provider"
             >
               Talk to a provider
@@ -2204,7 +2204,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
               "USP <797> sterile compounding",
               "Batch potency + sterility tested",
             ].map((c) => (
-              <p key={c} className="flex items-center gap-2 text-sm" style={{ color: "rgba(240, 244, 250,0.82)" }}>
+              <p key={c} className="flex items-center gap-2 text-sm" style={{ color: "rgba(243, 245, 247,0.82)" }}>
                 <Check size={15} strokeWidth={2.4} style={{ color: CREAM }} />
                 {c}
               </p>
@@ -2214,7 +2214,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
       </section>
 
       {/* ── Sticky mobile intake CTA — hims PDP grammar ── */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ background: "rgba(245, 248, 252,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(21, 24, 28,0.08)", padding: "10px 16px calc(10px + env(safe-area-inset-bottom))" }} data-testid="pdp-sticky-cta">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-40" style={{ background: "rgba(247, 249, 250,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderTop: "1px solid rgba(21, 24, 28,0.08)", padding: "10px 16px calc(10px + env(safe-area-inset-bottom))" }} data-testid="pdp-sticky-cta">
         <a href="#/assessment" className="flex items-center justify-center no-underline" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, background: "var(--nx-black)", color: "var(--nx-bg)", borderRadius: 999, padding: "13px 20px" }}>
           Start your intake — free evaluation
         </a>

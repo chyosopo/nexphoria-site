@@ -100,7 +100,7 @@ export function FinalCTAStrip({
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "1.0625rem",
-              color: "rgba(243, 248, 255,0.72)",
+              color: "rgba(246, 249, 252,0.72)",
               lineHeight: 1.6,
               maxWidth: "480px",
               margin: "0 auto 2.75rem",

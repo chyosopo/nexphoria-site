@@ -69,8 +69,8 @@ export function ProcessStrip({
         color: isDark ? "var(--nx-ceramic)" : "var(--nx-cobalt)",
         paddingTop: 120,
         paddingBottom: 120,
-        borderTop: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
-        borderBottom: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
+        borderTop: `1px solid ${isDark ? "rgba(246, 249, 252,0.08)" : "var(--nx-border)"}`,
+        borderBottom: `1px solid ${isDark ? "rgba(246, 249, 252,0.08)" : "var(--nx-border)"}`,
       }}
     >
       <div className="nx-container">
@@ -88,7 +88,7 @@ export function ProcessStrip({
               fontWeight: 500,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: isDark ? "rgba(243, 248, 255,0.55)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
               marginBottom: 20,
             }}
           >
@@ -112,7 +112,7 @@ export function ProcessStrip({
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 17,
               lineHeight: 1.6,
-              color: isDark ? "rgba(243, 248, 255,0.7)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-text-muted)",
               maxWidth: 580,
             }}
           >
@@ -126,7 +126,7 @@ export function ProcessStrip({
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: 0,
-            borderTop: `1px solid ${isDark ? "rgba(243, 248, 255,0.12)" : "var(--nx-border)"}`,
+            borderTop: `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
             position: "relative",
           }}
         >
@@ -188,7 +188,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
         padding: "48px 32px 32px 32px",
         borderRight: isLast
           ? "none"
-          : `1px solid ${isDark ? "rgba(243, 248, 255,0.12)" : "var(--nx-border)"}`,
+          : `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
         position: "relative",
       }}
       className="process-cell"
@@ -221,7 +221,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
             fontWeight: 500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: isDark ? "rgba(243, 248, 255,0.55)" : "var(--nx-text-muted)",
+            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
           }}
         >
           {step.timing}
@@ -258,7 +258,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
           fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: 14,
           lineHeight: 1.6,
-          color: isDark ? "rgba(243, 248, 255,0.7)" : "var(--nx-text-muted)",
+          color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-text-muted)",
         }}
       >
         {step.body}

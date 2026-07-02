@@ -357,7 +357,7 @@ function GateCard({
           backgroundColor: "rgba(21, 24, 28,0.45)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
-          border: "1px solid rgba(243, 248, 255,0.12)",
+          border: "1px solid rgba(246, 249, 252,0.12)",
         }}
         animate={{ opacity: isChosen ? 0 : 1 }}
         transition={{ duration: 0.2 }}
@@ -406,7 +406,7 @@ function GateCard({
               backgroundColor: "rgba(21, 24, 28,0.72)",
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
-              border: "1px solid rgba(243, 248, 255,0.14)",
+              border: "1px solid rgba(246, 249, 252,0.14)",
               boxShadow: "0 24px 48px -16px rgba(21, 24, 28,0.5)",
               pointerEvents: "none",
             }}
@@ -422,7 +422,7 @@ function GateCard({
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
-                color: "rgba(243, 248, 255,0.55)",
+                color: "rgba(246, 249, 252,0.55)",
                 marginBottom: 16,
               }}
             >
@@ -440,7 +440,7 @@ function GateCard({
                     flexDirection: "column",
                     gap: 2,
                     paddingBottom: i < stacks.length - 1 ? 14 : 0,
-                    borderBottom: i < stacks.length - 1 ? "1px solid rgba(243, 248, 255,0.08)" : "none",
+                    borderBottom: i < stacks.length - 1 ? "1px solid rgba(246, 249, 252,0.08)" : "none",
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
@@ -474,7 +474,7 @@ function GateCard({
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 11,
                         fontWeight: 500,
-                        color: "rgba(243, 248, 255,0.75)",
+                        color: "rgba(246, 249, 252,0.75)",
                         whiteSpace: "nowrap",
                       }}
                     >
@@ -485,7 +485,7 @@ function GateCard({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 12,
-                      color: "rgba(243, 248, 255,0.6)",
+                      color: "rgba(246, 249, 252,0.6)",
                       letterSpacing: "0.01em",
                     }}
                   >

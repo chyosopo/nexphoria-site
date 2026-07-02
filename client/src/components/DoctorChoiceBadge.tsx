@@ -38,7 +38,7 @@ export function DoctorChoiceBadge({
   const bg = isDark ? "rgba(21, 24, 28,0.92)" : "var(--nx-bg)";
   const fg = isDark ? "var(--nx-bg)" : "var(--nx-cobalt)";
   const dotColor = "var(--nx-rust)"; // brand rust — used for "Limited" tag etc.
-  const border = isDark ? "1px solid rgba(240, 244, 250,0.18)" : "1px solid rgba(21, 24, 28,0.10)";
+  const border = isDark ? "1px solid rgba(243, 245, 247,0.18)" : "1px solid rgba(21, 24, 28,0.10)";
 
   return (
     <div

@@ -153,7 +153,7 @@ export default function Category() {
           {/* goal chips */}
           <div className="mt-8 flex flex-wrap gap-2">
             {cfg.chips.map((c) => (
-              <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(122, 176, 243,0.22)", border: "1px solid rgba(36, 103, 185,0.22)", borderRadius: 999, padding: "7px 14px" }}>
+              <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(152, 182, 213,0.22)", border: "1px solid rgba(73, 110, 148,0.22)", borderRadius: 999, padding: "7px 14px" }}>
                 {c}
               </span>
             ))}
@@ -189,15 +189,15 @@ export default function Category() {
           <h2 className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
             Progress you can <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>point to.</em>
           </h2>
-          <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(240, 244, 250,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
+          <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
             <div className="flex items-center justify-between gap-4">
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 13.5, color: "var(--nx-bg)" }}>{GOAL_CHIP[slug]?.label}</span>
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: 999, padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
             </div>
             <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,var(--nx-success),var(--nx-acid),var(--nx-rust))" }}>
-              <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "var(--nx-bg)", boxShadow: "0 0 0 3px rgba(240, 244, 250,0.3)" }} />
+              <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: 999, background: "var(--nx-bg)", boxShadow: "0 0 0 3px rgba(243, 245, 247,0.3)" }} />
             </div>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(240, 244, 250,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(243, 245, 247,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
           </div>
         </div>
       </section>

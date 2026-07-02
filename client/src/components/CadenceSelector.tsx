@@ -171,9 +171,9 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                         textTransform: "uppercase",
                         padding: "3px 7px",
                         background: isSelected
-                          ? "rgba(240, 244, 250,0.18)"
+                          ? "rgba(243, 245, 247,0.18)"
                           : card.badge === "Best value"
-                          ? "rgba(43, 86, 139,0.12)"
+                          ? "rgba(67, 91, 115,0.12)"
                           : "rgba(21, 24, 28,0.08)",
                         color: isSelected
                           ? "var(--nx-bg)"
@@ -190,7 +190,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                   style={{
                     ...fontMono,
                     fontSize: "10.5px",
-                    color: isSelected ? "rgba(240, 244, 250,0.6)" : "rgba(21, 24, 28,0.5)",
+                    color: isSelected ? "rgba(243, 245, 247,0.6)" : "rgba(21, 24, 28,0.5)",
                     marginTop: "3px",
                     letterSpacing: "0.04em",
                   }}
@@ -215,7 +215,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                   style={{
                     ...fontMono,
                     fontSize: "9px",
-                    color: isSelected ? "rgba(240, 244, 250,0.55)" : "rgba(21, 24, 28,0.45)",
+                    color: isSelected ? "rgba(243, 245, 247,0.55)" : "rgba(21, 24, 28,0.45)",
                     marginTop: "3px",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",

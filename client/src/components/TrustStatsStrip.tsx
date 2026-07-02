@@ -47,8 +47,8 @@ export function TrustStatsStrip({
       style={{
         backgroundColor: isDark ? "var(--nx-cobalt)" : "var(--nx-ceramic)",
         color: isDark ? "var(--nx-ceramic)" : "var(--nx-cobalt)",
-        borderTop: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
-        borderBottom: `1px solid ${isDark ? "rgba(243, 248, 255,0.08)" : "var(--nx-border)"}`,
+        borderTop: `1px solid ${isDark ? "rgba(246, 249, 252,0.08)" : "var(--nx-border)"}`,
+        borderBottom: `1px solid ${isDark ? "rgba(246, 249, 252,0.08)" : "var(--nx-border)"}`,
         paddingTop: 96,
         paddingBottom: 96,
       }}
@@ -68,7 +68,7 @@ export function TrustStatsStrip({
               fontWeight: 500,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: isDark ? "rgba(243, 248, 255,0.55)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
               marginBottom: 20,
             }}
           >
@@ -96,8 +96,8 @@ export function TrustStatsStrip({
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: 0,
-            borderTop: `1px solid ${isDark ? "rgba(243, 248, 255,0.12)" : "var(--nx-border)"}`,
-            borderBottom: `1px solid ${isDark ? "rgba(243, 248, 255,0.12)" : "var(--nx-border)"}`,
+            borderTop: `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
+            borderBottom: `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
           }}
         >
           {stats.map((stat, i) => (
@@ -157,7 +157,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
         textAlign: "center",
         borderRight: isLast
           ? "none"
-          : `1px solid ${isDark ? "rgba(243, 248, 255,0.12)" : "var(--nx-border)"}`,
+          : `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
       }}
       className="stat-cell"
     >
@@ -200,7 +200,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
           fontWeight: 500,
           letterSpacing: "0.16em",
           textTransform: "uppercase",
-          color: isDark ? "rgba(243, 248, 255,0.85)" : "var(--nx-cobalt)",
+          color: isDark ? "rgba(246, 249, 252,0.85)" : "var(--nx-cobalt)",
           marginBottom: 6,
         }}
       >
@@ -212,7 +212,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: 12,
             lineHeight: 1.45,
-            color: isDark ? "rgba(243, 248, 255,0.55)" : "var(--nx-text-muted)",
+            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
           }}
         >
           {stat.caption}

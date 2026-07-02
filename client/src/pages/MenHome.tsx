@@ -187,7 +187,7 @@ function MenHeroDark() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 45% at 82% 30%, rgba(79, 211, 255,0.14) 0%, rgba(79, 211, 255,0) 60%)",
+            "radial-gradient(60% 45% at 82% 30%, rgba(123, 167, 211,0.14) 0%, rgba(123, 167, 211,0) 60%)",
         }}
       />
       <div
@@ -195,7 +195,7 @@ function MenHeroDark() {
         className="absolute inset-0 pointer-events-none opacity-40"
         style={{
           background:
-            "radial-gradient(80% 60% at 15% 90%, rgba(80,140,220,0.22) 0%, rgba(80,140,220,0) 55%)",
+            "radial-gradient(80% 60% at 15% 90%, rgba(115, 150, 185,0.22) 0%, rgba(115, 150, 185,0) 55%)",
         }}
       />
 
@@ -205,8 +205,8 @@ function MenHeroDark() {
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full"
               style={{
-                background: "rgba(79, 211, 255,0.10)",
-                border: "1px solid rgba(79, 211, 255,0.28)",
+                background: "rgba(123, 167, 211,0.10)",
+                border: "1px solid rgba(123, 167, 211,0.28)",
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 600,
                 fontSize: 11,
@@ -241,7 +241,7 @@ function MenHeroDark() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "clamp(16px, 1.15vw, 19px)",
                 lineHeight: 1.55,
-                color: "rgba(243, 248, 255,0.78)",
+                color: "rgba(246, 249, 252,0.78)",
               }}
             >
               Testosterone-aware peptide therapy — recovery, strength, longevity, and metabolic
@@ -259,9 +259,9 @@ function MenHeroDark() {
                   key={b}
                   className="px-3 py-1.5 rounded-full text-[12.5px]"
                   style={{
-                    background: "rgba(243, 248, 255,0.06)",
-                    border: "1px solid rgba(243, 248, 255,0.14)",
-                    color: "rgba(243, 248, 255,0.90)",
+                    background: "rgba(246, 249, 252,0.06)",
+                    border: "1px solid rgba(246, 249, 252,0.14)",
+                    color: "rgba(246, 249, 252,0.90)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                   }}
@@ -280,7 +280,7 @@ function MenHeroDark() {
                 className="inline-flex items-center gap-2 text-[14px] font-medium"
                 style={{
                   color: "var(--nx-ceramic)",
-                  borderBottom: "1px solid rgba(243, 248, 255,0.35)",
+                  borderBottom: "1px solid rgba(246, 249, 252,0.35)",
                   paddingBottom: 2,
                   fontFamily: "'General Sans', system-ui, sans-serif",
                 }}
@@ -293,7 +293,7 @@ function MenHeroDark() {
             <div
               className="mt-8 text-[13px]"
               style={{
-                color: "rgba(243, 248, 255,0.55)",
+                color: "rgba(246, 249, 252,0.55)",
                 fontFamily: "'General Sans', system-ui, sans-serif",
               }}
             >
@@ -306,7 +306,7 @@ function MenHeroDark() {
               className="relative overflow-hidden rounded-[20px]"
               style={{
                 aspectRatio: "4/5",
-                border: "1px solid rgba(243, 248, 255,0.10)",
+                border: "1px solid rgba(246, 249, 252,0.10)",
                 boxShadow: "0 30px 80px rgba(21, 24, 28,0.45)",
               }}
             >
@@ -322,16 +322,16 @@ function MenHeroDark() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(11,18,32,0.0) 45%, rgba(11,18,32,0.85) 100%)",
+                    "linear-gradient(180deg, rgba(16, 21, 27,0.0) 45%, rgba(16, 21, 27,0.85) 100%)",
                 }}
               />
               <div
                 className="absolute left-5 right-5 bottom-5 md:left-7 md:right-7 md:bottom-7 rounded-[14px] p-5 md:p-6"
                 style={{
-                  background: "rgba(11,18,32,0.72)",
+                  background: "rgba(16, 21, 27,0.72)",
                   backdropFilter: "blur(12px)",
                   WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(243, 248, 255,0.12)",
+                  border: "1px solid rgba(246, 249, 252,0.12)",
                 }}
               >
                 <div
@@ -365,7 +365,7 @@ function MenHeroDark() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: 13,
-                    color: "rgba(243, 248, 255,0.85)",
+                    color: "rgba(246, 249, 252,0.85)",
                   }}
                 >
                   <span>BPC-157</span>
@@ -451,7 +451,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
         style={{
           width: "40px",
           height: "1px",
-          backgroundColor: light ? "rgba(240, 244, 250,0.35)" : "var(--nx-cobalt)",
+          backgroundColor: light ? "rgba(243, 245, 247,0.35)" : "var(--nx-cobalt)",
           flexShrink: 0,
         }}
       />
@@ -462,7 +462,7 @@ function SectionEyebrow({ children, light = false }: { children: React.ReactNode
           fontWeight: 500,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
-          color: light ? "rgba(240, 244, 250,0.6)" : "var(--nx-cobalt)",
+          color: light ? "rgba(243, 245, 247,0.6)" : "var(--nx-cobalt)",
         }}
       >
         {children}
@@ -652,7 +652,7 @@ function HeroSection_REMOVED({
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to right, rgba(240, 244, 250,0.35) 0%, rgba(21, 24, 28,0) 25%)",
+              background: "linear-gradient(to right, rgba(243, 245, 247,0.35) 0%, rgba(21, 24, 28,0) 25%)",
             }}
           />
         </div>
@@ -779,7 +779,7 @@ function FlagshipCards() {
                         fontWeight: 500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "rgba(240, 244, 250,0.55)",
+                        color: "rgba(243, 245, 247,0.55)",
                         marginBottom: "0.75rem",
                       }}
                     >
@@ -803,7 +803,7 @@ function FlagshipCards() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "13px",
-                        color: "rgba(240, 244, 250,0.68)",
+                        color: "rgba(243, 245, 247,0.68)",
                         lineHeight: 1.5,
                         marginBottom: "1.25rem",
                       }}
@@ -816,7 +816,7 @@ function FlagshipCards() {
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "13px",
                           fontWeight: 600,
-                          color: "rgba(240, 244, 250,0.9)",
+                          color: "rgba(243, 245, 247,0.9)",
                         }}
                       >
                         From {card.from}
@@ -829,7 +829,7 @@ function FlagshipCards() {
                           width: "32px",
                           height: "32px",
                           borderRadius: "50%",
-                          border: "1px solid rgba(240, 244, 250,0.3)",
+                          border: "1px solid rgba(243, 245, 247,0.3)",
                           transition: "transform 200ms ease, border-color 200ms ease",
                         }}
                         className="group-hover:translate-x-1 group-hover:border-white/60"

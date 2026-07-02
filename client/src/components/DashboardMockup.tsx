@@ -25,7 +25,7 @@ export function DashboardMockup() {
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 50% at 50% 50%, rgba(13, 63, 79,0.18) 0%, transparent 70%)",
+            "radial-gradient(60% 50% at 50% 50%, rgba(29, 46, 63,0.18) 0%, transparent 70%)",
         }}
       />
 
@@ -53,7 +53,7 @@ export function DashboardMockup() {
             <Reveal>
               <div className="relative">
                 <div className="absolute -inset-4 bg-primary/10 blur-2xl rounded-[2.5rem]" />
-                <div className="relative rounded-[2rem] overflow-hidden border border-foreground/15 bg-background shadow-[0_30px_80px_-20px_rgba(13, 63, 79,0.25)]">
+                <div className="relative rounded-[2rem] overflow-hidden border border-foreground/15 bg-background shadow-[0_30px_80px_-20px_rgba(29, 46, 63,0.25)]">
                   <img
                     src={outcomeScore}
                     alt="Outcome score dashboard — 89 performance index, recovery 72, vitality 85, strength 91"

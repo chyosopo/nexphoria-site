@@ -487,7 +487,7 @@ function PhysiciansHeroDark() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(1200px 500px at 82% 12%, rgba(102, 217, 255,0.14), transparent 60%), radial-gradient(700px 400px at 5% 90%, rgba(60,120,255,0.12), transparent 65%)",
+            "radial-gradient(1200px 500px at 82% 12%, rgba(140, 178, 217,0.14), transparent 60%), radial-gradient(700px 400px at 5% 90%, rgba(109, 157, 206,0.12), transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -547,7 +547,7 @@ function PhysiciansHeroDark() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "1.0625rem",
                 lineHeight: 1.6,
-                color: "rgba(240, 242, 245,0.72)",
+                color: "rgba(241, 243, 244,0.72)",
                 maxWidth: "38rem",
                 marginBottom: "2rem",
               }}
@@ -572,7 +572,7 @@ function PhysiciansHeroDark() {
                     borderRadius: "999px",
                     background: "rgba(255,255,255,0.06)",
                     border: "1px solid rgba(255,255,255,0.14)",
-                    color: "rgba(240, 242, 245,0.9)",
+                    color: "rgba(241, 243, 244,0.9)",
                   }}
                 >
                   {chip}
@@ -652,7 +652,7 @@ function PhysiciansHeroDark() {
                     position: "absolute",
                     inset: 0,
                     background:
-                      "linear-gradient(180deg, transparent 45%, rgba(11,18,32,0.85) 100%)",
+                      "linear-gradient(180deg, transparent 45%, rgba(16, 21, 27,0.85) 100%)",
                   }}
                 />
                 <div
@@ -737,7 +737,7 @@ function PhysiciansHeroDark() {
                   fontWeight: 500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: "rgba(240, 242, 245,0.55)",
+                  color: "rgba(241, 243, 244,0.55)",
                 }}
               >
                 {s.v}

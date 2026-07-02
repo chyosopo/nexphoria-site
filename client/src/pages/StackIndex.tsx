@@ -231,7 +231,7 @@ export default function StackIndex() {
                         <div className="text-[13px] mb-2 max-w-[92%]" style={{ fontFamily: SANS, color: "var(--nx-ceramic)", fontWeight: 500, lineHeight: 1.35 }} data-testid={`proof-${stack.slug}`}>
                           {getPortraitProof(stack.slug)}
                         </div>
-                        <div className="text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(243, 248, 255,0.72)" }}>
+                        <div className="text-[10px] uppercase tracking-[0.14em]" style={{ fontFamily: MONO, color: "rgba(246, 249, 252,0.72)" }}>
                           {stack.peptides.length} peptides · {meta.course} protocol · From {formatUSD(bundle)}/mo
                         </div>
                       </div>
@@ -337,14 +337,14 @@ export default function StackIndex() {
                     <line x1="10" y1="60" x2="110" y2="60" stroke="var(--nx-acid)" strokeWidth="0.75" />
                   </svg>
                   <div className="absolute" style={{ textAlign: "center" }}>
-                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(122, 176, 243,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
+                    <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(152, 182, 213,0.8)", textTransform: "uppercase", marginBottom: 10 }}>Custom protocol</div>
                     <div className="inline-flex items-center justify-center" style={{ width: 48, height: 48, borderRadius: 999, border: "1.5px solid var(--nx-acid)" }}>
                       <Plus size={22} style={{ color: "var(--nx-acid)" }} />
                     </div>
                   </div>
                 </div>
                 <div className="p-6 md:p-7">
-                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(122, 176, 243,0.75)", textTransform: "uppercase", marginBottom: 8 }}>
+                  <div style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.2em", color: "rgba(152, 182, 213,0.75)", textTransform: "uppercase", marginBottom: 8 }}>
                     Build your own stack
                   </div>
                   <h2 className="text-2xl mb-2" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
@@ -525,7 +525,7 @@ export default function StackIndex() {
           <div className="p-8 md:p-12 max-w-4xl mx-auto" style={{ background: "var(--nx-fg)" }}>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "rgba(122, 176, 243,0.8)" }}>
+                <div className="text-[10px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: MONO, color: "rgba(152, 182, 213,0.8)" }}>
                   Not sure which stack?
                 </div>
                 <h2 className="text-2xl md:text-3xl mb-3" style={{ fontFamily: SERIF, color: "#fff", fontWeight: 500 }}>
@@ -576,7 +576,7 @@ function StackHeroTile({ href, slug, name, proof }: { href: string; slug: string
           <h3 className="mb-2" style={{ fontFamily: SERIF, color: "var(--nx-ceramic)", fontWeight: 600, fontSize: "clamp(32px, 4vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
             The {name} stack
           </h3>
-          <p className="text-sm mb-4 max-w-[34ch]" style={{ fontFamily: SANS, color: "rgba(243, 248, 255,0.85)", lineHeight: 1.4 }}>
+          <p className="text-sm mb-4 max-w-[34ch]" style={{ fontFamily: SANS, color: "rgba(246, 249, 252,0.85)", lineHeight: 1.4 }}>
             {proof}
           </p>
           <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] px-4 py-2 group-hover:gap-3 transition-all" style={{ fontFamily: MONO, color: "var(--nx-fg)", background: "var(--nx-acid)", borderRadius: 999, fontWeight: 600 }}>

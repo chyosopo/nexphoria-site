@@ -818,7 +818,7 @@ export default function About() {
                 fontWeight: 500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "rgba(243, 248, 255,0.55)",
+                color: "rgba(246, 249, 252,0.55)",
                 marginTop: "2.5rem",
               }}
             >

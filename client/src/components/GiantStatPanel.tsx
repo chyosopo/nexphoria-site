@@ -39,7 +39,7 @@ export function GiantStatPanel({
         padding: "clamp(64px, 8vw, 128px) clamp(24px, 4vw, 64px)",
         background: isDark ? "var(--nx-fg)" : "color-mix(in oklab, var(--nx-fg) 3%, var(--nx-bg-cream, var(--nx-ceramic)))",
         border: isDark
-          ? "1px solid rgba(243, 248, 255,0.06)"
+          ? "1px solid rgba(246, 249, 252,0.06)"
           : "1px solid color-mix(in oklab, var(--nx-fg) 8%, transparent)",
         textAlign: "center",
         position: "relative",
@@ -72,7 +72,7 @@ export function GiantStatPanel({
           fontSize: "clamp(20px, 2.4vw, 32px)",
           fontWeight: 400,
           color: isDark
-            ? "rgba(243, 248, 255,0.72)"
+            ? "rgba(246, 249, 252,0.72)"
             : "color-mix(in oklab, var(--nx-fg) 65%, transparent)",
           lineHeight: 1.2,
         }}
@@ -88,7 +88,7 @@ export function GiantStatPanel({
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             color: isDark
-              ? "rgba(243, 248, 255,0.42)"
+              ? "rgba(246, 249, 252,0.42)"
               : "color-mix(in oklab, var(--nx-fg) 45%, transparent)",
           }}
         >

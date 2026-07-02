@@ -248,7 +248,7 @@ export function BloodworkDashboard() {
                 padding: hasAnnotation ? "10px 20px 6px" : "9px 20px",
                 borderBottom: i < biomarkers.length - 1 ? "1px solid var(--nx-border)" : "none",
                 alignItems: "start",
-                backgroundColor: i % 2 === 0 ? "var(--nx-bg-cream)" : "rgba(224, 231, 240,0.4)",
+                backgroundColor: i % 2 === 0 ? "var(--nx-bg-cream)" : "rgba(228, 232, 236,0.4)",
               }}
             >
               {/* Biomarker name */}
