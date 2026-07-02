@@ -762,7 +762,7 @@ function HowItWorksMechanism({ peptide }: { peptide: Peptide }) {
             <p className="nx-eyebrow mb-4" style={{ color: INK }}>How it works</p>
             <h2
               className="text-3xl md:text-4xl mb-6"
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.01em" }}
               data-testid="mechanism-title"
             >
               {story.title}
@@ -1874,7 +1874,7 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
               {peptide.name}
             </span>
             <span className="text-[var(--nx-bg)]/60" data-testid="anchor-price">
-              {" "}· ${price.perMo(plan)}/mo
+              {" "}· ${price.perMo(plan)}/mo · if prescribed†
             </span>
           </p>
 
@@ -1920,9 +1920,9 @@ function PeptidePage({ peptide }: { peptide: Peptide }) {
           <p className="nx-eyebrow mb-5" data-testid="tagline-eyebrow">{thesisEyebrow(peptide)}</p>
           <h2
             className="text-3xl md:text-5xl mx-auto max-w-[20ch]"
-            style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.05, letterSpacing: "-0.02em" }}
+            style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.01em" }}
           >
-            {tag.lead} <span style={{  color: INK }}>{tag.accent}</span>
+            {tag.lead} <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "#B97C24" }}>{tag.accent}</span>
           </h2>
         </div>
       </section>
@@ -2252,9 +2252,9 @@ function PricingCard({
     m6: "ships every 6 months",
   };
   const plans = [
-    { id: "m1" as PlanId, label: "1 Month", perMo: price.m1, total: `$${price.m1}`, popular: false },
-    { id: "m3" as PlanId, label: "3 Month", perMo: price.m3perMo, total: `$${price.m3total}`, popular: true },
-    { id: "m6" as PlanId, label: "6 Month", perMo: price.m6perMo, total: `$${price.m6total}`, popular: false },
+    { id: "m1" as PlanId, label: "Every month", perMo: price.m1, total: `$${price.m1}`, popular: false },
+    { id: "m3" as PlanId, label: "Every 3 months", perMo: price.m3perMo, total: `$${price.m3total}`, popular: true },
+    { id: "m6" as PlanId, label: "Every 6 months", perMo: price.m6perMo, total: `$${price.m6total}`, popular: false },
   ];
   return (
     <div
