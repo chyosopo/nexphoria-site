@@ -88,6 +88,16 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
       { q: "Are these products FDA-approved?", a: "Some molecules in this category exist as FDA-approved branded medications; compounded versions are not approved or evaluated by the FDA for safety, effectiveness, or quality." },
     ],
   },
+  "sexual-health": {
+    pre: "Desire, addressed\u2014", accent: "clinically.",
+    sub: "Physician-directed protocols oriented around libido and arousal through a central melanocortin pathway \u2014 evaluated, prescribed, and monitored like any other therapy.",
+    chips: ["Libido support", "Arousal response", "Centrally mediated", "On-demand dosing"],
+    faqs: [
+      { q: "How does a protocol in this category start?", a: "With a private online intake and physician review. If a prescription is appropriate, your protocol ships from a state-licensed 503A compounding pharmacy. " + IF_RX },
+      { q: "Is this the same as a PDE5 inhibitor?", a: "No. This pathway works centrally on melanocortin receptors rather than on vascular blood flow, which is why a physician evaluates fit against your history and any other medications." },
+      { q: "Are these products FDA-approved?", a: "One molecule in this category exists as an FDA-approved branded medication; compounded versions are not approved or evaluated by the FDA for safety, effectiveness, or quality." },
+    ],
+  },
 };
 
 
@@ -99,6 +109,7 @@ const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: s
   longevity: { label: "Cellular energy", status: "Optimal", pos: "18%" },
   cognition: { label: "Focus & clarity", status: "Steady", pos: "24%" },
   metabolic: { label: "Glucose control", status: "Improving", pos: "32%" },
+  "sexual-health": { label: "Libido & arousal", status: "Responding", pos: "28%" },
 };
 
 const STEPS: [string, string][] = [

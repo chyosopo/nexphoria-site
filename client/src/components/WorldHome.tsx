@@ -20,6 +20,7 @@ const CATEGORY_JOBS: Record<PeptideCategory, string> = {
   cognition: "Focus and mood, without stimulants.",
   sleep: "Deep-sleep architecture, restored.",
   skin: "Collagen, tone, structural skin health.",
+  "sexual-health": "Libido and arousal, centrally mediated.",
 };
 
 export interface WorldHomeConfig {

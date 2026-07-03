@@ -14,7 +14,8 @@ export type PeptideCategory =
   | "sleep"
   | "growth"
   | "longevity"
-  | "metabolic";
+  | "metabolic"
+  | "sexual-health";
 
 export interface PeptideStudy {
   title: string;
@@ -79,6 +80,7 @@ export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
   growth: "Growth & Hormone",
   longevity: "Longevity & Cellular",
   metabolic: "Metabolic & Weight",
+  "sexual-health": "Sexual Health",
 };
 
 const RAW_PEPTIDES: Peptide[] = [
@@ -673,6 +675,252 @@ const RAW_PEPTIDES: Peptide[] = [
     },
     contraindications:
       "NOT FOR: pregnancy · active malignancy · Prader-Willi syndrome · known hypersensitivity to GH-fragment peptides · <18 yrs",
+  },
+  {
+    slug: "sermorelin",
+    name: "Sermorelin",
+    fullName: "Sermorelin (GHRH 1-29)",
+    tagline: "The gentlest nudge to the pituitary.",
+    category: "growth",
+    glyph: "ghrh",
+    summary:
+      "The shortest fragment of growth-hormone-releasing hormone that still carries its full activity — 29 amino acids. Sermorelin asks the pituitary to release its own growth hormone in natural pulses, rather than replacing it from outside.",
+    mechanism:
+      "Sermorelin binds the GHRH receptor on the anterior pituitary, driving cAMP production and a pulsatile release of endogenous growth hormone. Because it works through the body's own axis — with intact negative feedback — it raises GH and downstream IGF-1 without the flat, supraphysiologic levels seen with recombinant HGH. It was FDA-approved in 1997 for pediatric GH assessment before commercial production was discontinued for business reasons in 2008; it is now prescribed off-label and compounded.",
+    halfLife: "~11-12 minutes (rapid; taken at night to mirror natural pulse)",
+    typicalDose: "100-300 mcg at bedtime",
+    cycleLength: "12+ weeks, cycled per physician guidance",
+    administration: "Subcutaneous injection, before sleep",
+    timeline: [
+      { week: "Week 1-3", effect: "Deeper sleep is often the first reported change." },
+      { week: "Week 3-6", effect: "Recovery between training sessions improves." },
+      { week: "Week 6-12", effect: "Body-composition shifts appear on labs and in the mirror." },
+      { week: "Week 12+", effect: "IGF-1 trend reviewed; dose held or adjusted." },
+    ],
+    studies: [
+      { title: "Sermorelin: a review of its use in the diagnosis and treatment of GH deficiency", year: "2007", source: "Treat Endocrinol / PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/18031173/" },
+      { title: "Growth hormone secretagogue treatment in hypogonadal men raises IGF-1 levels", year: "2017", source: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/28830317/" },
+      { title: "Growth hormone secretagogues: history, mechanism, and clinical development", year: "2020", source: "JCSM Rapid Communications", url: "https://onlinelibrary.wiley.com/doi/full/10.1002/rco2.9" },
+    ],
+    pairsWith: ["ipamorelin", "glycine"],
+    inStacks: [],
+    evidenceTier: {
+      grade: "B",
+      description: "Formerly FDA-approved (diagnostic) - decades of human use - modern trials small",
+      studyCount: 20,
+      fdaStatus: "Was FDA-approved 1997-2008 (diagnostic); now compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy - active malignancy - untreated hypothyroidism - known hypersensitivity to GHRH analogs - <18 yrs",
+  },
+  {
+    slug: "ipa-cjc",
+    name: "Ipamorelin / CJC-1295 Blend",
+    fullName: "Ipamorelin + CJC-1295 (no-DAC)",
+    tagline: "Two levers, one clean pulse.",
+    category: "growth",
+    glyph: "secretagogue",
+    summary:
+      "A pairing that pulls two different levers on the same system: CJC-1295 (no-DAC) is a GHRH analog, and ipamorelin is a selective ghrelin-receptor agonist. Together they produce a strong, clean growth-hormone pulse without meaningfully disturbing cortisol or prolactin.",
+    mechanism:
+      "CJC-1295 activates the GHRH receptor while ipamorelin activates the GHS-R (ghrelin) receptor. The two pathways are complementary — GHRH sets the amplitude of the pulse and the ghrelin arm amplifies it — so a combined dose yields more GH release than either alone. Ipamorelin's selectivity is the point: unlike older secretagogues (GHRP-6, GHRP-2), it does not appreciably raise cortisol, prolactin, or hunger.",
+    halfLife: "Ipamorelin ~2 hours; CJC-1295 no-DAC ~30 minutes",
+    typicalDose: "Physician-individualized; typically dosed at night",
+    cycleLength: "12+ weeks, cycled per physician guidance",
+    administration: "Subcutaneous injection, before sleep",
+    timeline: [
+      { week: "Week 1-2", effect: "Sleep quality and recovery begin to shift." },
+      { week: "Week 2-6", effect: "Training recovery and skin quality improve." },
+      { week: "Week 6-12", effect: "Lean-mass and fat-distribution changes register on labs." },
+      { week: "Week 12+", effect: "IGF-1 trend reviewed; protocol titrated." },
+    ],
+    studies: [
+      { title: "Ipamorelin, the first selective growth hormone secretagogue", year: "1998", source: "Eur J Endocrinol", url: "https://pubmed.ncbi.nlm.nih.gov/9849822/" },
+      { title: "Growth hormone secretagogues: history, mechanism, and clinical development", year: "2020", source: "JCSM Rapid Communications", url: "https://onlinelibrary.wiley.com/doi/full/10.1002/rco2.9" },
+    ],
+    pairsWith: ["sermorelin", "bpc-157"],
+    inStacks: ["ascend"],
+    evidenceTier: {
+      grade: "B-",
+      description: "Selective secretagogue with clean human PK - combination use is off-label",
+      studyCount: 15,
+      fdaStatus: "Not FDA-approved - compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy - active malignancy - diabetic retinopathy - known hypersensitivity - <18 yrs",
+  },
+  {
+    slug: "cerebrolysin",
+    name: "Cerebrolysin",
+    fullName: "Cerebrolysin (neuropeptide preparation)",
+    tagline: "Neurotrophic support, by infusion.",
+    category: "cognition",
+    glyph: "fragment",
+    summary:
+      "A porcine-derived mixture of low-molecular-weight neuropeptides and free amino acids that mimics the action of endogenous neurotrophic factors. It is used clinically in several countries for stroke recovery and dementia, and is among the more rigorously trialed compounds in this category.",
+    mechanism:
+      "Cerebrolysin's peptide fraction is thought to mimic neurotrophic factors (BDNF, GDNF, NGF), supporting neuronal survival, synaptic plasticity, and neurogenesis while reducing excitotoxic and inflammatory injury. It has been evaluated in randomized controlled trials for acute ischemic stroke, vascular dementia, and Alzheimer's disease, with Cochrane reviews noting mixed but non-trivial signals.",
+    halfLife: "Administered as a course of infusions rather than dosed by half-life",
+    typicalDose: "Physician-directed infusion course",
+    cycleLength: "Defined treatment courses, repeated per physician guidance",
+    administration: "Intravenous or intramuscular, in-clinic",
+    timeline: [
+      { week: "Course 1", effect: "Administered and tolerated under supervision." },
+      { week: "Weeks 2-4", effect: "Cognitive and processing changes assessed." },
+      { week: "Follow-up", effect: "Physician decides whether to repeat the course." },
+    ],
+    studies: [
+      { title: "Cerebrolysin for acute ischaemic stroke", year: "2020", source: "Cochrane Database Syst Rev", url: "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007026.pub5/full" },
+      { title: "Cerebrolysin in vascular dementia: a randomized controlled trial", year: "2017", source: "J Alzheimers Dis", url: "https://pubmed.ncbi.nlm.nih.gov/28128760/" },
+    ],
+    pairsWith: [],
+    inStacks: [],
+    evidenceTier: {
+      grade: "B+",
+      description: "Multiple RCTs and Cochrane reviews in stroke and dementia - not FDA-cleared in the US",
+      studyCount: 60,
+      fdaStatus: "Not FDA-approved in the US - used clinically abroad - compounded/imported by prescription",
+    },
+    contraindications:
+      "NOT FOR: pregnancy - epilepsy or seizure history - severe renal impairment - known hypersensitivity to the preparation - <18 yrs",
+  },
+  {
+    slug: "methylene-blue",
+    name: "Methylene Blue",
+    fullName: "Methylene Blue (methylthioninium chloride)",
+    tagline: "The mitochondrial electron shuttle.",
+    category: "cognition",
+    glyph: "fragment",
+    summary:
+      "Not a peptide but a well-characterized small molecule with a century of medical use. At low doses it acts on the mitochondrial electron-transport chain and is investigated for cognitive and metabolic support. Pharmaceutical-grade purity matters enormously here — this is not an aquarium-shop chemical.",
+    mechanism:
+      "At low (nanomolar-to-micromolar) concentrations, methylene blue acts as an alternative electron carrier in the mitochondrial electron-transport chain, accepting electrons and donating them to cytochrome c — increasing oxygen consumption and ATP production, and reducing oxidative stress. It is also a monoamine-oxidase inhibitor, which is the source of its most important drug interactions.",
+    halfLife: "~5-6 hours",
+    typicalDose: "Low-dose, physician-directed",
+    cycleLength: "Per physician guidance",
+    administration: "Oral (pharmaceutical grade)",
+    timeline: [
+      { week: "Acute", effect: "Some report same-day changes in mental clarity." },
+      { week: "Ongoing", effect: "Response and tolerance assessed by your physician." },
+    ],
+    studies: [
+      { title: "Low-dose methylene blue and functional MRI of memory encoding/retrieval", year: "2016", source: "Radiology", url: "https://pubmed.ncbi.nlm.nih.gov/27351678/" },
+      { title: "Methylene blue: revisited mechanisms and therapeutic potential", year: "2021", source: "PMC", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8058093/" },
+    ],
+    pairsWith: [],
+    inStacks: [],
+    evidenceTier: {
+      grade: "B",
+      description: "Century of medical use - small human cognitive trials - serotonin-syndrome interaction risk",
+      studyCount: 30,
+      fdaStatus: "FDA-approved for other indications (e.g. methemoglobinemia); cognitive use is off-label",
+    },
+    contraindications:
+      "NOT FOR: use with SSRIs/SNRIs/MAOIs (serotonin-syndrome risk) - G6PD deficiency - pregnancy - renal impairment - <18 yrs",
+  },
+  {
+    slug: "bpc-tb-combo",
+    name: "BPC-157 + TB-500",
+    fullName: "BPC-157 + TB-500 (combined repair protocol)",
+    tagline: "Local repair meets systemic logistics.",
+    category: "recovery",
+    glyph: "chain",
+    summary:
+      "The two most-used recovery peptides, run together on purpose. BPC-157 acts locally at the site of injury; TB-500 travels systemically and coordinates the cellular repair crew. Physicians pair them when an injury needs both a local signal and whole-body support.",
+    mechanism:
+      "BPC-157 upregulates VEGF and growth-hormone-receptor expression at injury sites, driving angiogenesis and fibroblast migration, while modulating the nitric-oxide pathway. TB-500 (a synthetic fragment of Thymosin Beta-4) regulates actin, supporting cell migration, and appears to aid tissue remodeling systemically. The rationale for combining them is complementary coverage — local plus systemic — not a proven synergy, and the evidence base remains preclinical.",
+    halfLife: "BPC-157 ~4 h; TB-500 longer-acting",
+    typicalDose: "Physician-individualized for each component",
+    cycleLength: "4-8 weeks, tapering to maintenance",
+    administration: "Subcutaneous injection",
+    timeline: [
+      { week: "Week 1-2", effect: "Local inflammation eases; sleep often improves." },
+      { week: "Week 2-4", effect: "Soft-tissue repair accelerates; stiffness reduces." },
+      { week: "Week 4-8", effect: "Load tolerance and range of motion return." },
+    ],
+    studies: [
+      { title: "Stable gastric pentadecapeptide BPC 157 in GI tract", year: "2018", source: "Curr Pharm Des / PMC", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6225019/" },
+      { title: "Thymosin beta-4 and tissue repair / regeneration", year: "2012", source: "Ann N Y Acad Sci", url: "https://pubmed.ncbi.nlm.nih.gov/22994772/" },
+    ],
+    pairsWith: ["ghk-cu"],
+    inStacks: ["wolverine"],
+    evidenceTier: {
+      grade: "Preclinical",
+      description: "Both components rest on rodent repair models - combination use is off-label",
+      studyCount: 50,
+      fdaStatus: "Not FDA-approved - investigational - compounded by prescription only",
+    },
+    contraindications:
+      "NOT FOR: pregnancy - personal or family history of cancer - active malignancy - pro-angiogenic risk (untreated retinopathy, recent DVT) - WADA-tested athletes - <18 yrs",
+  },
+  {
+    slug: "semaglutide",
+    name: "Semaglutide",
+    fullName: "Semaglutide (GLP-1 receptor agonist)",
+    tagline: "The metabolic standard, physician-gated.",
+    category: "metabolic",
+    glyph: "secretagogue",
+    summary:
+      "The GLP-1 receptor agonist behind Ozempic and Wegovy — among the most rigorously trialed metabolic medications in modern practice. At Nexphoria it is never sold from a shelf: it is prescribed, dosed, and titrated by a physician against your bloodwork, and it is not available in every state.",
+    mechanism:
+      "Semaglutide is a long-acting GLP-1 receptor agonist. It enhances glucose-dependent insulin secretion, suppresses glucagon, slows gastric emptying, and acts on hypothalamic appetite centers to reduce food intake. The STEP program (weight management) and SUSTAIN program (glycemic control) established its efficacy across large randomized trials.",
+    halfLife: "~7 days (once-weekly dosing)",
+    typicalDose: "Physician-titrated from a low starting dose",
+    cycleLength: "Ongoing, with quarterly lab review",
+    administration: "Subcutaneous injection, once weekly",
+    timeline: [
+      { week: "Week 1-4", effect: "Low starting dose; appetite changes begin." },
+      { week: "Month 2-3", effect: "Dose titrated upward as tolerated; weight trend emerges." },
+      { week: "Ongoing", effect: "Titrated to effect against labs and tolerability." },
+    ],
+    studies: [
+      { title: "STEP 1: Once-weekly semaglutide in adults with overweight or obesity", year: "2021", source: "N Engl J Med", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2032183" },
+      { title: "SUSTAIN-6: Semaglutide and cardiovascular outcomes in type 2 diabetes", year: "2016", source: "N Engl J Med", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa1607141" },
+    ],
+    pairsWith: [],
+    inStacks: [],
+    evidenceTier: {
+      grade: "A",
+      description: "FDA-approved as a branded drug - large cardiovascular and weight-loss RCTs",
+      studyCount: 100,
+      fdaStatus: "Branded product is FDA-approved; compounded semaglutide is not FDA-approved and is physician-gated by state",
+    },
+    contraindications:
+      "NOT FOR: personal/family history of medullary thyroid carcinoma or MEN 2 - pregnancy - history of pancreatitis - certain states by law - <18 yrs",
+  },
+  {
+    slug: "pt-141",
+    name: "PT-141",
+    fullName: "PT-141 (Bremelanotide)",
+    tagline: "Desire, through a central pathway.",
+    category: "sexual-health",
+    glyph: "fragment",
+    summary:
+      "A melanocortin-receptor agonist that works on the brain's arousal pathways rather than on vascular blood flow — a fundamentally different mechanism from PDE5 inhibitors. Its branded form, Vyleesi, is FDA-approved for hypoactive sexual desire disorder in premenopausal women.",
+    mechanism:
+      "PT-141 (bremelanotide) activates melanocortin receptors — principally MC4R — in the central nervous system, modulating the neural circuits of sexual desire and arousal. Because the pathway is central rather than vascular, it does not depend on the nitric-oxide/PDE5 mechanism, and a physician evaluates fit against blood pressure and any other medications.",
+    halfLife: "~2.7 hours",
+    typicalDose: "On-demand, physician-individualized",
+    cycleLength: "As-needed, per physician guidance",
+    administration: "Subcutaneous injection, ahead of anticipated activity",
+    timeline: [
+      { week: "On-demand", effect: "Taken ahead of anticipated activity." },
+      { week: "Ongoing", effect: "Response and blood-pressure effect reviewed by your physician." },
+    ],
+    studies: [
+      { title: "Bremelanotide for hypoactive sexual desire disorder (RECONNECT trials)", year: "2019", source: "Obstet Gynecol", url: "https://pubmed.ncbi.nlm.nih.gov/31599832/" },
+      { title: "Bremelanotide (Vyleesi) FDA approval label", year: "2019", source: "US FDA", url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/210557s000lbl.pdf" },
+    ],
+    pairsWith: [],
+    inStacks: [],
+    evidenceTier: {
+      grade: "A-",
+      description: "Branded form FDA-approved (HSDD in premenopausal women) - Phase 3 RCTs",
+      studyCount: 25,
+      fdaStatus: "Branded product (Vyleesi) is FDA-approved; other uses are off-label; compounded versions not FDA-approved",
+    },
+    contraindications:
+      "NOT FOR: uncontrolled hypertension - known cardiovascular disease - pregnancy - known hypersensitivity - <18 yrs",
   },
 ];
 
