@@ -287,7 +287,7 @@ export default function Physicians() {
                     <p
                       style={{
                         fontFamily: F,
-                        fontSize: "10px",
+                        fontSize: "var(--nx-t-xs)",
                         fontWeight: 500,
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",
