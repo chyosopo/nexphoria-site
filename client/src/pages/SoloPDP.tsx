@@ -40,7 +40,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <SiteLayout variant={world ?? "showcase"}>
         <div style={{ maxWidth: 640, margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
           <h1 style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: 12 }}>Peptide not found</h1>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-muted)", marginBottom: 28 }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", marginBottom: 28 }}>
             That entry isn’t in the current formulary. Browse the full catalog or start an assessment.
           </p>
           <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>

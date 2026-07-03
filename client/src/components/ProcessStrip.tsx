@@ -88,7 +88,7 @@ export function ProcessStrip({
               fontWeight: 500,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
               marginBottom: 20,
             }}
           >
@@ -112,7 +112,7 @@ export function ProcessStrip({
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 17,
               lineHeight: 1.6,
-              color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-fg-muted)",
               maxWidth: 580,
             }}
           >
@@ -221,7 +221,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
             fontWeight: 500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
-            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
+            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
           }}
         >
           {step.timing}
@@ -258,7 +258,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
           fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: 14,
           lineHeight: 1.6,
-          color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-text-muted)",
+          color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-fg-muted)",
         }}
       >
         {step.body}

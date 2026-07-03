@@ -2189,7 +2189,7 @@ function GuideCapture() {
               <input type="email" placeholder="you@example.com" aria-label="Email address"
                 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", minWidth: 240, outline: "none" }} />
               <button onClick={() => setSent(true)}
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-fg)", color: "var(--nx-cream, var(--nx-bg))", cursor: "pointer" }}>
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-fg)", color: "var(--nx-bg)", cursor: "pointer" }}>
                 Get the guide
               </button>
             </div>

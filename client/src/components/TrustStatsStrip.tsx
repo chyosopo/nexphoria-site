@@ -68,7 +68,7 @@ export function TrustStatsStrip({
               fontWeight: 500,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
               marginBottom: 20,
             }}
           >
@@ -212,7 +212,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: 12,
             lineHeight: 1.45,
-            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-text-muted)",
+            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
           }}
         >
           {stat.caption}

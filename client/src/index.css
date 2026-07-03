@@ -52,6 +52,14 @@
     --nx-dur-slow: 520ms;
     --nx-ease:     cubic-bezier(0.22, 0.61, 0.36, 1);   /* confident settle */
     --nx-ease-in:  cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    /* numbered duration scale — the one actually used by components.
+       1=micro/press · 2=hover/focus · 3=reveals · 4=entrances.
+       (Was referenced but never defined: every var(--nx-dur-2) transition
+       was INVALID and snapped with no easing. Now real.) */
+    --nx-dur-1: 80ms;
+    --nx-dur-2: 200ms;
+    --nx-dur-3: 320ms;
+    --nx-dur-4: 600ms;
 
     /* ── Nexphoria brand tokens ── */
     /* BACKGROUND — warm cream palette */

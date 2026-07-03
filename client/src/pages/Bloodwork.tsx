@@ -361,7 +361,7 @@ function PanelExplorer() {
                 fontWeight: 500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "var(--nx-ink-2)",
+                color: "var(--nx-fg-graphite)",
                 marginBottom: "1rem",
               }}
             >
@@ -385,7 +385,7 @@ function PanelExplorer() {
                 fontFamily: FONT,
                 fontSize: "clamp(0.95rem, 1.05vw, 1.05rem)",
                 lineHeight: 1.6,
-                color: "var(--nx-ink-2)",
+                color: "var(--nx-fg-graphite)",
               }}
             >
               Annual physicals measure a handful of basic markers. Our panel goes further — from
@@ -490,7 +490,7 @@ function PanelExplorer() {
                       fontFamily: FONT,
                       fontSize: 12,
                       fontWeight: 500,
-                      color: "var(--nx-ink-2)",
+                      color: "var(--nx-fg-graphite)",
                       padding: "0.25rem 0.55rem",
                       border: "1px solid var(--nx-border)",
                       borderRadius: 999,
@@ -505,7 +505,7 @@ function PanelExplorer() {
                     fontFamily: FONT,
                     fontSize: 13.5,
                     lineHeight: 1.55,
-                    color: "var(--nx-ink-2)",
+                    color: "var(--nx-fg-graphite)",
                     marginBottom: "1rem",
                     minHeight: 70,
                   }}
@@ -549,7 +549,7 @@ function PanelExplorer() {
                             fontWeight: 500,
                             letterSpacing: "0.06em",
                             textTransform: "uppercase",
-                            color: "var(--nx-ink-2)",
+                            color: "var(--nx-fg-graphite)",
                             whiteSpace: "nowrap",
                           }}
                         >
@@ -563,7 +563,7 @@ function PanelExplorer() {
                       style={{
                         fontFamily: FONT,
                         fontSize: 11.5,
-                        color: "var(--nx-ink-2)",
+                        color: "var(--nx-fg-graphite)",
                         letterSpacing: "0.02em",
                         padding: "0.35rem 0",
                         borderTop: "1px solid var(--nx-border)",
@@ -584,7 +584,7 @@ function PanelExplorer() {
             style={{
               marginTop: "3rem",
               padding: "2rem",
-              backgroundColor: "var(--nx-surface)",
+              backgroundColor: "var(--nx-ceramic)",
               border: "1px solid var(--nx-border)",
               borderRadius: 12,
               display: "grid",
@@ -615,7 +615,7 @@ function PanelExplorer() {
                   fontWeight: 500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  color: "var(--nx-ink-2)",
+                  color: "var(--nx-fg-graphite)",
                   marginBottom: "0.5rem",
                 }}
               >
@@ -755,7 +755,7 @@ function HowItWorks() {
                 fontWeight: 500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "var(--nx-ink-2)",
+                color: "var(--nx-fg-graphite)",
                 marginBottom: "1rem",
               }}
             >
@@ -788,7 +788,7 @@ function HowItWorks() {
               <article
                 data-testid={`how-step-${s.n}`}
                 style={{
-                  backgroundColor: "var(--nx-surface)",
+                  backgroundColor: "var(--nx-ceramic)",
                   border: "1px solid var(--nx-border)",
                   borderRadius: 12,
                   padding: "1.75rem 1.5rem",
@@ -826,7 +826,7 @@ function HowItWorks() {
                     fontFamily: FONT,
                     fontSize: 14,
                     lineHeight: 1.55,
-                    color: "var(--nx-ink-2)",
+                    color: "var(--nx-fg-graphite)",
                   }}
                 >
                   {s.body}
@@ -865,7 +865,7 @@ function WhyItMatters() {
   return (
     <section
       style={{
-        backgroundColor: "var(--nx-surface)",
+        backgroundColor: "var(--nx-ceramic)",
         paddingTop: "clamp(4rem, 6vw, 6rem)",
         paddingBottom: "clamp(4rem, 6vw, 6rem)",
       }}
@@ -913,7 +913,7 @@ function WhyItMatters() {
                     fontFamily: FONT,
                     fontSize: 13.5,
                     lineHeight: 1.5,
-                    color: "var(--nx-ink-2)",
+                    color: "var(--nx-fg-graphite)",
                   }}
                 >
                   {v.v}

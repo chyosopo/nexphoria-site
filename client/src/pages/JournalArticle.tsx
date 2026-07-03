@@ -87,7 +87,7 @@ export default function JournalArticle() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: 18,
-              color: "var(--nx-text-muted)",
+              color: "var(--nx-fg-muted)",
               marginBottom: 16,
             }}
           >
@@ -210,7 +210,7 @@ export default function JournalArticle() {
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "var(--nx-text-muted)",
+                color: "var(--nx-fg-muted)",
                 marginBottom: 20,
                 paddingBottom: 16,
                 borderBottom: "1px solid var(--nx-border)",
@@ -233,7 +233,7 @@ export default function JournalArticle() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
                       lineHeight: 1.45,
-                      color: activeSection === `sec-${s.id}` ? "var(--nx-cobalt)" : "var(--nx-text-muted)",
+                      color: activeSection === `sec-${s.id}` ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
                       fontWeight: activeSection === `sec-${s.id}` ? 600 : 400,
                       textDecoration: "none",
                       paddingLeft: 12,
@@ -427,7 +427,7 @@ export default function JournalArticle() {
                   fontWeight: 500,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "var(--nx-text-muted)",
+                  color: "var(--nx-fg-muted)",
                   marginRight: 8,
                 }}
               >
@@ -502,7 +502,7 @@ export default function JournalArticle() {
                   fontWeight: 500,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "var(--nx-text-muted)",
+                  color: "var(--nx-fg-muted)",
                   marginBottom: 20,
                 }}
               >
@@ -519,7 +519,7 @@ export default function JournalArticle() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 13,
                       lineHeight: 1.55,
-                      color: "var(--nx-text-muted)",
+                      color: "var(--nx-fg-muted)",
                     }}
                   >
                     <span
@@ -643,7 +643,7 @@ export default function JournalArticle() {
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: 13,
                         lineHeight: 1.55,
-                        color: "var(--nx-text-muted)",
+                        color: "var(--nx-fg-muted)",
                       }}
                     >
                       {r.dek}
