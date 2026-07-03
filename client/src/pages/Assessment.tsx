@@ -211,7 +211,7 @@ function OptionButton({
           : hovered
           ? "1.5px solid var(--nx-fg)"
           : "1px solid var(--nx-border)",
-        backgroundColor: selected ? "var(--nx-fg)" : hovered ? "var(--nx-bg-cream)" : "#FFFFFF",
+        backgroundColor: selected ? "var(--nx-fg)" : hovered ? "var(--nx-bg-cream)" : "var(--nx-ceramic)",
         cursor: "pointer",
         textAlign: "left",
         transition: "border-color 0.15s, background-color 0.15s",
@@ -261,7 +261,7 @@ function OptionButton({
             marginTop: sub ? "1px" : 0,
           }}
         >
-          <Check size={11} style={{ color: "#FFFFFF" }} />
+          <Check size={11} style={{ color: "var(--nx-ceramic)" }} />
         </span>
       )}
     </button>
@@ -297,7 +297,7 @@ function CheckboxRow({
           : hovered
           ? "1.5px solid var(--nx-fg)"
           : "1px solid var(--nx-border)",
-        backgroundColor: checked ? "var(--nx-fg)" : hovered ? "var(--nx-bg-cream)" : "#FFFFFF",
+        backgroundColor: checked ? "var(--nx-fg)" : hovered ? "var(--nx-bg-cream)" : "var(--nx-ceramic)",
         cursor: "pointer",
         transition: "border-color 0.15s, background-color 0.15s",
         userSelect: "none",
@@ -308,7 +308,7 @@ function CheckboxRow({
           width: "18px",
           height: "18px",
           borderRadius: "3px",
-          border: checked ? "2px solid #FFFFFF" : "1.5px solid var(--nx-border)",
+          border: checked ? "2px solid var(--nx-ceramic)" : "1.5px solid var(--nx-border)",
           backgroundColor: checked ? "rgba(255,255,255,0.25)" : "transparent",
           display: "flex",
           alignItems: "center",
@@ -317,7 +317,7 @@ function CheckboxRow({
           transition: "background-color 0.15s",
         }}
       >
-        {checked && <Check size={10} style={{ color: "#FFFFFF" }} />}
+        {checked && <Check size={10} style={{ color: "var(--nx-ceramic)" }} />}
       </span>
       <input
         type="checkbox"
@@ -750,7 +750,7 @@ export default function Assessment() {
                           padding: "2.5rem 1.5rem",
                           borderRadius: "4px",
                           border: sel ? "2px solid var(--nx-fg)" : "1.5px solid var(--nx-border)",
-                          backgroundColor: sel ? "var(--nx-fg)" : "#FFFFFF",
+                          backgroundColor: sel ? "var(--nx-fg)" : "var(--nx-ceramic)",
                           textAlign: "center",
                           cursor: "pointer",
                           transition: "border-color 0.2s, background-color 0.2s",
@@ -1281,7 +1281,7 @@ export default function Assessment() {
                         display: "flex",
                         gap: "1rem",
                         padding: "0.75rem 1.25rem",
-                        backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                        backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                         borderBottom: i < 9 ? "1px solid var(--nx-border)" : "none",
                       }}
                     >

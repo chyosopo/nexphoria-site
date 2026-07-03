@@ -231,7 +231,7 @@ export default function Community() {
               <Reveal key={feature.num} delay={i * 60}>
                 <div
                   style={{
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: "var(--nx-ceramic)",
                     padding: "2.5rem 2rem",
                     height: "100%",
                   }}
@@ -312,7 +312,7 @@ export default function Community() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 500,
                   fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                  color: "#FFFFFF",
+                  color: "var(--nx-ceramic)",
                   lineHeight: 1.1,
                   marginBottom: "0.5rem",
                 }}
@@ -325,7 +325,7 @@ export default function Community() {
                   fontWeight: 500,
                   
                   fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                  color: "#FFFFFF",
+                  color: "var(--nx-ceramic)",
                   lineHeight: 1.1,
                   marginBottom: "1.25rem",
                 }}
@@ -361,7 +361,7 @@ export default function Community() {
                       
                       fontWeight: 500,
                       fontSize: "1.25rem",
-                      color: "#FFFFFF",
+                      color: "var(--nx-ceramic)",
                       marginBottom: "0.5rem",
                     }}
                   >
@@ -408,7 +408,7 @@ export default function Community() {
                       borderRadius: "4px",
                       border: "1px solid rgba(255,255,255,0.25)",
                       backgroundColor: "rgba(255,255,255,0.1)",
-                      color: "#FFFFFF",
+                      color: "var(--nx-ceramic)",
                       outline: "none",
                     }}
                   />
@@ -420,7 +420,7 @@ export default function Community() {
                       alignItems: "center",
                       justifyContent: "center",
                       gap: "0.5rem",
-                      backgroundColor: "#FFFFFF",
+                      backgroundColor: "var(--nx-ceramic)",
                       color: "var(--nx-cobalt)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "12px",
@@ -736,7 +736,7 @@ function CommunityOutcomes() {
                 style={{
                   border: "1px solid var(--nx-border)",
                   borderRadius: "16px",
-                  backgroundColor: "#FFFFFF",
+                  backgroundColor: "var(--nx-ceramic)",
                   padding: "1.75rem",
                   height: "100%",
                   display: "flex",

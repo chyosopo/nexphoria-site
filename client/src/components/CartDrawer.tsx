@@ -200,7 +200,7 @@ export function CartDrawer() {
                         key={`${line.type}-${line.slug}`}
                         className="p-4"
                         style={{
-                          background: "#fff",
+                          background: "var(--nx-ceramic)",
                           border: "1px solid var(--nx-border)",
                           borderRadius: 14,
                         }}
@@ -418,7 +418,7 @@ export function CartDrawer() {
                           <li
                             key={s.slug}
                             className="flex items-start justify-between gap-3 p-3"
-                            style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 10 }}
+                            style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: 10 }}
                             data-testid={`suggestion-${s.slug}`}
                           >
                             <div className="flex-1 min-w-0">
@@ -470,7 +470,7 @@ export function CartDrawer() {
           {lines.length > 0 ? (
             <footer
               className="px-6 pt-5 pb-6"
-              style={{ borderTop: "1px solid var(--nx-border)", background: "#fff" }}
+              style={{ borderTop: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}
             >
               {totalSavings > 0 ? (
                 <div className="flex items-center justify-between mb-1.5">

@@ -752,7 +752,7 @@ export default function LabTesting() {
                     fontWeight: 700,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "#FFFFFF",
+                    color: "var(--nx-ceramic)",
                   }}
                 >
                   NEXPHORIA MEMBER PORTAL — LAB RESULTS
@@ -803,7 +803,7 @@ export default function LabTesting() {
                     display: "grid",
                     gridTemplateColumns: "2fr 1fr 1.5fr 1fr",
                     padding: "0.875rem 1.5rem",
-                    backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                    backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                     borderBottom: i < sampleReport.length - 1 ? "1px solid var(--nx-border)" : "none",
                     alignItems: "center",
                   }}
@@ -1842,7 +1842,7 @@ function PartnerLabsSection() {
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: "var(--nx-ceramic)",
                   }}
                 >
                   {isKit && (

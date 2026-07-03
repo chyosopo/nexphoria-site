@@ -76,7 +76,7 @@ export default function Cart() {
                         style={{
                           border: "1px solid var(--nx-border)",
                           borderRadius: 16,
-                          background: "#fff",
+                          background: "var(--nx-ceramic)",
                           overflow: "hidden",
                         }}
                         data-testid={`cart-page-line-${line.type}-${line.slug}`}
@@ -334,7 +334,7 @@ export default function Cart() {
                 {/* Included list */}
                 <div
                   className="mb-5 p-4"
-                  style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                  style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                 >
                   <p className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                     Included at no extra cost
@@ -432,7 +432,7 @@ function VialGlyph({ label }: { label: string }) {
       <rect x="16" y="2" width="20" height="8" rx="2" fill="var(--nx-fg)" />
       <rect x="14" y="9" width="24" height="6" rx="2" fill="var(--nx-amber)" />
       {/* body */}
-      <rect x="12" y="15" width="28" height="56" rx="6" fill="#fff" stroke="var(--nx-fg)" strokeWidth="1.5" />
+      <rect x="12" y="15" width="28" height="56" rx="6" fill="var(--nx-ceramic)" stroke="var(--nx-fg)" strokeWidth="1.5" />
       {/* fill line */}
       <rect x="14" y="40" width="24" height="29" rx="4" fill="var(--nx-bg-cream)" />
       <line x1="14" y1="40" x2="38" y2="40" stroke="var(--nx-fg)" strokeWidth="1" opacity="0.4" />
@@ -465,7 +465,7 @@ function Chip({ children, icon, tone = "ink" }: { children: React.ReactNode; ico
         fontFamily: FONT,
         borderRadius: 999,
         border: `1px solid ${isAmber ? "#B3C8E2" : "var(--nx-border)"}`,
-        background: isAmber ? "var(--nx-bg-cream)" : "#fff",
+        background: isAmber ? "var(--nx-bg-cream)" : "var(--nx-ceramic)",
         color: isAmber ? "var(--nx-amber)" : "var(--nx-fg)",
       }}
     >
@@ -502,7 +502,7 @@ function EmptyCart() {
   return (
     <div
       className="py-20 text-center max-w-md mx-auto"
-      style={{ border: "1px solid var(--nx-border)", background: "#fff", borderRadius: 20 }}
+      style={{ border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", borderRadius: 20 }}
     >
       <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-amber)" }}>
         <ShoppingBag size={32} strokeWidth={1.25} />
