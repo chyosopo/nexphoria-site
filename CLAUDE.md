@@ -65,3 +65,26 @@ Also run `npm run build` before deploy-affecting commits, and `npm run audit:bun
 4. No off-token color/design regressions.
 5. No hallucinated results — real command output only.
 6. Never "done" — shrinking punch list only.
+
+## Two-Agent Coordination (active since 2026-07-03)
+TWO Claude agents work this repo concurrently: **Atlas** (OpenClaw/Claude Code on the Mac —
+has a browser, owns visual verification) and **Sandbox Claude** (claude.ai chat — headless).
+Both push `design/azure` and deploy `gh-pages`. Rules that prevent clobbering:
+
+1. **Before starting work AND before every push:** `git fetch origin design/azure && git rebase origin/design/azure`.
+   On push rejection: fetch → rebase → retry. Never force-push design/azure.
+2. **Before every deploy:** hard-sync the pages clone first —
+   `git fetch origin gh-pages && git reset --hard origin/gh-pages` — THEN build from a
+   freshly-rebased design/azure and copy. A deploy built from a stale tree ERASES the other
+   agent's shipped work (the copy step is wholesale). `touch .nojekyll` stays mandatory.
+3. **Lane split (soft, to minimize mid-file collisions):**
+   - **Atlas:** flagship visual pages (Home, Science, LabTesting, Pricing, Bloodwork),
+     type-token migration (D-LOGIC Finding 1), imagery reach + new Bloom generation,
+     amber/rust/bg-cream alias retirement (needs eyes), Playwright/E42, web-vitals/E33.
+   - **Sandbox:** data catalogs, SEO/meta/structured data, docs/audits, copy depth on
+     non-flagship pages, gate scripts. 
+   Crossing lanes is fine for small fixes — the fetch-rebase discipline is what matters.
+4. **Both run ALL six gates before deploying** (tsc · build · smoke 39 · audit:data ·
+   audit:bundle · audit:design incl. token-integrity). The gates are shared law.
+5. **Commit messages state WHAT and WHY** — they are the inter-agent changelog. Read
+   `git log` from the other agent before overlapping its files.
