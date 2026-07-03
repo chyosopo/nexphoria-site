@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -25,6 +25,8 @@ export function ExitIntentModal() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done" | "err">("idle");
+  const panelRef = useRef<HTMLDivElement>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (isMobile()) return;
@@ -74,6 +76,45 @@ export function ExitIntentModal() {
 
   const close = () => setOpen(false);
 
+  // On open: remember what had focus, move focus into the dialog. On close:
+  // restore focus to the trigger context (WCAG 2.4.3 focus order).
+  useEffect(() => {
+    if (!open) return;
+    restoreFocusRef.current = document.activeElement as HTMLElement | null;
+    const firstFocusable = panelRef.current?.querySelector<HTMLElement>(
+      'input, button, [href], select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    firstFocusable?.focus();
+    return () => {
+      restoreFocusRef.current?.focus?.();
+    };
+  }, [open]);
+
+  // Escape closes; Tab is trapped inside the dialog (manual focus trap, no deps).
+  const onDialogKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
+      e.stopPropagation();
+      close();
+      return;
+    }
+    if (e.key !== "Tab") return;
+    const nodes = panelRef.current?.querySelectorAll<HTMLElement>(
+      'input:not([disabled]), button:not([disabled]), [href], select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    if (!nodes || nodes.length === 0) return;
+    const items = Array.from(nodes);
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement as HTMLElement;
+    if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   return (
     <AnimatePresence>
       {open && (
@@ -96,6 +137,8 @@ export function ExitIntentModal() {
           />
           <motion.div
             key="exit-modal"
+            ref={panelRef}
+            onKeyDown={onDialogKeyDown}
             role="dialog"
             aria-modal="true"
             aria-labelledby="exit-intent-title"
@@ -211,15 +254,17 @@ export function ExitIntentModal() {
                       if (e.key === "Enter") submit();
                     }}
                     placeholder="you@example.com"
+                    aria-label="Email address"
+                    className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-1"
                     data-testid="exit-intent-email"
                     style={{
                       flex: 1,
                       padding: "0.75rem 1rem",
                       borderRadius: 4,
-                      border: state === "err" ? "1px solid #2B62C0" : "1px solid var(--nx-border)",
+                      border: state === "err" ? "1px solid var(--nx-danger)" : "1px solid var(--nx-border)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "0.9375rem",
-                      backgroundColor: "#FFFFFF",
+                      backgroundColor: "var(--nx-ceramic)",
                       color: "var(--nx-fg)",
                     }}
                     autoFocus
@@ -253,8 +298,9 @@ export function ExitIntentModal() {
                       marginTop: 8,
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 12,
-                      color: "#2B62C0",
+                      color: "var(--nx-danger)",
                     }}
+                    role="alert"
                   >
                     Please enter a valid email.
                   </p>
