@@ -69,7 +69,7 @@
     --nx-bg-dark:      #22384E;  /* footer / dark sections */
     --nx-fg:           #16283E;  /* primary ink text */
     --nx-fg-graphite:  #46607A;  /* secondary body copy */
-    --nx-fg-muted:     #7288A0;  /* tertiary / captions */
+    --nx-fg-muted:     #5A7490;  /* tertiary / captions — darkened for WCAG AA on --nx-bg */
     --nx-border:       #C9D5E0;  /* warm hairline borders */
     /* ACCENT: INK — the accent IS the typography weight + photography */
     --nx-cobalt:       #2E5877;  /* warm honey-brown — CTAs, eyebrows, links */  /* ink accent — eyebrows, CTAs, underlines */
@@ -143,7 +143,7 @@
     --nx-bg-dark:      #35212E;
     --nx-fg:           #35212E;
     --nx-fg-graphite:  #78646E;
-    --nx-fg-muted:     #A18F97;
+    --nx-fg-muted:     #7A5F6A;  /* darkened for WCAG AA on orchid --nx-bg */
     --nx-border:       #E3DBDF;
     --nx-cobalt:       #68354E;
     --nx-cobalt-hover: #4F253A;
