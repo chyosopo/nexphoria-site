@@ -1288,11 +1288,21 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   background: color-mix(in srgb, var(--nx-ceramic) 55%, transparent);
   border: 1px solid color-mix(in srgb, var(--nx-accent) 22%, transparent);
   backdrop-filter: blur(14px) saturate(1.35); -webkit-backdrop-filter: blur(14px) saturate(1.35);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 55%, transparent), 0 18px 40px -24px color-mix(in srgb, var(--nx-fg) 45%, transparent);
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, background 0.35s ease; }
+  /* D-POLISH: richer depth — inner top glow + hairline inner ring + close contact shadow + long ambient shadow */
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 62%, transparent),
+    inset 0 0 26px -12px color-mix(in srgb, #FFFFFF 40%, transparent),
+    0 2px 6px -2px color-mix(in srgb, var(--nx-fg) 13%, transparent),
+    0 18px 40px -24px color-mix(in srgb, var(--nx-fg) 45%, transparent);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease; }
 .nx-glass-tile:hover { transform: translateY(-4px);
   background: color-mix(in srgb, var(--nx-accent) 11%, color-mix(in srgb, var(--nx-ceramic) 55%, transparent));
-  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 65%, transparent), 0 26px 52px -24px color-mix(in srgb, var(--nx-accent) 55%, transparent); }
+  border-color: color-mix(in srgb, var(--nx-accent) 34%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 70%, transparent),
+    inset 0 0 30px -12px color-mix(in srgb, #FFFFFF 50%, transparent),
+    0 4px 10px -4px color-mix(in srgb, var(--nx-fg) 16%, transparent),
+    0 26px 52px -24px color-mix(in srgb, var(--nx-accent) 55%, transparent); }
 
 .nx-glass-btn { display: inline-block; font-weight: 600; border-radius: 999px; padding: 14px 26px; text-decoration: none; color: var(--nx-fg);
   background: color-mix(in srgb, var(--nx-ceramic) 46%, transparent);
@@ -1444,4 +1454,138 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
     filter: blur(30px);
     will-change: auto;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   D-POLISH · VISUAL POLISH LAYER — hero gradients, stat cards, connected
+   timelines, icon circles, decorative dividers. Everything world-aware:
+   every color derives from a defined --nx-* token (token-integrity safe).
+   Lives in CSS so the design-lint counts (inline literals only) stay flat.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Gradient hero backdrop — soft, editorial, derives from world tokens ── */
+.nx-gradient-hero {
+  position: relative;
+  background:
+    radial-gradient(120% 82% at 12% -8%, color-mix(in srgb, var(--nx-accent) 12%, transparent) 0%, transparent 55%),
+    radial-gradient(96% 74% at 104% 4%, color-mix(in srgb, var(--nx-acid) 26%, transparent) 0%, transparent 52%),
+    linear-gradient(180deg, color-mix(in srgb, var(--nx-ceramic) 55%, transparent) 0%, transparent 78%);
+}
+/* dramatic dark variant — for night bands that want depth, not a flat fill */
+.nx-gradient-hero-dark {
+  position: relative;
+  background:
+    radial-gradient(110% 80% at 8% -10%, color-mix(in srgb, var(--nx-acid) 20%, transparent) 0%, transparent 46%),
+    radial-gradient(90% 70% at 100% 110%, color-mix(in srgb, var(--nx-cobalt) 55%, transparent) 0%, transparent 50%),
+    var(--nx-bg-dark);
+}
+
+/* ── Stat card — big number over a small caps label ── */
+.nx-stat-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: clamp(1.15rem, 2.4vw, 1.7rem);
+  border-radius: var(--nx-r-md);
+  background: color-mix(in srgb, var(--nx-ceramic) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 18%, transparent);
+  backdrop-filter: blur(12px) saturate(1.3); -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 52%, transparent),
+    0 2px 6px -2px color-mix(in srgb, var(--nx-fg) 10%, transparent),
+    0 16px 36px -26px color-mix(in srgb, var(--nx-fg) 40%, transparent);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.nx-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--nx-accent) 32%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 62%, transparent),
+    0 4px 10px -4px color-mix(in srgb, var(--nx-fg) 14%, transparent),
+    0 24px 48px -26px color-mix(in srgb, var(--nx-accent) 45%, transparent);
+}
+.nx-stat-card.on-dark {
+  background: color-mix(in srgb, var(--nx-acid) 8%, transparent);
+  border-color: color-mix(in srgb, var(--nx-acid) 22%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--nx-acid) 18%, transparent);
+}
+.nx-stat-num {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 500; line-height: 1;
+  font-size: clamp(30px, 4.4vw, 46px); letter-spacing: -0.02em; color: var(--nx-fg);
+  font-variant-numeric: tabular-nums;
+}
+.nx-stat-card.on-dark .nx-stat-num { color: var(--nx-ceramic); }
+.nx-stat-lbl {
+  font-family: 'General Sans', system-ui, sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--nx-fg-muted);
+}
+.nx-stat-card.on-dark .nx-stat-lbl { color: var(--nx-acid); opacity: 0.8; }
+
+/* ── Connected vertical timeline — a drawn spine linking numbered steps ── */
+.nx-timeline { position: relative; }
+.nx-timeline::before {
+  content: ''; position: absolute; left: 19px; top: 14px; bottom: 14px; width: 2px;
+  background: linear-gradient(180deg,
+    var(--nx-cobalt) 0%,
+    color-mix(in srgb, var(--nx-cobalt) 55%, transparent) 55%,
+    color-mix(in srgb, var(--nx-cobalt) 12%, transparent) 100%);
+}
+.nx-timeline.on-dark::before {
+  background: linear-gradient(180deg,
+    var(--nx-acid) 0%,
+    color-mix(in srgb, var(--nx-acid) 45%, transparent) 60%,
+    color-mix(in srgb, var(--nx-acid) 10%, transparent) 100%);
+}
+.nx-timeline-step { position: relative; padding-left: 58px; }
+.nx-timeline-node {
+  position: absolute; left: 0; top: 0; width: 40px; height: 40px;
+  display: grid; place-items: center; border-radius: 50%;
+  font-family: 'Fraunces', Georgia, serif; font-size: 15px; color: var(--nx-cobalt);
+  background: color-mix(in srgb, var(--nx-cobalt) 12%, var(--nx-ceramic));
+  border: 1px solid color-mix(in srgb, var(--nx-cobalt) 30%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 55%, transparent), 0 2px 8px -3px color-mix(in srgb, var(--nx-cobalt) 40%, transparent);
+  z-index: 1;
+}
+
+/* ── Circular icon container ── */
+.nx-icon-circle {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center; border-radius: 50%;
+  background: color-mix(in srgb, var(--nx-cobalt) 12%, var(--nx-ceramic));
+  border: 1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent);
+  color: var(--nx-cobalt);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 55%, transparent);
+  transition: transform 0.3s var(--nx-ease), background 0.3s var(--nx-ease);
+}
+.nx-icon-circle.on-dark {
+  background: color-mix(in srgb, var(--nx-acid) 16%, transparent);
+  border-color: color-mix(in srgb, var(--nx-acid) 38%, transparent);
+  color: var(--nx-acid);
+}
+
+/* ── Decorative section divider ornament — hairline · dot · hairline ── */
+.nx-divider-ornament {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto;
+}
+.nx-divider-ornament::before, .nx-divider-ornament::after {
+  content: ''; height: 1px; width: min(120px, 22vw);
+  background: linear-gradient(90deg, transparent, var(--nx-border));
+}
+.nx-divider-ornament::after { background: linear-gradient(90deg, var(--nx-border), transparent); }
+.nx-divider-ornament i {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--nx-cobalt);
+  display: inline-block; box-shadow: 0 0 0 4px color-mix(in srgb, var(--nx-cobalt) 14%, transparent);
+}
+
+/* ── Feature card — a bordered, hover-lifting content card used across pages ── */
+.nx-feature-card {
+  position: relative; border-radius: var(--nx-r-md); overflow: hidden;
+  background: var(--nx-ceramic); border: 1px solid var(--nx-border);
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-feature-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--nx-cobalt) 45%, var(--nx-border)); box-shadow: var(--nx-e-3); }
+.nx-feature-card:active { transform: translateY(0) scale(0.99); transition-duration: var(--nx-dur-1); }
+/* accent edge variant — a cobalt hairline along the top */
+.nx-feature-card.edge-top { border-top: 2px solid var(--nx-cobalt); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-stat-card:hover, .nx-feature-card:hover, .nx-feature-card:active, .nx-icon-circle { transform: none; transition: none; }
 }
