@@ -2,6 +2,7 @@
    Orchid tokens apply automatically under /women via [data-world]. */
 import { WorldHome } from "@/components/WorldHome";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 
 export default function WomenHome() {
   useSeo({
@@ -17,14 +18,8 @@ export default function WomenHome() {
     <WorldHome
       config={{
         world: "women",
-        tileArt: {
-          skin: "img/img_6f160880b229.webp",
-          recovery: "img/img_526a46215359.webp",
-          metabolic: "img/img_8fc6c0898049.webp",
-          longevity: "img/img_b1321066ad00.webp",
-          cognition: "img/img_3569e771fe66.webp",
-          sleep: "img/img_29eba76bda96.webp",
-        },
+        tileArt: OUTCOME_CATEGORY.women,
+        heroArt: OUTCOME_HERO.women,
         vialArt: "img/img_54f472682fb8.webp",
         eyebrow: "Nexphoria for Women",
         h1: (

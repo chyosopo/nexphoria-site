@@ -24,8 +24,10 @@ const CATEGORY_JOBS: Record<PeptideCategory, string> = {
 
 export interface WorldHomeConfig {
   world: "men" | "women";
-  /** porcelain-sculpture category art — the tile's working surface */
+  /** outcome photography — the tile's working surface (hyper-real, per ART-DIRECTION.md) */
   tileArt: Partial<Record<PeptideCategory, string>>;
+  /** hero outcome frame (3:2) — renders beside the claim on lg+ */
+  heroArt?: string;
   /** master vial render — anchors the formulary as a physical, compounded product */
   vialArt: string;
   eyebrow: string;
@@ -55,6 +57,8 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <i /><i /><i />
         </div>
         <div className="nx-container relative" style={{ padding: "clamp(3.4rem,7vw,5.8rem) 0 clamp(2rem,4vw,3rem)", zIndex: 1 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
+          <div>
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
@@ -78,6 +82,20 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <Link href="/stacks" className="nx-glass-btn" data-testid={`${world}-hero-protocols`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
               The seven protocols
             </Link>
+          </div>
+          </div>
+          {config.heroArt && (
+            <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
+              <img
+                src={config.heroArt}
+                alt=""
+                aria-hidden
+                fetchPriority="high"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                data-testid={`${world}-hero-art`}
+              />
+            </div>
+          )}
           </div>
         </div>
 

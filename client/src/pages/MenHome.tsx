@@ -1,6 +1,7 @@
 /* ═══ MEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══ */
 import { WorldHome } from "@/components/WorldHome";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 
 export default function MenHome() {
   useSeo({
@@ -16,14 +17,8 @@ export default function MenHome() {
     <WorldHome
       config={{
         world: "men",
-        tileArt: {
-          growth: "img/img_7c9efa52850f.webp",
-          recovery: "img/img_a915b4cd2f81.webp",
-          metabolic: "img/img_9f1200687463.webp",
-          longevity: "img/img_9d16f24a50b6.webp",
-          cognition: "img/img_91f68fd387ee.webp",
-          sleep: "img/img_7be56150fc2e.webp",
-        },
+        tileArt: OUTCOME_CATEGORY.men,
+        heroArt: OUTCOME_HERO.men,
         vialArt: "img/img_275e18d2b1d5.webp",
         eyebrow: "Nexphoria for Men",
         h1: (

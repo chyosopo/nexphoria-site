@@ -9,6 +9,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { getStack, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { OUTCOME_STACK } from "@/data/outcomeImagery";
 
 function panelFor(tier: PanelTier) {
   return PANELS.find((p) => p.tier === tier);
@@ -48,6 +49,8 @@ export default function StackPage({ slug }: { slug: string }) {
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.6rem) 0 clamp(1.8rem,3vw,2.4rem)", zIndex: 1 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
+          <div>
           <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
             <ArrowLeft size={15} /> All protocols
           </Link>
@@ -63,6 +66,20 @@ export default function StackPage({ slug }: { slug: string }) {
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
             {stack.bestFor}
           </p>
+          </div>
+          {OUTCOME_STACK[stack.slug] && (
+            <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>
+              <img
+                src={OUTCOME_STACK[stack.slug]}
+                alt=""
+                aria-hidden
+                fetchPriority="high"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                data-testid={`stack-outcome-${stack.slug}`}
+              />
+            </div>
+          )}
+          </div>
         </div>
       </section>
 
