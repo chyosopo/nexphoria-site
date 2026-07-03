@@ -1,12 +1,14 @@
-/* ═══ FLAGSHIP STACK PAGE — P5 · doc data, our grammar ═══
-   Light by default, one night band. Bank voice. World-aware tokens.
-   Ignite (GLP-1) renders a physician intake wall instead of a buy path. */
+/* ═══ FLAGSHIP STACK PAGE — P5 data · D12 layout ═══
+   Hero: outcome frame beside the claim. Body: content rail + sticky
+   buy-box (lg+); mobile gets an in-flow card + persistent price bar.
+   Ignite (GLP-1) renders the physician wall in both rails. */
 import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { getStack, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
+import { getStack, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK } from "@/data/outcomeImagery";
@@ -42,159 +44,144 @@ export default function StackPage({ slug }: { slug: string }) {
   }
 
   const panel = panelFor(stack.panel);
+  const tiers: BuyTier[] | undefined = stack.gated
+    ? undefined
+    : stack.cadences.map((c) => ({
+        key: c.key,
+        label: c.label,
+        sub: c.sublabel,
+        badge: c.badge,
+        amount: c.perMonth ?? c.total,
+        per: c.key === "fixed" ? "/cycle" : "/mo",
+        includesPanel: c.includesPanel,
+      }));
 
   return (
     <SiteLayout>
-      {/* ── HERO ── */}
+      {/* ── HERO — the outcome frame beside the claim ── */}
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.6rem) 0 clamp(1.8rem,3vw,2.4rem)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
-          <div>
-          <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
-            <ArrowLeft size={15} /> All protocols
-          </Link>
-          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
-            {stack.category}
-          </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
-            {stack.name}
-          </h1>
-          <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.4vw,26px)", color: "var(--nx-cobalt)", marginTop: "0.4rem" }}>
-            {stack.tagline}
-          </p>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
-            {stack.bestFor}
-          </p>
-          </div>
-          {OUTCOME_STACK[stack.slug] && (
-            <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>
-              <img
-                src={OUTCOME_STACK[stack.slug]}
-                alt=""
-                aria-hidden
-                fetchPriority="high"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                data-testid={`stack-outcome-${stack.slug}`}
-              />
-            </div>
-          )}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PEPTIDE TABLE ── */}
-      <section className="nx-container" style={{ padding: "clamp(1.6rem,3vw,2.4rem) 0" }}>
-        <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>The protocol</p>
-        <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "0.8rem" }}>
-          {stack.peptides.map((p) => (
-            <div key={p.name} className="grid md:grid-cols-[1fr_1.2fr_1fr] gap-1 md:gap-6 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</p>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", alignSelf: "center" }}>{p.dose}</p>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", alignSelf: "center" }}>{p.spec}</p>
-            </div>
-          ))}
-        </div>
-        <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1.4rem" }}>
-          {stack.synergy}
-        </p>
-      </section>
-
-      {/* ── 12-WEEK TIMELINE ── */}
-      <section className="nx-container" style={{ padding: "clamp(1.6rem,3vw,2.4rem) 0" }}>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>What the weeks look like</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: 12, marginTop: "1.2rem" }}>
-          {stack.timeline.map((t, i) => (
-            <Reveal key={t.wk} delay={i * 60}>
-              <div className="nx-glass-tile" style={{ height: "100%" }}>
-                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── REQUIRED PANEL CALLOUT ── */}
-      <section className="nx-container" style={{ padding: "clamp(1.6rem,3vw,2.4rem) 0" }}>
-        <div className="nx-glass-tile" style={{ display: "block" }}>
-          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
-          <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,2.8vw,30px)", color: "var(--nx-fg)", marginTop: "0.4rem" }}>
-            {stack.panel} panel
-          </h3>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
-            {stack.panelNote ?? panel?.summary}
-          </p>
-          <Link href="/bloodwork" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", display: "inline-block", marginTop: "0.8rem" }}>
-            See the full {stack.panel} panel →
-          </Link>
-        </div>
-      </section>
-
-      {/* ── PRICING — cadence cards, OR gated intake wall for GLP-1 ── */}
-      {stack.gated ? (
-        <section className="nx-container" style={{ padding: "clamp(1.8rem,3.5vw,2.6rem) 0" }}>
-          <div style={{ borderRadius: 20, padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)" }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-              <Lock size={15} /> Physician-assessed only
-            </div>
-            <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "24ch" }}>
-              GLP-1 therapy is prescribed after review — not bought from a shelf.
-            </h3>
-            <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.8rem" }}>
-              Metabolic therapy is dosed by a licensed physician against your bloodwork and titrated over time. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your physician will prescribe it.
-            </p>
-            {stack.stateExclusions && (
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
-                Not currently available for shipping addresses in: {stack.stateExclusions.join(", ")}.
+            <div>
+              <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
+                <ArrowLeft size={15} /> All protocols
+              </Link>
+              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
+                {stack.category}
               </p>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
+                {stack.name}
+              </h1>
+              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.4vw,26px)", color: "var(--nx-cobalt)", marginTop: "0.4rem" }}>
+                {stack.tagline}
+              </p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
+                {stack.bestFor}
+              </p>
+            </div>
+            {OUTCOME_STACK[stack.slug] && (
+              <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>
+                <img
+                  src={OUTCOME_STACK[stack.slug]}
+                  alt=""
+                  aria-hidden
+                  fetchPriority="high"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  data-testid={`stack-outcome-${stack.slug}`}
+                />
+              </div>
             )}
-            <Link href="/assessment" data-testid="ignite-intake" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.4rem", textDecoration: "none" }}>
-              Begin eligibility intake
-            </Link>
           </div>
-        </section>
-      ) : (
-        <section className="nx-container" style={{ padding: "clamp(1.8rem,3.5vw,2.6rem) 0" }}>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>Choose your cadence</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 12, marginTop: "1.2rem" }}>
-            {stack.cadences.map((c) => {
-              const active = selected === c.key;
-              return (
-                <button
-                  key={c.key}
-                  onClick={() => setSelected(c.key)}
-                  data-testid={`cadence-${c.key}`}
-                  style={{
-                    textAlign: "left", cursor: "pointer", borderRadius: 18, padding: "1.2rem 1.25rem",
-                    background: active ? "var(--nx-cobalt)" : "var(--nx-ceramic)",
-                    border: `1.5px solid ${active ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
-                    transition: "all 0.25s ease",
-                  }}
-                >
-                  {c.badge && (
-                    <span style={{ fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: active ? "var(--nx-acid)" : "var(--nx-cobalt)" }}>{c.badge}</span>
-                  )}
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: 19, color: active ? "var(--nx-ceramic)" : "var(--nx-fg)", marginTop: c.badge ? 4 : 0 }}>{c.label}</p>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: active ? "var(--nx-ceramic)" : "var(--nx-fg)", marginTop: 6, lineHeight: 1 }}>
-                    {usd(c.perMonth ?? c.total)}<span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, opacity: 0.7 }}>{c.key === "fixed" ? " /cycle" : " /mo"}</span>
+        </div>
+      </section>
+
+      {/* ── BODY — content rail + sticky buy-box ── */}
+      <section className="nx-container" style={{ padding: "clamp(1.6rem,3vw,2.4rem) 0 clamp(2rem,4vw,3rem)" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
+
+          {/* — LEFT: the story — */}
+          <div>
+            {/* Protocol table */}
+            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>The protocol</p>
+            <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "0.8rem" }}>
+              {stack.peptides.map((p) => (
+                <div key={p.name} className="grid md:grid-cols-[1fr_1.2fr_1fr] gap-1 md:gap-6 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", alignSelf: "center" }}>{p.dose}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", alignSelf: "center" }}>{p.spec}</p>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1.4rem" }}>
+              {stack.synergy}
+            </p>
+
+            {/* Timeline */}
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              What the weeks look like
+            </h2>
+            <div className="grid grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
+              {stack.timeline.map((t, i) => (
+                <Reveal key={t.wk} delay={i * 60}>
+                  <div className="nx-glass-tile" style={{ height: "100%" }}>
+                    <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Required panel */}
+            <div className="nx-glass-tile" style={{ display: "block", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
+              <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,2.8vw,30px)", color: "var(--nx-fg)", marginTop: "0.4rem" }}>
+                {stack.panel} panel
+              </h3>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
+                {stack.panelNote ?? panel?.summary}
+              </p>
+              <Link href="/bloodwork" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", display: "inline-block", marginTop: "0.8rem" }}>
+                See the full {stack.panel} panel →
+              </Link>
+            </div>
+
+            {/* GLP-1 narrative — the why of the wall, in flow */}
+            {stack.gated && (
+              <div style={{ borderRadius: 20, padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                  <Lock size={15} /> Physician-assessed only
+                </div>
+                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "24ch" }}>
+                  GLP-1 therapy is prescribed after review — not bought from a shelf.
+                </h3>
+                <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.8rem" }}>
+                  Metabolic therapy is dosed by a licensed physician against your bloodwork and titrated over time. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your physician will prescribe it.
+                </p>
+                {stack.stateExclusions && (
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
+                    Not currently available for shipping addresses in: {stack.stateExclusions.join(", ")}.
                   </p>
-                  <p style={{ fontFamily: F, fontSize: 12.5, lineHeight: 1.45, color: active ? "var(--nx-acid)" : "var(--nx-fg-muted)", marginTop: 6 }}>{c.sublabel}</p>
-                  {c.includesPanel && (
-                    <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, color: active ? "var(--nx-ceramic)" : "var(--nx-cobalt)", marginTop: 8 }}>Includes {c.includesPanel} panel</p>
-                  )}
-                </button>
-              );
-            })}
+                )}
+              </div>
+            )}
           </div>
-          <p style={{ fontFamily: F, fontSize: 12.5, color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
-            Prices shown if prescribed. All protocols require physician review and a valid prescription.
-          </p>
-          <Link href="/assessment" data-testid="stack-cta" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.2rem", textDecoration: "none" }}>
-            Begin your intake
-          </Link>
-        </section>
-      )}
+
+          {/* — RIGHT: the commerce rail — */}
+          <aside>
+            <BuyBox
+              name={stack.name}
+              category={stack.category}
+              tiers={tiers}
+              selected={selected}
+              onSelect={setSelected}
+              gated={stack.gated}
+              gatedStates={stack.stateExclusions}
+              ctaTestId={stack.gated ? "ignite-intake" : "stack-cta"}
+            />
+          </aside>
+        </div>
+      </section>
 
       {/* ── ONE NIGHT BAND — contraindications, stated plainly ── */}
       <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }}>

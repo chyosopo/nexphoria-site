@@ -58,7 +58,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
         <div className="nx-container relative" style={{ padding: "clamp(3.4rem,7vw,5.8rem) 0 clamp(2rem,4vw,3rem)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
-          <div>
+          <div className="nx-hero-seq">
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
@@ -85,7 +85,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </div>
           </div>
           {config.heroArt && (
-            <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
+            <div className="nx-hero-frame" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
               <img
                 src={config.heroArt}
                 alt=""

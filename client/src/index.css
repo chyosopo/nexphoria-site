@@ -1236,3 +1236,23 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   animation: nxShimmer 1.6s var(--nx-ease) infinite;
   border-radius: var(--nx-r-md);
 }
+
+/* ── D12 buy-box: sticky rail on desktop ── */
+@media (min-width: 1024px) {
+  .nx-buybox { position: sticky; top: 92px; }
+}
+
+/* ── D11 hero orchestration: claim rises, frame breathes in ──
+   Sequence: aurora (ambient) → eyebrow/h1/sub/CTAs stagger → hero art.
+   The global prefers-reduced-motion kill-switch cancels all of it. */
+@keyframes nxRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes nxFrameIn { from { opacity: 0; transform: scale(1.025); } to { opacity: 1; transform: none; } }
+.nx-hero-seq > * { opacity: 0; animation: nxRise var(--nx-dur-4, 0.6s) var(--nx-ease) forwards; }
+.nx-hero-seq > *:nth-child(1) { animation-delay: 0.05s; }
+.nx-hero-seq > *:nth-child(2) { animation-delay: 0.14s; }
+.nx-hero-seq > *:nth-child(3) { animation-delay: 0.24s; }
+.nx-hero-seq > *:nth-child(4) { animation-delay: 0.34s; }
+.nx-hero-frame { animation: nxFrameIn 0.9s var(--nx-ease) 0.2s both; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-hero-seq > *, .nx-hero-frame { animation: none; opacity: 1; transform: none; }
+}
