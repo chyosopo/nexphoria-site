@@ -57,7 +57,7 @@ export default function Contact() {
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
-      description: "Reach the Nexphoria team for questions about peptide therapy, protocols, or getting started. 24-hour response, Mon–Fri.",
+      description: "Reach the Nexphoria team for questions about peptide therapy, protocols, or getting started. Response on business days, Mon–Fri.",
       path: "/contact",
     }),
     breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]),
@@ -250,7 +250,7 @@ export default function Contact() {
               <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
                 {[
                   { label: "States Covered", value: "50" },
-                  { label: "Response Time", value: "24 hrs" },
+                  { label: "Human Review", value: "Every message" },
                   { label: "Physician Availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ textAlign: "center" }}>
