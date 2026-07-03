@@ -1478,55 +1478,11 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   box-shadow: 0 40px 80px -44px color-mix(in srgb, var(--nx-fg) 55%, transparent), var(--nx-e-2); }
 .nx-hero-media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* ── Connected timeline: a vertical rail threaded through numbered dots ── */
-.nx-timeline { position: relative; }
-.nx-timeline-step { position: relative; padding-left: 3.4rem; padding-bottom: clamp(1.6rem, 3vw, 2.6rem); }
-.nx-timeline-step:last-child { padding-bottom: 0; }
-.nx-timeline-step::before { content: ""; position: absolute; left: 17px; top: 34px; bottom: -4px; width: 2px;
-  background: linear-gradient(color-mix(in srgb, var(--nx-accent) 42%, transparent), color-mix(in srgb, var(--nx-border) 20%, transparent)); }
-.nx-timeline-step:last-child::before { display: none; }
-.nx-timeline-dot { position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: var(--nx-r-pill);
-  display: grid; place-items: center; z-index: 1;
-  background: var(--nx-ceramic); border: 1px solid color-mix(in srgb, var(--nx-accent) 34%, transparent);
-  color: var(--nx-cobalt); box-shadow: var(--nx-e-1); }
-
-/* ── Stat block: an institution's numbers, set large ── */
-.nx-stat-block { display: flex; flex-direction: column; gap: 0.4rem; }
-.nx-stat-block__num { font-family: 'Fraunces', Georgia, serif; font-weight: 500;
-  font-size: clamp(40px, 5vw, 62px); line-height: 0.92; letter-spacing: -0.02em; color: var(--nx-fg); }
-.nx-stat-block__num em { font-style: normal; color: var(--nx-cobalt); }
-.nx-stat-block__label { font-family: 'General Sans', system-ui, sans-serif; font-size: var(--nx-t-sm);
-  line-height: 1.45; color: var(--nx-fg-graphite); max-width: 22ch; }
-
-/* ── Icon ring: circular chip that seats a Lucide glyph ── */
-.nx-icon-ring { display: grid; place-items: center; width: 52px; height: 52px; flex-shrink: 0;
-  border-radius: var(--nx-r-pill); color: var(--nx-cobalt);
-  background: radial-gradient(120% 120% at 30% 20%, color-mix(in srgb, var(--nx-ceramic) 92%, white) 0%, var(--nx-cobalt-soft) 100%);
-  border: 1px solid color-mix(in srgb, var(--nx-accent) 26%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 70%, transparent), var(--nx-e-1); }
-.nx-icon-ring.lg { width: 64px; height: 64px; }
-.nx-icon-ring.on-dark { color: var(--nx-acid);
-  background: radial-gradient(120% 120% at 30% 20%, color-mix(in srgb, var(--nx-acid) 22%, transparent) 0%, color-mix(in srgb, var(--nx-bg-dark) 60%, transparent) 100%);
-  border-color: color-mix(in srgb, var(--nx-acid) 34%, transparent); box-shadow: none; }
-
-/* ── Ingredient / vial chip: a component of a stack shown as a physical thing ── */
-.nx-vial-chip { position: relative; display: flex; flex-direction: column; gap: 0.35rem;
-  padding: 1rem 1.1rem 1.1rem; border-radius: var(--nx-r-md); overflow: hidden;
-  background: var(--nx-ceramic); border: 1px solid var(--nx-border); box-shadow: var(--nx-e-1);
-  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease); }
-.nx-vial-chip::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  background: linear-gradient(var(--nx-cobalt), color-mix(in srgb, var(--nx-accent) 30%, transparent)); }
-.nx-vial-chip:hover { transform: translateY(-3px); box-shadow: var(--nx-e-2);
-  border-color: color-mix(in srgb, var(--nx-accent) 40%, transparent); }
-@media (prefers-reduced-motion: reduce) { .nx-vial-chip:hover { transform: none; } }
-
-/* ── Product showcase band: a wide vial-lineup frame with a legibility wash ── */
-.nx-showcase-band { position: relative; border-radius: var(--nx-r-lg); overflow: hidden;
-  box-shadow: 0 40px 80px -46px color-mix(in srgb, var(--nx-fg) 55%, transparent); }
-.nx-showcase-band > img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* ── Split hero image zoom lifts subtly on card hover contexts only ── */
-@media (prefers-reduced-motion: reduce) { .nx-hero-media > img { transition: none; } }
+/* NOTE — connected-timeline, stat, icon-ring and vial-chip utilities were
+   intentionally NOT defined here. The concurrent visual-lane agent owns the
+   canonical .nx-timeline / .nx-timeline-node / .nx-stat-card / .nx-icon-circle
+   / .nx-feature-card set (defined below in the D-POLISH block). Pages consume
+   THOSE to avoid a divergent second system and a .nx-timeline name collision. */
 
 
 /* ══ MOBILE BACKDROP-FILTER FLOOR ══
