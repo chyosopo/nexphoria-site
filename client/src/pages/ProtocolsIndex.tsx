@@ -119,14 +119,17 @@ export default function ProtocolsIndex() {
           {/* Build-your-own tile — fills the orphan grid slot and offers the custom path (visual-QA finding). Only when no filter narrows the set. */}
           {filter === "All" && (
             <Reveal delay={shown.length * 50} className="md:col-span-1 lg:col-span-2">
-              <Link href="/stacks/build" data-testid="protocol-build" className="nx-protocol-card" style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px dashed var(--nx-border)", background: "transparent", textDecoration: "none", padding: "1.4rem 1.6rem", minHeight: 220 }}>
-                <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Custom</p>
-                <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.05 }}>Build your own</h2>
-                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>Start from a goal</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>Assemble a stack around your goal and let a physician review it — same panel, same oversight as a flagship.</p>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem" }}>
+              <Link href="/stacks/build" data-testid="protocol-build" className="nx-protocol-card" style={{ height: "100%", display: "flex", alignItems: "stretch", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px dashed var(--nx-border)", background: "transparent", textDecoration: "none" }}>
+                {/* left: intent copy */}
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "1.6rem 1.6rem" }}>
+                  <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Custom</p>
+                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.05 }}>Build your own</h2>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.6rem", maxWidth: "46ch" }}>Start from a goal and assemble a stack around it — a physician reviews it with the same panel and oversight as a flagship.</p>
+                </div>
+                {/* right: action rail */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: "0.5rem", padding: "1.6rem 1.6rem", borderLeft: "1px dashed var(--nx-border)", minWidth: 190 }}>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>Physician-reviewed</p>
-                  <ArrowRight size={17} style={{ color: "var(--nx-cobalt)" }} />
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building <ArrowRight size={17} /></span>
                 </div>
               </Link>
             </Reveal>
