@@ -3,13 +3,18 @@ import { F } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
+import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
+import { MessageSquare, Stethoscope, Newspaper, MapPin, Lock, ShieldCheck, Clock, type LucideIcon } from "lucide-react";
 
-const contactColumns = [
+const contactColumns: {
+  eyebrow: string; title: string; Icon: LucideIcon;
+  items: { label: string; value: string }[]; note: string;
+}[] = [
   {
     eyebrow: "PATIENT SUPPORT",
     title: "Clinical and order questions.",
+    Icon: MessageSquare,
     items: [
       { label: "EMAIL", value: "hello@nexphoria.com" },
       { label: "HOURS", value: "Mon–Fri, 9am–6pm ET" },
@@ -20,6 +25,7 @@ const contactColumns = [
   {
     eyebrow: "MEDICAL QUESTIONS",
     title: "Physician portal messaging.",
+    Icon: Stethoscope,
     items: [
       { label: "CHANNEL", value: "Secure member portal" },
       { label: "RESPONSE", value: "Reviewed by a physician" },
@@ -30,6 +36,7 @@ const contactColumns = [
   {
     eyebrow: "PRESS & PARTNERSHIPS",
     title: "Media and business inquiries.",
+    Icon: Newspaper,
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
       { label: "MAILING ADDRESS", value: "Nexphoria Health, LLC\n800 Third Ave, Suite 1000\nNew York, NY 10022" },
@@ -146,8 +153,12 @@ export default function Contact() {
                     backgroundColor: "var(--nx-ceramic)",
                     padding: "2.5rem 2rem",
                     height: "100%",
+                    borderTop: "2px solid var(--nx-cobalt)",
                   }}
                 >
+                  <span className="nx-icon-circle" aria-hidden style={{ marginBottom: "1.1rem" }}>
+                    <col.Icon size={20} strokeWidth={1.9} />
+                  </span>
                   <p
                     style={{
                       fontFamily: F,
@@ -230,41 +241,78 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── Coverage strip ── */}
+      {/* ── Coverage strip — location visual + coverage stats ── */}
       <section
-        className="py-10 md:py-12"
+        className="py-14 md:py-16"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <div
-              style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", alignItems: "center", justifyContent: "space-between" }}
-            >
-              <div>
-                <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>
-                  NYC HEADQUARTERS · 50-STATE COVERAGE
-                </p>
-                <p style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.5rem" }}>
-                  Nexphoria Health, LLC
-                </p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                  800 Third Ave, Suite 1000 · New York, NY 10022
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.4rem,3vw,2.4rem)", alignItems: "stretch" }}>
+            {/* Stylized location panel — a dot-grid "map" field with a pinned HQ */}
+            <Reveal>
+              <div
+                data-testid="contact-location"
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: "var(--nx-r-lg)",
+                  border: "1px solid var(--nx-border)",
+                  background:
+                    "radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--nx-cobalt) 14%, transparent) 0%, transparent 55%), var(--nx-cobalt-soft)",
+                  padding: "clamp(1.6rem,4vw,2.6rem)",
+                  minHeight: 220,
+                }}
+              >
+                {/* dot-grid map texture */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage:
+                      "radial-gradient(color-mix(in srgb, var(--nx-cobalt) 26%, transparent) 1.2px, transparent 1.2px)",
+                    backgroundSize: "22px 22px",
+                    maskImage: "linear-gradient(120deg, transparent, #000 60%)",
+                    WebkitMaskImage: "linear-gradient(120deg, transparent, #000 60%)",
+                    opacity: 0.7,
+                  }}
+                />
+                {/* pinned HQ marker */}
+                <div aria-hidden style={{ position: "absolute", right: "18%", top: "26%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <span className="nx-icon-circle" style={{ boxShadow: "var(--nx-e-3)" }}>
+                    <MapPin size={20} strokeWidth={2} />
+                  </span>
+                  <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-cobalt)", marginTop: 8 }} />
+                </div>
+                <div style={{ position: "relative" }}>
+                  <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
+                    NYC Headquarters · 50-state coverage
+                  </p>
+                  <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
+                    Nexphoria Health, LLC
+                  </p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: "24ch" }}>
+                    800 Third Ave, Suite 1000 · New York, NY 10022
+                  </p>
+                </div>
               </div>
-              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+            </Reveal>
+            {/* Coverage stats */}
+            <Reveal delay={80}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1" style={{ gap: 12, height: "100%" }}>
                 {[
                   { label: "States Covered", value: "50" },
                   { label: "Human Review", value: "Every message" },
                   { label: "Physician Availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
-                  <div key={label} style={{ textAlign: "center" }}>
-                    <p style={{ fontFamily: F, fontSize: "2rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1 }}>{value}</p>
-                    <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
+                  <div key={label} className="nx-stat-card" style={{ justifyContent: "center" }}>
+                    <span className="nx-stat-num" style={{ fontSize: "clamp(24px, 3vw, 34px)" }}>{value}</span>
+                    <span className="nx-stat-lbl">{label}</span>
                   </div>
                 ))}
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -314,6 +362,19 @@ export default function Contact() {
                 >
                   We read every message.
                 </h2>
+                {/* Trust signals near the form */}
+                <ul style={{ listStyle: "none", padding: 0, margin: "1.75rem 0 0", display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+                  {[
+                    { Icon: Lock, t: "Encrypted in transit and at rest" },
+                    { Icon: ShieldCheck, t: "HIPAA-aware handling of your details" },
+                    { Icon: Clock, t: "Replies on business days, Mon–Fri ET" },
+                  ].map(({ Icon, t }) => (
+                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 11 }}>
+                      <span className="nx-icon-circle" aria-hidden style={{ width: 34, height: 34 }}><Icon size={16} strokeWidth={1.9} /></span>
+                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.4 }}>{t}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
 
@@ -374,7 +435,17 @@ export default function Contact() {
                 <form
                   data-testid="contact-form"
                   onSubmit={handleSubmit}
-                  style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1.5rem",
+                    padding: "clamp(1.6rem, 3vw, 2.4rem)",
+                    borderRadius: "var(--nx-r-lg)",
+                    border: "1px solid var(--nx-border)",
+                    borderTop: "2px solid var(--nx-cobalt)",
+                    backgroundColor: "var(--nx-ceramic)",
+                    boxShadow: "var(--nx-e-2)",
+                  }}
                 >
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                     <div>
