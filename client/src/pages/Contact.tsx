@@ -13,7 +13,7 @@ const contactColumns = [
     items: [
       { label: "EMAIL", value: "hello@nexphoria.com" },
       { label: "HOURS", value: "Mon–Fri, 9am–6pm ET" },
-      { label: "RESPONSE", value: "Within 24 hours on business days" },
+      { label: "RESPONSE", value: "On business days" },
     ],
     note: "For billing, shipping, order status, and portal access questions.",
   },
@@ -22,7 +22,7 @@ const contactColumns = [
     title: "Physician portal messaging.",
     items: [
       { label: "CHANNEL", value: "Secure member portal" },
-      { label: "RESPONSE", value: "Physician within 48 hours" },
+      { label: "RESPONSE", value: "Reviewed by a physician" },
       { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
     ],
     note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal — not email — for clinical questions.",
@@ -53,7 +53,7 @@ const reasons = [
 export default function Contact() {
   useSeo({
     title: "Contact Nexphoria — physician questions, protocol support",
-    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message within 24 hours, Monday to Friday. Physician-guided support from a real team.",
+    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Physician-guided support from a real team.",
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
@@ -356,7 +356,7 @@ export default function Contact() {
                       lineHeight: 1.65,
                     }}
                   >
-                    We'll respond within 24 hours on business days (Monday through Friday ET). Clinical questions are routed to a physician within 48 hours.
+                    We'll respond on business days (Monday through Friday ET). Clinical questions are routed to a physician for review.
                   </p>
                   {form.reason === "Clinical / medical question" && (
                     <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>

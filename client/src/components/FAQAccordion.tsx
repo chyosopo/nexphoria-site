@@ -19,7 +19,7 @@ const defaultFAQs: FAQItem[] = [
   {
     category: "PROCESS",
     q: "How does the Nexphoria prescription process work?",
-    a: "You complete a 4-minute intake form, then schedule a blood draw — at home or at your nearest LabCorp. A board-certified US physician reviews your 65-marker panel and medical history, then writes a personalized prescription. Your compounded protocol ships cold-chain within 5-7 business days. Quarterly reassessments are included.",
+    a: "You complete a 4-minute intake form, then schedule a blood draw — at home or at a CLIA-certified partner laboratory near you. A board-certified US physician reviews your 65-marker panel and medical history, then writes a personalized prescription. Your compounded protocol ships cold-chain within 5-7 business days. Quarterly reassessments are included.",
   },
   {
     category: "PROCESS",

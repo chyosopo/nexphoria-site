@@ -893,7 +893,7 @@ export default function BuildYourStack() {
                   <ol className="space-y-3 list-none">
                     {[
                       "Add the stack to your cart and complete a 4-minute medical intake.",
-                      "A US-licensed physician reviews your intake and labs (or orders new ones if needed) within 24 hours.",
+                      "A US-licensed physician reviews your intake and labs (or orders new ones if needed) — you are notified when review is complete.",
                       "Once cleared, the protocol is compounded in a 503A pharmacy and shipped cold-chain to your door.",
                       "You message your physician any time through the member portal — protocols can be adjusted at every reassessment.",
                     ].map((line, i) => (

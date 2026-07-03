@@ -28,8 +28,8 @@ export function HeroVariantPicker() {
 
       {/* Subhead */}
       <p className="max-w-2xl text-fluid-lg leading-relaxed text-foreground/70 mb-10">
-        Premium peptide therapy, prescribed by a board-certified physician within
-        24 hours and compounded in U.S. 503A pharmacies. The molecules that matter
+        Premium peptide therapy, prescribed by a board-certified physician after
+        review of your labs and compounded in U.S. 503A pharmacies. The molecules that matter
         &mdash; finally done right.
       </p>
 
@@ -52,7 +52,7 @@ export function HeroVariantPicker() {
       {/* Hero meta grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-background/10 border border-foreground/10 rounded-2xl overflow-hidden max-w-4xl">
         {[
-          { label: "MD review", value: "<24h" },
+          { label: "MD review", value: "Included" },
           { label: "Compounded", value: "U.S. 503A" },
           { label: "Cold chain", value: "3-5 day ship" },
           { label: "Protocols", value: "12-week cycles" },
