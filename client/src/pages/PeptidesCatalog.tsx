@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
@@ -16,7 +16,14 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   useSeo({
     title: "Peptides — The Full Catalog | Nexphoria",
     description: "Nineteen physician-prescribed peptides, each with dosing, mechanism, timeline, and required bloodwork stated plainly.",
-    jsonLd: [webPageJsonLd({ name: "Peptides", description: "Solo peptide catalog.", path: "/peptides" })],
+    jsonLd: [
+      webPageJsonLd({ name: "Peptides", description: "Solo peptide catalog.", path: "/peptides" }),
+      breadcrumbJsonLd(
+        world
+          ? [{ name: "Home", path: "/" }, { name: world === "men" ? "Men" : "Women", path: `/${world}` }, { name: "Peptides", path: `/${world}/peptides` }]
+          : [{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }],
+      ),
+    ],
   });
 
   const cats = ["All", ...SOLO_CATEGORIES];

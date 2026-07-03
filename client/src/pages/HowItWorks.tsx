@@ -5,7 +5,7 @@
    panel is described by its named tiers, not an unbacked total. */
 import { SiteLayout } from "@/components/SiteLayout";
 import { Link } from "wouter";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { Reveal } from "@/components/Reveal";
 import { OUTCOME_HERO } from "@/data/outcomeImagery";
@@ -77,6 +77,11 @@ export default function HowItWorks() {
     jsonLd: [
       webPageJsonLd({ name: "How It Works", description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.", path: "/how-it-works" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "How It Works", path: "/how-it-works" }]),
+      howToJsonLd({
+        name: "How Nexphoria peptide therapy works",
+        description: "The fixed order of a Nexphoria protocol: structured intake, laboratory bloodwork, physician review, 503A compounding, cold-chain delivery, a monitoring dashboard, and a 90-day retest.",
+        steps: STEPS.map((s) => ({ name: s.t, text: s.d })),
+      }),
     ],
   });
 

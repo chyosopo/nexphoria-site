@@ -2,7 +2,7 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { PANELS, FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { Check } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -16,7 +16,10 @@ export default function BloodPanels() {
   useSeo({
     title: "Blood Work — Basic, Full, Elite Panels | Nexphoria",
     description: "Three physician-defined blood panels, from a baseline safety screen to advanced cardiometabolic depth. Every protocol is gated on the right one.",
-    jsonLd: [webPageJsonLd({ name: "Blood Work", description: "Panel tiers.", path: "/blood-work", type: "MedicalWebPage" })],
+    jsonLd: [
+      webPageJsonLd({ name: "Blood Work", description: "Panel tiers.", path: "/blood-work", type: "MedicalWebPage" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Blood Work", path: "/blood-work" }]),
+    ],
   });
 
   return (

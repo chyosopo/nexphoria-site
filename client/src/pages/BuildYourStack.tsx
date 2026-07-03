@@ -5,7 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { getStack } from "@/data/stacks";
 import { getSolo } from "@/data/soloCatalog";
@@ -163,7 +163,9 @@ export default function BuildYourStack() {
       name: "Build Your Peptide Stack",
       description: "Custom physician-reviewed peptide stack builder. Choose your goal, select compounds, get physician review.",
       path: "/stacks/build",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }, { name: "Build Your Stack", path: "/stacks/build" }]),
+    ],
   });
 
   const cart = useCart();

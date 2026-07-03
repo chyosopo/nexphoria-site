@@ -3,7 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { Plus, Minus } from "lucide-react";
-import { useSeo, faqJsonLd, webPageJsonLd } from "@/lib/seo";
+import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -276,6 +276,7 @@ export default function FAQPage() {
     path: "/faq",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria FAQ", description: "Frequently asked questions about physician-prescribed peptide therapy at Nexphoria.", path: "/faq", type: "MedicalWebPage" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "FAQ", path: "/faq" }]),
       faqJsonLd(allFaqItems),
     ],
   });

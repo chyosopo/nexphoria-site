@@ -6,7 +6,7 @@
 import { Link, useRoute } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo, webPageJsonLd, faqJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 
 type Cfg = {
@@ -129,7 +129,13 @@ export default function Category() {
     title: cfg ? `${label} peptide protocols — physician-directed` : "Protocols",
     description: cfg ? cfg.sub : "Physician-directed peptide protocols.",
     path: `/goals/${slug}`,
-    jsonLd: cfg ? [webPageJsonLd({ name: `${label} protocols`, description: cfg.sub, path: `/goals/${slug}` }), faqJsonLd(cfg.faqs)] : [],
+    jsonLd: cfg
+      ? [
+          webPageJsonLd({ name: `${label} protocols`, description: cfg.sub, path: `/goals/${slug}` }),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: label, path: `/goals/${slug}` }]),
+          faqJsonLd(cfg.faqs),
+        ]
+      : [],
   });
 
   if (!cfg) {

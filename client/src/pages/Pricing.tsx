@@ -6,7 +6,7 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { Check, X } from "lucide-react";
-import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
@@ -429,6 +429,7 @@ export default function Pricing() {
         path: "/pricing",
       }),
       orgJsonLd(),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Pricing", path: "/pricing" }]),
       faqJsonLd(PRICING_FAQ_ITEMS),
     ],
   });

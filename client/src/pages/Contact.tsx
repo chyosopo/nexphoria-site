@@ -2,7 +2,7 @@ import { useState } from "react";
 import { F } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -59,7 +59,9 @@ export default function Contact() {
       name: "Contact Nexphoria",
       description: "Reach the Nexphoria team for questions about peptide therapy, protocols, or getting started. 24-hour response, Mon–Fri.",
       path: "/contact",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]),
+    ],
   });
   const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
   const [submitted, setSubmitted] = useState(false);

@@ -2,7 +2,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
 const lifestyleLabVials = "img/img_b9ec00db43d6.webp";
@@ -100,7 +100,9 @@ export default function LabTesting() {
       description: "38-biomarker Quest Diagnostics panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician within 48 hours.",
       path: "/lab-testing",
       type: "MedicalWebPage",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Lab Testing", path: "/lab-testing" }]),
+    ],
   });
   return (
     <SiteLayout navVariant="showcase">

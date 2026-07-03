@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { F } from "@/lib/typography";
@@ -133,7 +133,9 @@ export default function Community() {
       name: "Nexphoria Community",
       description: "Clinical roundtables, patient outcomes, and physician-led education for Nexphoria members.",
       path: "/community",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Community", path: "/community" }]),
+    ],
   });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);

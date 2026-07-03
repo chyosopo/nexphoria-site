@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
 import { getStack, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -35,6 +35,8 @@ export default function StackPage({ slug }: { slug: string }) {
           webPageJsonLd({ name: stack.name, description: stack.tagline, path: `/stacks/${stack.slug}` }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }, { name: stack.name, path: `/stacks/${stack.slug}` }]),
           faqJsonLd(faq),
+          // Prescription protocol: name/brand/category enrichment only — no offers/price (pharma rich-result policy).
+          productJsonLd({ name: stack.name, description: stack.bestFor, path: `/stacks/${stack.slug}`, category: stack.category }),
         ]
       : [],
   });

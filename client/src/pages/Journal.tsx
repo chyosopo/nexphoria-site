@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { FONT } from "@/lib/typography";
 import {
   JOURNAL_ARTICLES,
@@ -36,7 +36,9 @@ export default function Journal() {
       description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
       path: "/journal",
       type: "MedicalWebPage",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Journal", path: "/journal" }]),
+    ],
   });
 
   const [activeCategory, setActiveCategory] = useState<JournalCategory | "all">("all");

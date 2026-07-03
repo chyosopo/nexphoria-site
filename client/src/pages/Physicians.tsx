@@ -4,7 +4,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { physicians, type Physician } from "@/data/physicians";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 const physicianTrustHero = "img/img_20e1e1d49da4.webp";
@@ -21,7 +21,9 @@ export default function Physicians() {
       description: "Board-certified U.S. physicians from Cleveland Clinic, Mayo, UCSF, Hopkins, and Stanford reviewing every peptide protocol.",
       path: "/physicians",
       type: "MedicalWebPage",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Physicians", path: "/physicians" }]),
+    ],
   });
   return (
     <SiteLayout navVariant="showcase">

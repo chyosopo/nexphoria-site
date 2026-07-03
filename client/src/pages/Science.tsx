@@ -9,7 +9,7 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
-import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 const lifestyleBloodworkDashboard = "img/img_e03de0ca48d9.webp";
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
@@ -293,6 +293,7 @@ export default function Science() {
         type: "MedicalWebPage",
       }),
       orgJsonLd(),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Science", path: "/science" }]),
       faqJsonLd(SCIENCE_FAQ_ITEMS),
     ],
   });
