@@ -305,6 +305,7 @@ function GateCard({
         }}
         animate={{
           scale: isChosen && !reducedMotion ? 1.05 : isHovered && !reducedMotion ? 1.03 : 1.0,
+          filter: isHovered && !isChosen && !reducedMotion ? "brightness(1.07) saturate(1.04)" : "brightness(1) saturate(1)",
         }}
         transition={{
           duration: isChosen ? 0.7 : 0.6,
