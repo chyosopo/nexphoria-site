@@ -27,7 +27,13 @@
 - [ ] Delete `.github/workflows/localize-assets.yml` + manifest after production merge (job done)
 
 ## 🔴 GO-LIVE GATES — business-side (only you)
-1. **Hosting + domain** — currently a GitHub Pages *preview* with hash-routing. Production = real host (Vercel/Netlify/CF Pages), real domain, switch to path routing + real 404 handling
+1. **Hosting + domain** — currently a GitHub Pages *preview* with hash-routing. Production = real host (Vercel/Netlify/CF Pages), real domain, switch to path routing + real 404 handling.
+   **DOMAIN-SWAP MAP (launch day, exactly 4 places — miss one and shares/canonicals silently break):**
+   - `client/src/lib/seo.ts` → `BASE_URL` (drives every canonical, og:url, JSON-LD url, and the absolute DEFAULT_OG)
+   - `client/index.html` → the static head block: canonical, hreflang, og:url, og:image, twitter:image, Organization JSON-LD url+logo (8 refs — crawlers read these BEFORE JS runs; this is what link previews show)
+   - `client/public/sitemap.xml` → all `<loc>` entries (one sed) + drop the `#/` once path routing lands
+   - `client/public/llms.txt` → all absolute URLs (one sed)
+   History says this WILL be missed otherwise: the pplx.app→github.io migration left index.html broken for weeks (every link share showed a dead-domain image) until the 2026-07-03 audit caught it.
 2. **Backend** — intake → physician review (MDI Providers PLLC) → pharmacy (Strive) → fulfillment. Nothing running yet. *Decision pending: Indie vs. Bask*
 3. **Payments** — nothing wired
 4. **The four keys** — named physicians/advisors · lab pricing confirmation ($99/$199/$399 per doc) · backend platform call · retatrutide (doc dropped it — intentional?)
