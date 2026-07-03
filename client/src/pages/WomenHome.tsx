@@ -1,6 +1,7 @@
 /* ═══ WOMEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══
    Orchid tokens apply automatically under /women via [data-world]. */
 import { WorldHome } from "@/components/WorldHome";
+import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 
@@ -38,6 +39,7 @@ export default function WomenHome() {
         ),
         nightBody:
           "Hormonal context changes what a marker means. Every protocol here begins from your panel, not a template — and every ninety days the same markers are drawn again and reviewed by a physician before anything continues.",
+        trustSlot: <HomeTrust />,
       }}
     />
   );
