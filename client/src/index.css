@@ -80,6 +80,7 @@
     --nx-ceramic:      #F7F3E9;
     --nx-rock:         #D5DFE8;
     --nx-acid:         #A9C6DE;
+    --nx-danger:       #A4453C;  /* form error — muted brick */
     --nx-accent:       #2E5877;  /* primary azure accent */  /* honey chip — was acid green */
 
     /* ── shadcn semantic mappings — LIGHT ── */
@@ -143,6 +144,7 @@
     --nx-ceramic:      #FCF3F7;
     --nx-rock:         #F1E7EB;
     --nx-acid:         #F0CBDB;
+    --nx-danger:       #A4453C;
     --nx-accent:       #C97B99;
   }
 
@@ -596,23 +598,28 @@
     padding: 0.6875rem 0.875rem;
     background: #fff;
     border: 1px solid var(--nx-border);
-    border-radius: 0;
+    border-radius: var(--nx-r-sm);
     font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.9375rem;
-    color: #0E2447;
-    transition: border-color 150ms ease, box-shadow 150ms ease;
+    color: var(--nx-fg);
+    transition: border-color var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
   }
   .nx-input::placeholder {
-    color: #93A8BE;
+    color: var(--nx-fg-muted);
   }
   .nx-input:focus {
     outline: none;
-    border-color: #0E2447;
-    box-shadow: 0 0 0 1px #0E2447;
+    border-color: var(--nx-cobalt);
+    box-shadow: 0 0 0 1px var(--nx-cobalt);
   }
   .nx-input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+  /* D14 error grammar — one rule covers every field via the Field wrapper */
+  .nx-field-error .nx-input {
+    border-color: var(--nx-danger);
+    box-shadow: 0 0 0 1px var(--nx-danger);
   }
 }
 

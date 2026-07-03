@@ -523,7 +523,7 @@ export default function Checkout() {
               </div>
 
               <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                <p>No payment collected today. Final pricing confirmed after physician approval. Bask Health handles all billing.</p>
+                <p>No payment collected today. Final pricing confirmed after physician approval; our billing partner handles all payment processing.</p>
               </div>
             </aside>
           </div>
@@ -640,7 +640,7 @@ function Row({ children }: { children: React.ReactNode }) {
 
 function Field({ label, helper, error, children }: { label: string; helper?: string; error?: string; children: React.ReactNode }) {
   return (
-    <label className="block">
+    <label className={error ? "block nx-field-error" : "block"}>
       <span className="block text-[11px] uppercase tracking-[0.15em] mb-1.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
         {label}
       </span>
@@ -651,7 +651,7 @@ function Field({ label, helper, error, children }: { label: string; helper?: str
       ) : null}
       {children}
       {error ? (
-        <span className="block text-xs mt-1.5" style={{ fontFamily: FONT, color: "#1A4D8B" }}>
+        <span role="alert" className="block text-xs mt-1.5" style={{ fontFamily: FONT, color: "var(--nx-danger)", fontWeight: 600 }}>
           {error}
         </span>
       ) : null}
