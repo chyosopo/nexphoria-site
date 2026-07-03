@@ -3,6 +3,7 @@ import { Check, Plus, ChevronDown, Sparkles } from "lucide-react";
 import { useCart } from "@/contexts/CartProvider";
 import { cadenceCardsFor, formatUSD, type CadenceKey, getPrice } from "@/data/pricing";
 import { peptides } from "@/data/peptides";
+import { F, S } from "@/lib/typography";
 
 /* ──────────────────────────────────────────────────────────────
    ProtocolConfigurator — Hims-style PDP product configurator.
@@ -14,9 +15,9 @@ import { peptides } from "@/data/peptides";
      4. Live "total this cycle" price recap
      5. Sticky Add-to-Cart with animated success state
 
-   Two visual identities, driven by `gender`:
-     - "men"   → obsidian ember (dark, JetBrains numerals, hard edges)
-     - "women" → warm apothecary (cream, Instrument Serif, soft rounds)
+   Two visual identities, driven by `gender` — all colors from --nx-* tokens:
+     - "men"   → deep navy surface, hard edges (radius 4)
+     - "women" → ceramic surface, Fraunces display, soft rounds (radius 14)
    ────────────────────────────────────────────────────────────── */
 
 type Gender = "men" | "women" | "neutral";
@@ -111,11 +112,15 @@ function getDoseOptions(slug: string, typicalDose?: string): DoseOption[] {
   ];
 }
 
+/* Two worlds, one engine — colors resolve from --nx-* tokens so the
+   women-world CSS scope repaints these to orchid automatically and token
+   updates propagate here. Alpha overlays stay rgba (no alpha-token system).
+   Fonts come from typography.ts (F/S), not per-theme redeclarations. */
 const MEN_TOKENS = {
-  bg: "#111111",
+  bg: "var(--nx-fg)",
   bgSoft: "var(--nx-bg-dark)",
-  surface: "#161513",
-  surfaceHover: "#1F1D1A",
+  surface: "var(--nx-bg-dark)",
+  surfaceHover: "var(--nx-cobalt-hover)",
   border: "rgba(102, 143, 185,0.22)",
   borderStrong: "rgba(102, 143, 185,0.45)",
   text: "var(--nx-bg)",
@@ -124,38 +129,32 @@ const MEN_TOKENS = {
   accent: "var(--nx-accent)",
   accentSoft: "rgba(102, 143, 185,0.14)",
   accentInk: "var(--nx-fg)",
-  fontDisplay: "'General Sans', system-ui, sans-serif",
-  fontMono: "'JetBrains Mono', ui-monospace, monospace",
-  fontBody: "'General Sans', system-ui, sans-serif",
   radius: 4,
   weightBold: 700,
 };
 
 const WOMEN_TOKENS = {
-  bg: "#EAF2FB",
-  bgSoft: "#E4ECF5",
-  surface: "#F7FBFF",
-  surfaceHover: "#F0F7FF",
+  bg: "var(--nx-bg)",
+  bgSoft: "var(--nx-bg-cream)",
+  surface: "var(--nx-ceramic)",
+  surfaceHover: "var(--nx-cobalt-soft)",
   border: "rgba(81, 100, 119,0.22)",
   borderStrong: "rgba(110, 132, 155,0.55)",
-  text: "#18202A",
+  text: "var(--nx-fg)",
   textMuted: "rgba(28, 33, 38,0.62)",
   textFaint: "rgba(28, 33, 38,0.42)",
-  accent: "#5778B2",
+  accent: "var(--nx-accent)",
   accentSoft: "rgba(110, 132, 155,0.12)",
-  accentInk: "#F7FBFF",
-  fontDisplay: "'Instrument Serif', Georgia, serif",
-  fontMono: "'General Sans', system-ui, sans-serif",
-  fontBody: "'General Sans', system-ui, sans-serif",
+  accentInk: "var(--nx-ceramic)",
   radius: 14,
   weightBold: 500,
 };
 
 const NEUTRAL_TOKENS = {
   bg: "var(--nx-bg)",
-  bgSoft: "#E6EDF5",
-  surface: "#FFFFFF",
-  surfaceHover: "#F6F8FB",
+  bgSoft: "var(--nx-bg-cream)",
+  surface: "var(--nx-ceramic)",
+  surfaceHover: "var(--nx-cobalt-soft)",
   border: "rgba(21, 24, 28,0.14)",
   borderStrong: "rgba(21, 24, 28,0.6)",
   text: "var(--nx-fg)",
@@ -164,9 +163,6 @@ const NEUTRAL_TOKENS = {
   accent: "var(--nx-fg)",
   accentSoft: "rgba(21, 24, 28,0.06)",
   accentInk: "var(--nx-bg)",
-  fontDisplay: "'General Sans', system-ui, sans-serif",
-  fontMono: "'General Sans', system-ui, sans-serif",
-  fontBody: "'General Sans', system-ui, sans-serif",
   radius: 8,
   weightBold: 600,
 };
@@ -250,6 +246,12 @@ export function ProtocolConfigurator({
   const isMen = gender === "men";
   const isWomen = gender === "women";
 
+  // Fonts from the typography source of truth — General Sans for interface,
+  // Fraunces for the women-world display voice. No per-theme redeclaration.
+  const fontBody = F;
+  const fontMono = F;
+  const fontDisplay = isWomen ? S : F;
+
   return (
     <div
       data-testid={`hims-configurator-${slug}`}
@@ -265,7 +267,7 @@ export function ProtocolConfigurator({
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
         <span
           style={{
-            fontFamily: t.fontMono,
+            fontFamily: fontMono,
             fontSize: "10px",
             fontWeight: 600,
             letterSpacing: "0.18em",
@@ -277,7 +279,7 @@ export function ProtocolConfigurator({
         </span>
         <span
           style={{
-            fontFamily: t.fontMono,
+            fontFamily: fontMono,
             fontSize: "10px",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -293,7 +295,7 @@ export function ProtocolConfigurator({
         <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "10px" }}>
           <span
             style={{
-              fontFamily: t.fontMono,
+              fontFamily: fontMono,
               fontSize: "11px",
               fontWeight: 700,
               letterSpacing: "0.14em",
@@ -303,7 +305,7 @@ export function ProtocolConfigurator({
           >
             01
           </span>
-          <span style={{ fontFamily: t.fontBody, fontSize: "14px", fontWeight: t.weightBold, color: t.text }}>
+          <span style={{ fontFamily: fontBody, fontSize: "var(--nx-t-sm)", fontWeight: t.weightBold, color: t.text }}>
             Choose your dose
           </span>
         </div>
@@ -327,12 +329,12 @@ export function ProtocolConfigurator({
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontFamily: t.fontBody, fontSize: "14px", fontWeight: t.weightBold, color: t.text }}>
+            <div style={{ fontFamily: fontBody, fontSize: "var(--nx-t-sm)", fontWeight: t.weightBold, color: t.text }}>
               {selectedDose?.label}
             </div>
             <div
               style={{
-                fontFamily: t.fontMono,
+                fontFamily: fontMono,
                 fontSize: "11px",
                 color: t.textMuted,
                 marginTop: "3px",
@@ -346,7 +348,7 @@ export function ProtocolConfigurator({
             {selectedDose && selectedDose.priceDelta > 0 && (
               <span
                 style={{
-                  fontFamily: t.fontMono,
+                  fontFamily: fontMono,
                   fontSize: "11px",
                   fontWeight: 600,
                   color: t.accent,
@@ -404,8 +406,8 @@ export function ProtocolConfigurator({
                   <div style={{ flex: 1 }}>
                     <div
                       style={{
-                        fontFamily: t.fontBody,
-                        fontSize: "13px",
+                        fontFamily: fontBody,
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: isSelected ? t.weightBold : 500,
                         color: t.text,
                       }}
@@ -414,7 +416,7 @@ export function ProtocolConfigurator({
                     </div>
                     <div
                       style={{
-                        fontFamily: t.fontMono,
+                        fontFamily: fontMono,
                         fontSize: "10.5px",
                         color: t.textMuted,
                         marginTop: "2px",
@@ -426,7 +428,7 @@ export function ProtocolConfigurator({
                   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                     <span
                       style={{
-                        fontFamily: t.fontMono,
+                        fontFamily: fontMono,
                         fontSize: "11px",
                         fontWeight: 600,
                         color: opt.priceDelta > 0 ? t.accent : t.textFaint,
@@ -448,7 +450,7 @@ export function ProtocolConfigurator({
         <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "10px" }}>
           <span
             style={{
-              fontFamily: t.fontMono,
+              fontFamily: fontMono,
               fontSize: "11px",
               fontWeight: 700,
               letterSpacing: "0.14em",
@@ -458,7 +460,7 @@ export function ProtocolConfigurator({
           >
             02
           </span>
-          <span style={{ fontFamily: t.fontBody, fontSize: "14px", fontWeight: t.weightBold, color: t.text }}>
+          <span style={{ fontFamily: fontBody, fontSize: "var(--nx-t-sm)", fontWeight: t.weightBold, color: t.text }}>
             Pick your plan
           </span>
         </div>
@@ -510,8 +512,8 @@ export function ProtocolConfigurator({
                   <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
                     <span
                       style={{
-                        fontFamily: t.fontBody,
-                        fontSize: "14px",
+                        fontFamily: fontBody,
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: t.weightBold,
                       }}
                     >
@@ -520,7 +522,7 @@ export function ProtocolConfigurator({
                     {card.badge && card.badge !== "Flexible" && (
                       <span
                         style={{
-                          fontFamily: t.fontMono,
+                          fontFamily: fontMono,
                           fontSize: "9px",
                           fontWeight: 700,
                           letterSpacing: "0.14em",
@@ -542,7 +544,7 @@ export function ProtocolConfigurator({
                   </div>
                   <p
                     style={{
-                      fontFamily: t.fontMono,
+                      fontFamily: fontMono,
                       fontSize: "10.5px",
                       color: isSelected ? "rgba(21, 24, 28,0.65)" : t.textMuted,
                       marginTop: "3px",
@@ -555,8 +557,8 @@ export function ProtocolConfigurator({
                 <div style={{ textAlign: "right", flexShrink: 0 }}>
                   <div
                     style={{
-                      fontFamily: isMen ? t.fontMono : t.fontDisplay,
-                      fontSize: isWomen ? "26px" : "22px",
+                      fontFamily: isMen ? fontMono : fontDisplay,
+                      fontSize: isWomen ? "var(--nx-t-h3)" : "var(--nx-t-xl)",
                       fontWeight: isMen ? 700 : 500,
                       lineHeight: 1,
                       letterSpacing: isMen ? "-0.02em" : "-0.01em",
@@ -566,7 +568,7 @@ export function ProtocolConfigurator({
                   </div>
                   <p
                     style={{
-                      fontFamily: t.fontMono,
+                      fontFamily: fontMono,
                       fontSize: "9px",
                       color: isSelected ? "rgba(21, 24, 28,0.55)" : t.textFaint,
                       marginTop: "3px",
@@ -588,7 +590,7 @@ export function ProtocolConfigurator({
         <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "10px" }}>
           <span
             style={{
-              fontFamily: t.fontMono,
+              fontFamily: fontMono,
               fontSize: "11px",
               fontWeight: 700,
               letterSpacing: "0.14em",
@@ -598,12 +600,12 @@ export function ProtocolConfigurator({
           >
             03
           </span>
-          <span style={{ fontFamily: t.fontBody, fontSize: "14px", fontWeight: t.weightBold, color: t.text }}>
+          <span style={{ fontFamily: fontBody, fontSize: "var(--nx-t-sm)", fontWeight: t.weightBold, color: t.text }}>
             Optional add-ons
           </span>
           <span
             style={{
-              fontFamily: t.fontMono,
+              fontFamily: fontMono,
               fontSize: "10px",
               color: t.textFaint,
               marginLeft: "auto",
@@ -656,8 +658,8 @@ export function ProtocolConfigurator({
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div
                     style={{
-                      fontFamily: t.fontBody,
-                      fontSize: "13.5px",
+                      fontFamily: fontBody,
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 600,
                       color: t.text,
                     }}
@@ -666,7 +668,7 @@ export function ProtocolConfigurator({
                   </div>
                   <div
                     style={{
-                      fontFamily: t.fontMono,
+                      fontFamily: fontMono,
                       fontSize: "10.5px",
                       color: t.textMuted,
                       marginTop: "2px",
@@ -677,8 +679,8 @@ export function ProtocolConfigurator({
                 </div>
                 <div
                   style={{
-                    fontFamily: t.fontMono,
-                    fontSize: "12px",
+                    fontFamily: fontMono,
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
                     color: isOn ? t.accent : t.textMuted,
                     flexShrink: 0,
@@ -705,7 +707,7 @@ export function ProtocolConfigurator({
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "6px" }}>
           <span
             style={{
-              fontFamily: t.fontMono,
+              fontFamily: fontMono,
               fontSize: "10px",
               fontWeight: 600,
               letterSpacing: "0.18em",
@@ -718,7 +720,7 @@ export function ProtocolConfigurator({
           {savings > 0 && (
             <span
               style={{
-                fontFamily: t.fontMono,
+                fontFamily: fontMono,
                 fontSize: "10px",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
@@ -734,8 +736,8 @@ export function ProtocolConfigurator({
           <div>
             <span
               style={{
-                fontFamily: isMen ? t.fontMono : t.fontDisplay,
-                fontSize: isWomen ? "40px" : "36px",
+                fontFamily: isMen ? fontMono : fontDisplay,
+                fontSize: isWomen ? "var(--nx-t-h2)" : "var(--nx-t-h2)",
                 fontWeight: isMen ? 700 : 500,
                 color: isMen ? t.text : t.text,
                 lineHeight: 1,
@@ -747,8 +749,8 @@ export function ProtocolConfigurator({
             </span>
             <span
               style={{
-                fontFamily: t.fontMono,
-                fontSize: "12px",
+                fontFamily: fontMono,
+                fontSize: "var(--nx-t-xs)",
                 color: isMen ? t.textMuted : t.textMuted,
                 marginLeft: "8px",
                 letterSpacing: "0.04em",
@@ -760,8 +762,8 @@ export function ProtocolConfigurator({
           <div style={{ textAlign: "right" }}>
             <div
               style={{
-                fontFamily: t.fontMono,
-                fontSize: "12px",
+                fontFamily: fontMono,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 600,
                 color: isMen ? t.text : t.text,
               }}
@@ -770,7 +772,7 @@ export function ProtocolConfigurator({
             </div>
             <div
               style={{
-                fontFamily: t.fontMono,
+                fontFamily: fontMono,
                 fontSize: "9.5px",
                 color: t.textFaint,
                 marginTop: "2px",
@@ -796,8 +798,8 @@ export function ProtocolConfigurator({
           color: justAdded ? t.accentInk : isMen ? t.accentInk : "var(--nx-bg)",
           border: "none",
           borderRadius: t.radius,
-          fontFamily: t.fontBody,
-          fontSize: "14px",
+          fontFamily: fontBody,
+          fontSize: "var(--nx-t-sm)",
           fontWeight: 700,
           letterSpacing: isMen ? "0.06em" : "0.02em",
           textTransform: isMen ? "uppercase" : "none",
@@ -826,7 +828,7 @@ export function ProtocolConfigurator({
         <Sparkles size={11} style={{ color: t.accent }} />
         <p
           style={{
-            fontFamily: t.fontMono,
+            fontFamily: fontMono,
             fontSize: "10px",
             color: t.textMuted,
             letterSpacing: "0.08em",
