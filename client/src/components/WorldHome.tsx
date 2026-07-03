@@ -40,6 +40,8 @@ export interface WorldHomeConfig {
   nightEyebrow: string;
   nightH2: React.ReactNode;
   nightBody: string;
+  /** optional trust sections dropped between the shelf and the night band; per-world, women pass nothing */
+  trustSlot?: React.ReactNode;
 }
 
 export function WorldHome({ config }: { config: WorldHomeConfig }) {
@@ -182,6 +184,9 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </div>
         </div>
       </section>
+
+      {/* ── TRUST SLOT — per-world sections (physician band, how-it-works) ── */}
+      {config.trustSlot}
 
       {/* ── THE ONE NIGHT BAND — the loop is the product ── */}
       <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(3rem,6vw,4.6rem) 0" }}>
