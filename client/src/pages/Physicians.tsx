@@ -1,28 +1,27 @@
-import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { physicians, type Physician } from "@/data/physicians";
+import { physicianReview } from "@/data/physicians";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
-import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 const physicianTrustHero = "img/img_20e1e1d49da4.webp";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
-import { PillBadge } from "@/components/PillBadge";
 
 export default function Physicians() {
   useSeo({
-    title: "Nexphoria physicians — board-certified, Cleveland Clinic to Stanford",
-    description: "Every Nexphoria protocol is reviewed by a board-certified U.S. physician trained at Cleveland Clinic, Mayo, UCSF, Hopkins, or Stanford. No algorithms, no auto-approval — a licensed physician reads your file.",
+    title: "Nexphoria physicians — board-certified U.S. medical review",
+    description:
+      "Every Nexphoria protocol is reviewed by a board-certified, U.S.-licensed physician who reads your labs before prescribing. No algorithms, no auto-approval — a licensed physician reviews your file.",
     path: "/physicians",
-    jsonLd: [webPageJsonLd({
-      name: "Nexphoria Physicians",
-      description: "Board-certified U.S. physicians from Cleveland Clinic, Mayo, UCSF, Hopkins, and Stanford reviewing every peptide protocol.",
-      path: "/physicians",
-      type: "MedicalWebPage",
-    }),
-    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Physicians", path: "/physicians" }]),
+    jsonLd: [
+      webPageJsonLd({
+        name: "Nexphoria Physician Review",
+        description:
+          "Board-certified, U.S.-licensed physicians review every peptide protocol against your laboratory results before prescribing.",
+        path: "/physicians",
+        type: "MedicalWebPage",
+      }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Physicians", path: "/physicians" }]),
     ],
   });
   return (
@@ -51,7 +50,7 @@ export default function Physicians() {
               >
                 <img
                   src={physicianTrustHero}
-                  alt="Board-certified physician reviewing a 38-biomarker peptide lab panel before prescribing"
+                  alt="A board-certified physician reviewing a 38-biomarker peptide lab panel before prescribing"
                   loading="eager"
                   decoding="async"
                   data-testid="physicians-hero-portrait"
@@ -98,80 +97,12 @@ export default function Physicians() {
                     lineHeight: 1.7,
                   }}
                 >
-                  Peptide medicine is precision pharmacology. The physicians on our panel do not
-                  prescribe from a questionnaire — they calibrate dose against your measured
-                  IGF-1, metabolic, and hormonal markers, then monitor and adjust every 90 days.
+                  Peptide medicine is precision pharmacology. A physician on the network does not
+                  prescribe from a questionnaire — your dose is calibrated against your measured
+                  IGF-1, metabolic, and hormonal markers, then monitored and adjusted every 90 days.
                 </p>
               </div>
             </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Doctor grid ── */}
-      <section
-        className="py-24 md:py-32"
-        style={{ backgroundColor: "var(--nx-bg-cream)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p
-              style={{
-                fontFamily: F,
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-              }}
-            >
-              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              The panel
-            </p>
-            <h2
-              style={{
-                fontFamily: F,
-                fontWeight: 500,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.1,
-                marginBottom: "0.5rem",
-              }}
-            >
-              Five physicians.
-            </h2>
-            <h2
-              style={{
-                fontFamily: F,
-                fontWeight: 500,
-                
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.1,
-                marginBottom: "3.5rem",
-              }}
-            >
-              One clinical standard.
-            </h2>
-          </Reveal>
-
-          <div
-            data-testid="physicians-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-              gap: "2px",
-            }}
-          >
-            {physicians.map((doc, i) => (
-              <Reveal key={doc.name} delay={i * 80}>
-                <PhysicianCard doc={doc} index={i} />
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
@@ -219,13 +150,13 @@ export default function Physicians() {
                     marginBottom: "0.5rem",
                   }}
                 >
-                  Every physician on our panel
+                  Every physician on the network
                 </h2>
                 <h2
                   style={{
                     fontFamily: F,
                     fontWeight: 500,
-                    
+
                     fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
@@ -243,7 +174,7 @@ export default function Physicians() {
                     marginBottom: "2rem",
                   }}
                 >
-                  Every physician on our panel is U.S.-licensed, board-certified, and
+                  Every prescribing physician is U.S.-licensed, board-certified, and
                   DEA-registered. We do not contract with international or non-licensed
                   providers. Every physician reviews actual laboratory results before
                   issuing a prescription — intake questionnaires alone are insufficient.
@@ -258,13 +189,7 @@ export default function Physicians() {
                     margin: 0,
                   }}
                 >
-                  {[
-                    { label: "ABIM, ABFM, or specialty board certification required", detail: "No exceptions. Board certification is the minimum — not a differentiator." },
-                    { label: "Laboratory review mandatory before any Rx", detail: "38-biomarker Quest Diagnostics panel must be on file. No prescription precedes labs." },
-                    { label: "Licensed in member's state of residence", detail: "Physician licensure is state-specific. Members are matched to a licensed provider in their state." },
-                    { label: "DEA registration active and current", detail: "Required for prescribing scheduled and controlled compounds within our formulary." },
-                    { label: "Quarterly case review with medical director", detail: "All active protocols are reviewed against updated clinical literature on a rolling 90-day cycle." },
-                  ].map((item) => (
+                  {physicianReview.standards.map((item) => (
                     <li
                       key={item.label}
                       style={{
@@ -314,7 +239,7 @@ export default function Physicians() {
               </div>
             </Reveal>
 
-            {/* Pull quote */}
+            {/* Pull quote — institutional, unattributed to any individual */}
             <Reveal delay={120}>
               <div
                 style={{
@@ -335,7 +260,7 @@ export default function Physicians() {
                   <p
                     style={{
                       fontFamily: F,
-                      
+
                       fontWeight: 400,
                       fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                       color: "var(--nx-fg)",
@@ -357,7 +282,7 @@ export default function Physicians() {
                         marginBottom: "2px",
                       }}
                     >
-                      Dr. Arjun Patel, MD
+                      Nexphoria clinical standard
                     </p>
                     <p
                       style={{
@@ -369,7 +294,7 @@ export default function Physicians() {
                         color: "var(--nx-cobalt)",
                       }}
                     >
-                      Endocrinology · Cleveland Clinic · ABIM Board-Certified
+                      Board-certified · Lab-gated · Physician-reviewed
                     </p>
                   </div>
                 </div>
@@ -403,23 +328,7 @@ export default function Physicians() {
           <div
             style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", maxWidth: "900px" }}
           >
-            {[
-              {
-                n: "01",
-                label: "Labs First",
-                body: "A 38-biomarker Quest Diagnostics panel is required before any prescription. Your physician will not prescribe based on symptoms alone. The panel covers hormones, metabolic markers, inflammation, cardiovascular markers, and organ function.",
-              },
-              {
-                n: "02",
-                label: "Physician Review",
-                body: "Your assigned board-certified physician reviews your full panel and intake within 24 hours of receipt. They look for absolute contraindications, relative cautions, and protocol optimization based on your specific baseline — not population averages.",
-              },
-              {
-                n: "03",
-                label: "Telehealth Consult",
-                body: "Your consult is scheduled through Bask Health, our licensed telehealth partner. Your physician finalizes your protocol, sets dose parameters, and answers clinical questions. Ongoing secure portal messaging is available between consult cycles.",
-              },
-            ].map(({ n, label, body }) => (
+            {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
                 <div style={{ backgroundColor: "var(--nx-ceramic)", padding: "2rem", height: "100%" }}>
                   <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{n}</p>
@@ -437,7 +346,7 @@ export default function Physicians() {
                 "Dare to defy. Find your focus. Elevate every moment."
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
-                Your physician review is included with every protocol. Take the assessment and our team will match you with the right physician for your state and goals.
+                Your physician review is included with every protocol. Take the assessment and our team will match you with a physician licensed in your state.
               </p>
               <StartIntakeButton source="physicians-page" size="lg">
                 Start your intake
@@ -452,7 +361,7 @@ export default function Physicians() {
       <FinalCTAStrip
         gender="women"
         title="Your physician review is included."
-        sub="Quest Diagnostics labs drawn first. Board-certified MD review within 48 hours."
+        sub="A CLIA-certified partner-laboratory panel is drawn first. A board-certified physician reviews it before any prescription."
       />
       <style>{`
         @media (min-width: 768px) {
@@ -462,10 +371,6 @@ export default function Physicians() {
     </SiteLayout>
   );
 }
-
-// ─────────────────────────────────────────────
-// PhysicianCard — expandable, with extended bio + focus + publications
-// ─────────────────────────────────────────────
 
 // =============================================================
 // PhysiciansHeroDark — Hims-Labs style dark cobalt hero
@@ -529,7 +434,7 @@ function PhysiciansHeroDark() {
               }}
             >
               <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
-              The medical team
+              Physician review
             </p>
             <h1
               style={{
@@ -542,8 +447,8 @@ function PhysiciansHeroDark() {
                 marginBottom: "1.5rem",
               }}
             >
-              Meet the physicians<br />
-              <span style={{ color: "var(--nx-acid)" }}>behind your protocol.</span>
+              A licensed physician<br />
+              <span style={{ color: "var(--nx-acid)" }}>reads your file.</span>
             </h1>
             <p
               style={{
@@ -555,7 +460,9 @@ function PhysiciansHeroDark() {
                 marginBottom: "2rem",
               }}
             >
-              Five board-certified U.S. physicians. Cleveland Clinic, Mayo, UCSF, Hopkins, Stanford. Every peptide protocol is reviewed against your bloodwork and signed by the doctor licensed in your state.
+              Every peptide protocol is reviewed by a board-certified, U.S.-licensed physician
+              against your bloodwork, and signed by a doctor licensed in your state. No algorithms,
+              no auto-approval.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
               {[
@@ -587,10 +494,10 @@ function PhysiciansHeroDark() {
                 Start your assessment
               </StartIntakeButton>
               <a
-                href="#physicians-grid"
+                href="#physician-standards"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("physicians-grid")?.scrollIntoView({ behavior: "smooth" });
+                  document.getElementById("physician-standards")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 style={{
                   fontFamily: F,
@@ -609,87 +516,63 @@ function PhysiciansHeroDark() {
                   background: "rgba(255,255,255,0.04)",
                 }}
               >
-                Meet the team ↓
+                How review works ↓
               </a>
             </div>
           </div>
 
-          {/* RIGHT: physician face grid */}
+          {/* RIGHT: standards tiles — no individual identities */}
           <div
+            id="physician-standards"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: "repeat(2, 1fr)",
               gap: "0.65rem",
               position: "relative",
             }}
           >
-            {physicians.slice(0, 5).map((doc, i) => (
+            {[
+              { k: "Board-certified", v: "Active certification required of every prescriber" },
+              { k: "Lab-gated", v: "No prescription precedes a CLIA-certified lab panel" },
+              { k: "State-licensed", v: "Matched to a physician licensed where you live" },
+              { k: "Human review", v: "A physician reads your file — never an algorithm" },
+            ].map((tile) => (
               <div
-                key={doc.name}
+                key={tile.k}
                 style={{
-                  aspectRatio: "4/5",
                   borderRadius: "14px",
                   overflow: "hidden",
                   border: "1px solid rgba(255,255,255,0.10)",
                   background: "rgba(255,255,255,0.03)",
-                  position: "relative",
-                  gridColumn: i === 0 ? "1 / 3" : i === 4 ? "2 / 4" : "auto",
-                  gridRow: i === 0 ? "1 / 3" : "auto",
+                  padding: "1.25rem 1.1rem",
+                  minHeight: "128px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
                 }}
               >
-                <img
-                  src={doc.photo}
-                  alt={doc.name}
-                  loading="eager"
-                  decoding="async"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "top center",
-                    display: "block",
-                  }}
-                />
                 <div
                   style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(180deg, transparent 45%, rgba(16, 21, 27,0.85) 100%)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "0.7rem",
-                    right: "0.7rem",
-                    bottom: "0.6rem",
-                    color: "var(--nx-bg)",
+                    fontFamily: F,
+                    fontWeight: 600,
+                    fontSize: "var(--nx-t-base)",
+                    lineHeight: 1.15,
+                    color: "var(--nx-acid)",
+                    marginBottom: "0.4rem",
                   }}
                 >
-                  <div
-                    style={{
-                      fontFamily: F,
-                      fontWeight: 600,
-                      fontSize: i === 0 ? "var(--nx-t-base)" : "var(--nx-t-xs)",
-                      lineHeight: 1.15,
-                      marginBottom: "0.15rem",
-                    }}
-                  >
-                    {doc.name.replace(/, MD.*/, "")}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: F,
-                      fontSize: i === 0 ? "10px" : "8.5px",
-                      fontWeight: 500,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--nx-acid)",
-                    }}
-                  >
-                    {doc.institution}
-                  </div>
+                  {tile.k}
+                </div>
+                <div
+                  style={{
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-xs)",
+                    fontWeight: 400,
+                    lineHeight: 1.4,
+                    color: "rgba(241, 243, 244,0.72)",
+                  }}
+                >
+                  {tile.v}
                 </div>
               </div>
             ))}
@@ -714,12 +597,7 @@ function PhysiciansHeroDark() {
             padding: "1.5rem 0",
           }}
         >
-          {[
-            { k: "5", v: "Board-certified MDs" },
-            { k: "18+", v: "Avg years in practice" },
-            { k: "38", v: "Biomarkers reviewed" },
-            { k: "50", v: "States licensed" },
-          ].map((s) => (
+          {physicianReview.stats.map((s) => (
             <div key={s.v} style={{ textAlign: "center" }}>
               <div
                 style={{
@@ -759,109 +637,7 @@ function PhysiciansHeroDark() {
   );
 }
 
-
-function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div
-      className="nx-protocol-card"
-      style={{ backgroundColor: "var(--nx-ceramic)", overflow: "hidden" }}
-      data-testid={`physician-card-${index}`}
-    >
-      <div
-        style={{
-          width: "100%",
-          aspectRatio: "4/5",
-          backgroundColor: "var(--nx-bg-cream)",
-          overflow: "hidden",
-        }}
-      >
-        <img
-          src={doc.photo}
-          alt={doc.name}
-          loading="lazy"
-          decoding="async"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block" }}
-        />
-      </div>
-      <div style={{ height: "2px", backgroundColor: "var(--nx-cobalt)" }} />
-      <div style={{ padding: "1.5rem 1.25rem 2rem" }}>
-        <h3 style={{ fontFamily: F,  fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
-          {doc.name}
-        </h3>
-        <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.375rem" }}>
-          {doc.specialty} · {doc.institution}
-        </p>
-        <p style={{ fontFamily: F, fontSize: "8px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>
-          {doc.credentials}
-        </p>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.65, marginBottom: "1rem" }}>
-          {doc.bio}
-        </p>
-
-        {open && (
-          <div id={`physician-extended-${index}`} style={{ marginTop: "0.5rem", marginBottom: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--nx-rock)" }}>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, marginBottom: "1rem" }}>
-              {doc.extendedBio}
-            </p>
-            <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
-              Clinical focus
-            </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
-              {doc.focus.map((f) => (
-                <li key={f} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, paddingLeft: "1rem", position: "relative" }}>
-                  <span style={{ position: "absolute", left: 0, color: "var(--nx-cobalt)" }}>•</span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-            <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
-              Selected publications
-            </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
-              {doc.publications.map((p) => (
-                <li key={p} style={{ fontFamily: F, fontSize: "11px",  color: "var(--nx-fg-muted)", lineHeight: 1.55, marginBottom: "0.35rem" }}>
-                  {p}
-                </li>
-              ))}
-            </ul>
-            <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.35rem" }}>
-              Languages
-            </p>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)" }}>{doc.languages}</p>
-          </div>
-        )}
-
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls={`physician-extended-${index}`}
-          data-testid={`physician-read-more-${index}`}
-          style={{
-            fontFamily: F,
-            fontSize: "var(--nx-t-xs)",
-            fontWeight: 600,
-            letterSpacing: "0.06em",
-            textTransform: "uppercase",
-            color: "var(--nx-cobalt)",
-            background: "transparent",
-            border: "none",
-            padding: 0,
-            cursor: "pointer",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.35rem",
-          }}
-        >
-          {open ? "Show less ↑" : "Read more →"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// PhysicianCredentials — partner-org training + board certs as clean type
+// PhysicianCredentials — board certifications as clean type (no institution claims)
 const eyebrowStyle: React.CSSProperties = {
   fontFamily: F,
   fontSize: "11px",
@@ -876,13 +652,7 @@ const eyebrowStyle: React.CSSProperties = {
 };
 
 function PhysicianCredentials() {
-  const institutions = ["Cleveland Clinic", "Mayo Clinic", "UCSF", "Johns Hopkins", "Stanford Medicine"];
-  const boards = [
-    { abbr: "ABIM", full: "American Board of Internal Medicine", note: "Internal medicine and endocrinology" },
-    { abbr: "ABFM", full: "American Board of Family Medicine", note: "Primary and preventative care" },
-    { abbr: "DEA", full: "Drug Enforcement Administration", note: "Active prescribing registration" },
-    { abbr: "State licensure", full: "Matched to your state of residence", note: "Physician licensed where you live" },
-  ];
+  const boards = physicianReview.credentials;
   return (
     <section
       className="py-24 md:py-32"
@@ -893,7 +663,7 @@ function PhysicianCredentials() {
         <Reveal>
           <p style={eyebrowStyle}>
             <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-            TRAINED AND CERTIFIED
+            CERTIFIED AND LICENSED
           </p>
           <h2
             style={{
@@ -905,7 +675,7 @@ function PhysicianCredentials() {
               marginBottom: "0.75rem",
             }}
           >
-            Where our physicians trained.
+            The credentials behind every protocol.
           </h2>
           <p
             style={{
@@ -917,50 +687,10 @@ function PhysicianCredentials() {
               marginBottom: "3rem",
             }}
           >
-            Residency and fellowship training from top U.S. academic medical centers. Every
-            physician holds active board certification and state licensure.
+            Prescribing physicians are U.S.-licensed and board-certified, with active DEA
+            registration and state licensure matched to where you live.
           </p>
         </Reveal>
-
-        <div
-          data-testid="physicians-institutions"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-            gap: "1.5px",
-            backgroundColor: "var(--nx-border)",
-            border: "1.5px solid var(--nx-border)",
-            marginBottom: "3.5rem",
-          }}
-        >
-          {institutions.map((org) => (
-            <div
-              key={org}
-              data-testid={`physicians-institution-${org.replace(/\s+/g, "-").toLowerCase()}`}
-              style={{
-                backgroundColor: "var(--nx-bg)",
-                padding: "1.75rem 1.25rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: F,
-                  fontSize: "var(--nx-t-body)",
-                  fontWeight: 600,
-                  letterSpacing: "-0.01em",
-                  color: "var(--nx-fg)",
-                  lineHeight: 1.2,
-                }}
-              >
-                {org}
-              </span>
-            </div>
-          ))}
-        </div>
 
         <div
           data-testid="physicians-boards"
@@ -1016,4 +746,3 @@ function PhysicianCredentials() {
     </section>
   );
 }
-

@@ -128,9 +128,9 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "Short chains of amino acids that signal cells. Understanding mechanism is the first step toward informed therapy.",
     readTime: "8 MIN",
     publishedISO: "2026-06-12",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     reviewers: [
-      { name: "Dr. Marcus Chen, PharmD", title: "Pharmacy Director" },
+      { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
     ],
     imageSrc: editorialBloodwork,
     sections: [
@@ -193,7 +193,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "Reference ranges are population averages — not your personal optimum. A primer on biomarker interpretation.",
     readTime: "12 MIN",
     publishedISO: "2026-06-19",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     imageSrc: editorialPrescription,
     sections: [
       {
@@ -235,7 +235,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "Every peptide has a side-effect profile. We catalog them, severity-rated, with clinical recourse.",
     readTime: "9 MIN",
     publishedISO: "2026-06-05",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     imageSrc: editorialProtocolKit,
     sections: [
       {
@@ -280,7 +280,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "503A pharmacies, FDA enforcement discretion, and what 'research-only' really means.",
     readTime: "14 MIN",
     publishedISO: "2026-05-28",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     imageSrc: editorialPharmacy,
     sections: [
       {
@@ -317,7 +317,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "Done well, a sub-q injection is faster, cleaner, and less painful than a flu shot. Here is the protocol.",
     readTime: "6 MIN",
     publishedISO: "2026-06-22",
-    author: { name: "Dr. Marcus Chen, PharmD", title: "Pharmacy Director" },
+    author: { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
     imageSrc: editorialProtocolKit,
     sections: [
       {
@@ -361,9 +361,9 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "CJC-1295, ipamorelin, sermorelin — what each does, how they stack, and what your IGF-1 should tell you at 90 days.",
     readTime: "11 MIN",
     publishedISO: "2026-06-10",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     reviewers: [
-      { name: "Dr. Marcus Chen, PharmD", title: "Pharmacy Director" },
+      { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
     ],
     imageSrc: editorialBloodwork,
     sections: [
@@ -420,7 +420,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "Why cellular energy decline is measurable, what restores it, and what the clinical evidence actually supports.",
     readTime: "10 MIN",
     publishedISO: "2026-06-03",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     imageSrc: editorialProtocolKit,
     sections: [
       {
@@ -475,9 +475,9 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     dek: "Exceptional preclinical data, limited human trials. A clear-eyed review of where BPC-157 stands in 2026.",
     readTime: "9 MIN",
     publishedISO: "2026-05-20",
-    author: { name: "Dr. Amelia Hart, MD", title: "Medical Director, Nexphoria" },
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
     reviewers: [
-      { name: "Dr. Marcus Chen, PharmD", title: "Pharmacy Director" },
+      { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
     ],
     imageSrc: editorialPharmacy,
     sections: [
