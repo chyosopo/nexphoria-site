@@ -161,8 +161,10 @@ export function BuyBox(props: BuyBoxProps) {
         className="lg:hidden"
         style={{
           position: "fixed", left: 0, right: 0, bottom: 0, zIndex: "var(--nx-z-bar)" as unknown as number,
-          background: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)",
-          backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
+          // Solid background instead of backdrop-blur: this bar is mobile-only
+          // (lg:hidden) and fixed while scrolling — backdrop-filter here was a
+          // top cause of scroll jank on mid-range phones. Opaque = no recomposite.
+          background: "var(--nx-ceramic)",
           borderTop: "1px solid var(--nx-border)",
           padding: "10px clamp(16px,4vw,24px) calc(10px + env(safe-area-inset-bottom))",
           display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14,

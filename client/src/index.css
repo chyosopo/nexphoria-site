@@ -1229,7 +1229,7 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
 
 /* ═══ P3 — Aurora field + tinted glass (world-aware: everything derives from --nx-* tokens) ═══ */
 .nx-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.nx-aurora i { position: absolute; border-radius: 50%; filter: blur(72px); opacity: 0.55; will-change: transform; }
+.nx-aurora i { position: absolute; border-radius: 50%; filter: blur(56px); opacity: 0.55; will-change: transform; }
 .nx-aurora i:nth-child(1) { width: 46vw; height: 46vw; left: -12%; top: -24%; background: color-mix(in srgb, var(--nx-accent) 26%, transparent); animation: nxAur 34s ease-in-out infinite alternate; }
 .nx-aurora i:nth-child(2) { width: 38vw; height: 38vw; right: -10%; top: 4%; background: color-mix(in srgb, var(--nx-acid) 40%, transparent); animation: nxAur 28s ease-in-out infinite alternate-reverse; }
 .nx-aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 34%; bottom: -32%; background: color-mix(in srgb, var(--nx-rust) 30%, transparent); animation: nxAur 40s ease-in-out infinite alternate; }
@@ -1387,5 +1387,12 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   .mx-hero-label {
     backdrop-filter: blur(8px) saturate(1.1);
     -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  }
+  /* Aurora field: the 56px blur on 46vw blobs is the single most expensive
+     paint on the page. Halve it on phones — the soft glow reads the same at
+     mobile scale but per-frame recomposite cost drops enough to hold 60fps. */
+  .nx-aurora i {
+    filter: blur(30px);
+    will-change: auto;
   }
 }
