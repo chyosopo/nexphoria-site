@@ -6,13 +6,15 @@ import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/Si
 import { PillBadge } from "@/components/PillBadge";
 import { F } from "@/lib/typography";
 
+// Illustrative example topics representing the discussion categories the
+// community is built around — not live threads, counts, or timestamps.
 const clinicalTopics = [
-  { category: "METABOLIC", title: "Tirzepatide at week 8 — before/after lab panel shared", activity: "43 responses · 2h ago" },
-  { category: "GROWTH HORMONE AXIS", title: "CJC-1295 + Ipamorelin dosing relative to training window", activity: "28 responses · 5h ago" },
-  { category: "LABS", title: "IGF-1 up 58% after 12 weeks on GHS protocol — full panel posted", activity: "61 responses · 1d ago" },
-  { category: "LONGEVITY", title: "NAD+ mitochondrial markers at 3 months — epigenetic clock data", activity: "19 responses · 1d ago" },
-  { category: "PHYSICIAN Q&A", title: "Dr. Patel: HPG-axis modulators vs. testosterone replacement therapy", activity: "88 responses · 2d ago" },
-  { category: "OUTCOMES", title: "12-week protocol complete — annotated lab comparison uploaded", activity: "102 responses · 3d ago" },
+  { category: "METABOLIC", title: "Tirzepatide at week 8 — before/after lab panel", activity: "Outcome log" },
+  { category: "GROWTH HORMONE AXIS", title: "CJC-1295 + Ipamorelin dosing relative to training window", activity: "Dosing discussion" },
+  { category: "LABS", title: "IGF-1 change after 12 weeks on a GHS protocol — reading the panel", activity: "Lab panel review" },
+  { category: "LONGEVITY", title: "NAD+ mitochondrial markers at 3 months — epigenetic clock data", activity: "Data thread" },
+  { category: "PHYSICIAN Q&A", title: "HPG-axis modulators vs. testosterone replacement therapy", activity: "Physician Q&A" },
+  { category: "OUTCOMES", title: "12-week protocol complete — annotated lab comparison", activity: "Outcome log" },
 ];
 
 const guideChapters = [
@@ -24,8 +26,9 @@ const guideChapters = [
   { num: "06", title: "Reading your bloodwork — what each marker means", pages: "pp. 59–64" },
 ];
 
-// Type-driven testimonial cards — real-looking names + measured outcome deltas.
-// No stock photos: outcome data IS the visual.
+// Illustrative composite examples — NOT real patients or verified endorsements.
+// Rendered under a clear "composite examples for illustration only" disclaimer.
+// No stock photos: the outcome-delta format IS the visual.
 const testimonials = [
   {
     initials: "MR",
@@ -476,21 +479,34 @@ export default function Community() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              RECENT DISCUSSIONS
+              DISCUSSION TOPICS
             </p>
             <h2
               style={{
                 fontFamily: F,
                 fontWeight: 500,
-                
+
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
+                marginBottom: "0.75rem",
+              }}
+            >
+              What the community is built around.
+            </h2>
+            <p
+              style={{
+                fontFamily: F,
+                fontSize: "var(--nx-t-body)",
+                color: "var(--nx-fg-graphite)",
+                lineHeight: 1.65,
+                maxWidth: "560px",
                 marginBottom: "2.5rem",
               }}
             >
-              What members are documenting.
-            </h2>
+              Illustrative examples of the topics the community is organized around. Not live
+              threads — the member community launches with your protocol.
+            </p>
           </Reveal>
 
           <div
@@ -695,7 +711,7 @@ function CommunityOutcomes() {
             }}
           >
             <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-            MEMBER OUTCOMES
+            HOW OUTCOMES ARE TRACKED
           </p>
           <h2
             style={{
@@ -719,8 +735,9 @@ function CommunityOutcomes() {
               marginBottom: "3rem",
             }}
           >
-            Every member story is anchored to a measured biomarker change from their own 90-day
-            panels. Names shortened for privacy. Individual results vary.
+            Illustrative examples of how the program anchors progress to a measured biomarker
+            change from your own 90-day panels — not endorsements from identified patients. These
+            are composite examples for illustration only. Individual results vary.
           </p>
         </Reveal>
 
