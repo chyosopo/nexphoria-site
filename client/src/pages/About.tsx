@@ -3,7 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, orgJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare, Activity, RefreshCw, Stethoscope, ClipboardList, FlaskConical, Snowflake, LayoutDashboard, Target, Ruler, type LucideIcon } from "lucide-react";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
@@ -63,11 +63,28 @@ const monoCaption: React.CSSProperties = {
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const PROOF_STATS = [
-  { value: "38", label: "Biomarkers per panel" },
-  { value: "503A", label: "state-licensed pharmacy" },
-  { value: "90 days", label: "Recalibration cadence" },
-  { value: "100%", label: "Physician-reviewed" },
+const PROOF_STATS: { value: string; label: string; Icon: LucideIcon }[] = [
+  { value: "38", label: "Biomarkers per panel", Icon: Activity },
+  { value: "503A", label: "state-licensed pharmacy", Icon: ShieldCheck },
+  { value: "90 days", label: "Recalibration cadence", Icon: RefreshCw },
+  { value: "100%", label: "Physician-reviewed", Icon: Stethoscope },
+];
+
+// The fixed clinical order — rendered as a drawn process timeline.
+const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
+  { t: "Structured intake", d: "History, goals, medications, and contraindications — routed to a physician, not an algorithm.", Icon: ClipboardList },
+  { t: "Laboratory bloodwork", d: "A baseline panel at a CLIA-certified partner lab across every system a protocol can touch.", Icon: Microscope },
+  { t: "Physician review", d: "A licensed U.S. physician reads your labs against your intake and writes — or declines — the prescription.", Icon: Stethoscope },
+  { t: "503A compounding", d: "Sterile-prepared under USP <797>, batch-documented, third-party verified.", Icon: FlaskConical },
+  { t: "Cold-chain delivery", d: "Temperature-controlled to your door in discreet, unbranded packaging.", Icon: Snowflake },
+  { t: "Dashboard & 90-day retest", d: "Markers, trends, and messaging in one place — then the panel is re-drawn and the dose reviewed.", Icon: LayoutDashboard },
+];
+
+// The three tenets of the manifesto, as visual principle cards.
+const PRINCIPLES: { t: string; d: string; Icon: LucideIcon }[] = [
+  { t: "Labs before guesswork", d: "No protocol begins without a baseline panel. Dose changes follow measured data, never a symptom report.", Icon: Ruler },
+  { t: "Physicians before protocols", d: "A board-certified U.S. physician owns every prescription and the liability for it. Not marketing, not a score.", Icon: Stethoscope },
+  { t: "Mechanism before marketing", d: "We publish what is in the vial, who made it, and how it works — before we make a single claim.", Icon: Target },
 ];
 
 const PILLARS = [
@@ -188,6 +205,7 @@ export default function About() {
     <SiteLayout navVariant="showcase">
       {/* ════════════════ EDITORIAL HERO + PROOF STATS ════════════════ */}
       <section
+        className="nx-gradient-hero"
         data-testid="about-hero"
         aria-labelledby="about-h1"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
@@ -263,6 +281,9 @@ export default function About() {
                   borderBottom: "1px solid var(--nx-border)",
                 }}
               >
+                <span className="nx-icon-circle" aria-hidden style={{ marginBottom: "1rem" }}>
+                  <s.Icon size={19} strokeWidth={1.9} />
+                </span>
                 <p
                   style={{
                     fontFamily: FONT,
@@ -400,6 +421,72 @@ export default function About() {
             ))}
           </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ════════════════ OUR PROCESS — DRAWN TIMELINE ════════════════ */}
+      <section
+        className="py-20 md:py-28"
+        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
+        data-testid="about-process"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p style={eyebrow}>{eyebrowRule}Our process</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "1.25rem" }}>
+              Built in the order a clinic would.
+            </h2>
+            <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
+              Six steps, one fixed order. No step is optional, and none of them bends to speed a sale.
+            </p>
+          </Reveal>
+          <div className="nx-timeline" style={{ maxWidth: 780 }}>
+            {PROCESS.map((p, i) => (
+              <Reveal key={p.t} delay={i * 45}>
+                <div className="nx-timeline-step" style={{ paddingBottom: i < PROCESS.length - 1 ? "1.1rem" : 0 }}>
+                  <span className="nx-timeline-node" aria-hidden>{String(i + 1).padStart(2, "0")}</span>
+                  <div className="nx-glass-tile" style={{ display: "block" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      <span className="nx-icon-circle" aria-hidden><p.Icon size={19} strokeWidth={1.9} /></span>
+                      <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-lg)", letterSpacing: "-0.01em", color: "var(--nx-fg)", lineHeight: 1.15 }}>{p.t}</h3>
+                    </div>
+                    <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)", marginTop: "0.7rem" }}>{p.d}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════ OUR PRINCIPLES — ICON CARDS ════════════════ */}
+      <section
+        className="py-20 md:py-28"
+        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
+        data-testid="about-principles"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p style={eyebrow}>{eyebrowRule}Our principles</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
+              Three rules we do not break.
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1.25rem" }}>
+            {PRINCIPLES.map((p, i) => (
+              <Reveal key={p.t} delay={i * 60}>
+                <div
+                  data-testid={`about-principle-${i}`}
+                  className="nx-feature-card edge-top"
+                  style={{ padding: "2.25rem 2rem", height: "100%" }}
+                >
+                  <span className="nx-icon-circle" aria-hidden><p.Icon size={20} strokeWidth={1.9} /></span>
+                  <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-xl)", letterSpacing: "-0.02em", color: "var(--nx-fg)", lineHeight: 1.12, margin: "1.1rem 0 0.75rem" }}>{p.t}</h3>
+                  <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{p.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
