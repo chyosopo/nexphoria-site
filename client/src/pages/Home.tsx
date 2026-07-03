@@ -791,6 +791,8 @@ function ScienceStrip() {
             <img
               src={moleculeShot}
               alt="Peptide molecular structure"
+              width={1024}
+              height={1536}
               className="w-full h-full object-cover"
               loading="lazy"
               decoding="async"
@@ -1031,6 +1033,8 @@ function FeaturedStack() {
             >
               <img
                 src={editorialLineup}
+                width={1024}
+                height={1536}
                 alt="Wolverine peptide stack — five amber vials on ceramic"
                 className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                 loading="eager"
@@ -1119,6 +1123,8 @@ function PhysicianStrip() {
           >
             <img
               src={physicianPortrait}
+              width={1600}
+              height={2134}
               alt="A board-certified physician holding a prescription vial"
               className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
               loading="lazy"
@@ -1298,6 +1304,8 @@ function PrecisionStrip() {
           >
             <img
               src={labPrecision}
+              width={1600}
+              height={894}
               alt="Peptide compound weighed on a precision analytical balance in a 503A pharmacy"
               className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
               loading="lazy"
@@ -1491,6 +1499,8 @@ function MorningRitual() {
           >
             <img
               src={morningRitual}
+              width={1600}
+              height={2143}
               alt="A hand holding a small amber prescription vial next to a handwritten note on a ceramic tray in morning light"
               className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
               loading="lazy"
@@ -1724,6 +1734,8 @@ function BloodworkPillar() {
             >
               <img
                 src={bloodworkHero}
+                width={1600}
+                height={894}
                 alt="Phlebotomy tray with vacutainer tubes on cream ceramic surface"
                 style={{
                   width: "100%",
@@ -2213,11 +2225,11 @@ function ProofBento() {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
-            <img src="img/img_b02fe34b47f7.webp" alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_b02fe34b47f7.webp" width={1600} height={1600} alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
           </div>
           <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
-            <img src="img/img_20e1e1d49da4.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_20e1e1d49da4.webp" width={1600} height={2134} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-bg)", lineHeight: 1 }}>Human</div>
@@ -2233,7 +2245,7 @@ function ProofBento() {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 10 }}>Message your prescriber anytime through the portal.</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 200 }}>
-            <img src="img/img_b9ec00db43d6.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_b9ec00db43d6.webp" width={1600} height={894} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "rgba(21, 24, 28,0.35)" }} />
             <div style={{ position: "absolute", left: 20, bottom: 18 }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-bg)", lineHeight: 1 }}>Every 90 days</div>

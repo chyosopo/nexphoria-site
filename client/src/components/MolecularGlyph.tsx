@@ -98,7 +98,7 @@ export function MolecularGlyph({
           <circle cx="164" cy="150" r="9" {...stroke} />
           {/* central copper ion */}
           <circle cx="100" cy="64" r="14" fill={ACID} stroke={ACID} />
-          <text x="100" y="69" textAnchor="middle" fontSize="13" fill="#000" fontFamily="monospace">Cu</text>
+          <text x="100" y="69" textAnchor="middle" fontSize="13" fill="currentColor" fontFamily="monospace">Cu</text>
           {/* coordination bonds (dashed) */}
           <line x1="76" y1="116" x2="92" y2="78" {...stroke} strokeDasharray="4 5" />
           <line x1="124" y1="116" x2="108" y2="78" {...stroke} strokeDasharray="4 5" />

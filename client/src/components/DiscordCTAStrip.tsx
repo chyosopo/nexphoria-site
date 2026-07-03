@@ -66,7 +66,7 @@ export function DiscordCTAStrip() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email"
-                className="flex-1 px-4 py-3 rounded-full text-sm border focus:border-blue-500 transition-colors"
+                className="flex-1 px-4 py-3 rounded-full text-sm border focus:border-[var(--nx-cobalt)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] transition-colors"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   borderColor: "var(--nx-border)",
