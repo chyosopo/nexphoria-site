@@ -33,7 +33,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
     hover: "#D8E3F0",
   },
   white: {
-    bg: "#fff",
+    bg: "var(--nx-bg)",
     fg: "var(--nx-fg)",
     eyebrow: "var(--nx-amber)",
     sub: "var(--nx-fg-graphite)",
