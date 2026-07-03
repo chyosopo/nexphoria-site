@@ -118,8 +118,8 @@ export default function ProtocolsIndex() {
           })}
           {/* Build-your-own tile — fills the orphan grid slot and offers the custom path (visual-QA finding). Only when no filter narrows the set. */}
           {filter === "All" && (
-            <Reveal delay={shown.length * 50}>
-              <Link href="/stacks/build" data-testid="protocol-build" className="nx-protocol-card" style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px dashed var(--nx-border)", background: "transparent", textDecoration: "none", padding: "1.4rem 1.3rem", minHeight: 220 }}>
+            <Reveal delay={shown.length * 50} className="md:col-span-1 lg:col-span-2">
+              <Link href="/stacks/build" data-testid="protocol-build" className="nx-protocol-card" style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px dashed var(--nx-border)", background: "transparent", textDecoration: "none", padding: "1.4rem 1.6rem", minHeight: 220 }}>
                 <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Custom</p>
                 <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.05 }}>Build your own</h2>
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>Start from a goal</p>
