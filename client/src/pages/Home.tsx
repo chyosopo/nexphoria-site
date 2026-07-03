@@ -11,6 +11,7 @@ import { Beaker, Stethoscope, Truck, ShieldCheck } from "lucide-react";
 import { peptides as ALL_PEPTIDES } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL } from "@/data/biomarkerPanel";
+import { PressStrip } from "@/components/PressStrip";
 
 /* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
 const heroVideo  = "img/img_2724ef984ae9.mp4";
@@ -96,6 +97,7 @@ export default function Home() {
       <PromoBar />
       <Hero />
       <TrustBar />
+      <PressStrip />
       <GoalTiles />
       <HeroFilm />
       <PeptideTilesStrip />

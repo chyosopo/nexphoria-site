@@ -1,17 +1,22 @@
 import { Reveal } from "@/components/Reveal";
+import { F } from "@/lib/typography";
 
 /**
- * PressStrip — reference pattern: monochrome press wordmarks.
- * "As seen in:" + publication names in mono low-opacity treatment.
- * No logos — pure typographic marks.
+ * PressStrip — a credibility rail in the press-strip visual grammar.
+ *
+ * Honest pre-launch framing: Nexphoria has not (yet) earned named editorial
+ * coverage, so this strip does NOT assert placements in outlets the brand
+ * hasn't appeared in. Instead it surfaces the four verifiable pillars every
+ * protocol actually rests on. Swap to real press wordmarks only once
+ * placements are confirmed. (See CLAUDE.md — institutional bank voice, no
+ * fabricated credibility.)
  */
 
-const outlets = [
-  { name: "The Wall Street Journal", abbr: "WSJ" },
-  { name: "Bloomberg", abbr: "Bloomberg" },
-  { name: "GQ", abbr: "GQ" },
-  { name: "Vogue", abbr: "Vogue" },
-  { name: "Fortune", abbr: "Fortune" },
+const marks = [
+  { label: "U.S.-licensed physicians", key: "md" },
+  { label: "CLIA-certified labs", key: "labs" },
+  { label: "503A compounding", key: "pharmacy" },
+  { label: "HSA / FSA eligible", key: "hsa" },
 ];
 
 export function PressStrip() {
@@ -31,7 +36,7 @@ export function PressStrip() {
           <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-14">
             <div
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "9px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
@@ -41,42 +46,28 @@ export function PressStrip() {
                 whiteSpace: "nowrap",
               }}
             >
-              As covered in
+              Every protocol is built on
             </div>
 
             <div className="flex flex-wrap items-center gap-x-10 gap-y-3">
-              {outlets.map(({ name, abbr }) => (
+              {marks.map(({ label, key }) => (
                 <span
-                  key={abbr}
-                  title={name}
+                  key={key}
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
+                    fontFamily: F,
                     fontSize: "1.125rem",
                     fontWeight: 500,
-                    letterSpacing: "0.04em",
+                    letterSpacing: "0.01em",
                     color: "var(--nx-fg)",
                   }}
                   className="nx-press-abbr"
                 >
-                  {abbr}
+                  {label}
                 </span>
               ))}
             </div>
           </div>
         </Reveal>
-
-        <p
-          style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
-            letterSpacing: "0.1em",
-            color: "var(--nx-fg-muted)",
-            marginTop: "1.25rem",
-          }}
-        >
-          Editorial references illustrative — verified placements ongoing.
-        </p>
       </div>
     </section>
   );
