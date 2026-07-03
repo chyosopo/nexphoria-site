@@ -5,6 +5,7 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { physicians, type Physician } from "@/data/physicians";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { F } from "@/lib/typography";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 const physicianTrustHero = "img/img_20e1e1d49da4.webp";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
@@ -60,7 +61,7 @@ export default function Physicians() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -77,9 +78,9 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontWeight: 500,
-                    fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
                     marginBottom: "1.25rem",
@@ -89,8 +90,8 @@ export default function Physicians() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.0625rem",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-body)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                   }}
@@ -114,7 +115,7 @@ export default function Physicians() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -131,7 +132,7 @@ export default function Physicians() {
             </p>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontWeight: 500,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 color: "var(--nx-fg)",
@@ -143,7 +144,7 @@ export default function Physicians() {
             </h2>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontWeight: 500,
                 
                 fontSize: "clamp(2rem, 4vw, 3rem)",
@@ -191,7 +192,7 @@ export default function Physicians() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -208,9 +209,9 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontWeight: 500,
-                    fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
                     marginBottom: "0.5rem",
@@ -220,10 +221,10 @@ export default function Physicians() {
                 </h2>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontWeight: 500,
                     
-                    fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
                     marginBottom: "2rem",
@@ -233,8 +234,8 @@ export default function Physicians() {
                 </h2>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.0625rem",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-body)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                     marginBottom: "2rem",
@@ -285,8 +286,8 @@ export default function Physicians() {
                       <div>
                         <p
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "14px",
+                            fontFamily: F,
+                            fontSize: "var(--nx-t-sm)",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
                             marginBottom: "2px",
@@ -296,8 +297,8 @@ export default function Physicians() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "13px",
+                            fontFamily: F,
+                            fontSize: "var(--nx-t-sm)",
                             color: "var(--nx-fg-graphite)",
                             lineHeight: 1.55,
                           }}
@@ -331,7 +332,7 @@ export default function Physicians() {
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       
                       fontWeight: 400,
                       fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
@@ -347,8 +348,8 @@ export default function Physicians() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "14px",
+                        fontFamily: F,
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
                         marginBottom: "2px",
@@ -358,7 +359,7 @@ export default function Physicians() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: F,
                         fontSize: "10px",
                         fontWeight: 500,
                         letterSpacing: "0.1em",
@@ -384,15 +385,15 @@ export default function Physicians() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+              style={{ fontFamily: F, fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
             </p>
-            <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
+            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
               Three steps.
             </h2>
-            <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: F, fontWeight: 500,  fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
               Zero algorithmic shortcuts.
             </h2>
           </Reveal>
@@ -418,10 +419,10 @@ export default function Physicians() {
               },
             ].map(({ n, label, body }) => (
               <Reveal key={n}>
-                <div style={{ backgroundColor: "#FFFFFF", padding: "2rem", height: "100%" }}>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{n}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontSize: "1.25rem", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "0.75rem" }}>{label}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13.5px", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{body}</p>
+                <div style={{ backgroundColor: "var(--nx-ceramic)", padding: "2rem", height: "100%" }}>
+                  <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{n}</p>
+                  <p style={{ fontFamily: F,  fontSize: "var(--nx-t-lg)", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "0.75rem" }}>{label}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{body}</p>
                 </div>
               </Reveal>
             ))}
@@ -430,10 +431,10 @@ export default function Physicians() {
           {/* CTA to assessment */}
           <Reveal delay={100}>
             <div className="mt-12">
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
+              <p style={{ fontFamily: F, fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
                 "Dare to defy. Find your focus. Elevate every moment."
               </p>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
                 Your physician review is included with every protocol. Take the assessment and our team will match you with the right physician for your state and goals.
               </p>
               <StartIntakeButton source="physicians-page" size="lg">
@@ -513,7 +514,7 @@ function PhysiciansHeroDark() {
           <div>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.22em",
@@ -530,7 +531,7 @@ function PhysiciansHeroDark() {
             </p>
             <h1
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontWeight: 500,
                 fontSize: "clamp(2.4rem, 5.4vw, 4.5rem)",
                 lineHeight: 1.02,
@@ -544,8 +545,8 @@ function PhysiciansHeroDark() {
             </h1>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "1.0625rem",
+                fontFamily: F,
+                fontSize: "var(--nx-t-body)",
                 lineHeight: 1.6,
                 color: "rgba(241, 243, 244,0.72)",
                 maxWidth: "38rem",
@@ -564,8 +565,8 @@ function PhysiciansHeroDark() {
                 <span
                   key={chip}
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "12px",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 500,
                     letterSpacing: "0.02em",
                     padding: "0.4rem 0.85rem",
@@ -590,8 +591,8 @@ function PhysiciansHeroDark() {
                   document.getElementById("physicians-grid")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "13px",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-sm)",
                   fontWeight: 600,
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
@@ -666,9 +667,9 @@ function PhysiciansHeroDark() {
                 >
                   <div
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontWeight: 600,
-                      fontSize: i === 0 ? "0.95rem" : "0.78rem",
+                      fontSize: i === 0 ? "var(--nx-t-base)" : "var(--nx-t-xs)",
                       lineHeight: 1.15,
                       marginBottom: "0.15rem",
                     }}
@@ -677,7 +678,7 @@ function PhysiciansHeroDark() {
                   </div>
                   <div
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: i === 0 ? "10px" : "8.5px",
                       fontWeight: 500,
                       letterSpacing: "0.1em",
@@ -720,7 +721,7 @@ function PhysiciansHeroDark() {
             <div key={s.v} style={{ textAlign: "center" }}>
               <div
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: F,
                   fontWeight: 600,
                   fontSize: "clamp(1.4rem, 2.6vw, 2rem)",
                   color: "var(--nx-bg)",
@@ -732,7 +733,7 @@ function PhysiciansHeroDark() {
               </div>
               <div
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: F,
                   fontSize: "10px",
                   fontWeight: 500,
                   letterSpacing: "0.14em",
@@ -761,7 +762,8 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
   const [open, setOpen] = useState(false);
   return (
     <div
-      style={{ backgroundColor: "#FFFFFF", overflow: "hidden" }}
+      className="nx-protocol-card"
+      style={{ backgroundColor: "var(--nx-ceramic)", overflow: "hidden" }}
       data-testid={`physician-card-${index}`}
     >
       <div
@@ -782,49 +784,49 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
       </div>
       <div style={{ height: "2px", backgroundColor: "var(--nx-cobalt)" }} />
       <div style={{ padding: "1.5rem 1.25rem 2rem" }}>
-        <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
+        <h3 style={{ fontFamily: F,  fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
           {doc.name}
         </h3>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.375rem" }}>
+        <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.375rem" }}>
           {doc.specialty} · {doc.institution}
         </p>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "8px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>
+        <p style={{ fontFamily: F, fontSize: "8px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>
           {doc.credentials}
         </p>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.65, marginBottom: "1rem" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.65, marginBottom: "1rem" }}>
           {doc.bio}
         </p>
 
         {open && (
-          <div style={{ marginTop: "0.5rem", marginBottom: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--nx-rock)" }}>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.7, marginBottom: "1rem" }}>
+          <div id={`physician-extended-${index}`} style={{ marginTop: "0.5rem", marginBottom: "1rem", paddingTop: "1rem", borderTop: "1px solid var(--nx-rock)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, marginBottom: "1rem" }}>
               {doc.extendedBio}
             </p>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
               Clinical focus
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
               {doc.focus.map((f) => (
-                <li key={f} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: "var(--nx-fg-graphite)", lineHeight: 1.6, paddingLeft: "1rem", position: "relative" }}>
+                <li key={f} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, paddingLeft: "1rem", position: "relative" }}>
                   <span style={{ position: "absolute", left: 0, color: "var(--nx-cobalt)" }}>•</span>
                   {f}
                 </li>
               ))}
             </ul>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
               Selected publications
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
               {doc.publications.map((p) => (
-                <li key={p} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px",  color: "#6A6A6A", lineHeight: 1.55, marginBottom: "0.35rem" }}>
+                <li key={p} style={{ fontFamily: F, fontSize: "11px",  color: "var(--nx-fg-muted)", lineHeight: 1.55, marginBottom: "0.35rem" }}>
                   {p}
                 </li>
               ))}
             </ul>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.35rem" }}>
               Languages
             </p>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: "var(--nx-fg-graphite)" }}>{doc.languages}</p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)" }}>{doc.languages}</p>
           </div>
         )}
 
@@ -835,8 +837,8 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
           aria-controls={`physician-extended-${index}`}
           data-testid={`physician-read-more-${index}`}
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "12px",
+            fontFamily: F,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 600,
             letterSpacing: "0.06em",
             textTransform: "uppercase",
@@ -859,7 +861,7 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
 
 // PhysicianCredentials — partner-org training + board certs as clean type
 const eyebrowStyle: React.CSSProperties = {
-  fontFamily: "'General Sans', system-ui, sans-serif",
+  fontFamily: F,
   fontSize: "11px",
   fontWeight: 500,
   letterSpacing: "0.18em",
@@ -893,9 +895,9 @@ function PhysicianCredentials() {
           </p>
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: F,
               fontWeight: 500,
-              fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+              fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",
               lineHeight: 1.1,
               marginBottom: "0.75rem",
@@ -905,8 +907,8 @@ function PhysicianCredentials() {
           </h2>
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "1.0625rem",
+              fontFamily: F,
+              fontSize: "var(--nx-t-body)",
               color: "var(--nx-fg-graphite)",
               lineHeight: 1.65,
               maxWidth: "560px",
@@ -944,8 +946,8 @@ function PhysicianCredentials() {
             >
               <span
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "1rem",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-body)",
                   fontWeight: 600,
                   letterSpacing: "-0.01em",
                   color: "var(--nx-fg)",
@@ -974,8 +976,8 @@ function PhysicianCredentials() {
             >
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "1.125rem",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-lg)",
                   fontWeight: 600,
                   color: "var(--nx-fg)",
                   marginBottom: "0.35rem",
@@ -985,8 +987,8 @@ function PhysicianCredentials() {
               </p>
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "13px",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-sm)",
                   fontWeight: 500,
                   color: "var(--nx-fg)",
                   lineHeight: 1.4,
@@ -997,8 +999,8 @@ function PhysicianCredentials() {
               </p>
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "12px",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-xs)",
                   color: "var(--nx-fg-muted)",
                   lineHeight: 1.45,
                 }}
