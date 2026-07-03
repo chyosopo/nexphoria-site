@@ -209,6 +209,15 @@
 }
 
 @layer components {
+  /* ── Font base classes — the two families, named once for reuse ──
+     Prefer these over inline fontFamily declarations (see typography.ts F/S). */
+  .nx-sans {
+    font-family: 'General Sans', system-ui, sans-serif;
+  }
+  .nx-serif {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
   /* ── Container ── */
   .nx-container {
     @apply w-full mx-auto px-6 max-w-[1280px];

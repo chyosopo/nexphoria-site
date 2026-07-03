@@ -11,7 +11,7 @@ import { FONT } from "@/lib/typography";
    CartDrawer — Hims-tier slide-in
    ────────────────────────────────────────────────────────────── */
 
-const MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, monospace";
+const MONO = "ui-monospace, SFMono-Regular, monospace";
 
 /* Suggested pairings for cross-sell — surfaced when a matching seed peptide is in the cart */
 const PAIRINGS: Record<string, { slug: string; reason: string }[]> = {

@@ -11,7 +11,7 @@ import { FONT } from "@/lib/typography";
    destination — the whole tile is clickable when `href` is set.
    ────────────────────────────────────────────────────────────── */
 
-const MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, monospace";
+const MONO = "ui-monospace, SFMono-Regular, monospace";
 
 export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";
 

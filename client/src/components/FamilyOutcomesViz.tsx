@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
  */
 
 const SANS = "'General Sans', ui-sans-serif, system-ui, sans-serif";
-const MONO = "'JetBrains Mono', ui-monospace, monospace";
+const MONO = "ui-monospace, monospace";
 
 type Segment = {
   label: string;
