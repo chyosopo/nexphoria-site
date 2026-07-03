@@ -139,7 +139,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                           
                           fontWeight: 500,
                           fontSize: "1.25rem",
-                          color: "#FFFFFF",
+                          color: "var(--nx-ceramic)",
                           lineHeight: 1.15,
                           marginBottom: "4px",
                         }}
@@ -174,7 +174,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                       }}
                       className="group-hover:translate-x-0.5 group-hover:border-white/70"
                     >
-                      <ArrowRight size={12} color="#FFFFFF" />
+                      <ArrowRight size={12} color="var(--nx-ceramic)" />
                     </div>
                   </div>
                 </div>

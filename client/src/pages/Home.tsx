@@ -2112,7 +2112,7 @@ function HomeComparisonSection() {
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "#FFFFFF", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Nexphoria</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-ceramic)", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Nexphoria</th>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Hims / Ro</th>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Research Sites</th>
                 </tr>
@@ -2122,7 +2122,7 @@ function HomeComparisonSection() {
                   <tr
                     key={row.feature}
                     style={{
-                      backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                      backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                       borderBottom: "1px solid var(--nx-border)",
                     }}
                   >

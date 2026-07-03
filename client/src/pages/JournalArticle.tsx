@@ -661,7 +661,7 @@ export default function JournalArticle() {
       <section
         data-testid="article-get-next-issue"
         style={{
-          backgroundColor: "#000",
+          backgroundColor: "var(--nx-bg-dark)",
           borderTop: "1px solid rgba(255,255,255,0.08)",
           paddingTop: 80,
           paddingBottom: 80,
@@ -699,7 +699,7 @@ export default function JournalArticle() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 500,
                   fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                  color: "#000",
+                  color: "var(--nx-fg)",
                   lineHeight: 1.1,
                   marginBottom: 8,
                 }}
@@ -726,7 +726,7 @@ export default function JournalArticle() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
-                  backgroundColor: "#000",
+                  backgroundColor: "var(--nx-bg-dark)",
                   color: "var(--nx-acid)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 10,

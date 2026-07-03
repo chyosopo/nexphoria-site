@@ -105,7 +105,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
               <a
                 className="block group transition-colors"
                 style={{
-                  background: "#fff",
+                  background: "var(--nx-ceramic)",
                   textDecoration: "none",
                   padding: "2.5rem 2rem",
                   minHeight: "100%",

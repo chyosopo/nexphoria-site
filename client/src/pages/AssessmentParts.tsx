@@ -186,7 +186,7 @@ export function SampleProtocolPreview() {
         border: "1px solid var(--nx-border)",
         borderRadius: "6px",
         overflow: "hidden",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "var(--nx-ceramic)",
       }}
     >
       <button
@@ -319,7 +319,7 @@ export function IntakeSidebar() {
                 style={{
                   border: "1px solid var(--nx-border)",
                   borderRadius: "6px",
-                  backgroundColor: "#FFFFFF",
+                  backgroundColor: "var(--nx-ceramic)",
                   padding: "1rem 1.125rem",
                   display: "flex",
                   gap: "0.75rem",

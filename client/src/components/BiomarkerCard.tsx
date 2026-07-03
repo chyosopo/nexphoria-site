@@ -133,7 +133,7 @@ function RangeBar({ m }: { m: Biomarker }) {
             height: 12,
             borderRadius: 999,
             backgroundColor: "var(--nx-cobalt)",
-            border: "2px solid #FFFFFF",
+            border: "2px solid var(--nx-ceramic)",
             boxShadow: "0 0 0 1px var(--nx-cobalt)",
           }}
         />
@@ -197,7 +197,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
     <div
       data-testid={testId}
       style={{
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "var(--nx-ceramic)",
         border: "1px solid var(--nx-border)",
         borderRadius: 16,
         padding: "18px 20px 16px",

@@ -419,7 +419,7 @@ export default function Checkout() {
                         <div
                           key={`${line.type}-${line.slug}`}
                           className="flex items-center justify-between px-4 py-3"
-                          style={{ borderBottom: "1px solid var(--nx-border)", background: "#fff" }}
+                          style={{ borderBottom: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}
                         >
                           <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
                             {line.name} <span style={{ color: "var(--nx-fg-muted)" }}>· {line.cadenceLabel} · qty {line.qty}</span>
@@ -684,7 +684,7 @@ const YesNoField = ({
   testId: string;
 } & React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
-    <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
+    <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
       <div className="flex items-start gap-3">
         <input type="checkbox" className="mt-1 accent-[var(--nx-fg)]" data-testid={testId} {...rest} />
         <div className="flex-1">

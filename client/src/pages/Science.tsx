@@ -323,7 +323,7 @@ export default function Science() {
       <ScienceHeroDark />
 
       {/* ── Evidence tier explainer ── */}
-      <section style={{ backgroundColor: "#000", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "4.5rem 0" }} data-testid="section-evidence-tiers">
+      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "4.5rem 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -545,7 +545,7 @@ export default function Science() {
       </section>
 
       {/* ── Why measurement matters ── */}
-      <section style={{ backgroundColor: "#000", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "5rem 0" }} data-testid="section-measurement">
+      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "5rem 0" }} data-testid="section-measurement">
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -1252,14 +1252,14 @@ function ScienceComparisonSection() {
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Peptide Family</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "#FFFFFF", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Best For</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "var(--nx-ceramic)", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Best For</th>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Avoid If</th>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Verdict</th>
                 </tr>
               </thead>
               <tbody>
                 {PEPTIDE_FAMILY_COMPARISON.map((row, i) => (
-                  <tr key={row.family} style={{ backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
+                  <tr key={row.family} style={{ backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
                     <th scope="row" style={{ padding: "0.875rem 1rem", textAlign: "left", fontWeight: 600, color: "var(--nx-cobalt)", verticalAlign: "top" }}>{row.family}</th>
                     <td style={{ padding: "0.875rem 1rem", color: "var(--nx-fg)", verticalAlign: "top" }}>{row.bestFor}</td>
                     <td style={{ padding: "0.875rem 1rem", color: "var(--nx-fg-muted)", verticalAlign: "top" }}>{row.avoidIf}</td>
