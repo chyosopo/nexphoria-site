@@ -1276,3 +1276,11 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   .nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-acid:active,
   .nx-glass-btn:active, .nx-tile:active { transform: none; }
 }
+
+/* ── protocol card: lift + image zoom (D18 press grammar applies) ── */
+.nx-protocol-card { transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease); }
+.nx-protocol-card:hover { transform: translateY(-4px); box-shadow: var(--nx-e-3); }
+.nx-protocol-card img { transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.nx-protocol-card:hover img { transform: scale(1.045); }
+.nx-protocol-card:active { transform: translateY(0) scale(0.99); transition-duration: var(--nx-dur-1); }
+@media (prefers-reduced-motion: reduce) { .nx-protocol-card, .nx-protocol-card img { transition: none; } .nx-protocol-card:hover, .nx-protocol-card:hover img { transform: none; } }

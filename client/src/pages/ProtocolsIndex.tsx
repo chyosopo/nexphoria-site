@@ -7,6 +7,7 @@ import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { OUTCOME_STACK } from "@/data/outcomeImagery";
 
 const CATEGORIES = ["All", "Recovery", "Skin", "Growth", "Cognitive", "Longevity", "Metabolic", "Sleep"];
 const matchCat = (c: string, filter: string) => filter === "All" || c.toLowerCase().includes(filter.toLowerCase());
@@ -58,19 +59,28 @@ export default function ProtocolsIndex() {
             const rec = s.cadences.find((c) => c.key === "3mo");
             return (
               <Reveal key={s.slug} delay={i * 50}>
-                <Link href={`/stacks/${s.slug}`} className="nx-glass-tile" data-testid={`protocol-${s.slug}`} style={{ height: "100%", display: "block" }}>
-                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
+                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-protocol-card" style={{ height: "100%", display: "flex", flexDirection: "column", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", boxShadow: "var(--nx-e-2)", textDecoration: "none" }}>
+                  {OUTCOME_STACK[s.slug] && (
+                    <div style={{ position: "relative", aspectRatio: "4 / 3", overflow: "hidden" }}>
+                      <img src={OUTCOME_STACK[s.slug]} alt="" aria-hidden loading="lazy" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                      {s.gated && (
+                        <span style={{ position: "absolute", top: 12, right: 12, display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-ceramic)", background: "color-mix(in srgb, var(--nx-fg) 62%, transparent)", backdropFilter: "blur(6px)", borderRadius: "var(--nx-r-pill)", padding: "4px 10px" }}>
+                          <Lock size={11} /> Assessed
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <div style={{ padding: "1.1rem 1.2rem 1.3rem", display: "flex", flexDirection: "column", flex: 1 }}>
                     <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
-                    {s.gated && <Lock size={14} style={{ color: "var(--nx-fg-muted)" }} />}
-                  </div>
-                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.4rem", lineHeight: 1.05 }}>{s.name}</h2>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>{s.tagline}</p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{s.bestFor}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem" }}>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>
-                      {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
-                    </p>
-                    <ArrowRight size={17} style={{ color: "var(--nx-cobalt)" }} />
+                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.05 }}>{s.name}</h2>
+                    <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>{s.tagline}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.6rem", flex: 1 }}>{s.bestFor}</p>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem" }}>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>
+                        {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
+                      </p>
+                      <ArrowRight size={17} style={{ color: "var(--nx-cobalt)" }} />
+                    </div>
                   </div>
                 </Link>
               </Reveal>
