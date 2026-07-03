@@ -127,9 +127,9 @@ export default function ProtocolsIndex() {
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.6rem", maxWidth: "46ch" }}>Start from a goal and assemble a stack around it — a physician reviews it with the same panel and oversight as a flagship.</p>
                 </div>
                 {/* right: action rail */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: "0.5rem", padding: "1.6rem 1.6rem", borderLeft: "1px dashed var(--nx-border)", minWidth: 190 }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>Physician-reviewed</p>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building <ArrowRight size={17} /></span>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: "0.7rem", padding: "1.6rem 1.6rem", borderLeft: "1px solid var(--nx-border)", minWidth: 210, background: "var(--nx-cobalt-soft)" }}>
+                  <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Physician-reviewed</p>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-ceramic)", background: "var(--nx-cobalt)", borderRadius: "var(--nx-r-pill)", padding: "10px 18px" }}>Start building <ArrowRight size={16} /></span>
                 </div>
               </Link>
             </Reveal>
