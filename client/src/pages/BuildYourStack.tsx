@@ -257,7 +257,7 @@ export default function BuildYourStack() {
       {toast && (
         <div
           className="fixed bottom-6 right-6 z-[80] flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl"
-          style={{ background: "var(--nx-fg)", color: "#fff", fontFamily: MONO, fontSize: 12, letterSpacing: "0.08em" }}
+          style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)", fontFamily: MONO, fontSize: 12, letterSpacing: "0.08em" }}
           role="status"
           aria-live="polite"
         >
@@ -377,7 +377,7 @@ export default function BuildYourStack() {
                   className="text-left group nx-goal-card"
                   data-testid={`button-goal-${g.id}`}
                   style={{
-                    background: "#fff",
+                    background: "var(--nx-ceramic)",
                     border: "1px solid var(--nx-rock)",
                     borderRadius: 4,
                     padding: "28px 24px",
@@ -452,7 +452,7 @@ export default function BuildYourStack() {
             {goal && (
               <div
                 className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 p-5"
-                style={{ background: "var(--nx-fg)", borderRadius: 4, color: "#fff" }}
+                style={{ background: "var(--nx-fg)", borderRadius: 4, color: "var(--nx-ceramic)" }}
               >
                 <div>
                   <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.18em", color: "var(--nx-acid)", textTransform: "uppercase", marginBottom: 6 }}>
@@ -498,7 +498,7 @@ export default function BuildYourStack() {
                           Physician-curated match
                         </p>
                         <div className="flex items-baseline gap-3 flex-wrap">
-                          <h3 style={{ fontFamily: SERIF, fontSize: 24, fontWeight: 500, letterSpacing: "-0.01em", color: "#fff", lineHeight: 1.1 }} data-testid="text-matched-stack-name">
+                          <h3 style={{ fontFamily: SERIF, fontSize: 24, fontWeight: 500, letterSpacing: "-0.01em", color: "var(--nx-ceramic)", lineHeight: 1.1 }} data-testid="text-matched-stack-name">
                             The {matchedStack.name} stack
                           </h3>
                           <span style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
@@ -594,8 +594,8 @@ export default function BuildYourStack() {
                         className="text-left transition-all"
                         data-testid={`button-pick-${p.slug}`}
                         style={{
-                          background: isPicked ? "var(--nx-fg)" : "#fff",
-                          color: isPicked ? "#fff" : "var(--nx-fg)",
+                          background: isPicked ? "var(--nx-fg)" : "var(--nx-ceramic)",
+                          color: isPicked ? "var(--nx-ceramic)" : "var(--nx-fg)",
                           border: isPicked ? "1px solid var(--nx-fg)" : isRecommended ? "2px solid var(--nx-acid)" : "1px solid var(--nx-rock)",
                           borderRadius: 4,
                           padding: "18px 18px",
@@ -664,7 +664,7 @@ export default function BuildYourStack() {
 
               {/* Sticky summary */}
               <aside className="lg:sticky lg:top-24 self-start">
-                <div style={{ background: "#fff", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
                   <div className="p-5 border-b" style={{ borderColor: "var(--nx-bg)" }}>
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 6 }}>
                       Your stack
@@ -693,8 +693,8 @@ export default function BuildYourStack() {
                             style={{
                               padding: "10px 8px",
                               border: active ? "1px solid var(--nx-fg)" : "1px solid var(--nx-rock)",
-                              background: active ? "var(--nx-fg)" : "#fff",
-                              color: active ? "#fff" : "var(--nx-fg)",
+                              background: active ? "var(--nx-fg)" : "var(--nx-ceramic)",
+                              color: active ? "var(--nx-ceramic)" : "var(--nx-fg)",
                               fontFamily: MONO,
                               fontSize: 10.5,
                               letterSpacing: "0.08em",
@@ -823,7 +823,7 @@ export default function BuildYourStack() {
                       <div
                         key={slug}
                         className="flex items-start gap-4 p-5"
-                        style={{ background: "#fff", border: "1px solid var(--nx-rock)", borderRadius: 4 }}
+                        style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}
                       >
                         <div className="flex-shrink-0" style={{ width: 56, height: 56, background: "#EFF2F5", borderRadius: 4, display: "grid", placeItems: "center" }}>
                           <MolecularGlyph glyph={p.glyph} size={36} />
@@ -856,7 +856,7 @@ export default function BuildYourStack() {
                 </div>
 
                 {/* Protocol timeline — 12 weeks */}
-                <div className="mt-10 p-6" style={{ background: "#fff", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div className="mt-10 p-6" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
                   <p style={{ fontFamily: MONO, fontSize: 10.5, letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 14 }}>
                     Protocol timeline
                   </p>
@@ -906,7 +906,7 @@ export default function BuildYourStack() {
 
               {/* Order summary */}
               <aside className="lg:sticky lg:top-24 self-start">
-                <div style={{ background: "var(--nx-fg)", color: "#fff", borderRadius: 4 }}>
+                <div style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)", borderRadius: 4 }}>
                   <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.16em", color: "rgba(152, 182, 213,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
@@ -960,7 +960,7 @@ export default function BuildYourStack() {
                       className="w-full inline-flex items-center justify-center gap-2"
                       data-testid="button-add-bundle-to-cart"
                       style={{
-                        background: added ? "var(--nx-acid)" : "#fff",
+                        background: added ? "var(--nx-acid)" : "var(--nx-ceramic)",
                         color: "var(--nx-fg)",
                         padding: "14px 18px",
                         fontFamily: MONO,
@@ -988,7 +988,7 @@ export default function BuildYourStack() {
                   </div>
                 </div>
 
-                <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "#fff", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
                   <FlaskConical size={16} style={{ color: "var(--nx-fg)", flexShrink: 0, marginTop: 2 }} />
                   <p style={{ fontFamily: SANS, fontSize: 12, lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
                     Want a physician to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "var(--nx-fg)" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your labs and goals.

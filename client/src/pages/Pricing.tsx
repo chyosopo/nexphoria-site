@@ -214,7 +214,7 @@ function PricingTiers() {
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  background: tier.recommended ? "var(--nx-fg)" : "#FFFFFF",
+                  background: tier.recommended ? "var(--nx-fg)" : "var(--nx-ceramic)",
                   border: tier.recommended ? "1.5px solid var(--nx-fg)" : "1px solid var(--nx-border)",
                   borderRadius: "20px",
                   padding: "2rem",
@@ -656,7 +656,7 @@ export default function Pricing() {
                           fontWeight: 700,
                           letterSpacing: "0.14em",
                           textTransform: "uppercase",
-                          color: "#FFFFFF",
+                          color: "var(--nx-ceramic)",
                         }}
                       >
                         {term.label}
@@ -670,7 +670,7 @@ export default function Pricing() {
                             letterSpacing: "0.08em",
                             textTransform: "uppercase",
                             color: "var(--nx-cobalt)",
-                            backgroundColor: "#FFFFFF",
+                            backgroundColor: "var(--nx-ceramic)",
                             padding: "1px 5px",
                             borderRadius: "100px",
                           }}
@@ -703,7 +703,7 @@ export default function Pricing() {
                     display: "grid",
                     gridTemplateColumns: "2fr 1fr 1fr 1fr",
                     padding: "1.25rem 1.5rem",
-                    backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                    backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                     borderTop: "1px solid var(--nx-border)",
                     gap: "1rem",
                     alignItems: "center",
@@ -907,7 +907,7 @@ export default function Pricing() {
                     alignItems: "flex-start",
                     gap: "0.875rem",
                     padding: "1rem 1.5rem",
-                    backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                    backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                     borderTop: i > 0 ? "1px solid var(--nx-border)" : "none",
                   }}
                 >
@@ -1012,7 +1012,7 @@ export default function Pricing() {
                     fontWeight: 700,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#FFFFFF",
+                    color: "var(--nx-ceramic)",
                     textAlign: "center",
                   }}
                 >
@@ -1041,7 +1041,7 @@ export default function Pricing() {
                     display: "grid",
                     gridTemplateColumns: "2fr 1fr 1fr",
                     padding: "0.875rem 1.5rem",
-                    backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)",
+                    backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                     borderTop: "1px solid var(--nx-border)",
                     alignItems: "center",
                   }}
@@ -1226,13 +1226,13 @@ export function PricingPlanTable() {
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Solo Peptide</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "#FFFFFF", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>★ Curated Stack</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-ceramic)", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>★ Curated Stack</th>
                   <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Custom Protocol</th>
                 </tr>
               </thead>
               <tbody>
                 {PLAN_COMPARISON_ROWS.map((row, i) => (
-                  <tr key={row.feature} style={{ backgroundColor: i % 2 === 0 ? "#FFFFFF" : "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
+                  <tr key={row.feature} style={{ backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}>
                     <th scope="row" style={{ padding: "0.875rem 1rem", textAlign: "left", fontWeight: row.feature === "Verdict" ? 700 : 500, color: row.feature === "Verdict" ? "var(--nx-cobalt)" : "var(--nx-fg)" }}>{row.feature}</th>
                     <td style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-fg-muted)", fontWeight: row.feature === "Verdict" ? 600 : 400 }}>{row.solo}</td>
                     <td style={{ padding: "0.875rem 1rem", textAlign: "center", fontWeight: 600, color: row.feature === "Verdict" ? "var(--nx-cobalt)" : "var(--nx-fg)" }}>{row.stack}</td>
