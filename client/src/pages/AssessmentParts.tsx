@@ -12,15 +12,18 @@ import { F } from "@/lib/typography";
 // Note: AssessmentParts exports shared UI pieces used by Assessment.tsx.
 // SEO for the assessment flow is set in Assessment.tsx.
 
-// Labels for the top progress bar — one per intake topic (7 steps)
+// Labels for the top progress bar — one per tracked step. The bar renders for
+// flow steps 1–7 (biological sex is the preliminary choice on the landing),
+// so index 0 is the goal step and index 6 is review. These MUST stay in sync
+// with the step order in Assessment.tsx or the "Step N of 7 — name" reads wrong.
 export const STEP_LABELS = [
-  "Biological sex",
-  "Goals",
+  "Your goal",
+  "Age",
+  "Medications",
   "Medical history",
-  "Current meds",
-  "Activity",
-  "Sleep",
   "Bloodwork",
+  "Contact",
+  "Review",
 ];
 
 // "Why we ask" clinical rationale shown under each question.
@@ -31,7 +34,7 @@ export const WHY_WE_ASK: Record<number, string> = {
   2: "Hormone reference intervals shift by decade. Age calibrates how your labs are interpreted and where safe dosing windows fall.",
   3: "Drug interactions are the most common reason a protocol is modified or declined. Your physician screens every medication against the proposed compound before prescribing.",
   4: "Certain conditions change the risk-benefit calculus entirely. Disclosing them lets your physician flag contraindications before — not after — a prescription is written.",
-  5: "A current lab panel is the clinical floor for dosing. Without baseline biomarkers, dose calibration is guesswork — which is exactly what we refuse to do.",
+  5: "A current lab panel is the clinical floor for dosing. Without baseline biomarkers, dosing would be an estimate; we calibrate to your measured values instead.",
   6: "Your physician contacts you directly to confirm the protocol and answer questions. State of residence determines which licensed physician reviews your file.",
 };
 
@@ -102,6 +105,12 @@ export function LabeledProgress({ step }: { step: number }) {
           </span>
         </div>
         <div
+          role="progressbar"
+          aria-label="Intake progress"
+          aria-valuemin={1}
+          aria-valuemax={total}
+          aria-valuenow={step}
+          aria-valuetext={`Step ${step} of ${total} — ${STEP_LABELS[activeIndex]}`}
           style={{
             height: "4px",
             borderRadius: "var(--nx-r-pill)",
@@ -140,16 +149,16 @@ export function WhyWeAsk({ funnelStep }: { funnelStep: number }) {
         gap: "0.625rem",
         marginTop: "1.5rem",
         padding: "0.875rem 1rem",
-        borderRadius: "6px",
+        borderRadius: "var(--nx-r-xs)",
         backgroundColor: "var(--nx-cobalt-soft)",
         border: "1px solid var(--nx-border)",
       }}
     >
-      <Info size={14} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }} />
+      <Info size={14} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }} />
       <div>
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontSize: "9px",
             fontWeight: 700,
             letterSpacing: "0.12em",
@@ -162,8 +171,8 @@ export function WhyWeAsk({ funnelStep }: { funnelStep: number }) {
         </p>
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "13px",
+            fontFamily: F,
+            fontSize: "var(--nx-t-sm)",
             color: "var(--nx-fg-graphite)",
             lineHeight: 1.55,
           }}
@@ -184,7 +193,7 @@ export function SampleProtocolPreview() {
       data-testid="assessment-sample-protocol"
       style={{
         border: "1px solid var(--nx-border)",
-        borderRadius: "6px",
+        borderRadius: "var(--nx-r-xs)",
         overflow: "hidden",
         backgroundColor: "var(--nx-ceramic)",
       }}
@@ -209,8 +218,8 @@ export function SampleProtocolPreview() {
       >
         <span
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "14px",
+            fontFamily: F,
+            fontSize: "var(--nx-t-sm)",
             fontWeight: 600,
             color: "var(--nx-fg)",
           }}
@@ -230,7 +239,7 @@ export function SampleProtocolPreview() {
         >
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: F,
               fontSize: "9px",
               fontWeight: 700,
               letterSpacing: "0.12em",
@@ -259,7 +268,7 @@ export function SampleProtocolPreview() {
             >
               <span
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: F,
                   fontSize: "9px",
                   fontWeight: 500,
                   letterSpacing: "0.08em",
@@ -274,8 +283,8 @@ export function SampleProtocolPreview() {
               </span>
               <span
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "13px",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-sm)",
                   color: "var(--nx-fg)",
                   lineHeight: 1.45,
                 }}
@@ -298,7 +307,7 @@ export function IntakeSidebar() {
       <div>
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontSize: "10px",
             fontWeight: 700,
             letterSpacing: "0.16em",
@@ -318,7 +327,7 @@ export function IntakeSidebar() {
                 data-testid={`assessment-sidebar-tile-${i}`}
                 style={{
                   border: "1px solid var(--nx-border)",
-                  borderRadius: "6px",
+                  borderRadius: "var(--nx-r-xs)",
                   backgroundColor: "var(--nx-ceramic)",
                   padding: "1rem 1.125rem",
                   display: "flex",
@@ -343,8 +352,8 @@ export function IntakeSidebar() {
                 <div>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "13px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
                       lineHeight: 1.3,
@@ -355,8 +364,8 @@ export function IntakeSidebar() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-muted)",
                       lineHeight: 1.45,
                     }}
@@ -390,10 +399,10 @@ export function TrustStrip() {
         borderTop: "1px solid var(--nx-border)",
       }}
     >
-      <ShieldCheck size={13} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+      <ShieldCheck size={13} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
       <p
         style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
+          fontFamily: F,
           fontSize: "9px",
           fontWeight: 500,
           letterSpacing: "0.1em",

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check, ShieldCheck } from "lucide-react";
@@ -135,6 +135,49 @@ function isStepValid(step: number, form: FormData): boolean {
   }
 }
 
+// A calm, screen-reader-only description of what the current step still needs.
+// No red-scare, no exclamation — this feeds a polite aria-live region only.
+function stepRequirement(step: number, form: FormData): string {
+  if (isStepValid(step, form)) return "";
+  switch (step) {
+    case 0: return "Select your biological sex to continue.";
+    case 1: return "Select a primary goal to continue.";
+    case 2: return "Select an age range to continue.";
+    case 3: return "List your medications, or mark that you take none, to continue.";
+    case 4: return "Select at least one option to continue.";
+    case 5: return "Select a bloodwork option to continue.";
+    case 6: return "Enter your name, a valid email, and your state to continue.";
+    default: return "";
+  }
+}
+
+// ─── Radio-group keyboard support (WAI-ARIA radiogroup pattern) ────────────────
+// Roving tabindex: only the checked option (or the first, when none is chosen)
+// is in the tab order; arrow keys then move selection AND focus within the group.
+
+function rovingTabIndex(values: string[], current: string, index: number): 0 | -1 {
+  const active = values.indexOf(current);
+  return index === (active >= 0 ? active : 0) ? 0 : -1;
+}
+
+function makeRadioKeyDown(
+  values: string[],
+  current: string,
+  onSelect: (value: string) => void,
+) {
+  return (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const forward = e.key === "ArrowDown" || e.key === "ArrowRight";
+    const backward = e.key === "ArrowUp" || e.key === "ArrowLeft";
+    if (!forward && !backward) return;
+    e.preventDefault();
+    const from = Math.max(0, values.indexOf(current));
+    const next = (from + (forward ? 1 : -1) + values.length) % values.length;
+    onSelect(values[next]);
+    const radios = e.currentTarget.querySelectorAll<HTMLElement>('[role="radio"]');
+    radios[next]?.focus();
+  };
+}
+
 // ─── Motion — native-app step transition ──────────────────────────────────────
 // Transform + opacity only (compositor-safe, no layout thrash). Short travel,
 // Apple-tight settle. prefers-reduced-motion drops it entirely.
@@ -155,16 +198,21 @@ function OptionButton({
   selected,
   onClick,
   testId,
+  tabIndex,
 }: {
   label: string;
   sub?: string;
   selected: boolean;
   onClick: () => void;
   testId?: string;
+  tabIndex?: number;
 }) {
   return (
     <button
       type="button"
+      role="radio"
+      aria-checked={selected}
+      tabIndex={tabIndex}
       onClick={onClick}
       data-testid={testId}
       data-selected={selected}
@@ -227,7 +275,6 @@ function CheckboxRow({
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
         style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
-        tabIndex={-1}
       />
       <span
         style={{
@@ -271,6 +318,7 @@ function StepNav({
           onClick={onNext}
           disabled={nextDisabled}
           aria-disabled={nextDisabled}
+          aria-describedby="assessment-sr-status"
           data-testid="assessment-next"
           className="nx-step-next"
         >
@@ -302,7 +350,21 @@ export default function Assessment() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [draftRestored, setDraftRestored] = useState(false);
+  const [emailBlurred, setEmailBlurred] = useState(false);
   const topRef = useRef<HTMLDivElement>(null);
+
+  // A11y — move focus to the freshly-mounted step heading, but only after an
+  // explicit navigation (never on first load or draft restore, which would
+  // hijack focus). AnimatePresence mounts the new heading after the old one
+  // exits, so a ref callback is the reliable moment to focus.
+  const wantsFocusRef = useRef(false);
+  const setHeadingRef = useCallback((el: HTMLHeadingElement | null) => {
+    if (el && wantsFocusRef.current) {
+      el.focus();
+      wantsFocusRef.current = false;
+    }
+  }, []);
 
   // Read ?gender= from URL
   const urlParams = typeof window !== "undefined"
@@ -332,8 +394,13 @@ export default function Assessment() {
       if (raw) {
         const d = JSON.parse(raw);
         if (d && d.v === 1 && d.form) {
+          // Restore all fields, including the selected world (gender), so the
+          // orchid/azure cast survives a refresh.
           setForm((f) => ({ ...f, ...d.form }));
-          if (typeof d.step === "number" && d.step > 0) setStep(d.step);
+          if (typeof d.step === "number" && d.step > 0) {
+            setStep(d.step);
+            setDraftRestored(true);
+          }
         }
       }
     } catch { /* private mode / corrupt draft — start clean */ }
@@ -359,14 +426,20 @@ export default function Assessment() {
 
   const valid = isStepValid(step, form);
   const inFlow = step > 0 && step <= TOTAL_STEPS;
+  // Gentle, non-blocking email format hint — only after the field is left and
+  // only when there is something to correct. Never a red-scare mid-typing.
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+  const showEmailHint = emailBlurred && form.email.trim().length > 0 && !emailValid;
 
   function goNext() {
     if (!valid) return;
+    wantsFocusRef.current = true;
     setDirection(1);
     setStep((s) => s + 1);
   }
 
   function goBack() {
+    wantsFocusRef.current = true;
     setDirection(-1);
     setStep((s) => Math.max(0, s - 1));
   }
@@ -404,6 +477,7 @@ export default function Assessment() {
     setSubmitting(false);
     try { localStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
     setSubmitted(true);
+    wantsFocusRef.current = true;
     setStep(8); // success screen
   }
 
@@ -560,11 +634,22 @@ export default function Assessment() {
       )}
 
       {/* ════════════════ ASSESSMENT FLOW ════════════════ */}
+      {/* Two worlds, one engine: the selected sex re-scopes every --nx-* token
+          for the whole flow — female → orchid/rose-quartz, male → azure/steel.
+          Until a sex is chosen the flow inherits the layout's resolved world. */}
       <div
         className="min-h-screen flex flex-col"
         style={{ backgroundColor: "var(--nx-bg)" }}
+        data-world={form.gender === "female" ? "women" : form.gender === "male" ? "men" : undefined}
         data-testid="assessment-page"
       >
+        {/* Polite, screen-reader-only announcements: draft restoral + what the
+            current step still needs. No visual noise, no red-scare. */}
+        <p id="assessment-sr-status" className="sr-only" aria-live="polite" data-testid="assessment-sr-status">
+          {draftRestored ? "Your saved progress was restored. " : ""}
+          {inFlow ? stepRequirement(step, form) : ""}
+        </p>
+
         {/* ── Top progress bar ── */}
         {inFlow && <LabeledProgress step={step} />}
 
@@ -601,10 +686,10 @@ export default function Assessment() {
                     <motion.div key="step-0" {...motionProps} data-testid="assessment-sex-step">
                       <p style={{ ...eyebrow, textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem" }}>
                         <span style={{ display: "inline-block", width: "24px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                        Intake · Step 1 of 7
+                        Intake · Before we begin
                         <span style={{ display: "inline-block", width: "24px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                       </p>
-                      <h1 style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", marginBottom: "0.75rem" }}>
+                      <h1 id="q-sex" ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", marginBottom: "0.75rem", outline: "none" }}>
                         What is your biological sex?
                       </h1>
                       <p
@@ -618,18 +703,31 @@ export default function Assessment() {
                       >
                         Peptide protocols differ meaningfully between male and female physiology.
                       </p>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                      <div
+                        role="radiogroup"
+                        aria-labelledby="q-sex"
+                        onKeyDown={makeRadioKeyDown(
+                          ["female", "male"],
+                          form.gender ?? "",
+                          (v) => setField("gender", v as Gender),
+                        )}
+                        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}
+                      >
                         {[
                           { value: "female" as const, label: "Female", sub: "Women's protocols" },
                           { value: "male" as const, label: "Male", sub: "Men's protocols" },
-                        ].map(({ value, label, sub }) => {
+                        ].map(({ value, label, sub }, i) => {
                           const sel = form.gender === value;
                           return (
                             <button
                               key={value}
                               type="button"
+                              role="radio"
+                              aria-checked={sel}
+                              tabIndex={rovingTabIndex(["female", "male"], form.gender ?? "", i)}
                               onClick={() => {
                                 setField("gender", value);
+                                wantsFocusRef.current = true;
                                 setDirection(1);
                                 setStep(1);
                               }}
@@ -673,12 +771,14 @@ export default function Assessment() {
                   {step === 1 && (
                     <motion.div key="step-1" {...motionProps} data-testid="assessment-step-1">
                       <p style={eyebrow}>Your goal</p>
-                      <h2 style={question}>What is your primary clinical goal?</h2>
+                      <h2 id="q-goal" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your primary clinical goal?</h2>
                       <p style={subCopy}>
                         This shapes protocol selection. You can note secondary goals in your physician consult.
                       </p>
                       <div
                         className="assessment-goal-grid"
+                        role="group"
+                        aria-labelledby="q-goal"
                         style={{
                           display: "grid",
                           gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
@@ -765,16 +865,22 @@ export default function Assessment() {
                   {step === 2 && (
                     <motion.div key="step-2" {...motionProps} data-testid="assessment-step-2">
                       <p style={eyebrow}>Age</p>
-                      <h2 style={question}>What is your age range?</h2>
+                      <h2 id="q-age" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your age range?</h2>
                       <p style={subCopy}>
                         Hormone reference intervals shift by decade. Age informs lab interpretation and safe dosing parameters.
                       </p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}>
-                        {AGE_RANGES.map((a) => (
+                      <div
+                        role="radiogroup"
+                        aria-labelledby="q-age"
+                        onKeyDown={makeRadioKeyDown(AGE_RANGES, form.age, (v) => setField("age", v))}
+                        style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}
+                      >
+                        {AGE_RANGES.map((a, i) => (
                           <OptionButton
                             key={a}
                             label={a}
                             selected={form.age === a}
+                            tabIndex={rovingTabIndex(AGE_RANGES, form.age, i)}
                             onClick={() => setField("age", a)}
                             testId={`assessment-option-${a.replace(/\s+/g, "-").toLowerCase()}`}
                           />
@@ -788,7 +894,7 @@ export default function Assessment() {
                   {step === 3 && (
                     <motion.div key="step-3" {...motionProps} data-testid="assessment-step-3">
                       <p style={eyebrow}>Medications</p>
-                      <h2 style={question}>Are you currently taking any medications?</h2>
+                      <h2 id="q-medications" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Are you currently taking any medications?</h2>
                       <p style={subCopy}>
                         Include prescription drugs, hormone therapy, insulin, and any controlled substances. Your physician reviews all of this before prescribing.
                       </p>
@@ -830,11 +936,11 @@ export default function Assessment() {
                   {step === 4 && (
                     <motion.div key="step-4" {...motionProps} data-testid="assessment-step-4">
                       <p style={eyebrow}>Medical history</p>
-                      <h2 style={question}>Do any of the following apply to your medical history?</h2>
+                      <h2 id="q-history" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do any of the following apply to your medical history?</h2>
                       <p style={subCopy}>
                         Select all that apply. Certain conditions affect protocol eligibility and require additional physician review before a prescription can be issued.
                       </p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}>
+                      <div role="group" aria-labelledby="q-history" style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}>
                         {MEDICAL_HISTORY_OPTIONS.map(({ id, label }) => (
                           <CheckboxRow
                             key={id}
@@ -853,17 +959,23 @@ export default function Assessment() {
                   {step === 5 && (
                     <motion.div key="step-5" {...motionProps} data-testid="assessment-step-5">
                       <p style={eyebrow}>Bloodwork</p>
-                      <h2 style={question}>Do you have recent comprehensive labs?</h2>
+                      <h2 id="q-labs" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do you have recent comprehensive labs?</h2>
                       <p style={subCopy}>
                         A complete blood panel is required before any prescription is written. Labs drawn within 6 months are generally acceptable; older results may require a redraw.
                       </p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}>
-                        {LAB_OPTIONS.map(({ id, label, sub }) => (
+                      <div
+                        role="radiogroup"
+                        aria-labelledby="q-labs"
+                        onKeyDown={makeRadioKeyDown(LAB_OPTIONS.map((o) => o.id), form.recentLabs, (v) => setField("recentLabs", v))}
+                        style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}
+                      >
+                        {LAB_OPTIONS.map(({ id, label, sub }, i) => (
                           <OptionButton
                             key={id}
                             label={label}
                             sub={sub}
                             selected={form.recentLabs === id}
+                            tabIndex={rovingTabIndex(LAB_OPTIONS.map((o) => o.id), form.recentLabs, i)}
                             onClick={() => setField("recentLabs", id)}
                             testId={`assessment-option-${id}`}
                           />
@@ -877,7 +989,7 @@ export default function Assessment() {
                   {step === 6 && (
                     <motion.div key="step-6" {...motionProps} data-testid="assessment-step-6">
                       <p style={eyebrow}>Contact</p>
-                      <h2 style={question}>Where should your physician reach you?</h2>
+                      <h2 id="q-contact" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Where should your physician reach you?</h2>
                       <p style={subCopy}>
                         A licensed physician reviews your intake and contacts you to schedule a consult.
                       </p>
@@ -885,13 +997,15 @@ export default function Assessment() {
                       <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "0.5rem" }}>
                         {/* Name */}
                         <div>
-                          <label htmlFor="contact-name" style={fieldLabel}>Full name *</label>
+                          <label htmlFor="contact-name" style={fieldLabel}>Full name <span aria-hidden="true">*</span></label>
                           <input
                             id="contact-name"
                             type="text"
                             value={form.name}
                             onChange={(e) => setField("name", e.target.value)}
                             placeholder="Your legal name"
+                            autoComplete="name"
+                            aria-required="true"
                             data-testid="assessment-contact-name"
                             className="nx-input"
                           />
@@ -899,16 +1013,38 @@ export default function Assessment() {
 
                         {/* Email */}
                         <div>
-                          <label htmlFor="contact-email" style={fieldLabel}>Email address *</label>
+                          <label htmlFor="contact-email" style={fieldLabel}>Email address <span aria-hidden="true">*</span></label>
                           <input
                             id="contact-email"
                             type="email"
                             value={form.email}
                             onChange={(e) => setField("email", e.target.value)}
+                            onBlur={() => setEmailBlurred(true)}
                             placeholder="you@example.com"
+                            autoComplete="email"
+                            inputMode="email"
+                            aria-required="true"
+                            aria-invalid={showEmailHint || undefined}
+                            aria-describedby="contact-email-hint"
                             data-testid="assessment-contact-email"
                             className="nx-input"
                           />
+                          <p
+                            id="contact-email-hint"
+                            aria-live="polite"
+                            data-testid="assessment-email-hint"
+                            style={{
+                              marginTop: "0.5rem",
+                              fontFamily: F,
+                              fontSize: "var(--nx-t-xs)",
+                              color: showEmailHint ? "var(--nx-fg-graphite)" : "var(--nx-fg-muted)",
+                              lineHeight: 1.5,
+                            }}
+                          >
+                            {showEmailHint
+                              ? "Enter a complete address, e.g. name@domain.com — this is where your physician follows up."
+                              : "We use this only to reach you about your intake."}
+                          </p>
                         </div>
 
                         {/* Phone */}
@@ -920,18 +1056,34 @@ export default function Assessment() {
                             value={form.phone}
                             onChange={(e) => setField("phone", e.target.value)}
                             placeholder="(212) 555-0100"
+                            autoComplete="tel"
+                            inputMode="tel"
+                            aria-describedby="contact-phone-hint"
                             data-testid="assessment-contact-phone"
                             className="nx-input"
                           />
+                          <p
+                            id="contact-phone-hint"
+                            style={{
+                              marginTop: "0.5rem",
+                              fontFamily: F,
+                              fontSize: "var(--nx-t-xs)",
+                              color: "var(--nx-fg-muted)",
+                              lineHeight: 1.5,
+                            }}
+                          >
+                            Optional. Used only if your physician needs to reach you by phone.
+                          </p>
                         </div>
 
                         {/* State */}
                         <div>
-                          <label htmlFor="contact-state" style={fieldLabel}>State of residence *</label>
+                          <label htmlFor="contact-state" style={fieldLabel}>State of residence <span aria-hidden="true">*</span></label>
                           <select
                             id="contact-state"
                             value={form.state}
                             onChange={(e) => setField("state", e.target.value)}
+                            aria-required="true"
                             data-testid="assessment-contact-state"
                             className="nx-input"
                             style={{
@@ -959,7 +1111,7 @@ export default function Assessment() {
                   {step === 7 && (
                     <motion.div key="step-7" {...motionProps} data-testid="assessment-step-7">
                       <p style={eyebrow}>Review</p>
-                      <h2 style={question}>Review your intake before submitting.</h2>
+                      <h2 id="q-review" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Review your intake before submitting.</h2>
                       <p style={subCopy}>
                         Your physician will receive these details. You can go back to change any answer.
                       </p>
@@ -1138,6 +1290,8 @@ export default function Assessment() {
                         : { initial: { opacity: 0, scale: 0.97 }, animate: { opacity: 1, scale: 1 }, transition: { duration: 0.35, ease: APPLE_EASE } })}
                       style={{ textAlign: "center" }}
                       data-testid="assessment-complete"
+                      role="status"
+                      aria-live="polite"
                     >
                       <div
                         style={{
@@ -1154,7 +1308,7 @@ export default function Assessment() {
                         <Check size={30} style={{ color: "var(--nx-bg)" }} />
                       </div>
                       <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
-                      <h2 style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center" }}>
+                      <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
                         Your intake is under review.
                       </h2>
                       <p
@@ -1307,6 +1461,17 @@ export default function Assessment() {
           box-shadow: 0 0 0 3px var(--nx-cobalt-soft);
         }
         .nx-opt--row { justify-content: flex-start; }
+        /* Visible focus rings on token colors — the checkbox row wraps a
+           visually-hidden native input, so :focus-within surfaces its focus. */
+        .nx-opt:focus-visible,
+        .nx-sex:focus-visible {
+          outline: 2px solid var(--nx-cobalt);
+          outline-offset: 2px;
+        }
+        .nx-opt--row:focus-within {
+          outline: 2px solid var(--nx-cobalt);
+          outline-offset: 2px;
+        }
         .nx-opt-check {
           width: 22px; height: 22px; border-radius: var(--nx-r-pill);
           border: 1.5px solid var(--nx-border);
