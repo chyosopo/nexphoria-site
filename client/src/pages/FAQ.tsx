@@ -6,6 +6,7 @@ import { Plus, Minus } from "lucide-react";
 import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
+import { F } from "@/lib/typography";
 
 interface FAQItem {
   q: string;
@@ -191,7 +192,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
       }}
     >
       <button
-        className="w-full"
+        className="faq-toggle w-full"
         onClick={onToggle}
         aria-expanded={isOpen}
         data-testid={`faq-item-${index}`}
@@ -209,19 +210,21 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
         }}
       >
         <p
+          className="faq-q"
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontStyle: isOpen ? "" : "normal",
             fontWeight: 500,
             fontSize: "clamp(1rem, 2vw, 1.375rem)",
             color: isOpen ? "var(--nx-cobalt)" : "var(--nx-fg)",
             lineHeight: 1.3,
-            transition: "color 0.2s, font-style 0.2s",
+            transition: "color var(--nx-dur-2) var(--nx-ease)",
           }}
         >
           {item.q}
         </p>
         <span
+          className="faq-icon"
           style={{
             flexShrink: 0,
             width: "24px",
@@ -232,7 +235,8 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
             alignItems: "center",
             justifyContent: "center",
             marginTop: "3px",
-            transition: "border-color 0.2s",
+            willChange: "transform",
+            transition: "border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease)",
           }}
         >
           {isOpen ? (
@@ -252,7 +256,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
         >
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: F,
               fontSize: "1rem",
               color: "var(--nx-fg-graphite)",
               lineHeight: 1.7,
@@ -262,6 +266,15 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
           </p>
         </div>
       )}
+      <style>{`
+        .faq-toggle:hover .faq-q { color: var(--nx-cobalt); }
+        .faq-toggle:hover .faq-icon { border-color: var(--nx-cobalt); transform: scale(1.08); }
+        .faq-toggle:active .faq-icon { transform: scale(0.94); transition-duration: var(--nx-dur-1); }
+        @media (prefers-reduced-motion: reduce) {
+          .faq-toggle .faq-icon { transition: border-color var(--nx-dur-2) var(--nx-ease); }
+          .faq-toggle:hover .faq-icon { transform: none; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -362,7 +375,7 @@ export default function FAQPage() {
               >
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "9px",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
@@ -383,14 +396,14 @@ export default function FAQPage() {
                           border: "none",
                           cursor: "pointer",
                           padding: "0.5rem 0",
-                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontFamily: F,
                           fontSize: "14px",
                           fontWeight: activeCategory === i ? 600 : 400,
                           color: activeCategory === i ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
                           display: "flex",
                           alignItems: "center",
                           gap: "0.5rem",
-                          transition: "color 0.2s",
+                          transition: "color var(--nx-dur-2) var(--nx-ease)",
                         }}
                       >
                         {activeCategory === i && (
@@ -406,7 +419,7 @@ export default function FAQPage() {
                         {cat.label}
                         <span
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontFamily: F,
                             fontSize: "9px",
                             color: "var(--nx-fg-muted)",
                           }}
@@ -425,7 +438,7 @@ export default function FAQPage() {
               <Reveal>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -438,7 +451,7 @@ export default function FAQPage() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontWeight: 500,
                     
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",

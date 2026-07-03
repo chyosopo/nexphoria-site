@@ -397,6 +397,7 @@ export default function Journal() {
               <a
                 href="mailto:journal@nexphoria.com?subject=Subscribe%20to%20The%20Journal"
                 data-testid="button-newsletter-subscribe"
+                className="journal-subscribe"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -412,6 +413,8 @@ export default function Journal() {
                   padding: "16px 24px",
                   borderRadius: 12,
                   textDecoration: "none",
+                  willChange: "transform",
+                  transition: "transform var(--nx-dur-2) var(--nx-ease)",
                 }}
               >
                 Subscribe by email
@@ -433,6 +436,13 @@ export default function Journal() {
       </section>
 
       <style>{`
+        .journal-chip:not([aria-pressed="true"]):hover { border-color: var(--nx-fg); color: var(--nx-fg); }
+        .journal-subscribe:hover { transform: translateY(-2px); }
+        .journal-subscribe:active { transform: translateY(0); transition-duration: var(--nx-dur-1); }
+        @media (prefers-reduced-motion: reduce) {
+          .journal-subscribe { transition: none; }
+          .journal-subscribe:hover, .journal-subscribe:active { transform: none; }
+        }
         @media (max-width: 900px) {
           .journal-card-grid { grid-template-columns: 1fr !important; }
         }
@@ -469,6 +479,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
       data-testid={testId}
       onClick={onClick}
       aria-pressed={isActive}
+      className="journal-chip"
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -484,7 +495,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
         letterSpacing: "0.06em",
         cursor: "pointer",
         whiteSpace: "nowrap",
-        transition: "all 0.2s ease",
+        transition: "border-color var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease)",
       }}
     >
       {label}

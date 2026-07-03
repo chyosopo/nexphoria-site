@@ -5,6 +5,7 @@ import gateHer from "@/assets/brand/gate-her.webp";
 import gateHim from "@/assets/brand/gate-him.webp";
 import { Logo } from "@/components/Logo";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { F } from "@/lib/typography";
 
 const reducedMotion =
   typeof window !== "undefined" &&
@@ -65,12 +66,12 @@ export default function Gate() {
         <Logo variant="light" />
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontSize: "9px",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.55)",
+            color: "rgba(246, 249, 252,0.55)",
             marginTop: "6px",
           }}
         >
@@ -78,10 +79,10 @@ export default function Gate() {
         </p>
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontSize: "12px",
             fontWeight: 400,
-            color: "rgba(255,255,255,0.55)",
+            color: "rgba(246, 249, 252,0.55)",
             marginTop: "10px",
             letterSpacing: "0.02em",
             pointerEvents: "auto",
@@ -89,23 +90,23 @@ export default function Gate() {
         >
           <a
             href="#/stacks"
-            style={{ color: "rgba(255,255,255,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="gate-link-stacks"
           >
             Browse stacks
           </a>
-          <span style={{ margin: "0 10px", color: "rgba(255,255,255,0.3)" }}>·</span>
+          <span style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
           <a
             href="#/how-it-works"
-            style={{ color: "rgba(255,255,255,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="gate-link-how"
           >
             How it works
           </a>
-          <span style={{ margin: "0 10px", color: "rgba(255,255,255,0.3)" }}>·</span>
+          <span style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
           <a
             href="#/assessment"
-            style={{ color: "rgba(255,255,255,0.85)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ color: "rgba(246, 249, 252,0.85)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="gate-link-assessment"
           >
             Start assessment
@@ -164,7 +165,7 @@ export default function Gate() {
           >
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
@@ -375,7 +376,7 @@ function GateCard({
         />
         <span
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontSize: 10,
             fontWeight: 500,
             letterSpacing: "0.14em",
@@ -417,7 +418,7 @@ function GateCard({
           >
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: 9,
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -447,7 +448,7 @@ function GateCard({
                     <div style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
                       <span
                         style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontFamily: F,
                           
                           fontSize: 13,
                           color: "var(--nx-rust)",
@@ -459,7 +460,7 @@ function GateCard({
                       </span>
                       <span
                         style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontFamily: F,
                           fontSize: 14,
                           fontWeight: 600,
                           color: "var(--nx-ceramic)",
@@ -471,7 +472,7 @@ function GateCard({
                     </div>
                     <span
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: F,
                         fontSize: 11,
                         fontWeight: 500,
                         color: "rgba(246, 249, 252,0.75)",
@@ -483,7 +484,7 @@ function GateCard({
                   </div>
                   <span
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: 12,
                       color: "rgba(246, 249, 252,0.6)",
                       letterSpacing: "0.01em",
@@ -519,12 +520,12 @@ function GateCard({
         {/* Eyebrow */}
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             fontSize: "10px",
             fontWeight: 500,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.6)",
+            color: "rgba(246, 249, 252,0.6)",
             marginBottom: "12px",
           }}
         >
@@ -534,7 +535,7 @@ function GateCard({
         {/* Main label */}
         <p
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontFamily: F,
             
             fontWeight: 400,
             fontSize: "clamp(3.5rem, 6vw, 6rem)",
