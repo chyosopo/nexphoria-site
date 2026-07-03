@@ -80,7 +80,7 @@ export default function Gate() {
         <p
           style={{
             fontFamily: F,
-            fontSize: "12px",
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 400,
             color: "rgba(246, 249, 252,0.55)",
             marginTop: "10px",

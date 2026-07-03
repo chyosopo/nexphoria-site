@@ -412,7 +412,7 @@ export default function Cart() {
           <Link asChild href="/checkout">
             <a
               className="block w-full text-center py-3.5 font-medium"
-              style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.9375rem", letterSpacing: "0.02em", borderRadius: 12 }}
+              style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-base)", letterSpacing: "0.02em", borderRadius: 12 }}
               data-testid="button-checkout-mobile"
             >
               Checkout — {formatUSD(subtotal)}

@@ -324,7 +324,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         className="flex items-center justify-between"
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: 15,
+                          fontSize: "var(--nx-t-base)",
                           fontWeight: 600,
                           color: "var(--nx-fg)",
                         }}
@@ -356,7 +356,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mt-4 inline-flex items-center gap-1.5 no-underline"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 13,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
                   }}
@@ -399,7 +399,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-1.5 no-underline mb-5"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--nx-cobalt)" }}
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}
                   onClick={() => setMegaOpen(false)}
                   data-testid="mega-education-link"
                 >
@@ -440,7 +440,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: 12,
+                            fontSize: "var(--nx-t-xs)",
                             color: "var(--nx-fg-graphite)",
                           }}
                         >
@@ -551,7 +551,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     padding: "0.75rem 0.85rem",
                     background: "var(--nx-bg)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 13.5,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
                   }}

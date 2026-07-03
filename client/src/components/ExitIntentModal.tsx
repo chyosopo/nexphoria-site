@@ -215,7 +215,7 @@ export function ExitIntentModal() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "0.9375rem",
+                fontSize: "var(--nx-t-base)",
                 color: "var(--nx-fg-muted)",
                 lineHeight: 1.55,
                 marginBottom: 20,
@@ -233,7 +233,7 @@ export function ExitIntentModal() {
                   backgroundColor: "rgba(152, 182, 213, 0.18)",
                   border: "1px solid var(--nx-acid, var(--nx-acid))",
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "0.9375rem",
+                  fontSize: "var(--nx-t-base)",
                   color: "var(--nx-fg)",
                 }}
                 data-testid="exit-intent-success"
@@ -263,7 +263,7 @@ export function ExitIntentModal() {
                       borderRadius: 4,
                       border: state === "err" ? "1px solid var(--nx-danger)" : "1px solid var(--nx-border)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "0.9375rem",
+                      fontSize: "var(--nx-t-base)",
                       backgroundColor: "var(--nx-ceramic)",
                       color: "var(--nx-fg)",
                     }}
