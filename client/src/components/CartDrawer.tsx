@@ -1,3 +1,4 @@
+import { getSolo } from "@/data/soloCatalog";
 import { useEffect, useMemo } from "react";
 import { Link, useLocation } from "wouter";
 import { X, Trash2, Plus, Minus, ShoppingBag, Stethoscope, Truck, Shield, Beaker, Plus as PlusIcon, Check } from "lucide-react";
@@ -99,6 +100,8 @@ export function CartDrawer() {
       const pairs = PAIRINGS[item.slug] || [];
       for (const p of pairs) {
         if (inCartSlugs.has(p.slug) || seen.has(p.slug)) continue;
+        const cat = getSolo(p.slug);
+        if (!cat || cat.gated || !cat.pricing) continue; // intake-only: never cross-sell
         seen.add(p.slug);
         out.push(p);
         if (out.length >= 2) return out;

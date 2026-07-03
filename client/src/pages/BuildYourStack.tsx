@@ -8,6 +8,7 @@ import { useCart } from "@/contexts/CartProvider";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { getStack } from "@/data/stacks";
+import { getSolo } from "@/data/soloCatalog";
 import { getStackPortrait } from "@/lib/stackPortraits";
 
 const cadencePctOf = (c: CadenceKey): number => (CADENCE_DISCOUNTS[c]?.pct ?? 0);
@@ -193,14 +194,21 @@ export default function BuildYourStack() {
     [matchedStack, picked],
   );
 
+  /* Sellable = in the current formulary (soloCatalog), not physician-gated
+     (GLP-1), and carries transparent pricing. Everything else is intake-only
+     and must not be self-serve buildable. */
+  const sellable = useMemo(
+    () => peptides.filter((p) => { const s = getSolo(p.slug); return !!s && !s.gated && !!s.pricing; }),
+    [],
+  );
   // Available peptides for the chosen goal (whole catalog if no goal yet)
   const eligible = useMemo(() => {
-    if (!goal) return peptides;
-    const fromGoal = peptides.filter((p) => goal.categories.includes(p.category));
+    if (!goal) return sellable;
+    const fromGoal = sellable.filter((p) => goal.categories.includes(p.category));
     // Always include the explicitly recommended peptides, even if their
     // primary category isn't in the goal's category list (e.g. tirzepatide
     // for "weight" is metabolic, but ipamorelin for the same goal is growth).
-    const extras = peptides.filter(
+    const extras = sellable.filter(
       (p) => goal.recommended.includes(p.slug) && !fromGoal.some((q) => q.slug === p.slug),
     );
     return [...fromGoal, ...extras];

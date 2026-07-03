@@ -21,7 +21,7 @@
 
 ## 🔧 REMAINING — site-side (small, no blockers)
 - [x] ~~12 pre-existing tsc errors~~ — **FIXED: tsc = 0 across the entire repo**
-- [ ] Data unification (later, carefully): legacy `stacks.ts`/`peptides.ts` still power cart/checkout/nav; new `stacksCatalog`/`soloCatalog` power PDPs. Two sources of truth = drift risk once real orders flow
+- [x] ~~Data unification~~ — **DONE (forced by findings).** The drift audit (`npm run audit:data`) found 10 live price contradictions (e.g. bpc-157 $149 on PDP vs $189 in cart), 2 stacks pricing at $0, a wrong discount ladder (site claimed −25/−50 vs doc's −15/−30), and **tirzepatide (gated GLP-1) + retatrutide (doc-dropped) freely pickable in the stack builder**. Fixed: `priceAtCadence` now returns the catalogs' exact tier prices (cart can never contradict a PDP by construction); CartProvider stacks price from FLAGSHIP_STACKS; builder + cart-drawer cross-sell filter to doc-approved, non-gated, transparently-priced solos only. Audit now green: 0 drift across 7 stacks × 3 cadences + all solos; 0 gated/orphan leaks.
 - [x] ~~Checkout-level GLP-1 state block~~ — **WIRED: address step hard-blocks the 6 excluded states when cart contains GLP-1 (derived from catalog `gated` flags, not hardcoded); bank-voice notice; onSubmit double-guard. Server-side validation still required when a real backend exists.**
 - [ ] Git history carries one 153MB asset commit — squash `design/azure` before production merge if repo size matters
 - [ ] Delete `.github/workflows/localize-assets.yml` + manifest after production merge (job done)

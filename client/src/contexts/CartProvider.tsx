@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
 import { pricing, priceAtCadence, CADENCE_DISCOUNTS, formatUSD, type CadenceKey } from "@/data/pricing";
 import { stacks, computeStackPrice } from "@/data/stacks";
+import { getStack as getFlagship } from "@/data/stacksCatalog";
 
 /* ──────────────────────────────────────────────────────────────
    Nexphoria Cart — React Context (NO localStorage — blocked in iframe)
@@ -121,12 +122,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
           cadenceLabel,
         };
       }
-      // stack
+      // stack — priced straight from the flagship catalog (single source of truth)
+      const flagship = getFlagship(item.slug);
+      if (flagship) {
+        const unitPrice = priceAtCadence(item.slug, item.cadence);
+        const base = priceAtCadence(item.slug, "1mo");
+        const cadenceSavings = (base - unitPrice) * item.qty;
+        return {
+          ...item,
+          name: `${flagship.name} Protocol`,
+          unitPrice,
+          lineTotal: unitPrice * item.qty,
+          savings: cadenceSavings > 0 ? cadenceSavings : undefined,
+          cadenceLabel,
+        };
+      }
+      // legacy fallback (unrouted paths only)
       const stack = stacks.find((s) => s.slug === item.slug);
       if (!stack) {
         return { ...item, name: item.slug, unitPrice: 0, lineTotal: 0, cadenceLabel };
       }
-      const { sum, bundle, savings: bundleSavings } = computeStackPrice(stack, pricing);
+      const { bundle, savings: bundleSavings } = computeStackPrice(stack, pricing);
       const disc = CADENCE_DISCOUNTS[item.cadence].pct;
       const unitPrice = Math.round(bundle * (1 - disc));
       const cadenceSavings = (bundle - unitPrice) * item.qty;
