@@ -7,15 +7,20 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { getSolo } from "@/data/soloCatalog";
 import { ArrowLeft, Check } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
+import { Disclaimer } from "@/components/Disclaimer";
 
 export default function SoloPDP({ slug, world }: { slug: string; world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
   const solo = getSolo(slug);
   const [tier, setTier] = useState<string>("m3");
+  const faq = solo
+    ? buildPdpFaq({ name: solo.name, panel: solo.panel, gated: solo.gated, gatedStates: solo.stateExclusions, hasPricing: !!solo.pricing, firstMark: solo.timeline[0] })
+    : [];
 
   useSeo({
     title: solo ? `${solo.name} — ${solo.category} | Nexphoria` : "Peptide — Nexphoria",
@@ -24,6 +29,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       ? [
           webPageJsonLd({ name: solo.name, description: solo.mechanism.slice(0, 120), path: `/peptides/${solo.slug}`, type: "MedicalWebPage" }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: solo.name, path: `/peptides/${solo.slug}` }]),
+          faqJsonLd(faq),
         ]
       : [],
   });
@@ -104,6 +110,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your physician prescribes and titrates it against your bloodwork.</p>
               </div>
             )}
+
+            <PdpFaq items={faq} />
           </div>
 
           {/* — RIGHT — */}
@@ -136,7 +144,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "60ch", marginTop: "1.2rem" }}>These peptides are not FDA-approved and are prescribed off-label where a physician determines it appropriate. This page is educational and is not medical advice.</p>
+          <div style={{ marginTop: "1.2rem" }}><Disclaimer variant="night" /></div>
         </div>
       </section>
 

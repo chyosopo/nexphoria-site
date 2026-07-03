@@ -12,6 +12,9 @@ import { getStack, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK } from "@/data/outcomeImagery";
+import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
+import { Disclaimer } from "@/components/Disclaimer";
+import { faqJsonLd } from "@/lib/seo";
 
 function panelFor(tier: PanelTier) {
   return PANELS.find((p) => p.tier === tier);
@@ -20,6 +23,9 @@ function panelFor(tier: PanelTier) {
 export default function StackPage({ slug }: { slug: string }) {
   const stack = getStack(slug);
   const [selected, setSelected] = useState<string>("3mo");
+  const faq = stack
+    ? buildPdpFaq({ name: stack.name, panel: stack.panel, gated: stack.gated, gatedStates: stack.stateExclusions, hasPricing: !stack.gated, firstMark: stack.timeline[0] })
+    : [];
 
   useSeo({
     title: stack ? `${stack.name} — ${stack.category} | Nexphoria` : "Stack — Nexphoria",
@@ -28,6 +34,7 @@ export default function StackPage({ slug }: { slug: string }) {
       ? [
           webPageJsonLd({ name: stack.name, description: stack.tagline, path: `/stacks/${stack.slug}` }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }, { name: stack.name, path: `/stacks/${stack.slug}` }]),
+          faqJsonLd(faq),
         ]
       : [],
   });
@@ -165,6 +172,8 @@ export default function StackPage({ slug }: { slug: string }) {
                 )}
               </div>
             )}
+
+            <PdpFaq items={faq} />
           </div>
 
           {/* — RIGHT: the commerce rail — */}
@@ -198,9 +207,7 @@ export default function StackPage({ slug }: { slug: string }) {
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "60ch", marginTop: "1.4rem" }}>
-            These peptides are not FDA-approved and are prescribed off-label where a physician determines it appropriate. This page is educational and is not medical advice.
-          </p>
+          <div style={{ marginTop: "1.4rem" }}><Disclaimer variant="night" /></div>
         </div>
       </section>
 
