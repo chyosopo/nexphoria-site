@@ -374,7 +374,7 @@ export default function BuildYourStack() {
                   key={g.id}
                   type="button"
                   onClick={() => pickGoal(g.id)}
-                  className="text-left group transition-all"
+                  className="text-left group nx-goal-card"
                   data-testid={`button-goal-${g.id}`}
                   style={{
                     background: "#fff",
@@ -383,8 +383,6 @@ export default function BuildYourStack() {
                     padding: "28px 24px",
                     fontFamily: SANS,
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--nx-fg)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--nx-rock)"; e.currentTarget.style.transform = "translateY(0)"; }}
                 >
                   <div className="flex items-center justify-between mb-5">
                     <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", color: "var(--nx-fg-muted)", textTransform: "uppercase" }}>

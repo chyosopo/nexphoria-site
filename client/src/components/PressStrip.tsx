@@ -56,17 +56,8 @@ export function PressStrip() {
                     fontWeight: 500,
                     letterSpacing: "0.04em",
                     color: "var(--nx-fg)",
-                    opacity: 0.22,
-                    transition: "opacity 300ms ease",
-                    cursor: "default",
-                    userSelect: "none",
                   }}
-                  onMouseEnter={(e) => {
-                    (e.target as HTMLSpanElement).style.opacity = "0.45";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.target as HTMLSpanElement).style.opacity = "0.22";
-                  }}
+                  className="nx-press-abbr"
                 >
                   {abbr}
                 </span>

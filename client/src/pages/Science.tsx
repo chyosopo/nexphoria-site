@@ -447,19 +447,10 @@ export default function Science() {
                           color: t.color,
                           textDecoration: "none",
                           background: "transparent",
-                          transition: "background 180ms ease, color 180ms ease, border-color 180ms ease",
                           cursor: "pointer",
+                          ["--t-color" as string]: t.color,
                         }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLElement).style.background = t.color;
-                          (e.currentTarget as HTMLElement).style.color = "var(--nx-fg)";
-                          (e.currentTarget as HTMLElement).style.borderColor = t.color;
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLElement).style.background = "transparent";
-                          (e.currentTarget as HTMLElement).style.color = t.color;
-                          (e.currentTarget as HTMLElement).style.borderColor = `${t.color}55`;
-                        }}
+                        className="nx-sci-pill"
                       >
                         {ex.name}
                       </a>

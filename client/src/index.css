@@ -1301,3 +1301,20 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
 .nx-protocol-card:hover img { transform: scale(1.045); }
 .nx-protocol-card:active { transform: translateY(0) scale(0.99); transition-duration: var(--nx-dur-1); }
 @media (prefers-reduced-motion: reduce) { .nx-protocol-card, .nx-protocol-card img { transition: none; } .nx-protocol-card:hover, .nx-protocol-card:hover img { transform: none; } }
+
+/* ── D18 reach: declarative hover (was imperative JS onMouseEnter) ──
+   Pure-style hovers migrated from JS handlers to CSS so reduced-motion
+   is respected and behavior is inspectable. 1:1 with the old handlers. */
+.nx-press-abbr { opacity: 0.22; transition: opacity var(--nx-dur-3) var(--nx-ease); cursor: default; user-select: none; }
+.nx-press-abbr:hover { opacity: 0.45; }
+
+.nx-goal-card { transition: border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-goal-card:hover { border-color: var(--nx-fg) !important; transform: translateY(-2px); }
+.nx-goal-card:active { transform: translateY(0); transition-duration: var(--nx-dur-1); }
+
+.nx-sci-pill { transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease); }
+.nx-sci-pill:hover { background: var(--t-color); color: var(--nx-fg); border-color: var(--t-color); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-goal-card, .nx-goal-card:hover, .nx-goal-card:active { transform: none; }
+}
