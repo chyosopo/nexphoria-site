@@ -163,7 +163,7 @@ export default function Checkout() {
                 </div>
                 <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                   {[
-                    "Physician reviews intake and cart (24–48 hours)",
+                    "Physician reviews intake and cart",
                     "You receive a secure approval link by email",
                     "Bloodwork ordered to your nearest partner laboratory",
                     "Compounded shipment sent in cold-chain packaging",

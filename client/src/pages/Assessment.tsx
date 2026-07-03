@@ -285,7 +285,7 @@ function StepNav({
 
 export default function Assessment() {
   useSeo({
-    title: "Start your peptide protocol — structured intake, physician review in 24h",
+    title: "Start your peptide protocol — structured intake, physician-reviewed",
     description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol after review. No algorithms, no auto-approvals.",
     path: "/assessment",
     jsonLd: [webPageJsonLd({

@@ -93,7 +93,7 @@ const biomarkerCards = [
 export default function LabTesting() {
   useSeo({
     title: "At-home lab testing — 38 biomarkers, partner laboratory, every 90 days",
-    description: "Requisition in your portal, draw at 2,500+ partner laboratory locations, physician-reviewed results in 48 hours. 38 biomarkers calibrate and track your peptide protocol from first dose to completion.",
+    description: "Requisition in your portal, draw at 2,500+ partner laboratory locations, physician-reviewed results. 38 biomarkers calibrate and track your peptide protocol from first dose to completion.",
     path: "/lab-testing",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Lab Testing",
@@ -1052,7 +1052,7 @@ function BloodworkManifesto() {
             {[
               { k: "80+", v: "Biomarkers" },
               { k: "2,500+", v: "Partner lab locations" },
-              { k: "48h", v: "Physician review" },
+              { k: "100%", v: "Physician-reviewed" },
               { k: "90 days", v: "Re-test cadence" },
             ].map((s) => (
               <div key={s.k}>
