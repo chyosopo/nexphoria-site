@@ -31,7 +31,7 @@ export const OUTCOME_CATEGORY: Record<
     sleep: "img/img_928775d1e9c1.webp", // waking before the alarm (M)
   },
   women: {
-    skin: "img/img_84444e0185e3.webp", // skin that holds the light
+    skin: "img/img_3678caab4727.webp", // golden profile, cream robe — skin that holds the light
     recovery: "img/img_e90c14c4f953.webp",
     metabolic: "img/img_4f2bd889825e.webp", // jeans button easily (W)
     longevity: "img/img_cf1396d09b4a.webp",
