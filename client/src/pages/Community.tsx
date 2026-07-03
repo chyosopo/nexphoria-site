@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
+import { F } from "@/lib/typography";
 
 const clinicalTopics = [
   { category: "METABOLIC", title: "Tirzepatide at week 8 — before/after lab panel shared", activity: "43 responses · 2h ago" },
@@ -171,8 +172,8 @@ export default function Community() {
               tone="butter"
               glyph={TileGlyphs.leaf}
               label={<>Start your protocol<br /><span>take the assessment</span></>}
-              caption="Clinical case notes &amp; outcomes"
-              ctaLabel="Read journal"
+              caption="Physician-guided protocol match"
+              ctaLabel="Take the assessment"
             />
           </div>
         </div>
@@ -189,7 +190,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -206,10 +207,10 @@ export default function Community() {
             </p>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "3rem",
@@ -238,7 +239,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.15em",
@@ -250,10 +251,10 @@ export default function Community() {
                   </p>
                   <h3
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       
                       fontWeight: 500,
-                      fontSize: "1.25rem",
+                      fontSize: "var(--nx-t-lg)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.2,
                       marginBottom: "0.75rem",
@@ -263,8 +264,8 @@ export default function Community() {
                   </h3>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "13.5px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-fg-graphite)",
                       lineHeight: 1.65,
                     }}
@@ -296,7 +297,7 @@ export default function Community() {
             <Reveal>
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: F,
                   fontSize: "11px",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
@@ -309,9 +310,9 @@ export default function Community() {
               </p>
               <h2
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: F,
                   fontWeight: 500,
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                  fontSize: "var(--nx-t-h2)",
                   color: "var(--nx-ceramic)",
                   lineHeight: 1.1,
                   marginBottom: "0.5rem",
@@ -321,10 +322,10 @@ export default function Community() {
               </h2>
               <h2
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: F,
                   fontWeight: 500,
                   
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                  fontSize: "var(--nx-t-h2)",
                   color: "var(--nx-ceramic)",
                   lineHeight: 1.1,
                   marginBottom: "1.25rem",
@@ -334,8 +335,8 @@ export default function Community() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "1.0625rem",
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-body)",
                   color: "rgba(255,255,255,0.75)",
                   lineHeight: 1.7,
                 }}
@@ -357,10 +358,10 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       
                       fontWeight: 500,
-                      fontSize: "1.25rem",
+                      fontSize: "var(--nx-t-lg)",
                       color: "var(--nx-ceramic)",
                       marginBottom: "0.5rem",
                     }}
@@ -369,8 +370,8 @@ export default function Community() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       color: "rgba(255,255,255,0.75)",
                     }}
                   >
@@ -382,7 +383,7 @@ export default function Community() {
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   <label
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
@@ -402,8 +403,8 @@ export default function Community() {
                     required
                     data-testid="community-email-input"
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       padding: "0.875rem 1.25rem",
                       borderRadius: "4px",
                       border: "1px solid rgba(255,255,255,0.25)",
@@ -422,8 +423,8 @@ export default function Community() {
                       gap: "0.5rem",
                       backgroundColor: "var(--nx-ceramic)",
                       color: "var(--nx-cobalt)",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -438,7 +439,7 @@ export default function Community() {
                   </button>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "11px",
                       color: "rgba(255,255,255,0.45)",
                     }}
@@ -461,7 +462,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -478,10 +479,10 @@ export default function Community() {
             </p>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontWeight: 500,
                 
-                fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "2.5rem",
@@ -510,7 +511,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -522,8 +523,8 @@ export default function Community() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
                       lineHeight: 1.4,
@@ -534,7 +535,7 @@ export default function Community() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "9px",
                       color: "var(--nx-fg-muted)",
                     }}
@@ -557,7 +558,7 @@ export default function Community() {
           <Reveal>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontSize: "11px",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
@@ -574,10 +575,10 @@ export default function Community() {
             </p>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: F,
                 fontWeight: 500,
                 
-                fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "0.5rem",
@@ -587,8 +588,8 @@ export default function Community() {
             </h2>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "1.0625rem",
+                fontFamily: F,
+                fontSize: "var(--nx-t-body)",
                 color: "var(--nx-fg-graphite)",
                 lineHeight: 1.65,
                 maxWidth: "480px",
@@ -620,7 +621,7 @@ export default function Community() {
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
@@ -634,8 +635,8 @@ export default function Community() {
                   <div style={{ flex: 1 }}>
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "14.5px",
+                        fontFamily: F,
+                        fontSize: "var(--nx-t-base)",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
                         lineHeight: 1.4,
@@ -646,7 +647,7 @@ export default function Community() {
                   </div>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "9px",
                       color: "var(--nx-fg-muted)",
                       flexShrink: 0,
@@ -680,7 +681,7 @@ function CommunityOutcomes() {
         <Reveal>
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: F,
               fontSize: "11px",
               fontWeight: 500,
               letterSpacing: "0.18em",
@@ -697,9 +698,9 @@ function CommunityOutcomes() {
           </p>
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: F,
               fontWeight: 500,
-              fontSize: "clamp(1.875rem, 3.5vw, 2.75rem)",
+              fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",
               lineHeight: 1.1,
               marginBottom: "0.75rem",
@@ -709,8 +710,8 @@ function CommunityOutcomes() {
           </h2>
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "1.0625rem",
+              fontFamily: F,
+              fontSize: "var(--nx-t-body)",
               color: "var(--nx-fg-graphite)",
               lineHeight: 1.65,
               maxWidth: "560px",
@@ -732,6 +733,7 @@ function CommunityOutcomes() {
           {testimonials.map((t, i) => (
             <Reveal key={t.name} delay={i * 50}>
               <div
+                className="nx-protocol-card"
                 data-testid={`community-testimonial-${i}`}
                 style={{
                   border: "1px solid var(--nx-border)",
@@ -755,8 +757,8 @@ function CommunityOutcomes() {
                       borderRadius: "50%",
                       backgroundColor: "var(--nx-cobalt-soft)",
                       color: "var(--nx-cobalt)",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "13px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 600,
                       letterSpacing: "0.02em",
                       flexShrink: 0,
@@ -767,8 +769,8 @@ function CommunityOutcomes() {
                   <div>
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "15px",
+                        fontFamily: F,
+                        fontSize: "var(--nx-t-base)",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
                         lineHeight: 1.2,
@@ -778,7 +780,7 @@ function CommunityOutcomes() {
                     </p>
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: F,
                         fontSize: "11px",
                         color: "var(--nx-fg-muted)",
                         lineHeight: 1.3,
@@ -791,8 +793,8 @@ function CommunityOutcomes() {
 
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "14.5px",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-base)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.6,
                     marginBottom: "1.5rem",
@@ -817,7 +819,7 @@ function CommunityOutcomes() {
                     <div key={d.label} style={{ backgroundColor: "var(--nx-bg-cream)", padding: "0.875rem 1rem" }}>
                       <p
                         style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontFamily: F,
                           fontSize: "9px",
                           fontWeight: 500,
                           letterSpacing: "0.1em",
@@ -830,8 +832,8 @@ function CommunityOutcomes() {
                       </p>
                       <p
                         style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "1.375rem",
+                          fontFamily: F,
+                          fontSize: "var(--nx-t-xl)",
                           fontWeight: 600,
                           color: "var(--nx-cobalt)",
                           lineHeight: 1,
@@ -852,7 +854,7 @@ function CommunityOutcomes() {
 
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
