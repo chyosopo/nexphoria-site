@@ -51,7 +51,7 @@ const sectionHeading: React.CSSProperties = {
 
 const bodyCopy: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "1.0625rem",
+  fontSize: "var(--nx-t-body)",
   color: "var(--nx-fg-graphite)",
   lineHeight: 1.7,
 };
@@ -207,7 +207,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "0.9375rem",
+                fontSize: "var(--nx-t-base)",
                 color: "var(--nx-fg-muted)",
                 lineHeight: 1.6,
                 marginBottom: "1rem",
@@ -236,7 +236,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: 19,
+                fontSize: "var(--nx-t-lg)",
                 lineHeight: 1.55,
                 color: "var(--nx-fg-graphite)",
                 maxWidth: 660,
@@ -252,6 +252,7 @@ export default function About() {
 
         {/* Proof stat row */}
         <div className="nx-container" style={{ paddingTop: 56, paddingBottom: 0 }}>
+          <Reveal>
           <div
             className="about-proof-grid"
             style={{
@@ -287,6 +288,7 @@ export default function About() {
               </div>
             ))}
           </div>
+          </Reveal>
         </div>
       </section>
 
@@ -365,6 +367,7 @@ export default function About() {
               Physician-guided. Compounded. Measured.
             </h2>
           </Reveal>
+          <Reveal>
           <div
             className="about-pillars-grid"
             style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}
@@ -391,7 +394,7 @@ export default function About() {
                   style={{
                     fontFamily: FONT,
                     fontWeight: 600,
-                    fontSize: "1.625rem",
+                    fontSize: "var(--nx-t-xl)",
                     letterSpacing: "-0.02em",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
@@ -400,10 +403,11 @@ export default function About() {
                 >
                   {p.title}
                 </h3>
-                <p style={{ ...bodyCopy, fontSize: "0.9375rem" }}>{p.desc}</p>
+                <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{p.desc}</p>
               </div>
             ))}
           </div>
+          </Reveal>
         </div>
       </section>
 
@@ -428,6 +432,7 @@ export default function About() {
               <Reveal key={p.name} delay={i * 50}>
                 <div
                   data-testid={`about-leader-${i}`}
+                  className="nx-protocol-card"
                   style={{
                     border: "1px solid var(--nx-border)",
                     borderRadius: "16px",
@@ -449,7 +454,7 @@ export default function About() {
                       style={{
                         fontFamily: FONT,
                         fontWeight: 600,
-                        fontSize: "1.25rem",
+                        fontSize: "var(--nx-t-lg)",
                         letterSpacing: "-0.01em",
                         color: "var(--nx-fg)",
                         lineHeight: 1.15,
@@ -461,7 +466,7 @@ export default function About() {
                     <p style={{ ...monoCaption, color: "var(--nx-rust)", marginBottom: "0.875rem" }}>
                       {p.title}
                     </p>
-                    <p style={{ ...bodyCopy, fontSize: "0.875rem" }}>{p.bio}</p>
+                    <p style={{ ...bodyCopy, fontSize: "var(--nx-t-sm)" }}>{p.bio}</p>
                   </div>
                 </div>
               </Reveal>
@@ -483,6 +488,7 @@ export default function About() {
                 <Reveal key={a.name} delay={i * 40}>
                   <div
                     data-testid={`about-advisor-${i}`}
+                    className="nx-protocol-card"
                     style={{
                       border: "1px solid var(--nx-border)",
                       borderRadius: "12px",
@@ -503,7 +509,7 @@ export default function About() {
                         color: "var(--nx-fg)",
                         fontFamily: FONT,
                         fontWeight: 600,
-                        fontSize: "1.0625rem",
+                        fontSize: "var(--nx-t-body)",
                         marginBottom: "1rem",
                       }}
                       aria-hidden="true"
@@ -514,7 +520,7 @@ export default function About() {
                       style={{
                         fontFamily: FONT,
                         fontWeight: 600,
-                        fontSize: "1rem",
+                        fontSize: "var(--nx-t-body)",
                         color: "var(--nx-fg)",
                         lineHeight: 1.2,
                         marginBottom: "0.4rem",
@@ -550,6 +556,7 @@ export default function About() {
               No exceptions, no add-on tiers.
             </p>
           </Reveal>
+          <Reveal>
           <div
             className="about-standards-grid"
             style={{
@@ -584,7 +591,7 @@ export default function About() {
                   style={{
                     fontFamily: FONT,
                     fontWeight: 600,
-                    fontSize: "1.375rem",
+                    fontSize: "var(--nx-t-xl)",
                     letterSpacing: "-0.02em",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
@@ -593,10 +600,11 @@ export default function About() {
                 >
                   {item.title}
                 </h3>
-                <p style={{ ...bodyCopy, fontSize: "0.9375rem" }}>{item.detail}</p>
+                <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{item.detail}</p>
               </div>
             ))}
           </div>
+          </Reveal>
 
           {/* Press strip */}
           <Reveal>
@@ -723,7 +731,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "1.0625rem",
+                fontSize: "var(--nx-t-body)",
                 color: "var(--nx-fg-graphite)",
                 lineHeight: 1.6,
                 maxWidth: 640,
@@ -817,7 +825,7 @@ export default function About() {
                 fontWeight: 500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "rgba(246, 249, 252,0.55)",
+                color: "color-mix(in oklab, var(--nx-ceramic) 55%, transparent)",
                 marginTop: "2.5rem",
               }}
             >
@@ -842,7 +850,9 @@ export default function About() {
           .about-leadership-grid { grid-template-columns: repeat(4, 1fr) !important; }
           .about-advisory-grid { grid-template-columns: repeat(5, 1fr) !important; }
         }
-        .about-contact-tile:hover { border-color: var(--nx-fg) !important; }
+        .about-contact-tile { transition: transform var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease); }
+        .about-contact-tile:hover { border-color: var(--nx-fg) !important; transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+        @media (prefers-reduced-motion: reduce) { .about-contact-tile { transition: none; } .about-contact-tile:hover { transform: none; } }
       `}</style>
     </SiteLayout>
   );
