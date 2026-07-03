@@ -33,6 +33,7 @@ const productHero = "img/img_b02fe34b47f7.webp";
 import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
 import moleculeShot from "@/assets/nx_v3_molecule.webp";
 import prescriptionShot from "@/assets/nx_v3_prescription.webp";
+import { F, FONT } from "@/lib/typography";
 const physicianPortrait = "img/img_334cb24acfa5.webp";
 const labPrecision = "img/img_b9ec00db43d6.webp";
 const morningRitual = "img/img_6bbc99ce7347.webp";
@@ -586,7 +587,6 @@ function GoalTiles() {
 
 /* -- 3.5 - FLAGSHIP DARK (Hims weight-loss pattern) --------- */
 function FlagshipDark() {
-  const F = "'General Sans', system-ui, sans-serif";
   return (
     <section
       data-testid="flagship-dark"
@@ -1896,7 +1896,6 @@ function PeptideTilesStrip() {
 /* ── HOME FAQ SECTION ──────────────────────────────────────────────── */
 function HomeFAQSection() {
   const [open, setOpen] = React.useState<number | null>(null);
-  const FONT = "'General Sans', system-ui, sans-serif";
   return (
     <section
       aria-labelledby="home-faq-heading"
@@ -2032,7 +2031,6 @@ const HOME_COMPARISON_ROWS = [
 ];
 
 function HomeComparisonSection() {
-  const FONT = "'General Sans', system-ui, sans-serif";
   return (
     <section
       aria-labelledby="home-comparison-heading"
@@ -2205,7 +2203,6 @@ function GuideCapture() {
 
 /* ══ PROOF BENTO — real numbers, mixed media ══ */
 function ProofBento() {
-  const F = "'General Sans', system-ui, sans-serif";
   const tile: React.CSSProperties = { background: "#EAF0F7", borderRadius: 22, overflow: "hidden" };
   return (
     <section className="nx-section" style={{ background: "var(--nx-bg)" }}>

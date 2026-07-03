@@ -13,6 +13,7 @@ import {
 } from "@/data/biomarkerPanel";
 import { Link } from "wouter";
 import { ArrowRight, Check, HeartPulse, Flame, Activity, Brain, Gauge, Droplets, Filter, Shield, Apple, TestTube, Hourglass } from "lucide-react";
+import { FONT } from "@/lib/typography";
 
 /* Organ/system icon map — hims-Labs tile grammar */
 const PANEL_ICONS: Record<string, any> = {
@@ -36,7 +37,6 @@ const PANEL_ART: Record<string, string> = {
   "bio-age": "img/img_c4bef27c5b72.webp",
 };
 
-const FONT = "'General Sans', system-ui, sans-serif";
 const NUM: React.CSSProperties = {
   fontVariantNumeric: "tabular-nums lining-nums",
   fontFeatureSettings: "'tnum'",
@@ -993,7 +993,6 @@ export default function Bloodwork() {
   );
 }
 
-
 /* ══ SYSTEMS MOSAIC — twelve warm-tinted windows ══ */
 const TINTS: Record<string, [string, string]> = {
   heart: ["#DEE7F6", "#38568A"], metabolism: ["#CEE0F6", "#22518A"],
@@ -1152,7 +1151,6 @@ function OfferStack() {
   );
 }
 
-
 /* ══ ACTION PLAN — guidance cards floating over life ══ */
 function ActionPlan() {
   return (
@@ -1192,7 +1190,6 @@ function ActionPlan() {
     </section>
   );
 }
-
 
 /* ══ GLOWING BODY — what one draw can surface ══ */
 const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[] = [
@@ -1264,7 +1261,6 @@ function MarkerWall() {
     </section>
   );
 }
-
 
 /* ══ Sticky pill sub-nav ══ */
 function SectionPills() {

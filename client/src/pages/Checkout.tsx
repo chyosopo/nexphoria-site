@@ -13,8 +13,7 @@ import { isGLP1Excluded, getStack } from "@/data/stacksCatalog";
 import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-
-const FONT = "'General Sans', system-ui, sans-serif";
+import { FONT } from "@/lib/typography";
 
 /* Local form schema — server validates on submit via insertCheckoutSchema.
    DO NOT change these fields — checkout schema is locked. */

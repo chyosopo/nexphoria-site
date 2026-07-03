@@ -6,9 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
-
-const F = "'General Sans', system-ui, sans-serif";
-const S = "'Fraunces', Georgia, serif";
+import { F, S } from "@/lib/typography";
 
 const CATEGORIES = ["All", "Recovery", "Skin", "Growth", "Cognitive", "Longevity", "Metabolic", "Sleep"];
 const matchCat = (c: string, filter: string) => filter === "All" || c.toLowerCase().includes(filter.toLowerCase());
@@ -32,7 +30,7 @@ export default function ProtocolsIndex() {
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.8rem" }}>
             Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
           </h1>
-          <p style={{ fontFamily: F, fontSize: 16.5, lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
             Every protocol is a physician-curated combination with a defined bloodwork panel, a twelve-week timeline, and a retest built in.
           </p>
         </div>
@@ -43,7 +41,7 @@ export default function ProtocolsIndex() {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {CATEGORIES.map((c) => (
             <button key={c} onClick={() => setFilter(c)} style={{
-              fontFamily: F, fontSize: 13.5, fontWeight: 600, padding: "8px 16px", borderRadius: 999, cursor: "pointer",
+              fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 16px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
               background: filter === c ? "var(--nx-cobalt)" : "transparent",
               color: filter === c ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
               border: `1px solid ${filter === c ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
@@ -65,11 +63,11 @@ export default function ProtocolsIndex() {
                     <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
                     {s.gated && <Lock size={14} style={{ color: "var(--nx-fg-muted)" }} />}
                   </div>
-                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: 28, color: "var(--nx-fg)", marginTop: "0.4rem", lineHeight: 1.05 }}>{s.name}</h2>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: 16, color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>{s.tagline}</p>
-                  <p style={{ fontFamily: F, fontSize: 13.5, lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{s.bestFor}</p>
+                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.4rem", lineHeight: 1.05 }}>{s.name}</h2>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>{s.tagline}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{s.bestFor}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem" }}>
-                    <p style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: "var(--nx-fg)" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>
                       {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
                     </p>
                     <ArrowRight size={17} style={{ color: "var(--nx-cobalt)" }} />

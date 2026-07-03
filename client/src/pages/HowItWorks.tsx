@@ -3,9 +3,7 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { Link } from "wouter";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
-
-const F = "'General Sans', system-ui, sans-serif";
-const S = "'Fraunces', Georgia, serif";
+import { F, S } from "@/lib/typography";
 
 const STEPS = [
   { n: "01", t: "Structured intake", d: "A medical questionnaire covering history, goals, and current medications. Reviewed in full before anything else happens." },

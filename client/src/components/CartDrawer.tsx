@@ -5,12 +5,12 @@ import { X, Trash2, Plus, Minus, ShoppingBag, Stethoscope, Truck, Shield, Beaker
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import type { CadenceKey } from "@/data/pricing";
 import { CADENCE_DISCOUNTS, pricing } from "@/data/pricing";
+import { FONT } from "@/lib/typography";
 
 /* ──────────────────────────────────────────────────────────────
    CartDrawer — Hims-tier slide-in
    ────────────────────────────────────────────────────────────── */
 
-const FONT = "'General Sans', system-ui, sans-serif";
 const MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, monospace";
 
 /* Suggested pairings for cross-sell — surfaced when a matching seed peptide is in the cart */

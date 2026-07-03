@@ -11,6 +11,7 @@ const md1 = "img/img_334cb24acfa5.webp";
 import md2 from "@/assets/brand/physicians/md-2.webp";
 import md3 from "@/assets/brand/physicians/md-3.webp";
 import md4 from "@/assets/brand/physicians/md-4.webp";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    About — founder + mission narrative. reference-tier.
@@ -18,8 +19,6 @@ import md4 from "@/assets/brand/physicians/md-4.webp";
    → The team → Standards → manifesto + CTA.
    General Sans throughout. No italics. No serif.
    ───────────────────────────────────────────────────────────── */
-
-const FONT = "'General Sans', system-ui, sans-serif";
 
 // ─── Shared style helpers ──────────────────────────────────────────────────
 

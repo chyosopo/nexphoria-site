@@ -9,9 +9,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
-
-const F = "'General Sans', system-ui, sans-serif";
-const S = "'Fraunces', Georgia, serif";
+import { F, S } from "@/lib/typography";
 
 /** One-line job description per category — what the shelf is for. */
 const CATEGORY_JOBS: Record<PeptideCategory, string> = {
@@ -63,21 +61,21 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.8vw,68px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
             {config.h1}
           </h1>
-          <p style={{ fontFamily: F, fontSize: 16.5, lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1.1rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1.1rem" }}>
             {config.sub}
           </p>
           <div style={{ marginTop: "1.8rem", display: "flex", flexWrap: "wrap", gap: 12 }}>
             <Link
               href="/assessment"
               data-testid={`${world}-hero-cta`}
-              style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: 15, background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: 999, padding: "14px 28px", textDecoration: "none" }}
+              style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", textDecoration: "none" }}
             >
               Begin your intake
             </Link>
-            <Link href="/bloodwork" className="nx-glass-btn" data-testid={`${world}-hero-panel`} style={{ fontFamily: F, fontSize: 15 }}>
+            <Link href="/bloodwork" className="nx-glass-btn" data-testid={`${world}-hero-panel`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
               See the 76-marker panel
             </Link>
-            <Link href="/stacks" className="nx-glass-btn" data-testid={`${world}-hero-protocols`} style={{ fontFamily: F, fontSize: 15 }}>
+            <Link href="/stacks" className="nx-glass-btn" data-testid={`${world}-hero-protocols`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
               The seven protocols
             </Link>
           </div>
@@ -99,7 +97,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                       </h2>
                       <ArrowRight size={16} strokeWidth={2.2} style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
                     </div>
-                    <p style={{ fontFamily: F, fontSize: 13, lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
                       {CATEGORY_JOBS[cat]}
                     </p>
                     <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.55rem" }}>
@@ -119,7 +117,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)" }}>
             From the formulary
           </h2>
-          <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: 14, fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }} data-testid={`${world}-formulary-all`}>
+          <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }} data-testid={`${world}-formulary-all`}>
             The complete catalog →
           </Link>
         </div>
@@ -131,7 +129,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                 <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                   Compounded per prescription
                 </p>
-                <p style={{ fontFamily: F, fontSize: 13, lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
                   Prepared for you in state-licensed 503A pharmacies. Batch-documented.
                 </p>
               </div>
@@ -149,10 +147,10 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                   <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: 23, color: "var(--nx-fg)", marginTop: "0.55rem", lineHeight: 1.1 }}>
                     {p.name}
                   </h3>
-                  <p style={{ fontFamily: F, fontSize: 13.5, lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
                     {p.tagline}
                   </p>
-                  <p style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: "var(--nx-fg)", marginTop: "0.95rem" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "0.95rem" }}>
                     {pricing ? `From $${pricing.monthlyPrice}/mo` : "Physician-priced"}
                     <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
                   </p>
@@ -202,7 +200,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <Link
           href="/assessment"
           data-testid={`${world}-close-cta`}
-          style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: 15, background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: 999, padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }}
+          style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }}
         >
           Begin your intake
         </Link>

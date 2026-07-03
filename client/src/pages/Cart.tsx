@@ -6,8 +6,7 @@ import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
 import { CADENCE_DISCOUNTS, pricing, type CadenceKey } from "@/data/pricing";
-
-const FONT = "'General Sans', system-ui, sans-serif";
+import { FONT } from "@/lib/typography";
 
 export default function Cart() {
   useSeo({ title: "Your cart — Nexphoria", description: "Review your selected protocols before physician intake." });

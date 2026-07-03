@@ -13,6 +13,7 @@ import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
 
 const lifestyleBloodworkDashboard = "img/img_e03de0ca48d9.webp";
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
+import { F, FONT } from "@/lib/typography";
 
 const MONO = "'General Sans', system-ui, sans-serif";
 const SERIF = "'General Sans', system-ui, sans-serif";
@@ -1229,7 +1230,6 @@ const PEPTIDE_FAMILY_COMPARISON = [
 ];
 
 function ScienceComparisonSection() {
-  const FONT = "'General Sans', system-ui, sans-serif";
   return (
     <section
       aria-labelledby="science-comparison-heading"
@@ -1290,7 +1290,6 @@ function ScienceComparisonSection() {
 /* ── SCIENCE FAQ SECTION ───────────────────────────────────────────── */
 function ScienceFAQSection() {
   const [open, setOpen] = useState<number | null>(null);
-  const FONT = "'General Sans', system-ui, sans-serif";
   return (
     <section
       aria-labelledby="science-faq-heading"

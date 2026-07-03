@@ -1,6 +1,7 @@
 import { Children, isValidElement, useMemo } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Link } from "wouter";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    LegalLayout — visual chrome only. Copy is LOCKED and passed in
@@ -9,8 +10,6 @@ import { Link } from "wouter";
    auto-derived from <LegalSection> titles, section anchors, and
    footer navigation. General Sans, no italics, no serif.
    ───────────────────────────────────────────────────────────── */
-
-const FONT = "'General Sans', system-ui, sans-serif";
 
 const LEGAL_NAV = [
   { label: "Terms of Service", href: "/legal/terms" },

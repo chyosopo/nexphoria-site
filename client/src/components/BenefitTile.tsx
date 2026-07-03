@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
+import { FONT } from "@/lib/typography";
 
 /* ──────────────────────────────────────────────────────────────
    BenefitTile — reference-grade square tile
@@ -10,7 +11,6 @@ import { ArrowUpRight } from "lucide-react";
    destination — the whole tile is clickable when `href` is set.
    ────────────────────────────────────────────────────────────── */
 
-const FONT = "'General Sans', system-ui, sans-serif";
 const MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, monospace";
 
 export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";

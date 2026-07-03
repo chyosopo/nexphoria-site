@@ -11,6 +11,7 @@ import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/Si
 import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
+import { F, FONT } from "@/lib/typography";
 
 const protocols = [
   {
@@ -1200,7 +1201,6 @@ const PLAN_COMPARISON_ROWS = [
 ];
 
 export function PricingPlanTable() {
-  const FONT = "'General Sans', system-ui, sans-serif";
   return (
     <section
       aria-labelledby="pricing-plan-table-heading"

@@ -3,13 +3,12 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    LegalIndex — visual chrome only. Document copy is LOCKED.
    General Sans, no italics, no serif.
    ───────────────────────────────────────────────────────────── */
-
-const FONT = "'General Sans', system-ui, sans-serif";
 
 const legalPages = [
   { label: "Terms of Service", href: "/legal/terms", desc: "Service agreements, user eligibility, and platform terms." },

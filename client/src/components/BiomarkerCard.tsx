@@ -1,4 +1,5 @@
 import { ResponsiveContainer, LineChart, Line, YAxis, ReferenceArea } from "recharts";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    BiomarkerCard — AGENT-3 · v11 data-credibility layer
@@ -14,7 +15,6 @@ import { ResponsiveContainer, LineChart, Line, YAxis, ReferenceArea } from "rech
    NO ITALICS. NO decoration.
    ───────────────────────────────────────────────────────────── */
 
-const FONT = "'General Sans', system-ui, sans-serif";
 const NUM: React.CSSProperties = {
   fontVariantNumeric: "tabular-nums lining-nums",
   fontFeatureSettings: "'tnum'",

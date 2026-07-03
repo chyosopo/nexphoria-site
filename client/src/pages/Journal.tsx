@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { FONT } from "@/lib/typography";
 import {
   JOURNAL_ARTICLES,
   JOURNAL_CATEGORIES,
@@ -14,8 +15,6 @@ import {
    Featured post hero → category filter → type-first card grid →
    newsletter CTA. General Sans throughout, no italics, no serif.
    ───────────────────────────────────────────────────────────── */
-
-const FONT = "'General Sans', system-ui, sans-serif";
 
 const eyebrow: React.CSSProperties = {
   fontFamily: FONT,
