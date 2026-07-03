@@ -349,7 +349,7 @@ export default function Checkout() {
                     <ol className="list-none p-0 space-y-3">
                       {[
                         "Submit your intake and cart for physician review — free, no card required.",
-                        "A US-licensed physician reviews your protocol within 24–48 hours.",
+                        "A US-licensed physician reviews your protocol after you submit.",
                         "On approval, a secure payment link is emailed to you.",
                         "You complete payment through our PCI-compliant billing partner; your order then ships cold-chain.",
                       ].map((t, i) => (

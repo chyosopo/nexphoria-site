@@ -942,7 +942,7 @@ const BLOODWORK_FAQ_ITEMS = [
   },
   {
     q: "Who reviews my bloodwork at Nexphoria?",
-    a: "Your assigned board-certified physician reviews all partner-laboratory results within 24 hours of receipt. Results are never reviewed by algorithms, nurses, or non-physician staff without physician oversight. Your physician responds via secure portal message with a prescription decision, a follow-up question, or a request for additional information.",
+    a: "Your assigned board-certified physician reviews all partner-laboratory results promptly after receipt. Results are never reviewed by algorithms, nurses, or non-physician staff without physician oversight. Your physician responds via secure portal message with a prescription decision, a follow-up question, or a request for additional information.",
   },
   {
     q: "Can I use bloodwork I already have?",
@@ -953,7 +953,7 @@ const BLOODWORK_FAQ_ITEMS = [
 export default function Bloodwork() {
   useSeo({
     title: "Peptide therapy bloodwork — 38 biomarkers, every 90 days",
-    description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} partner-laboratory panels. Calibrate your protocol to your chemistry, not a population average. Results in your portal within 48 hours. Physician review included.`,
+    description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} partner-laboratory panels. Calibrate your protocol to your chemistry, not a population average. Results appear in your portal after physician review.`,
     path: "/bloodwork",
     jsonLd: [
       webPageJsonLd({

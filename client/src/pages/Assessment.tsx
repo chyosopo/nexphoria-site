@@ -286,11 +286,11 @@ function StepNav({
 export default function Assessment() {
   useSeo({
     title: "Start your peptide protocol — structured intake, physician review in 24h",
-    description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol within 24 hours. No algorithms, no auto-approvals.",
+    description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol after review. No algorithms, no auto-approvals.",
     path: "/assessment",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Medical Intake Assessment",
-      description: "structured intake for physician-prescribed peptide therapy. Board-certified physician review within 24 hours.",
+      description: "structured intake for physician-prescribed peptide therapy. Board-certified physician review of every intake.",
       path: "/assessment",
       type: "MedicalWebPage",
     })],
@@ -442,7 +442,7 @@ export default function Assessment() {
               headline={
                 <>Tell us your goal.<br /><span>We’ll build the protocol.</span></>
               }
-              subtitle="A short physician-reviewed intake. Personalized peptide protocol delivered within 48 hours of approval."
+              subtitle="A short physician-reviewed intake. Personalized peptide protocol delivered after physician approval."
             />
 
             <div className="mx-grid">
@@ -1163,7 +1163,7 @@ export default function Assessment() {
                           marginBottom: "1.5rem",
                         }}
                       >
-                        We'll be in touch within 24 hours.
+                        We'll be in touch promptly.
                       </p>
                       <p
                         style={{

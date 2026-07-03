@@ -862,7 +862,7 @@ export default function Science() {
       <FinalCTAStrip
         gender="women"
         title="Backed by mechanism. Prescribed to your baseline."
-        sub="Partner-laboratory labs included with every protocol. Physician review within 48 hours."
+        sub="Partner-laboratory labs included with every protocol. Physician review after receipt."
       />
     </SiteLayout>
   );

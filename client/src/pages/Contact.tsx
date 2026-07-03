@@ -356,7 +356,7 @@ export default function Contact() {
                       lineHeight: 1.65,
                     }}
                   >
-                    We'll respond on business days (Monday through Friday ET). Clinical questions are routed to a physician for review.
+                    We'll respond promptly on business days (Monday through Friday ET). Clinical questions are routed to a physician for review.
                   </p>
                   {form.reason === "Clinical / medical question" && (
                     <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>

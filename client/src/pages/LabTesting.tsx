@@ -97,7 +97,7 @@ export default function LabTesting() {
     path: "/lab-testing",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Lab Testing",
-      description: "38-biomarker partner-laboratory panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician within 48 hours.",
+      description: "38-biomarker partner-laboratory panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician after receipt.",
       path: "/lab-testing",
       type: "MedicalWebPage",
     }),
@@ -198,7 +198,7 @@ export default function LabTesting() {
                   Laboratory requisitions are generated in your member portal. You draw at any of
                   2,500+ partner laboratory centers nationwide — no appointment
                   required at walk-in locations. Results are transmitted directly to your Nexphoria
-                  physician, who reviews within 24 hours of receipt.
+                  physician, who reviews them after receipt.
                 </p>
                 <p
                   style={{
@@ -723,8 +723,8 @@ export default function LabTesting() {
               }}
             >
               An illustrative panel. Your actual partner-laboratory results appear in your
-              member portal within 48–72 hours of collection. Your physician reviews within
-              24 hours of results receipt and responds via secure message.
+              member portal after collection and analysis. Your physician reviews the results after receipt
+              and responds via secure message.
             </p>
           </Reveal>
 
@@ -891,7 +891,7 @@ export default function LabTesting() {
                 label: "Standalone Add-On",
                 price: "$199",
                 note: "Monthly plan members",
-                detail: "Full 38-biomarker partner-laboratory panel. Physician review of results within 24 hours of receipt. Available at any partner laboratory center.",
+                detail: "Full 38-biomarker partner-laboratory panel. Physician review of results after receipt. Available at any partner laboratory center.",
               },
               {
                 label: "Home Phlebotomy",
@@ -918,7 +918,7 @@ export default function LabTesting() {
                 Clarity Unlocks Power. Unleash the Extraordinary.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
-                Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your partner-laboratory requisition within 24 hours.
+                Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your partner-laboratory requisition promptly.
               </p>
               <StartIntakeButton source="labtesting-page" size="lg">
                 Start your assessment
@@ -931,7 +931,7 @@ export default function LabTesting() {
       <FinalCTAStrip
         gender="women"
         title="Your panel is included with every protocol."
-        sub="38 biomarkers. Partner laboratory. Physician-reviewed within 24 hours."
+        sub="38 biomarkers. Partner laboratory. Physician-reviewed after receipt."
       />
     </SiteLayout>
   );
@@ -1229,7 +1229,7 @@ function BloodworkPricing() {
       features: [
         "40 core biomarkers",
         "Hormones + metabolic + lipids + CBC",
-        "Physician review within 48 hours",
+        "Physician review after labs received",
         "Partner laboratory · walk-in draw",
         "Re-tested every 90 days",
         "Trend dashboard in your portal",
@@ -1681,7 +1681,7 @@ const DRAW_OPTIONS = [
 const TURNAROUND = [
   { day: "Day 0", label: "Collection", desc: "Sample drawn at a center, at home, or by a mobile phlebotomist." },
   { day: "Day 1–2", label: "Lab analysis", desc: "Partner lab runs the full panel and transmits results to your physician." },
-  { day: "Day 2–3", label: "Physician review", desc: "Board-certified physician reads every marker within 24 hours of receipt." },
+  { day: "Day 2–3", label: "Physician review", desc: "Board-certified physician reads every marker after receipt." },
   { day: "Day 3", label: "In your portal", desc: "Results, interpretation, and any dose change appear in your member portal." },
 ];
 

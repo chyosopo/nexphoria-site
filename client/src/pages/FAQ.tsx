@@ -52,7 +52,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Who reviews my bloodwork?",
-        a: "Your assigned board-certified physician reviews your partner-laboratory results within 24 hours of receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
+        a: "Your assigned board-certified physician reviews your partner-laboratory results promptly after receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
       },
       {
         q: "How quickly will I see results?",
@@ -486,7 +486,7 @@ export default function FAQPage() {
       <FinalCTAStrip
         gender="women"
         title="Still have questions?"
-        sub="Your assigned physician answers clinical questions via secure portal message within 48 hours."
+        sub="Your assigned physician answers clinical questions via secure portal message after review."
       />
     </SiteLayout>
   );
