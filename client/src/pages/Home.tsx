@@ -61,7 +61,7 @@ const HOME_FAQ_ITEMS = [
   },
   {
     q: "How much does Nexphoria cost?",
-    a: "Nexphoria protocols start at $249/month for cognitive peptides, $279/month for tissue-repair stacks, and up to $389/month for longevity protocols. All plans include physician consultation, compounded peptides from a U.S. 503A pharmacy, Quest Diagnostics labs every 90 days, and cold-chain shipping. Save 10% with a 6-month prepay or 20% with an annual plan.",
+    a: "Nexphoria protocols start at $249/month for cognitive peptides, $279/month for tissue-repair stacks, and up to $389/month for longevity protocols. All plans include physician consultation, compounded peptides from a U.S. 503A pharmacy, CLIA-certified partner-laboratory panels every 90 days, and cold-chain shipping. Save 10% with a 6-month prepay or 20% with an annual plan.",
   },
   {
     q: "Is BPC-157 legal in the United States?",
@@ -81,7 +81,7 @@ export default function Home() {
   useSeo({
     title: "Peptide therapy that works — physician-prescribed, lab-monitored",
     description:
-      "Repair faster, sleep deeper, lose fat, sharpen focus. Physician-prescribed peptide protocols compounded in U.S. 503A pharmacies. Quest bloodwork every 90 days. Results you can measure.",
+      "Repair faster, sleep deeper, lose fat, sharpen focus. Physician-prescribed peptide protocols compounded in U.S. 503A pharmacies. CLIA-certified partner-laboratory bloodwork every 90 days. Results you can measure.",
     path: "/",
     jsonLd: [
       orgJsonLd(),
@@ -850,7 +850,7 @@ function ScienceStrip() {
             {[
               { n: "3–36", label: "Amino acids per peptide" },
               { n: "503A", label: "U.S. compounding pharmacy" },
-              { n: "24–48h", label: "Physician turnaround" },
+              { n: "100%", label: "Physician-reviewed" },
             ].map((s) => (
               <div
                 key={s.label}
@@ -1135,8 +1135,8 @@ function PhysicianStrip() {
                 textShadow: "0 1px 8px rgba(21, 24, 28,0.35)",
               }}
             >
-              <span>Dr. R. Alvarez, MD</span>
-              <span style={{ opacity: 0.75 }}>Internal medicine · NY</span>
+              <span>Board-certified physician</span>
+              <span style={{ opacity: 0.75 }}>Reviews your labs first</span>
             </div>
           </div>
         </div>
@@ -2024,7 +2024,7 @@ const HOME_COMPARISON_ROWS = [
   { feature: "Physician prescription required", nexphoria: "Yes — board-certified", hims: "Yes — GLP-1 only", research: "No — no oversight" },
   { feature: "503A U.S. compounding pharmacy", nexphoria: "Yes — sterile ISO", hims: "Yes — limited compounds", research: "No — unverified" },
   { feature: "Certificate of Analysis (COA)", nexphoria: "Every batch", hims: "Varies", research: "Rarely" },
-  { feature: "Quest Diagnostics labs included", nexphoria: "Every 90 days", hims: "Not standard", research: "None" },
+  { feature: "CLIA-certified partner-lab panel included", nexphoria: "Every 90 days", hims: "Not standard", research: "None" },
   { feature: "Peptide breadth (compounds)", nexphoria: "16+ compounds", hims: "3–5 compounds", research: "Unlimited (unregulated)" },
   { feature: "Cold-chain shipping", nexphoria: "Yes — 3–5 days", hims: "Yes", research: "No" },
   { feature: "Physician declines if inappropriate", nexphoria: "Always", hims: "Varies", research: "N/A" },
@@ -2220,8 +2220,8 @@ function ProofBento() {
             <img src="img/img_20e1e1d49da4.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-bg)", lineHeight: 1 }}>24–48h</div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "rgba(243, 245, 247,0.85)", marginTop: 8, maxWidth: "26ch" }}>from intake to a licensed physician's review</p>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-bg)", lineHeight: 1 }}>Human</div>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "rgba(243, 245, 247,0.85)", marginTop: 8, maxWidth: "26ch" }}>every file read by a licensed physician — never an algorithm</p>
             </div>
           </div>
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
