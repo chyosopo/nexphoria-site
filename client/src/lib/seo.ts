@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const SITE = "Nexphoria";
 // Live host until the production domain lands (L43/L44 swaps this + path routing)
 const BASE_URL = "https://chyosopo.github.io/nexphoria-site";
-const DEFAULT_OG = "/og/og-default.png";
+const DEFAULT_OG = `${BASE_URL}/og/og-default.png`; // MUST be absolute: crawlers require full URLs, and a relative path 404s under the GH Pages subpath
 
 export interface SeoOptions {
   title: string;
@@ -48,7 +48,7 @@ export function useSeo({ title, description, path, ogImage, jsonLd }: SeoOptions
   useEffect(() => {
     const fullTitle = title.includes(SITE) ? title : `${title} | ${SITE}`;
     const url = path ? `${BASE_URL}${path}` : BASE_URL;
-    const img = ogImage ?? DEFAULT_OG;
+    const img = ogImage ? (ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`) : DEFAULT_OG;
 
     document.title = fullTitle;
     setMeta("name", "description", description);
