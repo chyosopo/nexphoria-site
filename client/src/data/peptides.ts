@@ -81,7 +81,7 @@ export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
   metabolic: "Metabolic & Weight",
 };
 
-export const peptides: Peptide[] = [
+const RAW_PEPTIDES: Peptide[] = [
   {
     slug: "bpc-157",
     name: "BPC-157",
@@ -675,6 +675,20 @@ export const peptides: Peptide[] = [
       "NOT FOR: pregnancy · active malignancy · Prader-Willi syndrome · known hypersensitivity to GH-fragment peptides · <18 yrs",
   },
 ];
+
+/* ═══ E40 PHASE 1 — membership + names are CANONICAL ═══
+   The display library can only show what the commercial catalog sells.
+   Doc-dropped slugs (retatrutide, thymosin-a1, aod-9604) vanish here the
+   moment they leave soloCatalog — no zombie tiles, no dead PDP links.
+   Editorial fields (studies, tiers, taglines) remain curated below;
+   npm run audit:data now asserts this file can never drift again. */
+import { SOLO_CATALOG } from "@/data/soloCatalog";
+const CANON = new Map(SOLO_CATALOG.map((s) => [s.slug, s]));
+
+export const peptides: Peptide[] = RAW_PEPTIDES.filter((p) => CANON.has(p.slug)).map((p) => ({
+  ...p,
+  name: CANON.get(p.slug)!.name,
+}));
 
 export function getPeptide(slug: string): Peptide | undefined {
   return peptides.find((p) => p.slug === slug);

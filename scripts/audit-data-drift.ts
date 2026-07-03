@@ -54,3 +54,16 @@ async function main() {
   await vite.close(); process.exit(0);
 }
 main();
+
+/* ═══ E40 GATE — legacy display library vs canonical catalog ═══ */
+{
+  const { peptides } = await import("../client/src/data/peptides");
+  const { SOLO_CATALOG } = await import("../client/src/data/soloCatalog");
+  const canon = new Map(SOLO_CATALOG.map((s: any) => [s.slug, s]));
+  const ghosts = peptides.filter((p: any) => !canon.has(p.slug));
+  const nameDrift = peptides.filter((p: any) => canon.has(p.slug) && canon.get(p.slug)!.name !== p.name);
+  console.log("\n═ LEGACY DISPLAY LIBRARY vs CANONICAL CATALOG (E40) ═");
+  if (ghosts.length) { console.log("  GHOSTS (rendered but unsellable):", ghosts.map((g: any) => g.slug).join(", ")); failures++; }
+  if (nameDrift.length) { console.log("  NAME DRIFT:", nameDrift.map((g: any) => g.slug).join(", ")); failures++; }
+  if (!ghosts.length && !nameDrift.length) console.log("  none — display membership + names are canonical");
+}
