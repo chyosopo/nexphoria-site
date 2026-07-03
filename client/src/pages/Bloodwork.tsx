@@ -12,30 +12,16 @@ import {
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
 import { Link } from "wouter";
-import { ArrowRight, Check, HeartPulse, Flame, Activity, Brain, Gauge, Droplets, Filter, Shield, Apple, TestTube, Hourglass } from "lucide-react";
-import { FONT } from "@/lib/typography";
-
-/* Organ/system icon map — hims-Labs tile grammar */
-const PANEL_ICONS: Record<string, any> = {
-  heart: HeartPulse, metabolism: Flame, hormones: Activity, stress: Brain,
-  thyroid: Gauge, kidneys: Droplets, liver: Filter, immunity: Shield,
-  nutrients: Apple, blood: TestTube, "bio-age": Hourglass,
-};
-
-/* Porcelain-kintsugi organ artwork — one per system */
-const PANEL_ART: Record<string, string> = {
-  "heart": "img/img_08bfaa5f6c9d.webp",
-  "metabolism": "img/img_ffdd72440251.webp",
-  "hormones": "img/img_427d5e7427b9.webp",
-  "stress": "img/img_e9c5c7ee0119.webp",
-  "thyroid": "img/img_6bee78326414.webp",
-  "kidneys": "img/img_b4724ee2f1a5.webp",
-  "liver": "img/img_73925dec188f.webp",
-  "immunity": "img/img_0b920f85116d.webp",
-  "nutrients": "img/img_3a64b1f2aca5.webp",
-  "blood": "img/img_e5ee8619d3f5.webp",
-  "bio-age": "img/img_c4bef27c5b72.webp",
-};
+import { ArrowRight, Check, Activity, Brain, Shield, Apple } from "lucide-react";
+import { FONT, S } from "@/lib/typography";
+import {
+  PANEL_ART,
+  PANEL_TINTS,
+  HERO_SAMPLE_ROWS,
+  RESULTS_ROWS,
+  SURFACE_PILLS,
+  BLOODWORK_FAQ_ITEMS,
+} from "@/data/bloodworkContent";
 
 const NUM: React.CSSProperties = {
   fontVariantNumeric: "tabular-nums lining-nums",
@@ -60,8 +46,8 @@ function Hero() {
             <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-acid)" strokeWidth="10" strokeLinecap="round" strokeDasharray="92 597" strokeDashoffset="-461" style={{ animationDelay: "0.2s" }} />
             <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-rust)" strokeWidth="10" strokeLinecap="round" strokeDasharray="36 597" strokeDashoffset="-559" style={{ animationDelay: "0.4s" }} />
           </g>
-          <text x="110" y="104" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "500 52px 'Fraunces', Georgia, serif" }}>76</text>
-          <text x="110" y="132" textAnchor="middle" fill="rgba(243, 245, 247,0.6)" style={{ font: "500 13px 'General Sans', system-ui, sans-serif" }}>markers · one draw</text>
+          <text x="110" y="104" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "500 52px " + S }}>76</text>
+          <text x="110" y="132" textAnchor="middle" fill="rgba(243, 245, 247,0.6)" style={{ font: "500 13px " + FONT }}>markers · one draw</text>
         </svg>
       </div>
       <div
@@ -77,7 +63,7 @@ function Hero() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 12,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -132,7 +118,7 @@ function Hero() {
                   data-testid="bloodwork-hero-cta-science"
                   style={{
                     fontFamily: FONT,
-                    fontSize: 14,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 500,
                     letterSpacing: "0.02em",
                     color: "var(--nx-ceramic)",
@@ -251,13 +237,7 @@ function Hero() {
                 </div>
               </div>
 
-              {[
-                { m: "Total Testosterone", v: "742", u: "ng/dL", d: "+69%" },
-                { m: "IGF-1", v: "218", u: "ng/mL", d: "+44%" },
-                { m: "hs-CRP", v: "0.4", u: "mg/L", d: "−81%" },
-                { m: "HbA1c", v: "5.1", u: "%", d: "−0.4" },
-                { m: "Vitamin D", v: "62", u: "ng/mL", d: "+29" },
-              ].map((r, i) => (
+              {HERO_SAMPLE_ROWS.map((r, i) => (
                 <div
                   key={r.m}
                   style={{
@@ -267,7 +247,7 @@ function Hero() {
                     padding: "0.7rem 0",
                     borderTop: i === 0 ? "none" : "1px solid rgba(246, 249, 252,0.09)",
                     fontFamily: FONT,
-                    fontSize: 13,
+                    fontSize: "var(--nx-t-sm)",
                   }}
                 >
                   <div style={{ color: "rgba(246, 249, 252,0.9)", fontWeight: 500 }}>{r.m}</div>
@@ -279,7 +259,7 @@ function Hero() {
                       ...NUM,
                       color: "var(--nx-acid)",
                       fontWeight: 500,
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                     }}
                   >
                     {r.d}
@@ -316,7 +296,7 @@ function Hero() {
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
             aria-label="Partner-laboratory lab work — every 90 days" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
-          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
+          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
             Your numbers, every 90 days.
           </p>
         </div>
@@ -419,7 +399,7 @@ function PanelExplorer() {
                 onClick={() => setActive(c.id)}
                 style={{
                   fontFamily: FONT,
-                  fontSize: 13,
+                  fontSize: "var(--nx-t-sm)",
                   fontWeight: 500,
                   letterSpacing: "0.01em",
                   padding: "0.55rem 1.05rem",
@@ -458,12 +438,12 @@ function PanelExplorer() {
                 }}
               >
                 {PANEL_ART[cat.id] && (
-                  <span className="relative block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "#EAF0F7" }}>
+                  <span className="relative block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "var(--nx-ice)" }}>
                     <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy"
                       className="w-full h-full transition-transform duration-700"
                       style={{ objectFit: "cover" }} />
                     <span className="absolute inset-0 flex items-end p-3" style={{ background: "linear-gradient(180deg, rgba(10,20,35,0) 52%, rgba(10,20,35,0.58))" }}>
-                      <span style={{ fontFamily: FONT, fontSize: 10, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#FFFFFF" }}>{cat.eyebrow}</span>
+                      <span style={{ fontFamily: FONT, fontSize: 10, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{cat.eyebrow}</span>
                     </span>
                   </span>
                 )}
@@ -488,7 +468,7 @@ function PanelExplorer() {
                     style={{
                       ...NUM,
                       fontFamily: FONT,
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
                       color: "var(--nx-fg-graphite)",
                       padding: "0.25rem 0.55rem",
@@ -503,7 +483,7 @@ function PanelExplorer() {
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: 13.5,
+                    fontSize: "var(--nx-t-sm)",
                     lineHeight: 1.55,
                     color: "var(--nx-fg-graphite)",
                     marginBottom: "1rem",
@@ -530,7 +510,7 @@ function PanelExplorer() {
                       key={m.name}
                       style={{
                         fontFamily: FONT,
-                        fontSize: 12.5,
+                        fontSize: "var(--nx-t-sm)",
                         lineHeight: 1.4,
                         color: "var(--nx-fg)",
                         display: "flex",
@@ -824,7 +804,7 @@ function HowItWorks() {
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: 14,
+                    fontSize: "var(--nx-t-sm)",
                     lineHeight: 1.55,
                     color: "var(--nx-fg-graphite)",
                   }}
@@ -899,7 +879,7 @@ function WhyItMatters() {
                 <h3
                   style={{
                     fontFamily: FONT,
-                    fontSize: 15,
+                    fontSize: "var(--nx-t-base)",
                     fontWeight: 500,
                     letterSpacing: "-0.005em",
                     color: "var(--nx-fg)",
@@ -911,7 +891,7 @@ function WhyItMatters() {
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: 13.5,
+                    fontSize: "var(--nx-t-sm)",
                     lineHeight: 1.5,
                     color: "var(--nx-fg-graphite)",
                   }}
@@ -930,26 +910,6 @@ function WhyItMatters() {
 /* ══════════════════════════════════════════════════════════════
    DEFAULT EXPORT
    ══════════════════════════════════════════════════════════════ */
-/* ── Bloodwork FAQ data ─────────────────────────────────────────── */
-const BLOODWORK_FAQ_ITEMS = [
-  {
-    q: "What bloodwork does Nexphoria require before prescribing?",
-    a: "Nexphoria requires a 38-Biomarker Partner-Laboratory Panel before any prescription is issued. The panel covers hormonal axis markers (testosterone, LH, FSH, estradiol), metabolic markers (HbA1c, fasting insulin, lipid panel), inflammatory markers (hs-CRP, ESR), hepatic function (ALT, AST), and renal function (creatinine, BUN). Your requisition is generated in your member portal after completing the intake assessment.",
-  },
-  {
-    q: "How often are labs required during a Nexphoria subscription?",
-    a: "Partner-laboratory panels are required every 90 days throughout your active subscription. Lab results trigger a physician re-evaluation, at which point dosing may be adjusted or a new compound introduced based on updated biomarkers. Labs are included in all multi-month plans and available as an add-on for monthly subscribers.",
-  },
-  {
-    q: "Who reviews my bloodwork at Nexphoria?",
-    a: "Your assigned board-certified physician reviews all partner-laboratory results promptly after receipt. Results are never reviewed by algorithms, nurses, or non-physician staff without physician oversight. Your physician responds via secure portal message with a prescription decision, a follow-up question, or a request for additional information.",
-  },
-  {
-    q: "Can I use bloodwork I already have?",
-    a: "Your physician may accept CLIA-certified lab results from within the past 30 days in lieu of a new partner-laboratory draw, subject to physician discretion. Results must be from an accredited laboratory and include all required panel markers. Bring documentation to your intake assessment for physician review.",
-  },
-];
-
 export default function Bloodwork() {
   useSeo({
     title: "Peptide therapy bloodwork — 38 biomarkers, every 90 days",
@@ -994,26 +954,17 @@ export default function Bloodwork() {
 }
 
 /* ══ SYSTEMS MOSAIC — twelve warm-tinted windows ══ */
-const TINTS: Record<string, [string, string]> = {
-  heart: ["#DEE7F6", "#38568A"], metabolism: ["#CEE0F6", "#22518A"],
-  hormones: ["#D2E3F7", "var(--nx-amber)"], stress: ["#D0DEEF", "#2E507A"],
-  thyroid: ["#D3E3F7", "#2A558A"], kidneys: ["#DCE5EF", "#4A596B"],
-  liver: ["#D3E1F3", "#1B4477"], immunity: ["#D2DCE9", "#34465B"],
-  nutrients: ["#D9E1EA", "#3E545B"], blood: ["#DEE7F6", "#38568A"],
-  "bio-age": ["#D2E1F3", "var(--nx-cobalt)"],
-};
-
 function SystemsMosaic() {
   return (
     <section id="panel" className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           One draw. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Eleven</em> windows into you.
         </h2>
         <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {BIOMARKER_PANEL.map((cat) => {
-            const [bg, ink] = TINTS[cat.id] ?? TINTS["bio-age"];
+            const [bg, ink] = PANEL_TINTS[cat.id] ?? PANEL_TINTS["bio-age"];
             return (
               <a key={cat.id} href="#explore" className="group block no-underline overflow-hidden" style={{ background: bg, borderRadius: 18, padding: 10 }} data-testid={`mosaic-${cat.id}`}>
                 <span className="block overflow-hidden" style={{ borderRadius: 12, aspectRatio: "1 / 1" }}>
@@ -1021,7 +972,7 @@ function SystemsMosaic() {
                 </span>
                 <span className="block px-1.5 pt-2.5 pb-1">
                   <span className="flex items-baseline justify-between gap-2">
-                    <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-fg)" }}>{cat.name}</span>
+                    <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>{cat.name}</span>
                     <span style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: ink, whiteSpace: "nowrap" }}>{cat.markers.length} markers</span>
                   </span>
                   <span className="block mt-0.5" style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.4, color: ink, opacity: 0.85 }}>
@@ -1032,10 +983,10 @@ function SystemsMosaic() {
             );
           })}
           <a href="/#/assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-fg)", borderRadius: 18, padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
-            <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 19, lineHeight: 1.15, color: "var(--nx-bg)" }}>
+            <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.15, color: "var(--nx-bg)" }}>
               Re-tested every <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>90 days.</em>
             </span>
-            <span className="inline-flex items-center gap-1.5 mt-4" style={{ fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "var(--nx-acid)" }}>
+            <span className="inline-flex items-center gap-1.5 mt-4" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-acid)" }}>
               Book your baseline <ArrowRight size={14} strokeWidth={2.2} />
             </span>
           </a>
@@ -1047,19 +998,14 @@ function SystemsMosaic() {
 
 /* ══ RESULTS DASHBOARD — rendered live, not a screenshot ══ */
 function ResultsDashboard() {
-  const rows = [
-    { m: "Apolipoprotein B", v: 72, lo: 40, hi: 130, opt: [40, 80], unit: "mg/dL", s: "Optimal" },
-    { m: "hs-CRP", v: 0.8, lo: 0, hi: 5, opt: [0, 1], unit: "mg/L", s: "Optimal" },
-    { m: "Free T3", v: 3.1, lo: 2.0, hi: 4.4, opt: [3.0, 4.0], unit: "pg/mL", s: "In range" },
-    { m: "HbA1c", v: 5.6, lo: 4.0, hi: 7.0, opt: [4.0, 5.4], unit: "%", s: "Watch" },
-  ];
+  const rows = RESULTS_ROWS;
   const spark = [96, 91, 82, 72];
   const pts = spark.map((v, i) => `${20 + i * 86},${104 - (v - 60) * 1.6}`).join(" ");
   return (
     <section id="results" className="nx-section" style={{ background: "var(--nx-fg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow" style={{ color: "rgba(243, 245, 247,0.55)" }}>Your results</p>
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
+        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
           Not a PDF. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>A plan.</em>
         </h2>
         <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
@@ -1070,8 +1016,8 @@ function ResultsDashboard() {
               return (
                 <div key={r.m} className="py-3.5" style={{ borderBottom: "1px solid rgba(243, 245, 247,0.08)" }}>
                   <div className="flex items-baseline justify-between gap-3">
-                    <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "var(--nx-bg)" }}>{r.m}</span>
-                    <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 600, color: r.s === "Watch" ? "var(--nx-accent)" : "var(--nx-success)" }}>{r.s} · {r.v} {r.unit}</span>
+                    <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-bg)" }}>{r.m}</span>
+                    <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: r.s === "Watch" ? "var(--nx-accent)" : "var(--nx-success)" }}>{r.s} · {r.v} {r.unit}</span>
                   </div>
                   <div className="relative mt-2.5" style={{ height: 6, borderRadius: 999, background: "rgba(243, 245, 247,0.12)" }}>
                     <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: 999, background: "rgba(165, 176, 187,0.35)" }} />
@@ -1084,8 +1030,8 @@ function ResultsDashboard() {
           </div>
           <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
             <div className="flex items-baseline justify-between">
-              <span style={{ fontFamily: FONT, fontSize: 14.5, fontWeight: 600, color: "var(--nx-bg)" }}>ApoB · 12 months</span>
-              <span style={{ fontFamily: FONT, fontSize: 12, fontWeight: 700, color: "var(--nx-success)" }}>−25%</span>
+              <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-bg)" }}>ApoB · 12 months</span>
+              <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-success)" }}>−25%</span>
             </div>
             <svg viewBox="0 0 300 120" className="mt-4 w-full" style={{ height: 120 }}>
               <polyline className="nx-spark" pathLength={100} points={pts} fill="none" stroke="var(--nx-acid)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -1096,7 +1042,7 @@ function ResultsDashboard() {
             <div className="flex justify-between" style={{ fontFamily: FONT, fontSize: 11, color: "rgba(243, 245, 247,0.45)" }}>
               <span>Baseline</span><span>Q2</span><span>Q3</span><span>Q4</span>
             </div>
-            <p style={{ fontFamily: FONT, fontSize: 13.5, lineHeight: 1.55, color: "rgba(243, 245, 247,0.75)", marginTop: "1rem" }}>
+            <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "rgba(243, 245, 247,0.75)", marginTop: "1rem" }}>
               Every 90 days your physician reviews the trend — and adjusts the protocol against it. Numbers first. Always.
             </p>
           </div>
@@ -1121,19 +1067,19 @@ function OfferStack() {
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4.5vw,3.4rem)" }}>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
+              <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
                 Everything your body has been <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>trying to tell you.</em>
               </h2>
               <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
                 {items.map((t) => (
-                  <li key={t} className="flex gap-2.5 items-start" style={{ fontFamily: FONT, fontSize: 15, lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>
+                  <li key={t} className="flex gap-2.5 items-start" style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>
                     <Check size={16} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "var(--nx-amber)" }} /> {t}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <p style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "var(--nx-cobalt)" }}>Included with every protocol. Available standalone.</p>
+              <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Included with every protocol. Available standalone.</p>
               <div className="mt-4 flex flex-col gap-2.5">
                 <a href="/#/assessment" className="nx-cta-cobalt inline-flex items-center justify-center gap-2" data-testid="offer-cta">
                   Book your baseline panel <ArrowRight size={16} strokeWidth={2.2} />
@@ -1159,7 +1105,7 @@ function ActionPlan() {
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
       <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
-        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "var(--nx-bg)" }}>
+        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-bg)" }}>
           <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
           <span className="inline-flex items-center gap-2"><Apple size={16} strokeWidth={2} /> Nutrition</span>
           <span className="inline-flex items-center gap-2"><Brain size={16} strokeWidth={2} /> Recovery</span>
@@ -1169,19 +1115,19 @@ function ActionPlan() {
           <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(243, 245, 247,0.45)", borderRadius: 18, filter: "blur(0.5px)" }} aria-hidden />
           <div className="relative nx-rise" style={{ background: "var(--nx-ceramic)", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(21, 24, 28,0.45)" }}>
             <div className="flex items-center justify-between gap-4">
-              <p style={{ fontFamily: FONT, fontSize: 16, lineHeight: 1.5, color: "var(--nx-fg)", fontWeight: 500, margin: 0 }}>
+              <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.5, color: "var(--nx-fg)", fontWeight: 500, margin: 0 }}>
                 Front-load protein within an hour of waking — steadier glucose, stronger recovery.
               </p>
               <ArrowRight size={18} strokeWidth={2} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
             </div>
-            <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-amber)", marginTop: 8 }}>Supports 6 metabolic markers</p>
+            <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-amber)", marginTop: 8 }}>Supports 6 metabolic markers</p>
           </div>
         </div>
         <div className="relative" style={{ marginTop: "4.5rem", zIndex: 2 }}>
-          <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
             Doctor-developed. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>You</em>-specific.
           </h2>
-          <p style={{ fontFamily: FONT, fontSize: 15.5, lineHeight: 1.55, color: "rgba(243, 245, 247,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
+          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "rgba(243, 245, 247,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
             Every panel becomes a written plan — movement, nutrition, recovery, and if appropriate, a prescribed protocol. Reviewed against your next draw.
           </p>
           <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(243, 245, 247,0.5)", marginTop: "1.2rem" }}>Illustration of member guidance.</p>
@@ -1192,16 +1138,6 @@ function ActionPlan() {
 }
 
 /* ══ GLOWING BODY — what one draw can surface ══ */
-const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[] = [
-  { t: "Insulin resistance", x: "4%", y: "12%", hot: true },
-  { t: "Chronic inflammation", x: "62%", y: "8%", hot: true },
-  { t: "Low testosterone", x: "72%", y: "30%" },
-  { t: "Hypothyroidism", x: "2%", y: "36%" },
-  { t: "Vitamin D deficiency", x: "68%", y: "56%", hot: true },
-  { t: "Elevated ApoB", x: "6%", y: "62%", hot: true },
-  { t: "B12 deficiency", x: "70%", y: "78%" },
-  { t: "Liver stress", x: "8%", y: "84%" },
-];
 function GlowingBody() {
   return (
     <section id="surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
@@ -1209,11 +1145,11 @@ function GlowingBody() {
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
           <img src="img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
-            <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: 13.5, fontWeight: 500, color: p.hot ? "var(--nx-bg)" : "rgba(243, 245, 247,0.4)", border: `1px solid ${p.hot ? "rgba(243, 245, 247,0.55)" : "rgba(243, 245, 247,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(22, 27, 32,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
+            <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: p.hot ? "var(--nx-bg)" : "rgba(243, 245, 247,0.4)", border: `1px solid ${p.hot ? "rgba(243, 245, 247,0.55)" : "rgba(243, 245, 247,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(22, 27, 32,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}
             </span>
           ))}
-          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: 13.5, fontWeight: 600, color: "var(--nx-fg)", background: "var(--nx-ceramic)", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
+          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", background: "var(--nx-ceramic)", borderRadius: 999, padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
             <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: 999, background: "var(--nx-success)", color: "var(--nx-fg)", textAlign: "center", lineHeight: "16px", fontSize: 11, marginRight: 8 }}>✓</span>
             All 76 reviewed by a physician
           </span>
@@ -1221,8 +1157,8 @@ function GlowingBody() {
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[["One draw", "5-minute booking, 2,000+ locations"], ["76 markers", "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: 16, padding: "1.1rem 1.2rem" }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 22, color: "var(--nx-cobalt-hover)" }}>{t}</div>
-              <p style={{ fontFamily: FONT, fontSize: 13.5, color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>
+              <div style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-hover)" }}>{t}</div>
+              <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>
             </div>
           ))}
         </div>
@@ -1243,13 +1179,13 @@ function MarkerWall() {
     <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
       <div aria-hidden style={{ textAlign: "center" }}>
         {rows.map((r, i) => (
-          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "var(--nx-cobalt)", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
+          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "var(--nx-cobalt)", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
             {r.join(",  ")},
           </p>
         ))}
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: 20, padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)", minWidth: 260 }}>
-        <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-fg)", margin: 0 }}>Out of range → In range</p>
+        <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", margin: 0 }}>Out of range → In range</p>
         <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
           <line x1="30" y1="22" x2="180" y2="48" stroke="var(--nx-amber)" strokeWidth="1.6" strokeDasharray="4 5" />
           <circle cx="30" cy="22" r="7" fill="var(--nx-ceramic)" stroke="var(--nx-rust)" strokeWidth="2.5" />
@@ -1269,7 +1205,7 @@ function SectionPills() {
     <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-border)" }}>
       <div className="nx-container flex gap-2 overflow-x-auto" style={{ padding: "10px 0", scrollbarWidth: "none" }}>
         {items.map(([t, h]) => (
-          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "rgba(152, 182, 213,0.18)", border: "1px solid rgba(73, 110, 148,0.2)", borderRadius: 999, padding: "7px 15px" }}>
+          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "rgba(152, 182, 213,0.18)", border: "1px solid rgba(73, 110, 148,0.2)", borderRadius: 999, padding: "7px 15px" }}>
             {t}
           </a>
         ))}
