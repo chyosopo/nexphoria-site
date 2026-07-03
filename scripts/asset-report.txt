@@ -1,4 +1,4 @@
-asset localization+optimization — Fri Jul  3 00:49:39 UTC 2026
+asset localization+optimization — Fri Jul  3 00:55:01 UTC 2026
 OK   image/png → img_232f30f5a464.webp (100K) https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_021713_45c52586-6350-45b1-b676-54fa57078490.png
 OK   image/png → img_b02fe34b47f7.webp (84K) https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png
 OK   image/png → img_20e1e1d49da4.webp (224K) https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png
@@ -17,6 +17,8 @@ OK   image/png → img_72c3a0233fe1.webp (100K) https://www.trybloom.ai/img/042e
 OK   image/png → img_e90c14c4f953.webp (196K) https://www.trybloom.ai/img/08203c46-05c8-40c9-8ba2-dafb7060af61
 OK   image/png → img_8fc6c0898049.webp (56K) https://www.trybloom.ai/img/0951d178-5de6-4211-ade2-df2e7bd36fbd
 OK   image/png → img_6f160880b229.webp (60K) https://www.trybloom.ai/img/0e80b3a5-04e7-469b-aa07-f4a4ffe30179
+OK   image/png → img_928775d1e9c1.webp (112K) https://www.trybloom.ai/img/200189dc-0d6a-4eaf-8b47-cab13a54ab58
+OK   image/png → img_4f2bd889825e.webp (144K) https://www.trybloom.ai/img/25916663-da40-4c51-90f1-8be0496d3dee
 OK   image/png → img_cf1396d09b4a.webp (264K) https://www.trybloom.ai/img/292a1476-b4d9-4783-9066-740cc2b0bea1
 OK   image/png → img_f8d241785924.webp (120K) https://www.trybloom.ai/img/30ef3609-8d2e-4fc4-95f1-2fef61810d8f
 OK   image/png → img_275e18d2b1d5.webp (56K) https://www.trybloom.ai/img/354a63d7-16ff-498f-b9a3-cae919bfa098
@@ -54,4 +56,4 @@ OK   image/png → img_e9c5c7ee0119.webp (60K) https://www.trybloom.ai/img/e1dad
 OK   image/png → img_6bee78326414.webp (116K) https://www.trybloom.ai/img/e512b053-c330-4499-a258-e7239909a336
 OK   image/png → img_7be56150fc2e.webp (60K) https://www.trybloom.ai/img/e5a8ed3d-a365-4f27-b254-98db2d8adeba
 OK   image/png → img_ebd08f5a334f.webp (132K) https://www.trybloom.ai/img/f2848352-5132-44ae-b097-4c10ad46967b
-TOTAL ok=55 bad=0 size=13M
+TOTAL ok=57 bad=0 size=13M
