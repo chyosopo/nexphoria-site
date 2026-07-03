@@ -10,7 +10,8 @@
 import { useEffect } from "react";
 
 const SITE = "Nexphoria";
-const BASE_URL = "https://nexphoria.pplx.app";
+// Live host until the production domain lands (L43/L44 swaps this + path routing)
+const BASE_URL = "https://chyosopo.github.io/nexphoria-site";
 const DEFAULT_OG = "/og/og-default.png";
 
 export interface SeoOptions {
@@ -104,6 +105,20 @@ export const medicalBusinessJsonLd = (): Record<string, unknown> => ({
     "Telehealth peptide therapy prescribed by board-certified physicians and compounded in U.S. 503A pharmacies.",
   medicalSpecialty: ["Endocrinology", "SportsMedicine", "InternalMedicine"],
   areaServed: "US",
+});
+
+export const drugJsonLd = (opts: {
+  name: string;
+  description: string;
+  path: string;
+}): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "Drug",
+  name: opts.name,
+  description: opts.description,
+  url: `${BASE_URL}${opts.path}`,
+  prescriptionStatus: "https://schema.org/PrescriptionOnly",
+  isAvailableGenerically: false,
 });
 
 export const faqJsonLd = (

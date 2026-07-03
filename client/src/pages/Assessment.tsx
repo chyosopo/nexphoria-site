@@ -384,6 +384,26 @@ export default function Assessment() {
     state: "",
   });
 
+  // E38 — the draft survives a refresh. Restore once, then autosave.
+  const DRAFT_KEY = "nx-assessment-draft";
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (raw) {
+        const d = JSON.parse(raw);
+        if (d && d.v === 1 && d.form) {
+          setForm((f) => ({ ...f, ...d.form }));
+          if (typeof d.step === "number" && d.step > 0) setStep(d.step);
+        }
+      }
+    } catch { /* private mode / corrupt draft — start clean */ }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (submitted) return;
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ v: 1, form, step })); } catch { /* ignore */ }
+  }, [form, step, submitted]);
+
   // If gender pre-selected via URL, skip to step 1
   useEffect(() => {
     if (form.gender !== null && step === 0) {
@@ -444,6 +464,7 @@ export default function Assessment() {
       // Endpoint may not exist yet — treat as success
     }
     setSubmitting(false);
+    try { localStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
     setSubmitted(true);
     setStep(8); // success screen
   }
@@ -621,7 +642,7 @@ export default function Assessment() {
                   opacity: 0.6,
                 }}
               >
-                Don't refresh — answers are in-page
+                Your answers save as you go
               </p>
             )}
             <p

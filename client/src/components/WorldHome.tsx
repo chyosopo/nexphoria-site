@@ -91,6 +91,8 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                 alt=""
                 aria-hidden
                 fetchPriority="high"
+                width={2048}
+                height={1360}
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 data-testid={`${world}-hero-art`}
               />
@@ -106,7 +108,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               <Reveal key={cat} delay={i * 60}>
                 <Link href={`${base}/peptides`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
                   {config.tileArt[cat] && (
-                    <img src={config.tileArt[cat]} alt="" aria-hidden loading="lazy" />
+                    <img src={config.tileArt[cat]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                   )}
                   <div className="nx-art-chip">
                     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>

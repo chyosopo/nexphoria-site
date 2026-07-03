@@ -94,6 +94,8 @@ export default function StackPage({ slug }: { slug: string }) {
                   alt=""
                   aria-hidden
                   fetchPriority="high"
+                  width={1632}
+                  height={2048}
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   data-testid={`stack-outcome-${stack.slug}`}
                 />

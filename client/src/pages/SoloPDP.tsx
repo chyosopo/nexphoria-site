@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd } from "@/lib/seo";
 import { getSolo } from "@/data/soloCatalog";
 import { ArrowLeft, Check } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -30,6 +30,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           webPageJsonLd({ name: solo.name, description: solo.mechanism.slice(0, 120), path: `/peptides/${solo.slug}`, type: "MedicalWebPage" }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: solo.name, path: `/peptides/${solo.slug}` }]),
           faqJsonLd(faq),
+          drugJsonLd({ name: solo.name, description: solo.mechanism.slice(0, 200), path: `/peptides/${solo.slug}` }),
         ]
       : [],
   });
