@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { ArrowLeft, Check, Shield, Stethoscope, Truck, Lock, CreditCard } from "lucide-react";
+import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
@@ -33,7 +33,7 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 
-const STEPS = ["Address", "Payment", "Review"] as const;
+const STEPS = ["Address", "Billing", "Review"] as const;
 
 export default function Checkout() {
   useSeo({ title: "Secure intake — Nexphoria", description: "Submit your information for physician review. No charge until a licensed physician approves your protocol." });
@@ -321,42 +321,53 @@ export default function Checkout() {
                 </>
               )}
 
-              {/* STEP 2 — PAYMENT (token-styled inputs, no browser chrome) */}
+              {/* STEP 2 — BILLING (deferred: no card is collected until a physician approves) */}
               {step === 1 && (
                 <>
-                  <Section title="Payment method" eyebrow="Step 02 · Payment">
+                  <Section title="Billing" eyebrow="Step 02 · Billing">
                     <div
-                      className="flex items-center gap-2 p-3 mb-5"
+                      className="flex items-start gap-3 p-4 mb-6"
                       style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                      data-testid="notice-deferred-billing"
                     >
-                      <Lock size={13} style={{ color: "var(--nx-success)", flexShrink: 0 }} />
-                      <p className="text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
-                        <strong style={{ color: "var(--nx-fg)" }}>No card is charged today.</strong> Your card is held securely and only charged after a physician approves your protocol.
-                      </p>
+                      <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} />
+                      <div>
+                        <p className="text-sm font-semibold mb-1" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
+                          Physician review comes first — no card is collected today.
+                        </p>
+                        <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                          When you submit, your intake and cart go to a US-licensed physician. If your protocol is
+                          approved, you'll receive a secure payment link from Bask Health, our telehealth billing
+                          partner, to complete checkout. You are never charged before a physician approves.
+                        </p>
+                      </div>
                     </div>
 
-                    <Field label="Cardholder name">
-                      <input type="text" className="nx-input" placeholder="Name on card" data-testid="input-card-name" autoComplete="cc-name" />
-                    </Field>
-                    <div className="mt-4">
-                      <Field label="Card number">
-                        <div style={{ position: "relative" }}>
-                          <input type="text" inputMode="numeric" className="nx-input" placeholder="1234 1234 1234 1234" data-testid="input-card-number" autoComplete="cc-number" style={{ paddingRight: 44 }} />
-                          <CreditCard size={16} style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "var(--nx-fg-muted)" }} />
-                        </div>
-                      </Field>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4 mt-4">
-                      <Field label="Expiry">
-                        <input type="text" inputMode="numeric" className="nx-input" placeholder="MM / YY" data-testid="input-card-expiry" autoComplete="cc-exp" />
-                      </Field>
-                      <Field label="CVC">
-                        <input type="text" inputMode="numeric" className="nx-input" placeholder="CVC" data-testid="input-card-cvc" autoComplete="cc-csc" />
-                      </Field>
-                    </div>
-                    <p className="text-[11px] mt-4" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Billing handled by Bask Health, our licensed telehealth partner. 256-bit encryption. PCI-DSS compliant.
+                    <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+                      How billing works
                     </p>
+                    <ol className="list-none p-0 space-y-3">
+                      {[
+                        "Submit your intake and cart for physician review — free, no card required.",
+                        "A US-licensed physician reviews your protocol within 24–48 hours.",
+                        "On approval, a secure payment link is emailed to you.",
+                        "You complete payment through our PCI-compliant billing partner; your order then ships cold-chain.",
+                      ].map((t, i) => (
+                        <li
+                          key={i}
+                          className="flex gap-3 items-start text-sm"
+                          style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}
+                        >
+                          <span
+                            className="inline-flex items-center justify-center flex-shrink-0"
+                            style={{ width: 22, height: 22, borderRadius: 999, background: "var(--nx-fg)", color: "var(--nx-bg)", fontSize: 11, fontWeight: 600, marginTop: 1 }}
+                          >
+                            {i + 1}
+                          </span>
+                          <span>{t}</span>
+                        </li>
+                      ))}
+                    </ol>
                   </Section>
 
                   <StepNav>
