@@ -744,7 +744,7 @@ export default function About() {
               eyebrow="Care"
               icon={<MessageSquare size={18} strokeWidth={1.5} />}
               headline="Physician messaging between visits."
-              sub="Side effect? Question about a dose? Message your care team — replies within one business day."
+              sub="Side effect? Question about a dose? Message your care team — a physician-guided team replies."
               testId="about-tile-care"
             />
           </BenefitTileGrid>

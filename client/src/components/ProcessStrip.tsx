@@ -26,7 +26,7 @@ const DEFAULT_STEPS: ProcessStep[] = [
     number: "01",
     eyebrow: "Assessment",
     title: "Telehealth intake.",
-    body: "A 12-minute medical questionnaire covering health history, current medications, goals, and contraindications. Reviewed by a licensed physician within one business day.",
+    body: "A 12-minute medical questionnaire covering health history, current medications, goals, and contraindications. Reviewed by a licensed physician — you are notified when review is complete.",
     timing: "~12 minutes",
   },
   {
