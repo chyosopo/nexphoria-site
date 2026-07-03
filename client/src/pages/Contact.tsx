@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { F } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
@@ -71,7 +72,7 @@ export default function Contact() {
   };
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: "'General Sans', system-ui, sans-serif",
+    fontFamily: F,
     fontSize: "9px",
     fontWeight: 700,
     letterSpacing: "0.14em",
@@ -136,14 +137,14 @@ export default function Contact() {
               <Reveal key={col.eyebrow} delay={i * 80}>
                 <div
                   style={{
-                    backgroundColor: "#FFFFFF",
+                    backgroundColor: "var(--nx-ceramic)",
                     padding: "2.5rem 2rem",
                     height: "100%",
                   }}
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
@@ -156,10 +157,9 @@ export default function Contact() {
                   </p>
                   <h2
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
+                      fontFamily: F,
                       fontWeight: 500,
-                      fontSize: "1.375rem",
+                      fontSize: "var(--nx-t-xl)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.2,
                       marginBottom: "1.5rem",
@@ -181,7 +181,7 @@ export default function Contact() {
                       <li key={item.label}>
                         <p
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontFamily: F,
                             fontSize: "8px",
                             fontWeight: 700,
                             letterSpacing: "0.14em",
@@ -194,8 +194,8 @@ export default function Contact() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "14px",
+                            fontFamily: F,
+                            fontSize: "var(--nx-t-sm)",
                             fontWeight: 500,
                             color: "var(--nx-fg)",
                             lineHeight: 1.5,
@@ -209,8 +209,8 @@ export default function Contact() {
                   </ul>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-muted)",
                       lineHeight: 1.5,
                     }}
@@ -235,13 +235,13 @@ export default function Contact() {
               style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", alignItems: "center", justifyContent: "space-between" }}
             >
               <div>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>
+                <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>
                   NYC HEADQUARTERS · 50-STATE COVERAGE
                 </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.5rem" }}>
+                <p style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.5rem" }}>
                   Nexphoria Health, LLC
                 </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                   800 Third Ave, Suite 1000 · New York, NY 10022
                 </p>
               </div>
@@ -252,8 +252,8 @@ export default function Contact() {
                   { label: "Physician Availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
                   <div key={label} style={{ textAlign: "center" }}>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1 }}>{value}</p>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
+                    <p style={{ fontFamily: F, fontSize: "2rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1 }}>{value}</p>
+                    <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
                   </div>
                 ))}
               </div>
@@ -282,7 +282,7 @@ export default function Contact() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "11px",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
@@ -299,10 +299,9 @@ export default function Contact() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
+                    fontFamily: F,
                     fontWeight: 500,
-                    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                    fontSize: "var(--nx-t-h3)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
                   }}
@@ -325,7 +324,7 @@ export default function Contact() {
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: F,
                       fontSize: "9px",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
@@ -338,10 +337,9 @@ export default function Contact() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
+                      fontFamily: F,
                       fontWeight: 500,
-                      fontSize: "1.5rem",
+                      fontSize: "var(--nx-t-h3)",
                       color: "var(--nx-fg)",
                       marginBottom: "0.625rem",
                     }}
@@ -350,8 +348,8 @@ export default function Contact() {
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-fg-graphite)",
                       lineHeight: 1.65,
                     }}
@@ -359,7 +357,7 @@ export default function Contact() {
                     We'll respond within 24 hours on business days (Monday through Friday ET). Clinical questions are routed to a physician within 48 hours.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
+                    <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
                       Note: For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}
@@ -455,22 +453,15 @@ export default function Contact() {
                   <button
                     type="submit"
                     data-testid="contact-submit-button"
+                    className="nx-cta-cobalt"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
                       justifyContent: "center",
-                      gap: "0.5rem",
-                      backgroundColor: "var(--nx-cobalt)",
-                      color: "#FFFFFF",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      color: "var(--nx-ceramic)",
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       padding: "0.875rem 2rem",
-                      borderRadius: "100px",
-                      border: "none",
-                      cursor: "pointer",
                       alignSelf: "flex-start",
                     }}
                   >
