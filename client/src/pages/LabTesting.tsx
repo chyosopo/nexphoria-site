@@ -161,7 +161,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
@@ -176,7 +176,7 @@ export default function LabTesting() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     
-                    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.2,
                     marginBottom: "1.25rem",
@@ -187,7 +187,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.0625rem",
+                    fontSize: "var(--nx-t-body)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                     marginBottom: "1rem",
@@ -201,7 +201,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.0625rem",
+                    fontSize: "var(--nx-t-body)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                   }}
@@ -214,7 +214,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
@@ -229,7 +229,7 @@ export default function LabTesting() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     
-                    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.2,
                     marginBottom: "1.25rem",
@@ -240,7 +240,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.0625rem",
+                    fontSize: "var(--nx-t-body)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                     marginBottom: "1rem",
@@ -254,7 +254,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.0625rem",
+                    fontSize: "var(--nx-t-body)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.7,
                   }}
@@ -309,7 +309,7 @@ export default function LabTesting() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -327,7 +327,7 @@ export default function LabTesting() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "0.5rem",
@@ -340,7 +340,7 @@ export default function LabTesting() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "3rem",
@@ -397,7 +397,7 @@ export default function LabTesting() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 500,
-                      fontSize: "1.125rem",
+                      fontSize: "var(--nx-t-lg)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.2,
                     }}
@@ -407,7 +407,7 @@ export default function LabTesting() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "10px",
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
                       color: tone.accent,
                       backgroundColor: "rgba(255,255,255,0.75)",
@@ -437,7 +437,7 @@ export default function LabTesting() {
                       key={ex}
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "12px",
+                        fontSize: "var(--nx-t-xs)",
                         color: "var(--nx-fg-graphite)",
                         lineHeight: 1.5,
                         display: "flex",
@@ -461,7 +461,7 @@ export default function LabTesting() {
                     <li
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "11px",
+                        fontSize: "var(--nx-t-xs)",
                         color: "var(--nx-fg-muted)",
                         marginTop: "0.25rem",
                       }}
@@ -487,7 +487,7 @@ export default function LabTesting() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -506,7 +506,7 @@ export default function LabTesting() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "3rem",
@@ -538,7 +538,7 @@ export default function LabTesting() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 500,
                       
-                      fontSize: "1.25rem",
+                      fontSize: "var(--nx-t-lg)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.2,
                       marginBottom: "0.25rem",
@@ -562,7 +562,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "13.5px",
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-fg-graphite)",
                       lineHeight: 1.65,
                     }}
@@ -586,7 +586,7 @@ export default function LabTesting() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -605,7 +605,7 @@ export default function LabTesting() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "3rem",
@@ -637,7 +637,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 500,
                     letterSpacing: "0.12em",
                     color: "var(--nx-cobalt)",
@@ -649,7 +649,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "15px",
+                    fontSize: "var(--nx-t-base)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
                     marginBottom: "0.5rem",
@@ -660,7 +660,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "13px",
+                    fontSize: "var(--nx-t-sm)",
                     color: "var(--nx-fg-graphite)",
                     lineHeight: 1.6,
                   }}
@@ -683,7 +683,7 @@ export default function LabTesting() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -702,7 +702,7 @@ export default function LabTesting() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "0.75rem",
@@ -713,7 +713,7 @@ export default function LabTesting() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "1rem",
+                fontSize: "var(--nx-t-body)",
                 color: "var(--nx-fg-graphite)",
                 lineHeight: 1.6,
                 maxWidth: "560px",
@@ -748,7 +748,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
@@ -760,7 +760,7 @@ export default function LabTesting() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontSize: "var(--nx-t-xs)",
                     color: "rgba(255,255,255,0.6)",
                   }}
                 >
@@ -811,7 +811,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "13px",
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
                     }}
@@ -821,7 +821,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 600,
                       color: row.status === "normal" ? "var(--nx-fg)" : "var(--nx-amber)",
                     }}
@@ -831,7 +831,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "11px",
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-muted)",
                     }}
                   >
@@ -868,7 +868,7 @@ export default function LabTesting() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               Lab testing pricing
@@ -903,7 +903,7 @@ export default function LabTesting() {
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2.25rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1, marginBottom: "0.25rem" }}>{price}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>{detail}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>{detail}</p>
                 </div>
               </Reveal>
             ))}
@@ -912,10 +912,10 @@ export default function LabTesting() {
           {/* CTA */}
           <Reveal delay={80}>
             <div className="mt-12">
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
                 Clarity Unlocks Power. Unleash the Extraordinary.
               </p>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
                 Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your Quest Diagnostics requisition within 24 hours.
               </p>
               <StartIntakeButton source="labtesting-page" size="lg">
@@ -959,7 +959,7 @@ function BloodworkManifesto() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 500,
-              fontSize: "13px",
+              fontSize: "var(--nx-t-sm)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "rgba(246, 249, 252,0.55)",
@@ -995,7 +995,7 @@ function BloodworkManifesto() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 400,
-              fontSize: "19px",
+              fontSize: "var(--nx-t-lg)",
               lineHeight: 1.55,
               color: "rgba(246, 249, 252,0.75)",
               maxWidth: "56ch",
@@ -1017,7 +1017,7 @@ function BloodworkManifesto() {
                 padding: "18px 30px",
                 borderRadius: "999px",
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontWeight: 600, fontSize: "16px",
+                fontWeight: 600, fontSize: "var(--nx-t-body)",
                 letterSpacing: "-0.01em",
               }}
               data-testid="button-blood-pricing"
@@ -1031,7 +1031,7 @@ function BloodworkManifesto() {
               className="inline-flex items-center gap-2"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontWeight: 500, fontSize: "15px",
+                fontWeight: 500, fontSize: "var(--nx-t-base)",
                 color: "var(--nx-ceramic)",
                 borderBottom: "1px solid rgba(246, 249, 252,0.35)",
                 paddingBottom: 2,
@@ -1069,7 +1069,7 @@ function BloodworkManifesto() {
                   className="mt-2"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontWeight: 400, fontSize: "12px",
+                    fontWeight: 400, fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
                     color: "rgba(246, 249, 252,0.55)",
@@ -1137,7 +1137,7 @@ function BloodworkPillars() {
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 500,
-            fontSize: "13px",
+            fontSize: "var(--nx-t-sm)",
             letterSpacing: "0.08em",
             textTransform: "uppercase",
             color: "var(--nx-fg-muted)",
@@ -1154,7 +1154,7 @@ function BloodworkPillars() {
           style={{
             fontFamily: "'Fraunces', Georgia, serif",
             fontWeight: 600,
-            fontSize: "clamp(40px, 5vw, 64px)",
+            fontSize: "var(--nx-t-h1)",
             lineHeight: 1.02,
             letterSpacing: "-0.03em",
             color: "var(--nx-fg)",
@@ -1172,7 +1172,7 @@ function BloodworkPillars() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 500,
-                  fontSize: "14px",
+                  fontSize: "var(--nx-t-sm)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color: "var(--nx-fg-muted)",
@@ -1185,7 +1185,7 @@ function BloodworkPillars() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 600,
-                  fontSize: "clamp(22px, 2.4vw, 28px)",
+                  fontSize: "var(--nx-t-xl)",
                   lineHeight: 1.12,
                   letterSpacing: "-0.02em",
                   color: "var(--nx-fg)",
@@ -1198,7 +1198,7 @@ function BloodworkPillars() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 400,
-                  fontSize: "16px",
+                  fontSize: "var(--nx-t-body)",
                   lineHeight: 1.6,
                   color: "var(--nx-fg-graphite)",
                   maxWidth: "44ch",
@@ -1294,7 +1294,7 @@ function BloodworkPricing() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontSize: "13px",
+                fontSize: "var(--nx-t-sm)",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 color: "var(--nx-fg-muted)",
@@ -1310,7 +1310,7 @@ function BloodworkPricing() {
               style={{
                 fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
-                fontSize: "clamp(40px, 5vw, 64px)",
+                fontSize: "var(--nx-t-h1)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
                 color: "var(--nx-fg)",
@@ -1324,7 +1324,7 @@ function BloodworkPricing() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "16px",
+              fontSize: "var(--nx-t-body)",
               lineHeight: 1.6,
               color: "var(--nx-fg-graphite)",
               maxWidth: "34ch",
@@ -1357,7 +1357,7 @@ function BloodworkPricing() {
                     background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-fg)"),
                     color: t.accent ? "var(--nx-fg)" : (t.dark ? "var(--nx-fg)" : "var(--nx-ceramic)"),
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontWeight: 600, fontSize: "11px",
+                    fontWeight: 600, fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     padding: "6px 12px",
@@ -1373,7 +1373,7 @@ function BloodworkPricing() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
-                    fontSize: "22px",
+                    fontSize: "var(--nx-t-xl)",
                     letterSpacing: "-0.02em",
                     margin: 0,
                     color: "inherit",
@@ -1399,7 +1399,7 @@ function BloodworkPricing() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 400,
-                    fontSize: "14px",
+                    fontSize: "var(--nx-t-sm)",
                     color: t.dark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
                   }}
                 >
@@ -1410,7 +1410,7 @@ function BloodworkPricing() {
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
-                    fontSize: "12px",
+                    fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.04em",
                     color: t.accent ? "var(--nx-acid)" : (t.dark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)"),
                   }}
@@ -1426,7 +1426,7 @@ function BloodworkPricing() {
                     className="flex items-start gap-3"
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
+                      fontSize: "var(--nx-t-sm)",
                       lineHeight: 1.5,
                       color: t.dark ? "rgba(246, 249, 252,0.85)" : "var(--nx-fg-graphite)",
                     }}
@@ -1456,7 +1456,7 @@ function BloodworkPricing() {
                     borderRadius: 999,
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
-                    fontSize: "15px",
+                    fontSize: "var(--nx-t-base)",
                     letterSpacing: "-0.01em",
                   }}
                   data-testid={`button-tier-${t.name.replace(/\s+/g, "-").toLowerCase()}`}
@@ -1473,7 +1473,7 @@ function BloodworkPricing() {
           className="mt-10 text-center"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "13px",
+            fontSize: "var(--nx-t-sm)",
             color: "var(--nx-fg-muted)",
             letterSpacing: "0.02em",
           }}
@@ -1515,7 +1515,7 @@ function BloodworkInsurance() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 500,
-              fontSize: "13px",
+              fontSize: "var(--nx-t-sm)",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "var(--nx-fg-muted)",
@@ -1532,7 +1532,7 @@ function BloodworkInsurance() {
             style={{
               fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
-              fontSize: "clamp(36px, 4.6vw, 56px)",
+              fontSize: "var(--nx-t-h1)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
               color: "var(--nx-fg)",
@@ -1547,7 +1547,7 @@ function BloodworkInsurance() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 400,
-              fontSize: "17px",
+              fontSize: "var(--nx-t-body)",
               lineHeight: 1.6,
               color: "var(--nx-fg-graphite)",
               maxWidth: "44ch",
@@ -1584,7 +1584,7 @@ function BloodworkInsurance() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 600,
-                      fontSize: "16px",
+                      fontSize: "var(--nx-t-body)",
                       letterSpacing: "-0.01em",
                       color: "var(--nx-fg)",
                     }}
@@ -1596,7 +1596,7 @@ function BloodworkInsurance() {
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 400,
-                      fontSize: "14px",
+                      fontSize: "var(--nx-t-sm)",
                       lineHeight: 1.55,
                       color: "var(--nx-fg-graphite)",
                     }}
@@ -1613,7 +1613,7 @@ function BloodworkInsurance() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 400,
-              fontSize: "12px",
+              fontSize: "var(--nx-t-xs)",
               lineHeight: 1.55,
               color: "var(--nx-fg-muted)",
               maxWidth: "50ch",
@@ -1695,7 +1695,7 @@ function PartnerLabsSection() {
           <p
             style={{
               fontFamily: PL_FONT,
-              fontSize: "10px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
@@ -1709,7 +1709,7 @@ function PartnerLabsSection() {
             style={{
               fontFamily: PL_FONT,
               fontWeight: 500,
-              fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)",
+              fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",
               lineHeight: 1.1,
               marginBottom: "0.75rem",
@@ -1720,7 +1720,7 @@ function PartnerLabsSection() {
           <p
             style={{
               fontFamily: PL_FONT,
-              fontSize: "1.0625rem",
+              fontSize: "var(--nx-t-body)",
               color: "var(--nx-fg-graphite)",
               lineHeight: 1.65,
               maxWidth: 560,
@@ -1767,7 +1767,7 @@ function PartnerLabsSection() {
                   <p
                     style={{
                       fontFamily: PL_FONT,
-                      fontSize: 20,
+                      fontSize: "var(--nx-t-lg)",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
                       letterSpacing: "-0.01em",
@@ -1776,7 +1776,7 @@ function PartnerLabsSection() {
                   >
                     {lab.name}
                   </p>
-                  <p style={{ fontFamily: PL_FONT, fontSize: 13.5, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
+                  <p style={{ fontFamily: PL_FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
                     {lab.detail}
                   </p>
                 </div>
@@ -1796,7 +1796,7 @@ function PartnerLabsSection() {
                   <p
                     style={{
                       fontFamily: PL_FONT,
-                      fontSize: 10,
+                      fontSize: "var(--nx-t-xs)",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                       color: "var(--nx-fg-muted)",
@@ -1816,7 +1816,7 @@ function PartnerLabsSection() {
           <p
             style={{
               fontFamily: PL_FONT,
-              fontSize: "10px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 700,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
@@ -1860,7 +1860,7 @@ function PartnerLabsSection() {
                     <h3
                       style={{
                         fontFamily: PL_FONT,
-                        fontSize: 19,
+                        fontSize: "var(--nx-t-lg)",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
                         letterSpacing: "-0.01em",
@@ -1872,7 +1872,7 @@ function PartnerLabsSection() {
                     <p
                       style={{
                         fontFamily: PL_FONT,
-                        fontSize: 14,
+                        fontSize: "var(--nx-t-sm)",
                         color: "var(--nx-fg-graphite)",
                         lineHeight: 1.55,
                         marginBottom: 14,
@@ -1884,7 +1884,7 @@ function PartnerLabsSection() {
                     <span
                       style={{
                         fontFamily: PL_FONT,
-                        fontSize: 10.5,
+                        fontSize: "var(--nx-t-xs)",
                         fontWeight: 600,
                         letterSpacing: "0.08em",
                         textTransform: "uppercase",
@@ -1921,7 +1921,7 @@ function PartnerLabsSection() {
               <p
                 style={{
                   fontFamily: PL_FONT,
-                  fontSize: "10px",
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 700,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
@@ -1944,7 +1944,7 @@ function PartnerLabsSection() {
                   <p
                     style={{
                       fontFamily: PL_FONT,
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 600,
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
@@ -1958,7 +1958,7 @@ function PartnerLabsSection() {
                   <p
                     style={{
                       fontFamily: PL_FONT,
-                      fontSize: 15,
+                      fontSize: "var(--nx-t-base)",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
                       marginBottom: 6,
@@ -1966,7 +1966,7 @@ function PartnerLabsSection() {
                   >
                     {t.label}
                   </p>
-                  <p style={{ fontFamily: PL_FONT, fontSize: 13, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
+                  <p style={{ fontFamily: PL_FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
                     {t.desc}
                   </p>
                 </div>
