@@ -32,24 +32,49 @@ export default function ProtocolsIndex() {
             Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
-            Every protocol is a physician-curated combination with a defined bloodwork panel, a twelve-week timeline, and a retest built in.
+            A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. Not a cart of vials. A plan.
           </p>
+        </div>
+      </section>
+
+      {/* why a protocol vs à la carte */}
+      <section className="nx-container" style={{ padding: "0 0 clamp(1.2rem,2.5vw,2rem)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
+          {[
+            { h: "Chosen to combine", d: "Each peptide is picked for how it works with the others in the stack — synergy a physician plans, not a basket you assemble." },
+            { h: "One panel, one timeline", d: "A single bloodwork tier gates the whole protocol, and every component runs on the same twelve-week arc — one baseline, one retest." },
+            { h: "Priced as a plan", d: "Cadence pricing — one month, three months at 15% off, twelve months at 30% with the panel included — applies to the protocol as a whole." },
+          ].map((b) => (
+            <div key={b.h} className="nx-glass-tile" style={{ display: "block" }}>
+              <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{b.h}</h2>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{b.d}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* filter */}
       <section className="nx-container" style={{ paddingBottom: "1rem" }}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {CATEGORIES.map((c) => (
-            <button key={c} onClick={() => setFilter(c)} style={{
-              fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 16px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
-              background: filter === c ? "var(--nx-cobalt)" : "transparent",
-              color: filter === c ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
-              border: `1px solid ${filter === c ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
-              transition: "all 0.2s ease",
-            }}>{c}</button>
-          ))}
+          {CATEGORIES.map((c) => {
+            const n = c === "All" ? FLAGSHIP_STACKS.length : FLAGSHIP_STACKS.filter((s) => matchCat(s.category, c)).length;
+            const active = filter === c;
+            return (
+              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`protofilter-${c.toLowerCase()}`} style={{
+                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 16px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
+                background: active ? "var(--nx-cobalt)" : "transparent",
+                color: active ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
+                border: `1px solid ${active ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
+                transition: "background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease)",
+              }}>
+                {c}<span style={{ opacity: 0.6, marginLeft: 6, fontWeight: 500 }}>{n}</span>
+              </button>
+            );
+          })}
         </div>
+        <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
+          {shown.length} {shown.length === 1 ? "protocol" : "protocols"}{filter !== "All" ? ` · ${filter}` : ""}
+        </p>
       </section>
 
       {/* grid */}
@@ -86,6 +111,22 @@ export default function ProtocolsIndex() {
               </Reveal>
             );
           })}
+        </div>
+      </section>
+
+      {/* not sure which — route to the assessment */}
+      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }}>
+        <div className="nx-container" style={{ textAlign: "center" }}>
+          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
+            The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
+          </h2>
+          <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
+            You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right protocol, or tells you none is appropriate.
+          </p>
+          <Link href="/assessment" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: 15, background: "var(--nx-ceramic)", color: "var(--nx-bg-dark)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }} data-testid="proto-assess-cta">
+            Begin your intake
+          </Link>
         </div>
       </section>
     </SiteLayout>
