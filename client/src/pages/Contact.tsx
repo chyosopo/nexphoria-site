@@ -65,11 +65,15 @@ export default function Contact() {
   });
   const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (form.name && form.email && form.message && form.reason !== reasons[0]) {
+      setError("");
       setSubmitted(true);
+    } else {
+      setError("Please complete your name, email, reason, and message before sending.");
     }
   };
 
@@ -317,6 +321,8 @@ export default function Contact() {
             <Reveal delay={80}>
               {submitted ? (
                 <div
+                  role="status"
+                  aria-live="polite"
                   style={{
                     padding: "2.5rem",
                     border: "1px solid var(--nx-border)",
@@ -450,6 +456,22 @@ export default function Contact() {
                       className="nx-input" style={{ resize: "none" }}
                       data-testid="contact-message-input"
                     />
+                  </div>
+
+                  {/* Screen-reader + visual validation feedback */}
+                  <div aria-live="polite" role="alert" data-testid="contact-form-error">
+                    {error && (
+                      <p
+                        style={{
+                          fontFamily: F,
+                          fontSize: "var(--nx-t-sm)",
+                          color: "var(--nx-danger)",
+                          margin: 0,
+                        }}
+                      >
+                        {error}
+                      </p>
+                    )}
                   </div>
 
                   <button

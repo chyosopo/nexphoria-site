@@ -669,12 +669,15 @@
   .nx-input::placeholder {
     color: var(--nx-fg-muted);
   }
+  /* Ring is gated to :focus-visible — the cobalt highlight shows for keyboard
+     focus (and text-input mouse focus, which browsers treat as focus-visible),
+     never as a stray outline on incidental pointer focus. */
   .nx-input:focus {
+    outline: none;
+  }
+  .nx-input:focus-visible {
     border-color: var(--nx-cobalt);
     box-shadow: 0 0 0 1px var(--nx-cobalt);
-  }
-  /* Suppress the outline only for pointer focus — keyboard focus keeps the D5 ring */
-  .nx-input:focus:not(:focus-visible) {
     outline: none;
   }
   .nx-input:disabled {

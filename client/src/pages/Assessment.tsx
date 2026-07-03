@@ -1112,18 +1112,20 @@ export default function Assessment() {
                         </p>
                       </div>
 
-                      {submitError && (
-                        <p
-                          style={{
-                            fontFamily: F,
-                            fontSize: "var(--nx-t-sm)",
-                            color: "var(--nx-danger)",
-                            marginBottom: "0.25rem",
-                          }}
-                        >
-                          {submitError}
-                        </p>
-                      )}
+                      <div aria-live="polite" role="alert" data-testid="assessment-submit-error">
+                        {submitError && (
+                          <p
+                            style={{
+                              fontFamily: F,
+                              fontSize: "var(--nx-t-sm)",
+                              color: "var(--nx-danger)",
+                              marginBottom: "0.25rem",
+                            }}
+                          >
+                            {submitError}
+                          </p>
+                        )}
+                      </div>
                     </motion.div>
                   )}
 
