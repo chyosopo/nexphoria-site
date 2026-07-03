@@ -7,6 +7,7 @@ import { Link } from "wouter";
 import { Lock, Check } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
+import { track } from "@/lib/analytics";
 
 export interface BuyTier {
   key: string;
@@ -37,6 +38,7 @@ const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }
   <Link
     href="/assessment"
     data-testid={testId}
+    onClick={() => track("intake_cta", { source: "buybox", testId })}
     style={{
       display: "block", textAlign: "center", fontFamily: F, fontWeight: 600,
       fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)",
@@ -109,7 +111,7 @@ export function BuyBox(props: BuyBoxProps) {
                     key={t.key}
                     role="radio"
                     aria-checked={isActive}
-                    onClick={() => onSelect?.(t.key)}
+                    onClick={() => { onSelect?.(t.key); track("cadence_selected", { cadence: t.key, product: name }); }}
                     data-testid={`cadence-${t.key}`}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,

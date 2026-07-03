@@ -1,3 +1,4 @@
+import { track } from "@/lib/analytics";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
@@ -94,6 +95,7 @@ export default function Checkout() {
     },
     onSuccess: (data) => {
       setSubmittedId(data.id);
+      track("checkout_submitted", { id: data.id });
       queryClient.invalidateQueries({ queryKey: ["/api/checkout"] });
       clear();
       toast({ title: "Submitted for physician review", description: "We'll be in touch upon review." });
@@ -117,7 +119,7 @@ export default function Checkout() {
     if (step === 0) fields = ["name", "email", "age", "shippingAddress", "city", "state", "zip"];
     const ok = fields.length ? await form.trigger(fields) : true;
     if (ok && step === 0 && glp1Blocked) return; // notice below the address explains why
-    if (ok) setStep((s) => Math.min(s + 1, 2));
+    if (ok) setStep((s) => { const n = Math.min(s + 1, 2); track("checkout_step", { step: n }); return n; });
   };
 
   /* ─── Success screen (intake-complete confirmation) ─── */

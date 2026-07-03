@@ -11,7 +11,8 @@
     "db:push": "drizzle-kit push",
     "smoke": "tsx scripts/smoke-routes.tsx",
     "audit:data": "tsx scripts/audit-data-drift.ts",
-    "audit:design": "tsx scripts/audit-design.ts"
+    "audit:design": "tsx scripts/audit-design.ts",
+    "audit:bundle": "tsx scripts/audit-bundle.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

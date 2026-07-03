@@ -12,6 +12,7 @@ import { F, S } from "@/lib/typography";
 export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
   const [filter, setFilter] = useState<string>("All");
+  const [q, setQ] = useState("");
   useSeo({
     title: "Peptides — The Full Catalog | Nexphoria",
     description: "Nineteen physician-prescribed peptides, each with dosing, mechanism, timeline, and required bloodwork stated plainly.",
@@ -19,7 +20,15 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   });
 
   const cats = ["All", ...SOLO_CATEGORIES];
-  const shown = SOLO_CATALOG.filter((s) => filter === "All" || s.category === filter);
+  const needle = q.trim().toLowerCase();
+  const shown = SOLO_CATALOG.filter(
+    (s) =>
+      (filter === "All" || s.category === filter) &&
+      (!needle ||
+        s.name.toLowerCase().includes(needle) ||
+        s.category.toLowerCase().includes(needle) ||
+        s.mechanism.toLowerCase().includes(needle)),
+  );
 
   return (
     <SiteLayout>
@@ -37,6 +46,16 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       <section className="nx-container" style={{ paddingBottom: "1rem" }}>
+        <input
+          type="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Find a peptide — name, goal, or mechanism"
+          aria-label="Search the catalog"
+          className="nx-input"
+          data-testid="catalog-search"
+          style={{ maxWidth: 420, marginBottom: 14 }}
+        />
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {cats.map((c) => {
             const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
@@ -63,10 +82,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </p>
         {shown.length === 0 && (
           <div className="nx-glass-tile" style={{ display: "block", textAlign: "center", padding: "3rem 1.5rem" }} data-testid="filter-empty">
-            <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>No matches in {filter}.</p>
+            <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>{needle ? `No matches for “${q.trim()}”.` : `No matches in ${filter}.`}</p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>The formulary is curated — some shelves are short by design.</p>
-            <button onClick={() => setFilter("All")} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
-              Clear filter — show all
+            <button onClick={() => { setFilter("All"); setQ(""); }} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
+              Clear — show all
             </button>
           </div>
         )}
