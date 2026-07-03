@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
 import { getStack, PANELS, PanelTier } from "@/data/stacksCatalog";
-import { ArrowLeft, Check, Lock } from "lucide-react";
+import { ArrowLeft, Check, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK } from "@/data/outcomeImagery";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
@@ -65,10 +65,19 @@ export default function StackPage({ slug }: { slug: string }) {
         includesPanel: c.includesPanel,
       }));
 
+  const INCLUDED: { Icon: typeof Pill; t: string }[] = [
+    { Icon: Stethoscope, t: "Physician review & prescription" },
+    { Icon: Microscope, t: `${stack.panel} bloodwork panel` },
+    { Icon: FlaskConical, t: "503A pharmacy compounding" },
+    { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
+    { Icon: LayoutDashboard, t: "Marker dashboard & messaging" },
+    { Icon: RefreshCw, t: "90-day retest & dose review" },
+  ];
+
   return (
     <SiteLayout>
-      {/* ── HERO — the outcome frame beside the claim ── */}
-      <section className="relative" style={{ overflow: "hidden" }}>
+      {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
+      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.6rem) 0 clamp(1.8rem,3vw,2.4rem)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
@@ -90,7 +99,7 @@ export default function StackPage({ slug }: { slug: string }) {
               </p>
             </div>
             {OUTCOME_STACK[stack.slug] && (
-              <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>
+              <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>
                 <img
                   src={OUTCOME_STACK[stack.slug]}
                   alt=""
@@ -101,6 +110,7 @@ export default function StackPage({ slug }: { slug: string }) {
                   style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                   data-testid={`stack-outcome-${stack.slug}`}
                 />
+                <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
               </div>
             )}
           </div>
@@ -113,9 +123,17 @@ export default function StackPage({ slug }: { slug: string }) {
 
           {/* — LEFT: the story — */}
           <div>
-            {/* Protocol table */}
-            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>The protocol</p>
-            <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "0.8rem" }}>
+            {/* Protocol — peptide chips (icon + name), then the details table */}
+            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: "0.8rem" }}>
+              {stack.peptides.map((p) => (
+                <span key={p.name} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "9px 14px 9px 10px", borderRadius: "var(--nx-r-pill)", background: "var(--nx-cobalt-soft)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 24%, transparent)" }}>
+                  <span className="nx-icon-circle" aria-hidden style={{ width: 26, height: 26 }}><Pill size={14} strokeWidth={2} /></span>
+                  <span style={{ fontFamily: F, fontSize: 14.5, fontWeight: 600, color: "var(--nx-fg)" }}>{p.name}</span>
+                </span>
+              ))}
+            </div>
+            <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "1.4rem" }}>
               {stack.peptides.map((p) => (
                 <div key={p.name} className="grid md:grid-cols-[1fr_1.2fr_1fr] gap-1 md:gap-6 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                   <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</p>
@@ -128,16 +146,34 @@ export default function StackPage({ slug }: { slug: string }) {
               {stack.synergy}
             </p>
 
-            {/* Timeline */}
+            {/* What every protocol includes */}
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              What is included, every month
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
+              {INCLUDED.map((x, i) => (
+                <Reveal key={x.t} delay={i * 45}>
+                  <div className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <span className="nx-icon-circle" aria-hidden><x.Icon size={19} strokeWidth={1.9} /></span>
+                    <p style={{ fontFamily: F, fontSize: 15, fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.3 }}>{x.t}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Timeline — drawn spine */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               What the weeks look like
             </h2>
-            <div className="grid grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
+            <div className="nx-timeline" style={{ marginTop: "1.4rem" }}>
               {stack.timeline.map((t, i) => (
-                <Reveal key={t.wk} delay={i * 60}>
-                  <div className="nx-glass-tile" style={{ height: "100%" }}>
-                    <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
+                <Reveal key={t.wk} delay={i * 55}>
+                  <div className="nx-timeline-step" style={{ paddingBottom: i < stack.timeline.length - 1 ? "1.1rem" : 0 }}>
+                    <span className="nx-timeline-node" aria-hidden>{i + 1}</span>
+                    <div className="nx-glass-tile" style={{ display: "block" }}>
+                      <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
+                    </div>
                   </div>
                 </Reveal>
               ))}
@@ -197,17 +233,17 @@ export default function StackPage({ slug }: { slug: string }) {
       </section>
 
       {/* ── ONE NIGHT BAND — contraindications, stated plainly ── */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }}>
+      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }}>
         <div className="nx-container">
-          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Before you begin</p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "22ch", marginTop: "0.8rem", lineHeight: 1.12 }}>
+          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Before you begin</p>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
             This protocol is not for everyone.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 720 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {stack.contraindications.map((c) => (
-              <div key={c} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
-                <Check size={17} strokeWidth={2.4} style={{ color: "var(--nx-acid)", marginTop: 3, flexShrink: 0 }} />
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.9 }}>{c}</p>
+              <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
+                <Check size={17} strokeWidth={2.4} style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.92 }}>{c}</p>
               </div>
             ))}
           </div>
