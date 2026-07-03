@@ -1,4 +1,4 @@
-asset localization+optimization — Fri Jul  3 00:55:01 UTC 2026
+asset localization+optimization — Fri Jul  3 01:03:43 UTC 2026
 OK   image/png → img_232f30f5a464.webp (100K) https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_021713_45c52586-6350-45b1-b676-54fa57078490.png
 OK   image/png → img_b02fe34b47f7.webp (84K) https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_030624_7dfcf5e6-3e96-4c96-b025-2a4b5a8c0e4d.png
 OK   image/png → img_20e1e1d49da4.webp (224K) https://d8j0ntlcm91z4.cloudfront.net/user_3Ft13W9B0KpsVCGoTUaXE6wshlh/hf_20260702_031301_1d21a0d5-4eec-433b-9288-1b2acc71922b.png
@@ -22,6 +22,7 @@ OK   image/png → img_4f2bd889825e.webp (144K) https://www.trybloom.ai/img/2591
 OK   image/png → img_cf1396d09b4a.webp (264K) https://www.trybloom.ai/img/292a1476-b4d9-4783-9066-740cc2b0bea1
 OK   image/png → img_f8d241785924.webp (120K) https://www.trybloom.ai/img/30ef3609-8d2e-4fc4-95f1-2fef61810d8f
 OK   image/png → img_275e18d2b1d5.webp (56K) https://www.trybloom.ai/img/354a63d7-16ff-498f-b9a3-cae919bfa098
+OK   image/png → img_3678caab4727.webp (168K) https://www.trybloom.ai/img/3dd06b87-ceb8-4e1d-9dda-678c1d812556
 OK   image/png → img_91f68fd387ee.webp (68K) https://www.trybloom.ai/img/44a95318-984c-4c77-8384-201b86ab9a3d
 OK   image/png → img_e5ee8619d3f5.webp (52K) https://www.trybloom.ai/img/4d274de8-80a5-40bb-b973-f320d930d1b6
 OK   image/png → img_7c9efa52850f.webp (52K) https://www.trybloom.ai/img/4f8d5177-ba34-4f5c-b95c-d9271b2813b6
@@ -56,4 +57,4 @@ OK   image/png → img_e9c5c7ee0119.webp (60K) https://www.trybloom.ai/img/e1dad
 OK   image/png → img_6bee78326414.webp (116K) https://www.trybloom.ai/img/e512b053-c330-4499-a258-e7239909a336
 OK   image/png → img_7be56150fc2e.webp (60K) https://www.trybloom.ai/img/e5a8ed3d-a365-4f27-b254-98db2d8adeba
 OK   image/png → img_ebd08f5a334f.webp (132K) https://www.trybloom.ai/img/f2848352-5132-44ae-b097-4c10ad46967b
-TOTAL ok=57 bad=0 size=13M
+TOTAL ok=58 bad=0 size=13M
