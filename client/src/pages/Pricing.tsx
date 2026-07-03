@@ -157,7 +157,7 @@ function PricingTiers() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "11px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -175,7 +175,7 @@ function PricingTiers() {
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontWeight: 600,
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
@@ -187,7 +187,7 @@ function PricingTiers() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "1.0625rem",
+              fontSize: "var(--nx-t-body)",
               color: "var(--nx-fg-graphite)",
               lineHeight: 1.6,
               maxWidth: "640px",
@@ -228,7 +228,7 @@ function PricingTiers() {
                       top: "-11px",
                       left: "2rem",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "10px",
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 600,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -245,7 +245,7 @@ function PricingTiers() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "1.375rem",
+                    fontSize: "var(--nx-t-xl)",
                     fontWeight: 600,
                     letterSpacing: "-0.01em",
                     color: tier.recommended ? "var(--nx-bg-cream)" : "var(--nx-fg)",
@@ -257,7 +257,7 @@ function PricingTiers() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "13px",
+                    fontSize: "var(--nx-t-sm)",
                     color: tier.recommended ? "rgba(255,255,255,0.6)" : "var(--nx-fg-graphite)",
                     lineHeight: 1.5,
                     marginBottom: "1.5rem",
@@ -270,7 +270,7 @@ function PricingTiers() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "10px",
+                      fontSize: "var(--nx-t-xs)",
                       textTransform: "uppercase",
                       letterSpacing: "0.12em",
                       color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
@@ -293,7 +293,7 @@ function PricingTiers() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      fontSize: "var(--nx-t-xs)",
                       color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
                     }}
                   >
@@ -325,7 +325,7 @@ function PricingTiers() {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "13px",
+                            fontSize: "var(--nx-t-sm)",
                             color: tier.recommended ? "var(--nx-bg-cream)" : "var(--nx-fg-graphite)",
                             lineHeight: 1.45,
                           }}
@@ -346,7 +346,7 @@ function PricingTiers() {
                         padding: "0.875rem 1.5rem",
                         borderRadius: "12px",
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "0.875rem",
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: 500,
                         letterSpacing: "0.02em",
                         background: tier.recommended ? "var(--nx-acid)" : "var(--nx-fg)",
@@ -380,12 +380,12 @@ function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: nu
         onClick={() => setOpen(!open)}
         style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.25rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
       >
-        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "15px", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
-        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: open ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", flexShrink: 0, marginTop: "2px" }}>{open ? "−" : "+"}</span>
+        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
+        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: open ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", flexShrink: 0, marginTop: "2px" }}>{open ? "−" : "+"}</span>
       </button>
       {open && (
         <div style={{ paddingBottom: "1.25rem" }}>
-          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "0.9375rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{item.a}</p>
+          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{item.a}</p>
         </div>
       )}
     </div>
@@ -480,7 +480,7 @@ export default function Pricing() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -498,7 +498,7 @@ export default function Pricing() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 600,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 letterSpacing: "-0.02em",
@@ -510,7 +510,7 @@ export default function Pricing() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "1.0625rem",
+                fontSize: "var(--nx-t-body)",
                 color: "var(--nx-fg-graphite)",
                 lineHeight: 1.6,
                 maxWidth: "640px",
@@ -584,7 +584,7 @@ export default function Pricing() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -603,7 +603,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "2rem",
@@ -713,7 +713,7 @@ export default function Pricing() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "14px",
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: 600,
                         color: "var(--nx-fg)",
                         marginBottom: "0.2rem",
@@ -724,7 +724,7 @@ export default function Pricing() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "12px",
+                        fontSize: "var(--nx-t-xs)",
                         color: "var(--nx-fg-graphite)",
                         lineHeight: 1.5,
                       }}
@@ -736,7 +736,7 @@ export default function Pricing() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "1.25rem",
+                      fontSize: "var(--nx-t-lg)",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
                       textAlign: "center",
@@ -759,7 +759,7 @@ export default function Pricing() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "1.25rem",
+                      fontSize: "var(--nx-t-lg)",
                       fontWeight: 500,
                       color: "var(--nx-fg)",
                       textAlign: "center",
@@ -782,7 +782,7 @@ export default function Pricing() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "1.25rem",
+                      fontSize: "var(--nx-t-lg)",
                       fontWeight: 500,
                       color: "var(--nx-cobalt)",
                       textAlign: "center",
@@ -817,7 +817,7 @@ export default function Pricing() {
                   gap: "0.75rem",
                 }}
               >
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
                   12-MONTH PLAN — SAVE UP TO 20% vs. MONTH-TO-MONTH
                 </p>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>
@@ -829,7 +829,7 @@ export default function Pricing() {
               <div
                 style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--nx-border)", backgroundColor: "var(--nx-bg-cream)" }}
               >
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: "var(--nx-fg-muted)", lineHeight: 1.5 }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", lineHeight: 1.5 }}>
                   Starting prices. Final protocol cost determined at physician consultation based on compound selection and dosing.
                   Multi-compound protocols priced individually. All prices are monthly equivalent.
                 </p>
@@ -849,7 +849,7 @@ export default function Pricing() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -867,7 +867,7 @@ export default function Pricing() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "0.5rem",
@@ -880,7 +880,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "3rem",
@@ -921,7 +921,7 @@ export default function Pricing() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.5,
                     }}
@@ -945,7 +945,7 @@ export default function Pricing() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -964,7 +964,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 marginBottom: "3rem",
@@ -1048,7 +1048,7 @@ export default function Pricing() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "13px",
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-fg)",
                       fontWeight: 500,
                     }}
@@ -1095,7 +1095,7 @@ export default function Pricing() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "10px",
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -1108,7 +1108,7 @@ export default function Pricing() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "1.0625rem",
+                  fontSize: "var(--nx-t-body)",
                   color: "var(--nx-fg-graphite)",
                   lineHeight: 1.7,
                 }}
@@ -1138,13 +1138,13 @@ export default function Pricing() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               PRICING QUESTIONS
             </p>
             <h2
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem" }}
             >
               Common questions about cost.
             </h2>
@@ -1164,10 +1164,10 @@ export default function Pricing() {
           {/* Assessment CTA */}
           <Reveal delay={80}>
             <div className="mt-12 pt-8" style={{ borderTop: "1px solid var(--nx-border)" }}>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.375rem, 3vw, 2rem)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "1.25rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "1.25rem" }}>
                 Your protocol, built on your labs.
               </p>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
                 Start with a structured assessment. Your physician will review your intake and design a protocol around your labs, your goals, and your physiology — not a template.
               </p>
               <StartIntakeButton source="pricing-page" size="lg">
@@ -1210,23 +1210,23 @@ export function PricingPlanTable() {
         <Reveal>
           <h2
             id="pricing-plan-table-heading"
-            style={{ fontFamily: FONT, fontWeight: 600, fontSize: "clamp(1.5rem, 3vw, 2.25rem)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "2rem" }}
+            style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "2rem" }}
           >
             Plan comparison at a glance.
           </h2>
         </Reveal>
         <Reveal delay={60}>
           <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "13px" }}>
-              <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "11px", color: "var(--nx-fg-muted)" }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "var(--nx-t-sm)" }}>
+              <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
                 Nexphoria plan comparison: Solo Peptide vs. Curated Stack vs. Custom Protocol. Save 10% (6-month) or 20% (12-month) with prepay.
               </caption>
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Solo Peptide</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "#FFFFFF", fontWeight: 700, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>★ Curated Stack</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>Custom Protocol</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Solo Peptide</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "#FFFFFF", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>★ Curated Stack</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Custom Protocol</th>
                 </tr>
               </thead>
               <tbody>
