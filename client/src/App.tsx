@@ -112,7 +112,7 @@ function AppRouter() {
         <Route path="/bloodwork" component={Bloodwork} />
         <Route path="/protocols" component={ProtocolsIndex} />
         <Route path="/blood-work" component={BloodPanels} />
-        <Route path="/catalog">{() => <PeptidesCatalog />}</Route>
+        <Route path="/catalog">{() => <R to="/men/peptides" />}</Route>
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />

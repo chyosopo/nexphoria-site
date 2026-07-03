@@ -1361,7 +1361,7 @@ function PrecisionStrip() {
           </p>
 
           <div
-            className="mt-10 grid grid-cols-3 gap-6"
+            className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6"
             style={{ borderTop: "1px solid rgba(246, 249, 252,0.14)", paddingTop: 22 }}
           >
             {[
