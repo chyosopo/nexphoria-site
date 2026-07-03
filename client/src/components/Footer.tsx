@@ -160,7 +160,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
               <span
                 style={{
                   fontSize: 9,
-                  color: "rgba(255,255,255,0.4)",
+                  color: "rgba(255,255,255,0.66)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   marginTop: 2,
@@ -178,7 +178,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
             <Logo variant="light" withSubmark={false} markSize={18} />
             <span
               className="text-xs"
-              style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+              style={{ color: "rgba(255,255,255,0.66)", fontFamily: "'General Sans', system-ui, sans-serif" }}
               data-testid="footer-copyright"
             >
               © 2026 Nexphoria · All rights reserved
@@ -195,7 +195,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 key={label}
                 href={href}
                 className="text-xs no-underline hover:text-white transition-colors"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                style={{ color: "rgba(255,255,255,0.66)", fontFamily: "'General Sans', system-ui, sans-serif" }}
                 data-testid={`footer-legal-${label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 {label}
@@ -207,14 +207,14 @@ export function Footer({ variant = "shared" }: FooterProps) {
         {/* Regulatory disclaimers */}
         <p
           className="mt-6 text-xs leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
+          style={{ color: "rgba(255,255,255,0.62)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
           data-testid="footer-research-disclaimer"
         >
           For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in state-licensed 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease. From-pricing shown throughout the site; medication is dispensed only if a licensed provider determines a prescription is appropriate. Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Ozempic®, Wegovy®, Mounjaro®, and Zepbound® are registered trademarks of their respective owners; Nexphoria is not affiliated with, or endorsed by, Novo Nordisk or Eli Lilly.
         </p>
         <p
           className="mt-3 text-xs"
-          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.06em" }}
+          style={{ color: "rgba(255,255,255,0.66)", fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.06em" }}
           data-testid="footer-usp-line"
         >
           Compounded under USP &lt;797&gt; in U.S. 503A pharmacies
@@ -235,7 +235,7 @@ function FooterCol({ column }: { column: FooterColumn }) {
           fontWeight: 500,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(255,255,255,0.66)",
         }}
       >
         {column.heading}

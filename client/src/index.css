@@ -1256,3 +1256,16 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
 @media (prefers-reduced-motion: reduce) {
   .nx-hero-seq > *, .nx-hero-frame { animation: none; opacity: 1; transform: none; }
 }
+
+/* ── D18 press grammar: every interactive surface settles on press ── */
+.nx-glass-tile:active, .nx-glass-card:active, .nx-art-tile:active,
+.nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-acid:active,
+.nx-glass-btn:active, .nx-tile:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: var(--nx-dur-1, 0.08s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-glass-tile:active, .nx-glass-card:active, .nx-art-tile:active,
+  .nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-acid:active,
+  .nx-glass-btn:active, .nx-tile:active { transform: none; }
+}

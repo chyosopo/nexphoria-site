@@ -198,7 +198,7 @@ export default function StackPage({ slug }: { slug: string }) {
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-acid)", opacity: 0.7, maxWidth: "60ch", marginTop: "1.4rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "60ch", marginTop: "1.4rem" }}>
             These peptides are not FDA-approved and are prescribed off-label where a physician determines it appropriate. This page is educational and is not medical advice.
           </p>
         </div>

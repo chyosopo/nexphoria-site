@@ -273,7 +273,7 @@ export default function JournalArticle() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: 17,
                       lineHeight: 1.75,
-                      color: "var(--nx-text)",
+                      color: "var(--nx-fg-graphite)",
                       marginBottom: 20,
                     }}
                   >
@@ -341,7 +341,7 @@ export default function JournalArticle() {
                             fontFamily: "'General Sans', system-ui, sans-serif",
                             fontSize: 16,
                             lineHeight: 1.6,
-                            color: "var(--nx-text)",
+                            color: "var(--nx-fg-graphite)",
                           }}
                         >
                           {step}
@@ -391,7 +391,7 @@ export default function JournalArticle() {
                                   padding: "14px 16px 14px 0",
                                   fontSize: 14,
                                   lineHeight: 1.5,
-                                  color: "var(--nx-text)",
+                                  color: "var(--nx-fg-graphite)",
                                   verticalAlign: "top",
                                 }}
                               >
