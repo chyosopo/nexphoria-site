@@ -993,22 +993,8 @@ export default function Assessment() {
                       rows={4}
                       placeholder="e.g. Metformin 500mg twice daily, Levothyroxine 50mcg daily..."
                       data-testid="assessment-medications-text"
-                      style={{
-                        width: "100%",
-                        padding: "0.875rem 1rem",
-                        borderRadius: "4px",
-                        border: "1px solid var(--nx-border)",
-                        backgroundColor: "#FFFFFF",
-                        fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "15px",
-                        color: "var(--nx-fg)",
-                        lineHeight: 1.5,
-                        resize: "vertical",
-                        outline: "none",
-                        boxSizing: "border-box",
-                      }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "var(--nx-cobalt)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "var(--nx-border)"; }}
+                      className="nx-input"
+                      style={{ resize: "vertical" }}
                     />
                   </div>
                 )}
@@ -1118,9 +1104,7 @@ export default function Assessment() {
                       onChange={(e) => setField("name", e.target.value)}
                       placeholder="Your legal name"
                       data-testid="assessment-contact-name"
-                      style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "var(--nx-cobalt)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "var(--nx-border)"; }}
+                      className="nx-input"
                     />
                   </div>
 
@@ -1136,9 +1120,7 @@ export default function Assessment() {
                       onChange={(e) => setField("email", e.target.value)}
                       placeholder="you@example.com"
                       data-testid="assessment-contact-email"
-                      style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "var(--nx-cobalt)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "var(--nx-border)"; }}
+                      className="nx-input"
                     />
                   </div>
 
@@ -1154,9 +1136,7 @@ export default function Assessment() {
                       onChange={(e) => setField("phone", e.target.value)}
                       placeholder="(212) 555-0100"
                       data-testid="assessment-contact-phone"
-                      style={inputStyle}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "var(--nx-cobalt)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "var(--nx-border)"; }}
+                      className="nx-input"
                     />
                   </div>
 
@@ -1170,17 +1150,15 @@ export default function Assessment() {
                       value={form.state}
                       onChange={(e) => setField("state", e.target.value)}
                       data-testid="assessment-contact-state"
+                      className="nx-input"
                       style={{
-                        ...inputStyle,
                         appearance: "none",
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111111' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23496E94' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "right 1rem center",
                         paddingRight: "2.5rem",
                         cursor: "pointer",
                       }}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = "var(--nx-cobalt)"; }}
-                      onBlur={(e) => { e.currentTarget.style.borderColor = "var(--nx-border)"; }}
                     >
                       <option value="">Select state…</option>
                       {US_STATES.map((s) => (
@@ -1556,17 +1534,3 @@ export default function Assessment() {
 
 // ─── Shared input style (defined outside component to avoid re-creation) ──────
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "0.875rem 1rem",
-  borderRadius: "4px",
-  border: "1px solid var(--nx-border)",
-  backgroundColor: "#FFFFFF",
-  fontFamily: "'General Sans', system-ui, sans-serif",
-  fontSize: "15px",
-  color: "var(--nx-fg)",
-  lineHeight: 1.5,
-  outline: "none",
-  boxSizing: "border-box",
-  transition: "border-color 0.15s",
-};

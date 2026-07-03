@@ -70,19 +70,6 @@ export default function Contact() {
     }
   };
 
-  const inputStyle: React.CSSProperties = {
-    fontFamily: "'General Sans', system-ui, sans-serif",
-    fontSize: "14px",
-    padding: "0.875rem 1.125rem",
-    border: "1px solid var(--nx-border)",
-    borderRadius: "4px",
-    backgroundColor: "#FFFFFF",
-    color: "var(--nx-fg)",
-    width: "100%",
-    outline: "none",
-    appearance: "none" as React.CSSProperties["appearance"],
-  };
-
   const labelStyle: React.CSSProperties = {
     fontFamily: "'General Sans', system-ui, sans-serif",
     fontSize: "9px",
@@ -392,7 +379,7 @@ export default function Contact() {
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         required
-                        style={inputStyle}
+                        className="nx-input"
                         data-testid="contact-name-input"
                       />
                     </div>
@@ -404,7 +391,7 @@ export default function Contact() {
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         required
-                        style={inputStyle}
+                        className="nx-input"
                         data-testid="contact-email-input"
                       />
                     </div>
@@ -418,7 +405,7 @@ export default function Contact() {
                         type="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        style={inputStyle}
+                        className="nx-input"
                       />
                     </div>
                     <div>
@@ -429,7 +416,7 @@ export default function Contact() {
                         value={form.state}
                         onChange={(e) => setForm({ ...form, state: e.target.value })}
                         placeholder="e.g. NY"
-                        style={inputStyle}
+                        className="nx-input"
                       />
                     </div>
                   </div>
@@ -441,7 +428,7 @@ export default function Contact() {
                       value={form.reason}
                       onChange={(e) => setForm({ ...form, reason: e.target.value })}
                       required
-                      style={{ ...inputStyle, cursor: "pointer" }}
+                      className="nx-input" style={{ cursor: "pointer" }}
                       data-testid="contact-subject-select"
                     >
                       {reasons.map((r) => (
@@ -460,7 +447,7 @@ export default function Contact() {
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       required
                       rows={5}
-                      style={{ ...inputStyle, resize: "none" }}
+                      className="nx-input" style={{ resize: "none" }}
                       data-testid="contact-message-input"
                     />
                   </div>
