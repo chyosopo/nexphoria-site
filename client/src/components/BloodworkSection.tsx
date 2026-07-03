@@ -7,7 +7,7 @@ import { BloodworkDashboard } from "@/components/BloodworkDashboard";
    Left: editorial copy. Right: dashboard mockup.
    ───────────────────────────────────────────────────────────── */
 
-const pillLabels = ["38 BIOMARKERS", "CLIA-CERTIFIED", "QUEST DIAGNOSTICS"];
+const pillLabels = ["38 BIOMARKERS", "CLIA-CERTIFIED", "PARTNER LABORATORY"];
 
 interface BloodworkSectionProps {
   gender?: "women" | "men";
