@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { useLocation } from "wouter";
 
 type World = "men" | "women";
@@ -23,7 +24,10 @@ import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { TrustBar } from "./TrustBar";
-import { ExitIntentModal } from "./ExitIntentModal";
+// Lazy — pulls framer-motion; keep it off the first-paint critical path.
+const ExitIntentModal = lazy(() =>
+  import("./ExitIntentModal").then((m) => ({ default: m.ExitIntentModal })),
+);
 
 interface SiteLayoutProps {
   children: React.ReactNode;
@@ -68,7 +72,9 @@ export function SiteLayout({
       {!hideTrustBar && <TrustBar />}
       <main id="main-content" className="flex-1">{children}</main>
       {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
-      <ExitIntentModal />
+      <Suspense fallback={null}>
+        <ExitIntentModal />
+      </Suspense>
     </div>
   );
 }

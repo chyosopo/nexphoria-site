@@ -4,7 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, orgJsonLd, medicalBusinessJsonLd, webPageJsonLd, faqJsonLd } from "@/lib/seo";
 import { Reveal } from "@/components/Reveal";
-import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { AnimatedCounter } from "@/components/AnimatedCounterLazy";
 import { VialTile, categoryToTone } from "@/components/VialTile";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { Beaker, Stethoscope, Truck, ShieldCheck } from "lucide-react";
