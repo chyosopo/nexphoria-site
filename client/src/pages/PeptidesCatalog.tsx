@@ -8,6 +8,21 @@ import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
+import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
+
+/* Solo category → its outcome frame. Brand law (C29): sell the outcome,
+   never the vial — so each product tile carries a lifestyle frame, not a
+   repeated bottle. Men set is the neutral default; skin casts female. */
+const CAT_IMG: Record<string, string> = {
+  Growth: OUTCOME_CATEGORY.men.growth ?? OUTCOME_HERO.men,
+  Cognitive: OUTCOME_CATEGORY.men.cognition ?? OUTCOME_HERO.men,
+  Recovery: OUTCOME_CATEGORY.men.recovery ?? OUTCOME_HERO.men,
+  "Skin & Longevity": OUTCOME_CATEGORY.women.skin ?? OUTCOME_HERO.women,
+  Metabolic: OUTCOME_CATEGORY.men.metabolic ?? OUTCOME_HERO.men,
+  Sleep: OUTCOME_CATEGORY.men.sleep ?? OUTCOME_HERO.men,
+  "Sexual Health": OUTCOME_HERO.women,
+};
 
 export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
@@ -41,14 +56,22 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     <SiteLayout>
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(3rem,6vw,5rem) 0 clamp(1.4rem,3vw,2.2rem)", zIndex: 1 }}>
-          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.8rem" }}>
-            Nineteen peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
-          </h1>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
-            Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin.
-          </p>
+        <div className="nx-container relative" style={{ padding: "clamp(3rem,6vw,5rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
+          <div className="nx-hero-split nx-hero-seq">
+            <div>
+              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+                Nineteen peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
+              </h1>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
+                Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin.
+              </p>
+            </div>
+            <div className="nx-hero-media nx-hero-frame" style={{ aspectRatio: "5 / 4" }}>
+              <img src={vialLineupHero} alt="The Nexphoria peptide formulary" fetchPriority="high" width={1600} height={1280} />
+              <div className="nx-gradient-overlay tint" aria-hidden />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -96,21 +119,29 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             </button>
           </div>
         )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
           {shown.map((s, i) => (
             <Reveal key={s.slug} delay={i * 40}>
-              <Link href={`${base}/peptides/${s.slug}`} className="nx-glass-tile" data-testid={`peptide-${s.slug}`} style={{ height: "100%", display: "block" }}>
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-                  <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
-                  {s.gated && <Lock size={13} style={{ color: "var(--nx-fg-muted)" }} />}
+              <Link href={`${base}/peptides/${s.slug}`} className="nx-product-card" data-testid={`peptide-${s.slug}`}>
+                <div className="nx-product-card__media">
+                  <img src={CAT_IMG[s.category] ?? OUTCOME_HERO.men} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                  <div className="nx-gradient-overlay soft" aria-hidden />
+                  <span style={{ position: "absolute", top: 14, left: 14, fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{s.category}</span>
+                  {s.gated && (
+                    <span style={{ position: "absolute", top: 12, right: 12, display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-ceramic)", background: "color-mix(in srgb, var(--nx-fg) 62%, transparent)", backdropFilter: "blur(6px)", borderRadius: "var(--nx-r-pill)", padding: "4px 10px" }}>
+                      <Lock size={11} /> Assessed
+                    </span>
+                  )}
+                  <h2 style={{ position: "absolute", left: 16, right: 16, bottom: 14, fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-ceramic)", lineHeight: 1.02 }}>{s.name}</h2>
                 </div>
-                <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: 25, color: "var(--nx-fg)", marginTop: "0.35rem", lineHeight: 1.05 }}>{s.name}</h2>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>{s.dose}</p>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.9rem" }}>
-                  <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, color: "var(--nx-fg)" }}>
-                    {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "Priced at consult"}
-                  </p>
-                  <ArrowRight size={16} style={{ color: "var(--nx-cobalt)" }} />
+                <div className="nx-product-card__body">
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", flex: 1 }}>{s.dose}</p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.9rem", paddingTop: "0.85rem", borderTop: "1px solid var(--nx-border)" }}>
+                    <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, color: "var(--nx-fg)" }}>
+                      {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "Priced at consult"}
+                    </p>
+                    <ArrowRight size={16} style={{ color: "var(--nx-cobalt)" }} />
+                  </div>
                 </div>
               </Link>
             </Reveal>
