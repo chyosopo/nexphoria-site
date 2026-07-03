@@ -9,12 +9,16 @@ interface RevealProps {
 export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  // `settled` drops will-change once the entrance transition has finished so
+  // idle reveals don't permanently hold a GPU compositor layer (memory bloat).
+  const [settled, setSettled] = useState(false);
 
   useEffect(() => {
     // Respect prefers-reduced-motion
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduced) {
       setVisible(true);
+      setSettled(true); // no animation runs → never promote a layer
       return;
     }
 
@@ -53,10 +57,19 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
     return () => observer.disconnect();
   }, [delay]);
 
+  // When the entrance transform finishes, mark settled so CSS drops will-change.
+  // Guard to this element's own transform so child transitions don't trip it.
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget && e.propertyName === "transform") {
+      setSettled(true);
+    }
+  };
+
   return (
     <div
       ref={ref}
-      className={`nx-reveal ${visible ? "visible" : ""} ${className}`}
+      onTransitionEnd={handleTransitionEnd}
+      className={`nx-reveal ${visible ? "visible" : ""} ${settled ? "nx-settled" : ""} ${className}`}
     >
       {children}
     </div>

@@ -147,12 +147,20 @@ export function Nav({ variant = "gate" }: NavProps) {
 
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
         scrolled || megaOpen
-          ? "bg-white/95 backdrop-blur-md shadow-sm"
-          : "bg-white backdrop-blur-sm"
+          ? "bg-white/95 md:backdrop-blur-md shadow-sm"
+          : "bg-white"
       }`}
-      style={{ borderBottom: "1px solid var(--nx-border)" }}
+      // translateZ(0) isolates the sticky bar on its own GPU layer so scrolling
+      // the page underneath doesn't repaint it every frame. Transition is scoped
+      // to background-color + box-shadow (paint-only) — we no longer animate the
+      // backdrop-filter blur radius on scroll, which was the costly part.
+      // backdrop-blur is now gated to md+ AND the scrolled state only: at the top
+      // the bar is fully opaque white (blur invisible, pure GPU waste), and on
+      // mobile the scrolled bg is 95% opaque so the blur reads near-identical while
+      // backdrop-filter is the single biggest per-frame scroll-jank cost on phones.
+      style={{ borderBottom: "1px solid var(--nx-border)", transform: "translateZ(0)" }}
       data-testid="site-nav"
     >
       <nav
@@ -457,7 +465,10 @@ export function Nav({ variant = "gate" }: NavProps) {
           style={{ top: "56px", height: "calc(100vh - 56px)", borderTop: "1px solid var(--nx-border)" }}
           data-testid="nav-mobile-drawer"
         >
-          <div className="nx-container flex-1 overflow-y-auto py-6">
+          <div
+            className="nx-container flex-1 overflow-y-auto py-6"
+            style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
+          >
             <ul className="flex flex-col list-none m-0">
               {links.map((link) => (
                 <li

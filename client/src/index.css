@@ -52,6 +52,7 @@
     --nx-dur-slow: 520ms;
     --nx-ease:     cubic-bezier(0.22, 0.61, 0.36, 1);   /* confident settle */
     --nx-ease-in:  cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    --nx-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);   /* Apple-tight: fast-out, gentle settle */
     /* numbered duration scale — the one actually used by components.
        1=micro/press · 2=hover/focus · 3=reveals · 4=entrances.
        (Was referenced but never defined: every var(--nx-dur-2) transition
@@ -173,6 +174,10 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    /* Kill the grey mobile tap flash + browser rubber-band bounce so
+       scroll/tap feel native-app, not web. */
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
   }
 
   body {
@@ -184,6 +189,14 @@
     font-feature-settings: "ss01", "cv11";
     overflow-x: hidden;
     max-width: 100vw;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Remove the 300ms tap delay on every interactive surface — taps register
+     instantly, the single biggest "this feels like a web page" tell on mobile. */
+  a, button, [role="button"], input, select, textarea, label, summary {
+    touch-action: manipulation;
   }
 
   h1, h2, h3 {
@@ -505,28 +518,51 @@
   }
 
   /* ── Reveal animation (scroll-triggered) ── */
-  /* Start at full opacity so content is always visible (Playwright + crawlers + reduced-motion); use a subtle translate for the in-view animation. */
+  /* Start at full opacity so content is always visible (Playwright + crawlers + reduced-motion); use a subtle translate for the in-view animation.
+     Motion is transform-ONLY (composited on the GPU) — never top/left/width/
+     height/margin, which would trigger layout and read as "fuzzy/late".
+     Curves retuned Apple-tight: shorter distance, faster settle. */
   .nx-reveal {
     opacity: 1;
-    transform: translateY(18px);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(14px);
+    transition: transform 0.5s var(--nx-reveal-ease);
   }
   .nx-reveal.visible {
     transform: translateY(0);
   }
+  /* Promote to a compositor layer ONLY while the entrance is actually running.
+     backface-visibility pins the layer on Safari/iOS for the duration of the
+     transition; Reveal.tsx adds .nx-settled on transitionend, which drops BOTH
+     the layer hint and will-change. Keeping either one permanently would leave
+     a lingering GPU layer that renders the settled text slightly soft — the
+     exact "fuzzy" tell on mobile — so both are strictly animation-scoped. */
+  .nx-reveal.visible:not(.nx-settled) {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
 
   /* Variants — set via className on Reveal component */
   .nx-reveal.nx-reveal-lift {
-    transform: translateY(32px);
-    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(16px);
+    transition: transform 0.55s var(--nx-reveal-ease);
   }
   .nx-reveal-lift.visible { transform: translateY(0); }
 
   .nx-reveal.nx-reveal-scale {
-    transform: scale(0.96);
-    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.98);
+    transition: transform 0.5s var(--nx-reveal-ease);
   }
   .nx-reveal-scale.visible { transform: scale(1); }
+
+  /* MOBILE: shorter distance + faster duration so content SNAPS in crisply
+     instead of drifting up slowly on a small screen. */
+  @media (max-width: 640px) {
+    .nx-reveal { transform: translateY(9px); transition-duration: 0.35s; }
+    .nx-reveal.nx-reveal-lift { transform: translateY(11px); transition-duration: 0.38s; }
+    .nx-reveal.nx-reveal-scale { transform: scale(0.985); transition-duration: 0.35s; }
+    .nx-reveal.visible, .nx-reveal-lift.visible { transform: translateY(0); }
+    .nx-reveal-scale.visible { transform: scale(1); }
+  }
 
   /* ── Scroll progress indicator ── */
   .nx-scroll-progress {
@@ -1317,4 +1353,27 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
 
 @media (prefers-reduced-motion: reduce) {
   .nx-goal-card, .nx-goal-card:hover, .nx-goal-card:active { transform: none; }
+}
+
+/* ══ MOBILE BACKDROP-FILTER FLOOR ══
+   backdrop-filter blur is one of the top causes of mobile scroll jank —
+   every blurred surface recomposites the pixels behind it each frame. On
+   phones we cut the blur radius roughly in half. The frosted-glass look is
+   preserved; the per-frame cost drops enough to hold 60fps while scrolling.
+   (Placed last so it wins the cascade over the full-radius definitions above.) */
+@media (max-width: 640px) {
+  .nx-glass-card,
+  .nx-glass-tile,
+  .nx-art-chip {
+    backdrop-filter: blur(8px) saturate(1.25);
+    -webkit-backdrop-filter: blur(8px) saturate(1.25);
+  }
+  .nx-glass-btn {
+    backdrop-filter: blur(6px) saturate(1.2);
+    -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  }
+  .mx-hero-label {
+    backdrop-filter: blur(8px) saturate(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  }
 }
