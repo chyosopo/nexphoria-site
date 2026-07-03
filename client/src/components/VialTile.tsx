@@ -21,13 +21,13 @@ export type Tone = "cream" | "sage" | "rose" | "sky" | "dusk" | "butter" | "coba
 
 const TONE_MAP: Record<Tone, { bg: string; ink: string; liquid: string; label: string }> = {
   cream:   { bg: "var(--nx-ceramic)", ink: "var(--nx-fg)", liquid: "var(--nx-acid)", label: "Peptide" },
-  sage:    { bg: "#E6EBF2", ink: "var(--nx-fg)", liquid: "#8ABFD1", label: "Recovery" },
-  rose:    { bg: "#E6EEF7", ink: "var(--nx-fg)", liquid: "#A2C0E4", label: "Skin" },
-  sky:     { bg: "#E8EEF1", ink: "var(--nx-fg)", liquid: "#A6C3D0", label: "Cognition" },
-  dusk:    { bg: "#EAE6F1", ink: "var(--nx-fg)", liquid: "#B5A8CF", label: "Sleep" },
-  butter:  { bg: "#DEE7F2", ink: "var(--nx-fg)", liquid: "#6EA0DD", label: "Growth" },
-  cobalt:  { bg: "#E8EDEF", ink: "var(--nx-fg)", liquid: "#8AABB6", label: "Longevity" },
-  mineral: { bg: "var(--nx-ice)", ink: "var(--nx-fg)", liquid: "#9DB3C2", label: "Metabolic" },
+  sage:    { bg: "var(--nx-vial-sage-bg)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-sage-liq)", label: "Recovery" },
+  rose:    { bg: "var(--nx-vial-rose-bg)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-rose-liq)", label: "Skin" },
+  sky:     { bg: "var(--nx-vial-sky-bg)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-sky-liq)", label: "Cognition" },
+  dusk:    { bg: "var(--nx-vial-dusk-bg)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-dusk-liq)", label: "Sleep" },
+  butter:  { bg: "var(--nx-vial-butter-bg)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-butter-liq)", label: "Growth" },
+  cobalt:  { bg: "var(--nx-vial-cobalt-bg)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-cobalt-liq)", label: "Longevity" },
+  mineral: { bg: "var(--nx-ice)", ink: "var(--nx-fg)", liquid: "var(--nx-vial-mineral-liq)", label: "Metabolic" },
 };
 
 /* Detect touch — we swap hover behavior for tap on mobile */
@@ -118,11 +118,11 @@ export function VialArt({
         </defs>
 
         {/* Aluminum crimp cap */}
-        <rect x="32" y="10" width="46" height="14" rx="2" fill="#B8BABB" />
-        <rect x="32" y="10" width="46" height="4" rx="1" fill="#9EA2A5" />
+        <rect x="32" y="10" width="46" height="14" rx="2" fill="var(--nx-vial-cap)" />
+        <rect x="32" y="10" width="46" height="4" rx="1" fill="var(--nx-vial-cap-shadow)" />
         {/* Rubber stopper */}
-        <rect x="35" y="24" width="40" height="16" rx="1" fill="#3B3B3B" />
-        <rect x="35" y="24" width="40" height="3" rx="1" fill="#1F1F1F" />
+        <rect x="35" y="24" width="40" height="16" rx="1" fill="var(--nx-vial-label)" />
+        <rect x="35" y="24" width="40" height="3" rx="1" fill="var(--nx-vial-label-shadow)" />
         {/* Neck */}
         <rect x="38" y="40" width="34" height="18" fill="rgba(255,255,255,0.9)" />
         <rect x="38" y="40" width="34" height="18" fill={`url(#glass-${tone})`} />
@@ -237,10 +237,10 @@ function VialTileInner({
   const reg = (() => {
     if (!fdaStatus) return null;
     const s = fdaStatus.toLowerCase();
-    if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "#E6F2F6", color: "#24596B", border: "#B0D2DD" };
-    if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "#DAE6F5", color: "#0F3F7A", border: "#8AB0DF" };
-    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "var(--nx-ice)", color: "#3D4A5C", border: "#C6D0DC" };
-    return { label: "Rx", bg: "var(--nx-ice)", color: "#3D4A5C", border: "#C6D0DC" };
+    if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "var(--nx-chip-fda-bg)", color: "var(--nx-chip-fda-fg)", border: "var(--nx-chip-fda-edge)" };
+    if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "var(--nx-chip-trial-bg)", color: "var(--nx-chip-trial-fg)", border: "var(--nx-chip-trial-edge)" };
+    if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "var(--nx-ice)", color: "var(--nx-chip-rx-fg)", border: "var(--nx-chip-rx-edge)" };
+    return { label: "Rx", bg: "var(--nx-ice)", color: "var(--nx-chip-rx-fg)", border: "var(--nx-chip-rx-edge)" };
   })();
   const [flipped, setFlipped] = useState(false);
   const isTouch = useIsTouch();

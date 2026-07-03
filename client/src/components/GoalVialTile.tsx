@@ -58,24 +58,24 @@ export function GoalVialTile({
   // Tint helpers — pull the tone palette from VialArt so tile + vial share a hue.
   // We keep VialArt as the source of truth; local defaults just mirror the visible cream/ink used inside VialArt so the surface reads as tinted at low density.
   const tintBg: Record<Tone, string> = {
-    cream:   "#E8EFF8",
-    sage:    "#E5EFF2",
-    rose:    "#E1E9F6",
-    sky:     "#DDE9F0",
-    dusk:    "#E4E1EC",
-    butter:  "#D2E3F8",
-    cobalt:  "#D9E2F2",
-    mineral: "#E4E9EC",
+    cream:   "var(--nx-tint-cream-bg)",
+    sage:    "var(--nx-tint-sage-bg)",
+    rose:    "var(--nx-tint-rose-bg)",
+    sky:     "var(--nx-tint-sky-bg)",
+    dusk:    "var(--nx-tint-dusk-bg)",
+    butter:  "var(--nx-tint-butter-bg)",
+    cobalt:  "var(--nx-tint-cobalt-bg)",
+    mineral: "var(--nx-tint-mineral-bg)",
   };
   const tintInk: Record<Tone, string> = {
-    cream:   "#18293E",
-    sage:    "#2E3E44",
-    rose:    "#2A3C5C",
-    sky:     "#1F3B52",
-    dusk:    "#3A2F4E",
-    butter:  "#162D4A",
-    cobalt:  "#1E2A55",
-    mineral: "#2A3841",
+    cream:   "var(--nx-tint-cream-ink)",
+    sage:    "var(--nx-tint-sage-ink)",
+    rose:    "var(--nx-tint-rose-ink)",
+    sky:     "var(--nx-tint-sky-ink)",
+    dusk:    "var(--nx-tint-dusk-ink)",
+    butter:  "var(--nx-tint-butter-ink)",
+    cobalt:  "var(--nx-tint-cobalt-ink)",
+    mineral: "var(--nx-tint-mineral-ink)",
   };
 
   const bg = tintBg[tone];
