@@ -79,6 +79,7 @@ export function Nav({ variant = "gate" }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [, location] = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const megaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -143,6 +144,36 @@ export function Nav({ variant = "gate" }: NavProps) {
   const scheduleCloseMega = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = setTimeout(() => setMegaOpen(false), 140);
+  };
+
+  // Roving arrow-key navigation between mega-menu links. Tab still works
+  // natively; arrows (and Home/End) let keyboard users move item-to-item.
+  const onMegaKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const nodes = megaRef.current?.querySelectorAll<HTMLElement>("a[href]");
+    if (!nodes || nodes.length === 0) return;
+    const items = Array.from(nodes);
+    const current = items.indexOf(document.activeElement as HTMLElement);
+    let next = -1;
+    switch (e.key) {
+      case "ArrowDown":
+      case "ArrowRight":
+        next = current < 0 ? 0 : (current + 1) % items.length;
+        break;
+      case "ArrowUp":
+      case "ArrowLeft":
+        next = current <= 0 ? items.length - 1 : current - 1;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = items.length - 1;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    items[next]?.focus();
   };
 
   return (
@@ -243,9 +274,11 @@ export function Nav({ variant = "gate" }: NavProps) {
       {/* ── Desktop Pharmacy mega-menu ── */}
       {megaOpen && (
         <div
+          ref={megaRef}
           className="hidden md:block absolute left-0 right-0 top-full"
           onMouseEnter={openMega}
           onMouseLeave={scheduleCloseMega}
+          onKeyDown={onMegaKeyDown}
           data-testid="nav-mega-pharmacy"
         >
           <div
