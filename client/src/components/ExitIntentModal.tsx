@@ -88,7 +88,7 @@ export function ExitIntentModal() {
             style={{
               position: "fixed",
               inset: 0,
-              zIndex: 200,
+              zIndex: "var(--nx-z-overlay)" as unknown as number,
               backgroundColor: "rgba(21, 24, 28,0.55)",
               backdropFilter: "blur(4px)",
             }}
@@ -108,7 +108,7 @@ export function ExitIntentModal() {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              zIndex: 201,
+              zIndex: "var(--nx-z-modal)" as unknown as number,
               width: "min(460px, calc(100vw - 32px))",
               backgroundColor: "var(--nx-bg-cream, var(--nx-ceramic))",
               borderRadius: "6px",

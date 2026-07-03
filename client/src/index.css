@@ -23,6 +23,15 @@
     --nx-t-h1:      clamp(38px, 5.2vw, 60px);
     --nx-t-display: clamp(44px, 6.4vw, 76px);        /* hero only */
 
+    /* ── Z layer scale — global stacking contexts only (local 1-5 stays raw) ── */
+    --nx-z-sticky:   30;   /* in-page sticky elements (pills bar) */
+    --nx-z-bar:      40;   /* fixed bars (mobile buy bar) */
+    --nx-z-nav:      50;   /* site nav + its dropdowns */
+    --nx-z-menu:     60;   /* mobile nav menu — must clear fixed bars */
+    --nx-z-progress: 100;  /* scroll-progress hairline */
+    --nx-z-overlay:  200;  /* modal / gate backdrops */
+    --nx-z-modal:    210;  /* modal panels above their backdrop */
+
     /* ══ D2 SPACING — 4px rhythm ══ */
     --nx-s-1: 4px;  --nx-s-2: 8px;   --nx-s-3: 12px; --nx-s-4: 16px;
     --nx-s-5: 20px; --nx-s-6: 24px;  --nx-s-8: 32px; --nx-s-10: 40px;
@@ -518,7 +527,7 @@
     left: 0;
     height: 2px;
     background: var(--nx-acid, #8FC6FF);
-    z-index: 100;
+    z-index: var(--nx-z-progress);
     transform-origin: 0 50%;
     transform: scaleX(var(--nx-scroll-progress, 0));
     transition: transform 60ms linear;
@@ -545,7 +554,7 @@
     padding: 0.75rem;
     min-width: 200px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    z-index: 50;
+    z-index: var(--nx-z-nav);
   }
 
   /* ── Category tile hover-lift (no CLS) ── */
@@ -1159,7 +1168,7 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
 .nx-drift { animation: nx-drift 26s ease-in-out infinite alternate; }
 .nx-drift.reverse { animation-direction: alternate-reverse; }
 @keyframes nx-drift { from { transform: translateX(1.6%); } to { transform: translateX(-1.6%); } }
-.nx-pills { position: sticky; top: 68px; z-index: 30; }
+.nx-pills { position: sticky; top: 68px; z-index: var(--nx-z-sticky); }
 @media (prefers-reduced-motion: reduce) { .nx-drift, .nx-ring-arc-lg { animation: none; stroke-dashoffset: 0; } }
 
 /* ═══ P3 — Aurora field + tinted glass (world-aware: everything derives from --nx-* tokens) ═══ */

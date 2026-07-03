@@ -160,7 +160,7 @@ export function BuyBox(props: BuyBoxProps) {
       <div
         className="lg:hidden"
         style={{
-          position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 40,
+          position: "fixed", left: 0, right: 0, bottom: 0, zIndex: "var(--nx-z-bar)" as unknown as number,
           background: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)",
           backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
           borderTop: "1px solid var(--nx-border)",

@@ -453,7 +453,7 @@ export function Nav({ variant = "gate" }: NavProps) {
       {/* ── Mobile full-screen drawer ── */}
       {menuOpen && (
         <div
-          className="md:hidden fixed left-0 right-0 bg-white z-40 flex flex-col"
+          className="md:hidden fixed left-0 right-0 bg-white z-[60] flex flex-col"
           style={{ top: "56px", height: "calc(100vh - 56px)", borderTop: "1px solid var(--nx-border)" }}
           data-testid="nav-mobile-drawer"
         >
