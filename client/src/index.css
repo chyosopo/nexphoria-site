@@ -661,9 +661,12 @@
     color: var(--nx-fg-muted);
   }
   .nx-input:focus {
-    outline: none;
     border-color: var(--nx-cobalt);
     box-shadow: 0 0 0 1px var(--nx-cobalt);
+  }
+  /* Suppress the outline only for pointer focus — keyboard focus keeps the D5 ring */
+  .nx-input:focus:not(:focus-visible) {
+    outline: none;
   }
   .nx-input:disabled {
     opacity: 0.5;

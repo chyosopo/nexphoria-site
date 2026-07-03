@@ -2187,7 +2187,7 @@ function GuideCapture() {
           ) : (
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <input type="email" placeholder="you@example.com" aria-label="Email address"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", minWidth: 240, outline: "none" }} />
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", minWidth: 240 }} />
               <button onClick={() => setSent(true)}
                 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-fg)", color: "var(--nx-bg)", cursor: "pointer" }}>
                 Get the guide

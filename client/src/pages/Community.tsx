@@ -412,7 +412,6 @@ export default function Community() {
                       border: "1px solid rgba(255,255,255,0.25)",
                       backgroundColor: "rgba(255,255,255,0.1)",
                       color: "var(--nx-ceramic)",
-                      outline: "none",
                     }}
                   />
                   <button

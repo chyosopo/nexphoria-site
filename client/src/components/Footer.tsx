@@ -100,7 +100,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 type="email"
                 placeholder="Your email"
                 aria-label="Email address for the newsletter"
-                className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-white/50 transition-colors"
                 style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
                 data-testid="footer-email-input"
               />

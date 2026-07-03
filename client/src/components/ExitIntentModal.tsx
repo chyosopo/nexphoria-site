@@ -221,7 +221,6 @@ export function ExitIntentModal() {
                       fontSize: "0.9375rem",
                       backgroundColor: "#FFFFFF",
                       color: "var(--nx-fg)",
-                      outline: "none",
                     }}
                     autoFocus
                   />
