@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   Info,
 } from "lucide-react";
+import { F } from "@/lib/typography";
 // Note: AssessmentParts exports shared UI pieces used by Assessment.tsx.
 // SEO for the assessment flow is set in Assessment.tsx.
 
@@ -40,11 +41,15 @@ const SIDEBAR_TILES = [
   { icon: ClipboardCheck, title: "Protocol designed within 5 days", desc: "Compounded and cold-chain shipped after physician sign-off." },
 ];
 
-// ─── Top labeled progress bar ──────────────────────────────────────────────
+// ─── Top progress bar — one continuous GPU-composited fill ─────────────────
+// hims-tier: a single calm track that grows with a transform: scaleX() fill
+// (compositor-only, no layout thrash), plus "step X of N" + the topic name.
 
 export function LabeledProgress({ step }: { step: number }) {
+  const total = STEP_LABELS.length; // 7
   // step 1..7 maps to STEP_LABELS index 0..6
-  const activeIndex = Math.min(Math.max(step - 1, 0), STEP_LABELS.length - 1);
+  const activeIndex = Math.min(Math.max(step - 1, 0), total - 1);
+  const pct = Math.max(0, Math.min(1, step / total));
   return (
     <div
       data-testid="assessment-progress"
@@ -52,59 +57,70 @@ export function LabeledProgress({ step }: { step: number }) {
         borderBottom: "1px solid var(--nx-border)",
         backgroundColor: "var(--nx-bg)",
         flexShrink: 0,
-        padding: "1rem 2rem",
+        padding: "0.875rem var(--nx-gutter)",
       }}
     >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <p
+      <div style={{ maxWidth: "640px", margin: "0 auto" }}>
+        <div
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "10px",
-            fontWeight: 700,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: "var(--nx-cobalt)",
-            marginBottom: "0.75rem",
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: "1rem",
+            marginBottom: "0.6rem",
           }}
         >
-          STEP {String(step).padStart(2, "0")}/07
-        </p>
+          <span
+            style={{
+              fontFamily: F,
+              fontSize: "var(--nx-t-xs)",
+              fontWeight: 700,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "var(--nx-cobalt)",
+            }}
+          >
+            Step {step} of {total}
+          </span>
+          <span
+            data-testid="assessment-progress-label"
+            className="assessment-progress-label"
+            style={{
+              fontFamily: F,
+              fontSize: "var(--nx-t-xs)",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "var(--nx-fg-muted)",
+              minWidth: 0,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {STEP_LABELS[activeIndex]}
+          </span>
+        </div>
         <div
-          className="assessment-progress-track"
-          style={{ display: "grid", gridTemplateColumns: `repeat(${STEP_LABELS.length}, 1fr)`, gap: "6px" }}
+          style={{
+            height: "4px",
+            borderRadius: "var(--nx-r-pill)",
+            backgroundColor: "var(--nx-border)",
+            overflow: "hidden",
+          }}
         >
-          {STEP_LABELS.map((label, i) => {
-            const done = i < activeIndex;
-            const current = i === activeIndex;
-            return (
-              <div key={label} data-testid={`assessment-progress-step-${i}`}>
-                <div
-                  style={{
-                    height: "3px",
-                    borderRadius: "100px",
-                    backgroundColor: done || current ? "var(--nx-cobalt)" : "var(--nx-border)",
-                    opacity: current ? 1 : done ? 0.7 : 1,
-                    transition: "background-color 0.3s",
-                    marginBottom: "0.5rem",
-                  }}
-                />
-                <p
-                  className="assessment-progress-label"
-                  style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
-                    fontWeight: current ? 700 : 500,
-                    letterSpacing: "0.05em",
-                    textTransform: "uppercase",
-                    color: current ? "var(--nx-fg)" : "var(--nx-fg-muted)",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {label}
-                </p>
-              </div>
-            );
-          })}
+          <div
+            data-testid="assessment-progress-fill"
+            style={{
+              height: "100%",
+              backgroundColor: "var(--nx-cobalt)",
+              borderRadius: "var(--nx-r-pill)",
+              transform: `scaleX(${pct})`,
+              transformOrigin: "left center",
+              transition: "transform var(--nx-dur-3) var(--nx-ease)",
+              willChange: "transform",
+            }}
+          />
         </div>
       </div>
     </div>
