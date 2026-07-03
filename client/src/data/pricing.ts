@@ -9,7 +9,7 @@
      12 months → ~50% off / month ("Best value", billed monthly)
    ────────────────────────────────────────────────────────────── */
 
-import { getSolo } from "@/data/soloCatalog";
+import { getSolo, SOLO_CATALOG } from "@/data/soloCatalog";
 import { getStack } from "@/data/stacksCatalog";
 
 export type CadenceKey = "1mo" | "3mo" | "12mo";
@@ -109,3 +109,11 @@ export function getPrice(slug: string): PeptidePricing | undefined {
 export function formatUSD(amount: number): string {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(amount);
 }
+
+/* Lowest shelf-priced single-peptide monthly (1-mo cadence). Single source for
+   the "single peptides from $X/mo" copy that recurs across the site, so the
+   headline "from" price can never drift from the catalog. Currently bpc-157 @ $149. */
+export const SOLO_FROM_PRICE: number = Math.min(
+  ...SOLO_CATALOG.filter((s) => s.pricing).map((s) => s.pricing!.m1),
+);
+export const SOLO_FROM_LABEL: string = formatUSD(SOLO_FROM_PRICE);

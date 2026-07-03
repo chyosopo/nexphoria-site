@@ -12,6 +12,7 @@ import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 import { F, FONT } from "@/lib/typography";
+import { SOLO_FROM_LABEL } from "@/data/pricing";
 
 const protocols = [
   {
@@ -420,7 +421,7 @@ const PRICING_FAQ_ITEMS = [
 export default function Pricing() {
   useSeo({
     title: "Peptide therapy pricing — transparent, all-in, no lab upsell",
-    description: "Single peptides from $149/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills all included. No hidden fees. Cancel before dispense.",
+    description: `Single peptides from ${SOLO_FROM_LABEL}/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills all included. No hidden fees. Cancel before dispense.`,
     path: "/pricing",
     jsonLd: [
       webPageJsonLd({
@@ -1191,7 +1192,7 @@ export default function Pricing() {
 
 /* ── PRICING PLAN COMPARISON TABLE — semantic, AI-liftable ──────── */
 const PLAN_COMPARISON_ROWS = [
-  { feature: "Monthly cost (per peptide)", solo: "From $149/mo", stack: "From $279/mo", custom: "From $349/mo" },
+  { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: "From $279/mo", custom: "From $349/mo" },
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },

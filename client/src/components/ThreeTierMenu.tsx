@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { SOLO_FROM_LABEL } from "@/data/pricing";
 
 /* Three-tier pharmacy menu — surfaces the new positioning on every home page:
    1. Single peptides (catalog)
@@ -38,7 +39,7 @@ export function ThreeTierMenu({ gender }: ThreeTierMenuProps) {
       cta: "Browse the catalog",
       href: peptidesHref,
       testid: "tier-peptides",
-      meta: "16 peptides · from $149/mo",
+      meta: `16 peptides · from ${SOLO_FROM_LABEL}/mo`,
     },
     {
       num: "02",
