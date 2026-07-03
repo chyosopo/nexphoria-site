@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ResponsiveContainer, LineChart, Line, YAxis, ReferenceArea } from "recharts";
 import { FONT } from "@/lib/typography";
 
@@ -188,7 +189,7 @@ function Delta({ history }: { history: number[] }) {
 }
 
 /* ── The card ───────────────────────────────────────────────── */
-export function BiomarkerCard({ m }: { m: Biomarker }) {
+function BiomarkerCardInner({ m }: { m: Biomarker }) {
   const meta = STATUS_META[m.status];
   const testId = `biomarker-${(m.abbr || m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 
@@ -314,5 +315,8 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
     </div>
   );
 }
+
+/* m is a stable object from the BIOMARKERS catalog — shallow memo is safe. */
+export const BiomarkerCard = memo(BiomarkerCardInner);
 
 export default BiomarkerCard;

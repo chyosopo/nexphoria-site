@@ -1,10 +1,11 @@
+import { memo } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import type { Stack } from "@/lib/protocols";
 import { MoleculeIcon, moleculeVariantFor } from "./MoleculeIcon";
 import { getPeptidesForStack } from "@/lib/protocols";
 
-export function StackCard({ stack, variant = "light" }: { stack: Stack; variant?: "light" | "dark" }) {
+function StackCardInner({ stack, variant = "light" }: { stack: Stack; variant?: "light" | "dark" }) {
   const peptides = getPeptidesForStack(stack);
   const isDark = variant === "dark";
 
@@ -64,3 +65,6 @@ export function StackCard({ stack, variant = "light" }: { stack: Stack; variant?
     </Link>
   );
 }
+
+/* stack is a stable catalog object, variant a primitive — shallow memo is safe. */
+export const StackCard = memo(StackCardInner);

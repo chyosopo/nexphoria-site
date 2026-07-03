@@ -12,7 +12,7 @@
      - Both faces are fully accessible; back is aria-hidden until flipped
    ────────────────────────────────────────────────────────────── */
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, memo } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
@@ -215,7 +215,7 @@ export interface VialTileProps {
   testId?: string;
 }
 
-export function VialTile({
+function VialTileInner({
   href,
   name,
   fullName,
@@ -790,6 +790,10 @@ export function VialTile({
     </div>
   );
 }
+
+/* All props are primitives (strings/numbers), so a shallow-compare memo skips
+   re-renders when a cart mutation elsewhere re-renders the tile list. */
+export const VialTile = memo(VialTileInner);
 
 /* Utility — map peptide category to a Tone */
 export function categoryToTone(cat: string): Tone {
