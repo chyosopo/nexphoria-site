@@ -8,6 +8,8 @@ import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK } from "@/data/outcomeImagery";
+import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
+import vialLineupMaster from "@/assets/brand/vial-lineup-master.webp";
 
 const ALL_CATEGORIES = ["All", "Recovery", "Skin", "Growth", "Cognitive", "Longevity", "Metabolic", "Sleep"];
 const matchCat = (c: string, filter: string) => filter === "All" || c.toLowerCase().includes(filter.toLowerCase());
@@ -34,14 +36,22 @@ export default function ProtocolsIndex() {
     <SiteLayout>
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(3rem,6vw,5rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
-          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.8rem" }}>
-            Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
-          </h1>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
-            A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. Not a cart of vials. A plan.
-          </p>
+        <div className="nx-container relative" style={{ padding: "clamp(3rem,6vw,5rem) 0 clamp(1.8rem,3vw,2.6rem)", zIndex: 1 }}>
+          <div className="nx-hero-split nx-hero-seq">
+            <div>
+              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+                Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
+              </h1>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
+                A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. Not a cart of vials. A plan.
+              </p>
+            </div>
+            <div className="nx-hero-media nx-hero-frame" style={{ aspectRatio: "5 / 4" }}>
+              <img src={vialLineupHero} alt="The Nexphoria protocol vial lineup" fetchPriority="high" width={1600} height={1280} />
+              <div className="nx-gradient-overlay tint" aria-hidden />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -87,28 +97,31 @@ export default function ProtocolsIndex() {
 
       {/* grid */}
       <section className="nx-container" style={{ padding: "1rem 0 4rem" }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
           {shown.map((s, i) => {
             const rec = s.cadences.find((c) => c.key === "3mo");
             return (
               <Reveal key={s.slug} delay={i * 50}>
-                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-protocol-card" style={{ height: "100%", display: "flex", flexDirection: "column", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", boxShadow: "var(--nx-e-2)", textDecoration: "none" }}>
-                  {OUTCOME_STACK[s.slug] && (
-                    <div style={{ position: "relative", aspectRatio: "4 / 3", overflow: "hidden" }}>
-                      <img src={OUTCOME_STACK[s.slug]} alt="" aria-hidden loading="lazy" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                      {s.gated && (
-                        <span style={{ position: "absolute", top: 12, right: 12, display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-ceramic)", background: "color-mix(in srgb, var(--nx-fg) 62%, transparent)", backdropFilter: "blur(6px)", borderRadius: "var(--nx-r-pill)", padding: "4px 10px" }}>
-                          <Lock size={11} /> Assessed
-                        </span>
-                      )}
+                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-product-card">
+                  <div className="nx-product-card__media tall">
+                    {OUTCOME_STACK[s.slug] && (
+                      <img src={OUTCOME_STACK[s.slug]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                    )}
+                    <div className="nx-gradient-overlay soft" aria-hidden />
+                    <span style={{ position: "absolute", top: 14, left: 14, fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{s.category}</span>
+                    {s.gated && (
+                      <span style={{ position: "absolute", top: 12, right: 12, display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-ceramic)", background: "color-mix(in srgb, var(--nx-fg) 62%, transparent)", backdropFilter: "blur(6px)", borderRadius: "var(--nx-r-pill)", padding: "4px 10px" }}>
+                        <Lock size={11} /> Assessed
+                      </span>
+                    )}
+                    <div style={{ position: "absolute", left: 16, right: 16, bottom: 14 }}>
+                      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-ceramic)", lineHeight: 1.02 }}>{s.name}</h2>
+                      <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-ceramic)", opacity: 0.86, marginTop: "0.1rem" }}>{s.tagline}</p>
                     </div>
-                  )}
-                  <div style={{ padding: "1.1rem 1.2rem 1.3rem", display: "flex", flexDirection: "column", flex: 1 }}>
-                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
-                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.05 }}>{s.name}</h2>
-                    <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-cobalt)", marginTop: "0.1rem" }}>{s.tagline}</p>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.6rem", flex: 1 }}>{s.bestFor}</p>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem" }}>
+                  </div>
+                  <div className="nx-product-card__body">
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", flex: 1 }}>{s.bestFor}</p>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem", paddingTop: "0.9rem", borderTop: "1px solid var(--nx-border)" }}>
                       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>
                         {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
                       </p>
@@ -119,20 +132,24 @@ export default function ProtocolsIndex() {
               </Reveal>
             );
           })}
-          {/* Build-your-own tile — fills the orphan grid slot and offers the custom path (visual-QA finding). Only when no filter narrows the set. */}
+          {/* Build-your-own tile — same tall product silhouette, vial imagery under an ink wash. */}
           {filter === "All" && (
-            <Reveal delay={shown.length * 50} className="md:col-span-1 lg:col-span-2">
-              <Link href="/stacks/build" data-testid="protocol-build" className="nx-protocol-card" style={{ height: "100%", display: "flex", alignItems: "stretch", borderRadius: "var(--nx-r-lg)", overflow: "hidden", border: "1px dashed var(--nx-border)", background: "transparent", textDecoration: "none" }}>
-                {/* left: intent copy */}
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", padding: "1.6rem 1.6rem" }}>
-                  <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Custom</p>
-                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.05 }}>Build your own</h2>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.6rem", maxWidth: "46ch" }}>Start from a goal and assemble a stack around it — a physician reviews it with the same panel and oversight as a flagship.</p>
+            <Reveal delay={shown.length * 50}>
+              <Link href="/stacks/build" data-testid="protocol-build" className="nx-product-card">
+                <div className="nx-product-card__media tall">
+                  <img src={vialLineupMaster} alt="" aria-hidden loading="lazy" width={1600} height={2000} />
+                  <div className="nx-gradient-overlay tint" aria-hidden />
+                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "1.4rem 1.4rem 1.5rem" }}>
+                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-ceramic)", opacity: 0.82 }}>Custom</p>
+                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-ceramic)", marginTop: "0.3rem", lineHeight: 1.02 }}>Build your own</h2>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-ceramic)", opacity: 0.9, marginTop: "0.55rem", maxWidth: "34ch" }}>Start from a goal and assemble a stack around it — a physician reviews it with the same panel and oversight as a flagship.</p>
+                  </div>
                 </div>
-                {/* right: action rail */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: "0.7rem", padding: "1.6rem 1.6rem", borderLeft: "1px solid var(--nx-border)", minWidth: 210, background: "var(--nx-cobalt-soft)" }}>
-                  <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Physician-reviewed</p>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-ceramic)", background: "var(--nx-cobalt)", borderRadius: "var(--nx-r-pill)", padding: "10px 18px" }}>Start building <ArrowRight size={16} /></span>
+                <div className="nx-product-card__body">
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>Physician-reviewed</p>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building <ArrowRight size={16} /></span>
+                  </div>
                 </div>
               </Link>
             </Reveal>
