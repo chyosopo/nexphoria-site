@@ -949,7 +949,7 @@ function BloodworkManifesto() {
   return (
     <section
       className="relative overflow-hidden"
-      style={{ background: "var(--nx-black)", color: "var(--nx-ceramic)" }}
+      style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)" }}
     >
       <div className="h-16 md:h-20" />
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center pb-16 md:pb-24">
@@ -1013,7 +1013,7 @@ function BloodworkManifesto() {
               className="inline-flex items-center gap-2"
               style={{
                 background: "var(--nx-acid)",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 padding: "18px 30px",
                 borderRadius: "999px",
                 fontFamily: "'General Sans', system-ui, sans-serif",
@@ -1157,7 +1157,7 @@ function BloodworkPillars() {
             fontSize: "clamp(40px, 5vw, 64px)",
             lineHeight: 1.02,
             letterSpacing: "-0.03em",
-            color: "var(--nx-black)",
+            color: "var(--nx-fg)",
             margin: 0,
             maxWidth: "22ch",
           }}
@@ -1188,7 +1188,7 @@ function BloodworkPillars() {
                   fontSize: "clamp(22px, 2.4vw, 28px)",
                   lineHeight: 1.12,
                   letterSpacing: "-0.02em",
-                  color: "var(--nx-black)",
+                  color: "var(--nx-fg)",
                   margin: 0,
                 }}
                 dangerouslySetInnerHTML={{ __html: it.title }}
@@ -1313,7 +1313,7 @@ function BloodworkPricing() {
                 fontSize: "clamp(40px, 5vw, 64px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 margin: 0,
                 maxWidth: "22ch",
               }}
@@ -1341,8 +1341,8 @@ function BloodworkPricing() {
               key={t.name}
               className="relative flex flex-col"
               style={{
-                background: t.dark ? "var(--nx-black)" : "var(--nx-ceramic)",
-                color: t.dark ? "var(--nx-ceramic)" : "var(--nx-black)",
+                background: t.dark ? "var(--nx-fg)" : "var(--nx-ceramic)",
+                color: t.dark ? "var(--nx-ceramic)" : "var(--nx-fg)",
                 borderRadius: 20,
                 padding: "36px 32px",
                 border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(21, 24, 28,0.08)",
@@ -1354,8 +1354,8 @@ function BloodworkPricing() {
                   className="absolute"
                   style={{
                     top: -12, left: 24,
-                    background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-black)"),
-                    color: t.accent ? "var(--nx-black)" : (t.dark ? "var(--nx-black)" : "var(--nx-ceramic)"),
+                    background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-fg)"),
+                    color: t.accent ? "var(--nx-fg)" : (t.dark ? "var(--nx-fg)" : "var(--nx-ceramic)"),
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600, fontSize: "11px",
                     letterSpacing: "0.08em",
@@ -1437,7 +1437,7 @@ function BloodworkPricing() {
                       style={{
                         flexShrink: 0,
                         marginTop: 2,
-                        color: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-acid)" : "var(--nx-black)"),
+                        color: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-acid)" : "var(--nx-fg)"),
                       }}
                     />
                     <span>{f}</span>
@@ -1450,8 +1450,8 @@ function BloodworkPricing() {
                   href={t.href}
                   className="inline-flex items-center justify-center gap-2 w-full"
                   style={{
-                    background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-black)"),
-                    color: t.accent ? "var(--nx-black)" : (t.dark ? "var(--nx-black)" : "var(--nx-ceramic)"),
+                    background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-fg)"),
+                    color: t.accent ? "var(--nx-fg)" : (t.dark ? "var(--nx-fg)" : "var(--nx-ceramic)"),
                     padding: "16px 24px",
                     borderRadius: 999,
                     fontFamily: "'General Sans', system-ui, sans-serif",
@@ -1535,7 +1535,7 @@ function BloodworkInsurance() {
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               margin: 0,
             }}
           >
@@ -1578,7 +1578,7 @@ function BloodworkInsurance() {
               },
             ].map((row) => (
               <div key={row.title} className="flex items-start gap-4">
-                <Check size={20} strokeWidth={2.5} style={{ flexShrink: 0, marginTop: 2, color: "var(--nx-black)" }} />
+                <Check size={20} strokeWidth={2.5} style={{ flexShrink: 0, marginTop: 2, color: "var(--nx-fg)" }} />
                 <div>
                   <div
                     style={{
@@ -1586,7 +1586,7 @@ function BloodworkInsurance() {
                       fontWeight: 600,
                       fontSize: "16px",
                       letterSpacing: "-0.01em",
-                      color: "var(--nx-black)",
+                      color: "var(--nx-fg)",
                     }}
                   >
                     {row.title}

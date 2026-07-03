@@ -76,7 +76,7 @@
     --nx-rust:         #7FA3C0;
 
     /* ── V3 tokens — locked minimal palette (locked palette) ── */
-    --nx-black:        #16283E;
+    /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
     --nx-ceramic:      #F7F3E9;
     --nx-rock:         #D5DFE8;
     --nx-acid:         #A9C6DE;
@@ -140,7 +140,7 @@
     --nx-sage:         #ECE5E8;
     --nx-sage-edge:    #D3C9CD;
     --nx-rust:         #D0A2B4;
-    --nx-black:        #35212E;
+    /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
     --nx-ceramic:      #FCF3F7;
     --nx-rock:         #F1E7EB;
     --nx-acid:         #F0CBDB;

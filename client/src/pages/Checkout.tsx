@@ -293,7 +293,7 @@ export default function Checkout() {
                         role="alert"
                         data-testid="notice-glp1-state"
                         className="mt-4 p-4 rounded-lg"
-                        style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-line)", fontFamily: FONT }}
+                        style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", fontFamily: FONT }}
                       >
                         <div className="text-sm font-semibold mb-1" style={{ color: "var(--nx-fg)" }}>
                           Not available in {enteredState.toUpperCase()}

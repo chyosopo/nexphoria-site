@@ -374,7 +374,7 @@ function PanelExplorer() {
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
                 fontWeight: 500,
-                color: "var(--nx-ink)",
+                color: "var(--nx-fg)",
                 marginBottom: "0.9rem",
               }}
             >
@@ -405,7 +405,7 @@ function PanelExplorer() {
             flexWrap: "wrap",
             marginBottom: "2.5rem",
             paddingBottom: "1.25rem",
-            borderBottom: "1px solid var(--nx-line)",
+            borderBottom: "1px solid var(--nx-border)",
           }}
         >
           {chips.map((c) => {
@@ -424,9 +424,9 @@ function PanelExplorer() {
                   letterSpacing: "0.01em",
                   padding: "0.55rem 1.05rem",
                   borderRadius: 999,
-                  border: `1px solid ${isActive ? "var(--nx-ink)" : "var(--nx-line)"}`,
-                  backgroundColor: isActive ? "var(--nx-ink)" : "transparent",
-                  color: isActive ? "var(--nx-ceramic)" : "var(--nx-ink)",
+                  border: `1px solid ${isActive ? "var(--nx-fg)" : "var(--nx-border)"}`,
+                  backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
+                  color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
                   cursor: "pointer",
                   transition: "all 200ms cubic-bezier(0.2, 0.65, 0.3, 1)",
                 }}
@@ -477,7 +477,7 @@ function PanelExplorer() {
                         fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)",
                         letterSpacing: "-0.01em",
                         fontWeight: 500,
-                        color: "var(--nx-ink)",
+                        color: "var(--nx-fg)",
                       }}
                     >
                       {cat.name}
@@ -492,7 +492,7 @@ function PanelExplorer() {
                       fontWeight: 500,
                       color: "var(--nx-ink-2)",
                       padding: "0.25rem 0.55rem",
-                      border: "1px solid var(--nx-line)",
+                      border: "1px solid var(--nx-border)",
                       borderRadius: 999,
                     }}
                   >
@@ -532,13 +532,13 @@ function PanelExplorer() {
                         fontFamily: FONT,
                         fontSize: 12.5,
                         lineHeight: 1.4,
-                        color: "var(--nx-ink)",
+                        color: "var(--nx-fg)",
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
                         gap: 8,
                         padding: "0.35rem 0",
-                        borderTop: "1px solid var(--nx-line)",
+                        borderTop: "1px solid var(--nx-border)",
                       }}
                     >
                       <span>{m.name}</span>
@@ -566,7 +566,7 @@ function PanelExplorer() {
                         color: "var(--nx-ink-2)",
                         letterSpacing: "0.02em",
                         padding: "0.35rem 0",
-                        borderTop: "1px solid var(--nx-line)",
+                        borderTop: "1px solid var(--nx-border)",
                       }}
                     >
                       + {cat.markers.length - 6} more
@@ -585,7 +585,7 @@ function PanelExplorer() {
               marginTop: "3rem",
               padding: "2rem",
               backgroundColor: "var(--nx-surface)",
-              border: "1px solid var(--nx-line)",
+              border: "1px solid var(--nx-border)",
               borderRadius: 12,
               display: "grid",
               gap: "1.25rem",
@@ -600,7 +600,7 @@ function PanelExplorer() {
                 fontSize: "clamp(2.6rem, 4.5vw, 3.4rem)",
                 fontWeight: 500,
                 letterSpacing: "-0.03em",
-                color: "var(--nx-ink)",
+                color: "var(--nx-fg)",
                 lineHeight: 0.9,
                 ...NUM,
               }}
@@ -626,7 +626,7 @@ function PanelExplorer() {
                   fontFamily: FONT,
                   fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)",
                   lineHeight: 1.55,
-                  color: "var(--nx-ink)",
+                  color: "var(--nx-fg)",
                 }}
               >
                 Biomarkers are measurable indicators in your blood that signal how well every
@@ -768,7 +768,7 @@ function HowItWorks() {
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
                 fontWeight: 500,
-                color: "var(--nx-ink)",
+                color: "var(--nx-fg)",
               }}
             >
               Prove it, prescribe it, retest it.
@@ -789,7 +789,7 @@ function HowItWorks() {
                 data-testid={`how-step-${s.n}`}
                 style={{
                   backgroundColor: "var(--nx-surface)",
-                  border: "1px solid var(--nx-line)",
+                  border: "1px solid var(--nx-border)",
                   borderRadius: 12,
                   padding: "1.75rem 1.5rem",
                   minHeight: 260,
@@ -815,7 +815,7 @@ function HowItWorks() {
                     fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)",
                     fontWeight: 500,
                     letterSpacing: "-0.01em",
-                    color: "var(--nx-ink)",
+                    color: "var(--nx-fg)",
                     marginBottom: "0.6rem",
                   }}
                 >
@@ -885,7 +885,7 @@ function WhyItMatters() {
                 data-testid={`why-tile-${v.k.toLowerCase().replace(/\s+/g, "-")}`}
                 style={{
                   backgroundColor: "var(--nx-bg)",
-                  border: "1px solid var(--nx-line)",
+                  border: "1px solid var(--nx-border)",
                   borderRadius: 12,
                   padding: "1.5rem 1.4rem",
                   minHeight: 170,
@@ -894,7 +894,7 @@ function WhyItMatters() {
                 <Check
                   size={18}
                   strokeWidth={2}
-                  style={{ color: "var(--nx-ink)", marginBottom: "0.75rem" }}
+                  style={{ color: "var(--nx-fg)", marginBottom: "0.75rem" }}
                 />
                 <h3
                   style={{
@@ -902,7 +902,7 @@ function WhyItMatters() {
                     fontSize: 15,
                     fontWeight: 500,
                     letterSpacing: "-0.005em",
-                    color: "var(--nx-ink)",
+                    color: "var(--nx-fg)",
                     marginBottom: "0.5rem",
                   }}
                 >
@@ -1008,7 +1008,7 @@ function SystemsMosaic() {
     <section id="panel" className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
-        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-black)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           One draw. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Eleven</em> windows into you.
         </h2>
         <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1021,7 +1021,7 @@ function SystemsMosaic() {
                 </span>
                 <span className="block px-1.5 pt-2.5 pb-1">
                   <span className="flex items-baseline justify-between gap-2">
-                    <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-black)" }}>{cat.name}</span>
+                    <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-fg)" }}>{cat.name}</span>
                     <span style={{ fontFamily: FONT, fontSize: 11, fontWeight: 600, color: ink, whiteSpace: "nowrap" }}>{cat.markers.length} markers</span>
                   </span>
                   <span className="block mt-0.5" style={{ fontFamily: FONT, fontSize: 11.5, lineHeight: 1.4, color: ink, opacity: 0.85 }}>
@@ -1031,7 +1031,7 @@ function SystemsMosaic() {
               </a>
             );
           })}
-          <a href="/#/assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-black)", borderRadius: 18, padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
+          <a href="/#/assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-fg)", borderRadius: 18, padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
             <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 19, lineHeight: 1.15, color: "var(--nx-bg)" }}>
               Re-tested every <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>90 days.</em>
             </span>
@@ -1056,7 +1056,7 @@ function ResultsDashboard() {
   const spark = [96, 91, 82, 72];
   const pts = spark.map((v, i) => `${20 + i * 86},${104 - (v - 60) * 1.6}`).join(" ");
   return (
-    <section id="results" className="nx-section" style={{ background: "var(--nx-black)" }}>
+    <section id="results" className="nx-section" style={{ background: "var(--nx-fg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow" style={{ color: "rgba(243, 245, 247,0.55)" }}>Your results</p>
         <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
@@ -1116,12 +1116,12 @@ function OfferStack() {
     "Draw at 2,000+ partner locations, on your schedule",
   ];
   return (
-    <section id="offer" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-line)" }}>
+    <section id="offer" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
       <div className="nx-container">
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4.5vw,3.4rem)" }}>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-black)" }}>
+              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
                 Everything your body has been <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>trying to tell you.</em>
               </h2>
               <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
@@ -1169,7 +1169,7 @@ function ActionPlan() {
           <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(243, 245, 247,0.45)", borderRadius: 18, filter: "blur(0.5px)" }} aria-hidden />
           <div className="relative nx-rise" style={{ background: "var(--nx-ceramic)", borderRadius: 18, padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(21, 24, 28,0.45)" }}>
             <div className="flex items-center justify-between gap-4">
-              <p style={{ fontFamily: FONT, fontSize: 16, lineHeight: 1.5, color: "var(--nx-black)", fontWeight: 500, margin: 0 }}>
+              <p style={{ fontFamily: FONT, fontSize: 16, lineHeight: 1.5, color: "var(--nx-fg)", fontWeight: 500, margin: 0 }}>
                 Front-load protein within an hour of waking — steadier glucose, stronger recovery.
               </p>
               <ArrowRight size={18} strokeWidth={2} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
@@ -1249,7 +1249,7 @@ function MarkerWall() {
         ))}
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: 20, padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)", minWidth: 260 }}>
-        <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-black)", margin: 0 }}>Out of range → In range</p>
+        <p style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-fg)", margin: 0 }}>Out of range → In range</p>
         <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
           <line x1="30" y1="22" x2="180" y2="48" stroke="var(--nx-amber)" strokeWidth="1.6" strokeDasharray="4 5" />
           <circle cx="30" cy="22" r="7" fill="var(--nx-ceramic)" stroke="var(--nx-rust)" strokeWidth="2.5" />
@@ -1266,7 +1266,7 @@ function MarkerWall() {
 function SectionPills() {
   const items = [["The panel", "#panel"], ["Your results", "#results"], ["Your plan", "#plan"], ["What it surfaces", "#surface"], ["Get started", "#offer"]];
   return (
-    <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-line)" }}>
+    <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-border)" }}>
       <div className="nx-container flex gap-2 overflow-x-auto" style={{ padding: "10px 0", scrollbarWidth: "none" }}>
         {items.map(([t, h]) => (
           <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "rgba(152, 182, 213,0.18)", border: "1px solid rgba(73, 110, 148,0.2)", borderRadius: 999, padding: "7px 15px" }}>

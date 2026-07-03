@@ -149,7 +149,7 @@ export default function Category() {
       <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }}>
         <div className="nx-container" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(2.5rem,5vw,4rem)" }}>
           <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
-          <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-black)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
+          <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
             {cfg.pre}{" "}
             <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
           </h1>
@@ -174,14 +174,14 @@ export default function Category() {
       </section>
 
       {/* ── Three steps ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-line)" }}>
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container">
           <p className="nx-eyebrow">How it works</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map(([t, d], i) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.6rem 1.5rem" }}>
                 <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-amber)", lineHeight: 1 }}>{i + 1}</div>
-                <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: "var(--nx-black)", marginTop: "0.8rem" }}>{t}</h3>
+                <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: "var(--nx-fg)", marginTop: "0.8rem" }}>{t}</h3>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
               </div>
             ))}
@@ -223,7 +223,7 @@ export default function Category() {
               <Link key={p.slug} href={`/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 21, color: "var(--nx-black)" }}>{p.name}</h3>
+                    <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 21, color: "var(--nx-fg)" }}>{p.name}</h3>
                     <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{p.tagline}</p>
                   </div>
                   <span className="nx-icon-chip" style={{ width: 36, height: 36 }} aria-hidden>
@@ -245,13 +245,13 @@ export default function Category() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-line)" }}>
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container" style={{ maxWidth: 860 }}>
           <p className="nx-eyebrow">Questions, answered</p>
           <div className="mt-6">
             {cfg.faqs.map((f) => (
-              <details key={f.q} className="group" style={{ borderBottom: "1px solid var(--nx-line)", padding: "1.1rem 0" }}>
-                <summary className="flex items-center justify-between cursor-pointer list-none" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16.5, color: "var(--nx-black)" }}>
+              <details key={f.q} className="group" style={{ borderBottom: "1px solid var(--nx-border)", padding: "1.1rem 0" }}>
+                <summary className="flex items-center justify-between cursor-pointer list-none" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16.5, color: "var(--nx-fg)" }}>
                   {f.q}
                   <span aria-hidden className="transition-transform duration-300 group-open:rotate-45" style={{ color: "var(--nx-cobalt)", fontSize: 22, lineHeight: 1 }}>+</span>
                 </summary>
@@ -266,7 +266,7 @@ export default function Category() {
       <section className="nx-section">
         <div className="nx-container">
           <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", textAlign: "center" }}>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-black)" }}>
+            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-fg)" }}>
               One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
             </h2>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 16, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>

@@ -125,7 +125,7 @@ function PromoBar() {
   return (
     <div
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         color: "var(--nx-ceramic)",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
@@ -178,7 +178,7 @@ function FloatingResultCards() {
         >
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
             <span style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-muted)", fontWeight: 600 }}>{c.label}</span>
-            <span style={{ fontSize: 15, fontWeight: 700, color: "var(--nx-black)", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{c.delta}</span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: "var(--nx-fg)", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{c.delta}</span>
           </div>
           <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 6 }}>
             <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "#2A667A", display: "inline-block" }} />
@@ -238,7 +238,7 @@ function Hero() {
             fontSize: "clamp(50px, 7.2vw, 96px)",
             lineHeight: 1.04,
             letterSpacing: "-0.015em",
-            color: "var(--nx-black)",
+            color: "var(--nx-fg)",
             margin: 0,
             maxWidth: "18ch",
           }}
@@ -268,7 +268,7 @@ function Hero() {
             className="inline-flex items-center gap-2"
             style={{
               background: "var(--nx-acid)",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               padding: "14px 22px",
               borderRadius: "999px",
               fontWeight: 600,
@@ -285,7 +285,7 @@ function Hero() {
             className="inline-flex items-center gap-2 border rounded-full px-6 py-3.5"
             style={{
               borderColor: "rgba(21, 24, 28,0.14)",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               fontWeight: 500,
               fontSize: "15px",
             }}
@@ -329,7 +329,7 @@ function TrustBar() {
     <section
       aria-label="Trust signals"
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         color: "var(--nx-ceramic)",
         overflow: "hidden",
         borderTop: "1px solid rgba(255,255,255,0.06)",
@@ -476,7 +476,7 @@ function GoalTiles() {
               fontSize: "clamp(40px, 5.2vw, 64px)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               margin: 0,
             }}
           >
@@ -571,7 +571,7 @@ function GoalTiles() {
                     width: 28,
                     height: 28,
                     background: "var(--nx-acid)",
-                    color: "var(--nx-black)",
+                    color: "var(--nx-fg)",
                   }}
                 >
                   <ArrowUpRight size={14} strokeWidth={2} />
@@ -591,7 +591,7 @@ function FlagshipDark() {
     <section
       data-testid="flagship-dark"
       style={{
-        backgroundColor: "var(--nx-black)",
+        backgroundColor: "var(--nx-fg)",
         color: "var(--nx-ceramic)",
         paddingTop: "clamp(4rem, 7vw, 6.5rem)",
         paddingBottom: "clamp(4rem, 7vw, 6.5rem)",
@@ -626,7 +626,7 @@ function FlagshipDark() {
                 ))}
               </ul>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
-                <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-black)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-fg)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See Wolverine <ArrowRight size={14} strokeWidth={2} />
                 </Link>
                 <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: 14, fontWeight: 500, letterSpacing: "0.02em", color: "var(--nx-ceramic)", padding: "0.9rem 1.4rem", border: "1px solid rgba(246, 249, 252,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
@@ -677,7 +677,7 @@ function HowItWorks() {
       aria-labelledby="how-it-works-heading"
       className="py-24 md:py-32 border-t"
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         borderColor: "rgba(246, 249, 252,0.06)",
         color: "var(--nx-ceramic)",
       }}
@@ -828,7 +828,7 @@ function ScienceStrip() {
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               margin: 0,
             }}
           >
@@ -864,7 +864,7 @@ function ScienceStrip() {
                     fontSize: "clamp(28px, 3vw, 40px)",
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
-                    color: "var(--nx-black)",
+                    color: "var(--nx-fg)",
                   }}
                 >
                   {s.n}
@@ -893,7 +893,7 @@ function ScienceStrip() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "15px",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 borderBottom: "1px solid rgba(21, 24, 28,0.3)",
                 paddingBottom: 2,
               }}
@@ -948,7 +948,7 @@ function FeaturedStack() {
                 fontSize: "clamp(40px, 5vw, 60px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 margin: 0,
               }}
             >
@@ -1008,7 +1008,7 @@ function FeaturedStack() {
                 href="/stacks/wolverine"
                 className="inline-flex items-center gap-2 rounded-full px-6 py-4"
                 style={{
-                  background: "var(--nx-black)",
+                  background: "var(--nx-fg)",
                   color: "var(--nx-ceramic)",
                   fontWeight: 500,
                   fontSize: "15px",
@@ -1062,7 +1062,7 @@ function Numbers() {
     <section
       className="py-20 md:py-28 border-t"
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         borderColor: "rgba(246, 249, 252,0.06)",
       }}
     >
@@ -1172,7 +1172,7 @@ function PhysicianStrip() {
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               margin: 0,
             }}
           >
@@ -1201,7 +1201,7 @@ function PhysicianStrip() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "15px",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 borderBottom: "1px solid rgba(21, 24, 28,0.3)",
                 paddingBottom: 2,
               }}
@@ -1223,7 +1223,7 @@ function FinalCta() {
     <section
       className="py-32 md:py-44 border-t"
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         borderColor: "rgba(246, 249, 252,0.06)",
         color: "var(--nx-ceramic)",
       }}
@@ -1261,7 +1261,7 @@ function FinalCta() {
             className="inline-flex items-center gap-2"
             style={{
               background: "var(--nx-acid)",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               padding: "18px 30px",
               borderRadius: "999px",
               fontWeight: 600,
@@ -1285,7 +1285,7 @@ function PrecisionStrip() {
     <section
       className="py-24 md:py-32 border-t"
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         color: "var(--nx-ceramic)",
         borderColor: "rgba(246, 249, 252,0.06)",
       }}
@@ -1442,7 +1442,7 @@ function MorningRitual() {
               fontSize: "clamp(36px, 4.6vw, 56px)",
               lineHeight: 1.02,
               letterSpacing: "-0.03em",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               margin: 0,
             }}
           >
@@ -1472,7 +1472,7 @@ function MorningRitual() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
                 fontSize: "15px",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 borderBottom: "1px solid rgba(21, 24, 28,0.3)",
                 paddingBottom: 2,
               }}
@@ -1515,7 +1515,7 @@ function BloodworkPillar() {
   return (
     <section
       style={{
-        background: "var(--nx-black)",
+        background: "var(--nx-fg)",
         color: "var(--nx-ceramic)",
         padding: "clamp(80px, 12vw, 160px) 0",
         position: "relative",
@@ -1627,7 +1627,7 @@ function BloodworkPillar() {
                     alignItems: "center",
                     gap: 10,
                     background: "var(--nx-acid)",
-                    color: "var(--nx-black)",
+                    color: "var(--nx-fg)",
                     padding: "18px 32px",
                     borderRadius: 999,
                     fontFamily: "'General Sans', system-ui, sans-serif",
@@ -1816,7 +1816,7 @@ function PeptideTilesStrip() {
                 fontSize: "clamp(36px, 4.8vw, 60px)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.03em",
-                color: "var(--nx-black)",
+                color: "var(--nx-fg)",
                 margin: 0,
               }}
             >
@@ -1844,7 +1844,7 @@ function PeptideTilesStrip() {
               fontSize: 14,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "var(--nx-black)",
+              color: "var(--nx-fg)",
               padding: "14px 22px",
               background: "var(--nx-acid)",
               borderRadius: 999,
@@ -2146,7 +2146,7 @@ function BiomarkerMarquee() {
     BIOMARKER_PANEL.slice(5).flatMap((c) => c.markers.map((m) => ({ n: m.name, c: c.name }))),
   ];
   return (
-    <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "3.5rem 0 3rem", borderTop: "1px solid var(--nx-line)" }}>
+    <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "3.5rem 0 3rem", borderTop: "1px solid var(--nx-border)" }}>
       <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
         <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-amber)" }}>
           76 biomarkers · tracked every 90 days
@@ -2175,7 +2175,7 @@ function GuideCapture() {
       <div className="nx-container">
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", display: "flex", flexWrap: "wrap", gap: "1.6rem", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ maxWidth: 520 }}>
-            <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(1.5rem,2.6vw,2.1rem)", color: "var(--nx-black)", margin: 0, lineHeight: 1.12 }}>
+            <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(1.5rem,2.6vw,2.1rem)", color: "var(--nx-fg)", margin: 0, lineHeight: 1.12 }}>
               The Peptide Starter Guide, <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>free.</em>
             </h3>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, color: "rgba(21, 24, 28,0.62)", marginTop: 10 }}>
@@ -2187,9 +2187,9 @@ function GuideCapture() {
           ) : (
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <input type="email" placeholder="you@example.com" aria-label="Email address"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-line)", background: "var(--nx-ceramic)", minWidth: 240, outline: "none" }} />
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", minWidth: 240, outline: "none" }} />
               <button onClick={() => setSent(true)}
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-black)", color: "var(--nx-cream, var(--nx-bg))", cursor: "pointer" }}>
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 15, padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-fg)", color: "var(--nx-cream, var(--nx-bg))", cursor: "pointer" }}>
                 Get the guide
               </button>
             </div>
@@ -2225,7 +2225,7 @@ function ProofBento() {
             </div>
           </div>
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(24px,2.6vw,32px)", color: "var(--nx-black)", lineHeight: 1.25 }}>
+            <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(24px,2.6vw,32px)", color: "var(--nx-fg)", lineHeight: 1.25 }}>
               Physician
               <img src="img/img_334cb24acfa5.webp" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: 999, objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
               follow-ups

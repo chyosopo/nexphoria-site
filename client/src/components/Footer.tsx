@@ -110,7 +110,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   backgroundColor: "var(--nx-acid)",
-                  color: "var(--nx-black)",
+                  color: "var(--nx-fg)",
                   letterSpacing: "0.04em",
                 }}
                 data-testid="footer-email-submit"
