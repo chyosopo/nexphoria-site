@@ -37,6 +37,8 @@
     --nx-s-5: 20px; --nx-s-6: 24px;  --nx-s-8: 32px; --nx-s-10: 40px;
     --nx-s-12: 48px; --nx-s-16: 64px; --nx-s-20: 80px; --nx-s-24: 96px;
     --nx-section-y: clamp(64px, 9vw, 112px);          /* vertical rhythm between page sections */
+    --nx-section-y-desktop: 96px;                     /* fixed desktop section rhythm (.nx-section-y) */
+    --nx-section-y-mobile:  64px;                     /* fixed mobile section rhythm (.nx-section-y) */
     --nx-gutter:    clamp(20px, 4vw, 32px);           /* page edge */
 
     /* ══ D3 ELEVATION & RADIUS — four depths, five corners ══ */
@@ -232,6 +234,19 @@
   /* ── Section rhythm ── */
   .nx-section {
     @apply py-20 md:py-28;
+  }
+
+  /* Fixed-token section rhythm — 64px mobile / 96px desktop.
+     Use where a page needs consistent, non-fluid vertical spacing. */
+  .nx-section-y {
+    padding-top: var(--nx-section-y-mobile);
+    padding-bottom: var(--nx-section-y-mobile);
+  }
+  @media (min-width: 768px) {
+    .nx-section-y {
+      padding-top: var(--nx-section-y-desktop);
+      padding-bottom: var(--nx-section-y-desktop);
+    }
   }
 
   /* ── Eyebrow label (mono caps cobalt) ── */

@@ -109,7 +109,7 @@ export default function Physicians() {
 
       {/* ── Medical standards ── */}
       <section
-        className="py-24 md:py-32"
+        className="nx-section-y"
         style={{ backgroundColor: "var(--nx-bg)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -306,7 +306,7 @@ export default function Physicians() {
 
       {/* ── How physician review works ── */}
       <section
-        className="py-24 md:py-32"
+        className="nx-section-y"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -655,7 +655,7 @@ function PhysicianCredentials() {
   const boards = physicianReview.credentials;
   return (
     <section
-      className="py-24 md:py-32"
+      className="nx-section-y"
       style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       data-testid="physicians-credentials"
     >

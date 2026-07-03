@@ -836,7 +836,7 @@ export default function Science() {
 
       {/* ── Editorial closing image ── */}
       <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}>
-        <div className="nx-container max-w-screen-xl py-24 md:py-32 md:grid-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }}>
+        <div className="nx-container max-w-screen-xl nx-section-y md:grid-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }}>
           <Reveal>
             <div style={{ borderRadius: "4px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "var(--nx-bg-cream)" }}>
               <img src={lifestyleProtocolBinder} alt="Physician protocol binder with anatomical diagrams and peptide research notes" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />

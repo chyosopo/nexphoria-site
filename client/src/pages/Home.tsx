@@ -443,7 +443,7 @@ function GoalTiles() {
 
   return (
     <section
-      className="py-24 md:py-32"
+      className="nx-section-y"
       style={{ background: "var(--nx-ceramic)" }}
     >
       <div className="nx-container">
@@ -677,7 +677,7 @@ function HowItWorks() {
   return (
     <section
       aria-labelledby="how-it-works-heading"
-      className="py-24 md:py-32 border-t"
+      className="nx-section-y border-t"
       style={{
         background: "var(--nx-fg)",
         borderColor: "rgba(246, 249, 252,0.06)",
@@ -781,7 +781,7 @@ function HowItWorks() {
 function ScienceStrip() {
   return (
     <section
-      className="py-24 md:py-32"
+      className="nx-section-y"
       style={{ background: "var(--nx-rock)" }}
     >
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -916,7 +916,7 @@ function ScienceStrip() {
 function FeaturedStack() {
   return (
     <section
-      className="py-24 md:py-32"
+      className="nx-section-y"
       style={{ background: "var(--nx-ceramic)" }}
     >
       <div className="nx-container">
@@ -1111,7 +1111,7 @@ function Numbers() {
 function PhysicianStrip() {
   return (
     <section
-      className="py-24 md:py-32"
+      className="nx-section-y"
       style={{ background: "var(--nx-ceramic)" }}
     >
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -1291,7 +1291,7 @@ function FinalCta() {
 function PrecisionStrip() {
   return (
     <section
-      className="py-24 md:py-32 border-t"
+      className="nx-section-y border-t"
       style={{
         background: "var(--nx-fg)",
         color: "var(--nx-ceramic)",
@@ -1793,7 +1793,7 @@ function PeptideTilesStrip() {
 
   return (
     <section
-      className="py-24 md:py-32"
+      className="nx-section-y"
       style={{ background: "var(--nx-rock)" }}
       data-testid="section-featured-peptides"
     >
