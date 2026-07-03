@@ -2,108 +2,13 @@ import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
+import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { F } from "@/lib/typography";
 
-// Illustrative example topics representing the discussion categories the
-// community is built around — not live threads, counts, or timestamps.
-const clinicalTopics = [
-  { category: "METABOLIC", title: "Tirzepatide at week 8 — before/after lab panel", activity: "Outcome log" },
-  { category: "GROWTH HORMONE AXIS", title: "CJC-1295 + Ipamorelin dosing relative to training window", activity: "Dosing discussion" },
-  { category: "LABS", title: "IGF-1 change after 12 weeks on a GHS protocol — reading the panel", activity: "Lab panel review" },
-  { category: "LONGEVITY", title: "NAD+ mitochondrial markers at 3 months — epigenetic clock data", activity: "Data thread" },
-  { category: "PHYSICIAN Q&A", title: "HPG-axis modulators vs. testosterone replacement therapy", activity: "Physician Q&A" },
-  { category: "OUTCOMES", title: "12-week protocol complete — annotated lab comparison", activity: "Outcome log" },
-];
-
-const guideChapters = [
-  { num: "01", title: "What peptides are and how they signal cells", pages: "pp. 4–14" },
-  { num: "02", title: "GLP-1 agonists — mechanism, dosing, outcomes", pages: "pp. 15–26" },
-  { num: "03", title: "Growth hormone secretagogues in depth", pages: "pp. 27–38" },
-  { num: "04", title: "Tissue repair: BPC-157, TB-500, GHK-Cu", pages: "pp. 39–48" },
-  { num: "05", title: "Longevity: NAD+, MOTS-c, Epitalon", pages: "pp. 49–58" },
-  { num: "06", title: "Reading your bloodwork — what each marker means", pages: "pp. 59–64" },
-];
-
-// Illustrative composite examples — NOT real patients or verified endorsements.
-// Rendered under a clear "composite examples for illustration only" disclaimer.
-// No stock photos: the outcome-delta format IS the visual.
-const testimonials = [
-  {
-    initials: "MR",
-    name: "Marcus R.",
-    meta: "42 · Wolverine protocol · Week 16",
-    protocol: "BPC-157 + TB-500",
-    quote:
-      "Rotator cuff pain that lingered for two years is gone. My physician titrated the dose off my inflammation markers, not a guess.",
-    deltas: [
-      { label: "hs-CRP", value: "-41%", dir: "down" },
-      { label: "Recovery time", value: "-2.3d", dir: "down" },
-    ],
-  },
-  {
-    initials: "JT",
-    name: "Jenna T.",
-    meta: "48 · Glow protocol · Week 12",
-    protocol: "GHK-Cu",
-    quote:
-      "Skin elasticity and tone changed visibly by week eight. The 90-day lab redraw confirmed what I was already seeing.",
-    deltas: [
-      { label: "Collagen (P1NP)", value: "+27%", dir: "up" },
-      { label: "Skin hydration", value: "+19%", dir: "up" },
-    ],
-  },
-  {
-    initials: "DK",
-    name: "David K.",
-    meta: "51 · Prime protocol · Week 20",
-    protocol: "CJC-1295 / Ipamorelin",
-    quote:
-      "IGF-1 moved from the bottom of range to mid-reference. Sleep depth and morning energy followed. Every change was measured.",
-    deltas: [
-      { label: "IGF-1", value: "+58%", dir: "up" },
-      { label: "Deep sleep", value: "+34%", dir: "up" },
-    ],
-  },
-  {
-    initials: "AL",
-    name: "Aisha L.",
-    meta: "39 · Balance protocol · Week 24",
-    protocol: "Tirzepatide",
-    quote:
-      "Down 31 pounds with metabolic markers moving in the right direction. My physician adjusted the dose twice off my quarterly panel.",
-    deltas: [
-      { label: "HbA1c", value: "-0.9", dir: "down" },
-      { label: "Body weight", value: "-31 lb", dir: "down" },
-    ],
-  },
-  {
-    initials: "RS",
-    name: "Ryan S.",
-    meta: "36 · Clarity protocol · Week 10",
-    protocol: "Semax",
-    quote:
-      "Focus during long work blocks is noticeably sharper. The physician office hours made me comfortable adjusting timing around my schedule.",
-    deltas: [
-      { label: "Sustained focus", value: "+22%", dir: "up" },
-      { label: "Reported brain fog", value: "-46%", dir: "down" },
-    ],
-  },
-  {
-    initials: "CN",
-    name: "Carla N.",
-    meta: "45 · Restore protocol · Week 18",
-    protocol: "NAD+ / MOTS-c",
-    quote:
-      "Epigenetic clock data at three months showed a measurable shift. The aggregate member data helped me set realistic expectations.",
-    deltas: [
-      { label: "Biological age", value: "-1.4y", dir: "down" },
-      { label: "VO2 proxy", value: "+11%", dir: "up" },
-    ],
-  },
-];
-
+// Forward-looking description of what the membership community will include at
+// launch. No live threads, member counts, testimonials, or engagement metrics
+// are presented — the community has not launched. This page is a waitlist gate.
 const programFeatures = [
   {
     num: "01",
@@ -113,7 +18,7 @@ const programFeatures = [
   {
     num: "02",
     title: "Patient-reported outcomes tracking",
-    detail: "Structured PRO surveys at 30, 90, and 180 days. Aggregate anonymized data is shared back with the membership — you can see how people with similar baselines responded to the same protocol.",
+    detail: "Structured PRO surveys at 30, 90, and 180 days. Aggregate anonymized data is shared back with the membership — you will be able to see how people with similar baselines responded to the same protocol.",
   },
   {
     num: "03",
@@ -129,12 +34,12 @@ const programFeatures = [
 
 export default function Community() {
   useSeo({
-    title: "Nexphoria community — clinical roundtables, outcomes, and education",
-    description: "Monthly clinical roundtables with board-certified physicians, peer outcome reports, and educational webinars on peptide therapy. Stay current on the science that drives your protocol.",
+    title: "Nexphoria community — launching soon",
+    description: "The Nexphoria member community is launching soon: monthly clinical roundtables with board-certified physicians, aggregate patient-reported outcomes, and educational webinars on peptide therapy. Join the waitlist.",
     path: "/community",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Community",
-      description: "Clinical roundtables, patient outcomes, and physician-led education for Nexphoria members.",
+      description: "Clinical roundtables, patient outcomes, and physician-led education for Nexphoria members — launching soon.",
       path: "/community",
     }),
     breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Community", path: "/community" }]),
@@ -153,14 +58,14 @@ export default function Community() {
       <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
-            badge={<PillBadge tone="acid">The community</PillBadge>}
+            badge={<PillBadge tone="acid">Community · launching soon</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Real patients.</span><br />
-                <span>Real protocols. Real results.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Physician-led.</span><br />
+                <span>Outcome-driven. Launching soon.</span>
               </>
             }
-            subtitle="Stories, transformations, and physician case notes from the Nexphoria patient community. Share yours when you're ready."
+            subtitle="The Nexphoria member community launches alongside your protocol — clinical roundtables, aggregate patient-reported outcomes, and physician-led education. Join the waitlist to be there on day one."
           />
 
           <div className="mx-grid">
@@ -168,8 +73,8 @@ export default function Community() {
               href="/journal"
               tone="rose"
               glyph={TileGlyphs.wave}
-              label={<>Patient stories<br /><span>the journey</span></>}
-              caption="Clinical case notes &amp; outcomes"
+              label={<>Clinical journal<br /><span>read now</span></>}
+              caption="Physician case notes &amp; the science"
               ctaLabel="Read journal"
             />
             <ColoredHeroTile
@@ -184,11 +89,69 @@ export default function Community() {
         </div>
       </main>
 
-      <CommunityOutcomes />
-
-      {/* ── Program features ── */}
+      {/* ── Launch notice ── */}
       <section
-        className="py-24 md:py-32"
+        className="nx-section-y"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+        data-testid="community-launch-notice"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <div
+              style={{
+                border: "1.5px solid var(--nx-border)",
+                borderRadius: "16px",
+                backgroundColor: "var(--nx-ceramic)",
+                padding: "2.5rem 2rem",
+                maxWidth: "760px",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-sm)",
+                  fontWeight: 500,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  color: "var(--nx-cobalt)",
+                  marginBottom: "1rem",
+                }}
+              >
+                Launching soon
+              </p>
+              <h2
+                style={{
+                  fontFamily: F,
+                  fontWeight: 500,
+                  fontSize: "var(--nx-t-h3)",
+                  color: "var(--nx-fg)",
+                  lineHeight: 1.15,
+                  marginBottom: "0.75rem",
+                }}
+              >
+                The member community isn't live yet.
+              </h2>
+              <p
+                style={{
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-body)",
+                  color: "var(--nx-fg-graphite)",
+                  lineHeight: 1.7,
+                }}
+              >
+                We're building the community around real protocols and measured outcomes — not
+                engagement theater. There are no live threads, member counts, or testimonials to
+                show yet, and we won't fabricate them. When it opens, membership includes the
+                programs below. Join the waitlist and we'll notify you the day it launches.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── What membership will include ── */}
+      <section
+        className="nx-section-y"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -208,13 +171,12 @@ export default function Community() {
               }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              WHAT'S INCLUDED
+              WHAT MEMBERSHIP WILL INCLUDE
             </p>
             <h2
               style={{
                 fontFamily: F,
                 fontWeight: 500,
-                
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -257,7 +219,6 @@ export default function Community() {
                   <h3
                     style={{
                       fontFamily: F,
-                      
                       fontWeight: 500,
                       fontSize: "var(--nx-t-lg)",
                       color: "var(--nx-fg)",
@@ -284,9 +245,9 @@ export default function Community() {
         </div>
       </section>
 
-      {/* ── Join mailing list ── */}
+      {/* ── Join the waitlist ── */}
       <section
-        className="py-24 md:py-32"
+        className="nx-section-y"
         style={{ backgroundColor: "var(--nx-cobalt)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -311,7 +272,7 @@ export default function Community() {
                   marginBottom: "1.25rem",
                 }}
               >
-                JOIN OUR KNOWLEDGE COMMUNITY
+                JOIN THE WAITLIST
               </p>
               <h2
                 style={{
@@ -320,23 +281,10 @@ export default function Community() {
                   fontSize: "var(--nx-t-h2)",
                   color: "var(--nx-ceramic)",
                   lineHeight: 1.1,
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Clinical roundtables.
-              </h2>
-              <h2
-                style={{
-                  fontFamily: F,
-                  fontWeight: 500,
-                  
-                  fontSize: "var(--nx-t-h2)",
-                  color: "var(--nx-ceramic)",
-                  lineHeight: 1.1,
                   marginBottom: "1.25rem",
                 }}
               >
-                Research updates. PRO data.
+                Be there on launch day.
               </h2>
               <p
                 style={{
@@ -346,9 +294,8 @@ export default function Community() {
                   lineHeight: 1.7,
                 }}
               >
-                Monthly clinical summaries, physician roundtable recordings, and
-                patient-reported outcome aggregates. For members and prospective members.
-                No promotional content.
+                One email when the community opens — plus the first clinical roundtable
+                schedule. No promotional content. Unsubscribe anytime.
               </p>
             </Reveal>
             <Reveal delay={100}>
@@ -364,14 +311,13 @@ export default function Community() {
                   <p
                     style={{
                       fontFamily: F,
-                      
                       fontWeight: 500,
                       fontSize: "var(--nx-t-lg)",
                       color: "var(--nx-ceramic)",
                       marginBottom: "0.5rem",
                     }}
                   >
-                    You're on the list.
+                    You're on the waitlist.
                   </p>
                   <p
                     style={{
@@ -380,7 +326,7 @@ export default function Community() {
                       color: "rgba(255,255,255,0.75)",
                     }}
                   >
-                    We'll send the next roundtable summary when it publishes.
+                    We'll email you the day the community launches.
                     No spam. Unsubscribe anytime.
                   </p>
                 </div>
@@ -439,7 +385,7 @@ export default function Community() {
                       alignSelf: "flex-start",
                     }}
                   >
-                    JOIN KNOWLEDGE COMMUNITY →
+                    JOIN THE WAITLIST →
                   </button>
                   <p
                     style={{
@@ -456,438 +402,6 @@ export default function Community() {
           </div>
         </div>
       </section>
-
-      {/* ── Active topics ── */}
-      <section
-        className="py-24 md:py-32"
-        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p
-              style={{
-                fontFamily: F,
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-              }}
-            >
-              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              DISCUSSION TOPICS
-            </p>
-            <h2
-              style={{
-                fontFamily: F,
-                fontWeight: 500,
-
-                fontSize: "var(--nx-t-h2)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.1,
-                marginBottom: "0.75rem",
-              }}
-            >
-              What the community is built around.
-            </h2>
-            <p
-              style={{
-                fontFamily: F,
-                fontSize: "var(--nx-t-body)",
-                color: "var(--nx-fg-graphite)",
-                lineHeight: 1.65,
-                maxWidth: "560px",
-                marginBottom: "2.5rem",
-              }}
-            >
-              Illustrative examples of the topics the community is organized around. Not live
-              threads — the member community launches with your protocol.
-            </p>
-          </Reveal>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: "1.5px",
-              backgroundColor: "var(--nx-border)",
-              border: "1.5px solid var(--nx-border)",
-            }}
-          >
-            {clinicalTopics.map((topic, i) => (
-              <Reveal key={topic.title} delay={i * 40}>
-                <div
-                  style={{
-                    backgroundColor: i % 2 === 0 ? "var(--nx-bg)" : "var(--nx-bg-cream)",
-                    padding: "1.5rem",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "9px",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      color: "var(--nx-cobalt)",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    {topic.category}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-sm)",
-                      fontWeight: 500,
-                      color: "var(--nx-fg)",
-                      lineHeight: 1.4,
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    {topic.title}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "9px",
-                      color: "var(--nx-fg-muted)",
-                    }}
-                  >
-                    {topic.activity}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Guide chapters ── */}
-      <section
-        className="py-24 md:py-32"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <p
-              style={{
-                fontFamily: F,
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
-                marginBottom: "1rem",
-                display: "flex",
-                alignItems: "center",
-                gap: "0.75rem",
-              }}
-            >
-              <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-              INSIDE THE GUIDE
-            </p>
-            <h2
-              style={{
-                fontFamily: F,
-                fontWeight: 500,
-                
-                fontSize: "var(--nx-t-h2)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.1,
-                marginBottom: "0.5rem",
-              }}
-            >
-              The Peptide Field Guide.
-            </h2>
-            <p
-              style={{
-                fontFamily: F,
-                fontSize: "var(--nx-t-body)",
-                color: "var(--nx-fg-graphite)",
-                lineHeight: 1.65,
-                maxWidth: "480px",
-                marginBottom: "2.5rem",
-              }}
-            >
-              64 pages. Written by our medical advisory team. Covers every compound in
-              our formulary — mechanism, typical protocol, evidence status, and what to
-              expect from your laboratory results.
-            </p>
-          </Reveal>
-
-          <div
-            style={{
-              maxWidth: "640px",
-              borderTop: "1px solid var(--nx-border)",
-            }}
-          >
-            {guideChapters.map((ch, i) => (
-              <Reveal key={ch.num} delay={i * 40}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: "1.5rem",
-                    padding: "1.25rem 0",
-                    borderBottom: "1px solid var(--nx-border)",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "10px",
-                      fontWeight: 700,
-                      letterSpacing: "0.12em",
-                      color: "var(--nx-cobalt)",
-                      flexShrink: 0,
-                      marginTop: "2px",
-                    }}
-                  >
-                    {ch.num}
-                  </p>
-                  <div style={{ flex: 1 }}>
-                    <p
-                      style={{
-                        fontFamily: F,
-                        fontSize: "var(--nx-t-base)",
-                        fontWeight: 500,
-                        color: "var(--nx-fg)",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {ch.title}
-                    </p>
-                  </div>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "9px",
-                      color: "var(--nx-fg-muted)",
-                      flexShrink: 0,
-                      marginTop: "3px",
-                    }}
-                  >
-                    {ch.pages}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
     </SiteLayout>
-  );
-}
-
-// ─────────────────────────────────────────────
-// CommunityOutcomes — type-driven testimonial cards, outcome-delta as visual
-// ─────────────────────────────────────────────
-
-function CommunityOutcomes() {
-  return (
-    <section
-      className="py-24 md:py-32"
-      style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
-      data-testid="community-outcomes"
-    >
-      <div className="nx-container max-w-screen-xl">
-        <Reveal>
-          <p
-            style={{
-              fontFamily: F,
-              fontSize: "11px",
-              fontWeight: 500,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "var(--nx-cobalt)",
-              marginBottom: "1rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-            }}
-          >
-            <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-            HOW OUTCOMES ARE TRACKED
-          </p>
-          <h2
-            style={{
-              fontFamily: F,
-              fontWeight: 500,
-              fontSize: "var(--nx-t-h2)",
-              color: "var(--nx-fg)",
-              lineHeight: 1.1,
-              marginBottom: "0.75rem",
-            }}
-          >
-            The delta, not the testimonial.
-          </h2>
-          <p
-            style={{
-              fontFamily: F,
-              fontSize: "var(--nx-t-body)",
-              color: "var(--nx-fg-graphite)",
-              lineHeight: 1.65,
-              maxWidth: "560px",
-              marginBottom: "3rem",
-            }}
-          >
-            Illustrative examples of how the program anchors progress to a measured biomarker
-            change from your own 90-day panels — not endorsements from identified patients. These
-            are composite examples for illustration only. Individual results vary.
-          </p>
-        </Reveal>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-            gap: "1.25rem",
-          }}
-        >
-          {testimonials.map((t, i) => (
-            <Reveal key={t.name} delay={i * 50}>
-              <div
-                className="nx-protocol-card"
-                data-testid={`community-testimonial-${i}`}
-                style={{
-                  border: "1px solid var(--nx-border)",
-                  borderRadius: "16px",
-                  backgroundColor: "var(--nx-ceramic)",
-                  padding: "1.75rem",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.875rem", marginBottom: "1.25rem" }}>
-                  <span
-                    aria-hidden="true"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "42px",
-                      height: "42px",
-                      borderRadius: "50%",
-                      backgroundColor: "var(--nx-cobalt-soft)",
-                      color: "var(--nx-cobalt)",
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-sm)",
-                      fontWeight: 600,
-                      letterSpacing: "0.02em",
-                      flexShrink: 0,
-                    }}
-                  >
-                    {t.initials}
-                  </span>
-                  <div>
-                    <p
-                      style={{
-                        fontFamily: F,
-                        fontSize: "var(--nx-t-base)",
-                        fontWeight: 600,
-                        color: "var(--nx-fg)",
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {t.name}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: F,
-                        fontSize: "11px",
-                        color: "var(--nx-fg-muted)",
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {t.meta}
-                    </p>
-                  </div>
-                </div>
-
-                <p
-                  style={{
-                    fontFamily: F,
-                    fontSize: "var(--nx-t-base)",
-                    color: "var(--nx-fg)",
-                    lineHeight: 1.6,
-                    marginBottom: "1.5rem",
-                  }}
-                >
-                  {t.quote}
-                </p>
-
-                <div
-                  style={{
-                    marginTop: "auto",
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "1px",
-                    backgroundColor: "var(--nx-border)",
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "10px",
-                    overflow: "hidden",
-                  }}
-                >
-                  {t.deltas.map((d) => (
-                    <div key={d.label} style={{ backgroundColor: "var(--nx-bg-cream)", padding: "0.875rem 1rem" }}>
-                      <p
-                        style={{
-                          fontFamily: F,
-                          fontSize: "9px",
-                          fontWeight: 500,
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          color: "var(--nx-fg-muted)",
-                          marginBottom: "0.25rem",
-                        }}
-                      >
-                        {d.label}
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: F,
-                          fontSize: "var(--nx-t-xl)",
-                          fontWeight: 600,
-                          color: "var(--nx-cobalt)",
-                          lineHeight: 1,
-                          fontVariantNumeric: "tabular-nums",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.25rem",
-                        }}
-                      >
-                        <span aria-hidden="true" style={{ fontSize: "0.75em" }}>
-                          {d.dir === "up" ? "↑" : "↓"}
-                        </span>
-                        {d.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <p
-                  style={{
-                    fontFamily: F,
-                    fontSize: "10px",
-                    fontWeight: 500,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: "var(--nx-fg-muted)",
-                    marginTop: "1rem",
-                  }}
-                >
-                  Protocol: {t.protocol}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
