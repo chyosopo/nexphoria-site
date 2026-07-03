@@ -342,7 +342,7 @@ export function BloodworkDashboard() {
             color: "var(--nx-fg-muted)",
           }}
         >
-          Reviewed by Dr. Sarah Chen, MD — UCSF / Internal Medicine · Board Certified
+          Reviewed by a board-certified physician · Internal Medicine
         </span>
       </div>
     </motion.div>
