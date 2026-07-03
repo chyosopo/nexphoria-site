@@ -201,7 +201,7 @@ export function BloodworkDashboard() {
           }}
         >
           Patient: J. Reyes&nbsp;&nbsp;/&nbsp;&nbsp;DOB 1978-06-12&nbsp;&nbsp;/&nbsp;&nbsp;Drawn
-          2026-06-15&nbsp;&nbsp;/&nbsp;&nbsp;Quest Diagnostics
+          2026-06-15&nbsp;&nbsp;/&nbsp;&nbsp;Partner Laboratory
         </span>
       </div>
 

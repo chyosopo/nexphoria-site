@@ -11,7 +11,7 @@ const certMarks = [
   "LegitScript Certified",
   "CLIA-Certified Labs",
   "USP-Compliant Compounding",
-  "Quest Diagnostics Partner",
+  "CLIA-Certified Lab Network",
   "503A Licensed Pharmacy",
 ];
 

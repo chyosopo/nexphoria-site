@@ -16,7 +16,7 @@ export default function Terms() {
 
       <LegalSection title="2. Description of Services">
         <LegalP>Nexphoria is a digital health platform that connects patients with licensed physicians for telehealth consultations and, where clinically appropriate, prescriptions for compounded peptide medications. Nexphoria is not a pharmacy and does not dispense medication directly. All compounded preparations are dispensed by independent 503A state-licensed compounding pharmacies holding valid state pharmacy permits across all 50 United States.</LegalP>
-        <LegalP>Telehealth consultations are conducted through Bask Health, our licensed telehealth platform partner. Laboratory services, including baseline and follow-up blood panels, are fulfilled through Quest Diagnostics or other CLIA-certified laboratories. Nexphoria coordinates access to these services but does not employ the physicians, pharmacists, or laboratory professionals who provide them. Nexphoria holds LegitScript certification confirming compliance with applicable laws governing online healthcare and pharmacy advertising.</LegalP>
+        <LegalP>Telehealth consultations are conducted through Bask Health, our licensed telehealth platform partner. Laboratory services, including baseline and follow-up blood panels, are fulfilled through CLIA-certified partner laboratories. Nexphoria coordinates access to these services but does not employ the physicians, pharmacists, or laboratory professionals who provide them. Nexphoria holds LegitScript certification confirming compliance with applicable laws governing online healthcare and pharmacy advertising.</LegalP>
       </LegalSection>
 
       <LegalSection title="3. Medical Services and Disclaimer">

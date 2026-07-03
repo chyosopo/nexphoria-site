@@ -37,7 +37,7 @@ export const WHY_WE_ASK: Record<number, string> = {
 
 const SIDEBAR_TILES = [
   { icon: Stethoscope, title: "Physician review in 24h", desc: "A board-certified MD reads your file within one business day." },
-  { icon: FlaskConical, title: "Lab kit shipped", desc: "At-home Quest kit dispatched the same day you submit." },
+  { icon: FlaskConical, title: "Lab kit shipped", desc: "At-home lab kit dispatched the same day you submit."},
   { icon: ClipboardCheck, title: "Protocol designed within 5 days", desc: "Compounded and cold-chain shipped after physician sign-off." },
 ];
 
@@ -246,7 +246,7 @@ export function SampleProtocolPreview() {
             { k: "Dose", v: "200 mcg + 100 mcg" },
             { k: "Schedule", v: "5 nights/week, subcutaneous, pre-sleep" },
             { k: "Lab target", v: "IGF-1 to mid-reference; fasting glucose stable" },
-            { k: "Reassessment", v: "Quest redraw at day 90" },
+            { k: "Reassessment", v: "Lab redraw at day 90"},
           ].map((row, i, arr) => (
             <div
               key={row.k}

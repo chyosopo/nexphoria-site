@@ -76,7 +76,7 @@ const billingTerms = [
 const included = [
   "Board-certified physician consultation (initial + follow-up)",
   "Compounded peptides from a 503A-licensed US pharmacy",
-  "Quest Diagnostics labs every 90 days",
+  "Partner-laboratory labs every 90 days",
   "Overnight cold-chain shipping",
   "Physician re-evaluation at each lab cycle",
   "Secure telehealth messaging between visits",
@@ -109,7 +109,7 @@ const tiers = [
     features: [
       "2\u20134 synergistic peptides",
       "Everything in Solo",
-      "Quest Diagnostics labs every 90 days",
+      "Partner-laboratory labs every 90 days",
       "Physician re-evaluation each lab cycle",
       "Protocol tuned to your biomarkers",
       "FSA/HSA itemized receipts",
@@ -137,7 +137,7 @@ const tiers = [
 ];
 
 const comparison = [
-  { feature: "Quest Diagnostics labs included", nexphoria: true, others: false },
+  { feature: "Partner-laboratory labs included", nexphoria: true, others: false },
   { feature: "Board-certified US physician on every case", nexphoria: true, others: "varies" },
   { feature: "503A US compounding pharmacy only", nexphoria: true, others: false },
   { feature: "Quarterly monitoring included", nexphoria: true, others: false },
@@ -397,7 +397,7 @@ function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: nu
 const PRICING_FAQ_ITEMS = [
   {
     q: "How much does Nexphoria cost per month?",
-    a: "Nexphoria monthly subscriptions start at $249/month for cognitive peptide protocols (Selank, Semax) and range up to $389/month for longevity protocols (NAD+, MOTS-c, Epitalon). All plans include your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and Quest Diagnostics labs every 90 days. There are no hidden fees.",
+    a: "Nexphoria monthly subscriptions start at $249/month for cognitive peptide protocols (Selank, Semax) and range up to $389/month for longevity protocols (NAD+, MOTS-c, Epitalon). All plans include your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and partner-laboratory labs every 90 days. There are no hidden fees.",
   },
   {
     q: "Is the physician consultation included in the subscription price?",
@@ -420,7 +420,7 @@ const PRICING_FAQ_ITEMS = [
 export default function Pricing() {
   useSeo({
     title: "Peptide therapy pricing — transparent, all-in, no lab upsell",
-    description: "Single peptides from $149/mo, physician-curated stacks bundled at 12% off. Quest bloodwork, physician consult, and refills all included. No hidden fees. Cancel before dispense.",
+    description: "Single peptides from $149/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills all included. No hidden fees. Cancel before dispense.",
     path: "/pricing",
     jsonLd: [
       webPageJsonLd({
@@ -536,7 +536,7 @@ export default function Pricing() {
               tone="cream"
               eyebrow="Labs"
               icon={<FlaskConical size={18} strokeWidth={1.5} />}
-              headline="Quest Diagnostics bloodwork every 90 days."
+              headline="Partner-laboratory bloodwork every 90 days."
               sub="Full biomarker panels included in every plan. No à la carte lab bills."
               testId="pricing-tile-labs"
             />
@@ -1154,7 +1154,7 @@ export default function Pricing() {
           <div style={{ maxWidth: "680px" }}>
             {[
               { q: "Is the physician consult included in the price?", a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consultation fee." },
-              { q: "Are labs included?", a: "Quest Diagnostics lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 38-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans." },
+              { q: "Are labs included?", a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 38-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans." },
               { q: "Can I use FSA or HSA funds?", a: "Yes. Compounded prescription medications and physician consultations are generally FSA/HSA-eligible. We provide itemized receipts at checkout. Confirm eligibility with your plan administrator." },
               { q: "What if the physician declines my protocol?", a: "If a physician determines your requested protocol is clinically inappropriate, no prescription is issued and you are not charged for pharmacy compounding. The physician may propose a modified alternative." },
               { q: "Is there a cancellation fee?", a: "No. Cancel anytime from your member portal with no penalty. Cancellation takes effect at the end of your current billing cycle. Compounded medications that have shipped cannot be returned." },
@@ -1183,7 +1183,7 @@ export default function Pricing() {
       <FinalCTAStrip
         gender="women"
         title="No consultation fee. Labs included."
-        sub="Start your intake. Physician review within 48 hours of your Quest Diagnostics draw."
+        sub="Start your intake. Physician review within 48 hours of your partner-laboratory draw."
       />
     </SiteLayout>
   );
@@ -1195,7 +1195,7 @@ const PLAN_COMPARISON_ROWS = [
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
-  { feature: "Quest Diagnostics labs (38 markers)", solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
+  { feature: "Partner-laboratory labs (38 markers)", solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
   { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
   { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },

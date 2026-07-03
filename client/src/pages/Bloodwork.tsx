@@ -299,7 +299,7 @@ function Hero() {
                   lineHeight: 1.5,
                 }}
               >
-                Illustrative 90-day trajectory · Quest Diagnostics · reviewed by a Nexphoria
+                Illustrative 90-day trajectory · partner laboratory · reviewed by a Nexphoria
                 physician
               </div>
             </div>
@@ -314,7 +314,7 @@ function Hero() {
             src="img/img_6d36ae1989c8.mp4"
             poster="img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
-            aria-label="Quest Diagnostics lab work — every 90 days" />
+            aria-label="Partner-laboratory lab work — every 90 days" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
           <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
             Your numbers, every 90 days.
@@ -723,7 +723,7 @@ function HowItWorks() {
     {
       n: "01",
       title: "Baseline draw",
-      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through Quest Diagnostics before a single dose. Walk into any of 2,500+ centers or use the at-home collection kit.`,
+      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of 2,500+ centers or use the at-home collection kit.`,
     },
     {
       n: "02",
@@ -934,31 +934,31 @@ function WhyItMatters() {
 const BLOODWORK_FAQ_ITEMS = [
   {
     q: "What bloodwork does Nexphoria require before prescribing?",
-    a: "Nexphoria requires a 38-biomarker Quest Diagnostics panel before any prescription is issued. The panel covers hormonal axis markers (testosterone, LH, FSH, estradiol), metabolic markers (HbA1c, fasting insulin, lipid panel), inflammatory markers (hs-CRP, ESR), hepatic function (ALT, AST), and renal function (creatinine, BUN). Your requisition is generated in your member portal after completing the intake assessment.",
+    a: "Nexphoria requires a 38-Biomarker Partner-Laboratory Panel before any prescription is issued. The panel covers hormonal axis markers (testosterone, LH, FSH, estradiol), metabolic markers (HbA1c, fasting insulin, lipid panel), inflammatory markers (hs-CRP, ESR), hepatic function (ALT, AST), and renal function (creatinine, BUN). Your requisition is generated in your member portal after completing the intake assessment.",
   },
   {
     q: "How often are labs required during a Nexphoria subscription?",
-    a: "Quest Diagnostics panels are required every 90 days throughout your active subscription. Lab results trigger a physician re-evaluation, at which point dosing may be adjusted or a new compound introduced based on updated biomarkers. Labs are included in all multi-month plans and available as an add-on for monthly subscribers.",
+    a: "Partner-laboratory panels are required every 90 days throughout your active subscription. Lab results trigger a physician re-evaluation, at which point dosing may be adjusted or a new compound introduced based on updated biomarkers. Labs are included in all multi-month plans and available as an add-on for monthly subscribers.",
   },
   {
     q: "Who reviews my bloodwork at Nexphoria?",
-    a: "Your assigned board-certified physician reviews all Quest Diagnostics results within 24 hours of receipt. Results are never reviewed by algorithms, nurses, or non-physician staff without physician oversight. Your physician responds via secure portal message with a prescription decision, a follow-up question, or a request for additional information.",
+    a: "Your assigned board-certified physician reviews all partner-laboratory results within 24 hours of receipt. Results are never reviewed by algorithms, nurses, or non-physician staff without physician oversight. Your physician responds via secure portal message with a prescription decision, a follow-up question, or a request for additional information.",
   },
   {
     q: "Can I use bloodwork I already have?",
-    a: "Your physician may accept CLIA-certified lab results from within the past 30 days in lieu of a new Quest draw, subject to physician discretion. Results must be from an accredited laboratory and include all required panel markers. Bring documentation to your intake assessment for physician review.",
+    a: "Your physician may accept CLIA-certified lab results from within the past 30 days in lieu of a new partner-laboratory draw, subject to physician discretion. Results must be from an accredited laboratory and include all required panel markers. Bring documentation to your intake assessment for physician review.",
   },
 ];
 
 export default function Bloodwork() {
   useSeo({
     title: "Peptide therapy bloodwork — 38 biomarkers, every 90 days",
-    description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} Quest Diagnostics panels. Calibrate your protocol to your chemistry, not a population average. Results in your portal within 48 hours. Physician review included.`,
+    description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} partner-laboratory panels. Calibrate your protocol to your chemistry, not a population average. Results in your portal within 48 hours. Physician review included.`,
     path: "/bloodwork",
     jsonLd: [
       webPageJsonLd({
         name: "Nexphoria Bloodwork",
-        description: `${PANEL_TOTAL_MARKERS} biomarkers. Every Nexphoria protocol is calibrated to your chemistry and retested every 90 days via Quest Diagnostics.`,
+        description: `${PANEL_TOTAL_MARKERS} biomarkers. Every Nexphoria protocol is calibrated to your chemistry and retested every 90 days via a partner laboratory.`,
         path: "/bloodwork",
         type: "MedicalWebPage",
       }),

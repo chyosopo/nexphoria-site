@@ -557,7 +557,7 @@ export default function Science() {
                 Science without labs is <span style={{  }}>conjecture</span>.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
-                Every protocol begins with a 38-biomarker Quest Diagnostics draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
+                Every protocol begins with a 38-biomarker partner-laboratory draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7 }}>
                 Redrawn every 90 days. Results, not marketing copy, determine whether a protocol continues, adjusts, or stops.
@@ -850,7 +850,7 @@ export default function Science() {
             <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>Science without labs is conjecture.</h2>
             <h2 style={{ fontFamily: F, fontWeight: 500,  fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.65, maxWidth: "480px" }}>
-              Every Nexphoria protocol begins with a 38-biomarker Quest Diagnostics draw. Mechanism explains what a peptide
+              Every Nexphoria protocol begins with a 38-biomarker partner-laboratory draw. Mechanism explains what a peptide
               does. Your bloodwork tells your physician what it will do for you specifically.
             </p>
           </Reveal>
@@ -862,7 +862,7 @@ export default function Science() {
       <FinalCTAStrip
         gender="women"
         title="Backed by mechanism. Prescribed to your baseline."
-        sub="Quest Diagnostics labs included with every protocol. Physician review within 48 hours."
+        sub="Partner-laboratory labs included with every protocol. Physician review within 48 hours."
       />
     </SiteLayout>
   );

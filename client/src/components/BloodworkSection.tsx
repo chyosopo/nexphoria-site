@@ -88,7 +88,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               }}
             >
               Lab-driven from day one. Your initial draw establishes a quantitative baseline
-              across 38 biomarkers. Quest Diagnostics performs the labs. Your physician reviews
+              across 38 biomarkers. A CLIA-certified partner laboratory performs the labs. Your physician reviews
               them. Your protocol is built to your numbers — not someone else's average. At
               90 days, we re-draw and adjust.
             </p>

@@ -57,7 +57,7 @@ const goals = [
     sub: "Baseline, mid-cycle, outcome panels.",
     recommended: "lab-testing",
     label: "Lab Testing",
-    body: "Three-panel cadence (Baseline · Mid-Cycle · Outcome) designed to monitor peptide therapy safely. Quest/Labcorp draws.",
+    body: "Three-panel cadence (Baseline · Mid-Cycle · Outcome) designed to monitor peptide therapy safely. Partner-laboratory draws.",
     range: "From $89 / panel",
   },
 ];

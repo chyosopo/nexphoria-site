@@ -92,12 +92,12 @@ const biomarkerCards = [
 
 export default function LabTesting() {
   useSeo({
-    title: "At-home lab testing — 38 biomarkers, Quest Diagnostics, every 90 days",
-    description: "Requisition in your portal, draw at 2,500+ Quest locations, physician-reviewed results in 48 hours. 38 biomarkers calibrate and track your peptide protocol from first dose to completion.",
+    title: "At-home lab testing — 38 biomarkers, partner laboratory, every 90 days",
+    description: "Requisition in your portal, draw at 2,500+ partner laboratory locations, physician-reviewed results in 48 hours. 38 biomarkers calibrate and track your peptide protocol from first dose to completion.",
     path: "/lab-testing",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Lab Testing",
-      description: "38-biomarker Quest Diagnostics panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician within 48 hours.",
+      description: "38-biomarker partner-laboratory panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician within 48 hours.",
       path: "/lab-testing",
       type: "MedicalWebPage",
     }),
@@ -144,7 +144,7 @@ export default function LabTesting() {
         </div>
       </main>
 
-      {/* ── Quest Diagnostics partnership ── */}
+      {/* ── Partner laboratory network ── */}
       <section
         className="py-16 md:py-20"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
@@ -171,7 +171,7 @@ export default function LabTesting() {
                     marginBottom: "0.75rem",
                   }}
                 >
-                  Quest Diagnostics
+                  Partner laboratory network
                 </p>
                 <h2
                   style={{
@@ -196,7 +196,7 @@ export default function LabTesting() {
                   }}
                 >
                   Laboratory requisitions are generated in your member portal. You draw at any of
-                  2,500+ Quest Diagnostics patient service centers nationwide — no appointment
+                  2,500+ partner laboratory centers nationwide — no appointment
                   required at walk-in locations. Results are transmitted directly to your Nexphoria
                   physician, who reviews within 24 hours of receipt.
                 </p>
@@ -209,7 +209,7 @@ export default function LabTesting() {
                   }}
                 >
                   Kits can also be shipped to your home address with instructions for a
-                  certified phlebotomist visit if a nearby Quest location is unavailable.
+                  certified phlebotomist visit if a nearby partner laboratory location is unavailable.
                 </p>
               </div>
               <div>
@@ -722,7 +722,7 @@ export default function LabTesting() {
                 marginBottom: "2.5rem",
               }}
             >
-              An illustrative panel. Your actual Quest Diagnostics results appear in your
+              An illustrative panel. Your actual partner-laboratory results appear in your
               member portal within 48–72 hours of collection. Your physician reviews within
               24 hours of results receipt and responds via secure message.
             </p>
@@ -885,13 +885,13 @@ export default function LabTesting() {
                 label: "Included with Protocol",
                 price: "$0",
                 note: "3-month and 12-month plans",
-                detail: "Quest Diagnostics 38-biomarker baseline panel and all 90-day retest panels included. No add-on fee.",
+                detail: "38-biomarker partner-laboratory baseline panel and all 90-day retest panels included. No add-on fee.",
               },
               {
                 label: "Standalone Add-On",
                 price: "$199",
                 note: "Monthly plan members",
-                detail: "Full 38-biomarker Quest Diagnostics panel. Physician review of results within 24 hours of receipt. Available at any Quest patient service center.",
+                detail: "Full 38-biomarker partner-laboratory panel. Physician review of results within 24 hours of receipt. Available at any partner laboratory center.",
               },
               {
                 label: "Home Phlebotomy",
@@ -918,7 +918,7 @@ export default function LabTesting() {
                 Clarity Unlocks Power. Unleash the Extraordinary.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
-                Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your Quest Diagnostics requisition within 24 hours.
+                Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your partner-laboratory requisition within 24 hours.
               </p>
               <StartIntakeButton source="labtesting-page" size="lg">
                 Start your assessment
@@ -931,7 +931,7 @@ export default function LabTesting() {
       <FinalCTAStrip
         gender="women"
         title="Your panel is included with every protocol."
-        sub="38 biomarkers. Quest Diagnostics. Physician-reviewed within 24 hours."
+        sub="38 biomarkers. Partner laboratory. Physician-reviewed within 24 hours."
       />
     </SiteLayout>
   );
@@ -1005,7 +1005,7 @@ function BloodworkManifesto() {
           >
             A peptide protocol without a full panel is a guess wearing a lab coat. Nexphoria
             begins every treatment with a physician-ordered blood panel — up to 80 biomarkers,
-            drawn at any of 2,500+ Quest locations — and re-tests every 90 days so dose changes
+            drawn at any of 2,500+ partner laboratory locations — and re-tests every 90 days so dose changes
             follow data, not vibes.
           </p>
 
@@ -1051,7 +1051,7 @@ function BloodworkManifesto() {
           >
             {[
               { k: "80+", v: "Biomarkers" },
-              { k: "2,500+", v: "Quest locations" },
+              { k: "2,500+", v: "Partner lab locations" },
               { k: "48h", v: "Physician review" },
               { k: "90 days", v: "Re-test cadence" },
             ].map((s) => (
@@ -1230,7 +1230,7 @@ function BloodworkPricing() {
         "40 core biomarkers",
         "Hormones + metabolic + lipids + CBC",
         "Physician review within 48 hours",
-        "Quest Diagnostics · walk-in draw",
+        "Partner laboratory · walk-in draw",
         "Re-tested every 90 days",
         "Trend dashboard in your portal",
       ],
@@ -1633,7 +1633,7 @@ function BloodworkInsurance() {
 
 /* ─────────────────────────────────────────────────────────────
    PartnerLabsSection — AGENT-3
-   Partner labs (Quest + Labcorp), three draw options incl. at-home
+   Partner labs, three draw options incl. at-home
    kit, and a turnaround timeline. Tokens only. No italics.
    ───────────────────────────────────────────────────────────── */
 const PL_FONT = "'General Sans', system-ui, sans-serif";
@@ -1644,16 +1644,16 @@ const PL_NUM: React.CSSProperties = {
 
 const PARTNER_LABS = [
   {
-    name: "Quest Diagnostics",
+    name: "Partner Laboratory Network",
     stat: "2,500+",
     statLabel: "Patient service centers",
-    detail: "Primary draw network. Walk-in at most locations, no appointment required.",
+    detail: "Primary partner laboratory network. Walk-in at most locations, no appointment required.",
   },
   {
-    name: "Labcorp",
+    name: "CLIA-certified partner laboratory",
     stat: "2,000+",
     statLabel: "Patient service centers",
-    detail: "Secondary network for coverage where a Quest center is not nearby.",
+    detail: "Additional partner network for coverage where a nearby location is unavailable.",
   },
 ];
 
@@ -1661,7 +1661,7 @@ const DRAW_OPTIONS = [
   {
     icon: Building2,
     title: "Walk-in draw",
-    body: "Bring your portal requisition to any Quest or Labcorp center. Most locations accept walk-ins; the draw takes under ten minutes.",
+    body: "Bring your portal requisition to any partner laboratory center. Most locations accept walk-ins; the draw takes under ten minutes.",
     meta: "No appointment · nationwide",
   },
   {
@@ -1717,7 +1717,7 @@ function PartnerLabsSection() {
               marginBottom: "0.75rem",
             }}
           >
-            Two national labs. One requisition.
+            A national lab network. One requisition.
           </h2>
           <p
             style={{
@@ -1729,7 +1729,7 @@ function PartnerLabsSection() {
               marginBottom: "2.5rem",
             }}
           >
-            Your portal requisition works at both Quest Diagnostics and Labcorp, so a draw
+            Your portal requisition works across our partner laboratories, so a draw
             site is always within reach — or we bring the draw to you.
           </p>
         </Reveal>

@@ -165,7 +165,7 @@ export default function Checkout() {
                   {[
                     "Physician reviews intake and cart (24–48 hours)",
                     "You receive a secure approval link by email",
-                    "Bloodwork ordered to your nearest Quest Diagnostics",
+                    "Bloodwork ordered to your nearest partner laboratory",
                     "Compounded shipment sent in cold-chain packaging",
                   ].map((t, i) => (
                     <li key={i} className="flex gap-2.5 items-start">

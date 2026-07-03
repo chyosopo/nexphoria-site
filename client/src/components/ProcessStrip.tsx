@@ -33,7 +33,7 @@ const DEFAULT_STEPS: ProcessStep[] = [
     number: "02",
     eyebrow: "Bloodwork",
     title: "Baseline biomarkers.",
-    body: "Quest Diagnostics order routed to a lab near you — over 2,000 sites nationwide. CBC, CMP, lipid panel, HbA1c, hormonal panel calibrated to your protocol. Results in 3-5 days.",
+    body: "Lab order routed to a CLIA-certified partner laboratory near you — over 2,000 sites nationwide. CBC, CMP, lipid panel, HbA1c, hormonal panel calibrated to your protocol. Results in 3-5 days.",
     timing: "3-5 days",
   },
   {

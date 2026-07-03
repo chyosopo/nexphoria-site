@@ -40,7 +40,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does the process work start to finish?",
-        a: "Complete the a structured medical intake. A Quest Diagnostics lab requisition is generated in your member portal. Draw at any of 2,500+ Quest locations nationwide. A board-certified physician reviews your labs and intake by a licensed physician. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
+        a: "Complete the a structured medical intake. A partner-laboratory lab requisition is generated in your member portal. Draw at any of 2,500+ partner laboratory locations nationwide. A board-certified physician reviews your labs and intake by a licensed physician. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
       },
       {
         q: "What if the physician declines my protocol?",
@@ -48,11 +48,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What labs do I need?",
-        a: "A 38-biomarker Quest Diagnostics panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
+        a: "A 38-biomarker partner-laboratory panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
       },
       {
         q: "Who reviews my bloodwork?",
-        a: "Your assigned board-certified physician reviews your Quest Diagnostics results within 24 hours of receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
+        a: "Your assigned board-certified physician reviews your partner-laboratory results within 24 hours of receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
       },
       {
         q: "How quickly will I see results?",

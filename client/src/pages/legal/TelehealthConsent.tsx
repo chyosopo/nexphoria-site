@@ -42,7 +42,7 @@ export default function TelehealthConsent() {
       </LegalSection>
 
       <LegalSection title="8. Laboratory Monitoring">
-        <LegalP>Many peptide protocols require baseline laboratory testing before prescribing and follow-up testing during therapy. Laboratory orders will be issued electronically to Quest Diagnostics or another CLIA-certified laboratory. You consent to the release of laboratory results directly to your treating Nexphoria physician. Refusal or failure to complete required laboratory monitoring may result in suspension or discontinuation of therapy at the discretion of your physician.</LegalP>
+        <LegalP>Many peptide protocols require baseline laboratory testing before prescribing and follow-up testing during therapy. Laboratory orders will be issued electronically to a CLIA-certified partner laboratory. You consent to the release of laboratory results directly to your treating Nexphoria physician. Refusal or failure to complete required laboratory monitoring may result in suspension or discontinuation of therapy at the discretion of your physician.</LegalP>
       </LegalSection>
 
       <LegalSection title="9. Withdrawal of Consent">

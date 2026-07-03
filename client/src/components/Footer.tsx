@@ -138,7 +138,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
             { label: "503A · state-licensed", sub: "Compounding pharmacy" },
             { label: "All 50 states", sub: "US-licensed physicians" },
             { label: "HIPAA", sub: "Encrypted intake" },
-            { label: "Quest Diagnostics", sub: "Lab partner" },
+            { label: "CLIA-Certified Laboratories", sub: "Lab partners" },
             { label: "LegitScript", sub: "Pending verification" },
           ].map((b) => (
             <div

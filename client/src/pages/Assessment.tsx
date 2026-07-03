@@ -1000,7 +1000,7 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          This is a marketing screener. Formal medical eligibility is determined during physician review after your Quest Diagnostics labs are on file. No prescription is issued based on these answers alone.
+                          This is a marketing screener. Formal medical eligibility is determined during physician review after your partner-laboratory labs are on file. No prescription is issued based on these answers alone.
                         </p>
                       </div>
 
@@ -1183,7 +1183,7 @@ export default function Assessment() {
                         <p style={{ ...eyebrow, marginBottom: "0.875rem" }}>What happens next</p>
                         {[
                           { n: "01", t: "A licensed physician reviews your intake" },
-                          { n: "02", t: "Quest Diagnostics requisition generated in your member portal" },
+                          { n: "02", t: "Partner-laboratory requisition generated in your member portal"},
                           { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
                           { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
                         ].map(({ n, t }) => (
