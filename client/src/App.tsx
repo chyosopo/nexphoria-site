@@ -3,6 +3,7 @@ function R({ to }: { to: string }) { const [, __n] = __uL(); useEffect(() => { _
 import { useEffect } from "react";
 import { useLocation as __uL } from "wouter";
 import { Suspense, lazy } from "react";
+import { RouteErrorBoundary } from "@/components/RouteErrorBoundary";
 import { Switch, Route, Router } from "wouter";
 import { useHashLocation } from "wouter/use-hash-location";
 import { queryClient } from "./lib/queryClient";
@@ -53,6 +54,7 @@ const RefundPolicy = lazy(() => import("@/pages/legal/RefundPolicy"));
 
 function AppRouter() {
   return (
+    <RouteErrorBoundary>
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
         {/* Home — new V3 landing (reference tiles + Bask cinematics) */}
@@ -132,6 +134,7 @@ function AppRouter() {
         <Route component={NotFound} />
       </Switch>
     </Suspense>
+    </RouteErrorBoundary>
   );
 }
 

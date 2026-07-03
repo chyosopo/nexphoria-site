@@ -8,6 +8,11 @@ import { Check } from "lucide-react";
 import { F, S } from "@/lib/typography";
 
 export default function BloodPanels() {
+  // D16 — which tier do most protocols gate on?
+  const demand: Record<string, number> = {};
+  FLAGSHIP_STACKS.forEach((st) => { demand[st.panel] = (demand[st.panel] ?? 0) + 1; });
+  const mostRequired = Object.entries(demand).sort((a, b) => b[1] - a[1])[0]?.[0];
+
   useSeo({
     title: "Blood Work — Basic, Full, Elite Panels | Nexphoria",
     description: "Three physician-defined blood panels, from a baseline safety screen to advanced cardiometabolic depth. Every protocol is gated on the right one.",
@@ -32,14 +37,28 @@ export default function BloodPanels() {
       {/* three tiers */}
       <section className="nx-container" style={{ padding: "1rem 0 2rem" }}>
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 14, alignItems: "stretch" }}>
-          {PANELS.map((p, i) => (
+          {PANELS.map((p, i) => {
+            const hot = p.tier === mostRequired;
+            const depth = PANELS.slice(0, i + 1).reduce((n, q) => n + q.adds.length, 0);
+            const maxDepth = PANELS.reduce((n, q) => n + q.adds.length, 0);
+            return (
             <Reveal key={p.tier} delay={i * 70}>
-              <div className="nx-glass-tile" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+              <div className="nx-glass-tile" style={{ height: "100%", display: "flex", flexDirection: "column", position: "relative", border: hot ? "1.5px solid var(--nx-cobalt)" : undefined }}>
+                {hot && (
+                  <p style={{ position: "absolute", top: 14, right: 16, fontFamily: F, fontSize: 9.5, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)" }} data-testid="panel-most-required">
+                    Most protocols gate here
+                  </p>
+                )}
                 <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: 34, color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1 }}>{usd(p.price)}</p>
                 {p.freeWith && <p style={{ fontFamily: F, fontSize: 12.5, color: "var(--nx-cobalt)", fontWeight: 600, marginTop: 4 }}>{p.freeWith}</p>}
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{p.summary}</p>
                 <div style={{ marginTop: "1rem", flex: 1 }}>
+                  {i > 0 && (
+                    <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: 8 }}>
+                      Everything in {PANELS[i - 1].tier}, plus:
+                    </p>
+                  )}
                   {p.adds.map((a) => (
                     <div key={a} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 7 }}>
                       <Check size={15} strokeWidth={2.4} style={{ color: "var(--nx-cobalt)", marginTop: 3, flexShrink: 0 }} />
@@ -47,12 +66,18 @@ export default function BloodPanels() {
                     </div>
                   ))}
                 </div>
-                <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "1rem", borderTop: "1px solid var(--nx-border)", paddingTop: "0.8rem" }}>
+                <div style={{ marginTop: "1rem" }} aria-hidden>
+                  <div style={{ height: 4, borderRadius: "var(--nx-r-pill)", background: "var(--nx-border)", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${Math.round((depth / maxDepth) * 100)}%`, background: "var(--nx-cobalt)", borderRadius: "var(--nx-r-pill)" }} />
+                  </div>
+                  <p style={{ fontFamily: F, fontSize: 10.5, color: "var(--nx-fg-muted)", marginTop: 5 }}>Cumulative depth · {depth} marker groups</p>
+                </div>
+                <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.8rem", borderTop: "1px solid var(--nx-border)", paddingTop: "0.8rem" }}>
                   Retest: {p.retest}
                 </p>
               </div>
             </Reveal>
-          ))}
+          );})}
         </div>
       </section>
 

@@ -38,18 +38,38 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
 
       <section className="nx-container" style={{ paddingBottom: "1rem" }}>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {cats.map((c) => (
-            <button key={c} onClick={() => setFilter(c)} style={{
-              fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 15px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
-              background: filter === c ? "var(--nx-cobalt)" : "transparent",
-              color: filter === c ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
-              border: `1px solid ${filter === c ? "var(--nx-cobalt)" : "var(--nx-border)"}`, transition: "all 0.2s ease",
-            }}>{c}</button>
-          ))}
+          {cats.map((c) => {
+            const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
+            const active = filter === c;
+            return (
+              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`filter-${c.toLowerCase()}`} style={{
+                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 15px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
+                background: active ? "var(--nx-cobalt)" : "transparent",
+                color: active ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
+                border: `1px solid ${active ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
+                transition: "background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease)",
+              }}>
+                {c}
+                <span style={{ opacity: 0.65, marginLeft: 6, fontWeight: 500 }}>{n}</span>
+              </button>
+            );
+          })}
         </div>
       </section>
 
       <section className="nx-container" style={{ padding: "1rem 0 4rem" }}>
+        <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
+          {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
+        </p>
+        {shown.length === 0 && (
+          <div className="nx-glass-tile" style={{ display: "block", textAlign: "center", padding: "3rem 1.5rem" }} data-testid="filter-empty">
+            <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>No matches in {filter}.</p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>The formulary is curated — some shelves are short by design.</p>
+            <button onClick={() => setFilter("All")} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
+              Clear filter — show all
+            </button>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
           {shown.map((s, i) => (
             <Reveal key={s.slug} delay={i * 40}>
