@@ -71,6 +71,8 @@ async function main() {
     ["/gate",            "/src/pages/Gate.tsx", {}],
     ["/goals/recovery",  "/src/pages/Category.tsx", { slug: "recovery" }],
     ["/goals/sleep",     "/src/pages/Category.tsx", { slug: "sleep" }],
+    ["/women/protocols", "/src/pages/ProtocolsIndex.tsx", {}],
+    ["/men/protocols",   "/src/pages/ProtocolsIndex.tsx", {}],
     ["/legal",           "/src/pages/legal/LegalIndex.tsx", {}],
     ["/legal/terms",     "/src/pages/legal/Terms.tsx", {}],
     ["/legal/privacy",   "/src/pages/legal/Privacy.tsx", {}],
