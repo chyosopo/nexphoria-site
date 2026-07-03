@@ -281,10 +281,11 @@ function PricingTiers() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "2.25rem",
+                      fontSize: "var(--nx-t-display)",
                       fontWeight: 600,
-                      letterSpacing: "-0.02em",
-                      color: tier.recommended ? "#FFFFFF" : "var(--nx-fg)",
+                      letterSpacing: "-0.03em",
+                      lineHeight: 1,
+                      color: tier.recommended ? "var(--nx-ceramic)" : "var(--nx-fg)",
                     }}
                     data-testid={`tier-price-${tier.key}`}
                   >
