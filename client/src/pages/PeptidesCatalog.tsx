@@ -25,6 +25,10 @@ const CAT_IMG: Record<string, string> = {
   "Sexual Health": OUTCOME_HERO.women,
 };
 
+/* Markers every protocol on this shelf is monitored against — reinforces the
+   lab-monitored law (TRUE: bloodwork every 90 days). Echoes the Science page. */
+const CATALOG_BIOMARKERS = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "Lipid panel"];
+
 export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
   const [filter, setFilter] = useState<string>("All");
@@ -80,6 +84,21 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       <section className="nx-container" style={{ padding: "clamp(1.2rem,2.4vw,2rem) 0 clamp(1.8rem,3vw,2.4rem)" }}>
         <Reveal>
           <TrustStrip testid="peptides-trust-strip" />
+        </Reveal>
+      </section>
+
+      {/* ── Biomarker chip strip — every shelf item is lab-monitored (TRUE) ── */}
+      <section className="nx-container" style={{ paddingBottom: "clamp(1.4rem,3vw,2.2rem)" }}>
+        <Reveal>
+          <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every protocol here is lab-monitored</p>
+          <div className="nx-biochip-grid" data-testid="catalog-biochips">
+            {CATALOG_BIOMARKERS.map((name) => (
+              <Link key={name} href="/bloodwork" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
+                {name}
+              </Link>
+            ))}
+            <span className="nx-biochip muted">+ 32 more on the full panel</span>
+          </div>
         </Reveal>
       </section>
 
