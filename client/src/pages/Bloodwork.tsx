@@ -610,8 +610,8 @@ function LiveTrajectory() {
       style={{
         backgroundColor: "var(--nx-bg-dark)",
         color: "var(--nx-ceramic)",
-        paddingTop: "clamp(4rem, 6vw, 6rem)",
-        paddingBottom: "clamp(4rem, 6vw, 6rem)",
+        paddingTop: "clamp(4.5rem, 8vw, 7.25rem)",
+        paddingBottom: "clamp(4.5rem, 8vw, 7.25rem)",
       }}
     >
       <div className="nx-container">
@@ -703,8 +703,8 @@ function HowItWorks() {
       data-testid="bloodwork-how"
       style={{
         backgroundColor: "var(--nx-bg)",
-        paddingTop: "clamp(4rem, 6vw, 6rem)",
-        paddingBottom: "clamp(4rem, 6vw, 6rem)",
+        paddingTop: "clamp(4.5rem, 8vw, 7.25rem)",
+        paddingBottom: "clamp(4.5rem, 8vw, 7.25rem)",
       }}
     >
       <div className="nx-container">
@@ -814,8 +814,8 @@ function WhyItMatters() {
     <section
       style={{
         backgroundColor: "var(--nx-ceramic)",
-        paddingTop: "clamp(4rem, 6vw, 6rem)",
-        paddingBottom: "clamp(4rem, 6vw, 6rem)",
+        paddingTop: "clamp(4.5rem, 8vw, 7.25rem)",
+        paddingBottom: "clamp(4.5rem, 8vw, 7.25rem)",
       }}
     >
       <div className="nx-container">

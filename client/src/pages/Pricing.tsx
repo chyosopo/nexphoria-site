@@ -218,7 +218,7 @@ function PricingTiers() {
                   background: tier.recommended ? "var(--nx-fg)" : "var(--nx-ceramic)",
                   border: tier.recommended ? "1.5px solid var(--nx-fg)" : "1px solid var(--nx-border)",
                   borderRadius: "var(--nx-r-lg)",
-                  padding: "2rem",
+                  padding: "2.4rem 2.15rem",
                   position: "relative",
                 }}
               >
@@ -380,13 +380,13 @@ function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: nu
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.25rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
+        style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.6rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
       >
         <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
         <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: open ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", flexShrink: 0, marginTop: "2px" }}>{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div style={{ paddingBottom: "1.25rem" }}>
+        <div style={{ paddingBottom: "1.6rem" }}>
           <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{item.a}</p>
         </div>
       )}
