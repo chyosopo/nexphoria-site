@@ -151,7 +151,7 @@ export default function Contact() {
                 <div
                   style={{
                     backgroundColor: "var(--nx-ceramic)",
-                    padding: "2.5rem 2rem",
+                    padding: "2.85rem 2.25rem",
                     height: "100%",
                     borderTop: "2px solid var(--nx-cobalt)",
                   }}
@@ -243,7 +243,7 @@ export default function Contact() {
 
       {/* ── Coverage strip — location visual + coverage stats ── */}
       <section
-        className="py-14 md:py-16"
+        className="py-16 md:py-20"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
