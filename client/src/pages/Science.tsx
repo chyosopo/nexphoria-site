@@ -323,7 +323,7 @@ export default function Science() {
       <ScienceHeroDark />
 
       {/* ── Evidence tier explainer ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "4.5rem 0" }} data-testid="section-evidence-tiers">
+      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -461,7 +461,7 @@ export default function Science() {
       </section>
 
       {/* ── Foundational explainer ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "4rem 0" }}>
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -498,7 +498,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial pull quote — between explainer and mechanisms ── */}
-      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "3.5rem 0" }}>
+      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <blockquote style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
@@ -514,7 +514,7 @@ export default function Science() {
       </section>
 
       {/* ── Mechanisms section — 6 cards ── */}
-      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "4.5rem 0" }} data-testid="section-mechanisms">
+      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-mechanisms">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -545,7 +545,7 @@ export default function Science() {
       </section>
 
       {/* ── Why measurement matters ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "5rem 0" }} data-testid="section-measurement">
+      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-measurement">
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -586,7 +586,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial pull quote — Clarity Unlocks Power ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "3.5rem 0" }}>
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <blockquote style={{ maxWidth: "680px" }}>
@@ -616,7 +616,7 @@ export default function Science() {
                   key={family.id}
                   id={`science-${family.id}`}
                   ref={(el) => { sectionRefs.current[family.id] = el; }}
-                  style={{ backgroundColor: bg, padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }}
+                  style={{ backgroundColor: bg, padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }}
                   data-testid={`science-family-${family.slug}`}
                 >
                   <Reveal>
@@ -655,7 +655,7 @@ export default function Science() {
             })}
 
             {/* ── Evidence table ── */}
-            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
+            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -693,7 +693,7 @@ export default function Science() {
             </section>
 
             {/* ── Safety profile data table — AGENT-3 ── */}
-            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
+            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
