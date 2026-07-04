@@ -2,7 +2,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip } from "@/components/EnterprisePatterns";
+import { TrustStrip, DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
@@ -152,6 +152,34 @@ export default function LabTesting() {
           </div>
         </div>
       </main>
+
+      {/* ── How your results read — abstract outcome dashboard + clinical standard ── */}
+      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1.05fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
+          <Reveal>
+            <DashboardMockup
+              title="Baseline vs. 90-day retest"
+              rows={[
+                { k: "Markers moved into range", v: "18 / 38" },
+                { k: "Biological age vs. chronological", v: "−3.4 yrs" },
+              ]}
+            />
+          </Reveal>
+          <div>
+            <SectionHead
+              eyebrow="How your results read"
+              title={<>A trend your physician reads — not a single snapshot.</>}
+              lead="Your panel is drawn at baseline and again every ninety days. Your physician reads the movement — which markers shifted into range, how your composite age tracked — and adjusts the protocol against the data."
+              maxTitle="18ch"
+            />
+            <ProofStrip
+              quote="Dose decisions follow the panel, not the calendar."
+              attr="The Nexphoria clinical standard"
+              style={{ marginTop: "clamp(1.8rem,3vw,2.6rem)" }}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ── Partner laboratory network ── */}
       <section

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip } from "@/components/EnterprisePatterns";
+import { TrustStrip, DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
@@ -153,6 +153,28 @@ export default function ProtocolsIndex() {
               </Link>
             </Reveal>
           )}
+        </div>
+      </section>
+
+      {/* ── Measured, not assumed — abstract outcome dashboard + clinical standard ── */}
+      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.25fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
+          <div>
+            <SectionHead
+              eyebrow="Measured, not assumed"
+              title={<>Every protocol answers to the panel.</>}
+              lead="A protocol earns its next cycle from your bloodwork, not from a schedule. Your physician reads the retest trend — markers moving into range, biological age against chronological — and adjusts, holds, or stops."
+              maxTitle="15ch"
+            />
+            <ProofStrip
+              quote="No protocol continues without a physician reading the next panel."
+              attr="The Nexphoria clinical standard"
+              style={{ marginTop: "clamp(1.8rem,3vw,2.6rem)" }}
+            />
+          </div>
+          <Reveal>
+            <DashboardMockup />
+          </Reveal>
         </div>
       </section>
 
