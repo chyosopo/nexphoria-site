@@ -74,7 +74,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                     overflow: "hidden",
                     backgroundColor: "var(--nx-fg)",
                     cursor: "pointer",
-                    transition: "transform 400ms cubic-bezier(0.22,1,0.36,1)",
+                    transition: "transform var(--nx-dur-3) var(--nx-ease)",
                   }}
                   className="group-hover:scale-[1.02]"
                 >
@@ -91,7 +91,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                         height: "100%",
                         objectFit: "cover",
                         objectPosition: "center",
-                        transition: "filter 300ms ease",
+                        transition: "filter var(--nx-dur-3) var(--nx-ease)",
                       }}
                       className="group-hover:brightness-110"
                     />
@@ -170,7 +170,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                         borderRadius: "50%",
                         border: "1px solid rgba(255,255,255,0.35)",
                         flexShrink: 0,
-                        transition: "transform 200ms ease, border-color 200ms ease",
+                        transition: "transform var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease)",
                       }}
                       className="group-hover:translate-x-0.5 group-hover:border-white/70"
                     >

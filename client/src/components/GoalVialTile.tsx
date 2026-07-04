@@ -144,7 +144,7 @@ export function GoalVialTile({
         backgroundColor: bg,
         cursor: "pointer",
         textAlign: "left",
-        transition: "border-color 0.18s ease, transform 0.25s ease, box-shadow 0.25s ease",
+        transition: "border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-base) var(--nx-ease), box-shadow var(--nx-dur-base) var(--nx-ease)",
         transform: hovered && !selected ? "translateY(-2px)" : "translateY(0)",
         boxShadow: hovered && !selected ? "0 8px 24px rgba(21, 24, 28, 0.08)" : "none",
         overflow: "hidden",
@@ -181,7 +181,7 @@ export function GoalVialTile({
             gap: "0.875rem",
             alignItems: "center",
             opacity: flipped ? 0 : 1,
-            transition: "opacity 0.22s ease",
+            transition: "opacity var(--nx-dur-2) var(--nx-ease)",
             position: flipped ? "absolute" : "static",
             inset: flipped ? "1rem 1.125rem" : "auto",
           }}
@@ -235,7 +235,7 @@ export function GoalVialTile({
         <div
           style={{
             opacity: flipped ? 1 : 0,
-            transition: "opacity 0.22s ease 0.06s",
+            transition: "opacity var(--nx-dur-2) var(--nx-ease) var(--nx-dur-1)",
             pointerEvents: flipped ? "auto" : "none",
             position: flipped ? "static" : "absolute",
             inset: flipped ? "auto" : "1rem 1.125rem",

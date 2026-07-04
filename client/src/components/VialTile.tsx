@@ -285,7 +285,7 @@ function VialTileInner({
           width: "100%",
           height: "100%",
           transformStyle: "preserve-3d",
-          transition: "transform 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+          transition: "transform var(--nx-dur-4) var(--nx-ease)",
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
         onMouseEnter={() => !isTouch && setFlipped(true)}
@@ -315,7 +315,7 @@ function VialTileInner({
             boxShadow: flipped
               ? "0 30px 60px -20px rgba(21, 24, 28,0.25)"
               : "0 4px 18px -6px rgba(21, 24, 28,0.10)",
-            transition: "box-shadow 500ms",
+            transition: "box-shadow var(--nx-dur-slow)",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             overflow: "hidden",
@@ -421,7 +421,7 @@ function VialTileInner({
               justifyContent: "center",
               margin: "clamp(-8px, -0.5vw, 0px) 0",
               zIndex: 2,
-              transition: "transform 500ms cubic-bezier(0.22,1,0.36,1)",
+              transition: "transform var(--nx-dur-slow) var(--nx-ease)",
               transform: flipped ? "translateY(-6px)" : "translateY(0)",
             }}
           >

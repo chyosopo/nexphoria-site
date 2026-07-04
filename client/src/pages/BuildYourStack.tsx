@@ -335,7 +335,7 @@ export default function BuildYourStack() {
                         fontFamily: F,
                         fontSize: "var(--nx-t-xs)",
                         fontWeight: 600,
-                        transition: "all 300ms",
+                        transition: "all var(--nx-dur-3)",
                       }}
                     >
                       {step > (s.n as Step) ? <Check size={13} /> : s.n}
@@ -348,7 +348,7 @@ export default function BuildYourStack() {
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
                         color: step >= (s.n as Step) ? "var(--nx-fg)" : "var(--nx-fg-muted)",
-                        transition: "color 300ms",
+                        transition: "color var(--nx-dur-3)",
                       }}
                     >
                       {s.label}
@@ -357,7 +357,7 @@ export default function BuildYourStack() {
                   {i < 2 && (
                     <span
                       className="h-px w-8 md:w-16"
-                      style={{ background: step > (s.n as Step) ? "var(--nx-acid)" : "#C1CAD4", transition: "background 300ms" }}
+                      style={{ background: step > (s.n as Step) ? "var(--nx-acid)" : "#C1CAD4", transition: "background var(--nx-dur-3)" }}
                     />
                   )}
                 </div>
@@ -982,7 +982,7 @@ export default function BuildYourStack() {
                         textTransform: "uppercase",
                         fontWeight: 600,
                         borderRadius: 999,
-                        transition: "all 200ms ease",
+                        transition: "all var(--nx-dur-2) var(--nx-ease)",
                       }}
                     >
                       {added ? (

@@ -325,7 +325,7 @@ export function ProtocolConfigurator({
             color: t.text,
             cursor: "pointer",
             textAlign: "left",
-            transition: "all 0.18s ease",
+            transition: "all var(--nx-dur-2) var(--nx-ease)",
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -362,7 +362,7 @@ export function ProtocolConfigurator({
               style={{
                 color: t.textMuted,
                 transform: doseOpen ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 0.2s ease",
+                transition: "transform var(--nx-dur-2) var(--nx-ease)",
               }}
             />
           </div>
@@ -400,7 +400,7 @@ export function ProtocolConfigurator({
                     color: t.text,
                     cursor: "pointer",
                     textAlign: "left",
-                    transition: "background 0.15s ease",
+                    transition: "background var(--nx-dur-fast) var(--nx-ease)",
                   }}
                 >
                   <div style={{ flex: 1 }}>
@@ -487,7 +487,7 @@ export function ProtocolConfigurator({
                   borderRadius: t.radius,
                   cursor: "pointer",
                   textAlign: "left",
-                  transition: "all 0.18s ease",
+                  transition: "all var(--nx-dur-2) var(--nx-ease)",
                 }}
               >
                 {/* Radio dot */}
@@ -637,7 +637,7 @@ export function ProtocolConfigurator({
                   color: t.text,
                   cursor: "pointer",
                   textAlign: "left",
-                  transition: "all 0.18s ease",
+                  transition: "all var(--nx-dur-2) var(--nx-ease)",
                 }}
               >
                 <div
@@ -808,7 +808,7 @@ export function ProtocolConfigurator({
           alignItems: "center",
           justifyContent: "center",
           gap: "10px",
-          transition: "all 0.2s ease",
+          transition: "all var(--nx-dur-2) var(--nx-ease)",
           boxShadow: justAdded ? `0 8px 24px ${t.accentSoft}` : "none",
         }}
       >
