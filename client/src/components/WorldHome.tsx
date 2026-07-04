@@ -146,7 +146,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr]" style={{ gap: 14, marginTop: "1.4rem", alignItems: "stretch" }}>
           <Reveal>
-            <div className="relative" style={{ borderRadius: 20, overflow: "hidden", minHeight: 320, height: "100%", boxShadow: "0 18px 40px -24px color-mix(in srgb, var(--nx-fg) 45%, transparent)" }}>
+            <div className="relative" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", minHeight: 320, height: "100%", boxShadow: "var(--nx-e-3)" }}>
               <img src={config.vialArt} alt="" aria-hidden loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
               <div className="nx-art-chip" style={{ maxWidth: 260 }}>
                 <p style={{ fontFamily: F, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>

@@ -202,7 +202,7 @@ export function CartDrawer() {
                         style={{
                           background: "var(--nx-ceramic)",
                           border: "1px solid var(--nx-border)",
-                          borderRadius: 14,
+                          borderRadius: "var(--nx-r-md)",
                         }}
                         data-testid={`cart-line-${line.type}-${line.slug}`}
                       >
@@ -398,7 +398,7 @@ export function CartDrawer() {
                     style={{
                       background: "var(--nx-bg-cream)",
                       border: "1px dashed #8FAED4",
-                      borderRadius: 14,
+                      borderRadius: "var(--nx-r-md)",
                     }}
                   >
                     <div className="flex items-center gap-2 mb-3">
@@ -550,7 +550,7 @@ export function CartDrawer() {
                   fontWeight: 600,
                   fontSize: "0.9375rem",
                   letterSpacing: "0.02em",
-                  borderRadius: 12,
+                  borderRadius: "var(--nx-r-md)",
                   boxShadow: "0 2px 8px rgba(21, 24, 28,0.15)",
                 }}
                 data-testid="button-checkout"

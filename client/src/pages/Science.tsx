@@ -1074,7 +1074,7 @@ function ScienceHeroDark() {
                 key={tile.fam}
                 style={{
                   aspectRatio: "1",
-                  borderRadius: "14px",
+                  borderRadius: "var(--nx-r-md)",
                   border: "1px solid rgba(255,255,255,0.10)",
                   background: "rgba(255,255,255,0.04)",
                   padding: "1rem",

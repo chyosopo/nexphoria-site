@@ -217,7 +217,7 @@ function PricingTiers() {
                   flexDirection: "column",
                   background: tier.recommended ? "var(--nx-fg)" : "var(--nx-ceramic)",
                   border: tier.recommended ? "1.5px solid var(--nx-fg)" : "1px solid var(--nx-border)",
-                  borderRadius: "20px",
+                  borderRadius: "var(--nx-r-lg)",
                   padding: "2rem",
                   position: "relative",
                 }}
@@ -346,7 +346,7 @@ function PricingTiers() {
                         display: "block",
                         textAlign: "center",
                         padding: "0.875rem 1.5rem",
-                        borderRadius: "12px",
+                        borderRadius: "var(--nx-r-md)",
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "var(--nx-t-sm)",
                         fontWeight: 500,

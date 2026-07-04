@@ -92,7 +92,7 @@ export default function Cart() {
                               height: 110,
                               background: "var(--nx-bg-cream)",
                               border: "1px solid var(--nx-border)",
-                              borderRadius: 12,
+                              borderRadius: "var(--nx-r-md)",
                             }}
                           >
                             <VialGlyph label={line.type === "stack" ? "STACK" : glyphLetter(line.name)} />
@@ -269,7 +269,7 @@ export default function Cart() {
                     Recommended add-ons
                   </p>
                   <div className="space-y-3">
-                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
+                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
                         <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>38-Biomarker Partner-Laboratory Panel</p>
@@ -281,7 +281,7 @@ export default function Cart() {
                         </a>
                       </Link>
                     </div>
-                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
+                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Recovery Support</p>
                         <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>BPC-157 — Tissue Repair Adjunct</p>
@@ -301,7 +301,7 @@ export default function Cart() {
               {/* Summary */}
               <aside
                 className="lg:sticky lg:top-24 p-7"
-                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 20 }}
+                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)" }}
               >
                 <Reveal delay={80}>
                 <div
@@ -338,7 +338,7 @@ export default function Cart() {
                 {/* Included list */}
                 <div
                   className="mb-5 p-4"
-                  style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                  style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                 >
                   <p className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                     Included at no extra cost
@@ -497,7 +497,7 @@ function EmptyCart() {
   return (
     <div
       className="py-20 text-center max-w-md mx-auto"
-      style={{ border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", borderRadius: 20 }}
+      style={{ border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)" }}
     >
       <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-amber)" }}>
         <ShoppingBag size={32} strokeWidth={1.25} />
@@ -512,7 +512,7 @@ function EmptyCart() {
         <Link asChild href="/stacks">
           <a
             className="block w-full px-5 py-3 transition-all text-center"
-            style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.875rem", fontWeight: 500, borderRadius: 12 }}
+            style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.875rem", fontWeight: 500, borderRadius: "var(--nx-r-md)" }}
             data-testid="link-empty-browse-stacks"
           >
             Browse curated stacks
@@ -521,7 +521,7 @@ function EmptyCart() {
         <Link asChild href="/assessment">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+            style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
             data-testid="link-empty-take-assessment"
           >
             Take the assessment
@@ -530,7 +530,7 @@ function EmptyCart() {
         <Link asChild href="/peptides">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "var(--nx-fg-graphite)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+            style={{ color: "var(--nx-fg-graphite)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
             data-testid="link-empty-browse-peptides"
           >
             Browse single peptides

@@ -417,7 +417,7 @@ function PanelExplorer() {
                 }}
               >
                 {PANEL_ART[cat.id] && (
-                  <span className="relative block overflow-hidden -mt-1 mb-4" style={{ borderRadius: 14, aspectRatio: "4 / 3", background: "var(--nx-ice)" }}>
+                  <span className="relative block overflow-hidden -mt-1 mb-4" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "4 / 3", background: "var(--nx-ice)" }}>
                     <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy"
                       className="w-full h-full transition-transform duration-700"
                       style={{ objectFit: "cover" }} />
@@ -545,7 +545,7 @@ function PanelExplorer() {
               padding: "2rem",
               backgroundColor: "var(--nx-ceramic)",
               border: "1px solid var(--nx-border)",
-              borderRadius: 12,
+              borderRadius: "var(--nx-r-md)",
               display: "grid",
               gap: "1.25rem",
               gridTemplateColumns: "auto 1fr",
@@ -1020,7 +1020,7 @@ function SystemsMosaic() {
             const [bg, ink] = PANEL_TINTS[cat.id] ?? PANEL_TINTS["bio-age"];
             return (
               <a key={cat.id} href="#explore" className="group block no-underline overflow-hidden" style={{ background: bg, borderRadius: 18, padding: 10 }} data-testid={`mosaic-${cat.id}`}>
-                <span className="block overflow-hidden" style={{ borderRadius: 12, aspectRatio: "1 / 1" }}>
+                <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "1 / 1" }}>
                   <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy" className="w-full h-full transition-transform duration-700 group-hover:scale-[1.05]" style={{ objectFit: "cover" }} />
                 </span>
                 <span className="block px-1.5 pt-2.5 pb-1">
@@ -1062,7 +1062,7 @@ function ResultsDashboard() {
           Not a PDF. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>A plan.</em>
         </h2>
         <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
-          <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
+          <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: "var(--nx-r-lg)", padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
             {rows.map((r) => {
               const pct = ((r.v - r.lo) / (r.hi - r.lo)) * 100;
               const oL = ((r.opt[0] - r.lo) / (r.hi - r.lo)) * 100, oW = ((r.opt[1] - r.opt[0]) / (r.hi - r.lo)) * 100;
@@ -1081,7 +1081,7 @@ function ResultsDashboard() {
             })}
             <p style={{ fontFamily: FONT, fontSize: 11, color: "rgba(243, 245, 247,0.4)", marginTop: "0.9rem" }}>Illustration of the member dashboard.</p>
           </div>
-          <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: 20, padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
+          <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: "var(--nx-r-lg)", padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
             <div className="flex items-baseline justify-between">
               <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-bg)" }}>ApoB · 12 months</span>
               <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-success)" }}>−25%</span>
@@ -1237,7 +1237,7 @@ function MarkerWall() {
           </p>
         ))}
       </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: 20, padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)", minWidth: 260 }}>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)", padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)", minWidth: 260 }}>
         <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", margin: 0 }}>Out of range → In range</p>
         <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
           <line x1="30" y1="22" x2="180" y2="48" stroke="var(--nx-amber)" strokeWidth="1.6" strokeDasharray="4 5" />

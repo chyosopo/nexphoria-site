@@ -164,7 +164,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
             >
               <div
                 style={{
-                  borderRadius: "12px",
+                  borderRadius: "var(--nx-r-md)",
                   overflow: "hidden",
                   aspectRatio: "3/4",
                   backgroundColor: "var(--nx-fg)",

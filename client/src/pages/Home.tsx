@@ -636,8 +636,8 @@ function FlagshipDark() {
                 </Link>
               </div>
             </div>
-            <div style={{ background: "linear-gradient(150deg, #0F1B3A 0%, #050914 100%)", border: "1px solid rgba(246, 249, 252,0.12)", borderRadius: 20, padding: "1.6rem", position: "relative", overflow: "hidden" }}>
-              <div style={{ aspectRatio: "4 / 3", backgroundImage: "linear-gradient(145deg,#132352,#0A1230)", backgroundSize: "cover", backgroundPosition: "center", borderRadius: 12, marginBottom: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
+            <div style={{ background: "linear-gradient(150deg, #0F1B3A 0%, #050914 100%)", border: "1px solid rgba(246, 249, 252,0.12)", borderRadius: "var(--nx-r-lg)", padding: "1.6rem", position: "relative", overflow: "hidden" }}>
+              <div style={{ aspectRatio: "4 / 3", backgroundImage: "linear-gradient(145deg,#132352,#0A1230)", backgroundSize: "cover", backgroundPosition: "center", borderRadius: "var(--nx-r-md)", marginBottom: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
                 <div style={{ fontFamily: F, fontSize: "var(--nx-t-h2)", fontWeight: 500, color: "rgba(246, 249, 252,0.14)", letterSpacing: "-0.02em" }}>WOLVERINE</div>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
@@ -1729,7 +1729,7 @@ function BloodworkPillar() {
               style={{
                 position: "relative",
                 aspectRatio: "4/5",
-                borderRadius: 20,
+                borderRadius: "var(--nx-r-lg)",
                 overflow: "hidden",
                 background: "#111",
               }}

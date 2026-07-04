@@ -387,7 +387,7 @@ export default function Contact() {
                   style={{
                     padding: "2.5rem",
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "4px",
+                    borderRadius: "var(--nx-r-sm)",
                     backgroundColor: "var(--nx-bg-cream)",
                   }}
                 >

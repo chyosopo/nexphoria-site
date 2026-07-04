@@ -1345,7 +1345,7 @@ function BloodworkPricing() {
               style={{
                 background: t.dark ? "var(--nx-fg)" : "var(--nx-ceramic)",
                 color: t.dark ? "var(--nx-ceramic)" : "var(--nx-fg)",
-                borderRadius: 20,
+                borderRadius: "var(--nx-r-lg)",
                 padding: "36px 32px",
                 border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(21, 24, 28,0.08)",
                 boxShadow: t.accent ? "0 30px 60px -20px rgba(152, 182, 213,0.35)" : "none",
@@ -1755,7 +1755,7 @@ function PartnerLabsSection() {
                   style={{
                     width: 56,
                     height: 56,
-                    borderRadius: 12,
+                    borderRadius: "var(--nx-r-md)",
                     backgroundColor: "var(--nx-cobalt)",
                     display: "flex",
                     alignItems: "center",
@@ -1839,7 +1839,7 @@ function PartnerLabsSection() {
                   data-testid={`draw-option-${opt.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: 20,
+                    borderRadius: "var(--nx-r-lg)",
                     overflow: "hidden",
                     height: "100%",
                     display: "flex",
@@ -1913,7 +1913,7 @@ function PartnerLabsSection() {
             style={{
               marginTop: "3.5rem",
               border: "1px solid var(--nx-border)",
-              borderRadius: 20,
+              borderRadius: "var(--nx-r-lg)",
               padding: "1.75rem",
               backgroundColor: "var(--nx-bg-cream)",
             }}

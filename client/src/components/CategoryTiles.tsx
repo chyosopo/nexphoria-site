@@ -70,7 +70,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                   style={{
                     position: "relative",
                     height: "220px",
-                    borderRadius: "12px",
+                    borderRadius: "var(--nx-r-md)",
                     overflow: "hidden",
                     backgroundColor: "var(--nx-fg)",
                     cursor: "pointer",

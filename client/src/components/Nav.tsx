@@ -313,7 +313,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                       className="group block no-underline transition-colors"
                       style={{
                         border: "1px solid var(--nx-border)",
-                        borderRadius: 14,
+                        borderRadius: "var(--nx-r-md)",
                         padding: "1rem 1.05rem",
                         background: "var(--nx-bg)",
                       }}
@@ -376,7 +376,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   onClick={() => setMegaOpen(false)}
                   data-testid="mega-featured-card"
                 >
-                  <span className="block overflow-hidden" style={{ borderRadius: 14, aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
+                  <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
                     <img
                       src="img/img_b02fe34b47f7.webp"
                       alt="Nexphoria compounded peptide vial"
@@ -455,7 +455,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mt-5 block no-underline"
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: 14,
+                    borderRadius: "var(--nx-r-md)",
                     padding: "0.9rem 1rem",
                     background: "var(--nx-bg)",
                   }}
@@ -547,7 +547,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="no-underline"
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: 14,
+                    borderRadius: "var(--nx-r-md)",
                     padding: "0.75rem 0.85rem",
                     background: "var(--nx-bg)",
                     fontFamily: "'General Sans', system-ui, sans-serif",

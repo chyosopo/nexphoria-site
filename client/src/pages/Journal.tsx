@@ -123,7 +123,7 @@ export default function Journal() {
                   gridTemplateColumns: "1.05fr 0.95fr",
                   backgroundColor: "var(--nx-ceramic)",
                   border: "1px solid var(--nx-border)",
-                  borderRadius: 20,
+                  borderRadius: "var(--nx-r-lg)",
                   overflow: "hidden",
                   cursor: "pointer",
                 }}
@@ -349,7 +349,7 @@ export default function Journal() {
               gap: 40,
               alignItems: "center",
               backgroundColor: "var(--nx-fg)",
-              borderRadius: 20,
+              borderRadius: "var(--nx-r-lg)",
               padding: "48px 48px",
             }}
           >
@@ -411,7 +411,7 @@ export default function Journal() {
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
                   padding: "16px 24px",
-                  borderRadius: 12,
+                  borderRadius: "var(--nx-r-md)",
                   textDecoration: "none",
                   willChange: "transform",
                   transition: "transform var(--nx-dur-2) var(--nx-ease)",

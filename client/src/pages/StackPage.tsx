@@ -195,7 +195,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* GLP-1 narrative — the why of the wall, in flow */}
             {stack.gated && (
-              <div style={{ borderRadius: 20, padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                   <Lock size={15} /> Physician-assessed only
                 </div>

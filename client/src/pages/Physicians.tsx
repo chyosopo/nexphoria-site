@@ -43,7 +43,7 @@ export default function Physicians() {
                 style={{
                   aspectRatio: "4/3",
                   overflow: "hidden",
-                  borderRadius: "20px",
+                  borderRadius: "var(--nx-r-lg)",
                   border: "1px solid var(--nx-border)",
                   backgroundColor: "var(--nx-bg-cream)",
                 }}
@@ -540,7 +540,7 @@ function PhysiciansHeroDark() {
               <div
                 key={tile.k}
                 style={{
-                  borderRadius: "14px",
+                  borderRadius: "var(--nx-r-md)",
                   overflow: "hidden",
                   border: "1px solid rgba(255,255,255,0.10)",
                   background: "rgba(255,255,255,0.03)",

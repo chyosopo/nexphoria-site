@@ -179,7 +179,7 @@ export default function Checkout() {
               <Link asChild href="/">
                 <a
                   className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
-                  style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                  style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                   data-testid="link-back-home"
                 >
                   <ArrowLeft size={14} /> Back to Nexphoria
@@ -207,7 +207,7 @@ export default function Checkout() {
             <Link asChild href="/stacks">
               <a
                 className="inline-block px-6 py-3"
-                style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.875rem", borderRadius: 12 }}
+                style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.875rem", borderRadius: "var(--nx-r-md)" }}
                 data-testid="link-empty-checkout-stacks"
               >
                 Browse stacks
@@ -328,7 +328,7 @@ export default function Checkout() {
                   <Section title="Billing" eyebrow="Step 02 · Billing">
                     <div
                       className="flex items-start gap-3 p-4 mb-6"
-                      style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                      style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                       data-testid="notice-deferred-billing"
                     >
                       <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} />
@@ -456,7 +456,7 @@ export default function Checkout() {
                         type="button"
                         onClick={() => setStep(0)}
                         className="mt-4 block w-full text-left p-3 text-sm"
-                        style={{ background: "#E5EFFB", border: "1px solid #ABC4E2", color: "#1A4D8B", fontFamily: FONT, borderRadius: 12 }}
+                        style={{ background: "#E5EFFB", border: "1px solid #ABC4E2", color: "#1A4D8B", fontFamily: FONT, borderRadius: "var(--nx-r-md)" }}
                         data-testid="text-form-errors"
                       >
                         Some address fields need attention. Tap to review Step 01.
@@ -470,7 +470,7 @@ export default function Checkout() {
             {/* Order summary — sticky right rail */}
             <aside
               className="lg:sticky lg:top-24 p-7"
-              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 20 }}
+              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)" }}
             >
               <Reveal delay={80}>
               <div
@@ -626,7 +626,7 @@ function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; on
       type="button"
       onClick={onClick}
       className="px-6 py-4 transition-colors hover:bg-black/5"
-      style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: 12 }}
+      style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
       data-testid={testId}
     >
       {children}
@@ -687,7 +687,7 @@ const YesNoField = ({
   testId: string;
 } & React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
-    <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
+    <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
       <div className="flex items-start gap-3">
         <input type="checkbox" className="mt-1 accent-[var(--nx-fg)]" data-testid={testId} {...rest} />
         <div className="flex-1">

@@ -423,7 +423,7 @@ function GateCard({
               zIndex: 11,
               width: 320,
               padding: "24px 24px 20px",
-              borderRadius: 4,
+              borderRadius: "var(--nx-r-md)",
               backgroundColor: "rgba(21, 24, 28,0.72)",
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
