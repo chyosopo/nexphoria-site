@@ -418,7 +418,7 @@ export default function LabTesting() {
                     top: -40,
                     width: 120,
                     height: 120,
-                    borderRadius: "50%",
+                    borderRadius: "var(--nx-r-pill)",
                     border: `1.5px solid ${tone.ring}`,
                     opacity: 0.7,
                     pointerEvents: "none",
@@ -452,7 +452,7 @@ export default function LabTesting() {
                       backgroundColor: "rgba(255,255,255,0.75)",
                       border: `1px solid ${tone.ring}`,
                       padding: "2px 8px",
-                      borderRadius: "100px",
+                      borderRadius: "var(--nx-r-pill)",
                       flexShrink: 0,
                       marginLeft: "0.5rem",
                       position: "relative",
@@ -488,7 +488,7 @@ export default function LabTesting() {
                         style={{
                           width: "3px",
                           height: "3px",
-                          borderRadius: "50%",
+                          borderRadius: "var(--nx-r-pill)",
                           backgroundColor: "var(--nx-cobalt)",
                           flexShrink: 0,
                         }}
@@ -769,7 +769,7 @@ export default function LabTesting() {
             <div
               style={{
                 border: "1px solid var(--nx-border)",
-                borderRadius: "4px",
+                borderRadius: "var(--nx-r-xs)",
                 overflow: "hidden",
                 maxWidth: "720px",
               }}
@@ -886,7 +886,7 @@ export default function LabTesting() {
                       color: statusColor[row.status],
                       backgroundColor: statusBg[row.status],
                       padding: "3px 8px",
-                      borderRadius: "100px",
+                      borderRadius: "var(--nx-r-pill)",
                       display: "inline-block",
                     }}
                   >
@@ -1007,7 +1007,7 @@ function BloodworkManifesto() {
             <span
               aria-hidden
               style={{
-                width: 8, height: 8, borderRadius: "50%",
+                width: 8, height: 8, borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)", display: "inline-block",
               }}
             />
@@ -1054,7 +1054,7 @@ function BloodworkManifesto() {
                 background: "var(--nx-acid)",
                 color: "var(--nx-fg)",
                 padding: "18px 30px",
-                borderRadius: "999px",
+                borderRadius: "var(--nx-r-pill)",
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 600, fontSize: "var(--nx-t-body)",
                 letterSpacing: "-0.01em",
@@ -1129,7 +1129,7 @@ function BloodworkManifesto() {
             <img
               src={bloodworkHero}
               alt="Sterile phlebotomy tray with vacutainer blood collection tubes in soft window light"
-              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               loading="eager"
               decoding="async"
             />
@@ -1184,7 +1184,7 @@ function BloodworkPillars() {
         >
           <span
             aria-hidden
-            style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }}
+            style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", display: "inline-block" }}
           />
           Why it matters
         </div>
@@ -1341,7 +1341,7 @@ function BloodworkPricing() {
             >
               <span
                 aria-hidden
-                style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }}
+                style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", display: "inline-block" }}
               />
               Panels &amp; membership
             </div>
@@ -1385,7 +1385,7 @@ function BloodworkPricing() {
                 borderRadius: "var(--nx-r-lg)",
                 padding: "36px 32px",
                 border: t.accent ? "2px solid var(--nx-acid)" : "1px solid rgba(21, 24, 28,0.08)",
-                boxShadow: t.accent ? "0 30px 60px -20px rgba(152, 182, 213,0.35)" : "none",
+                boxShadow: t.accent ? "var(--nx-e-4)" : "none",
               }}
             >
               {t.badge && (
@@ -1400,7 +1400,7 @@ function BloodworkPricing() {
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     padding: "6px 12px",
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                   }}
                 >
                   {t.badge}
@@ -1492,7 +1492,7 @@ function BloodworkPricing() {
                     background: t.accent ? "var(--nx-acid)" : (t.dark ? "var(--nx-ceramic)" : "var(--nx-fg)"),
                     color: t.accent ? "var(--nx-fg)" : (t.dark ? "var(--nx-fg)" : "var(--nx-ceramic)"),
                     padding: "16px 24px",
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: "var(--nx-t-base)",
@@ -1541,7 +1541,7 @@ function BloodworkInsurance() {
             <img
               src={bloodworkReport}
               alt="A printed bloodwork report on a physician's desk with hand-annotated notes and a prescription vial"
-              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+              className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               loading="lazy"
               decoding="async"
             />
@@ -1562,7 +1562,7 @@ function BloodworkInsurance() {
           >
             <span
               aria-hidden
-              style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }}
+              style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", display: "inline-block" }}
             />
             HSA · FSA · Insurance
           </div>
@@ -1779,7 +1779,7 @@ function PartnerLabsSection() {
                 data-testid={`partner-lab-${lab.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                 style={{
                   border: "1px solid var(--nx-border)",
-                  borderRadius: 16,
+                  borderRadius: "var(--nx-r-md)",
                   padding: "1.75rem",
                   display: "flex",
                   alignItems: "center",
