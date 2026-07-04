@@ -163,20 +163,22 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             const pricing = getPrice(p.slug);
             return (
               <Reveal key={p.slug} delay={i * 60}>
-                <Link href={`${base}/peptides/${p.slug}`} className="nx-glass-tile" data-testid={`${world}-card-${p.slug}`} style={{ height: "100%" }}>
-                  <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                    {CATEGORY_LABELS[p.category]}
-                  </p>
-                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: 23, color: "var(--nx-fg)", marginTop: "0.55rem", lineHeight: 1.1 }}>
-                    {p.name}
-                  </h3>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
-                    {p.tagline}
-                  </p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "0.95rem" }}>
-                    {pricing ? `From $${pricing.monthlyPrice}/mo` : "Physician-priced"}
-                    <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
-                  </p>
+                <Link href={`${base}/peptides/${p.slug}`} className="nx-float-card" data-testid={`${world}-card-${p.slug}`}>
+                  <div className="nx-float-card__body">
+                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                      {CATEGORY_LABELS[p.category]}
+                    </p>
+                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>
+                      {p.name}
+                    </h3>
+                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
+                      {p.tagline}
+                    </p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
+                      {pricing ? `From $${pricing.monthlyPrice}/mo` : "Physician-priced"}
+                      <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
+                    </p>
+                  </div>
                 </Link>
               </Reveal>
             );
