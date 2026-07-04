@@ -1331,7 +1331,7 @@ export default function Assessment() {
                           marginBottom: "1.5rem",
                         }}
                       >
-                        We'll be in touch promptly.
+                        We'll email you the next step.
                       </p>
                       <p
                         style={{

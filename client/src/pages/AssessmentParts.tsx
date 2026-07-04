@@ -44,15 +44,17 @@ const SIDEBAR_TILES = [
   { icon: ClipboardCheck, title: "Protocol designed within 5 days", desc: "Compounded and cold-chain shipped after physician sign-off." },
 ];
 
-// ─── Top progress bar — one continuous GPU-composited fill ─────────────────
-// hims-tier: a single calm track that grows with a transform: scaleX() fill
-// (compositor-only, no layout thrash), plus "step X of N" + the topic name.
+// ─── Top progress bar — segmented step indicator ──────────────────────────
+// hims-tier: one calm track split into N hairline segments — each fills as its
+// step completes, so "how far / how many left" reads at a glance on mobile
+// (far more legible than a single thin fill). Colour only (background-color
+// transition, compositor-cheap, no layout thrash), guarded under
+// prefers-reduced-motion. Casts azure or orchid via the --nx-* tokens.
 
 export function LabeledProgress({ step }: { step: number }) {
   const total = STEP_LABELS.length; // 7
   // step 1..7 maps to STEP_LABELS index 0..6
   const activeIndex = Math.min(Math.max(step - 1, 0), total - 1);
-  const pct = Math.max(0, Math.min(1, step / total));
   return (
     <div
       data-testid="assessment-progress"
@@ -63,6 +65,12 @@ export function LabeledProgress({ step }: { step: number }) {
         padding: "1.125rem var(--nx-gutter)",
       }}
     >
+      <style>{`
+        .nx-prog-seg { transition: background-color var(--nx-dur-3) var(--nx-ease); }
+        @media (prefers-reduced-motion: reduce) {
+          .nx-prog-seg { transition: none; }
+        }
+      `}</style>
       <div style={{ maxWidth: "640px", margin: "0 auto" }}>
         <div
           style={{
@@ -111,25 +119,27 @@ export function LabeledProgress({ step }: { step: number }) {
           aria-valuemax={total}
           aria-valuenow={step}
           aria-valuetext={`Step ${step} of ${total} — ${STEP_LABELS[activeIndex]}`}
-          style={{
-            height: "2px",
-            borderRadius: "var(--nx-r-pill)",
-            backgroundColor: "var(--nx-border)",
-            overflow: "hidden",
-          }}
+          data-testid="assessment-progress-fill"
+          style={{ display: "flex", gap: "5px", alignItems: "center" }}
         >
-          <div
-            data-testid="assessment-progress-fill"
-            style={{
-              height: "100%",
-              backgroundColor: "var(--nx-cobalt)",
-              borderRadius: "var(--nx-r-pill)",
-              transform: `scaleX(${pct})`,
-              transformOrigin: "left center",
-              transition: "transform var(--nx-dur-3) var(--nx-ease)",
-              willChange: "transform",
-            }}
-          />
+          {Array.from({ length: total }).map((_, i) => {
+            const done = i < step; // step 1..7 fills segments 0..(step-1)
+            return (
+              <span
+                key={i}
+                className="nx-prog-seg"
+                data-active={i === activeIndex}
+                data-done={done}
+                aria-hidden="true"
+                style={{
+                  flex: 1,
+                  height: "3px",
+                  borderRadius: "var(--nx-r-pill)",
+                  backgroundColor: done ? "var(--nx-cobalt)" : "var(--nx-border)",
+                }}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
