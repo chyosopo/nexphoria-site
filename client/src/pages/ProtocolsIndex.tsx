@@ -36,7 +36,7 @@ export default function ProtocolsIndex() {
     <SiteLayout>
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(3rem,6vw,5rem) 0 clamp(1.8rem,3vw,2.6rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.8rem) 0 clamp(1.4rem,2.5vw,2rem)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
@@ -95,60 +95,51 @@ export default function ProtocolsIndex() {
         </p>
       </section>
 
-      {/* grid */}
+      {/* grid — compact floating product tiles (hims pattern) */}
       <section className="nx-container" style={{ padding: "1rem 0 4rem" }}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
+        <div className="nx-float-grid">
           {shown.map((s, i) => {
             const rec = s.cadences.find((c) => c.key === "3mo");
             return (
-              <Reveal key={s.slug} delay={i * 50}>
-                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-product-card">
-                  <div className="nx-product-card__media tall">
+              <Reveal key={s.slug} delay={i * 45}>
+                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-float-card">
+                  <div className="nx-float-card__media">
                     {OUTCOME_STACK[s.slug] && (
                       <img src={OUTCOME_STACK[s.slug]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                     )}
-                    <div className="nx-gradient-overlay soft" aria-hidden />
-                    <span style={{ position: "absolute", top: 14, left: 14, fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{s.category}</span>
                     {s.gated && (
-                      <span style={{ position: "absolute", top: 12, right: 12, display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-ceramic)", background: "color-mix(in srgb, var(--nx-fg) 62%, transparent)", backdropFilter: "blur(6px)", borderRadius: "var(--nx-r-pill)", padding: "4px 10px" }}>
-                        <Lock size={11} /> Assessed
-                      </span>
+                      <span className="nx-float-badge"><Lock size={10} /> Assessed</span>
                     )}
-                    <div style={{ position: "absolute", left: 16, right: 16, bottom: 14 }}>
-                      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-ceramic)", lineHeight: 1.02 }}>{s.name}</h2>
-                      <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-ceramic)", opacity: 0.86, marginTop: "0.1rem" }}>{s.tagline}</p>
-                    </div>
                   </div>
-                  <div className="nx-product-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", flex: 1 }}>{s.bestFor}</p>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "1rem", paddingTop: "0.9rem", borderTop: "1px solid var(--nx-border)" }}>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>
+                  <div className="nx-float-card__body">
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{s.category}</p>
+                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>{s.name}</h2>
+                    <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>{s.tagline}</p>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
+                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
                         {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
-                      </p>
-                      <ArrowRight size={17} style={{ color: "var(--nx-cobalt)" }} />
+                      </span>
+                      <ArrowRight size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                     </div>
                   </div>
                 </Link>
               </Reveal>
             );
           })}
-          {/* Build-your-own tile — same tall product silhouette, vial imagery under an ink wash. */}
+          {/* Build-your-own — same floating silhouette, vial imagery */}
           {filter === "All" && (
-            <Reveal delay={shown.length * 50}>
-              <Link href="/stacks/build" data-testid="protocol-build" className="nx-product-card">
-                <div className="nx-product-card__media tall">
+            <Reveal delay={shown.length * 45}>
+              <Link href="/stacks/build" data-testid="protocol-build" className="nx-float-card">
+                <div className="nx-float-card__media">
                   <img src={vialLineupMaster} alt="" aria-hidden loading="lazy" width={1600} height={2000} />
-                  <div className="nx-gradient-overlay tint" aria-hidden />
-                  <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "1.4rem 1.4rem 1.5rem" }}>
-                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-ceramic)", opacity: 0.82 }}>Custom</p>
-                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-ceramic)", marginTop: "0.3rem", lineHeight: 1.02 }}>Build your own</h2>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-ceramic)", opacity: 0.9, marginTop: "0.55rem", maxWidth: "34ch" }}>Start from a goal and assemble a stack around it — a physician reviews it with the same panel and oversight as a flagship.</p>
-                  </div>
                 </div>
-                <div className="nx-product-card__body">
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>Physician-reviewed</p>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building <ArrowRight size={16} /></span>
+                <div className="nx-float-card__body">
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Custom</p>
+                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>Build your own</h2>
+                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>Start from a goal — a physician reviews it.</p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
+                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building</span>
+                    <ArrowRight size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                   </div>
                 </div>
               </Link>
