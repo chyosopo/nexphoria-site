@@ -184,7 +184,8 @@ export default function JournalArticle() {
       {/* ── Body + sticky TOC ─────────────────────────────── */}
       <section
         data-testid="article-body"
-        style={{ backgroundColor: "var(--nx-bg-cream)", paddingTop: 80, paddingBottom: 120 }}
+        className="nx-section-y"
+        style={{ backgroundColor: "var(--nx-bg-cream)" }}
       >
         <div
           className="nx-container article-grid"

@@ -288,7 +288,8 @@ export default function Journal() {
       {/* ══════════════ ARTICLE GRID (type-first cards) ══════════════ */}
       <section
         data-testid="journal-grid"
-        style={{ backgroundColor: "var(--nx-bg)", paddingTop: 48, paddingBottom: 96 }}
+        className="nx-section-y"
+        style={{ backgroundColor: "var(--nx-bg)" }}
       >
         <div className="nx-container">
           <AnimatePresence mode="wait">

@@ -31,7 +31,7 @@ export default function Cart() {
   return (
     <SiteLayout variant="gate">
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
-        <div className="nx-container py-12 md:py-16">
+        <div className="nx-container nx-section-y">
           {/* Header */}
           <div className="mb-10">
             <div
