@@ -268,7 +268,7 @@ export default function BuildYourStack() {
       )}
       <div style={{ background: "var(--mx-page-bg, var(--nx-ceramic))", minHeight: "100vh", paddingTop: 80 }}>
         {/* ── Hero ───────────────────────────────────────────────── */}
-        <section className="nx-container py-12 md:py-20">
+        <section className="nx-container py-16 md:py-24">
           <div className="max-w-3xl">
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 18 }}>
               <Sparkles size={11} className="inline-block mr-1.5 -mt-0.5" />

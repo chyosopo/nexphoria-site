@@ -200,7 +200,7 @@ export default function Category() {
           <p className="nx-eyebrow">How it works</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map(([t, d], i) => (
-              <div key={t} className="nx-glass-card" style={{ padding: "1.6rem 1.5rem" }}>
+              <div key={t} className="nx-glass-card" style={{ padding: "1.9rem 1.7rem" }}>
                 <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-amber)", lineHeight: 1 }}>{i + 1}</div>
                 <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: "var(--nx-fg)", marginTop: "0.8rem" }}>{t}</h3>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
