@@ -195,7 +195,7 @@ export function Nav({ variant = "gate" }: NavProps) {
       data-testid="site-nav"
     >
       <nav
-        className="nx-container h-14 grid grid-cols-[auto_1fr_auto] items-center gap-4"
+        className="nx-container h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4"
         aria-label="Primary"
       >
         {/* Left: Logo */}
@@ -495,7 +495,7 @@ export function Nav({ variant = "gate" }: NavProps) {
       {menuOpen && (
         <div
           className="md:hidden fixed left-0 right-0 bg-white z-[60] flex flex-col"
-          style={{ top: "56px", height: "calc(100vh - 56px)", borderTop: "1px solid var(--nx-border)" }}
+          style={{ top: "64px", height: "calc(100vh - 64px)", borderTop: "1px solid var(--nx-border)" }}
           data-testid="nav-mobile-drawer"
         >
           <div
