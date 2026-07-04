@@ -157,7 +157,7 @@ export default function Checkout() {
 
               <div
                 className="text-left p-6 mb-8 max-w-md mx-auto"
-                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 16 }}
+                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
               >
                 <div className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                   What happens next
@@ -415,7 +415,7 @@ export default function Checkout() {
                   {/* Order recap */}
                   <div className="pt-2">
                     <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
-                    <div style={{ border: "1px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}>
+                    <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}>
                       {lines.map((line) => (
                         <div
                           key={`${line.type}-${line.slug}`}

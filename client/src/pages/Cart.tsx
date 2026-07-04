@@ -77,7 +77,7 @@ export default function Cart() {
                         key={`${line.type}-${line.slug}`}
                         style={{
                           border: "1px solid var(--nx-border)",
-                          borderRadius: 16,
+                          borderRadius: "var(--nx-r-md)",
                           background: "var(--nx-ceramic)",
                           overflow: "hidden",
                         }}
