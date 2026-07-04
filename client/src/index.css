@@ -74,7 +74,7 @@
     --nx-fg-muted:     #5A7490;  /* tertiary / captions — darkened for WCAG AA on --nx-bg */
     --nx-border:       #C9D5E0;  /* warm hairline borders */
     /* ACCENT: INK — the accent IS the typography weight + photography */
-    --nx-cobalt:       #2E5877;  /* warm honey-brown — CTAs, eyebrows, links */  /* ink accent — eyebrows, CTAs, underlines */
+    --nx-cobalt:       #2E5877;  /* warm navy-teal — CTAs, eyebrows, links */
     --nx-cobalt-hover: #1E4560;  /* slightly lighter ink on hover */
     --nx-cobalt-soft:  #D9E4EC;  /* warm cream tint for soft bg fills */
     /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */

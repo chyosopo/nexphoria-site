@@ -24,7 +24,7 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: "Physician-directed peptide protocols oriented around tissue recovery, joint comfort, and training resilience — calibrated to your bloodwork, not a guess.",
     chips: ["Post-injury support", "Joint comfort", "Training load", "Tendon & tissue"],
     faqs: [
-      { q: "How do recovery protocols start?", a: "With a A structured intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
+      { q: "How do recovery protocols start?", a: "With a structured intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
       { q: "How soon are protocols adjusted?", a: "Labs are re-run every 90 days. Your physician reviews the change in your markers and adjusts, holds, or tapers the protocol accordingly." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies and prescribed off-label by licensed physicians." },
     ],
