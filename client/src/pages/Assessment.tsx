@@ -5,6 +5,8 @@ import { ArrowRight, ArrowLeft, Check, ShieldCheck } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
+import { TrustStrip as CredentialRow } from "@/components/EnterprisePatterns";
+import { Reveal } from "@/components/Reveal";
 import { SiteLayout } from "@/components/SiteLayout";
 import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { GoalVialTile, GOAL_TILE_CONFIG } from "@/components/GoalVialTile";
@@ -538,6 +540,13 @@ export default function Assessment() {
               />
             </div>
           </div>
+
+          {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+          <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(1.6rem,3vw,2.4rem) 0" }}>
+            <Reveal>
+              <CredentialRow testid="assessment-credential-strip" />
+            </Reveal>
+          </section>
         </div>
       )}
 

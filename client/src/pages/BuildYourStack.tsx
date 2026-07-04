@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, Check, FlaskConical, Plus, Minus, Sparkles, ShoppingBag, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip } from "@/components/EnterprisePatterns";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
@@ -363,6 +364,13 @@ export default function BuildYourStack() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+        <section className="nx-container" style={{ padding: "0 0 clamp(2rem,3.4vw,2.8rem)" }}>
+          <Reveal>
+            <TrustStrip testid="builder-trust-strip" />
+          </Reveal>
         </section>
 
         {/* ── Step 1 — pick goal ─────────────────────────────────── */}
