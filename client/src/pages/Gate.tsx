@@ -67,7 +67,7 @@ export default function Gate() {
         <p
           style={{
             fontFamily: F,
-            fontSize: "9px",
+            fontSize: 10,
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -374,7 +374,7 @@ function GateCard({
           alignItems: "center",
           gap: 8,
           padding: "8px 12px",
-          borderRadius: 999,
+          borderRadius: "var(--nx-r-pill)",
           backgroundColor: "rgba(21, 24, 28,0.45)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
@@ -428,7 +428,7 @@ function GateCard({
               backdropFilter: "blur(14px)",
               WebkitBackdropFilter: "blur(14px)",
               border: "1px solid rgba(246, 249, 252,0.14)",
-              boxShadow: "0 24px 48px -16px rgba(21, 24, 28,0.5)",
+              boxShadow: "var(--nx-e-4)",
               pointerEvents: "none",
             }}
             initial={reducedMotion ? { opacity: 0 } : { opacity: 0, x: side === "her" ? 12 : -12 }}
@@ -439,7 +439,7 @@ function GateCard({
             <p
               style={{
                 fontFamily: F,
-                fontSize: 9,
+                fontSize: 10,
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
