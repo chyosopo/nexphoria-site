@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import gateHer from "@/assets/brand/gate-her.webp";
 import gateHim from "@/assets/brand/gate-him.webp";
@@ -88,29 +88,29 @@ export default function Gate() {
             pointerEvents: "auto",
           }}
         >
-          <a
-            href="#/stacks"
+          <Link
+            href="/stacks"
             style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="gate-link-stacks"
           >
             Browse stacks
-          </a>
+          </Link>
           <span style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
-          <a
-            href="#/how-it-works"
+          <Link
+            href="/how-it-works"
             style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="gate-link-how"
           >
             How it works
-          </a>
+          </Link>
           <span style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
-          <a
-            href="#/assessment"
+          <Link
+            href="/assessment"
             style={{ color: "rgba(246, 249, 252,0.85)", textDecoration: "underline", textUnderlineOffset: "3px" }}
             data-testid="gate-link-assessment"
           >
             Start assessment
-          </a>
+          </Link>
         </p>
       </div>
 

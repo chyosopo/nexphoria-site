@@ -5,7 +5,6 @@ import { useLocation as __uL } from "wouter";
 import { Suspense, lazy } from "react";
 import { RouteErrorBoundary } from "@/components/RouteErrorBoundary";
 import { Switch, Route, Router } from "wouter";
-import { useHashLocation } from "wouter/use-hash-location";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -145,7 +144,11 @@ function App() {
         <CartProvider>
           <Toaster />
           <ScrollProgress />
-          <Router hook={useHashLocation}>
+          {/* Real path routing (browser history). Asset base stays "./" in
+              vite.config; router serves at root "/". SPA deep-link/refresh on
+              GitHub Pages handled by client/public/404.html + the restore
+              snippet in client/index.html <head>. */}
+          <Router>
             <AppRouter />
             <CartDrawer />
           </Router>

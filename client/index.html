@@ -9,6 +9,25 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
 
+    <!--
+      SPA fallback restore (rafgraph/spa-github-pages).
+      Runs before the app boots. When 404.html redirected a deep link to
+      "/?/real/path", this decodes it back into the real path via
+      history.replaceState so wouter (real path routing) renders the right
+      route on first paint. No-op for normal loads.
+    -->
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function (s) {
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+
     <!-- Primary Meta -->
     <title>Nexphoria — Physician-Led Peptide Protocols. Education-First. Lab-Driven.</title>
     <meta name="description" content="Compounded peptide protocols supervised by U.S. board-certified physicians. Quest Diagnostics labs every 90 days. 503A licensed pharmacy. Education-first. Lab-driven." />
