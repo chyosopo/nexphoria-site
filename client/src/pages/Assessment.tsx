@@ -93,15 +93,18 @@ const question: React.CSSProperties = {
   color: "var(--nx-fg)",
   lineHeight: 1.15,
   letterSpacing: "-0.01em",
-  marginBottom: "0.75rem",
+  marginBottom: "1.125rem",
 };
 
+// One calm, slightly larger sub-line under each headline — hims-tier reads as a
+// single serene sentence with generous space before the input, not dense body.
 const subCopy: React.CSSProperties = {
   fontFamily: F,
-  fontSize: "var(--nx-t-body)",
+  fontSize: "var(--nx-t-lg)",
+  fontWeight: 400,
   color: "var(--nx-fg-graphite)",
-  lineHeight: 1.6,
-  marginBottom: "2.5rem",
+  lineHeight: 1.55,
+  marginBottom: "clamp(2.75rem, 5vw, 3.5rem)",
 };
 
 const fieldLabel: React.CSSProperties = {
@@ -669,7 +672,7 @@ export default function Assessment() {
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",
-            padding: "clamp(2.5rem, 6vw, 4.5rem) var(--nx-gutter) 2.5rem",
+            padding: "clamp(3.25rem, 7vw, 6rem) var(--nx-gutter) 3rem",
           }}
         >
           <div
@@ -791,8 +794,8 @@ export default function Assessment() {
                         style={{
                           display: "grid",
                           gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                          gap: "0.75rem",
-                          marginBottom: "1.5rem",
+                          gap: "1rem",
+                          marginBottom: "2.25rem",
                         }}
                       >
                         {GOALS.map((g) => {
@@ -882,7 +885,7 @@ export default function Assessment() {
                         role="radiogroup"
                         aria-labelledby="q-age"
                         onKeyDown={makeRadioKeyDown(AGE_RANGES, form.age, (v) => setField("age", v))}
-                        style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}
+                        style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}
                       >
                         {AGE_RANGES.map((a, i) => (
                           <OptionButton
@@ -949,7 +952,7 @@ export default function Assessment() {
                       <p style={subCopy}>
                         Select all that apply. Certain conditions affect protocol eligibility and require additional physician review before a prescription can be issued.
                       </p>
-                      <div role="group" aria-labelledby="q-history" style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}>
+                      <div role="group" aria-labelledby="q-history" style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}>
                         {MEDICAL_HISTORY_OPTIONS.map(({ id, label }) => (
                           <CheckboxRow
                             key={id}
@@ -976,7 +979,7 @@ export default function Assessment() {
                         role="radiogroup"
                         aria-labelledby="q-labs"
                         onKeyDown={makeRadioKeyDown(LAB_OPTIONS.map((o) => o.id), form.recentLabs, (v) => setField("recentLabs", v))}
-                        style={{ display: "flex", flexDirection: "column", gap: "0.625rem", marginBottom: "0.5rem" }}
+                        style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}
                       >
                         {LAB_OPTIONS.map(({ id, label, sub }, i) => (
                           <OptionButton
@@ -1446,8 +1449,8 @@ export default function Assessment() {
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          min-height: 60px;
-          padding: 1.125rem 1.375rem;
+          min-height: 66px;
+          padding: 1.25rem 1.5rem;
           border-radius: var(--nx-r-sm);
           border: 1px solid var(--nx-border);
           background-color: var(--nx-ceramic);
@@ -1467,7 +1470,6 @@ export default function Assessment() {
         .nx-opt[data-selected="true"] {
           border-color: var(--nx-cobalt);
           background-color: var(--nx-cobalt-soft);
-          box-shadow: inset 0 0 0 1px var(--nx-cobalt);
         }
         .nx-opt--row { justify-content: flex-start; }
         /* Visible focus rings on token colors — the checkbox row wraps a
@@ -1519,7 +1521,6 @@ export default function Assessment() {
         .nx-sex[data-selected="true"] {
           border-color: var(--nx-cobalt);
           background-color: var(--nx-cobalt-soft);
-          box-shadow: inset 0 0 0 1px var(--nx-cobalt);
         }
 
         /* ── Sticky bottom step nav (mobile-first, thumb zone) ── */
@@ -1573,7 +1574,7 @@ export default function Assessment() {
         @media (min-width: 768px) {
           .assessment-stepnav {
             position: static;
-            margin: 2rem 0 0;
+            margin: 2.75rem 0 0;
             padding: 0;
             background-color: transparent;
             -webkit-backdrop-filter: none;
