@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { FONT } from "@/lib/typography";
@@ -41,6 +41,7 @@ export default function Journal() {
     ],
   });
 
+  const reduce = useReducedMotion();
   const [activeCategory, setActiveCategory] = useState<JournalCategory | "all">("all");
 
   const filteredArticles = useMemo(() => {
@@ -115,7 +116,7 @@ export default function Journal() {
               style={{ textDecoration: "none", color: "inherit", display: "block" }}
             >
               <motion.article
-                whileHover={{ y: -4 }}
+                whileHover={reduce ? undefined : { y: -4 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="journal-featured-grid"
                 style={{
@@ -151,7 +152,7 @@ export default function Journal() {
                       fontWeight: 500,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
-                      borderRadius: 999,
+                      borderRadius: "var(--nx-r-pill)",
                     }}
                   >
                     Editor's pick
@@ -486,7 +487,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
         alignItems: "center",
         gap: 8,
         padding: "9px 16px",
-        borderRadius: 999,
+        borderRadius: "var(--nx-r-pill)",
         border: `1px solid ${isActive ? "var(--nx-fg)" : "var(--nx-border)"}`,
         backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
         color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
@@ -517,6 +518,7 @@ interface ArticleCardProps {
 }
 
 function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
+  const reduce = useReducedMotion();
   return (
     <Link asChild href={`/journal/${article.slug}`}>
       <a
@@ -527,11 +529,11 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
-          whileHover={{ y: -4 }}
+          whileHover={reduce ? undefined : { y: -4 }}
           style={{
             backgroundColor: "var(--nx-ceramic)",
             border: "1px solid var(--nx-border)",
-            borderRadius: 16,
+            borderRadius: "var(--nx-r-md)",
             overflow: "hidden",
             cursor: "pointer",
             height: "100%",
@@ -558,7 +560,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
                 textTransform: "uppercase",
                 color: "var(--nx-rust)",
                 border: "1px solid var(--nx-border)",
-                borderRadius: 999,
+                borderRadius: "var(--nx-r-pill)",
                 padding: "4px 12px",
                 marginBottom: 18,
               }}

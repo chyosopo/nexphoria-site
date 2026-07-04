@@ -245,7 +245,7 @@ export default function JournalArticle() {
                       textDecoration: "none",
                       paddingLeft: 12,
                       borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "var(--nx-rust)" : "transparent"}`,
-                      transition: "all 0.2s ease",
+                      transition: "color var(--nx-dur-2) var(--nx-ease), border-left-color var(--nx-dur-2) var(--nx-ease)",
                     }}
                   >
                     {s.label}
@@ -618,7 +618,7 @@ export default function JournalArticle() {
                       textDecoration: "none",
                       color: "inherit",
                       backgroundColor: "var(--nx-bg-cream)",
-                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      transition: "transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease)",
                     }}
                   >
                     <p
