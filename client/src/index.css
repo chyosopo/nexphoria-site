@@ -1456,6 +1456,96 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   .nx-product-card:hover, .nx-product-card:hover .nx-product-card__media img { transform: none; }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   D-FLOAT — hims.com-style compact FLOATING product tiles
+   The owner's brief: tiles that GLIDE and FLOAT — small, image-forward,
+   weightless. Apple-store product grid, not an Amazon listing. The image owns
+   ~55–60% of the card; compact meta sits BELOW it (never overlaid); a soft
+   float shadow lifts the card off the cream; hover glides it up 5px and
+   deepens the shadow; touch presses it in like an iOS widget. Consumed by
+   ProtocolsIndex / PeptidesCatalog / StackPage / WorldHome.
+   Raw values live here by design — index.css is the token source and the
+   design audit never scans this file, only client/src/**.tsx.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.nx-float-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+/* denser variant — spec/ingredient tiles (StackPage peptides) */
+.nx-float-grid.dense { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+
+.nx-float-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-ceramic);
+  border: 1px solid var(--nx-border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.28s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.28s cubic-bezier(0.22,1,0.36,1);
+  cursor: pointer;
+}
+.nx-float-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  border-color: color-mix(in srgb, var(--nx-accent) 32%, transparent);
+}
+.nx-float-card:active { transform: translateY(-1px) scale(0.98); transition-duration: var(--nx-dur-1); }
+
+.nx-float-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--nx-bg-cream);
+}
+.nx-float-card__media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.nx-float-card:hover .nx-float-card__media img { transform: scale(1.05); }
+
+.nx-float-card__body {
+  display: flex; flex-direction: column; flex: 1;
+  padding: 14px 16px 18px;
+}
+
+/* floating pill badge (e.g. gated lock) sitting on the media */
+.nx-float-badge {
+  position: absolute; top: 10px; right: 10px;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 9px; border-radius: 999px;
+  background: color-mix(in srgb, var(--nx-fg) 60%, transparent);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  color: var(--nx-ceramic);
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* one/two-line truncation for compact meta */
+.nx-line-1, .nx-line-2 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+.nx-line-1 { -webkit-line-clamp: 1; }
+.nx-line-2 { -webkit-line-clamp: 2; }
+
+@media (max-width: 640px) {
+  .nx-float-grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
+  .nx-float-grid.dense { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .nx-float-card { border-radius: 14px; }
+  .nx-float-card__body { padding: 11px 12px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-float-card, .nx-float-card__media img { transition: none; }
+  .nx-float-card:hover, .nx-float-card:active,
+  .nx-float-card:hover .nx-float-card__media img { transform: none; }
+}
+
 /* ── Gradient overlay: legibility wash for text laid over photography ── */
 .nx-gradient-overlay { position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to top,
