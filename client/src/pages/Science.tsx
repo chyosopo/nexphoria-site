@@ -377,7 +377,7 @@ export default function Science() {
               {
                 tier: "Tier B+",
                 key: "b-plus",
-                color: "#7AC1D8",
+                color: "var(--nx-rust)",
                 strength: 75,
                 label: "Emerging \u2014 Strong",
                 desc: "Phase II human data, or Phase III in a non-primary indication. Substantial pharmacokinetic evidence.",
@@ -389,7 +389,7 @@ export default function Science() {
               {
                 tier: "Tier B",
                 key: "b",
-                color: "#8b8b8b",
+                color: "var(--nx-fg-muted)",
                 strength: 55,
                 label: "Emerging \u2014 Moderate",
                 desc: "Robust preclinical data plus early-stage human safety and PK studies. Limited large RCTs.",
@@ -427,7 +427,7 @@ export default function Science() {
                     height: "3px",
                     width: "100%",
                     background: "rgba(255,255,255,0.06)",
-                    borderRadius: "1px",
+                    borderRadius: "var(--nx-r-pill)",
                     marginBottom: "1rem",
                     overflow: "hidden",
                   }}
@@ -455,7 +455,7 @@ export default function Science() {
                           display: "inline-block",
                           padding: "0.3125rem 0.625rem",
                           border: `1px solid ${t.color}55`,
-                          borderRadius: "999px",
+                          borderRadius: "var(--nx-r-pill)",
                           fontFamily: F,
                           fontSize: "var(--nx-t-xs)",
                           fontWeight: 500,
@@ -727,7 +727,7 @@ export default function Science() {
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.mechanism}</td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.indication}</td>
                           <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)" }}>
-                            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", textTransform: "uppercase", color: tierColor(r.tier), border: `1px solid ${tierColor(r.tier)}`, padding: "3px 8px", borderRadius: 2, whiteSpace: "nowrap" }}>{r.tier}</span>
+                            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", textTransform: "uppercase", color: tierColor(r.tier), border: `1px solid ${tierColor(r.tier)}`, padding: "3px 8px", borderRadius: "var(--nx-r-xs)", whiteSpace: "nowrap" }}>{r.tier}</span>
                           </td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.studies}</td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.fda}</td>
@@ -769,7 +769,7 @@ export default function Science() {
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.contraindications}</td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.monitoring}</td>
                           <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>
-                            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", textTransform: "uppercase", color: safetyRiskColor(r.risk), border: `1px solid ${safetyRiskColor(r.risk)}`, padding: "3px 8px", borderRadius: 2, whiteSpace: "nowrap" }}>{r.risk}</span>
+                            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", textTransform: "uppercase", color: safetyRiskColor(r.risk), border: `1px solid ${safetyRiskColor(r.risk)}`, padding: "3px 8px", borderRadius: "var(--nx-r-xs)", whiteSpace: "nowrap" }}>{r.risk}</span>
                           </td>
                         </tr>
                       ))}
@@ -875,7 +875,7 @@ export default function Science() {
       <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container max-w-screen-xl nx-section-y md:grid-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }}>
           <Reveal>
-            <div style={{ borderRadius: "4px", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "var(--nx-bg-cream)" }}>
+            <div style={{ borderRadius: "var(--nx-r-xs)", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "var(--nx-bg-cream)" }}>
               <img src={lifestyleProtocolBinder} alt="Physician protocol binder with anatomical diagrams and peptide research notes" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="lazy" />
             </div>
           </Reveal>
@@ -929,7 +929,7 @@ function ScienceHeroDark() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(1100px 500px at 88% 18%, rgba(140, 178, 217,0.12), transparent 60%), radial-gradient(700px 400px at 8% 92%, rgba(109, 157, 206,0.14), transparent 65%)",
+            "radial-gradient(1100px 500px at 88% 18%, color-mix(in srgb, var(--nx-acid) 12%, transparent), transparent 60%), radial-gradient(700px 400px at 8% 92%, color-mix(in srgb, var(--nx-acid) 14%, transparent), transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -951,8 +951,8 @@ function ScienceHeroDark() {
         <defs>
           <pattern id="molgrid" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
             <circle cx="4" cy="4" r="0.35" fill="var(--nx-acid)" />
-            <line x1="4" y1="4" x2="12" y2="4" stroke="rgba(140, 178, 217,0.28)" strokeWidth="0.06" />
-            <line x1="4" y1="4" x2="4" y2="12" stroke="rgba(140, 178, 217,0.28)" strokeWidth="0.06" />
+            <line x1="4" y1="4" x2="12" y2="4" stroke="var(--nx-acid)" strokeOpacity="0.28" strokeWidth="0.06" />
+            <line x1="4" y1="4" x2="4" y2="12" stroke="var(--nx-acid)" strokeOpacity="0.28" strokeWidth="0.06" />
           </pattern>
         </defs>
         <rect x="0" y="0" width="100" height="100" fill="url(#molgrid)" />
@@ -1049,7 +1049,7 @@ function ScienceHeroDark() {
                     fontWeight: 500,
                     letterSpacing: "0.02em",
                     padding: "0.4rem 0.85rem",
-                    borderRadius: "999px",
+                    borderRadius: "var(--nx-r-pill)",
                     background: "rgba(255,255,255,0.06)",
                     border: "1px solid rgba(255,255,255,0.14)",
                     color: "rgba(241, 243, 244,0.9)",
@@ -1078,7 +1078,7 @@ function ScienceHeroDark() {
                   color: "var(--nx-bg)",
                   border: "1px solid rgba(255,255,255,0.28)",
                   padding: "0.85rem 1.25rem",
-                  borderRadius: "999px",
+                  borderRadius: "var(--nx-r-pill)",
                   textDecoration: "none",
                   display: "inline-flex",
                   alignItems: "center",
@@ -1101,11 +1101,11 @@ function ScienceHeroDark() {
           >
             {[
               { fam: "GLP-1", tag: "Metabolic", grade: "A", accent: "var(--nx-acid)" },
-              { fam: "GHS", tag: "Growth axis", grade: "A−", accent: "#7EE0FF" },
-              { fam: "BPC-157", tag: "Tissue repair", grade: "B+", accent: "#53A0FF" },
-              { fam: "NAD+", tag: "Longevity", grade: "B", accent: "#9BC0FF" },
+              { fam: "GHS", tag: "Growth axis", grade: "A−", accent: "var(--nx-acid)" },
+              { fam: "BPC-157", tag: "Tissue repair", grade: "B+", accent: "var(--nx-rust)" },
+              { fam: "NAD+", tag: "Longevity", grade: "B", accent: "var(--nx-rust)" },
               { fam: "Enclomiphene", tag: "HPG axis", grade: "A−", accent: "var(--nx-acid)" },
-              { fam: "Ipamorelin", tag: "GH pulse", grade: "B+", accent: "#7EE0FF" },
+              { fam: "Ipamorelin", tag: "GH pulse", grade: "B+", accent: "var(--nx-rust)" },
             ].map((tile) => (
               <div
                 key={tile.fam}
