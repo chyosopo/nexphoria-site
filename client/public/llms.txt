@@ -7,45 +7,45 @@ Nexphoria offers physician-supervised peptide protocols for men and women. Every
 ## Products
 
 ### Peptide Stacks
-- [Wolverine Stack](https://chyosopo.github.io/nexphoria-site/#/men/stacks/wolverine): BPC-157 + TB-500 + GHK-Cu — tissue repair, tendon and ligament recovery, soft-tissue regeneration. 8-week flagship protocol.
-- [Glow Stack](https://chyosopo.github.io/nexphoria-site/#/women/stacks/glow): GHK-Cu + BPC-157 + low-dose tirzepatide — dermal collagen, skin tone, metabolic skin support. 12-week protocol.
-- [Restore Stack](https://chyosopo.github.io/nexphoria-site/#/stacks/restore): DSIP + Epitalon + Selank — deep sleep, circadian regulation, anxiolysis. 6-week protocol.
-- [Clarity Stack](https://chyosopo.github.io/nexphoria-site/#/stacks/clarity): Semax + Selank + Epitalon — focus, mood resilience, stress recovery. 8-week cognitive protocol.
-- [Prime Stack](https://chyosopo.github.io/nexphoria-site/#/stacks/prime): Tirzepatide + MOTS-c + Ipamorelin — metabolic weight management with lean-mass preservation. 16-week protocol.
-- [Balance Stack](https://chyosopo.github.io/nexphoria-site/#/stacks/balance): NAD+ + MOTS-c + Epitalon — mitochondrial function, telomere support, biological-age markers.
+- [Wolverine Stack](https://nexphoria.com/#/men/stacks/wolverine): BPC-157 + TB-500 + GHK-Cu — tissue repair, tendon and ligament recovery, soft-tissue regeneration. 8-week flagship protocol.
+- [Glow Stack](https://nexphoria.com/#/women/stacks/glow): GHK-Cu + BPC-157 + low-dose tirzepatide — dermal collagen, skin tone, metabolic skin support. 12-week protocol.
+- [Restore Stack](https://nexphoria.com/#/stacks/restore): DSIP + Epitalon + Selank — deep sleep, circadian regulation, anxiolysis. 6-week protocol.
+- [Clarity Stack](https://nexphoria.com/#/stacks/clarity): Semax + Selank + Epitalon — focus, mood resilience, stress recovery. 8-week cognitive protocol.
+- [Prime Stack](https://nexphoria.com/#/stacks/prime): Tirzepatide + MOTS-c + Ipamorelin — metabolic weight management with lean-mass preservation. 16-week protocol.
+- [Balance Stack](https://nexphoria.com/#/stacks/balance): NAD+ + MOTS-c + Epitalon — mitochondrial function, telomere support, biological-age markers.
 
 ### Individual Peptides
-- [BPC-157](https://chyosopo.github.io/nexphoria-site/#/peptides/bpc-157): Body Protection Compound-157 — 15-amino-acid gut and joint healing peptide. $149/mo.
-- [TB-500](https://chyosopo.github.io/nexphoria-site/#/peptides/tb-500): Thymosin Beta-4 — systemic cellular migration and anti-inflammatory. $169/mo.
-- [GHK-Cu](https://chyosopo.github.io/nexphoria-site/#/peptides/ghk-cu): Copper tripeptide — collagen/elastin synthesis, skin remodeling. $139/mo.
-- [Tirzepatide](https://chyosopo.github.io/nexphoria-site/#/peptides/tirzepatide): Dual GIP/GLP-1 agonist — fat loss, appetite regulation, HbA1c reduction. $189/mo.
-- [Retatrutide](https://chyosopo.github.io/nexphoria-site/#/peptides/retatrutide): Triple agonist (GIP/GLP-1/glucagon) — next-gen metabolic. $209/mo.
-- [CJC-1295](https://chyosopo.github.io/nexphoria-site/#/peptides/cjc-1295): GHRH analogue — pulsatile growth hormone stimulation. $155/mo.
-- [Ipamorelin](https://chyosopo.github.io/nexphoria-site/#/peptides/ipamorelin): Ghrelin mimetic — GH secretagogue, lean mass. $145/mo.
-- [Tesamorelin](https://chyosopo.github.io/nexphoria-site/#/peptides/tesamorelin): FDA-approved GHRH — visceral fat reduction. $199/mo.
-- [Sermorelin](https://chyosopo.github.io/nexphoria-site/#/peptides/sermorelin): GHRH analogue — anti-aging, sleep improvement. $145/mo (via pricing page).
-- [Semax](https://chyosopo.github.io/nexphoria-site/#/peptides/semax): Russian neuropeptide — BDNF upregulation, cognition. $129/mo.
-- [Selank](https://chyosopo.github.io/nexphoria-site/#/peptides/selank): Anxiolytic neuropeptide — stress resilience, mood. $129/mo.
-- [Epitalon](https://chyosopo.github.io/nexphoria-site/#/peptides/epitalon): Pineal tetrapeptide — telomerase activation, circadian. $159/mo.
-- [NAD+](https://chyosopo.github.io/nexphoria-site/#/peptides/nad-plus): Nicotinamide adenine dinucleotide — sirtuin activation, mitochondrial repair. $189/mo.
-- [MOTS-c](https://chyosopo.github.io/nexphoria-site/#/peptides/mots-c): Mitochondria-derived peptide — AMPK activation, insulin sensitivity. $165/mo.
-- [DSIP](https://chyosopo.github.io/nexphoria-site/#/peptides/dsip): Delta sleep-inducing peptide — sleep quality, cortisol modulation. $119/mo.
-- [AOD-9604](https://chyosopo.github.io/nexphoria-site/#/peptides/aod-9604): GH fragment — fat metabolism without IGF-1 elevation. $135/mo.
-- [Thymosin Alpha-1](https://chyosopo.github.io/nexphoria-site/#/peptides/thymosin-a1): Immune modulator — T-cell activation, immune resilience. $179/mo.
-- [Enclomiphene](https://chyosopo.github.io/nexphoria-site/#/peptides/enclomiphene): SERM — endogenous testosterone restoration without TRT suppression.
-- [Kisspeptin](https://chyosopo.github.io/nexphoria-site/#/peptides/kisspeptin): GnRH activator — HPG-axis restoration.
+- [BPC-157](https://nexphoria.com/#/peptides/bpc-157): Body Protection Compound-157 — 15-amino-acid gut and joint healing peptide. $149/mo.
+- [TB-500](https://nexphoria.com/#/peptides/tb-500): Thymosin Beta-4 — systemic cellular migration and anti-inflammatory. $169/mo.
+- [GHK-Cu](https://nexphoria.com/#/peptides/ghk-cu): Copper tripeptide — collagen/elastin synthesis, skin remodeling. $139/mo.
+- [Tirzepatide](https://nexphoria.com/#/peptides/tirzepatide): Dual GIP/GLP-1 agonist — fat loss, appetite regulation, HbA1c reduction. $189/mo.
+- [Retatrutide](https://nexphoria.com/#/peptides/retatrutide): Triple agonist (GIP/GLP-1/glucagon) — next-gen metabolic. $209/mo.
+- [CJC-1295](https://nexphoria.com/#/peptides/cjc-1295): GHRH analogue — pulsatile growth hormone stimulation. $155/mo.
+- [Ipamorelin](https://nexphoria.com/#/peptides/ipamorelin): Ghrelin mimetic — GH secretagogue, lean mass. $145/mo.
+- [Tesamorelin](https://nexphoria.com/#/peptides/tesamorelin): FDA-approved GHRH — visceral fat reduction. $199/mo.
+- [Sermorelin](https://nexphoria.com/#/peptides/sermorelin): GHRH analogue — anti-aging, sleep improvement. $145/mo (via pricing page).
+- [Semax](https://nexphoria.com/#/peptides/semax): Russian neuropeptide — BDNF upregulation, cognition. $129/mo.
+- [Selank](https://nexphoria.com/#/peptides/selank): Anxiolytic neuropeptide — stress resilience, mood. $129/mo.
+- [Epitalon](https://nexphoria.com/#/peptides/epitalon): Pineal tetrapeptide — telomerase activation, circadian. $159/mo.
+- [NAD+](https://nexphoria.com/#/peptides/nad-plus): Nicotinamide adenine dinucleotide — sirtuin activation, mitochondrial repair. $189/mo.
+- [MOTS-c](https://nexphoria.com/#/peptides/mots-c): Mitochondria-derived peptide — AMPK activation, insulin sensitivity. $165/mo.
+- [DSIP](https://nexphoria.com/#/peptides/dsip): Delta sleep-inducing peptide — sleep quality, cortisol modulation. $119/mo.
+- [AOD-9604](https://nexphoria.com/#/peptides/aod-9604): GH fragment — fat metabolism without IGF-1 elevation. $135/mo.
+- [Thymosin Alpha-1](https://nexphoria.com/#/peptides/thymosin-a1): Immune modulator — T-cell activation, immune resilience. $179/mo.
+- [Enclomiphene](https://nexphoria.com/#/peptides/enclomiphene): SERM — endogenous testosterone restoration without TRT suppression.
+- [Kisspeptin](https://nexphoria.com/#/peptides/kisspeptin): GnRH activator — HPG-axis restoration.
 
 ## Pricing
 - Monthly subscriptions from $249/mo (cognitive) to $389/mo (longevity)
 - 6-month prepay: 10% discount
 - 12-month prepay: 20% discount (best value)
 - All plans include: physician consultation, compounded peptides, Quest labs every 90 days, cold-chain shipping, telehealth messaging, HSA/FSA receipts
-- [Full pricing](https://chyosopo.github.io/nexphoria-site/#/pricing)
+- [Full pricing](https://nexphoria.com/#/pricing)
 
 ## Science & Evidence
-- [Peptide Science Library](https://chyosopo.github.io/nexphoria-site/#/science): Mechanism, evidence tier, and clinical literature for each peptide family
-- [Bloodwork & Biomarkers](https://chyosopo.github.io/nexphoria-site/#/bloodwork): 38-biomarker Quest Diagnostics panel; markers tracked per protocol
-- [Journal](https://chyosopo.github.io/nexphoria-site/#/journal): Deep-dive research articles on peptide science
+- [Peptide Science Library](https://nexphoria.com/#/science): Mechanism, evidence tier, and clinical literature for each peptide family
+- [Bloodwork & Biomarkers](https://nexphoria.com/#/bloodwork): 38-biomarker Quest Diagnostics panel; markers tracked per protocol
+- [Journal](https://nexphoria.com/#/journal): Deep-dive research articles on peptide science
 
 ## Trust Signals
 - Physician-supervised via Bask Health telehealth platform
@@ -56,13 +56,13 @@ Nexphoria offers physician-supervised peptide protocols for men and women. Every
 - Ships cold-chain from U.S. pharmacy; 3–5 day delivery
 
 ## How It Works
-1. Complete the intake assessment at [the assessment page](https://chyosopo.github.io/nexphoria-site/#/assessment)
+1. Complete the intake assessment at [the assessment page](https://nexphoria.com/#/assessment)
 2. Quest Diagnostics lab requisition generated in member portal
 3. Draw at any of 2,500+ Quest locations nationwide
 4. Board-certified physician reviews labs within 24–48 hours
 5. Telehealth consult scheduled via Bask Health
 6. Protocol prescribed, compounded, and shipped cold-chain
-- [Full process](https://chyosopo.github.io/nexphoria-site/#/how-it-works)
+- [Full process](https://nexphoria.com/#/how-it-works)
 
 ## Comparison
 - vs. Research chemical sites: Nexphoria peptides are prescribed, sterile-compounded, batch-tested — research chemicals are not for human use and lack dosing oversight
@@ -75,14 +75,14 @@ Nexphoria offers physician-supervised peptide protocols for men and women. Every
 - Dr. Aisha Patel, MD — Internal Medicine (Restore protocol lead)
 - Dr. James Okafor, MD — Neurology (Clarity protocol lead)
 - Dr. Diego Reyes, MD — Internal Medicine (Balance protocol lead)
-- [Full physician team](https://chyosopo.github.io/nexphoria-site/#/physicians)
+- [Full physician team](https://nexphoria.com/#/physicians)
 
 ## Contact & Social
-- Website: https://chyosopo.github.io/nexphoria-site
-- Start intake: https://chyosopo.github.io/nexphoria-site/#/assessment
-- About: https://chyosopo.github.io/nexphoria-site/#/about
-- Contact: https://chyosopo.github.io/nexphoria-site/#/contact
+- Website: https://nexphoria.com
+- Start intake: https://nexphoria.com/#/assessment
+- About: https://nexphoria.com/#/about
+- Contact: https://nexphoria.com/#/contact
 
 ## Optional
-- [Journal](https://chyosopo.github.io/nexphoria-site/#/journal): Peer-reviewed research summaries on peptide mechanisms, evidence tiers, and protocol design
-- [Community](https://chyosopo.github.io/nexphoria-site/#/community): Member outcomes, physician Q&A, and peptide research discussion
+- [Journal](https://nexphoria.com/#/journal): Peer-reviewed research summaries on peptide mechanisms, evidence tiers, and protocol design
+- [Community](https://nexphoria.com/#/community): Member outcomes, physician Q&A, and peptide research discussion

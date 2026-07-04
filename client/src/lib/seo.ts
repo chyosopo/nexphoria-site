@@ -10,9 +10,9 @@
 import { useEffect } from "react";
 
 const SITE = "Nexphoria";
-// Live host until the production domain lands (L43/L44 swaps this + path routing)
-const BASE_URL = "https://chyosopo.github.io/nexphoria-site";
-const DEFAULT_OG = `${BASE_URL}/og/og-default.png`; // MUST be absolute: crawlers require full URLs, and a relative path 404s under the GH Pages subpath
+// Production domain — live on Cloudflare Pages.
+const BASE_URL = "https://nexphoria.com";
+const DEFAULT_OG = `${BASE_URL}/og/og-default.png`; // MUST be absolute: crawlers require full URLs.
 
 export interface SeoOptions {
   title: string;
