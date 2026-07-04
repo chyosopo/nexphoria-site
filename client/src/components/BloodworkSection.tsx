@@ -103,7 +103,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
                   key={label}
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 600,
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",

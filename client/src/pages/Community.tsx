@@ -343,7 +343,7 @@ export default function Community() {
                   <label
                     style={{
                       fontFamily: F,
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",

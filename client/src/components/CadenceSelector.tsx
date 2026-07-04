@@ -165,7 +165,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                     <span
                       style={{
                         ...fontMono,
-                        fontSize: "9px",
+                        fontSize: "10px",
                         fontWeight: 600,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
@@ -214,7 +214,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
                 <p
                   style={{
                     ...fontMono,
-                    fontSize: "9px",
+                    fontSize: "10px",
                     color: isSelected ? "rgba(243, 245, 247,0.55)" : "rgba(21, 24, 28,0.45)",
                     marginTop: "3px",
                     letterSpacing: "0.06em",

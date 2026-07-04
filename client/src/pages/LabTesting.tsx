@@ -588,7 +588,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -822,7 +822,7 @@ export default function LabTesting() {
                     key={h}
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -879,7 +879,7 @@ export default function LabTesting() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -939,9 +939,9 @@ export default function LabTesting() {
             ].map(({ label, price, note, detail }) => (
               <Reveal key={label}>
                 <div style={{ backgroundColor: "var(--nx-bg-cream)", padding: "2rem", height: "100%" }}>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2.25rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1, marginBottom: "0.25rem" }}>{price}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
                   <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>{detail}</p>
                 </div>
               </Reveal>

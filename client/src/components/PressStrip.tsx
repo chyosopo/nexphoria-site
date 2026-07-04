@@ -37,7 +37,7 @@ export function PressStrip() {
             <div
               style={{
                 fontFamily: F,
-                fontSize: "9px",
+                fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
