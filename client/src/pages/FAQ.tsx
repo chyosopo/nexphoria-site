@@ -2,11 +2,11 @@ import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { Plus, Minus } from "lucide-react";
 import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { TrustStrip } from "@/components/TrustStrip";
+import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { F } from "@/lib/typography";
 
 interface FAQItem {
@@ -177,119 +177,6 @@ const categories: { label: string; items: FAQItem[] }[] = [
   },
 ];
 
-interface AccordionItemProps {
-  item: FAQItem;
-  index: number;
-  isOpen: boolean;
-  onToggle: () => void;
-}
-
-function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
-  return (
-    <div
-      style={{
-        borderBottom: "1px solid var(--nx-cobalt)",
-        borderColor: "rgba(51, 59, 66,0.15)",
-      }}
-    >
-      <button
-        className="faq-toggle w-full"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        data-testid={`faq-item-${index}`}
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          gap: "1.5rem",
-          padding: "1.85rem 0",
-          textAlign: "left",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          width: "100%",
-        }}
-      >
-        <p
-          className="faq-q"
-          style={{
-            fontFamily: F,
-            fontStyle: isOpen ? "" : "normal",
-            fontWeight: 500,
-            fontSize: "clamp(1rem, 2vw, 1.375rem)",
-            color: isOpen ? "var(--nx-cobalt)" : "var(--nx-fg)",
-            lineHeight: 1.3,
-            transition: "color var(--nx-dur-2) var(--nx-ease)",
-          }}
-        >
-          {item.q}
-        </p>
-        <span
-          className="faq-icon"
-          style={{
-            flexShrink: 0,
-            width: "24px",
-            height: "24px",
-            borderRadius: "50%",
-            border: `1px solid ${isOpen ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "3px",
-            willChange: "transform",
-            transition: "border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease)",
-          }}
-        >
-          {isOpen ? (
-            <Minus size={12} style={{ color: "var(--nx-cobalt)" }} />
-          ) : (
-            <Plus size={12} style={{ color: "var(--nx-fg-muted)" }} />
-          )}
-        </span>
-      </button>
-      <div
-        className="faq-answer-wrap"
-        style={{
-          display: "grid",
-          gridTemplateRows: isOpen ? "1fr" : "0fr",
-          transition: "grid-template-rows var(--nx-dur-2) var(--nx-ease)",
-        }}
-      >
-        <div style={{ overflow: "hidden" }}>
-          <div
-            data-testid={`faq-answer-${index}`}
-            style={{
-              paddingBottom: "1.5rem",
-              paddingRight: "2.5rem",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: F,
-                fontSize: "1rem",
-                color: "var(--nx-fg-graphite)",
-                lineHeight: 1.7,
-              }}
-            >
-              {item.a}
-            </p>
-          </div>
-        </div>
-      </div>
-      <style>{`
-        .faq-toggle:hover .faq-q { color: var(--nx-cobalt); }
-        .faq-toggle:hover .faq-icon { border-color: var(--nx-cobalt); transform: scale(1.08); }
-        .faq-toggle:active .faq-icon { transform: scale(0.94); transition-duration: var(--nx-dur-1); }
-        @media (prefers-reduced-motion: reduce) {
-          .faq-toggle .faq-icon { transition: border-color var(--nx-dur-2) var(--nx-ease); }
-          .faq-toggle:hover .faq-icon { transform: none; }
-          .faq-answer-wrap { transition: none; }
-        }
-      `}</style>
-    </div>
-  );
-}
-
 export default function FAQPage() {
   // Flatten all FAQ items for JSON-LD
   const allFaqItems = categories.flatMap((c) => c.items);
@@ -304,12 +191,7 @@ export default function FAQPage() {
       faqJsonLd(allFaqItems),
     ],
   });
-  const [openItem, setOpenItem] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState(0);
-
-  const toggleItem = (key: string) => {
-    setOpenItem((prev) => (prev === key ? null : key));
-  };
 
   const categoryHeadings: Record<string, string> = {
     Products: "What you're getting.",
@@ -401,7 +283,7 @@ export default function FAQPage() {
                   {categories.map((cat, i) => (
                     <li key={cat.label}>
                       <button
-                        onClick={() => { setActiveCategory(i); setOpenItem(null); }}
+                        onClick={() => setActiveCategory(i)}
                         style={{
                           background: "none",
                           border: "none",
@@ -474,20 +356,7 @@ export default function FAQPage() {
                   {categoryHeadings[categories[activeCategory].label] ?? `${categories[activeCategory].label} questions.`}
                 </h2>
 
-                <div>
-                  {categories[activeCategory].items.map((item, i) => {
-                    const key = `${activeCategory}-${i}`;
-                    return (
-                      <AccordionItem
-                        key={key}
-                        item={item}
-                        index={i}
-                        isOpen={openItem === key}
-                        onToggle={() => toggleItem(key)}
-                      />
-                    );
-                  })}
-                </div>
+                <FaqAccordion key={activeCategory} items={categories[activeCategory].items} openFirst={false} />
               </Reveal>
             </main>
           </div>
