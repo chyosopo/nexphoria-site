@@ -6,6 +6,7 @@ import { Plus, Minus } from "lucide-react";
 import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
+import { TrustStrip } from "@/components/TrustStrip";
 import { F } from "@/lib/typography";
 
 interface FAQItem {
@@ -201,7 +202,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
           alignItems: "flex-start",
           justifyContent: "space-between",
           gap: "1.5rem",
-          padding: "1.5rem 0",
+          padding: "1.85rem 0",
           textAlign: "left",
           background: "none",
           border: "none",
@@ -357,8 +358,8 @@ export default function FAQPage() {
         </div>
       </main>
 
-      {/* EVERYTHING BELOW STAYS UNCHANGED */}
-
+      {/* Calm trust strip — TRUE claims only (physicians · 503A · lab-monitored) */}
+      <TrustStrip />
 
       {/* ── FAQ categories + accordion ── */}
       <section
@@ -386,7 +387,7 @@ export default function FAQPage() {
                 <p
                   style={{
                     fontFamily: F,
-                    fontSize: "9px",
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
@@ -430,7 +431,7 @@ export default function FAQPage() {
                         <span
                           style={{
                             fontFamily: F,
-                            fontSize: "9px",
+                            fontSize: "var(--nx-t-xs)",
                             color: "var(--nx-fg-muted)",
                           }}
                         >
