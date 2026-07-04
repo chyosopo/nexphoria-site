@@ -9,6 +9,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
+import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 
 type Cfg = {
   pre: string; accent: string; sub: string;
@@ -125,6 +126,8 @@ export default function Category() {
   const cfg = CONFIG[slug];
   const label = CATEGORY_LABELS[slug] ?? "Protocols";
   const list = peptides.filter((p) => p.category === slug);
+  // Outcome hero art — world-cast where casting differs; men frame is the neutral default.
+  const heroArt = OUTCOME_CATEGORY.men[slug] ?? OUTCOME_CATEGORY.women[slug];
 
   useSeo({
     title: cfg ? `${label} peptide protocols — physician-directed` : "Protocols",
@@ -155,27 +158,38 @@ export default function Category() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }}>
         <div className="nx-container" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(2.5rem,5vw,4rem)" }}>
-          <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
-          <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
-            {cfg.pre}{" "}
-            <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
-          </h1>
-          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.4rem" }}>
-            {cfg.sub}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
-              Begin your intake <ArrowRight size={17} strokeWidth={2} />
-            </Link>
-            <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
-          </div>
-          {/* goal chips */}
-          <div className="mt-8 flex flex-wrap gap-2">
-            {cfg.chips.map((c) => (
-              <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(152, 182, 213,0.22)", border: "1px solid rgba(73, 110, 148,0.22)", borderRadius: 999, padding: "7px 14px" }}>
-                {c}
-              </span>
-            ))}
+          <div className={heroArt ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center" : ""}>
+            <div>
+              <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
+              <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
+                {cfg.pre}{" "}
+                <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
+              </h1>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.4rem" }}>
+                {cfg.sub}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
+                  Begin your intake <ArrowRight size={17} strokeWidth={2} />
+                </Link>
+                <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
+              </div>
+              {/* goal chips */}
+              <div className="mt-8 flex flex-wrap gap-2">
+                {cfg.chips.map((c) => (
+                  <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(152, 182, 213,0.22)", border: "1px solid rgba(73, 110, 148,0.22)", borderRadius: 999, padding: "7px 14px" }}>
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {heroArt && (
+              <Reveal delay={80} className="hidden lg:block">
+                <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", border: "1px solid var(--nx-border)" }}>
+                  <img src={heroArt} alt="" aria-hidden style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" />
+                </div>
+              </Reveal>
+            )}
           </div>
         </div>
       </section>
