@@ -247,7 +247,7 @@ function TOCSidebar({ activeId }: { activeId: string }) {
             <li key={f.id}>
               <a
                 href={`#science-${f.id}`}
-                style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: isActive ? 600 : 400, color: isActive ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", transition: "color 0.2s" }}
+                style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: isActive ? 600 : 400, color: isActive ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", transition: "color var(--nx-dur-2) var(--nx-ease)" }}
               >
                 {isActive && <span style={{ display: "inline-block", width: "16px", height: "1px", backgroundColor: "var(--nx-cobalt)", flexShrink: 0 }} />}
                 {f.slug}
@@ -349,7 +349,7 @@ export default function Science() {
               Evidence grading
             </p>
             <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.15, marginBottom: "0.75rem" }}>
-              We grade every claim. <span style={{  }}>Honestly.</span>
+              We grade every claim. Honestly.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.65)", lineHeight: 1.65, maxWidth: "560px", marginBottom: "3rem" }}>
               Every peptide in our catalog carries a tier rating reflecting the depth of its clinical evidence. The framework is the same one our physicians apply when reviewing a new compound for the formulary.
@@ -437,7 +437,7 @@ export default function Science() {
                       height: "100%",
                       width: `${t.strength}%`,
                       background: t.color,
-                      transition: "width 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+                      transition: "width var(--nx-dur-4) var(--nx-ease)",
                     }}
                   />
                 </div>
@@ -540,7 +540,7 @@ export default function Science() {
               Mechanisms
             </p>
             <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 720 }}>
-              Six ways a peptide tells a cell <span style={{  }}>what to do</span>.
+              Six ways a peptide tells a cell what to do.
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
@@ -601,7 +601,7 @@ export default function Science() {
                 Why it matters
               </p>
               <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.12, marginBottom: "1.25rem" }}>
-                Science without labs is <span style={{  }}>conjecture</span>.
+                Science without labs is conjecture.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
                 Every protocol begins with a 38-biomarker partner-laboratory draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
@@ -783,7 +783,7 @@ export default function Science() {
             </section>
 
             {/* ── References — accordion ── */}
-            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
+            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -803,7 +803,7 @@ export default function Science() {
                       >
                         <span style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
                           <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-amber)", flexShrink: 0, marginTop: "3px" }}>{ref.num}.</span>
-                          <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "#1D2228", lineHeight: 1.6 }}>{ref.cite}</span>
+                          <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", lineHeight: 1.6 }}>{ref.cite}</span>
                         </span>
                         {openRef === i ? <Minus size={14} style={{ color: "var(--nx-amber)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={14} style={{ color: "var(--nx-fg-muted)", flexShrink: 0, marginTop: 4 }} />}
                       </button>
@@ -819,7 +819,7 @@ export default function Science() {
             </section>
 
             {/* ── Questions we're asked most — 8 FAQ ── */}
-            <section style={{ padding: "5rem 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
+            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -838,7 +838,7 @@ export default function Science() {
       </div>
 
       {/* ── Work with our research team ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "4.5rem 0" }} data-testid="section-research-team">
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-research-team">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -846,7 +846,7 @@ export default function Science() {
               Research team
             </p>
             <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 640 }}>
-              The evidence base is a <span style={{  }}>living document</span>.
+              The evidence base is a living document.
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: "var(--nx-border)", border: "1px solid var(--nx-border)" }}>
