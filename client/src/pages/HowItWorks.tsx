@@ -138,7 +138,7 @@ export default function HowItWorks() {
       </section>
 
       {/* ══ THE TIMELINE — each step argues its own case ══ */}
-      <section className="nx-container" style={{ padding: "clamp(2.6rem,5vw,4rem) 0 3.5rem" }}>
+      <section className="nx-container" style={{ padding: "clamp(4rem,7vw,6rem) 0 clamp(3.5rem,6vw,5rem)" }}>
         <Reveal>
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The fixed order</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "22ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
@@ -149,7 +149,7 @@ export default function HowItWorks() {
         <div className="nx-timeline" style={{ marginTop: "clamp(1.8rem,3.5vw,2.6rem)" }}>
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={Math.min(i * 40, 200)}>
-              <div className="nx-timeline-step" style={{ paddingBottom: i < STEPS.length - 1 ? "clamp(1.6rem,3vw,2.2rem)" : 0 }}>
+              <div className="nx-timeline-step" style={{ paddingBottom: i < STEPS.length - 1 ? "clamp(2.4rem,4.5vw,3.4rem)" : 0 }}>
                 <span className="nx-timeline-node" aria-hidden>{s.n}</span>
                 <div className="nx-glass-tile" style={{ display: "block" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -169,7 +169,7 @@ export default function HowItWorks() {
       <div className="nx-divider-ornament" aria-hidden style={{ marginBottom: "clamp(2rem,4vw,3rem)" }}><i /></div>
 
       {/* ══ NIGHT BAND — the loop, made dramatic ══ */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3.6rem,7vw,5.5rem) 0", overflow: "hidden" }}>
+      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(4.5rem,8vw,7rem) 0", overflow: "hidden" }}>
         <div className="nx-container">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Why the loop matters</p>
@@ -196,7 +196,7 @@ export default function HowItWorks() {
       </section>
 
       {/* ══ COMPARISON — the argument made explicit, in two contrasted columns ══ */}
-      <section className="nx-container" style={{ padding: "clamp(3rem,5.5vw,4.5rem) 0" }}>
+      <section className="nx-container" style={{ padding: "clamp(4rem,7vw,6rem) 0" }}>
         <Reveal>
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The difference, plainly</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
@@ -243,7 +243,7 @@ export default function HowItWorks() {
       </section>
 
       {/* ══ CLOSE ══ */}
-      <section className="nx-container" style={{ padding: "1.5rem 0 4.5rem", textAlign: "center" }}>
+      <section className="nx-container" style={{ padding: "clamp(2rem,4vw,3rem) 0 clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
         <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
