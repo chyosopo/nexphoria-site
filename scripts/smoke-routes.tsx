@@ -51,7 +51,6 @@ async function main() {
     ["/men/peptides",    "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
     ["/women/peptides",  "/src/pages/PeptidesCatalog.tsx", { world: "women" }],
     ["/women/peptides/ghk-cu", "/src/pages/SoloPDP.tsx", { slug: "ghk-cu", world: "women" }],
-    ["/blood-work",      "/src/pages/BloodPanels.tsx", {}],
     ["/bloodwork",       "/src/pages/Bloodwork.tsx", {}],
     ["/how-it-works",    "/src/pages/HowItWorks.tsx", {}],
     ["/assessment",      "/src/pages/Assessment.tsx", {}],
