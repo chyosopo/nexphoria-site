@@ -91,7 +91,7 @@ export default function Journal() {
             style={{
               fontFamily: FONT,
               fontSize: 18,
-              lineHeight: 1.55,
+              lineHeight: 1.65,
               color: "var(--nx-fg-graphite)",
               maxWidth: 620,
               marginTop: 24,

@@ -252,8 +252,8 @@ export default function JournalArticle() {
             </ul>
           </aside>
 
-          {/* Body */}
-          <article style={{ maxWidth: 720 }}>
+          {/* Body — tighter reading measure for editorial calm (~68ch at 17px) */}
+          <article style={{ maxWidth: 680 }}>
             {article.sections.map((s) => (
               <div key={s.id} id={`sec-${s.id}`} style={{ marginBottom: 56, scrollMarginTop: 96 }}>
                 <h2
@@ -621,7 +621,7 @@ export default function JournalArticle() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 9,
+                        fontSize: 10,
                         fontWeight: 500,
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
@@ -690,7 +690,7 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 9,
+                  fontSize: 10,
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
