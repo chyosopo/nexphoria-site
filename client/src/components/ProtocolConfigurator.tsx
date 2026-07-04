@@ -268,7 +268,7 @@ export function ProtocolConfigurator({
         <span
           style={{
             fontFamily: fontMono,
-            fontSize: "10px",
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 600,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -280,7 +280,7 @@ export function ProtocolConfigurator({
         <span
           style={{
             fontFamily: fontMono,
-            fontSize: "10px",
+            fontSize: "var(--nx-t-xs)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: t.textFaint,
@@ -296,7 +296,7 @@ export function ProtocolConfigurator({
           <span
             style={{
               fontFamily: fontMono,
-              fontSize: "11px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 700,
               letterSpacing: "0.14em",
               color: t.accent,
@@ -335,7 +335,7 @@ export function ProtocolConfigurator({
             <div
               style={{
                 fontFamily: fontMono,
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 color: t.textMuted,
                 marginTop: "3px",
                 letterSpacing: "0.02em",
@@ -349,7 +349,7 @@ export function ProtocolConfigurator({
               <span
                 style={{
                   fontFamily: fontMono,
-                  fontSize: "11px",
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 600,
                   color: t.accent,
                 }}
@@ -417,7 +417,7 @@ export function ProtocolConfigurator({
                     <div
                       style={{
                         fontFamily: fontMono,
-                        fontSize: "10.5px",
+                        fontSize: "var(--nx-t-xs)",
                         color: t.textMuted,
                         marginTop: "2px",
                       }}
@@ -429,7 +429,7 @@ export function ProtocolConfigurator({
                     <span
                       style={{
                         fontFamily: fontMono,
-                        fontSize: "11px",
+                        fontSize: "var(--nx-t-xs)",
                         fontWeight: 600,
                         color: opt.priceDelta > 0 ? t.accent : t.textFaint,
                       }}
@@ -451,7 +451,7 @@ export function ProtocolConfigurator({
           <span
             style={{
               fontFamily: fontMono,
-              fontSize: "11px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 700,
               letterSpacing: "0.14em",
               color: t.accent,
@@ -523,7 +523,7 @@ export function ProtocolConfigurator({
                       <span
                         style={{
                           fontFamily: fontMono,
-                          fontSize: "9px",
+                          fontSize: "var(--nx-t-xs)",
                           fontWeight: 700,
                           letterSpacing: "0.14em",
                           textTransform: "uppercase",
@@ -545,7 +545,7 @@ export function ProtocolConfigurator({
                   <p
                     style={{
                       fontFamily: fontMono,
-                      fontSize: "10.5px",
+                      fontSize: "var(--nx-t-xs)",
                       color: isSelected ? "rgba(21, 24, 28,0.65)" : t.textMuted,
                       marginTop: "3px",
                     }}
@@ -569,7 +569,7 @@ export function ProtocolConfigurator({
                   <p
                     style={{
                       fontFamily: fontMono,
-                      fontSize: "9px",
+                      fontSize: "var(--nx-t-xs)",
                       color: isSelected ? "rgba(21, 24, 28,0.55)" : t.textFaint,
                       marginTop: "3px",
                       letterSpacing: "0.06em",
@@ -591,7 +591,7 @@ export function ProtocolConfigurator({
           <span
             style={{
               fontFamily: fontMono,
-              fontSize: "11px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 700,
               letterSpacing: "0.14em",
               color: t.accent,
@@ -606,7 +606,7 @@ export function ProtocolConfigurator({
           <span
             style={{
               fontFamily: fontMono,
-              fontSize: "10px",
+              fontSize: "var(--nx-t-xs)",
               color: t.textFaint,
               marginLeft: "auto",
               letterSpacing: "0.06em",
@@ -669,7 +669,7 @@ export function ProtocolConfigurator({
                   <div
                     style={{
                       fontFamily: fontMono,
-                      fontSize: "10.5px",
+                      fontSize: "var(--nx-t-xs)",
                       color: t.textMuted,
                       marginTop: "2px",
                     }}
@@ -708,7 +708,7 @@ export function ProtocolConfigurator({
           <span
             style={{
               fontFamily: fontMono,
-              fontSize: "10px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 600,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
@@ -721,7 +721,7 @@ export function ProtocolConfigurator({
             <span
               style={{
                 fontFamily: fontMono,
-                fontSize: "10px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 700,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
@@ -773,7 +773,7 @@ export function ProtocolConfigurator({
             <div
               style={{
                 fontFamily: fontMono,
-                fontSize: "9.5px",
+                fontSize: "var(--nx-t-xs)",
                 color: t.textFaint,
                 marginTop: "2px",
                 letterSpacing: "0.06em",
@@ -829,7 +829,7 @@ export function ProtocolConfigurator({
         <p
           style={{
             fontFamily: fontMono,
-            fontSize: "10px",
+            fontSize: "var(--nx-t-xs)",
             color: t.textMuted,
             letterSpacing: "0.08em",
             textTransform: "uppercase",

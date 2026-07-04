@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import {
   getArticleBySlug,
@@ -156,6 +157,7 @@ export default function JournalArticle() {
         data-testid="article-image"
       >
         <div className="nx-container">
+          <Reveal>
           <div
             style={{
               marginTop: -48,
@@ -175,6 +177,7 @@ export default function JournalArticle() {
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
+          </Reveal>
         </div>
       </section>
 
@@ -281,6 +284,7 @@ export default function JournalArticle() {
                   </p>
                 ))}
                 {s.callout && (
+                  <Reveal>
                   <aside
                     style={{
                       borderLeft: "3px solid var(--nx-rust)",
@@ -292,7 +296,7 @@ export default function JournalArticle() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        
+
                         fontWeight: 400,
                         fontSize: 22,
                         lineHeight: 1.35,
@@ -302,6 +306,7 @@ export default function JournalArticle() {
                       "{s.callout}"
                     </p>
                   </aside>
+                  </Reveal>
                 )}
                 {s.steps && (
                   <ol

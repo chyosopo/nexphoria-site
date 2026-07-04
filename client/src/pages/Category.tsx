@@ -6,6 +6,7 @@
 import { Link, useRoute } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 
@@ -224,6 +225,7 @@ export default function Category() {
       <section className="nx-section">
         <div className="nx-container">
           <p className="nx-eyebrow">Peptides in this area</p>
+          <Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p) => (
               <Link key={p.slug} href={`/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
@@ -247,6 +249,7 @@ export default function Category() {
               Protocols in this area are physician-designed per patient. <Link href="/assessment" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>Start your intake</Link>.
             </p>
           )}
+          </Reveal>
         </div>
       </section>
 
@@ -254,6 +257,7 @@ export default function Category() {
       <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container" style={{ maxWidth: 860 }}>
           <p className="nx-eyebrow">Questions, answered</p>
+          <Reveal>
           <div className="mt-6">
             {cfg.faqs.map((f) => (
               <details key={f.q} className="group" style={{ borderBottom: "1px solid var(--nx-border)", padding: "1.1rem 0" }}>
@@ -265,6 +269,7 @@ export default function Category() {
               </details>
             ))}
           </div>
+          </Reveal>
         </div>
       </section>
 

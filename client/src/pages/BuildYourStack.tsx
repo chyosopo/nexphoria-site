@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, Check, FlaskConical, Plus, Minus, Sparkles, ShoppingBag, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
@@ -366,6 +367,7 @@ export default function BuildYourStack() {
 
         {/* ── Step 1 — pick goal ─────────────────────────────────── */}
         {step === 1 && (
+          <Reveal key="step-1">
           <section className="nx-container pb-24" data-testid="step-1-goal">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {GOALS.map((g) => (
@@ -442,10 +444,12 @@ export default function BuildYourStack() {
               </button>
             </div>
           </section>
+          </Reveal>
         )}
 
         {/* ── Step 2 — pick peptides ─────────────────────────────── */}
         {step === 2 && (
+          <Reveal key="step-2">
           <section className="nx-container pb-24" data-testid="step-2-peptides">
             {/* Curator note */}
             {goal && (
@@ -785,10 +789,12 @@ export default function BuildYourStack() {
               </aside>
             </div>
           </section>
+          </Reveal>
         )}
 
         {/* ── Step 3 — review ─────────────────────────────────────── */}
         {step === 3 && (
+          <Reveal key="step-3">
           <section className="nx-container pb-24" data-testid="step-3-review">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10">
               {/* Review pane */}
@@ -996,6 +1002,7 @@ export default function BuildYourStack() {
               </aside>
             </div>
           </section>
+          </Reveal>
         )}
       </div>
     </SiteLayout>

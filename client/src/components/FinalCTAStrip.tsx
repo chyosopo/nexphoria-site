@@ -1,6 +1,7 @@
 import { StartIntakeButton } from "./StartIntakeButton";
 import { Link } from "wouter";
 import { Reveal } from "./Reveal";
+import { S } from "@/lib/typography";
 
 interface FinalCTAStripProps {
   gender?: "women" | "men";
@@ -37,7 +38,7 @@ export function FinalCTAStrip({
       }}
       data-testid="final-cta-strip"
     >
-      <div className="nx-container" style={{ padding: "5rem 3rem", textAlign: "center" }}>
+      <div className="nx-container" style={{ padding: "clamp(2.5rem, 6vw, 5rem) var(--nx-gutter)", textAlign: "center" }}>
         <Reveal>
           {/* Eyebrow */}
           <div
@@ -77,17 +78,15 @@ export function FinalCTAStrip({
             />
           </div>
 
-          {/* Main headline — Playfair italic, cream */}
+          {/* Main headline — Fraunces serif, cream (editorial hero voice) */}
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              
+              fontFamily: S,
               fontWeight: 500,
               fontSize: "clamp(2rem, 4.5vw, 3.625rem)",
               color: "var(--nx-ceramic)",
               lineHeight: 1.1,
               letterSpacing: "-0.01em",
-              marginBottom: "1.25rem",
               maxWidth: "700px",
               margin: "0 auto 1.25rem",
             }}

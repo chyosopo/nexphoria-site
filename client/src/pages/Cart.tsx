@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
@@ -60,6 +61,7 @@ export default function Cart() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 lg:gap-16 items-start">
               {/* Lines */}
+              <Reveal>
               <section>
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
@@ -294,12 +296,14 @@ export default function Cart() {
                   </div>
                 </div>
               </section>
+              </Reveal>
 
               {/* Summary */}
               <aside
                 className="lg:sticky lg:top-24 p-7"
                 style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 20 }}
               >
+                <Reveal delay={80}>
                 <div
                   className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
                   style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
@@ -389,6 +393,7 @@ export default function Cart() {
                   <p>Physician sign-off upon review</p>
                   <p>Cold-chain packaging with temp indicators</p>
                 </div>
+                </Reveal>
               </aside>
             </div>
           )}

@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
@@ -471,6 +472,7 @@ export default function Checkout() {
               className="lg:sticky lg:top-24 p-7"
               style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 20 }}
             >
+              <Reveal delay={80}>
               <div
                 className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
                 style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
@@ -537,6 +539,7 @@ export default function Checkout() {
               <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                 <p>No payment collected today. Final pricing confirmed after physician approval; our billing partner handles all payment processing.</p>
               </div>
+              </Reveal>
             </aside>
           </div>
         </div>
@@ -633,15 +636,17 @@ function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; on
 
 function Section({ title, eyebrow, children }: { title: string; eyebrow: string; children: React.ReactNode }) {
   return (
-    <section>
-      <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
-        {eyebrow}
-      </div>
-      <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}>
-        {title}
-      </h2>
-      {children}
-    </section>
+    <Reveal>
+      <section>
+        <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+          {eyebrow}
+        </div>
+        <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}>
+          {title}
+        </h2>
+        {children}
+      </section>
+    </Reveal>
   );
 }
 

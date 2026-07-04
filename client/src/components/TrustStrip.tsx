@@ -9,9 +9,8 @@ import { Stethoscope, FlaskConical, Package, TestTube, Award, ShieldCheck } from
 
 const certMarks = [
   "LegitScript Certified",
-  "CLIA-Certified Labs",
-  "USP-Compliant Compounding",
   "CLIA-Certified Lab Network",
+  "USP-Compliant Compounding",
   "503A Licensed Pharmacy",
 ];
 
@@ -62,7 +61,7 @@ export function TrustStrip() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
