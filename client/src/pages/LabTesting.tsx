@@ -146,7 +146,7 @@ export default function LabTesting() {
 
       {/* ── Partner laboratory network ── */}
       <section
-        className="py-16 md:py-20"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
