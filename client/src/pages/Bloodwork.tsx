@@ -11,6 +11,7 @@ import {
   PANEL_TOTAL_MARKERS,
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
+import { PANELS, FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { Link } from "wouter";
 import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
@@ -873,6 +874,91 @@ function WhyItMatters() {
   );
 }
 
+/* ══ PANEL TIERS — Basic / Full / Elite pricing + stack→panel mapping (merged from BloodPanels) ══ */
+function PanelTiers() {
+  // which tier do most protocols gate on?
+  const demand: Record<string, number> = {};
+  FLAGSHIP_STACKS.forEach((st) => { demand[st.panel] = (demand[st.panel] ?? 0) + 1; });
+  const mostRequired = Object.entries(demand).sort((a, b) => b[1] - a[1])[0]?.[0];
+
+  return (
+    <section id="tiers" className="nx-section" style={{ background: "var(--nx-bg-cream)" }}>
+      <div className="nx-container">
+        <p className="nx-eyebrow">Panel tiers</p>
+        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+          Nothing is prescribed <em style={{ fontStyle: "italic", color: "var(--nx-cobalt)" }}>before it's measured.</em>
+        </h2>
+        <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
+          Every protocol is gated on the right panel — drawn at baseline, then retested on a fixed schedule so a physician can read the trend, not a snapshot.
+        </p>
+
+        <div className="mt-9 grid grid-cols-1 md:grid-cols-3" style={{ gap: 14, alignItems: "stretch" }}>
+          {PANELS.map((p, i) => {
+            const hot = p.tier === mostRequired;
+            const depth = PANELS.slice(0, i + 1).reduce((n, q) => n + q.adds.length, 0);
+            const maxDepth = PANELS.reduce((n, q) => n + q.adds.length, 0);
+            return (
+            <Reveal key={p.tier} delay={i * 70}>
+              <div className="nx-glass-tile" style={{ height: "100%", display: "flex", flexDirection: "column", position: "relative", border: hot ? "1.5px solid var(--nx-cobalt)" : undefined }}>
+                {hot && (
+                  <p style={{ position: "absolute", top: 14, right: 16, fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)" }} data-testid="panel-most-required">
+                    Most protocols gate here
+                  </p>
+                )}
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
+                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1 }}>{usd(p.price)}</p>
+                {p.freeWith && <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt)", fontWeight: 600, marginTop: 4 }}>{p.freeWith}</p>}
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{p.summary}</p>
+                <div style={{ marginTop: "1rem", flex: 1 }}>
+                  {i > 0 && (
+                    <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: 8 }}>
+                      Everything in {PANELS[i - 1].tier}, plus:
+                    </p>
+                  )}
+                  {p.adds.map((a) => (
+                    <div key={a} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 7 }}>
+                      <Check size={15} strokeWidth={2.4} style={{ color: "var(--nx-cobalt)", marginTop: 3, flexShrink: 0 }} />
+                      <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)" }}>{a}</p>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: "1rem" }} aria-hidden>
+                  <div style={{ height: 4, borderRadius: "var(--nx-r-pill)", background: "var(--nx-border)", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${Math.round((depth / maxDepth) * 100)}%`, background: "var(--nx-cobalt)", borderRadius: "var(--nx-r-pill)" }} />
+                  </div>
+                  <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: 5 }}>Cumulative depth · {depth} marker groups</p>
+                </div>
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.8rem", borderTop: "1px solid var(--nx-border)", paddingTop: "0.8rem" }}>
+                  Retest: {p.retest}
+                </p>
+              </div>
+            </Reveal>
+          );})}
+        </div>
+
+        {/* stack → panel mapping */}
+        <div className="mt-12">
+          <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>Which protocol needs which panel</h3>
+          <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "1rem" }}>
+            {FLAGSHIP_STACKS.map((s) => (
+              <Link key={s.slug} href={`/stacks/${s.slug}`} className="grid grid-cols-[1fr_auto] gap-4 py-3.5" style={{ borderBottom: "1px solid var(--nx-border)", textDecoration: "none", alignItems: "center" }}>
+                <div>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{s.name}</p>
+                  <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)" }}>{s.category}</p>
+                </div>
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>{s.panel}{s.panelNote && s.panelNote.includes("plus") ? " +" : ""} panel</p>
+              </Link>
+            ))}
+          </div>
+          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1.4rem", maxWidth: "60ch" }}>
+            Draws are handled through an at-home collection partner. Your results populate one dashboard and are read by your physician before anything is prescribed or adjusted.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ══════════════════════════════════════════════════════════════
    DEFAULT EXPORT
    ══════════════════════════════════════════════════════════════ */
@@ -904,6 +990,7 @@ export default function Bloodwork() {
         <ActionPlan />
         <GlowingBody />
         <OfferStack />
+        <PanelTiers />
         <MarkerWall />
         <div id="explore" />
         <PanelExplorer />

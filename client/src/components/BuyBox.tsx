@@ -126,7 +126,7 @@ export function BuyBox(props: BuyBoxProps) {
                       <span style={{ display: "block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)" }}>
                         {t.label}
                         {t.badge && (
-                          <span style={{ fontFamily: F, fontSize: 9.5, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginLeft: 8 }}>
+                          <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginLeft: 8 }}>
                             {t.badge}
                           </span>
                         )}

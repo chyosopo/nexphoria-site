@@ -159,7 +159,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
               </span>
               <span
                 style={{
-                  fontSize: 9,
+                  fontSize: 10,
                   color: "rgba(255,255,255,0.66)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -231,7 +231,7 @@ function FooterCol({ column }: { column: FooterColumn }) {
         className="mb-4"
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "10px",
+          fontSize: "11px",
           fontWeight: 500,
           letterSpacing: "0.12em",
           textTransform: "uppercase",

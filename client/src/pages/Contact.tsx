@@ -86,7 +86,7 @@ export default function Contact() {
 
   const labelStyle: React.CSSProperties = {
     fontFamily: F,
-    fontSize: "9px",
+    fontSize: "var(--nx-t-xs)",
     fontWeight: 700,
     letterSpacing: "0.14em",
     textTransform: "uppercase" as const,
@@ -199,7 +199,7 @@ export default function Contact() {
                         <p
                           style={{
                             fontFamily: F,
-                            fontSize: "8px",
+                            fontSize: "var(--nx-t-xs)",
                             fontWeight: 700,
                             letterSpacing: "0.14em",
                             textTransform: "uppercase",
@@ -394,7 +394,7 @@ export default function Contact() {
                   <p
                     style={{
                       fontFamily: F,
-                      fontSize: "9px",
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
@@ -426,7 +426,7 @@ export default function Contact() {
                     We'll respond promptly on business days (Monday through Friday ET). Clinical questions are routed to a physician for review.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: F, fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
                       Note: For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}
