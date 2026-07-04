@@ -69,22 +69,21 @@ export function HomeTrust() {
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.14 }}>
           How it works
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 14, marginTop: "1.8rem", alignItems: "stretch" }}>
+        <div className="nx-steps-lg" style={{ marginTop: "clamp(2.4rem,4vw,3.4rem)" }}>
           {STEPS.map((s, i) => {
             const { Icon } = s;
             return (
-              <Reveal key={s.n} delay={i * 60}>
-                <div className="nx-glass-card" style={{ padding: "clamp(1.5rem,2.6vw,1.9rem)", height: "100%", display: "flex", flexDirection: "column" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4vw,40px)", color: "var(--nx-cobalt)", lineHeight: 1 }}>{s.n}</span>
-                    <Icon size={20} strokeWidth={1.8} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+              <Reveal key={s.n} delay={i * 70}>
+                <div>
+                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
+                    <span className="nx-step-lg-num">{s.n}</span>
+                    <span className="nx-icon-circle" style={{ marginTop: "0.4rem" }}>
+                      <Icon size={19} strokeWidth={1.8} aria-hidden />
+                    </span>
                   </div>
-                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.1vw,23px)", color: "var(--nx-fg)", marginTop: "1rem", lineHeight: 1.15 }}>
-                    {s.title}
-                  </h3>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>
-                    {s.body}
-                  </p>
+                  <div className="nx-step-lg-rule" />
+                  <h3 className="nx-step-lg-title">{s.title}</h3>
+                  <p className="nx-step-lg-body">{s.body}</p>
                 </div>
               </Reveal>
             );

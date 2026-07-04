@@ -4,12 +4,45 @@
    Every color derives from --nx-* tokens; the orchid world themes itself
    under /women via [data-world]. Bank voice. Nothing decorative. */
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Stethoscope, FlaskConical, ClipboardCheck, Activity } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
+import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { F, S } from "@/lib/typography";
+
+/* The four credentials that are TRUE for Nexphoria — no invented CLIA/FDA/CAP. */
+const TRUST_BADGES = [
+  { Icon: Stethoscope, label: "U.S.-licensed physicians" },
+  { Icon: FlaskConical, label: "State-licensed 503A pharmacy" },
+  { Icon: ClipboardCheck, label: "Prescription required" },
+  { Icon: Activity, label: "Lab-monitored every 90 days" },
+];
+
+/* Home FAQ — bank voice, every answer true to the service model. World-agnostic. */
+const HOME_FAQ = [
+  {
+    q: "Does the consultation cost anything?",
+    a: "No. The intake and physician review carry no charge. You pay only if a physician determines a prescription is appropriate and you choose to proceed.",
+  },
+  {
+    q: "Is a prescription required?",
+    a: "Yes. Every compound is prescribed by a U.S.-licensed physician of MDI Providers PLLC after reviewing your intake and bloodwork. They can — and do — decline when a protocol is not appropriate.",
+  },
+  {
+    q: "Where are the peptides compounded?",
+    a: "In state-licensed 503A compounding pharmacies, prepared per prescription and batch-documented. Nothing is stocked, resold, or shipped without a physician's order.",
+  },
+  {
+    q: "How often is my bloodwork re-run?",
+    a: "The same panel is drawn again every ninety days. Your physician reads the new trend against your protocol and adjusts — nothing continues on assumption.",
+  },
+  {
+    q: "How many biomarkers are measured?",
+    a: `Seventy-six markers across eleven systems at baseline, plus a twenty-one-factor biological-age composite — the same panel a physician would order to read your endocrine, metabolic, and cardiovascular picture properly.`,
+  },
+];
 
 /** One-line job description per category — what the shelf is for. */
 const CATEGORY_JOBS: Record<PeptideCategory, string> = {
@@ -134,6 +167,20 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
       </section>
 
+      {/* ── TRUST BADGE STRIP — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container" style={{ padding: "clamp(1.4rem,2.4vw,2.2rem) 0 0" }}>
+        <Reveal>
+          <div className="nx-trust-strip" data-testid={`${world}-trust-strip`}>
+            {TRUST_BADGES.map(({ Icon, label }) => (
+              <div key={label} className="nx-trust-badge">
+                <Icon size={18} strokeWidth={1.8} aria-hidden />
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
       {/* ── PRODUCT CARD ROW — the shelf, if-prescribed framing ── */}
       <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
@@ -187,8 +234,88 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
       </section>
 
+      {/* ── BIOMARKER CHIPS — the panel, read as rounded pill chips (rythm grammar) ── */}
+      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "start" }}>
+          <div>
+            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              The panel
+            </p>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.2vw,46px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
+              {PANEL_TOTAL_MARKERS} markers. Eleven systems.
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1.1rem", maxWidth: "44ch" }}>
+              Every protocol begins from a full read of your biology — endocrine, metabolic, cardiovascular, and more — not a template. This is the baseline a physician works from.
+            </p>
+            <Link
+              href="/bloodwork"
+              data-testid={`${world}-panel-cta`}
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", marginTop: "1.5rem" }}
+            >
+              See the full 76-marker panel
+              <ArrowRight size={16} strokeWidth={2.2} aria-hidden />
+            </Link>
+          </div>
+          <Reveal>
+            <div className="nx-biochip-grid" data-testid={`${world}-biochips`}>
+              {BIOMARKER_PANEL.map((c) => (
+                <Link key={c.id} href="/bloodwork" className="nx-biochip" data-testid={`${world}-biochip-${c.id}`}>
+                  {c.name}
+                  <span className="nx-biochip-ct">{c.count}</span>
+                </Link>
+              ))}
+              <span className="nx-biochip muted">+ biological-age composite</span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── TRUST SLOT — per-world sections (physician band, how-it-works) ── */}
       {config.trustSlot}
+
+      {/* ── OUTCOME DASHBOARD + CLINICAL STANDARD — abstract preview, no PHI ── */}
+      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(2.2rem,5vw,4rem)", alignItems: "center" }}>
+          <Reveal>
+            <div className="nx-mini-panel" data-testid={`${world}-dashboard`} aria-hidden>
+              <div className="nx-mini-head">
+                <span className="nx-mini-title">Biomarker index — retest trend</span>
+                <span className="nx-mini-pill">Sample</span>
+              </div>
+              <div className="nx-mini-bars">
+                <div className="nx-mini-bar" style={{ height: "44%" }} />
+                <div className="nx-mini-bar" style={{ height: "58%" }} />
+                <div className="nx-mini-bar" style={{ height: "52%" }} />
+                <div className="nx-mini-bar" style={{ height: "71%" }} />
+                <div className="nx-mini-bar" style={{ height: "66%" }} />
+                <div className="nx-mini-bar hi" style={{ height: "88%" }} />
+              </div>
+              <div className="nx-mini-row">
+                <span>Baseline → 90 → 180 → 270 days</span>
+                <span><b>+31%</b> in range</span>
+              </div>
+              <div className="nx-mini-row">
+                <span className="nx-mini-cap">Illustrative — not a patient record</span>
+              </div>
+            </div>
+          </Reveal>
+          <div>
+            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              One dashboard
+            </p>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.8vw,40px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "18ch" }}>
+              Your markers, plotted against every retest.
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "48ch" }}>
+              The same values your physician watches, in one place — each panel laid beside the last so the trend, not a single number, decides what changes.
+            </p>
+            <div className="nx-proof" style={{ marginTop: "clamp(1.8rem,3vw,2.6rem)" }}>
+              <p className="nx-proof-quote">No protocol continues without a physician reading the next panel.</p>
+              <p className="nx-proof-attr">The Nexphoria clinical standard</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── THE ONE NIGHT BAND — the loop is the product ── */}
       <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(4rem,7vw,6rem) 0" }}>
@@ -212,6 +339,31 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,4.4vw,48px)", color: "var(--nx-ceramic)", lineHeight: 1 }}>{s.n}</p>
                 <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-acid)", marginTop: "0.5rem", opacity: 0.9 }}>{s.l}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ — clean spacious accordion, native <details> ── */}
+      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.3fr]" style={{ gap: "clamp(1.8rem,4vw,3.4rem)", alignItems: "start" }}>
+          <div>
+            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              Questions
+            </p>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.8vw,40px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
+              What to expect.
+            </h2>
+          </div>
+          <div data-testid={`${world}-faq`}>
+            {HOME_FAQ.map((item, i) => (
+              <details key={item.q} className="nx-faq-item" open={i === 0}>
+                <summary>
+                  {item.q}
+                  <span className="nx-faq-plus" aria-hidden />
+                </summary>
+                <p className="nx-faq-a">{item.a}</p>
+              </details>
             ))}
           </div>
         </div>
