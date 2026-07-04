@@ -119,28 +119,25 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             </button>
           </div>
         )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
+        <div className="nx-float-grid">
           {shown.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 40}>
-              <Link href={`${base}/peptides/${s.slug}`} className="nx-product-card" data-testid={`peptide-${s.slug}`}>
-                <div className="nx-product-card__media">
+            <Reveal key={s.slug} delay={i * 35}>
+              <Link href={`${base}/peptides/${s.slug}`} className="nx-float-card" data-testid={`peptide-${s.slug}`}>
+                <div className="nx-float-card__media">
                   <img src={CAT_IMG[s.category] ?? OUTCOME_HERO.men} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
-                  <div className="nx-gradient-overlay soft" aria-hidden />
-                  <span style={{ position: "absolute", top: 14, left: 14, fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{s.category}</span>
                   {s.gated && (
-                    <span style={{ position: "absolute", top: 12, right: 12, display: "inline-flex", alignItems: "center", gap: 5, fontFamily: F, fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-ceramic)", background: "color-mix(in srgb, var(--nx-fg) 62%, transparent)", backdropFilter: "blur(6px)", borderRadius: "var(--nx-r-pill)", padding: "4px 10px" }}>
-                      <Lock size={11} /> Assessed
-                    </span>
+                    <span className="nx-float-badge"><Lock size={10} /> Assessed</span>
                   )}
-                  <h2 style={{ position: "absolute", left: 16, right: 16, bottom: 14, fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-ceramic)", lineHeight: 1.02 }}>{s.name}</h2>
                 </div>
-                <div className="nx-product-card__body">
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", flex: 1 }}>{s.dose}</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "0.9rem", paddingTop: "0.85rem", borderTop: "1px solid var(--nx-border)" }}>
-                    <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, color: "var(--nx-fg)" }}>
-                      {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "Priced at consult"}
-                    </p>
-                    <ArrowRight size={16} style={{ color: "var(--nx-cobalt)" }} />
+                <div className="nx-float-card__body">
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{s.category}</p>
+                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>{s.name}</h2>
+                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>{s.dose}</p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
+                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
+                      {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "At consult"}
+                    </span>
+                    <ArrowRight size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                   </div>
                 </div>
               </Link>
