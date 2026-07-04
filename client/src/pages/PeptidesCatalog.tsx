@@ -124,7 +124,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
             const active = filter === c;
             return (
-              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`filter-${c.toLowerCase()}`} style={{
+              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`filter-${c.toLowerCase()}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{
                 fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 15px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
                 background: active ? "var(--nx-cobalt)" : "transparent",
                 color: active ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
@@ -147,7 +147,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           <div className="nx-glass-tile" style={{ display: "block", textAlign: "center", padding: "3rem 1.5rem" }} data-testid="filter-empty">
             <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>{needle ? `No matches for “${q.trim()}”.` : `No matches in ${filter}.`}</p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>The formulary is curated — some shelves are short by design.</p>
-            <button onClick={() => { setFilter("All"); setQ(""); }} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
+            <button onClick={() => { setFilter("All"); setQ(""); }} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
               Clear — show all
             </button>
           </div>
@@ -159,7 +159,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 <div className="nx-float-card__media">
                   <img src={CAT_IMG[s.category] ?? OUTCOME_HERO.men} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                   {s.gated && (
-                    <span className="nx-float-badge"><Lock size={10} /> Assessed</span>
+                    <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
                   )}
                 </div>
                 <div className="nx-float-card__body">
@@ -170,7 +170,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                     <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
                       {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "At consult"}
                     </span>
-                    <ArrowRight size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                    <ArrowRight size={16} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                   </div>
                 </div>
               </Link>
