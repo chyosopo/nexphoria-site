@@ -246,26 +246,35 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
           )}
         </span>
       </button>
-      {isOpen && (
-        <div
-          data-testid={`faq-answer-${index}`}
-          style={{
-            paddingBottom: "1.5rem",
-            paddingRight: "2.5rem",
-          }}
-        >
-          <p
+      <div
+        className="faq-answer-wrap"
+        style={{
+          display: "grid",
+          gridTemplateRows: isOpen ? "1fr" : "0fr",
+          transition: "grid-template-rows var(--nx-dur-2) var(--nx-ease)",
+        }}
+      >
+        <div style={{ overflow: "hidden" }}>
+          <div
+            data-testid={`faq-answer-${index}`}
             style={{
-              fontFamily: F,
-              fontSize: "1rem",
-              color: "var(--nx-fg-graphite)",
-              lineHeight: 1.7,
+              paddingBottom: "1.5rem",
+              paddingRight: "2.5rem",
             }}
           >
-            {item.a}
-          </p>
+            <p
+              style={{
+                fontFamily: F,
+                fontSize: "1rem",
+                color: "var(--nx-fg-graphite)",
+                lineHeight: 1.7,
+              }}
+            >
+              {item.a}
+            </p>
+          </div>
         </div>
-      )}
+      </div>
       <style>{`
         .faq-toggle:hover .faq-q { color: var(--nx-cobalt); }
         .faq-toggle:hover .faq-icon { border-color: var(--nx-cobalt); transform: scale(1.08); }
@@ -273,6 +282,7 @@ function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
         @media (prefers-reduced-motion: reduce) {
           .faq-toggle .faq-icon { transition: border-color var(--nx-dur-2) var(--nx-ease); }
           .faq-toggle:hover .faq-icon { transform: none; }
+          .faq-answer-wrap { transition: none; }
         }
       `}</style>
     </div>
