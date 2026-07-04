@@ -350,7 +350,7 @@ export function IntakeSidebar() {
                     justifyContent: "center",
                     width: "34px",
                     height: "34px",
-                    borderRadius: "50%",
+                    borderRadius: "var(--nx-r-pill)",
                     border: "1.5px solid var(--nx-cobalt)",
                     color: "var(--nx-cobalt)",
                     flexShrink: 0,

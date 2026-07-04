@@ -360,6 +360,9 @@ export default function Assessment() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [draftRestored, setDraftRestored] = useState(false);
   const [emailBlurred, setEmailBlurred] = useState(false);
+  // When the user jumps back from Review to fix one answer, "Continue" returns
+  // them straight to Review rather than re-walking every step (hims-tier edit-in-place).
+  const [editReturn, setEditReturn] = useState(false);
   const topRef = useRef<HTMLDivElement>(null);
 
   // A11y — move focus to the freshly-mounted step heading, but only after an
@@ -442,14 +445,30 @@ export default function Assessment() {
   function goNext() {
     if (!valid) return;
     wantsFocusRef.current = true;
+    // Edit-in-place: a corrected answer returns to the Review step directly.
+    if (editReturn && step < 7) {
+      setEditReturn(false);
+      setDirection(1);
+      setStep(7);
+      return;
+    }
     setDirection(1);
     setStep((s) => s + 1);
   }
 
   function goBack() {
     wantsFocusRef.current = true;
+    setEditReturn(false);
     setDirection(-1);
     setStep((s) => Math.max(0, s - 1));
+  }
+
+  // Jump from Review back to a specific step to edit one answer, then return.
+  function goToStep(target: number) {
+    wantsFocusRef.current = true;
+    setEditReturn(true);
+    setDirection(-1);
+    setStep(target);
   }
 
   function setField<K extends keyof FormData>(key: K, value: FormData[K]) {
@@ -502,11 +521,13 @@ export default function Assessment() {
       };
 
   // Shared footer wiring — one persistent action, label/handler by step.
-  const footerNextLabel = step === 6
-    ? "Review answers"
-    : step === 7
-      ? (submitting ? "Submitting…" : "Submit intake")
-      : "Continue";
+  const footerNextLabel = editReturn && step >= 1 && step <= 6
+    ? "Return to review"
+    : step === 6
+      ? "Review answers"
+      : step === 7
+        ? (submitting ? "Submitting…" : "Submit intake")
+        : "Continue";
   const footerBackLabel = step === 7 ? "Edit" : "Back";
   const footerNextDisabled = step === 7 ? submitting : !valid;
   const footerOnNext = step === 7 ? handleSubmit : goNext;
@@ -744,7 +765,12 @@ export default function Assessment() {
                                 setField("gender", value);
                                 wantsFocusRef.current = true;
                                 setDirection(1);
-                                setStep(1);
+                                if (editReturn) {
+                                  setEditReturn(false);
+                                  setStep(7);
+                                } else {
+                                  setStep(1);
+                                }
                               }}
                               data-testid={`sex-select-${value}`}
                               data-selected={sel}
@@ -1128,7 +1154,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Review</p>
                       <h2 id="q-review" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Review your intake before submitting.</h2>
                       <p style={subCopy}>
-                        Your physician will receive these details. You can go back to change any answer.
+                        Your physician will receive these details. Select any answer to change it.
                       </p>
 
                       {/* Screener disclaimer */}
@@ -1181,12 +1207,13 @@ export default function Assessment() {
                         }}
                       >
                         {[
-                          { label: "Biological sex", value: form.gender ? (form.gender.charAt(0).toUpperCase() + form.gender.slice(1)) : "—" },
-                          { label: "Primary goal", value: form.goal || "—" },
-                          { label: "Age range", value: form.age || "—" },
-                          { label: "Medications", value: form.noMedications ? "None" : form.medications.trim() || "—" },
+                          { label: "Biological sex", editStep: 0, value: form.gender ? (form.gender.charAt(0).toUpperCase() + form.gender.slice(1)) : "—" },
+                          { label: "Primary goal", editStep: 1, value: form.goal || "—" },
+                          { label: "Age range", editStep: 2, value: form.age || "—" },
+                          { label: "Medications", editStep: 3, value: form.noMedications ? "None" : form.medications.trim() || "—" },
                           {
                             label: "Medical history",
+                            editStep: 4,
                             value:
                               form.medicalHistory.length === 0
                                 ? "—"
@@ -1198,6 +1225,7 @@ export default function Assessment() {
                           },
                           {
                             label: "Recent labs",
+                            editStep: 5,
                             value:
                               form.recentLabs === "yes-recent"
                                 ? "Yes — within 6 months"
@@ -1207,19 +1235,24 @@ export default function Assessment() {
                                 ? "No — will use Nexphoria panel"
                                 : "—",
                           },
-                          { label: "Name", value: form.name || "—" },
-                          { label: "Email", value: form.email || "—" },
-                          { label: "Phone", value: form.phone || "—" },
-                          { label: "State", value: form.state || "—" },
-                        ].map(({ label, value }, i) => (
-                          <div
+                          { label: "Name", editStep: 6, value: form.name || "—" },
+                          { label: "Email", editStep: 6, value: form.email || "—" },
+                          { label: "Phone", editStep: 6, value: form.phone || "—" },
+                          { label: "State", editStep: 6, value: form.state || "—" },
+                        ].map(({ label, value, editStep }, i) => (
+                          <button
                             key={label}
+                            type="button"
+                            onClick={() => goToStep(editStep)}
+                            aria-label={`Edit ${label}`}
+                            data-testid={`assessment-review-edit-${editStep}`}
+                            className="nx-review-row"
                             style={{
                               display: "flex",
+                              alignItems: "flex-start",
                               gap: "1rem",
                               padding: "0.75rem 1.25rem",
                               backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
-                              borderBottom: i < 9 ? "1px solid var(--nx-border)" : "none",
                             }}
                           >
                             <span
@@ -1243,11 +1276,29 @@ export default function Assessment() {
                                 fontSize: "var(--nx-t-base)",
                                 color: "var(--nx-fg)",
                                 lineHeight: 1.45,
+                                textAlign: "left",
                               }}
                             >
                               {value}
                             </span>
-                          </div>
+                            <span
+                              className="nx-review-edit"
+                              aria-hidden="true"
+                              style={{
+                                marginLeft: "auto",
+                                alignSelf: "center",
+                                fontFamily: F,
+                                fontSize: "var(--nx-t-xs)",
+                                fontWeight: 600,
+                                letterSpacing: "0.1em",
+                                textTransform: "uppercase",
+                                color: "var(--nx-fg-muted)",
+                                flexShrink: 0,
+                              }}
+                            >
+                              Edit
+                            </span>
+                          </button>
                         ))}
                       </div>
 
@@ -1505,6 +1556,25 @@ export default function Assessment() {
         }
         .nx-opt-box[data-selected="true"] { background-color: var(--nx-cobalt); border-color: var(--nx-cobalt); }
 
+        /* ── Review summary rows — editable, jump back to the source step ── */
+        .nx-review-row {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid var(--nx-border);
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
+          transition: background-color var(--nx-dur-2) var(--nx-ease);
+        }
+        .nx-review-row:last-child { border-bottom: none; }
+        .nx-review-row:hover { background-color: var(--nx-cobalt-soft) !important; }
+        .nx-review-row:hover .nx-review-edit { color: var(--nx-cobalt); }
+        .nx-review-row:focus-visible {
+          outline: 2px solid var(--nx-cobalt);
+          outline-offset: -2px;
+        }
+        .nx-review-row:focus-visible .nx-review-edit { color: var(--nx-cobalt); }
+
         /* ── Sex chooser — larger cards ── */
         .nx-sex {
           display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1597,7 +1667,7 @@ export default function Assessment() {
           .assessment-goal-grid { grid-template-columns: minmax(0, 1fr) !important; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .nx-opt, .nx-sex, .nx-step-next, .nx-step-back { transition: none !important; }
+          .nx-opt, .nx-sex, .nx-step-next, .nx-step-back, .nx-review-row { transition: none !important; }
           .assessment-stepnav { -webkit-backdrop-filter: none; backdrop-filter: none; }
         }
       `}</style>
