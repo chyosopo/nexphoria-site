@@ -2,6 +2,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
@@ -110,6 +111,14 @@ export default function LabTesting() {
       <BloodworkPillars />
       <BloodworkPricing />
       <BloodworkInsurance />
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0" }}>
+        <Reveal>
+          <TrustStrip testid="labtesting-trust-strip" />
+        </Reveal>
+      </section>
+
       <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
@@ -915,7 +924,7 @@ export default function LabTesting() {
           <Reveal delay={80}>
             <div className="mt-12">
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
-                Clarity Unlocks Power. Unleash the Extraordinary.
+Clarity is the foundation. Everything else follows from the panel.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
                 Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your partner-laboratory requisition promptly.

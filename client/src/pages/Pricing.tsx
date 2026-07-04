@@ -5,6 +5,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
+import { TrustStrip, FaqAccordion } from "@/components/EnterprisePatterns";
 import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
@@ -373,27 +374,6 @@ function PricingTiers() {
   );
 }
 
-function PricingFAQItem({ item, idx }: { item: { q: string; a: string }; idx: number }) {
-  const [open, setOpen] = React.useState(false);
-  return (
-    <div style={{ borderBottom: "1px solid var(--nx-border)" }}>
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.6rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
-      >
-        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
-        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: open ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", flexShrink: 0, marginTop: "2px" }}>{open ? "−" : "+"}</span>
-      </button>
-      {open && (
-        <div style={{ paddingBottom: "1.6rem" }}>
-          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{item.a}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 /* ── Pricing FAQ data — drives FAQPage JSON-LD ───────────────── */
 const PRICING_FAQ_ITEMS = [
   {
@@ -469,6 +449,13 @@ export default function Pricing() {
           </div>
         </div>
       </main>
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0" }}>
+        <Reveal>
+          <TrustStrip testid="pricing-trust-strip" />
+        </Reveal>
+      </section>
 
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
       <PricingTiers />
@@ -1152,16 +1139,14 @@ export default function Pricing() {
               Common questions about cost.
             </h2>
           </Reveal>
-          <div style={{ maxWidth: "680px" }}>
-            {[
+          <div style={{ maxWidth: "820px" }}>
+            <FaqAccordion items={[
               { q: "Is the physician consult included in the price?", a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consultation fee." },
               { q: "Are labs included?", a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 38-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans." },
               { q: "Can I use FSA or HSA funds?", a: "Yes. Compounded prescription medications and physician consultations are generally FSA/HSA-eligible. We provide itemized receipts at checkout. Confirm eligibility with your plan administrator." },
               { q: "What if the physician declines my protocol?", a: "If a physician determines your requested protocol is clinically inappropriate, no prescription is issued and you are not charged for pharmacy compounding. The physician may propose a modified alternative." },
               { q: "Is there a cancellation fee?", a: "No. Cancel anytime from your member portal with no penalty. Cancellation takes effect at the end of your current billing cycle. Compounded medications that have shipped cannot be returned." },
-            ].map((item, i) => (
-              <PricingFAQItem key={i} item={item} idx={i} />
-            ))}
+            ]} />
           </div>
 
           {/* Assessment CTA */}

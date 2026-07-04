@@ -7,6 +7,7 @@ import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/Si
 import { PillBadge } from "@/components/PillBadge";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip, FaqAccordion } from "@/components/EnterprisePatterns";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -295,7 +296,6 @@ export default function Science() {
   });
   const [activeId, setActiveId] = useState(families[0].id);
   const [openRef, setOpenRef] = useState<number | null>(null);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   useEffect(() => {
@@ -321,6 +321,13 @@ export default function Science() {
   return (
     <SiteLayout navVariant="showcase">
       <ScienceHeroDark />
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0 0" }}>
+        <Reveal>
+          <TrustStrip testid="science-trust-strip" />
+        </Reveal>
+      </section>
 
       {/* ── Evidence tier explainer ── */}
       <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-evidence-tiers">
@@ -781,18 +788,8 @@ export default function Science() {
                 <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
                   Evidence & safety.
                 </h2>
-                <div style={{ maxWidth: 760 }}>
-                  {SCIENCE_FAQ.map((item, i) => (
-                    <div key={i} style={{ borderBottom: "1px solid var(--nx-border)" }}>
-                      <button onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i} data-testid={`science-faq-item-${i}`} style={{ width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", padding: "1.25rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
-                        <span style={{ fontFamily: F, fontSize: "var(--nx-t-body)", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.4 }}>{item.q}</span>
-                        {openFaq === i ? <Minus size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={16} style={{ color: "var(--nx-fg-graphite)", flexShrink: 0, marginTop: 4 }} />}
-                      </button>
-                      {openFaq === i && (
-                        <p data-testid={`science-faq-answer-${i}`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.75, color: "var(--nx-fg-graphite)", maxWidth: 680, paddingBottom: "1.5rem" }}>{item.a}</p>
-                      )}
-                    </div>
-                  ))}
+                <div style={{ maxWidth: 820 }}>
+                  <FaqAccordion items={SCIENCE_FAQ} />
                 </div>
               </Reveal>
             </section>
