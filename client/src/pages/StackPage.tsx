@@ -49,7 +49,7 @@ export default function StackPage({ slug }: { slug: string }) {
   if (!stack) {
     return (
       <SiteLayout>
-        <section className="nx-container" style={{ padding: "5rem 0" }}>
+        <section className="nx-container" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }}>
           <p style={{ fontFamily: F, color: "var(--nx-fg-graphite)" }}>Protocol not found.</p>
           <Link href="/stacks" style={{ fontFamily: F, color: "var(--nx-cobalt)" }}>← All protocols</Link>
         </section>
@@ -278,7 +278,7 @@ export default function StackPage({ slug }: { slug: string }) {
       </section>
 
       {/* ── CLOSE ── */}
-      <section className="nx-container" style={{ padding: "3rem 0 4.5rem", textAlign: "center" }}>
+      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0 clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
           The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
         </h2>

@@ -96,7 +96,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* grid — compact floating product tiles (hims pattern) */}
-      <section className="nx-container" style={{ padding: "1rem 0 4rem" }}>
+      <section className="nx-container" style={{ padding: "clamp(1.4rem,3vw,2.2rem) 0 clamp(4rem,7vw,6rem)" }}>
         <div className="nx-float-grid">
           {shown.map((s, i) => {
             const rec = s.cadences.find((c) => c.key === "3mo");

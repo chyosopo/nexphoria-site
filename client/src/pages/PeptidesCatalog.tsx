@@ -106,7 +106,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      <section className="nx-container" style={{ padding: "1rem 0 4rem" }}>
+      <section className="nx-container" style={{ padding: "clamp(1.4rem,3vw,2.2rem) 0 clamp(4rem,7vw,6rem)" }}>
         <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
           {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
         </p>
