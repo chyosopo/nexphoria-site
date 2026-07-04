@@ -12,6 +12,11 @@ import { getStack, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK } from "@/data/outcomeImagery";
+import { VialArt, Tone } from "@/components/VialTile";
+import { glyphForPeptide } from "@/lib/protocols";
+
+/* on-brand tone cycle so a multi-vial lineup reads varied, not uniform */
+const VIAL_TONES: Tone[] = ["sage", "cobalt", "mineral", "sky", "butter", "rose", "dusk"];
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { faqJsonLd } from "@/lib/seo";
@@ -113,6 +118,27 @@ export default function StackPage({ slug }: { slug: string }) {
                 <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
               </div>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── VIAL LINEUP — the protocol, rendered as its vials ── */}
+      <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }}>
+        <div className="nx-container" style={{ paddingTop: "clamp(1.8rem,3.5vw,2.8rem)", paddingBottom: "clamp(1.8rem,3.5vw,2.8rem)" }}>
+          <p className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</p>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end", gap: "clamp(1.5rem,5vw,3.5rem)", marginTop: "1.4rem" }}>
+            {stack.peptides.map((p, i) => {
+              const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+              return (
+                <Reveal key={p.name} delay={i * 70}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
+                    <VialArt tone={VIAL_TONES[i % VIAL_TONES.length]} glyph={glyphForPeptide(slug)} size={150} />
+                    <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
