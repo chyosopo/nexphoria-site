@@ -12,7 +12,7 @@ import {
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
 import { Link } from "wouter";
-import { ArrowRight, Check, Activity, Brain, Shield, Apple } from "lucide-react";
+import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
 import {
   PANEL_ART,
@@ -35,7 +35,7 @@ function Hero() {
   return (
     <section
       data-testid="bloodwork-hero"
-      className="relative overflow-hidden" style={{ backgroundColor: "var(--nx-bg-dark)", color: "var(--nx-ceramic)" }}
+      className="nx-gradient-hero-dark relative overflow-hidden" style={{ color: "var(--nx-ceramic)" }}
     >
       {/* Hero score ring — the 76 moment */}
       <div className="hidden lg:block absolute pointer-events-none" style={{ right: "5%", top: "50%", transform: "translateY(-50%)" }} aria-hidden>
@@ -60,6 +60,11 @@ function Hero() {
         >
           <Reveal>
             <div>
+              <div style={{ marginBottom: "1.25rem" }}>
+                <span className="nx-icon-circle on-dark" aria-hidden>
+                  <Droplet size={19} strokeWidth={1.9} />
+                </span>
+              </div>
               <p
                 style={{
                   fontFamily: FONT,
@@ -135,45 +140,17 @@ function Hero() {
               </div>
 
               <div
-                style={{
-                  marginTop: "3rem",
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "1.5rem",
-                  maxWidth: 560,
-                }}
+                className="grid grid-cols-3"
+                style={{ gap: 12, marginTop: "3rem", maxWidth: 560 }}
               >
                 {[
                   { n: `${PANEL_TOTAL_MARKERS}+`, l: "Biomarkers" },
                   { n: PANEL_CATEGORY_COUNT.toString(), l: "Panels" },
                   { n: "2×/yr", l: "Retest cadence" },
                 ].map((k) => (
-                  <div key={k.l} style={{ borderTop: "1px solid rgba(246, 249, 252,0.16)", paddingTop: 12 }}>
-                    <div
-                      style={{
-                        ...NUM,
-                        fontFamily: FONT,
-                        fontSize: "clamp(1.75rem, 2.4vw, 2rem)",
-                        fontWeight: 500,
-                        letterSpacing: "-0.02em",
-                        color: "var(--nx-acid)",
-                      }}
-                    >
-                      {k.n}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: FONT,
-                        fontSize: 11,
-                        fontWeight: 500,
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "rgba(246, 249, 252,0.6)",
-                        marginTop: 4,
-                      }}
-                    >
-                      {k.l}
-                    </div>
+                  <div key={k.l} className="nx-stat-card on-dark">
+                    <span className="nx-stat-num" style={NUM}>{k.n}</span>
+                    <span className="nx-stat-lbl">{k.l}</span>
                   </div>
                 ))}
               </div>
@@ -187,7 +164,7 @@ function Hero() {
                 background:
                   "linear-gradient(160deg, rgba(246, 249, 252,0.06) 0%, rgba(246, 249, 252,0.02) 100%)",
                 border: "1px solid rgba(246, 249, 252,0.14)",
-                borderRadius: 16,
+                borderRadius: "var(--nx-r-md)",
                 padding: "1.6rem 1.6rem 1.4rem",
                 backdropFilter: "blur(10px)",
               }}
@@ -331,6 +308,7 @@ function PanelExplorer() {
       }}
     >
       <div className="nx-container">
+        <div className="nx-divider-ornament" aria-hidden style={{ marginBottom: "clamp(2rem,4vw,3rem)" }}><i /></div>
         {/* Section header */}
         <Reveal>
           <div style={{ marginBottom: "2.5rem", maxWidth: 720 }}>
@@ -408,7 +386,7 @@ function PanelExplorer() {
                   backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
                   color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
                   cursor: "pointer",
-                  transition: "all 200ms cubic-bezier(0.2, 0.65, 0.3, 1)",
+                  transition: "all var(--nx-dur-2) var(--nx-ease)",
                 }}
               >
                 {c.name}
@@ -702,16 +680,19 @@ function HowItWorks() {
   const STEPS = [
     {
       n: "01",
+      Icon: Droplet,
       title: "Baseline draw",
       body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of 2,500+ centers or use the at-home collection kit.`,
     },
     {
       n: "02",
+      Icon: Stethoscope,
       title: "Physician-reviewed protocol",
       body: "A board-certified physician reads every marker against your goals — not a population average — and prescribes the peptides and doses your chemistry calls for.",
     },
     {
       n: "03",
+      Icon: RefreshCw,
       title: "90-day recheck",
       body: "The panel repeats every quarter. We track each marker against your own baseline and adjust dose the moment a value drifts outside its target band.",
     },
@@ -726,6 +707,7 @@ function HowItWorks() {
       }}
     >
       <div className="nx-container">
+        <div className="nx-divider-ornament" aria-hidden style={{ marginBottom: "clamp(2rem,4vw,3rem)" }}><i /></div>
         <Reveal>
           <div style={{ marginBottom: "2.5rem", maxWidth: 620 }}>
             <p
@@ -756,62 +738,47 @@ function HowItWorks() {
           </div>
         </Reveal>
 
-        <div
-          style={{
-            display: "grid",
-            gap: "1.5rem",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          }}
-        >
-          {STEPS.map((s) => (
-            <Reveal key={s.n}>
-              <article
-                data-testid={`how-step-${s.n}`}
-                style={{
-                  backgroundColor: "var(--nx-ceramic)",
-                  border: "1px solid var(--nx-border)",
-                  borderRadius: 12,
-                  padding: "1.75rem 1.5rem",
-                  minHeight: 260,
-                }}
+        <div className="nx-timeline">
+          {STEPS.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.06}>
+              <div
+                className="nx-timeline-step"
+                style={{ paddingBottom: i < STEPS.length - 1 ? "clamp(1.6rem,3vw,2.2rem)" : 0 }}
               >
+                <span className="nx-timeline-node" aria-hidden>{s.n}</span>
                 <div
-                  style={{
-                    ...NUM,
-                    fontFamily: FONT,
-                    fontSize: 40,
-                    fontWeight: 500,
-                    letterSpacing: "-0.03em",
-                    color: "var(--nx-acid)",
-                    lineHeight: 1,
-                    marginBottom: "1.25rem",
-                  }}
+                  data-testid={`how-step-${s.n}`}
+                  className="nx-glass-tile"
+                  style={{ display: "block" }}
                 >
-                  {s.n}
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: "0.7rem" }}>
+                    <span className="nx-icon-circle" aria-hidden>
+                      <s.Icon size={19} strokeWidth={1.9} />
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: FONT,
+                        fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)",
+                        fontWeight: 500,
+                        letterSpacing: "-0.01em",
+                        color: "var(--nx-fg)",
+                      }}
+                    >
+                      {s.title}
+                    </h3>
+                  </div>
+                  <p
+                    style={{
+                      fontFamily: FONT,
+                      fontSize: "var(--nx-t-sm)",
+                      lineHeight: 1.55,
+                      color: "var(--nx-fg-graphite)",
+                    }}
+                  >
+                    {s.body}
+                  </p>
                 </div>
-                <h3
-                  style={{
-                    fontFamily: FONT,
-                    fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)",
-                    fontWeight: 500,
-                    letterSpacing: "-0.01em",
-                    color: "var(--nx-fg)",
-                    marginBottom: "0.6rem",
-                  }}
-                >
-                  {s.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: FONT,
-                    fontSize: "var(--nx-t-sm)",
-                    lineHeight: 1.55,
-                    color: "var(--nx-fg-graphite)",
-                  }}
-                >
-                  {s.body}
-                </p>
-              </article>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -863,10 +830,9 @@ function WhyItMatters() {
               <div
                 key={v.k}
                 data-testid={`why-tile-${v.k.toLowerCase().replace(/\s+/g, "-")}`}
+                className="nx-feature-card edge-top"
                 style={{
-                  backgroundColor: "var(--nx-bg)",
-                  border: "1px solid var(--nx-border)",
-                  borderRadius: 12,
+                  background: "var(--nx-bg)",
                   padding: "1.5rem 1.4rem",
                   minHeight: 170,
                 }}
@@ -874,7 +840,7 @@ function WhyItMatters() {
                 <Check
                   size={18}
                   strokeWidth={2}
-                  style={{ color: "var(--nx-fg)", marginBottom: "0.75rem" }}
+                  style={{ color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}
                 />
                 <h3
                   style={{
@@ -1143,7 +1109,7 @@ function GlowingBody() {
     <section id="surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
-          <img src="img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: 24 }} loading="lazy" />
+          <img src="img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: "var(--nx-r-lg)" }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
             <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: p.hot ? "var(--nx-bg)" : "rgba(243, 245, 247,0.4)", border: `1px solid ${p.hot ? "rgba(243, 245, 247,0.55)" : "rgba(243, 245, 247,0.18)"}`, borderRadius: 999, padding: "8px 16px", background: "rgba(22, 27, 32,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}
@@ -1156,7 +1122,7 @@ function GlowingBody() {
         </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[["One draw", "5-minute booking, 2,000+ locations"], ["76 markers", "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
-            <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: 16, padding: "1.1rem 1.2rem" }}>
+            <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.2rem" }}>
               <div style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-hover)" }}>{t}</div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>
             </div>

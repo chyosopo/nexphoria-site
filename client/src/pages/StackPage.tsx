@@ -125,21 +125,21 @@ export default function StackPage({ slug }: { slug: string }) {
           <div>
             {/* Protocol — peptide chips (icon + name), then the details table */}
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: "0.8rem" }}>
-              {stack.peptides.map((p) => (
-                <span key={p.name} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "9px 14px 9px 10px", borderRadius: "var(--nx-r-pill)", background: "var(--nx-cobalt-soft)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 24%, transparent)" }}>
-                  <span className="nx-icon-circle" aria-hidden style={{ width: 26, height: 26 }}><Pill size={14} strokeWidth={2} /></span>
-                  <span style={{ fontFamily: F, fontSize: 14.5, fontWeight: 600, color: "var(--nx-fg)" }}>{p.name}</span>
-                </span>
-              ))}
-            </div>
-            <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "1.4rem" }}>
-              {stack.peptides.map((p) => (
-                <div key={p.name} className="grid md:grid-cols-[1fr_1.2fr_1fr] gap-1 md:gap-6 py-4" style={{ borderBottom: "1px solid var(--nx-border)" }}>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", alignSelf: "center" }}>{p.dose}</p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", alignSelf: "center" }}>{p.spec}</p>
-                </div>
+            {/* compact floating spec tiles — name · dose · spec, pharmaceutical-precise */}
+            <div className="nx-float-grid dense" style={{ marginTop: "0.9rem" }}>
+              {stack.peptides.map((p, i) => (
+                <Reveal key={p.name} delay={i * 40}>
+                  <div className="nx-float-card" style={{ cursor: "default", height: "100%" }}>
+                    <div className="nx-float-card__body">
+                      <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
+                        <span className="nx-icon-circle" aria-hidden style={{ width: 30, height: 30, flexShrink: 0 }}><Pill size={15} strokeWidth={2} /></span>
+                        <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{p.name}</p>
+                      </div>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", marginTop: "0.7rem" }}>{p.dose}</p>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-muted)", marginTop: "0.2rem" }}>{p.spec}</p>
+                    </div>
+                  </div>
+                </Reveal>
               ))}
             </div>
             <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1.4rem" }}>
