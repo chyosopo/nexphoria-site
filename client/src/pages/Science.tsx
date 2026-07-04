@@ -7,7 +7,7 @@ import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/Si
 import { PillBadge } from "@/components/PillBadge";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip, FaqAccordion } from "@/components/EnterprisePatterns";
+import { TrustStrip, FaqAccordion, NumberedSteps, SectionHead } from "@/components/EnterprisePatterns";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -101,6 +101,17 @@ const mechanismCards: { id: string; title: string; glyph: GlyphId; receptor: str
   { id: "longevity", title: "Cellular Energetics", glyph: "ring", receptor: "Sirtuins (SIRT1-7) · AMPK", how: "Replenishes NAD+ and activates AMPK and telomerase pathways that govern mitochondrial output and DNA repair." },
   { id: "cognitive", title: "Neuropeptide Modulation", glyph: "branch", receptor: "GABA-A · TrkB (BDNF)", how: "Raises BDNF and modulates GABAergic tone via intranasal delivery, supporting calm focus and synaptic plasticity." },
 ];
+
+/* ── How the science works — method, molecule → measured result ──────────── */
+const SCIENCE_METHOD_STEPS = [
+  { title: "Target a mechanism", body: "Every protocol starts from a defined receptor pathway — incretin, GHRH, VEGF — not a symptom. The mechanism decides which compound can actually move the marker." },
+  { title: "Match the evidence tier", body: "The compound is weighed against its evidence grade — established, emerging, or investigational — stated plainly and set against your personal risk profile." },
+  { title: "Establish a baseline", body: "A 38-biomarker draw fixes your physiology in numbers before the first dose, so the protocol is built from your reference range, not a population average." },
+  { title: "Measure the response", body: "Mechanism-linked markers are redrawn every 90 days. The trend — not marketing copy — decides whether a protocol continues, adjusts, or stops." },
+];
+
+/* ── Biomarkers the science tracks — all referenced in the mechanisms above ── */
+const SCIENCE_BIOMARKERS = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "LH / FSH", "Lipid panel", "eGFR"];
 
 /* ── Evidence strip figures ──────────────────────────────────────────────── */
 const EVIDENCE_STRIP = [
@@ -548,6 +559,35 @@ export default function Science() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── How the science works — method band + biomarker chips ── */}
+      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-science-method">
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <SectionHead
+              eyebrow="Method"
+              title={<>From mechanism to measured result</>}
+              lead="Peptide medicine, done properly, is a loop: define the pathway, choose the compound on its evidence, fix a baseline, and let the numbers decide what happens next."
+            />
+          </Reveal>
+          <div style={{ marginTop: "clamp(2.5rem,4vw,3.5rem)" }}>
+            <NumberedSteps steps={SCIENCE_METHOD_STEPS} />
+          </div>
+          <Reveal>
+            <div style={{ marginTop: "clamp(2.5rem,4vw,3.5rem)" }}>
+              <p className="nx-eyebrow" style={{ marginBottom: "1rem" }}>Markers the science tracks</p>
+              <div className="nx-biochip-grid" data-testid="science-biochips">
+                {SCIENCE_BIOMARKERS.map((name) => (
+                  <Link key={name} href="/bloodwork" className="nx-biochip" data-testid={`science-biochip-${name}`}>
+                    {name}
+                  </Link>
+                ))}
+                <span className="nx-biochip muted">+ biological-age composite</span>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
