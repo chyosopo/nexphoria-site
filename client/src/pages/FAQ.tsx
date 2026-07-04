@@ -284,6 +284,8 @@ export default function FAQPage() {
                     <li key={cat.label}>
                       <button
                         onClick={() => setActiveCategory(i)}
+                        aria-current={activeCategory === i ? "true" : undefined}
+                        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
                         style={{
                           background: "none",
                           border: "none",
@@ -301,6 +303,7 @@ export default function FAQPage() {
                       >
                         {activeCategory === i && (
                           <span
+                            aria-hidden="true"
                             style={{
                               display: "inline-block",
                               width: "16px",
@@ -346,7 +349,6 @@ export default function FAQPage() {
                   style={{
                     fontFamily: F,
                     fontWeight: 500,
-                    
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
