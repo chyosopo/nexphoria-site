@@ -303,7 +303,7 @@ export default function Journal() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(2, 1fr)",
-                gap: 28,
+                gap: 36,
               }}
             >
               {gridArticles.map((article, i) => (

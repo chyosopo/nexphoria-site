@@ -161,14 +161,14 @@ export default function JournalArticle() {
           <div
             style={{
               marginTop: -48,
-              borderRadius: 4,
+              borderRadius: "var(--nx-r-xs)",
               overflow: "hidden",
               aspectRatio: "16/9",
               border: "1px solid var(--nx-border)",
               maxWidth: 1080,
               marginLeft: "auto",
               marginRight: "auto",
-              boxShadow: "0 24px 48px -16px rgba(21, 24, 28,0.18)",
+              boxShadow: "var(--nx-e-3)",
             }}
           >
             <img

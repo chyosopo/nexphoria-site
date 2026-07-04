@@ -100,9 +100,9 @@ export default function Community() {
             <div
               style={{
                 border: "1.5px solid var(--nx-border)",
-                borderRadius: "16px",
+                borderRadius: "var(--nx-r-md)",
                 backgroundColor: "var(--nx-ceramic)",
-                padding: "2.5rem 2rem",
+                padding: "2.85rem 2.35rem",
                 maxWidth: "760px",
               }}
             >
@@ -200,7 +200,7 @@ export default function Community() {
                 <div
                   style={{
                     backgroundColor: "var(--nx-ceramic)",
-                    padding: "2.5rem 2rem",
+                    padding: "2.85rem 2.25rem",
                     height: "100%",
                   }}
                 >
@@ -304,7 +304,7 @@ export default function Community() {
                   style={{
                     backgroundColor: "rgba(255,255,255,0.12)",
                     border: "1px solid rgba(255,255,255,0.2)",
-                    borderRadius: "8px",
+                    borderRadius: "var(--nx-r-sm)",
                     padding: "2rem",
                   }}
                 >
