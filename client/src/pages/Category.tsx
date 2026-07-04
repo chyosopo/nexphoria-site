@@ -239,10 +239,10 @@ export default function Category() {
       <section className="nx-section">
         <div className="nx-container">
           <p className="nx-eyebrow">Peptides in this area</p>
-          <Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {list.map((p) => (
-              <Link key={p.slug} href={`/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
+            {list.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 45}>
+              <Link href={`/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 21, color: "var(--nx-fg)" }}>{p.name}</h3>
@@ -256,6 +256,7 @@ export default function Category() {
                   Prescription only · if prescribed†
                 </p>
               </Link>
+              </Reveal>
             ))}
           </div>
           {list.length === 0 && (
@@ -263,7 +264,6 @@ export default function Category() {
               Protocols in this area are physician-designed per patient. <Link href="/assessment" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>Start your intake</Link>.
             </p>
           )}
-          </Reveal>
         </div>
       </section>
 
