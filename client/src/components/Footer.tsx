@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
@@ -23,6 +24,33 @@ export function Footer({ variant = "shared" }: FooterProps) {
     variant === "women" ? "/women/peptides" :
     "/peptides";
   const assessmentBase = "/assessment";
+
+  // Newsletter capture → /api/waitlist (same lead sink as ExitIntentModal).
+  // Degrades gracefully on static hosts where the API isn't running.
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "sending" | "done" | "err">("idle");
+
+  const submitNewsletter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const val = email.trim();
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(val)) {
+      setState("err");
+      return;
+    }
+    setState("sending");
+    try {
+      await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: val, source: "footer-newsletter" }),
+      });
+      setState("done");
+      setEmail("");
+    } catch {
+      setState("err");
+    }
+  };
 
   // 4-column editorial footer — Product / Company / Legal / Contact.
   const columns: FooterColumn[] = [
@@ -91,33 +119,62 @@ export function Footer({ variant = "shared" }: FooterProps) {
             >
               Early access to new protocols, published research, and member-only pricing.
             </p>
-            <form
-              className="mt-5 flex gap-2 max-w-sm"
-              onSubmit={(e) => e.preventDefault()}
-              data-testid="footer-newsletter-form"
-            >
-              <input
-                type="email"
-                placeholder="Your email"
-                aria-label="Email address for the newsletter"
-                className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-white/50 transition-colors"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
-                data-testid="footer-email-input"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5"
+            {state === "done" ? (
+              <p
+                className="mt-5 text-sm max-w-sm"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  backgroundColor: "var(--nx-acid)",
-                  color: "var(--nx-fg)",
-                  letterSpacing: "0.04em",
+                  color: "var(--nx-acid)",
+                  lineHeight: 1.6,
                 }}
-                data-testid="footer-email-submit"
+                data-testid="footer-newsletter-success"
               >
-                Join
-              </button>
-            </form>
+                You're on the list. Look for the next issue in your inbox.
+              </p>
+            ) : (
+              <form
+                className="mt-5 flex gap-2 max-w-sm"
+                onSubmit={submitNewsletter}
+                data-testid="footer-newsletter-form"
+              >
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  aria-label="Email address for the newsletter"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); if (state === "err") setState("idle"); }}
+                  className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-white/50 transition-colors"
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
+                  data-testid="footer-email-input"
+                />
+                <button
+                  type="submit"
+                  disabled={state === "sending"}
+                  className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    backgroundColor: "var(--nx-acid)",
+                    color: "var(--nx-fg)",
+                    letterSpacing: "0.04em",
+                  }}
+                  data-testid="footer-email-submit"
+                >
+                  {state === "sending" ? "Joining…" : "Join"}
+                </button>
+              </form>
+            )}
+            {state === "err" && (
+              <p
+                className="mt-2 text-xs max-w-sm"
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  color: "rgba(255,255,255,0.7)",
+                }}
+                data-testid="footer-newsletter-error"
+              >
+                Enter a valid email address to subscribe.
+              </p>
+            )}
           </div>
 
           {/* 4 nav columns */}
