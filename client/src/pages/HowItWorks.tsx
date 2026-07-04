@@ -85,7 +85,7 @@ export default function HowItWorks() {
     title: "How It Works — Nexphoria",
     description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, and 90-day retesting — in a fixed order that does not bend.",
     jsonLd: [
-      webPageJsonLd({ name: "How It Works", description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.", path: "/how-it-works" }),
+      webPageJsonLd({ name: "How It Works", description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.", path: "/how-it-works", type: "MedicalWebPage" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "How It Works", path: "/how-it-works" }]),
       howToJsonLd({
         name: "How Nexphoria peptide therapy works",
