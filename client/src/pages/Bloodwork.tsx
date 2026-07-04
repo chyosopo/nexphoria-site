@@ -13,7 +13,7 @@ import {
 } from "@/data/biomarkerPanel";
 import { PANELS, FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { Link } from "wouter";
-import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw } from "lucide-react";
+import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw, FlaskConical, ClipboardCheck, TestTube } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
 import {
   PANEL_ART,
@@ -284,6 +284,65 @@ function Hero() {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   TRUST ROW — calm single-row operating facts, straight after hero.
+   Claims are limited to what is true for Nexphoria: licensed physicians,
+   503A pharmacy, prescription-gated, lab-monitored. No CLIA/CAP/FDA.
+   ══════════════════════════════════════════════════════════════ */
+function TrustRow() {
+  const items = [
+    { Icon: Stethoscope, label: "Licensed U.S. physicians" },
+    { Icon: FlaskConical, label: "503A compounding pharmacy" },
+    { Icon: ClipboardCheck, label: "Prescription required" },
+    { Icon: TestTube, label: "Lab-monitored results" },
+  ];
+  return (
+    <section
+      aria-label="How Nexphoria operates"
+      data-testid="bloodwork-trust-row"
+      style={{
+        background: "var(--nx-ceramic)",
+        borderBottom: "1px solid var(--nx-border)",
+      }}
+    >
+      <div
+        className="nx-container"
+        style={{ paddingTop: "1.4rem", paddingBottom: "1.4rem" }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.9rem 2.4rem",
+          }}
+        >
+          {items.map(({ Icon, label }) => (
+            <span
+              key={label}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: FONT,
+                fontSize: "var(--nx-t-xs)",
+                fontWeight: 500,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                color: "var(--nx-fg-graphite)",
+              }}
+            >
+              <Icon size={15} strokeWidth={1.8} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} aria-hidden />
+              {label}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════
    FILTER CHIPS + CATEGORY GRID — Hims-Labs pattern
    ══════════════════════════════════════════════════════════════ */
 function PanelExplorer() {
@@ -472,65 +531,39 @@ function PanelExplorer() {
                   {cat.blurb}
                 </p>
 
-                {/* Marker list */}
+                {/* Biomarker chips — every marker as a calm, flat pill */}
                 <ul
                   style={{
                     listStyle: "none",
-                    padding: 0,
-                    margin: 0,
+                    padding: "0.9rem 0 0",
+                    marginTop: "auto",
+                    borderTop: "1px solid var(--nx-border)",
                     display: "flex",
-                    flexDirection: "column",
-                    gap: 6,
+                    flexWrap: "wrap",
+                    gap: 7,
                     flex: 1,
+                    alignContent: "flex-start",
                   }}
                 >
-                  {cat.markers.slice(0, 6).map((m) => (
+                  {cat.markers.map((m) => (
                     <li
                       key={m.name}
                       style={{
                         fontFamily: FONT,
-                        fontSize: "var(--nx-t-sm)",
-                        lineHeight: 1.4,
-                        color: "var(--nx-fg)",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        gap: 8,
-                        padding: "0.35rem 0",
-                        borderTop: "1px solid var(--nx-border)",
+                        fontSize: "var(--nx-t-xs)",
+                        fontWeight: 500,
+                        lineHeight: 1.25,
+                        letterSpacing: "0.01em",
+                        color: "var(--nx-fg-graphite)",
+                        background: "var(--nx-bg)",
+                        border: "1px solid var(--nx-border)",
+                        borderRadius: "var(--nx-r-pill)",
+                        padding: "0.32rem 0.72rem",
                       }}
                     >
-                      <span>{m.name}</span>
-                      {m.note && (
-                        <span
-                          style={{
-                            fontSize: "var(--nx-t-xs)",
-                            fontWeight: 500,
-                            letterSpacing: "0.06em",
-                            textTransform: "uppercase",
-                            color: "var(--nx-fg-graphite)",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          {m.note}
-                        </span>
-                      )}
+                      {m.name.split(" (")[0]}
                     </li>
                   ))}
-                  {cat.markers.length > 6 && (
-                    <li
-                      style={{
-                        fontFamily: FONT,
-                        fontSize: "var(--nx-t-xs)",
-                        color: "var(--nx-fg-graphite)",
-                        letterSpacing: "0.02em",
-                        padding: "0.35rem 0",
-                        borderTop: "1px solid var(--nx-border)",
-                      }}
-                    >
-                      + {cat.markers.length - 6} more
-                    </li>
-                  )}
                 </ul>
               </article>
             </Reveal>
@@ -984,6 +1017,7 @@ export default function Bloodwork() {
     <SiteLayout navVariant="showcase">
       <main id="main-content">
         <Hero />
+        <TrustRow />
         <SectionPills />
         <SystemsMosaic />
         <ResultsDashboard />
