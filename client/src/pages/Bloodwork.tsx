@@ -267,7 +267,7 @@ function Hero() {
 
       {/* ── Cinematic lab — living proof band (Higgsfield kling3.0) ── */}
       <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
-        <div className="relative overflow-hidden" style={{ borderRadius: "var(--nx-r-lg)", boxShadow: "0 30px 70px -28px rgba(21, 24, 28,0.5)" }} data-testid="bloodwork-video-band">
+        <div className="relative overflow-hidden" style={{ borderRadius: "var(--nx-r-lg)", boxShadow: "var(--nx-e-4)" }} data-testid="bloodwork-video-band">
           <video autoPlay muted loop playsInline
             src="img/img_6d36ae1989c8.mp4"
             poster="img/img_b9ec00db43d6.webp"
@@ -361,11 +361,8 @@ function PanelExplorer() {
   return (
     <section
       data-testid="bloodwork-panel-explorer"
-      style={{
-        backgroundColor: "var(--nx-bg)",
-        paddingTop: "clamp(3.5rem, 6vw, 5.5rem)",
-        paddingBottom: "clamp(3.5rem, 6vw, 5.5rem)",
-      }}
+      className="nx-section"
+      style={{ backgroundColor: "var(--nx-bg)" }}
     >
       <div className="nx-container">
         <div className="nx-divider-ornament" aria-hidden style={{ marginBottom: "clamp(2rem,4vw,3rem)" }}><i /></div>
@@ -640,11 +637,10 @@ function LiveTrajectory() {
   return (
     <section
       data-testid="bloodwork-live"
+      className="nx-section"
       style={{
         backgroundColor: "var(--nx-bg-dark)",
         color: "var(--nx-ceramic)",
-        paddingTop: "clamp(4.5rem, 8vw, 7.25rem)",
-        paddingBottom: "clamp(4.5rem, 8vw, 7.25rem)",
       }}
     >
       <div className="nx-container">
@@ -734,11 +730,8 @@ function HowItWorks() {
   return (
     <section
       data-testid="bloodwork-how"
-      style={{
-        backgroundColor: "var(--nx-bg)",
-        paddingTop: "clamp(4.5rem, 8vw, 7.25rem)",
-        paddingBottom: "clamp(4.5rem, 8vw, 7.25rem)",
-      }}
+      className="nx-section"
+      style={{ backgroundColor: "var(--nx-bg)" }}
     >
       <div className="nx-container">
         <div className="nx-divider-ornament" aria-hidden style={{ marginBottom: "clamp(2rem,4vw,3rem)" }}><i /></div>
@@ -845,11 +838,8 @@ function WhyItMatters() {
   ];
   return (
     <section
-      style={{
-        backgroundColor: "var(--nx-ceramic)",
-        paddingTop: "clamp(4.5rem, 8vw, 7.25rem)",
-        paddingBottom: "clamp(4.5rem, 8vw, 7.25rem)",
-      }}
+      className="nx-section"
+      style={{ backgroundColor: "var(--nx-ceramic)" }}
     >
       <div className="nx-container">
         <Reveal>
@@ -1200,7 +1190,7 @@ function ActionPlan() {
         </div>
         <div className="relative mt-10 max-w-xl">
           <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(243, 245, 247,0.45)", borderRadius: "var(--nx-r-md)", filter: "blur(0.5px)" }} aria-hidden />
-          <div className="relative nx-rise" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-md)", padding: "1.3rem 1.5rem", boxShadow: "0 24px 50px -20px rgba(21, 24, 28,0.45)" }}>
+          <div className="relative nx-rise" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-md)", padding: "1.3rem 1.5rem", boxShadow: "var(--nx-e-4)" }}>
             <div className="flex items-center justify-between gap-4">
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.5, color: "var(--nx-fg)", fontWeight: 500, margin: 0 }}>
                 Front-load protein within an hour of waking — steadier glucose, stronger recovery.
@@ -1236,7 +1226,7 @@ function GlowingBody() {
               {p.t}
             </span>
           ))}
-          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "9px 16px", boxShadow: "0 12px 30px rgba(0,0,0,0.35)", whiteSpace: "nowrap" }}>
+          <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "9px 16px", boxShadow: "var(--nx-e-3)", whiteSpace: "nowrap" }}>
             <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: "var(--nx-r-pill)", background: "var(--nx-success)", color: "var(--nx-fg)", textAlign: "center", lineHeight: "16px", fontSize: "var(--nx-t-xs)", marginRight: 8 }}>✓</span>
             All 76 reviewed by a physician
           </span>
@@ -1271,7 +1261,7 @@ function MarkerWall() {
           </p>
         ))}
       </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)", padding: "1.2rem 1.4rem", boxShadow: "0 30px 60px -20px rgba(21, 24, 28,0.35)", minWidth: 260 }}>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)", padding: "1.2rem 1.4rem", boxShadow: "var(--nx-e-4)", minWidth: 260 }}>
         <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", margin: 0 }}>Out of range → In range</p>
         <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
           <line x1="30" y1="22" x2="180" y2="48" stroke="var(--nx-amber)" strokeWidth="1.6" strokeDasharray="4 5" />

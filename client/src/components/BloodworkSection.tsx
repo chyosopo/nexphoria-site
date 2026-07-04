@@ -133,7 +133,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "4px",
-                transition: "opacity 150ms ease",
+                transition: "opacity var(--nx-dur-2) var(--nx-ease)",
               }}
               className="hover:opacity-60"
             >
