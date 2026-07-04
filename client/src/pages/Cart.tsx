@@ -360,19 +360,10 @@ export default function Cart() {
 
                 <Link asChild href="/checkout">
                   <a
-                    className="block w-full text-center px-6 py-3.5 transition-all"
-                    style={{
-                      background: "var(--nx-fg)",
-                      color: "var(--nx-bg)",
-                      fontFamily: FONT,
-                      fontWeight: 500,
-                      fontSize: "0.875rem",
-                      letterSpacing: "0.02em",
-                      borderRadius: 12,
-                    }}
+                    className="nx-cta-cobalt w-full justify-center"
                     data-testid="button-checkout-page"
                   >
-                    Continue to checkout <ArrowRight size={14} className="inline ml-1" />
+                    Continue to checkout <ArrowRight size={14} />
                   </a>
                 </Link>
 
@@ -411,8 +402,7 @@ export default function Cart() {
         >
           <Link asChild href="/checkout">
             <a
-              className="block w-full text-center py-3.5 font-medium"
-              style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-base)", letterSpacing: "0.02em", borderRadius: 12 }}
+              className="nx-cta-cobalt w-full justify-center"
               data-testid="button-checkout-mobile"
             >
               Checkout — {formatUSD(subtotal)}

@@ -441,8 +441,7 @@ export default function Checkout() {
                       <button
                         type="submit"
                         disabled={mutation.isPending}
-                        className="px-8 py-4 transition-all disabled:opacity-60"
-                        style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+                        className="nx-cta-cobalt disabled:opacity-60"
                         data-testid="button-submit-checkout"
                       >
                         {mutation.isPending ? "Submitting…" : "Submit for physician approval →"}
@@ -610,8 +609,7 @@ function PrimaryBtn({ children, onClick, testId }: { children: React.ReactNode; 
     <button
       type="button"
       onClick={onClick}
-      className="px-8 py-4 transition-all"
-      style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, letterSpacing: "0.02em", borderRadius: 12 }}
+      className="nx-cta-cobalt"
       data-testid={testId}
     >
       {children}

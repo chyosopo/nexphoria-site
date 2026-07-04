@@ -170,7 +170,7 @@ function FloatingResultCards() {
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             border: "1px solid rgba(21, 24, 28,0.08)",
-            borderRadius: 12,
+            borderRadius: 16,
             padding: "10px 14px",
             minWidth: 152,
             boxShadow: "0 8px 28px rgba(21, 24, 28,0.14)",
@@ -269,8 +269,8 @@ function Hero() {
             href="/assessment"
             className="inline-flex items-center gap-2"
             style={{
-              background: "var(--nx-acid)",
-              color: "var(--nx-fg)",
+              background: "var(--nx-cobalt)",
+              color: "var(--nx-ceramic)",
               padding: "14px 22px",
               borderRadius: "999px",
               fontWeight: 600,
