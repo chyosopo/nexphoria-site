@@ -27,7 +27,6 @@ const Category = lazy(() => import("@/pages/Category"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
-const BloodPanels = lazy(() => import("@/pages/BloodPanels"));
 const SoloPDP = lazy(() => import("@/pages/SoloPDP"));
 const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
 const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
@@ -111,7 +110,8 @@ function AppRouter() {
         <Route path="/lab-testing">{() => <R to="/bloodwork" />}</Route>
         <Route path="/bloodwork" component={Bloodwork} />
         <Route path="/protocols" component={ProtocolsIndex} />
-        <Route path="/blood-work" component={BloodPanels} />
+        {/* /blood-work consolidated → canonical /bloodwork (BloodPanels retired) */}
+        <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
         <Route path="/catalog">{() => <R to="/men/peptides" />}</Route>
         <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
