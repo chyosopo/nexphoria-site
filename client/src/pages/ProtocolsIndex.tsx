@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { TrustStrip, DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -28,6 +28,12 @@ export default function ProtocolsIndex() {
     jsonLd: [
       webPageJsonLd({ name: "Protocols", description: "Flagship peptide stacks.", path: "/stacks" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }]),
+      // ItemList of the flagship protocols — real names/paths only, no prices here.
+      itemListJsonLd({
+        name: "Nexphoria peptide protocols",
+        description: "Physician-curated peptide stacks in the Nexphoria formulary.",
+        items: FLAGSHIP_STACKS.map((s) => ({ name: s.name, path: `/stacks/${s.slug}` })),
+      }),
     ],
   });
 

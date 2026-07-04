@@ -9,7 +9,7 @@ import {
   getRelatedArticles,
   JOURNAL_CATEGORIES,
 } from "@/data/journal";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 /* ─────────────────────────────────────────────────────────────
    JournalArticle — Long-form editorial article page with
@@ -41,11 +41,14 @@ export default function JournalArticle() {
     path: `/journal/${slug}`,
     jsonLd: article
       ? [
-          webPageJsonLd({
-            name: article.title,
+          // Article schema with real datePublished/author/image from the article data.
+          articleJsonLd({
+            headline: article.title,
             description: article.dek,
             path: `/journal/${slug}`,
-            type: "MedicalWebPage",
+            datePublished: article.publishedISO,
+            authorName: article.author?.name,
+            image: article.imageSrc,
           }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

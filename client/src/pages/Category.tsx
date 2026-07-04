@@ -7,7 +7,7 @@ import { Link, useRoute } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 
@@ -138,6 +138,14 @@ export default function Category() {
           webPageJsonLd({ name: `${label} protocols`, description: cfg.sub, path: `/goals/${slug}` }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: label, path: `/goals/${slug}` }]),
           faqJsonLd(cfg.faqs),
+          // ItemList of the peptides in this goal — only when real children exist.
+          ...(list.length > 0
+            ? [itemListJsonLd({
+                name: `${label} peptides`,
+                description: cfg.sub,
+                items: list.map((p) => ({ name: p.name, path: `/peptides/${p.slug}` })),
+              })]
+            : []),
         ]
       : [],
   });

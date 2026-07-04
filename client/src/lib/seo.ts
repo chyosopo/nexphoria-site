@@ -2,9 +2,12 @@
  * Lightweight SEO without extra dependencies.
  *
  * `useSeo` imperatively manages <title>, meta description, canonical, and
- * Open Graph / Twitter tags on mount and cleans up structured-data it injected.
- * Works with wouter hash routing (runs on every page mount). No react-helmet
- * needed — keeps the bundle lean and avoids a provider wrapper.
+ * Open Graph / Twitter tags, and cleans up structured-data it injected.
+ * Works with wouter browser-path routing: the effect re-runs whenever the
+ * page's title, description, path, ogImage, or JSON-LD payload changes, so
+ * navigating between two routes that share a title/description still refreshes
+ * the page-specific structured data. No react-helmet needed — keeps the bundle
+ * lean and avoids a provider wrapper.
  */
 
 import { useEffect } from "react";
@@ -22,6 +25,18 @@ export interface SeoOptions {
   ogImage?: string;
   /** JSON-LD objects to inject for this page. */
   jsonLd?: Record<string, unknown>[];
+}
+
+/**
+ * Resolve any image reference to an absolute crawlable URL. Handles absolute
+ * http(s) URLs, protocol-relative, root-relative, and Vite's base:"./" relative
+ * asset paths (e.g. "./assets/x.webp") — never produces "nexphoria.com./…".
+ */
+function absUrl(src: string): string {
+  if (/^https?:\/\//.test(src)) return src;
+  if (src.startsWith("//")) return `https:${src}`;
+  const clean = src.replace(/^\.?\/*/, ""); // strip leading "./", "/", "."
+  return `${BASE_URL}/${clean}`;
 }
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
@@ -45,6 +60,11 @@ function setLink(rel: string, href: string) {
 }
 
 export function useSeo({ title, description, path, ogImage, jsonLd }: SeoOptions) {
+  // Stable serialization of the JSON-LD payload so the effect re-runs when the
+  // structured data changes even if title/description/path are identical across
+  // a client-side navigation. A string primitive compares by value in the dep
+  // array, so this cannot loop.
+  const jsonLdKey = JSON.stringify(jsonLd ?? []);
   useEffect(() => {
     const fullTitle = title.includes(SITE) ? title : `${title} | ${SITE}`;
     const url = path ? `${BASE_URL}${path}` : BASE_URL;
@@ -80,8 +100,9 @@ export function useSeo({ title, description, path, ogImage, jsonLd }: SeoOptions
     return () => {
       nodes.forEach((n) => n.remove());
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path, ogImage]);
+    // jsonLdKey stands in for jsonLd (a fresh array each render); the primitives
+    // are listed explicitly. eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, description, path, ogImage, jsonLdKey]);
 }
 
 /** Shared structured-data builders. */
@@ -186,15 +207,71 @@ export const productJsonLd = (p: {
       seller: { "@type": "Organization", name: "Nexphoria" },
     },
   } : {}),
-  ...(p.reviewCount !== undefined ? {
+  // aggregateRating is emitted ONLY when a caller supplies BOTH real numbers.
+  // Never default to invented rating/review counts — fabricated review data is a
+  // Google structured-data penalty risk and violates institutional-honesty law.
+  ...(p.ratingValue !== undefined && p.reviewCount !== undefined ? {
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: p.ratingValue ?? 4.8,
-      reviewCount: p.reviewCount ?? 340,
+      ratingValue: p.ratingValue,
+      reviewCount: p.reviewCount,
       bestRating: 5,
       worstRating: 1,
     },
   } : {}),
+});
+
+/**
+ * ItemList for catalog / index pages — enumerates child entries in real order.
+ * Each item points at its own canonical path; no prices or ratings are emitted
+ * here (those belong on the child PDPs, gated by real data).
+ */
+export const itemListJsonLd = (p: {
+  name: string;
+  description?: string;
+  items: { name: string; path: string }[];
+}): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: p.name,
+  ...(p.description ? { description: p.description } : {}),
+  numberOfItems: p.items.length,
+  itemListElement: p.items.map((it, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: it.name,
+    url: `${BASE_URL}${it.path}`,
+  })),
+});
+
+/**
+ * Article schema for editorial / journal pages. Emit datePublished, author, and
+ * image ONLY when the caller passes real values — never fabricate a date, an
+ * author, or a byline. author is modelled as an Organization (the editorial
+ * team), not an invented individual physician.
+ */
+export const articleJsonLd = (p: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished?: string;
+  authorName?: string;
+  image?: string;
+}): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: p.headline,
+  description: p.description,
+  mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}${p.path}` },
+  url: `${BASE_URL}${p.path}`,
+  ...(p.datePublished ? { datePublished: p.datePublished } : {}),
+  ...(p.authorName ? { author: { "@type": "Organization", name: p.authorName } } : {}),
+  ...(p.image ? { image: absUrl(p.image) } : {}),
+  publisher: {
+    "@type": "Organization",
+    name: "Nexphoria",
+    logo: { "@type": "ImageObject", url: `${BASE_URL}/favicon/favicon-512.png` },
+  },
 });
 
 export const howToJsonLd = (p: {

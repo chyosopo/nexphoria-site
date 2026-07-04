@@ -4,7 +4,7 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { TrustStrip } from "@/components/EnterprisePatterns";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
@@ -43,6 +43,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           ? [{ name: "Home", path: "/" }, { name: world === "men" ? "Men" : "Women", path: `/${world}` }, { name: "Peptides", path: `/${world}/peptides` }]
           : [{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }],
       ),
+      // ItemList of every catalog entry — real names/paths only, no prices/ratings here.
+      itemListJsonLd({
+        name: "Nexphoria peptide catalog",
+        description: "Physician-prescribed peptides in the Nexphoria formulary.",
+        items: SOLO_CATALOG.map((s) => ({ name: s.name, path: `${base}/peptides/${s.slug}` })),
+      }),
     ],
   });
 

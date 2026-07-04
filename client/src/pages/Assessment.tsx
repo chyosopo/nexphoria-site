@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check, ShieldCheck } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
 import { TrustStrip as CredentialRow } from "@/components/EnterprisePatterns";
 import { Reveal } from "@/components/Reveal";
@@ -341,12 +341,15 @@ export default function Assessment() {
     title: "Start your peptide protocol — structured intake, physician-reviewed",
     description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol after review. No algorithms, no auto-approvals.",
     path: "/assessment",
-    jsonLd: [webPageJsonLd({
-      name: "Nexphoria Medical Intake Assessment",
-      description: "structured intake for physician-prescribed peptide therapy. Board-certified physician review of every intake.",
-      path: "/assessment",
-      type: "MedicalWebPage",
-    })],
+    jsonLd: [
+      webPageJsonLd({
+        name: "Nexphoria Medical Intake Assessment",
+        description: "structured intake for physician-prescribed peptide therapy. Board-certified physician review of every intake.",
+        path: "/assessment",
+        type: "MedicalWebPage",
+      }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Assessment", path: "/assessment" }]),
+    ],
   });
   const [, navigate] = useLocation();
   const prefersReducedMotion = useReducedMotion();

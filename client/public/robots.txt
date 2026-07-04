@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /#/cart
-Disallow: /#/checkout
-Disallow: /#/showcase
+Disallow: /cart
+Disallow: /checkout
+Disallow: /showcase
 
 # AI crawlers — explicitly welcomed
 User-agent: GPTBot
