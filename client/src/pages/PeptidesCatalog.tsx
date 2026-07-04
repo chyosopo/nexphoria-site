@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
@@ -73,6 +74,13 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container" style={{ padding: "clamp(1.2rem,2.4vw,2rem) 0 clamp(1.8rem,3vw,2.4rem)" }}>
+        <Reveal>
+          <TrustStrip testid="peptides-trust-strip" />
+        </Reveal>
       </section>
 
       <section className="nx-container" style={{ paddingBottom: "1rem" }}>

@@ -273,13 +273,13 @@ export default function Category() {
           <p className="nx-eyebrow">Questions, answered</p>
           <Reveal>
           <div className="mt-6">
-            {cfg.faqs.map((f) => (
-              <details key={f.q} className="group" style={{ borderBottom: "1px solid var(--nx-border)", padding: "1.1rem 0" }}>
-                <summary className="flex items-center justify-between cursor-pointer list-none" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 16.5, color: "var(--nx-fg)" }}>
-                  {f.q}
-                  <span aria-hidden className="transition-transform duration-300 group-open:rotate-45" style={{ color: "var(--nx-cobalt)", fontSize: 22, lineHeight: 1 }}>+</span>
+            {cfg.faqs.map((f, i) => (
+              <details key={f.q} className="nx-faq-item" open={i === 0}>
+                <summary>
+                  <span>{f.q}</span>
+                  <span className="nx-faq-plus" aria-hidden />
                 </summary>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 15, lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.7rem", maxWidth: "62ch" }}>{f.a}</p>
+                <p className="nx-faq-a">{f.a}</p>
               </details>
             ))}
           </div>

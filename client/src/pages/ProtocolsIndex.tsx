@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
@@ -69,6 +70,13 @@ export default function ProtocolsIndex() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container" style={{ padding: "clamp(1.4rem,2.6vw,2.2rem) 0 clamp(2rem,3.4vw,2.8rem)" }}>
+        <Reveal>
+          <TrustStrip testid="protocols-trust-strip" />
+        </Reveal>
       </section>
 
       {/* filter */}
