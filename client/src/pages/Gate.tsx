@@ -273,6 +273,10 @@ function GateCard({
   return (
     <motion.div
       data-testid={testId}
+      /* Theme each panel to its own world — azure for him, orchid for her — so
+         every var(--nx-*) accent inside (dot, arrow, tint) resolves per-world.
+         Makes the two-world law literally visible while staying token-pure. */
+      data-world={side === "her" ? "women" : "men"}
       aria-label={ariaLabel}
       role="button"
       tabIndex={chosen ? -1 : 0}
@@ -339,6 +343,21 @@ function GateCard({
             ? "linear-gradient(to top, rgba(21, 24, 28,0.58) 0%, rgba(21, 24, 28,0.2) 55%, transparent 100%)"
             : "linear-gradient(to top, rgba(21, 24, 28,0.45) 0%, rgba(21, 24, 28,0.15) 55%, transparent 100%)",
         }}
+        transition={{ duration: 0.5 }}
+      />
+
+      {/* World-tint wash — orchid for her, azure for him (per-world var, soft-light
+          blended so it colors the photograph without muddying it). Intensifies on hover. */}
+      <motion.div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          mixBlendMode: "soft-light",
+          background: "linear-gradient(to top, color-mix(in srgb, var(--nx-cobalt) 62%, transparent) 0%, color-mix(in srgb, var(--nx-cobalt) 18%, transparent) 45%, transparent 78%)",
+        }}
+        animate={{ opacity: isChosen ? 0.75 : isHovered ? 0.95 : 0.5 }}
         transition={{ duration: 0.5 }}
       />
 
