@@ -2160,7 +2160,7 @@ function BiomarkerMarquee() {
     BIOMARKER_PANEL.slice(5).flatMap((c) => c.markers.map((m) => ({ n: m.name, c: c.name }))),
   ];
   return (
-    <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "3.5rem 0 3rem", borderTop: "1px solid var(--nx-border)" }}>
+    <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "clamp(3.5rem,6vw,5rem) 0 clamp(3rem,5vw,4.5rem)", borderTop: "1px solid var(--nx-border)" }}>
       <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
         <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-amber)" }}>
           76 biomarkers · tracked every 90 days

@@ -135,7 +135,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── PRODUCT CARD ROW — the shelf, if-prescribed framing ── */}
-      <section className="nx-container" style={{ padding: "clamp(2.2rem,4.5vw,3.6rem) 0" }}>
+      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)" }}>
             From the formulary
@@ -144,7 +144,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             The complete catalog →
           </Link>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr]" style={{ gap: 14, marginTop: "1.4rem", alignItems: "stretch" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr]" style={{ gap: 14, marginTop: "1.9rem", alignItems: "stretch" }}>
           <Reveal>
             <div className="relative" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", minHeight: 320, height: "100%", boxShadow: "var(--nx-e-3)" }}>
               <img src={config.vialArt} alt="" aria-hidden loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
@@ -191,7 +191,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       {config.trustSlot}
 
       {/* ── THE ONE NIGHT BAND — the loop is the product ── */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(3rem,6vw,4.6rem) 0" }}>
+      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(4rem,7vw,6rem) 0" }}>
         <div className="nx-container">
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             {config.nightEyebrow}
@@ -218,7 +218,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── STANDARDS LINE + CLOSE ── */}
-      <section className="nx-container" style={{ padding: "3rem 0 4.5rem", textAlign: "center" }}>
+      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0 clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
         <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
