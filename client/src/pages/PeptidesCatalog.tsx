@@ -145,6 +145,22 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           ))}
         </div>
       </section>
+
+      {/* not sure which — route to the assessment */}
+      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }}>
+        <div className="nx-container" style={{ textAlign: "center" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
+            The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
+          </h2>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
+            You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right compound, or tells you none is appropriate.
+          </p>
+          <Link href="/assessment" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", background: "var(--nx-ceramic)", color: "var(--nx-bg-dark)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }} data-testid="catalog-assess-cta">
+            Begin your intake
+          </Link>
+        </div>
+      </section>
     </SiteLayout>
   );
 }
