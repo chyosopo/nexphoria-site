@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip, FaqAccordion, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, orgJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare, Activity, RefreshCw, Stethoscope, ClipboardList, FlaskConical, Snowflake, LayoutDashboard, Target, Ruler, type LucideIcon } from "lucide-react";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
@@ -303,6 +304,13 @@ export default function About() {
           </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0" }}>
+        <Reveal>
+          <TrustStrip testid="about-trust-strip" />
+        </Reveal>
       </section>
 
       {/* ════════════════ THE PROBLEM WE SAW ════════════════ */}
@@ -875,6 +883,22 @@ export default function About() {
               The Nexphoria medical team
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── Clean FAQ accordion — renders the same Q&As that drive FAQPage JSON-LD ── */}
+      <section
+        className="py-24 md:py-32"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+        data-testid="about-faq"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <SectionHead eyebrow="Common questions" title="About the company." />
+          </Reveal>
+          <div style={{ maxWidth: 820, marginTop: "clamp(2rem,3vw,2.6rem)" }}>
+            <FaqAccordion items={ABOUT_FAQ_ITEMS} />
+          </div>
         </div>
       </section>
 

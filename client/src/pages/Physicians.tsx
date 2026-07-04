@@ -2,6 +2,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { TrustStrip } from "@/components/EnterprisePatterns";
 import { physicianReview } from "@/data/physicians";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
@@ -27,6 +28,13 @@ export default function Physicians() {
   return (
     <SiteLayout navVariant="showcase">
       <PhysiciansHeroDark />
+
+      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
+      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0 0" }}>
+        <Reveal>
+          <TrustStrip testid="physicians-trust-strip" />
+        </Reveal>
+      </section>
 
       {/* ── Benefit-encoded editorial portrait band ── */}
       <section
