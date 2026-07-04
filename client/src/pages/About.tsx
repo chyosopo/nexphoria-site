@@ -307,7 +307,7 @@ export default function About() {
 
       {/* ════════════════ THE PROBLEM WE SAW ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-problem"
       >
@@ -369,7 +369,7 @@ export default function About() {
 
       {/* ════════════════ OUR APPROACH — 3 PILLARS ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-approach"
       >
@@ -426,7 +426,7 @@ export default function About() {
 
       {/* ════════════════ OUR PROCESS — DRAWN TIMELINE ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-process"
       >
@@ -461,7 +461,7 @@ export default function About() {
 
       {/* ════════════════ OUR PRINCIPLES — ICON CARDS ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-principles"
       >
@@ -492,7 +492,7 @@ export default function About() {
 
       {/* ════════════════ THE TEAM ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-team"
       >
@@ -585,7 +585,7 @@ export default function About() {
 
       {/* ════════════════ STANDARDS ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-24 md:py-32"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-standards"
       >
@@ -685,7 +685,7 @@ export default function About() {
 
       {/* ════════════════ CONTACT CTA ════════════════ */}
       <section
-        className="py-20 md:py-24"
+        className="py-24 md:py-28"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-contact-cta"
       >

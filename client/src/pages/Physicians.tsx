@@ -33,7 +33,7 @@ export default function Physicians() {
         data-testid="physicians-editorial-band"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
-        <div className="nx-container max-w-screen-xl" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+        <div className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(4rem, 8vw, 6.5rem)", paddingBottom: "clamp(4rem, 8vw, 6.5rem)" }}>
           <div
             className="physicians-band-grid"
             style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "center" }}
@@ -330,8 +330,8 @@ export default function Physicians() {
           >
             {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
-                <div style={{ backgroundColor: "var(--nx-ceramic)", padding: "2rem", height: "100%" }}>
-                  <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{n}</p>
+                <div style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.5rem 2.25rem", height: "100%" }}>
+                  <p style={{ fontFamily: F, fontSize: "clamp(2.25rem, 4vw, 3rem)", fontWeight: 500, color: "var(--nx-cobalt)", lineHeight: 1, marginBottom: "1.25rem", opacity: 0.85 }}>{n}</p>
                   <p style={{ fontFamily: F,  fontSize: "var(--nx-t-lg)", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "0.75rem" }}>{label}</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{body}</p>
                 </div>
