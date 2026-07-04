@@ -60,7 +60,7 @@ export function LabeledProgress({ step }: { step: number }) {
         borderBottom: "1px solid var(--nx-border)",
         backgroundColor: "var(--nx-bg)",
         flexShrink: 0,
-        padding: "0.875rem var(--nx-gutter)",
+        padding: "1.125rem var(--nx-gutter)",
       }}
     >
       <div style={{ maxWidth: "640px", margin: "0 auto" }}>
@@ -70,7 +70,7 @@ export function LabeledProgress({ step }: { step: number }) {
             alignItems: "baseline",
             justifyContent: "space-between",
             gap: "1rem",
-            marginBottom: "0.6rem",
+            marginBottom: "0.75rem",
           }}
         >
           <span
@@ -112,7 +112,7 @@ export function LabeledProgress({ step }: { step: number }) {
           aria-valuenow={step}
           aria-valuetext={`Step ${step} of ${total} — ${STEP_LABELS[activeIndex]}`}
           style={{
-            height: "4px",
+            height: "2px",
             borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-border)",
             overflow: "hidden",
@@ -146,25 +146,24 @@ export function WhyWeAsk({ funnelStep }: { funnelStep: number }) {
       data-testid={`assessment-why-${funnelStep}`}
       style={{
         display: "flex",
-        gap: "0.625rem",
-        marginTop: "1.5rem",
-        padding: "0.875rem 1rem",
-        borderRadius: "var(--nx-r-xs)",
+        gap: "0.75rem",
+        marginTop: "2.5rem",
+        padding: "1.125rem 1.25rem",
+        borderRadius: "var(--nx-r-sm)",
         backgroundColor: "var(--nx-cobalt-soft)",
-        border: "1px solid var(--nx-border)",
       }}
     >
-      <Info size={14} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }} />
+      <Info size={15} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }} />
       <div>
         <p
           style={{
             fontFamily: F,
-            fontSize: "9px",
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 700,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
             color: "var(--nx-cobalt)",
-            marginBottom: "0.375rem",
+            marginBottom: "0.5rem",
           }}
         >
           Why we ask
@@ -240,7 +239,7 @@ export function SampleProtocolPreview() {
           <p
             style={{
               fontFamily: F,
-              fontSize: "9px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -269,7 +268,7 @@ export function SampleProtocolPreview() {
               <span
                 style={{
                   fontFamily: F,
-                  fontSize: "9px",
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -308,7 +307,7 @@ export function IntakeSidebar() {
         <p
           style={{
             fontFamily: F,
-            fontSize: "10px",
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -399,13 +398,13 @@ export function TrustStrip() {
         borderTop: "1px solid var(--nx-border)",
       }}
     >
-      <ShieldCheck size={13} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+      <ShieldCheck size={14} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
       <p
         style={{
           fontFamily: F,
-          fontSize: "9px",
+          fontSize: "var(--nx-t-xs)",
           fontWeight: 500,
-          letterSpacing: "0.1em",
+          letterSpacing: "0.08em",
           textTransform: "uppercase",
           color: "var(--nx-fg-muted)",
           lineHeight: 1.6,

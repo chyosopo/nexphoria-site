@@ -91,7 +91,7 @@ const question: React.CSSProperties = {
   color: "var(--nx-fg)",
   lineHeight: 1.15,
   letterSpacing: "-0.01em",
-  marginBottom: "0.5rem",
+  marginBottom: "0.75rem",
 };
 
 const subCopy: React.CSSProperties = {
@@ -99,7 +99,7 @@ const subCopy: React.CSSProperties = {
   fontSize: "var(--nx-t-body)",
   color: "var(--nx-fg-graphite)",
   lineHeight: 1.6,
-  marginBottom: "1.75rem",
+  marginBottom: "2.5rem",
 };
 
 const fieldLabel: React.CSSProperties = {
@@ -660,7 +660,7 @@ export default function Assessment() {
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",
-            padding: "clamp(2rem, 5vw, 3.5rem) var(--nx-gutter) 2rem",
+            padding: "clamp(2.5rem, 6vw, 4.5rem) var(--nx-gutter) 2.5rem",
           }}
         >
           <div
@@ -1437,10 +1437,10 @@ export default function Assessment() {
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          min-height: 56px;
-          padding: 1rem 1.25rem;
+          min-height: 60px;
+          padding: 1.125rem 1.375rem;
           border-radius: var(--nx-r-sm);
-          border: 1.5px solid var(--nx-border);
+          border: 1px solid var(--nx-border);
           background-color: var(--nx-ceramic);
           cursor: pointer;
           text-align: left;
@@ -1458,7 +1458,7 @@ export default function Assessment() {
         .nx-opt[data-selected="true"] {
           border-color: var(--nx-cobalt);
           background-color: var(--nx-cobalt-soft);
-          box-shadow: 0 0 0 3px var(--nx-cobalt-soft);
+          box-shadow: inset 0 0 0 1px var(--nx-cobalt);
         }
         .nx-opt--row { justify-content: flex-start; }
         /* Visible focus rings on token colors — the checkbox row wraps a
@@ -1494,9 +1494,9 @@ export default function Assessment() {
         /* ── Sex chooser — larger cards ── */
         .nx-sex {
           display: flex; flex-direction: column; align-items: center; justify-content: center;
-          min-height: 132px; padding: 2rem 1.5rem;
+          min-height: 140px; padding: 2.25rem 1.5rem;
           border-radius: var(--nx-r-md);
-          border: 1.5px solid var(--nx-border);
+          border: 1px solid var(--nx-border);
           background-color: var(--nx-ceramic);
           cursor: pointer; text-align: center;
           -webkit-tap-highlight-color: transparent; touch-action: manipulation;
@@ -1505,12 +1505,12 @@ export default function Assessment() {
                       box-shadow var(--nx-dur-2) var(--nx-ease),
                       transform var(--nx-dur-2) var(--nx-ease);
         }
-        .nx-sex:hover { border-color: var(--nx-cobalt); transform: translateY(-2px); }
+        .nx-sex:hover { border-color: var(--nx-cobalt); transform: translateY(-1px); }
         .nx-sex:active { transform: translateY(0); transition-duration: var(--nx-dur-1); }
         .nx-sex[data-selected="true"] {
           border-color: var(--nx-cobalt);
           background-color: var(--nx-cobalt-soft);
-          box-shadow: 0 0 0 3px var(--nx-cobalt-soft);
+          box-shadow: inset 0 0 0 1px var(--nx-cobalt);
         }
 
         /* ── Sticky bottom step nav (mobile-first, thumb zone) ── */
