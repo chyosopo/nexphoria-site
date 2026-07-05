@@ -95,7 +95,7 @@ export default function Gate() {
           >
             Browse stacks
           </Link>
-          <span style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
+          <span aria-hidden="true" style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
           <Link
             href="/how-it-works"
             style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
@@ -103,7 +103,7 @@ export default function Gate() {
           >
             How it works
           </Link>
-          <span style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
+          <span aria-hidden="true" style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
           <Link
             href="/assessment"
             style={{ color: "rgba(246, 249, 252,0.85)", textDecoration: "underline", textUnderlineOffset: "3px" }}
