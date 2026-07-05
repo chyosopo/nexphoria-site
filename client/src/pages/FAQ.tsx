@@ -368,7 +368,7 @@ export default function FAQPage() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: F,
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
                     color: "var(--nx-fg)",

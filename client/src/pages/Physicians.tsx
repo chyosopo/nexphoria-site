@@ -89,7 +89,7 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: F,
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
@@ -152,7 +152,7 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: F,
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
                     fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
@@ -164,7 +164,7 @@ export default function Physicians() {
                 </h2>
                 <h2
                   style={{
-                    fontFamily: F,
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
 
                     fontSize: "var(--nx-t-h2)",
@@ -328,10 +328,10 @@ export default function Physicians() {
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
             </p>
-            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
+            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
               Three steps.
             </h2>
-            <h2 style={{ fontFamily: F, fontWeight: 500,  fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500,  fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
               Zero algorithmic shortcuts.
             </h2>
           </Reveal>
@@ -478,7 +478,7 @@ function PhysiciansHeroDark() {
             </p>
             <h1
               style={{
-                fontFamily: F,
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "clamp(2.4rem, 5.4vw, 4.5rem)",
                 lineHeight: 1.02,
@@ -713,7 +713,7 @@ function PhysicianCredentials() {
           </p>
           <h2
             style={{
-              fontFamily: F,
+              fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
               fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",
