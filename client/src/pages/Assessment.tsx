@@ -559,7 +559,7 @@ export default function Assessment() {
 
             {/* Editorial hero — the first deliberate step, dawn light */}
             <figure
-              className="relative overflow-hidden"
+              className="relative overflow-hidden nx-editorial-bleed"
               style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
               data-testid="assessment-hero-editorial"
             >

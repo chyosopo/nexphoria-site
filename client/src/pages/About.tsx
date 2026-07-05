@@ -15,7 +15,7 @@ import { FONT } from "@/lib/typography";
    About — founder + mission narrative. reference-tier.
    Hero + proof stats → The problem we saw → Our approach (3 pillars)
    → The team → Standards → manifesto + CTA.
-   General Sans throughout. No italics. No serif.
+   Display voice: Fraunces 500 (site-wide); General Sans for UI/body.
    ───────────────────────────────────────────────────────────── */
 
 // ─── Shared style helpers ──────────────────────────────────────────────────
@@ -38,12 +38,13 @@ const eyebrowRule = (
 );
 
 const sectionHeading: React.CSSProperties = {
-  fontFamily: FONT,
-  fontWeight: 600,
+  // Fraunces — About was the last page speaking General Sans at display size
+  fontFamily: "'Fraunces', Georgia, serif",
+  fontWeight: 500,
   fontSize: "clamp(2rem, 4.2vw, 3.25rem)",
-  letterSpacing: "-0.03em",
+  letterSpacing: "-0.015em",
   color: "var(--nx-fg)",
-  lineHeight: 1.04,
+  lineHeight: 1.06,
   marginBottom: "1.25rem",
 };
 
@@ -230,11 +231,11 @@ export default function About() {
             <h1
               id="about-h1"
               style={{
-                fontFamily: FONT,
-                fontWeight: 600,
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontWeight: 500,
                 fontSize: "clamp(2.75rem, 6vw, 4.75rem)",
-                lineHeight: 0.98,
-                letterSpacing: "-0.035em",
+                lineHeight: 1.02,
+                letterSpacing: "-0.02em",
                 color: "var(--nx-fg)",
                 maxWidth: 960,
               }}
@@ -265,7 +266,7 @@ export default function About() {
         <div className="nx-container" style={{ paddingTop: 56 }}>
           <Reveal>
             <figure
-              className="relative overflow-hidden"
+              className="relative overflow-hidden nx-editorial-bleed"
               style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
               data-testid="about-hero-editorial"
             >

@@ -73,16 +73,18 @@ export default function Journal() {
           <p style={{ ...eyebrow, marginBottom: 20 }}>The Journal</p>
           <h1
             style={{
-              fontFamily: FONT,
-              fontWeight: 600,
+              // Fraunces — the site's one display voice (this masthead was the
+              // last General Sans holdout among page headlines)
+              fontFamily: "'Fraunces', Georgia, serif",
+              fontWeight: 500,
               fontSize: "clamp(2.75rem, 6vw, 4.5rem)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.035em",
+              lineHeight: 1.02,
+              letterSpacing: "-0.02em",
               color: "var(--nx-fg)",
               maxWidth: 900,
             }}
           >
-            <span style={{ color: "color-mix(in oklab, var(--nx-fg) 34%, transparent)" }}>
+            <span style={{ color: "color-mix(in oklab, var(--nx-fg) 40%, transparent)" }}>
               Peptide science,
             </span>
             <br />
