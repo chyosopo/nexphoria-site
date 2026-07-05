@@ -195,6 +195,8 @@ export default function Community() {
             </h2>
           </Reveal>
           <div
+            role="list"
+            aria-label="What membership will include"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
@@ -206,6 +208,7 @@ export default function Community() {
             {programFeatures.map((feature, i) => (
               <Reveal key={feature.num} delay={i * 60}>
                 <div
+                  role="listitem"
                   style={{
                     backgroundColor: "var(--nx-ceramic)",
                     padding: "2.85rem 2.25rem",
@@ -309,6 +312,8 @@ export default function Community() {
             <Reveal delay={100}>
               {submitted ? (
                 <div
+                  role="status"
+                  aria-live="polite"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.12)",
                     border: "1px solid rgba(255,255,255,0.2)",
@@ -360,6 +365,8 @@ export default function Community() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
                     required
+                    aria-required="true"
+                    aria-describedby="community-waitlist-note"
                     data-testid="community-email-input"
                     style={{
                       fontFamily: F,
@@ -393,9 +400,10 @@ export default function Community() {
                       alignSelf: "flex-start",
                     }}
                   >
-                    JOIN THE WAITLIST →
+                    JOIN THE WAITLIST <span aria-hidden="true">→</span>
                   </button>
                   <p
+                    id="community-waitlist-note"
                     style={{
                       fontFamily: F,
                       fontSize: "11px",
