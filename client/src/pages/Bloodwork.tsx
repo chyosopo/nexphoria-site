@@ -1097,7 +1097,7 @@ function ResultsDashboard() {
                     <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: r.s === "Watch" ? "var(--nx-accent)" : "var(--nx-success)" }}>{r.s} · {r.v} {r.unit}</span>
                   </div>
                   <div className="relative mt-2.5" style={{ height: 6, borderRadius: "var(--nx-r-pill)", background: "rgba(243, 245, 247,0.12)" }}>
-                    <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: "var(--nx-r-pill)", background: "rgba(165, 176, 187,0.35)" }} />
+                    <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: "var(--nx-r-pill)", background: "rgba(243, 245, 247,0.28)" }} />
                     <span className="absolute nx-pulse-dot" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)" }} data-pulse />
                   </div>
                 </div>
@@ -1282,7 +1282,7 @@ function SectionPills() {
     <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-border)" }}>
       <div className="nx-container flex gap-2 overflow-x-auto" style={{ padding: "10px 0", scrollbarWidth: "none" }}>
         {items.map(([t, h]) => (
-          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "rgba(152, 182, 213,0.18)", border: "1px solid rgba(73, 110, 148,0.2)", borderRadius: "var(--nx-r-pill)", padding: "7px 15px" }}>
+          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "color-mix(in srgb, var(--nx-cobalt) 16%, transparent)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "7px 15px" }}>
             {t}
           </a>
         ))}
