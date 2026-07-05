@@ -300,7 +300,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <Reveal key={s.slug} delay={i * 60}>
                 <Link href={`/stacks/${s.slug}`} className="nx-float-card" data-testid={`stack-related-${s.slug}`}>
                   {OUTCOME_STACK[s.slug] && (
-                    <div style={{ aspectRatio: "16 / 10", overflow: "hidden" }}>
+                    <div className="nx-float-card__media">
                       <img
                         src={OUTCOME_STACK[s.slug]}
                         srcSet={outcomeSrcSet(OUTCOME_STACK[s.slug])}

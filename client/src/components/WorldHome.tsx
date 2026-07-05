@@ -143,7 +143,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
         <div className="nx-container relative" style={{ paddingBottom: "clamp(2.6rem,5vw,4rem)", zIndex: 1 }}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
             {config.categories.map((cat, i) => (
               <Reveal key={cat} delay={i * 60}>
                 <Link href={`${base}/peptides`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
