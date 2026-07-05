@@ -129,7 +129,7 @@ export default function Cart() {
 
                             {/* Chips */}
                             <div className="flex flex-wrap items-center gap-2 mt-3">
-                              <Chip icon={<Stethoscope size={11} />}>Physician review included</Chip>
+                              <Chip icon={<Stethoscope size={11} aria-hidden="true" />}>Physician review included</Chip>
                               {line.savings && line.savings > 0 ? (
                                 <Chip tone="amber">
                                   Save {formatUSD(line.savings)} · {line.cadenceLabel}
@@ -147,7 +147,7 @@ export default function Cart() {
                               </div>
                               <div
                                 className="inline-flex"
-                                style={{ border: "1px solid var(--nx-border)", borderRadius: 999, overflow: "hidden" }}
+                                style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", overflow: "hidden" }}
                                 role="radiogroup"
                                 aria-label="Billing cadence"
                               >
@@ -197,7 +197,7 @@ export default function Cart() {
                             {/* Qty */}
                             <div
                               className="inline-flex items-center"
-                              style={{ border: "1px solid var(--nx-border)", borderRadius: 999, overflow: "hidden" }}
+                              style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", overflow: "hidden" }}
                             >
                               <button
                                 onClick={() => updateQty(line.slug, line.type, line.qty - 1)}
@@ -232,7 +232,7 @@ export default function Cart() {
                                 style={{ fontFamily: FONT, color: "var(--nx-amber)" }}
                                 data-testid={`button-remove-page-${line.type}-${line.slug}`}
                               >
-                                <Trash2 size={11} /> Remove
+                                <Trash2 size={11} aria-hidden="true" /> Remove
                               </button>
                             </div>
                           </div>
@@ -246,7 +246,7 @@ export default function Cart() {
                   <Link asChild href="/stacks">
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
-                      style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: 999 }}
+                      style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }}
                       data-testid="link-continue-stacks"
                     >
                       Browse more stacks
@@ -255,7 +255,7 @@ export default function Cart() {
                   <Link asChild href="/peptides">
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
-                      style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: 999 }}
+                      style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }}
                       data-testid="link-continue-peptides"
                     >
                       Add single peptides
@@ -276,7 +276,7 @@ export default function Cart() {
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
                       <Link asChild href="/lab-testing">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-labs">
+                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-labs">
                           See panel details
                         </a>
                       </Link>
@@ -288,7 +288,7 @@ export default function Cart() {
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Commonly paired with performance and metabolic protocols.</p>
                       </div>
                       <Link asChild href="/stacks">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
+                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
                           View stack
                         </a>
                       </Link>
@@ -345,9 +345,9 @@ export default function Cart() {
                   </p>
                   <div className="space-y-2.5">
                     {[
-                      { icon: <Stethoscope size={13} />, text: "Physician review + follow-ups" },
-                      { icon: <Truck size={13} />, text: "Cold-chain overnight shipping" },
-                      { icon: <RefreshCw size={13} />, text: "Quarterly lab re-evaluation" },
+                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Physician review + follow-ups" },
+                      { icon: <Truck size={13} aria-hidden="true" />, text: "Cold-chain overnight shipping" },
+                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Quarterly lab re-evaluation" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-2 text-[12px]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
@@ -367,16 +367,16 @@ export default function Cart() {
                     className="nx-cta-cobalt w-full justify-center"
                     data-testid="button-checkout-page"
                   >
-                    Continue to checkout <ArrowRight size={14} />
+                    Continue to checkout <ArrowRight size={14} aria-hidden="true" />
                   </a>
                 </Link>
 
                 {/* Trust ticker */}
                 <div className="mt-5 pt-5 space-y-2.5" style={{ borderTop: "1px solid var(--nx-border)" }}>
                   {[
-                    { icon: <ShieldCheck size={13} />, text: "HIPAA-compliant data handling" },
-                    { icon: <ShieldCheck size={13} />, text: "US-compounded · 503A pharmacy" },
-                    { icon: <Stethoscope size={13} />, text: "Licensed US physicians on every case" },
+                    { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "HIPAA-compliant data handling" },
+                    { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "US-compounded · 503A pharmacy" },
+                    { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Licensed US physicians on every case" },
                   ].map(({ icon, text }) => (
                     <div key={text} className="flex items-center gap-2 text-[11px]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                       <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
@@ -458,7 +458,7 @@ function Chip({ children, icon, tone = "ink" }: { children: React.ReactNode; ico
       className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] uppercase tracking-[0.1em]"
       style={{
         fontFamily: FONT,
-        borderRadius: 999,
+        borderRadius: "var(--nx-r-pill)",
         border: `1px solid ${isAmber ? "#B3C8E2" : "var(--nx-border)"}`,
         background: isAmber ? "var(--nx-bg-cream)" : "var(--nx-ceramic)",
         color: isAmber ? "var(--nx-amber)" : "var(--nx-fg)",
@@ -500,7 +500,7 @@ function EmptyCart() {
       style={{ border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)" }}
     >
       <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-amber)" }}>
-        <ShoppingBag size={32} strokeWidth={1.25} />
+        <ShoppingBag size={32} strokeWidth={1.25} aria-hidden="true" />
       </div>
       <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>
         Your protocol is empty
