@@ -112,7 +112,7 @@ export default function JournalArticle() {
               textTransform: "uppercase",
             }}
           >
-            ← Back to Journal
+            <span aria-hidden="true">← </span>Back to Journal
           </button>
         </section>
       </SiteLayout>
@@ -210,7 +210,9 @@ export default function JournalArticle() {
               paddingTop: 8,
             }}
           >
+            <nav aria-labelledby="toc-heading">
             <p
+              id="toc-heading"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: 10,
@@ -231,6 +233,7 @@ export default function JournalArticle() {
                   <a
                     data-testid={`toc-link-${s.id}`}
                     href={`#sec-${s.id}`}
+                    aria-current={activeSection === `sec-${s.id}` ? "location" : undefined}
                     onClick={(e) => {
                       e.preventDefault();
                       document.getElementById(`sec-${s.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -253,6 +256,7 @@ export default function JournalArticle() {
                 </li>
               ))}
             </ul>
+            </nav>
           </aside>
 
           {/* Body — tighter reading measure for editorial calm (~68ch at 17px) */}
@@ -505,6 +509,7 @@ export default function JournalArticle() {
               }}
             >
               <p
+                id="references-heading"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: 10,
@@ -517,7 +522,7 @@ export default function JournalArticle() {
               >
                 References
               </p>
-              <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              <ol aria-labelledby="references-heading" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                 {article.references.map((ref) => (
                   <li
                     key={ref.n}
@@ -547,6 +552,7 @@ export default function JournalArticle() {
                           href={ref.url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Open source for reference ${ref.n}`}
                           style={{ color: "var(--nx-cobalt)", textDecoration: "underline", textUnderlineOffset: 2 }}
                         >
                           Link
@@ -600,6 +606,8 @@ export default function JournalArticle() {
               Related research.
             </h2>
             <div
+              role="list"
+              aria-label="Related articles"
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -607,7 +615,8 @@ export default function JournalArticle() {
               }}
             >
               {related.map((r) => (
-                <Link asChild key={r.slug} href={`/journal/${r.slug}`}>
+                <div role="listitem" key={r.slug}>
+                <Link asChild href={`/journal/${r.slug}`}>
                   <a
                     data-testid={`link-related-${r.slug}`}
                     style={{
@@ -659,6 +668,7 @@ export default function JournalArticle() {
                     </p>
                   </a>
                 </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -747,7 +757,7 @@ export default function JournalArticle() {
                   textDecoration: "none",
                 }}
               >
-                Email journal@nexphoria.com →
+                Email journal@nexphoria.com <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
