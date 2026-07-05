@@ -33,7 +33,7 @@ export function PillBadge({
       style={{
         border:
           "1px solid color-mix(in oklab, var(--nx-fg) 22%, transparent)",
-        borderRadius: 999,
+        borderRadius: "var(--nx-r-pill)",
         padding: "6px 14px 6px 10px",
         fontFamily: "'General Sans', system-ui, sans-serif",
         fontSize: 10,
@@ -53,7 +53,7 @@ export function PillBadge({
           display: "inline-block",
           width: 6,
           height: 6,
-          borderRadius: 999,
+          borderRadius: "var(--nx-r-pill)",
           background: dotColor,
           boxShadow: `0 0 0 3px color-mix(in oklab, ${dotColor} 28%, transparent)`,
           flexShrink: 0,
