@@ -1,17 +1,17 @@
 import { useState, useRef } from "react";
 import { useLocation, Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import gateHer from "@/assets/brand/gate-her.webp";
 import gateHim from "@/assets/brand/gate-him.webp";
 import { Logo } from "@/components/Logo";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
 
-const reducedMotion =
-  typeof window !== "undefined" &&
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
 export default function Gate() {
+  // Reactive OS-setting subscription (framer-motion) — respects a live toggle,
+  // and never reads `window` at import time. `null` (SSR) coerces to false.
+  const reducedMotion = useReducedMotion() ?? false;
+
   useSeo({
     title: "Nexphoria — peptide therapy, physician-prescribed and lab-monitored",
     description: "Single peptides, physician-curated stacks, or a fully custom protocol. Every compound prescribed by a board-certified physician and compounded in a U.S. 503A pharmacy. Tell us your goals.",
@@ -129,6 +129,7 @@ export default function Gate() {
           image={gateHer}
           chosen={chosen}
           isHovered={hoveredCard === "her"}
+          reducedMotion={reducedMotion}
           onHover={(v) => setHoveredCard(v ? "her" : null)}
           onClick={() => handleChoose("her")}
         />
@@ -137,6 +138,7 @@ export default function Gate() {
           image={gateHim}
           chosen={chosen}
           isHovered={hoveredCard === "him"}
+          reducedMotion={reducedMotion}
           onHover={(v) => setHoveredCard(v ? "him" : null)}
           onClick={() => handleChoose("him")}
         />
@@ -232,6 +234,7 @@ interface GateCardProps {
   image: string;
   chosen: null | "her" | "him";
   isHovered: boolean;
+  reducedMotion: boolean;
   onHover: (v: boolean) => void;
   onClick: () => void;
 }
@@ -241,6 +244,7 @@ function GateCard({
   image,
   chosen,
   isHovered,
+  reducedMotion,
   onHover,
   onClick,
 }: GateCardProps) {
@@ -250,13 +254,29 @@ function GateCard({
   const eyebrow =
     side === "her" ? "PEPTIDES BUILT FOR WOMEN" : "PEPTIDES BUILT FOR MEN";
   const ariaLabel =
-    side === "her" ? "Enter peptides for her" : "Enter peptides for him";
+    side === "her"
+      ? "Enter the women's experience"
+      : "Enter the men's experience";
   const testId = side === "her" ? "gate-card-her" : "gate-card-him";
   const stacks = flagshipPeek[side];
+
+  // Button-reset base so the full-bleed <button> carries none of the UA chrome.
+  const buttonReset: React.CSSProperties = {
+    appearance: "none",
+    WebkitAppearance: "none",
+    border: "none",
+    margin: 0,
+    padding: 0,
+    background: "transparent",
+    font: "inherit",
+    color: "inherit",
+    textAlign: "inherit",
+  };
 
   // Outer card: when chosen, expand to fixed full-viewport overlay
   const cardStyle: React.CSSProperties = isChosen
     ? {
+        ...buttonReset,
         position: "fixed",
         inset: 0,
         zIndex: 100,
@@ -264,6 +284,7 @@ function GateCard({
         overflow: "hidden",
       }
     : {
+        ...buttonReset,
         position: "relative",
         flex: 1,
         overflow: "hidden",
@@ -271,19 +292,21 @@ function GateCard({
       };
 
   return (
-    <motion.div
+    <motion.button
+      type="button"
       data-testid={testId}
       /* Theme each panel to its own world — azure for him, orchid for her — so
-         every var(--nx-*) accent inside (dot, arrow, tint) resolves per-world.
-         Makes the two-world law literally visible while staying token-pure. */
+         every var(--nx-*) accent inside (dot, arrow, tint, focus ring) resolves
+         per-world. Makes the two-world law literally visible while staying token-pure. */
       data-world={side === "her" ? "women" : "men"}
       aria-label={ariaLabel}
-      role="button"
+      /* Native <button> gives us Enter/Space activation + focus for free; the
+         focus-visible ring uses the site-wide per-world cobalt token idiom,
+         ring-inset so it stays visible on an edge-to-edge panel. */
+      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-inset"
       tabIndex={chosen ? -1 : 0}
+      disabled={chosen !== null}
       onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") onClick();
-      }}
       onMouseEnter={() => !chosen && onHover(true)}
       onMouseLeave={() => onHover(false)}
       style={cardStyle}
@@ -318,7 +341,8 @@ function GateCard({
       >
         <img
           src={image}
-          alt={label}
+          alt=""
+          aria-hidden="true"
           loading="eager"
           style={{
             width: "100%",
@@ -622,6 +646,6 @@ function GateCard({
           }
         }
       `}</style>
-    </motion.div>
+    </motion.button>
   );
 }
