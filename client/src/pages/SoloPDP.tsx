@@ -15,6 +15,7 @@ import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
+import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 import { getPeptideHeroImage } from "@/lib/peptideImages";
 import type { PeptideCategory } from "@/data/peptides";
@@ -209,6 +210,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your physician prescribes and titrates it against your bloodwork.</p>
               </div>
             )}
+
+            <PhysicianProofBand name={solo.name} />
 
             <PdpFaq items={faq} />
           </div>

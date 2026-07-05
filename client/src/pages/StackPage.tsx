@@ -20,6 +20,7 @@ const VIAL_TONES: Tone[] = ["sage", "cobalt", "mineral", "sky", "butter", "rose"
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
+import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { faqJsonLd } from "@/lib/seo";
 
 function panelFor(tier: PanelTier) {
@@ -246,6 +247,8 @@ export default function StackPage({ slug }: { slug: string }) {
                 )}
               </div>
             )}
+
+            <PhysicianProofBand name={stack.name} />
 
             <PdpFaq items={faq} />
           </div>
