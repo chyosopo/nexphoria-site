@@ -8,7 +8,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
-import { getStack, PANELS, PanelTier } from "@/data/stacksCatalog";
+import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK } from "@/data/outcomeImagery";
@@ -58,6 +58,13 @@ export default function StackPage({ slug }: { slug: string }) {
   }
 
   const panel = panelFor(stack.panel);
+
+  /* Cross-sell: same-category protocols first, then the rest of the shelf. */
+  const otherStacks = FLAGSHIP_STACKS
+    .filter((s) => s.slug !== stack.slug)
+    .sort((a, b) => Number(b.category === stack.category) - Number(a.category === stack.category))
+    .slice(0, 3);
+
   const tiers: BuyTier[] | undefined = stack.gated
     ? undefined
     : stack.cadences.map((c) => ({
@@ -276,6 +283,45 @@ export default function StackPage({ slug }: { slug: string }) {
           <div style={{ marginTop: "1.4rem" }}><Disclaimer variant="night" /></div>
         </div>
       </section>
+
+      {/* ── CROSS-SELL — the other flagship protocols ── */}
+      {otherStacks.length > 0 && (
+        <section className="nx-container" style={{ padding: "clamp(2.8rem,5vw,4rem) 0 0" }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+            Explore the other protocols
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
+            {otherStacks.map((s, i) => (
+              <Reveal key={s.slug} delay={i * 60}>
+                <Link href={`/stacks/${s.slug}`} className="nx-float-card" data-testid={`stack-related-${s.slug}`}>
+                  {OUTCOME_STACK[s.slug] && (
+                    <div style={{ aspectRatio: "16 / 10", overflow: "hidden" }}>
+                      <img
+                        src={OUTCOME_STACK[s.slug]}
+                        alt=""
+                        aria-hidden
+                        loading="lazy"
+                        width={1632}
+                        height={1020}
+                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                      />
+                    </div>
+                  )}
+                  <div className="nx-float-card__body">
+                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
+                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{s.name}</h3>
+                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{s.tagline}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
+                      From {usd(s.cadences[2]?.perMonth ?? s.cadences[0]?.perMonth ?? s.cadences[0]?.total ?? 0)}/mo
+                      <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
+                    </p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── CLOSE ── */}
       <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0 clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>

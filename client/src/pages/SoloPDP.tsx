@@ -9,7 +9,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
-import { getSolo, SoloCategory } from "@/data/soloCatalog";
+import { getSolo, SOLO_CATALOG, SoloCategory } from "@/data/soloCatalog";
 import { ArrowLeft, Check, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
@@ -74,6 +74,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const categoryImg =
     OUTCOME_CATEGORY[world ?? "men"][SOLO_OUTCOME[solo.category]] ?? OUTCOME_HERO[world ?? "men"];
   const heroImg = getPeptideHeroImage(solo.slug) ?? categoryImg;
+
+  /* Same-category companions first, then fill from the wider formulary. */
+  const related = SOLO_CATALOG
+    .filter((s) => s.slug !== solo.slug)
+    .sort((a, b) => Number(b.category === solo.category) - Number(a.category === solo.category))
+    .slice(0, 3);
 
   const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
     { Icon: Stethoscope, t: "Physician review & prescription" },
@@ -259,6 +265,35 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div style={{ marginTop: "1.4rem" }}><Disclaimer variant="night" /></div>
         </div>
       </section>
+
+      {/* ══ CROSS-SELL — same-axis compounds, if-prescribed framing ══ */}
+      {related.length > 0 && (
+        <section className="nx-container" style={{ padding: "clamp(2.6rem,5vw,3.6rem) 0 0" }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+            Often prescribed on the same axis
+          </h2>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
+            Compounds your physician may consider alongside {solo.name} — same intake, same panel, one prescription decision.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
+            {related.map((r, i) => (
+              <Reveal key={r.slug} delay={i * 60}>
+                <Link href={`${base}/peptides/${r.slug}`} className="nx-float-card" data-testid={`solo-related-${r.slug}`}>
+                  <div className="nx-float-card__body">
+                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
+                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{r.name}</h3>
+                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.mechanism}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
+                      {r.pricing ? `From $${r.pricing.m12}/mo` : "Physician-priced"}
+                      <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
+                    </p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="nx-container" style={{ padding: "clamp(2.6rem,5vw,3.4rem) 0 4.5rem", textAlign: "center" }}>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em></h2>

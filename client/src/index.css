@@ -197,6 +197,28 @@
     --nx-acid:         #F0CBDB;
     --nx-danger:       #A4453C;
     --nx-accent:       #C97B99;
+
+    /* ── Component variant palettes, orchid parity (Law-1 flagged debt B) ──
+       Same lightness relationships as the azure set, hue-shifted into the
+       orchid/rose family so VialArt liquids and GoalVialTile surfaces no
+       longer render azure-blue against rose backgrounds under /women.
+       Illustration neutrals (cap/label) and regulatory chips stay
+       world-invariant on purpose. */
+    --nx-tint-cream-bg:   #F6ECF1;  --nx-tint-cream-ink:   #3B2230;
+    --nx-tint-sage-bg:    #F1EAEE;  --nx-tint-sage-ink:    #43333C;
+    --nx-tint-rose-bg:    #F4E6ED;  --nx-tint-rose-ink:    #52293E;
+    --nx-tint-sky-bg:     #EFE3EA;  --nx-tint-sky-ink:     #4A2A3C;
+    --nx-tint-dusk-bg:    #EAE1E9;  --nx-tint-dusk-ink:    #443048;
+    --nx-tint-butter-bg:  #F0DCE7;  --nx-tint-butter-ink:  #451F33;
+    --nx-tint-cobalt-bg:  #ECDAE4;  --nx-tint-cobalt-ink:  #4D1F37;
+    --nx-tint-mineral-bg: #EDE6E9;  --nx-tint-mineral-ink: #3F3038;
+    --nx-vial-sage-bg:   #F2EAEF;  --nx-vial-sage-liq:   #C99FB6;
+    --nx-vial-rose-bg:   #F4E9EF;  --nx-vial-rose-liq:   #D3A6BE;
+    --nx-vial-sky-bg:    #F1EAEE;  --nx-vial-sky-liq:    #C9A4B5;
+    --nx-vial-dusk-bg:   #EEE5EE;  --nx-vial-dusk-liq:   #BFA0C4;
+    --nx-vial-butter-bg: #F1E0E9;  --nx-vial-butter-liq: #C07E9E;
+    --nx-vial-cobalt-bg: #F0E8EC;  --nx-vial-cobalt-liq: #B995A6;
+    --nx-vial-mineral-liq: #B9A3AE;
   }
 
 
