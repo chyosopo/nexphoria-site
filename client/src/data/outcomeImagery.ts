@@ -37,10 +37,10 @@ export const OUTCOME_CATEGORY: Record<
   },
   women: {
     skin: "img/img_3678caab4727.webp", // golden profile, cream robe — skin that holds the light
-    recovery: "img/img_e90c14c4f953.webp",
+    recovery: "img/img_1217733ee45f.webp", // chalked grip at the wall (W)
     metabolic: "img/img_4f2bd889825e.webp", // jeans button easily (W)
-    longevity: "img/img_cf1396d09b4a.webp",
-    cognition: "img/img_916e52b67436.webp",
+    longevity: "img/img_40db6393468a.webp", // fastest one at the picnic (W)
+    cognition: "img/img_6d55c7017047.webp", // three moves ahead (W)
     sleep: "img/img_3eae89cb98a0.webp", // waking before the alarm (W)
   },
 };
