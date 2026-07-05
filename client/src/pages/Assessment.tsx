@@ -1289,6 +1289,8 @@ export default function Assessment() {
 
                       {/* Summary card */}
                       <div
+                        role="group"
+                        aria-label="Your intake answers — select any row to edit it"
                         style={{
                           border: "1px solid var(--nx-border)",
                           borderRadius: "var(--nx-r-sm)",
@@ -1334,7 +1336,7 @@ export default function Assessment() {
                             key={label}
                             type="button"
                             onClick={() => goToStep(editStep)}
-                            aria-label={`Edit ${label}`}
+                            aria-label={`${label}: ${value === "—" ? "not provided" : value}. Select to edit.`}
                             data-testid={`assessment-review-edit-${editStep}`}
                             className="nx-review-row"
                             style={{
@@ -1494,18 +1496,22 @@ export default function Assessment() {
 
                       {/* What happens next */}
                       <div style={{ backgroundColor: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)", padding: "1.25rem 1.5rem", marginBottom: "1.5rem", textAlign: "left" }}>
-                        <p style={{ ...eyebrow, marginBottom: "0.875rem" }}>What happens next</p>
-                        {[
-                          { n: "01", t: "A licensed physician reviews your intake" },
-                          { n: "02", t: "Partner-laboratory requisition generated in your member portal"},
-                          { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
-                          { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
-                        ].map(({ n, t }) => (
-                          <div key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
-                            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
-                            <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", lineHeight: 1.55, margin: 0 }}>{t}</p>
-                          </div>
-                        ))}
+                        <p id="assessment-next-steps-label" style={{ ...eyebrow, marginBottom: "0.875rem" }}>What happens next</p>
+                        {/* A real <ol> so assistive tech conveys the ordered
+                            sequence; the visible 01–04 counters are decorative. */}
+                        <ol aria-labelledby="assessment-next-steps-label" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                          {[
+                            { n: "01", t: "A licensed physician reviews your intake" },
+                            { n: "02", t: "Partner-laboratory requisition generated in your member portal"},
+                            { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
+                            { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
+                          ].map(({ n, t }) => (
+                            <li key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
+                              <span aria-hidden="true" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
+                              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", lineHeight: 1.55, margin: 0 }}>{t}</p>
+                            </li>
+                          ))}
+                        </ol>
                       </div>
 
                       {/* Recommended stack hint — tinted VialTile echo of the goal step */}
