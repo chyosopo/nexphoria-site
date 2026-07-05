@@ -91,7 +91,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ padding: "clamp(2.6rem,5vw,3.8rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
-            <ArrowLeft size={15} /> All peptides
+            <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center", marginTop: "1rem" }}>
             <div>
@@ -123,8 +123,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
           {/* — LEFT — */}
           <div>
-            {/* Why this peptide — the three pillars every solo answers to */}
-            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</p>
+            {/* Why this peptide — the three pillars every solo answers to.
+               h2 (not p) so the tile h3s below don't skip a heading level; style unchanged. */}
+            <h2 style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "0.9rem" }}>
               {WHY.map((w, i) => (
                 <Reveal key={w.t} delay={i * 55}>
@@ -215,13 +216,13 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }}>
         <div className="nx-container">
           <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
-            <FlaskConical size={14} strokeWidth={2.2} /> Before you begin
+            <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Before you begin
           </p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {solo.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
-                <Check size={17} strokeWidth={2.4} style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
+                <Check size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.92 }}>{c}</p>
               </div>
             ))}
