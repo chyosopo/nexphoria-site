@@ -51,6 +51,20 @@ async function main() {
   const soloSet = new Set(SOLO_CATALOG.map((x: any) => x.slug));
   for (const p of peptides) if (!soloSet.has(p.slug) && sellable.some((q: any) => q.slug === p.slug)) { console.log(`  ⚠ ORPHAN-SELLABLE: ${p.slug}`); leaks++; }
   console.log(leaks ? `  ${leaks} leaks` : `  none — builder offers ${sellable.length} sellable solos; gated + orphans excluded`);
+
+  console.log('\n═ LEGACY STACK FALLBACK INTEGRITY (stacks[].peptides ⊆ pricing) ═');
+  /* The cart's legacy fallback (CartProvider → computeStackPrice) prices each
+     legacy stack as Σ pricing[slug]?.monthlyPrice || 0. A peptide slug that is
+     absent from pricing silently contributes $0, understating the total. This
+     asserts every legacy stack peptide is priced. Audit-only; no runtime effect. */
+  let unpriced = 0;
+  for (const s of legacyStacks) {
+    for (const slug of s.peptides) {
+      if (!pricing[slug]) { console.log(`  UNPRICED  ${s.slug} → ${slug} (absent from pricing.ts — would price $0 in cart fallback)`); unpriced++; }
+    }
+  }
+  if (!unpriced) console.log('  none — every legacy stack peptide is priced');
+
   await vite.close(); process.exit(0);
 }
 main();
