@@ -26,7 +26,7 @@ export default function WomenHome() {
         eyebrow: "Nexphoria for Women",
         h1: (
           <>
-            Your biology, read properly. <em style={{ color: "var(--nx-cobalt)" }}>Then treated.</em>
+            Your biology, read properly. <em style={{ color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>Then treated.</em>
           </>
         ),
         sub: "Ninety-nine biomarkers, a licensed physician who reads them against your history, and protocols compounded for you in state-licensed 503A pharmacies — reviewed against your own results every ninety days.",

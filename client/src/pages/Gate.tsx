@@ -196,8 +196,10 @@ export default function Gate() {
               }}
               style={{
                 height: "1px",
-                width: "180px",
-                backgroundColor: "var(--nx-cobalt)",
+                // stretch to the caption chip's width (a fixed 180px rule
+                // stopped ~55px short of the text) — ceramic to match it
+                alignSelf: "stretch",
+                backgroundColor: "color-mix(in srgb, var(--nx-ceramic) 70%, transparent)",
                 transformOrigin: "left center",
               }}
             />
@@ -320,6 +322,10 @@ function GateCard({
       onClick={onClick}
       onMouseEnter={() => !chosen && onHover(true)}
       onMouseLeave={() => onHover(false)}
+      /* keyboard parity: tabbing onto a card surfaces the same peek panel
+         and brightening the pointer hover gives */
+      onFocus={() => !chosen && onHover(true)}
+      onBlur={() => onHover(false)}
       style={cardStyle}
       animate={
         isOther
