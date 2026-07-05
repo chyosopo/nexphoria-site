@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check, ShieldCheck } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
+import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
 import { TrustStrip as CredentialRow } from "@/components/EnterprisePatterns";
 import { Reveal } from "@/components/Reveal";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -546,7 +546,7 @@ export default function Assessment() {
               headline={
                 <>Tell us your goal.<br /><span>We’ll build the protocol.</span></>
               }
-              subtitle="A short physician-reviewed intake. Personalized peptide protocol delivered after physician approval."
+              subtitle="A short, structured intake. Your peptide protocol is compounded and shipped only after a licensed physician reviews your labs."
             />
 
             {/* Editorial hero — the first deliberate step, dawn light */}
@@ -706,12 +706,21 @@ export default function Assessment() {
           {draftRestored ? "Your saved progress was restored. " : ""}
           {inFlow ? stepRequirement(step, form) : ""}
         </p>
+        {/* Positive navigation confirmation — depends only on `step`, so it
+            announces the new position once per advance (never on keystrokes),
+            giving screen-reader users the same "how far along" cue the visible
+            progress bar gives sighted users. */}
+        <p className="sr-only" aria-live="polite" data-testid="assessment-sr-step">
+          {inFlow ? `Step ${step} of ${STEP_LABELS.length}, ${STEP_LABELS[Math.min(step - 1, STEP_LABELS.length - 1)]}.` : ""}
+        </p>
 
         {/* ── Top progress bar ── */}
         {inFlow && <LabeledProgress step={step} />}
 
         {/* ── Main content + sidebar ── */}
         <main
+          aria-label="Medical intake assessment"
+          aria-busy={submitting || undefined}
           style={{
             flex: 1,
             display: "flex",
@@ -907,10 +916,12 @@ export default function Assessment() {
                             }
                           }}
                           placeholder="you@example.com"
+                          aria-describedby="assessment-early-email-hint"
                           data-testid="assessment-early-email"
                           className="nx-input"
                         />
                         <p
+                          id="assessment-early-email-hint"
                           style={{
                             marginTop: "0.5rem",
                             fontFamily: F,
