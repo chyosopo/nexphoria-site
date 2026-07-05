@@ -574,7 +574,7 @@ export default function Assessment() {
               <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: F,
                     fontSize: "var(--nx-t-xl)",
                     fontWeight: 500,
                     lineHeight: 1.35,
@@ -718,7 +718,11 @@ export default function Assessment() {
         {inFlow && <LabeledProgress step={step} />}
 
         {/* ── Main content + sidebar ── */}
-        <main
+        {/* Labeled region, NOT <main> — SiteLayout already owns the page's single
+            <main id="main-content"> landmark; a nested <main> is an invalid,
+            duplicate landmark (WCAG 1.3.1). A section + aria-label keeps the
+            "intake" region discoverable without a second main. */}
+        <section
           aria-label="Medical intake assessment"
           aria-busy={submitting || undefined}
           style={{
@@ -930,7 +934,7 @@ export default function Assessment() {
                             lineHeight: 1.5,
                           }}
                         >
-                          We’ll email your protocol match so you can pick up where you left off. No spam · unsubscribe anytime.
+                          We’ll email your protocol match so you can pick up where you left off. Only about your intake · unsubscribe anytime.
                         </p>
                       </div>
                       <WhyWeAsk funnelStep={1} />
@@ -1529,7 +1533,7 @@ export default function Assessment() {
             {/* Sidebar — shown on question + review steps */}
             {inFlow && <IntakeSidebar />}
           </div>
-        </main>
+        </section>
       </div>
 
       <style>{`
