@@ -99,7 +99,6 @@ export function StartIntakeButton({
         sizeClasses[size],
         className,
       )}
-      style={style}
     >
       <span>{children}</span>
       {showArrow && (
