@@ -365,7 +365,7 @@ export const GOAL_TILE_CONFIG: Record<
   }
 > = {
   "Metabolic health & body composition": {
-    displayName: "Metabolic & body comp",
+    displayName: "Metabolic & body composition",
     oneLiner: "GLP-1 agonists for fat loss and glycemic control.",
     category: "metabolic",
     protocol: "Metabolic Protocol (GLP-1 Agonist)",

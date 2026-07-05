@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
-import { pricing, priceAtCadence, CADENCE_DISCOUNTS, formatUSD, type CadenceKey } from "@/data/pricing";
+import { pricing, priceAtCadence, CADENCE_DISCOUNTS, bundleDiscount, formatUSD, type CadenceKey } from "@/data/pricing";
 import { stacks, computeStackPrice } from "@/data/stacks";
 import { getStack as getFlagship } from "@/data/stacksCatalog";
 
@@ -38,6 +38,8 @@ interface CartContextValue {
   lines: CartLine[];
   subtotal: number;
   totalSavings: number;
+  /** multi-peptide bundle discount (2=10%, 3=12%, 4+=15%) already netted out of subtotal */
+  bundleSavings: number;
   itemCount: number;
   addPeptide: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
   addStack: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
@@ -144,7 +146,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const toggle = useCallback(() => setIsOpen((v) => !v), []);
 
   /** Derive line items + totals from items + data */
-  const { lines, subtotal, totalSavings } = useMemo(() => {
+  const { lines, subtotal, totalSavings, bundleSavings } = useMemo(() => {
     const lines: CartLine[] = items.map((item) => {
       const cadenceLabel = CADENCE_DISCOUNTS[item.cadence]?.label || "Monthly";
       if (item.type === "peptide") {
@@ -196,9 +198,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
         cadenceLabel,
       };
     });
-    const subtotal = lines.reduce((acc, l) => acc + l.lineTotal, 0);
-    const totalSavings = lines.reduce((acc, l) => acc + (l.savings || 0), 0);
-    return { lines, subtotal, totalSavings };
+    const rawSubtotal = lines.reduce((acc, l) => acc + l.lineTotal, 0);
+    // Multi-peptide bundle discount — the same schedule the stack builder
+    // advertises (2=10%, 3=12%, 4+=15%), applied to the peptide lines only
+    // (flagship stacks already carry their own bundle pricing).
+    const distinctPeptides = new Set(lines.filter((l) => l.type === "peptide").map((l) => l.slug)).size;
+    const peptideSubtotal = lines.filter((l) => l.type === "peptide").reduce((acc, l) => acc + l.lineTotal, 0);
+    const bundleSavings = Math.round(peptideSubtotal * bundleDiscount(distinctPeptides));
+    const subtotal = rawSubtotal - bundleSavings;
+    const totalSavings = lines.reduce((acc, l) => acc + (l.savings || 0), 0) + bundleSavings;
+    return { lines, subtotal, totalSavings, bundleSavings };
   }, [items]);
 
   const itemCount = items.reduce((acc, i) => acc + i.qty, 0);
@@ -208,6 +217,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     lines,
     subtotal,
     totalSavings,
+    bundleSavings,
     itemCount,
     addPeptide,
     addStack,

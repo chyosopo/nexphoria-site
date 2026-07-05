@@ -1,11 +1,11 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, Check, FlaskConical, Plus, Minus, Sparkles, ShoppingBag, ShieldCheck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { TrustStrip } from "@/components/EnterprisePatterns";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
-import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
+import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, bundleDiscount, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
@@ -127,27 +127,16 @@ const GOAL_TO_STACK: Record<string, string> = {
   performance: "metabolic",
 };
 
-/* Confidence = base match for a curated goal + overlap between the
-   user's live picks and the flagship formula. Bounded 60–99 so the
-   surface always reads as a strong, honest recommendation. */
-function stackConfidence(stackPeptides: string[], picked: string[]): number {
-  if (stackPeptides.length === 0) return 0;
-  const overlap = stackPeptides.filter((s) => picked.includes(s)).length;
-  const coverage = overlap / stackPeptides.length; // 0–1
-  const raw = 72 + Math.round(coverage * 26); // 72 → 98
-  return Math.max(60, Math.min(99, raw));
+/* Formula overlap: how many of the flagship stack's compounds are in the
+   user's live picks. Shown as an honest N-of-M count — never dressed up
+   as a percentage "match score" the data can't support. */
+function formulaOverlap(stackPeptides: string[], picked: string[]): number {
+  return stackPeptides.filter((s) => picked.includes(s)).length;
 }
 
-/* ──────────────────────────────────────────────────────────────
-   Custom-stack bundle pricing — same 12% bundle discount as flagship
-   stacks, scaled with size: 2 = 10%, 3 = 12%, 4+ = 15%.
-   ────────────────────────────────────────────────────────────── */
-function bundleDiscount(n: number): number {
-  if (n >= 4) return 0.15;
-  if (n === 3) return 0.12;
-  if (n === 2) return 0.10;
-  return 0;
-}
+/* Custom-stack bundle pricing lives in @/data/pricing (bundleDiscount) —
+   shared with CartProvider so the builder's promised total and the cart's
+   charged total can never drift apart. */
 
 /* ──────────────────────────────────────────────────────────────
    Steps
@@ -183,6 +172,15 @@ export default function BuildYourStack() {
     }
   }, [toast]);
 
+  // Each step swaps in shorter/taller content — without a scroll reset the
+  // user lands mid-page (measured: Continue at scrollY 3640 dropped them
+  // past step 3's summary). Skip the mount render.
+  const skipMountScroll = useRef(true);
+  useEffect(() => {
+    if (skipMountScroll.current) { skipMountScroll.current = false; return; }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
+
   const goal = useMemo(() => GOALS.find((g) => g.id === goalId) ?? null, [goalId]);
 
   // Physician-curated flagship stack that matches the chosen goal, plus a
@@ -191,16 +189,21 @@ export default function BuildYourStack() {
     () => (goalId ? getStack(GOAL_TO_STACK[goalId] ?? "") ?? null : null),
     [goalId],
   );
-  const confidence = useMemo(
-    () => (matchedStack ? stackConfidence(matchedStack.peptides, picked) : 0),
+  const overlap = useMemo(
+    () => (matchedStack ? formulaOverlap(matchedStack.peptides, picked) : 0),
     [matchedStack, picked],
   );
 
   /* Sellable = in the current formulary (soloCatalog), not physician-gated
-     (GLP-1), and carries transparent pricing. Everything else is intake-only
-     and must not be self-serve buildable. */
+     (GLP-1), and priced by BOTH engines — soloCatalog AND the builder's
+     pricing map. A card the pricing map can't price would render "—" yet
+     stay pickable, silently dropping out of the subtotal. Everything else
+     is intake-only and must not be self-serve buildable. */
   const sellable = useMemo(
-    () => peptides.filter((p) => { const s = getSolo(p.slug); return !!s && !s.gated && !!s.pricing; }),
+    () => peptides.filter((p) => {
+      const s = getSolo(p.slug);
+      return !!s && !s.gated && !!s.pricing && !!pricing[p.slug];
+    }),
     [],
   );
   // Available peptides for the chosen goal (whole catalog if no goal yet)
@@ -230,9 +233,10 @@ export default function BuildYourStack() {
 
   function pickGoal(id: string) {
     setGoalId(id);
-    // Seed with curator's recommended picks
+    // Seed with the curator's recommended picks — but only ones the builder
+    // can actually price and sell; unpriced seeds understated every total.
     const g = GOALS.find((x) => x.id === id);
-    if (g) setPicked(g.recommended.slice(0, 3));
+    if (g) setPicked(g.recommended.filter((slug) => sellable.some((p) => p.slug === slug)).slice(0, 3));
     setStep(2);
   }
 
@@ -241,9 +245,9 @@ export default function BuildYourStack() {
   }
 
   function addBundleToCart() {
-    // Add each peptide at the selected cadence. The cart's natural subtotal
-    // doesn't apply the bundle discount, but each peptide flowing through
-    // the cadence discount engine already captures the headline savings.
+    // Add each peptide at the selected cadence. CartProvider applies the
+    // same bundleDiscount schedule to multi-peptide carts, so the drawer
+    // total matches the number promised here.
     picked.forEach((slug) => cart.addPeptide(slug, { qty: 1, cadence }));
     cart.open();
     setAdded(true);
@@ -265,7 +269,7 @@ export default function BuildYourStack() {
         >
           <ShoppingBag size={15} aria-hidden="true" style={{ color: "var(--nx-acid)" }} />
           <span>Stack added to cart</span>
-          <span style={{ color: "var(--nx-acid)", fontWeight: 600 }}>✓</span>
+          <Check size={14} strokeWidth={2.6} aria-hidden="true" style={{ color: "var(--nx-acid)" }} />
         </div>
       )}
       <div style={{ background: "var(--mx-page-bg, var(--nx-ceramic))", minHeight: "100vh", paddingTop: 80 }}>
@@ -536,22 +540,22 @@ export default function BuildYourStack() {
                         </p>
                       </div>
 
-                      {/* Confidence dial */}
+                      {/* Formula overlap — an honest count, not a score */}
                       <div className="flex-shrink-0 text-right" data-testid="confidence-score">
                         <p style={{ fontFamily: F, fontSize: 34, fontWeight: 600, lineHeight: 1, color: "var(--nx-acid)", letterSpacing: "-0.02em" }}>
-                          {confidence}<span style={{ fontSize: "var(--nx-t-body)", fontWeight: 500 }}>%</span>
+                          {overlap}<span style={{ fontSize: "var(--nx-t-body)", fontWeight: 500 }}> of {matchedStack.peptides.length}</span>
                         </p>
                         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
-                          Goal match
+                          Compounds shared
                         </p>
                       </div>
                     </div>
 
-                    {/* Confidence meter */}
+                    {/* Overlap meter */}
                     <div className="mt-4 relative h-1 rounded-full" style={{ background: "rgba(255,255,255,0.12)" }}>
                       <div
                         className="absolute left-0 top-0 h-full rounded-full transition-all duration-700"
-                        style={{ width: `${confidence}%`, background: "var(--nx-acid)" }}
+                        style={{ width: `${Math.round((overlap / matchedStack.peptides.length) * 100)}%`, background: "var(--nx-acid)" }}
                         data-testid="confidence-meter"
                       />
                     </div>
@@ -567,7 +571,7 @@ export default function BuildYourStack() {
                       </Link>
                       <button
                         type="button"
-                        onClick={() => setPicked(matchedStack.peptides)}
+                        onClick={() => setPicked(matchedStack.peptides.filter((slug) => sellable.some((p) => p.slug === slug)))}
                         data-testid="button-use-matched-formula"
                         style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", textDecoration: "underline", textDecorationStyle: "dotted", textUnderlineOffset: 4 }}
                       >
@@ -656,7 +660,7 @@ export default function BuildYourStack() {
                             )}
                             {synergies.length > 0 && (
                               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.08em", color: isPicked ? "color-mix(in srgb, var(--nx-acid) 90%, transparent)" : "var(--nx-fg-muted)", textTransform: "uppercase", marginTop: 6 }}>
-                                ⚡ Synergy with {synergies.join(" & ")}
+                                Synergy with {synergies.join(" & ")}
                               </p>
                             )}
                           </div>
@@ -669,6 +673,8 @@ export default function BuildYourStack() {
                               background: isPicked ? "var(--nx-acid)" : "transparent",
                               border: isPicked ? "1px solid var(--nx-acid)" : "1px solid var(--nx-rock)",
                               color: "var(--nx-fg)",
+                              // clear the absolutely-positioned RECOMMENDED badge
+                              marginTop: isRecommended ? 22 : 0,
                             }}
                           >
                             {isPicked ? <Check size={13} strokeWidth={3} aria-hidden="true" /> : <Plus size={13} aria-hidden="true" />}
@@ -865,7 +871,7 @@ export default function BuildYourStack() {
                             {CATEGORY_LABELS[p.category]} · {p.administration}
                           </p>
                           <p style={{ fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", marginTop: 8, lineHeight: 1.55 }}>
-                            <strong style={{ fontWeight: 600 }}>Mechanism. </strong>{p.mechanism.length > 240 ? p.mechanism.slice(0, 240) + "…" : p.mechanism}
+                            <strong style={{ fontWeight: 600 }}>Mechanism. </strong>{p.mechanism.length > 240 ? p.mechanism.slice(0, 240).replace(/\s+\S*$/, "") + " …" : p.mechanism}
                           </p>
                         </div>
                         <button
@@ -885,8 +891,11 @@ export default function BuildYourStack() {
 
                 {/* Protocol timeline — 12 weeks */}
                 <div className="mt-10 p-6" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 14 }}>
-                    Protocol timeline
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 4 }}>
+                    Representative 12-week timeline
+                  </p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginBottom: 14, lineHeight: 1.5 }}>
+                    Actual phases and duration are set by your physician for your protocol.
                   </p>
                   <div className="space-y-0">
                     {[
@@ -936,7 +945,7 @@ export default function BuildYourStack() {
               <aside className="lg:sticky lg:top-24 self-start">
                 <div style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)", borderRadius: 4 }}>
                   <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.16em", color: "rgba(152, 182, 213,0.85)", textTransform: "uppercase", marginBottom: 6 }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.16em", color: "color-mix(in srgb, var(--nx-acid) 85%, transparent)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
                     </p>
                     <p style={{ fontFamily: F, fontSize: 22, fontWeight: 500 }}>
@@ -968,7 +977,7 @@ export default function BuildYourStack() {
                       </div>
                     )}
                     {cadencePct > 0 && (
-                      <div className="flex justify-between" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "rgba(152, 182, 213,0.7)" }}>
+                      <div className="flex justify-between" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 70%, transparent)" }}>
                         <span>Cadence saving ({cadencePct}%)</span>
                         <span>applied</span>
                       </div>

@@ -73,6 +73,16 @@ export const CADENCE_DISCOUNTS: Record<CadenceKey, { pct: number; label: string;
 
 const CADENCE_TO_TIER: Record<CadenceKey, "m1" | "m3" | "m12"> = { "1mo": "m1", "3mo": "m3", "12mo": "m12" };
 
+/** Multi-peptide bundle discount — 2 = 10%, 3 = 12%, 4+ = 15%.
+    Single source of truth: the builder ADVERTISES it and the cart engine
+    APPLIES it; both import from here so the totals can never disagree. */
+export function bundleDiscount(distinctPeptides: number): number {
+  if (distinctPeptides >= 4) return 0.15;
+  if (distinctPeptides === 3) return 0.12;
+  if (distinctPeptides === 2) return 0.10;
+  return 0;
+}
+
 /** Compute price-per-month at a given cadence.
     Catalog tier price wins; discount math is the legacy fallback. */
 export function priceAtCadence(slug: string, cadence: CadenceKey): number {
