@@ -336,7 +336,7 @@ function VialTileInner({
                 <span
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 10,
+                    fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     fontWeight: 600,
@@ -359,7 +359,7 @@ function VialTileInner({
                 <span
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 10,
+                    fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     fontWeight: 600,
@@ -378,7 +378,7 @@ function VialTileInner({
                   title={fdaStatus}
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 10,
+                    fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                     fontWeight: 600,
@@ -397,7 +397,7 @@ function VialTileInner({
               <span
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   fontWeight: 600,
@@ -490,7 +490,7 @@ function VialTileInner({
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 10,
+                      fontSize: "var(--nx-t-xs)",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                       color: t.ink,
@@ -622,7 +622,7 @@ function VialTileInner({
                 <div
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 10,
+                    fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     color: "var(--nx-acid)",
@@ -664,7 +664,7 @@ function VialTileInner({
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 10,
+                      fontSize: "var(--nx-t-xs)",
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color: "rgba(246, 249, 252,0.42)",
@@ -690,7 +690,7 @@ function VialTileInner({
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 10,
+                      fontSize: "var(--nx-t-xs)",
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color: "rgba(246, 249, 252,0.42)",
