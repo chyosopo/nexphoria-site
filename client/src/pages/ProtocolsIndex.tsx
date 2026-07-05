@@ -105,7 +105,7 @@ export default function ProtocolsIndex() {
 
       {/* filter */}
       <section className="nx-container" style={{ paddingBottom: "1rem" }}>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+        <div role="group" aria-label="Filter protocols by category" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {CATEGORIES.map((c) => {
             const n = c === "All" ? FLAGSHIP_STACKS.length : FLAGSHIP_STACKS.filter((s) => matchCat(s.category, c)).length;
             const active = filter === c;
