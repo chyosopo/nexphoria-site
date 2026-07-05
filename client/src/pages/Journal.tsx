@@ -18,7 +18,7 @@ import {
 
 const eyebrow: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: 11,
+  fontSize: "var(--nx-t-xs)",
   fontWeight: 500,
   letterSpacing: "0.18em",
   textTransform: "uppercase",
@@ -93,7 +93,7 @@ export default function Journal() {
           <p
             style={{
               fontFamily: FONT,
-              fontSize: 18,
+              fontSize: "var(--nx-t-lg)",
               lineHeight: 1.65,
               color: "var(--nx-fg-graphite)",
               maxWidth: 620,
@@ -150,7 +150,7 @@ export default function Journal() {
                       backgroundColor: "rgba(21, 24, 28,0.92)",
                       color: "var(--nx-ceramic)",
                       fontFamily: FONT,
-                      fontSize: 11,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -199,7 +199,7 @@ export default function Journal() {
                   <p
                     style={{
                       fontFamily: FONT,
-                      fontSize: 17,
+                      fontSize: "var(--nx-t-body)",
                       lineHeight: 1.6,
                       color: "var(--nx-fg-graphite)",
                       marginBottom: 28,
@@ -211,7 +211,7 @@ export default function Journal() {
                     <span
                       style={{
                         fontFamily: FONT,
-                        fontSize: 14,
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
                       }}
@@ -222,7 +222,7 @@ export default function Journal() {
                     <span
                       style={{
                         fontFamily: FONT,
-                        fontSize: 11,
+                        fontSize: "var(--nx-t-xs)",
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",
                         color: "var(--nx-fg-muted)",
@@ -330,10 +330,10 @@ export default function Journal() {
                 color: "var(--nx-fg-muted)",
               }}
             >
-              <p style={{ fontSize: 18, marginBottom: 8, color: "var(--nx-fg)" }}>
+              <p style={{ fontSize: "var(--nx-t-lg)", marginBottom: 8, color: "var(--nx-fg)" }}>
                 No articles in this category yet.
               </p>
-              <p style={{ fontSize: 14 }}>New writing publishes every other week.</p>
+              <p style={{ fontSize: "var(--nx-t-sm)" }}>New writing publishes every other week.</p>
             </div>
           )}
         </div>
@@ -361,7 +361,7 @@ export default function Journal() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 11,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -387,7 +387,7 @@ export default function Journal() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 16,
+                  fontSize: "var(--nx-t-body)",
                   lineHeight: 1.6,
                   color: "rgba(246, 249, 252,0.72)",
                   maxWidth: 480,
@@ -410,7 +410,7 @@ export default function Journal() {
                   backgroundColor: "var(--nx-acid)",
                   color: "var(--nx-fg)",
                   fontFamily: FONT,
-                  fontSize: 13,
+                  fontSize: "var(--nx-t-sm)",
                   fontWeight: 600,
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
@@ -426,7 +426,7 @@ export default function Journal() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 11,
+                  fontSize: "var(--nx-t-xs)",
                   letterSpacing: "0.06em",
                   color: "rgba(246, 249, 252,0.5)",
                   textAlign: "center",
@@ -504,7 +504,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
       }}
     >
       {label}
-      <span style={{ fontSize: 11, opacity: 0.55 }}>{count}</span>
+      <span style={{ fontSize: "var(--nx-t-xs)", opacity: 0.55 }}>{count}</span>
     </button>
   );
 }
@@ -557,7 +557,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               style={{
                 alignSelf: "flex-start",
                 fontFamily: FONT,
-                fontSize: 11,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
@@ -574,7 +574,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               style={{
                 fontFamily: FONT,
                 fontWeight: 600,
-                fontSize: 23,
+                fontSize: "var(--nx-t-xl)",
                 lineHeight: 1.14,
                 letterSpacing: "-0.02em",
                 color: "var(--nx-fg)",
@@ -607,7 +607,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               <span
                 style={{
                   fontFamily: FONT,
-                  fontSize: 13,
+                  fontSize: "var(--nx-t-sm)",
                   color: "var(--nx-fg)",
                   fontWeight: 500,
                 }}
@@ -617,7 +617,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               <span
                 style={{
                   fontFamily: FONT,
-                  fontSize: 11,
+                  fontSize: "var(--nx-t-xs)",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   color: "var(--nx-fg-muted)",
