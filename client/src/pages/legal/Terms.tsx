@@ -1,11 +1,15 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function Terms() {
   useSeo({
     title: "Terms of Service | Nexphoria",
     description: "Service agreements, user eligibility, and platform terms for Nexphoria peptide therapy.",
     path: "/legal/terms",
+    jsonLd: [
+      webPageJsonLd({ name: "Terms of Service", description: "Service agreements, user eligibility, and platform terms for Nexphoria peptide therapy.", path: "/legal/terms" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Terms of Service", path: "/legal/terms" }]),
+    ],
   });
   return (
     <LegalLayout title="Terms of Service" lastUpdated="June 2026">

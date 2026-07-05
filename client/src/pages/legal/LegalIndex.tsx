@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { FONT } from "@/lib/typography";
 
@@ -22,6 +22,11 @@ export default function LegalIndex() {
     title: "Legal — Terms, Privacy, Telehealth Consent, Refund Policy",
     description: "Nexphoria legal documents: Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy. Physician-prescribed peptide therapy governed by U.S. telehealth and compounding pharmacy law.",
     path: "/legal",
+    jsonLd: [
+      webPageJsonLd({ name: "Legal", description: "Nexphoria legal documents: Terms of Service, Privacy Policy, Telehealth Consent, and Refund Policy.", path: "/legal" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }]),
+      itemListJsonLd({ name: "Nexphoria legal documents", items: legalPages.map((p) => ({ name: p.label, path: p.href })) }),
+    ],
   });
   return (
     <SiteLayout navVariant="gate">

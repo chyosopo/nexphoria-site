@@ -1,11 +1,15 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function TelehealthConsent() {
   useSeo({
     title: "Telehealth Consent | Nexphoria",
     description: "Your consent to receive care via telehealth and off-label prescribing of compounded peptides. State-specific requirements.",
     path: "/legal/telehealth-consent",
+    jsonLd: [
+      webPageJsonLd({ name: "Telehealth Consent", description: "Your consent to receive care via telehealth and off-label prescribing of compounded peptides. State-specific requirements.", path: "/legal/telehealth-consent" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Telehealth Consent", path: "/legal/telehealth-consent" }]),
+    ],
   });
   return (
     <LegalLayout title="Telehealth Informed Consent" lastUpdated="June 2026">

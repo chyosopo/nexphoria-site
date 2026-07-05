@@ -1,11 +1,15 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function Privacy() {
   useSeo({
     title: "Privacy Policy | Nexphoria",
     description: "How Nexphoria collects, uses, and protects your personal and health information. HIPAA-compliant.",
     path: "/legal/privacy",
+    jsonLd: [
+      webPageJsonLd({ name: "Privacy Policy", description: "How Nexphoria collects, uses, and protects your personal and health information. HIPAA-compliant.", path: "/legal/privacy" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Privacy Policy", path: "/legal/privacy" }]),
+    ],
   });
   return (
     <LegalLayout title="Privacy Policy" lastUpdated="June 2026">
