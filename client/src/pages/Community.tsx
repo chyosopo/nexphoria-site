@@ -6,6 +6,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { F } from "@/lib/typography";
+import communityDawnGroup from "@/assets/brand/community-dawn-group.webp";
 
 // Forward-looking description of what the membership community will include at
 // launch. No live threads, member counts, testimonials, or engagement metrics
@@ -155,6 +156,23 @@ export default function Community() {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* ── Editorial — the community is people, shown before it's promised ── */}
+      <section className="nx-container max-w-screen-xl" style={{ paddingBottom: "clamp(2rem,4vw,3rem)" }}>
+        <Reveal>
+          <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 1.4" }}>
+            <img
+              src={communityDawnGroup}
+              alt="Four adults laugh together outside a gym at dawn after a shared workout, breath visible in the cold air"
+              loading="lazy"
+              decoding="async"
+              width={1600}
+              height={1063}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          </div>
+        </Reveal>
       </section>
 
       {/* ── What membership will include ── */}

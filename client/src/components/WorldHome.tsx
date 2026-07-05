@@ -75,6 +75,8 @@ export interface WorldHomeConfig {
   nightBody: string;
   /** optional trust sections dropped between the shelf and the night band; per-world, women pass nothing */
   trustSlot?: React.ReactNode;
+  /** optional human frame beside the FAQ intro — person mid-consult with a clinician */
+  faqArt?: string;
 }
 
 export function WorldHome({ config }: { config: WorldHomeConfig }) {
@@ -355,6 +357,19 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.8vw,40px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
               What to expect.
             </h2>
+            {config.faqArt && (
+              <div className="hidden lg:block" style={{ marginTop: "1.6rem", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-2)", aspectRatio: "4 / 5" }}>
+                <img
+                  src={config.faqArt}
+                  alt="A member at ease on a call with their physician"
+                  loading="lazy"
+                  decoding="async"
+                  width={1632}
+                  height={2048}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            )}
           </div>
           <div data-testid={`${world}-faq`}>
             {HOME_FAQ.map((item, i) => (

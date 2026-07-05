@@ -150,11 +150,12 @@ function App() {
         <CartProvider>
           <Toaster />
           <ScrollProgress />
-          {/* Real path routing (browser history). Asset base stays "./" in
-              vite.config; router serves at root "/". SPA deep-link/refresh on
-              GitHub Pages handled by client/public/404.html + the restore
-              snippet in client/index.html <head>. */}
-          <Router>
+          {/* Real path routing (browser history). The app root is detected at
+              runtime in client/index.html (github.io project page → /<repo>,
+              custom domain → /) and exposed as __NX_APP_BASE__; the same
+              script writes a <base> tag so relative asset/image URLs resolve
+              against the app root. 404.html handles deep-link restores. */}
+          <Router base={(window as unknown as { __NX_APP_BASE__?: string }).__NX_APP_BASE__ || ""}>
             <AppRouter />
             <CartDrawer />
           </Router>

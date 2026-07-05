@@ -4,6 +4,7 @@ import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
+import faqConsultWomen from "@/assets/brand/faq-consult-women.webp";
 
 export default function WomenHome() {
   useSeo({
@@ -21,7 +22,7 @@ export default function WomenHome() {
         world: "women",
         tileArt: OUTCOME_CATEGORY.women,
         heroArt: OUTCOME_HERO.women,
-        vialArt: "/img/img_54f472682fb8.webp",
+        vialArt: "img/img_54f472682fb8.webp",
         eyebrow: "Nexphoria for Women",
         h1: (
           <>
@@ -40,6 +41,7 @@ export default function WomenHome() {
         nightBody:
           "Hormonal context changes what a marker means. Every protocol here begins from your panel, not a template — and every ninety days the same markers are drawn again and reviewed by a physician before anything continues.",
         trustSlot: <HomeTrust />,
+        faqArt: faqConsultWomen,
       }}
     />
   );

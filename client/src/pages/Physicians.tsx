@@ -6,7 +6,7 @@ import { TrustStrip } from "@/components/EnterprisePatterns";
 import { physicianReview } from "@/data/physicians";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
-const physicianTrustHero = "/img/img_20e1e1d49da4.webp";
+const physicianTrustHero = "img/img_20e1e1d49da4.webp";
 import heroPhysicians from "@/assets/brand/hero-physicians.webp";
 
 export default function Physicians() {

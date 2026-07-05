@@ -13,6 +13,7 @@ import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
+import sciencePanelRead from "@/assets/brand/science-panel-read.webp";
 import { F, FONT } from "@/lib/typography";
 
 const families = [
@@ -574,6 +575,20 @@ export default function Science() {
           <div style={{ marginTop: "clamp(2.5rem,4vw,3.5rem)" }}>
             <NumberedSteps steps={SCIENCE_METHOD_STEPS} />
           </div>
+          {/* The loop has a human reader — physician hands on a printed panel */}
+          <Reveal>
+            <div style={{ marginTop: "clamp(2.5rem,4vw,3.5rem)", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 1.4", position: "relative" }}>
+              <img
+                src={sciencePanelRead}
+                alt="A physician holds a printed laboratory panel up to a bright light table, reading the results page by page"
+                loading="lazy"
+                decoding="async"
+                width={1600}
+                height={1063}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </Reveal>
           <Reveal>
             <div style={{ marginTop: "clamp(2.5rem,4vw,3.5rem)" }}>
               <p className="nx-eyebrow" style={{ marginBottom: "1rem" }}>Markers the science tracks</p>

@@ -3,6 +3,7 @@ import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
+import faqConsultMen from "@/assets/brand/faq-consult-men.webp";
 
 export default function MenHome() {
   useSeo({
@@ -20,7 +21,7 @@ export default function MenHome() {
         world: "men",
         tileArt: OUTCOME_CATEGORY.men,
         heroArt: OUTCOME_HERO.men,
-        vialArt: "/img/img_275e18d2b1d5.webp",
+        vialArt: "img/img_275e18d2b1d5.webp",
         eyebrow: "Nexphoria for Men",
         h1: (
           <>
@@ -39,6 +40,7 @@ export default function MenHome() {
         nightBody:
           "Most of this market sells vials and disappears. Here, the same panel is drawn again every ninety days, the trend is placed next to the protocol, and a physician decides what changes. Nothing is assumed.",
         trustSlot: <HomeTrust />,
+        faqArt: faqConsultMen,
       }}
     />
   );

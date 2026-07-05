@@ -14,8 +14,8 @@ import { BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 import { PressStrip } from "@/components/PressStrip";
 
 /* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
-const heroVideo  = "/img/img_2724ef984ae9.mp4";
-const heroPoster = "/img/img_beb6d78848a2.webp";
+const heroVideo  = "img/img_2724ef984ae9.mp4";
+const heroPoster = "img/img_beb6d78848a2.webp";
 
 /* V3 imagery — locked editorial palette */
 import heroVials from "@/assets/nx_polish_hero_vials.webp";
@@ -29,16 +29,16 @@ import tileBalance from "@/assets/nx_v11_tile_balance.webp";
 import tileRecover from "@/assets/nx_v3_tile_recover.webp";
 import tileBurn from "@/assets/nx_v3_tile_burnfat.webp";
 import tileSleep from "@/assets/nx_v3_tile_sleep.webp";
-const doctorShot = "/img/img_20e1e1d49da4.webp";
-const productHero = "/img/img_b02fe34b47f7.webp";
+const doctorShot = "img/img_20e1e1d49da4.webp";
+const productHero = "img/img_b02fe34b47f7.webp";
 import editorialLineup from "@/assets/nx_v3_editorial_lineup.webp";
 import moleculeShot from "@/assets/nx_v3_molecule.webp";
 import prescriptionShot from "@/assets/nx_v3_prescription.webp";
 import { F, FONT } from "@/lib/typography";
-const physicianPortrait = "/img/img_334cb24acfa5.webp";
-const labPrecision = "/img/img_b9ec00db43d6.webp";
-const morningRitual = "/img/img_6bbc99ce7347.webp";
-const bloodworkHero = "/img/img_dbc2b8fe6999.webp";
+const physicianPortrait = "img/img_334cb24acfa5.webp";
+const labPrecision = "img/img_b9ec00db43d6.webp";
+const morningRitual = "img/img_6bbc99ce7347.webp";
+const bloodworkHero = "img/img_dbc2b8fe6999.webp";
 
 /* ────────────────────────────────────────────────────────────────
    NEXPHORIA · HOME · V3
@@ -2340,11 +2340,11 @@ function ProofBento() {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
-            <img src="/img/img_b02fe34b47f7.webp" width={1600} height={1600} alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_b02fe34b47f7.webp" width={1600} height={1600} alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>Physician-directed protocols</span>
           </div>
           <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
-            <img src="/img/img_20e1e1d49da4.webp" width={1600} height={2134} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_20e1e1d49da4.webp" width={1600} height={2134} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", left: "clamp(1.4rem,4vw,3rem)", top: "50%", transform: "translateY(-50%)" }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-bg)", lineHeight: 1 }}>Human</div>
@@ -2354,13 +2354,13 @@ function ProofBento() {
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.25 }}>
               Physician
-              <img src="/img/img_334cb24acfa5.webp" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: "var(--nx-r-pill)", objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
+              <img src="img/img_334cb24acfa5.webp" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: "var(--nx-r-pill)", objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
               follow-ups
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 10 }}>Message your prescriber anytime through the portal.</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 200 }}>
-            <img src="/img/img_b9ec00db43d6.webp" width={1600} height={894} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+            <img src="img/img_b9ec00db43d6.webp" width={1600} height={894} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "rgba(21, 24, 28,0.35)" }} />
             <div style={{ position: "absolute", left: 20, bottom: 18 }}>
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-bg)", lineHeight: 1 }}>Every 90 days</div>

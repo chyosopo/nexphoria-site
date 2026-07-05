@@ -2,31 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png" />
-    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
-
     <!--
-      SPA fallback restore (rafgraph/spa-github-pages).
-      Runs before the app boots. When 404.html redirected a deep link to
-      "/?/real/path", this decodes it back into the real path via
-      history.replaceState so wouter (real path routing) renders the right
-      route on first paint. No-op for normal loads.
+      App-root detection + SPA fallback restore (rafgraph/spa-github-pages).
+      MUST be the first element after charset: the <base> it writes anchors
+      every relative URL below (favicons, ./assets modules, img/… photography)
+      to the app root — /<repo>/ on github.io project pages, / on a custom
+      domain. Keep the host test in sync with client/public/404.html.
+      The base tag is also what makes the history.replaceState safe: without
+      it, the parser resolved ./assets against the restored deep path and
+      every module 404'd — blank page on any hard-loaded deep link.
     -->
     <script type="text/javascript">
       (function (l) {
+        var keep = /\.github\.io$/.test(l.hostname) ? 1 : 0;
+        var root = l.pathname.split('/').slice(0, 1 + keep).join('/') + '/';
+        document.write('<base href="' + root + '">');
+        window.__NX_APP_BASE__ = root === '/' ? '' : root.slice(0, -1);
         if (l.search[1] === '/') {
           var decoded = l.search.slice(1).split('&').map(function (s) {
             return s.replace(/~and~/g, '&');
           }).join('?');
           window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash);
+            root.slice(0, -1) + decoded + l.hash);
         }
       })(window.location);
     </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png" />
+    <link rel="icon" href="favicon/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
 
     <!-- Primary Meta -->
     <title>Nexphoria — Physician-Led Peptide Protocols. Education-First. Lab-Driven.</title>
@@ -83,7 +89,7 @@
     </script>
 
     <!-- Preload critical OG image for faster LCP on social crawlers -->
-    <link rel="preload" as="image" href="/og/og-default.png" />
+    <link rel="preload" as="image" href="og/og-default.png" />
 
     <!-- Fonts: General Sans (single family, weights 400/500/600) via Fontshare -->
     <link rel="preconnect" href="https://api.fontshare.com" />

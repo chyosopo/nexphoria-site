@@ -223,9 +223,9 @@ export default function Category() {
 
       {/* ── Goal composite — UI over film ── */}
       <section className="relative overflow-hidden flex items-center" style={{ minHeight: "70vh" }}>
-        <img src="/img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+        <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
         <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, rgba(21, 24, 28,0.1) 60%, transparent 100%)" }} />
-        <img src="/img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
+        <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
         <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
           <h2 className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
             Progress you can <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>point to.</em>

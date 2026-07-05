@@ -13,6 +13,7 @@ import { getStack } from "@/data/stacks";
 import { getSolo } from "@/data/soloCatalog";
 import { getStackPortrait } from "@/lib/stackPortraits";
 import { F } from "@/lib/typography";
+import buildGoalsCard from "@/assets/brand/build-goals-card.webp";
 
 const cadencePctOf = (c: CadenceKey): number => (CADENCE_DISCOUNTS[c]?.pct ?? 0);
 
@@ -270,6 +271,7 @@ export default function BuildYourStack() {
       <div style={{ background: "var(--mx-page-bg, var(--nx-ceramic))", minHeight: "100vh", paddingTop: 80 }}>
         {/* ── Hero ───────────────────────────────────────────────── */}
         <section className="nx-container py-16 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
           <div className="max-w-3xl">
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 18 }}>
               <Sparkles size={11} aria-hidden="true" className="inline-block mr-1.5 -mt-0.5" />
@@ -304,6 +306,19 @@ export default function BuildYourStack() {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.5, color: "var(--nx-fg)", marginTop: 22, maxWidth: 620 }}>
               Pick your goal. Choose 2–5 compatible peptides. Lock in a bundle discount on top of your cadence pricing. Every custom stack still goes through a US-licensed physician review before it ships from the pharmacy.
             </p>
+          </div>
+          {/* Designing his own protocol — deliberate, human, morning light */}
+          <div className="nx-hero-frame hidden lg:block" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
+            <img
+              src={buildGoalsCard}
+              alt="A man at a kitchen counter in early light writes his goals on a small card with deliberate care"
+              loading="eager"
+              decoding="async"
+              width={1600}
+              height={1063}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+          </div>
           </div>
 
           {/* Step indicator with progress bar */}

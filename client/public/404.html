@@ -14,7 +14,11 @@
       domain root (custom domain nexphoria.com / gh-pages at repo root).
     -->
     <script type="text/javascript">
-      var pathSegmentsToKeep = 0;
+      // Host-aware: on *.github.io project pages the repo name is the first
+      // path segment and must be kept; on a custom domain the app lives at
+      // the origin root. Keep this in sync with the app-root detection in
+      // client/index.html.
+      var pathSegmentsToKeep = /\.github\.io$/.test(window.location.hostname) ? 1 : 0;
 
       var l = window.location;
       l.replace(

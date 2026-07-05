@@ -7,6 +7,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
 import { MessageSquare, Stethoscope, Newspaper, MapPin, Lock, ShieldCheck, Clock, type LucideIcon } from "lucide-react";
+import contactCareTeam from "@/assets/brand/contact-care-team.webp";
 
 const contactColumns: {
   eyebrow: string; title: string; Icon: LucideIcon;
@@ -386,6 +387,18 @@ export default function Contact() {
                     </li>
                   ))}
                 </ul>
+                {/* A person answers — the care team, not a queue */}
+                <div style={{ marginTop: "1.75rem", borderRadius: "var(--nx-r-md)", overflow: "hidden", border: "1px solid var(--nx-border)", aspectRatio: "3 / 2" }}>
+                  <img
+                    src={contactCareTeam}
+                    alt="A care coordinator with a headset smiles mid-conversation at a warm wood desk"
+                    loading="lazy"
+                    decoding="async"
+                    width={1600}
+                    height={1063}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </div>
               </div>
             </Reveal>
 
