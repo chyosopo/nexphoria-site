@@ -71,7 +71,9 @@ export function LabeledProgress({ step }: { step: number }) {
           .nx-prog-seg { transition: none; }
         }
       `}</style>
-      <div style={{ maxWidth: "640px", margin: "0 auto" }}>
+      {/* 1040px matches the in-flow layout container (question column +
+          sidebar) — a 640px centered bar floated offset from both */}
+      <div style={{ maxWidth: "1040px", margin: "0 auto" }}>
         <div
           style={{
             display: "flex",
@@ -312,7 +314,15 @@ export function SampleProtocolPreview() {
 
 export function IntakeSidebar() {
   return (
-    <aside aria-label="What happens after you submit" data-testid="assessment-sidebar" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+    <aside
+      aria-label="What happens after you submit"
+      data-testid="assessment-sidebar"
+      // display lives in classes: on phones the sidebar stacked BELOW the
+      // sticky Continue bar's column, detaching the bar mid-scroll and
+      // padding the intake with chrome. Desktop-rail only.
+      className="hidden lg:flex"
+      style={{ flexDirection: "column", gap: "1.5rem" }}
+    >
       <div>
         <p
           style={{
@@ -409,19 +419,26 @@ export function TrustStrip() {
       }}
     >
       <ShieldCheck size={14} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-      <p
-        style={{
-          fontFamily: F,
-          fontSize: "var(--nx-t-xs)",
-          fontWeight: 500,
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          color: "var(--nx-fg-muted)",
-          lineHeight: 1.6,
-        }}
-      >
-        HIPAA-compliant · End-to-end encrypted · Reviewed by U.S. physicians · Cancel anytime before dispense
-      </p>
+      {/* one span per claim so narrow columns wrap BETWEEN claims,
+          never mid-claim */}
+      {["HIPAA-compliant", "End-to-end encrypted", "Reviewed by U.S. physicians", "Cancel anytime before dispense"].map((claim, i, arr) => (
+        <span
+          key={claim}
+          style={{
+            fontFamily: F,
+            fontSize: "var(--nx-t-xs)",
+            fontWeight: 500,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--nx-fg-muted)",
+            lineHeight: 1.6,
+            whiteSpace: "nowrap",
+          }}
+        >
+          {claim}
+          {i < arr.length - 1 ? <span aria-hidden style={{ marginLeft: "0.5rem" }}>·</span> : null}
+        </span>
+      ))}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
 import { TrustStrip as CredentialRow } from "@/components/EnterprisePatterns";
 import { Reveal } from "@/components/Reveal";
-import { SiteLayout } from "@/components/SiteLayout";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { MxHeader } from "@/components/SignatureTile";
 import heroAssessment from "@/assets/brand/hero-assessment.webp";
 import { GoalVialTile, GOAL_TILE_CONFIG, goalGlyphToMolecular } from "@/components/GoalVialTile";
@@ -352,7 +352,11 @@ export default function Assessment() {
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Assessment", path: "/assessment" }]),
     ],
   });
-  const [, navigate] = useLocation();
+  const [loc, navigate] = useLocation();
+  // Landing hero casts to the visitor's chosen world (male hero was the
+  // only cast on this shared intake entrance) — gender selection inside
+  // the flow still re-scopes everything via data-world.
+  const heroWorld = resolveWorld(loc);
   const prefersReducedMotion = useReducedMotion();
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
   const [step, setStep] = useState(0);
@@ -560,8 +564,10 @@ export default function Assessment() {
               data-testid="assessment-hero-editorial"
             >
               <img
-                src={heroAssessment}
-                alt="A man sits upright at a desk by a bright window at dawn, tablet in hand, beginning his health intake"
+                src={heroWorld === "women" ? "img/img_329e054306f2.webp" : heroAssessment}
+                alt={heroWorld === "women"
+                  ? "A woman sits upright at a desk by a bright window at dawn, tablet in hand, beginning her health intake"
+                  : "A man sits upright at a desk by a bright window at dawn, tablet in hand, beginning his health intake"}
                 className="w-full object-cover"
                 style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
                 loading="eager"
@@ -678,8 +684,9 @@ export default function Assessment() {
                 }}
               >
                 The intake takes about four minutes. It feeds a 38-biomarker lab panel, a
-                physician review, and a compounded protocol dosed to your measured IGF-1,
-                metabolic, and hormonal numbers. No questionnaire-only prescribing.
+                physician review, and a compounded protocol dosed to your measured{" "}
+                <span style={{ whiteSpace: "nowrap" }}>IGF-1</span>, metabolic, and hormonal
+                numbers. No questionnaire-only prescribing.
               </p>
             </div>
           </div>
@@ -699,7 +706,9 @@ export default function Assessment() {
           for the whole flow — female → orchid/rose-quartz, male → azure/steel.
           Until a sex is chosen the flow inherits the layout's resolved world. */}
       <div
-        className="min-h-screen flex flex-col"
+        // min-h-screen only mid-flow: on the landing step it stacked ~330px
+        // of blank porcelain below the hero + landing band
+        className={`${inFlow ? "min-h-screen " : ""}flex flex-col`}
         style={{ backgroundColor: "var(--nx-bg)" }}
         data-world={form.gender === "female" ? "women" : form.gender === "male" ? "men" : undefined}
         data-testid="assessment-page"
@@ -1311,7 +1320,9 @@ export default function Assessment() {
                               alignItems: "flex-start",
                               gap: "1rem",
                               padding: "0.75rem 1.25rem",
-                              backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
+                              // single surface + hairline rows: the ceramic/cream
+                              // zebra put warm bands on the cool azure page
+                              backgroundColor: "var(--nx-bg)",
                             }}
                           >
                             <span
@@ -1534,6 +1545,10 @@ export default function Assessment() {
                 </AnimatePresence>
               </div>
 
+              {/* Trust strip ABOVE the sticky bar so the bar is the column's
+                  last element and never detaches from the viewport bottom */}
+              {inFlow && <TrustStrip />}
+
               {/* Sticky bottom action — persistent across steps 1–7 */}
               {inFlow && (
                 <StepNav
@@ -1544,9 +1559,6 @@ export default function Assessment() {
                   backLabel={footerBackLabel}
                 />
               )}
-
-              {/* Trust strip — shown on question + review steps */}
-              {inFlow && <TrustStrip />}
             </div>
 
             {/* Sidebar — shown on question + review steps */}
