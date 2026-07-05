@@ -303,7 +303,7 @@ export default function Physicians() {
                         color: "var(--nx-cobalt)",
                       }}
                     >
-                      Board-certified · Lab-gated · Physician-reviewed
+                      Board-certified <span aria-hidden="true">·</span> Lab-gated <span aria-hidden="true">·</span> Physician-reviewed
                     </p>
                   </div>
                 </div>
@@ -339,11 +339,13 @@ export default function Physicians() {
             style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "stretch" }}
           >
           <div
+            role="list"
+            aria-label="Physician review steps"
             style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
           >
             {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
-                <div style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.5rem 2.25rem", height: "100%" }}>
+                <div role="listitem" style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.5rem 2.25rem", height: "100%" }}>
                   <p style={{ fontFamily: F, fontSize: "clamp(2.25rem, 4vw, 3rem)", fontWeight: 500, color: "var(--nx-cobalt)", lineHeight: 1, marginBottom: "1.25rem", opacity: 0.85 }}>{n}</p>
                   <p style={{ fontFamily: F,  fontSize: "var(--nx-t-lg)", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "0.75rem" }}>{label}</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{body}</p>
@@ -501,7 +503,7 @@ function PhysiciansHeroDark() {
               against your bloodwork, and signed by a doctor licensed in your state. No algorithms,
               no auto-approval.
             </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
+            <div role="list" style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
               {[
                 "Reads your labs first",
                 "Signs every refill",
@@ -510,6 +512,7 @@ function PhysiciansHeroDark() {
               ].map((chip) => (
                 <span
                   key={chip}
+                  role="listitem"
                   style={{
                     fontFamily: F,
                     fontSize: "var(--nx-t-xs)",
@@ -553,7 +556,7 @@ function PhysiciansHeroDark() {
                   background: "rgba(255,255,255,0.04)",
                 }}
               >
-                How review works ↓
+                How review works <span aria-hidden="true">↓</span>
               </a>
             </div>
           </div>
@@ -561,6 +564,8 @@ function PhysiciansHeroDark() {
           {/* RIGHT: standards tiles — no individual identities */}
           <div
             id="physician-standards"
+            role="list"
+            aria-label="Physician standards"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(2, 1fr)",
@@ -576,6 +581,7 @@ function PhysiciansHeroDark() {
             ].map((tile) => (
               <div
                 key={tile.k}
+                role="listitem"
                 style={{
                   borderRadius: "var(--nx-r-md)",
                   overflow: "hidden",
@@ -627,6 +633,8 @@ function PhysiciansHeroDark() {
       >
         <div
           className="nx-container max-w-screen-xl"
+          role="list"
+          aria-label="Physician review at a glance"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
@@ -635,7 +643,7 @@ function PhysiciansHeroDark() {
           }}
         >
           {physicianReview.stats.map((s) => (
-            <div key={s.v} style={{ textAlign: "center" }}>
+            <div key={s.v} role="listitem" style={{ textAlign: "center" }}>
               <div
                 style={{
                   fontFamily: F,
@@ -731,6 +739,8 @@ function PhysicianCredentials() {
 
         <div
           data-testid="physicians-boards"
+          role="list"
+          aria-label="Board certifications and licensure"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
@@ -740,6 +750,7 @@ function PhysicianCredentials() {
           {boards.map((c) => (
             <div
               key={c.abbr}
+              role="listitem"
               data-testid={`physicians-board-${c.abbr.replace(/\s+/g, "-").toLowerCase()}`}
               style={{ borderTop: "2px solid var(--nx-cobalt)", paddingTop: "1rem" }}
             >
