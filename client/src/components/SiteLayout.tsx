@@ -1,4 +1,5 @@
 import { Suspense, lazy } from "react";
+import { anchor } from "@/lib/anchors";
 import { useLocation } from "wouter";
 
 type World = "men" | "women";
@@ -62,7 +63,7 @@ export function SiteLayout({
   return (
     <div className="min-h-screen flex flex-col" data-world={__world}>
       <a
-        href="#main-content"
+        href={anchor("#main-content")}
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-[var(--nx-fg)] focus:text-[var(--nx-bg)] focus:px-4 focus:py-2 focus:z-50"
       >
         Skip to main content

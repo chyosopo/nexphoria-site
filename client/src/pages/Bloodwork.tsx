@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { anchor } from "@/lib/anchors";
 import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
@@ -38,19 +39,9 @@ function Hero() {
       data-testid="bloodwork-hero"
       className="nx-gradient-hero-dark relative overflow-hidden" style={{ color: "var(--nx-ceramic)" }}
     >
-      {/* Hero score ring — the marker-count moment */}
-      <div className="hidden lg:block absolute pointer-events-none" style={{ right: "5%", top: "50%", transform: "translateY(-50%)" }} aria-hidden>
-        <svg width="300" height="300" viewBox="0 0 220 220">
-          <g transform="rotate(-90 110 110)">
-            <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(243, 245, 247,0.08)" strokeWidth="10" />
-            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-success)" strokeWidth="10" strokeLinecap="round" strokeDasharray="453 597" />
-            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-acid)" strokeWidth="10" strokeLinecap="round" strokeDasharray="92 597" strokeDashoffset="-461" style={{ animationDelay: "0.2s" }} />
-            <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-rust)" strokeWidth="10" strokeLinecap="round" strokeDasharray="36 597" strokeDashoffset="-559" style={{ animationDelay: "0.4s" }} />
-          </g>
-          <text x="110" y="104" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "500 52px " + S }}>{PANEL_TOTAL_MARKERS}</text>
-          <text x="110" y="132" textAnchor="middle" fill="rgba(243, 245, 247,0.6)" style={{ font: "500 13px " + FONT }}>markers · one draw</text>
-        </svg>
-      </div>
+      {/* (Decorative hero score ring removed — it was absolutely positioned
+          over the right column and collided with the Live-panel glass card
+          at every desktop width.) */}
       <div
         className="nx-container"
         style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3rem, 6vw, 5rem)" }}
@@ -107,7 +98,7 @@ function Hero() {
                   marginBottom: "2rem",
                 }}
               >
-                {PANEL_TOTAL_MARKERS} biomarkers across {PANEL_CATEGORY_COUNT} panels twice a year —
+                {PANEL_TOTAL_MARKERS} biomarkers across {PANEL_CATEGORY_COUNT} panels, re-drawn every 90 days —
                 signals of 1,000+ conditions before symptoms surface. Every Nexphoria protocol
                 starts here and adjusts every quarter against your own numbers.
               </p>
@@ -147,7 +138,7 @@ function Hero() {
                 {[
                   { n: `${PANEL_TOTAL_MARKERS}+`, l: "Biomarkers" },
                   { n: PANEL_CATEGORY_COUNT.toString(), l: "Panels" },
-                  { n: "2×/yr", l: "Retest cadence" },
+                  { n: "90d", l: "Retest cadence" },
                 ].map((k) => (
                   <div key={k.l} className="nx-stat-card on-dark">
                     <span className="nx-stat-num" style={NUM}>{k.n}</span>
@@ -578,10 +569,9 @@ function PanelExplorer() {
               borderRadius: "var(--nx-r-md)",
               display: "grid",
               gap: "1.25rem",
-              gridTemplateColumns: "auto 1fr",
               alignItems: "start",
             }}
-            className="md:grid-cols-[auto_1fr]"
+            className="grid-cols-1 md:grid-cols-[auto_1fr]"
           >
             <div
               style={{
@@ -712,7 +702,7 @@ function HowItWorks() {
       n: "01",
       Icon: Droplet,
       title: "Baseline draw",
-      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of 2,500+ centers or use the at-home collection kit.`,
+      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of 2,000+ centers or use the at-home collection kit.`,
     },
     {
       n: "02",
@@ -987,7 +977,7 @@ function PanelTiers() {
    ══════════════════════════════════════════════════════════════ */
 export default function Bloodwork() {
   useSeo({
-    title: "Peptide therapy bloodwork — 38 biomarkers, every 90 days",
+    title: `Peptide therapy bloodwork — ${PANEL_TOTAL_MARKERS} biomarkers, every 90 days`,
     description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} partner-laboratory panels. Calibrate your protocol to your chemistry, not a population average. Results appear in your portal after physician review.`,
     path: "/bloodwork",
     jsonLd: [
@@ -1043,7 +1033,7 @@ function SystemsMosaic() {
           {BIOMARKER_PANEL.map((cat) => {
             const [bg, ink] = PANEL_TINTS[cat.id] ?? PANEL_TINTS["bio-age"];
             return (
-              <a key={cat.id} href="#explore" className="group block no-underline overflow-hidden" style={{ background: bg, borderRadius: "var(--nx-r-md)", padding: 10 }} data-testid={`mosaic-${cat.id}`}>
+              <a key={cat.id} href={anchor("#explore")} className="group block no-underline overflow-hidden" style={{ background: bg, borderRadius: "var(--nx-r-md)", padding: 10 }} data-testid={`mosaic-${cat.id}`}>
                 <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "1 / 1" }}>
                   <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy" className="w-full h-full transition-transform duration-700 group-hover:scale-[1.05]" style={{ objectFit: "cover" }} />
                 </span>
@@ -1059,7 +1049,7 @@ function SystemsMosaic() {
               </a>
             );
           })}
-          <a href="/#/assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-fg)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
+          <a href="assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-fg)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
             <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.15, color: "var(--nx-bg)" }}>
               Re-tested every <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>90 days.</em>
             </span>
@@ -1158,10 +1148,10 @@ function OfferStack() {
             <div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Included with every protocol. Available standalone.</p>
               <div className="mt-4 flex flex-col gap-2.5">
-                <a href="/#/assessment" className="nx-cta-cobalt inline-flex items-center justify-center gap-2" data-testid="offer-cta">
+                <a href="assessment" className="nx-cta-cobalt inline-flex items-center justify-center gap-2" data-testid="offer-cta">
                   Book your baseline panel <ArrowRight size={16} strokeWidth={2.2} />
                 </a>
-                <a href="/#/how-it-works" className="nx-cta-ghost inline-flex items-center justify-center">See how protocols work</a>
+                <a href="how-it-works" className="nx-cta-ghost inline-flex items-center justify-center">See how protocols work</a>
               </div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-muted)", marginTop: "1.1rem" }}>
                 Panels require eligibility review and a physician order. Results inform your protocol; they are not a standalone diagnosis. Availability varies by state.
@@ -1181,7 +1171,9 @@ function ActionPlan() {
       <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
       <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
-      <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
+      {/* zIndex 2: all content paints above BOTH overlay frames — the second
+          overlay (zIndex 1) was covering the guidance card at 390px */}
+      <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem", zIndex: 2 }}>
         <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-bg)" }}>
           <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
           <span className="inline-flex items-center gap-2"><Apple size={16} strokeWidth={2} /> Nutrition</span>
@@ -1249,7 +1241,9 @@ function GlowingBody() {
 
 /* ══ MARKER WALL — the language of your body ══ */
 function MarkerWall() {
-  const names = BIOMARKER_PANEL.flatMap((c) => c.markers.map((m) => m.name.split(" (")[0]));
+  // Dedupe after stripping parentheticals — "Lymphocytes (absolute count)"
+  // and "(percentage)" would otherwise drift past as side-by-side twins.
+  const names = Array.from(new Set(BIOMARKER_PANEL.flatMap((c) => c.markers.map((m) => m.name.split(" (")[0]))));
   const rows = [names.slice(0, 5), names.slice(9, 13), names.slice(18, 22), names.slice(27, 31), names.slice(36, 40), names.slice(45, 49), names.slice(54, 58)];
   const ops = [0.16, 0.3, 0.5, 0.75, 0.5, 0.3, 0.16];
   return (
@@ -1282,7 +1276,7 @@ function SectionPills() {
     <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-border)" }}>
       <div className="nx-container flex gap-2 overflow-x-auto" style={{ paddingTop: "10px", paddingBottom: "10px", scrollbarWidth: "none" }}>
         {items.map(([t, h]) => (
-          <a key={h} href={h} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "color-mix(in srgb, var(--nx-cobalt) 16%, transparent)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "7px 15px" }}>
+          <a key={h} href={anchor(h)} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "color-mix(in srgb, var(--nx-cobalt) 16%, transparent)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "7px 15px" }}>
             {t}
           </a>
         ))}

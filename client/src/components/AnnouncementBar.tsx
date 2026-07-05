@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { X } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
@@ -61,8 +62,8 @@ export function AnnouncementBar({
         >
           {message}
         </span>
-        <a
-          href={`#${ctaHref}`}
+        <Link
+          href={ctaHref}
           className="hidden sm:inline text-[10px] uppercase tracking-[0.18em] hover:opacity-80 transition-opacity"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
@@ -73,7 +74,7 @@ export function AnnouncementBar({
           data-testid="link-announcement-cta"
         >
           {ctaLabel} →
-        </a>
+        </Link>
         <button
           type="button"
           onClick={() => setDismissed(true)}

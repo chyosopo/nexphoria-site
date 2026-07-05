@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { anchor } from "@/lib/anchors";
 import { Link, useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -135,12 +136,12 @@ export default function JournalArticle() {
 
           <div className="mx-grid">
             <ColoredHeroTile
-              href={`/journal/${article.slug}`}
+              href={anchor(`#sec-${article.sections[0]?.id ?? ""}`)}
               tone="sand"
               glyph={TileGlyphs.leaf}
               label={<span>{article.title}</span>}
               caption={`${article.readTime} read · ${articleDate}`}
-              ctaLabel="Read article"
+              ctaLabel="Start reading"
             />
             <ColoredHeroTile
               href="/journal"
@@ -232,7 +233,7 @@ export default function JournalArticle() {
                 <li key={s.id}>
                   <a
                     data-testid={`toc-link-${s.id}`}
-                    href={`#sec-${s.id}`}
+                    href={anchor(`#sec-${s.id}`)}
                     aria-current={activeSection === `sec-${s.id}` ? "location" : undefined}
                     onClick={(e) => {
                       e.preventDefault();
@@ -259,8 +260,10 @@ export default function JournalArticle() {
             </nav>
           </aside>
 
-          {/* Body — tighter reading measure for editorial calm (~68ch at 17px) */}
-          <article style={{ maxWidth: 680 }}>
+          {/* Body — tighter reading measure for editorial calm (~68ch at 17px).
+              minWidth 0 stops wide tables leaking intrinsic width into the 1fr
+              track (they scroll internally instead of dragging copy off-screen). */}
+          <article style={{ maxWidth: 680, minWidth: 0 }}>
             {article.sections.map((s) => (
               <div key={s.id} id={`sec-${s.id}`} style={{ marginBottom: 56, scrollMarginTop: 96 }}>
                 <h2
@@ -773,6 +776,10 @@ export default function JournalArticle() {
           .article-toc {
             position: static !important;
             order: -1;
+            min-width: 0;
+          }
+          .article-grid > article {
+            min-width: 0;
           }
         }
       `}</style>

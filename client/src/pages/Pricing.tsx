@@ -1214,7 +1214,6 @@ export default function Pricing() {
       </section>
 
       <FinalCTAStrip
-        gender="women"
         title="No consultation fee. Labs included."
         sub="Start your intake. Physician review follows every partner-laboratory draw."
       />

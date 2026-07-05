@@ -81,13 +81,13 @@ export function StartIntakeButton({
     }
   };
 
-  // NOTE: the anchor href points to the bare route (no query) because wouter's
-  // hash-location matcher does not strip query strings from the pathname on cold
-  // load. The onClick handler still preserves source/stack via setLocation, and the
-  // resulting URL will contain the query as location.search for analytics/personalization.
+  // NOTE: the href is BASE-RELATIVE (no leading slash) so it resolves against
+  // the runtime <base> tag — correct at any route depth on both hosting modes.
+  // Normal clicks are handled by onClick (analytics + wouter navigation); the
+  // href covers middle-click / open-in-new-tab / no-JS.
   return (
     <a
-      href={`#${INTAKE_ROUTE}`}
+      href={target.slice(1)}
       onClick={handleClick}
       style={style}
       data-testid={`button-intake-${source || productSlug || "generic"}`}

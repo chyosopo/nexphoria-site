@@ -1,4 +1,5 @@
 import { SiteLayout } from "@/components/SiteLayout";
+import { anchor } from "@/lib/anchors";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
@@ -315,6 +316,7 @@ export default function Physicians() {
 
       {/* ── How physician review works ── */}
       <section
+        id="how-review-works"
         className="nx-section-y"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
@@ -341,7 +343,7 @@ export default function Physicians() {
           <div
             role="list"
             aria-label="Physician review steps"
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
           >
             {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
@@ -397,7 +399,6 @@ export default function Physicians() {
       <PhysicianCredentials />
 
       <FinalCTAStrip
-        gender="women"
         title="Your physician review is included."
         sub="A CLIA-certified partner-laboratory panel is drawn first. A board-certified physician reviews it before any prescription."
       />
@@ -534,10 +535,10 @@ function PhysiciansHeroDark() {
                 Start your assessment
               </StartIntakeButton>
               <a
-                href="#physician-standards"
+                href={anchor("#how-review-works")}
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("physician-standards")?.scrollIntoView({ behavior: "smooth" });
+                  document.getElementById("how-review-works")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 style={{
                   fontFamily: F,

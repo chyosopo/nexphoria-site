@@ -7,8 +7,10 @@ import { Stethoscope, FlaskConical, Package, TestTube, Award, ShieldCheck } from
  * Comes IMMEDIATELY after hero (reference: trust architecture before doctor cards).
  */
 
+/* TRUE claims only — the footer states LegitScript verification is pending,
+   so this strip must never say "Certified" (azure charter). */
 const certMarks = [
-  "LegitScript Certified",
+  "LegitScript verification pending",
   "CLIA-Certified Lab Network",
   "USP-Compliant Compounding",
   "503A Licensed Pharmacy",

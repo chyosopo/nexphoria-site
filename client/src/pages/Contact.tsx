@@ -114,11 +114,11 @@ export default function Contact() {
 
           <div className="mx-grid">
             <ColoredHeroTile
-              href="mailto:support@nexphoria.com"
+              href="mailto:hello@nexphoria.com"
               tone="sky"
               glyph={TileGlyphs.circle}
-              label={<>Patient support<br /><span>24/7 available</span></>}
-              caption="Average reply: 2hrs"
+              label={<>Patient support<br /><span>Mon–Fri, 9–6 ET</span></>}
+              caption="Replies on business days"
               ctaLabel="Message us"
             />
             <ColoredHeroTile

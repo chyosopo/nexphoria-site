@@ -42,7 +42,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does the process work start to finish?",
-        a: "Complete the a structured medical intake. A partner-laboratory lab requisition is generated in your member portal. Draw at any of 2,500+ partner laboratory locations nationwide. A board-certified physician reviews your labs and intake by a licensed physician. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
+        a: "Complete a structured medical intake. A partner-laboratory requisition is generated in your member portal, and you can draw at any of 2,000+ partner laboratory locations nationwide. A board-certified physician reviews your labs and intake, your telehealth consult is scheduled through Bask Health, and the protocol is prescribed, compounded, and shipped cold-chain.",
       },
       {
         q: "What if the physician declines my protocol?",
@@ -109,7 +109,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How are peptides shipped?",
-        a: "All orders ship cold-chain overnight with temperature-monitored packaging and temperature indicator cards. We currently ship to the contiguous 48 US states. Each shipment includes your prescription label, a certificate of analysis, and administration instructions from your physician.",
+        a: "All orders ship cold-chain overnight with temperature-monitored packaging and temperature indicator cards. We ship to all 50 US states; GLP-1 protocols are not available in AK, AR, IN, MI, MN, or SC. Each shipment includes your prescription label, a certificate of analysis, and administration instructions from your physician.",
       },
       {
         q: "How long does it take to receive my order?",
@@ -387,7 +387,6 @@ export default function FAQPage() {
       </section>
 
       <FinalCTAStrip
-        gender="women"
         title="Still have questions?"
         sub="Your assigned physician answers clinical questions via secure portal message after review."
       />

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { anchor } from "@/lib/anchors";
 import { Link } from "wouter";
 import { Plus, Minus, FileText, BookOpen, Send, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -246,7 +247,7 @@ function TOCSidebar({ activeId }: { activeId: string }) {
           return (
             <li key={f.id}>
               <a
-                href={`#science-${f.id}`}
+                href={anchor(`#science-${f.id}`)}
                 style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: isActive ? 600 : 400, color: isActive ? "var(--nx-cobalt)" : "var(--nx-fg-muted)", textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", transition: "color var(--nx-dur-2) var(--nx-ease)" }}
               >
                 {isActive && <span style={{ display: "inline-block", width: "16px", height: "1px", backgroundColor: "var(--nx-cobalt)", flexShrink: 0 }} />}
@@ -910,7 +911,6 @@ export default function Science() {
       <ScienceComparisonSection />
       <ScienceFAQSection />
       <FinalCTAStrip
-        gender="women"
         title="Backed by mechanism. Prescribed to your baseline."
         sub="Partner-laboratory labs included with every protocol. Physician review after receipt."
       />
@@ -1077,7 +1077,7 @@ function ScienceHeroDark() {
                 Start your assessment
               </StartIntakeButton>
               <a
-                href="#section-mechanisms"
+                href={anchor("#section-mechanisms")}
                 onClick={(e) => {
                   e.preventDefault();
                   // A JS-supplied scrollIntoView behavior is not overridden by the CSS

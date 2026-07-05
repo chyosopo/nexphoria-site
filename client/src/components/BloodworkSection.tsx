@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { anchor } from "@/lib/anchors";
 import { BloodworkDashboard } from "@/components/BloodworkDashboard";
 
 /* ─────────────────────────────────────────────────────────────
@@ -121,7 +122,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
 
             {/* Inline link */}
             <a
-              href="#how-we-read-labs"
+              href={anchor("#how-we-read-labs")}
               data-testid="bloodwork-how-we-read-link"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",

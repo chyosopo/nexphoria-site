@@ -4,6 +4,7 @@ import { Reveal } from "./Reveal";
 import { S } from "@/lib/typography";
 
 interface FinalCTAStripProps {
+  /** omit on shared/unworlded pages — the browse CTA then goes to the neutral catalog */
   gender?: "women" | "men";
   title?: string;
   sub?: string;
@@ -15,11 +16,11 @@ interface FinalCTAStripProps {
  * Scroll-fade entrance via Reveal.
  */
 export function FinalCTAStrip({
-  gender = "women",
+  gender,
   title,
   sub = "Complete your intake in 4 minutes. Blood panel included with every protocol.",
 }: FinalCTAStripProps) {
-  const browsePath = gender === "men" ? "/men/peptides" : "/women/peptides";
+  const browsePath = gender ? `/${gender}/peptides` : "/peptides";
 
   const defaultTitle =
     gender === "men"
@@ -119,7 +120,7 @@ export function FinalCTAStrip({
           >
             {/* Cream button (inverted) */}
             <StartIntakeButton
-              productSlug={`${gender}-final-cta`}
+              productSlug={gender ? `${gender}-final-cta` : "final-cta"}
               source="final-cta-strip"
               style={{
                 backgroundColor: "var(--nx-ceramic)",

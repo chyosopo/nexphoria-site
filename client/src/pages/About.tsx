@@ -98,7 +98,7 @@ const PILLARS = [
   {
     num: "02",
     title: "Compounded",
-    desc: "Sterile-prepared in an state-licensed 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
+    desc: "Sterile-prepared in a state-licensed 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
   },
   {
     num: "03",
@@ -147,7 +147,7 @@ const STANDARDS = [
   {
     num: "02",
     title: "503A / USP <797>",
-    detail: "Every prescription compounded to sterile-preparation standards in an state-licensed US pharmacy.",
+    detail: "Every prescription compounded to sterile-preparation standards in a state-licensed US pharmacy.",
   },
   {
     num: "03",
@@ -161,7 +161,6 @@ const STANDARDS = [
   },
 ];
 
-const PRESS = ["GQ", "Men's Health", "Forbes", "Bloomberg", "Biohacker"];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -701,37 +700,9 @@ export default function About() {
           </div>
           </Reveal>
 
-          {/* Press strip */}
-          <Reveal>
-            <div
-              data-testid="about-press-strip"
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.5rem 2.5rem",
-                marginTop: "3.5rem",
-                paddingTop: "2.5rem",
-                borderTop: "1px solid var(--nx-border)",
-              }}
-            >
-              <span style={{ ...monoCaption, flexShrink: 0 }}>Featured in —</span>
-              {PRESS.map((p) => (
-                <span
-                  key={p}
-                  style={{
-                    fontFamily: FONT,
-                    fontWeight: 500,
-                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
-                    color: "var(--nx-fg)",
-                    opacity: 0.55,
-                  }}
-                >
-                  {p}
-                </span>
-              ))}
-            </div>
-          </Reveal>
+          {/* Press strip removed pending real coverage — a fabricated
+              "Featured in" list violates the TRUE-claims law. Reinstate
+              only with verifiable placements. */}
         </div>
       </section>
 
@@ -947,7 +918,6 @@ export default function About() {
       </section>
 
       <FinalCTAStrip
-        gender="women"
         title="Your protocol, built on your bloodwork."
         sub="Start your intake and receive a physician-reviewed protocol built for your physiology. CLIA-certified partner-laboratory panel included."
       />
