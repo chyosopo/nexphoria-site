@@ -8,7 +8,7 @@ export type Tier = {
   months: 1 | 3 | 6;
   pricePerMonth: number;
   totalPrice: number;
-  badge?: "MOST POPULAR" | "BEST VALUE";
+  badge?: "Most popular" | "Best value";
   savings?: string;
 };
 
@@ -277,8 +277,8 @@ export const stacks: Stack[] = [
     ],
     pricing: [
       { duration: "1-month", months: 1, pricePerMonth: 349, totalPrice: 349 },
-      { duration: "3-month", months: 3, pricePerMonth: 297, totalPrice: 891, badge: "MOST POPULAR", savings: "Save 15%" },
-      { duration: "6-month", months: 6, pricePerMonth: 262, totalPrice: 1572, badge: "BEST VALUE", savings: "Save 25%" },
+      { duration: "3-month", months: 3, pricePerMonth: 297, totalPrice: 891, badge: "Most popular", savings: "Save 15%" },
+      { duration: "6-month", months: 6, pricePerMonth: 262, totalPrice: 1572, badge: "Best value", savings: "Save 25%" },
     ],
     outcomes: [
       "Faster soft-tissue repair (tendon, ligament, muscle)",
@@ -344,8 +344,8 @@ export const stacks: Stack[] = [
     ],
     pricing: [
       { duration: "1-month", months: 1, pricePerMonth: 249, totalPrice: 249 },
-      { duration: "3-month", months: 3, pricePerMonth: 212, totalPrice: 636, badge: "MOST POPULAR", savings: "Save 15%" },
-      { duration: "6-month", months: 6, pricePerMonth: 187, totalPrice: 1122, badge: "BEST VALUE", savings: "Save 25%" },
+      { duration: "3-month", months: 3, pricePerMonth: 212, totalPrice: 636, badge: "Most popular", savings: "Save 15%" },
+      { duration: "6-month", months: 6, pricePerMonth: 187, totalPrice: 1122, badge: "Best value", savings: "Save 25%" },
     ],
     outcomes: [
       "Visibly firmer, more even skin texture",
@@ -411,8 +411,8 @@ export const stacks: Stack[] = [
     ],
     pricing: [
       { duration: "1-month", months: 1, pricePerMonth: 449, totalPrice: 449 },
-      { duration: "3-month", months: 3, pricePerMonth: 392, totalPrice: 1176, badge: "MOST POPULAR", savings: "Save 13%" },
-      { duration: "6-month", months: 6, pricePerMonth: 348, totalPrice: 2088, badge: "BEST VALUE", savings: "Save 22%" },
+      { duration: "3-month", months: 3, pricePerMonth: 392, totalPrice: 1176, badge: "Most popular", savings: "Save 13%" },
+      { duration: "6-month", months: 6, pricePerMonth: 348, totalPrice: 2088, badge: "Best value", savings: "Save 22%" },
     ],
     outcomes: [
       "+22% energy by week 8",
@@ -478,8 +478,8 @@ export const stacks: Stack[] = [
     ],
     pricing: [
       { duration: "1-month", months: 1, pricePerMonth: 289, totalPrice: 289 },
-      { duration: "3-month", months: 3, pricePerMonth: 251, totalPrice: 753, badge: "MOST POPULAR", savings: "Save 13%" },
-      { duration: "6-month", months: 6, pricePerMonth: 228, totalPrice: 1368, badge: "BEST VALUE", savings: "Save 21%" },
+      { duration: "3-month", months: 3, pricePerMonth: 251, totalPrice: 753, badge: "Most popular", savings: "Save 13%" },
+      { duration: "6-month", months: 6, pricePerMonth: 228, totalPrice: 1368, badge: "Best value", savings: "Save 21%" },
     ],
     outcomes: [
       "+38% deep sleep (N3) by week 6",
@@ -545,8 +545,8 @@ export const stacks: Stack[] = [
     ],
     pricing: [
       { duration: "1-month", months: 1, pricePerMonth: 499, totalPrice: 499 },
-      { duration: "3-month", months: 3, pricePerMonth: 448, totalPrice: 1344, badge: "MOST POPULAR", savings: "Save 10%" },
-      { duration: "6-month", months: 6, pricePerMonth: 398, totalPrice: 2388, badge: "BEST VALUE", savings: "Save 20%" },
+      { duration: "3-month", months: 3, pricePerMonth: 448, totalPrice: 1344, badge: "Most popular", savings: "Save 10%" },
+      { duration: "6-month", months: 6, pricePerMonth: 398, totalPrice: 2388, badge: "Best value", savings: "Save 20%" },
     ],
     outcomes: [
       "\u201312-18% body weight by week 16",

@@ -62,7 +62,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
     return true;
   });
 
-  const usedCategories = [...new Set(filteredPeptides.map((p) => p.category))];
+  const usedCategories = Array.from(new Set(filteredPeptides.map((p) => p.category)));
 
   const detailBase = `/${gender}/peptides`;
   const navVariant = gender;

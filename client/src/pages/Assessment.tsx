@@ -8,7 +8,7 @@ import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
 import { SiteLayout } from "@/components/SiteLayout";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
-import { GoalVialTile, GOAL_TILE_CONFIG } from "@/components/GoalVialTile";
+import { GoalVialTile, GOAL_TILE_CONFIG, goalGlyphToMolecular } from "@/components/GoalVialTile";
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
 import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
@@ -439,7 +439,11 @@ export default function Assessment() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      await apiRequest("POST", "/api/intake", form);
+      await apiRequest("/api/intake", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
     } catch {
       // Endpoint may not exist yet — treat as success
     }
@@ -1463,7 +1467,7 @@ export default function Assessment() {
                       </div>
                       <div style={{ backgroundColor: tintBg[tone], padding: "1.25rem", display: "flex", gap: "1rem", alignItems: "center" }}>
                         <div style={{ flexShrink: 0 }}>
-                          <VialArt tone={tone} glyph={cfg.glyph} size={92} />
+                          <VialArt tone={tone} glyph={goalGlyphToMolecular(cfg.glyph ?? "drop")} size={92} />
                         </div>
                         <div style={{ minWidth: 0, flex: 1 }}>
                           <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: tintInk[tone], opacity: 0.6, margin: "0 0 0.375rem 0" }}>

@@ -134,7 +134,6 @@ export default function JournalArticle() {
               href={`/journal/${article.slug}`}
               tone="sand"
               glyph={TileGlyphs.leaf}
-              priority
               label={<span>{article.title}</span>}
               caption={`${article.readTime} read · ${articleDate}`}
               ctaLabel="Read article"

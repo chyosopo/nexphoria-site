@@ -41,6 +41,7 @@ export function StartIntakeButton({
   variant = "primary",
   size = "lg",
   className,
+  style,
   children = "Start your assessment",
   showArrow = true,
 }: {
@@ -49,6 +50,7 @@ export function StartIntakeButton({
   variant?: Variant;
   size?: Size;
   className?: string;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
   showArrow?: boolean;
 }) {
@@ -87,6 +89,7 @@ export function StartIntakeButton({
     <a
       href={`#${INTAKE_ROUTE}`}
       onClick={handleClick}
+      style={style}
       data-testid={`button-intake-${source || productSlug || "generic"}`}
       className={cn(
         "group inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all",

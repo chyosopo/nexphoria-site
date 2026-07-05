@@ -10,6 +10,7 @@
  * user commits to a consult. Debounced 200ms so cursor sweeps don't inflate.
  */
 
+import * as React from "react";
 import { useRef, useState, useEffect } from "react";
 import { VialArt, categoryToTone, type Tone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
@@ -27,6 +28,25 @@ export interface GoalVialTileProps {
   selected: boolean;
   onClick: () => void;
   testId?: string;
+}
+
+/**
+ * Goal glyphs are friendly aliases; VialArt/MolecularGlyph only draw the
+ * molecular set. Map every alias to a real molecular glyph so the vial art
+ * never renders empty.
+ */
+export type GoalGlyph = "flask" | "leaf" | "spark" | "crescent" | "bolt" | "drop";
+type MolecularGlyphId = React.ComponentProps<typeof VialArt>["glyph"];
+const GOAL_GLYPH_TO_MOLECULAR: Record<GoalGlyph, MolecularGlyphId> = {
+  drop: "fragment",
+  flask: "ring",
+  leaf: "branch",
+  spark: "secretagogue",
+  crescent: "ghrh",
+  bolt: "helix",
+};
+export function goalGlyphToMolecular(glyph: GoalGlyph): MolecularGlyphId {
+  return GOAL_GLYPH_TO_MOLECULAR[glyph];
 }
 
 export function GoalVialTile({
@@ -187,7 +207,7 @@ export function GoalVialTile({
           }}
         >
           <div style={{ flexShrink: 0 }}>
-            <VialArt tone={tone} glyph={glyph} size={78} />
+            <VialArt tone={tone} glyph={goalGlyphToMolecular(glyph)} size={78} />
           </div>
           <div style={{ minWidth: 0 }}>
             <p
