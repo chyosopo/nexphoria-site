@@ -68,7 +68,7 @@ export default function Gate() {
         <p
           style={{
             fontFamily: F,
-            fontSize: 10,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -169,7 +169,7 @@ export default function Gate() {
             <p
               style={{
                 fontFamily: F,
-                fontSize: "11px",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
@@ -450,7 +450,7 @@ function GateCard({
         <span
           style={{
             fontFamily: F,
-            fontSize: 10,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -492,7 +492,7 @@ function GateCard({
             <p
               style={{
                 fontFamily: F,
-                fontSize: 10,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -523,7 +523,7 @@ function GateCard({
                         style={{
                           fontFamily: F,
                           
-                          fontSize: 13,
+                          fontSize: "var(--nx-t-sm)",
                           color: "var(--nx-rust)",
                           letterSpacing: "-0.01em",
                           lineHeight: 1,
@@ -534,7 +534,7 @@ function GateCard({
                       <span
                         style={{
                           fontFamily: F,
-                          fontSize: 14,
+                          fontSize: "var(--nx-t-sm)",
                           fontWeight: 600,
                           color: "var(--nx-ceramic)",
                           letterSpacing: "-0.01em",
@@ -546,7 +546,7 @@ function GateCard({
                     <span
                       style={{
                         fontFamily: F,
-                        fontSize: 11,
+                        fontSize: "var(--nx-t-xs)",
                         fontWeight: 500,
                         color: "rgba(246, 249, 252,0.75)",
                         whiteSpace: "nowrap",
@@ -558,7 +558,7 @@ function GateCard({
                   <span
                     style={{
                       fontFamily: F,
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       color: "rgba(246, 249, 252,0.6)",
                       letterSpacing: "0.01em",
                     }}
@@ -594,7 +594,7 @@ function GateCard({
         <p
           style={{
             fontFamily: F,
-            fontSize: "10px",
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 500,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
