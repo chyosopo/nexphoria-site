@@ -104,7 +104,7 @@ function RangeBar({ m }: { m: Biomarker }) {
         style={{
           position: "relative",
           height: 8,
-          borderRadius: 999,
+          borderRadius: "var(--nx-r-pill)",
           backgroundColor: "var(--nx-bg-cream)",
           border: "1px solid var(--nx-border)",
         }}
@@ -119,7 +119,7 @@ function RangeBar({ m }: { m: Biomarker }) {
             width: `${bandWidth}%`,
             backgroundColor: inRange ? "var(--nx-acid)" : "var(--nx-rock)",
             opacity: inRange ? 0.55 : 0.7,
-            borderRadius: 999,
+            borderRadius: "var(--nx-r-pill)",
           }}
         />
         {/* current value marker */}
@@ -131,7 +131,7 @@ function RangeBar({ m }: { m: Biomarker }) {
             transform: "translate(-50%, -50%)",
             width: 12,
             height: 12,
-            borderRadius: 999,
+            borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-cobalt)",
             border: "2px solid var(--nx-ceramic)",
             boxShadow: "0 0 0 1px var(--nx-cobalt)",
@@ -172,7 +172,7 @@ function Delta({ history }: { history: number[] }) {
     <span
       style={{
         fontFamily: FONT,
-        fontSize: 12,
+        fontSize: "var(--nx-t-xs)",
         fontWeight: 600,
         color,
         display: "inline-flex",
@@ -199,7 +199,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
       style={{
         backgroundColor: "var(--nx-ceramic)",
         border: "1px solid var(--nx-border)",
-        borderRadius: 16,
+        borderRadius: "var(--nx-r-md)",
         padding: "18px 20px 16px",
         display: "flex",
         flexDirection: "column",
@@ -225,7 +225,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           <h3
             style={{
               fontFamily: FONT,
-              fontSize: 15,
+              fontSize: "var(--nx-t-base)",
               fontWeight: 600,
               color: "var(--nx-fg)",
               lineHeight: 1.15,
@@ -234,7 +234,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           >
             {m.name}
             {m.abbr && (
-              <span style={{ color: "var(--nx-fg-muted)", fontWeight: 500 }}> · {m.abbr}</span>
+              <span style={{ color: "var(--nx-fg-muted)", fontWeight: 500 }}><span aria-hidden="true"> · </span>{m.abbr}</span>
             )}
           </h3>
         </div>
@@ -250,7 +250,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
             color: meta.color,
             backgroundColor: meta.bg,
             padding: "4px 8px",
-            borderRadius: 999,
+            borderRadius: "var(--nx-r-pill)",
             whiteSpace: "nowrap",
           }}
         >
@@ -278,7 +278,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           <span
             style={{
               fontFamily: FONT,
-              fontSize: 12,
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
               color: "var(--nx-fg-muted)",
               ...NUM,
