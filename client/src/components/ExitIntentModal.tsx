@@ -187,7 +187,7 @@ export function ExitIntentModal() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 10,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -281,7 +281,7 @@ export function ExitIntentModal() {
                       backgroundColor: "var(--nx-fg)",
                       color: "var(--nx-bg-cream, var(--nx-ceramic))",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 11,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 600,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -297,7 +297,7 @@ export function ExitIntentModal() {
                     style={{
                       marginTop: 8,
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-danger)",
                     }}
                     role="alert"
@@ -309,7 +309,7 @@ export function ExitIntentModal() {
                   style={{
                     marginTop: 14,
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 11,
+                    fontSize: "var(--nx-t-xs)",
                     color: "var(--nx-fg-muted)",
                     lineHeight: 1.5,
                   }}
