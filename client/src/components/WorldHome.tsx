@@ -151,7 +151,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                       <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.1vw,23px)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
                         {CATEGORY_LABELS[cat]}
                       </h2>
-                      <ArrowRight size={16} strokeWidth={2.2} style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
+                      <ArrowRight size={16} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
                     </div>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
                       {CATEGORY_JOBS[cat]}
