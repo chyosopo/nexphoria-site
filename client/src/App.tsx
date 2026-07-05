@@ -20,10 +20,10 @@ import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
 
 import NotFound from "@/pages/not-found";
-import Booking from "@/pages/Booking";
 
 // Pages — lazy loaded (code-split)
 const Category = lazy(() => import("@/pages/Category"));
+const Booking = lazy(() => import("@/pages/Booking"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
