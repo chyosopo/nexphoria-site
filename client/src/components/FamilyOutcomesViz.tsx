@@ -140,7 +140,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 10,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -153,7 +153,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 10,
+            fontSize: "var(--nx-t-xs)",
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "var(--nx-fg-muted)",
@@ -172,7 +172,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                 <span
                   style={{
                     fontFamily: MONO,
-                    fontSize: 10,
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
                     color: "var(--nx-cobalt)",
                     letterSpacing: "0.08em",
@@ -183,7 +183,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                 <span
                   style={{
                     fontFamily: SANS,
-                    fontSize: 13,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 500,
                     color: "var(--nx-fg)",
                     lineHeight: 1.4,
@@ -210,7 +210,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                 <span
                   style={{
                     fontFamily: SANS,
-                    fontSize: 13,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 500,
                     color: "var(--nx-fg)",
                     lineHeight: 1.3,
@@ -221,7 +221,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                 <span
                   style={{
                     fontFamily: MONO,
-                    fontSize: 13,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 700,
                     color: "var(--nx-cobalt)",
                     letterSpacing: "0.02em",
@@ -232,7 +232,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                   {signLabel}
                   {s.peak}
                   {s.unit && (
-                    <span style={{ fontSize: 10, marginLeft: 2, color: "var(--nx-fg-muted)", fontWeight: 500 }}>
+                    <span style={{ fontSize: "var(--nx-t-xs)", marginLeft: 2, color: "var(--nx-fg-muted)", fontWeight: 500 }}>
                       {s.unit}
                     </span>
                   )}
@@ -265,7 +265,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                 <p
                   style={{
                     fontFamily: SANS,
-                    fontSize: 11,
+                    fontSize: "var(--nx-t-xs)",
                     color: "var(--nx-fg-muted)",
                     marginTop: "0.35rem",
                     lineHeight: 1.4,
