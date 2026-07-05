@@ -917,8 +917,14 @@ export default function Assessment() {
                         <input
                           id="assessment-early-email"
                           type="email"
+                          name="email"
                           value={form.email}
                           onChange={(e) => setField("email", e.target.value)}
+                          autoComplete="email"
+                          inputMode="email"
+                          autoCapitalize="none"
+                          autoCorrect="off"
+                          spellCheck={false}
                           onBlur={async (e) => {
                             const val = e.currentTarget.value.trim();
                             const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1098,6 +1104,7 @@ export default function Assessment() {
                             onChange={(e) => setField("name", e.target.value)}
                             placeholder="Your legal name"
                             autoComplete="name"
+                            autoCapitalize="words"
                             aria-required="true"
                             data-testid="assessment-contact-name"
                             className="nx-input"
@@ -1116,6 +1123,9 @@ export default function Assessment() {
                             placeholder="you@example.com"
                             autoComplete="email"
                             inputMode="email"
+                            autoCapitalize="none"
+                            autoCorrect="off"
+                            spellCheck={false}
                             aria-required="true"
                             aria-invalid={showEmailHint || undefined}
                             aria-describedby="contact-email-hint"
