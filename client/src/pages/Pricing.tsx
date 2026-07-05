@@ -7,10 +7,11 @@ import { Reveal } from "@/components/Reveal";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { MxHeader } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
+import heroPricing from "@/assets/brand/hero-pricing.webp";
 
 const protocols = [
   {
@@ -238,7 +239,7 @@ function PricingTiers() {
                     }}
                     data-testid={`tier-badge-${tier.key}`}
                   >
-                    Recommended
+                    Most popular
                   </span>
                 )}
                 <p
@@ -445,24 +446,66 @@ export default function Pricing() {
             subtitle="Monthly subscriptions, single-protocol purchases, or stacked bundles. Your physician consult and bloodwork are included in every plan."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/pricing"
-              tone="butter"
-              glyph={TileGlyphs.hex}
-              label={<>Single protocols<br /><span>month-to-month</span></>}
-              caption="From $189/month"
-              ctaLabel="See plans"
+          {/* Editorial hero — the pricing promise as a photograph, not a diagram */}
+          <figure
+            className="relative overflow-hidden"
+            style={{ borderRadius: "20px", border: "1px solid var(--nx-border)" }}
+            data-testid="pricing-hero-editorial"
+          >
+            <img
+              src={heroPricing}
+              alt="A man reviews a single clear pricing sheet at his kitchen table in warm morning light"
+              className="w-full object-cover"
+              style={{ aspectRatio: "21 / 9", minHeight: "320px" }}
+              loading="eager"
+              decoding="async"
             />
-            <ColoredHeroTile
-              href="/stacks"
-              tone="sand"
-              glyph={TileGlyphs.circle}
-              label={<>Bundled stacks<br /><span>best value</span></>}
-              caption="From $189/month"
-              ctaLabel="See plans"
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.12) 38%, transparent 60%)",
+              }}
             />
-          </div>
+            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+                    fontWeight: 500,
+                    lineHeight: 1.35,
+                    color: "#FFFFF3",
+                    maxWidth: "34ch",
+                    textShadow: "0 1px 12px rgba(10,10,10,0.35)",
+                  }}
+                >
+                  One number a month. Physician, labs, medication, and shipping — all of it inside.
+                </p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <StartIntakeButton source="pricing-hero" size="lg">
+                    Start your assessment
+                  </StartIntakeButton>
+                  <Link
+                    href="/stacks"
+                    className="inline-flex items-center justify-center rounded-full px-6 py-3.5 transition-colors"
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "0.9375rem",
+                      fontWeight: 500,
+                      color: "#FFFFF3",
+                      border: "1px solid rgba(255,255,243,0.55)",
+                      minHeight: "44px",
+                    }}
+                    data-testid="pricing-hero-stacks-link"
+                  >
+                    Compare bundled stacks
+                  </Link>
+                </div>
+              </div>
+            </figcaption>
+          </figure>
         </div>
       </main>
 
