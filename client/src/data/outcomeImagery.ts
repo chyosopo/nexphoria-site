@@ -28,8 +28,8 @@ export const OUTCOME_CATEGORY: Record<
   Partial<Record<PeptideCategory, string>>
 > = {
   men: {
-    growth: "img/img_1b972aa3c417.webp", // tape measure abandoned
-    recovery: "img/img_e90c14c4f953.webp", // chalked grip, honest scar
+    growth: "img/img_ca6ddc167d62.webp", // bright home gym, tape on the bench (M)
+    recovery: "img/img_fad0fee022a9.webp", // chalking up at the crag, morning light (M)
     metabolic: "img/img_ff10791a8167.webp", // belt, one notch in
     longevity: "img/img_cf1396d09b4a.webp", // fastest one at the picnic
     cognition: "img/img_916e52b67436.webp", // three moves ahead
