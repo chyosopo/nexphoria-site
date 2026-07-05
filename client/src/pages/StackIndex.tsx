@@ -222,14 +222,14 @@ export default function StackIndex() {
                       <div className="absolute top-4 left-4 flex flex-col gap-1.5">
                         {CURATOR_BADGE[stack.slug] && (
                           <span
-                            className="px-2.5 py-1 text-[9px] uppercase tracking-[0.2em]"
+                            className="px-2.5 py-1 text-[10px] uppercase tracking-[0.2em]"
                             style={{ background: CURATOR_BADGE[stack.slug].bg, color: CURATOR_BADGE[stack.slug].color, fontFamily: MONO }}
                           >
                             {CURATOR_BADGE[stack.slug].label}
                           </span>
                         )}
                         {stack.badge && (
-                          <span className="px-2 py-1 text-[9px] uppercase tracking-[0.2em]" style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: MONO }}>
+                          <span className="px-2 py-1 text-[10px] uppercase tracking-[0.2em]" style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: MONO }}>
                             {stack.badge}
                           </span>
                         )}
@@ -284,7 +284,7 @@ export default function StackIndex() {
                                 className="text-center mt-1"
                                 style={{
                                   fontFamily: MONO,
-                                  fontSize: 9,
+                                  fontSize: 10,
                                   letterSpacing: "0.12em",
                                   textTransform: "uppercase",
                                   color: "#4A4A4A",
@@ -606,9 +606,9 @@ function VsSingleChart() {
             <g key={l.name}>
               <text x={padL} y={y - 8} style={{ fontFamily: MONO, fontSize: 11, fill: "#0A0A0A" }}>{l.name}</text>
               <rect x={padL} y={y} width={(l.single / 100) * maxW} height={barH} fill="#C9CFC2" rx={1} />
-              <text x={padL + (l.single / 100) * maxW + 6} y={y + barH - 1} style={{ fontFamily: MONO, fontSize: 9, fill: "#8A8A8A" }}>{l.single}</text>
+              <text x={padL + (l.single / 100) * maxW + 6} y={y + barH - 1} style={{ fontFamily: MONO, fontSize: 10, fill: "#8A8A8A" }}>{l.single}</text>
               <rect x={padL} y={y + barH + gap} width={(l.stack / 100) * maxW} height={barH} fill="#0A0A0A" rx={1} />
-              <text x={padL + (l.stack / 100) * maxW + 6} y={y + barH * 2 + gap - 1} style={{ fontFamily: MONO, fontSize: 9, fill: "#8B5A2B" }}>{l.stack}</text>
+              <text x={padL + (l.stack / 100) * maxW + 6} y={y + barH * 2 + gap - 1} style={{ fontFamily: MONO, fontSize: 10, fill: "#8B5A2B" }}>{l.stack}</text>
             </g>
           );
         })}

@@ -305,7 +305,7 @@ function PricingTiers() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 500,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
@@ -678,7 +678,7 @@ export default function Pricing() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -693,7 +693,7 @@ export default function Pricing() {
                       <p
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "9px",
+                          fontSize: "10px",
                           fontWeight: 700,
                           letterSpacing: "0.14em",
                           textTransform: "uppercase",
@@ -724,7 +724,7 @@ export default function Pricing() {
                       <p
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "8px",
+                          fontSize: "10px",
                           color: "rgba(255,255,255,0.6)",
                           marginTop: "2px",
                         }}
@@ -788,7 +788,7 @@ export default function Pricing() {
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "9px",
+                        fontSize: "10px",
                         color: "var(--nx-fg-muted)",
                         display: "block",
                         fontWeight: 500,
@@ -811,7 +811,7 @@ export default function Pricing() {
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "9px",
+                        fontSize: "10px",
                         color: "var(--nx-fg-muted)",
                         display: "block",
                         fontWeight: 500,
@@ -834,7 +834,7 @@ export default function Pricing() {
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "9px",
+                        fontSize: "10px",
                         color: "var(--nx-fg-muted)",
                         display: "block",
                         fontWeight: 500,
@@ -862,7 +862,7 @@ export default function Pricing() {
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
                   12-MONTH PLAN — SAVE UP TO 20% vs. MONTH-TO-MONTH
                 </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>
                   E.g. Metabolic: ${Math.round(349*12*0.8).toLocaleString()}/yr vs $${349*12}/yr monthly
                 </p>
               </div>
@@ -1037,7 +1037,7 @@ export default function Pricing() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -1049,7 +1049,7 @@ export default function Pricing() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -1062,7 +1062,7 @@ export default function Pricing() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -1107,7 +1107,7 @@ export default function Pricing() {
                       <span
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "9px",
+                          fontSize: "10px",
                           color: "var(--nx-fg-muted)",
                           fontWeight: 500,
                           textTransform: "uppercase",

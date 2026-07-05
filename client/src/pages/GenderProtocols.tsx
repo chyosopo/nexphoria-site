@@ -177,7 +177,7 @@ export default function GenderProtocols({ gender }: GenderProtocolsProps) {
                   data-testid={`protocol-card-${protocol.slug}`}
                 >
                   <div>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "6px" }}>
                       {protocol.peptides}
                     </p>
                     <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1.5rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "4px" }}>

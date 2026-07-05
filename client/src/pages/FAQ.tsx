@@ -383,7 +383,7 @@ export default function FAQPage() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 700,
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
@@ -427,7 +427,7 @@ export default function FAQPage() {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "9px",
+                            fontSize: "10px",
                             color: "var(--nx-fg-muted)",
                           }}
                         >

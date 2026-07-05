@@ -34,7 +34,7 @@ export function PressStrip() {
             <div
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "9px",
+                fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
@@ -80,7 +80,7 @@ export function PressStrip() {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             letterSpacing: "0.1em",
             color: "var(--nx-fg-muted)",
             marginTop: "1.25rem",

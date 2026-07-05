@@ -228,7 +228,7 @@ const RESEARCH_TILES = [
 function TOCSidebar({ activeId }: { activeId: string }) {
   return (
     <nav aria-label="Page sections" style={{ position: "sticky", top: "7rem", paddingTop: "0.5rem" }}>
-      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "1.25rem" }}>
+      <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "1.25rem" }}>
         CONTENTS
       </p>
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -403,7 +403,7 @@ export default function Science() {
                 data-testid={`tier-card-${t.key}`}
                 style={{ backgroundColor: "#0A0A0A", padding: "2rem 1.75rem", display: "flex", flexDirection: "column" }}
               >
-                <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: t.color, marginBottom: "0.5rem" }}>{t.tier}</p>
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: t.color, marginBottom: "0.5rem" }}>{t.tier}</p>
                 <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: "1.125rem", color: "#FFFFF3", marginBottom: "0.875rem", lineHeight: 1.2 }}>{t.label}</p>
                 <div
                   aria-hidden="true"
@@ -426,7 +426,7 @@ export default function Science() {
                   />
                 </div>
                 <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.6)", lineHeight: 1.6, marginBottom: "1.25rem", flexGrow: 1 }}>{t.desc}</p>
-                <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,243,0.4)", marginBottom: "0.625rem" }}>In our catalog</p>
+                <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,243,0.4)", marginBottom: "0.625rem" }}>In our catalog</p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
                   {t.examples.map((ex) => (
                     <Link
@@ -584,8 +584,8 @@ export default function Science() {
                 ].map((row) => (
                   <div key={row.phase} style={{ backgroundColor: "#0A0A0A", padding: "1.5rem 1.75rem", display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
                     <div style={{ flexShrink: 0, minWidth: "90px" }}>
-                      <p style={{ fontFamily: MONO, fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184" }}>{row.phase}</p>
-                      <p style={{ fontFamily: MONO, fontSize: "9px", color: "rgba(255,255,243,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#c6f184" }}>{row.phase}</p>
+                      <p style={{ fontFamily: MONO, fontSize: "10px", color: "rgba(255,255,243,0.4)", marginTop: "0.25rem" }}>{row.timing}</p>
                     </div>
                     <p style={{ fontFamily: SANS, fontSize: "0.875rem", color: "rgba(255,255,243,0.65)", lineHeight: 1.6 }}>{row.desc}</p>
                   </div>
@@ -1116,7 +1116,7 @@ function ScienceHeroDark() {
                 <div
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 600,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",

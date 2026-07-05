@@ -895,12 +895,12 @@ function OutcomeTimeline({ weeks, milestones }: { weeks: number; milestones: Mil
         {[0, 25, 50, 75, 100].map((g) => (
           <g key={g}>
             <line x1={padL} y1={y(g)} x2={W - padR} y2={y(g)} stroke="#EDE8DC" strokeWidth={1} />
-            <text x={padL - 8} y={y(g) + 3} textAnchor="end" style={{ fontFamily: MONO, fontSize: 9, fill: "#9A9A95" }}>{g}</text>
+            <text x={padL - 8} y={y(g) + 3} textAnchor="end" style={{ fontFamily: MONO, fontSize: 10, fill: "#9A9A95" }}>{g}</text>
           </g>
         ))}
         {/* x labels */}
         {[0, 25, 50, 75, 100].map((g) => (
-          <text key={g} x={x(g)} y={H - padB + 18} textAnchor="middle" style={{ fontFamily: MONO, fontSize: 9, fill: "#9A9A95" }}>
+          <text key={g} x={x(g)} y={H - padB + 18} textAnchor="middle" style={{ fontFamily: MONO, fontSize: 10, fill: "#9A9A95" }}>
             wk {Math.round((g / 100) * weeks)}
           </text>
         ))}

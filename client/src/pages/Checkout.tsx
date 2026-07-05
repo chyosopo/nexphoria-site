@@ -439,7 +439,7 @@ export default function Checkout() {
                     <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <div className="text-[9px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B" }}>
+                          <div className="text-[10px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B" }}>
                             {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
                           <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 500 }}>

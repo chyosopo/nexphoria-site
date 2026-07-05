@@ -179,14 +179,14 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                     >
                       <div className="flex items-start justify-between mb-4">
                         <div>
-                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "4px" }}>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "4px" }}>
                             {CATEGORY_LABELS[p.category]}
                           </p>
                           <h2 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "18px", fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
                             {p.name}
                           </h2>
                           {price?.badge && (
-                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
+                            <span style={{ display: "inline-block", marginTop: 6, fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#8B5A2B" }}>
                               {price.badge}
                             </span>
                           )}
@@ -223,7 +223,7 @@ export default function GenderPeptides({ gender }: GenderPeptidesProps) {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "9px",
+                            fontSize: "10px",
                             letterSpacing: "0.12em",
                             textTransform: "uppercase",
                             color: "var(--nx-fg-muted)",
@@ -276,7 +276,7 @@ function CategoryPill({ label, active, onClick }: { label: string; active: boole
 function MetaChip({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col" style={{ minWidth: "70px" }}>
-      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
+      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{label}</p>
       <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", fontWeight: 600, color: "var(--nx-fg)" }}>{value}</p>
     </div>
   );

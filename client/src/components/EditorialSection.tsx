@@ -187,7 +187,7 @@ export function EditorialSection({ gender = "women" }: EditorialSectionProps) {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "9px",
+                  fontSize: "10px",
                   letterSpacing: "0.08em",
                   color: "var(--nx-fg-muted)",
                   lineHeight: 1.6,

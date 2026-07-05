@@ -615,7 +615,7 @@ export default function JournalArticle() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 9,
+                        fontSize: 10,
                         fontWeight: 500,
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
@@ -684,7 +684,7 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 9,
+                  fontSize: 10,
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",

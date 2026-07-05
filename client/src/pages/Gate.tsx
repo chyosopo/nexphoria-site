@@ -66,7 +66,7 @@ export default function Gate() {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             fontWeight: 500,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
@@ -418,7 +418,7 @@ function GateCard({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 9,
+                fontSize: 10,
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",

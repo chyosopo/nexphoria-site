@@ -720,7 +720,7 @@ export default function Peptides() {
                       style={{ background: "#0A0A0A", borderColor: "#0A0A0A" }}
                     >
                       <div>
-                        <div className="font-mono text-[9px] uppercase tracking-[0.18em] mb-2" style={{ color: "#c6f184" }}>
+                        <div className="font-mono text-[10px] uppercase tracking-[0.18em] mb-2" style={{ color: "#c6f184" }}>
                           Not sure where to start?
                         </div>
                         <h3 className="font-display text-fluid-xl leading-tight tracking-tight text-white">
@@ -1346,7 +1346,7 @@ function PeptideCard({
       <div className="flex items-start justify-between mb-5">
         <div className="flex flex-wrap items-center gap-1.5">
           <span
-            className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-[9px] uppercase tracking-[0.12em]"
+            className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-[10px] uppercase tracking-[0.12em]"
             style={{ background: tierBg, color: tierColor }}
             title={`Evidence tier ${tier}`}
             data-testid={`evidence-badge-${peptide.slug}`}
@@ -1355,7 +1355,7 @@ function PeptideCard({
           </span>
           {badge && (
             <span
-              className="inline-flex items-center px-2.5 py-1 rounded-full bg-primary text-white font-mono text-[9px] uppercase tracking-[0.12em]"
+              className="inline-flex items-center px-2.5 py-1 rounded-full bg-primary text-white font-mono text-[10px] uppercase tracking-[0.12em]"
               data-testid={`badge-${peptide.slug}`}
             >
               {badge}
@@ -1363,7 +1363,7 @@ function PeptideCard({
           )}
           {reg && (
             <span
-              className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-[9px] uppercase tracking-[0.12em]"
+              className="inline-flex items-center px-2.5 py-1 rounded-full font-mono text-[10px] uppercase tracking-[0.12em]"
               style={{ background: reg.bg, color: reg.color, border: `1px solid ${reg.border}` }}
               title={fdaStatus}
               data-testid={`regulatory-chip-${peptide.slug}`}

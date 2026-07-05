@@ -545,7 +545,7 @@ export default function HowItWorks() {
                         key={t}
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "9px",
+                          fontSize: "10px",
                           fontWeight: 500,
                           letterSpacing: "0.08em",
                           textTransform: "uppercase",
@@ -747,7 +747,7 @@ export default function HowItWorks() {
                       >
                         {s.node}
                       </p>
-                      <p style={{ ...monoCaption, fontSize: "9px" }}>{s.sub}</p>
+                      <p style={{ ...monoCaption, fontSize: "10px" }}>{s.sub}</p>
                     </div>
                     {i < arr.length - 1 && (
                       <ChevronRight size={16} style={{ color: "var(--nx-fg-muted)", flexShrink: 0 }} />

@@ -213,7 +213,7 @@ export function GoalVialTile({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "9px",
+                fontSize: "10px",
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -321,7 +321,7 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "9px",
+          fontSize: "10px",
           fontWeight: 700,
           letterSpacing: "0.12em",
           textTransform: "uppercase",

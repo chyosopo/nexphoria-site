@@ -236,7 +236,7 @@ function OptionButton({
             style={{
               display: "block",
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "10px",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
               color: selected ? "rgba(255,255,255,0.6)" : "var(--nx-fg-muted)",
@@ -641,7 +641,7 @@ export default function Assessment() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "9px",
+                  fontSize: "10px",
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   color: "var(--nx-fg-muted)",
@@ -778,7 +778,7 @@ export default function Assessment() {
                         <p
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "9px",
+                            fontSize: "10px",
                             fontWeight: 500,
                             letterSpacing: "0.12em",
                             textTransform: "uppercase",
@@ -853,7 +853,7 @@ export default function Assessment() {
                     style={{
                       display: "block",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 500,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -982,7 +982,7 @@ export default function Assessment() {
                       style={{
                         display: "block",
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "9px",
+                        fontSize: "10px",
                         fontWeight: 500,
                         letterSpacing: "0.12em",
                         textTransform: "uppercase",
@@ -1114,7 +1114,7 @@ export default function Assessment() {
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2.5rem" }}>
                   {/* Name */}
                   <div>
-                    <label htmlFor="contact-name" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-name" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Full name *
                     </label>
                     <input
@@ -1132,7 +1132,7 @@ export default function Assessment() {
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="contact-email" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-email" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Email address *
                     </label>
                     <input
@@ -1150,7 +1150,7 @@ export default function Assessment() {
 
                   {/* Phone */}
                   <div>
-                    <label htmlFor="contact-phone" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-phone" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       Phone number
                     </label>
                     <input
@@ -1168,7 +1168,7 @@ export default function Assessment() {
 
                   {/* State */}
                   <div>
-                    <label htmlFor="contact-state" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
+                    <label htmlFor="contact-state" style={{ display: "block", fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.4rem" }}>
                       State of residence *
                     </label>
                     <select
@@ -1235,7 +1235,7 @@ export default function Assessment() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "8px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -1316,7 +1316,7 @@ export default function Assessment() {
                       <span
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "9px",
+                          fontSize: "10px",
                           fontWeight: 500,
                           letterSpacing: "0.1em",
                           textTransform: "uppercase",
@@ -1450,7 +1450,7 @@ export default function Assessment() {
 
                 {/* What happens next */}
                 <div style={{ backgroundColor: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "4px", padding: "1.25rem 1.5rem", marginBottom: "1.5rem", textAlign: "left" }}>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.875rem" }}>
+                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.875rem" }}>
                     WHAT HAPPENS NEXT
                   </p>
                   {[
@@ -1460,7 +1460,7 @@ export default function Assessment() {
                     { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
                   ].map(({ n, t }) => (
                     <div key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
-                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
+                      <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
                       <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "var(--nx-fg)", lineHeight: 1.55, margin: 0 }}>{t}</p>
                     </div>
                   ))}
@@ -1484,7 +1484,7 @@ export default function Assessment() {
                       data-testid="outcome-protocol-tile"
                     >
                       <div style={{ backgroundColor: "var(--nx-fg)", padding: "0.875rem 1.25rem" }}>
-                        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)", margin: 0 }}>
+                        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)", margin: 0 }}>
                           SUGGESTED STARTING POINT · BASED ON YOUR GOAL
                         </p>
                       </div>
@@ -1493,7 +1493,7 @@ export default function Assessment() {
                           <VialArt tone={tone} glyph={goalGlyphToMolecular(cfg.glyph ?? "drop")} size={92} />
                         </div>
                         <div style={{ minWidth: 0, flex: 1 }}>
-                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: tintInk[tone], opacity: 0.6, margin: "0 0 0.375rem 0" }}>
+                          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: tintInk[tone], opacity: 0.6, margin: "0 0 0.375rem 0" }}>
                             {cfg.category.toUpperCase()}
                           </p>
                           <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1.0625rem", fontWeight: 600, color: tintInk[tone], marginBottom: "0.375rem", lineHeight: 1.25 }}>

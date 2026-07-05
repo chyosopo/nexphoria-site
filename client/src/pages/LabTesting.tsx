@@ -574,7 +574,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -808,7 +808,7 @@ export default function LabTesting() {
                     key={h}
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -865,7 +865,7 @@ export default function LabTesting() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -1218,7 +1218,7 @@ function BloodworkManifesto() {
               }}
               data-testid="link-blood-assessment"
             >
-              Start with the free foundation panel
+              Start your assessment
               <ArrowUpRight size={14} strokeWidth={2} />
             </Link>
           </div>

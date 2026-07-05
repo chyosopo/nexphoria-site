@@ -604,7 +604,7 @@ function HeroSection_REMOVED({
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       color: "var(--nx-fg-muted)",
@@ -776,7 +776,7 @@ function FlagshipCards() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: "9px",
+                        fontSize: "10px",
                         fontWeight: 500,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
@@ -1020,7 +1020,7 @@ function ChartCard({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "9px",
+                fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
@@ -1466,7 +1466,7 @@ function PeptideGrid() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 500,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -1616,7 +1616,7 @@ function TestimonialStrip() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
@@ -1633,7 +1633,7 @@ function TestimonialStrip() {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
             marginTop: "1.5rem",
