@@ -6,6 +6,8 @@ import { Reveal } from "@/components/Reveal";
  * No logos — pure typographic marks.
  */
 
+// {PLACEHOLDER} Press mentions are aspirational placeholders until real
+// coverage lands — swap for actual outlets before launch.
 const outlets = [
   { name: "The Wall Street Journal", abbr: "WSJ" },
   { name: "Bloomberg", abbr: "Bloomberg" },
