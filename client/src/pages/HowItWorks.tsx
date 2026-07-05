@@ -1,5 +1,5 @@
 import { SiteLayout } from "@/components/SiteLayout";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { MxHeader } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 import { Reveal } from "@/components/Reveal";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
@@ -27,6 +27,7 @@ import lifestyleShippingPackage from "@/assets/brand/lifestyle-shipping-package.
 import lifestyleLabVials from "@/assets/brand/lifestyle-lab-vials.webp";
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
 import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
+import heroHowItWorks from "@/assets/brand/hero-howitworks.webp";
 import mdPhoto from "@/assets/brand/physicians/md-1.webp";
 
 // ─── Shared style helpers ──────────────────────────────────────────────────
@@ -224,24 +225,49 @@ export default function HowItWorks() {
             subtitle="Assessment → physician review → 503A compounding pharmacy → discreet delivery. Every step physician-supervised."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/how-it-works"
-              tone="sand"
-              glyph={TileGlyphs.circle}
-              label={<>Repair.<br/>Sleep. Focus.</>}
-              caption="Recovery, sleep, focus"
-              ctaLabel="See the steps"
+          {/* Editorial hero — the first-shipment unboxing, the moment the process pays off */}
+          <figure
+            className="relative overflow-hidden"
+            style={{ borderRadius: "20px", border: "1px solid var(--nx-border)" }}
+            data-testid="hiw-hero-editorial"
+          >
+            <img
+              src={heroHowItWorks}
+              alt="Hands open a cream protocol kit at a sunlit table, revealing labeled glass vials in a navy velvet interior"
+              className="w-full object-cover"
+              style={{ aspectRatio: "21 / 9", minHeight: "320px" }}
+              loading="eager"
+              decoding="async"
             />
-            <ColoredHeroTile
-              href="/how-it-works"
-              tone="sky"
-              glyph={TileGlyphs.wave}
-              label={<>Backed by<br/>your labs.</>}
-              caption="Recovery, sleep, focus"
-              ctaLabel="See the steps"
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.1) 36%, transparent 58%)",
+              }}
             />
-          </div>
+            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+                    fontWeight: 500,
+                    lineHeight: 1.35,
+                    color: "#FFFFF3",
+                    maxWidth: "36ch",
+                    textShadow: "0 1px 12px rgba(10,10,10,0.35)",
+                  }}
+                >
+                  From intake to this box in about seven days — each vial batch-tested, each dose physician-set.
+                </p>
+                <StartIntakeButton source="hiw-hero" size="lg">
+                  Start your assessment
+                </StartIntakeButton>
+              </div>
+            </figcaption>
+          </figure>
         </div>
       </main>
 
