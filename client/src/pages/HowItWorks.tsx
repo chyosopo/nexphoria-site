@@ -106,7 +106,7 @@ export default function HowItWorks() {
               <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 <ShieldCheck size={14} strokeWidth={2.2} aria-hidden="true" /> How it works
               </p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.03, letterSpacing: "-0.02em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.02em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
                 Seven steps. <em style={{ color: "var(--nx-cobalt)" }}>No improvisation.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1.1rem" }}>
@@ -141,7 +141,7 @@ export default function HowItWorks() {
       <section className="nx-container" style={{ padding: "clamp(4rem,7vw,6rem) 0 clamp(3.5rem,6vw,5rem)" }}>
         <Reveal>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The fixed order</p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "22ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
             From intake to retest, <em style={{ color: "var(--nx-cobalt)" }}>nothing is skipped.</em>
           </h2>
         </Reveal>
@@ -154,7 +154,7 @@ export default function HowItWorks() {
                 <div className="nx-glass-tile" style={{ display: "block" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <span className="nx-icon-circle" aria-hidden><s.Icon size={19} strokeWidth={1.9} /></span>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(20px,2.6vw,26px)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{s.t}</h3>
+                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{s.t}</h3>
                   </div>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "0.9rem" }}>{s.d}</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "0.7rem" }}>{s.detail}</p>
@@ -173,7 +173,7 @@ export default function HowItWorks() {
         <div className="nx-container">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Why the loop matters</p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(32px,5.4vw,60px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "1rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "1rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
               A prescription is a hypothesis. <em style={{ color: "var(--nx-acid)" }}>The retest is the evidence.</em>
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.65, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "58ch", marginTop: "1.3rem" }}>
@@ -199,7 +199,7 @@ export default function HowItWorks() {
       <section className="nx-container" style={{ padding: "clamp(4rem,7vw,6rem) 0" }}>
         <Reveal>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The difference, plainly</p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
             Same molecules. <em style={{ color: "var(--nx-cobalt)" }}>Different institution.</em>
           </h2>
         </Reveal>
@@ -247,7 +247,7 @@ export default function HowItWorks() {
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.4vw,48px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.1 }}>
+        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.1 }}>
           The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.7rem" }} data-testid="hiw-cta">
