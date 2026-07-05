@@ -183,7 +183,7 @@ function FloatingResultCards() {
             <span style={{ fontSize: "var(--nx-t-base)", fontWeight: 700, color: "var(--nx-fg)", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{c.delta}</span>
           </div>
           <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 6 }}>
-            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "#2A667A", display: "inline-block" }} />
+            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--nx-cobalt)", display: "inline-block" }} />
             <span style={{ fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)" }}>{c.state}</span>
           </div>
         </div>
@@ -207,7 +207,7 @@ function Hero() {
   // Ref: /tmp/hims_labs/homepage/TEARDOWN.md sections 1B, 1C.
 
   return (
-    <section className="relative overflow-hidden" aria-labelledby="home-h1" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }}>
+    <section className="relative overflow-hidden" aria-labelledby="home-h1" style={{ background: "linear-gradient(180deg, var(--nx-ceramic) 0%, var(--nx-bg) 100%)" }}>
       <div className="h-6 md:h-8" />
       <div className="nx-container pb-8 md:pb-10">
         {/* Eyebrow */}
@@ -636,8 +636,8 @@ function FlagshipDark() {
                 </Link>
               </div>
             </div>
-            <div style={{ background: "linear-gradient(150deg, #0F1B3A 0%, #050914 100%)", border: "1px solid rgba(246, 249, 252,0.12)", borderRadius: "var(--nx-r-lg)", padding: "1.6rem", position: "relative", overflow: "hidden" }}>
-              <div style={{ aspectRatio: "4 / 3", backgroundImage: "linear-gradient(145deg,#132352,#0A1230)", backgroundSize: "cover", backgroundPosition: "center", borderRadius: "var(--nx-r-md)", marginBottom: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
+            <div style={{ background: "linear-gradient(150deg, var(--nx-bg-dark) 0%, var(--nx-fg) 100%)", border: "1px solid rgba(246, 249, 252,0.12)", borderRadius: "var(--nx-r-lg)", padding: "1.6rem", position: "relative", overflow: "hidden" }}>
+              <div style={{ aspectRatio: "4 / 3", backgroundImage: "linear-gradient(145deg, var(--nx-fg), var(--nx-bg-dark))", backgroundSize: "cover", backgroundPosition: "center", borderRadius: "var(--nx-r-md)", marginBottom: "1.25rem", display: "flex", alignItems: "center", justifyContent: "center" }} aria-hidden>
                 <div style={{ fontFamily: F, fontSize: "var(--nx-t-h2)", fontWeight: 500, color: "rgba(246, 249, 252,0.14)", letterSpacing: "-0.02em" }}>WOLVERINE</div>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
@@ -1302,7 +1302,7 @@ function PrecisionStrip() {
         <div className="lg:col-span-7 order-2 lg:order-1 group">
           <div
             className="relative rounded-[16px] overflow-hidden"
-            style={{ aspectRatio: "4 / 3", background: "#141414" }}
+            style={{ aspectRatio: "4 / 3", background: "var(--nx-bg-dark)" }}
           >
             <img
               src={labPrecision}
@@ -1731,7 +1731,7 @@ function BloodworkPillar() {
                 aspectRatio: "4/5",
                 borderRadius: "var(--nx-r-lg)",
                 overflow: "hidden",
-                background: "#111",
+                background: "var(--nx-bg-dark)",
               }}
             >
               <img
@@ -2217,7 +2217,7 @@ function GuideCapture() {
 
 /* ══ PROOF BENTO — real numbers, mixed media ══ */
 function ProofBento() {
-  const tile: React.CSSProperties = { background: "#EAF0F7", borderRadius: 22, overflow: "hidden" };
+  const tile: React.CSSProperties = { background: "var(--nx-bg)", borderRadius: "var(--nx-r-lg)", overflow: "hidden" };
   return (
     <section className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
