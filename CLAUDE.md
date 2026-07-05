@@ -54,9 +54,16 @@ Also run `npm run build` before deploy-affecting commits, and `npm run audit:bun
 - The **Express API routes are NOT static.** On a static-only host they won't run until ported to serverless functions or a Node runtime. For staging, the marketing pages render fully static; the 4 API endpoints are a pending item.
 - `vite.config.ts` uses `base: "./"` and outputs to `dist/public`.
 
-## Domain Safety (critical)
-- `nexphoria.com` apex → **live Shopify storefront via Cloudflare.** Do NOT repoint the apex or touch nameservers without Chiya's explicit launch/cutover decision.
-- Staging lives at `new.nexphoria.com` → Vercel CNAME, Cloudflare proxy OFF (grey cloud, DNS-only).
+## Domain Safety (critical) — updated 2026-07-05, verified by probe
+- `nexphoria.com` apex → **serves a build of THIS repo via Cloudflare** (Shopify
+  was disconnected by Chiya). As of 2026-07-05 the apex build is STALE — it
+  matches no branch tip (checked design/azure, the overhaul branch, master),
+  so the apex deploy is either a one-time upload or a broken auto-build.
+  Git pushes alone do NOT update the .com; the Cloudflare-side connection
+  lives in Chiya's Cloudflare account (not visible from agent sessions).
+- `chyosopo.github.io/nexphoria-site` → CI auto-deploy of `design/azure`
+  (gh-pages). This is the always-current preview.
+- Do NOT touch nameservers or the apex DNS without Chiya's explicit decision.
 
 ## Hard Rules
 1. No real-money actions without approval.
