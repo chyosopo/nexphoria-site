@@ -7,11 +7,12 @@ import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./AssessmentParts";
 import { SiteLayout } from "@/components/SiteLayout";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { MxHeader } from "@/components/MaximusTile";
 import { GoalVialTile, GOAL_TILE_CONFIG, goalGlyphToMolecular } from "@/components/GoalVialTile";
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
 import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
+import heroAssessment from "@/assets/brand/hero-assessment.webp";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -478,24 +479,46 @@ export default function Assessment() {
             subtitle="A short physician-reviewed intake. Personalized peptide protocol delivered within 48 hours of approval."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/assessment"
-              tone="cobalt"
-              glyph={TileGlyphs.hex}
-              label={<>Personalized protocol</>}
-              caption="Built around your goal"
-              ctaLabel="Start intake"
-            />
-            <ColoredHeroTile
-              href="/assessment"
-              tone="sky"
-              glyph={TileGlyphs.wave}
-              label={<>Physician-reviewed</>}
-              caption="Built around your goal"
-              ctaLabel="Start intake"
-            />
-          </div>
+          {/* Editorial hero — the first deliberate step, dawn light (landing only) */}
+          {step === 0 && (
+            <figure
+              className="relative overflow-hidden"
+              style={{ borderRadius: "20px", border: "1px solid var(--nx-border)" }}
+              data-testid="assessment-hero-editorial"
+            >
+              <img
+                src={heroAssessment}
+                alt="A man sits upright at a desk by a bright window at dawn, tablet in hand, beginning his health intake"
+                className="w-full object-cover"
+                style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
+                loading="eager"
+                decoding="async"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.1) 36%, transparent 58%)",
+                }}
+              />
+              <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+                    fontWeight: 500,
+                    lineHeight: 1.35,
+                    color: "#FFFFF3",
+                    maxWidth: "40ch",
+                    textShadow: "0 1px 12px rgba(10,10,10,0.35)",
+                  }}
+                >
+                  Four minutes of questions. A physician, a lab panel, and a protocol on the other side.
+                </p>
+              </figcaption>
+            </figure>
+          )}
         </div>
       </main>
 
