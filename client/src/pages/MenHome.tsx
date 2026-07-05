@@ -28,6 +28,7 @@ import menCardWeight from "@/assets/brand/men-card-weight.webp";
 import menCardLongevity from "@/assets/brand/men-card-longevity.webp";
 import lifestyleManProtocol from "@/assets/brand/lifestyle-man-protocol.webp";
 import lifestyleProtocolCounter from "@/assets/brand/lifestyle-protocol-counter.webp";
+import lifestyleMorningRoutine from "@/assets/brand/lifestyle-morning-routine.webp";
 import { useSeo, webPageJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
@@ -635,9 +636,9 @@ function HeroSection_REMOVED({
             }}
           />
           <img
-            src={lifestyleManProtocol}
-            alt="Man reading peptide protocol document at desk in natural light"
-            loading="eager"
+            src={lifestyleMorningRoutine}
+            alt="Morning protocol routine on a sunlit counter — vial, water, and journal laid out before the day starts"
+            loading="lazy"
             decoding="async"
             style={{
               position: "absolute",
