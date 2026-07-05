@@ -171,7 +171,7 @@ export default function Journal() {
                   <p
                     style={{
                       fontFamily: FONT,
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -216,7 +216,7 @@ export default function Journal() {
                     >
                       {featured.author.name}
                     </span>
-                    <span style={{ color: "var(--nx-border)" }}>·</span>
+                    <span aria-hidden="true" style={{ color: "var(--nx-border)" }}>·</span>
                     <span
                       style={{
                         fontFamily: FONT,
@@ -492,7 +492,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
         backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
         color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
         fontFamily: FONT,
-        fontSize: 12,
+        fontSize: "var(--nx-t-xs)",
         fontWeight: 500,
         letterSpacing: "0.06em",
         cursor: "pointer",
@@ -583,7 +583,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: 15,
+                fontSize: "var(--nx-t-base)",
                 lineHeight: 1.55,
                 color: "var(--nx-fg-graphite)",
                 marginBottom: 20,
