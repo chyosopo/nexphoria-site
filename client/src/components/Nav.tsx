@@ -342,7 +342,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         className="mt-1 block"
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: 12.5,
+                          fontSize: "var(--nx-t-xs)",
                           color: "var(--nx-fg-graphite)",
                           lineHeight: 1.45,
                         }}
@@ -390,7 +390,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                       <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-fg)" }}>
                         The Recovery Protocol
                       </span>
-                      <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12.5, color: "var(--nx-fg-muted)" }}>
+                      <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
                         Physician-directed · if prescribed
                       </span>
                     </span>
@@ -431,7 +431,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: 14,
+                            fontSize: "var(--nx-t-sm)",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
                           }}
@@ -467,7 +467,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     className="block"
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 14,
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
                     }}
@@ -478,7 +478,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     className="mt-0.5 inline-flex items-center gap-1.5"
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 12.5,
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-graphite)",
                     }}
                   >
