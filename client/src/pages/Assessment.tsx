@@ -1008,6 +1008,10 @@ export default function Assessment() {
                         Include prescription drugs, hormone therapy, insulin, and any controlled substances. Your physician reviews all of this before prescribing.
                       </p>
 
+                      {/* Grouped so assistive tech ties the None toggle and the
+                          free-text field to the medications question + rationale,
+                          matching the group semantics on steps 1, 4, and 5. */}
+                      <div role="group" aria-labelledby="q-medications" aria-describedby="assessment-why-text-3">
                       {/* None checkbox */}
                       <div style={{ marginBottom: "1rem" }}>
                         <CheckboxRow
@@ -1041,6 +1045,7 @@ export default function Assessment() {
                           />
                         </div>
                       )}
+                      </div>
 
                       <WhyWeAsk funnelStep={3} />
                     </motion.div>
@@ -1110,7 +1115,10 @@ export default function Assessment() {
                         A licensed physician reviews your intake and contacts you to schedule a consult.
                       </p>
 
-                      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "0.5rem" }}>
+                      {/* Field group tied to the contact question + rationale so
+                          assistive tech scopes these inputs to the step, matching
+                          the group semantics on steps 1, 3, 4, and 5. */}
+                      <div role="group" aria-labelledby="q-contact" aria-describedby="assessment-why-text-6" style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "0.5rem" }}>
                         {/* Name */}
                         <div>
                           <label htmlFor="contact-name" style={fieldLabel}>Full name <span aria-hidden="true">*</span></label>
