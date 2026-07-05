@@ -237,7 +237,7 @@ function PricingTiers() {
                       color: "var(--nx-fg)",
                       background: "var(--nx-acid)",
                       padding: "4px 12px",
-                      borderRadius: "999px",
+                      borderRadius: "var(--nx-r-pill)",
                     }}
                     data-testid={`tier-badge-${tier.key}`}
                   >
@@ -323,6 +323,7 @@ function PricingTiers() {
                       <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem" }}>
                         <Check
                           size={14}
+                          aria-hidden="true"
                           style={{ color: tier.recommended ? "var(--nx-acid)" : "var(--nx-success)", flexShrink: 0, marginTop: "2px" }}
                         />
                         <span
@@ -515,7 +516,7 @@ export default function Pricing() {
             <BenefitTile
               tone="cream"
               eyebrow="Physician"
-              icon={<Stethoscope size={18} strokeWidth={1.5} />}
+              icon={<Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Board-certified US physician on every case."
               sub="Not a form. A licensed physician reviews your intake and labs before anything ships."
               testId="pricing-tile-physician"
@@ -523,7 +524,7 @@ export default function Pricing() {
             <BenefitTile
               tone="cream"
               eyebrow="Labs"
-              icon={<FlaskConical size={18} strokeWidth={1.5} />}
+              icon={<FlaskConical size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Partner-laboratory bloodwork every 90 days."
               sub="Full biomarker panels included in every plan. No à la carte lab bills."
               testId="pricing-tile-labs"
@@ -531,7 +532,7 @@ export default function Pricing() {
             <BenefitTile
               tone="cream"
               eyebrow="Pharmacy"
-              icon={<ShieldCheck size={18} strokeWidth={1.5} />}
+              icon={<ShieldCheck size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="503A US-licensed compounding pharmacy only."
               sub="Every vial compounded in a US facility we vet. No overseas peptides."
               testId="pricing-tile-pharmacy"
@@ -539,7 +540,7 @@ export default function Pricing() {
             <BenefitTile
               tone="cream"
               eyebrow="Shipping"
-              icon={<Truck size={18} strokeWidth={1.5} />}
+              icon={<Truck size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Cold-chain overnight, discreet."
               sub="Temperature-controlled overnight shipping in plain packaging. Signature confirmed."
               testId="pricing-tile-shipping"
@@ -547,7 +548,7 @@ export default function Pricing() {
             <BenefitTile
               tone="cream"
               eyebrow="Adjustments"
-              icon={<ChevronsDownUp size={18} strokeWidth={1.5} />}
+              icon={<ChevronsDownUp size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Physician re-titrates each cycle."
               sub="Every 90 days, your physician reviews your labs and adjusts your dose. No extra visit fee."
               testId="pricing-tile-titration"
@@ -555,7 +556,7 @@ export default function Pricing() {
             <BenefitTile
               tone="cream"
               eyebrow="Receipts"
-              icon={<Receipt size={18} strokeWidth={1.5} />}
+              icon={<Receipt size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="FSA/HSA itemized receipts, every month."
               sub="Pre-tax dollars for medical care. Automatic receipts, no requests, no friction."
               testId="pricing-tile-fsahsa"
@@ -608,7 +609,7 @@ export default function Pricing() {
             <div
               style={{
                 border: "1.5px solid var(--nx-border)",
-                borderRadius: "4px",
+                borderRadius: "var(--nx-r-xs)",
                 overflow: "hidden",
                 maxWidth: "860px",
               }}
@@ -661,7 +662,7 @@ export default function Pricing() {
                             color: "var(--nx-cobalt)",
                             backgroundColor: "var(--nx-ceramic)",
                             padding: "1px 5px",
-                            borderRadius: "100px",
+                            borderRadius: "var(--nx-r-pill)",
                           }}
                         >
                           {term.badge}
@@ -883,7 +884,7 @@ export default function Pricing() {
             <div
               style={{
                 border: "1.5px solid var(--nx-border)",
-                borderRadius: "4px",
+                borderRadius: "var(--nx-r-xs)",
                 overflow: "hidden",
                 maxWidth: "600px",
               }}
@@ -902,6 +903,7 @@ export default function Pricing() {
                 >
                   <Check
                     size={14}
+                    aria-hidden="true"
                     style={{
                       color: "var(--nx-cobalt)",
                       flexShrink: 0,
@@ -968,7 +970,7 @@ export default function Pricing() {
             <div
               style={{
                 border: "1.5px solid var(--nx-border)",
-                borderRadius: "4px",
+                borderRadius: "var(--nx-r-xs)",
                 overflow: "hidden",
                 maxWidth: "680px",
               }}
@@ -1046,11 +1048,11 @@ export default function Pricing() {
                     {row.feature}
                   </p>
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Check size={16} style={{ color: "var(--nx-success)" }} />
+                    <Check size={16} aria-hidden="true" style={{ color: "var(--nx-success)" }} />
                   </div>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     {row.others === true ? (
-                      <Check size={16} style={{ color: "var(--nx-success)" }} />
+                      <Check size={16} aria-hidden="true" style={{ color: "var(--nx-success)" }} />
                     ) : row.others === "varies" || row.others === "rarely" ? (
                       <span
                         style={{
@@ -1064,7 +1066,7 @@ export default function Pricing() {
                         {row.others}
                       </span>
                     ) : (
-                      <X size={16} style={{ color: "var(--nx-amber)" }} />
+                      <X size={16} aria-hidden="true" style={{ color: "var(--nx-amber)" }} />
                     )}
                   </div>
                 </div>
