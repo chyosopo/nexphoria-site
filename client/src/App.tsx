@@ -20,6 +20,7 @@ import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
 
 import NotFound from "@/pages/not-found";
+import Booking from "@/pages/Booking";
 
 // Pages — lazy loaded (code-split)
 const Category = lazy(() => import("@/pages/Category"));
@@ -135,6 +136,7 @@ function AppRouter() {
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
 
+        <Route path="/booking" component={Booking} />
         {/* 404 */}
         <Route component={NotFound} />
       </Switch>
