@@ -319,10 +319,15 @@ function StepNav({
         <button type="button" onClick={onBack} data-testid="assessment-back" className="nx-step-back">
           <ArrowLeft size={15} aria-hidden="true" /> {backLabel}
         </button>
+        {/* aria-disabled (not native `disabled`) keeps the primary action in the
+            tab order while inactive, so keyboard and screen-reader users can
+            focus it and hear, via aria-describedby, exactly what the step still
+            needs. The onNext handlers (goNext / handleSubmit) no-op when the
+            step is invalid or a submit is already in flight, so an inactive
+            click stays a safe no-op. */}
         <button
           type="button"
           onClick={onNext}
-          disabled={nextDisabled}
           aria-disabled={nextDisabled}
           aria-describedby="assessment-sr-status"
           data-testid="assessment-next"
@@ -502,7 +507,7 @@ export default function Assessment() {
   }
 
   async function handleSubmit() {
-    if (!valid) return;
+    if (!valid || submitting) return;
     setSubmitting(true);
     setSubmitError(null);
     try {
@@ -1705,6 +1710,11 @@ export default function Assessment() {
           transition: border-color var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease);
         }
         .nx-step-back:hover { border-color: var(--nx-cobalt); color: var(--nx-cobalt); }
+        .nx-step-back:focus-visible,
+        .nx-step-next:focus-visible {
+          outline: 2px solid var(--nx-cobalt);
+          outline-offset: 2px;
+        }
         .nx-step-next {
           flex: 1;
           display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
@@ -1721,9 +1731,9 @@ export default function Assessment() {
                       transform var(--nx-dur-1) var(--nx-ease),
                       opacity var(--nx-dur-2) var(--nx-ease);
         }
-        .nx-step-next:hover { background-color: var(--nx-cobalt-hover); border-color: var(--nx-cobalt-hover); }
-        .nx-step-next:active { transform: scale(0.985); }
-        .nx-step-next:disabled { opacity: 0.4; cursor: not-allowed; }
+        .nx-step-next:not([aria-disabled="true"]):hover { background-color: var(--nx-cobalt-hover); border-color: var(--nx-cobalt-hover); }
+        .nx-step-next:not([aria-disabled="true"]):active { transform: scale(0.985); }
+        .nx-step-next[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; }
 
         @media (min-width: 768px) {
           .assessment-stepnav {
