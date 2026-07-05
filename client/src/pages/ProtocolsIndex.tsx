@@ -122,7 +122,7 @@ export default function ProtocolsIndex() {
                       <img src={OUTCOME_STACK[s.slug]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                     )}
                     {s.gated && (
-                      <span className="nx-float-badge"><Lock size={10} /> Assessed</span>
+                      <span className="nx-float-badge"><Lock size={10} aria-hidden="true" /> Assessed</span>
                     )}
                   </div>
                   <div className="nx-float-card__body">
@@ -133,7 +133,7 @@ export default function ProtocolsIndex() {
                       <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
                         {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
                       </span>
-                      <ArrowRight size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                      <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                     </div>
                   </div>
                 </Link>
@@ -153,7 +153,7 @@ export default function ProtocolsIndex() {
                   <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>Start from a goal — a physician reviews it.</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
                     <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building</span>
-                    <ArrowRight size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                    <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                   </div>
                 </div>
               </Link>
