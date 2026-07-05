@@ -119,7 +119,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           data-testid="catalog-search"
           style={{ maxWidth: 420, marginBottom: 14 }}
         />
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+        <div role="group" aria-label="Filter the catalog by category" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {cats.map((c) => {
             const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
             const active = filter === c;
