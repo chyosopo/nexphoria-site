@@ -127,7 +127,7 @@ export default function StackPage({ slug }: { slug: string }) {
               </div>
             </div>
             {OUTCOME_STACK[stack.slug] && (
-              <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>
+              <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
                 <img
                   src={OUTCOME_STACK[stack.slug]}
                   alt=""

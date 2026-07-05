@@ -131,9 +131,23 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 </div>
               </div>
             </div>
-            <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "4 / 5", maxHeight: "min(56vh, 520px)" }}>
+            {/* square frame FILLS the column (the 4:5 + maxHeight cap left it
+                floating ~100px narrower than its track) */}
+            <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
               <img src={heroImg} alt="" aria-hidden fetchPriority="high" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid={`solo-outcome-${solo.slug}`} />
               <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
+              <div
+                style={{
+                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
+                }}
+              >
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                  {solo.gated ? "Physician-assessed" : "Prescription only"}
+                </span>
+              </div>
             </div>
           </div>
         </div>
