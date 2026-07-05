@@ -797,6 +797,7 @@ export default function Assessment() {
                       <div
                         role="radiogroup"
                         aria-labelledby="q-sex"
+                        aria-required="true"
                         onKeyDown={makeRadioKeyDown(
                           ["female", "male"],
                           form.gender ?? "",
@@ -976,6 +977,7 @@ export default function Assessment() {
                       <div
                         role="radiogroup"
                         aria-labelledby="q-age"
+                        aria-required="true"
                         onKeyDown={makeRadioKeyDown(AGE_RANGES, form.age, (v) => setField("age", v))}
                         style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}
                       >
@@ -1025,6 +1027,10 @@ export default function Assessment() {
                             onChange={(e) => setField("medications", e.target.value)}
                             rows={4}
                             placeholder="e.g. Metformin 500mg twice daily, Levothyroxine 50mcg daily..."
+                            // Sensitive free-text — keep it out of browser autofill
+                            // history (privacy posture; nothing here is stored client-side
+                            // beyond the local draft the user controls).
+                            autoComplete="off"
                             data-testid="assessment-medications-text"
                             className="nx-input"
                             style={{ resize: "vertical" }}
@@ -1070,6 +1076,7 @@ export default function Assessment() {
                       <div
                         role="radiogroup"
                         aria-labelledby="q-labs"
+                        aria-required="true"
                         onKeyDown={makeRadioKeyDown(LAB_OPTIONS.map((o) => o.id), form.recentLabs, (v) => setField("recentLabs", v))}
                         style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}
                       >
