@@ -130,12 +130,8 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
             const active = filter === c;
             return (
-              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`filter-${c.toLowerCase()}`} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{
-                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 15px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
-                background: active ? "var(--nx-cobalt)" : "transparent",
-                color: active ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
-                border: `1px solid ${active ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
-                transition: "background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease)",
+              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`filter-${c.toLowerCase()}`} className="nx-filter-chip focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{
+                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600,
               }}>
                 {c}
                 <span style={{ opacity: 0.65, marginLeft: 6, fontWeight: 500 }}>{n}</span>
@@ -195,7 +191,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
             You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right compound, or tells you none is appropriate.
           </p>
-          <Link href="/assessment" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", background: "var(--nx-ceramic)", color: "var(--nx-bg-dark)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }} data-testid="catalog-assess-cta">
+          <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
             Begin your intake
           </Link>
         </div>

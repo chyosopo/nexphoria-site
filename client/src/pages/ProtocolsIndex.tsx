@@ -13,7 +13,13 @@ import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 import vialLineupMaster from "@/assets/brand/vial-lineup-master.webp";
 
 const ALL_CATEGORIES = ["All", "Recovery", "Skin", "Growth", "Cognitive", "Longevity", "Metabolic", "Sleep"];
-const matchCat = (c: string, filter: string) => filter === "All" || c.toLowerCase().includes(filter.toLowerCase());
+/* Chip → category-substring aliases. "Growth" must also catch "GH Axis &
+   Body Composition" (Ascend) — plain substring matching left it orphaned
+   behind a chip that auto-hid itself at zero matches. */
+const CHIP_ALIASES: Record<string, string[]> = { Growth: ["growth", "gh axis"] };
+const matchCat = (c: string, filter: string) =>
+  filter === "All" ||
+  (CHIP_ALIASES[filter] ?? [filter.toLowerCase()]).some((m) => c.toLowerCase().includes(m));
 /* Only surface a chip when it actually has protocols behind it — a 0-count
    filter is a dead end (visual-QA finding). "All" always shows. */
 const CATEGORIES = ALL_CATEGORIES.filter(
@@ -92,12 +98,8 @@ export default function ProtocolsIndex() {
             const n = c === "All" ? FLAGSHIP_STACKS.length : FLAGSHIP_STACKS.filter((s) => matchCat(s.category, c)).length;
             const active = filter === c;
             return (
-              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`protofilter-${c.toLowerCase()}`} style={{
-                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, padding: "8px 16px", borderRadius: "var(--nx-r-pill)", cursor: "pointer",
-                background: active ? "var(--nx-cobalt)" : "transparent",
-                color: active ? "var(--nx-ceramic)" : "var(--nx-fg-graphite)",
-                border: `1px solid ${active ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
-                transition: "background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease)",
+              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`protofilter-${c.toLowerCase()}`} className="nx-filter-chip" style={{
+                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600,
               }}>
                 {c}<span style={{ opacity: 0.6, marginLeft: 6, fontWeight: 500 }}>{n}</span>
               </button>
@@ -199,7 +201,7 @@ export default function ProtocolsIndex() {
           <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
             You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right protocol, or tells you none is appropriate.
           </p>
-          <Link href="/assessment" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: 15, background: "var(--nx-ceramic)", color: "var(--nx-bg-dark)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }} data-testid="proto-assess-cta">
+          <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: 15, marginTop: "1.6rem" }} data-testid="proto-assess-cta">
             Begin your intake
           </Link>
         </div>

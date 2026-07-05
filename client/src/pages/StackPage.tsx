@@ -223,7 +223,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
                 {stack.panelNote ?? panel?.summary}
               </p>
-              <Link href="/bloodwork" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", display: "inline-block", marginTop: "0.8rem" }}>
+              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
                 See the {stack.panel} panel in detail →
               </Link>
             </div>

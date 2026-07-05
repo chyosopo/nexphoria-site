@@ -225,7 +225,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)" }}>
             From the formulary
           </h2>
-          <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }} data-testid={`${world}-formulary-all`}>
+          <Link href={`${base}/peptides`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }} data-testid={`${world}-formulary-all`}>
             The complete catalog →
           </Link>
         </div>
@@ -288,7 +288,8 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <Link
               href="/bloodwork"
               data-testid={`${world}-panel-cta`}
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", marginTop: "1.5rem" }}
+              className="nx-text-link"
+              style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.5rem" }}
             >
               See the full {PANEL_TOTAL_MARKERS}-marker panel
               <ArrowRight size={16} strokeWidth={2.2} aria-hidden />

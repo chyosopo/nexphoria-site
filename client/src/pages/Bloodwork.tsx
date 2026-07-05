@@ -423,18 +423,15 @@ function PanelExplorer() {
                 aria-selected={isActive}
                 data-testid={`chip-${c.id}`}
                 onClick={() => setActive(c.id)}
+                className="nx-filter-chip"
                 style={{
                   fontFamily: FONT,
                   fontSize: "var(--nx-t-sm)",
                   fontWeight: 500,
                   letterSpacing: "0.01em",
-                  padding: "0.55rem 1.05rem",
-                  borderRadius: "var(--nx-r-pill)",
-                  border: `1px solid ${isActive ? "var(--nx-fg)" : "var(--nx-border)"}`,
-                  backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
-                  color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
-                  cursor: "pointer",
-                  transition: "all var(--nx-dur-2) var(--nx-ease)",
+                  // active state stays this page's ink-dark look; inactive
+                  // inherits the class so its hover can actually fire
+                  ...(isActive ? { backgroundColor: "var(--nx-fg)", color: "var(--nx-ceramic)", borderColor: "var(--nx-fg)" } : {}),
                 }}
               >
                 {c.name}
@@ -1223,6 +1220,15 @@ function GlowingBody() {
             All {PANEL_TOTAL_MARKERS} reviewed by a physician
           </span>
         </div>
+        {/* Mobile: the floating pills above are hidden below sm — restate
+            what the panel surfaces as a wrapped row so phones keep the point */}
+        <div className="sm:hidden flex flex-wrap justify-center gap-2 mt-6">
+          {SURFACE_PILLS.map((p) => (
+            <span key={p.t} style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 500, color: "rgba(243, 245, 247,0.75)", border: "1px solid rgba(243, 245, 247,0.22)", borderRadius: "var(--nx-r-pill)", padding: "7px 13px" }}>
+              {p.t}
+            </span>
+          ))}
+        </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
           {[["One draw", "5-minute booking, 2,000+ locations"], [`${PANEL_TOTAL_MARKERS} markers`, "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.2rem" }}>
@@ -1276,7 +1282,7 @@ function SectionPills() {
     <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-border)" }}>
       <div className="nx-container flex gap-2 overflow-x-auto" style={{ paddingTop: "10px", paddingBottom: "10px", scrollbarWidth: "none" }}>
         {items.map(([t, h]) => (
-          <a key={h} href={anchor(h)} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "color-mix(in srgb, var(--nx-cobalt) 16%, transparent)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "7px 15px" }}>
+          <a key={h} href={anchor(h)} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "color-mix(in srgb, var(--nx-cobalt) 16%, transparent)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "12px 15px" }}>
             {t}
           </a>
         ))}

@@ -27,11 +27,16 @@ export function TrustBar() {
       data-testid="trust-bar"
       aria-label="Trust signals"
     >
-      <div className="max-w-[1400px] mx-auto px-6 py-2 flex items-center justify-center flex-wrap gap-x-6 gap-y-1.5">
+      {/* One row always: horizontal scroll on phones instead of five stacked
+          rows of micro-text (~110px of chrome) under the nav. */}
+      <div
+        className="max-w-[1400px] mx-auto px-6 py-2 flex items-center justify-start md:justify-center flex-nowrap md:flex-wrap overflow-x-auto gap-x-6 gap-y-1.5"
+        style={{ scrollbarWidth: "none" }}
+      >
         {items.map(({ icon: Icon, label }, i) => (
           <div
             key={label}
-            className="flex items-center gap-1.5"
+            className="flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "10px",

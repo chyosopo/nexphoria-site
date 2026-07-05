@@ -1264,10 +1264,11 @@ a.nx-glass-card:hover, .nx-glass-card:has(> a):hover {
 .nx-cta-cobalt:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(21, 24, 28,0.35); }
 .nx-cta-cobalt:active, .nx-cta-ghost:active { transform: scale(0.975); }
 
-/* Signature details people feel before they notice */
-::selection { background: #8FC6FF; color: #0E2447; }
-html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
-:focus-visible { outline: 2px solid #1F5FD0; outline-offset: 3px; border-radius: 4px; }
+/* Signature details people feel before they notice — token-driven so the
+   orchid world recolors selection/scrollbar/focus for free. */
+::selection { background: color-mix(in srgb, var(--nx-accent) 45%, var(--nx-bg)); color: var(--nx-fg); }
+html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) var(--nx-bg); scrollbar-width: thin; }
+:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 3px; border-radius: 4px; }
 
 /* Links get the quiet underline slide */
 .nx-container a:not([class]):hover { text-decoration-color: #1F5FD0; text-underline-offset: 4px; }
@@ -1399,6 +1400,72 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   background-size: 200% 100%;
   animation: nxShimmer 1.6s var(--nx-ease) infinite;
   border-radius: var(--nx-r-md);
+}
+
+/* ── Inline text link — cobalt arrow links get hover feedback and a 44px
+   tap area (padding + negative margin so layout doesn't shift) ── */
+.nx-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--nx-cobalt);
+  text-decoration: none;
+  padding: 12px 6px;
+  margin: -12px -6px;
+  border-radius: var(--nx-r-sm);
+  transition: color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-text-link:hover {
+  color: var(--nx-cobalt-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ── Ceramic CTA on dark bands — primary action needs visible feedback ── */
+.nx-cta-ceramic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--nx-ceramic);
+  color: var(--nx-bg-dark);
+  border-radius: var(--nx-r-pill);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease);
+}
+.nx-cta-ceramic:hover {
+  background: var(--nx-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--nx-e-3);
+}
+.nx-cta-ceramic:active { transform: translateY(0); }
+
+/* ── Filter chip — one interactive grammar for every catalog/panel filter ──
+   44px minimum target (mobile primary control), hover feedback for pointer
+   users, active state driven by aria-pressed so semantics = styling. */
+.nx-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  cursor: pointer;
+  border-radius: var(--nx-r-pill);
+  border: 1px solid var(--nx-border);
+  background: transparent;
+  color: var(--nx-fg-graphite);
+  transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-filter-chip:not([aria-pressed="true"]):hover {
+  background: color-mix(in srgb, var(--nx-cobalt) 8%, transparent);
+  border-color: color-mix(in srgb, var(--nx-cobalt) 32%, var(--nx-border));
+  color: var(--nx-fg);
+}
+.nx-filter-chip[aria-pressed="true"] {
+  background: var(--nx-cobalt);
+  color: var(--nx-ceramic);
+  border-color: var(--nx-cobalt);
 }
 
 /* ── BenefitTile aspect: preferred shape on sm+, content-height on phones ──
