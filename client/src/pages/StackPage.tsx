@@ -50,7 +50,7 @@ export default function StackPage({ slug }: { slug: string }) {
     return (
       <SiteLayout>
         <section className="nx-container" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }}>
-          <p style={{ fontFamily: F, color: "var(--nx-fg-graphite)" }}>Protocol not found.</p>
+          <h1 style={{ fontFamily: F, color: "var(--nx-fg-graphite)" }}>Protocol not found.</h1>
           <Link href="/stacks" style={{ fontFamily: F, color: "var(--nx-cobalt)" }}>← All protocols</Link>
         </section>
       </SiteLayout>
@@ -88,7 +88,7 @@ export default function StackPage({ slug }: { slug: string }) {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
               <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
-                <ArrowLeft size={15} /> All protocols
+                <ArrowLeft size={15} aria-hidden="true" /> All protocols
               </Link>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
                 {stack.category}
@@ -125,7 +125,7 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── VIAL LINEUP — the protocol, rendered as its vials ── */}
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }}>
         <div className="nx-container" style={{ paddingTop: "clamp(1.8rem,3.5vw,2.8rem)", paddingBottom: "clamp(1.8rem,3.5vw,2.8rem)" }}>
-          <p className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</p>
+          <h2 className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</h2>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end", gap: "clamp(1.5rem,5vw,3.5rem)", marginTop: "1.4rem" }}>
             {stack.peptides.map((p, i) => {
               const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -150,7 +150,7 @@ export default function StackPage({ slug }: { slug: string }) {
           {/* — LEFT: the story — */}
           <div>
             {/* Protocol — peptide chips (icon + name), then the details table */}
-            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</p>
+            <h2 style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</h2>
             {/* compact floating spec tiles — name · dose · spec, pharmaceutical-precise */}
             <div className="nx-float-grid dense" style={{ marginTop: "0.9rem" }}>
               {stack.peptides.map((p, i) => (
@@ -223,7 +223,7 @@ export default function StackPage({ slug }: { slug: string }) {
             {stack.gated && (
               <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                  <Lock size={15} /> Physician-assessed only
+                  <Lock size={15} aria-hidden="true" /> Physician-assessed only
                 </div>
                 <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "24ch" }}>
                   GLP-1 therapy is prescribed after review — not bought from a shelf.
@@ -268,7 +268,7 @@ export default function StackPage({ slug }: { slug: string }) {
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {stack.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
-                <Check size={17} strokeWidth={2.4} style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
+                <Check size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.92 }}>{c}</p>
               </div>
             ))}
