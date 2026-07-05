@@ -312,7 +312,7 @@ export function SampleProtocolPreview() {
 
 export function IntakeSidebar() {
   return (
-    <aside data-testid="assessment-sidebar" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+    <aside aria-label="What happens after you submit" data-testid="assessment-sidebar" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
       <div>
         <p
           style={{
