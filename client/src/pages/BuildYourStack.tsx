@@ -838,7 +838,7 @@ export default function BuildYourStack() {
                         className="flex items-start gap-4 p-5"
                         style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}
                       >
-                        <div className="flex-shrink-0" style={{ width: 56, height: 56, background: "var(--nx-bg)", borderRadius: "var(--nx-r-xs)", display: "grid", placeItems: "center" }}>
+                        <div className="flex-shrink-0" aria-hidden="true" style={{ width: 56, height: 56, background: "var(--nx-bg)", borderRadius: "var(--nx-r-xs)", display: "grid", placeItems: "center" }}>
                           <MolecularGlyph glyph={p.glyph} size={36} />
                         </div>
                         <div className="flex-1 min-w-0">
