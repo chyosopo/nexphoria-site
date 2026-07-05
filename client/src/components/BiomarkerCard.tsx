@@ -151,7 +151,7 @@ function RangeBar({ m }: { m: Biomarker }) {
         }}
       >
         <span>{m.refLow}</span>
-        <span style={{ letterSpacing: "0.1em", textTransform: "uppercase", fontSize: 9 }}>
+        <span style={{ letterSpacing: "0.1em", textTransform: "uppercase", fontSize: 10 }}>
           Reference {m.refLabel}
         </span>
         <span>{m.refHigh}</span>
@@ -212,7 +212,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           <p
             style={{
               fontFamily: FONT,
-              fontSize: 9,
+              fontSize: 10,
               fontWeight: 500,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -243,7 +243,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           style={{
             flexShrink: 0,
             fontFamily: FONT,
-            fontSize: 8.5,
+            fontSize: 10,
             fontWeight: 600,
             letterSpacing: "0.1em",
             textTransform: "uppercase",

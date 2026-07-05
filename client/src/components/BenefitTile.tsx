@@ -160,7 +160,7 @@ export function BenefitTile({
         )}
         {eyebrow ? (
           <span
-            className="text-[9px] uppercase"
+            className="text-[10px] uppercase"
             style={{
               fontFamily: MONO,
               color: hasImage ? "var(--nx-accent)" : t.eyebrow,

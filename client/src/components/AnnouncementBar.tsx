@@ -19,7 +19,7 @@ interface AnnouncementBarProps {
 
 export function AnnouncementBar({
   message = "Free physician consult on your first protocol \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
-  tag = "Pharmacy",
+  tag = "Peptides",
   ctaLabel = "Start intake",
   ctaHref = "/assessment",
 }: AnnouncementBarProps) {
@@ -40,7 +40,7 @@ export function AnnouncementBar({
     >
       <div className="nx-container flex items-center gap-3 py-2.5">
         <span
-          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-[0.22em]"
+          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] uppercase tracking-[0.22em]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             color: "var(--nx-fg)",

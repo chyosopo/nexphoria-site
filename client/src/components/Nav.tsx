@@ -13,7 +13,7 @@ interface NavProps {
 interface NavLink {
   label: string;
   href: string;
-  /** When true, this item opens the Pharmacy mega-menu on hover (desktop). */
+  /** When true, this item opens the Peptides mega-menu on hover (desktop). */
   mega?: boolean;
 }
 
@@ -54,7 +54,7 @@ const gateLinks: NavLink[] = [
   { label: "Journal", href: "/journal" },
 ];
 
-/* Six category tiles for the Pharmacy mega-menu. Order + copy tuned for
+/* Six category tiles for the Peptides mega-menu. Order + copy tuned for
    the Hims-style "quiet mega-menu on hover" pattern: six restrained tiles,
    each a benefit line, plus a featured-peptides column on the right. */
 const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = [
@@ -131,7 +131,7 @@ export function Nav({ variant = "gate" }: NavProps) {
     variant === "men" ? "men-assessment" :
     "assessment";
 
-  // Pharmacy base path drives every mega-menu link so women/men stay scoped.
+  // Peptides base path drives every mega-menu link so women/men stay scoped.
   const pharmacyBase =
     variant === "women" ? "/women/peptides" :
     variant === "men" ? "/men/peptides" :
@@ -271,7 +271,7 @@ export function Nav({ variant = "gate" }: NavProps) {
         </div>
       </nav>
 
-      {/* ── Desktop Pharmacy mega-menu ── */}
+      {/* ── Desktop Peptides mega-menu ── */}
       {megaOpen && (
         <div
           ref={megaRef}

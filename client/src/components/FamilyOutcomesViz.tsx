@@ -140,7 +140,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 9,
+            fontSize: 10,
             fontWeight: 700,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
@@ -153,7 +153,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 9,
+            fontSize: 10,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "var(--nx-fg-muted)",

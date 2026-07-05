@@ -89,6 +89,7 @@ export function StartIntakeButton({
     <a
       href={`#${INTAKE_ROUTE}`}
       onClick={handleClick}
+      style={style}
       data-testid={`button-intake-${source || productSlug || "generic"}`}
       className={cn(
         "group inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all",
