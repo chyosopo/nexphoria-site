@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { anchor } from "@/lib/anchors";
+import { FONT } from "@/lib/typography";
 import { BloodworkDashboard } from "@/components/BloodworkDashboard";
 
 /* ─────────────────────────────────────────────────────────────
@@ -15,6 +16,7 @@ interface BloodworkSectionProps {
 }
 
 export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
+  const reduce = useReducedMotion();
   return (
     <section
       data-testid="bloodwork-section"
@@ -30,10 +32,10 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
 
           {/* ── LEFT: Editorial copy ──────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={reduce ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={reduce ? { duration: 0 } : { duration: 0.5, ease: "easeOut" }}
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-6">
@@ -47,8 +49,8 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               />
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "10px",
+                  fontFamily: FONT,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 600,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -62,7 +64,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
             {/* Headline */}
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: FONT,
                 fontWeight: 500,
                 fontSize: "clamp(2.25rem, 4vw, 3.5rem)",
                 color: "var(--nx-fg)",
@@ -79,8 +81,8 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
             {/* Body */}
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "17px",
+                fontFamily: FONT,
+                fontSize: "var(--nx-t-body)",
                 fontWeight: 400,
                 color: "var(--nx-fg-graphite)",
                 lineHeight: 1.7,
@@ -103,8 +105,8 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
                 <span
                   key={label}
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontFamily: FONT,
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 600,
                     letterSpacing: "0.13em",
                     textTransform: "uppercase",
@@ -112,7 +114,7 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
                     border: "1px solid var(--nx-fg)",
                     padding: "4px 10px",
                     display: "inline-block",
-                    borderRadius: "1px",
+                    borderRadius: "var(--nx-r-xs)",
                   }}
                 >
                   {label}
@@ -125,8 +127,8 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
               href={anchor("#how-we-read-labs")}
               data-testid="bloodwork-how-we-read-link"
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "14px",
+                fontFamily: FONT,
+                fontSize: "var(--nx-t-sm)",
                 fontWeight: 500,
                 color: "var(--nx-fg)",
                 textDecoration: "underline",
@@ -144,10 +146,10 @@ export function BloodworkSection({ gender = "women" }: BloodworkSectionProps) {
 
           {/* ── RIGHT: Dashboard mockup ───────────────────── */}
           <motion.div
-            initial={{ opacity: 0, y: 32 }}
+            initial={reduce ? false : { opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
+            transition={reduce ? { duration: 0 } : { duration: 0.55, ease: "easeOut", delay: 0.1 }}
             data-testid="bloodwork-dashboard-wrapper"
             className="overflow-x-auto"
           >

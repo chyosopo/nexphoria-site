@@ -1306,6 +1306,13 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
 @keyframes nx-drift { from { transform: translateX(1.6%); } to { transform: translateX(-1.6%); } }
 .nx-pills { position: sticky; top: 68px; z-index: var(--nx-z-sticky); }
 @media (prefers-reduced-motion: reduce) { .nx-drift, .nx-ring-arc-lg { animation: none; stroke-dashoffset: 0; } }
+/* Bloodwork mosaic / panel-card art: neutralise the inline Tailwind hover-zoom
+   (group-hover:scale + transition-transform) when the visitor asks for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  [data-testid^="mosaic-"] img,
+  [data-testid^="panel-card-"] img { transition: none; }
+  [data-testid^="mosaic-"]:hover img { transform: none; }
+}
 
 /* ═══ P3 — Aurora field + tinted glass (world-aware: everything derives from --nx-* tokens) ═══ */
 .nx-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
