@@ -1401,6 +1401,12 @@ html { scrollbar-color: #BCCCDF #F2F7FD; scrollbar-width: thin; }
   border-radius: var(--nx-r-md);
 }
 
+/* ── BenefitTile aspect: preferred shape on sm+, content-height on phones ──
+   A hard square at 2-up 390px (~165px tiles) clipped copy mid-word. */
+@media (min-width: 640px) {
+  .benefit-tile { aspect-ratio: var(--bt-aspect, 1); }
+}
+
 /* ── D12 buy-box: sticky rail on desktop ──
    Sticky lives on .nx-buyrail — the wrapper holding the buy box AND the
    safety disclosure — so both travel together; sticky on the box alone

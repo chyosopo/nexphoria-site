@@ -40,7 +40,7 @@ export const WHY_WE_ASK: Record<number, string> = {
 
 const SIDEBAR_TILES = [
   { icon: Stethoscope, title: "Physician review", desc: "A board-certified MD reads your file — no algorithms, no auto-approvals." },
-  { icon: FlaskConical, title: "Lab kit shipped", desc: "At-home lab kit dispatched the same day you submit."},
+  { icon: FlaskConical, title: "Bloodwork arranged", desc: "A partner-laboratory draw is arranged once a physician reviews your intake." },
   { icon: ClipboardCheck, title: "Protocol designed within 5 days", desc: "Compounded and cold-chain shipped after physician sign-off." },
 ];
 

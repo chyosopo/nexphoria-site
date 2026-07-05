@@ -898,8 +898,7 @@ export default function Science() {
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               The standard
             </p>
-            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>Science without labs is conjecture.</h2>
-            <h2 style={{ fontFamily: F, fontWeight: 500,  fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
+            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.65, maxWidth: "480px" }}>
               Every Nexphoria protocol begins with a 38-biomarker partner-laboratory draw. Mechanism explains what a peptide
               does. Your bloodwork tells your physician what it will do for you specifically.

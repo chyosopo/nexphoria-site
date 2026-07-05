@@ -83,7 +83,7 @@ export default function Cart() {
                         }}
                         data-testid={`cart-page-line-${line.type}-${line.slug}`}
                       >
-                        <div className="flex items-start gap-5 p-5 md:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-start gap-5 p-5 md:p-6">
                           {/* Vial visual */}
                           <div
                             className="hidden sm:flex flex-shrink-0 items-center justify-center"
@@ -146,7 +146,7 @@ export default function Cart() {
                                 Billing cadence
                               </div>
                               <div
-                                className="inline-flex"
+                                className="flex w-full max-w-[360px]"
                                 style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", overflow: "hidden" }}
                                 role="radiogroup"
                                 aria-label="Billing cadence"
@@ -161,9 +161,10 @@ export default function Cart() {
                                       role="radio"
                                       aria-checked={active}
                                       onClick={() => updateCadence(line.slug, line.type, c)}
-                                      className="px-3.5 py-1.5 text-[10px] uppercase tracking-[0.12em] transition-colors"
+                                      className="flex-1 inline-flex items-center justify-center px-2 text-[10px] uppercase tracking-[0.1em] transition-colors"
                                       style={{
                                         fontFamily: FONT,
+                                        minHeight: 44,
                                         background: active ? "var(--nx-fg)" : "transparent",
                                         color: active ? "var(--nx-bg)" : "var(--nx-fg)",
                                         borderRight: c === "12mo" ? "none" : "1px solid var(--nx-border)",
@@ -186,14 +187,19 @@ export default function Cart() {
                             </div>
                           </div>
 
-                          <div className="text-right flex-shrink-0">
+                          {/* Price + qty + remove: inline row under the content on
+                              mobile, right-aligned column beside it on sm+ — the
+                              side-by-side squeeze is what clipped the cadence
+                              control and shrank every tap target at 390px. */}
+                          <div className="flex-shrink-0 flex items-center justify-between gap-4 sm:block sm:text-right">
                             <div
-                              className="text-xl mb-3"
+                              className="text-xl sm:mb-3"
                               style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}
                               data-testid={`text-line-total-${line.type}-${line.slug}`}
                             >
                               {formatUSD(line.lineTotal)}
                             </div>
+                            <div className="flex items-center gap-3 sm:block">
                             {/* Qty */}
                             <div
                               className="inline-flex items-center"
@@ -201,12 +207,12 @@ export default function Cart() {
                             >
                               <button
                                 onClick={() => updateQty(line.slug, line.type, line.qty - 1)}
-                                className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
+                                className="inline-flex items-center justify-center px-3 hover:bg-black/5 transition-colors"
                                 aria-label="Decrease quantity"
                                 data-testid={`button-qty-decrease-page-${line.type}-${line.slug}`}
-                                style={{ color: "var(--nx-fg)" }}
+                                style={{ color: "var(--nx-fg)", minHeight: 44, minWidth: 40 }}
                               >
-                                <Minus size={12} />
+                                <Minus size={13} />
                               </button>
                               <span
                                 className="px-3 text-sm min-w-[28px] text-center"
@@ -217,23 +223,24 @@ export default function Cart() {
                               </span>
                               <button
                                 onClick={() => updateQty(line.slug, line.type, line.qty + 1)}
-                                className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
+                                className="inline-flex items-center justify-center px-3 hover:bg-black/5 transition-colors"
                                 aria-label="Increase quantity"
                                 data-testid={`button-qty-increase-page-${line.type}-${line.slug}`}
-                                style={{ color: "var(--nx-fg)" }}
+                                style={{ color: "var(--nx-fg)", minHeight: 44, minWidth: 40 }}
                               >
-                                <Plus size={12} />
+                                <Plus size={13} />
                               </button>
                             </div>
-                            <div className="mt-2">
+                            <div className="sm:mt-1">
                               <button
                                 onClick={() => removeItem(line.slug, line.type)}
                                 className="text-xs inline-flex items-center gap-1 hover:underline"
-                                style={{ fontFamily: FONT, color: "var(--nx-amber)" }}
+                                style={{ fontFamily: FONT, color: "var(--nx-amber)", minHeight: 44, padding: "0 4px" }}
                                 data-testid={`button-remove-page-${line.type}-${line.slug}`}
                               >
                                 <Trash2 size={11} aria-hidden="true" /> Remove
                               </button>
+                            </div>
                             </div>
                           </div>
                         </div>
@@ -399,7 +406,9 @@ export default function Cart() {
           )}
         </div>
       </div>
-      {/* Sticky mobile checkout CTA */}
+      {/* Sticky mobile checkout CTA — with an in-flow spacer so the fixed bar
+          never covers the page's last content line on mobile */}
+      {lines.length > 0 && <div className="lg:hidden" style={{ height: 76 }} aria-hidden />}
       {lines.length > 0 && (
         <div
           className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4"
@@ -459,7 +468,7 @@ function Chip({ children, icon, tone = "ink" }: { children: React.ReactNode; ico
       style={{
         fontFamily: FONT,
         borderRadius: "var(--nx-r-pill)",
-        border: `1px solid ${isAmber ? "#B3C8E2" : "var(--nx-border)"}`,
+        border: `1px solid ${isAmber ? "color-mix(in srgb, var(--nx-cobalt) 30%, var(--nx-border))" : "var(--nx-border)"}`,
         background: isAmber ? "var(--nx-bg-cream)" : "var(--nx-ceramic)",
         color: isAmber ? "var(--nx-amber)" : "var(--nx-fg)",
       }}

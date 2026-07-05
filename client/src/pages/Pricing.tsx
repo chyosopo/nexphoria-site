@@ -1111,7 +1111,7 @@ export default function Pricing() {
                         {row.others}
                       </span>
                     ) : (
-                      <X size={16} aria-hidden="true" style={{ color: "var(--nx-amber)" }} />
+                      <X size={16} aria-hidden="true" style={{ color: "var(--nx-fg-muted)" }} />
                     )}
                   </div>
                 </div>

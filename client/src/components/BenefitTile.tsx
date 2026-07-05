@@ -11,7 +11,6 @@ import { FONT } from "@/lib/typography";
    destination — the whole tile is clickable when `href` is set.
    ────────────────────────────────────────────────────────────── */
 
-const MONO = "ui-monospace, SFMono-Regular, monospace";
 
 export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";
 
@@ -111,7 +110,9 @@ export function BenefitTile({
         color: t.fg,
         border: `1px solid ${t.border}`,
         borderRadius: 10,
-        aspectRatio: aspect,
+        // Aspect is enforced by .benefit-tile only at sm+ — a hard square on
+        // 2-up 390px grids (~165px tiles) clipped headline + sub mid-word.
+        ["--bt-aspect" as string]: String(aspect),
       }}
       data-testid={testId}
     >
@@ -162,7 +163,7 @@ export function BenefitTile({
           <span
             className="text-[10px] uppercase"
             style={{
-              fontFamily: MONO,
+              fontFamily: FONT,
               color: hasImage ? "var(--nx-accent)" : t.eyebrow,
               letterSpacing: "0.18em",
               fontWeight: 600,
@@ -195,7 +196,7 @@ export function BenefitTile({
             {metricUnit ? (
               <span
                 className="text-[11px] md:text-xs uppercase tracking-[0.14em]"
-                style={{ fontFamily: MONO, color: hasImage ? "var(--nx-accent)" : t.eyebrow, fontWeight: 600 }}
+                style={{ fontFamily: FONT, color: hasImage ? "var(--nx-accent)" : t.eyebrow, fontWeight: 600 }}
               >
                 {metricUnit}
               </span>
@@ -240,7 +241,7 @@ export function BenefitTile({
           <span
             className="text-[10px] uppercase"
             style={{
-              fontFamily: MONO,
+              fontFamily: FONT,
               color: hasImage ? "rgba(243, 245, 247,0.85)" : t.sub,
               letterSpacing: "0.15em",
               fontWeight: 600,

@@ -13,7 +13,7 @@ const items = [
   { icon: FlaskConical, label: "US-compounded via 503A partners" },
   { icon: ShieldCheck, label: "HIPAA-compliant" },
   { icon: Package, label: "Discreet 3–5 day shipping" },
-  { icon: Star, label: "Licensed U.S. physicians" },
+  { icon: Star, label: "Lab-monitored every 90 days" },
 ];
 
 export function TrustBar() {

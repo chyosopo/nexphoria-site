@@ -11,7 +11,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
-import { isGLP1Excluded, getStack } from "@/data/stacksCatalog";
+import { isGLP1Excluded, getStack, GLP1_STATE_EXCLUSIONS } from "@/data/stacksCatalog";
 import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -83,27 +83,22 @@ export default function Checkout() {
   const mutation = useMutation({
     mutationFn: async (values: FormValues) => {
       /* Staging behavior pending Bask/MDI wiring: the static production host
-         has no /api server, so capture is best-effort. This step collects no
-         payment ("no card is charged today"), so on capture failure we still
-         confirm receipt rather than dead-ending the funnel — and deliberately
-         do NOT persist health answers client-side (PHI stays out of the repo
-         and its storage). */
-      try {
-        return await apiRequest<{ ok: boolean; id: number; message: string }>("/api/checkout", {
-          method: "POST",
-          body: JSON.stringify({
-            ...values,
-            age: Number(values.age),
-            state: values.state.toUpperCase(),
-            allergies: values.allergies || null,
-            cartJson: JSON.stringify(lines.map((l) => ({ slug: l.slug, type: l.type, qty: l.qty }))),
-            subtotal,
-          }),
-        });
-      } catch {
-        track("checkout_capture_unavailable", {});
-        return { ok: true, id: Math.floor(10000 + Math.random() * 90000), message: "queued" };
-      }
+         has no /api server, so capture can fail. When it does, we FAIL
+         HONESTLY — no fabricated confirmation number, no false "with our
+         physician team" promise — and hand the user a working path
+         (retry / concierge email). Health answers are never persisted
+         client-side (PHI stays out of the repo and its storage). */
+      return await apiRequest<{ ok: boolean; id: number; message: string }>("/api/checkout", {
+        method: "POST",
+        body: JSON.stringify({
+          ...values,
+          age: Number(values.age),
+          state: values.state.toUpperCase(),
+          allergies: values.allergies || null,
+          cartJson: JSON.stringify(lines.map((l) => ({ slug: l.slug, type: l.type, qty: l.qty }))),
+          subtotal,
+        }),
+      });
     },
     onSuccess: (data) => {
       setSubmittedId(data.id);
@@ -112,8 +107,13 @@ export default function Checkout() {
       clear();
       toast({ title: "Submitted for physician review", description: "We'll be in touch upon review." });
     },
-    onError: (err: Error) => {
-      toast({ title: "Submission failed", description: err.message, variant: "destructive" });
+    onError: () => {
+      track("checkout_capture_unavailable", {});
+      toast({
+        title: "We could not submit your intake",
+        description: "Nothing was sent and no card was charged. Please try again, or email hello@nexphoria.com and our team will complete it with you.",
+        variant: "destructive",
+      });
     },
   });
 
@@ -157,8 +157,8 @@ export default function Checkout() {
                 className="text-base mb-8 max-w-lg mx-auto"
                 style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}
               >
-                Your cart and intake are now with our physician team. You'll receive an email by a licensed physician
-                with either an approval and final payment link, or a request for additional information.
+                Your cart and intake are now with our physician team. You will receive an email from a licensed
+                physician with either an approval and final payment link or a request for additional information.
               </p>
 
               {/* Progress: complete */}
@@ -276,7 +276,7 @@ export default function Checkout() {
                 <>
                   <Section title="Where should we ship?" eyebrow="Step 01 · Address">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Cold-chain shipped overnight after physician approval. We ship to all US states except LA, AK, and HI.
+                      Cold-chain shipped after physician approval to all 50 states. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
                     </p>
                     <Row>
                       <Field label="Full name" error={errors.name?.message}>
@@ -467,7 +467,7 @@ export default function Checkout() {
                         type="button"
                         onClick={() => setStep(0)}
                         className="mt-4 block w-full text-left p-3 text-sm"
-                        style={{ background: "#E5EFFB", border: "1px solid #ABC4E2", color: "#1A4D8B", fontFamily: FONT, borderRadius: "var(--nx-r-md)" }}
+                        style={{ background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", color: "var(--nx-cobalt-hover)", fontFamily: FONT, borderRadius: "var(--nx-r-md)" }}
                         data-testid="text-form-errors"
                       >
                         Some address fields need attention. Tap to review Step 01.

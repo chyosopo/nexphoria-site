@@ -431,8 +431,12 @@ export default function Assessment() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Scroll to top of card on step change
+  // Scroll to top of card on step change — but never on first render:
+  // scrolling on mount threw first-time visitors past the entire landing
+  // hero before they had read a word of it.
+  const skipMountScroll = useRef(true);
   useEffect(() => {
+    if (skipMountScroll.current) { skipMountScroll.current = false; return; }
     topRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [step]);
 
@@ -673,7 +677,7 @@ export default function Assessment() {
                   lineHeight: 1.7,
                 }}
               >
-                The intake takes about four minutes. It feeds a 38-marker lab panel, a
+                The intake takes about four minutes. It feeds a 38-biomarker lab panel, a
                 physician review, and a compounded protocol dosed to your measured IGF-1,
                 metabolic, and hormonal numbers. No questionnaire-only prescribing.
               </p>
