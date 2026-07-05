@@ -938,10 +938,3 @@ export const peptides: Peptide[] = RAW_PEPTIDES.filter((p) => CANON.has(p.slug))
   name: CANON.get(p.slug)!.name,
 }));
 
-export function getPeptide(slug: string): Peptide | undefined {
-  return peptides.find((p) => p.slug === slug);
-}
-
-export function peptidesByCategory(category: PeptideCategory): Peptide[] {
-  return peptides.filter((p) => p.category === category);
-}

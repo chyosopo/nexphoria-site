@@ -150,10 +150,6 @@ export function getStack(slug: string): Stack | undefined {
   return stacks.find((s) => s.slug === resolved);
 }
 
-export function getStacksForGender(g: "her" | "him"): Stack[] {
-  return stacks.filter((s) => s.gender === g || s.gender === "both");
-}
-
 /** Compute discounted bundle price — 12% off sum of individual peptide prices */
 export function computeStackPrice(stack: Stack, pricing: Record<string, { monthlyPrice: number }>): { sum: number; bundle: number; savings: number } {
   const sum = stack.peptides.reduce((acc, slug) => acc + (pricing[slug]?.monthlyPrice || 0), 0);
