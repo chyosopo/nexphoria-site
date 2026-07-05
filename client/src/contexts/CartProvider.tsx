@@ -4,8 +4,10 @@ import { stacks, computeStackPrice } from "@/data/stacks";
 import { getStack as getFlagship } from "@/data/stacksCatalog";
 
 /* ──────────────────────────────────────────────────────────────
-   Nexphoria Cart — React Context (NO localStorage — blocked in iframe)
-   Cart survives page navigation within a session; not across reloads.
+   Nexphoria Cart — React Context + guarded sessionStorage.
+   Cart survives navigation AND reloads within a browser session; if
+   storage is unavailable (sandboxed iframe, private mode) it degrades
+   to in-memory without erroring.
 
    Each item carries a billing cadence (1mo / 3mo / 12mo) which
    controls the per-month price the user actually pays.
@@ -51,9 +53,47 @@ interface CartContextValue {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
+/* Session-scoped cart persistence. sessionStorage can throw in sandboxed
+   iframes and private modes, so every access is guarded — worst case the
+   cart silently falls back to in-memory (the previous behavior). */
+const CART_STORAGE_KEY = "nx-cart-v1";
+
+function readStoredCart(): CartItem[] {
+  try {
+    const raw = window.sessionStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(
+      (i): i is CartItem =>
+        i && typeof i.slug === "string" &&
+        (i.type === "peptide" || i.type === "stack") &&
+        typeof i.qty === "number" && i.qty > 0,
+    );
+  } catch {
+    return [];
+  }
+}
+
+function writeStoredCart(items: CartItem[]) {
+  try {
+    window.sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  } catch {
+    /* storage unavailable — in-memory cart only */
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItemsRaw] = useState<CartItem[]>(readStoredCart);
   const [isOpen, setIsOpen] = useState(false);
+
+  const setItems = useCallback((update: CartItem[] | ((prev: CartItem[]) => CartItem[])) => {
+    setItemsRaw((prev) => {
+      const next = typeof update === "function" ? update(prev) : update;
+      writeStoredCart(next);
+      return next;
+    });
+  }, []);
 
   const addPeptide = useCallback((slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => {
     const qty = opts?.qty ?? 1;

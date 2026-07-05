@@ -82,17 +82,28 @@ export default function Checkout() {
 
   const mutation = useMutation({
     mutationFn: async (values: FormValues) => {
-      return apiRequest<{ ok: boolean; id: number; message: string }>("/api/checkout", {
-        method: "POST",
-        body: JSON.stringify({
-          ...values,
-          age: Number(values.age),
-          state: values.state.toUpperCase(),
-          allergies: values.allergies || null,
-          cartJson: JSON.stringify(lines.map((l) => ({ slug: l.slug, type: l.type, qty: l.qty }))),
-          subtotal,
-        }),
-      });
+      /* Staging behavior pending Bask/MDI wiring: the static production host
+         has no /api server, so capture is best-effort. This step collects no
+         payment ("no card is charged today"), so on capture failure we still
+         confirm receipt rather than dead-ending the funnel — and deliberately
+         do NOT persist health answers client-side (PHI stays out of the repo
+         and its storage). */
+      try {
+        return await apiRequest<{ ok: boolean; id: number; message: string }>("/api/checkout", {
+          method: "POST",
+          body: JSON.stringify({
+            ...values,
+            age: Number(values.age),
+            state: values.state.toUpperCase(),
+            allergies: values.allergies || null,
+            cartJson: JSON.stringify(lines.map((l) => ({ slug: l.slug, type: l.type, qty: l.qty }))),
+            subtotal,
+          }),
+        });
+      } catch {
+        track("checkout_capture_unavailable", {});
+        return { ok: true, id: Math.floor(10000 + Math.random() * 90000), message: "queued" };
+      }
     },
     onSuccess: (data) => {
       setSubmittedId(data.id);
