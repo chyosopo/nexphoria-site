@@ -146,6 +146,8 @@ export default function Contact() {
       >
         <div className="nx-container max-w-screen-xl">
           <div
+            role="list"
+            aria-label="Ways to reach us"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
@@ -157,6 +159,7 @@ export default function Contact() {
             {contactColumns.map((col, i) => (
               <Reveal key={col.eyebrow} delay={i * 80}>
                 <div
+                  role="listitem"
                   style={{
                     backgroundColor: "var(--nx-ceramic)",
                     padding: "2.85rem 2.25rem",
@@ -464,6 +467,9 @@ export default function Contact() {
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         required
+                        aria-required="true"
+                        aria-invalid={error && !form.name ? true : undefined}
+                        aria-describedby="contact-form-error"
                         className="nx-input"
                         data-testid="contact-name-input"
                       />
@@ -476,6 +482,9 @@ export default function Contact() {
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         required
+                        aria-required="true"
+                        aria-invalid={error && !form.email ? true : undefined}
+                        aria-describedby="contact-form-error"
                         className="nx-input"
                         data-testid="contact-email-input"
                       />
@@ -513,6 +522,9 @@ export default function Contact() {
                       value={form.reason}
                       onChange={(e) => setForm({ ...form, reason: e.target.value })}
                       required
+                      aria-required="true"
+                      aria-invalid={error && (!form.reason || form.reason === reasons[0]) ? true : undefined}
+                      aria-describedby="contact-form-error"
                       className="nx-input" style={{ cursor: "pointer" }}
                       data-testid="contact-subject-select"
                     >
@@ -531,6 +543,9 @@ export default function Contact() {
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       required
+                      aria-required="true"
+                      aria-invalid={error && !form.message ? true : undefined}
+                      aria-describedby="contact-form-error"
                       rows={5}
                       className="nx-input" style={{ resize: "none" }}
                       data-testid="contact-message-input"
@@ -538,7 +553,7 @@ export default function Contact() {
                   </div>
 
                   {/* Screen-reader + visual validation feedback */}
-                  <div aria-live="polite" role="alert" data-testid="contact-form-error">
+                  <div id="contact-form-error" aria-live="polite" role="alert" data-testid="contact-form-error">
                     {error && (
                       <p
                         style={{
@@ -568,7 +583,7 @@ export default function Contact() {
                       alignSelf: "flex-start",
                     }}
                   >
-                    SEND MESSAGE →
+                    SEND MESSAGE <span aria-hidden="true">→</span>
                   </button>
                 </form>
               )}
