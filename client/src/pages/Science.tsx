@@ -1066,7 +1066,10 @@ function ScienceHeroDark() {
                 href="#section-mechanisms"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector("[data-testid='section-mechanisms']")?.scrollIntoView({ behavior: "smooth" });
+                  // A JS-supplied scrollIntoView behavior is not overridden by the CSS
+                  // reduced-motion kill-switch, so gate it explicitly.
+                  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                  document.querySelector("[data-testid='section-mechanisms']")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
                 }}
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
