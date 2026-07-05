@@ -110,6 +110,34 @@ is the evidence." Claims must be TRUE and verifiable — no invented
 certifications, press, statistics, or availability. Counts derive from data
 (`PANEL_TOTAL_MARKERS`, catalog lengths), never hardcoded.
 
+## EXPLORATION MODE — permission to reinvent
+
+When asked to explore (not implement), you are **free to break the current
+visual system and propose a new one.** Benchmark: hims.com, Ro.co, Function
+Health, Maven Clinic — study what makes them feel expensive and propose
+directions at that level or above. You may invent:
+
+- A new palette (any hues) — as long as it ships as a **token sheet** in the
+  same role structure as the tables above (canvas / ink / accent / surface /
+  border, for BOTH worlds), with AA contrast noted per pairing.
+- A new type pairing (any faces) — display + UI, with a fluid scale.
+- A new layout language — hero compositions, bento grids, editorial splits,
+  motion concepts. Bolder is welcome; the current system errs quiet.
+
+Non-negotiables that survive any reinvention (brand law, not style):
+1. **Two worlds, one engine** — one structure, two themable casts.
+2. **Bank voice** — calm and declarative; no hype, no exclamation marks.
+3. **TRUE claims only** — never invent statistics, certifications, or press.
+4. **Crimson = blood imagery only**, never decorative.
+5. Accessibility floor: AA contrast, 44px targets, visible focus,
+   reduced-motion support, nothing under 12px.
+6. Photography stays hyper-real editorial, outcome-not-vial.
+
+Deliver explorations as: (a) a token sheet, (b) 2–3 representative screens
+(home hero, product card grid, PDP), (c) one paragraph on the idea. We adopt
+by translating the winning direction into `client/src/index.css` tokens — so
+the more token-shaped your proposal, the faster it ships.
+
 ## Integration rules for generated code (v0 etc.)
 
 1. Output plain **React 18 + Vite** components (this is NOT Next.js; routing
