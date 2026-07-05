@@ -117,17 +117,17 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center", marginTop: "1rem" }}>
             <div>
-              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{solo.category}</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{solo.category}</p>
               <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.02, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem" }}>{solo.name}</h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>{solo.mechanism}</p>
               <div className="grid sm:grid-cols-2" style={{ gap: 10, maxWidth: 520, marginTop: "1.4rem" }}>
                 <div className="nx-stat-card" style={{ gap: 4 }}>
-                  <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose</span>
-                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: 20, color: "var(--nx-fg)" }}>{solo.dose}</span>
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose</span>
+                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{solo.dose}</span>
                 </div>
                 <div className="nx-stat-card" style={{ gap: 4 }}>
-                  <span style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Format</span>
-                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: 20, color: "var(--nx-fg)" }}>{solo.spec}</span>
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Format</span>
+                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{solo.spec}</span>
                 </div>
               </div>
             </div>
@@ -161,14 +161,14 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div>
             {/* Why this peptide — the three pillars every solo answers to.
                h2 (not p) so the tile h3s below don't skip a heading level; style unchanged. */}
-            <h2 style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</h2>
+            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "0.9rem" }}>
               {WHY.map((w, i) => (
                 <Reveal key={w.t} delay={i * 55}>
                   <div className="nx-glass-tile" style={{ height: "100%" }}>
                     <span className="nx-icon-circle" aria-hidden><w.Icon size={19} strokeWidth={1.9} /></span>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: 19, color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.15 }}>{w.t}</h3>
-                    <p style={{ fontFamily: F, fontSize: 14, lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{w.d}</p>
+                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.15 }}>{w.t}</h3>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{w.d}</p>
                   </div>
                 </Reveal>
               ))}
@@ -200,7 +200,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <Reveal key={x.t} delay={i * 45}>
                   <div className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
                     <span className="nx-icon-circle" aria-hidden><x.Icon size={19} strokeWidth={1.9} /></span>
-                    <p style={{ fontFamily: F, fontSize: 15, fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.3 }}>{x.t}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.3 }}>{x.t}</p>
                   </div>
                 </Reveal>
               ))}
@@ -211,7 +211,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="nx-icon-circle" aria-hidden><Microscope size={19} strokeWidth={1.9} /></span>
                 <div>
-                  <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
                   <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(20px,2.6vw,26px)", color: "var(--nx-fg)" }}>{solo.panel} panel</h3>
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, color-mix(in srgb, var(--nx-fg) 62%, transparent) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
               <div style={{ padding: "clamp(1.4rem,4vw,3rem)", maxWidth: 560 }}>
-                <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
                 <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.6vw,40px)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
                   We sell the measured loop — <em style={{ color: "var(--nx-acid)" }}>not the vial.</em>
                 </h2>
@@ -272,7 +272,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {/* ══ CONTRAINDICATION NIGHT BAND — dramatic ══ */}
       <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }}>
         <div className="nx-container">
-          <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
+          <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Before you begin
           </p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
