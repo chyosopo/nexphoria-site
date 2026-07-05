@@ -65,3 +65,7 @@ https://www.trybloom.ai/img/ca6ddc16-7d62-4683-9403-12ba5ae36d3d
 https://www.trybloom.ai/img/fad0fee0-22a9-41c4-a9a4-c049918717ef
 img_7dd6cd5b4581.webp  bloom:7dd6cd5b-4581-4c02-8a1b-44138c44477c  unbranded formulary vial, navy cap, porcelain light (men vialArt — replaces branded CARDIOGENIX render img_275e18d2b1d5)
 img_379a8da097c1.webp  bloom:379a8da0-97c1-4de0-a279-45a6ae4fe63e  unbranded formulary vial, plum cap, blush travertine (women vialArt — replaces img_54f472682fb8)
+img_214f2089a3f5.webp  bloom:214f2089-a3f5-4683-b886-73198d66ec01  sterile injection prep tray, porcelain light (journal: subq-injection-technique)
+img_3922fab9c099.webp  bloom:3922fab9-c099-475e-9b8e-c299b4bd4fce  vials + handwritten dosing curves at dawn (journal: gh-secretagogues-complete-guide)
+img_31d2f355633b.webp  bloom:31d2f355-633b-4c0b-a10c-35ba203875b2  silver-haired coastal walk, golden hour (journal: longevity-nad-mots-c)
+img_017e4cbb0565.webp  bloom:017e4cbb-0565-4c04-8455-fb41ba7b04b3  physio bench, taped knee, clinician (journal: bpc-157-tissue-repair-evidence)

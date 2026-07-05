@@ -8,6 +8,13 @@ import editorialBloodwork from "@/assets/brand/editorial-bloodwork.webp";
 import editorialPrescription from "@/assets/brand/editorial-prescription.webp";
 import editorialProtocolKit from "@/assets/brand/editorial-protocol-kit.webp";
 import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
+/* Per-article frames (Bloom, C29 grammar) — every article carries its own
+   photograph; the four shots above were spread across eight articles.
+   Relative img/ paths resolve via the runtime <base> tag. */
+const editorialInjectionTray = "img/img_214f2089a3f5.webp"; // sterile prep tray, porcelain light
+const editorialDosingDesk = "img/img_3922fab9c099.webp"; // vials + handwritten dosing curves at dawn
+const editorialCoastalWalk = "img/img_31d2f355633b.webp"; // years handed back, cliff path
+const editorialPhysioBench = "img/img_017e4cbb0565.webp"; // taped knee, clinician observing
 
 export type JournalCategory =
   | "foundations"
@@ -318,7 +325,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     readTime: "6 MIN",
     publishedISO: "2026-06-22",
     author: { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
-    imageSrc: editorialProtocolKit,
+    imageSrc: editorialInjectionTray,
     sections: [
       {
         id: "supplies",
@@ -365,7 +372,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     reviewers: [
       { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
     ],
-    imageSrc: editorialBloodwork,
+    imageSrc: editorialDosingDesk,
     sections: [
       {
         id: "what-are-ghs",
@@ -421,7 +428,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     readTime: "10 MIN",
     publishedISO: "2026-06-03",
     author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
-    imageSrc: editorialProtocolKit,
+    imageSrc: editorialCoastalWalk,
     sections: [
       {
         id: "nad-decline",
@@ -479,7 +486,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     reviewers: [
       { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
     ],
-    imageSrc: editorialPharmacy,
+    imageSrc: editorialPhysioBench,
     sections: [
       {
         id: "mechanism",
