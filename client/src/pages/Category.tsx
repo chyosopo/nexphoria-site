@@ -10,6 +10,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
 type Cfg = {
   pre: string; accent: string; sub: string;
@@ -55,7 +56,7 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: "Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a 99-marker baseline and re-tested every quarter.",
     chips: ["Cellular energy", "Immune resilience", "Healthspan", "Daily vitality"],
     faqs: [
-      { q: "Where does a longevity protocol begin?", a: "With comprehensive baseline bloodwork — 76 markers across 11 systems — reviewed by a licensed physician who designs a protocol if appropriate. " + IF_RX },
+      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork — ${PANEL_TOTAL_MARKERS} markers across 11 systems — reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
       { q: "What makes this different from supplements?", a: "Everything here is prescription-only, physician-directed, and adjusted against your own labs every 90 days." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],

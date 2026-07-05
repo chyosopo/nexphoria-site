@@ -10,7 +10,7 @@ import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { Beaker, Stethoscope, Truck, ShieldCheck } from "lucide-react";
 import { peptides as ALL_PEPTIDES } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
-import { BIOMARKER_PANEL } from "@/data/biomarkerPanel";
+import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { PressStrip } from "@/components/PressStrip";
 
 /* ── Cinematic brand assets (Higgsfield · hims-lane wave 1) ── */
@@ -2266,7 +2266,7 @@ function HomeComparisonSection() {
 }
 
 
-/* ── Biomarker marquee — living data texture (hims-Labs grammar, our 76 real markers) ── */
+/* ── Biomarker marquee — living data texture (hims-Labs grammar, the real panel) ── */
 function BiomarkerMarquee() {
   const rows = [
     BIOMARKER_PANEL.slice(0, 5).flatMap((c) => c.markers.map((m) => ({ n: m.name, c: c.name }))),
@@ -2276,7 +2276,7 @@ function BiomarkerMarquee() {
     <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-ceramic)", padding: "clamp(3.5rem,6vw,5rem) 0 clamp(3rem,5vw,4.5rem)", borderTop: "1px solid var(--nx-border)" }}>
       <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
         <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-amber)" }}>
-          76 biomarkers · tracked every 90 days
+          {PANEL_TOTAL_MARKERS} biomarkers · tracked every 90 days
         </p>
       </div>
       {rows.map((row, i) => (
@@ -2336,7 +2336,7 @@ function ProofBento() {
       <div className="nx-container">
         <div className="grid gap-3 md:grid-cols-2">
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.6rem)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", minHeight: 220 }}>
-            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-cobalt)", lineHeight: 1 }}>76</div>
+            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-cobalt)", lineHeight: 1 }}>{PANEL_TOTAL_MARKERS}</div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: 8 }}>biomarkers behind every protocol decision</p>
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
@@ -2405,17 +2405,17 @@ function HeroFilm() {
             <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
               <g transform="rotate(-90 38 38)">
                 <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(243, 245, 247,0.12)" strokeWidth="6" />
-                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="var(--nx-success)" strokeWidth="6" strokeLinecap="round" strokeDasharray="140 188.5" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="var(--nx-acid)" strokeWidth="6" strokeLinecap="round" strokeDasharray="28 188.5" strokeDashoffset="-146" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
-                <circle cx="38" cy="38" r="30" fill="none" stroke="var(--nx-rust)" strokeWidth="6" strokeLinecap="round" strokeDasharray="10 188.5" strokeDashoffset="-178" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
+                <circle className="nx-ring-arc" cx="38" cy="38" r="30" fill="none" stroke="var(--nx-success)" strokeWidth="6" strokeLinecap="round" strokeDasharray="138 188.5" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="var(--nx-acid)" strokeWidth="6" strokeLinecap="round" strokeDasharray="32 188.5" strokeDashoffset="-141" style={{ animationDelay: "0.25s" }} className="nx-ring-arc" />
+                <circle cx="38" cy="38" r="30" fill="none" stroke="var(--nx-rust)" strokeWidth="6" strokeLinecap="round" strokeDasharray="11 188.5" strokeDashoffset="-176" style={{ animationDelay: "0.45s" }} className="nx-ring-arc" />
               </g>
-              <text x="38" y="36" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>76</text>
+              <text x="38" y="36" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "600 15px 'General Sans', system-ui, sans-serif" }}>{PANEL_TOTAL_MARKERS}</text>
               <text x="38" y="49" textAnchor="middle" fill="rgba(243, 245, 247,0.6)" style={{ font: "500 8.5px 'General Sans', system-ui, sans-serif" }}>markers</text>
             </svg>
             <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", lineHeight: 1.9 }}>
-              <div><span style={{ color: "var(--nx-success)", fontWeight: 700 }}>58</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>Optimal</span></div>
-              <div><span style={{ color: "var(--nx-acid)", fontWeight: 700 }}>12</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>In range</span></div>
-              <div><span style={{ color: "var(--nx-rust)", fontWeight: 700 }}>6</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>Out of range</span></div>
+              <div><span style={{ color: "var(--nx-success)", fontWeight: 700 }}>74</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>Optimal</span></div>
+              <div><span style={{ color: "var(--nx-acid)", fontWeight: 700 }}>18</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>In range</span></div>
+              <div><span style={{ color: "var(--nx-rust)", fontWeight: 700 }}>7</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>Out of range</span></div>
             </div>
           </div>
           <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>

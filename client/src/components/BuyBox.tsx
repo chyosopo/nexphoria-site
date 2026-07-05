@@ -153,7 +153,10 @@ export function BuyBox(props: BuyBoxProps) {
         </p>
       </div>
 
-      {/* ── MOBILE PERSISTENT BAR — price + CTA, always reachable ── */}
+      {/* ── MOBILE PERSISTENT BAR — price + CTA, always reachable ──
+          The flex layout lives on an INNER div: an inline `display: flex` on
+          this outer element would override the lg:hidden media rule (inline
+          beats non-!important media styles) and render the bar on desktop. */}
       <div
         className="lg:hidden"
         style={{
@@ -164,10 +167,10 @@ export function BuyBox(props: BuyBoxProps) {
           background: "var(--nx-ceramic)",
           borderTop: "1px solid var(--nx-border)",
           padding: "10px clamp(16px,4vw,24px) calc(10px + env(safe-area-inset-bottom))",
-          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14,
         }}
         data-testid="buybar"
       >
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14 }}>
         <div style={{ minWidth: 0 }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             {name}
@@ -189,6 +192,7 @@ export function BuyBox(props: BuyBoxProps) {
         >
           {gated ? "Check eligibility" : "Begin intake"}
         </Link>
+        </div>
       </div>
       {/* spacer so the fixed bar never covers the footer’s last line on mobile */}
       <div className="lg:hidden" style={{ height: 64 }} aria-hidden />

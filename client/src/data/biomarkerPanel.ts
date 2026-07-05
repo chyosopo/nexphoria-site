@@ -1,6 +1,8 @@
 /* ─────────────────────────────────────────────────────────────
    Biomarker Panel — Hims Labs–style taxonomy (Nexphoria voice)
-   11 categories · 76 individual markers · plus 21-factor Bio Age
+   11 categories · 78 individual markers + 21-factor Bio Age composite
+   = 99 reported values (PANEL_TOTAL_MARKERS — the site's single source
+   of truth for every marker-count claim; never hardcode the number)
    ───────────────────────────────────────────────────────────── */
 
 export type PanelCategory = {

@@ -12,18 +12,23 @@ import { F, S } from "@/lib/typography";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 
-/* Solo category → its outcome frame. Brand law (C29): sell the outcome,
-   never the vial — so each product tile carries a lifestyle frame, not a
-   repeated bottle. Men set is the neutral default; skin casts female. */
-const CAT_IMG: Record<string, string> = {
-  Growth: OUTCOME_CATEGORY.men.growth ?? OUTCOME_HERO.men,
-  Cognitive: OUTCOME_CATEGORY.men.cognition ?? OUTCOME_HERO.men,
-  Recovery: OUTCOME_CATEGORY.men.recovery ?? OUTCOME_HERO.men,
-  "Skin & Longevity": OUTCOME_CATEGORY.women.skin ?? OUTCOME_HERO.women,
-  Metabolic: OUTCOME_CATEGORY.men.metabolic ?? OUTCOME_HERO.men,
-  Sleep: OUTCOME_CATEGORY.men.sleep ?? OUTCOME_HERO.men,
-  "Sexual Health": OUTCOME_HERO.women,
-};
+/* Solo category → its outcome frame, cast per world. Brand law (C29): sell
+   the outcome, never the vial — so each product tile carries a lifestyle
+   frame, not a repeated bottle. The unworlded /peptides route defaults to
+   the men set; skin casts female in both. */
+function catImg(world: "men" | "women" | undefined): Record<string, string> {
+  const w = world === "women" ? OUTCOME_CATEGORY.women : OUTCOME_CATEGORY.men;
+  const hero = world === "women" ? OUTCOME_HERO.women : OUTCOME_HERO.men;
+  return {
+    Growth: w.growth ?? OUTCOME_CATEGORY.men.growth ?? hero,
+    Cognitive: w.cognition ?? hero,
+    Recovery: w.recovery ?? hero,
+    "Skin & Longevity": OUTCOME_CATEGORY.women.skin ?? OUTCOME_HERO.women,
+    Metabolic: w.metabolic ?? hero,
+    Sleep: w.sleep ?? hero,
+    "Sexual Health": hero,
+  };
+}
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
    lab-monitored law (TRUE: bloodwork every 90 days). Echoes the Science page. */
@@ -52,6 +57,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     ],
   });
 
+  const CAT_IMG = catImg(world);
   const cats = ["All", ...SOLO_CATEGORIES];
   const needle = q.trim().toLowerCase();
   const shown = SOLO_CATALOG.filter(
@@ -157,7 +163,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             <Reveal key={s.slug} delay={i * 35}>
               <Link href={`${base}/peptides/${s.slug}`} className="nx-float-card" data-testid={`peptide-${s.slug}`}>
                 <div className="nx-float-card__media">
-                  <img src={CAT_IMG[s.category] ?? OUTCOME_HERO.men} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                  <img src={CAT_IMG[s.category] ?? (world === "women" ? OUTCOME_HERO.women : OUTCOME_HERO.men)} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                   {s.gated && (
                     <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
                   )}

@@ -38,7 +38,7 @@ function Hero() {
       data-testid="bloodwork-hero"
       className="nx-gradient-hero-dark relative overflow-hidden" style={{ color: "var(--nx-ceramic)" }}
     >
-      {/* Hero score ring — the 76 moment */}
+      {/* Hero score ring — the marker-count moment */}
       <div className="hidden lg:block absolute pointer-events-none" style={{ right: "5%", top: "50%", transform: "translateY(-50%)" }} aria-hidden>
         <svg width="300" height="300" viewBox="0 0 220 220">
           <g transform="rotate(-90 110 110)">
@@ -47,7 +47,7 @@ function Hero() {
             <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-acid)" strokeWidth="10" strokeLinecap="round" strokeDasharray="92 597" strokeDashoffset="-461" style={{ animationDelay: "0.2s" }} />
             <circle className="nx-ring-arc-lg" cx="110" cy="110" r="95" fill="none" stroke="var(--nx-rust)" strokeWidth="10" strokeLinecap="round" strokeDasharray="36 597" strokeDashoffset="-559" style={{ animationDelay: "0.4s" }} />
           </g>
-          <text x="110" y="104" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "500 52px " + S }}>76</text>
+          <text x="110" y="104" textAnchor="middle" fill="var(--nx-bg)" style={{ font: "500 52px " + S }}>{PANEL_TOTAL_MARKERS}</text>
           <text x="110" y="132" textAnchor="middle" fill="rgba(243, 245, 247,0.6)" style={{ font: "500 13px " + FONT }}>markers · one draw</text>
         </svg>
       </div>
@@ -1228,11 +1228,11 @@ function GlowingBody() {
           ))}
           <span className="absolute left-1/2 -translate-x-1/2 nx-pulse-chip" style={{ top: "44%", fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "9px 16px", boxShadow: "var(--nx-e-3)", whiteSpace: "nowrap" }}>
             <span style={{ display: "inline-block", width: 16, height: 16, borderRadius: "var(--nx-r-pill)", background: "var(--nx-success)", color: "var(--nx-fg)", textAlign: "center", lineHeight: "16px", fontSize: "var(--nx-t-xs)", marginRight: 8 }}>✓</span>
-            All 76 reviewed by a physician
+            All {PANEL_TOTAL_MARKERS} reviewed by a physician
           </span>
         </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
-          {[["One draw", "5-minute booking, 2,000+ locations"], ["76 markers", "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
+          {[["One draw", "5-minute booking, 2,000+ locations"], [`${PANEL_TOTAL_MARKERS} markers`, "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.2rem" }}>
               <div style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-hover)" }}>{t}</div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>

@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
 import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
-import { ArrowLeft, Check, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
+import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialArt, Tone } from "@/components/VialTile";
@@ -224,7 +224,7 @@ export default function StackPage({ slug }: { slug: string }) {
                 {stack.panelNote ?? panel?.summary}
               </p>
               <Link href="/bloodwork" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", display: "inline-block", marginTop: "0.8rem" }}>
-                See the full {stack.panel} panel →
+                See the {stack.panel} panel in detail →
               </Link>
             </div>
 
@@ -254,7 +254,8 @@ export default function StackPage({ slug }: { slug: string }) {
           </div>
 
           {/* — RIGHT: the commerce rail — */}
-          <aside>
+          <aside style={{ alignSelf: "stretch" }}>
+            <div className="nx-buyrail">
             <BuyBox
               name={stack.name}
               category={stack.category}
@@ -266,6 +267,7 @@ export default function StackPage({ slug }: { slug: string }) {
               ctaTestId={stack.gated ? "ignite-intake" : "stack-cta"}
             />
             <SafetyDisclosure name={stack.name} contraindications={stack.contraindications} />
+            </div>
           </aside>
         </div>
       </section>
@@ -280,7 +282,7 @@ export default function StackPage({ slug }: { slug: string }) {
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {stack.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
-                <Check size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
+                <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.92 }}>{c}</p>
               </div>
             ))}

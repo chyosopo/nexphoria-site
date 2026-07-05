@@ -369,7 +369,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "2.2rem", borderTop: "1px solid color-mix(in srgb, var(--nx-acid) 25%, transparent)", paddingTop: "1.8rem" }}>
             {[
-              { n: "76", l: "biomarkers at baseline" },
+              { n: String(PANEL_TOTAL_MARKERS), l: "biomarkers at baseline" },
               { n: "90", l: "days between retests" },
               { n: "503A", l: "state-licensed compounding" },
             ].map((s) => (

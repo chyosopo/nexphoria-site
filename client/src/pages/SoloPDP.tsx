@@ -10,7 +10,7 @@ import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
 import { getSolo, SOLO_CATALOG, SoloCategory } from "@/data/soloCatalog";
-import { ArrowLeft, Check, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, Check, X, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
@@ -217,7 +217,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           </div>
 
           {/* — RIGHT — */}
-          <aside>
+          <aside style={{ alignSelf: "stretch" }}>
+            <div className="nx-buyrail">
             <BuyBox
               name={solo.name}
               category={solo.category}
@@ -230,6 +231,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               ctaTestId="solo-cta"
             />
             <SafetyDisclosure name={solo.name} contraindications={solo.contraindications} />
+            </div>
           </aside>
         </div>
       </section>
@@ -262,7 +264,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {solo.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
-                <Check size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
+                <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.92 }}>{c}</p>
               </div>
             ))}
