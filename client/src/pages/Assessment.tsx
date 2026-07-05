@@ -797,6 +797,7 @@ export default function Assessment() {
                       <div
                         role="radiogroup"
                         aria-labelledby="q-sex"
+                        aria-describedby="assessment-why-text-0"
                         aria-required="true"
                         onKeyDown={makeRadioKeyDown(
                           ["female", "male"],
@@ -876,6 +877,7 @@ export default function Assessment() {
                         className="assessment-goal-grid"
                         role="group"
                         aria-labelledby="q-goal"
+                        aria-describedby="assessment-why-text-1"
                         style={{
                           display: "grid",
                           gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
@@ -977,6 +979,7 @@ export default function Assessment() {
                       <div
                         role="radiogroup"
                         aria-labelledby="q-age"
+                        aria-describedby="assessment-why-text-2"
                         aria-required="true"
                         onKeyDown={makeRadioKeyDown(AGE_RANGES, form.age, (v) => setField("age", v))}
                         style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}
@@ -1031,6 +1034,7 @@ export default function Assessment() {
                             // history (privacy posture; nothing here is stored client-side
                             // beyond the local draft the user controls).
                             autoComplete="off"
+                            aria-describedby="assessment-why-text-3"
                             data-testid="assessment-medications-text"
                             className="nx-input"
                             style={{ resize: "vertical" }}
@@ -1050,7 +1054,7 @@ export default function Assessment() {
                       <p style={subCopy}>
                         Select all that apply. Certain conditions affect protocol eligibility and require additional physician review before a prescription can be issued.
                       </p>
-                      <div role="group" aria-labelledby="q-history" style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}>
+                      <div role="group" aria-labelledby="q-history" aria-describedby="assessment-why-text-4" style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}>
                         {MEDICAL_HISTORY_OPTIONS.map(({ id, label }) => (
                           <CheckboxRow
                             key={id}
@@ -1076,6 +1080,7 @@ export default function Assessment() {
                       <div
                         role="radiogroup"
                         aria-labelledby="q-labs"
+                        aria-describedby="assessment-why-text-5"
                         aria-required="true"
                         onKeyDown={makeRadioKeyDown(LAB_OPTIONS.map((o) => o.id), form.recentLabs, (v) => setField("recentLabs", v))}
                         style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}

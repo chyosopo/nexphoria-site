@@ -181,6 +181,7 @@ export function WhyWeAsk({ funnelStep }: { funnelStep: number }) {
           Why we ask
         </p>
         <p
+          id={`assessment-why-text-${funnelStep}`}
           style={{
             fontFamily: F,
             fontSize: "var(--nx-t-sm)",
