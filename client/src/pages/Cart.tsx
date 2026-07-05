@@ -137,7 +137,7 @@ export default function Cart() {
                             {/* Cadence picker */}
                             <div className="mt-4">
                               <div
-                                className="text-[9px] uppercase tracking-[0.2em] mb-1.5"
+                                className="text-[10px] uppercase tracking-[0.2em] mb-1.5"
                                 style={{ fontFamily: FONT, color: "#6B6B6B" }}
                               >
                                 Billing cadence
@@ -170,7 +170,7 @@ export default function Cart() {
                                       <span>{meta.label}</span>
                                       {meta.savePct > 0 ? (
                                         <span
-                                          className="ml-1.5 text-[9px]"
+                                          className="ml-1.5 text-[10px]"
                                           style={{ color: active ? "#FAF7F0" : "#8B5A2B", opacity: active ? 0.85 : 1 }}
                                         >
                                           −{meta.savePct}%
@@ -335,7 +335,7 @@ export default function Cart() {
                   className="mb-5 p-4"
                   style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}
                 >
-                  <p className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                  <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
                     Included at no extra cost
                   </p>
                   <div className="space-y-2.5">
@@ -437,7 +437,7 @@ function VialGlyph({ label }: { label: string }) {
       <line x1="14" y1="40" x2="38" y2="40" stroke="#0A0A0A" strokeWidth="1" opacity="0.4" />
       {/* label band */}
       <rect x="12" y="46" width="28" height="16" fill="#0A0A0A" />
-      <text x="26" y="57" textAnchor="middle" fill="#FAF7F0" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 8, fontWeight: 600, letterSpacing: "0.05em" }}>
+      <text x="26" y="57" textAnchor="middle" fill="#FAF7F0" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.05em" }}>
         {label}
       </text>
     </svg>

@@ -383,7 +383,7 @@ export default function Community() {
                   <label
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -511,7 +511,7 @@ export default function Community() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       color: "var(--nx-cobalt)",
@@ -535,7 +535,7 @@ export default function Community() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       color: "var(--nx-fg-muted)",
                     }}
                   >
@@ -647,7 +647,7 @@ export default function Community() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       color: "var(--nx-fg-muted)",
                       flexShrink: 0,
                       marginTop: "3px",
@@ -818,7 +818,7 @@ function CommunityOutcomes() {
                       <p
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "9px",
+                          fontSize: "10px",
                           fontWeight: 500,
                           letterSpacing: "0.1em",
                           textTransform: "uppercase",

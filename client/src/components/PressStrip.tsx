@@ -6,6 +6,8 @@ import { Reveal } from "@/components/Reveal";
  * No logos — pure typographic marks.
  */
 
+// {PLACEHOLDER} Press mentions are aspirational placeholders until real
+// coverage lands — swap for actual outlets before launch.
 const outlets = [
   { name: "The Wall Street Journal", abbr: "WSJ" },
   { name: "Bloomberg", abbr: "Bloomberg" },
@@ -32,7 +34,7 @@ export function PressStrip() {
             <div
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "9px",
+                fontSize: "10px",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
@@ -78,7 +80,7 @@ export function PressStrip() {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             letterSpacing: "0.1em",
             color: "var(--nx-fg-muted)",
             marginTop: "1.25rem",

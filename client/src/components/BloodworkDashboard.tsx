@@ -172,7 +172,7 @@ export function BloodworkDashboard() {
         <span
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             fontWeight: 500,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -194,7 +194,7 @@ export function BloodworkDashboard() {
         <span
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
             textTransform: "uppercase",
@@ -297,7 +297,7 @@ export function BloodworkDashboard() {
                 }}
               >
                 {row.value}&thinsp;
-                <span style={{ fontSize: "9px", fontWeight: 400, color: "var(--nx-fg-muted)" }}>
+                <span style={{ fontSize: "10px", fontWeight: 400, color: "var(--nx-fg-muted)" }}>
                   {row.unit}
                 </span>
               </span>
@@ -337,7 +337,7 @@ export function BloodworkDashboard() {
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             
-            fontSize: "9px",
+            fontSize: "10px",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
           }}

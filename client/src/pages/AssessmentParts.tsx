@@ -92,7 +92,7 @@ export function LabeledProgress({ step }: { step: number }) {
                   className="assessment-progress-label"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: current ? 700 : 500,
                     letterSpacing: "0.05em",
                     textTransform: "uppercase",
@@ -134,7 +134,7 @@ export function WhyWeAsk({ funnelStep }: { funnelStep: number }) {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             fontWeight: 700,
             letterSpacing: "0.12em",
             textTransform: "uppercase",
@@ -215,7 +215,7 @@ export function SampleProtocolPreview() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "10px",
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -244,7 +244,7 @@ export function SampleProtocolPreview() {
               <span
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "9px",
+                  fontSize: "10px",
                   fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
@@ -378,7 +378,7 @@ export function TrustStrip() {
       <p
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "9px",
+          fontSize: "10px",
           fontWeight: 500,
           letterSpacing: "0.1em",
           textTransform: "uppercase",

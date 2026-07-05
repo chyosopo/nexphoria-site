@@ -406,7 +406,7 @@ export default function GenderPeptideDetail({ gender, slug }: GenderPeptideDetai
                         <span
                           style={{
                             fontFamily: id.mono,
-                            fontSize: "9px",
+                            fontSize: "10px",
                             fontWeight: 600,
                             letterSpacing: "0.14em",
                             textTransform: "uppercase",

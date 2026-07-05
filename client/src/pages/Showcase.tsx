@@ -467,7 +467,7 @@ export default function Showcase() {
                   style={{
                     marginTop: 18,
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 9,
+                    fontSize: 10,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
                     color: "rgba(255,255,243,0.55)",

@@ -26,6 +26,8 @@ export interface TrustStatsStripProps {
   variant?: "light" | "dark";
 }
 
+// {PLACEHOLDER} Default stats are illustrative until verified operating
+// metrics are supplied — replace before launch.
 const DEFAULT_STATS: TrustStat[] = [
   { number: 50000, suffix: "+", label: "Patients served", caption: "Across all 50 states" },
   { number: 7, label: "Peer-reviewed publications", caption: "By our medical team" },

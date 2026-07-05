@@ -521,7 +521,7 @@ export function HimsConfigurator({
                       <span
                         style={{
                           fontFamily: t.fontMono,
-                          fontSize: "9px",
+                          fontSize: "10px",
                           fontWeight: 700,
                           letterSpacing: "0.14em",
                           textTransform: "uppercase",
@@ -567,7 +567,7 @@ export function HimsConfigurator({
                   <p
                     style={{
                       fontFamily: t.fontMono,
-                      fontSize: "9px",
+                      fontSize: "10px",
                       color: isSelected ? "rgba(0,0,0,0.55)" : t.textFaint,
                       marginTop: "3px",
                       letterSpacing: "0.06em",

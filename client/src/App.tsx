@@ -12,25 +12,25 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 
 // Pages — eagerly loaded (fast/common paths)
 import Home from "@/pages/Home";
-import Showcase from "@/pages/Showcase";
 import Gate from "@/pages/Gate";
 import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
-import HowItWorks from "@/pages/HowItWorks";
-import Science from "@/pages/Science";
-import Journal from "@/pages/Journal";
-import JournalArticle from "@/pages/JournalArticle";
-import Physicians from "@/pages/Physicians";
-import LabTesting from "@/pages/LabTesting";
-import Bloodwork from "@/pages/Bloodwork";
-import Pricing from "@/pages/Pricing";
-import FAQPage from "@/pages/FAQ";
-import About from "@/pages/About";
-import Community from "@/pages/Community";
-import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
+const Showcase = lazy(() => import("@/pages/Showcase"));
+const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
+const Science = lazy(() => import("@/pages/Science"));
+const Journal = lazy(() => import("@/pages/Journal"));
+const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
+const Physicians = lazy(() => import("@/pages/Physicians"));
+const LabTesting = lazy(() => import("@/pages/LabTesting"));
+const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
+const Pricing = lazy(() => import("@/pages/Pricing"));
+const FAQPage = lazy(() => import("@/pages/FAQ"));
+const About = lazy(() => import("@/pages/About"));
+const Community = lazy(() => import("@/pages/Community"));
+const Contact = lazy(() => import("@/pages/Contact"));
 const Peptides = lazy(() => import("@/pages/Peptides"));
 const PeptideDetail = lazy(() => import("@/pages/PeptideDetail"));
 const GenderPeptides = lazy(() => import("@/pages/GenderPeptides"));

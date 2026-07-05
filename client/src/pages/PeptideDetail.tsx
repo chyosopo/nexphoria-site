@@ -523,7 +523,7 @@ function EvidenceBand({ peptide }: { peptide: Peptide }) {
             {ev.grade}
           </p>
           <p
-            className="text-[9px] uppercase tracking-[0.16em] text-[var(--nx-fg-muted)] mt-1"
+            className="text-[10px] uppercase tracking-[0.16em] text-[var(--nx-fg-muted)] mt-1"
             style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
           >
             Tier
@@ -550,7 +550,7 @@ function EvidenceBand({ peptide }: { peptide: Peptide }) {
           data-testid="evidence-fda-status"
         >
           <span
-            className="shrink-0 inline-block text-[9px] uppercase tracking-[0.16em] px-1.5 py-0.5 rounded"
+            className="shrink-0 inline-block text-[10px] uppercase tracking-[0.16em] px-1.5 py-0.5 rounded"
             style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: INK, border: `1px solid ${INK}` }}
           >
             Regulatory
@@ -864,7 +864,7 @@ function SafetySnapshot({ peptide }: { peptide: Peptide }) {
               <span className="flex items-center gap-1.5 mb-1">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: t.dot }} />
                 <span
-                  className="text-[9px] uppercase tracking-[0.1em] text-[var(--nx-fg-muted)]"
+                  className="text-[10px] uppercase tracking-[0.1em] text-[var(--nx-fg-muted)]"
                   style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
                 >
                   {t.level}
@@ -1094,7 +1094,7 @@ function WhatToExpectTimeline({ peptide }: { peptide: Peptide }) {
                     </p>
                     {i === items.length - 1 && (
                       <span
-                        className="text-[9px] uppercase tracking-[0.12em] px-2.5 py-1 rounded-full"
+                        className="text-[10px] uppercase tracking-[0.12em] px-2.5 py-1 rounded-full"
                         style={{ backgroundColor: INK, color: CREAM, fontFamily: "'General Sans', system-ui, sans-serif" }}
                       >
                         Target
@@ -2315,7 +2315,7 @@ function PricingCard({
             <span className="flex items-center gap-2">
               {p.popular && (
                 <span
-                  className="text-[9px] font-mono uppercase tracking-[0.12em] px-2 py-0.5 rounded-full"
+                  className="text-[10px] font-mono uppercase tracking-[0.12em] px-2 py-0.5 rounded-full"
                   style={{ backgroundColor: "var(--nx-rust)", color: CREAM }}
                 >
                   Most popular

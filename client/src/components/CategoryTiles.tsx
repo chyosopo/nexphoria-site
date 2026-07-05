@@ -149,7 +149,7 @@ export function CategoryTiles({ tiles, eyebrow = "EXPLORE BY GOAL" }: CategoryTi
                       <p
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "9px",
+                          fontSize: "10px",
                           letterSpacing: "0.12em",
                           textTransform: "uppercase",
                           color: "rgba(255,255,255,0.65)",

@@ -398,7 +398,7 @@ export default function BuildYourStack() {
                           key={slug}
                           style={{
                             fontFamily: MONO,
-                            fontSize: 9.5,
+                            fontSize: 10,
                             letterSpacing: "0.08em",
                             textTransform: "uppercase",
                             background: "#f5f4ef",
@@ -509,7 +509,7 @@ export default function BuildYourStack() {
                         <p style={{ fontFamily: SERIF, fontSize: 34, fontWeight: 600, lineHeight: 1, color: "#c6f184", letterSpacing: "-0.02em" }}>
                           {confidence}<span style={{ fontSize: 16, fontWeight: 500 }}>%</span>
                         </p>
-                        <p style={{ fontFamily: MONO, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
+                        <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
                           Goal match
                         </p>
                       </div>
@@ -598,13 +598,13 @@ export default function BuildYourStack() {
                         }}
                       >
                         {isRecommended && (
-                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: MONO, fontSize: 8.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0A0A0A", background: "#c6f184", padding: "2px 6px", borderRadius: 2 }}>
+                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "#0A0A0A", background: "#c6f184", padding: "2px 6px", borderRadius: 2 }}>
                             Recommended
                           </span>
                         )}
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.12em", color: isPicked ? "rgba(255,255,255,0.5)" : "#a4a4a0", textTransform: "uppercase", marginBottom: 6 }}>
+                            <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.12em", color: isPicked ? "rgba(255,255,255,0.5)" : "#a4a4a0", textTransform: "uppercase", marginBottom: 6 }}>
                               {CATEGORY_LABELS[p.category]}
                             </p>
                             <p style={{ fontFamily: SERIF, fontSize: 19, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em" }}>
@@ -623,7 +623,7 @@ export default function BuildYourStack() {
                               </ul>
                             )}
                             {synergies.length > 0 && (
-                              <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: isPicked ? "rgba(198,241,132,0.9)" : "#7a9a7a", textTransform: "uppercase", marginTop: 6 }}>
+                              <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.08em", color: isPicked ? "rgba(198,241,132,0.9)" : "#7a9a7a", textTransform: "uppercase", marginTop: 6 }}>
                                 ⚡ Synergy with {synergies.join(" & ")}
                               </p>
                             )}
@@ -698,7 +698,7 @@ export default function BuildYourStack() {
                           >
                             <div>{c === "1mo" ? "Monthly" : c === "3mo" ? "Quarterly" : "Annual"}</div>
                             {pct > 0 && (
-                              <div style={{ color: active ? "#c6f184" : "#7a7974", fontSize: 9.5, marginTop: 2 }}>
+                              <div style={{ color: active ? "#c6f184" : "#7a7974", fontSize: 10, marginTop: 2 }}>
                                 Save {pct}%
                               </div>
                             )}
@@ -737,7 +737,7 @@ export default function BuildYourStack() {
                       </div>
                     )}
                     {cadencePct > 0 && (
-                      <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: "#7a7974", textTransform: "uppercase", marginTop: 4 }}>
+                      <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.08em", color: "#7a7974", textTransform: "uppercase", marginTop: 4 }}>
                         Cadence savings already applied to each line
                       </p>
                     )}
@@ -771,7 +771,7 @@ export default function BuildYourStack() {
                     </button>
 
                     {picked.length < 2 && (
-                      <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.08em", color: "#a4a4a0", textTransform: "uppercase", marginTop: 10, textAlign: "center" }}>
+                      <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.08em", color: "#a4a4a0", textTransform: "uppercase", marginTop: 10, textAlign: "center" }}>
                         Pick at least 2 peptides to continue
                       </p>
                     )}
@@ -976,7 +976,7 @@ export default function BuildYourStack() {
                         </>
                       )}
                     </button>
-                    <p style={{ fontFamily: MONO, fontSize: 9.5, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginTop: 12, textAlign: "center" }}>
+                    <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginTop: 12, textAlign: "center" }}>
                       Physician review required before shipping
                     </p>
                   </div>

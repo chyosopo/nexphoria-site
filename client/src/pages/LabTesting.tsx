@@ -12,7 +12,7 @@ import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
 import { Link } from "wouter";
 import { ArrowRight, ArrowUpRight, Check, MapPin, Clock, Home, Building2, FlaskConical, Truck } from "lucide-react";
 import atHomeKit from "@/assets/nx_v11_bloodwork_athome_kit.webp";
-import { ColoredHeroTile, TileGlyphs, MxHeader } from "@/components/MaximusTile";
+import { MxHeader } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
 type PanelTone = { bg: string; accent: string; ring: string };
@@ -121,24 +121,49 @@ export default function LabTesting() {
             subtitle="Comprehensive panels before your protocol begins and after it ends. We track 50+ biomarkers so dose decisions stay data-driven."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/lab-testing"
-              tone="sky"
-              glyph={TileGlyphs.vial}
-              label={<>Pre-protocol<br /><span>baseline panel</span></>}
-              caption="50+ biomarkers tracked"
-              ctaLabel="See panels"
+          {/* Editorial hero — the draw itself: calm, clinical, real */}
+          <figure
+            className="relative overflow-hidden"
+            style={{ borderRadius: "20px", border: "1px solid var(--nx-border)" }}
+            data-testid="labtesting-hero-editorial"
+          >
+            <img
+              src={editorialBloodwork}
+              alt="Vacutainer tubes arranged on a cream ceramic tray in warm directional light, ready for a lab draw"
+              className="w-full object-cover"
+              style={{ aspectRatio: "21 / 9", minHeight: "320px" }}
+              loading="eager"
+              decoding="async"
             />
-            <ColoredHeroTile
-              href="/lab-testing"
-              tone="sage"
-              glyph={TileGlyphs.circle}
-              label={<>Post-protocol<br /><span>verification</span></>}
-              caption="Did it actually work?"
-              ctaLabel="View results"
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.1) 36%, transparent 58%)",
+              }}
             />
-          </div>
+            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+                    fontWeight: 500,
+                    lineHeight: 1.35,
+                    color: "#FFFFF3",
+                    maxWidth: "38ch",
+                    textShadow: "0 1px 12px rgba(10,10,10,0.35)",
+                  }}
+                >
+                  50+ biomarkers drawn at Quest and read by your physician — before your first dose and after your last.
+                </p>
+                <StartIntakeButton source="labtesting-hero" size="lg">
+                  Start your assessment
+                </StartIntakeButton>
+              </div>
+            </figcaption>
+          </figure>
         </div>
       </main>
 
@@ -549,7 +574,7 @@ export default function LabTesting() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -783,7 +808,7 @@ export default function LabTesting() {
                     key={h}
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
@@ -840,7 +865,7 @@ export default function LabTesting() {
                   <span
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
@@ -875,45 +900,200 @@ export default function LabTesting() {
             </p>
           </Reveal>
 
+          {/* {PLACEHOLDER} Panel tier names, prices, and marker counts are provisional
+              until the lab menu is finalized with Quest. */}
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", maxWidth: "760px" }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "1.5rem",
+              alignItems: "stretch",
+            }}
+            data-testid="labtesting-panel-tiers"
           >
             {[
               {
-                label: "Included with Protocol",
-                price: "$0",
-                note: "3-month and 12-month plans",
-                detail: "Quest Diagnostics 38-biomarker baseline panel and all 90-day retest panels included. No add-on fee.",
+                key: "essential",
+                label: "Essential",
+                price: "$99",
+                note: "Baseline screen",
+                markers: "22 biomarkers",
+                popular: false,
+                features: [
+                  "Hormone baseline (total & free testosterone, estradiol)",
+                  "Metabolic core (glucose, HbA1c, lipid panel)",
+                  "Liver and kidney function",
+                  "Results in your portal in 2–4 business days",
+                ],
               },
               {
-                label: "Standalone Add-On",
+                key: "comprehensive",
+                label: "Comprehensive",
                 price: "$199",
-                note: "Monthly plan members",
-                detail: "Full 38-biomarker Quest Diagnostics panel. Physician review of results within 24 hours of receipt. Available at any Quest patient service center.",
+                note: "Included with 3- and 12-month protocols",
+                markers: "38 biomarkers",
+                popular: true,
+                features: [
+                  "Everything in Essential",
+                  "IGF-1, thyroid cascade, full hormone axis",
+                  "Inflammation markers (hs-CRP, homocysteine)",
+                  "Physician review within 24 hours of receipt",
+                  "90-day retest included on protocol plans",
+                ],
               },
               {
-                label: "Home Phlebotomy",
-                price: "$149",
-                note: "+ lab panel cost",
-                detail: "Certified phlebotomist dispatched to your home or office. Available in most major US metro areas. Kit shipped overnight.",
+                key: "executive",
+                label: "Executive",
+                price: "$399",
+                note: "Deep-dive panel",
+                markers: "50+ biomarkers",
+                popular: false,
+                features: [
+                  "Everything in Comprehensive",
+                  "ApoB, Lp(a), fasting insulin, cortisol rhythm",
+                  "Micronutrient and iron studies",
+                  "Home phlebotomy visit included",
+                  "30-minute physician results consult",
+                ],
               },
-            ].map(({ label, price, note, detail }) => (
-              <Reveal key={label}>
-                <div style={{ backgroundColor: "var(--nx-bg-cream)", padding: "2rem", height: "100%" }}>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>{label}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2.25rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1, marginBottom: "0.25rem" }}>{price}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>{note.toUpperCase()}</p>
-                  <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.65 }}>{detail}</p>
+            ].map(({ key, label, price, note, markers, popular, features }, i) => (
+              <Reveal key={key} delay={i * 60}>
+                <div
+                  data-testid={`panel-tier-${key}`}
+                  style={{
+                    position: "relative",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    background: popular ? "var(--nx-fg)" : "#FFFFFF",
+                    border: popular ? "1.5px solid var(--nx-fg)" : "1px solid var(--nx-border)",
+                    borderRadius: "20px",
+                    padding: "2rem",
+                  }}
+                >
+                  {popular && (
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: "-11px",
+                        left: "2rem",
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "10px",
+                        fontWeight: 600,
+                        letterSpacing: "0.12em",
+                        textTransform: "uppercase",
+                        color: "var(--nx-fg)",
+                        background: "var(--nx-acid)",
+                        padding: "4px 12px",
+                        borderRadius: "999px",
+                      }}
+                    >
+                      Most popular
+                    </span>
+                  )}
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "10px",
+                      fontWeight: 700,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: popular ? "var(--nx-acid)" : "var(--nx-cobalt)",
+                      marginBottom: "0.625rem",
+                    }}
+                  >
+                    {label}
+                  </p>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem" }}>
+                    <p
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "2.5rem",
+                        fontWeight: 500,
+                        lineHeight: 1,
+                        color: popular ? "#FFFFF3" : "var(--nx-fg)",
+                      }}
+                    >
+                      {price}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "12px",
+                        color: popular ? "rgba(255,255,243,0.6)" : "var(--nx-fg-muted)",
+                      }}
+                    >
+                      {markers}
+                    </p>
+                  </div>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "12px",
+                      color: popular ? "rgba(255,255,243,0.7)" : "var(--nx-fg-graphite)",
+                      marginTop: "0.5rem",
+                      marginBottom: "1.25rem",
+                    }}
+                  >
+                    {note}
+                  </p>
+                  <ul style={{ display: "flex", flexDirection: "column", gap: "0.625rem", flex: 1, margin: 0, padding: 0, listStyle: "none" }}>
+                    {features.map((f) => (
+                      <li key={f} style={{ display: "flex", gap: "0.625rem", alignItems: "flex-start" }}>
+                        <Check
+                          size={15}
+                          strokeWidth={2.2}
+                          style={{ color: popular ? "var(--nx-acid)" : "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}
+                        />
+                        <span
+                          style={{
+                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontSize: "13.5px",
+                            lineHeight: 1.55,
+                            color: popular ? "rgba(255,255,243,0.85)" : "#4A4A4A",
+                          }}
+                        >
+                          {f}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div style={{ marginTop: "1.75rem" }}>
+                    <StartIntakeButton
+                      source={`labtesting-tier-${key}`}
+                      variant={popular ? "primary" : "outline-light"}
+                      size="md"
+                      className="w-full"
+                    >
+                      Begin intake
+                    </StartIntakeButton>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
+          <Reveal delay={100}>
+            <p
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontSize: "13px",
+                color: "var(--nx-fg-muted)",
+                marginTop: "1.5rem",
+                maxWidth: "640px",
+              }}
+            >
+              On 3- and 12-month protocol plans, the Comprehensive panel and every 90-day
+              retest are already included — you never pay for labs separately. Home
+              phlebotomy can be added to any panel for $149 in most major U.S. metros.
+            </p>
+          </Reveal>
+
           {/* CTA */}
           <Reveal delay={80}>
             <div className="mt-12">
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "480px" }}>
-                Clarity Unlocks Power. Unleash the Extraordinary.
+                Every protocol decision starts with a number.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "460px", marginBottom: "1.75rem" }}>
                 Your lab panel is the foundation of every Nexphoria protocol. Take the assessment and receive your Quest Diagnostics requisition within 24 hours.
@@ -1038,7 +1218,7 @@ function BloodworkManifesto() {
               }}
               data-testid="link-blood-assessment"
             >
-              Start with the free foundation panel
+              Start your assessment
               <ArrowUpRight size={14} strokeWidth={2} />
             </Link>
           </div>

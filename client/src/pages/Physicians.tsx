@@ -7,6 +7,7 @@ import { physicians, type Physician } from "@/data/physicians";
 import { useSeo, webPageJsonLd, physicianJsonLd } from "@/lib/seo";
 import lifestylePhysicianConsult from "@/assets/brand/lifestyle-physician-consult.webp";
 import physicianTrustHero from "@/assets/nx_v11_trust_physician_hero.webp";
+import heroPhysicians from "@/assets/brand/hero-physicians.webp";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
 
@@ -410,7 +411,11 @@ export default function Physicians() {
           </Reveal>
 
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", maxWidth: "900px" }}
+            className="physicians-review-grid"
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "stretch" }}
+          >
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
           >
             {[
               {
@@ -439,11 +444,34 @@ export default function Physicians() {
             ))}
           </div>
 
+          {/* Editorial — two physicians on one chart: review is collaborative, human work */}
+          <Reveal delay={80}>
+            <figure
+              style={{
+                borderRadius: "20px",
+                overflow: "hidden",
+                border: "1px solid var(--nx-border)",
+                height: "100%",
+                minHeight: "280px",
+              }}
+              data-testid="physicians-review-editorial"
+            >
+              <img
+                src={heroPhysicians}
+                alt="Two physicians in white coats review a patient chart together in warm afternoon light"
+                loading="lazy"
+                decoding="async"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </figure>
+          </Reveal>
+          </div>
+
           {/* CTA to assessment */}
           <Reveal delay={100}>
             <div className="mt-12">
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
-                "Dare to defy. Find your focus. Elevate every moment."
+                A physician on every case. A lab value behind every decision.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "1rem", color: "#4A4A4A", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
                 Your physician review is included with every protocol. Take the assessment and our team will match you with the right physician for your state and goals.
@@ -466,6 +494,7 @@ export default function Physicians() {
       <style>{`
         @media (min-width: 768px) {
           .physicians-band-grid { grid-template-columns: 1.1fr 1fr !important; gap: 4rem !important; }
+          .physicians-review-grid { grid-template-columns: 1.15fr 0.85fr !important; }
         }
       `}</style>
     </SiteLayout>
@@ -797,10 +826,10 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
         <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
           {doc.name}
         </h3>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.375rem" }}>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.375rem" }}>
           {doc.specialty} · {doc.institution}
         </p>
-        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "8px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>
+        <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.875rem" }}>
           {doc.credentials}
         </p>
         <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.65, marginBottom: "1rem" }}>
@@ -812,7 +841,7 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "13px", color: "#4A4A4A", lineHeight: 1.7, marginBottom: "1rem" }}>
               {doc.extendedBio}
             </p>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
               Clinical focus
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
@@ -823,7 +852,7 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
                 </li>
               ))}
             </ul>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.5rem" }}>
               Selected publications
             </p>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, marginBottom: "1rem" }}>
@@ -833,7 +862,7 @@ function PhysicianCard({ doc, index }: { doc: Physician; index: number }) {
                 </li>
               ))}
             </ul>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.35rem" }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg)", marginBottom: "0.35rem" }}>
               Languages
             </p>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "12px", color: "#4A4A4A" }}>{doc.languages}</p>

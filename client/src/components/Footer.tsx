@@ -159,7 +159,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
               </span>
               <span
                 style={{
-                  fontSize: 9,
+                  fontSize: 10,
                   color: "rgba(255,255,255,0.4)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",

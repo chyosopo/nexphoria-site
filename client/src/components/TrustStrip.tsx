@@ -62,7 +62,7 @@ export function TrustStrip() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.14em",
               textTransform: "uppercase",

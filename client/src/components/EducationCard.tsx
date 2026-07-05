@@ -77,7 +77,7 @@ export function EducationCard({
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "10px",
             fontWeight: 600,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -137,7 +137,7 @@ export function EducationCard({
           <span
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "10px",
               fontWeight: 500,
               letterSpacing: "0.1em",
               textTransform: "uppercase",

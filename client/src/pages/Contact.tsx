@@ -85,7 +85,7 @@ export default function Contact() {
 
   const labelStyle: React.CSSProperties = {
     fontFamily: "'General Sans', system-ui, sans-serif",
-    fontSize: "9px",
+    fontSize: "10px",
     fontWeight: 700,
     letterSpacing: "0.14em",
     textTransform: "uppercase" as const,
@@ -195,7 +195,7 @@ export default function Contact() {
                         <p
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "8px",
+                            fontSize: "10px",
                             fontWeight: 700,
                             letterSpacing: "0.14em",
                             textTransform: "uppercase",
@@ -266,7 +266,7 @@ export default function Contact() {
                 ].map(({ label, value }) => (
                   <div key={label} style={{ textAlign: "center" }}>
                     <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1 }}>{value}</p>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
                   </div>
                 ))}
               </div>
@@ -339,7 +339,7 @@ export default function Contact() {
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontSize: "10px",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
@@ -372,7 +372,7 @@ export default function Contact() {
                     We'll respond within 24 hours on business days (Monday through Friday ET). Clinical questions are routed to a physician within 48 hours.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B5A2B", marginTop: "1rem" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B5A2B", marginTop: "1rem" }}>
                       Note: For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}

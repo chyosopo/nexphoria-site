@@ -7,6 +7,7 @@ import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, Messa
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
+import heroAbout from "@/assets/brand/hero-about.webp";
 import md1 from "@/assets/brand/physicians/md-1.webp";
 import md2 from "@/assets/brand/physicians/md-2.webp";
 import md3 from "@/assets/brand/physicians/md-3.webp";
@@ -248,6 +249,49 @@ export default function About() {
               recovery. Designed by clinicians. Compounded in US 503A pharmacies. Gated on your
               bloodwork, not a testimonial.
             </p>
+          </Reveal>
+        </div>
+
+        {/* Editorial opener — the physician is the product */}
+        <div className="nx-container" style={{ paddingTop: 56 }}>
+          <Reveal>
+            <figure
+              className="relative overflow-hidden"
+              style={{ borderRadius: 20, border: "1px solid var(--nx-border)" }}
+              data-testid="about-hero-editorial"
+            >
+              <img
+                src={heroAbout}
+                alt="A board-certified physician in a white coat stands in a warm consultation room, arms folded, meeting the camera with a direct, compassionate gaze"
+                className="w-full object-cover"
+                style={{ aspectRatio: "21 / 9", minHeight: 300 }}
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption
+                className="absolute left-0 bottom-0 p-6 md:p-8"
+                style={{ maxWidth: "44ch" }}
+              >
+                <p
+                  style={{
+                    fontFamily: FONT,
+                    fontSize: 13,
+                    fontWeight: 500,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    color: "#FFFFF3",
+                    background: "rgba(10,10,10,0.55)",
+                    backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)",
+                    padding: "10px 16px",
+                    borderRadius: 6,
+                    display: "inline-block",
+                  }}
+                >
+                  Real medicine. A physician on every case.
+                </p>
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
 

@@ -89,7 +89,6 @@ export function DoctorStrip() {
                       objectFit: "cover",
                       objectPosition: "center top",
                     }}
-                    loading="lazy"
                   />
                 </div>
 
@@ -123,7 +122,7 @@ export function DoctorStrip() {
                 <p
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontSize: "10px",
                     fontWeight: 500,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
