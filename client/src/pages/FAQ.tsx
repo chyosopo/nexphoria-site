@@ -4,8 +4,9 @@ import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { Plus, Minus } from "lucide-react";
 import { useSeo, faqJsonLd, webPageJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { MxHeader } from "@/components/MaximusTile";
 import { PillBadge } from "@/components/PillBadge";
+import heroFaq from "@/assets/brand/hero-faq.webp";
 
 interface FAQItem {
   q: string;
@@ -312,24 +313,44 @@ export default function FAQPage() {
             subtitle="Answers on dosing, safety, side effects, shipping, insurance, and what to expect. Still curious? Message your physician any time."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/faq"
-              tone="sand"
-              glyph={TileGlyphs.hex}
-              label={<>Protocol questions<br /><span>dosing &amp; timing</span></>}
-              caption="Most common asks"
-              ctaLabel="See answers"
+          {/* Editorial hero — questions answered, mind settled */}
+          <figure
+            className="relative overflow-hidden"
+            style={{ borderRadius: "20px", border: "1px solid var(--nx-border)" }}
+            data-testid="faq-hero-editorial"
+          >
+            <img
+              src={heroFaq}
+              alt="A woman reads calmly in a sunlit armchair by a tall window, tea on the side table"
+              className="w-full object-cover"
+              style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
+              loading="eager"
+              decoding="async"
             />
-            <ColoredHeroTile
-              href="/faq"
-              tone="sky"
-              glyph={TileGlyphs.circle}
-              label={<>Safety &amp; science<br /><span>peer-reviewed</span></>}
-              caption="Most common asks"
-              ctaLabel="See answers"
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0.08) 34%, transparent 55%)",
+              }}
             />
-          </div>
+            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+                  fontWeight: 500,
+                  lineHeight: 1.35,
+                  color: "#FFFFF3",
+                  maxWidth: "40ch",
+                  textShadow: "0 1px 12px rgba(10,10,10,0.35)",
+                }}
+              >
+                Dosing, safety, shipping, insurance — answered plainly, and your physician is a message away.
+              </p>
+            </figcaption>
+          </figure>
         </div>
       </main>
 
