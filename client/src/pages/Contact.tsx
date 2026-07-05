@@ -151,7 +151,7 @@ export default function Contact() {
             aria-label="Ways to reach us"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "1.5px",
               backgroundColor: "var(--nx-border)",
               border: "1.5px solid var(--nx-border)",
@@ -289,8 +289,10 @@ export default function Contact() {
                     opacity: 0.7,
                   }}
                 />
-                {/* pinned HQ marker */}
-                <div aria-hidden style={{ position: "absolute", right: "18%", top: "26%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                {/* pinned HQ marker — desktop only; at 390px the pin sat on
+                    top of the headline. display lives in classes so the
+                    sm:hidden actually wins. */}
+                <div aria-hidden className="hidden sm:flex" style={{ position: "absolute", right: "18%", top: "26%", flexDirection: "column", alignItems: "center" }}>
                   <span className="nx-icon-circle" style={{ boxShadow: "var(--nx-e-3)" }}>
                     <MapPin size={20} strokeWidth={2} />
                   </span>

@@ -289,7 +289,9 @@ export default function Checkout() {
                     <Field label="Street address" error={errors.shippingAddress?.message}>
                       <input {...form.register("shippingAddress")} type="text" className="nx-input" data-testid="input-address" autoComplete="street-address" />
                     </Field>
-                    <div className="grid grid-cols-2 md:grid-cols-[1fr_120px_140px] gap-4 mt-4">
+                    {/* City spans the row on phones so State+ZIP pair up —
+                        the 2-col grid orphaned ZIP alone at half width */}
+                    <div className="grid grid-cols-2 md:grid-cols-[1fr_120px_140px] gap-4 mt-4 [&>*:first-child]:col-span-2 md:[&>*:first-child]:col-span-1">
                       <Field label="City" error={errors.city?.message}>
                         <input {...form.register("city")} type="text" className="nx-input" data-testid="input-city" autoComplete="address-level2" />
                       </Field>

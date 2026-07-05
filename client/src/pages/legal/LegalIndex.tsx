@@ -41,7 +41,9 @@ export default function LegalIndex() {
           paddingBottom: "3rem",
         }}
       >
-        <div className="nx-container">
+        {/* Same centered measure as the card column below — a full-width
+            hero next to a max-w-2xl list read as two misaligned pages */}
+        <div className="nx-container max-w-2xl">
           <Reveal>
             <p
               style={{
