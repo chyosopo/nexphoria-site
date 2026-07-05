@@ -144,14 +144,14 @@ function RangeBar({ m }: { m: Biomarker }) {
           justifyContent: "space-between",
           marginTop: 6,
           fontFamily: FONT,
-          fontSize: 10,
+          fontSize: "var(--nx-t-xs)",
           color: "var(--nx-fg-muted)",
           letterSpacing: "0.03em",
           ...NUM,
         }}
       >
         <span>{m.refLow}</span>
-        <span style={{ letterSpacing: "0.1em", textTransform: "uppercase", fontSize: 10 }}>
+        <span style={{ letterSpacing: "0.1em", textTransform: "uppercase", fontSize: "var(--nx-t-xs)" }}>
           Reference {m.refLabel}
         </span>
         <span>{m.refHigh}</span>
@@ -212,7 +212,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           <p
             style={{
               fontFamily: FONT,
-              fontSize: 10,
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -243,7 +243,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
           style={{
             flexShrink: 0,
             fontFamily: FONT,
-            fontSize: 10,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 600,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
@@ -301,7 +301,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
         data-testid={`${testId}-interpretation`}
         style={{
           fontFamily: FONT,
-          fontSize: 12.5,
+          fontSize: "var(--nx-t-xs)",
           fontWeight: 400,
           color: "var(--nx-fg-graphite)",
           lineHeight: 1.5,
