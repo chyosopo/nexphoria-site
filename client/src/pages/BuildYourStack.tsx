@@ -418,7 +418,7 @@ export default function BuildYourStack() {
                     </p>
                     <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-fg)", opacity: 0.4 }} className="group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </div>
-                  <h3 style={{ fontFamily: F, fontSize: 22, lineHeight: 1.15, letterSpacing: "-0.01em", fontWeight: 500, color: "var(--nx-fg)" }}>
+                  <h3 style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", lineHeight: 1.15, letterSpacing: "-0.01em", fontWeight: 500, color: "var(--nx-fg)" }}>
                     {g.title}
                   </h3>
                   <p style={{ fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 8, lineHeight: 1.5 }}>
@@ -528,7 +528,7 @@ export default function BuildYourStack() {
                           Physician-curated match
                         </p>
                         <div className="flex items-baseline gap-3 flex-wrap">
-                          <h3 style={{ fontFamily: F, fontSize: 24, fontWeight: 500, letterSpacing: "-0.01em", color: "var(--nx-ceramic)", lineHeight: 1.1 }} data-testid="text-matched-stack-name">
+                          <h3 style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500, letterSpacing: "-0.01em", color: "var(--nx-ceramic)", lineHeight: 1.1 }} data-testid="text-matched-stack-name">
                             The {matchedStack.name} stack
                           </h3>
                           <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
@@ -542,7 +542,7 @@ export default function BuildYourStack() {
 
                       {/* Formula overlap — an honest count, not a score */}
                       <div className="flex-shrink-0 text-right" data-testid="confidence-score">
-                        <p style={{ fontFamily: F, fontSize: 34, fontWeight: 600, lineHeight: 1, color: "var(--nx-acid)", letterSpacing: "-0.02em" }}>
+                        <p style={{ fontFamily: F, fontSize: "var(--nx-t-h2)", fontWeight: 600, lineHeight: 1, color: "var(--nx-acid)", letterSpacing: "-0.02em" }}>
                           {overlap}<span style={{ fontSize: "var(--nx-t-body)", fontWeight: 500 }}> of {matchedStack.peptides.length}</span>
                         </p>
                         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 3 }}>
@@ -588,7 +588,7 @@ export default function BuildYourStack() {
               {/* Peptide picker */}
               <div>
                 <div className="flex items-baseline justify-between mb-5">
-                  <h2 style={{ fontFamily: F, fontSize: 26, fontWeight: 500, letterSpacing: "-0.01em" }}>
+                  <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500, letterSpacing: "-0.01em" }}>
                     {goal ? `Recommended for ${goal.title.toLowerCase()}` : "Choose from the catalog"}
                   </h2>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", letterSpacing: "0.08em" }}>
@@ -643,7 +643,7 @@ export default function BuildYourStack() {
                             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", color: isPicked ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 6 }}>
                               {CATEGORY_LABELS[p.category]}
                             </p>
-                            <p style={{ fontFamily: F, fontSize: 19, fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em" }}>
+                            <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", fontWeight: 500, lineHeight: 1.15, letterSpacing: "-0.01em" }}>
                               {p.name}
                             </p>
                             <p style={{ fontSize: "var(--nx-t-xs)", color: isPicked ? "rgba(255,255,255,0.7)" : "var(--nx-fg-graphite)", marginTop: 4, lineHeight: 1.45 }}>
@@ -701,7 +701,7 @@ export default function BuildYourStack() {
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.16em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 6 }}>
                       Your stack
                     </p>
-                    <p style={{ fontFamily: F, fontSize: 22, fontWeight: 500, letterSpacing: "-0.01em" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500, letterSpacing: "-0.01em" }}>
                       {picked.length === 0 ? "Start picking" : `${picked.length} ${picked.length === 1 ? "peptide" : "peptides"}`}
                     </p>
                   </div>
@@ -780,8 +780,8 @@ export default function BuildYourStack() {
                       </p>
                     )}
                     <div className="flex items-baseline justify-between pt-4 mt-3" style={{ borderTop: "1px solid var(--nx-bg)" }}>
-                      <span style={{ fontFamily: F, fontSize: 18, fontWeight: 500 }}>Stack total</span>
-                      <span style={{ fontFamily: F, fontSize: 26, fontWeight: 500, letterSpacing: "-0.01em" }}>
+                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", fontWeight: 500 }}>Stack total</span>
+                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500, letterSpacing: "-0.01em" }}>
                         {formatUSD(bundleTotal)}<span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginLeft: 4 }}>/mo</span>
                       </span>
                     </div>
@@ -840,7 +840,7 @@ export default function BuildYourStack() {
                   </button>
                 </div>
 
-                <h2 style={{ fontFamily: F, fontSize: 30, fontWeight: 500, letterSpacing: "-0.01em", lineHeight: 1.1 }}>
+                <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-h2)", fontWeight: 500, letterSpacing: "-0.01em", lineHeight: 1.1 }}>
                   Your custom protocol
                 </h2>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: 8, maxWidth: 600 }}>
@@ -864,7 +864,7 @@ export default function BuildYourStack() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-baseline justify-between gap-3">
-                            <p style={{ fontFamily: F, fontSize: 20, fontWeight: 500, letterSpacing: "-0.01em" }}>{p.name}</p>
+                            <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", fontWeight: 500, letterSpacing: "-0.01em" }}>{p.name}</p>
                             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", whiteSpace: "nowrap" }}>{formatUSD(monthly)}/mo</p>
                           </div>
                           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginTop: 4 }}>
@@ -948,7 +948,7 @@ export default function BuildYourStack() {
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.16em", color: "color-mix(in srgb, var(--nx-acid) 85%, transparent)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
                     </p>
-                    <p style={{ fontFamily: F, fontSize: 22, fontWeight: 500 }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500 }}>
                       {picked.length}-peptide custom stack
                     </p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", color: "rgba(255,255,255,0.5)", textTransform: "uppercase", marginTop: 4 }}>
@@ -984,7 +984,7 @@ export default function BuildYourStack() {
                     )}
                     <div className="flex justify-between pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
                       <span style={{ fontFamily: F, fontSize: "var(--nx-t-body)", fontWeight: 500 }}>Total</span>
-                      <span style={{ fontFamily: F, fontSize: 24, fontWeight: 500, letterSpacing: "-0.01em" }}>
+                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500, letterSpacing: "-0.01em" }}>
                         {formatUSD(bundleTotal)}<span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "rgba(255,255,255,0.5)", marginLeft: 4 }}>/mo</span>
                       </span>
                     </div>
