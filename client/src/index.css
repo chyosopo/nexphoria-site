@@ -1402,6 +1402,42 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
   border-radius: var(--nx-r-md);
 }
 
+/* ═══ V2 CINEMATIC HERO — photography runs off the right viewport edge on
+   lg+ (hims editorial move): negative margin spans the container's own
+   gutter plus the centering slack beyond 1280px. Corners square where the
+   frame meets the edge. ═══ */
+@media (min-width: 1024px) {
+  .nx-hero-bleed {
+    margin-right: calc(-1 * max(3rem, (100vw - 1280px) / 2 + 3rem));
+    border-radius: var(--nx-r-lg) 0 0 var(--nx-r-lg);
+  }
+}
+
+/* ═══ V2 BENTO — the first goal tile is the grid's editorial anchor,
+   spanning 2×2 on lg+ with its photograph filling the doubled cell.
+   The grid item is the Reveal wrapper (feature-cell); the inner tile
+   stretches to fill it. ═══ */
+@media (min-width: 1024px) {
+  .nx-art-tile--feature-cell {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .nx-art-tile--feature {
+    height: 100%;
+  }
+  .nx-art-tile--feature img {
+    /* 4:3 stays the INTRINSIC contribution (a released portrait ratio
+       inflated the shared rows); flex then stretches it the final step
+       to fill the 2×2 cell exactly, with object-fit absorbing the crop */
+    flex: 1;
+    min-height: 0;
+    height: auto;
+  }
+  .nx-art-tile--feature .nx-art-chip h2 {
+    font-size: clamp(24px, 2.4vw, 31px) !important;
+  }
+}
+
 /* ── Inline text link — cobalt arrow links get hover feedback and a 44px
    tap area (padding + negative margin so layout doesn't shift) ── */
 .nx-text-link {

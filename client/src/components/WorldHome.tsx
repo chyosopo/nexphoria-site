@@ -103,7 +103,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.8vw,68px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,74px)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "15ch", marginTop: "0.9rem" }}>
             {config.h1}
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1.1rem" }}>
@@ -127,7 +127,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </div>
           </div>
           {config.heroArt && (
-            <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
+            <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
               <img
                 src={config.heroArt}
                 alt=""
@@ -138,6 +138,28 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 data-testid={`${world}-hero-art`}
               />
+              {/* live-cadence chip — top corner, pairs with the marker chip below */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 14,
+                  right: 14,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  borderRadius: "var(--nx-r-pill)",
+                  padding: "8px 14px",
+                }}
+                data-testid={`${world}-hero-cadence`}
+              >
+                <span className="nx-pulse-dot" aria-hidden style={{ width: 7, height: 7, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", flexShrink: 0 }} />
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                  Retested every 90 days
+                </span>
+              </div>
               {config.heroMarker && (
                 <div
                   style={{
@@ -172,10 +194,11 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
         <div className="nx-container relative" style={{ paddingBottom: "clamp(2.6rem,5vw,4rem)", zIndex: 1 }}>
+          {/* Bento: the first goal is the editorial anchor (2×2 on lg+) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
             {config.categories.map((cat, i) => (
-              <Reveal key={cat} delay={i * 60}>
-                <Link href={`${base}/peptides`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
+              <Reveal key={cat} delay={i * 60} className={i === 0 ? "nx-art-tile--feature-cell" : undefined}>
+                <Link href={`${base}/peptides`} className={i === 0 ? "nx-art-tile nx-art-tile--feature" : "nx-art-tile"} data-testid={`${world}-goal-${cat}`}>
                   {config.tileArt[cat] && (
                     <img
                       src={config.tileArt[cat]}
@@ -217,6 +240,29 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             ))}
           </div>
         </Reveal>
+      </section>
+
+      {/* ── BIOMARKER MARQUEE — the panel as living texture (hims-Labs grammar) ── */}
+      <section aria-label="Biomarkers we measure" style={{ paddingTop: "clamp(2.6rem,4.5vw,3.6rem)", paddingBottom: "0" }}>
+        <div className="nx-container" style={{ marginBottom: "1.1rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            {PANEL_TOTAL_MARKERS} biomarkers · drawn at baseline · re-drawn every 90 days
+          </p>
+        </div>
+        {[BIOMARKER_PANEL.slice(0, 5), BIOMARKER_PANEL.slice(5)].map((half, r) => (
+          <div key={r} className="nx-marquee" style={{ marginBottom: r === 0 ? 10 : 0 }} aria-hidden>
+            <div className={`nx-marquee-track ${r === 1 ? "reverse" : ""}`}>
+              {(() => {
+                const row = half.flatMap((c) => c.markers.map((m) => ({ n: m.name.split(" (")[0], c: c.name })));
+                return [...row, ...row].map((m, j) => (
+                  <span key={j} className="nx-marquee-chip">
+                    <span style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
+                  </span>
+                ));
+              })()}
+            </div>
+          </div>
+        ))}
       </section>
 
       {/* ── PRODUCT CARD ROW — the shelf, if-prescribed framing ── */}
