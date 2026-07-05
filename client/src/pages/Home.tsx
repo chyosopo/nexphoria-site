@@ -170,7 +170,7 @@ function FloatingResultCards() {
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             border: "1px solid rgba(21, 24, 28,0.08)",
-            borderRadius: 16,
+            borderRadius: "var(--nx-r-md)",
             padding: "10px 14px",
             minWidth: 152,
             boxShadow: "0 8px 28px rgba(21, 24, 28,0.14)",
@@ -272,7 +272,7 @@ function Hero() {
               background: "var(--nx-cobalt)",
               color: "var(--nx-ceramic)",
               padding: "14px 22px",
-              borderRadius: "999px",
+              borderRadius: "var(--nx-r-pill)",
               fontWeight: 600,
               fontSize: "var(--nx-t-base)",
               letterSpacing: "-0.01em",
@@ -628,10 +628,10 @@ function FlagshipDark() {
                 ))}
               </ul>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
-                <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-fg)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <Link href="/stacks/wolverine" data-testid="flagship-dark-cta-primary" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, letterSpacing: "0.01em", color: "var(--nx-fg)", backgroundColor: "var(--nx-acid)", padding: "0.95rem 1.5rem", borderRadius: "var(--nx-r-pill)", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See Wolverine <ArrowRight size={14} strokeWidth={2} />
                 </Link>
-                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, letterSpacing: "0.02em", color: "var(--nx-ceramic)", padding: "0.9rem 1.4rem", border: "1px solid rgba(246, 249, 252,0.28)", borderRadius: 999, display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                <Link href="/bloodwork" data-testid="flagship-dark-cta-secondary" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, letterSpacing: "0.02em", color: "var(--nx-ceramic)", padding: "0.9rem 1.4rem", border: "1px solid rgba(246, 249, 252,0.28)", borderRadius: "var(--nx-r-pill)", display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
                   See the bloodwork <ArrowRight size={14} strokeWidth={1.75} />
                 </Link>
               </div>
@@ -1271,7 +1271,7 @@ function FinalCta() {
               background: "var(--nx-acid)",
               color: "var(--nx-fg)",
               padding: "18px 30px",
-              borderRadius: "999px",
+              borderRadius: "var(--nx-r-pill)",
               fontWeight: 600,
               fontSize: "var(--nx-t-body)",
               letterSpacing: "-0.01em",
@@ -1641,7 +1641,7 @@ function BloodworkPillar() {
                     background: "var(--nx-acid)",
                     color: "var(--nx-fg)",
                     padding: "18px 32px",
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: "var(--nx-t-body)",
@@ -1662,7 +1662,7 @@ function BloodworkPillar() {
                     background: "transparent",
                     color: "var(--nx-ceramic)",
                     padding: "18px 28px",
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 500,
                     fontSize: "var(--nx-t-body)",
@@ -1760,7 +1760,7 @@ function BloodworkPillar() {
                   fontWeight: 600,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  borderRadius: 999,
+                  borderRadius: "var(--nx-r-pill)",
                   backdropFilter: "blur(8px)",
                 }}
               >
@@ -1861,7 +1861,7 @@ function PeptideTilesStrip() {
               color: "var(--nx-fg)",
               padding: "14px 22px",
               background: "var(--nx-acid)",
-              borderRadius: 999,
+              borderRadius: "var(--nx-r-pill)",
               display: "inline-flex",
               alignItems: "center",
               gap: 8,
@@ -2201,9 +2201,9 @@ function GuideCapture() {
           ) : (
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <input type="email" placeholder="you@example.com" aria-label="Email address"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", padding: "13px 18px", borderRadius: 999, border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", minWidth: 240 }} />
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", padding: "13px 18px", borderRadius: "var(--nx-r-pill)", border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", minWidth: 240 }} />
               <button onClick={() => setSent(true)}
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 22px", borderRadius: 999, border: "none", background: "var(--nx-fg)", color: "var(--nx-bg)", cursor: "pointer" }}>
+                style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 22px", borderRadius: "var(--nx-r-pill)", border: "none", background: "var(--nx-fg)", color: "var(--nx-bg)", cursor: "pointer" }}>
                 Get the guide
               </button>
             </div>
@@ -2228,7 +2228,7 @@ function ProofBento() {
           </div>
           <div style={{ ...tile, position: "relative", minHeight: 220 }}>
             <img src="img/img_b02fe34b47f7.webp" width={1600} height={1600} alt="Nexphoria compounded peptide vial" className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: 999, padding: "7px 14px" }}>Physician-directed protocols</span>
+            <span style={{ position: "absolute", left: 18, bottom: 16, fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)", background: "rgba(21, 24, 28,0.5)", backdropFilter: "blur(8px)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>Physician-directed protocols</span>
           </div>
           <div className="md:col-span-2" style={{ ...tile, position: "relative", minHeight: 300 }}>
             <img src="img/img_20e1e1d49da4.webp" width={1600} height={2134} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
@@ -2241,7 +2241,7 @@ function ProofBento() {
           <div style={{ ...tile, padding: "clamp(1.8rem,3vw,2.4rem)", minHeight: 200, display: "flex", flexDirection: "column", justifyContent: "center" }}>
             <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.25 }}>
               Physician
-              <img src="img/img_334cb24acfa5.webp" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: 999, objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
+              <img src="img/img_334cb24acfa5.webp" alt="" aria-hidden style={{ display: "inline-block", width: 44, height: 44, borderRadius: "var(--nx-r-pill)", objectFit: "cover", margin: "0 10px", verticalAlign: "middle" }} loading="lazy" />
               follow-ups
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 10 }}>Message your prescriber anytime through the portal.</p>
@@ -2308,10 +2308,10 @@ function HeroFilm() {
           <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
             <div className="flex items-center justify-between gap-4">
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)" }}>Hormones</span>
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: 999, padding: "3px 9px" }}>Optimal</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: "var(--nx-r-pill)", padding: "3px 9px" }}>Optimal</span>
             </div>
-            <div className="relative mt-2.5" style={{ height: 5, borderRadius: 999, background: "linear-gradient(90deg,var(--nx-success),var(--nx-acid),var(--nx-rust))" }}>
-              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: 999, background: "var(--nx-bg)" }} />
+            <div className="relative mt-2.5" style={{ height: 5, borderRadius: "var(--nx-r-pill)", background: "linear-gradient(90deg,var(--nx-success),var(--nx-acid),var(--nx-rust))" }}>
+              <span className="absolute nx-pulse-dot" style={{ left: "22%", top: -3.5, width: 12, height: 12, borderRadius: "var(--nx-r-pill)", background: "var(--nx-bg)" }} />
             </div>
           </div>
           <div className="absolute left-5 bottom-4 md:left-8 md:bottom-6">
