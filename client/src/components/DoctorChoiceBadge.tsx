@@ -50,7 +50,7 @@ export function DoctorChoiceBadge({
         gap: isSm ? "6px" : "7px",
         padding: isSm ? "5px 10px" : "7px 12px",
         height: isSm ? 22 : 26,
-        borderRadius: 999,
+        borderRadius: "var(--nx-r-pill)",
         backgroundColor: bg,
         border,
         backdropFilter: "blur(8px)",
