@@ -595,7 +595,7 @@ function VialTileInner({
                 style={{
                   width: 40,
                   height: 40,
-                  borderRadius: 10,
+                  borderRadius: "var(--nx-r-sm)",
                   background: "rgba(246, 249, 252,0.06)",
                   border: "1px solid rgba(246, 249, 252,0.14)",
                   display: "flex",
@@ -782,7 +782,7 @@ function VialTileInner({
               }}
             >
               {ctaLabel}
-              <ArrowUpRight size={16} strokeWidth={2} />
+              <ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />
             </Link>
           </div>
         </div>
