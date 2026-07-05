@@ -60,9 +60,21 @@ export default function ProtocolsIndex() {
                 A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. Not a cart of vials. A plan.
               </p>
             </div>
-            <div className="nx-hero-media nx-hero-frame" style={{ aspectRatio: "5 / 4" }}>
+            <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
               <img src={vialLineupHero} alt="The Nexphoria protocol vial lineup" fetchPriority="high" width={1600} height={1280} />
               <div className="nx-gradient-overlay tint" aria-hidden />
+              <div
+                style={{
+                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
+                }}
+              >
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                  {FLAGSHIP_STACKS.length} protocols · one panel each
+                </span>
+              </div>
             </div>
           </div>
         </div>

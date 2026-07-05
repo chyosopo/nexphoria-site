@@ -87,9 +87,21 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin.
               </p>
             </div>
-            <div className="nx-hero-media nx-hero-frame" style={{ aspectRatio: "5 / 4" }}>
+            <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
               <img src={vialLineupHero} alt="The Nexphoria peptide formulary" fetchPriority="high" width={1600} height={1280} />
               <div className="nx-gradient-overlay tint" aria-hidden />
+              <div
+                style={{
+                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
+                }}
+              >
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                  {SOLO_CATALOG.length} peptides · physician-prescribed
+                </span>
+              </div>
             </div>
           </div>
         </div>
