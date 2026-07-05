@@ -307,7 +307,7 @@ function VialTileInner({
             flexDirection: "column",
             justifyContent: "space-between",
             padding: "clamp(20px, 2.2vw, 30px)",
-            borderRadius: 24,
+            borderRadius: "var(--nx-r-lg)",
             background: t.bg,
             color: t.ink,
             textDecoration: "none",
@@ -344,7 +344,7 @@ function VialTileInner({
                     opacity: 0.62,
                     padding: "5px 10px",
                     border: "1px solid rgba(21, 24, 28,0.12)",
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                     background: "rgba(255,255,255,0.6)",
                     whiteSpace: "nowrap",
                     maxWidth: "100%",
@@ -366,7 +366,7 @@ function VialTileInner({
                     color: t.ink,
                     padding: "5px 10px",
                     background: "rgba(152, 182, 213,0.55)",
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                   }}
                 >
                   Tier {evidenceTier}
@@ -386,7 +386,7 @@ function VialTileInner({
                     padding: "5px 10px",
                     background: reg.bg,
                     border: `1px solid ${reg.border}`,
-                    borderRadius: 999,
+                    borderRadius: "var(--nx-r-pill)",
                   }}
                 >
                   {reg.label}
@@ -404,7 +404,7 @@ function VialTileInner({
                   color: "var(--nx-ceramic)",
                   padding: "5px 10px",
                   background: "var(--nx-fg)",
-                  borderRadius: 999,
+                  borderRadius: "var(--nx-r-pill)",
                 }}
               >
                 {badge}
@@ -459,7 +459,7 @@ function VialTileInner({
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 11,
+                      fontSize: "var(--nx-t-xs)",
                       letterSpacing: "0.06em",
                       color: t.ink,
                       opacity: 0.5,
@@ -506,7 +506,7 @@ function VialTileInner({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 14,
+                fontSize: "var(--nx-t-sm)",
                 lineHeight: 1.4,
                 color: t.ink,
                 opacity: 0.68,
@@ -556,7 +556,7 @@ function VialTileInner({
             flexDirection: "column",
             justifyContent: "space-between",
             padding: "clamp(22px, 2.4vw, 32px)",
-            borderRadius: 24,
+            borderRadius: "var(--nx-r-lg)",
             background: "var(--nx-fg)",
             color: "var(--nx-ceramic)",
             transform: "rotateY(180deg)",
@@ -611,7 +611,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
-                    fontSize: 18,
+                    fontSize: "var(--nx-t-lg)",
                     letterSpacing: "-0.01em",
                     color: "var(--nx-ceramic)",
                     lineHeight: 1,
@@ -638,7 +638,7 @@ function VialTileInner({
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 14,
+                  fontSize: "var(--nx-t-sm)",
                   lineHeight: 1.5,
                   color: "rgba(246, 249, 252,0.82)",
                   margin: 0,
@@ -675,7 +675,7 @@ function VialTileInner({
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 13,
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-ceramic)",
                       marginTop: 4,
                       lineHeight: 1.3,
@@ -701,7 +701,7 @@ function VialTileInner({
                   <div
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 13,
+                      fontSize: "var(--nx-t-sm)",
                       color: "var(--nx-ceramic)",
                       marginTop: 4,
                       lineHeight: 1.3,
@@ -730,7 +730,7 @@ function VialTileInner({
                 <div
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 11,
+                    fontSize: "var(--nx-t-xs)",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                     color: "rgba(246, 249, 252,0.48)",
@@ -742,7 +742,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
-                    fontSize: 22,
+                    fontSize: "var(--nx-t-xl)",
                     color: "var(--nx-ceramic)",
                     letterSpacing: "-0.02em",
                   }}
@@ -750,7 +750,7 @@ function VialTileInner({
                   ${price}
                   <span
                     style={{
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       color: "rgba(246, 249, 252,0.48)",
                       marginLeft: 4,
                     }}
@@ -771,9 +771,9 @@ function VialTileInner({
                 background: "var(--nx-acid)",
                 color: "var(--nx-fg)",
                 padding: "14px 22px",
-                borderRadius: 999,
+                borderRadius: "var(--nx-r-pill)",
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 14,
+                fontSize: "var(--nx-t-sm)",
                 fontWeight: 600,
                 textDecoration: "none",
                 letterSpacing: "-0.01em",
