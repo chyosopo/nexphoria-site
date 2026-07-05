@@ -21,7 +21,7 @@ export default function MenHome() {
         world: "men",
         tileArt: OUTCOME_CATEGORY.men,
         heroArt: OUTCOME_HERO.men,
-        vialArt: "img/img_275e18d2b1d5.webp",
+        vialArt: "img/img_7dd6cd5b4581.webp",
         eyebrow: "Nexphoria for Men",
         h1: (
           <>

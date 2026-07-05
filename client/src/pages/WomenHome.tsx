@@ -22,7 +22,7 @@ export default function WomenHome() {
         world: "women",
         tileArt: OUTCOME_CATEGORY.women,
         heroArt: OUTCOME_HERO.women,
-        vialArt: "img/img_54f472682fb8.webp",
+        vialArt: "img/img_379a8da097c1.webp",
         eyebrow: "Nexphoria for Women",
         h1: (
           <>
