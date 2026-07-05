@@ -13,7 +13,10 @@ import { FONT } from "@/lib/typography";
 const legalPages = [
   { label: "Terms of Service", href: "/legal/terms", desc: "Service agreements, user eligibility, and platform terms." },
   { label: "Privacy Policy", href: "/legal/privacy", desc: "How we collect, use, and protect your personal and health information." },
+  { label: "HIPAA Notice", href: "/legal/hipaa-notice", desc: "How medical information about you may be used and disclosed, and your rights." },
   { label: "Telehealth Consent", href: "/legal/telehealth-consent", desc: "Your consent to receive care via telehealth and off-label prescribing." },
+  { label: "Prescribing Policy", href: "/legal/prescribing-policy", desc: "Physician review standards, lab gating, compounding disclosures, and when we decline." },
+  { label: "State Availability", href: "/legal/state-availability", desc: "Where care is available and which protocols carry state restrictions." },
   { label: "Refund Policy", href: "/legal/refund-policy", desc: "Cancellation, returns, and refund request procedures." },
 ];
 

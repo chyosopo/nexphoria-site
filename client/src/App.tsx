@@ -49,6 +49,9 @@ const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
 const TelehealthConsent = lazy(() => import("@/pages/legal/TelehealthConsent"));
 const RefundPolicy = lazy(() => import("@/pages/legal/RefundPolicy"));
+const HipaaNotice = lazy(() => import("@/pages/legal/HipaaNotice"));
+const PrescribingPolicy = lazy(() => import("@/pages/legal/PrescribingPolicy"));
+const StateAvailability = lazy(() => import("@/pages/legal/StateAvailability"));
 
 function AppRouter() {
   return (
@@ -125,6 +128,9 @@ function AppRouter() {
         <Route path="/legal/privacy" component={Privacy} />
         <Route path="/legal/telehealth-consent" component={TelehealthConsent} />
         <Route path="/legal/refund-policy" component={RefundPolicy} />
+        <Route path="/legal/hipaa-notice" component={HipaaNotice} />
+        <Route path="/legal/prescribing-policy" component={PrescribingPolicy} />
+        <Route path="/legal/state-availability" component={StateAvailability} />
         {/* Short-path aliases so external links to /privacy and /terms resolve */}
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />

@@ -84,7 +84,10 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "Terms of service", href: "/legal/terms" },
         { label: "Privacy policy", href: "/legal/privacy" },
+        { label: "HIPAA notice", href: "/legal/hipaa-notice" },
         { label: "Telehealth consent", href: "/legal/telehealth-consent" },
+        { label: "Prescribing policy", href: "/legal/prescribing-policy" },
+        { label: "State availability", href: "/legal/state-availability" },
         { label: "Refund policy", href: "/legal/refund-policy" },
       ],
     },
