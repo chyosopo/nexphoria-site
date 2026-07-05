@@ -268,13 +268,14 @@ export default function JournalArticle() {
               <div key={s.id} id={`sec-${s.id}`} style={{ marginBottom: 56, scrollMarginTop: 96 }}>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
-                    fontWeight: 400,
+                    // Fraunces display voice — the 400-weight cobalt sans read
+                    // LIGHTER than the 17px body it was meant to head
+                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontWeight: 500,
                     fontSize: 32,
                     lineHeight: 1.15,
                     letterSpacing: "-0.012em",
-                    color: "var(--nx-cobalt)",
+                    color: "var(--nx-fg)",
                     marginBottom: 24,
                   }}
                 >
@@ -597,12 +598,11 @@ export default function JournalArticle() {
             </p>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                
-                fontWeight: 400,
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontWeight: 500,
                 fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
                 lineHeight: 1.1,
-                color: "var(--nx-cobalt)",
+                color: "var(--nx-fg)",
                 marginBottom: 40,
               }}
             >

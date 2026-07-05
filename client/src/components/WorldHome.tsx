@@ -380,6 +380,10 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               </div>
             ))}
           </div>
+          {/* the page's strongest conviction moment gets its next step */}
+          <Link href="/assessment" className="nx-cta-ceramic" data-testid={`${world}-night-cta`} style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "2.2rem" }}>
+            Begin your intake
+          </Link>
         </div>
       </section>
 
