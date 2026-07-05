@@ -139,7 +139,7 @@ function PromoBar() {
         fontSize: "var(--nx-t-xs)",
         letterSpacing: "0.02em",
       }}>
-        <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }} />
+        <span aria-hidden style={{ width: 6, height: 6, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", display: "inline-block" }} />
         <span style={{ opacity: 0.9 }}>{p.text}</span>
         <Link href={p.href} className="inline-flex items-center gap-1" style={{ color: "var(--nx-acid)", fontWeight: 600 }} data-testid="promo-bar-cta">
           {p.cta}
@@ -174,7 +174,7 @@ function FloatingResultCards() {
             borderRadius: "var(--nx-r-md)",
             padding: "10px 14px",
             minWidth: 152,
-            boxShadow: "0 8px 28px rgba(21, 24, 28,0.14)",
+            boxShadow: "var(--nx-e-3)",
             animation: `nx-float-in 640ms ease-out ${c.delay}s both`,
             fontFamily: "'General Sans', system-ui, sans-serif",
           }}
@@ -184,7 +184,7 @@ function FloatingResultCards() {
             <span style={{ fontSize: "var(--nx-t-base)", fontWeight: 700, color: "var(--nx-fg)", letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>{c.delta}</span>
           </div>
           <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 6 }}>
-            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--nx-cobalt)", display: "inline-block" }} />
+            <span aria-hidden style={{ width: 6, height: 6, borderRadius: "var(--nx-r-pill)", background: "var(--nx-cobalt)", display: "inline-block" }} />
             <span style={{ fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)" }}>{c.state}</span>
           </div>
         </div>
@@ -223,7 +223,7 @@ function Hero() {
             color: "var(--nx-fg-muted)",
           }}
         >
-          <span aria-hidden style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-acid)", display: "inline-block" }} />
+          <span aria-hidden style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", display: "inline-block" }} />
           Physician-Guided Peptide Therapy
         </div>
 
@@ -375,7 +375,7 @@ function TrustBar() {
                 style={{
                   width: 6,
                   height: 6,
-                  borderRadius: "50%",
+                  borderRadius: "var(--nx-r-pill)",
                   background: "var(--nx-acid)",
                   display: "inline-block",
                 }}
@@ -465,7 +465,7 @@ function GoalTiles() {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)",
                 display: "inline-block",
               }}
@@ -532,7 +532,7 @@ function GoalTiles() {
                   style={{
                     width: 5,
                     height: 5,
-                    borderRadius: "50%",
+                    borderRadius: "var(--nx-r-pill)",
                     background: "var(--nx-acid)",
                     display: "inline-block",
                   }}
@@ -623,7 +623,7 @@ function FlagshipDark() {
                   "Physician review + bloodwork bundled every quarter",
                 ].map((line) => (
                   <li key={line} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "rgba(246, 249, 252,0.85)", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                    <span style={{ width: 6, height: 6, borderRadius: "50%", backgroundColor: "var(--nx-acid)", flexShrink: 0 }} />
+                    <span style={{ width: 6, height: 6, borderRadius: "var(--nx-r-pill)", backgroundColor: "var(--nx-acid)", flexShrink: 0 }} />
                     {line}
                   </li>
                 ))}
@@ -703,7 +703,7 @@ function HowItWorks() {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)",
                 display: "inline-block",
               }}
@@ -819,7 +819,7 @@ function ScienceStrip() {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)",
                 display: "inline-block",
               }}
@@ -939,7 +939,7 @@ function FeaturedStack() {
                 style={{
                   width: 8,
                   height: 8,
-                  borderRadius: "50%",
+                  borderRadius: "var(--nx-r-pill)",
                   background: "var(--nx-acid)",
                   display: "inline-block",
                 }}
@@ -996,7 +996,7 @@ function FeaturedStack() {
                     style={{
                       width: 6,
                       height: 6,
-                      borderRadius: "50%",
+                      borderRadius: "var(--nx-r-pill)",
                       background: "var(--nx-acid)",
                       display: "inline-block",
                       marginTop: 8,
@@ -1167,7 +1167,7 @@ function PhysicianStrip() {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)",
                 display: "inline-block",
               }}
@@ -1334,7 +1334,7 @@ function PrecisionStrip() {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)",
                 display: "inline-block",
               }}
@@ -1550,7 +1550,7 @@ function MorningRitual() {
               style={{
                 width: 8,
                 height: 8,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "var(--nx-acid)",
                 display: "inline-block",
               }}
@@ -1676,7 +1676,7 @@ function BloodworkPillar() {
                   style={{
                     width: 8,
                     height: 8,
-                    borderRadius: "50%",
+                    borderRadius: "var(--nx-r-pill)",
                     background: "var(--nx-acid)",
                     display: "inline-block",
                   }}
@@ -1811,7 +1811,7 @@ function BloodworkPillar() {
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontWeight: 600,
-                        fontSize: 38,
+                        fontSize: "var(--nx-t-h2)",
                         letterSpacing: "-0.02em",
                         color: "var(--nx-ceramic)",
                         lineHeight: 1,
@@ -1929,7 +1929,7 @@ function PeptideTilesStrip() {
                 style={{
                   width: 8,
                   height: 8,
-                  borderRadius: "50%",
+                  borderRadius: "var(--nx-r-pill)",
                   background: "var(--nx-acid)",
                   display: "inline-block",
                 }}
@@ -2363,7 +2363,7 @@ function ProofBento() {
             <img src="img/img_b9ec00db43d6.webp" width={1600} height={894} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
             <div className="absolute inset-0" style={{ background: "rgba(21, 24, 28,0.35)" }} />
             <div style={{ position: "absolute", left: 20, bottom: 18 }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-bg)", lineHeight: 1 }}>Every 90 days</div>
+              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-bg)", lineHeight: 1 }}>Every 90 days</div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "rgba(243, 245, 247,0.85)", marginTop: 5 }}>your labs re-run, your protocol re-tuned</p>
             </div>
           </div>
@@ -2380,7 +2380,7 @@ function HeroFilm() {
     <section className="nx-container" style={{ marginTop: "0.5rem" }}>
 <div
           className="mt-14 md:mt-16 mb-1 relative"
-          style={{ borderRadius: "26px", boxShadow: "0 24px 60px -24px rgba(21, 24, 28,0.28)" }}
+          style={{ borderRadius: "var(--nx-r-lg)", boxShadow: "var(--nx-e-4)" }}
           data-testid="hero-video-band"
         >
           <video
@@ -2391,17 +2391,17 @@ function HeroFilm() {
             poster={heroPoster}
             src={heroVideo}
             className="w-full h-auto block"
-            style={{ aspectRatio: "21 / 8", objectFit: "cover", borderRadius: "26px"}}
+            style={{ aspectRatio: "21 / 8", objectFit: "cover", borderRadius: "var(--nx-r-lg)"}}
             aria-label="Warm morning light — the Nexphoria standard of care"
           />
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
-            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.32))", borderRadius: "26px" }}
+            style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.32))", borderRadius: "var(--nx-r-lg)" }}
           />
           {/* Glass panels — hims-Labs grammar */}
           {/* Ring dashboard — UI over film, hims composite grammar */}
-          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(21, 24, 28,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "14px 18px" }}>
+          <div className="hidden md:flex absolute right-8 items-center gap-4" style={{ top: -26, zIndex: 2, background: "rgba(21, 24, 28,0.62)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: "var(--nx-r-md)", padding: "14px 18px" }}>
             <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden>
               <g transform="rotate(-90 38 38)">
                 <circle cx="38" cy="38" r="30" fill="none" stroke="rgba(243, 245, 247,0.12)" strokeWidth="6" />
@@ -2418,7 +2418,7 @@ function HeroFilm() {
               <div><span style={{ color: "var(--nx-rust)", fontWeight: 700 }}>7</span> <span style={{ color: "rgba(243, 245, 247,0.75)" }}>Out of range</span></div>
             </div>
           </div>
-          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "13px 18px", minWidth: 200 }}>
+          <div className="hidden md:block absolute bottom-5 right-5" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: "var(--nx-r-md)", padding: "13px 18px", minWidth: 200 }}>
             <div className="flex items-center justify-between gap-4">
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)" }}>Hormones</span>
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: "var(--nx-r-pill)", padding: "3px 9px" }}>Optimal</span>
