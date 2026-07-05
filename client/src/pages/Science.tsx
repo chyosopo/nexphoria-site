@@ -12,7 +12,6 @@ import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
-const lifestyleBloodworkDashboard = "img/img_e03de0ca48d9.webp";
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 import { F, FONT } from "@/lib/typography";
 
@@ -917,7 +916,7 @@ function ScienceHeroDark() {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "linear-gradient(135deg, var(--nx-fg) 0%, #101010 55%, #1A1A1A 100%)",
+        background: "linear-gradient(135deg, var(--nx-fg) 0%, color-mix(in srgb, var(--nx-fg) 42%, #000) 55%, color-mix(in srgb, var(--nx-fg) 60%, #000) 100%)",
         color: "var(--nx-bg)",
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
