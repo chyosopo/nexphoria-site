@@ -91,7 +91,7 @@ export default function JournalArticle() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: 18,
+              fontSize: "var(--nx-t-lg)",
               color: "var(--nx-fg-muted)",
               marginBottom: 16,
             }}
@@ -216,7 +216,7 @@ export default function JournalArticle() {
               id="toc-heading"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 10,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
@@ -272,7 +272,7 @@ export default function JournalArticle() {
                     // LIGHTER than the 17px body it was meant to head
                     fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
-                    fontSize: 32,
+                    fontSize: "var(--nx-t-h2)",
                     lineHeight: 1.15,
                     letterSpacing: "-0.012em",
                     color: "var(--nx-fg)",
@@ -286,7 +286,7 @@ export default function JournalArticle() {
                     key={i}
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 17,
+                      fontSize: "var(--nx-t-body)",
                       lineHeight: 1.75,
                       color: "var(--nx-fg-graphite)",
                       marginBottom: 20,
@@ -310,7 +310,7 @@ export default function JournalArticle() {
                         fontFamily: "'General Sans', system-ui, sans-serif",
 
                         fontWeight: 400,
-                        fontSize: 22,
+                        fontSize: "var(--nx-t-xl)",
                         lineHeight: 1.35,
                         color: "var(--nx-cobalt)",
                       }}
@@ -374,7 +374,7 @@ export default function JournalArticle() {
                         width: "100%",
                         borderCollapse: "collapse",
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 14,
+                        fontSize: "var(--nx-t-sm)",
                       }}
                     >
                       <thead>
@@ -386,7 +386,7 @@ export default function JournalArticle() {
                                 textAlign: "left",
                                 padding: "12px 16px 12px 0",
                                 fontFamily: "'General Sans', system-ui, sans-serif",
-                                fontSize: 10,
+                                fontSize: "var(--nx-t-xs)",
                                 fontWeight: 500,
                                 letterSpacing: "0.14em",
                                 textTransform: "uppercase",
@@ -406,7 +406,7 @@ export default function JournalArticle() {
                                 key={j}
                                 style={{
                                   padding: "14px 16px 14px 0",
-                                  fontSize: 14,
+                                  fontSize: "var(--nx-t-sm)",
                                   lineHeight: 1.5,
                                   color: "var(--nx-fg-graphite)",
                                   verticalAlign: "top",
@@ -440,7 +440,7 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
@@ -462,7 +462,7 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 6,
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
@@ -487,7 +487,7 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 6,
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
@@ -516,7 +516,7 @@ export default function JournalArticle() {
                 id="references-heading"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
@@ -543,7 +543,7 @@ export default function JournalArticle() {
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 11,
+                        fontSize: "var(--nx-t-xs)",
                         color: "var(--nx-rust)",
                       }}
                     >
@@ -586,7 +586,7 @@ export default function JournalArticle() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 10,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -636,7 +636,7 @@ export default function JournalArticle() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 10,
+                        fontSize: "var(--nx-t-xs)",
                         fontWeight: 500,
                         letterSpacing: "0.18em",
                         textTransform: "uppercase",
@@ -651,7 +651,7 @@ export default function JournalArticle() {
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         
                         fontWeight: 400,
-                        fontSize: 20,
+                        fontSize: "var(--nx-t-lg)",
                         lineHeight: 1.2,
                         color: "var(--nx-cobalt)",
                         marginBottom: 12,
@@ -706,7 +706,7 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -751,7 +751,7 @@ export default function JournalArticle() {
                   backgroundColor: "var(--nx-bg-dark)",
                   color: "var(--nx-acid)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
