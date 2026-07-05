@@ -11,7 +11,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/se
 import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { OUTCOME_STACK } from "@/data/outcomeImagery";
+import { OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialArt, Tone } from "@/components/VialTile";
 import { glyphForPeptide } from "@/lib/protocols";
 
@@ -303,6 +303,8 @@ export default function StackPage({ slug }: { slug: string }) {
                     <div style={{ aspectRatio: "16 / 10", overflow: "hidden" }}>
                       <img
                         src={OUTCOME_STACK[s.slug]}
+                        srcSet={outcomeSrcSet(OUTCOME_STACK[s.slug])}
+                        sizes="(max-width: 640px) 100vw, 33vw"
                         alt=""
                         aria-hidden
                         loading="lazy"

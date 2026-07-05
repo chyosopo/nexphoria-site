@@ -10,6 +10,7 @@ import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
 import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { outcomeSrcSet } from "@/data/outcomeImagery";
 import { F, S } from "@/lib/typography";
 
 /* The four credentials that are TRUE for Nexphoria — no invented CLIA/FDA/CAP. */
@@ -147,7 +148,12 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               <Reveal key={cat} delay={i * 60}>
                 <Link href={`${base}/peptides`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
                   {config.tileArt[cat] && (
-                    <img src={config.tileArt[cat]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                    <img
+                      src={config.tileArt[cat]}
+                      srcSet={outcomeSrcSet(config.tileArt[cat])}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      alt="" aria-hidden loading="lazy" width={1632} height={2048}
+                    />
                   )}
                   <div className="nx-art-chip">
                     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>

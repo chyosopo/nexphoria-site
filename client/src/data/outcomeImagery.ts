@@ -50,3 +50,12 @@ export const OUTCOME_HERO: Record<"men" | "women", string> = {
   men: "img/img_d489ea4e9dbc.webp", // dawn window after the workout
   women: "img/img_08691e05b412.webp", // golden stretch, time to spare
 };
+
+/**
+ * srcSet for an outcome image. Every entry above has a build-time 800w
+ * companion (img_x-800w.webp) so ~400px tile slots stop downloading the
+ * full 1632w frame. Pair with a `sizes` attribute at the call site.
+ */
+export function outcomeSrcSet(src: string): string {
+  return `${src.replace(/\.webp$/, "-800w.webp")} 800w, ${src} 1632w`;
+}

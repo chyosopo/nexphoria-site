@@ -8,7 +8,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/s
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { OUTCOME_STACK } from "@/data/outcomeImagery";
+import { OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 import vialLineupMaster from "@/assets/brand/vial-lineup-master.webp";
 
@@ -119,7 +119,12 @@ export default function ProtocolsIndex() {
                 <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-float-card">
                   <div className="nx-float-card__media">
                     {OUTCOME_STACK[s.slug] && (
-                      <img src={OUTCOME_STACK[s.slug]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                      <img
+                        src={OUTCOME_STACK[s.slug]}
+                        srcSet={outcomeSrcSet(OUTCOME_STACK[s.slug])}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        alt="" aria-hidden loading="lazy" width={1632} height={2048}
+                      />
                     )}
                     {s.gated && (
                       <span className="nx-float-badge"><Lock size={10} aria-hidden="true" /> Assessed</span>
