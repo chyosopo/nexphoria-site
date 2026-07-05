@@ -65,7 +65,8 @@ async function main() {
     ["/faq",             "/src/pages/FAQ.tsx", {}],
     ["/contact",         "/src/pages/Contact.tsx", {}],
     ["/community",       "/src/pages/Community.tsx", {}],
-    
+    ["/booking",         "/src/pages/Booking.tsx", {}],
+
     ["/build",           "/src/pages/BuildYourStack.tsx", {}],
     ["/gate",            "/src/pages/Gate.tsx", {}],
     ["/goals/recovery",  "/src/pages/Category.tsx", { slug: "recovery" }],

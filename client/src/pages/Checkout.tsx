@@ -269,6 +269,39 @@ export default function Checkout() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-start">
+            {/* Mobile-only compact order summary — the full rail stacks BELOW
+                the form on phones, so shoppers reached Continue without ever
+                seeing what they were submitting. Native <details>, collapsed. */}
+            <details
+              className="lg:hidden -mb-4"
+              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
+              data-testid="checkout-mobile-summary"
+            >
+              <summary
+                className="flex items-center justify-between gap-3 cursor-pointer list-none px-4"
+                style={{ fontFamily: FONT, minHeight: 52 }}
+              >
+                <span className="text-xs uppercase tracking-[0.15em]" style={{ color: "var(--nx-fg-graphite)" }}>
+                  Order summary · {itemCount} {itemCount === 1 ? "item" : "items"}
+                </span>
+                <span className="text-lg" style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}<span className="text-xs font-normal" style={{ color: "var(--nx-fg-muted)" }}>/mo</span></span>
+              </summary>
+              <div className="px-4 pb-4">
+                {lines.map((line) => (
+                  <div key={`m-${line.type}-${line.slug}`} className="flex items-baseline justify-between gap-3 py-1.5 text-sm" style={{ fontFamily: FONT }}>
+                    <span style={{ color: "var(--nx-fg-graphite)" }}>{line.name} · qty {line.qty}</span>
+                    <span style={{ color: "var(--nx-fg)" }}>{formatUSD(line.lineTotal)}</span>
+                  </div>
+                ))}
+                {totalSavings > 0 ? (
+                  <div className="flex items-baseline justify-between gap-3 pt-1.5 text-xs" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+                    <span>You save</span>
+                    <span>−{formatUSD(totalSavings)}</span>
+                  </div>
+                ) : null}
+              </div>
+            </details>
+
             {/* Form */}
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
               {/* STEP 1 — ADDRESS + about you */}
