@@ -1210,6 +1210,7 @@ body { overflow-x: clip; }
 .nx-marquee-track.reverse { animation-direction: reverse; }
 .nx-marquee:hover .nx-marquee-track { animation-play-state: paused; }
 .nx-marquee-chip { font-family: 'General Sans', system-ui, sans-serif; font-size: 13px; color: rgba(21, 24, 28,0.72); background: rgba(253, 254, 255,0.7); border: 1px solid rgba(21, 24, 28,0.07); border-radius: 999px; padding: 8px 14px; white-space: nowrap; }
+.nx-marquee-chip.on-dark { color: rgba(243, 245, 247, 0.78); background: rgba(243, 245, 247, 0.06); border-color: rgba(243, 245, 247, 0.14); }
 @keyframes nx-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .nx-marquee-track { animation: none; } .nx-marquee { overflow-x: auto; } }
 

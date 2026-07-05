@@ -12,6 +12,7 @@ import { TrustStrip, FaqAccordion, NumberedSteps, SectionHead } from "@/componen
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 import sciencePanelRead from "@/assets/brand/science-panel-read.webp";
@@ -333,6 +334,29 @@ export default function Science() {
   return (
     <SiteLayout navVariant="showcase">
       <ScienceHeroDark />
+
+      {/* ── BIOMARKER MARQUEE (dark) — evidence texture straight off the hero ── */}
+      <section aria-label="Biomarkers we measure" style={{ background: "var(--nx-bg-dark)", paddingTop: "0.4rem", paddingBottom: "1.6rem" }}>
+        <div className="nx-container max-w-screen-xl" style={{ marginBottom: "0.9rem" }}>
+          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
+            The full {PANEL_TOTAL_MARKERS}-marker panel a protocol can draw on
+          </p>
+        </div>
+        {[BIOMARKER_PANEL.slice(0, 5), BIOMARKER_PANEL.slice(5)].map((half, r) => (
+          <div key={r} className="nx-marquee" style={{ marginBottom: r === 0 ? 10 : 0 }} aria-hidden>
+            <div className={`nx-marquee-track ${r === 1 ? "reverse" : ""}`}>
+              {(() => {
+                const row = half.flatMap((c) => c.markers.map((m) => ({ n: m.name.split(" (")[0], c: c.name })));
+                return [...row, ...row].map((m, j) => (
+                  <span key={j} className="nx-marquee-chip on-dark">
+                    <span style={{ color: "var(--nx-acid)", fontWeight: 600 }}>{m.c}</span>&nbsp;·&nbsp;{m.n}
+                  </span>
+                ));
+              })()}
+            </div>
+          </div>
+        ))}
+      </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
       <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "0" }}>
@@ -1023,17 +1047,19 @@ function ScienceHeroDark() {
             <h1
               id="science-h1"
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                // Fraunces display voice — the site's one headline face; the
+                // forced <br/> also ragged badly between breakpoints
+                fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
                 fontSize: "var(--nx-t-display)",
-                lineHeight: 1.02,
-                letterSpacing: "-0.02em",
+                lineHeight: 1.04,
+                letterSpacing: "-0.018em",
                 color: "var(--nx-bg)",
                 marginBottom: "1.5rem",
+                maxWidth: "14ch",
               }}
             >
-              Molecules that talk<br />
-              <span style={{ color: "var(--nx-acid)" }}>to your body.</span>
+              Molecules that talk <span style={{ color: "var(--nx-acid)", whiteSpace: "nowrap" }}>to your body.</span>
             </h1>
             <p
               style={{

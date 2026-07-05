@@ -132,9 +132,22 @@ export default function HowItWorks() {
                 <Link href="/bloodwork" className="nx-cta-ghost">See the panels</Link>
               </div>
             </div>
-            <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "3 / 2" }}>
+            <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "3 / 2" }}>
               <img src={OUTCOME_HERO.men} alt="" aria-hidden fetchPriority="high" width={2048} height={1360} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 32%, transparent) 100%)" }} />
+              {/* step-count chip — same live grammar as the world homes */}
+              <div
+                style={{
+                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
+                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
+                }}
+              >
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                  Seven steps · fixed order
+                </span>
+              </div>
             </div>
           </div>
 
