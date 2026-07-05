@@ -1196,7 +1196,7 @@ function ScienceHeroDark() {
           className="nx-container max-w-screen-xl"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
             gap: "1rem",
             padding: "1.5rem 0",
           }}

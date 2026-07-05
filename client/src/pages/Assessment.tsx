@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Check, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, ShieldCheck, ChevronDown } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
@@ -1159,28 +1159,43 @@ export default function Assessment() {
                         {/* State */}
                         <div>
                           <label htmlFor="contact-state" style={fieldLabel}>State of residence <span aria-hidden="true">*</span></label>
-                          <select
-                            id="contact-state"
-                            value={form.state}
-                            onChange={(e) => setField("state", e.target.value)}
-                            autoComplete="address-level1"
-                            aria-required="true"
-                            data-testid="assessment-contact-state"
-                            className="nx-input"
-                            style={{
-                              appearance: "none",
-                              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23496E94' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
-                              backgroundRepeat: "no-repeat",
-                              backgroundPosition: "right 1rem center",
-                              paddingRight: "2.5rem",
-                              cursor: "pointer",
-                            }}
-                          >
-                            <option value="">Select state…</option>
-                            {US_STATES.map((s) => (
-                              <option key={s} value={s}>{s}</option>
-                            ))}
-                          </select>
+                          {/* Chevron is a positioned icon (not a data-URI) so it
+                              reads var(--nx-cobalt) and follows world theming. */}
+                          <div style={{ position: "relative" }}>
+                            <select
+                              id="contact-state"
+                              value={form.state}
+                              onChange={(e) => setField("state", e.target.value)}
+                              autoComplete="address-level1"
+                              aria-required="true"
+                              data-testid="assessment-contact-state"
+                              className="nx-input"
+                              style={{
+                                appearance: "none",
+                                width: "100%",
+                                paddingRight: "2.5rem",
+                                cursor: "pointer",
+                              }}
+                            >
+                              <option value="">Select state…</option>
+                              {US_STATES.map((s) => (
+                                <option key={s} value={s}>{s}</option>
+                              ))}
+                            </select>
+                            <ChevronDown
+                              size={16}
+                              strokeWidth={1.5}
+                              aria-hidden
+                              style={{
+                                position: "absolute",
+                                right: "1rem",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                pointerEvents: "none",
+                                color: "var(--nx-cobalt)",
+                              }}
+                            />
+                          </div>
                         </div>
                       </div>
 

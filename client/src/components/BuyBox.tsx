@@ -39,11 +39,8 @@ const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }
     href="/assessment"
     data-testid={testId}
     onClick={() => track("intake_cta", { source: "buybox", testId })}
-    style={{
-      display: "block", textAlign: "center", fontFamily: F, fontWeight: 600,
-      fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)",
-      borderRadius: "var(--nx-r-pill)", padding: "14px 26px", textDecoration: "none",
-    }}
+    className="nx-cta-cobalt"
+    style={{ display: "flex", justifyContent: "center", fontSize: "var(--nx-t-base)", padding: "14px 26px" }}
   >
     {children}
   </Link>
@@ -187,11 +184,8 @@ export function BuyBox(props: BuyBoxProps) {
         <Link
           href="/assessment"
           data-testid={`${ctaTestId}-bar`}
-          style={{
-            flexShrink: 0, fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)",
-            background: "var(--nx-cobalt)", color: "var(--nx-ceramic)",
-            borderRadius: "var(--nx-r-pill)", padding: "11px 20px", textDecoration: "none", whiteSpace: "nowrap",
-          }}
+          className="nx-cta-cobalt"
+          style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}
         >
           {gated ? "Check eligibility" : "Begin intake"}
         </Link>

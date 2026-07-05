@@ -10,11 +10,12 @@ import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
 import { getSolo, SoloCategory } from "@/data/soloCatalog";
-import { ArrowLeft, Check, Stethoscope, Microscope, RefreshCw, FlaskConical } from "lucide-react";
+import { ArrowLeft, Check, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
+import { getPeptideHeroImage } from "@/lib/peptideImages";
 import type { PeptideCategory } from "@/data/peptides";
 
 /* SoloCategory → the outcome-imagery key it reads as. */
@@ -67,8 +68,21 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     );
   }
 
-  const heroImg =
+  /* Per-product editorial hero when one exists; the shared category outcome
+     photo stays in the lower imagery band so each PDP shows two distinct
+     frames (product + outcome) instead of the same photo twice. */
+  const categoryImg =
     OUTCOME_CATEGORY[world ?? "men"][SOLO_OUTCOME[solo.category]] ?? OUTCOME_HERO[world ?? "men"];
+  const heroImg = getPeptideHeroImage(solo.slug) ?? categoryImg;
+
+  const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
+    { Icon: Stethoscope, t: "Physician review & prescription" },
+    { Icon: Microscope, t: `${solo.panel} bloodwork panel` },
+    { Icon: FlaskConical, t: "503A pharmacy compounding" },
+    { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
+    { Icon: LayoutDashboard, t: "Marker dashboard & messaging" },
+    { Icon: RefreshCw, t: "90-day retest & dose review" },
+  ];
 
   const WHY: { Icon: typeof Stethoscope; t: string; d: string }[] = [
     { Icon: Stethoscope, t: "Prescribed, not sold", d: "A licensed U.S. physician authorizes it against your intake — never a checkout button." },
@@ -89,7 +103,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(2.6rem,5vw,3.8rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
+        <div className="nx-container relative nx-hero-seq" style={{ padding: "clamp(2.6rem,5vw,3.8rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>
@@ -154,6 +168,21 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               ))}
             </div>
 
+            {/* What every solo protocol includes — same grid the stacks carry */}
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              What is included, every month
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
+              {INCLUDED.map((x, i) => (
+                <Reveal key={x.t} delay={i * 45}>
+                  <div className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <span className="nx-icon-circle" aria-hidden><x.Icon size={19} strokeWidth={1.9} /></span>
+                    <p style={{ fontFamily: F, fontSize: 15, fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.3 }}>{x.t}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
             {/* Required bloodwork — gradient-edged feature card */}
             <div className="nx-feature-card edge-top" style={{ padding: "clamp(1.4rem,3vw,2rem)", background: "var(--nx-cobalt-soft)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -198,7 +227,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-container" style={{ paddingBottom: "clamp(2rem,4vw,3rem)" }}>
         <Reveal>
           <div style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "16 / 7" }}>
-            <img src={heroImg} alt="" aria-hidden loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+            <img src={categoryImg} alt="" aria-hidden loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, color-mix(in srgb, var(--nx-fg) 62%, transparent) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
               <div style={{ padding: "clamp(1.4rem,4vw,3rem)", maxWidth: 560 }}>

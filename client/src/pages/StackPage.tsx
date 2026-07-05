@@ -84,7 +84,7 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.6rem) 0 clamp(1.8rem,3vw,2.4rem)", zIndex: 1 }}>
+        <div className="nx-container relative nx-hero-seq" style={{ padding: "clamp(2.4rem,5vw,3.6rem) 0 clamp(1.8rem,3vw,2.4rem)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
               <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
@@ -282,7 +282,7 @@ export default function StackPage({ slug }: { slug: string }) {
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
           The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
         </h2>
-        <Link href="/assessment" style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }}>
+        <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
           Begin your intake
         </Link>
       </section>

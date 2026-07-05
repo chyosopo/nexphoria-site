@@ -108,7 +108,8 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <Link
               href="/assessment"
               data-testid={`${world}-hero-cta`}
-              style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", textDecoration: "none" }}
+              className="nx-cta-cobalt"
+              style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px" }}
             >
               Begin your intake
             </Link>
@@ -380,7 +381,8 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <Link
           href="/assessment"
           data-testid={`${world}-close-cta`}
-          style={{ display: "inline-block", fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", background: "var(--nx-cobalt)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-pill)", padding: "14px 28px", marginTop: "1.6rem", textDecoration: "none" }}
+          className="nx-cta-cobalt"
+          style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}
         >
           Begin your intake
         </Link>
