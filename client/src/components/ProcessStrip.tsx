@@ -84,7 +84,7 @@ export function ProcessStrip({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: 11,
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
@@ -217,7 +217,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: 10,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 500,
             letterSpacing: "0.14em",
             textTransform: "uppercase",
@@ -230,7 +230,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
       <p
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: 10,
+          fontSize: "var(--nx-t-xs)",
           fontWeight: 500,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
@@ -256,7 +256,7 @@ function StepCell({ step, index, isDark, isLast }: StepCellProps) {
       <p
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: 14,
+          fontSize: "var(--nx-t-sm)",
           lineHeight: 1.6,
           color: isDark ? "rgba(246, 249, 252,0.7)" : "var(--nx-fg-muted)",
         }}
