@@ -30,7 +30,7 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
     eyebrow: "var(--nx-amber)",
     sub: "var(--nx-fg-graphite)",
     border: "var(--nx-border)",
-    hover: "#D8E3F0",
+    hover: "var(--nx-cobalt-soft)",
   },
   white: {
     bg: "var(--nx-bg)",
@@ -38,10 +38,10 @@ const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: st
     eyebrow: "var(--nx-amber)",
     sub: "var(--nx-fg-graphite)",
     border: "var(--nx-border)",
-    hover: "#EAF2FB",
+    hover: "var(--nx-bg)",
   },
   cobalt: {
-    bg: "linear-gradient(160deg, var(--nx-bg-dark) 0%, #18222E 65%, #1C293A 100%)",
+    bg: "linear-gradient(160deg, var(--nx-bg-dark) 0%, #18222E 65%, var(--nx-fg) 100%)",
     fg: "var(--nx-bg)",
     eyebrow: "#5591C7",
     sub: "rgba(232, 237, 241,0.68)",
@@ -250,6 +250,7 @@ export function BenefitTile({
           </span>
           <ArrowUpRight
             size={16}
+            aria-hidden="true"
             style={{ color: hasImage ? "var(--nx-accent)" : t.eyebrow }}
             className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
