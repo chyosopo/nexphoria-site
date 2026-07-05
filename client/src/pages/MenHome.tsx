@@ -41,6 +41,7 @@ export default function MenHome() {
           "Most of this market sells vials and disappears. Here, the same panel is drawn again every ninety days, the trend is placed next to the protocol, and a physician decides what changes. Nothing is assumed.",
         trustSlot: <HomeTrust />,
         faqArt: faqConsultMen,
+        heroMarker: { label: "IGF-1", delta: "+23%", state: "Into the optimal band" },
       }}
     />
   );

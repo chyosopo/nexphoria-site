@@ -78,6 +78,8 @@ export interface WorldHomeConfig {
   trustSlot?: React.ReactNode;
   /** optional human frame beside the FAQ intro — person mid-consult with a clinician */
   faqArt?: string;
+  /** floating marker chip on the hero frame — clearly labeled as a sample */
+  heroMarker?: { label: string; delta: string; state: string };
 }
 
 export function WorldHome({ config }: { config: WorldHomeConfig }) {
@@ -125,7 +127,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </div>
           </div>
           {config.heroArt && (
-            <div className="nx-hero-frame" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
+            <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
               <img
                 src={config.heroArt}
                 alt=""
@@ -136,6 +138,33 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 data-testid={`${world}-hero-art`}
               />
+              {config.heroMarker && (
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 14,
+                    bottom: 14,
+                    background: "color-mix(in srgb, var(--nx-ceramic) 82%, transparent)",
+                    backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
+                    border: "1px solid color-mix(in srgb, var(--nx-accent) 24%, transparent)",
+                    borderRadius: "var(--nx-r-sm)",
+                    padding: "10px 14px",
+                    minWidth: 168,
+                    boxShadow: "var(--nx-e-2)",
+                  }}
+                  data-testid={`${world}-hero-marker`}
+                >
+                  <p style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                    Sample 90-day trajectory
+                  </p>
+                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginTop: 3 }}>
+                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>{config.heroMarker.label}</span>
+                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 700, color: "var(--nx-cobalt)", fontVariantNumeric: "tabular-nums" }}>{config.heroMarker.delta}</span>
+                  </div>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: 2 }}>{config.heroMarker.state}</p>
+                </div>
+              )}
             </div>
           )}
           </div>

@@ -42,6 +42,7 @@ export default function WomenHome() {
           "Hormonal context changes what a marker means. Every protocol here begins from your panel, not a template — and every ninety days the same markers are drawn again and reviewed by a physician before anything continues.",
         trustSlot: <HomeTrust />,
         faqArt: faqConsultWomen,
+        heroMarker: { label: "hs-CRP", delta: "−41%", state: "Inflammation trending down" },
       }}
     />
   );

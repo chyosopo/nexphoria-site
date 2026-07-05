@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
@@ -491,11 +492,15 @@ export function Nav({ variant = "gate" }: NavProps) {
         </div>
       )}
 
-      {/* ── Mobile full-screen drawer ── */}
-      {menuOpen && (
+      {/* ── Mobile full-screen drawer — PORTALED to <body>. The sticky header
+          carries a translateZ(0) transform (scroll-perf isolation), and a
+          transformed ancestor becomes the containing block for position:fixed:
+          the drawer was resolving against the page, landing thousands of
+          pixels off-screen whenever the user had scrolled before opening it. */}
+      {menuOpen && createPortal(
         <div
           className="md:hidden fixed left-0 right-0 bg-white z-[60] flex flex-col"
-          style={{ top: "64px", height: "calc(100vh - 64px)", borderTop: "1px solid var(--nx-border)" }}
+          style={{ top: "64px", height: "calc(100dvh - 64px)", borderTop: "1px solid var(--nx-border)" }}
           data-testid="nav-mobile-drawer"
         >
           <div
@@ -578,7 +583,8 @@ export function Nav({ variant = "gate" }: NavProps) {
               Start Intake
             </StartIntakeButton>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </header>
   );
