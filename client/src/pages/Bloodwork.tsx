@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
+import { useLocation } from "wouter";
 import { anchor } from "@/lib/anchors";
-import { SiteLayout } from "@/components/SiteLayout";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
@@ -973,6 +974,10 @@ function PanelTiers() {
    DEFAULT EXPORT
    ══════════════════════════════════════════════════════════════ */
 export default function Bloodwork() {
+  // Shared page: follow the visitor's chosen world so the outcome
+  // photography matches the palette SiteLayout already applies.
+  const [loc] = useLocation();
+  const world = resolveWorld(loc);
   useSeo({
     title: `Peptide therapy bloodwork — ${PANEL_TOTAL_MARKERS} biomarkers, every 90 days`,
     description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} partner-laboratory panels. Calibrate your protocol to your chemistry, not a population average. Results appear in your portal after physician review.`,
@@ -998,8 +1003,8 @@ export default function Bloodwork() {
         <SectionPills />
         <SystemsMosaic />
         <ResultsDashboard />
-        <ActionPlan />
-        <GlowingBody />
+        <ActionPlan world={world} />
+        <GlowingBody world={world} />
         <OfferStack />
         <PanelTiers />
         <MarkerWall />
@@ -1161,11 +1166,13 @@ function OfferStack() {
   );
 }
 
-/* ══ ACTION PLAN — guidance cards floating over life ══ */
-function ActionPlan() {
+/* ══ ACTION PLAN — guidance cards floating over life ══
+   World-cast: this shared page inherits [data-world] from the visitor's
+   chosen world, so the photography must follow the palette. */
+function ActionPlan({ world }: { world: "men" | "women" }) {
   return (
     <section id="plan" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
-      <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+      <img src={world === "women" ? "img/img_484de9509e9f.webp" : "img/img_beb6d78848a2.webp"} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
       <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
       {/* zIndex 2: all content paints above BOTH overlay frames — the second
@@ -1204,12 +1211,12 @@ function ActionPlan() {
 }
 
 /* ══ GLOWING BODY — what one draw can surface ══ */
-function GlowingBody() {
+function GlowingBody({ world }: { world: "men" | "women" }) {
   return (
     <section id="surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
-          <img src="img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: "var(--nx-r-lg)" }} loading="lazy" />
+          <img src={world === "women" ? "img/img_f04642b4a1f1.webp" : "img/img_af00f66cbf20.webp"} alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: "var(--nx-r-lg)" }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
             <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: p.hot ? "var(--nx-bg)" : "rgba(243, 245, 247,0.4)", border: `1px solid ${p.hot ? "rgba(243, 245, 247,0.55)" : "rgba(243, 245, 247,0.18)"}`, borderRadius: "var(--nx-r-pill)", padding: "8px 16px", background: "rgba(22, 27, 32,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}
