@@ -130,7 +130,7 @@ export default function Checkout() {
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-16 md:py-24 max-w-2xl">
             <div className="text-center">
-              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-success)" }}>
+              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-success)" }} aria-hidden="true">
                 <Check size={32} strokeWidth={1.5} />
               </div>
               <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
@@ -182,7 +182,7 @@ export default function Checkout() {
                   style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                   data-testid="link-back-home"
                 >
-                  <ArrowLeft size={14} /> Back to Nexphoria
+                  <ArrowLeft size={14} aria-hidden="true" /> Back to Nexphoria
                 </a>
               </Link>
             </div>
@@ -233,7 +233,7 @@ export default function Checkout() {
               style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
               data-testid="link-back-to-cart"
             >
-              <ArrowLeft size={12} /> Back to cart
+              <ArrowLeft size={12} aria-hidden="true" /> Back to cart
             </a>
           </Link>
 
@@ -331,7 +331,7 @@ export default function Checkout() {
                       style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                       data-testid="notice-deferred-billing"
                     >
-                      <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} />
+                      <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                       <div>
                         <p className="text-sm font-semibold mb-1" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
                           Physician review comes first — no card is collected today.
@@ -361,7 +361,7 @@ export default function Checkout() {
                         >
                           <span
                             className="inline-flex items-center justify-center flex-shrink-0"
-                            style={{ width: 22, height: 22, borderRadius: 999, background: "var(--nx-fg)", color: "var(--nx-bg)", fontSize: 11, fontWeight: 600, marginTop: 1 }}
+                            style={{ width: 22, height: 22, borderRadius: "var(--nx-r-pill)", background: "var(--nx-fg)", color: "var(--nx-bg)", fontSize: 11, fontWeight: 600, marginTop: 1 }}
                           >
                             {i + 1}
                           </span>
@@ -572,7 +572,7 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
                 style={{
                   width: 26,
                   height: 26,
-                  borderRadius: 999,
+                  borderRadius: "var(--nx-r-pill)",
                   fontFamily: FONT,
                   fontWeight: 600,
                   background: done ? "var(--nx-amber)" : active ? "var(--nx-fg)" : "transparent",
@@ -708,7 +708,7 @@ const YesNoField = ({
 function TrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
     <div className="flex items-start gap-2.5 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
-      <span style={{ color: "var(--nx-amber)", marginTop: 1 }}>{icon}</span>
+      <span style={{ color: "var(--nx-amber)", marginTop: 1 }} aria-hidden="true">{icon}</span>
       <span>{text}</span>
     </div>
   );
