@@ -14,6 +14,7 @@ import { ArrowLeft, Check, Stethoscope, Microscope, RefreshCw, FlaskConical, Sno
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
+import { SafetyDisclosure } from "@/components/SafetyDisclosure";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 import { getPeptideHeroImage } from "@/lib/peptideImages";
 import type { PeptideCategory } from "@/data/peptides";
@@ -225,6 +226,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               consultPriced={!solo.gated && !solo.pricing}
               ctaTestId="solo-cta"
             />
+            <SafetyDisclosure name={solo.name} contraindications={solo.contraindications} />
           </aside>
         </div>
       </section>

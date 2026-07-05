@@ -1,7 +1,7 @@
 import { Reveal } from "./Reveal";
-const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
-const editorialPrescription = "img/img_ceff7bb26099.webp";
-const lifestyleWindowPortrait = "img/img_232f30f5a464.webp";
+const editorialBloodwork = "/img/img_dbc2b8fe6999.webp";
+const editorialPrescription = "/img/img_ceff7bb26099.webp";
+const lifestyleWindowPortrait = "/img/img_232f30f5a464.webp";
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 
 /**

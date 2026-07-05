@@ -378,7 +378,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 >
                   <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
                     <img
-                      src="img/img_b02fe34b47f7.webp"
+                      src="/img/img_b02fe34b47f7.webp"
                       alt="Nexphoria compounded peptide vial"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                       loading="lazy"

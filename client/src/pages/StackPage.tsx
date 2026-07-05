@@ -19,6 +19,7 @@ import { glyphForPeptide } from "@/lib/protocols";
 const VIAL_TONES: Tone[] = ["sage", "cobalt", "mineral", "sky", "butter", "rose", "dusk"];
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
+import { SafetyDisclosure } from "@/components/SafetyDisclosure";
 import { faqJsonLd } from "@/lib/seo";
 
 function panelFor(tier: PanelTier) {
@@ -261,6 +262,7 @@ export default function StackPage({ slug }: { slug: string }) {
               gatedStates={stack.stateExclusions}
               ctaTestId={stack.gated ? "ignite-intake" : "stack-cta"}
             />
+            <SafetyDisclosure name={stack.name} contraindications={stack.contraindications} />
           </aside>
         </div>
       </section>

@@ -12,17 +12,17 @@ export const PANEL_ICON_KEYS: Record<string, string> = {
 
 /* Porcelain-kintsugi organ artwork — one per system */
 export const PANEL_ART: Record<string, string> = {
-  "heart": "img/img_08bfaa5f6c9d.webp",
-  "metabolism": "img/img_ffdd72440251.webp",
-  "hormones": "img/img_427d5e7427b9.webp",
-  "stress": "img/img_e9c5c7ee0119.webp",
-  "thyroid": "img/img_6bee78326414.webp",
-  "kidneys": "img/img_b4724ee2f1a5.webp",
-  "liver": "img/img_73925dec188f.webp",
-  "immunity": "img/img_0b920f85116d.webp",
-  "nutrients": "img/img_3a64b1f2aca5.webp",
-  "blood": "img/img_e5ee8619d3f5.webp",
-  "bio-age": "img/img_c4bef27c5b72.webp",
+  "heart": "/img/img_08bfaa5f6c9d.webp",
+  "metabolism": "/img/img_ffdd72440251.webp",
+  "hormones": "/img/img_427d5e7427b9.webp",
+  "stress": "/img/img_e9c5c7ee0119.webp",
+  "thyroid": "/img/img_6bee78326414.webp",
+  "kidneys": "/img/img_b4724ee2f1a5.webp",
+  "liver": "/img/img_73925dec188f.webp",
+  "immunity": "/img/img_0b920f85116d.webp",
+  "nutrients": "/img/img_3a64b1f2aca5.webp",
+  "blood": "/img/img_e5ee8619d3f5.webp",
+  "bio-age": "/img/img_c4bef27c5b72.webp",
 };
 
 /* Systems-mosaic tints — [background, ink] per system */

@@ -269,8 +269,8 @@ function Hero() {
       <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
         <div className="relative overflow-hidden" style={{ borderRadius: "var(--nx-r-lg)", boxShadow: "var(--nx-e-4)" }} data-testid="bloodwork-video-band">
           <video autoPlay muted loop playsInline
-            src="img/img_6d36ae1989c8.mp4"
-            poster="img/img_b9ec00db43d6.webp"
+            src="/img/img_6d36ae1989c8.mp4"
+            poster="/img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
             aria-label="Partner-laboratory lab work — every 90 days" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
@@ -1178,9 +1178,9 @@ function OfferStack() {
 function ActionPlan() {
   return (
     <section id="plan" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
-      <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+      <img src="/img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
-      <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
+      <img src="/img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
       <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem" }}>
         <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-bg)" }}>
           <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
@@ -1220,7 +1220,7 @@ function GlowingBody() {
     <section id="surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
-          <img src="img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: "var(--nx-r-lg)" }} loading="lazy" />
+          <img src="/img/img_af00f66cbf20.webp" alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: "var(--nx-r-lg)" }} loading="lazy" />
           {SURFACE_PILLS.map((p, pi) => (
             <span key={p.t} className="hidden sm:inline-block absolute nx-float" style={{ left: p.x, top: p.y, fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: p.hot ? "var(--nx-bg)" : "rgba(243, 245, 247,0.4)", border: `1px solid ${p.hot ? "rgba(243, 245, 247,0.55)" : "rgba(243, 245, 247,0.18)"}`, borderRadius: "var(--nx-r-pill)", padding: "8px 16px", background: "rgba(22, 27, 32,0.35)", backdropFilter: "blur(6px)", animationDelay: `${pi * 0.55}s` }}>
               {p.t}

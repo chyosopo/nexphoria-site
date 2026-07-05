@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { EducationCard } from "@/components/EducationCard";
 
 /* Editorial brand images */
-const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
-const editorialPrescription = "img/img_ceff7bb26099.webp";
+const editorialBloodwork = "/img/img_dbc2b8fe6999.webp";
+const editorialPrescription = "/img/img_ceff7bb26099.webp";
 import editorialProtocolKit from "@/assets/brand/editorial-protocol-kit.webp";
 import editorialPharmacy from "@/assets/brand/editorial-pharmacy.webp";
 

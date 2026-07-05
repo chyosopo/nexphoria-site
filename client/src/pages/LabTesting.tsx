@@ -5,9 +5,9 @@ import { Reveal } from "@/components/Reveal";
 import { TrustStrip, DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
-const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
-const lifestyleLabVials = "img/img_b9ec00db43d6.webp";
-const lifestyleBloodworkDashboard = "img/img_e03de0ca48d9.webp";
+const editorialBloodwork = "/img/img_dbc2b8fe6999.webp";
+const lifestyleLabVials = "/img/img_b9ec00db43d6.webp";
+const lifestyleBloodworkDashboard = "/img/img_e03de0ca48d9.webp";
 import bloodworkHero from "@/assets/nx_bloodwork_hero.webp";
 import bloodworkReport from "@/assets/nx_bloodwork_report.webp";
 import { Link } from "wouter";
