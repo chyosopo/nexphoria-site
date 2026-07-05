@@ -3,7 +3,8 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
+import { MxHeader } from "@/components/SignatureTile";
+import heroFaq from "@/assets/brand/hero-faq.webp";
 import { PillBadge } from "@/components/PillBadge";
 import { TrustStrip } from "@/components/TrustStrip";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
@@ -219,24 +220,44 @@ export default function FAQPage() {
             subtitle="Answers on dosing, safety, side effects, shipping, insurance, and what to expect. Still curious? Message your physician any time."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/faq"
-              tone="sand"
-              glyph={TileGlyphs.hex}
-              label={<>Protocol questions<br /><span>dosing &amp; timing</span></>}
-              caption="Most common asks"
-              ctaLabel="See answers"
+          {/* Editorial hero — questions answered, mind settled */}
+          <figure
+            className="relative overflow-hidden"
+            style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
+            data-testid="faq-hero-editorial"
+          >
+            <img
+              src={heroFaq}
+              alt="A woman reads calmly in a sunlit armchair by a tall window, tea on the side table"
+              className="w-full object-cover"
+              style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
+              loading="eager"
+              decoding="async"
             />
-            <ColoredHeroTile
-              href="/faq"
-              tone="sky"
-              glyph={TileGlyphs.circle}
-              label={<>Safety &amp; science<br /><span>peer-reviewed</span></>}
-              caption="Most common asks"
-              ctaLabel="See answers"
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, color-mix(in srgb, var(--nx-fg) 52%, transparent) 0%, color-mix(in srgb, var(--nx-fg) 10%, transparent) 34%, transparent 55%)",
+              }}
             />
-          </div>
+            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+              <p
+                style={{
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-xl)",
+                  fontWeight: 500,
+                  lineHeight: 1.35,
+                  color: "var(--nx-ceramic)",
+                  maxWidth: "40ch",
+                  textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
+                }}
+              >
+                Dosing, safety, shipping, insurance — answered plainly, and your physician is a message away.
+              </p>
+            </figcaption>
+          </figure>
         </div>
       </main>
 

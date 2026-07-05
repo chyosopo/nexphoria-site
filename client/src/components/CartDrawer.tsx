@@ -211,7 +211,7 @@ export function CartDrawer() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                               <span
-                                className="text-[9px] uppercase tracking-[0.2em] px-1.5 py-0.5"
+                                className="text-[10px] uppercase tracking-[0.2em] px-1.5 py-0.5"
                                 style={{
                                   fontFamily: FONT,
                                   background: line.type === "stack" ? "var(--nx-fg)" : "var(--nx-bg-cream)",
@@ -225,7 +225,7 @@ export function CartDrawer() {
                               </span>
                               {spec?.badge ? (
                                 <span
-                                  className="text-[9px] uppercase tracking-[0.18em] px-1.5 py-0.5"
+                                  className="text-[10px] uppercase tracking-[0.18em] px-1.5 py-0.5"
                                   style={{
                                     fontFamily: FONT,
                                     background: "transparent",
@@ -292,7 +292,7 @@ export function CartDrawer() {
                         {/* Cadence segmented control */}
                         <div className="mt-3">
                           <div
-                            className="text-[9px] uppercase tracking-[0.18em] mb-1.5"
+                            className="text-[10px] uppercase tracking-[0.18em] mb-1.5"
                             style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", fontWeight: 600 }}
                           >
                             Billing cadence
@@ -325,14 +325,14 @@ export function CartDrawer() {
                                   <span className="block leading-tight">{meta.label}</span>
                                   {meta.savePct > 0 ? (
                                     <span
-                                      className="block text-[8px] mt-0.5"
+                                      className="block text-[10px] mt-0.5"
                                       style={{ color: active ? "#A8CBF5" : "var(--nx-amber)", opacity: 1, fontWeight: 600 }}
                                     >
                                       SAVE {meta.savePct}%
                                     </span>
                                   ) : (
                                     <span
-                                      className="block text-[8px] mt-0.5"
+                                      className="block text-[10px] mt-0.5"
                                       style={{ opacity: 0.6, color: active ? "#A8CBF5" : "var(--nx-fg-muted)" }}
                                     >
                                       Flex
@@ -521,7 +521,7 @@ export function CartDrawer() {
                 ].map((b) => (
                   <span
                     key={b.label}
-                    className="inline-flex items-center gap-1 text-[9px] uppercase tracking-[0.15em] px-2 py-1"
+                    className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] px-2 py-1"
                     style={{
                       fontFamily: FONT,
                       background: "var(--nx-bg-cream)",
@@ -594,7 +594,7 @@ function TrustMini({ icon, label }: { icon: React.ReactNode; label: string }) {
     <div className="flex flex-col items-center text-center gap-1">
       <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
       <span
-        className="text-[9px] uppercase tracking-[0.1em] leading-tight"
+        className="text-[10px] uppercase tracking-[0.1em] leading-tight"
         style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", fontWeight: 600 }}
       >
         {label}

@@ -8,8 +8,9 @@ import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip } from "./Assessme
 import { TrustStrip as CredentialRow } from "@/components/EnterprisePatterns";
 import { Reveal } from "@/components/Reveal";
 import { SiteLayout } from "@/components/SiteLayout";
-import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
-import { GoalVialTile, GOAL_TILE_CONFIG } from "@/components/GoalVialTile";
+import { MxHeader } from "@/components/SignatureTile";
+import heroAssessment from "@/assets/brand/hero-assessment.webp";
+import { GoalVialTile, GOAL_TILE_CONFIG, goalGlyphToMolecular } from "@/components/GoalVialTile";
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
 import { F } from "@/lib/typography";
@@ -548,24 +549,44 @@ export default function Assessment() {
               subtitle="A short physician-reviewed intake. Personalized peptide protocol delivered after physician approval."
             />
 
-            <div className="mx-grid">
-              <ColoredHeroTile
-                href="/assessment"
-                tone="cobalt"
-                glyph={TileGlyphs.hex}
-                label={<>Personalized protocol</>}
-                caption="Built around your goal"
-                ctaLabel="Start intake"
+            {/* Editorial hero — the first deliberate step, dawn light */}
+            <figure
+              className="relative overflow-hidden"
+              style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
+              data-testid="assessment-hero-editorial"
+            >
+              <img
+                src={heroAssessment}
+                alt="A man sits upright at a desk by a bright window at dawn, tablet in hand, beginning his health intake"
+                className="w-full object-cover"
+                style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
+                loading="eager"
+                decoding="async"
               />
-              <ColoredHeroTile
-                href="/assessment"
-                tone="sky"
-                glyph={TileGlyphs.wave}
-                label={<>Physician-reviewed</>}
-                caption="Built around your goal"
-                ctaLabel="Start intake"
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, color-mix(in srgb, var(--nx-fg) 52%, transparent) 0%, color-mix(in srgb, var(--nx-fg) 10%, transparent) 34%, transparent 55%)",
+                }}
               />
-            </div>
+              <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+                <p
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "var(--nx-t-xl)",
+                    fontWeight: 500,
+                    lineHeight: 1.35,
+                    color: "var(--nx-ceramic)",
+                    maxWidth: "40ch",
+                    textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
+                  }}
+                >
+                  Four minutes of questions. A physician, a lab panel, and a protocol on the other side.
+                </p>
+              </figcaption>
+            </figure>
           </div>
 
           {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
@@ -1436,7 +1457,7 @@ export default function Assessment() {
                             </div>
                             <div style={{ backgroundColor: "var(--nx-cobalt-soft)", padding: "1.25rem", display: "flex", gap: "1rem", alignItems: "center" }}>
                               <div style={{ flexShrink: 0 }}>
-                                <VialArt tone={tone} glyph={cfg.glyph} size={92} />
+                                <VialArt tone={tone} glyph={goalGlyphToMolecular(cfg.glyph ?? "drop")} size={92} />
                               </div>
                               <div style={{ minWidth: 0, flex: 1 }}>
                                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)", margin: "0 0 0.375rem 0" }}>

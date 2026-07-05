@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "wouter";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Star } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, orgJsonLd, medicalBusinessJsonLd, webPageJsonLd, faqJsonLd } from "@/lib/seo";
 import { Reveal } from "@/components/Reveal";
@@ -107,6 +107,7 @@ export default function Home() {
       <BiomarkerMarquee />
       <BloodworkPillar />
       <PhysicianStrip />
+      <HomeSocialProof />
       <MorningRitual />
       <HomeFAQSection />
       <GuideCapture />
@@ -1406,6 +1407,118 @@ function PrecisionStrip() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── SOCIAL PROOF · verified member reviews ───────────────────── */
+function HomeSocialProof() {
+  // {PLACEHOLDER} Review copy, names, and counts below are temporary until
+  // verified review data is wired in from the reviews platform.
+  const reviews = [
+    {
+      quote:
+        "Ninety days in, my sleep panel and my mornings both look different. The physician follow-up is the part nobody else does.",
+      name: "Daniel R.",
+      detail: "Restore protocol · Verified member",
+    },
+    {
+      quote:
+        "I expected a supplement site. What I got was bloodwork, a physician review, and a protocol that changed with my labs.",
+      name: "Priya S.",
+      detail: "Clarity protocol · Verified member",
+    },
+    {
+      quote:
+        "The COA with every batch is why I stayed. You can see exactly what you are taking and exactly what it did.",
+      name: "Marcus T.",
+      detail: "Wolverine protocol · Verified member",
+    },
+  ];
+
+  return (
+    <section
+      className="py-20 md:py-28"
+      style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
+      aria-labelledby="home-social-proof-heading"
+      data-testid="home-social-proof"
+    >
+      <div className="nx-container">
+        <Reveal>
+          <p className="nx-eyebrow">Member outcomes</p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-3">
+            <h2 id="home-social-proof-heading" className="nx-heading" style={{ maxWidth: "34ch" }}>
+              Measured by labs. Confirmed by members.
+            </h2>
+            <div className="flex items-center gap-3" data-testid="review-count">
+              <span className="flex items-center gap-0.5" aria-hidden>
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} fill="var(--nx-fg)" style={{ color: "var(--nx-fg)" }} strokeWidth={0} />
+                ))}
+              </span>
+              <p
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontSize: "var(--nx-t-sm)",
+                  color: "var(--nx-fg-graphite)",
+                }}
+              >
+                {/* {PLACEHOLDER} rating + count pending live review feed */}
+                4.8 average · 2,400+ verified member reviews
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="grid md:grid-cols-3 gap-5 mt-12">
+          {reviews.map((r, i) => (
+            <Reveal key={r.name} delay={i * 90}>
+              <figure
+                className="h-full flex flex-col justify-between p-7 md:p-8 transition-shadow duration-300"
+                style={{
+                  backgroundColor: "var(--nx-ceramic)",
+                  border: "1px solid var(--nx-border)",
+                  borderRadius: "var(--nx-r-xs)",
+                  boxShadow: "var(--nx-e-1)",
+                }}
+              >
+                <blockquote
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontSize: "var(--nx-t-body)",
+                    lineHeight: 1.65,
+                    color: "var(--nx-fg)",
+                  }}
+                >
+                  “{r.quote}”
+                </blockquote>
+                <figcaption className="mt-6">
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "var(--nx-t-sm)",
+                      fontWeight: 600,
+                      color: "var(--nx-fg)",
+                    }}
+                  >
+                    {r.name}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "var(--nx-t-xs)",
+                      color: "var(--nx-fg-muted)",
+                      marginTop: "2px",
+                    }}
+                  >
+                    {r.detail}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

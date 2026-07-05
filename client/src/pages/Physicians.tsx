@@ -7,6 +7,7 @@ import { physicianReview } from "@/data/physicians";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
 const physicianTrustHero = "img/img_20e1e1d49da4.webp";
+import heroPhysicians from "@/assets/brand/hero-physicians.webp";
 
 export default function Physicians() {
   useSeo({
@@ -334,7 +335,11 @@ export default function Physicians() {
           </Reveal>
 
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", maxWidth: "900px" }}
+            className="physicians-review-grid"
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "stretch" }}
+          >
+          <div
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
           >
             {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
@@ -347,11 +352,34 @@ export default function Physicians() {
             ))}
           </div>
 
+          {/* Editorial — two physicians on one chart: review is collaborative, human work */}
+          <Reveal delay={80}>
+            <figure
+              style={{
+                borderRadius: "var(--nx-r-lg)",
+                overflow: "hidden",
+                border: "1px solid var(--nx-border)",
+                height: "100%",
+                minHeight: "280px",
+              }}
+              data-testid="physicians-review-editorial"
+            >
+              <img
+                src={heroPhysicians}
+                alt="Two physicians in white coats review a patient chart together in warm afternoon light"
+                loading="lazy"
+                decoding="async"
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+            </figure>
+          </Reveal>
+          </div>
+
           {/* CTA to assessment */}
           <Reveal delay={100}>
             <div className="mt-12">
               <p style={{ fontFamily: F, fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
-                "Dare to defy. Find your focus. Elevate every moment."
+                A physician on every case. A lab value behind every decision.
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
                 Your physician review is included with every protocol. Take the assessment and our team will match you with a physician licensed in your state.
@@ -374,6 +402,7 @@ export default function Physicians() {
       <style>{`
         @media (min-width: 768px) {
           .physicians-band-grid { grid-template-columns: 1.1fr 1fr !important; gap: 4rem !important; }
+          .physicians-review-grid { grid-template-columns: 1.15fr 0.85fr !important; }
         }
       `}</style>
     </SiteLayout>
