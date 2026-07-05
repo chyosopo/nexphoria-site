@@ -111,6 +111,20 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
                 {stack.bestFor}
               </p>
+              {/* Price anchor + CTA — the hero was a dead end: name, tagline,
+                  then empty space, with commerce buried a full scroll below */}
+              <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
+                <Link href="/assessment" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
+                  {stack.gated ? "Check eligibility" : "Begin your intake"}
+                </Link>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)" }}>
+                  {stack.gated
+                    ? "Physician-assessed only"
+                    : tiers?.length
+                      ? `From ${usd(Math.min(...tiers.map((t) => t.amount)))}/mo · if prescribed`
+                      : "Priced at consultation"}
+                </span>
+              </div>
             </div>
             {OUTCOME_STACK[stack.slug] && (
               <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "4 / 5", maxHeight: "min(58vh, 560px)" }}>

@@ -31,7 +31,9 @@ export default function Cart() {
   return (
     <SiteLayout variant="gate">
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
-        <div className="nx-container nx-section-y">
+        {/* trimmed top padding — the nav offset + section padding stacked
+            ~210px of empty porcelain above "Review your cart" */}
+        <div className="nx-container nx-section-y" style={{ paddingTop: "1.25rem" }}>
           {/* Header */}
           <div className="mb-10">
             <div
@@ -361,7 +363,7 @@ export default function Cart() {
                           <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
                           {text}
                         </span>
-                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-success)" }}>
+                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                           Included
                         </span>
                       </div>
@@ -442,7 +444,16 @@ function VialGlyph({ label }: { label: string }) {
       <line x1="14" y1="40" x2="38" y2="40" stroke="var(--nx-fg)" strokeWidth="1" opacity="0.4" />
       {/* label band */}
       <rect x="12" y="46" width="28" height="16" fill="var(--nx-fg)" />
-      <text x="26" y="57" textAnchor="middle" fill="var(--nx-bg)" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.05em" }}>
+      <text
+        x="26"
+        y="57"
+        textAnchor="middle"
+        fill="var(--nx-bg)"
+        // squeeze long labels into the 28px band instead of spilling past it
+        textLength={label.length > 3 ? 24 : undefined}
+        lengthAdjust="spacingAndGlyphs"
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: "0.05em" }}
+      >
         {label}
       </text>
     </svg>

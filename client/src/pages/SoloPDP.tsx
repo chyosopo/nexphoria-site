@@ -178,7 +178,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* What every solo protocol includes — same grid the stacks carry */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              What is included, every month
+              {/* consult-priced pulse protocols aren't monthly subscriptions */}
+              {solo.pricing ? "What is included, every month" : "What is included with your protocol"}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
               {INCLUDED.map((x, i) => (
@@ -287,7 +288,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <Reveal key={r.slug} delay={i * 60}>
                 <Link href={`${base}/peptides/${r.slug}`} className="nx-float-card" data-testid={`solo-related-${r.slug}`}>
                   <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: 10.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{r.name}</h3>
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.mechanism}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
