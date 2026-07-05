@@ -34,7 +34,7 @@ export function HomeTrust() {
   return (
     <>
       {/* ── PHYSICIAN-TRUST BAND — COPY-BLOCKS §3, credential-forward ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(3.5rem,6vw,5.5rem)" }}>
         <Reveal>
           <div className="nx-glass-card" style={{ padding: "clamp(1.8rem,4vw,2.8rem)" }}>
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
@@ -62,7 +62,7 @@ export function HomeTrust() {
       </section>
 
       {/* ── HOW IT WORKS — COPY-BLOCKS §1, 3-step, verb-first ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(3.5rem,6vw,5.5rem)" }}>
         <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
           The process
         </p>

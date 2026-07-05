@@ -43,7 +43,7 @@ export default function ProtocolsIndex() {
     <SiteLayout>
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(2.4rem,5vw,3.8rem) 0 clamp(1.4rem,2.5vw,2rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "clamp(2.4rem,5vw,3.8rem)", paddingBottom: "clamp(1.4rem,2.5vw,2rem)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
@@ -63,7 +63,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* why a protocol vs à la carte */}
-      <section className="nx-container" style={{ padding: "0 0 clamp(1.2rem,2.5vw,2rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "clamp(1.2rem,2.5vw,2rem)" }}>
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
             { h: "Chosen to combine", d: "Each peptide is picked for how it works with the others in the stack — synergy a physician plans, not a basket you assemble." },
@@ -79,7 +79,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ padding: "clamp(1.4rem,2.6vw,2.2rem) 0 clamp(2rem,3.4vw,2.8rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.6vw,2.2rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
         <Reveal>
           <TrustStrip testid="protocols-trust-strip" />
         </Reveal>
@@ -110,7 +110,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* grid — compact floating product tiles (hims pattern) */}
-      <section className="nx-container" style={{ padding: "clamp(1.4rem,3vw,2.2rem) 0 clamp(4rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }}>
         <div className="nx-float-grid">
           {shown.map((s, i) => {
             const rec = s.cadences.find((c) => c.key === "3mo");
@@ -168,7 +168,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* ── Measured, not assumed — abstract outcome dashboard + clinical standard ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.25fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
           <div>
             <SectionHead

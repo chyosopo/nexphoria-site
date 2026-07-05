@@ -37,7 +37,7 @@ export default function NotFound() {
     <SiteLayout navVariant="gate" hideFooter>
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ minHeight: "82vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: "clamp(3rem,7vw,5.5rem) 0", zIndex: 1 }} data-testid="not-found-page">
+        <div className="nx-container relative" style={{ minHeight: "82vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", paddingTop: "clamp(3rem,7vw,5.5rem)", paddingBottom: "clamp(3rem,7vw,5.5rem)", zIndex: 1 }} data-testid="not-found-page">
 
           {/* icon composition — a compass that has lost its bearing */}
           <div className="nx-hero-frame" aria-hidden style={{ position: "relative", width: 132, height: 132, marginBottom: "1.8rem" }}>

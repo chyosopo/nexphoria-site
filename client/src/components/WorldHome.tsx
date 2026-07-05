@@ -41,7 +41,7 @@ const HOME_FAQ = [
   },
   {
     q: "How many biomarkers are measured?",
-    a: `Seventy-six markers across eleven systems at baseline, plus a twenty-one-factor biological-age composite — the same panel a physician would order to read your endocrine, metabolic, and cardiovascular picture properly.`,
+    a: `${PANEL_TOTAL_MARKERS} markers across eleven systems at baseline, including a twenty-one-factor biological-age composite — the same panel a physician would order to read your endocrine, metabolic, and cardiovascular picture properly.`,
   },
 ];
 
@@ -95,7 +95,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <div className="nx-aurora" aria-hidden>
           <i /><i /><i />
         </div>
-        <div className="nx-container relative" style={{ padding: "clamp(3.4rem,7vw,5.8rem) 0 clamp(2rem,4vw,3rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "clamp(3.4rem,7vw,5.8rem)", paddingBottom: "clamp(2rem,4vw,3rem)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
           <div className="nx-hero-seq">
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
@@ -117,7 +117,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               Begin your intake
             </Link>
             <Link href="/bloodwork" className="nx-glass-btn" data-testid={`${world}-hero-panel`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
-              See the 76-marker panel
+              See the {PANEL_TOTAL_MARKERS}-marker panel
             </Link>
             <Link href="/stacks" className="nx-glass-btn" data-testid={`${world}-hero-protocols`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
               The seven protocols
@@ -177,7 +177,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── TRUST BADGE STRIP — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ padding: "clamp(1.4rem,2.4vw,2.2rem) 0 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.4vw,2.2rem)", paddingBottom: "0" }}>
         <Reveal>
           <div className="nx-trust-strip" data-testid={`${world}-trust-strip`}>
             {TRUST_BADGES.map(({ Icon, label }) => (
@@ -191,7 +191,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── PRODUCT CARD ROW — the shelf, if-prescribed framing ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(3.5rem,6vw,5.5rem)" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)" }}>
             From the formulary
@@ -244,7 +244,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── BIOMARKER CHIPS — the panel, read as rounded pill chips (rythm grammar) ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
@@ -261,7 +261,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               data-testid={`${world}-panel-cta`}
               style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none", marginTop: "1.5rem" }}
             >
-              See the full 76-marker panel
+              See the full {PANEL_TOTAL_MARKERS}-marker panel
               <ArrowRight size={16} strokeWidth={2.2} aria-hidden />
             </Link>
           </div>
@@ -283,7 +283,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       {config.trustSlot}
 
       {/* ── OUTCOME DASHBOARD + CLINICAL STANDARD — abstract preview, no PHI ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(2.2rem,5vw,4rem)", alignItems: "center" }}>
           <Reveal>
             <div className="nx-mini-panel" data-testid={`${world}-dashboard`} aria-hidden>
@@ -354,7 +354,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── FAQ — clean spacious accordion, native <details> ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.3fr]" style={{ gap: "clamp(1.8rem,4vw,3.4rem)", alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
@@ -392,7 +392,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── STANDARDS LINE + CLOSE ── */}
-      <section className="nx-container" style={{ padding: "clamp(3.5rem,6vw,5.5rem) 0 clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
         <p style={{ fontFamily: F, fontSize: 12.5, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>

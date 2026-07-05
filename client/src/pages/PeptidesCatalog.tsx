@@ -35,7 +35,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   const [q, setQ] = useState("");
   useSeo({
     title: "Peptides — The Full Catalog | Nexphoria",
-    description: "Nineteen physician-prescribed peptides, each with dosing, mechanism, timeline, and required bloodwork stated plainly.",
+    description: `${SOLO_CATALOG.length} physician-prescribed peptides, each with dosing, mechanism, timeline, and required bloodwork stated plainly.`,
     jsonLd: [
       webPageJsonLd({ name: "Peptides", description: "Solo peptide catalog.", path: "/peptides" }),
       breadcrumbJsonLd(
@@ -67,12 +67,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     <SiteLayout>
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ padding: "clamp(3rem,6vw,5rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
               <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
-                Nineteen peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
+                {SOLO_CATALOG.length} peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
                 Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin.
@@ -87,7 +87,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ padding: "clamp(1.2rem,2.4vw,2rem) 0 clamp(1.8rem,3vw,2.4rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.4vw,2rem)", paddingBottom: "clamp(1.8rem,3vw,2.4rem)" }}>
         <Reveal>
           <TrustStrip testid="peptides-trust-strip" />
         </Reveal>
@@ -139,7 +139,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      <section className="nx-container" style={{ padding: "clamp(1.4rem,3vw,2.2rem) 0 clamp(4rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }}>
         <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
           {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
         </p>

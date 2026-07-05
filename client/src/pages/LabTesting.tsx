@@ -113,7 +113,7 @@ export default function LabTesting() {
       <BloodworkInsurance />
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0" }}>
+      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
         <Reveal>
           <TrustStrip testid="labtesting-trust-strip" />
         </Reveal>
@@ -179,7 +179,7 @@ export default function LabTesting() {
       </main>
 
       {/* ── How your results read — abstract outcome dashboard + clinical standard ── */}
-      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(3.8rem,7vw,6rem) 0" }}>
+      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1.05fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
           <Reveal>
             <DashboardMockup

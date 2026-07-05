@@ -111,7 +111,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative nx-hero-seq" style={{ padding: "clamp(2.6rem,5vw,3.8rem) 0 clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
+        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "clamp(2.6rem,5vw,3.8rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>
@@ -140,7 +140,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ BODY — content rail + sticky buy-box ══ */}
-      <section className="nx-container" style={{ padding: "clamp(1.2rem,2.5vw,2rem) 0 clamp(2rem,4vw,3rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.5vw,2rem)", paddingBottom: "clamp(2rem,4vw,3rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
 
           {/* — LEFT — */}
@@ -273,7 +273,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ CROSS-SELL — same-axis compounds, if-prescribed framing ══ */}
       {related.length > 0 && (
-        <section className="nx-container" style={{ padding: "clamp(2.6rem,5vw,3.6rem) 0 0" }}>
+        <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.6rem)", paddingBottom: "0" }}>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
             Often prescribed on the same axis
           </h2>
@@ -300,7 +300,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         </section>
       )}
 
-      <section className="nx-container" style={{ padding: "clamp(2.6rem,5vw,3.4rem) 0 4.5rem", textAlign: "center" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.4rem)", paddingBottom: "4.5rem", textAlign: "center" }}>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em></h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Begin your intake</Link>
       </section>

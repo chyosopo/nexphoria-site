@@ -31,7 +31,7 @@ export default function Physicians() {
       <PhysiciansHeroDark />
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0 0" }}>
+      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "0" }}>
         <Reveal>
           <TrustStrip testid="physicians-trust-strip" />
         </Reveal>

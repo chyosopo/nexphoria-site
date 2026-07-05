@@ -52,7 +52,7 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
   },
   longevity: {
     pre: "Add life to your", accent: "years.",
-    sub: "Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a 76-marker baseline and re-tested every quarter.",
+    sub: "Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a 99-marker baseline and re-tested every quarter.",
     chips: ["Cellular energy", "Immune resilience", "Healthspan", "Daily vitality"],
     faqs: [
       { q: "Where does a longevity protocol begin?", a: "With comprehensive baseline bloodwork — 76 markers across 11 systems — reviewed by a licensed physician who designs a protocol if appropriate. " + IF_RX },

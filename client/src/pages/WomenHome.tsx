@@ -10,7 +10,7 @@ export default function WomenHome() {
   useSeo({
     title: "Nexphoria for Women — Physician-Prescribed Peptide Protocols",
     description:
-      "Seventy-six biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for women, read properly.",
+      "Ninety-nine biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for women, read properly.",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria for Women", description: "Physician-prescribed peptide protocols for women — read properly, then treated.", path: "/women" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Women", path: "/women" }]),
@@ -29,7 +29,7 @@ export default function WomenHome() {
             Your biology, read properly. <em style={{ color: "var(--nx-cobalt)" }}>Then treated.</em>
           </>
         ),
-        sub: "Seventy-six biomarkers, a licensed physician who reads them against your history, and protocols compounded for you in state-licensed 503A pharmacies — reviewed against your own results every ninety days.",
+        sub: "Ninety-nine biomarkers, a licensed physician who reads them against your history, and protocols compounded for you in state-licensed 503A pharmacies — reviewed against your own results every ninety days.",
         categories: ["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"],
         featured: ["ghk-cu", "bpc-157", "nad-plus", "epitalon"],
         nightEyebrow: "The standard",

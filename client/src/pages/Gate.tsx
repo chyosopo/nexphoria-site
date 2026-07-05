@@ -5,7 +5,8 @@ import gateHer from "@/assets/brand/gate-her.webp";
 import gateHim from "@/assets/brand/gate-him.webp";
 import { Logo } from "@/components/Logo";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
-import { F } from "@/lib/typography";
+import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { F, S } from "@/lib/typography";
 
 export default function Gate() {
   // Reactive OS-setting subscription (framer-motion) — respects a live toggle,
@@ -75,7 +76,7 @@ export default function Gate() {
             marginTop: "6px",
           }}
         >
-          PEPTIDE PHARMACY · BY PHYSICIANS
+          PEPTIDE PROTOCOLS · PHYSICIAN-PRESCRIBED
         </p>
         <p
           style={{
@@ -90,7 +91,7 @@ export default function Gate() {
         >
           <Link
             href="/stacks"
-            style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px", display: "inline-block", padding: "14px 8px", margin: "-14px -8px" }}
             data-testid="gate-link-stacks"
           >
             Browse stacks
@@ -98,7 +99,7 @@ export default function Gate() {
           <span aria-hidden="true" style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
           <Link
             href="/how-it-works"
-            style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ color: "rgba(246, 249, 252,0.75)", textDecoration: "underline", textUnderlineOffset: "3px", display: "inline-block", padding: "14px 8px", margin: "-14px -8px" }}
             data-testid="gate-link-how"
           >
             How it works
@@ -106,7 +107,7 @@ export default function Gate() {
           <span aria-hidden="true" style={{ margin: "0 10px", color: "rgba(246, 249, 252,0.3)" }}>·</span>
           <Link
             href="/assessment"
-            style={{ color: "rgba(246, 249, 252,0.85)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            style={{ color: "rgba(246, 249, 252,0.85)", textDecoration: "underline", textUnderlineOffset: "3px", display: "inline-block", padding: "14px 8px", margin: "-14px -8px" }}
             data-testid="gate-link-assessment"
           >
             Start assessment
@@ -172,7 +173,14 @@ export default function Gate() {
                 fontWeight: 500,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "var(--nx-cobalt)",
+                /* ceramic on a navy scrim chip — cobalt sat directly on the
+                   dark photograph and failed contrast during the transition */
+                color: "var(--nx-ceramic)",
+                background: "color-mix(in srgb, var(--nx-fg) 58%, transparent)",
+                backdropFilter: "blur(6px)",
+                WebkitBackdropFilter: "blur(6px)",
+                padding: "8px 14px",
+                borderRadius: "var(--nx-r-pill)",
               }}
             >
               ENTERING — PEPTIDES FOR {chosen === "her" ? "HER" : "HIM"}
@@ -213,21 +221,23 @@ export default function Gate() {
 // GateCard
 // ─────────────────────────────────────────────
 
+/* Peek rows derive from the real catalog — the previous hardcoded protocol
+   names and prices did not exist in FLAGSHIP_STACKS (TRUE-claims law). */
+const peekFor = (side: "her" | "him") =>
+  FLAGSHIP_STACKS
+    .filter((s) => !s.gated && (s.worldLean === side || s.worldLean === "both" || !s.worldLean))
+    .slice(0, 3)
+    .map((s, i) => ({
+      num: String(i + 1).padStart(2, "0"),
+      name: s.name,
+      peptides: s.peptides.slice(0, 3).map((p) => p.name).join(" · "),
+      from: `${usd(s.cadences[2]?.perMonth ?? s.cadences[0]?.perMonth ?? s.cadences[0]?.total ?? 0)}/mo`,
+    }));
+
 const flagshipPeek: Record<
   "her" | "him",
   Array<{ num: string; name: string; peptides: string; from: string }>
-> = {
-  her: [
-    { num: "01", name: "Metabolic", peptides: "Tirzepatide · Semaglutide", from: "$249/mo" },
-    { num: "02", name: "Skin & Recovery", peptides: "GHK-Cu · BPC-157", from: "$199/mo" },
-    { num: "03", name: "Longevity", peptides: "NAD+ · MOTS-c · Epitalon", from: "$299/mo" },
-  ],
-  him: [
-    { num: "01", name: "Strength", peptides: "CJC-1295 · Ipamorelin", from: "$279/mo" },
-    { num: "02", name: "Metabolic", peptides: "Tirzepatide · Semaglutide", from: "$249/mo" },
-    { num: "03", name: "Longevity", peptides: "NAD+ · MOTS-c · Sermorelin", from: "$299/mo" },
-  ],
-};
+> = { her: peekFor("her"), him: peekFor("him") };
 
 interface GateCardProps {
   side: "her" | "him";
@@ -303,7 +313,8 @@ function GateCard({
       /* Native <button> gives us Enter/Space activation + focus for free; the
          focus-visible ring uses the site-wide per-world cobalt token idiom,
          ring-inset so it stays visible on an edge-to-edge panel. */
-      className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-inset"
+      /* ceramic ring — the cobalt one disappeared against the photography */
+      className="focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--nx-ceramic)] focus-visible:ring-inset"
       tabIndex={chosen ? -1 : 0}
       disabled={chosen !== null}
       onClick={onClick}
@@ -348,6 +359,8 @@ function GateCard({
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            /* keep faces in the upper third through the half→full recrop */
+            objectPosition: "50% 22%",
             display: "block",
           }}
         />
@@ -368,6 +381,16 @@ function GateCard({
             : "linear-gradient(to top, rgba(21, 24, 28,0.45) 0%, rgba(21, 24, 28,0.15) 55%, transparent 100%)",
         }}
         transition={{ duration: 0.5 }}
+      />
+      {/* Top scrim — the top-bar tagline and nav links sat on bare photography */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(to bottom, rgba(21, 24, 28,0.5) 0%, rgba(21, 24, 28,0.18) 12%, transparent 26%)",
+          pointerEvents: "none",
+        }}
       />
 
       {/* World-tint wash — orchid for her, azure for him (per-world var, soft-light
@@ -576,14 +599,15 @@ function GateCard({
           {eyebrow}
         </p>
 
-        {/* Main label */}
+        {/* Main label — the site's single biggest display moment carries the
+            display serif, matching every other hero on the site */}
         <p
           style={{
-            fontFamily: F,
-            
-            fontWeight: 400,
+            fontFamily: S,
+            fontWeight: 500,
             fontSize: "clamp(3.5rem, 6vw, 6rem)",
             lineHeight: 1.0,
+            letterSpacing: "-0.015em",
             color: "var(--nx-ceramic)",
             marginBottom: "20px",
           }}
@@ -639,7 +663,9 @@ function GateCard({
             display: none !important;
           }
           [data-testid="${testId}"] .gate-card-top-chips {
-            top: 92px !important;
+            /* clear the stacked top bar (logo + tagline + nav links) — at
+               92px the chip landed directly on the link row */
+            top: 150px !important;
             right: 16px !important;
             left: auto !important;
             padding: 6px 10px !important;

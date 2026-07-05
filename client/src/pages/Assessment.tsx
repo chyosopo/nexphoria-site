@@ -590,7 +590,7 @@ export default function Assessment() {
           </div>
 
           {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-          <section className="nx-container max-w-screen-xl" style={{ padding: "clamp(1.6rem,3vw,2.4rem) 0" }}>
+          <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(1.6rem,3vw,2.4rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)" }}>
             <Reveal>
               <CredentialRow testid="assessment-credential-strip" />
             </Reveal>

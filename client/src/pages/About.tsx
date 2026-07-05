@@ -351,7 +351,7 @@ export default function About() {
       </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ padding: "clamp(2rem,3.4vw,2.8rem) 0" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
         <Reveal>
           <TrustStrip testid="about-trust-strip" />
         </Reveal>

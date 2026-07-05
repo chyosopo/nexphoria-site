@@ -382,7 +382,7 @@ export default function BuildYourStack() {
         </section>
 
         {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-        <section className="nx-container" style={{ padding: "0 0 clamp(2rem,3.4vw,2.8rem)" }}>
+        <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
           <Reveal>
             <TrustStrip testid="builder-trust-strip" />
           </Reveal>

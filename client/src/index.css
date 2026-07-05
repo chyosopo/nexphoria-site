@@ -1871,7 +1871,8 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 .nx-faq-plus::before, .nx-faq-plus::after { content: ''; position: absolute; background: var(--nx-cobalt); }
 .nx-faq-plus::before { top: 10px; left: 0; right: 0; height: 2px; }
 .nx-faq-plus::after { left: 10px; top: 0; bottom: 0; width: 2px; transition: opacity var(--nx-dur-2) var(--nx-ease); }
-.nx-faq-item[open] > summary .nx-faq-plus { transform: rotate(90deg); }
+/* open = minus: fade the vertical stroke only. (The old rotate(90deg) turned
+   the remaining horizontal stroke vertical — the icon read as "|".) */
 .nx-faq-item[open] > summary .nx-faq-plus::after { opacity: 0; }
 .nx-faq-a { font-family: 'General Sans', system-ui, sans-serif; font-size: 15.5px; line-height: 1.72; color: var(--nx-fg-graphite); max-width: 70ch; padding: 0 2px clamp(22px, 2.6vw, 28px); margin-top: -6px; }
 @keyframes nxFaqIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }

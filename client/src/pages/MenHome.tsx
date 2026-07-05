@@ -9,7 +9,7 @@ export default function MenHome() {
   useSeo({
     title: "Nexphoria for Men — Physician-Prescribed Peptide Protocols",
     description:
-      "Seventy-six biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for men, measured first.",
+      "Ninety-nine biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for men, measured first.",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria for Men", description: "Physician-prescribed peptide protocols for men — measured, prescribed, retested.", path: "/men" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Men", path: "/men" }]),
@@ -28,7 +28,7 @@ export default function MenHome() {
             Performance is a number. <em style={{ color: "var(--nx-cobalt)" }}>We measure it first.</em>
           </>
         ),
-        sub: "Seventy-six biomarkers, a licensed physician who reads them, and protocols compounded in state-licensed 503A pharmacies — adjusted against your own bloodwork every ninety days.",
+        sub: "Ninety-nine biomarkers, a licensed physician who reads them, and protocols compounded in state-licensed 503A pharmacies — adjusted against your own bloodwork every ninety days.",
         categories: ["growth", "recovery", "metabolic", "longevity", "cognition", "sleep"],
         featured: ["bpc-157", "ipamorelin", "tesamorelin", "nad-plus"],
         nightEyebrow: "The standard",
