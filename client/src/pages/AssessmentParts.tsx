@@ -236,9 +236,9 @@ export function SampleProtocolPreview() {
           See a sample protocol
         </span>
         {open ? (
-          <Minus size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+          <Minus size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
         ) : (
-          <Plus size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+          <Plus size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
         )}
       </button>
       {open && (
@@ -356,7 +356,7 @@ export function IntakeSidebar() {
                     flexShrink: 0,
                   }}
                 >
-                  <Icon size={16} strokeWidth={1.75} />
+                  <Icon size={16} strokeWidth={1.75} aria-hidden="true" />
                 </span>
                 <div>
                   <p

@@ -316,7 +316,7 @@ function StepNav({
     <div className="assessment-stepnav">
       <div className="assessment-stepnav-inner">
         <button type="button" onClick={onBack} data-testid="assessment-back" className="nx-step-back">
-          <ArrowLeft size={15} /> {backLabel}
+          <ArrowLeft size={15} aria-hidden="true" /> {backLabel}
         </button>
         <button
           type="button"
@@ -327,7 +327,7 @@ function StepNav({
           data-testid="assessment-next"
           className="nx-step-next"
         >
-          {nextLabel} <ArrowRight size={15} />
+          {nextLabel} <ArrowRight size={15} aria-hidden="true" />
         </button>
       </div>
     </div>
@@ -725,9 +725,12 @@ export default function Assessment() {
                         Intake · Before we begin
                         <span style={{ display: "inline-block", width: "24px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                       </p>
-                      <h1 id="q-sex" ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", marginBottom: "0.75rem", outline: "none" }}>
+                      {/* h2, not h1 — the landing MxHeader owns the page's single
+                          h1; a second h1 here would break heading order (WCAG 1.3.1)
+                          and it stays consistent with the h2 questions on steps 1–7. */}
+                      <h2 id="q-sex" ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", marginBottom: "0.75rem", outline: "none" }}>
                         What is your biological sex?
-                      </h1>
+                      </h2>
                       <p
                         style={{
                           ...subCopy,
@@ -1124,6 +1127,7 @@ export default function Assessment() {
                             id="contact-state"
                             value={form.state}
                             onChange={(e) => setField("state", e.target.value)}
+                            autoComplete="address-level1"
                             aria-required="true"
                             data-testid="assessment-contact-state"
                             className="nx-input"
@@ -1316,7 +1320,7 @@ export default function Assessment() {
                           marginBottom: submitError ? "1rem" : "0.25rem",
                         }}
                       >
-                        <ShieldCheck size={18} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "1px" }} />
+                        <ShieldCheck size={18} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "1px" }} />
                         <p
                           style={{
                             fontFamily: F,
@@ -1371,7 +1375,7 @@ export default function Assessment() {
                           margin: "0 auto 2rem",
                         }}
                       >
-                        <Check size={30} style={{ color: "var(--nx-bg)" }} />
+                        <Check size={30} aria-hidden="true" style={{ color: "var(--nx-bg)" }} />
                       </div>
                       <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
                       <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
@@ -1460,7 +1464,7 @@ export default function Assessment() {
                           data-testid="assessment-view-protocols"
                           className="nx-cta-cobalt"
                         >
-                          View protocols <ArrowRight size={15} />
+                          View protocols <ArrowRight size={15} aria-hidden="true" />
                         </button>
                         <button
                           type="button"
