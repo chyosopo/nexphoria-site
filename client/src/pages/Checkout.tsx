@@ -11,7 +11,6 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
-import { stacks } from "@/data/stacks";
 import { isGLP1Excluded, getStack, GLP1_STATE_EXCLUSIONS } from "@/data/stacksCatalog";
 import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -550,7 +549,11 @@ export default function Checkout() {
 
               <ul className="list-none p-0 space-y-3 mb-4">
                 {lines.map((line) => {
-                  const stack = line.type === "stack" ? stacks.find((s) => s.slug === line.slug) : null;
+                  // Source the peptide count from the canonical catalog (getStack),
+                  // not the legacy `stacks` module — the two drifted (legacy Wolverine
+                  // lists 3, the real stack page shows 2), so checkout was contradicting
+                  // the page the buyer just came from.
+                  const stack = line.type === "stack" ? getStack(line.slug) : null;
                   return (
                     <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <div className="flex items-start justify-between gap-3">

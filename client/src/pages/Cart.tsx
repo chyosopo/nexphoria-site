@@ -211,8 +211,10 @@ export default function Cart() {
                             >
                               <button
                                 onClick={() => updateQty(line.slug, line.type, line.qty - 1)}
-                                className="inline-flex items-center justify-center px-3 hover:bg-black/5 transition-colors"
+                                disabled={line.qty <= 1}
+                                className="inline-flex items-center justify-center px-3 hover:bg-black/5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
                                 aria-label="Decrease quantity"
+                                title={line.qty <= 1 ? "Use Remove to delete this item" : undefined}
                                 data-testid={`button-qty-decrease-page-${line.type}-${line.slug}`}
                                 style={{ color: "var(--nx-fg)", minHeight: 44, minWidth: 40 }}
                               >
