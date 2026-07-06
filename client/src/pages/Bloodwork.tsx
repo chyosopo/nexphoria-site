@@ -645,7 +645,7 @@ function PanelComparison() {
       title="Not all bloodwork is the same."
       lead="A once-a-year physical and a mail-order kit both stop at a number. This panel exists to change a prescription — read against optimal ranges, by a physician, and retested until the trend proves it."
       columns={[
-        { label: "The Nexphoria panel", sub: "Included with every protocol", highlight: true },
+        { label: "The Nexphoria panel", sub: "Included with every protocol", highlight: true, badge: "Nexphoria" },
         { label: "A standard annual physical", sub: "Once-a-year checkup" },
         { label: "A direct-to-consumer kit", sub: "Mail-order finger-prick" },
       ]}

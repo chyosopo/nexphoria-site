@@ -861,7 +861,7 @@ export default function Science() {
         title="Not all peptides are the same."
         lead="The same molecule name sits behind three very different things. Only one is a prescription — made in a licensed pharmacy, tested before it ships, and dosed to your bloodwork."
         columns={[
-          { label: "Nexphoria", sub: "Physician-prescribed, 503A-compounded", highlight: true },
+          { label: "Nexphoria", sub: "Physician-prescribed, 503A-compounded", highlight: true, badge: "Nexphoria" },
           { label: "Research-chemical vendors", sub: "“Not for human use” peptides" },
           { label: "OTC “peptide” supplements", sub: "Pills, creams, nasal sprays" },
         ]}

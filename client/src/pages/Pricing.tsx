@@ -17,7 +17,8 @@ import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp 
 import { F, FONT } from "@/lib/typography";
 import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
-import { FLAGSHIP_STACKS, getStack } from "@/data/stacksCatalog";
+import { FLAGSHIP_STACKS, getStack, PANELS, usd } from "@/data/stacksCatalog";
+import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 
 /* ── Catalog-derived pricing — single source of truth is the pricing engine
    (CADENCE_DISCOUNTS / priceAtCadence) + the solo & stack catalogs. No dollar
@@ -400,6 +401,88 @@ const PRICING_FAQ_ITEMS = [
   },
 ];
 
+/* Panel-tier depth matrix — how far the included labs go at each tier.
+   Price / free-with / retest bind to PANELS (single source of truth); the
+   marker-group rows summarize each tier's cumulative `adds`. */
+function PanelTierComparison() {
+  const basic = PANELS.find((p) => p.tier === "Basic")!;
+  const full = PANELS.find((p) => p.tier === "Full")!;
+  const elite = PANELS.find((p) => p.tier === "Elite")!;
+  return (
+    <ComparisonMatrix
+      testid="pricing-panel-tiers"
+      background="var(--nx-bg-cream)"
+      eyebrow="Labs, by tier"
+      title="How deep the bloodwork goes."
+      lead="Every plan includes physician-reviewed labs. Which tier you draw depends on your protocol — the deeper the therapy reaches, the deeper we read. You never pay à la carte."
+      columns={[
+        { label: "Basic panel", sub: basic.summary },
+        { label: "Full panel", sub: full.summary, highlight: true, badge: "Most protocols" },
+        { label: "Elite panel", sub: elite.summary },
+      ]}
+      rows={[
+        {
+          label: "Standalone price",
+          cells: [
+            { text: usd(basic.price), tone: "plain" },
+            { text: usd(full.price), tone: "plain" },
+            { text: usd(elite.price), tone: "plain" },
+          ],
+        },
+        {
+          label: "Included free with",
+          cells: [
+            { text: basic.freeWith ?? "—", tone: "plain" },
+            { text: full.freeWith ?? "—", tone: "plain" },
+            { text: elite.freeWith ?? "—", tone: "plain" },
+          ],
+        },
+        {
+          label: "Safety screen — CBC, metabolic, lipids, HbA1c, hs-CRP, TSH",
+          cells: [
+            { text: "Included", tone: "pos" },
+            { text: "Included", tone: "pos" },
+            { text: "Included", tone: "pos" },
+          ],
+        },
+        {
+          label: "Hormonal + GH axis — testosterone, LH/FSH, IGF-1, full thyroid",
+          cells: [
+            { text: "Not in Basic", tone: "neg" },
+            { text: "Included", tone: "pos" },
+            { text: "Included", tone: "pos" },
+          ],
+        },
+        {
+          label: "Advanced cardiometabolic — ApoB, Lp(a), LDL-P, HOMA-IR, IL-6/TNF-α",
+          cells: [
+            { text: "Not in Basic", tone: "neg" },
+            { text: "Not in Full", tone: "neg" },
+            { text: "Included", tone: "pos" },
+          ],
+        },
+        {
+          label: "Epigenetic age testing",
+          cells: [
+            { text: "Not included", tone: "neg" },
+            { text: "Not included", tone: "neg" },
+            { text: "Optional", tone: "pos" },
+          ],
+        },
+        {
+          label: "Retest schedule",
+          cells: [
+            { text: basic.retest, tone: "plain" },
+            { text: full.retest, tone: "plain" },
+            { text: elite.retest, tone: "plain" },
+          ],
+        },
+      ]}
+      footnote="Prices shown are standalone rates. On 3- and 12-month plans the panel your protocol requires is bundled in — there is no separate lab bill."
+    />
+  );
+}
+
 export default function Pricing() {
   useSeo({
     title: "Peptide therapy pricing — transparent, all-in, no lab upsell",
@@ -603,6 +686,9 @@ export default function Pricing() {
           </BenefitTileGrid>
         </div>
       </section>
+
+      {/* ── Labs depth by tier — the panel ladder (bound to PANELS) ── */}
+      <PanelTierComparison />
 
       {/* ── Protocol pricing table ── */}
       <section

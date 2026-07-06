@@ -14,7 +14,7 @@ import { F } from "@/lib/typography";
 /* A cell is plain prose, or prose tagged with a verdict tone. "neg" is
    muted graphite + a minus — never crimson (crimson is blood-only). */
 export type MatrixCell = string | { text: string; tone?: "pos" | "neg" | "plain" };
-export type MatrixColumn = { label: string; sub?: string; highlight?: boolean };
+export type MatrixColumn = { label: string; sub?: string; highlight?: boolean; badge?: string };
 export type MatrixRow = { label: string; cells: MatrixCell[] };
 
 const NUM: React.CSSProperties = { fontVariantNumeric: "tabular-nums lining-nums" };
@@ -121,7 +121,7 @@ export function ComparisonMatrix({
                           : "1px solid var(--nx-border)",
                       }}
                     >
-                      {col.highlight && (
+                      {col.highlight && col.badge && (
                         <span
                           style={{
                             display: "inline-block",
@@ -133,7 +133,7 @@ export function ComparisonMatrix({
                             marginBottom: "0.4rem",
                           }}
                         >
-                          Nexphoria
+                          {col.badge}
                         </span>
                       )}
                       <span
