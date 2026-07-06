@@ -1478,6 +1478,29 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
   box-shadow: var(--nx-e-1); }
 @media (prefers-reduced-motion: reduce) { .nx-art-tile:hover { transform: none; } }
 
+/* ══ WEIGHTLESS GOAL GRID — compact, light, image-forward tiles (Chiya
+   2026-07-06: smaller + weightless, tiny image, screams the emotion). A
+   short square image, a hairline instead of a heavy shadow, a slim chip. ══ */
+.nx-goalgrid .nx-art-tile {
+  box-shadow: none;
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-r-md);
+  background: var(--nx-bg);
+}
+.nx-goalgrid .nx-art-tile img { aspect-ratio: 5 / 4; }
+.nx-goalgrid .nx-art-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--nx-e-1);
+  border-color: color-mix(in srgb, var(--nx-cobalt) 45%, var(--nx-border));
+}
+.nx-goalgrid .nx-art-chip {
+  left: 9px; right: 9px; bottom: 9px;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--nx-r-sm);
+  background: color-mix(in srgb, var(--nx-bg) 88%, transparent);
+}
+@media (prefers-reduced-motion: reduce) { .nx-goalgrid .nx-art-tile:hover { transform: none; } }
+
 /* ══ D4 GLOBAL MOTION FLOOR — one switch, total coverage ══ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

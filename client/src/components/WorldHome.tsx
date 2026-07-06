@@ -152,13 +152,16 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
         <div className="nx-container relative" style={{ paddingBottom: "clamp(2.6rem,5vw,4rem)", zIndex: 1 }}>
-          {/* Bento: the first goal is the editorial anchor (2×2 on lg+) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
+          {/* Weightless goal grid: uniform compact tiles, tiny square image,
+              emotion-forward. No giant feature tile — every goal reads equal
+              and scannable (Chiya 2026-07-06: smaller, weightless, screams
+              the emotion). */}
+          <div className="nx-goalgrid grid grid-cols-2 lg:grid-cols-3" style={{ gap: 12 }}>
             {config.categories.map((cat, i) => (
-              <Reveal key={cat} delay={i * 60} className={i === 0 ? "nx-art-tile--feature-cell" : undefined}>
+              <Reveal key={cat} delay={i * 45}>
                 {/* Deep-link the GOAL, not the generic shelf (found by the
                     6.1 funnel gate): recovery lands on /goals/recovery. */}
-                <Link href={`/goals/${cat}`} className={i === 0 ? "nx-art-tile nx-art-tile--feature" : "nx-art-tile"} data-testid={`${world}-goal-${cat}`}>
+                <Link href={`/goals/${cat}`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
                   {config.tileArt[cat] && (
                     <img
                       src={config.tileArt[cat]}
