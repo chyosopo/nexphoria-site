@@ -274,6 +274,8 @@ export default function StackPage({ slug }: { slug: string }) {
             <BuyBox
               name={stack.name}
               category={stack.category}
+              slug={stack.slug}
+              addType="stack"
               tiers={tiers}
               selected={selected}
               onSelect={setSelected}

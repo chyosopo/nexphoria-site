@@ -244,6 +244,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <BuyBox
               name={solo.name}
               category={solo.category}
+              slug={solo.slug}
+              addType="peptide"
               tiers={tiers}
               selected={tier}
               onSelect={setTier}

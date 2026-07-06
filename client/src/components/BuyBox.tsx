@@ -10,6 +10,8 @@ import { usd } from "@/data/stacksCatalog";
 import { track } from "@/lib/analytics";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
+import { useCart } from "@/contexts/CartProvider";
+import type { CadenceKey } from "@/data/pricing";
 
 export interface BuyTier {
   key: string;
@@ -22,9 +24,20 @@ export interface BuyTier {
   includesPanel?: string;
 }
 
+/* Tier keys → cart cadence. Stacks use 1mo/3mo/12mo (+fixed), solos m1/m3/m12.
+   "fixed" is physician-defined and can't be carted — it keeps the intake CTA. */
+const TIER_TO_CADENCE: Record<string, CadenceKey | undefined> = {
+  "1mo": "1mo", m1: "1mo",
+  "3mo": "3mo", m3: "3mo",
+  "12mo": "12mo", m12: "12mo",
+};
+
 export interface BuyBoxProps {
   name: string;
   category: string;
+  /** cart identity — which product this box sells */
+  slug: string;
+  addType: "stack" | "peptide";
   tiers?: BuyTier[];
   selected?: string;
   onSelect?: (key: string) => void;
@@ -49,8 +62,20 @@ const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }
 );
 
 export function BuyBox(props: BuyBoxProps) {
-  const { name, category, tiers, selected, onSelect, gated, gatedStates, consultPriced, ctaTestId } = props;
+  const { name, category, slug, addType, tiers, selected, onSelect, gated, gatedStates, consultPriced, ctaTestId } = props;
   const active = tiers?.find((t) => t.key === selected) ?? tiers?.[0];
+  const { addStack, addPeptide } = useCart();
+  const cadence = active ? TIER_TO_CADENCE[active.key] : undefined;
+
+  // The bug this fixes: the cadence selector chose a price the visitor could
+  // never act on — the only button routed to the assessment. Sellable tiers
+  // now really add to the protocol (cart) at the selected cadence.
+  function handleAdd() {
+    if (!cadence) return;
+    track("add_to_cart", { source: "buybox", slug, type: addType, cadence });
+    if (addType === "stack") addStack(slug, { cadence });
+    else addPeptide(slug, { cadence });
+  }
 
   return (
     <>
@@ -146,8 +171,27 @@ export function BuyBox(props: BuyBoxProps) {
               </p>
             )}
             <div style={{ marginTop: "1rem" }}>
-              <CTA testId={ctaTestId}>Start your assessment</CTA>
+              {cadence ? (
+                <button
+                  type="button"
+                  onClick={handleAdd}
+                  data-testid={ctaTestId}
+                  className="nx-cta-cobalt"
+                  style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: "var(--nx-t-base)", padding: "14px 26px", border: "none", cursor: "pointer" }}
+                >
+                  Add to protocol — {active ? usd(active.amount) : ""}{active?.per}
+                </button>
+              ) : (
+                <CTA testId={ctaTestId}>Start your assessment</CTA>
+              )}
             </div>
+            {cadence && (
+              <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
+                <Link href="/assessment" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                  Not sure? Start your assessment →
+                </Link>
+              </div>
+            )}
           </>
         )}
         <PrescribedPromise centered testid="buybox-promise" style={{ marginTop: "0.75rem", justifyContent: "center" }} />
@@ -187,14 +231,26 @@ export function BuyBox(props: BuyBoxProps) {
             )}
           </p>
         </div>
-        <Link
-          href="/assessment"
-          data-testid={`${ctaTestId}-bar`}
-          className="nx-cta-cobalt"
-          style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}
-        >
-          {gated ? "Check eligibility" : "Start your assessment"}
-        </Link>
+        {cadence && !gated && !consultPriced ? (
+          <button
+            type="button"
+            onClick={handleAdd}
+            data-testid={`${ctaTestId}-bar`}
+            className="nx-cta-cobalt"
+            style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap", border: "none", cursor: "pointer" }}
+          >
+            Add to protocol
+          </button>
+        ) : (
+          <Link
+            href="/assessment"
+            data-testid={`${ctaTestId}-bar`}
+            className="nx-cta-cobalt"
+            style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}
+          >
+            {gated ? "Check eligibility" : "Start your assessment"}
+          </Link>
+        )}
         </div>
       </div>
       {/* spacer so the fixed bar never covers the footer’s last line on mobile */}
