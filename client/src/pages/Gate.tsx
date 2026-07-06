@@ -9,6 +9,7 @@ const gateHer = "img/img_8742acc94d7e.webp";
 const gateHim = "img/img_84799b6e21dc.webp";
 import { Logo } from "@/components/Logo";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
+import { track } from "@/lib/analytics";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { F, S } from "@/lib/typography";
 
@@ -35,6 +36,7 @@ export default function Gate() {
   const handleChoose = (side: "her" | "him") => {
     if (isAnimating.current || chosen) return;
     isAnimating.current = true;
+    track("world_selected", { world: side === "her" ? "women" : "men", source: "gate" });
     setChosen(side);
     const delay = reducedMotion ? 300 : 950;
     setTimeout(() => {

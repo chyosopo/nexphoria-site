@@ -2,6 +2,7 @@
 function R({ to }: { to: string }) { const [, __n] = __uL(); useEffect(() => { __n(to, { replace: true }); }, []); return null; }
 import { useEffect } from "react";
 import { useLocation as __uL } from "wouter";
+import { track } from "@/lib/analytics";
 import { Suspense, lazy } from "react";
 import { RouteErrorBoundary } from "@/components/RouteErrorBoundary";
 import { Switch, Route, Router } from "wouter";
@@ -55,6 +56,11 @@ const PrescribingPolicy = lazy(() => import("@/pages/legal/PrescribingPolicy"));
 const StateAvailability = lazy(() => import("@/pages/legal/StateAvailability"));
 
 function AppRouter() {
+  // SPA route changes emit no navigation to analytics on their own — fire a
+  // page_view on every path change so traffic, entry pages, and funnel steps
+  // become measurable the moment a vendor is wired.
+  const [__loc] = __uL();
+  useEffect(() => { track("page_view", { path: __loc }); }, [__loc]);
   return (
     <RouteErrorBoundary>
     <Suspense fallback={<LoadingScreen />}>
