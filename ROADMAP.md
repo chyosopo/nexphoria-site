@@ -115,12 +115,23 @@ what to do."
 
 ## PHASE 4 — Emotion pass (copy as story beats)
 
-- [ ] **4.1** Rewrite key-page copy to the beat structure: feeling →
+- [x] **4.1** (done 2026-07-05) Rewrite key-page copy to the beat structure: feeling →
   possibility → proof → path. Bank voice, but warm. No feature lists
-  above the fold.
-- [ ] **4.2** Each goal gets its 3-word feeling line (e.g. Recovery:
+  above the fold. Shipped: men hero "The strongest version of you is
+  measurable.", women hero "How you want to feel has a biology." — both
+  subs are narrative sentences (the old subs were literal feature
+  lists); HowItWorks sub reframed around the visitor's skepticism.
+  FrontDoor already carried the structure from 1.2; Bloodwork's hero
+  already led with possibility. Deeper per-section copy rides page by
+  page with 7.1's persona walks.
+- [x] **4.2** (done 2026-07-05) Each goal gets its 3-word feeling line (e.g. Recovery:
   "Train like it never happened.") used consistently from tile → PDP →
-  assessment.
+  assessment. Shipped: CATEGORY_FEELING in @/data/peptides (single
+  source, 8 goals) → front-door goal tiles, /goals hero lead line,
+  catalog shelf headers, and assessment goal tiles (GOAL_TILE_CONFIG
+  feeling field, reusing CATEGORY_FEELING where 1:1). PDPs carry the
+  finer-grained per-peptide outcome lines from 3.2. Verified on all
+  four surfaces (qa40-*).
 
 ## PHASE 5 — Trust weave (at decision points, not in wallpaper)
 

@@ -930,6 +930,7 @@ export default function Assessment() {
                               goal={g}
                               displayName={cfg.displayName}
                               oneLiner={cfg.oneLiner}
+                              feeling={cfg.feeling}
                               category={cfg.category}
                               protocol={cfg.protocol}
                               peptides={cfg.peptides}

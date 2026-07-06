@@ -126,7 +126,7 @@ export default function HowItWorks() {
                 Seven steps. <em style={{ color: "var(--nx-cobalt)" }}>No improvisation.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1.1rem" }}>
-                Physician oversight, laboratory bloodwork, state-licensed compounding, and one dashboard — in a fixed order that does not bend. Here is exactly what happens, and why each step exists.
+                You shouldn't have to take a company's word for what happens to your body. So here is the entire path — from the first question to the first cold-chain shipment — in the fixed order it always runs, and why each step exists.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Start your assessment</Link>

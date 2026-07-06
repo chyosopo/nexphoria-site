@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
-import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
+import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, type PeptideCategory } from "@/data/peptides";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
@@ -175,7 +175,14 @@ export default function Category() {
                 {cfg.pre}{" "}
                 <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
               </h1>
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.4rem" }}>
+              {/* The goal's feeling line (ROADMAP 4.2) — same register as the
+                  front-door tile that brought the visitor here. */}
+              {CATEGORY_FEELING[slug] && (
+                <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(18px,1.6vw,22px)", color: "var(--nx-cobalt)", marginTop: "1.1rem" }} data-testid="cat-feeling">
+                  {CATEGORY_FEELING[slug]}
+                </p>
+              )}
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1rem" }}>
                 {cfg.sub}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">

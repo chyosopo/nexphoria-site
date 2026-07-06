@@ -83,6 +83,20 @@ export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
   "sexual-health": "Sexual Health",
 };
 
+/* The feeling line of each goal (ROADMAP 4.2) — the emotional register, used
+   consistently on goal tiles, category heroes, catalog shelves, and the
+   assessment. Warm, bank-calm, and inside the claims the catalog supports. */
+export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
+  recovery: "Train like it never happened.",
+  skin: "Meet your skin again.",
+  cognition: "Clear head, steady mood.",
+  sleep: "Wake up actually rested.",
+  growth: "Strength, with receipts.",
+  longevity: "Age on your terms.",
+  metabolic: "Appetite, finally quiet.",
+  "sexual-health": "Desire, addressed directly.",
+};
+
 const RAW_PEPTIDES: Peptide[] = [
   {
     slug: "bpc-157",

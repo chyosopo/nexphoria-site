@@ -14,12 +14,14 @@ import * as React from "react";
 import { useRef, useState, useEffect } from "react";
 import { VialArt, categoryToTone, type Tone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
+import { CATEGORY_FEELING } from "@/data/peptides";
 import { Check } from "lucide-react";
 
 export interface GoalVialTileProps {
   goal: string;                 // the raw GOALS[] string used as form.goal
   displayName: string;          // rendered on the tile — can be a shorter label
   oneLiner: string;             // front-face qualifier under the goal name
+  feeling?: string;             // the goal's feeling line (ROADMAP 4.2) — shown on the front face when present
   category: string;             // maps to Tone via categoryToTone()
   protocol: string;             // e.g. "Metabolic Protocol (GLP-1 Agonist)"
   peptides: string;             // e.g. "Tirzepatide · Retatrutide"
@@ -53,6 +55,7 @@ export function GoalVialTile({
   goal,
   displayName,
   oneLiner,
+  feeling,
   category,
   protocol,
   peptides,
@@ -238,15 +241,16 @@ export function GoalVialTile({
             </p>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "12.5px",
+                fontFamily: feeling ? "'Fraunces', Georgia, serif" : "'General Sans', system-ui, sans-serif",
+                fontStyle: feeling ? "italic" : undefined,
+                fontSize: feeling ? "13.5px" : "12.5px",
                 lineHeight: 1.4,
                 color: ink,
-                opacity: 0.72,
+                opacity: 0.78,
                 margin: 0,
               }}
             >
-              {oneLiner}
+              {feeling ?? oneLiner}
             </p>
           </div>
         </div>
@@ -357,6 +361,8 @@ export const GOAL_TILE_CONFIG: Record<
   {
     displayName: string;
     oneLiner: string;
+    /** the goal's feeling line (ROADMAP 4.2) — reuses CATEGORY_FEELING where the goal maps 1:1 */
+    feeling: string;
     category: string;
     protocol: string;
     peptides: string;
@@ -366,6 +372,7 @@ export const GOAL_TILE_CONFIG: Record<
 > = {
   "Metabolic health & body composition": {
     displayName: "Metabolic & body composition",
+    feeling: CATEGORY_FEELING.metabolic,
     oneLiner: "GLP-1 agonists for fat loss and glycemic control.",
     category: "metabolic",
     protocol: "Metabolic Protocol (GLP-1 Agonist)",
@@ -375,6 +382,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Strength & performance": {
     displayName: "Strength & performance",
+    feeling: CATEGORY_FEELING.growth,
     oneLiner: "Growth hormone pulse for lean mass and recovery.",
     category: "growth",
     protocol: "Performance Protocol (CJC-1295 + Ipamorelin)",
@@ -384,6 +392,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Longevity & healthy aging": {
     displayName: "Longevity & aging",
+    feeling: CATEGORY_FEELING.longevity,
     oneLiner: "NAD+ restoration and senescence signaling.",
     category: "longevity",
     protocol: "Longevity Protocol (NAD+ / Epitalon)",
@@ -393,6 +402,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Cognitive function": {
     displayName: "Cognitive function",
+    feeling: CATEGORY_FEELING.cognition,
     oneLiner: "Nootropic peptides for focus, memory, and mood.",
     category: "cognition",
     protocol: "Cognitive Protocol (Selank / Semax)",
@@ -402,6 +412,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Skin & recovery": {
     displayName: "Skin & recovery",
+    feeling: "Repair, inside and out.",
     oneLiner: "Tissue repair and dermal remodeling stack.",
     category: "recovery",
     protocol: "Repair Protocol (BPC-157 / GHK-Cu)",
@@ -411,6 +422,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Hormonal optimization": {
     displayName: "Hormonal optimization",
+    feeling: "Your own axis, restarted.",
     oneLiner: "HPG-axis restart — endogenous testosterone preservation.",
     category: "growth",
     protocol: "HPG-Axis Protocol (Enclomiphene)",
@@ -420,6 +432,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Other / not sure yet": {
     displayName: "Not sure yet",
+    feeling: "Start where you are.",
     oneLiner: "A physician will help you triage after labs return.",
     category: "cognition",
     protocol: "Physician-Guided Match",

@@ -25,12 +25,14 @@ export default function WomenHome() {
         heroArt: OUTCOME_HERO.women,
         vialArt: "img/img_379a8da097c1.webp",
         eyebrow: "Nexphoria for Women",
+        // Beat structure (ROADMAP 4.1): feeling → possibility → proof → path.
+        // The sub is a narrative sentence, never a feature list.
         h1: (
           <>
-            Your biology, read properly. <em style={{ color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>Then treated.</em>
+            How you want to feel <em style={{ color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>has a biology.</em>
           </>
         ),
-        sub: "Ninety-nine biomarkers, a licensed physician who reads them against your history, and protocols compounded for you in state-licensed 503A pharmacies — reviewed against your own results every ninety days.",
+        sub: "Begin with the change you want — skin that repairs, sleep that restores, energy that holds. A physician reads your labs against your history, prescribes only what your results support, and re-reads the same markers every ninety days.",
         categories: ["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"],
         featured: ["ghk-cu", "bpc-157", "nad-plus", "epitalon"],
         nightEyebrow: "The standard",

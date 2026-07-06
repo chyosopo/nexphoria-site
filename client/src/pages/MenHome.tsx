@@ -24,12 +24,14 @@ export default function MenHome() {
         heroArt: OUTCOME_HERO.men,
         vialArt: "img/img_7dd6cd5b4581.webp",
         eyebrow: "Nexphoria for Men",
+        // Beat structure (ROADMAP 4.1): feeling → possibility → proof → path.
+        // The sub is a narrative sentence, never a feature list.
         h1: (
           <>
-            Performance is a number. <em style={{ color: "var(--nx-cobalt)" }}>We measure it first.</em>
+            The strongest version of you <em style={{ color: "var(--nx-cobalt)" }}>is measurable.</em>
           </>
         ),
-        sub: "Ninety-nine biomarkers, a licensed physician who reads them, and protocols compounded in state-licensed 503A pharmacies — adjusted against your own bloodwork every ninety days.",
+        sub: "Start with what you want back — recovery, drive, deep sleep, lean strength. A licensed physician reads your bloodwork, prescribes only what your numbers justify, and re-draws the same markers every ninety days, so the change is proven, not assumed.",
         categories: ["growth", "recovery", "metabolic", "longevity", "cognition", "sleep"],
         featured: ["bpc-157", "ipamorelin", "tesamorelin", "nad-plus"],
         nightEyebrow: "The standard",

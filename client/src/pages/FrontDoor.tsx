@@ -12,7 +12,7 @@ import { useSeo, webPageJsonLd, orgJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
-import { CATEGORY_LABELS, peptides, type PeptideCategory } from "@/data/peptides";
+import { CATEGORY_LABELS, CATEGORY_FEELING, peptides, type PeptideCategory } from "@/data/peptides";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
@@ -33,14 +33,8 @@ const GOAL_TILES: { cat: PeptideCategory; img: string }[] = [
   { cat: "cognition", img: OUTCOME_CATEGORY.women.cognition! },
 ];
 
-const GOAL_JOBS: Partial<Record<PeptideCategory, string>> = {
-  recovery: "Tissue repair under real training load.",
-  growth: "GH pulse, lean mass, body composition.",
-  metabolic: "Appetite, weight, glucose control.",
-  skin: "Collagen, tone, structural skin health.",
-  longevity: "Cellular energy, immune function, healthspan.",
-  cognition: "Focus and mood, without stimulants.",
-};
+// Goal tiles speak the goal's feeling line (ROADMAP 4.2) — one register per
+// goal, shared with category heroes, catalog shelves, and the assessment.
 
 /* Lowest real non-gated protocol per-month — derived, never hardcoded. */
 const PROTOCOL_FROM = Math.min(
@@ -189,8 +183,8 @@ export default function FrontDoor() {
                     </h3>
                     <ArrowRight size={16} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
                   </div>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
-                    {GOAL_JOBS[cat]}
+                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-cobalt)", marginTop: "0.3rem" }}>
+                    {CATEGORY_FEELING[cat]}
                   </p>
                   <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.55rem" }}>
                     {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
