@@ -1888,9 +1888,11 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
 /* ── Gradient hero backdrop — soft, editorial, derives from world tokens ── */
 .nx-gradient-hero {
   position: relative;
+  /* Bone & Espresso: light heroes stay warm — --nx-acid is the electric
+     spark for DARK bands and washed the field cool here at 26%. */
   background:
-    radial-gradient(120% 82% at 12% -8%, color-mix(in srgb, var(--nx-accent) 12%, transparent) 0%, transparent 55%),
-    radial-gradient(96% 74% at 104% 4%, color-mix(in srgb, var(--nx-acid) 26%, transparent) 0%, transparent 52%),
+    radial-gradient(120% 82% at 12% -8%, color-mix(in srgb, var(--nx-accent) 7%, transparent) 0%, transparent 55%),
+    radial-gradient(96% 74% at 104% 4%, color-mix(in srgb, var(--nx-rust) 24%, transparent) 0%, transparent 52%),
     linear-gradient(180deg, color-mix(in srgb, var(--nx-ceramic) 55%, transparent) 0%, transparent 78%);
 }
 /* dramatic dark variant — for night bands that want depth, not a flat fill */
