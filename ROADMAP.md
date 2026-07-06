@@ -54,10 +54,16 @@ what to do."
   understand the offer in 5 seconds without scrolling.
   *DoD: 5-second test against the hero screenshot; mobile + desktop
   verified; gate remains at /gate for returning users.*
-- [ ] **1.3 Nav simplification.** One button (Start assessment), 4–5 links
+- [x] **1.3 Nav simplification.** (done 2026-07-05) One button (Start assessment), 4–5 links
   max (Goals, Protocols, Science, Pricing), cart icon. Everything else
-  into the footer.
-  *DoD: nav screenshot both worlds + mobile drawer.*
+  into the footer. Shipped: all four nav variants ≤5 links (Peptides ·
+  Protocols · Bloodwork · Science · Pricing; gate: For Women · For Men ·
+  Protocols · Bloodwork · Pricing); Journal/How It Works/Custom Protocol
+  reachable via footer; footer email unified to hello@nexphoria.com +
+  "Book a consultation" link.
+  *DoD: nav screenshot both worlds + mobile drawer.* ✅ qa35-nav-men.png
+  (desktop, 5 links + one button + cart), qa35-nav-drawer.png (women
+  mobile drawer, same 5 links).
 
 ## PHASE 2 — The guided flow (the product IS the path)
 

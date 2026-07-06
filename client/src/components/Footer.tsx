@@ -97,7 +97,8 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "Support center", href: "/contact" },
         { label: "FAQ", href: "/faq" },
-        { label: "care@nexphoria.com", href: "mailto:care@nexphoria.com" },
+        { label: "hello@nexphoria.com", href: "mailto:hello@nexphoria.com" },
+        { label: "Book a consultation", href: "/booking" },
         { label: "Member login", href: "/assessment" },
       ],
     },

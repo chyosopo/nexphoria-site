@@ -18,41 +18,39 @@ interface NavLink {
   mega?: boolean;
 }
 
+/* Nav law (ROADMAP 1.3): ONE button, ≤5 links, cart icon. Journal,
+   How-It-Works, Custom Protocol, Booking et al. live in the footer —
+   a first-time visitor gets goals, protocols, proof, and price. */
 const showcaseLinks: NavLink[] = [
   { label: "Peptides", href: "/peptides", mega: true },
-  { label: "Stacks", href: "/stacks" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
   { label: "Science", href: "/science" },
-  { label: "Journal", href: "/journal" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const womenLinks: NavLink[] = [
   { label: "Peptides", href: "/women/peptides", mega: true },
-  { label: "Stacks", href: "/stacks" },
-  { label: "Custom Protocol", href: "/assessment" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Journal", href: "/journal" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Science", href: "/science" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const menLinks: NavLink[] = [
   { label: "Peptides", href: "/men/peptides", mega: true },
-  { label: "Stacks", href: "/stacks" },
-  { label: "Custom Protocol", href: "/assessment" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Journal", href: "/journal" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Science", href: "/science" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const gateLinks: NavLink[] = [
   { label: "For Women", href: "/women" },
   { label: "For Men", href: "/men" },
-  { label: "Stacks", href: "/stacks" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Science", href: "/science" },
-  { label: "Journal", href: "/journal" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 /* Six category tiles for the Peptides mega-menu. Order + copy tuned for
