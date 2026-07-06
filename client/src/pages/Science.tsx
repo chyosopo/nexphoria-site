@@ -359,21 +359,21 @@ export default function Science() {
       </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "0" }}>
+      <section aria-label="Credentials and accreditations" className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "0" }}>
         <Reveal>
           <TrustStrip testid="science-trust-strip" />
         </Reveal>
       </section>
 
       {/* ── Evidence tier explainer ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-evidence-tiers">
+      <section aria-labelledby="sci-tiers-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
               Evidence grading
             </p>
-            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.15, marginBottom: "0.75rem" }}>
+            <h2 id="sci-tiers-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.15, marginBottom: "0.75rem" }}>
               We grade every claim. Honestly.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.65)", lineHeight: 1.65, maxWidth: "560px", marginBottom: "3rem" }}>
@@ -504,7 +504,7 @@ export default function Science() {
       </section>
 
       {/* ── Foundational explainer ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section aria-label="What a peptide is, and why compounding" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -541,7 +541,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial pull quote — between explainer and mechanisms ── */}
-      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section aria-label="Editorial note — restoring the body's signal" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <blockquote style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
@@ -557,14 +557,14 @@ export default function Science() {
       </section>
 
       {/* ── Mechanisms section — 6 cards ── */}
-      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-mechanisms">
+      <section aria-labelledby="sci-mechanisms-title" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-mechanisms">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               Mechanisms
             </p>
-            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 720 }}>
+            <h2 id="sci-mechanisms-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 720 }}>
               Six ways a peptide tells a cell what to do.
             </h2>
           </Reveal>
@@ -588,7 +588,7 @@ export default function Science() {
       </section>
 
       {/* ── How the science works — method band + biomarker chips ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-science-method">
+      <section aria-label="From mechanism to measured result" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-science-method">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <SectionHead
@@ -631,7 +631,7 @@ export default function Science() {
       </section>
 
       {/* ── Why measurement matters ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-measurement">
+      <section aria-labelledby="sci-measurement-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-measurement">
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -639,7 +639,7 @@ export default function Science() {
                 <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
                 Why it matters
               </p>
-              <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.12, marginBottom: "1.25rem" }}>
+              <h2 id="sci-measurement-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.12, marginBottom: "1.25rem" }}>
                 Science without labs is conjecture.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
@@ -672,7 +672,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial pull quote — Clarity Unlocks Power ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section aria-label="Editorial note — clarity unlocks power" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <blockquote style={{ maxWidth: "680px" }}>
@@ -701,6 +701,7 @@ export default function Science() {
                 <section
                   key={family.id}
                   id={`science-${family.id}`}
+                  aria-labelledby={`sci-family-${family.id}-title`}
                   ref={(el) => { sectionRefs.current[family.id] = el; }}
                   style={{ backgroundColor: bg, padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }}
                   data-testid={`science-family-${family.slug}`}
@@ -710,7 +711,7 @@ export default function Science() {
                       <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                       {family.category}
                     </p>
-                    <h2 style={{ fontFamily: F, fontWeight: 500,  fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
+                    <h2 id={`sci-family-${family.id}-title`} style={{ fontFamily: F, fontWeight: 500,  fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
                       {family.slug}
                     </h2>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.1em", color: "var(--nx-cobalt)", marginBottom: "2rem" }}>{family.compounds}</p>
@@ -741,13 +742,13 @@ export default function Science() {
             })}
 
             {/* ── Evidence table ── */}
-            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
+            <section aria-labelledby="sci-evidence-table-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                   Evidence at a glance
                 </p>
-                <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
+                <h2 id="sci-evidence-table-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
                   Where each family stands.
                 </h2>
                 <div style={{ width: "100%", overflowX: "auto" }}>
@@ -779,13 +780,13 @@ export default function Science() {
             </section>
 
             {/* ── Safety profile data table — AGENT-3 ── */}
-            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
+            <section aria-labelledby="sci-safety-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                   SAFETY PROFILE
                 </p>
-                <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1rem" }}>
+                <h2 id="sci-safety-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1rem" }}>
                   Side effects, contraindications, monitoring.
                 </h2>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: 620, marginBottom: "2rem" }}>
@@ -822,13 +823,13 @@ export default function Science() {
             </section>
 
             {/* ── References — accordion ── */}
-            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
+            <section aria-labelledby="sci-references-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                   REFERENCES · {references.length}
                 </p>
-                <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
+                <h2 id="sci-references-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
                   The primary literature.
                 </h2>
                 <div>
@@ -858,13 +859,13 @@ export default function Science() {
             </section>
 
             {/* ── Questions we're asked most — 8 FAQ ── */}
-            <section style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
+            <section aria-labelledby="sci-faq-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                   Science FAQ
                 </p>
-                <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
+                <h2 id="sci-faq-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
                   Evidence & safety.
                 </h2>
                 <div style={{ maxWidth: 820 }}>
@@ -877,14 +878,14 @@ export default function Science() {
       </div>
 
       {/* ── Work with our research team ── */}
-      <section style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-research-team">
+      <section aria-labelledby="sci-research-team-title" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-research-team">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
               <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               Research team
             </p>
-            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 640 }}>
+            <h2 id="sci-research-team-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2.5rem", maxWidth: 640 }}>
               The evidence base is a living document.
             </h2>
           </Reveal>
@@ -911,7 +912,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial closing image ── */}
-      <section style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}>
+      <section aria-labelledby="sci-closing-title" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container max-w-screen-xl nx-section-y md:grid-cols-2" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem", alignItems: "center" }}>
           <Reveal>
             <div style={{ borderRadius: "var(--nx-r-xs)", overflow: "hidden", aspectRatio: "4/3", backgroundColor: "var(--nx-bg-cream)" }}>
@@ -923,7 +924,7 @@ export default function Science() {
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               The standard
             </p>
-            <h2 style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
+            <h2 id="sci-closing-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.65, maxWidth: "480px" }}>
               Every Nexphoria protocol begins with a 38-biomarker partner-laboratory draw. Mechanism explains what a peptide
               does. Your bloodwork tells your physician what it will do for you specifically.
@@ -951,6 +952,7 @@ function ScienceHeroDark() {
   return (
     <section
       data-testid="science-hero-dark"
+      aria-labelledby="science-h1"
       style={{
         position: "relative",
         overflow: "hidden",
