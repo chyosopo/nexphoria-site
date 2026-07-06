@@ -756,7 +756,7 @@ export default function Assessment() {
       >
         {/* Polite, screen-reader-only announcements: draft restoral + what the
             current step still needs. No visual noise, no red-scare. */}
-        <p id="assessment-sr-status" className="sr-only" aria-live="polite" data-testid="assessment-sr-status">
+        <p id="assessment-sr-status" className="sr-only" aria-live="polite" aria-atomic="true" data-testid="assessment-sr-status">
           {draftRestored ? "Your saved progress was restored. " : ""}
           {inFlow ? stepRequirement(step, form) : ""}
         </p>
@@ -764,7 +764,7 @@ export default function Assessment() {
             announces the new position once per advance (never on keystrokes),
             giving screen-reader users the same "how far along" cue the visible
             progress bar gives sighted users. */}
-        <p className="sr-only" aria-live="polite" data-testid="assessment-sr-step">
+        <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="assessment-sr-step">
           {inFlow ? `Step ${step} of ${STEP_LABELS.length}, ${STEP_LABELS[Math.min(step - 1, STEP_LABELS.length - 1)]}.` : ""}
         </p>
 
@@ -997,7 +997,7 @@ export default function Assessment() {
                             lineHeight: 1.5,
                           }}
                         >
-                          We’ll email your protocol match so you can pick up where you left off. Only about your intake · unsubscribe anytime.
+                          We’ll email your protocol match so you can return where you left off. We contact you only about your intake, and you can unsubscribe at any time.
                         </p>
                       </div>
                       <WhyWeAsk funnelStep={1} />
@@ -1532,7 +1532,7 @@ export default function Assessment() {
                       >
                         {recStack
                           ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
-                          : "We'll email you the next step."}
+                          : "A licensed physician reviews your intake and emails you the next step."}
                       </p>
 
                       {/* ══ Recommendation peak (ROADMAP 2.2) — the named protocol
