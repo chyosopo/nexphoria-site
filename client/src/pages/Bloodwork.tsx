@@ -1,5 +1,6 @@
 /* JOB: sell the panel and the retest loop that gate every protocol. */
 import { useState, useMemo } from "react";
+import { useReducedMotion } from "framer-motion";
 import { useLocation } from "wouter";
 import { anchor } from "@/lib/anchors";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
@@ -36,6 +37,9 @@ const NUM: React.CSSProperties = {
    HERO — data-hero pattern, dark cobalt, benefit-led
    ══════════════════════════════════════════════════════════════ */
 function Hero() {
+  // WCAG 2.2.2 — the looping lab film is decorative motion; when the visitor
+  // prefers reduced motion, hold the poster frame instead of autoplaying.
+  const reduce = useReducedMotion();
   return (
     <section
       data-testid="bloodwork-hero"
@@ -261,7 +265,7 @@ function Hero() {
       {/* ── Cinematic lab — living proof band (Higgsfield kling3.0) ── */}
       <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
         <div className="relative overflow-hidden" style={{ borderRadius: "var(--nx-r-lg)", boxShadow: "var(--nx-e-4)" }} data-testid="bloodwork-video-band">
-          <video autoPlay muted loop playsInline
+          <video autoPlay={!reduce} muted loop={!reduce} playsInline
             src="img/img_6d36ae1989c8.mp4"
             poster="img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
