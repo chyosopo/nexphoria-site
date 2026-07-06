@@ -625,6 +625,7 @@ function LiveTrajectory() {
   return (
     <section
       data-testid="bloodwork-live"
+      aria-labelledby="bw-live-title"
       className="nx-section"
       style={{
         backgroundColor: "var(--nx-bg-dark)",
@@ -648,6 +649,7 @@ function LiveTrajectory() {
               Protocol results
             </p>
             <h2
+              id="bw-live-title"
               style={{
                 fontFamily: FONT,
                 fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
@@ -718,6 +720,7 @@ function HowItWorks() {
   return (
     <section
       data-testid="bloodwork-how"
+      aria-labelledby="bw-how-title"
       className="nx-section"
       style={{ backgroundColor: "var(--nx-bg)" }}
     >
@@ -739,6 +742,7 @@ function HowItWorks() {
               How it works
             </p>
             <h2
+              id="bw-how-title"
               style={{
                 fontFamily: FONT,
                 fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
@@ -826,6 +830,7 @@ function WhyItMatters() {
   ];
   return (
     <section
+      aria-label="Why bloodwork guides every protocol"
       className="nx-section"
       style={{ backgroundColor: "var(--nx-ceramic)" }}
     >
@@ -893,10 +898,10 @@ function PanelTiers() {
   const mostRequired = Object.entries(demand).sort((a, b) => b[1] - a[1])[0]?.[0];
 
   return (
-    <section id="tiers" className="nx-section" style={{ background: "var(--nx-bg-cream)" }}>
+    <section id="tiers" aria-labelledby="bw-tiers-title" className="nx-section" style={{ background: "var(--nx-bg-cream)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">Panel tiers</p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 id="bw-tiers-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           Nothing is prescribed <em style={{ fontStyle: "italic", color: "var(--nx-cobalt)" }}>before it's measured.</em>
         </h2>
         <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
@@ -1025,10 +1030,10 @@ export default function Bloodwork() {
 /* ══ SYSTEMS MOSAIC — twelve warm-tinted windows ══ */
 function SystemsMosaic() {
   return (
-    <section id="panel" className="nx-section" style={{ background: "var(--nx-bg)" }}>
+    <section id="panel" aria-labelledby="bw-panel-title" className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 id="bw-panel-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           One draw. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Eleven</em> windows into you.
         </h2>
         <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1071,10 +1076,10 @@ function ResultsDashboard() {
   const spark = [96, 91, 82, 72];
   const pts = spark.map((v, i) => `${20 + i * 86},${104 - (v - 60) * 1.6}`).join(" ");
   return (
-    <section id="results" className="nx-section" style={{ background: "var(--nx-fg)" }}>
+    <section id="results" aria-labelledby="bw-results-title" className="nx-section" style={{ background: "var(--nx-fg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow" style={{ color: "rgba(243, 245, 247,0.55)" }}>Your results</p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
+        <h2 id="bw-results-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
           Not a PDF. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>A plan.</em>
         </h2>
         <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
@@ -1131,12 +1136,12 @@ function OfferStack() {
     "Draw at 2,000+ partner locations, on your schedule",
   ];
   return (
-    <section id="offer" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
+    <section id="offer" aria-labelledby="bw-offer-title" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
       <div className="nx-container">
         <div className="nx-glass-card" style={{ padding: "clamp(2rem,4.5vw,3.4rem)" }}>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
-              <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
+              <h2 id="bw-offer-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
                 Everything your body has been <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>trying to tell you.</em>
               </h2>
               <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
@@ -1171,7 +1176,7 @@ function OfferStack() {
    chosen world, so the photography must follow the palette. */
 function ActionPlan({ world }: { world: "men" | "women" }) {
   return (
-    <section id="plan" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
+    <section id="plan" aria-labelledby="bw-plan-title" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
       <img src={world === "women" ? "img/img_484de9509e9f.webp" : "img/img_beb6d78848a2.webp"} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
       <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
@@ -1197,7 +1202,7 @@ function ActionPlan({ world }: { world: "men" | "women" }) {
           </div>
         </div>
         <div className="relative" style={{ marginTop: "4.5rem", zIndex: 2 }}>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
+          <h2 id="bw-plan-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
             Doctor-developed. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>You</em>-specific.
           </h2>
           <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "rgba(243, 245, 247,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
@@ -1213,7 +1218,7 @@ function ActionPlan({ world }: { world: "men" | "women" }) {
 /* ══ GLOWING BODY — what one draw can surface ══ */
 function GlowingBody({ world }: { world: "men" | "women" }) {
   return (
-    <section id="surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
+    <section id="surface" aria-label="What one blood draw can surface" className="relative overflow-hidden" style={{ background: "var(--nx-bg-dark)" }}>
       <div className="nx-container relative" style={{ paddingTop: "5.5rem", paddingBottom: "5rem" }}>
         <div className="relative mx-auto" style={{ maxWidth: 880 }}>
           <img src={world === "women" ? "img/img_f04642b4a1f1.webp" : "img/img_af00f66cbf20.webp"} alt="" aria-hidden className="w-full" style={{ display: "block", borderRadius: "var(--nx-r-lg)" }} loading="lazy" />
@@ -1260,7 +1265,7 @@ function MarkerWall() {
   const rows = [names.slice(0, 5), names.slice(9, 13), names.slice(18, 22), names.slice(27, 31), names.slice(36, 40), names.slice(45, 49), names.slice(54, 58)];
   const ops = [0.16, 0.3, 0.5, 0.75, 0.5, 0.3, 0.16];
   return (
-    <section className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
+    <section aria-label="The biomarkers your panel measures" className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
       <div aria-hidden style={{ textAlign: "center" }}>
         {rows.map((r, i) => (
           <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "var(--nx-cobalt)", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
