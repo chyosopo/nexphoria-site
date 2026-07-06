@@ -129,6 +129,16 @@ export default function Contact() {
               caption="Average reply: 2hrs"
               ctaLabel="Message us"
             />
+            {/* Booking's side-door entrance (ROADMAP 2.3): reachable from
+                contact + footer only — never from the primary nav. */}
+            <ColoredHeroTile
+              href="/booking"
+              tone="cobalt"
+              glyph={TileGlyphs.circle}
+              label={<>Prefer to talk first?<br /><span>schedule a consultation</span></>}
+              caption="Physician review decides every protocol"
+              ctaLabel="Book a consultation"
+            />
           </div>
         </div>
       </main>

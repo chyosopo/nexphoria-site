@@ -15,7 +15,6 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 // Pages — eagerly loaded (fast/common paths)
-import Home from "@/pages/Home";
 import WomenHome from "@/pages/WomenHome";
 import MenHome from "@/pages/MenHome";
 

@@ -9,11 +9,24 @@ import { PillBadge } from "@/components/PillBadge";
 import { TrustStrip } from "@/components/TrustStrip";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { F } from "@/lib/typography";
+import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { SOLO_FROM_LABEL } from "@/data/pricing";
 
 interface FAQItem {
   q: string;
   a: string;
 }
+
+/* Pricing facts derived from the catalog — never hardcoded (truth law).
+   FROM = lowest per-month across non-gated flagship cadences (12-month tier);
+   TOP = highest month-to-month flagship price. */
+const NON_GATED = FLAGSHIP_STACKS.filter((s) => !s.gated);
+const PROTOCOL_FROM = Math.min(
+  ...NON_GATED.flatMap((s) => s.cadences.map((c) => c.perMonth ?? c.total)),
+);
+const PROTOCOL_TOP = Math.max(
+  ...NON_GATED.flatMap((s) => s.cadences.filter((c) => c.key === "1mo").map((c) => c.perMonth ?? c.total)),
+);
 
 const categories: { label: string; items: FAQItem[] }[] = [
   {
@@ -67,7 +80,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "What does a Nexphoria protocol cost?",
-        a: "Protocols start from $249/month (single cognitive peptides) to $389/month (longevity stacks). 6-month plans save 10%. 12-month plans save 20% and are our best-value option. Your physician consult, lab interpretation, and cold-chain shipping are included — there are no hidden fees.",
+        a: `Single peptides start from ${SOLO_FROM_LABEL}/month. Flagship protocols run from ${usd(PROTOCOL_FROM)}/month on a 12-month plan to ${usd(PROTOCOL_TOP)}/month for the deepest longevity stack month-to-month. 3-month plans save 15%; 12-month plans save 30% and include your blood panel. Your physician consult, lab interpretation, and cold-chain shipping are included — there are no hidden fees.`,
       },
       {
         q: "Can I cancel after the first month?",

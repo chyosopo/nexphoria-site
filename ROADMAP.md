@@ -84,9 +84,12 @@ what to do."
   checkout" button lands on /checkout with the stack in the cart at the
   same $254/mo; gated GLP-1 goal → "Check eligibility" → /stacks/ignite;
   unmatched goals (hormonal, not-sure) keep the pricing path.
-- [ ] **2.3 Demote the side doors.** Build-your-stack and direct cart stay
+- [x] **2.3 Demote the side doors.** (done 2026-07-05) Build-your-stack and direct cart stay
   reachable (footer/catalog) but leave the primary nav. Booking page
-  links from FAQ/contact only.
+  links from FAQ/contact only. Verified: /stacks/build linked only from
+  ProtocolsIndex (catalog) + footer; /booking linked only from footer
+  contact column + a new quiet third door on /contact; nav carries no
+  side doors (1.3). Dead legacy Home import removed from App.tsx.
 
 ## PHASE 3 — Page-role contract (information architecture)
 
@@ -114,6 +117,15 @@ what to do."
   reduced to one per page.
 - [ ] **5.2** The "if prescribed / no charge unless prescribed" promise
   becomes a single reusable component at every price display.
+- [ ] **5.3 Pricing truth debt (found 2026-07-05).** Pricing.tsx and
+  lib/protocols.ts carry a legacy pricing scheme (6-month prepay, save
+  10/20/25%, "$249–$389/mo") that contradicts the real catalog
+  (stacksCatalog cadences: 3-mo save 15%, 12-mo save 30%, protocols from
+  $139/mo, solos from $149/mo). FAQ answer already re-derived from the
+  catalog; Pricing page's tier model (Solo/Curated/Custom + 6-month
+  plans) needs a full rebuild on FLAGSHIP_STACKS + pricing data. Also:
+  unrouted legacy pages/Home.tsx still contains the stale claims —
+  delete or rebuild. Flagship page → Atlas's lane, or next agent here.
 
 ## PHASE 6 — Speed to checkout
 
