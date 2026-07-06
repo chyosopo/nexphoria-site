@@ -418,7 +418,7 @@ export function CartDrawer() {
                           <li
                             key={s.slug}
                             className="flex items-start justify-between gap-3 p-3"
-                            style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: 10 }}
+                            style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)" }}
                             data-testid={`suggestion-${s.slug}`}
                           >
                             <div className="flex-1 min-w-0">
@@ -635,7 +635,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             fontFamily: FONT,
             fontSize: "0.8125rem",
             fontWeight: 600,
-            borderRadius: 10,
+            borderRadius: "var(--nx-r-sm)",
           }}
           data-testid="link-browse-stacks"
         >
@@ -651,7 +651,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             fontSize: "0.8125rem",
             fontWeight: 500,
             border: "1px solid var(--nx-border)",
-            borderRadius: 10,
+            borderRadius: "var(--nx-r-sm)",
           }}
           data-testid="link-browse-peptides"
         >
