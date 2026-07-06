@@ -71,7 +71,7 @@
     --nx-bg-dark:      #22384E;  /* footer / dark sections */
     --nx-fg:           #16283E;  /* primary ink text */
     --nx-fg-graphite:  #46607A;  /* secondary body copy */
-    --nx-fg-muted:     #5A7490;  /* tertiary / captions — darkened for WCAG AA on --nx-bg */
+    --nx-fg-muted:     #4C6486;  /* tertiary / captions — 5.2:1 on --nx-bg, clears WCAG AA */
     --nx-border:       #C9D5E0;  /* warm hairline borders */
     /* ACCENT: INK — the accent IS the typography weight + photography */
     --nx-cobalt:       #2E5877;  /* warm navy-teal — CTAs, eyebrows, links */

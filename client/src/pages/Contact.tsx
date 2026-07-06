@@ -127,7 +127,7 @@ export default function Contact() {
             badge={<PillBadge tone="acid">Get in touch</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Questions?</span><br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Questions?</span><br />
                 <span>We're listening.</span>
               </>
             }

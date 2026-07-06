@@ -507,7 +507,7 @@ export default function Pricing() {
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Transparent</span> pricing.<br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Transparent</span> pricing.<br />
                 <span>No hidden fees.</span>
               </>
             }

@@ -63,7 +63,7 @@ export default function Community() {
             badge={<PillBadge tone="acid">Community · launching soon</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Physician-led.</span><br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Physician-led.</span><br />
                 <span>Outcome-driven. Launching soon.</span>
               </>
             }

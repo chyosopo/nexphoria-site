@@ -226,7 +226,7 @@ export default function FAQPage() {
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Everything you wanted</span><br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Everything you wanted</span><br />
                 <span>to ask your doctor.</span>
               </>
             }

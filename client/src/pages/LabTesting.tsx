@@ -122,7 +122,7 @@ export default function LabTesting() {
             badge={<PillBadge tone="acid">Bloodwork &amp; biomarkers</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Test</span> before.<br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Test</span> before.<br />
                 <span>Verify</span> after.
               </>
             }
