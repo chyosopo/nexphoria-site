@@ -103,9 +103,15 @@ what to do."
   browser: science/physicians/assessment each show trust-bar=1,
   page-strips=0. Judgment-call section deletions beyond trust ride with
   the 4.1 copy rewrite, page by page.
-- [ ] **3.2 Goals before chemistry.** Catalog defaults to goal grouping;
+- [x] **3.2 Goals before chemistry.** (done 2026-07-05) Catalog defaults to goal grouping;
   compound names become the secondary line. PDP hero states the OUTCOME
-  first, molecule second.
+  first, molecule second. Shipped: `outcome` tagline on all 20 solos
+  (derived from each mechanism — no new claims); catalog default view
+  groups by the 7 goal shelves with outcome-titled cards (name · dose is
+  the second line; filter/search flattens); PDP hero = outcome headline,
+  "Name · Category" eyebrow, bolded name opening the mechanism line.
+  Verified: /peptides group headers + /peptides/bpc-157 "The healing
+  signal, systemwide." (qa39-*).
 
 ## PHASE 4 — Emotion pass (copy as story beats)
 

@@ -118,9 +118,15 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center", marginTop: "1rem" }}>
             <div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{solo.category}</p>
-              <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.02, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem" }}>{solo.name}</h1>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>{solo.mechanism}</p>
+              {/* Goals before chemistry (ROADMAP 3.2): the OUTCOME is the
+                  headline; the molecule identifies, it no longer leads. */}
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                {solo.name} · {solo.category}
+              </p>
+              <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.4vw,64px)", lineHeight: 1.05, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem", maxWidth: "18ch" }}>{solo.outcome}</h1>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
+                <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong> — {solo.mechanism}
+              </p>
               <div className="grid sm:grid-cols-2" style={{ gap: 10, maxWidth: 520, marginTop: "1.4rem" }}>
                 <div className="nx-stat-card" style={{ gap: 4 }}>
                   <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose</span>

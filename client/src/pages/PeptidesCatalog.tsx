@@ -69,6 +69,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       (!needle ||
         s.name.toLowerCase().includes(needle) ||
         s.category.toLowerCase().includes(needle) ||
+        s.outcome.toLowerCase().includes(needle) ||
         s.mechanism.toLowerCase().includes(needle)),
   );
 
@@ -163,12 +164,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             </button>
           </div>
         )}
-        <div className="nx-float-grid">
-          {shown.map((s, i) => {
-            // rotate through the category's frame pool by position WITHIN
-            // the category, so adjacent same-category cards never repeat
+        {/* Goals before chemistry (ROADMAP 3.2): the default view groups the
+            shelf by goal with the OUTCOME as each card's title; the compound
+            name is the identifying second line. Filter/search flattens. */}
+        {(() => {
+          const card = (s: (typeof shown)[number], nth: number, i: number) => {
             const pool = CAT_IMG[s.category] ?? [world === "women" ? OUTCOME_HERO.women : OUTCOME_HERO.men];
-            const nth = shown.slice(0, i).filter((p) => p.category === s.category).length;
             return (
             <Reveal key={s.slug} delay={i * 35}>
               <Link href={`${base}/peptides/${s.slug}`} className="nx-float-card" data-testid={`peptide-${s.slug}`}>
@@ -180,8 +181,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 </div>
                 <div className="nx-float-card__body">
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{s.category}</p>
-                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>{s.name}</h2>
-                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>{s.dose}</p>
+                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>{s.outcome}</h3>
+                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-graphite)", marginTop: "0.25rem" }}>
+                    <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>{s.name}</strong> · {s.dose}
+                  </p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
                     <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
                       {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "At consult"}
@@ -192,8 +195,33 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               </Link>
             </Reveal>
             );
-          })}
-        </div>
+          };
+          const grouped = filter === "All" && !needle;
+          if (!grouped) {
+            return (
+              <div className="nx-float-grid">
+                {shown.map((s, i) => card(s, shown.slice(0, i).filter((p) => p.category === s.category).length, i))}
+              </div>
+            );
+          }
+          return SOLO_CATEGORIES.map((cat) => {
+            const items = shown.filter((s) => s.category === cat);
+            if (items.length === 0) return null;
+            return (
+              <div key={cat} style={{ marginBottom: "clamp(2.4rem,4.5vw,3.6rem)" }}>
+                <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginBottom: "1.1rem", paddingBottom: "0.7rem", borderBottom: "1px solid var(--nx-border)", display: "flex", alignItems: "baseline", gap: "0.75rem" }}>
+                  {cat}
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                    {items.length} {items.length === 1 ? "peptide" : "peptides"}
+                  </span>
+                </h2>
+                <div className="nx-float-grid">
+                  {items.map((s, i) => card(s, i, i))}
+                </div>
+              </div>
+            );
+          });
+        })()}
       </section>
 
       {/* not sure which — route to the assessment */}
