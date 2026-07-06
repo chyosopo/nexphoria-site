@@ -97,6 +97,24 @@ export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
   "sexual-health": "Desire, addressed directly.",
 };
 
+/* Her world speaks its own register (Chiya 2026-07-06: the worlds must be
+   completely separate — custom emotional triggers per world). The base
+   CATEGORY_FEELING lines lean masculine-athletic; women's world overrides
+   them wherever it renders world-cast surfaces. */
+export const CATEGORY_FEELING_WOMEN: Partial<Record<PeptideCategory, string>> = {
+  recovery: "Strength that feels like you.",
+  metabolic: "Peace with your appetite.",
+  longevity: "Radiance, year after year.",
+  cognition: "Calm mind, bright focus.",
+  sleep: "Sleep like it's sacred.",
+  "sexual-health": "Desire, on your schedule.",
+};
+
+/** The feeling line, cast to a world. Men = base register; women override. */
+export function feelingFor(cat: PeptideCategory, world?: "men" | "women"): string {
+  return world === "women" ? (CATEGORY_FEELING_WOMEN[cat] ?? CATEGORY_FEELING[cat]) : CATEGORY_FEELING[cat];
+}
+
 /* Each goal's word-triad (ROADMAP 8.3) — three single-word beats shown as
    quiet chips on stack pages and goal heroes. Same register as the feeling
    lines; claims stay inside what the catalog supports. */

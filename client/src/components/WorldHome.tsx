@@ -7,7 +7,7 @@ import { Link } from "wouter";
 import { ArrowRight, Stethoscope, FlaskConical, ClipboardCheck, Activity } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, PeptideCategory } from "@/data/peptides";
+import { peptides, CATEGORY_LABELS, feelingFor, PeptideCategory } from "@/data/peptides";
 import { getStack, usd } from "@/data/stacksCatalog";
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { getPrice } from "@/data/pricing";
@@ -47,18 +47,6 @@ const HOME_FAQ = [
     a: `${PANEL_TOTAL_MARKERS} markers across eleven systems at baseline, including a twenty-one-factor biological-age composite — the same panel a physician would order to read your endocrine, metabolic, and cardiovascular picture properly.`,
   },
 ];
-
-/** One-line job description per category — what the shelf is for. */
-const CATEGORY_JOBS: Record<PeptideCategory, string> = {
-  growth: "GH pulse, lean mass, body composition.",
-  recovery: "Tissue repair under real training load.",
-  metabolic: "Appetite, weight, glucose control.",
-  longevity: "Cellular energy, immune function, healthspan.",
-  cognition: "Focus and mood, without stimulants.",
-  sleep: "Deep-sleep architecture, restored.",
-  skin: "Collagen, tone, structural skin health.",
-  "sexual-health": "Libido and arousal, centrally mediated.",
-};
 
 export interface WorldHomeConfig {
   world: "men" | "women";
@@ -106,7 +94,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
     ...config.categories.slice(0, 6).map((cat, i) => ({
       img: config.tileArt[cat] ?? config.heroArt ?? "",
       label: CATEGORY_LABELS[cat],
-      sub: CATEGORY_FEELING[cat],
+      sub: feelingFor(cat, world),
       href: `/goals/${cat}`,
       testid: `${world}-rail-${cat}`,
     })),
@@ -186,8 +174,11 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                       </h2>
                       <ArrowRight size={16} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
                     </div>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
-                      {CATEGORY_JOBS[cat]}
+                    {/* The world's OWN emotional register (Chiya: worlds fully
+                        separate) — feeling first; the functional job line
+                        lives one click deeper on the goal page. */}
+                    <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-cobalt)", marginTop: "0.3rem" }}>
+                      {feelingFor(cat, world)}
                     </p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.55rem" }}>
                       {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}

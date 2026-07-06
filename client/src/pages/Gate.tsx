@@ -146,6 +146,39 @@ export default function Gate() {
         />
       </div>
 
+      {/* ── Trust floor — the gate's quiet bottom line ── */}
+      {!chosen && (
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 50,
+            display: "flex",
+            justifyContent: "center",
+            padding: "0 16px calc(16px + env(safe-area-inset-bottom))",
+            pointerEvents: "none",
+          }}
+          data-testid="gate-trust-floor"
+        >
+          <p
+            style={{
+              fontFamily: F,
+              fontSize: "var(--nx-t-xs)",
+              fontWeight: 500,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "rgba(246, 249, 252,0.55)",
+              textAlign: "center",
+              lineHeight: 1.6,
+            }}
+          >
+            Physician-prescribed · 503A-compounded · No charge unless a physician prescribes
+          </p>
+        </div>
+      )}
+
       {/* ── Entry caption overlay (fades in after click) ── */}
       <AnimatePresence>
         {chosen && (
@@ -620,6 +653,24 @@ function GateCard({
           }}
         >
           {label}
+        </p>
+
+        {/* The world's own emotional line (Chiya: worlds fully separate) —
+            the same sentence that greets them on the other side of the door */}
+        <p
+          className="gate-card-strap"
+          style={{
+            fontFamily: S,
+            fontStyle: "italic",
+            fontWeight: 500,
+            fontSize: "clamp(1.05rem, 1.6vw, 1.4rem)",
+            lineHeight: 1.35,
+            color: "rgba(246, 249, 252,0.85)",
+            marginBottom: "22px",
+            maxWidth: "26ch",
+          }}
+        >
+          {side === "her" ? "How you want to feel has a biology." : "The strongest version of you is measurable."}
         </p>
 
         {/* Arrow button */}
