@@ -178,9 +178,9 @@
     --nx-fg-graphite:  #78646E;
     --nx-fg-muted:     #7A5F6A;  /* darkened for WCAG AA on orchid --nx-bg */
     --nx-border:       #E3DBDF;
-    --nx-cobalt:       #68354E;
-    --nx-cobalt-hover: #4F253A;
-    --nx-cobalt-soft:  #F3E8EC;
+    --nx-cobalt:       #A83E6A;  /* her accent — rose-orchid (Chiya: read as pink, not plum); 5.5:1 on --nx-bg, white text on it 6:1 for the filled CTA */
+    --nx-cobalt-hover: #7E2E4E;
+    --nx-cobalt-soft:  #F5E6EC;
     --nx-amber:        #AB5E7C;
     --nx-success:      #AA6784;
     --nx-warning:      #AB5E7C;
