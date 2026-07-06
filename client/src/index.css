@@ -1252,11 +1252,11 @@ body { overflow-x: clip; }
   aspect-ratio: 3 / 4;
   border-radius: var(--nx-r-lg);
   overflow: hidden;
-  border: 1px solid var(--nx-border);
+  border: none;
   box-shadow: var(--nx-e-2);
   transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
 }
-.nx-vtile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+.nx-vtile:hover { transform: translateY(-4px); box-shadow: var(--nx-e-3); }
 .nx-vtile:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
 .nx-vtile img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .nx-vtile-chip {
@@ -1455,22 +1455,27 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
    with a breathing frame, label set in the card below the image, and a
    quiet vertical lift on hover. Same DOM (<a.nx-art-tile><img/><div
    .nx-art-chip>), pure CSS regrade — every page using the class inherits. */
+/* Weightless vertical tiles (hims grammar, per Chiya 2026-07-06): tall
+   full-bleed photography, deep radius, NO hard border, a frosted glass chip
+   floating at the base, and a soft lift on hover. Same DOM everywhere
+   (<a.nx-art-tile><img/><div.nx-art-chip>) — pure CSS regrade. */
 .nx-art-tile { position: relative; display: flex; flex-direction: column; border-radius: var(--nx-r-lg); text-decoration: none;
+  overflow: hidden;
   background: var(--nx-ceramic);
-  border: 1px solid var(--nx-border);
-  padding: 10px 10px 0;
-  box-shadow: var(--nx-e-1);
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.35s ease; }
-.nx-art-tile img { position: static; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block;
-  border-radius: calc(var(--nx-r-lg) - 8px); }
-.nx-art-tile:hover { transform: translateY(-6px);
-  border-color: color-mix(in srgb, var(--nx-accent) 38%, var(--nx-border));
-  box-shadow: var(--nx-e-3); }
-.nx-art-chip { position: static; border-radius: 0; padding: 0.9rem 0.45rem 1rem;
-  background: transparent;
   border: none;
-  backdrop-filter: none; -webkit-backdrop-filter: none;
-  box-shadow: none; }
+  padding: 0;
+  box-shadow: var(--nx-e-2);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
+.nx-art-tile img { position: static; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+  border-radius: 0; }
+.nx-art-tile:hover { transform: translateY(-6px);
+  box-shadow: var(--nx-e-3); }
+.nx-art-chip { position: absolute; left: 12px; right: 12px; bottom: 12px;
+  border-radius: var(--nx-r-md); padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--nx-ceramic) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-fg) 6%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--nx-e-1); }
 @media (prefers-reduced-motion: reduce) { .nx-art-tile:hover { transform: none; } }
 
 /* ══ D4 GLOBAL MOTION FLOOR — one switch, total coverage ══ */
