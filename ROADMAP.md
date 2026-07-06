@@ -45,7 +45,7 @@ what to do."
   is right below). Audit every page: no viewport with two solid CTAs.
   *DoD: Playwright sweep counts solid CTAs per viewport section on all
   routes; screenshots reviewed; pushed.*
-- [ ] **1.2 New front door.** The bare her/him photo gate stops being the
+- [x] **1.2 New front door.** (done 2026-07-05) The bare her/him photo gate stops being the
   homepage. New single homepage: value proposition + emotional hero
   ("Prescription peptide protocols, built on your bloodwork.") → ONE CTA
   → gender/goal choice as a warm second section → 3-step how-it-works →

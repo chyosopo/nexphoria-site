@@ -16,11 +16,11 @@ export default function Gate() {
   useSeo({
     title: "Nexphoria — peptide therapy, physician-prescribed and lab-monitored",
     description: "Single peptides, physician-curated stacks, or a fully custom protocol. Every compound prescribed by a board-certified physician and compounded in a U.S. 503A pharmacy. Tell us your goals.",
-    path: "/",
+    path: "/gate",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Gateway",
       description: "Choose your path: single peptides, physician-curated stacks, or a custom protocol.",
-      path: "/",
+      path: "/gate",
     })],
   });
   const [, setLocation] = useLocation();

@@ -24,6 +24,7 @@ import NotFound from "@/pages/not-found";
 // Pages — lazy loaded (code-split)
 const Category = lazy(() => import("@/pages/Category"));
 const Booking = lazy(() => import("@/pages/Booking"));
+const FrontDoor = lazy(() => import("@/pages/FrontDoor"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
@@ -59,8 +60,10 @@ function AppRouter() {
     <RouteErrorBoundary>
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
-        {/* Home — new V3 landing (reference tiles + Bask cinematics) */}
-        <Route path="/" component={Gate} />
+        {/* Front door (ROADMAP 1.2) — value prop in 5 seconds; the old
+            her/him photo gate lives on at /gate for returning users */}
+        <Route path="/" component={FrontDoor} />
+        <Route path="/gate" component={Gate} />
 
         {/* Gender-neutral pharmacy shelf */}
         <Route path="/peptides">{() => <R to="/men/peptides" />}</Route>

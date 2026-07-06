@@ -73,3 +73,4 @@ img_f04642b4a1f1.webp  bloom:f04642b4-a1f1-4d0e-af6a-5f24d0c2c88a  glowing anato
 img_484de9509e9f.webp  bloom:484de950-9e9f-41b1-82d6-e94891e27c27  golden-hour window portrait (W) (Bloodwork ActionPlan, women world)
 img_329e054306f2.webp  bloom:329e0543-06f2-4e64-b6a2-0a50aa4fc982  woman at dawn desk with tablet, blush light (Assessment hero, women world)
 vial-lineup-hero.webp  bloom:a997eb8e-6aed-4971-9797-9bf62ee558ab  five unbranded frosted vials, porcelain light (replaces mislabeled dark lineup; old kept as .backup)
+img_82c3e3ceeecf.webp  bloom:82c3e3ce-eecf-41bd-a027-e689e76bcc1b  couple on coastal morning trail, golden light (front-door hero)

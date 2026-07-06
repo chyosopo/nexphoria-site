@@ -39,7 +39,7 @@ async function main() {
 
   // route → [module, props, path]
   const routes: [string, string, Record<string, any>][] = [
-    ["/",                "/src/pages/Home.tsx", {}],
+    ["/",                "/src/pages/FrontDoor.tsx", {}],
     ["/men",             "/src/pages/MenHome.tsx", {}],
     ["/women",           "/src/pages/WomenHome.tsx", {}],
     ["/stacks",          "/src/pages/ProtocolsIndex.tsx", {}],
