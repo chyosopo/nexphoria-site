@@ -222,10 +222,14 @@ const references = [
 
 /* ── Evidence + safety FAQ (8) ───────────────────────────────────────────── */
 const SCIENCE_FAQ = [
+  { q: "What is peptide therapy?", a: "Peptide therapy uses short chains of amino acids — typically 2 to 50 residues — to signal specific cellular functions including tissue repair, hormone secretion, metabolism, sleep regulation, and skin remodeling. Unlike hormone replacement therapy, most peptides instruct the body to optimize its own output rather than substituting exogenous hormones." },
+  { q: "What is the difference between GLP-1 peptides and GH secretagogues?", a: "GLP-1 agonists (tirzepatide, semaglutide) bind incretin receptors in the hypothalamus and gut to lower the body-weight set point and improve insulin response — primarily metabolic action. Growth hormone secretagogues (CJC-1295, Ipamorelin) stimulate pulsatile GH release from the pituitary, raising IGF-1 and driving lean-mass accretion and recovery — primarily anabolic and regenerative action." },
   { q: "How strong is the evidence behind these peptides?", a: "It varies by family, and we label it honestly. GLP-1 agonists and copper peptide (GHK-Cu) have established human evidence — Phase III trials or decades of dermatology data. GH secretagogues and cognitive peptides are emerging, with human pharmacology and clinical use but limited large Western RCTs. Tissue-repair and longevity compounds are largely investigational, with strong preclinical data and early human safety reports. The evidence table above shows the tier for each." },
+  { q: "What does the evidence tier system mean?", a: "Our tiers classify compounds by the depth of their clinical data. 'Established' means FDA approval or multiple Phase III RCTs. 'Emerging' means Phase II human data or robust Phase I safety data. 'Investigational' means strong preclinical data with limited controlled human trials. All tiers may be prescribed off-label when a physician judges the evidence-to-risk ratio appropriate." },
   { q: "Are these peptides FDA-approved?", a: "Some are. Tirzepatide and semaglutide are FDA-approved for chronic weight management; tesamorelin is approved for HIV-associated lipodystrophy. Most other peptides are prescribed off-label and prepared by licensed 503A compounding pharmacies under a valid prescription — the same regulatory framework used for compounded hormones and many ophthalmic drugs." },
   { q: "What does \"off-label\" actually mean here?", a: "Off-label prescribing means a licensed physician prescribes a medication for an indication, dose, or population not specified on the FDA label. It is legal, common, and a standard part of medical practice. Your physician weighs the evidence-to-risk ratio for your specific situation before prescribing." },
   { q: "Why compounded rather than commercially manufactured?", a: "Most peptides used in clinical practice are not sold as FDA-approved commercial drugs. 503A pharmacies compound patient-specific formulations under prescription, allowing customized dose and concentration. Every compound is sterile-prepared under USP-797 standards and batch-tested for identity, potency, and sterility before release." },
+  { q: "Is BPC-157 safe?", a: "BPC-157 has demonstrated a favorable safety profile in rodent studies and early human case reports, with no serious adverse events reported at standard therapeutic doses. It is not FDA-approved for human use and has not completed large randomized controlled trials. Our physicians weigh the preclinical evidence against individual patient risk factors before prescribing, and every patient is monitored with quarterly bloodwork." },
   { q: "What are the main safety considerations?", a: "Side effects are compound-specific. GLP-1 agonists commonly cause nausea during titration; GH secretagogues can cause transient water retention or tingling. The most important safety control is the gating: we initiate every protocol after a full blood panel and reassess at intervals, so dosing tracks your physiology rather than a population average. Your physician screens for contraindications before prescribing." },
   { q: "How do you measure whether a protocol is working?", a: "With bloodwork, not vibes. Each protocol defines markers tied to its mechanism — IGF-1 for GH secretagogues, HbA1c and fasting insulin for metabolic stacks, hsCRP for tissue repair. We draw a baseline before the first dose and at intervals, and your physician adjusts based on the trend." },
   { q: "Are the reported outcomes guaranteed?", a: "No. The outcome figures on this page summarize ranges reported in the literature and our internal data; they are not promises. Individual response depends on your baseline labs, adherence, dose, and lifestyle inputs. We track your specific markers precisely so we can tell early whether you're a responder." },
@@ -269,29 +273,6 @@ function tierColor(t: Tier): string {
   return t === "Established" ? "var(--nx-success)" : t === "Emerging" ? "var(--nx-amber)" : "var(--nx-fg-graphite)";
 }
 
-/* ── Science FAQ data — drives FAQPage JSON-LD ───────────────── */
-const SCIENCE_FAQ_ITEMS = [
-  {
-    q: "What is peptide therapy?",
-    a: "Peptide therapy uses short chains of amino acids — typically 2 to 50 residues — to signal specific cellular functions including tissue repair, hormone secretion, metabolism, sleep regulation, and skin remodeling. Unlike hormone replacement therapy, most peptides instruct the body to optimize its own output rather than substituting exogenous hormones.",
-  },
-  {
-    q: "What is the difference between GLP-1 peptides and GH secretagogues?",
-    a: "GLP-1 agonists (tirzepatide, semaglutide) bind incretin receptors in the hypothalamus and gut to lower the body-weight set point and improve insulin response — primarily metabolic action. Growth hormone secretagogues (CJC-1295, Ipamorelin) stimulate pulsatile GH release from the pituitary, raising IGF-1 and driving lean-mass accretion and recovery — primarily anabolic and regenerative action.",
-  },
-  {
-    q: "Is BPC-157 safe?",
-    a: "BPC-157 has demonstrated a favorable safety profile in rodent studies and early human case reports, with no serious adverse events reported at standard therapeutic doses. It is not FDA-approved for human use and has not completed large randomized controlled trials. Nexphoria physicians weigh the preclinical evidence against individual patient risk factors before prescribing, and all patients are monitored with quarterly bloodwork.",
-  },
-  {
-    q: "What does the evidence tier system mean?",
-    a: "Nexphoria's evidence tiers classify compounds by the depth of their clinical data. 'Established' means FDA approval or multiple Phase III RCTs. 'Emerging' means Phase II human data or robust Phase I safety data. 'Investigational' means strong preclinical data with limited controlled human trials. All tiers may be prescribed off-label when physicians judge the evidence-to-risk ratio appropriate.",
-  },
-  {
-    q: "What is the difference between BPC-157 and GLP-1 for weight loss?",
-    a: "GLP-1 agonists directly suppress appetite and improve insulin sensitivity, producing 18–28% body-fat reduction in clinical trials. BPC-157 is not a weight-loss compound — it targets tissue repair, gut-lining regeneration, and joint healing. The two peptides serve different indications and are sometimes combined for patients undergoing aggressive caloric restriction who wish to preserve tissue integrity.",
-  },
-];
 
 export default function Science() {
   useSeo({
@@ -307,7 +288,7 @@ export default function Science() {
       }),
       orgJsonLd(),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Science", path: "/science" }]),
-      faqJsonLd(SCIENCE_FAQ_ITEMS),
+      faqJsonLd(SCIENCE_FAQ),
     ],
   });
   const [activeId, setActiveId] = useState(families[0].id);
@@ -872,6 +853,9 @@ export default function Science() {
         </div>
       </div>
 
+      {/* ── Compound comparison — reference table, sits with the evidence cluster ── */}
+      <ScienceComparisonSection />
+
       {/* ── Work with our research team ── */}
       <section aria-labelledby="sci-research-team-title" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-research-team">
         <div className="nx-container max-w-screen-xl">
@@ -928,8 +912,6 @@ export default function Science() {
         </div>
       </section>
 
-      <ScienceComparisonSection />
-      <ScienceFAQSection />
       <FinalCTAStrip
         title="Backed by mechanism. Prescribed to your baseline."
         sub="Partner-laboratory labs included with every protocol. Physician review after receipt."
@@ -1030,19 +1012,6 @@ function ScienceHeroDark() {
               <span style={{ display: "inline-block", width: "28px", height: "1px", backgroundColor: "var(--nx-acid)" }} />
               The science
             </p>
-            {/* Wikipedia-style definition — lifted verbatim by AI search */}
-            <p
-              style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "var(--nx-t-base)",
-                lineHeight: 1.6,
-                color: "rgba(241, 243, 244,0.55)",
-                maxWidth: "38rem",
-                marginBottom: "0.875rem",
-              }}
-            >
-              Peptide therapy uses short chains of amino acids to signal specific cellular functions — repair, metabolism, growth, sleep, and skin remodeling — delivering targeted biological instructions at the receptor level.
-            </p>
             <h1
               id="science-h1"
               style={{
@@ -1140,13 +1109,16 @@ function ScienceHeroDark() {
               gap: "0.7rem",
             }}
           >
+            {/* Grades MATCH the evidence table + tier explainer below
+                (fleet audit: the hero inflated GHS to A− and BPC-157 to B+
+                against its own page; Enclomiphene had no backing anywhere) */}
             {[
               { fam: "GLP-1", tag: "Metabolic", grade: "A", accent: "var(--nx-acid)" },
-              { fam: "GHS", tag: "Growth axis", grade: "A−", accent: "var(--nx-acid)" },
-              { fam: "BPC-157", tag: "Tissue repair", grade: "B+", accent: "var(--nx-rust)" },
-              { fam: "NAD+", tag: "Longevity", grade: "B", accent: "var(--nx-rust)" },
-              { fam: "Enclomiphene", tag: "HPG axis", grade: "A−", accent: "var(--nx-acid)" },
-              { fam: "Ipamorelin", tag: "GH pulse", grade: "B+", accent: "var(--nx-rust)" },
+              { fam: "GHK-Cu", tag: "Skin", grade: "A", accent: "var(--nx-acid)" },
+              { fam: "GHS", tag: "Growth axis", grade: "B", accent: "var(--nx-rust)" },
+              { fam: "Selank · Semax", tag: "Cognitive", grade: "B", accent: "var(--nx-rust)" },
+              { fam: "BPC-157", tag: "Tissue repair", grade: "B−", accent: "var(--nx-rust)" },
+              { fam: "NAD+", tag: "Longevity", grade: "B−", accent: "var(--nx-rust)" },
             ].map((tile) => (
               <div
                 key={tile.fam}
@@ -1353,41 +1325,3 @@ function ScienceComparisonSection() {
   );
 }
 
-/* ── SCIENCE FAQ SECTION ───────────────────────────────────────────── */
-function ScienceFAQSection() {
-  const [open, setOpen] = useState<number | null>(null);
-  return (
-    <section
-      aria-labelledby="science-faq-heading"
-      style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem, 8vw, 6rem) 0" }}
-    >
-      <div className="nx-container" style={{ maxWidth: "740px" }}>
-        <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-          Science questions
-        </p>
-        <h2 id="science-faq-heading" style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "2.5rem" }}>
-          Common questions about peptide science.
-        </h2>
-        <div>
-          {SCIENCE_FAQ_ITEMS.map((item, i) => (
-            <div key={i} style={{ borderTop: "1px solid var(--nx-border)", padding: "1.25rem 0" }}>
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-                style={{ width: "100%", background: "none", border: "none", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", textAlign: "left", padding: 0 }}
-              >
-                <span style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)", lineHeight: 1.3 }}>{item.q}</span>
-                <span style={{ flexShrink: 0, fontFamily: FONT, fontSize: "var(--nx-t-lg)", fontWeight: 300, color: "var(--nx-cobalt)", lineHeight: 1 }}>{open === i ? "−" : "+"}</span>
-              </button>
-              {open === i && (
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", lineHeight: 1.7, marginTop: "0.875rem" }}>{item.a}</p>
-              )}
-            </div>
-          ))}
-          <div style={{ borderTop: "1px solid var(--nx-border)" }} />
-        </div>
-      </div>
-    </section>
-  );
-}
