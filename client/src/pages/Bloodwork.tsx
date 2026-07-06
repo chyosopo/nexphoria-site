@@ -1,6 +1,7 @@
 /* JOB: sell the panel and the retest loop that gate every protocol. */
 import { useState, useMemo } from "react";
 import { useReducedMotion } from "framer-motion";
+import { StickyAssessBar } from "@/components/StickyAssessBar";
 import { useLocation } from "wouter";
 import { anchor } from "@/lib/anchors";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
@@ -1028,6 +1029,8 @@ export default function Bloodwork() {
           sub={`A physician reviews all ${PANEL_TOTAL_MARKERS} markers before a single dose is prescribed. Book your panel in five minutes.`}
         />
       </main>
+      {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
+      <StickyAssessBar label="Every protocol starts with the panel" testid="sticky-assess-bloodwork" />
     </SiteLayout>
   );
 }

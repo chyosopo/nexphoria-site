@@ -29,14 +29,15 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 
 ---
 
-## Gate Battery — run ALL FOUR before EVERY commit
+## Gate Battery — run ALL FIVE before EVERY commit
 A commit ships only if these pass / non-regress. Use Node 20 LTS (`.nvmrc` pins it; better-sqlite3 does not compile on Node 26).
 
 ```
 npm run check         # 1. tsc — must be clean (currently 0 errors; keep it 0)
-npm run smoke         # 2. smoke routes — all must PASS (currently 39/39)
+npm run smoke         # 2. smoke routes — all must PASS (currently 47/47)
 npm run audit:data    # 3. data drift — no drift; gated/orphan items must stay excluded
 npm run audit:design  # 4. design tokens — counts must NOT regress vs the printed baseline
+npm run audit:funnel  # 5. ≤3 clicks entry→price+buy in real Chromium (run `npm run build` first)
 ```
 Also run `npm run build` before deploy-affecting commits, and `npm run audit:bundle` when touching entry/imports (entry ≤300KB budget, recharts banned from entry, Bloodwork stays lazy).
 

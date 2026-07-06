@@ -170,10 +170,19 @@ what to do."
 
 ## PHASE 6 — Speed to checkout
 
-- [ ] **6.1** ≤3 clicks from any entry to price+buy: measured as an
+- [x] **6.1** (done 2026-07-05) ≤3 clicks from any entry to price+buy: measured as an
   automated Playwright test that fails the build if a path regresses.
-- [ ] **6.2** Sticky contextual CTA on long pages (mobile bottom bar
-  already exists on PDPs — extend the pattern).
+  Shipped: `npm run audit:funnel` (scripts/audit-funnel.mjs) — serves
+  the built client, walks 7 entry paths in real Chromium, exits 1 on
+  regression. It immediately caught a real break: world-home goal tiles
+  all pointed at the generic catalog — now deep-linked to /goals/:cat.
+  All 7 paths pass at ≤2 clicks. Part of the gate battery from now on.
+- [x] **6.2** (done 2026-07-05) Sticky contextual CTA on long pages (mobile bottom bar
+  already exists on PDPs — extend the pattern). Shipped: StickyAssessBar
+  (mobile-only, mounts only past 900px scroll so it never doubles the
+  hero's solid CTA) on Science, LabTesting, HowItWorks, Bloodwork with
+  contextual labels. Verified: hidden at top, present after scroll,
+  never on desktop (qa43).
 
 ## PHASE 7 — Full-journey QA to 100%
 
@@ -195,5 +204,6 @@ what to do."
 ## Working rules (unchanged)
 
 Every step: gates green (tsc · build · smoke · audit:data · audit:design ·
-audit:bundle) → screenshot-verify → commit with WHAT/WHY → push (CI deploys).
-One step at a time, in order. Never mark "done" without browser proof.
+audit:bundle · audit:funnel) → screenshot-verify → commit with WHAT/WHY →
+push (CI deploys). One step at a time, in order. Never mark "done" without
+browser proof.

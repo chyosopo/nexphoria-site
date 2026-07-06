@@ -1,5 +1,6 @@
 /* JOB: earn belief — mechanisms and evidence that convert skepticism into the assessment. */
 import { useState, useEffect, useRef } from "react";
+import { StickyAssessBar } from "@/components/StickyAssessBar";
 import { anchor } from "@/lib/anchors";
 import { Link } from "wouter";
 import { Plus, Minus, FileText, BookOpen, Send, ArrowRight } from "lucide-react";
@@ -934,6 +935,8 @@ export default function Science() {
         title="Backed by mechanism. Prescribed to your baseline."
         sub="Partner-laboratory labs included with every protocol. Physician review after receipt."
       />
+      {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
+      <StickyAssessBar label="The evidence, applied to you" testid="sticky-assess-science" />
     </SiteLayout>
   );
 }

@@ -1,5 +1,6 @@
 /* JOB: explain the lab panel that gates every prescription; one step deeper. */
 import { SiteLayout } from "@/components/SiteLayout";
+import { StickyAssessBar } from "@/components/StickyAssessBar";
 import { anchor } from "@/lib/anchors";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
@@ -1155,6 +1156,8 @@ Clarity is the foundation. Everything else follows from the panel.
         title="Your panel is included with every protocol."
         sub="38 biomarkers. Partner laboratory. Physician-reviewed after receipt."
       />
+      {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
+      <StickyAssessBar label="Your numbers first — then the protocol" testid="sticky-assess-labtesting" />
     </SiteLayout>
   );
 }

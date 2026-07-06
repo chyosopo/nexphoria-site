@@ -12,7 +12,8 @@
     "smoke": "tsx scripts/smoke-routes.tsx",
     "audit:data": "tsx scripts/audit-data-drift.ts",
     "audit:design": "tsx scripts/audit-design.ts",
-    "audit:bundle": "tsx scripts/audit-bundle.ts"
+    "audit:bundle": "tsx scripts/audit-bundle.ts",
+    "audit:funnel": "node scripts/audit-funnel.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

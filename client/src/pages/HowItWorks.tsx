@@ -4,6 +4,7 @@
    answers, and a Lucide glyph. Trust-stat row, one dramatic night band, one
    striking comparison. Bank voice. Tokens only; both worlds theme it. */
 import { SiteLayout } from "@/components/SiteLayout";
+import { StickyAssessBar } from "@/components/StickyAssessBar";
 import { Link } from "wouter";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
@@ -292,6 +293,8 @@ export default function HowItWorks() {
           Start your assessment
         </Link>
       </section>
+      {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
+      <StickyAssessBar label="Step one takes two minutes" testid="sticky-assess-howitworks" />
     </SiteLayout>
   );
 }

@@ -204,7 +204,9 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18 }}>
             {config.categories.map((cat, i) => (
               <Reveal key={cat} delay={i * 60} className={i === 0 ? "nx-art-tile--feature-cell" : undefined}>
-                <Link href={`${base}/peptides`} className={i === 0 ? "nx-art-tile nx-art-tile--feature" : "nx-art-tile"} data-testid={`${world}-goal-${cat}`}>
+                {/* Deep-link the GOAL, not the generic shelf (found by the
+                    6.1 funnel gate): recovery lands on /goals/recovery. */}
+                <Link href={`/goals/${cat}`} className={i === 0 ? "nx-art-tile nx-art-tile--feature" : "nx-art-tile"} data-testid={`${world}-goal-${cat}`}>
                   {config.tileArt[cat] && (
                     <img
                       src={config.tileArt[cat]}
