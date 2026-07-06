@@ -7,6 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
 import { feelingFor, type PeptideCategory } from "@/data/peptides";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -36,7 +37,10 @@ function catImg(world: "men" | "women" | undefined): Record<string, string[]> {
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
    lab-monitored law (TRUE: bloodwork every 90 days). Echoes the Science page. */
-const CATALOG_BIOMARKERS = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "Lipid panel"];
+/* Lab chips lead with the markers each world actually cares about — her panel
+   shouldn't open on "Total testosterone" (all are on the same 99-marker panel). */
+const CATALOG_BIOMARKERS_MEN = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "Lipid panel"];
+const CATALOG_BIOMARKERS_WOMEN = ["Estradiol", "Free T3 / T4", "Ferritin", "HbA1c", "hs-CRP", "Vitamin D"];
 
 /* Shelf name → goal key, so the feeling line can be cast per world
    (feelingFor applies the women's register on her catalog). */
@@ -133,12 +137,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <Reveal>
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every protocol here is lab-monitored</p>
           <div className="nx-biochip-grid" data-testid="catalog-biochips">
-            {CATALOG_BIOMARKERS.map((name) => (
+            {(world === "women" ? CATALOG_BIOMARKERS_WOMEN : CATALOG_BIOMARKERS_MEN).map((name) => (
               <Link key={name} href="/bloodwork" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
                 {name}
               </Link>
             ))}
-            <span className="nx-biochip muted">+ 32 more on the full panel</span>
+            <span className="nx-biochip muted">+ {PANEL_TOTAL_MARKERS - 6} more on the full panel</span>
           </div>
         </Reveal>
       </section>
@@ -223,7 +227,16 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               </div>
             );
           }
-          return SOLO_CATEGORIES.map((cat) => {
+          // Her page should open on her strongest affinity (Skin & Longevity),
+          // not Growth — which on her home is last. Men keep the default order.
+          const WOMEN_SHELF_ORDER = ["Skin & Longevity", "Metabolic", "Recovery", "Sleep", "Cognitive", "Sexual Health", "Growth"];
+          const orderedCats = world === "women"
+            ? [...SOLO_CATEGORIES].sort((a, b) => {
+                const ia = WOMEN_SHELF_ORDER.indexOf(a); const ib = WOMEN_SHELF_ORDER.indexOf(b);
+                return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+              })
+            : SOLO_CATEGORIES;
+          return orderedCats.map((cat) => {
             const items = shown.filter((s) => s.category === cat);
             if (items.length === 0) return null;
             return (
