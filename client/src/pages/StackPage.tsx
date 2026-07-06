@@ -4,8 +4,8 @@
    buy-box (lg+); mobile gets an in-flow card + persistent price bar.
    Ignite (GLP-1) renders the physician wall in both rails. */
 import { useState } from "react";
-import { Link } from "wouter";
-import { SiteLayout } from "@/components/SiteLayout";
+import { Link, useLocation } from "wouter";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
@@ -42,6 +42,7 @@ function panelFor(tier: PanelTier) {
 
 export default function StackPage({ slug }: { slug: string }) {
   const stack = getStack(slug);
+  const [loc] = useLocation();
   const [selected, setSelected] = useState<string>("3mo");
   const faq = stack
     ? buildPdpFaq({ name: stack.name, panel: stack.panel, gated: stack.gated, gatedStates: stack.stateExclusions, hasPricing: !stack.gated, firstMark: stack.timeline[0] })
@@ -74,9 +75,12 @@ export default function StackPage({ slug }: { slug: string }) {
 
   const panel = panelFor(stack.panel);
 
-  /* Cross-sell: same-category protocols first, then the rest of the shelf. */
+  /* Cross-sell: same-category first, then the rest — but never surface the
+     opposite world's protocols (a shirtless-male Ascend card inside her
+     orchid Glow experience broke the two-worlds law). "both" always shows. */
+  const oppositeLean = resolveWorld(loc) === "women" ? "him" : "her";
   const otherStacks = FLAGSHIP_STACKS
-    .filter((s) => s.slug !== stack.slug)
+    .filter((s) => s.slug !== stack.slug && s.worldLean !== oppositeLean)
     .sort((a, b) => Number(b.category === stack.category) - Number(a.category === stack.category))
     .slice(0, 3);
 

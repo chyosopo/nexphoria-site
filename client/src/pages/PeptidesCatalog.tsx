@@ -6,7 +6,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
-import { CATEGORY_FEELING } from "@/data/peptides";
+import { feelingFor, type PeptideCategory } from "@/data/peptides";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -38,15 +38,16 @@ function catImg(world: "men" | "women" | undefined): Record<string, string[]> {
    lab-monitored law (TRUE: bloodwork every 90 days). Echoes the Science page. */
 const CATALOG_BIOMARKERS = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "Lipid panel"];
 
-/* Shelf → the goal's feeling line (ROADMAP 4.2), same register sitewide. */
-const SHELF_FEELING: Record<string, string> = {
-  Growth: CATEGORY_FEELING.growth,
-  Cognitive: CATEGORY_FEELING.cognition,
-  Recovery: CATEGORY_FEELING.recovery,
-  "Skin & Longevity": CATEGORY_FEELING.skin,
-  Metabolic: CATEGORY_FEELING.metabolic,
-  Sleep: CATEGORY_FEELING.sleep,
-  "Sexual Health": CATEGORY_FEELING["sexual-health"],
+/* Shelf name → goal key, so the feeling line can be cast per world
+   (feelingFor applies the women's register on her catalog). */
+const SHELF_CAT: Record<string, PeptideCategory> = {
+  Growth: "growth",
+  Cognitive: "cognition",
+  Recovery: "recovery",
+  "Skin & Longevity": "skin",
+  Metabolic: "metabolic",
+  Sleep: "sleep",
+  "Sexual Health": "sexual-health",
 };
 
 export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
@@ -101,7 +102,9 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 {SOLO_CATALOG.length} peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin.
+                {world === "women"
+                  ? "Chosen for how you want to feel — then proven in your bloodwork. Every peptide lists its dose, format, mechanism, and required labs before you begin."
+                  : "Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin."}
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
@@ -227,9 +230,9 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               <div key={cat} style={{ marginBottom: "clamp(2.4rem,4.5vw,3.6rem)" }}>
                 <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginBottom: "1.1rem", paddingBottom: "0.7rem", borderBottom: "1px solid var(--nx-border)", display: "flex", alignItems: "baseline", gap: "0.75rem", flexWrap: "wrap" }}>
                   {cat}
-                  {SHELF_FEELING[cat] && (
+                  {SHELF_CAT[cat] && (
                     <em style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-cobalt)" }}>
-                      {SHELF_FEELING[cat]}
+                      {feelingFor(SHELF_CAT[cat], world)}
                     </em>
                   )}
                   <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginLeft: "auto" }}>

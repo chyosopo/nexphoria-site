@@ -103,6 +103,7 @@ export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
    them wherever it renders world-cast surfaces. */
 export const CATEGORY_FEELING_WOMEN: Partial<Record<PeptideCategory, string>> = {
   recovery: "Strength that feels like you.",
+  growth: "Lean strength, quietly built.",
   metabolic: "Peace with your appetite.",
   longevity: "Radiance, year after year.",
   cognition: "Calm mind, bright focus.",

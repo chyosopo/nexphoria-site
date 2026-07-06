@@ -7,6 +7,7 @@ import type { CadenceKey } from "@/data/pricing";
 import { CADENCE_DISCOUNTS, pricing } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
+import { resolveWorld } from "@/components/SiteLayout";
 
 /* ──────────────────────────────────────────────────────────────
    CartDrawer — Hims-tier slide-in
@@ -63,6 +64,10 @@ export function CartDrawer() {
     items,
   } = useCart();
   const [location] = useLocation();
+  // The drawer mounts at the App root, outside every page's data-world
+  // wrapper — so without this it always rendered azure/navy even in her
+  // orchid world. Re-declare the world on the drawer itself.
+  const world = resolveWorld(location);
 
   // Close drawer on route change
   useEffect(() => {
@@ -135,6 +140,7 @@ export function CartDrawer() {
           borderLeft: "1px solid var(--nx-border)",
           boxShadow: "-24px 0 60px rgba(21, 24, 28,0.18)",
         }}
+        data-world={world}
         role="dialog"
         aria-label="Shopping cart"
         aria-modal="true"
