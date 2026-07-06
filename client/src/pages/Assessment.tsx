@@ -314,7 +314,7 @@ function StepNav({
   backLabel: string;
 }) {
   return (
-    <div className="assessment-stepnav">
+    <div className="assessment-stepnav" role="group" aria-label="Intake step navigation">
       <div className="assessment-stepnav-inner">
         <button type="button" onClick={onBack} data-testid="assessment-back" className="nx-step-back">
           <ArrowLeft size={15} aria-hidden="true" /> {backLabel}
@@ -446,8 +446,10 @@ export default function Assessment() {
   const skipMountScroll = useRef(true);
   useEffect(() => {
     if (skipMountScroll.current) { skipMountScroll.current = false; return; }
-    topRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [step]);
+    // Smooth scrolling is motion — honor prefers-reduced-motion by jumping
+    // instantly for users who opted out, matching the flow's calm-motion posture.
+    topRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "nearest" });
+  }, [step, prefersReducedMotion]);
 
   const valid = isStepValid(step, form);
   const inFlow = step > 0 && step <= TOTAL_STEPS;
