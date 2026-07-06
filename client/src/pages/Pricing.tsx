@@ -15,67 +15,47 @@ import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 import { F, FONT } from "@/lib/typography";
-import { SOLO_FROM_LABEL } from "@/data/pricing";
+import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
+import { FLAGSHIP_STACKS, getStack } from "@/data/stacksCatalog";
 
-const protocols = [
-  {
-    name: "Metabolic",
-    description: "GLP-1 agonist protocols (semaglutide, tirzepatide). Includes HbA1c, fasting insulin, and lipid panel monitoring.",
-    monthlyFrom: 349,
-    slug: "starter",
-  },
-  {
-    name: "Tissue Repair",
-    description: "BPC-157, TB-500, and GHK-Cu compounded formulations. Inflammatory and hepatic markers included.",
-    monthlyFrom: 279,
-    slug: "tissue-repair",
-  },
-  {
-    name: "Growth Hormone Axis",
-    description: "CJC-1295, Ipamorelin, Sermorelin, and Tesamorelin. IGF-1 and growth hormone axis monitoring.",
-    monthlyFrom: 319,
-    slug: "ghs",
-  },
-  {
-    name: "HPG-Axis / Hormonal",
-    description: "Enclomiphene and Kisspeptin protocols. Full HPG-axis panel including LH, FSH, total and free testosterone.",
-    monthlyFrom: 299,
-    slug: "hpg",
-  },
-  {
-    name: "Longevity",
-    description: "NAD+, MOTS-c, and Epitalon. Epigenetic clock testing and mitochondrial function markers available.",
-    monthlyFrom: 389,
-    slug: "longevity",
-  },
-  {
-    name: "Cognitive",
-    description: "Selank and Semax intranasal formulations. BDNF and baseline inflammatory markers monitored quarterly.",
-    monthlyFrom: 249,
-    slug: "cognitive",
-  },
-];
+/* ── Catalog-derived pricing — single source of truth is the pricing engine
+   (CADENCE_DISCOUNTS / priceAtCadence) + the solo & stack catalogs. No dollar
+   amount or percent on this page is hand-written; every figure resolves here. ── */
+const CADENCE_ORDER = ["1mo", "3mo", "12mo"] as const;
+const SAVE_3MO = CADENCE_DISCOUNTS["3mo"].savePct;
+const SAVE_12MO = CADENCE_DISCOUNTS["12mo"].savePct;
 
-const billingTerms = [
-  {
-    label: "Monthly",
-    discount: null,
-    badge: null,
-    note: "Billed month-to-month. Cancel anytime.",
-  },
-  {
-    label: "6-Month",
-    discount: "Save 10%",
-    badge: null,
-    note: "Paid in full at start. Protocols lock for 6 months.",
-  },
-  {
-    label: "12-Month",
-    discount: "Save 20%",
-    badge: "Best value",
-    note: "Paid in full. Lowest per-month cost of any term.",
-  },
-];
+/* The shelf stacks that are actually sold (gated GLP-1 excluded). */
+const NON_GATED_STACKS = FLAGSHIP_STACKS.filter((s) => !s.gated && s.cadences.length > 0);
+const SOLO_1MO_FROM = Math.min(...SOLO_CATALOG.filter((s) => s.pricing).map((s) => s.pricing!.m1));
+const STACK_FROM_12MO = Math.min(...NON_GATED_STACKS.map((s) => priceAtCadence(s.slug, "12mo")));
+const STACK_TO_1MO = Math.max(...NON_GATED_STACKS.map((s) => priceAtCadence(s.slug, "1mo")));
+
+/* Protocol rows = the shelf stacks, each priced straight from the catalog. */
+const protocols = NON_GATED_STACKS.map((s) => ({
+  name: s.name,
+  description: `${s.peptides.map((p) => p.name).join(" + ")}. ${s.bestFor}`,
+  slug: s.slug,
+  m1: priceAtCadence(s.slug, "1mo"),
+  m3: priceAtCadence(s.slug, "3mo"),
+  m12: priceAtCadence(s.slug, "12mo"),
+}));
+
+/* Column headers derive from the cadence engine — three cadences only, no 6-month. */
+const billingTerms = CADENCE_ORDER.map((k) => ({
+  label: CADENCE_DISCOUNTS[k].label,
+  discount: CADENCE_DISCOUNTS[k].savePct > 0 ? `Save ${CADENCE_DISCOUNTS[k].savePct}%` : null,
+  badge: k === "12mo" ? "Best value" : null,
+}));
+
+/* Worked annual example for the savings callout — real catalog figures. */
+const SAVINGS_EXAMPLE = (() => {
+  const ex = getStack("meridian")!;
+  const annual = ex.cadences.find((c) => c.key === "12mo")!.total;
+  const monthlyYear = priceAtCadence("meridian", "1mo") * 12;
+  return { name: ex.name, annual, monthlyYear };
+})();
 
 const included = [
   "Board-certified physician consultation (initial + follow-up)",
@@ -92,7 +72,7 @@ const tiers = [
     key: "solo",
     name: "Solo Peptide",
     tagline: "One targeted compound, one goal.",
-    priceFrom: 149,
+    priceFrom: SOLO_FROM_PRICE as number | null,
     recommended: false,
     features: [
       "Single physician-selected peptide",
@@ -108,7 +88,7 @@ const tiers = [
     key: "stack",
     name: "Curated Stack",
     tagline: "Physician-built combinations that work in concert.",
-    priceFrom: 279,
+    priceFrom: STACK_FROM_12MO as number | null,
     recommended: true,
     features: [
       "2\u20134 synergistic peptides",
@@ -125,7 +105,7 @@ const tiers = [
     key: "custom",
     name: "Custom Protocol",
     tagline: "A protocol designed around your labs and physiology.",
-    priceFrom: 349,
+    priceFrom: null as number | null,
     recommended: false,
     features: [
       "Fully bespoke compound selection",
@@ -270,40 +250,59 @@ function PricingTiers() {
                 >
                   {tier.tagline}
                 </p>
-                <div style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", marginBottom: "1.75rem" }}>
-                  <span
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "var(--nx-t-xs)",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.12em",
-                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
-                    }}
-                  >
-                    From
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "var(--nx-t-display)",
-                      fontWeight: 600,
-                      letterSpacing: "-0.03em",
-                      lineHeight: 1,
-                      color: tier.recommended ? "var(--nx-ceramic)" : "var(--nx-fg)",
-                    }}
-                    data-testid={`tier-price-${tier.key}`}
-                  >
-                    ${tier.priceFrom}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "var(--nx-t-xs)",
-                      color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
-                    }}
-                  >
-                    /mo
-                  </span>
+                <div
+                  style={{ display: "flex", alignItems: "baseline", gap: "0.4rem", marginBottom: "1.75rem" }}
+                  data-testid={`tier-price-${tier.key}`}
+                >
+                  {tier.priceFrom != null ? (
+                    <>
+                      <span
+                        style={{
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontSize: "var(--nx-t-xs)",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.12em",
+                          color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
+                        }}
+                      >
+                        From
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontSize: "var(--nx-t-display)",
+                          fontWeight: 600,
+                          letterSpacing: "-0.03em",
+                          lineHeight: 1,
+                          color: tier.recommended ? "var(--nx-ceramic)" : "var(--nx-fg)",
+                        }}
+                      >
+                        {formatUSD(tier.priceFrom)}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontSize: "var(--nx-t-xs)",
+                          color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
+                        }}
+                      >
+                        /mo
+                      </span>
+                    </>
+                  ) : (
+                    <span
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "var(--nx-t-xl)",
+                        fontWeight: 600,
+                        letterSpacing: "-0.01em",
+                        lineHeight: 1.1,
+                        color: tier.recommended ? "var(--nx-ceramic)" : "var(--nx-fg)",
+                      }}
+                    >
+                      Priced at consultation
+                    </span>
+                  )}
                 </div>
 
                 <div style={{ flex: 1, marginBottom: "1.75rem" }}>
@@ -381,7 +380,7 @@ function PricingTiers() {
 const PRICING_FAQ_ITEMS = [
   {
     q: "How much does Nexphoria cost per month?",
-    a: "Nexphoria monthly subscriptions start at $249/month for cognitive peptide protocols (Selank, Semax) and range up to $389/month for longevity protocols (NAD+, MOTS-c, Epitalon). All plans include your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and partner-laboratory labs every 90 days. There are no hidden fees.",
+    a: `Single peptides start at ${SOLO_FROM_LABEL}/month on a 12-month plan and ${formatUSD(SOLO_1MO_FROM)}/month billed monthly. Physician-built stacks run from ${formatUSD(STACK_FROM_12MO)}/month up to ${formatUSD(STACK_TO_1MO)}/month, depending on protocol and cadence. Every plan includes your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and partner-laboratory labs. There are no hidden fees.`,
   },
   {
     q: "Is the physician consultation included in the subscription price?",
@@ -389,7 +388,7 @@ const PRICING_FAQ_ITEMS = [
   },
   {
     q: "Can I save money by prepaying?",
-    a: "Yes. A 6-month prepay saves 10% off the monthly rate. A 12-month annual plan saves 20% — the lowest per-month cost available. Both prepay options include the same physician consultations, quarterly bloodwork, and compounding benefits as monthly plans.",
+    a: `Yes. A quarterly (3-month) plan saves ${SAVE_3MO}% off the monthly rate. A 12-month annual plan saves ${SAVE_12MO}% — the lowest per-month cost available. Both include the same physician consultations, quarterly bloodwork, and compounding benefits as the monthly plan.`,
   },
   {
     q: "Is peptide therapy FSA or HSA eligible?",
@@ -773,7 +772,7 @@ export default function Pricing() {
                       textAlign: "center",
                     }}
                   >
-                    ${protocol.monthlyFrom}
+                    {formatUSD(protocol.m1)}
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
@@ -786,7 +785,7 @@ export default function Pricing() {
                       /mo
                     </span>
                   </p>
-                  {/* 6-month */}
+                  {/* Quarterly (3-month) */}
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
@@ -796,7 +795,7 @@ export default function Pricing() {
                       textAlign: "center",
                     }}
                   >
-                    ${Math.round(protocol.monthlyFrom * 0.9)}
+                    {formatUSD(protocol.m3)}
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
@@ -809,7 +808,7 @@ export default function Pricing() {
                       /mo
                     </span>
                   </p>
-                  {/* 12-month */}
+                  {/* Annual (12-month) */}
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
@@ -819,7 +818,7 @@ export default function Pricing() {
                       textAlign: "center",
                     }}
                   >
-                    ${Math.round(protocol.monthlyFrom * 0.8)}
+                    {formatUSD(protocol.m12)}
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
@@ -849,10 +848,10 @@ export default function Pricing() {
                 }}
               >
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
-                  12-MONTH PLAN — SAVE UP TO 20% vs. MONTH-TO-MONTH
+                  12-MONTH PLAN — SAVE {SAVE_12MO}% vs. MONTH-TO-MONTH
                 </p>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>
-                  E.g. Metabolic: ${Math.round(349*12*0.8).toLocaleString()}/yr vs $${349*12}/yr monthly
+                  E.g. {SAVINGS_EXAMPLE.name}: {formatUSD(SAVINGS_EXAMPLE.annual)}/yr vs {formatUSD(SAVINGS_EXAMPLE.monthlyYear)}/yr monthly
                 </p>
               </div>
 
@@ -1218,7 +1217,7 @@ export default function Pricing() {
 
 /* ── PRICING PLAN COMPARISON TABLE — semantic, AI-liftable ──────── */
 const PLAN_COMPARISON_ROWS = [
-  { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: "From $279/mo", custom: "From $349/mo" },
+  { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: `From ${formatUSD(STACK_FROM_12MO)}/mo`, custom: "Quoted at consult" },
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
@@ -1248,7 +1247,7 @@ export function PricingPlanTable() {
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "var(--nx-t-sm)" }}>
               <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                Nexphoria plan comparison: Solo Peptide vs. Curated Stack vs. Custom Protocol. Save 10% (6-month) or 20% (12-month) with prepay.
+                Nexphoria plan comparison: Solo Peptide vs. Curated Stack vs. Custom Protocol. Save {SAVE_3MO}% (quarterly) or {SAVE_12MO}% (annual) with prepay.
               </caption>
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>

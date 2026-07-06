@@ -5,8 +5,8 @@
 
    SUBSCRIPTION CADENCE (reference-style):
      1 month   → full price (showcased as "Flexible")
-     3 months  → ~25% off / month ("Most popular")
-     12 months → ~50% off / month ("Best value", billed monthly)
+     3 months  → 15% off / month ("Most popular")
+     12 months → 30% off / month ("Best value", billed monthly)
    ────────────────────────────────────────────────────────────── */
 
 import { getSolo, SOLO_CATALOG } from "@/data/soloCatalog";
