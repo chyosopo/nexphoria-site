@@ -135,12 +135,23 @@ what to do."
 
 ## PHASE 5 — Trust weave (at decision points, not in wallpaper)
 
-- [ ] **5.1** One trust system: physician presence (face + board
+- [x] **5.1** (done 2026-07-05) One trust system: physician presence (face + board
   certification + "can decline") appears exactly at decision moments —
   beside hero CTA, beside buy box, on checkout. Generic badge rows
-  reduced to one per page.
-- [ ] **5.2** The "if prescribed / no charge unless prescribed" promise
-  becomes a single reusable component at every price display.
+  reduced to one per page (done in 3.1). Shipped: compact PhysicianGate
+  (unnamed network portrait + "board-certified · licensed in your state
+  · free to decline") beside the FrontDoor hero CTA, both world-home
+  hero CTAs, in the BuyBox under the promise, and on checkout. Verified
+  present at all four moments (qa42-*).
+- [x] **5.2** (done 2026-07-05) The "if prescribed / no charge unless prescribed" promise
+  becomes a single reusable component at every price display. Shipped:
+  PrescribedPromise ("No charge unless a physician prescribes — the
+  review is free.", optional operational detail) at the BuyBox, cart
+  drawer (with the Bask card-hold detail), cart summary, checkout
+  header, FrontDoor price anchor, and the assessment recommendation
+  card; ad-hoc phrasings at those sites removed. Page-close headline
+  sections keep their editorial phrasing. Browser-verified at all six
+  (qa41).
 - [ ] **5.3 Pricing truth debt (found 2026-07-05).** Pricing.tsx and
   lib/protocols.ts carry a legacy pricing scheme (6-month prepay, save
   10/20/25%, "$249–$389/mo") that contradicts the real catalog
@@ -150,6 +161,12 @@ what to do."
   plans) needs a full rebuild on FLAGSHIP_STACKS + pricing data. Also:
   unrouted legacy pages/Home.tsx still contains the stale claims —
   delete or rebuild. Flagship page → Atlas's lane, or next agent here.
+  Also found 2026-07-05: the biomarker COUNT is inconsistent — FrontDoor
+  and world homes say "{PANEL_TOTAL_MARKERS}-marker panel" (=99, derived
+  from biomarkerPanel.ts), while FAQ ("38-biomarker panel"), Assessment
+  landing copy, and physicians stats ("38 biomarkers reviewed first")
+  hardcode 38. Decide the canonical count with Chiya (38 = one tier? 99
+  = all tiers?) and derive every mention from one source.
 
 ## PHASE 6 — Speed to checkout
 

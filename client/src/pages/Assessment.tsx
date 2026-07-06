@@ -17,6 +17,7 @@ import { F } from "@/lib/typography";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
 import { getStack, usd } from "@/data/stacksCatalog";
 import { useCart } from "@/contexts/CartProvider";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
 import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -1470,7 +1471,7 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          A licensed physician reviews your answers. You pay only if prescribed — the evaluation is free.
+                          A licensed physician reviews your answers. No charge unless a physician prescribes — the review is free.
                         </p>
                       </div>
 
@@ -1619,10 +1620,13 @@ export default function Assessment() {
                                 </div>
                               </dl>
 
-                              {/* Physician gate — reused trust copy, verbatim in spirit */}
-                              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.55, margin: "1.25rem 0 0 0", paddingTop: "1.25rem", borderTop: "1px solid var(--nx-border)" }}>
-                                A licensed physician reviews your answers and prescribes only if it is clinically appropriate. You pay only if prescribed — the evaluation is free, and there is no charge for medication unless it is prescribed. Subject to physician approval after lab review.
-                              </p>
+                              {/* Physician gate + THE promise (ROADMAP 5.2) at this price display */}
+                              <div style={{ margin: "1.25rem 0 0 0", paddingTop: "1.25rem", borderTop: "1px solid var(--nx-border)" }}>
+                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.55, margin: "0 0 0.6rem 0" }}>
+                                  A licensed physician reviews your answers and prescribes only if it is clinically appropriate, after lab review.
+                                </p>
+                                <PrescribedPromise testid="recommendation-promise" />
+                              </div>
                             </div>
                           </section>
                         );

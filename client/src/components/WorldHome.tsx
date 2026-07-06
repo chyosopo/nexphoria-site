@@ -12,6 +12,7 @@ import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { outcomeSrcSet } from "@/data/outcomeImagery";
 import { F, S } from "@/lib/typography";
+import { PhysicianGate } from "@/components/PhysicianProofBand";
 
 /* The four credentials that are TRUE for Nexphoria — no invented CLIA/FDA/CAP. */
 const TRUST_BADGES = [
@@ -128,6 +129,8 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
             2 minutes · no charge unless a physician prescribes
           </p>
+          {/* Physician presence at the decision moment (ROADMAP 5.1) */}
+          <PhysicianGate testid={`${world}-hero-physician`} style={{ marginTop: "0.9rem" }} />
           </div>
           {config.heroArt && (
             <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>

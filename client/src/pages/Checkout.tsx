@@ -17,6 +17,8 @@ import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { FONT } from "@/lib/typography";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
+import { PhysicianGate } from "@/components/PhysicianProofBand";
 
 /* Local form schema — server validates on submit via insertCheckoutSchema.
    DO NOT change these fields — checkout schema is locked. */
@@ -261,8 +263,10 @@ export default function Checkout() {
               Submit for physician review
             </h1>
             <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
-              Every order is reviewed by a licensed physician before it ships. No card is charged today.
+              Every order is reviewed by a licensed physician before it ships.
             </p>
+            <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.6rem" }} />
+            <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />
           </div>
 
           <div className="mb-10 max-w-xl">

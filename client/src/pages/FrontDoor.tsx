@@ -17,6 +17,8 @@ import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
 import { outcomeSrcSet } from "@/data/outcomeImagery";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
+import { PhysicianGate } from "@/components/PhysicianProofBand";
 import gateHer from "@/assets/brand/gate-her.webp";
 import gateHim from "@/assets/brand/gate-him.webp";
 
@@ -91,6 +93,8 @@ export default function FrontDoor() {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
                 2 minutes · no charge unless a physician prescribes
               </p>
+              {/* Physician presence at the decision moment (ROADMAP 5.1) */}
+              <PhysicianGate testid="frontdoor-hero-physician" style={{ marginTop: "0.9rem" }} />
             </div>
             <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
               <img src={HERO_ART} alt="" aria-hidden fetchPriority="high" width={2048} height={1360} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid="frontdoor-hero-art" />
@@ -232,9 +236,9 @@ export default function FrontDoor() {
             Protocols from {usd(PROTOCOL_FROM)}/mo. Single peptides from {SOLO_FROM_LABEL}/mo.
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-acid)", opacity: 0.9, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            Physician review, the lab panel, cold-chain shipping, and the 90-day retest are inside
-            the number — and nothing is charged unless a physician prescribes.
+            Physician review, the lab panel, cold-chain shipping, and the 90-day retest are inside the number.
           </p>
+          <PrescribedPromise onDark centered testid="frontdoor-closer-promise" style={{ marginTop: "0.8rem" }} />
           <Link href="/assessment" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.8rem" }}>
             Start your assessment
           </Link>

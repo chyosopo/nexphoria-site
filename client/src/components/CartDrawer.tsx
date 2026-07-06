@@ -6,6 +6,7 @@ import { useCart, formatUSD } from "@/contexts/CartProvider";
 import type { CadenceKey } from "@/data/pricing";
 import { CADENCE_DISCOUNTS, pricing } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
 
 /* ──────────────────────────────────────────────────────────────
    CartDrawer — Hims-tier slide-in
@@ -177,11 +178,7 @@ export function CartDrawer() {
               className="flex items-center gap-2.5 px-6 py-3"
               style={{ background: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
             >
-              <Stethoscope size={14} style={{ color: "var(--nx-amber)", flexShrink: 0 }} />
-              <p className="text-[11px]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.45 }}>
-                <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>No charge today.</strong>{" "}
-                Card is held — physician reviews then bills through Bask Health.
-              </p>
+              <PrescribedPromise testid="cart-drawer-promise" detail="Card is held; billing runs through Bask Health after review." />
             </div>
           ) : null}
 

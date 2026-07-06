@@ -9,6 +9,7 @@ import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
 import { CADENCE_DISCOUNTS, pricing, type CadenceKey } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
 
 export default function Cart() {
   useSeo({ title: "Your cart — Nexphoria", description: "Review your selected protocols before physician intake." });
@@ -341,9 +342,10 @@ export default function Cart() {
                     {formatUSD(subtotal)}
                   </span>
                 </div>
-                <p className="text-[11px] mt-2 mb-5 leading-relaxed" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                <p className="text-[11px] mt-2 leading-relaxed" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                   Final pricing confirmed after intake review.
                 </p>
+                <PrescribedPromise testid="cart-promise" style={{ marginTop: "0.5rem", marginBottom: "1.25rem" }} />
 
                 {/* Included list */}
                 <div

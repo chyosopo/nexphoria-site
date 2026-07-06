@@ -8,6 +8,8 @@ import { Lock, Check } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { track } from "@/lib/analytics";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
+import { PhysicianGate } from "@/components/PhysicianProofBand";
 
 export interface BuyTier {
   key: string;
@@ -148,9 +150,10 @@ export function BuyBox(props: BuyBoxProps) {
             </div>
           </>
         )}
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-muted)", marginTop: "0.75rem", textAlign: "center" }}>
-          No charge unless prescribed. Physician review required.
-        </p>
+        <PrescribedPromise centered testid="buybox-promise" style={{ marginTop: "0.75rem", justifyContent: "center" }} />
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid var(--nx-border)" }}>
+          <PhysicianGate testid="buybox-physician-gate" />
+        </div>
       </div>
 
       {/* ── MOBILE PERSISTENT BAR — price + CTA, always reachable ──

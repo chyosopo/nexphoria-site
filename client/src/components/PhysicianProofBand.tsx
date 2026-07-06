@@ -1,6 +1,31 @@
 import { F } from "@/lib/typography";
 import physicianPortrait from "@/assets/doctors/dr-chen.webp";
 
+/* PhysicianGate — compact physician presence at decision moments
+   (ROADMAP 5.1): beside hero CTAs, beside the buy box, on checkout.
+   Same unnamed network portrait, one line: board certification + the
+   freedom to decline. Never used as page wallpaper. */
+export function PhysicianGate({ testid = "physician-gate", style }: { testid?: string; style?: React.CSSProperties }) {
+  return (
+    <div data-testid={testid} style={{ display: "flex", alignItems: "center", gap: 10, ...style }}>
+      <img
+        src={physicianPortrait}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        decoding="async"
+        width={34}
+        height={34}
+        style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0, boxShadow: "var(--nx-e-1)" }}
+      />
+      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", margin: 0, textAlign: "left" }}>
+        <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Reviewed by a board-certified U.S. physician</strong>
+        {" "}— licensed in your state, and free to decline.
+      </p>
+    </div>
+  );
+}
+
 /* PhysicianProofBand — the compliant reviews-alternative for Rx PDPs.
    No star ratings, no testimonials, no named individuals (the physicians
    data model deliberately describes a process, not people): one unnamed
