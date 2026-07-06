@@ -1008,22 +1008,20 @@ export default function Bloodwork() {
 
   return (
     <SiteLayout navVariant="showcase">
+      {/* The frictionless arc (ROADMAP 9.1): feeling → proof → what one draw
+          surfaces → THE OFFER → depth → the retest moat → path → close.
+          Cut from 15 stacked sections (16k px of scroll): SectionPills,
+          SystemsMosaic, ResultsDashboard, ActionPlan, OfferStack, MarkerWall,
+          WhyItMatters — each duplicated a kept section or served no JOB. */}
       <main id="main-content">
         <Hero />
         <TrustRow />
-        <SectionPills />
-        <SystemsMosaic />
-        <ResultsDashboard />
-        <ActionPlan world={world} />
         <GlowingBody world={world} />
-        <OfferStack />
         <PanelTiers />
-        <MarkerWall />
         <div id="explore" />
         <PanelExplorer />
         <LiveTrajectory />
         <HowItWorks />
-        <WhyItMatters />
         <FinalCTAStrip
           title="Every protocol starts with proof."
           sub={`A physician reviews all ${PANEL_TOTAL_MARKERS} markers before a single dose is prescribed. Book your panel in five minutes.`}

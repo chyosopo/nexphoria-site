@@ -237,6 +237,24 @@ what to do."
   model ($/mo club vs current subscriptions). Do not fabricate any of
   these.
 
+## PHASE 9 — The frictionless pass (Chiya 2026-07-06: "everything leveled
+## up and tightened, every button working, logic + emotion + strategy +
+## flow — client goes through quickly, frictionless, flawless")
+
+Method: a parallel agent fleet audits every page against the laws (one
+action per viewport · feeling before chemistry · worlds separate · truth
+only · tokens only · every control does something), each returning a
+prioritized fix list; fixes land page by page, gates green each time.
+
+- [ ] **9.1 Bloodwork page overhaul** (Chiya's callout) — the panel IS the
+  product; the page must sell it with the same grammar as the front door:
+  emotional hero, tier clarity, marker explorer that feels alive, retest
+  loop story, ONE action.
+- [ ] **9.2 Fleet audit findings** — per-page fix lists from the audit
+  fleet, executed in severity order (see commit messages for the lists).
+- [ ] **9.3 Every-button proof** — re-run the interaction audit + funnel
+  gates after each batch; nothing ships with a dead control.
+
 ## PARALLEL TRACK (blocked on Chiya)
 
 - [ ] **P.1** Checkout backend: wire intake submission to Bask/MDI (needs
