@@ -808,7 +808,7 @@ function HowItWorks() {
 function WhyItMatters() {
   const V = [
     {
-      k: "Signal, not vibes",
+      k: "Signal, not guesswork",
       v: `${PANEL_TOTAL_MARKERS} lab values — not a symptom questionnaire — decide your protocol.`,
     },
     {
