@@ -679,7 +679,7 @@ export default function Assessment() {
             >
               <img
                 src={assessmentTrustHero}
-                alt="A 38-biomarker peptide lab panel and physician dashboard used to calibrate your protocol"
+                alt="A 99-biomarker peptide lab panel and physician dashboard used to calibrate your protocol"
                 loading="eager"
                 decoding="async"
                 data-testid="assessment-landing-image"
@@ -725,7 +725,7 @@ export default function Assessment() {
                   lineHeight: 1.7,
                 }}
               >
-                The intake takes about four minutes. It feeds a 38-biomarker lab panel, a
+                The intake takes about four minutes. It feeds a 99-biomarker lab panel, a
                 physician review, and a compounded protocol dosed to your measured{" "}
                 <span style={{ whiteSpace: "nowrap" }}>IGF-1</span>, metabolic, and hormonal
                 numbers. No questionnaire-only prescribing.

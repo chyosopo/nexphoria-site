@@ -105,7 +105,7 @@ const PILLARS = [
   {
     num: "03",
     title: "Measured",
-    desc: "A 38-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on.",
+    desc: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on.",
   },
 ];
 

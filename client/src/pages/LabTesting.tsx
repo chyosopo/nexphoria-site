@@ -96,12 +96,12 @@ const biomarkerCards = [
 
 export default function LabTesting() {
   useSeo({
-    title: "At-home lab testing — 38 biomarkers, partner laboratory, every 90 days",
-    description: "Requisition in your portal, draw at 2,000+ partner laboratory locations, physician-reviewed results. 38 biomarkers calibrate and track your peptide protocol from first dose to completion.",
+    title: "At-home lab testing — 99 biomarkers, partner laboratory, every 90 days",
+    description: "Requisition in your portal, draw at 2,000+ partner laboratory locations, physician-reviewed results. 99 biomarkers calibrate and track your peptide protocol from first dose to completion.",
     path: "/lab-testing",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Lab Testing",
-      description: "38-biomarker partner-laboratory panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician after receipt.",
+      description: "99-biomarker partner-laboratory panel included with every Nexphoria peptide protocol. Results reviewed by a board-certified physician after receipt.",
       path: "/lab-testing",
       type: "MedicalWebPage",
     }),
@@ -977,7 +977,7 @@ export default function LabTesting() {
                 label: "Comprehensive",
                 price: "$199",
                 note: "Included with 3- and 12-month protocols",
-                markers: "38 biomarkers",
+                markers: "99 biomarkers",
                 popular: true,
                 features: [
                   "Everything in Essential",
@@ -1154,7 +1154,7 @@ Clarity is the foundation. Everything else follows from the panel.
 
       <FinalCTAStrip
         title="Your panel is included with every protocol."
-        sub="38 biomarkers. Partner laboratory. Physician-reviewed after receipt."
+        sub="99 biomarkers. Partner laboratory. Physician-reviewed after receipt."
       />
       {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
       <StickyAssessBar label="Your numbers first — then the protocol" testid="sticky-assess-labtesting" />

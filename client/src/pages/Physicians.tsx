@@ -54,7 +54,7 @@ export default function Physicians() {
               >
                 <img
                   src={physicianTrustHero}
-                  alt="A board-certified physician reviewing a 38-biomarker peptide lab panel before prescribing"
+                  alt="A board-certified physician reviewing a 99-biomarker peptide lab panel before prescribing"
                   loading="eager"
                   decoding="async"
                   data-testid="physicians-hero-portrait"
@@ -91,7 +91,7 @@ export default function Physicians() {
                     marginBottom: "1.25rem",
                   }}
                 >
-                  Your physician reads a 38-biomarker panel before writing anything.
+                  Your physician reads a 99-biomarker panel before writing anything.
                 </h2>
                 <p
                   style={{

@@ -112,7 +112,7 @@ const mechanismCards: { id: string; title: string; glyph: GlyphId; receptor: str
 const SCIENCE_METHOD_STEPS = [
   { title: "Target a mechanism", body: "Every protocol starts from a defined receptor pathway — incretin, GHRH, VEGF — not a symptom. The mechanism decides which compound can actually move the marker." },
   { title: "Match the evidence tier", body: "The compound is weighed against its evidence grade — established, emerging, or investigational — stated plainly and set against your personal risk profile." },
-  { title: "Establish a baseline", body: "A 38-biomarker draw fixes your physiology in numbers before the first dose, so the protocol is built from your reference range, not a population average." },
+  { title: "Establish a baseline", body: "A 99-biomarker draw fixes your physiology in numbers before the first dose, so the protocol is built from your reference range, not a population average." },
   { title: "Measure the response", body: "Mechanism-linked markers are redrawn every 90 days. The trend — not marketing copy — decides whether a protocol continues, adjusts, or stops." },
 ];
 
@@ -620,7 +620,7 @@ export default function Science() {
                 Science without labs is conjecture.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7, marginBottom: "1rem" }}>
-                Every protocol begins with a 38-biomarker partner-laboratory draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
+                Every protocol begins with a 99-biomarker partner-laboratory draw — a clinical baseline that tells your physician what your physiology looks like before the first dose.
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "rgba(246, 249, 252,0.7)", lineHeight: 1.7 }}>
                 Redrawn every 90 days. Results, not marketing copy, determine whether a protocol continues, adjusts, or stops.
@@ -629,7 +629,7 @@ export default function Science() {
             <Reveal delay={80}>
               <div style={{ display: "flex", flexDirection: "column", gap: "1px", backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.08)" }}>
                 {[
-                  { phase: "BASELINE", timing: "Before first dose", desc: "38-biomarker panel establishes your personal reference. Physician designs protocol from your specific numbers." },
+                  { phase: "BASELINE", timing: "Before first dose", desc: "99-biomarker panel establishes your personal reference. Physician designs protocol from your specific numbers." },
                   { phase: "90-DAY DRAW", timing: "After first cycle", desc: "Mechanism markers tracked against your baseline — not a population average. Dose adjusted if response is sub-optimal or any marker moves outside range." },
                   { phase: "180-DAY DRAW", timing: "Active protocol", desc: "Trend line established. Protocol extended, modified, or concluded based on biomarker trajectory and clinical goals." },
                   { phase: "ONGOING", timing: "Every 90 days", desc: "As long as you're active, your labs run quarterly. Data-driven medicine is a loop, not a one-time consult." },
@@ -970,7 +970,7 @@ export default function Science() {
             </p>
             <h2 id="sci-closing-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "1.25rem" }}>Your baseline determines your dose.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.65, maxWidth: "480px" }}>
-              Every Nexphoria protocol begins with a 38-biomarker partner-laboratory draw. Mechanism explains what a peptide
+              Every Nexphoria protocol begins with a 99-biomarker partner-laboratory draw. Mechanism explains what a peptide
               does. Your bloodwork tells your physician what it will do for you specifically.
             </p>
           </Reveal>
@@ -1108,7 +1108,7 @@ function ScienceHeroDark() {
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
               {[
-                "38 biomarkers reviewed",
+                "99 biomarkers reviewed",
                 "Evidence-tiered A→B−",
                 "PubMed-linked citations",
                 "Reviewed by MDs",

@@ -288,7 +288,7 @@ export default function Cart() {
                     <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>38-Biomarker Partner-Laboratory Panel</p>
+                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>99-Biomarker Partner-Laboratory Panel</p>
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
                       <Link asChild href="/lab-testing">

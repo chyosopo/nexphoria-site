@@ -73,7 +73,7 @@ export const physicianReview: PhysicianReview = {
     {
       n: "01",
       label: "Labs First",
-      body: "A 38-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Your physician will not prescribe based on symptoms alone. The panel covers hormones, metabolic markers, inflammation, cardiovascular markers, and organ function.",
+      body: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Your physician will not prescribe based on symptoms alone. The panel covers hormones, metabolic markers, inflammation, cardiovascular markers, and organ function.",
     },
     {
       n: "02",

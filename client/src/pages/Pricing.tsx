@@ -1269,7 +1269,7 @@ export default function Pricing() {
           <div style={{ maxWidth: "820px" }}>
             <FaqAccordion items={[
               { q: "Is the physician consult included in the price?", a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consultation fee." },
-              { q: "Are labs included?", a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 38-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans." },
+              { q: "Are labs included?", a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 99-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans." },
               { q: "Can I use FSA or HSA funds?", a: "Yes. Compounded prescription medications and physician consultations are generally FSA/HSA-eligible. We provide itemized receipts at checkout. Confirm eligibility with your plan administrator." },
               { q: "What if the physician declines my protocol?", a: "If a physician determines your requested protocol is clinically inappropriate, no prescription is issued and you are not charged for pharmacy compounding. The physician may propose a modified alternative." },
               { q: "Is there a cancellation fee?", a: "No. Cancel anytime from your member portal with no penalty. Cancellation takes effect at the end of your current billing cycle. Compounded medications that have shipped cannot be returned." },
@@ -1307,7 +1307,7 @@ const PLAN_COMPARISON_ROWS = [
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
-  { feature: "Partner-laboratory labs (38 markers)", solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
+  { feature: "Partner-laboratory labs (99 markers)", solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
   { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
   { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },

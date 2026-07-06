@@ -63,7 +63,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What labs do I need?",
-        a: "A 38-biomarker partner-laboratory panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
+        a: "A 99-biomarker partner-laboratory panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
       },
       {
         q: "Who reviews my bloodwork?",
