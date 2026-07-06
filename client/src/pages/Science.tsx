@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { StickyAssessBar } from "@/components/StickyAssessBar";
 import { anchor } from "@/lib/anchors";
+import { getSolo } from "@/data/soloCatalog";
 import { Link } from "wouter";
 import { Plus, Minus, FileText, BookOpen, Send, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -463,35 +464,33 @@ export default function Science() {
                   />
                 </div>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "rgba(246, 249, 252,0.6)", lineHeight: 1.6, marginBottom: "1.25rem", flexGrow: 1 }}>{t.desc}</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(246, 249, 252,0.4)", marginBottom: "0.625rem" }}>In our catalog</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(246, 249, 252,0.4)", marginBottom: "0.625rem" }}>Compounds at this tier</p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
-                  {t.examples.map((ex) => (
-                    <Link
-                      key={ex.slug}
-                      href={`/peptides/${ex.slug}`}
-                      data-testid={`tier-example-${ex.slug}`}
-                    >
-                      <a
-                        style={{
-                          display: "inline-block",
-                          padding: "0.3125rem 0.625rem",
-                          border: `1px solid ${t.color}55`,
-                          borderRadius: "var(--nx-r-pill)",
-                          fontFamily: F,
-                          fontSize: "var(--nx-t-xs)",
-                          fontWeight: 500,
-                          color: t.color,
-                          textDecoration: "none",
-                          background: "transparent",
-                          cursor: "pointer",
-                          ["--t-color" as string]: t.color,
-                        }}
-                        className="nx-sci-pill"
-                      >
-                        {ex.name}
-                      </a>
-                    </Link>
-                  ))}
+                  {/* Only catalog compounds LINK (the crawl found three chips
+                      pointing at "Peptide not found"); the rest stay as plain
+                      evidence-tier examples. */}
+                  {t.examples.map((ex) => {
+                    const chipStyle: React.CSSProperties = {
+                      display: "inline-block",
+                      padding: "0.3125rem 0.625rem",
+                      border: `1px solid ${t.color}55`,
+                      borderRadius: "var(--nx-r-pill)",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-xs)",
+                      fontWeight: 500,
+                      color: t.color,
+                      textDecoration: "none",
+                      background: "transparent",
+                      ["--t-color" as string]: t.color,
+                    };
+                    return getSolo(ex.slug) ? (
+                      <Link key={ex.slug} href={`/peptides/${ex.slug}`} data-testid={`tier-example-${ex.slug}`}>
+                        <a style={{ ...chipStyle, cursor: "pointer" }} className="nx-sci-pill">{ex.name}</a>
+                      </Link>
+                    ) : (
+                      <span key={ex.slug} style={{ ...chipStyle, opacity: 0.75 }} data-testid={`tier-example-${ex.slug}`}>{ex.name}</span>
+                    );
+                  })}
                 </div>
               </div>
             ))}
