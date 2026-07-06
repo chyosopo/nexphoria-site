@@ -1,3 +1,4 @@
+/* JOB: earn belief — mechanisms and evidence that convert skepticism into the assessment. */
 import { useState, useEffect, useRef } from "react";
 import { anchor } from "@/lib/anchors";
 import { Link } from "wouter";
@@ -8,7 +9,7 @@ import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/Si
 import { PillBadge } from "@/components/PillBadge";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip, FaqAccordion, NumberedSteps, SectionHead } from "@/components/EnterprisePatterns";
+import { FaqAccordion, NumberedSteps, SectionHead } from "@/components/EnterprisePatterns";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -358,12 +359,6 @@ export default function Science() {
         ))}
       </section>
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section aria-label="Credentials and accreditations" className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "0" }}>
-        <Reveal>
-          <TrustStrip testid="science-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* ── Evidence tier explainer ── */}
       <section aria-labelledby="sci-tiers-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-evidence-tiers">

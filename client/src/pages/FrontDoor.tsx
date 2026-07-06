@@ -1,3 +1,4 @@
+/* JOB: make a stranger understand the offer in 5 seconds and start the assessment. */
 /* ═══ FRONT DOOR — the homepage (ROADMAP 1.2) ═══
    JOB: a skeptical first-time visitor understands in 5 seconds what this
    is, who it's for, what it costs, and the ONE thing to do next.

@@ -1,8 +1,9 @@
+/* JOB: who is behind this and why they can be trusted. */
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip, FaqAccordion, SectionHead } from "@/components/EnterprisePatterns";
+import { FaqAccordion, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, orgJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare, Activity, RefreshCw, Stethoscope, ClipboardList, FlaskConical, Snowflake, LayoutDashboard, Target, Ruler, type LucideIcon } from "lucide-react";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
@@ -350,12 +351,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
-        <Reveal>
-          <TrustStrip testid="about-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* ════════════════ THE PROBLEM WE SAW ════════════════ */}
       <section

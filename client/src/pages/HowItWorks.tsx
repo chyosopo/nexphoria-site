@@ -1,3 +1,4 @@
+/* JOB: the four-step path from intake to shipment, ending at the assessment. */
 /* ═══ HOW IT WORKS — the institution's argument, in full ═══
    Seven steps on a drawn timeline, each with its mechanism, the objection it
    answers, and a Lucide glyph. Trust-stat row, one dramatic night band, one

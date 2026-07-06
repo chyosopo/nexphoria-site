@@ -1,9 +1,10 @@
+/* JOB: compare the seven flagship protocols and pick one. */
 /* ═══ PROTOCOLS INDEX — P5 · the seven flagship stacks ═══ */
 import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip, DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
+import { DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
@@ -96,12 +97,6 @@ export default function ProtocolsIndex() {
         </div>
       </section>
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.6vw,2.2rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }} aria-label="Trust and credentials">
-        <Reveal>
-          <TrustStrip testid="protocols-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* filter */}
       <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Filter protocols">

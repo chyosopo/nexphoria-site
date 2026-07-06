@@ -1,9 +1,10 @@
+/* JOB: explain the lab panel that gates every prescription; one step deeper. */
 import { SiteLayout } from "@/components/SiteLayout";
 import { anchor } from "@/lib/anchors";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip, DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
+import { DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 const editorialBloodwork = "img/img_dbc2b8fe6999.webp";
@@ -113,12 +114,6 @@ export default function LabTesting() {
       <BloodworkPricing />
       <BloodworkInsurance />
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" aria-label="Laboratory and physician credentials" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
-        <Reveal>
-          <TrustStrip testid="labtesting-trust-strip" />
-        </Reveal>
-      </section>
 
       <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">

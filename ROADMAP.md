@@ -93,9 +93,16 @@ what to do."
 
 ## PHASE 3 — Page-role contract (information architecture)
 
-- [ ] **3.1** Write the one-line JOB of each page at the top of its file;
+- [x] **3.1** (done 2026-07-05) Write the one-line JOB of each page at the top of its file;
   delete sections that don't serve it. Kill duplicate trust strips
   (today: TrustBar + TrustStrip + badge rows on the SAME page).
+  Shipped: `/* JOB: … */` contract on all 26 routed pages; the 12
+  page-level TrustStrip badge rows deleted (SiteLayout's global TrustBar
+  is THE one generic trust surface; the Assessment in-flow strip stays —
+  it sits at the submit decision, which is 5.1's pattern). Verified in
+  browser: science/physicians/assessment each show trust-bar=1,
+  page-strips=0. Judgment-call section deletions beyond trust ride with
+  the 4.1 copy rewrite, page by page.
 - [ ] **3.2 Goals before chemistry.** Catalog defaults to goal grouping;
   compound names become the secondary line. PDP hero states the OUTCOME
   first, molecule second.

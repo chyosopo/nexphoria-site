@@ -1,3 +1,4 @@
+/* JOB: remove the last objection; hand off to support or the assessment. */
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
@@ -6,7 +7,6 @@ import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MxHeader } from "@/components/SignatureTile";
 import heroFaq from "@/assets/brand/hero-faq.webp";
 import { PillBadge } from "@/components/PillBadge";
-import { TrustStrip } from "@/components/TrustStrip";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { F } from "@/lib/typography";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
@@ -274,8 +274,6 @@ export default function FAQPage() {
         </div>
       </main>
 
-      {/* Calm trust strip — TRUE claims only (physicians · 503A · lab-monitored) */}
-      <TrustStrip />
 
       {/* ── FAQ categories + accordion ── */}
       <section

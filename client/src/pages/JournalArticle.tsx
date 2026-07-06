@@ -1,3 +1,4 @@
+/* JOB: one article read cleanly end-to-end; one quiet next step. */
 import { useEffect, useState } from "react";
 import { anchor } from "@/lib/anchors";
 import { Link, useRoute, useLocation } from "wouter";

@@ -1,3 +1,4 @@
+/* JOB: editorial trust and SEO; every article advances one next step. */
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";

@@ -1,3 +1,4 @@
+/* JOB: consult-scheduling side door; reached from contact and footer only. */
 /* ═══ BOOKING — physician consultation scheduling ═══
    The intake (/assessment) remains the canonical funnel entrance; this page
    serves visitors who arrive holding a consult link. External scheduler

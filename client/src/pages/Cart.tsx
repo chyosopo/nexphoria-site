@@ -1,3 +1,4 @@
+/* JOB: confirm the selection and move to checkout; no competing noise. */
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";

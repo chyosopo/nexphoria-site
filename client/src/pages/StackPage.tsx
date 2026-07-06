@@ -1,3 +1,4 @@
+/* JOB: sell ONE protocol — outcome, contents, real price, physician gate, one action. */
 /* ═══ FLAGSHIP STACK PAGE — P5 data · D12 layout ═══
    Hero: outcome frame beside the claim. Body: content rail + sticky
    buy-box (lg+); mobile gets an in-flow card + persistent price bar.

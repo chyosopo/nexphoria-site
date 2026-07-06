@@ -1,3 +1,4 @@
+/* JOB: sell the panel and the retest loop that gate every protocol. */
 import { useState, useMemo } from "react";
 import { useLocation } from "wouter";
 import { anchor } from "@/lib/anchors";

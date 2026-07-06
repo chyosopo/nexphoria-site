@@ -1,9 +1,9 @@
+/* JOB: put real physician oversight on the record. */
 import { SiteLayout } from "@/components/SiteLayout";
 import { anchor } from "@/lib/anchors";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip } from "@/components/EnterprisePatterns";
 import { physicianReview } from "@/data/physicians";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F } from "@/lib/typography";
@@ -31,12 +31,6 @@ export default function Physicians() {
     <SiteLayout navVariant="showcase">
       <PhysiciansHeroDark />
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "0" }}>
-        <Reveal>
-          <TrustStrip testid="physicians-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* ── Benefit-encoded editorial portrait band ── */}
       <section

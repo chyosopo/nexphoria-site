@@ -1,3 +1,4 @@
+/* JOB: the women's front door — cast the engine orchid and start the assessment. */
 /* ═══ WOMEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══
    Orchid tokens apply automatically under /women via [data-world]. */
 import { WorldHome } from "@/components/WorldHome";

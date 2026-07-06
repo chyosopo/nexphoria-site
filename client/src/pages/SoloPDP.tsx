@@ -1,3 +1,4 @@
+/* JOB: sell ONE peptide — outcome first, molecule second, one add-to-protocol action. */
 /* ═══ SOLO PDP — P5 data · D12 layout, D-POLISH visual pass ═══
    Gradient hero with an outcome frame + sticky buy-box (lg+); mobile in-flow
    card + persistent price bar. "Why this peptide" pillars, a drawn expectation

@@ -1,3 +1,4 @@
+/* JOB: the storefront — goal, short intake, named-protocol recommendation, one button to checkout. */
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -5,7 +6,6 @@ import { ArrowRight, ArrowLeft, Check, ShieldCheck, ChevronDown } from "lucide-r
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
-import { TrustStrip as CredentialRow } from "@/components/EnterprisePatterns";
 import { Reveal } from "@/components/Reveal";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { MxHeader } from "@/components/SignatureTile";
@@ -646,12 +646,6 @@ export default function Assessment() {
             </figure>
           </div>
 
-          {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-          <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(1.6rem,3vw,2.4rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)" }}>
-            <Reveal>
-              <CredentialRow testid="assessment-credential-strip" />
-            </Reveal>
-          </section>
         </div>
       )}
 

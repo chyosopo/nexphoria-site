@@ -1,9 +1,9 @@
+/* JOB: browse by goal, reach a PDP in one click; nothing else. */
 /* ═══ PEPTIDES CATALOG — P5 wave 2 · the 19-solo shelf ═══ */
 import { useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
@@ -107,12 +107,6 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.4vw,2rem)", paddingBottom: "clamp(1.8rem,3vw,2.4rem)" }} aria-label="Trust and credentials">
-        <Reveal>
-          <TrustStrip testid="peptides-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* ── Biomarker chip strip — every shelf item is lab-monitored (TRUE) ── */}
       <section className="nx-container" style={{ paddingBottom: "clamp(1.4rem,3vw,2.2rem)" }} aria-label="Lab-monitored biomarkers">

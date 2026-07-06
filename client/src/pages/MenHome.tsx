@@ -1,3 +1,4 @@
+/* JOB: the men's front door — cast the engine azure and start the assessment. */
 /* ═══ MEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══ */
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";

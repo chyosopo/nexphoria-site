@@ -1,3 +1,4 @@
+/* JOB: answer 'what does it cost' with catalog-true numbers and one path in. */
 import React from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -5,7 +6,7 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
-import { TrustStrip, FaqAccordion } from "@/components/EnterprisePatterns";
+import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MxHeader } from "@/components/SignatureTile";
@@ -496,12 +497,6 @@ export default function Pricing() {
         </div>
       </main>
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
-        <Reveal>
-          <TrustStrip testid="pricing-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
       <PricingTiers />

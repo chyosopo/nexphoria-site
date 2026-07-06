@@ -1,3 +1,4 @@
+/* JOB: one goal, its protocols and peptides; one click deeper to a price. */
 /* ────────────────────────────────────────────────────────────────
    CATEGORY / CONDITION PAGE — one template, six goals
    Skeleton: emotional hero → 3 steps (if prescribed) → goal chips

@@ -1,3 +1,4 @@
+/* JOB: returning-visitor world chooser — one tap into her world or his; nothing else. */
 import { useState, useRef } from "react";
 import { useLocation, Link } from "wouter";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";

@@ -1,7 +1,7 @@
+/* JOB: the brand's community surface — belonging, never a second storefront. */
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { TrustStrip } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
@@ -91,12 +91,6 @@ export default function Community() {
         </div>
       </main>
 
-      {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
-        <Reveal>
-          <TrustStrip testid="community-trust-strip" />
-        </Reveal>
-      </section>
 
       {/* ── Launch notice ── */}
       <section
