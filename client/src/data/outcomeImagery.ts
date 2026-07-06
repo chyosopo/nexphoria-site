@@ -37,11 +37,13 @@ export const OUTCOME_CATEGORY: Record<
   },
   women: {
     skin: "img/img_3678caab4727.webp", // golden profile, cream robe — skin that holds the light
+    growth: "img/img_5072e4db8390.webp", // navy set, quiet power — lean strength (W)
     recovery: "img/img_1217733ee45f.webp", // chalked grip at the wall (W)
     metabolic: "img/img_4f2bd889825e.webp", // jeans button easily (W)
     longevity: "img/img_40db6393468a.webp", // fastest one at the picnic (W)
     cognition: "img/img_6d55c7017047.webp", // three moves ahead (W)
     sleep: "img/img_3eae89cb98a0.webp", // waking before the alarm (W)
+    "sexual-health": "img/img_ba067fd9f405.webp", // golden-hour ease — desire, on her schedule (W)
   },
 };
 

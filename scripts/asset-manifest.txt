@@ -76,3 +76,8 @@ vial-lineup-hero.webp  bloom:a997eb8e-6aed-4971-9797-9bf62ee558ab  five unbrande
 img_82c3e3ceeecf.webp  bloom:82c3e3ce-eecf-41bd-a027-e689e76bcc1b  couple on coastal morning trail, golden light (front-door hero)
 img_8742acc94d7e.webp  bloom:8742acc9-4d7e-4c21-b276-4f3c24a2175d  gate portrait — her world (rose dawn interior)
 img_84799b6e21dc.webp  bloom:84799b6e-21dc-4d83-be3c-09b1793d9235  gate portrait — him world (steel-blue dusk interior)
+
+# 2026-07-06 — women's-world catalog frames (two-worlds separation; fleet audit)
+# Bloom brand 8c558cc7-9ceb-4959-9ead-eac4f6a3cc1f · pro · 4:5
+img/img_5072e4db8390.webp  <- bloom 5072e4db-8390-4c01-ab90-24c41bfd4c39  (Growth/women: navy set, quiet power — "Lean strength, quietly built.")
+img/img_ba067fd9f405.webp  <- bloom ba067fd9-f405-48ce-80c1-cf5108b696b0  (Sexual Health/women: golden-hour ease — "Desire, on your schedule.")

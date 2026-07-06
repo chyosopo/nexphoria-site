@@ -20,18 +20,26 @@ import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
    rotate through their category's pool by position. The unworlded
    /peptides route defaults to the men set; skin casts female in both. */
 function catImg(world: "men" | "women" | undefined): Record<string, string[]> {
-  const w = world === "women" ? OUTCOME_CATEGORY.women : OUTCOME_CATEGORY.men;
-  const hero = world === "women" ? OUTCOME_HERO.women : OUTCOME_HERO.men;
+  const women = world === "women";
+  const w = women ? OUTCOME_CATEGORY.women : OUTCOME_CATEGORY.men;
+  const hero = women ? OUTCOME_HERO.women : OUTCOME_HERO.men;
   const pool = (...frames: (string | undefined)[]) =>
     frames.filter((f): f is string => Boolean(f));
+  // Her pools are all-female-cast: the men-leaning stack frames (ascend pull-up,
+  // wolverine doorway, threshold track) only pool on his side. Her Growth and
+  // Sexual Health now have dedicated female frames instead of male fallbacks.
   return {
-    Growth: pool(w.growth ?? OUTCOME_CATEGORY.men.growth, OUTCOME_STACK.ascend, OUTCOME_STACK.threshold, hero),
+    Growth: women
+      ? pool(w.growth, hero, OUTCOME_STACK.glow, w.recovery)
+      : pool(w.growth ?? OUTCOME_CATEGORY.men.growth, OUTCOME_STACK.ascend, OUTCOME_STACK.threshold, hero),
     Cognitive: pool(w.cognition, OUTCOME_STACK.lucidity, hero),
-    Recovery: pool(w.recovery, OUTCOME_STACK.wolverine, hero),
+    Recovery: women
+      ? pool(w.recovery, hero, OUTCOME_STACK.glow)
+      : pool(w.recovery, OUTCOME_STACK.wolverine, hero),
     "Skin & Longevity": pool(OUTCOME_CATEGORY.women.skin, OUTCOME_STACK.glow, w.longevity, OUTCOME_STACK.meridian),
     Metabolic: pool(w.metabolic, hero),
     Sleep: pool(w.sleep, hero),
-    "Sexual Health": pool(hero),
+    "Sexual Health": women ? pool(w["sexual-health"], hero) : pool(hero),
   };
 }
 
