@@ -400,7 +400,7 @@ export default function About() {
             <Reveal delay={100}>
               <div
                 style={{
-                  borderRadius: "16px",
+                  borderRadius: "var(--nx-r-md)",
                   overflow: "hidden",
                   aspectRatio: "4/5",
                   border: "1px solid var(--nx-border)",
@@ -435,7 +435,7 @@ export default function About() {
           <Reveal>
           <div
             className="about-pillars-grid"
-            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}
           >
             {PILLARS.map((p, i) => (
               <div
@@ -571,7 +571,7 @@ export default function About() {
                   className="nx-protocol-card"
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "16px",
+                    borderRadius: "var(--nx-r-md)",
                     overflow: "hidden",
                     backgroundColor: "var(--nx-ceramic)",
                     height: "100%",
@@ -621,7 +621,7 @@ export default function About() {
                       fontWeight: 500,
                       color: "var(--nx-fg)",
                       border: "1px solid var(--nx-border)",
-                      borderRadius: "999px",
+                      borderRadius: "var(--nx-r-pill)",
                       padding: "0.5rem 1rem",
                       backgroundColor: "var(--nx-ceramic)",
                     }}
@@ -660,7 +660,7 @@ export default function About() {
               gap: "1.5px",
               backgroundColor: "var(--nx-border)",
               border: "1.5px solid var(--nx-border)",
-              borderRadius: 16,
+              borderRadius: "var(--nx-r-md)",
               overflow: "hidden",
             }}
           >
@@ -720,7 +720,7 @@ export default function About() {
                 className="about-contact-tile"
                 style={{
                   border: "1px solid var(--nx-border)",
-                  borderRadius: "16px",
+                  borderRadius: "var(--nx-r-md)",
                   backgroundColor: "var(--nx-ceramic)",
                   padding: "2.5rem 2.25rem",
                   display: "flex",
@@ -761,7 +761,7 @@ export default function About() {
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     padding: "0.875rem 1.75rem",
-                    borderRadius: "999px",
+                    borderRadius: "var(--nx-r-pill)",
                     flexShrink: 0,
                   }}
                 >
