@@ -97,6 +97,20 @@ export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
   "sexual-health": "Desire, addressed directly.",
 };
 
+/* Each goal's word-triad (ROADMAP 8.3) — three single-word beats shown as
+   quiet chips on stack pages and goal heroes. Same register as the feeling
+   lines; claims stay inside what the catalog supports. */
+export const CATEGORY_TRIAD: Record<PeptideCategory, [string, string, string]> = {
+  recovery: ["Repair", "Rebound", "Return"],
+  skin: ["Renew", "Firm", "Radiate"],
+  cognition: ["Clear", "Focus", "Steady"],
+  sleep: ["Descend", "Restore", "Rise"],
+  growth: ["Build", "Recover", "Measure"],
+  longevity: ["Restore", "Protect", "Extend"],
+  metabolic: ["Quiet", "Steady", "Recompose"],
+  "sexual-health": ["Signal", "Respond", "Connect"],
+};
+
 const RAW_PEPTIDES: Peptide[] = [
   {
     slug: "bpc-157",

@@ -212,15 +212,24 @@ what to do."
   hairlines, electric-blue accent (women: warm rose on the same field).
   Aurora calmed to a whisper; mx- family retuned. AA held; all gates
   green; counts non-regressed.
-- [ ] **8.2 Front-door grammar pass** — positioning band ("a protocol,
-  not a purchase" register, OUR words), three-pillar band, education
-  metaphor section, honest-footnote steps.
-- [ ] **8.3 Protocol triads** — extend CATEGORY_FEELING with 3-word
-  triads per goal (their Youth: Glow·Energize pattern) across stack
-  pages and goal tiles.
-- [ ] **8.4 Inner-page sweep** — verify every page on the new sheet
-  (dark bands, panels, vial art tones are still azure-family — regrade
-  VialArt tone palettes to the warm sheet).
+- [x] **8.2 Front-door grammar pass.** (done 2026-07-06) Shipped: positioning
+  band "A protocol. Not a purchase." on the deep-bone field; numbered
+  three-pillar band (compounding / physician on every file / measured
+  every 90 days); "What is a peptide?" education card with OUR keys-
+  and-receptors metaphor + three plain-truth chips; "How it works —
+  fine print first." steps with the footnotes stated up front
+  (PrescribedPromise + declined-means-nothing-billed + panel-included).
+  All claims existing/true; no copy borrowed from the reference.
+- [x] **8.3 Protocol triads.** (done 2026-07-06) CATEGORY_TRIAD in
+  @/data/peptides (8 goals, e.g. recovery: Repair · Rebound · Return);
+  rendered as quiet chips on every flagship stack hero via a
+  slug→goal map. Category pages deliberately keep their functional
+  chips (different job); goal tiles carry the feeling line.
+- [x] **8.4 Inner-page sweep.** (done 2026-07-06) GoalVialTile tints,
+  VialArt glass/liquid hues, illustration neutrals, and regulatory
+  chips regraded from the azure family to warm bone/espresso
+  equivalents (one cool tone kept in-family for contrast). Verified on
+  the assessment goal step.
 - [ ] **8.5 BLOCKED ON CHIYA:** named Clinical & Scientific Board (real
   people + consent), real before/after testimonials, membership pricing
   model ($/mo club vs current subscriptions). Do not fabricate any of

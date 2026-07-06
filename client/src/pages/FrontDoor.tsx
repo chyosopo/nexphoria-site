@@ -124,6 +124,47 @@ export default function FrontDoor() {
         </div>
       </section>
 
+      {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
+      <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "clamp(2.8rem,5.5vw,4.4rem) 0" }}>
+        <div className="nx-container" style={{ textAlign: "center" }}>
+          <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4.6vw,52px)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.015em", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
+            A protocol. <em style={{ color: "var(--nx-cobalt)" }}>Not a purchase.</em>
+          </h2>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "56ch", margin: "1.1rem auto 0" }}>
+            Nothing here is bought from a shelf. You bring a goal; a licensed physician brings
+            judgment; your bloodwork decides. That is the entire model.
+          </p>
+        </div>
+      </section>
+
+      {/* ══ 1.6 · THREE PILLARS (ROADMAP 8.2) — what the model is made of ══ */}
+      <section className="nx-container" aria-label="What the model is made of" style={{ paddingTop: "clamp(2.6rem,5vw,4rem)", paddingBottom: "0" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 18 }} data-testid="frontdoor-pillars">
+          {[
+            {
+              t: "Medical-grade, compounded",
+              b: "Compounded in state-licensed U.S. 503A pharmacies and shipped cold-chain. The compound you receive is the compound prescribed.",
+            },
+            {
+              t: "A physician on every file",
+              b: "Board-certified physicians review every intake against your bloodwork — and decline what your numbers don't support.",
+            },
+            {
+              t: "Measured every 90 days",
+              b: "The same panel, drawn again each quarter. Protocols continue on evidence, not momentum.",
+            },
+          ].map((p, i) => (
+            <Reveal key={p.t} delay={i * 60}>
+              <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,1.9rem)", height: "100%" }}>
+                <p aria-hidden style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", color: "var(--nx-cobalt)" }}>0{i + 1}</p>
+                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>{p.t}</h3>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>{p.b}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ══ 2 · TWO WORLDS — is this for someone like me? ══ */}
       <section className="nx-container" style={{ paddingTop: "clamp(2.4rem,4.5vw,3.6rem)", paddingBottom: "0" }}>
         <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
@@ -187,6 +228,74 @@ export default function FrontDoor() {
               </Link>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ══ 3.5 · WHAT IS A PEPTIDE (ROADMAP 8.2) — the metaphor, ours ══ */}
+      <section className="nx-container" aria-labelledby="frontdoor-education" style={{ paddingTop: "clamp(3rem,5.5vw,4.5rem)", paddingBottom: "0" }}>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr]" style={{ gap: "clamp(1.8rem,4vw,3rem)", alignItems: "center", background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.8rem,4.5vw,3.2rem)" }} data-testid="frontdoor-education">
+          <div>
+            <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              Before anything else
+            </p>
+            <h2 id="frontdoor-education" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, maxWidth: "18ch" }}>
+              What is a peptide?
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "54ch" }}>
+              Peptides are short chains of amino acids — the same building blocks as protein —
+              shaped to fit receptors your cells already carry. Think of them as keys your body
+              once cut for itself: a signal to repair, to release, to settle. A protocol selects
+              the keys. Your bloodwork proves the doors opened.
+            </p>
+            <Link href="/science" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.1rem" }}>
+              The science, in depth →
+            </Link>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { t: "Amino-acid chains", b: "Biology's native signal language — not a synthetic stimulant." },
+              { t: "Signals, not overrides", b: "They ask cells to do what cells already know how to do." },
+              { t: "Prescription-only here", b: "Physician-prescribed, 503A-compounded, lab-monitored." },
+            ].map((c) => (
+              <div key={c.t} style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "0.95rem 1.15rem" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>{c.t}</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.2rem" }}>{c.b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 3.6 · THE PATH, WITH THE FINE PRINT UP FRONT (ROADMAP 8.2) ══ */}
+      <section className="nx-container" aria-labelledby="frontdoor-steps" style={{ paddingTop: "clamp(3rem,5.5vw,4.5rem)", paddingBottom: "0" }}>
+        <h2 id="frontdoor-steps" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
+          How it works — fine print first.
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 14, marginTop: "1.6rem" }} data-testid="frontdoor-steps">
+          {[
+            { n: "01", t: "Tell us the goal", b: "A structured assessment — about two minutes." },
+            { n: "02", t: "Draw the panel", b: "A partner-laboratory requisition, drawn near you." },
+            { n: "03", t: "A physician decides", b: "Board-certified review of your labs and history. Declines happen." },
+            { n: "04", t: "Compounded, shipped, retested", b: "503A-compounded, cold-chain shipped, re-measured every 90 days." },
+          ].map((s, i) => (
+            <Reveal key={s.n} delay={i * 55}>
+              <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1.15rem 1.25rem", height: "100%", background: "var(--nx-bg)" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", color: "var(--nx-cobalt)" }}>{s.n}</p>
+                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", marginTop: "0.45rem" }}>{s.t}</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{s.b}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        {/* The footnotes ARE the trust — stated before anyone asks. All TRUE. */}
+        <div style={{ marginTop: "1.1rem", display: "flex", flexDirection: "column", gap: 6 }} data-testid="frontdoor-fineprint">
+          <PrescribedPromise testid="frontdoor-steps-promise" />
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
+            * If the physician declines, nothing is compounded and nothing is billed.
+          </p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
+            * Prices are monthly equivalents; 12-month plans include the blood panel.
+          </p>
         </div>
       </section>
 

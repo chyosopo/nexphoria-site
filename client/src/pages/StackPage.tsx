@@ -10,6 +10,18 @@ import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
 import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
+import { CATEGORY_TRIAD, type PeptideCategory } from "@/data/peptides";
+
+/* Flagship → the goal vocabulary it speaks (ROADMAP 8.3 triads). */
+const STACK_GOAL: Record<string, PeptideCategory> = {
+  wolverine: "recovery",
+  glow: "skin",
+  ascend: "growth",
+  lucidity: "cognition",
+  meridian: "longevity",
+  ignite: "metabolic",
+  threshold: "sleep",
+};
 import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
@@ -109,6 +121,16 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.4vw,26px)", color: "var(--nx-cobalt)", marginTop: "0.4rem" }}>
                 {stack.tagline}
               </p>
+              {/* The goal's word-triad (ROADMAP 8.3) — three quiet beats */}
+              {STACK_GOAL[stack.slug] && (
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.9rem" }} data-testid="stack-triad">
+                  {CATEGORY_TRIAD[STACK_GOAL[stack.slug]].map((w) => (
+                    <span key={w} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", padding: "6px 13px", background: "var(--nx-ceramic)" }}>
+                      {w}
+                    </span>
+                  ))}
+                </div>
+              )}
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
                 {stack.bestFor}
               </p>
