@@ -94,21 +94,27 @@ export default function Home() {
 
   return (
     <SiteLayout navVariant="showcase" hideTrustBar>
+      {/* 1 · WHAT IS THIS — feeling: value-prop hero, one solid CTA */}
       <PromoBar />
       <Hero />
       <TrustBar />
       <PressStrip />
+      {/* 2 · IS IT FOR ME — possibility: warm goal / two-world choice */}
       <GoalTiles />
       <HeroFilm />
-      <PeptideTilesStrip />
+      {/* 3 · WHAT DO I GET / COST — 3 steps → price anchor → what's inside */}
       <HowItWorks />
+      <PriceAnchor />
       <FeaturedStack />
-      <ProofBento />
-      <BiomarkerMarquee />
+      <PeptideTilesStrip />
       <BloodworkPillar />
+      <BiomarkerMarquee />
+      {/* 4 · CAN I TRUST THEM — proof: numbers, physician face + can-decline */}
+      <ProofBento />
       <PhysicianStrip />
       <HomeSocialProof />
       <MorningRitual />
+      {/* 5 · WHAT DO I DO NEXT — path: FAQ teaser → one final action */}
       <HomeFAQSection />
       <GuideCapture />
       <FinalCta />
@@ -247,8 +253,8 @@ function Hero() {
           }}
           data-testid="text-hero-headline"
         >
-          The best version of you,{" "}
-          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "var(--nx-amber)" }}>prescribed.</span>
+          Prescription peptide protocols,{" "}
+          <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", color: "var(--nx-amber)" }}>built on your bloodwork.</span>
         </h1>
 
         <p
@@ -280,7 +286,7 @@ function Hero() {
             }}
             data-testid="button-hero-start"
           >
-            Start assessment
+            Start your assessment
             <ArrowRight size={18} strokeWidth={2} />
           </Link>
           <Link
@@ -470,7 +476,7 @@ function GoalTiles() {
                 display: "inline-block",
               }}
             />
-            Pick a goal
+            Is this for you?
           </div>
           <h2
             style={{
@@ -483,8 +489,56 @@ function GoalTiles() {
               margin: 0,
             }}
           >
-            Choose what to optimize.
+            Start with your goal, not a molecule.
           </h2>
+          <p
+            className="mt-6"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "var(--nx-t-body)",
+              lineHeight: 1.55,
+              color: "var(--nx-fg-graphite)",
+            }}
+          >
+            Recovery, weight, focus, sleep, longevity, skin — built for men and
+            women, with the same physicians and the same standard of care
+            underneath.
+          </p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link
+              href="/men"
+              className="inline-flex items-center gap-1.5"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "var(--nx-t-sm)",
+                color: "var(--nx-fg)",
+                borderBottom: "1px solid rgba(21, 24, 28,0.3)",
+                paddingBottom: 2,
+              }}
+              data-testid="link-goals-men"
+            >
+              For men
+              <ArrowUpRight size={13} strokeWidth={2} />
+            </Link>
+            <Link
+              href="/women"
+              className="inline-flex items-center gap-1.5"
+              style={{
+                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontWeight: 500,
+                fontSize: "var(--nx-t-sm)",
+                color: "var(--nx-fg)",
+                borderBottom: "1px solid rgba(21, 24, 28,0.3)",
+                paddingBottom: 2,
+              }}
+              data-testid="link-goals-women"
+            >
+              For women
+              <ArrowUpRight size={13} strokeWidth={2} />
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
@@ -771,6 +825,138 @@ function HowItWorks() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── 4.6 · PRICE ANCHOR + PHYSICIAN PROMISE ───────────────────── */
+/* The cost answer, with physician trust woven at the decision moment:
+   one clear price floor, one promise ("can decline / no charge unless
+   prescribed"), one solid CTA. */
+function PriceAnchor() {
+  return (
+    <section
+      aria-labelledby="price-anchor-heading"
+      className="nx-section-y"
+      style={{ background: "var(--nx-rock)" }}
+      data-testid="section-price-anchor"
+    >
+      <div className="nx-container" style={{ maxWidth: 760, textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
+        <div
+          className="inline-flex items-center gap-2 mb-6"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 500,
+            fontSize: "var(--nx-t-sm)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--nx-fg-muted)",
+          }}
+        >
+          <span aria-hidden style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", display: "inline-block" }} />
+          What it costs
+        </div>
+
+        <h2
+          id="price-anchor-heading"
+          style={{
+            fontFamily: "'Fraunces', Georgia, serif",
+            fontWeight: 600,
+            fontSize: "var(--nx-t-h1)",
+            lineHeight: 1.04,
+            letterSpacing: "-0.03em",
+            color: "var(--nx-fg)",
+            margin: 0,
+          }}
+        >
+          Protocols from{" "}
+          <span style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>$129/mo</span>
+          {" "}— physician and labs included.
+        </h2>
+
+        <p
+          className="mt-6 mx-auto"
+          style={{
+            fontFamily: "'General Sans', system-ui, sans-serif",
+            fontWeight: 400,
+            fontSize: "var(--nx-t-body)",
+            lineHeight: 1.6,
+            color: "var(--nx-fg-graphite)",
+            maxWidth: "48ch",
+          }}
+        >
+          One monthly price covers the physician consultation, your compounded
+          peptides from a U.S. 503A pharmacy, and lab review. No membership fee
+          on top, no surprise add-ons.
+        </p>
+
+        <div
+          className="mt-8 mx-auto inline-flex items-start gap-3 text-left"
+          style={{
+            background: "var(--nx-ceramic)",
+            border: "1px solid rgba(21, 24, 28,0.1)",
+            borderRadius: "var(--nx-r-md)",
+            padding: "16px 20px",
+            maxWidth: 560,
+            boxShadow: "var(--nx-e-1)",
+          }}
+        >
+          <span aria-hidden style={{ marginTop: 3, color: "var(--nx-cobalt)", flexShrink: 0 }}>
+            <ShieldCheck size={20} strokeWidth={2} />
+          </span>
+          <p
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 400,
+              fontSize: "var(--nx-t-sm)",
+              lineHeight: 1.55,
+              color: "var(--nx-fg-graphite)",
+              margin: 0,
+            }}
+          >
+            A board-certified physician reviews every request — and can decline
+            it. You are not charged for a protocol unless a prescription is
+            written for you.
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          <Link
+            href="/assessment"
+            className="inline-flex items-center gap-2"
+            style={{
+              background: "var(--nx-cobalt)",
+              color: "var(--nx-ceramic)",
+              padding: "14px 22px",
+              borderRadius: "var(--nx-r-pill)",
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 600,
+              fontSize: "var(--nx-t-base)",
+              letterSpacing: "-0.01em",
+            }}
+            data-testid="button-price-start"
+          >
+            Start your assessment
+            <ArrowRight size={18} strokeWidth={2} />
+          </Link>
+          <Link
+            href="/pricing"
+            className="inline-flex items-center gap-1.5"
+            style={{
+              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontWeight: 500,
+              fontSize: "var(--nx-t-base)",
+              color: "var(--nx-fg)",
+              borderBottom: "1px solid rgba(21, 24, 28,0.3)",
+              paddingBottom: 2,
+            }}
+            data-testid="link-price-full"
+          >
+            See full pricing
+            <ArrowUpRight size={14} strokeWidth={2} />
+          </Link>
         </div>
       </div>
     </section>

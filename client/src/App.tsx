@@ -67,7 +67,8 @@ function AppRouter() {
         <Route path="/peptides/:slug">{(p) => <SoloPDP slug={(p as {slug:string}).slug} />}</Route>
         <Route path="/goals/:slug" component={Category} />
 
-        {/* Old gender gate — kept reachable at /gate but not the home */}
+        {/* Old gender gate — kept reachable at /gate for returning users, not the home */}
+        <Route path="/gate" component={Gate} />
 
         {/* Women routes */}
         <Route path="/women" component={WomenHome} />
