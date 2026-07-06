@@ -186,7 +186,7 @@ export default function Category() {
               {/* goal chips */}
               <div className="mt-8 flex flex-wrap gap-2">
                 {cfg.chips.map((c) => (
-                  <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 13, fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(152, 182, 213,0.22)", border: "1px solid rgba(73, 110, 148,0.22)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>
+                  <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(152, 182, 213,0.22)", border: "1px solid rgba(73, 110, 148,0.22)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>
                     {c}
                   </span>
                 ))}
@@ -211,12 +211,12 @@ export default function Category() {
             {STEPS.map(([t, d], i) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.9rem 1.7rem" }}>
                 <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-amber)", lineHeight: 1 }}>{i + 1}</div>
-                <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 17, color: "var(--nx-fg)", marginTop: "0.8rem" }}>{t}</h3>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
+                <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)", marginTop: "0.8rem" }}>{t}</h3>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
               </div>
             ))}
           </div>
-          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 12.5, color: "var(--nx-fg-muted)", marginTop: "1.2rem" }}>
+          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.2rem" }}>
             †{IF_RX}
           </p>
         </div>
@@ -234,12 +234,12 @@ export default function Category() {
           <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
             <div className="flex items-center justify-between gap-4">
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)" }}>{GOAL_CHIP[slug]?.label}</span>
-              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: 11, color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: "var(--nx-r-pill)", padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: "var(--nx-r-pill)", padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
             </div>
             <div className="relative mt-2.5" aria-hidden="true" style={{ height: 5, borderRadius: "var(--nx-r-pill)", background: "linear-gradient(90deg,var(--nx-success),var(--nx-acid),var(--nx-rust))" }}>
               <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: "var(--nx-r-pill)", background: "var(--nx-bg)", boxShadow: "0 0 0 3px rgba(243, 245, 247,0.3)" }} />
             </div>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 10.5, color: "rgba(243, 245, 247,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(243, 245, 247,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
           </div>
         </div>
       </section>
@@ -255,7 +255,7 @@ export default function Category() {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 21, color: "var(--nx-fg)" }}>{p.name}</h3>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 14, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{p.tagline}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{p.tagline}</p>
                   </div>
                   <span className="nx-icon-chip" style={{ width: 36, height: 36 }} aria-hidden>
                     <ArrowRight size={17} strokeWidth={1.9} className="transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -303,13 +303,13 @@ export default function Category() {
             <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-fg)" }}>
               One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
             </h2>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 16, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>
               Free evaluation. You only pay if a physician prescribes.
             </p>
             <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2 mt-6">
               Begin your intake <ArrowRight size={17} strokeWidth={2} />
             </Link>
-            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 11.5, color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>
               Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Availability varies by state.
             </p>
           </div>
