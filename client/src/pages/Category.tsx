@@ -154,8 +154,8 @@ export default function Category() {
   if (!cfg) {
     return (
       <SiteLayout>
-        <section className="nx-section"><div className="nx-container">
-          <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500 }}>Protocol area not found.</h1>
+        <section className="nx-section" aria-labelledby="category-notfound-title"><div className="nx-container">
+          <h1 id="category-notfound-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500 }}>Protocol area not found.</h1>
           <Link href="/peptides" className="nx-cta-cobalt mt-6 inline-flex">Browse all peptides</Link>
         </div></section>
       </SiteLayout>
@@ -165,12 +165,12 @@ export default function Category() {
   return (
     <SiteLayout>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }}>
+      <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }} aria-labelledby="category-hero-title">
         <div className="nx-container" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(2.5rem,5vw,4rem)" }}>
           <div className={heroArt ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center" : ""}>
             <div>
               <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
-              <h1 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
+              <h1 id="category-hero-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
                 {cfg.pre}{" "}
                 <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
               </h1>
@@ -204,7 +204,7 @@ export default function Category() {
       </section>
 
       {/* ── Three steps ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="How it works">
         <div className="nx-container">
           <p className="nx-eyebrow">How it works</p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -223,12 +223,12 @@ export default function Category() {
       </section>
 
       {/* ── Goal composite — UI over film ── */}
-      <section className="relative overflow-hidden flex items-center" style={{ minHeight: "70vh" }}>
+      <section className="relative overflow-hidden flex items-center" style={{ minHeight: "70vh" }} aria-labelledby="category-progress-title">
         <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
         <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, rgba(21, 24, 28,0.1) 60%, transparent 100%)" }} />
         <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
         <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-          <h2 className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
+          <h2 id="category-progress-title" className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
             Progress you can <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>point to.</em>
           </h2>
           <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
@@ -245,7 +245,7 @@ export default function Category() {
       </section>
 
       {/* ── Treatment options (real data) ── */}
-      <section className="nx-section">
+      <section className="nx-section" aria-label="Peptides in this area">
         <div className="nx-container">
           <p className="nx-eyebrow">Peptides in this area</p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -277,7 +277,7 @@ export default function Category() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="Frequently asked questions">
         <div className="nx-container" style={{ maxWidth: 860 }}>
           <p className="nx-eyebrow">Questions, answered</p>
           <Reveal>
@@ -297,10 +297,10 @@ export default function Category() {
       </section>
 
       {/* ── Final CTA ── */}
-      <section className="nx-section">
+      <section className="nx-section" aria-labelledby="category-cta-title">
         <div className="nx-container">
           <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", textAlign: "center" }}>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-fg)" }}>
+            <h2 id="category-cta-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-fg)" }}>
               One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
             </h2>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>

@@ -47,13 +47,13 @@ export default function ProtocolsIndex() {
 
   return (
     <SiteLayout>
-      <section className="relative" style={{ overflow: "hidden" }}>
+      <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "clamp(2.4rem,5vw,3.8rem)", paddingBottom: "clamp(1.4rem,2.5vw,2rem)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+              <h1 id="protocols-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
                 Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
@@ -81,7 +81,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* why a protocol vs à la carte */}
-      <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "clamp(1.2rem,2.5vw,2rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "clamp(1.2rem,2.5vw,2rem)" }} aria-label="Why a protocol">
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
             { h: "Chosen to combine", d: "Each peptide is picked for how it works with the others in the stack — synergy a physician plans, not a basket you assemble." },
@@ -97,14 +97,14 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.6vw,2.2rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.6vw,2.2rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }} aria-label="Trust and credentials">
         <Reveal>
           <TrustStrip testid="protocols-trust-strip" />
         </Reveal>
       </section>
 
       {/* filter */}
-      <section className="nx-container" style={{ paddingBottom: "1rem" }}>
+      <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Filter protocols">
         <div role="group" aria-label="Filter protocols by category" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {CATEGORIES.map((c) => {
             const n = c === "All" ? FLAGSHIP_STACKS.length : FLAGSHIP_STACKS.filter((s) => matchCat(s.category, c)).length;
@@ -124,7 +124,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* grid — compact floating product tiles (hims pattern) */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }} aria-label="Protocols">
         <div className="nx-float-grid">
           {shown.map((s, i) => {
             const rec = s.cadences.find((c) => c.key === "3mo");
@@ -182,7 +182,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* ── Measured, not assumed — abstract outcome dashboard + clinical standard ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }} aria-label="Measured, not assumed">
         <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.25fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
           <div>
             <SectionHead
@@ -204,10 +204,10 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* not sure which — route to the assessment */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }}>
+      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }} aria-labelledby="protocols-assess-title">
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
+          <h2 id="protocols-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
             The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: 15.5, lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>

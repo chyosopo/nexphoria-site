@@ -74,13 +74,13 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
 
   return (
     <SiteLayout>
-      <section className="relative" style={{ overflow: "hidden" }}>
+      <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+              <h1 id="peptides-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
                 {SOLO_CATALOG.length} peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
@@ -108,14 +108,14 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.4vw,2rem)", paddingBottom: "clamp(1.8rem,3vw,2.4rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.4vw,2rem)", paddingBottom: "clamp(1.8rem,3vw,2.4rem)" }} aria-label="Trust and credentials">
         <Reveal>
           <TrustStrip testid="peptides-trust-strip" />
         </Reveal>
       </section>
 
       {/* ── Biomarker chip strip — every shelf item is lab-monitored (TRUE) ── */}
-      <section className="nx-container" style={{ paddingBottom: "clamp(1.4rem,3vw,2.2rem)" }}>
+      <section className="nx-container" style={{ paddingBottom: "clamp(1.4rem,3vw,2.2rem)" }} aria-label="Lab-monitored biomarkers">
         <Reveal>
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every protocol here is lab-monitored</p>
           <div className="nx-biochip-grid" data-testid="catalog-biochips">
@@ -129,7 +129,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </Reveal>
       </section>
 
-      <section className="nx-container" style={{ paddingBottom: "1rem" }}>
+      <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Search and filter the catalog">
         <input
           type="search"
           value={q}
@@ -156,7 +156,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }} aria-label="Peptide catalog">
         <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
           {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
         </p>
@@ -203,10 +203,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       {/* not sure which — route to the assessment */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }}>
+      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }} aria-labelledby="peptides-assess-title">
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
+          <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
             The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>

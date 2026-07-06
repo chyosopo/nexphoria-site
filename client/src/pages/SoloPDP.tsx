@@ -109,7 +109,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   return (
     <SiteLayout>
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
-      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
+      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="solo-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "clamp(2.6rem,5vw,3.8rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
@@ -118,7 +118,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center", marginTop: "1rem" }}>
             <div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{solo.category}</p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.02, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem" }}>{solo.name}</h1>
+              <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,72px)", lineHeight: 1.02, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem" }}>{solo.name}</h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>{solo.mechanism}</p>
               <div className="grid sm:grid-cols-2" style={{ gap: 10, maxWidth: 520, marginTop: "1.4rem" }}>
                 <div className="nx-stat-card" style={{ gap: 4 }}>
@@ -154,7 +154,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ BODY — content rail + sticky buy-box ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.5vw,2rem)", paddingBottom: "clamp(2rem,4vw,3rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.5vw,2rem)", paddingBottom: "clamp(2rem,4vw,3rem)" }} aria-label="Peptide details">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
 
           {/* — LEFT — */}
@@ -252,7 +252,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ IMAGERY BAND — the outcome, not the vial ══ */}
-      <section className="nx-container" style={{ paddingBottom: "clamp(2rem,4vw,3rem)" }}>
+      <section className="nx-container" style={{ paddingBottom: "clamp(2rem,4vw,3rem)" }} aria-labelledby="solo-point-title">
         <Reveal>
           <div style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "16 / 7" }}>
             <img src={categoryImg} alt="" aria-hidden loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 28%", display: "block" }} />
@@ -260,7 +260,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
               <div style={{ padding: "clamp(1.4rem,4vw,3rem)", maxWidth: 560 }}>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
-                <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.6vw,40px)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
+                <h2 id="solo-point-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.6vw,40px)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
                   We sell the measured loop — <em style={{ color: "var(--nx-acid)" }}>not the vial.</em>
                 </h2>
               </div>
@@ -270,12 +270,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ CONTRAINDICATION NIGHT BAND — dramatic ══ */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }}>
+      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }} aria-labelledby="solo-contra-title">
         <div className="nx-container">
           <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Before you begin
           </p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
+          <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {solo.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
@@ -290,8 +290,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ CROSS-SELL — same-axis compounds, if-prescribed framing ══ */}
       {related.length > 0 && (
-        <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.6rem)", paddingBottom: "0" }}>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+        <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.6rem)", paddingBottom: "0" }} aria-labelledby="solo-crosssell-title">
+          <h2 id="solo-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
             Often prescribed on the same axis
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
@@ -317,8 +317,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         </section>
       )}
 
-      <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.4rem)", paddingBottom: "4.5rem", textAlign: "center" }}>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em></h2>
+      <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.4rem)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
+        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em></h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Start your assessment</Link>
       </section>
     </SiteLayout>

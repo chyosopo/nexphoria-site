@@ -51,8 +51,8 @@ export default function StackPage({ slug }: { slug: string }) {
   if (!stack) {
     return (
       <SiteLayout>
-        <section className="nx-container" style={{ paddingTop: "clamp(4.5rem,7.5vw,6.5rem)", paddingBottom: "clamp(4.5rem,7.5vw,6.5rem)" }}>
-          <h1 style={{ fontFamily: F, color: "var(--nx-fg-graphite)" }}>Protocol not found.</h1>
+        <section className="nx-container" style={{ paddingTop: "clamp(4.5rem,7.5vw,6.5rem)", paddingBottom: "clamp(4.5rem,7.5vw,6.5rem)" }} aria-labelledby="stack-notfound-title">
+          <h1 id="stack-notfound-title" style={{ fontFamily: F, color: "var(--nx-fg-graphite)" }}>Protocol not found.</h1>
           <Link href="/stacks" style={{ fontFamily: F, color: "var(--nx-cobalt)" }}>← All protocols</Link>
         </section>
       </SiteLayout>
@@ -91,7 +91,7 @@ export default function StackPage({ slug }: { slug: string }) {
   return (
     <SiteLayout>
       {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
-      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
+      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "clamp(2.4rem,5vw,3.6rem)", paddingBottom: "clamp(1.8rem,3vw,2.4rem)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
@@ -102,7 +102,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
                 {stack.category}
               </p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
+              <h1 id="stack-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
                 {stack.name}
               </h1>
               <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.4vw,26px)", color: "var(--nx-cobalt)", marginTop: "0.4rem" }}>
@@ -146,9 +146,9 @@ export default function StackPage({ slug }: { slug: string }) {
       </section>
 
       {/* ── VIAL LINEUP — the protocol, rendered as its vials ── */}
-      <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }}>
+      <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="stack-vials-title">
         <div className="nx-container" style={{ paddingTop: "clamp(1.8rem,3.5vw,2.8rem)", paddingBottom: "clamp(1.8rem,3.5vw,2.8rem)" }}>
-          <h2 className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</h2>
+          <h2 id="stack-vials-title" className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</h2>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end", gap: "clamp(1.5rem,5vw,3.5rem)", marginTop: "1.4rem" }}>
             {stack.peptides.map((p, i) => {
               const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -167,7 +167,7 @@ export default function StackPage({ slug }: { slug: string }) {
       </section>
 
       {/* ── BODY — content rail + sticky buy-box ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.6rem,3vw,2.4rem)", paddingBottom: "clamp(2rem,4vw,3rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(1.6rem,3vw,2.4rem)", paddingBottom: "clamp(2rem,4vw,3rem)" }} aria-label="Protocol details">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
 
           {/* — LEFT: the story — */}
@@ -287,10 +287,10 @@ export default function StackPage({ slug }: { slug: string }) {
       </section>
 
       {/* ── ONE NIGHT BAND — contraindications, stated plainly ── */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }}>
+      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }} aria-labelledby="stack-contra-title">
         <div className="nx-container">
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Before you begin</p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
+          <h2 id="stack-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
             This protocol is not for everyone.
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
@@ -307,8 +307,8 @@ export default function StackPage({ slug }: { slug: string }) {
 
       {/* ── CROSS-SELL — the other flagship protocols ── */}
       {otherStacks.length > 0 && (
-        <section className="nx-container" style={{ paddingTop: "clamp(2.8rem,5vw,4rem)", paddingBottom: "0" }}>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+        <section className="nx-container" style={{ paddingTop: "clamp(2.8rem,5vw,4rem)", paddingBottom: "0" }} aria-labelledby="stack-crosssell-title">
+          <h2 id="stack-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
             Explore the other protocols
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
@@ -347,8 +347,8 @@ export default function StackPage({ slug }: { slug: string }) {
       )}
 
       {/* ── CLOSE ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
+      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(4.5rem,7vw,6rem)", textAlign: "center" }} aria-labelledby="stack-close-title">
+        <h2 id="stack-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,40px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
           The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
