@@ -7,10 +7,12 @@ import { Link } from "wouter";
 import { ArrowRight, Stethoscope, FlaskConical, ClipboardCheck, Activity } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { peptides, CATEGORY_LABELS, PeptideCategory } from "@/data/peptides";
+import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, PeptideCategory } from "@/data/peptides";
+import { getStack, usd } from "@/data/stacksCatalog";
+import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
-import { outcomeSrcSet } from "@/data/outcomeImagery";
+import { outcomeSrcSet, OUTCOME_STACK } from "@/data/outcomeImagery";
 import { F, S } from "@/lib/typography";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 
@@ -91,6 +93,26 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
     .map((slug) => peptides.find((p) => p.slug === slug))
     .filter(Boolean) as typeof peptides;
 
+  /* Hero rail tiles (hims grammar): this world's six goals on its own cast,
+     one flagship protocol with its real from-price, and the retest promise
+     on the world's hero portrait. */
+  const flagshipSlug = world === "women" ? "glow" : "ascend";
+  const flagship = getStack(flagshipSlug)!;
+  const flagshipFrom = usd(Math.min(...flagship.cadences.map((c) => c.perMonth ?? c.total)));
+  const railTiles: RailTile[] = [
+    ...(config.heroArt
+      ? [{ img: config.heroArt, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: `${world}-rail-bloodwork` }]
+      : []),
+    ...config.categories.slice(0, 6).map((cat, i) => ({
+      img: config.tileArt[cat] ?? config.heroArt ?? "",
+      label: CATEGORY_LABELS[cat],
+      sub: CATEGORY_FEELING[cat],
+      href: `/goals/${cat}`,
+      testid: `${world}-rail-${cat}`,
+    })),
+    { img: OUTCOME_STACK[flagshipSlug] ?? config.heroArt ?? "", label: `The ${flagship.name} protocol`, sub: `from ${flagshipFrom}/mo`, href: `/stacks/${flagshipSlug}`, testid: `${world}-rail-flagship` },
+  ].filter((t) => t.img);
+
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── HERO — aurora field, quiet institutional claim ── */}
@@ -132,69 +154,11 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           {/* Physician presence at the decision moment (ROADMAP 5.1) */}
           <PhysicianGate testid={`${world}-hero-physician`} style={{ marginTop: "0.9rem" }} />
           </div>
-          {config.heroArt && (
-            <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
-              <img
-                src={config.heroArt}
-                alt=""
-                aria-hidden
-                fetchPriority="high"
-                width={2048}
-                height={1360}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                data-testid={`${world}-hero-art`}
-              />
-              {/* live-cadence chip — top corner, pairs with the marker chip below */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 14,
-                  right: 14,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
-                  backdropFilter: "blur(10px)",
-                  WebkitBackdropFilter: "blur(10px)",
-                  borderRadius: "var(--nx-r-pill)",
-                  padding: "8px 14px",
-                }}
-                data-testid={`${world}-hero-cadence`}
-              >
-                <span className="nx-pulse-dot" aria-hidden style={{ width: 7, height: 7, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", flexShrink: 0 }} />
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
-                  Retested every 90 days
-                </span>
-              </div>
-              {config.heroMarker && (
-                <div
-                  style={{
-                    position: "absolute",
-                    left: 14,
-                    bottom: 14,
-                    background: "color-mix(in srgb, var(--nx-ceramic) 82%, transparent)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    border: "1px solid color-mix(in srgb, var(--nx-accent) 24%, transparent)",
-                    borderRadius: "var(--nx-r-sm)",
-                    padding: "10px 14px",
-                    minWidth: 168,
-                    boxShadow: "var(--nx-e-2)",
-                  }}
-                  data-testid={`${world}-hero-marker`}
-                >
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
-                    Sample 90-day trajectory
-                  </p>
-                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginTop: 3 }}>
-                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>{config.heroMarker.label}</span>
-                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 700, color: "var(--nx-cobalt)", fontVariantNumeric: "tabular-nums" }}>{config.heroMarker.delta}</span>
-                  </div>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: 2 }}>{config.heroMarker.state}</p>
-                </div>
-              )}
-            </div>
-          )}
+          {/* The weightless vertical tile rail — the hims-grammar hero:
+              this world's goals, flagship, and the retest promise on its own
+              photographic cast. Desktop: two counter-scrolling columns.
+              Mobile: snap strip. */}
+          <HeroTileRail tiles={railTiles} testid={`${world}-rail`} />
           </div>
         </div>
 

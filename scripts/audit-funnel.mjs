@@ -40,12 +40,14 @@ const PATHS = [
     'a[href*="/peptides/"]',
   ]},
   { name: "front door → nav pricing", entry: "/", clicks: ['nav >> text=Pricing'] },
+  // the bento goal tiles, NOT the hero rail — the rail's marquee animation
+  // never stabilizes for scrollIntoViewIfNeeded (same destination either way)
   { name: "men home → goal tile → PDP", entry: "/men", clicks: [
-    'a[href*="/goals/"]',
+    '[data-testid^="men-goal-"]',
     'a[href*="/peptides/"]',
   ]},
   { name: "women home → goal tile → PDP", entry: "/women", clicks: [
-    'a[href*="/goals/"]',
+    '[data-testid^="women-goal-"]',
     'a[href*="/peptides/"]',
   ]},
   { name: "catalog → PDP", entry: "/peptides", clicks: ['[data-testid^="peptide-"]'] },

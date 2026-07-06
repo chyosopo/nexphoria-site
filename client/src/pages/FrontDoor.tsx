@@ -13,7 +13,8 @@ import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { CATEGORY_LABELS, CATEGORY_FEELING, peptides, type PeptideCategory } from "@/data/peptides";
-import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
+import { OUTCOME_CATEGORY, OUTCOME_STACK } from "@/data/outcomeImagery";
+import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
 import { outcomeSrcSet } from "@/data/outcomeImagery";
@@ -44,6 +45,25 @@ const PROTOCOL_FROM = Math.min(
     s.cadences.map((c) => c.perMonth ?? c.total),
   ),
 );
+
+/* From-price of one stack — its lowest real per-month cadence. */
+const stackFrom = (slug: string) => {
+  const s = FLAGSHIP_STACKS.find((x) => x.slug === slug)!;
+  return usd(Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)));
+};
+
+/* The hero rail (hims grammar): six goals + two flagship protocols + the
+   retest promise, all on existing Bloom photography and real prices. */
+const HERO_TILES: RailTile[] = [
+  { img: OUTCOME_CATEGORY.women.recovery!, label: CATEGORY_LABELS.recovery, sub: CATEGORY_FEELING.recovery, href: "/goals/recovery", testid: "rail-recovery" },
+  { img: OUTCOME_STACK.wolverine, label: "The Wolverine protocol", sub: `from ${stackFrom("wolverine")}/mo`, href: "/stacks/wolverine", testid: "rail-wolverine" },
+  { img: OUTCOME_CATEGORY.women.skin!, label: CATEGORY_LABELS.skin, sub: CATEGORY_FEELING.skin, href: "/goals/skin", testid: "rail-skin" },
+  { img: OUTCOME_CATEGORY.men.growth!, label: CATEGORY_LABELS.growth, sub: CATEGORY_FEELING.growth, href: "/goals/growth", testid: "rail-growth" },
+  { img: OUTCOME_STACK.glow, label: "The Glow protocol", sub: `from ${stackFrom("glow")}/mo`, href: "/stacks/glow", testid: "rail-glow" },
+  { img: OUTCOME_CATEGORY.men.metabolic!, label: CATEGORY_LABELS.metabolic, sub: CATEGORY_FEELING.metabolic, href: "/goals/metabolic", testid: "rail-metabolic" },
+  { img: HERO_ART, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: "rail-bloodwork" },
+  { img: OUTCOME_CATEGORY.women.cognition!, label: CATEGORY_LABELS.cognition, sub: CATEGORY_FEELING.cognition, href: "/goals/cognition", testid: "rail-cognition" },
+];
 
 export default function FrontDoor() {
   useSeo({
@@ -96,40 +116,10 @@ export default function FrontDoor() {
               {/* Physician presence at the decision moment (ROADMAP 5.1) */}
               <PhysicianGate testid="frontdoor-hero-physician" style={{ marginTop: "0.9rem" }} />
             </div>
-            <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
-              <img src={HERO_ART} alt="" aria-hidden fetchPriority="high" width={2048} height={1360} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid="frontdoor-hero-art" />
-              <div
-                style={{
-                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
-                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
-                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
-                }}
-              >
-                <span className="nx-pulse-dot" aria-hidden style={{ width: 7, height: 7, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)", flexShrink: 0 }} />
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
-                  Retested every 90 days
-                </span>
-              </div>
-              <div
-                style={{
-                  position: "absolute", left: 14, bottom: 14,
-                  background: "color-mix(in srgb, var(--nx-ceramic) 82%, transparent)",
-                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                  border: "1px solid color-mix(in srgb, var(--nx-accent) 24%, transparent)",
-                  borderRadius: "var(--nx-r-sm)", padding: "10px 14px", minWidth: 168, boxShadow: "var(--nx-e-2)",
-                }}
-              >
-                <p style={{ fontFamily: F, fontSize: 10, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
-                  Sample 90-day trajectory
-                </p>
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginTop: 3 }}>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>hs-CRP</span>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 700, color: "var(--nx-cobalt)", fontVariantNumeric: "tabular-nums" }}>−41%</span>
-                </div>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: 2 }}>Inflammation trending down</p>
-              </div>
-            </div>
+            {/* The weightless vertical tile rail — the hims-grammar hero:
+                every goal and flagship on Bloom photography, drifting slowly.
+                Desktop: two counter-scrolling columns. Mobile: snap strip. */}
+            <HeroTileRail tiles={HERO_TILES} testid="frontdoor-rail" />
           </div>
         </div>
       </section>

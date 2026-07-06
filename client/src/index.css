@@ -1214,6 +1214,104 @@ body { overflow-x: clip; }
 @keyframes nx-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .nx-marquee-track { animation: none; } .nx-marquee { overflow-x: auto; } }
 
+/* ── Hero vertical tile rail (hims grammar) ──
+   Two columns of tall rounded photo tiles drifting in opposite directions,
+   masked top/bottom so they feel weightless. Content is rendered twice per
+   column; translateY(-50%) makes the loop seamless. Hover pauses; reduced
+   motion stills it (the doubled copy hides behind the mask). */
+.nx-vrail {
+  position: relative;
+  height: min(660px, 74vh);
+  display: none; /* responsive display owned HERE, not by utility classes —
+                    this rule loads after Tailwind's and would defeat `hidden` */
+  gap: 16px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
+}
+@media (min-width: 1024px) { .nx-vrail { display: flex; } }
+.nx-vrail-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  animation: nx-vrail-up 75s linear infinite;
+  will-change: transform;
+}
+.nx-vrail-col.down { animation-name: nx-vrail-down; animation-duration: 88s; }
+.nx-vrail:hover .nx-vrail-col { animation-play-state: paused; }
+@keyframes nx-vrail-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes nx-vrail-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .nx-vrail-col { animation: none; } }
+
+.nx-vtile {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--nx-r-lg);
+  overflow: hidden;
+  border: 1px solid var(--nx-border);
+  box-shadow: var(--nx-e-2);
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
+}
+.nx-vtile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+.nx-vtile:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
+.nx-vtile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-vtile-chip {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: block;
+  background: color-mix(in srgb, var(--nx-ceramic) 88%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--nx-fg) 6%, transparent);
+  border-radius: var(--nx-r-md);
+  padding: 9px 12px;
+  box-shadow: var(--nx-e-1);
+}
+.nx-vtile-chip .t {
+  display: block;
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nx-fg);
+  line-height: 1.3;
+}
+.nx-vtile-chip .s {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--nx-t-sm);
+  color: var(--nx-cobalt);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+/* Mobile: the rail becomes a swipeable snap strip under the headline */
+.nx-vstrip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 4px 10px;
+  margin: 0 calc(-1 * var(--nx-gutter));
+  padding-left: var(--nx-gutter);
+  padding-right: var(--nx-gutter);
+}
+.nx-vstrip::-webkit-scrollbar { display: none; }
+.nx-vstrip .nx-vtile { flex: 0 0 58%; max-width: 240px; scroll-snap-align: start; }
+@media (min-width: 640px) { .nx-vstrip .nx-vtile { flex-basis: 38%; } }
+@media (min-width: 1024px) { .nx-vstrip { display: none; } }
+
 /* ── Peptide-chain scroll draw (CSS scroll-driven; static fallback) ── */
 .nx-chain-path { stroke-dashoffset: 0; }
 .nx-chain-node { transform-origin: center; }
