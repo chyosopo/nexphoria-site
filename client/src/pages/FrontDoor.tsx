@@ -20,8 +20,10 @@ import { SOLO_FROM_LABEL } from "@/data/pricing";
 import { outcomeSrcSet } from "@/data/outcomeImagery";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
-import gateHer from "@/assets/brand/gate-her.webp";
-import gateHim from "@/assets/brand/gate-him.webp";
+/* The dedicated per-world gate portraits (Bloom, 2026-07-06) — same faces
+   that greet visitors at /gate, so the two-worlds moment is consistent. */
+const gateHer = "img/img_8742acc94d7e.webp";
+const gateHim = "img/img_84799b6e21dc.webp";
 
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";

@@ -2,8 +2,11 @@
 import { useState, useRef } from "react";
 import { useLocation, Link } from "wouter";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import gateHer from "@/assets/brand/gate-her.webp";
-import gateHim from "@/assets/brand/gate-him.webp";
+/* Dedicated gate portraits, shot in each world's palette (Bloom, 2026-07-06 —
+   see scripts/asset-manifest.txt): her in rose dawn light, him in steel-blue
+   dusk. Base-relative public paths resolve under the runtime <base>. */
+const gateHer = "img/img_8742acc94d7e.webp";
+const gateHim = "img/img_84799b6e21dc.webp";
 import { Logo } from "@/components/Logo";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
@@ -248,6 +251,13 @@ export default function Gate() {
             flex-direction: column !important;
           }
         }
+        /* Slow breathing zoom on the portraits — a whisper of life. Lives on
+           the <img> so it composes under framer's hover/choose transforms on
+           the wrapper. Opposite phases so the two panels never move in sync. */
+        .gate-card-img { animation: gateBreath 26s ease-in-out infinite alternate; will-change: transform; }
+        [data-testid="gate-card-him"] .gate-card-img { animation-duration: 32s; animation-direction: alternate-reverse; }
+        @keyframes gateBreath { from { transform: scale(1); } to { transform: scale(1.055); } }
+        @media (prefers-reduced-motion: reduce) { .gate-card-img { animation: none; } }
       `}</style>
     </div>
   );
@@ -395,6 +405,7 @@ function GateCard({
           alt=""
           aria-hidden="true"
           loading="eager"
+          className="gate-card-img"
           style={{
             width: "100%",
             height: "100%",
