@@ -5,7 +5,7 @@
    → treatment grid (real data) → FAQ (+JSON-LD) → CTA → footnote
    ──────────────────────────────────────────────────────────────── */
 import { Link, useRoute, useLocation } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Pill, Activity, Stethoscope, RefreshCw } from "lucide-react";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
@@ -199,7 +199,7 @@ export default function Category() {
               {/* goal chips */}
               <div className="mt-8 flex flex-wrap gap-2">
                 {cfg.chips.map((c) => (
-                  <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-cobalt)", background: "rgba(152, 182, 213,0.22)", border: "1px solid rgba(73, 110, 148,0.22)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>
+                  <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-cobalt)", background: "var(--nx-cobalt-soft)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 24%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>
                     {c}
                   </span>
                 ))}
@@ -212,6 +212,31 @@ export default function Category() {
                 </div>
               </Reveal>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── At-a-glance clinical facts — surfaced immediately, no scrolling
+          (Chiya 2026-07-06: information accessible fast, not buried). TRUE
+          values only: compound count from the catalog, marker count from the
+          panel, retest cadence is protocol law. ── */}
+      <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-label="At a glance">
+        <div className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.4vw,1.9rem)", paddingBottom: "clamp(1.4rem,2.4vw,1.9rem)" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "clamp(1rem,2.5vw,1.75rem)" }}>
+            {([
+              [Pill, list.length > 0 ? String(list.length) : "Multiple", list.length === 1 ? "compound in this goal" : "compounds in this goal"],
+              [Activity, String(PANEL_TOTAL_MARKERS), "biomarkers monitored"],
+              [Stethoscope, "Physician", "prescribes every protocol"],
+              [RefreshCw, "90 days", "retested, every cycle"],
+            ] as const).map(([Icon, big, small], i) => (
+              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
+                <Icon size={19} strokeWidth={1.7} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} />
+                <div>
+                  <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(20px,2.2vw,27px)", lineHeight: 1.05, color: "var(--nx-fg)", fontVariantNumeric: "tabular-nums" }}>{big}</div>
+                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.25rem", lineHeight: 1.3 }}>{small}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
