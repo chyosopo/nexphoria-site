@@ -14,6 +14,7 @@ import { GoalVialTile, GOAL_TILE_CONFIG, goalGlyphToMolecular } from "@/componen
 import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
 import { F } from "@/lib/typography";
+import { SOLO_FROM_LABEL } from "@/data/pricing";
 import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -1529,58 +1530,92 @@ export default function Assessment() {
                         </ol>
                       </div>
 
-                      {/* Recommended stack hint — tinted VialTile echo of the goal step */}
+                      {/* ══ Recommendation peak — the named protocol matched to the
+                          chosen goal, what's in it, monthly cost, the panel, and the
+                          physician gate. All data + copy reused from existing sources;
+                          no fabricated protocols, ingredients, prices, or biomarkers. */}
                       {form.goal && GOAL_TILE_CONFIG[form.goal] && (() => {
                         const cfg = GOAL_TILE_CONFIG[form.goal];
                         const tone = categoryToTone(cfg.category);
+                        // Shared label/value styles for the calm three-row spec list.
+                        const specTerm: React.CSSProperties = {
+                          fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700,
+                          letterSpacing: "0.12em", textTransform: "uppercase",
+                          color: "var(--nx-fg-muted)", margin: 0,
+                        };
+                        const specDesc: React.CSSProperties = {
+                          fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500,
+                          color: "var(--nx-fg)", margin: "0.25rem 0 0 0", lineHeight: 1.45,
+                        };
                         return (
-                          <div
-                            style={{ borderRadius: "var(--nx-r-md)", overflow: "hidden", marginBottom: "2rem", textAlign: "left", border: "1px solid var(--nx-border)" }}
+                          <section
+                            aria-labelledby="rec-protocol-name"
                             data-testid="outcome-protocol-tile"
+                            style={{ borderRadius: "var(--nx-r-md)", overflow: "hidden", marginBottom: "2rem", textAlign: "left", border: "1px solid var(--nx-border)" }}
                           >
-                            <div style={{ backgroundColor: "var(--nx-fg)", padding: "0.875rem 1.25rem" }}>
-                              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg)", margin: 0 }}>
-                                Suggested starting point · based on your goal
-                              </p>
-                            </div>
-                            <div style={{ backgroundColor: "var(--nx-cobalt-soft)", padding: "1.25rem", display: "flex", gap: "1rem", alignItems: "center" }}>
+                            {/* Header band — the recommendation, named */}
+                            <div style={{ backgroundColor: "var(--nx-fg)", padding: "1.125rem 1.25rem", display: "flex", gap: "1rem", alignItems: "center" }}>
                               <div style={{ flexShrink: 0 }}>
-                                <VialArt tone={tone} glyph={goalGlyphToMolecular(cfg.glyph ?? "drop")} size={92} />
+                                <VialArt tone={tone} glyph={goalGlyphToMolecular(cfg.glyph ?? "drop")} size={72} />
                               </div>
                               <div style={{ minWidth: 0, flex: 1 }}>
-                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)", margin: "0 0 0.375rem 0" }}>
-                                  {cfg.category.toUpperCase()}
+                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg)", opacity: 0.72, margin: "0 0 0.375rem 0" }}>
+                                  Based on your goal
                                 </p>
-                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", fontWeight: 600, color: "var(--nx-fg)", marginBottom: "0.375rem", lineHeight: 1.25 }}>
-                                  {cfg.protocol}
-                                </p>
-                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", margin: "0 0 0.5rem 0", lineHeight: 1.45 }}>
-                                  You’d take: <span style={{ fontWeight: 600 }}>{cfg.peptides}</span> · Range {cfg.monthlyRange}
-                                </p>
-                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: 0 }}>
-                                  Subject to physician approval after lab review
-                                </p>
+                                <h3 id="rec-protocol-name" style={{ fontFamily: F, fontSize: "var(--nx-t-h3)", fontWeight: 600, color: "var(--nx-bg)", margin: 0, lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+                                  the {cfg.protocol}
+                                </h3>
                               </div>
                             </div>
-                          </div>
+
+                            {/* Spec list — what's in it, monthly cost, and the panel */}
+                            <div style={{ backgroundColor: "var(--nx-cobalt-soft)", padding: "clamp(1.25rem, 4vw, 1.75rem)" }}>
+                              <dl style={{ margin: 0, display: "grid", gap: "1rem" }}>
+                                <div>
+                                  <dt style={specTerm}>What's in it</dt>
+                                  <dd style={specDesc}>{cfg.peptides}</dd>
+                                </div>
+                                <div>
+                                  <dt style={specTerm}>Monthly</dt>
+                                  <dd style={specDesc}>
+                                    {cfg.monthlyRange}
+                                    <span style={{ color: "var(--nx-fg-graphite)", fontWeight: 400 }}>
+                                      {" "}· single peptides from {SOLO_FROM_LABEL}/mo
+                                    </span>
+                                  </dd>
+                                </div>
+                                <div>
+                                  <dt style={specTerm}>The panel</dt>
+                                  <dd style={specDesc}>A 38-biomarker lab panel calibrates every dose to your measured physiology.</dd>
+                                </div>
+                              </dl>
+
+                              {/* Physician gate — reused trust copy, verbatim in spirit */}
+                              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.55, margin: "1.25rem 0 0 0", paddingTop: "1.25rem", borderTop: "1px solid var(--nx-border)" }}>
+                                A licensed physician reviews your answers and prescribes only if it is clinically appropriate. You pay only if prescribed — the evaluation is free, and there is no charge for medication unless it is prescribed. Subject to physician approval after lab review.
+                              </p>
+                            </div>
+                          </section>
                         );
                       })()}
 
-                      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+                      {/* One primary action to continue, one quiet link to browse the rest */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
+                        <button
+                          type="button"
+                          onClick={() => navigate("/pricing")}
+                          data-testid="assessment-continue-plan"
+                          className="nx-cta-cobalt"
+                        >
+                          Continue to your plan <ArrowRight size={15} aria-hidden="true" />
+                        </button>
                         <button
                           type="button"
                           onClick={() => navigate("/stacks")}
                           data-testid="assessment-view-protocols"
-                          className="nx-cta-cobalt"
+                          className="nx-text-link"
                         >
-                          View protocols <ArrowRight size={15} aria-hidden="true" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => navigate("/pricing")}
-                          className="nx-cta-ghost"
-                        >
-                          View pricing
+                          See other options
                         </button>
                       </div>
                     </motion.div>
