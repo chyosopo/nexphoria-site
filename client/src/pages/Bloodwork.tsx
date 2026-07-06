@@ -26,7 +26,7 @@ import { PrescribedPromise } from "@/components/PrescribedPromise";
 import {
   PANEL_ART,
   PANEL_TINTS,
-  HERO_SAMPLE_ROWS,
+  heroSampleRows,
   RESULTS_ROWS,
   SURFACE_PILLS,
   BLOODWORK_FAQ_ITEMS,
@@ -41,6 +41,11 @@ const NUM: React.CSSProperties = {
    HERO — data-hero pattern, dark cobalt, benefit-led
    ══════════════════════════════════════════════════════════════ */
 function Hero() {
+  // Cast the sample readout to the visitor's world so her panel leads with her
+  // markers (Estradiol first, not Total Testosterone).
+  const [heroLoc] = useLocation();
+  const heroWorld = resolveWorld(heroLoc);
+  const sampleRows = heroSampleRows(heroWorld);
   // WCAG 2.2.2 — the looping lab film is decorative motion; when the visitor
   // prefers reduced motion, hold the poster frame instead of autoplaying.
   const reduce = useReducedMotion();
@@ -217,7 +222,7 @@ function Hero() {
                 </div>
               </div>
 
-              {HERO_SAMPLE_ROWS.map((r, i) => (
+              {sampleRows.map((r, i) => (
                 <div
                   key={r.m}
                   style={{

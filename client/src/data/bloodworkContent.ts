@@ -36,14 +36,25 @@ export const PANEL_TINTS: Record<string, [string, string]> = {
   "bio-age": ["#D2E1F3", "var(--nx-cobalt)"],
 };
 
-/* Hero glass-card sample readout — illustrative only */
-export const HERO_SAMPLE_ROWS: { m: string; v: string; u: string; d: string }[] = [
+/* Hero glass-card sample readout — illustrative only, cast per world so her
+   lab panel leads with her markers (not Total Testosterone). */
+type SampleRow = { m: string; v: string; u: string; d: string };
+export const HERO_SAMPLE_ROWS: SampleRow[] = [
   { m: "Total Testosterone", v: "742", u: "ng/dL", d: "+69%" },
   { m: "IGF-1", v: "218", u: "ng/mL", d: "+44%" },
   { m: "hs-CRP", v: "0.4", u: "mg/L", d: "−81%" },
   { m: "HbA1c", v: "5.1", u: "%", d: "−0.4" },
   { m: "Vitamin D", v: "62", u: "ng/mL", d: "+29" },
 ];
+export const HERO_SAMPLE_ROWS_WOMEN: SampleRow[] = [
+  { m: "Estradiol", v: "48", u: "pg/mL", d: "+22%" },
+  { m: "Free T3", v: "3.4", u: "pg/mL", d: "+18%" },
+  { m: "Ferritin", v: "68", u: "ng/mL", d: "+34" },
+  { m: "hs-CRP", v: "0.4", u: "mg/L", d: "−81%" },
+  { m: "Vitamin D", v: "62", u: "ng/mL", d: "+29" },
+];
+export const heroSampleRows = (world: "men" | "women"): SampleRow[] =>
+  world === "women" ? HERO_SAMPLE_ROWS_WOMEN : HERO_SAMPLE_ROWS;
 
 /* Results-dashboard sample rows — illustrative only */
 export const RESULTS_ROWS: { m: string; v: number; lo: number; hi: number; opt: [number, number]; unit: string; s: string }[] = [
