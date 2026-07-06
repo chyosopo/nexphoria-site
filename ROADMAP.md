@@ -204,6 +204,28 @@ what to do."
   iterating, but the structural laws now hold everywhere and are
   enforced by audit:funnel + the sweeps in this file.
 
+## PHASE 8 — The Protocole direction (Chiya, 2026-07-06: "exactly what I
+## had in mind" — see docs/PROTOCOLE-STUDY.md for the full study)
+
+- [x] **8.1 Bone & Espresso v2 token sheet.** (done 2026-07-06) The whole
+  site re-temperatured in one commit: bone field, espresso ink, stone
+  hairlines, electric-blue accent (women: warm rose on the same field).
+  Aurora calmed to a whisper; mx- family retuned. AA held; all gates
+  green; counts non-regressed.
+- [ ] **8.2 Front-door grammar pass** — positioning band ("a protocol,
+  not a purchase" register, OUR words), three-pillar band, education
+  metaphor section, honest-footnote steps.
+- [ ] **8.3 Protocol triads** — extend CATEGORY_FEELING with 3-word
+  triads per goal (their Youth: Glow·Energize pattern) across stack
+  pages and goal tiles.
+- [ ] **8.4 Inner-page sweep** — verify every page on the new sheet
+  (dark bands, panels, vial art tones are still azure-family — regrade
+  VialArt tone palettes to the warm sheet).
+- [ ] **8.5 BLOCKED ON CHIYA:** named Clinical & Scientific Board (real
+  people + consent), real before/after testimonials, membership pricing
+  model ($/mo club vs current subscriptions). Do not fabricate any of
+  these.
+
 ## PARALLEL TRACK (blocked on Chiya)
 
 - [ ] **P.1** Checkout backend: wire intake submission to Bask/MDI (needs

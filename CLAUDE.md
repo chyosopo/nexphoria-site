@@ -19,7 +19,13 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Porcelain & Navy design tokens only.** No off-palette color introductions. Use the token system; do not hardcode hex, fontSize, radius, shadow, or transition off-token (the design audit tracks these — do not regress the counts).
+1. **Design tokens only — current sheet: Bone & Espresso v2** (2026-07-06, per
+   Chiya's theprotocole.com direction; supersedes Porcelain & Navy — see
+   docs/PROTOCOLE-STUDY.md). Warm bone field, espresso ink, stone hairlines,
+   ONE electric-blue accent (women's world: warm rose). No off-palette color
+   introductions. Use the token system; do not hardcode hex, fontSize, radius,
+   shadow, or transition off-token (the design audit tracks these — do not
+   regress the counts).
 2. **Two worlds, one engine.** Men = azure/steel. Women = orchid/rose-quartz. Same medical engine underneath.
 3. **Institutional bank voice.** Calm, precise, authoritative. No hype, no exclamation marks, no urgency theater, no discount-brand energy.
 4. **Crimson is reserved for blood imagery only.** Never decorative, never a UI accent.
