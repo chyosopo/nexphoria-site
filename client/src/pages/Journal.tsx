@@ -64,6 +64,7 @@ export default function Journal() {
       {/* ══════════════ EDITORIAL MASTHEAD ══════════════ */}
       <section
         data-testid="journal-masthead"
+        aria-labelledby="journal-masthead-title"
         style={{
           backgroundColor: "var(--nx-bg)",
           borderBottom: "1px solid var(--nx-border)",
@@ -72,6 +73,7 @@ export default function Journal() {
         <div className="nx-container" style={{ paddingTop: 72, paddingBottom: 40 }}>
           <p style={{ ...eyebrow, marginBottom: 20 }}>The Journal</p>
           <h1
+            id="journal-masthead-title"
             style={{
               // Fraunces — the site's one display voice (this masthead was the
               // last General Sans holdout among page headlines)
@@ -109,6 +111,7 @@ export default function Journal() {
       {/* ══════════════ FEATURED POST HERO ══════════════ */}
       <section
         data-testid="journal-featured"
+        aria-label="Featured article"
         style={{ backgroundColor: "var(--nx-bg)", paddingTop: 48, paddingBottom: 56 }}
       >
         <div className="nx-container">
@@ -241,6 +244,7 @@ export default function Journal() {
       {/* ══════════════ CATEGORY FILTER ROW ══════════════ */}
       <section
         data-testid="journal-categories"
+        aria-label="Filter articles by category"
         style={{
           backgroundColor: "var(--nx-bg)",
           borderTop: "1px solid var(--nx-border)",
@@ -291,6 +295,7 @@ export default function Journal() {
       {/* ══════════════ ARTICLE GRID (type-first cards) ══════════════ */}
       <section
         data-testid="journal-grid"
+        aria-label="Articles"
         className="nx-section-y"
         style={{ backgroundColor: "var(--nx-bg)" }}
       >
@@ -342,6 +347,7 @@ export default function Journal() {
       {/* ══════════════ NEWSLETTER CTA ══════════════ */}
       <section
         data-testid="journal-newsletter"
+        aria-labelledby="journal-newsletter-title"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container" style={{ paddingTop: 72, paddingBottom: 72 }}>
@@ -372,6 +378,7 @@ export default function Journal() {
                 The Journal · Weekly
               </p>
               <h2
+                id="journal-newsletter-title"
                 style={{
                   fontFamily: FONT,
                   fontWeight: 600,
