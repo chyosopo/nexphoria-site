@@ -12,6 +12,7 @@ import { PillBadge } from "@/components/PillBadge";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { FaqAccordion, NumberedSteps, SectionHead } from "@/components/EnterprisePatterns";
+import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -852,6 +853,70 @@ export default function Science() {
           </main>
         </div>
       </div>
+
+      {/* ── Why prescribed — sourcing/safety matrix (LONGEVITYMEDS-STUDY §5) ── */}
+      <ComparisonMatrix
+        testid="science-sourcing-comparison"
+        eyebrow="Why prescribed"
+        title="Not all peptides are the same."
+        lead="The same molecule name sits behind three very different things. Only one is a prescription — made in a licensed pharmacy, tested before it ships, and dosed to your bloodwork."
+        columns={[
+          { label: "Nexphoria", sub: "Physician-prescribed, 503A-compounded", highlight: true },
+          { label: "Research-chemical vendors", sub: "“Not for human use” peptides" },
+          { label: "OTC “peptide” supplements", sub: "Pills, creams, nasal sprays" },
+        ]}
+        rows={[
+          {
+            label: "Legal status",
+            cells: [
+              { text: "Prescription, via a licensed physician", tone: "pos" },
+              { text: "Sold as “research only,” not for humans", tone: "neg" },
+              { text: "Unregulated supplement", tone: "neg" },
+            ],
+          },
+          {
+            label: "Who prepares it",
+            cells: [
+              { text: "503A compounding pharmacy, USP-797", tone: "pos" },
+              { text: "Unverified lab, no standard", tone: "neg" },
+              { text: "Supplement manufacturer", tone: "neg" },
+            ],
+          },
+          {
+            label: "Purity tested",
+            cells: [
+              { text: "Batch-tested for identity, potency, sterility", tone: "pos" },
+              { text: "Rarely — no COA required", tone: "neg" },
+              { text: "Not to pharmaceutical standards", tone: "neg" },
+            ],
+          },
+          {
+            label: "Dosing",
+            cells: [
+              { text: "Set by a physician to your labs", tone: "pos" },
+              { text: "You guess", tone: "neg" },
+              { text: "Fixed, often sub-therapeutic", tone: "neg" },
+            ],
+          },
+          {
+            label: "Medical oversight",
+            cells: [
+              { text: "Physician review + bloodwork every 90 days", tone: "pos" },
+              { text: "None", tone: "neg" },
+              { text: "None", tone: "neg" },
+            ],
+          },
+          {
+            label: "If something goes wrong",
+            cells: [
+              { text: "A named clinician is accountable", tone: "pos" },
+              { text: "No recourse", tone: "neg" },
+              { text: "No recourse", tone: "neg" },
+            ],
+          },
+        ]}
+        footnote="Peptides sold as “research chemicals” are explicitly labeled not for human consumption — the label is the tell. Nexphoria only dispenses prescriptions written by a licensed physician and compounded by a licensed 503A pharmacy."
+      />
 
       {/* ── Compound comparison — reference table, sits with the evidence cluster ── */}
       <ScienceComparisonSection />

@@ -33,6 +33,7 @@ export function ComparisonMatrix({
   columns,
   rows,
   footnote,
+  background = "var(--nx-bg)",
   testid = "comparison-matrix",
 }: {
   eyebrow?: string;
@@ -41,13 +42,14 @@ export function ComparisonMatrix({
   columns: MatrixColumn[];
   rows: MatrixRow[];
   footnote?: React.ReactNode;
+  background?: string;
   testid?: string;
 }) {
   return (
     <section
       data-testid={testid}
       className="nx-section"
-      style={{ backgroundColor: "var(--nx-bg)" }}
+      style={{ backgroundColor: background }}
     >
       <div className="nx-container">
         <Reveal>
@@ -86,7 +88,7 @@ export function ComparisonMatrix({
                       position: "sticky",
                       left: 0,
                       zIndex: 2,
-                      background: "var(--nx-bg)",
+                      background,
                       borderBottom: "1px solid var(--nx-border)",
                       minWidth: 148,
                     }}
@@ -174,7 +176,7 @@ export function ComparisonMatrix({
                         position: "sticky",
                         left: 0,
                         zIndex: 1,
-                        background: "var(--nx-bg)",
+                        background,
                         borderTop: "1px solid var(--nx-border)",
                         fontSize: "var(--nx-t-sm)",
                         fontWeight: 600,
