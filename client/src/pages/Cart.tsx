@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
-import { CADENCE_DISCOUNTS, pricing, type CadenceKey } from "@/data/pricing";
+import { CADENCE_DISCOUNTS, pricing, billingNote, type CadenceKey } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 
@@ -129,6 +129,9 @@ export default function Cart() {
                             <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                               <span style={{ color: "var(--nx-fg)", fontWeight: 500 }}>{formatUSD(line.unitPrice)}</span>
                               <span className="text-xs" style={{ color: "var(--nx-fg-graphite)" }}> / month supply</span>
+                            </p>
+                            <p className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
+                              {billingNote(line.cadence, line.unitPrice)}
                             </p>
 
                             {/* Chips */}

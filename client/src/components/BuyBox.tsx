@@ -11,7 +11,7 @@ import { track } from "@/lib/analytics";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { useCart } from "@/contexts/CartProvider";
-import type { CadenceKey } from "@/data/pricing";
+import { billingNote, type CadenceKey } from "@/data/pricing";
 
 export interface BuyTier {
   key: string;
@@ -185,6 +185,11 @@ export function BuyBox(props: BuyBoxProps) {
                 <CTA testId={ctaTestId}>Start your assessment</CTA>
               )}
             </div>
+            {cadence && active?.per === "/mo" && (
+              <div style={{ textAlign: "center", marginTop: "0.5rem", fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
+                {billingNote(cadence, active.amount)}
+              </div>
+            )}
             {cadence && (
               <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
                 <Link href="/assessment" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>

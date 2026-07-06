@@ -4,7 +4,7 @@ import { Link, useLocation } from "wouter";
 import { X, Trash2, Plus, Minus, ShoppingBag, Stethoscope, Truck, Shield, Beaker, Plus as PlusIcon, Check } from "lucide-react";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import type { CadenceKey } from "@/data/pricing";
-import { CADENCE_DISCOUNTS, pricing } from "@/data/pricing";
+import { CADENCE_DISCOUNTS, pricing, billingNote } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { resolveWorld } from "@/components/SiteLayout";
@@ -271,6 +271,12 @@ export function CartDrawer() {
                             >
                               {formatUSD(line.unitPrice)}/mo
                             </div>
+                            <div
+                              className="text-[10px] mt-0.5"
+                              style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", letterSpacing: "0.02em" }}
+                            >
+                              {billingNote(line.cadence, line.unitPrice)}
+                            </div>
                           </div>
                         </div>
 
@@ -505,7 +511,7 @@ export function CartDrawer() {
                     className="text-[10px]"
                     style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}
                   >
-                    Billed monthly · physician oversight included
+                    Per month · billing cadence shown per item
                   </div>
                 </div>
                 <span

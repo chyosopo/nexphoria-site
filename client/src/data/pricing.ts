@@ -120,6 +120,17 @@ export function formatUSD(amount: number): string {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(amount);
 }
 
+/** Honest recurring-billing disclosure for a per-month price at a cadence.
+   Quarterly plans bill a real lump every three months; annual bills monthly on
+   a 12-month term. Enterprise price transparency: never show a "/mo" figure
+   without the actual amount and cadence the customer is committing to. */
+export function billingNote(cadence: CadenceKey, perMonth: number): string {
+  const months = CADENCE_DISCOUNTS[cadence].months;
+  if (cadence === "3mo") return `Billed quarterly — ${formatUSD(perMonth * months)} every 3 months`;
+  if (cadence === "12mo") return `Billed monthly · 12-month term — ${formatUSD(perMonth * months)}/year`;
+  return "Billed monthly · cancel anytime";
+}
+
 /* Lowest shelf-priced single-peptide monthly (1-mo cadence). Single source for
    the "single peptides from $X/mo" copy that recurs across the site, so the
    headline "from" price can never drift from the catalog. Currently bpc-157 @ $149. */

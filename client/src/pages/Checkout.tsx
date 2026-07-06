@@ -11,6 +11,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
+import { billingNote } from "@/data/pricing";
 import { isGLP1Excluded, getStack, GLP1_STATE_EXCLUSIONS } from "@/data/stacksCatalog";
 import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -483,7 +484,7 @@ export default function Checkout() {
                         </div>
                       ))}
                       <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
-                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · monthly</span>
+                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
                         <span className="text-lg" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
                       </div>
                     </div>
@@ -564,6 +565,9 @@ export default function Checkout() {
                           <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
                             {line.name}
                           </div>
+                          <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
+                            {billingNote(line.cadence, line.unitPrice)}
+                          </div>
                           {stack ? (
                             <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
                               {stack.peptides.length} peptides
@@ -592,7 +596,7 @@ export default function Checkout() {
               ) : null}
 
               <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · monthly</span>
+                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
                 <span className="text-2xl" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }} data-testid="text-checkout-total">
                   {formatUSD(subtotal)}
                 </span>
