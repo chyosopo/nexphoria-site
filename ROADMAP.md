@@ -67,15 +67,23 @@ what to do."
 
 ## PHASE 2 — The guided flow (the product IS the path)
 
-- [ ] **2.1 Assessment = storefront.** Tighten to: pick goal → 5 questions
+- [x] **2.1 Assessment = storefront.** (done 2026-07-05) Tighten to: pick goal → 5 questions
   → RECOMMENDATION page. No dead ends; progress always visible; back
-  always works.
-- [ ] **2.2 The recommendation page** (the emotional + trust peak):
+  always works. Flow: sex → goal → 5 questions → review → recommendation;
+  labeled progress bar on every question step; back + edit-in-place from
+  review; every terminal screen advances (checkout / eligibility /
+  pricing + "see other options").
+- [x] **2.2 The recommendation page** (done 2026-07-05) (the emotional + trust peak):
   "Based on your goals: the Wolverine Protocol" — what's in it, what it
   costs per month, what the panel checks, the physician gate, ONE button
   to checkout. Secondary: "see other options."
   *DoD: full flow Playwright run, goal → recommendation → checkout form,
-  screenshots each step, mobile first.*
+  screenshots each step, mobile first.* ✅ qa36-mobile-01…07 + desktop
+  walk: headline "Based on your goals: the Ascend protocol.", real stack
+  contents/cadence pricing/panel from stacksCatalog, ONE "Continue to
+  checkout" button lands on /checkout with the stack in the cart at the
+  same $254/mo; gated GLP-1 goal → "Check eligibility" → /stacks/ignite;
+  unmatched goals (hormonal, not-sure) keep the pricing path.
 - [ ] **2.3 Demote the side doors.** Build-your-stack and direct cart stay
   reachable (footer/catalog) but leave the primary nav. Booking page
   links from FAQ/contact only.

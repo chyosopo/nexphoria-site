@@ -15,6 +15,8 @@ import { VialArt, categoryToTone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
 import { F } from "@/lib/typography";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
+import { getStack, usd } from "@/data/stacksCatalog";
+import { useCart } from "@/contexts/CartProvider";
 import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -48,6 +50,19 @@ const GOALS = [
   "Hormonal optimization",
   "Other / not sure yet",
 ];
+
+// Goal → flagship stack surfaced as the recommendation (ROADMAP 2.2).
+// Mapped only where the flagship genuinely serves the goal; the GLP-1 goal
+// maps to gated Ignite (eligibility wall — never direct checkout). Hormonal
+// optimization and "not sure" have no flagship match and fall back to the
+// pricing path.
+const GOAL_STACK_SLUG: Record<string, string> = {
+  "Metabolic health & body composition": "ignite",
+  "Strength & performance": "ascend",
+  "Longevity & healthy aging": "meridian",
+  "Cognitive function": "lucidity",
+  "Skin & recovery": "wolverine",
+};
 
 const AGE_RANGES = ["18–29", "30–39", "40–49", "50–59", "60+"];
 
@@ -454,6 +469,13 @@ export default function Assessment() {
 
   const valid = isStepValid(step, form);
   const inFlow = step > 0 && step <= TOTAL_STEPS;
+  // ROADMAP 2.2 — resolve the flagship protocol matched to the chosen goal
+  // once; the success screen presents it as the recommendation peak.
+  const { addStack, close: closeCart } = useCart();
+  const recCfg = form.goal ? GOAL_TILE_CONFIG[form.goal] : undefined;
+  const recSlug = GOAL_STACK_SLUG[form.goal];
+  const recStack = recSlug ? getStack(recSlug) : undefined;
+  const recSellable = !!(recStack && !recStack.gated && recStack.cadences.length > 0);
   // Gentle, non-blocking email format hint — only after the field is left and
   // only when there is something to correct. Never a red-scare mid-typing.
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
@@ -486,6 +508,23 @@ export default function Assessment() {
     setEditReturn(true);
     setDirection(-1);
     setStep(target);
+  }
+
+  // The recommendation's ONE action (ROADMAP 2.2): sellable match → stack in
+  // cart on the recommended cadence, straight to checkout. Gated match →
+  // eligibility wall. No match → the pricing path.
+  function handleRecommendationCta() {
+    if (recStack && recSellable) {
+      track("assessment_rec_checkout", { goal: form.goal, stack: recStack.slug });
+      addStack(recStack.slug, { cadence: "3mo" });
+      closeCart(); // addStack opens the drawer; checkout IS the destination
+      navigate("/checkout");
+    } else if (recStack) {
+      track("assessment_rec_eligibility", { goal: form.goal, stack: recStack.slug });
+      navigate(`/stacks/${recStack.slug}`);
+    } else {
+      navigate("/pricing");
+    }
   }
 
   function setField<K extends keyof FormData>(key: K, value: FormData[K]) {
@@ -1485,58 +1524,36 @@ export default function Assessment() {
                       </div>
                       <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
                       <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
-                        Your intake is under review.
+                        {recStack
+                          ? <>Based on your goals: the {recStack.name} protocol.</>
+                          : "Your intake is under review."}
                       </h2>
                       <p
                         style={{
                           ...subCopy,
                           fontSize: "var(--nx-t-lg)",
                           textAlign: "center",
-                          marginBottom: "1.5rem",
+                          marginBottom: "2rem",
                         }}
                       >
-                        We'll email you the next step.
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: F,
-                          fontSize: "var(--nx-t-base)",
-                          color: "var(--nx-fg-graphite)",
-                          lineHeight: 1.7,
-                          maxWidth: "440px",
-                          margin: "0 auto 2.5rem",
-                        }}
-                      >
-                        A board-certified physician will review your answers, request your blood panel, and schedule a telehealth consult via Bask Health. No prescription is issued before that review is complete.
+                        {recStack
+                          ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
+                          : "We'll email you the next step."}
                       </p>
 
-                      {/* What happens next */}
-                      <div style={{ backgroundColor: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)", padding: "1.25rem 1.5rem", marginBottom: "1.5rem", textAlign: "left" }}>
-                        <p id="assessment-next-steps-label" style={{ ...eyebrow, marginBottom: "0.875rem" }}>What happens next</p>
-                        {/* A real <ol> so assistive tech conveys the ordered
-                            sequence; the visible 01–04 counters are decorative. */}
-                        <ol aria-labelledby="assessment-next-steps-label" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                          {[
-                            { n: "01", t: "A licensed physician reviews your intake" },
-                            { n: "02", t: "Partner-laboratory requisition generated in your member portal"},
-                            { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
-                            { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
-                          ].map(({ n, t }) => (
-                            <li key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
-                              <span aria-hidden="true" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
-                              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", lineHeight: 1.55, margin: 0 }}>{t}</p>
-                            </li>
-                          ))}
-                        </ol>
-                      </div>
-
-                      {/* ══ Recommendation peak — the named protocol matched to the
-                          chosen goal, what's in it, monthly cost, the panel, and the
-                          physician gate. All data + copy reused from existing sources;
-                          no fabricated protocols, ingredients, prices, or biomarkers. */}
-                      {form.goal && GOAL_TILE_CONFIG[form.goal] && (() => {
-                        const cfg = GOAL_TILE_CONFIG[form.goal];
+                      {/* ══ Recommendation peak (ROADMAP 2.2) — the named protocol
+                          matched to the chosen goal, what's in it, monthly cost, the
+                          panel, and the physician gate. Matched goals surface the
+                          flagship stack's REAL contents and cadence pricing from
+                          stacksCatalog; unmatched goals keep the goal-tile data.
+                          No fabricated protocols, ingredients, prices, or biomarkers. */}
+                      {recCfg && (() => {
+                        const cfg = recCfg;
                         const tone = categoryToTone(cfg.category);
+                        const rec3 = recStack?.cadences.find((c) => c.key === "3mo");
+                        const minMo = recStack && recStack.cadences.length > 0
+                          ? Math.min(...recStack.cadences.map((c) => c.perMonth ?? c.total))
+                          : 0;
                         // Shared label/value styles for the calm three-row spec list.
                         const specTerm: React.CSSProperties = {
                           fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700,
@@ -1563,7 +1580,7 @@ export default function Assessment() {
                                   Based on your goal
                                 </p>
                                 <h3 id="rec-protocol-name" style={{ fontFamily: F, fontSize: "var(--nx-t-h3)", fontWeight: 600, color: "var(--nx-bg)", margin: 0, lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-                                  the {cfg.protocol}
+                                  the {recStack ? `${recStack.name} protocol` : cfg.protocol}
                                 </h3>
                               </div>
                             </div>
@@ -1573,20 +1590,37 @@ export default function Assessment() {
                               <dl style={{ margin: 0, display: "grid", gap: "1rem" }}>
                                 <div>
                                   <dt style={specTerm}>What's in it</dt>
-                                  <dd style={specDesc}>{cfg.peptides}</dd>
+                                  <dd style={specDesc}>{recStack ? recStack.peptides.map((p) => p.name).join(" · ") : cfg.peptides}</dd>
                                 </div>
                                 <div>
                                   <dt style={specTerm}>Monthly</dt>
                                   <dd style={specDesc}>
-                                    {cfg.monthlyRange}
-                                    <span style={{ color: "var(--nx-fg-graphite)", fontWeight: 400 }}>
-                                      {" "}· single peptides from {SOLO_FROM_LABEL}/mo
-                                    </span>
+                                    {recSellable && rec3 ? (
+                                      <>
+                                        {usd(rec3.perMonth ?? rec3.total)}/mo on the recommended 3-month plan
+                                        <span style={{ color: "var(--nx-fg-graphite)", fontWeight: 400 }}>
+                                          {" "}· from {usd(minMo)}/mo on 12-month
+                                        </span>
+                                      </>
+                                    ) : recStack ? (
+                                      "Physician-priced after your eligibility review"
+                                    ) : (
+                                      <>
+                                        {cfg.monthlyRange}
+                                        <span style={{ color: "var(--nx-fg-graphite)", fontWeight: 400 }}>
+                                          {" "}· single peptides from {SOLO_FROM_LABEL}/mo
+                                        </span>
+                                      </>
+                                    )}
                                   </dd>
                                 </div>
                                 <div>
                                   <dt style={specTerm}>The panel</dt>
-                                  <dd style={specDesc}>A 38-biomarker lab panel calibrates every dose to your measured physiology.</dd>
+                                  <dd style={specDesc}>
+                                    {recStack
+                                      ? (recStack.panelNote ?? `${recStack.panel} blood panel — every dose is calibrated to your measured physiology.`)
+                                      : "A lab panel calibrates every dose to your measured physiology."}
+                                  </dd>
                                 </div>
                               </dl>
 
@@ -1600,14 +1634,15 @@ export default function Assessment() {
                       })()}
 
                       {/* One primary action to continue, one quiet link to browse the rest */}
-                      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center", marginBottom: "2.5rem" }}>
                         <button
                           type="button"
-                          onClick={() => navigate("/pricing")}
+                          onClick={handleRecommendationCta}
                           data-testid="assessment-continue-plan"
                           className="nx-cta-cobalt"
                         >
-                          Continue to your plan <ArrowRight size={15} aria-hidden="true" />
+                          {recSellable ? "Continue to checkout" : recStack ? "Check eligibility" : "Continue to your plan"}{" "}
+                          <ArrowRight size={15} aria-hidden="true" />
                         </button>
                         <button
                           type="button"
@@ -1618,6 +1653,40 @@ export default function Assessment() {
                           See other options
                         </button>
                       </div>
+
+                      {/* What happens next — reassurance below the decision, not above it */}
+                      <div style={{ backgroundColor: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)", padding: "1.25rem 1.5rem", marginBottom: "1.5rem", textAlign: "left" }}>
+                        <p id="assessment-next-steps-label" style={{ ...eyebrow, marginBottom: "0.875rem" }}>What happens next</p>
+                        {/* A real <ol> so assistive tech conveys the ordered
+                            sequence; the visible 01–04 counters are decorative. */}
+                        <ol aria-labelledby="assessment-next-steps-label" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+                          {[
+                            { n: "01", t: "A licensed physician reviews your intake" },
+                            { n: "02", t: "Partner-laboratory requisition generated in your member portal"},
+                            { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
+                            { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
+                          ].map(({ n, t }) => (
+                            <li key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
+                              <span aria-hidden="true" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
+                              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", lineHeight: 1.55, margin: 0 }}>{t}</p>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+
+                      <p
+                        style={{
+                          fontFamily: F,
+                          fontSize: "var(--nx-t-sm)",
+                          color: "var(--nx-fg-graphite)",
+                          lineHeight: 1.7,
+                          maxWidth: "440px",
+                          margin: "0 auto",
+                          textAlign: "center",
+                        }}
+                      >
+                        A board-certified physician will review your answers, request your blood panel, and schedule a telehealth consult via Bask Health. No prescription is issued before that review is complete.
+                      </p>
                     </motion.div>
                   )}
                 </AnimatePresence>
