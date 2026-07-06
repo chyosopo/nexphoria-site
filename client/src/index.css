@@ -64,44 +64,44 @@
     --nx-dur-3: 320ms;
     --nx-dur-4: 600ms;
 
-    /* ── Nexphoria brand tokens — BONE & ESPRESSO v2 (2026-07-06) ──
-       Warm-luxury sheet in the protocole grammar Chiya chose: bone field,
-       espresso ink, stone hairlines, ONE electric-blue spark. Token names
-       and architecture unchanged — this sheet is one commit to revert.
-       Every fg/bg pair below holds WCAG AA on its intended surface. */
-    --nx-bg:           #F2F1EC;   /* bone — primary canvas */
-    --nx-bg-cream:     #EAE8E0;   /* deeper bone for alternating sections */
-    --nx-bg-dark:      #201112;  /* espresso night — footer / dark bands */
-    --nx-fg:           #2B1213;  /* espresso ink */
-    --nx-fg-graphite:  #574A47;  /* warm taupe — secondary body copy */
-    --nx-fg-muted:     #6E615C;  /* greige captions — AA on --nx-bg */
-    --nx-border:       #E0DED6;  /* stone hairlines */
-    /* ACCENT — one electric spark on the warm field */
-    --nx-cobalt:       #0067C0;  /* electric blue, deepened for AA — CTAs, links */
-    --nx-cobalt-hover: #0053A0;
-    --nx-cobalt-soft:  #E4EFF9;  /* icy tint for soft fills */
+    /* ── Nexphoria brand tokens ── */
+    /* BACKGROUND — warm cream palette */
+    --nx-bg:           #E9EFF5;   /* warm cream — primary canvas */
+    --nx-bg-cream:     #DCE6EE;   /* deeper cream for alternating sections */
+    --nx-bg-dark:      #22384E;  /* footer / dark sections */
+    --nx-fg:           #16283E;  /* primary ink text */
+    --nx-fg-graphite:  #46607A;  /* secondary body copy */
+    --nx-fg-muted:     #5A7490;  /* tertiary / captions — darkened for WCAG AA on --nx-bg */
+    --nx-border:       #C9D5E0;  /* warm hairline borders */
+    /* ACCENT: INK — the accent IS the typography weight + photography */
+    --nx-cobalt:       #2E5877;  /* warm navy-teal — CTAs, eyebrows, links */
+    --nx-cobalt-hover: #1E4560;  /* slightly lighter ink on hover */
+    --nx-cobalt-soft:  #D9E4EC;  /* warm cream tint for soft bg fills */
     /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
-    --nx-amber:        #7A6A52;  /* bronze — very small accents only */
-    --nx-success:      #4E7A63;
-    --nx-warning:      #8A6B3F;
+    --nx-amber:        #3D6C94;  /* burnt amber — very small accents only */
+    --nx-success:      #3D7C94;
+    --nx-warning:      #3D6C94;
 
-    /* ── paneled pastels, rederived on the bone field ── */
-    --nx-ice:          #E9EDF2;  /* the one cool panel — outcome/proof */
-    --nx-ice-edge:     #CDD5DE;
-    --nx-peach:        #F0EDE4;  /* warm panel — metabolic/weight */
-    --nx-peach-edge:   #DDD8C9;
-    --nx-sage:         #E7E6DE;  /* stone panel — recovery/sleep */
-    --nx-sage-edge:    #CFCDC2;
-    /* Rust accent for callouts (reads on dark bands) */
-    --nx-rust:         #C7B9A6;
+    /* ── reference-style paneled pastels, derived from cobalt+rust ── */
+    /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
+    --nx-ice:          #DEE8F0;  /* warmed — was cool blue */
+    --nx-ice-edge:     #BBCBD9;
+    /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
+    --nx-peach:        #F7F3E9;
+    --nx-peach-edge:   #E4DCC9;
+    /* Sage — cream's deeper alternate. Used for recovery/sleep panels.  */
+    --nx-sage:         #DCE4E6;
+    --nx-sage-edge:    #C2CDD1;
+    /* Rust accent for callouts */
+    --nx-rust:         #7FA3C0;
 
     /* ── V3 tokens — locked minimal palette (locked palette) ── */
     /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #FAF9F5;  /* lifted-bone card surface */
-    --nx-rock:         #DBD8CE;
-    --nx-acid:         #4FB1FF;  /* the spark on dark espresso bands */
+    --nx-ceramic:      #F7F3E9;
+    --nx-rock:         #D5DFE8;
+    --nx-acid:         #A9C6DE;
     --nx-danger:       #A4453C;  /* form error — muted brick */
-    --nx-accent:       #0067C0;  /* primary accent */
+    --nx-accent:       #2E5877;  /* primary azure accent */  /* honey chip — was acid green */
 
     /* ══ COMPONENT VARIANT PALETTES ══
        Bespoke per-tone tile/vial colors lifted verbatim out of components so no
@@ -109,32 +109,30 @@
        shift. World-invariant (not overridden in the orchid scope) to match the
        previous hardcoded behavior. Whether these should later snap to the warm
        neutral palette is an open visual decision (needs eyes). */
-    /* GoalVialTile — assessment goal tiles, regraded to the bone field
-       (ROADMAP 8.4): warm-neutral surfaces, espresso-family inks, one cool
-       tone kept in the family for contrast. */
-    --nx-tint-cream-bg:   #F0EDE4;  --nx-tint-cream-ink:   #33231F;
-    --nx-tint-sage-bg:    #EAEAE0;  --nx-tint-sage-ink:    #333A2E;
-    --nx-tint-rose-bg:    #F0E8E4;  --nx-tint-rose-ink:    #4A2E28;
-    --nx-tint-sky-bg:     #E7EBEC;  --nx-tint-sky-ink:     #24393E;
-    --nx-tint-dusk-bg:    #EBE6E8;  --nx-tint-dusk-ink:    #3E2F3A;
-    --nx-tint-butter-bg:  #F1EADC;  --nx-tint-butter-ink:  #3E3018;
-    --nx-tint-cobalt-bg:  #E2EAF2;  --nx-tint-cobalt-ink:  #17395C;
-    --nx-tint-mineral-bg: #EAE8E2;  --nx-tint-mineral-ink: #35322A;
-    /* VialTile — vial surface + liquid hue per tone (warm glass) */
-    --nx-vial-sage-bg:   #EDECE3;  --nx-vial-sage-liq:   #A9B590;
-    --nx-vial-rose-bg:   #F0EAE6;  --nx-vial-rose-liq:   #CBA391;
-    --nx-vial-sky-bg:    #EBEDEC;  --nx-vial-sky-liq:    #93B4BC;
-    --nx-vial-dusk-bg:   #EEE9EB;  --nx-vial-dusk-liq:   #B3A0B8;
-    --nx-vial-butter-bg: #F1ECDF;  --nx-vial-butter-liq: #CBB273;
-    --nx-vial-cobalt-bg: #E9ECEF;  --nx-vial-cobalt-liq: #7FA6C8;
-    --nx-vial-mineral-liq: #ABA795;
+    /* GoalVialTile — assessment goal tiles (surface tint + ink) */
+    --nx-tint-cream-bg:   #E8EFF8;  --nx-tint-cream-ink:   #18293E;
+    --nx-tint-sage-bg:    #E5EFF2;  --nx-tint-sage-ink:    #2E3E44;
+    --nx-tint-rose-bg:    #E1E9F6;  --nx-tint-rose-ink:    #2A3C5C;
+    --nx-tint-sky-bg:     #DDE9F0;  --nx-tint-sky-ink:     #1F3B52;
+    --nx-tint-dusk-bg:    #E4E1EC;  --nx-tint-dusk-ink:    #3A2F4E;
+    --nx-tint-butter-bg:  #D2E3F8;  --nx-tint-butter-ink:  #162D4A;
+    --nx-tint-cobalt-bg:  #D9E2F2;  --nx-tint-cobalt-ink:  #1E2A55;
+    --nx-tint-mineral-bg: #E4E9EC;  --nx-tint-mineral-ink: #2A3841;
+    /* VialTile — vial surface + liquid hue per tone */
+    --nx-vial-sage-bg:   #E6EBF2;  --nx-vial-sage-liq:   #8ABFD1;
+    --nx-vial-rose-bg:   #E6EEF7;  --nx-vial-rose-liq:   #A2C0E4;
+    --nx-vial-sky-bg:    #E8EEF1;  --nx-vial-sky-liq:    #A6C3D0;
+    --nx-vial-dusk-bg:   #EAE6F1;  --nx-vial-dusk-liq:   #B5A8CF;
+    --nx-vial-butter-bg: #DEE7F2;  --nx-vial-butter-liq: #6EA0DD;
+    --nx-vial-cobalt-bg: #E8EDEF;  --nx-vial-cobalt-liq: #8AABB6;
+    --nx-vial-mineral-liq: #9DB3C2;
     /* VialTile — illustration neutrals (cap + label) */
-    --nx-vial-cap:   #BDB9B3;  --nx-vial-cap-shadow:   #A29D96;
-    --nx-vial-label: #3B3634;  --nx-vial-label-shadow: #201C1B;
-    /* VialTile — regulatory status chips (warm-neutral field, legible inks) */
-    --nx-chip-fda-bg:   #EAEFEA;  --nx-chip-fda-fg:   #2E5940;  --nx-chip-fda-edge:   #BCD2C2;
-    --nx-chip-trial-bg: #E4EBF4;  --nx-chip-trial-fg: #17395C;  --nx-chip-trial-edge: #A9C1DA;
-    --nx-chip-rx-fg:    #52483F;  --nx-chip-rx-edge:  #D6CFC5;
+    --nx-vial-cap:   #B8BABB;  --nx-vial-cap-shadow:   #9EA2A5;
+    --nx-vial-label: #3B3B3B;  --nx-vial-label-shadow: #1F1F1F;
+    /* VialTile — regulatory status chips */
+    --nx-chip-fda-bg:   #E6F2F6;  --nx-chip-fda-fg:   #24596B;  --nx-chip-fda-edge:   #B0D2DD;
+    --nx-chip-trial-bg: #DAE6F5;  --nx-chip-trial-fg: #0F3F7A;  --nx-chip-trial-edge: #8AB0DF;
+    --nx-chip-rx-fg:    #3D4A5C;  --nx-chip-rx-edge:  #C6D0DC;
 
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
@@ -173,34 +171,32 @@
 
   /* ═══ ORCHID WORLD — activates under /women routes ═══ */
   [data-world="women"] {
-    /* Bone & Espresso v2, orchid cast — same warm field as the default
-       world, the accent family shifts to warm rose. AA held throughout. */
-    --nx-bg:           #F4F0EE;
-    --nx-bg-cream:     #ECE5E2;
-    --nx-bg-dark:      #2A171D;
-    --nx-fg:           #301A20;
-    --nx-fg-graphite:  #5E4A50;
-    --nx-fg-muted:     #715D63;  /* AA on the rose-bone --nx-bg */
-    --nx-border:       #E2DBD7;
-    --nx-cobalt:       #A34368;
-    --nx-cobalt-hover: #872F52;
-    --nx-cobalt-soft:  #F3E6EA;
-    --nx-amber:        #7A5E52;
-    --nx-success:      #4E7A63;
-    --nx-warning:      #8A6B3F;
-    --nx-ice:          #EFEAEC;
-    --nx-ice-edge:     #D8CED2;
-    --nx-peach:        #F1EBE6;
-    --nx-peach-edge:   #DFD5CB;
-    --nx-sage:         #EAE5E0;
-    --nx-sage-edge:    #D2CBC4;
-    --nx-rust:         #CDB0A6;
+    --nx-bg:           #FAF4F7;
+    --nx-bg-cream:     #F3ECEF;
+    --nx-bg-dark:      #35212E;
+    --nx-fg:           #35212E;
+    --nx-fg-graphite:  #78646E;
+    --nx-fg-muted:     #7A5F6A;  /* darkened for WCAG AA on orchid --nx-bg */
+    --nx-border:       #E3DBDF;
+    --nx-cobalt:       #68354E;
+    --nx-cobalt-hover: #4F253A;
+    --nx-cobalt-soft:  #F3E8EC;
+    --nx-amber:        #AB5E7C;
+    --nx-success:      #AA6784;
+    --nx-warning:      #AB5E7C;
+    --nx-ice:          #F5EEF1;
+    --nx-ice-edge:     #DDCFD6;
+    --nx-peach:        #F4EAEF;
+    --nx-peach-edge:   #DFCED6;
+    --nx-sage:         #ECE5E8;
+    --nx-sage-edge:    #D3C9CD;
+    --nx-rust:         #D0A2B4;
     /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #FBF7F5;
-    --nx-rock:         #DED6D0;
-    --nx-acid:         #F0A9C8;
+    --nx-ceramic:      #FCF3F7;
+    --nx-rock:         #F1E7EB;
+    --nx-acid:         #F0CBDB;
     --nx-danger:       #A4453C;
-    --nx-accent:       #A34368;
+    --nx-accent:       #C97B99;
 
     /* ── Component variant palettes, orchid parity (Law-1 flagged debt B) ──
        Same lightness relationships as the azure set, hue-shifted into the
@@ -779,17 +775,16 @@
 
 @layer base {
   :root {
-    /* mx- family retuned to Bone & Espresso v2 */
-    --mx-cream:       #EDEBE4;    /* unified tile background */
-    --mx-cream-deep:  #E1DED4;    /* hover tint */
-    --mx-page-bg:     #F0EFE9;    /* page-level bone */
-    --mx-navy:        #2B1213;   /* espresso label color on photo tiles */
-    --mx-ink:         #2B1213;   /* serif labels, pills */
-    --mx-pill:        #2B1213;
-    --mx-pill-text:   #F2F1EC;
-    --mx-dark:        #201112;   /* espresso dark tile */
-    --mx-dark-hover:  #2A1A1B;
-    --mx-dark-text:   #EDE6E2;
+    --mx-cream:       #E3E8EF;    /* unified tile background */
+    --mx-cream-deep:  #D4DCE6;    /* hover tint */
+    --mx-page-bg:     #E6ECF4;    /* page-level pharmacy cream */
+    --mx-navy:        #24282E;   /* warm deep ink — was cool navy */    /* label color on photo tiles */
+    --mx-ink:         #0E2447;   /* warm ink */    /* serif labels, pills */
+    --mx-pill:        #0E2447;
+    --mx-pill-text:   #E6ECF4;
+    --mx-dark:        #1A1E24;   /* warm espresso dark tile */    /* dark tile bg */
+    --mx-dark-hover:  #22272E;
+    --mx-dark-text:   #E0E7F0;
     --mx-radius:      22px;
     --mx-radius-sm:   16px;
   }
@@ -1419,12 +1414,10 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
 
 /* ═══ P3 — Aurora field + tinted glass (world-aware: everything derives from --nx-* tokens) ═══ */
 .nx-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-/* Bone & Espresso: the field stays calm — the aurora is a whisper of warmth
-   with one faint trace of the electric accent, not an azure atmosphere. */
-.nx-aurora i { position: absolute; border-radius: 50%; filter: blur(56px); opacity: 0.4; will-change: transform; }
-.nx-aurora i:nth-child(1) { width: 46vw; height: 46vw; left: -12%; top: -24%; background: color-mix(in srgb, var(--nx-rust) 26%, transparent); animation: nxAur 34s ease-in-out infinite alternate; }
-.nx-aurora i:nth-child(2) { width: 38vw; height: 38vw; right: -10%; top: 4%; background: color-mix(in srgb, var(--nx-accent) 10%, transparent); animation: nxAur 28s ease-in-out infinite alternate-reverse; }
-.nx-aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 34%; bottom: -32%; background: color-mix(in srgb, var(--nx-peach-edge) 40%, transparent); animation: nxAur 40s ease-in-out infinite alternate; }
+.nx-aurora i { position: absolute; border-radius: 50%; filter: blur(56px); opacity: 0.55; will-change: transform; }
+.nx-aurora i:nth-child(1) { width: 46vw; height: 46vw; left: -12%; top: -24%; background: color-mix(in srgb, var(--nx-accent) 26%, transparent); animation: nxAur 34s ease-in-out infinite alternate; }
+.nx-aurora i:nth-child(2) { width: 38vw; height: 38vw; right: -10%; top: 4%; background: color-mix(in srgb, var(--nx-acid) 40%, transparent); animation: nxAur 28s ease-in-out infinite alternate-reverse; }
+.nx-aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 34%; bottom: -32%; background: color-mix(in srgb, var(--nx-rust) 30%, transparent); animation: nxAur 40s ease-in-out infinite alternate; }
 @keyframes nxAur { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(4%,6%,0) scale(1.08); } }
 
 .nx-glass-tile { position: relative; display: block; border-radius: 20px; padding: 1.6rem 1.7rem; text-decoration: none;
@@ -1888,11 +1881,9 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
 /* ── Gradient hero backdrop — soft, editorial, derives from world tokens ── */
 .nx-gradient-hero {
   position: relative;
-  /* Bone & Espresso: light heroes stay warm — --nx-acid is the electric
-     spark for DARK bands and washed the field cool here at 26%. */
   background:
-    radial-gradient(120% 82% at 12% -8%, color-mix(in srgb, var(--nx-accent) 7%, transparent) 0%, transparent 55%),
-    radial-gradient(96% 74% at 104% 4%, color-mix(in srgb, var(--nx-rust) 24%, transparent) 0%, transparent 52%),
+    radial-gradient(120% 82% at 12% -8%, color-mix(in srgb, var(--nx-accent) 12%, transparent) 0%, transparent 55%),
+    radial-gradient(96% 74% at 104% 4%, color-mix(in srgb, var(--nx-acid) 26%, transparent) 0%, transparent 52%),
     linear-gradient(180deg, color-mix(in srgb, var(--nx-ceramic) 55%, transparent) 0%, transparent 78%);
 }
 /* dramatic dark variant — for night bands that want depth, not a flat fill */

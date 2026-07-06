@@ -207,11 +207,13 @@ what to do."
 ## PHASE 8 — The Protocole direction (Chiya, 2026-07-06: "exactly what I
 ## had in mind" — see docs/PROTOCOLE-STUDY.md for the full study)
 
-- [x] **8.1 Bone & Espresso v2 token sheet.** (done 2026-07-06) The whole
-  site re-temperatured in one commit: bone field, espresso ink, stone
-  hairlines, electric-blue accent (women: warm rose on the same field).
-  Aurora calmed to a whisper; mx- family retuned. AA held; all gates
-  green; counts non-regressed.
+- [x] **8.1 Bone & Espresso v2 token sheet.** (shipped 2026-07-06,
+  REVERTED same day per Chiya: "why the brown color? can we keep our
+  colors?") The warm sheet proved the one-commit-swap architecture both
+  ways: Porcelain & Navy is back everywhere (index.css restored from
+  pre-sheet history; OG card regenerated to match). The protocole
+  GRAMMAR (8.2–8.4 structure, triads, illustration naming) is kept —
+  only the temperature was declined.
 - [x] **8.2 Front-door grammar pass.** (done 2026-07-06) Shipped: positioning
   band "A protocol. Not a purchase." on the deep-bone field; numbered
   three-pillar band (compounding / physician on every file / measured
