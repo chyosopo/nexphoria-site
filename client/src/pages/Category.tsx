@@ -179,7 +179,7 @@ export default function Category() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
-                  Begin your intake <ArrowRight size={17} strokeWidth={2} />
+                  Start your assessment <ArrowRight size={17} strokeWidth={2} />
                 </Link>
                 <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
               </div>
@@ -307,7 +307,7 @@ export default function Category() {
               Free evaluation. You only pay if a physician prescribes.
             </p>
             <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2 mt-6">
-              Begin your intake <ArrowRight size={17} strokeWidth={2} />
+              Start your assessment <ArrowRight size={17} strokeWidth={2} />
             </Link>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>
               Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Availability varies by state.

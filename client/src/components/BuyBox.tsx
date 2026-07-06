@@ -83,7 +83,7 @@ export function BuyBox(props: BuyBoxProps) {
               </p>
             )}
             <div style={{ marginTop: "1.1rem" }}>
-              <CTA testId={ctaTestId}>Begin eligibility intake</CTA>
+              <CTA testId={ctaTestId}>Check eligibility</CTA>
             </div>
           </>
         ) : consultPriced || !tiers?.length ? (
@@ -95,7 +95,7 @@ export function BuyBox(props: BuyBoxProps) {
               Dosed and priced by your physician at intake, against your protocol.
             </p>
             <div style={{ marginTop: "1.1rem" }}>
-              <CTA testId={ctaTestId}>Begin your intake</CTA>
+              <CTA testId={ctaTestId}>Start your assessment</CTA>
             </div>
           </>
         ) : (
@@ -144,7 +144,7 @@ export function BuyBox(props: BuyBoxProps) {
               </p>
             )}
             <div style={{ marginTop: "1rem" }}>
-              <CTA testId={ctaTestId}>Begin your intake</CTA>
+              <CTA testId={ctaTestId}>Start your assessment</CTA>
             </div>
           </>
         )}

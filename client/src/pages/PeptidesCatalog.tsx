@@ -213,7 +213,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right compound, or tells you none is appropriate.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
-            Begin your intake
+            Start your assessment
           </Link>
         </div>
       </section>

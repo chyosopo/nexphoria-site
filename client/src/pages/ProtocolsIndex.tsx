@@ -214,7 +214,7 @@ export default function ProtocolsIndex() {
             You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right protocol, or tells you none is appropriate.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: 15, marginTop: "1.6rem" }} data-testid="proto-assess-cta">
-            Begin your intake
+            Start your assessment
           </Link>
         </div>
       </section>

@@ -128,7 +128,7 @@ export default function HowItWorks() {
                 Physician oversight, laboratory bloodwork, state-licensed compounding, and one dashboard — in a fixed order that does not bend. Here is exactly what happens, and why each step exists.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
-                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Begin your intake</Link>
+                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Start your assessment</Link>
                 <Link href="/bloodwork" className="nx-cta-ghost">See the panels</Link>
               </div>
             </div>
@@ -288,7 +288,7 @@ export default function HowItWorks() {
           The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.7rem" }} data-testid="hiw-cta">
-          Begin your intake
+          Start your assessment
         </Link>
       </section>
     </SiteLayout>

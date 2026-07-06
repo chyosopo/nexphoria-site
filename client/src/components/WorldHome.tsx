@@ -109,22 +109,25 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1.1rem" }}>
             {config.sub}
           </p>
-          <div style={{ marginTop: "1.8rem", display: "flex", flexWrap: "wrap", gap: 12 }}>
+          {/* CTA law (ROADMAP 1.1): ONE solid action; the panel becomes a
+              text link; the protocols button is gone — the goal grid IS the
+              protocols entrance, one viewport below. */}
+          <div style={{ marginTop: "1.8rem", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.4rem" }}>
             <Link
               href="/assessment"
               data-testid={`${world}-hero-cta`}
               className="nx-cta-cobalt"
-              style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px" }}
+              style={{ fontSize: "var(--nx-t-base)", padding: "15px 30px" }}
             >
-              Begin your intake
+              Start your assessment
             </Link>
-            <Link href="/bloodwork" className="nx-glass-btn" data-testid={`${world}-hero-panel`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
-              See the {PANEL_TOTAL_MARKERS}-marker panel
-            </Link>
-            <Link href="/stacks" className="nx-glass-btn" data-testid={`${world}-hero-protocols`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>
-              The seven protocols
+            <Link href="/bloodwork" className="nx-text-link" data-testid={`${world}-hero-panel`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+              What the {PANEL_TOTAL_MARKERS}-marker panel checks →
             </Link>
           </div>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
+            2 minutes · no charge unless a physician prescribes
+          </p>
           </div>
           {config.heroArt && (
             <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 2" }}>
@@ -428,7 +431,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </div>
           {/* the page's strongest conviction moment gets its next step */}
           <Link href="/assessment" className="nx-cta-ceramic" data-testid={`${world}-night-cta`} style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "2.2rem" }}>
-            Begin your intake
+            Start your assessment
           </Link>
         </div>
       </section>
@@ -485,7 +488,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           className="nx-cta-cobalt"
           style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}
         >
-          Begin your intake
+          Start your assessment
         </Link>
       </section>
     </SiteLayout>

@@ -115,7 +115,7 @@ export default function StackPage({ slug }: { slug: string }) {
                   then empty space, with commerce buried a full scroll below */}
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
-                  {stack.gated ? "Check eligibility" : "Begin your intake"}
+                  {stack.gated ? "Check eligibility" : "Start your assessment"}
                 </Link>
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)" }}>
                   {stack.gated
@@ -352,7 +352,7 @@ export default function StackPage({ slug }: { slug: string }) {
           The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
-          Begin your intake
+          Start your assessment
         </Link>
       </section>
     </SiteLayout>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "wouter";
 import { X } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
@@ -13,16 +12,11 @@ interface AnnouncementBarProps {
   message?: string;
   /** small accent tag on the left */
   tag?: string;
-  /** optional CTA link */
-  ctaLabel?: string;
-  ctaHref?: string;
 }
 
 export function AnnouncementBar({
   message = "Free physician consult on your first protocol \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
   tag = "Peptides",
-  ctaLabel = "Start intake",
-  ctaHref = "/assessment",
 }: AnnouncementBarProps) {
   const [dismissed, setDismissed] = useState(false);
   if (dismissed) return null;
@@ -62,19 +56,8 @@ export function AnnouncementBar({
         >
           {message}
         </span>
-        <Link
-          href={ctaHref}
-          className="hidden sm:inline text-[10px] uppercase tracking-[0.18em] hover:opacity-80 transition-opacity"
-          style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "var(--nx-bg)",
-            borderBottom: "1px solid rgba(243, 245, 247,0.4)",
-            paddingBottom: 1,
-          }}
-          data-testid="link-announcement-cta"
-        >
-          {ctaLabel} →
-        </Link>
+        {/* CTA law (ROADMAP 1.1): the bar carries the message only — its CTA
+            competed with the nav's primary button in the same viewport */}
         <button
           type="button"
           onClick={() => setDismissed(true)}
