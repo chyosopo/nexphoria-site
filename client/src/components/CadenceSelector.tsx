@@ -272,7 +272,7 @@ export function CadenceSelector({ slug, type, productName }: CadenceSelectorProp
           </>
         ) : (
           <>
-            <Plus size={15} strokeWidth={2.5} /> Add to cart · Begin intake
+            <Plus size={15} strokeWidth={2.5} /> Add to cart
           </>
         )}
       </button>

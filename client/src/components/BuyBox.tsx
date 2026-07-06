@@ -193,7 +193,7 @@ export function BuyBox(props: BuyBoxProps) {
           className="nx-cta-cobalt"
           style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}
         >
-          {gated ? "Check eligibility" : "Begin intake"}
+          {gated ? "Check eligibility" : "Start your assessment"}
         </Link>
         </div>
       </div>

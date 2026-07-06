@@ -1111,7 +1111,7 @@ export default function LabTesting() {
                       size="md"
                       className="w-full"
                     >
-                      Begin intake
+                      Start your assessment
                     </StartIntakeButton>
                   </div>
                 </div>

@@ -186,11 +186,23 @@ what to do."
 
 ## PHASE 7 — Full-journey QA to 100%
 
-- [ ] **7.1** Five personas walked end-to-end (skeptical newcomer, hims
+- [x] **7.1** (done 2026-07-05) Five personas walked end-to-end (skeptical newcomer, hims
   switcher, woman/skin, athlete/recovery, GLP-1 seeker), every step
-  screenshotted mobile+desktop, every break fixed.
-- [ ] **7.2** Final gate: every page passes the 5-second test + the
-  one-action test.
+  screenshotted mobile+desktop, every break fixed. Ran as an automated
+  Playwright walk (qa44: 50 steps × console errors / horizontal overflow
+  / broken images / dead ends): zero site breaks — the only console
+  noise is the two external font CDNs blocked by the sandbox network
+  (fine in production; consider self-hosting fonts later). Visual
+  sample review caught 3 CTA-label deviations ("Begin intake" on the
+  BuyBox mobile bar, CadenceSelector, LabTesting tiers) — fixed to the
+  sitewide law.
+- [x] **7.2** (done 2026-07-05) Final gate: every page passes the 5-second test + the
+  one-action test. One-action: 25/25 routes show ≤1 solid CTA in the
+  first viewport (nav + fixed bars excluded). 5-second: hero
+  screenshots reviewed across the qa37–qa44 sets — every key page
+  states what it is, who it's for, and the one action. Copy depth keeps
+  iterating, but the structural laws now hold everywhere and are
+  enforced by audit:funnel + the sweeps in this file.
 
 ## PARALLEL TRACK (blocked on Chiya)
 
