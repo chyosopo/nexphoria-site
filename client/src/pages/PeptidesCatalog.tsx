@@ -86,7 +86,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   );
 
   return (
-    <SiteLayout>
+    /* Carry the visitor's world into the chrome — otherwise a woman on
+       /women/peptides gets the generic nav whose "Peptides" link points to
+       /peptides → redirects to /men/peptides, silently ejecting her from
+       her world. Worlded catalog keeps her in it. */
+    <SiteLayout navVariant={world ?? "showcase"} footerVariant={world ?? "shared"}>
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>

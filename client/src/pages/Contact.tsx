@@ -80,6 +80,28 @@ export default function Contact() {
     e.preventDefault();
     if (form.name && form.email && form.message && form.reason !== reasons[0]) {
       setError("");
+      /* No repo-side endpoint: the old handler faked "message received" while
+         sending nothing. We route through the visitor's own mail client so the
+         message actually reaches a person — and so nothing (including any
+         health details) is ever persisted in this repo. PHI-never-in-repo. */
+      const to =
+        form.reason === "Press or media" || form.reason === "Partnership or wholesale"
+          ? "press@nexphoria.com"
+          : "hello@nexphoria.com";
+      const body = [
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        form.phone ? `Phone: ${form.phone}` : null,
+        form.state ? `State: ${form.state}` : null,
+        `Reason: ${form.reason}`,
+        "",
+        form.message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(
+        `[${form.reason}] ${form.name}`,
+      )}&body=${encodeURIComponent(body)}`;
       setSubmitted(true);
     } else {
       setError("Please complete your name, email, reason, and message before sending.");
@@ -432,7 +454,7 @@ export default function Contact() {
                       marginBottom: "0.75rem",
                     }}
                   >
-                    MESSAGE RECEIVED
+                    ONE MORE STEP
                   </p>
                   <p
                     style={{
@@ -443,7 +465,7 @@ export default function Contact() {
                       marginBottom: "0.625rem",
                     }}
                   >
-                    We're on it.
+                    Check your email app.
                   </p>
                   <p
                     style={{
@@ -453,7 +475,9 @@ export default function Contact() {
                       lineHeight: 1.65,
                     }}
                   >
-                    We'll respond promptly on business days (Monday through Friday ET). Clinical questions are routed to a physician for review.
+                    We've opened a pre-filled message to our team — just press send. We reply on business days
+                    (Monday through Friday ET). If your mail app didn't open, email us directly at{" "}
+                    <a href="mailto:hello@nexphoria.com" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>hello@nexphoria.com</a>.
                   </p>
                   {form.reason === "Clinical / medical question" && (
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>

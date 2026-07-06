@@ -26,9 +26,13 @@ const formSchema = z.object({
   name: z.string().min(2, "Enter your full name"),
   email: z.string().email("Enter a valid email"),
   age: z.coerce.number().int().min(18, "Must be 18+").max(110),
-  cardiacHistory: z.boolean(),
-  diabetic: z.boolean(),
-  hormonalRx: z.boolean(),
+  /* coerce, not z.boolean(): react-hook-form can hand a checkbox's value
+     back as "on"/"" rather than a strict boolean, which silently failed the
+     old z.boolean() and blocked submit the moment any screening box was
+     touched. Output type is still boolean — the server contract is unchanged. */
+  cardiacHistory: z.coerce.boolean(),
+  diabetic: z.coerce.boolean(),
+  hormonalRx: z.coerce.boolean(),
   allergies: z.string().optional(),
   shippingAddress: z.string().min(4, "Enter your shipping address"),
   city: z.string().min(1, "City required"),
@@ -502,17 +506,30 @@ export default function Checkout() {
                     <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                       By submitting, you consent to physician review and HIPAA-aligned data handling. No payment is collected today — final invoice is sent after approval.
                     </p>
-                    {Object.keys(errors).length > 0 ? (
-                      <button
-                        type="button"
-                        onClick={() => setStep(0)}
-                        className="mt-4 block w-full text-left p-3 text-sm"
-                        style={{ background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", color: "var(--nx-cobalt-hover)", fontFamily: FONT, borderRadius: "var(--nx-r-md)" }}
-                        data-testid="text-form-errors"
-                      >
-                        Some address fields need attention. Tap to review Step 01.
-                      </button>
-                    ) : null}
+                    {(() => {
+                      const errored = Object.keys(errors);
+                      if (errored.length === 0) return null;
+                      // Route the fix-it banner to the step that actually has
+                      // the error — not a hardcoded "Step 01 address".
+                      const FIELD_STEP: Record<string, number> = {
+                        name: 0, email: 0, shippingAddress: 0, city: 0, state: 0, zip: 0,
+                        age: 2, cardiacHistory: 2, diabetic: 2, hormonalRx: 2, allergies: 2,
+                      };
+                      const badStep = Math.min(...errored.map((f) => FIELD_STEP[f] ?? 0));
+                      const stepLabel = `Step 0${badStep + 1} · ${STEPS[badStep]}`;
+                      const count = errored.length;
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => setStep(badStep)}
+                          className="mt-4 block w-full text-left p-3 text-sm"
+                          style={{ background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", color: "var(--nx-cobalt-hover)", fontFamily: FONT, borderRadius: "var(--nx-r-md)" }}
+                          data-testid="text-form-errors"
+                        >
+                          {count === 1 ? "One field needs" : `${count} fields need`} attention in {stepLabel}. Tap to review.
+                        </button>
+                      );
+                    })()}
                   </div>
                 </>
               )}
