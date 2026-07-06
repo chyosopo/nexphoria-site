@@ -114,7 +114,7 @@ export default function LabTesting() {
       <BloodworkInsurance />
 
       {/* ── Trust badge strip — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
+      <section className="nx-container max-w-screen-xl" aria-label="Laboratory and physician credentials" style={{ paddingTop: "clamp(2rem,3.4vw,2.8rem)", paddingBottom: "clamp(2rem,3.4vw,2.8rem)" }}>
         <Reveal>
           <TrustStrip testid="labtesting-trust-strip" />
         </Reveal>
@@ -180,7 +180,7 @@ export default function LabTesting() {
       </main>
 
       {/* ── How your results read — abstract outcome dashboard + clinical standard ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
+      <section className="nx-container max-w-screen-xl" aria-label="How your results read" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_1.05fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
           <Reveal>
             <DashboardMockup
@@ -210,6 +210,7 @@ export default function LabTesting() {
       {/* ── Partner laboratory network ── */}
       <section
         className="py-24 md:py-32"
+        aria-label="Partner laboratory network and reference ranges"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -339,6 +340,7 @@ export default function LabTesting() {
       {/* ── Bloodwork dashboard mood image ── */}
       <section
         className="relative w-full overflow-hidden"
+        aria-label="Bloodwork results dashboard"
         style={{ height: "400px" }}
         data-testid="labtesting-mood-strip"
       >
@@ -367,6 +369,7 @@ export default function LabTesting() {
       {/* ── Biomarker panel grid ── */}
       <section
         className="py-24 md:py-32"
+        aria-label="Your panel — seven biomarker categories"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -545,6 +548,7 @@ export default function LabTesting() {
       {/* ── Biomarker explainer cards ── */}
       <section
         className="py-24 md:py-32"
+        aria-labelledby="lab-biomarkers-title"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -567,10 +571,11 @@ export default function LabTesting() {
               Key biomarkers
             </p>
             <h2
+              id="lab-biomarkers-title"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                
+
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -644,6 +649,7 @@ export default function LabTesting() {
       {/* ── Retest cadence ── */}
       <section
         className="py-24 md:py-32"
+        aria-labelledby="lab-retest-title"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -666,10 +672,11 @@ export default function LabTesting() {
               Retest cadence
             </p>
             <h2
+              id="lab-retest-title"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                
+
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -741,6 +748,7 @@ export default function LabTesting() {
       {/* ── Sample report ── */}
       <section
         className="py-24 md:py-32"
+        aria-labelledby="lab-sample-report-title"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -763,10 +771,11 @@ export default function LabTesting() {
               Sample report
             </p>
             <h2
+              id="lab-sample-report-title"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                
+
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
@@ -928,6 +937,7 @@ export default function LabTesting() {
       {/* ── Lab testing pricing ── */}
       <section
         className="py-16 md:py-20"
+        aria-label="Lab testing pricing and panel tiers"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -1168,6 +1178,7 @@ function BloodworkManifesto() {
   return (
     <section
       className="relative overflow-hidden"
+      aria-labelledby="lab-manifesto-title"
       style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)" }}
     >
       <div className="h-16 md:h-20" />
@@ -1195,6 +1206,7 @@ function BloodworkManifesto() {
           </div>
 
           <h1
+            id="lab-manifesto-title"
             style={{
               fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
@@ -1349,6 +1361,7 @@ function BloodworkPillars() {
   return (
     <section
       className="py-24 md:py-32"
+      aria-labelledby="lab-pillars-title"
       style={{ background: "var(--nx-ceramic)" }}
     >
       <div className="nx-container">
@@ -1371,6 +1384,7 @@ function BloodworkPillars() {
         </div>
 
         <h2
+          id="lab-pillars-title"
           style={{
             fontFamily: "'Fraunces', Georgia, serif",
             fontWeight: 600,
@@ -1500,6 +1514,7 @@ function BloodworkPricing() {
   return (
     <section
       id="bloodwork-pricing"
+      aria-labelledby="lab-pricing-tiers-title"
       className="py-24 md:py-32 border-t"
       style={{
         background: "var(--nx-rock)",
@@ -1527,6 +1542,7 @@ function BloodworkPricing() {
               Panels &amp; membership
             </div>
             <h2
+              id="lab-pricing-tiers-title"
               style={{
                 fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 600,
@@ -1711,6 +1727,7 @@ function BloodworkInsurance() {
   return (
     <section
       className="py-24 md:py-32 border-t"
+      aria-labelledby="lab-insurance-title"
       style={{ background: "var(--nx-ceramic)", borderColor: "rgba(21, 24, 28,0.08)" }}
     >
       <div className="nx-container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -1749,6 +1766,7 @@ function BloodworkInsurance() {
           </div>
 
           <h2
+            id="lab-insurance-title"
             style={{
               fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 600,
@@ -1907,6 +1925,7 @@ function PartnerLabsSection() {
   return (
     <section
       className="py-16 md:py-24"
+      aria-labelledby="lab-partnerlabs-title"
       style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       data-testid="section-partner-labs"
     >
@@ -1926,6 +1945,7 @@ function PartnerLabsSection() {
             PARTNER LABS
           </p>
           <h2
+            id="lab-partnerlabs-title"
             style={{
               fontFamily: PL_FONT,
               fontWeight: 500,
