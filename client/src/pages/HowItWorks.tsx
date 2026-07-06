@@ -1,11 +1,11 @@
-/* JOB: the four-step path from intake to shipment, ending at the assessment. */
+/* JOB: the seven-step path from intake to the 90-day retest, ending at the assessment. */
 /* ═══ HOW IT WORKS — the institution's argument, in full ═══
    Seven steps on a drawn timeline, each with its mechanism, the objection it
    answers, and a Lucide glyph. Trust-stat row, one dramatic night band, one
    striking comparison. Bank voice. Tokens only; both worlds theme it. */
-import { SiteLayout } from "@/components/SiteLayout";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { StickyAssessBar } from "@/components/StickyAssessBar";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { Reveal } from "@/components/Reveal";
@@ -98,6 +98,10 @@ const COMPARE: { row: string; them: string; us: string }[] = [
 ];
 
 export default function HowItWorks() {
+  // World-cast the hero (fleet audit: a woman arriving from /women saw a
+  // male portrait under the orchid palette — the world read as a re-skin)
+  const [loc] = useLocation();
+  const world = resolveWorld(loc);
   useSeo({
     title: "How It Works — Nexphoria",
     description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, and 90-day retesting — in a fixed order that does not bend.",
@@ -135,7 +139,7 @@ export default function HowItWorks() {
               </div>
             </div>
             <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "3 / 2" }}>
-              <img src={OUTCOME_HERO.men} alt="" aria-hidden fetchPriority="high" width={2048} height={1360} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <img src={OUTCOME_HERO[world === "women" ? "women" : "men"]} alt="" aria-hidden fetchPriority="high" width={2048} height={1360} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
               <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 32%, transparent) 100%)" }} />
               {/* step-count chip — same live grammar as the world homes */}
               <div
@@ -294,7 +298,7 @@ export default function HowItWorks() {
         </Link>
       </section>
       {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
-      <StickyAssessBar label="Step one takes two minutes" testid="sticky-assess-howitworks" />
+      <StickyAssessBar label="A two-minute first step" testid="sticky-assess-howitworks" />
     </SiteLayout>
   );
 }

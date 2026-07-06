@@ -144,30 +144,19 @@ export default function Physicians() {
                   <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
                   Our standards
                 </p>
+                {/* ONE heading — split h2 siblings read as two headings to
+                    screen readers and the document outline */}
                 <h2
                   style={{
                     fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
-                    fontSize: "var(--nx-t-h2)",
-                    color: "var(--nx-fg)",
-                    lineHeight: 1.1,
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Every physician on the network
-                </h2>
-                <h2
-                  style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontWeight: 500,
-
                     fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
                     marginBottom: "2rem",
                   }}
                 >
-                  meets this standard.
+                  Every physician on the network<br />meets this standard.
                 </h2>
                 <p
                   style={{
@@ -322,11 +311,8 @@ export default function Physicians() {
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
             </p>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "0.5rem" }}>
-              Three steps.
-            </h2>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500,  fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
-              Zero algorithmic shortcuts.
+            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
+              Three steps.<br />Zero algorithmic shortcuts.
             </h2>
           </Reveal>
 
@@ -337,7 +323,8 @@ export default function Physicians() {
           <div
             role="list"
             aria-label="Physician review steps"
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)" }}
+            className="physicians-steps-list"
           >
             {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
@@ -383,7 +370,7 @@ export default function Physicians() {
                 Your physician review is included with every protocol. Take the assessment and our team will match you with a physician licensed in your state.
               </p>
               <StartIntakeButton source="physicians-page" size="lg">
-                Start your intake
+                Start your assessment
               </StartIntakeButton>
             </div>
           </Reveal>
@@ -393,7 +380,7 @@ export default function Physicians() {
       <PhysicianCredentials />
 
       <FinalCTAStrip
-        title="Your physician review is included."
+        title="A physician is ready to read your file."
         sub="A CLIA-certified partner-laboratory panel is drawn first. A board-certified physician reviews it before any prescription."
       />
       <style>{`
@@ -401,6 +388,9 @@ export default function Physicians() {
           .physicians-band-grid { grid-template-columns: 1.1fr 1fr !important; gap: 4rem !important; }
           .physicians-review-grid { grid-template-columns: 1.15fr 0.85fr !important; }
         }
+        /* Three steps must never lay out 2+1 with an empty bordered cell
+           (fleet audit S2): a numbered sequence stacks — always one column. */
+        .physicians-steps-list { grid-template-columns: 1fr !important; }
       `}</style>
     </SiteLayout>
   );

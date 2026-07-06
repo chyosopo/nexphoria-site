@@ -112,7 +112,7 @@ export const FLAGSHIP_STACKS: FlagshipStack[] = [
   {
     slug: "ascend",
     name: "Ascend",
-    tagline: "Growth, on the axis.",
+    tagline: "Lean strength, measured.",
     category: "GH Axis & Body Composition",
     bestFor: "Performance and body-composition goals, 28–50.",
     peptides: [
@@ -179,7 +179,7 @@ export const FLAGSHIP_STACKS: FlagshipStack[] = [
   {
     slug: "ignite",
     name: "Ignite",
-    tagline: "The metabolic reset — physician-assessed.",
+    tagline: "The metabolic reset.",
     category: "Metabolic (GLP-1)",
     bestFor: "BMI 27+, 25–65, after medical eligibility review.",
     peptides: [

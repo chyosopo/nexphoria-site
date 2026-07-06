@@ -20,6 +20,8 @@ import { PANELS, FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { Link } from "wouter";
 import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw, FlaskConical, ClipboardCheck, TestTube } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
+import { FaqAccordion } from "@/components/EnterprisePatterns";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
 import {
   PANEL_ART,
   PANEL_TINTS,
@@ -105,9 +107,10 @@ function Hero() {
                   marginBottom: "2rem",
                 }}
               >
-                {PANEL_TOTAL_MARKERS} biomarkers across {PANEL_CATEGORY_COUNT} panels, re-drawn every 90 days —
-                signals of 1,000+ conditions before symptoms surface. Every Nexphoria protocol
-                starts here and adjusts every quarter against your own numbers.
+                The fatigue, the plateau, the slow recovery — your blood already knows why.
+                {" "}{PANEL_TOTAL_MARKERS} biomarkers across {PANEL_CATEGORY_COUNT} panels, re-drawn
+                every 90 days. Every Nexphoria protocol starts here and adjusts every quarter
+                against your own numbers.
               </p>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
                 <StartIntakeButton
@@ -537,9 +540,11 @@ function PanelExplorer() {
                     alignContent: "flex-start",
                   }}
                 >
-                  {cat.markers.map((m) => (
+                  {/* Dedupe after stripping the (absolute)/(percentage)
+                      qualifiers — Immunity rendered every pill twice */}
+                  {Array.from(new Set(cat.markers.map((m) => m.name.split(" (")[0]))).map((name) => (
                     <li
-                      key={m.name}
+                      key={name}
                       style={{
                         fontFamily: FONT,
                         fontSize: "var(--nx-t-xs)",
@@ -553,7 +558,7 @@ function PanelExplorer() {
                         padding: "0.32rem 0.72rem",
                       }}
                     >
-                      {m.name.split(" (")[0]}
+                      {name}
                     </li>
                   ))}
                 </ul>
@@ -665,7 +670,7 @@ function LiveTrajectory() {
                 marginBottom: "0.9rem",
               }}
             >
-              Ninety days. Six data points. Every marker moving.
+              Ninety days. Two draws. Every marker trending.
             </h2>
             <p
               style={{
@@ -968,13 +973,21 @@ function PanelTiers() {
                   <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{s.name}</p>
                   <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)" }}>{s.category}</p>
                 </div>
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>{s.panel}{s.panelNote && s.panelNote.includes("plus") ? " +" : ""} panel</p>
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>{s.panel} panel{s.panelNote && s.panelNote.includes("plus") ? " + add-ons" : ""}</p>
               </Link>
             ))}
           </div>
           <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1.4rem", maxWidth: "60ch" }}>
-            Draws are handled through an at-home collection partner. Your results populate one dashboard and are read by your physician before anything is prescribed or adjusted.
+            Draw at 2,000+ partner laboratory locations or with the at-home collection kit. Your results populate one dashboard and are read by your physician before anything is prescribed or adjusted.
           </p>
+          {/* THE offer's local next step (fleet audit S2: a desktop buyer at
+              peak price-consideration had no in-flow CTA for ~10,000px) */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.7rem", marginTop: "1.6rem" }}>
+            <Link href="/assessment" className="nx-cta-cobalt" data-testid="bloodwork-tiers-cta" style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 26px" }}>
+              Start your assessment
+            </Link>
+            <PrescribedPromise testid="bloodwork-tiers-promise" />
+          </div>
         </div>
       </div>
     </section>
@@ -1022,13 +1035,21 @@ export default function Bloodwork() {
         <PanelExplorer />
         <LiveTrajectory />
         <HowItWorks />
+        {/* The FAQ the JSON-LD promises — visible objection-handling at the
+            close (invisible FAQPage markup risks a rich-result penalty) */}
+        <section className="nx-container" aria-labelledby="bloodwork-faq-title" style={{ paddingTop: "clamp(2.6rem,5vw,4rem)", paddingBottom: "clamp(2.6rem,5vw,4rem)" }}>
+          <h2 id="bloodwork-faq-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginBottom: "1.4rem" }}>
+            Before you book the draw.
+          </h2>
+          <FaqAccordion items={BLOODWORK_FAQ_ITEMS} openFirst={false} />
+        </section>
         <FinalCTAStrip
           title="Every protocol starts with proof."
           sub={`A physician reviews all ${PANEL_TOTAL_MARKERS} markers before a single dose is prescribed. Book your panel in five minutes.`}
         />
       </main>
       {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
-      <StickyAssessBar label="Every protocol starts with the panel" testid="sticky-assess-bloodwork" />
+      <StickyAssessBar label="It starts with the panel" testid="sticky-assess-bloodwork" />
     </SiteLayout>
   );
 }

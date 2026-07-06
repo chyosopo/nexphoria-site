@@ -2,6 +2,7 @@
    Static copy, artwork maps, tints, and sample readouts live here so the
    page component stays lean and the data is reviewable in one place.
    No PHI: every value below is illustrative marketing sample data. */
+import { PANEL_TOTAL_MARKERS } from "./biomarkerPanel";
 
 /* Organ/system icon keys — resolved to lucide components in the page */
 export const PANEL_ICON_KEYS: Record<string, string> = {
@@ -64,11 +65,14 @@ export const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[]
   { t: "Liver stress", x: "8%", y: "84%" },
 ];
 
-/* Bloodwork FAQ — also feeds faqJsonLd */
+/* Bloodwork FAQ — feeds faqJsonLd AND renders visibly on /bloodwork (a
+   FAQPage schema for invisible content risks a rich-result penalty).
+   Fleet-audit fix: the old answer hardcoded a "38-Biomarker Panel" under a
+   page that says 99 everywhere — the count now derives from the panel data. */
 export const BLOODWORK_FAQ_ITEMS = [
   {
     q: "What bloodwork does Nexphoria require before prescribing?",
-    a: "Nexphoria requires a 38-Biomarker Partner-Laboratory Panel before any prescription is issued. The panel covers hormonal axis markers (testosterone, LH, FSH, estradiol), metabolic markers (HbA1c, fasting insulin, lipid panel), inflammatory markers (hs-CRP, ESR), hepatic function (ALT, AST), and renal function (creatinine, BUN). Your requisition is generated in your member portal after completing the intake assessment.",
+    a: `A partner-laboratory blood panel is required before any prescription is issued — the Basic, Full, or Elite tier your protocol calls for, drawn from a catalog of ${PANEL_TOTAL_MARKERS} biomarkers: hormonal axis (testosterone, LH, FSH, estradiol), metabolic (HbA1c, fasting insulin, lipids), inflammatory (hs-CRP), hepatic and renal function. Your requisition is generated in your member portal after the assessment.`,
   },
   {
     q: "How often are labs required during a Nexphoria subscription?",
