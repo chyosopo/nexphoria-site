@@ -5,8 +5,8 @@
    timeline, a gradient-edged bloodwork card, and a dramatic contraindication
    band. Three commerce states: tiers / GLP-1 wall / consult-priced. */
 import { useState } from "react";
-import { Link } from "wouter";
-import { SiteLayout } from "@/components/SiteLayout";
+import { Link, useLocation } from "wouter";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
@@ -34,6 +34,11 @@ const SOLO_OUTCOME: Record<SoloCategory, PeptideCategory> = {
 
 export default function SoloPDP({ slug, world }: { slug: string; world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
+  // Imagery world: the URL world if present, else the visitor's remembered world
+  // — so a woman who lands on a neutral /peptides/:slug still sees her world's
+  // photo (the palette already follows memory; this aligns the imagery to it).
+  const [loc] = useLocation();
+  const imgWorld = world ?? resolveWorld(loc);
   const solo = getSolo(slug);
   const [tier, setTier] = useState<string>("m3");
   const faq = solo
@@ -61,7 +66,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
   if (!solo) {
     return (
-      <SiteLayout variant={world ?? "showcase"}>
+      <SiteLayout variant={imgWorld}>
         <div style={{ maxWidth: 640, margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
           <h1 style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: 12 }}>Peptide not found</h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", marginBottom: 28 }}>
@@ -79,7 +84,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
      photo stays in the lower imagery band so each PDP shows two distinct
      frames (product + outcome) instead of the same photo twice. */
   const categoryImg =
-    OUTCOME_CATEGORY[world ?? "men"][SOLO_OUTCOME[solo.category]] ?? OUTCOME_HERO[world ?? "men"];
+    OUTCOME_CATEGORY[imgWorld][SOLO_OUTCOME[solo.category]] ?? OUTCOME_HERO[imgWorld];
   const heroImg = getPeptideHeroImage(solo.slug) ?? categoryImg;
 
   /* Same-category companions first, then fill from the wider formulary. */
