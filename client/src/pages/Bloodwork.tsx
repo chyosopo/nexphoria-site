@@ -21,6 +21,7 @@ import { Link } from "wouter";
 import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw, FlaskConical, ClipboardCheck, TestTube } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
+import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import {
   PANEL_ART,
@@ -630,6 +631,88 @@ function PanelExplorer() {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   PANEL COMPARISON — "not all bloodwork is the same" matrix.
+   The LongevityMeds-study move (docs/LONGEVITYMEDS-STUDY.md §5),
+   done truthfully: every row states what a physician panel does
+   that a once-a-year physical and a mail-order kit do not. Marker
+   count binds to PANEL_TOTAL_MARKERS — never hardcoded.
+   ══════════════════════════════════════════════════════════════ */
+function PanelComparison() {
+  return (
+    <ComparisonMatrix
+      testid="bloodwork-comparison"
+      eyebrow="Why this panel"
+      title="Not all bloodwork is the same."
+      lead="A once-a-year physical and a mail-order kit both stop at a number. This panel exists to change a prescription — read against optimal ranges, by a physician, and retested until the trend proves it."
+      columns={[
+        { label: "The Nexphoria panel", sub: "Included with every protocol", highlight: true },
+        { label: "A standard annual physical", sub: "Once-a-year checkup" },
+        { label: "A direct-to-consumer kit", sub: "Mail-order finger-prick" },
+      ]}
+      rows={[
+        {
+          label: "Biomarkers measured",
+          cells: [
+            { text: `${PANEL_TOTAL_MARKERS} across ${PANEL_CATEGORY_COUNT} systems`, tone: "pos" },
+            { text: "A basic metabolic panel + lipids", tone: "neg" },
+            { text: "A handful, varies by kit", tone: "neg" },
+          ],
+        },
+        {
+          label: "Read against",
+          cells: [
+            { text: "Optimal ranges, not just “normal”", tone: "pos" },
+            { text: "Standard reference ranges", tone: "neg" },
+            { text: "Reference ranges, or none", tone: "neg" },
+          ],
+        },
+        {
+          label: "Who reviews it",
+          cells: [
+            { text: "A board-certified physician", tone: "pos" },
+            { text: "Your provider, at the visit", tone: "plain" },
+            { text: "An algorithm, or no one", tone: "neg" },
+          ],
+        },
+        {
+          label: "Retested",
+          cells: [
+            { text: "Every 90 days, trended", tone: "pos" },
+            { text: "Once a year", tone: "neg" },
+            { text: "One-time snapshot", tone: "neg" },
+          ],
+        },
+        {
+          label: "What happens next",
+          cells: [
+            { text: "Your dose is calibrated to the results", tone: "pos" },
+            { text: "General advice", tone: "neg" },
+            { text: "No treatment path", tone: "neg" },
+          ],
+        },
+        {
+          label: "Where you draw",
+          cells: [
+            { text: "2,000+ partner labs or an at-home kit", tone: "pos" },
+            { text: "A clinic appointment", tone: "plain" },
+            { text: "At-home finger-prick", tone: "plain" },
+          ],
+        },
+        {
+          label: "Cost",
+          cells: [
+            { text: "Included in your protocol", tone: "pos" },
+            { text: "Copay + visit", tone: "plain" },
+            { text: "$50–200 per kit", tone: "plain" },
+          ],
+        },
+      ]}
+      footnote="A standard physical and a home kit both have their place. The difference is what happens after the draw: here, every marker feeds a physician's prescribing decision and is retested until the trend confirms the protocol is working."
+    />
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════
    LIVE TRAJECTORY — the real BiomarkerCard set
    ══════════════════════════════════════════════════════════════ */
 function LiveTrajectory() {
@@ -1033,6 +1116,7 @@ export default function Bloodwork() {
         <PanelTiers />
         <div id="explore" />
         <PanelExplorer />
+        <PanelComparison />
         <LiveTrajectory />
         <HowItWorks />
         {/* The FAQ the JSON-LD promises — visible objection-handling at the
