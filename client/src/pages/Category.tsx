@@ -4,9 +4,9 @@
    Skeleton: emotional hero → 3 steps (if prescribed) → goal chips
    → treatment grid (real data) → FAQ (+JSON-LD) → CTA → footnote
    ──────────────────────────────────────────────────────────────── */
-import { Link, useRoute } from "wouter";
+import { Link, useRoute, useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
-import { SiteLayout } from "@/components/SiteLayout";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, type PeptideCategory } from "@/data/peptides";
@@ -128,8 +128,13 @@ export default function Category() {
   const cfg = CONFIG[slug];
   const label = CATEGORY_LABELS[slug] ?? "Protocols";
   const list = peptides.filter((p) => p.category === slug);
-  // Outcome hero art — world-cast where casting differs; men frame is the neutral default.
-  const heroArt = OUTCOME_CATEGORY.men[slug] ?? OUTCOME_CATEGORY.women[slug];
+  // Outcome hero art — cast to the visitor's world so a woman arriving from her
+  // goal tile never lands on a man's photo (the old code hardcoded the men
+  // frame first, leaking male imagery into her world on every goal page).
+  const [loc] = useLocation();
+  const world = resolveWorld(loc);
+  const heroArt =
+    OUTCOME_CATEGORY[world][slug] ?? OUTCOME_CATEGORY.men[slug] ?? OUTCOME_CATEGORY.women[slug];
 
   useSeo({
     title: cfg ? `${label} peptide protocols — physician-directed` : "Protocols",
@@ -164,7 +169,7 @@ export default function Category() {
   }
 
   return (
-    <SiteLayout>
+    <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── Hero ── */}
       <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }} aria-labelledby="category-hero-title">
         <div className="nx-container" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(2.5rem,5vw,4rem)" }}>
