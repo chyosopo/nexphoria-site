@@ -601,7 +601,7 @@ export default function Checkout() {
               {/* Trust marks */}
               <div className="mt-6 pt-6 space-y-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
-                <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · 256-bit encryption" />
+                <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · encrypted in transit" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
                 <TrustRow icon={<Check size={14} />} text="The consultation carries no charge. You pay only if prescribed." />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />

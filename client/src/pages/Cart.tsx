@@ -42,7 +42,7 @@ export default function Cart() {
               className="text-[11px] uppercase tracking-[0.22em] mb-3"
               style={{ fontFamily: FONT, color: "var(--nx-amber)" }}
             >
-              Your Pharmacy
+              Your Protocol
             </div>
             <h1
               className="text-4xl md:text-5xl"

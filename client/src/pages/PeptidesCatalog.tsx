@@ -67,8 +67,16 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   const [filter, setFilter] = useState<string>("All");
   const [q, setQ] = useState("");
   useSeo({
-    title: "Peptides — The Full Catalog | Nexphoria",
-    description: `${SOLO_CATALOG.length} physician-prescribed peptides, each with dosing, mechanism, timeline, and required bloodwork stated plainly.`,
+    // World-aware path + title/description so /peptides, /men/peptides, and
+    // /women/peptides each carry their own canonical/og:url and aren't three
+    // homepage-canonical duplicates (the old omitted-path bug).
+    path: `${base}/peptides`,
+    title: world === "women"
+      ? "Peptides for Women — The Full Catalog | Nexphoria"
+      : world === "men"
+      ? "Peptides for Men — The Full Catalog | Nexphoria"
+      : "Peptides — The Full Catalog | Nexphoria",
+    description: `${SOLO_CATALOG.length} physician-prescribed peptides${world === "women" ? " for women" : world === "men" ? " for men" : ""}, each with dosing, mechanism, timeline, and required bloodwork stated plainly.`,
     jsonLd: [
       webPageJsonLd({ name: "Peptides", description: "Solo peptide catalog.", path: "/peptides" }),
       breadcrumbJsonLd(

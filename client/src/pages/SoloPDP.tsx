@@ -43,6 +43,10 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   useSeo({
     title: solo ? `${solo.name} — ${solo.category} | Nexphoria` : "Peptide — Nexphoria",
     description: solo ? `${solo.name}: ${solo.dose}. Physician-prescribed, ${solo.panel}-panel gated, retested. Educational — not medical advice.` : "",
+    // Canonicalize all three variants (/peptides, /men/peptides, /women/peptides)
+    // to the neutral PDP so Google consolidates them instead of collapsing every
+    // PDP onto the homepage (the old omitted-path bug deindexed the whole catalog).
+    path: solo ? `/peptides/${solo.slug}` : "/peptides",
     jsonLd: solo
       ? [
           webPageJsonLd({ name: solo.name, description: solo.mechanism.slice(0, 120), path: `/peptides/${solo.slug}`, type: "MedicalWebPage" }),

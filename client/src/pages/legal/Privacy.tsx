@@ -31,7 +31,7 @@ export default function Privacy() {
       </LegalSection>
 
       <LegalSection title="4. HIPAA Compliance and Safeguards">
-        <LegalP>Nexphoria maintains administrative, physical, and technical safeguards designed to protect the confidentiality, integrity, and availability of PHI as required by the HIPAA Privacy Rule (45 CFR Part 164, Subpart E) and the HIPAA Security Rule (45 CFR Part 164, Subpart C). These include role-based access controls, mandatory multi-factor authentication for all workforce members, encryption of PHI in transit using TLS 1.2 or higher and at rest using AES-256, audit logging of access to PHI, annual workforce training, and a written information security program reviewed at least annually.</LegalP>
+        <LegalP>Nexphoria maintains administrative, physical, and technical safeguards designed to protect the confidentiality, integrity, and availability of PHI as required by the HIPAA Privacy Rule (45 CFR Part 164, Subpart E) and the HIPAA Security Rule (45 CFR Part 164, Subpart C). These include role-based access controls, mandatory multi-factor authentication for all workforce members, encryption of PHI in transit using TLS 1.2 or higher and encryption of PHI at rest within our HIPAA-covered systems, audit logging of access to PHI, annual workforce training, and a written information security program reviewed at least annually.</LegalP>
         <LegalP>We execute Business Associate Agreements ("BAAs") with every vendor, partner, or service provider that may access or transmit PHI on our behalf — including our telehealth platform, compounding pharmacies, laboratory partners, payment processor, and cloud infrastructure provider — as required by 45 CFR 164.504(e).</LegalP>
       </LegalSection>
 

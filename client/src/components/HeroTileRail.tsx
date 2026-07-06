@@ -35,6 +35,7 @@ function Tile({ t, decorative = false, eager = false }: { t: RailTile; decorativ
         alt=""
         aria-hidden
         loading={eager ? "eager" : "lazy"}
+        {...(eager ? { fetchPriority: "high" as const } : {})}
         decoding="async"
         width={1632}
         height={2048}
