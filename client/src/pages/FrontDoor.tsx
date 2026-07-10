@@ -126,6 +126,55 @@ export default function FrontDoor() {
         </div>
       </section>
 
+      {/* ══ 1.4 · THE GATE — the for-her/for-him moment, restored to the entry
+          (Chiya, 2026-07-10). Full-bleed cinematic split: breathing portraits,
+          hover widens a panel and casts its world's tokens. The theatrical
+          full-screen version lives on at /gate. ══ */}
+      <section aria-labelledby="frontdoor-gate-heading" style={{ paddingTop: "clamp(2.4rem, 4.5vw, 3.6rem)" }}>
+        <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            Two worlds · one clinical standard
+          </p>
+          <h2 id="frontdoor-gate-heading" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px, 3.6vw, 38px)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "22ch", lineHeight: 1.12 }}>
+            Built for your biology.
+          </h2>
+        </div>
+        <Reveal>
+          <div className="nx-wgate">
+            {([
+              { side: "her", world: "women", to: "/women", img: gateHer, pos: "50% 20%", eyebrow: "Peptides built for women", label: "For her.", feel: "How you want to feel has a biology.", testId: "frontdoor-women" },
+              { side: "him", world: "men", to: "/men", img: gateHim, pos: "50% 22%", eyebrow: "Peptides built for men", label: "For him.", feel: "The strongest version of you is measurable.", testId: "frontdoor-men" },
+            ] as const).map((w) => (
+              <Link
+                key={w.to}
+                href={w.to}
+                className={`nx-wgate-panel ${w.side}`}
+                data-world={w.world}
+                data-testid={w.testId}
+                aria-label={w.side === "her" ? "Enter the women's experience" : "Enter the men's experience"}
+              >
+                <img src={w.img} alt="" aria-hidden loading="lazy" width={1600} height={2000} style={{ objectPosition: w.pos }} />
+                <div className="nx-wgate-scrim" aria-hidden />
+                <div className="nx-wgate-copy">
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
+                    {w.eyebrow}
+                  </p>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px, 4.6vw, 58px)", lineHeight: 1.02, letterSpacing: "-0.015em", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
+                    {w.label}
+                  </p>
+                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "clamp(15px, 1.7vw, 18px)", lineHeight: 1.45, color: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)", marginTop: "0.55rem", maxWidth: "30ch" }}>
+                    {w.feel}
+                  </p>
+                  <span className="nx-wgate-arrow" aria-hidden style={{ marginTop: "1.1rem" }}>
+                    <ArrowRight size={20} strokeWidth={2.2} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
       <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "clamp(2.8rem,5.5vw,4.4rem) 0" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
@@ -162,37 +211,6 @@ export default function FrontDoor() {
                 <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>{p.t}</h3>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>{p.b}</p>
               </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ══ 2 · TWO WORLDS — is this for someone like me? ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(2.4rem,4.5vw,3.6rem)", paddingBottom: "0" }}>
-        <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-          Two worlds · one clinical standard
-        </p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "22ch", lineHeight: 1.12 }}>
-          Built for your biology.
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 18, marginTop: "1.6rem" }}>
-          {[
-            { side: "For women", to: "/women", img: gateHer, pos: "50% 20%", testId: "frontdoor-women" },
-            { side: "For men", to: "/men", img: gateHim, pos: "50% 22%", testId: "frontdoor-men" },
-          ].map((w) => (
-            <Reveal key={w.to}>
-              <Link href={w.to} className="nx-art-tile" data-testid={w.testId}>
-                <img src={w.img} alt="" aria-hidden loading="lazy" width={1600} height={2000} style={{ objectPosition: w.pos }} />
-                <div className="nx-art-chip">
-                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,2.6vw,28px)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{w.side}</h3>
-                    <ArrowRight size={18} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-                  </div>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
-                    {w.to === "/women" ? "Hormonal context changes what a marker means — protocols read against it." : "Performance is a number. It gets measured before it gets treated."}
-                  </p>
-                </div>
-              </Link>
             </Reveal>
           ))}
         </div>

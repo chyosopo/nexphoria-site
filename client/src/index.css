@@ -2136,3 +2136,81 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 @keyframes nxFaqIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
 .nx-faq-item[open] > .nx-faq-a { animation: nxFaqIn var(--nx-dur-3) var(--nx-ease); }
 @media (prefers-reduced-motion: reduce) { .nx-faq-item[open] > .nx-faq-a { animation: none; } .nx-faq-plus { transition: none; } }
+
+/* ═══ WORLD GATE BAND (front door) — the for-her/for-him moment, cinematic.
+   Two full-bleed portrait panels breathing in opposite phase; hovering (or
+   focusing) a panel widens it, lifts its scrim, and casts its world's accent
+   via the data-world token remap. CSS-only so the front-door chunk stays
+   lean; every motion is stilled under prefers-reduced-motion. */
+.nx-wgate {
+  display: flex;
+  gap: 2px;
+  min-height: clamp(440px, 74vh, 760px);
+  overflow: hidden;
+  background: var(--nx-bg-dark);
+}
+.nx-wgate-panel {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  transition: flex-grow var(--nx-dur-4) var(--nx-ease);
+}
+.nx-wgate-panel > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: nx-wgate-breath 26s ease-in-out infinite alternate;
+  transition: filter var(--nx-dur-3) var(--nx-ease);
+  will-change: transform;
+}
+.nx-wgate-panel.him > img { animation-duration: 32s; animation-direction: alternate-reverse; }
+@keyframes nx-wgate-breath { from { transform: scale(1.02); } to { transform: scale(1.085); } }
+.nx-wgate-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--nx-bg-dark) 74%, transparent) 0%,
+    color-mix(in srgb, var(--nx-bg-dark) 28%, transparent) 44%,
+    transparent 70%
+  );
+  transition: opacity var(--nx-dur-3) var(--nx-ease);
+}
+.nx-wgate-copy { position: relative; z-index: 1; width: 100%; padding: clamp(1.4rem, 3.2vw, 2.8rem); }
+.nx-wgate-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--nx-r-pill);
+  background: var(--nx-cobalt);
+  color: var(--nx-ceramic);
+  transition: transform var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-wgate-panel:focus-visible { outline: 3px solid var(--nx-acid); outline-offset: -6px; }
+@media (hover: hover) and (min-width: 768px) {
+  .nx-wgate-panel:hover, .nx-wgate-panel:focus-visible { flex-grow: 1.55; }
+  .nx-wgate:has(.nx-wgate-panel:hover) .nx-wgate-panel:not(:hover) > img,
+  .nx-wgate:has(.nx-wgate-panel:focus-visible) .nx-wgate-panel:not(:focus-visible) > img {
+    filter: saturate(0.68) brightness(0.88);
+  }
+  .nx-wgate-panel:hover .nx-wgate-scrim, .nx-wgate-panel:focus-visible .nx-wgate-scrim { opacity: 0.82; }
+  .nx-wgate-panel:hover .nx-wgate-arrow, .nx-wgate-panel:focus-visible .nx-wgate-arrow {
+    transform: translateX(5px);
+    background: var(--nx-cobalt-hover);
+  }
+}
+@media (max-width: 767px) {
+  .nx-wgate { flex-direction: column; min-height: 0; }
+  .nx-wgate-panel { min-height: 46vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-wgate-panel > img { animation: none; }
+  .nx-wgate-panel, .nx-wgate-panel > img, .nx-wgate-scrim, .nx-wgate-arrow { transition: none; }
+}
