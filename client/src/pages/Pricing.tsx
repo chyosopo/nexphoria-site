@@ -11,6 +11,8 @@ import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MxHeader } from "@/components/SignatureTile";
 import heroPricing from "@/assets/brand/hero-pricing.webp";
+import artPricingSingle from "@/assets/brand/nx-art-pricing-single.webp";
+import artPricingBundle from "@/assets/brand/nx-art-pricing-bundle.webp";
 import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
@@ -369,6 +371,78 @@ function PricingTiers() {
                   </StartIntakeButton>
                 )}
               </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* What arrives — the two plan shapes as they ship, not as diagrams */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "1.5rem",
+            marginTop: "1.5rem",
+          }}
+        >
+          {[
+            {
+              key: "solo",
+              src: artPricingSingle,
+              alt: "A single Nexphoria-labeled peptide vial with a silver crimp cap on a marble counter",
+              name: "Solo Peptide, as dispensed",
+              line: "One compound in a single 503A-compounded vial, shipped cold-chain overnight.",
+            },
+            {
+              key: "stack",
+              src: artPricingBundle,
+              alt: "An open navy Nexphoria presentation case holding four compounded peptide vials",
+              name: "Curated Stack, as dispensed",
+              line: "Two to four synergistic compounds, cased together as one protocol.",
+            },
+          ].map((item, i) => (
+            <Reveal key={item.key} delay={i * 60}>
+              <figure
+                data-testid={`tier-visual-${item.key}`}
+                style={{
+                  margin: 0,
+                  background: "var(--nx-ceramic)",
+                  border: "1px solid var(--nx-border)",
+                  borderRadius: "var(--nx-r-lg)",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: "4 / 3" }}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption style={{ padding: "1.25rem 1.5rem" }}>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "var(--nx-t-base)",
+                      fontWeight: 600,
+                      color: "var(--nx-fg)",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    {item.name}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "var(--nx-t-sm)",
+                      color: "var(--nx-fg-graphite)",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {item.line}
+                  </p>
+                </figcaption>
+              </figure>
             </Reveal>
           ))}
         </div>
