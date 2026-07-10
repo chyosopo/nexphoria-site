@@ -13,7 +13,8 @@
     "audit:data": "tsx scripts/audit-data-drift.ts",
     "audit:design": "tsx scripts/audit-design.ts",
     "audit:bundle": "tsx scripts/audit-bundle.ts",
-    "audit:funnel": "node scripts/audit-funnel.mjs"
+    "audit:funnel": "node scripts/audit-funnel.mjs",
+    "deploy:apex": "npm run build && rm -rf .cf-deploy && cp -R dist/public .cf-deploy && rm -f .cf-deploy/404.html && npx wrangler pages deploy --branch=main --commit-dirty=true"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

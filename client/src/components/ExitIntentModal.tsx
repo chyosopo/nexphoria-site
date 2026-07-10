@@ -63,11 +63,12 @@ export function ExitIntentModal() {
     }
     setState("sending");
     try {
-      await fetch("/api/waitlist", {
+      const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: val, source: `exit-intent:${currentPath()}` }),
       });
+      if (!res.ok) throw new Error(String(res.status));
       setState("done");
     } catch {
       setState("err");

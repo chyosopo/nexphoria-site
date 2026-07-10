@@ -24,3 +24,4 @@ qa-screenshots*/
 qa-rebuild-final/
 .v0-out/
 .vercel
+.cf-deploy/
