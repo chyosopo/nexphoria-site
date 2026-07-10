@@ -62,16 +62,20 @@ Also run `npm run build` before deploy-affecting commits, and `npm run audit:bun
 - The **Express API routes are NOT static.** On a static-only host they won't run until ported to serverless functions or a Node runtime. For staging, the marketing pages render fully static; the 4 API endpoints are a pending item.
 - `vite.config.ts` uses `base: "./"` and outputs to `dist/public`.
 
-## Domain Safety (critical) — updated 2026-07-05, verified by probe
-- `nexphoria.com` apex → **serves a build of THIS repo via Cloudflare** (Shopify
-  was disconnected by Chiya). As of 2026-07-05 the apex build is STALE — it
-  matches no branch tip (checked design/azure, the overhaul branch, master),
-  so the apex deploy is either a one-time upload or a broken auto-build.
-  Git pushes alone do NOT update the .com; the Cloudflare-side connection
-  lives in Chiya's Cloudflare account (not visible from agent sessions).
+## Domain Safety (critical) — updated 2026-07-10, verified by live probe
+- `nexphoria.com` apex → **Cloudflare Pages project `nexphoria`** (direct
+  upload, no git integration; production = branch `main`). Deployed from the
+  Mac via `npx wrangler pages deploy <dir> --project-name=nexphoria
+  --branch=main --commit-dirty=true` — wrangler OAuth creds with pages:write
+  live in `~/Library/Preferences/.wrangler/` (auto-refresh).
+  ⚠️ Deploy a COPY of `dist/public` with `404.html` REMOVED: a top-level
+  404.html disables CF Pages' automatic SPA fallback (and beats `_redirects`),
+  turning every deep link into a hard 404. The 404.html is gh-pages-only.
+  As of 2026-07-10 the apex serves design/azure fd154fb; deep links 200 ✓.
 - `chyosopo.github.io/nexphoria-site` → CI auto-deploy of `design/azure`
-  (gh-pages). This is the always-current preview.
-- Do NOT touch nameservers or the apex DNS without Chiya's explicit decision.
+  (gh-pages). Preview; needs 404.html (rafgraph SPA hack) — keep it in dist.
+- Apex deploys are PUBLIC publishes → Chiya's explicit go-ahead each time
+  (hard rule 2). Do NOT touch nameservers or apex DNS without her decision.
 
 ## Hard Rules
 1. No real-money actions without approval.
