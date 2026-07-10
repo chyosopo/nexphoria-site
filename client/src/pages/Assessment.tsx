@@ -855,6 +855,14 @@ export default function Assessment() {
                               role="radio"
                               aria-checked={sel}
                               tabIndex={rovingTabIndex(["female", "male"], form.gender ?? "", i)}
+                              // Two worlds, one engine — the sex chooser is the one
+                              // surface where both worlds coexist, so each card
+                              // wears its own: the Female card casts orchid/rose-quartz,
+                              // the Male card azure/steel. Purely token-driven
+                              // (data-world remaps the --nx-* subtree), so the accent,
+                              // hover ring, and selected fill preview the world the
+                              // choice leads into — no cross-cast from a persisted world.
+                              data-world={value === "female" ? "women" : "men"}
                               onClick={() => {
                                 setField("gender", value);
                                 wantsFocusRef.current = true;
