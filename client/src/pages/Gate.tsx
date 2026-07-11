@@ -71,6 +71,7 @@ export default function Gate() {
         }}
       >
         <Logo variant="light" />
+        <h1 className="sr-only">Choose your path — Nexphoria physician-prescribed peptide protocols for men and women</h1>
         <p
           style={{
             fontFamily: F,
