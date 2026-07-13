@@ -15,6 +15,20 @@ import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { ProtocolSelector } from "@/components/ProtocolSelector";
 import { selectorRoutes } from "@/data/protocolSelector";
 import { anchor } from "@/lib/anchors";
+import { JOURNAL_ARTICLES } from "@/data/journal";
+
+/* Goal → the journal pieces that actually answer it (content engine,
+   MAXIMUS-STUDY §8): every slug below exists in journal.ts. */
+const GOAL_READING: Record<PeptideCategory, string[]> = {
+  growth: ["gh-secretagogues-complete-guide", "reading-your-bloodwork"],
+  recovery: ["bpc-157-tissue-repair-evidence", "subq-injection-technique"],
+  longevity: ["longevity-nad-mots-c", "reading-your-bloodwork"],
+  skin: ["what-is-a-peptide", "side-effects-and-contraindications"],
+  cognition: ["what-is-a-peptide", "side-effects-and-contraindications"],
+  sleep: ["gh-secretagogues-complete-guide", "what-is-a-peptide"],
+  metabolic: ["reading-your-bloodwork", "side-effects-and-contraindications"],
+  "sexual-health": ["what-is-a-peptide", "side-effects-and-contraindications"],
+};
 
 type Cfg = {
   pre: string; accent: string; sub: string;
@@ -350,6 +364,45 @@ export default function Category() {
           </Reveal>
         </div>
       </section>
+
+      {/* ── Further reading — the journal answers this goal's questions ── */}
+      {(() => {
+        const reads = (GOAL_READING[slug] ?? [])
+          .map((s) => JOURNAL_ARTICLES.find((a) => a.slug === s))
+          .filter((a): a is NonNullable<typeof a> => Boolean(a));
+        if (reads.length === 0) return null;
+        return (
+          <section className="nx-section" style={{ paddingTop: "clamp(2.4rem,4.5vw,3.4rem)", paddingBottom: "0" }} aria-labelledby="cat-reading-title">
+            <div className="nx-container">
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+                <h2 id="cat-reading-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+                  Read before you decide
+                </h2>
+                <Link href="/journal" className="nx-text-link" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                  The journal <ArrowRight size={15} aria-hidden />
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 14, marginTop: "1.2rem" }}>
+                {reads.map((a) => (
+                  <Link key={a.slug} href={`/journal/${a.slug}`} className="nx-float-card" data-testid={`cat-read-${a.slug}`}>
+                    <div className="nx-float-card__body">
+                      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                        {a.eyebrow} · {a.readTime}
+                      </p>
+                      <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.45rem", lineHeight: 1.15 }}>
+                        {a.title}
+                      </h3>
+                      <p className="nx-line-2" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
+                        {a.dek}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
 
       {/* ── Final CTA ── */}
       <section className="nx-section" aria-labelledby="category-cta-title">
