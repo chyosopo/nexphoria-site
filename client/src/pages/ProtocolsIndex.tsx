@@ -1,15 +1,15 @@
 /* JOB: compare the seven flagship protocols and pick one. */
 /* ═══ PROTOCOLS INDEX — P5 · the seven flagship stacks ═══ */
 import { useState } from "react";
-import { Link } from "wouter";
-import { SiteLayout } from "@/components/SiteLayout";
+import { Link, useLocation } from "wouter";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
+import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 import vialLineupMaster from "@/assets/brand/vial-lineup-master.webp";
 
@@ -29,6 +29,16 @@ const CATEGORIES = ALL_CATEGORIES.filter(
 
 export default function ProtocolsIndex() {
   const [filter, setFilter] = useState("All");
+  /* The shelf reads in the visitor's world (Chiya: worlds fully separate,
+     everything tailored): her protocols lead on her side, his on his, the
+     shared ones between, the other world's flagship last — badged, never
+     hidden (one engine underneath). */
+  const [loc] = useLocation();
+  const world = resolveWorld(loc);
+  const ownLean = world === "women" ? "her" : "him";
+  const otherLean = world === "women" ? "him" : "her";
+  const leanRank = (lean?: "him" | "her" | "both") =>
+    lean === ownLean ? 0 : lean === otherLean ? 2 : 1;
   useSeo({
     title: "Protocols — Physician-Curated Peptide Stacks | Nexphoria",
     description: "Seven flagship peptide protocols, each with defined bloodwork, timeline, and physician oversight.",
@@ -44,10 +54,12 @@ export default function ProtocolsIndex() {
     ],
   });
 
-  const shown = FLAGSHIP_STACKS.filter((s) => matchCat(s.category, filter));
+  const shown = FLAGSHIP_STACKS.filter((s) => matchCat(s.category, filter))
+    .slice()
+    .sort((a, b) => leanRank(a.worldLean) - leanRank(b.worldLean));
 
   return (
-    <SiteLayout>
+    <SiteLayout navVariant={world} footerVariant={world}>
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "clamp(2.4rem,5vw,3.8rem)", paddingBottom: "clamp(1.4rem,2.5vw,2rem)", zIndex: 1 }}>
@@ -127,16 +139,23 @@ export default function ProtocolsIndex() {
               <Reveal key={s.slug} delay={i * 45}>
                 <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-float-card">
                   <div className="nx-float-card__media">
-                    {OUTCOME_STACK[s.slug] && (
+                    {stackArt(s.slug, world) && (
                       <img
-                        src={OUTCOME_STACK[s.slug]}
-                        srcSet={outcomeSrcSet(OUTCOME_STACK[s.slug])}
+                        src={stackArt(s.slug, world)}
+                        srcSet={outcomeSrcSet(stackArt(s.slug, world)!)}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         alt="" aria-hidden loading="lazy" width={1632} height={2048}
                       />
                     )}
                     {s.gated && (
                       <span className="nx-float-badge"><Lock size={10} aria-hidden="true" /> Assessed</span>
+                    )}
+                    {/* the lean badge makes a cross-world flagship read as
+                        intentional, not a leak */}
+                    {s.worldLean && s.worldLean !== "both" && (
+                      <span className="nx-float-badge" style={{ top: "auto", bottom: 8 }}>
+                        Made for {s.worldLean}
+                      </span>
                     )}
                   </div>
                   <div className="nx-float-card__body">

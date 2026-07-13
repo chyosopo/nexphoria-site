@@ -22,6 +22,28 @@ export const OUTCOME_STACK: Record<string, string> = {
   threshold: "img/img_72c3a0233fe1.webp", // empty track, first light — the edge, found again
 };
 
+/* Cast fixes for shared protocol shelves (Chiya 2026-07-13: everything
+   tailored). Several canonical stack frames carry a visible cast —
+   wolverine / threshold / ignite are men, lucidity is a woman — which is
+   a leak when the OTHER world browses the shared /stacks shelf. These
+   overrides swap in the browsing world's own category frame; own-lean
+   stacks (glow, ascend) keep their cast, badged as made-for. */
+const STACK_ART_OVERRIDES: Record<"men" | "women", Record<string, string>> = {
+  women: {
+    wolverine: "img/img_1217733ee45f.webp", // her recovery — chalked grip at the wall (W)
+    threshold: "img/img_3eae89cb98a0.webp", // her sleep — waking before the alarm (W)
+    ignite: "img/img_4f2bd889825e.webp", // her metabolic — jeans button easily (W)
+  },
+  men: {
+    lucidity: "img/img_916e52b67436.webp", // his cognition — three moves ahead
+  },
+};
+
+/** The frame a stack card shows in this world — cast override first. */
+export function stackArt(slug: string, world?: "men" | "women"): string | undefined {
+  return (world && STACK_ART_OVERRIDES[world][slug]) || OUTCOME_STACK[slug];
+}
+
 /** Category → outcome tile, per world where casting differs. */
 export const OUTCOME_CATEGORY: Record<
   "men" | "women",

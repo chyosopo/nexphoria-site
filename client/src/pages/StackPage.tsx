@@ -24,7 +24,7 @@ const STACK_GOAL: Record<string, PeptideCategory> = {
 };
 import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
+import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialArt, Tone } from "@/components/VialTile";
 import { glyphForPeptide } from "@/lib/protocols";
 
@@ -78,7 +78,8 @@ export default function StackPage({ slug }: { slug: string }) {
   /* Cross-sell: same-category first, then the rest — but never surface the
      opposite world's protocols (a shirtless-male Ascend card inside her
      orchid Glow experience broke the two-worlds law). "both" always shows. */
-  const oppositeLean = resolveWorld(loc) === "women" ? "him" : "her";
+  const world = resolveWorld(loc);
+  const oppositeLean = world === "women" ? "him" : "her";
   const otherStacks = FLAGSHIP_STACKS
     .filter((s) => s.slug !== stack.slug && s.worldLean !== oppositeLean)
     .sort((a, b) => Number(b.category === stack.category) - Number(a.category === stack.category))
@@ -106,7 +107,7 @@ export default function StackPage({ slug }: { slug: string }) {
   ];
 
   return (
-    <SiteLayout>
+    <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
@@ -153,10 +154,10 @@ export default function StackPage({ slug }: { slug: string }) {
                 </span>
               </div>
             </div>
-            {OUTCOME_STACK[stack.slug] && (
+            {stackArt(stack.slug, world) && (
               <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
                 <img
-                  src={OUTCOME_STACK[stack.slug]}
+                  src={stackArt(stack.slug, world)}
                   alt=""
                   aria-hidden
                   fetchPriority="high"
@@ -344,11 +345,11 @@ export default function StackPage({ slug }: { slug: string }) {
             {otherStacks.map((s, i) => (
               <Reveal key={s.slug} delay={i * 60}>
                 <Link href={`/stacks/${s.slug}`} className="nx-float-card" data-testid={`stack-related-${s.slug}`}>
-                  {OUTCOME_STACK[s.slug] && (
+                  {stackArt(s.slug, world) && (
                     <div className="nx-float-card__media">
                       <img
-                        src={OUTCOME_STACK[s.slug]}
-                        srcSet={outcomeSrcSet(OUTCOME_STACK[s.slug])}
+                        src={stackArt(s.slug, world)}
+                        srcSet={outcomeSrcSet(stackArt(s.slug, world)!)}
                         sizes="(max-width: 640px) 100vw, 33vw"
                         alt=""
                         aria-hidden
