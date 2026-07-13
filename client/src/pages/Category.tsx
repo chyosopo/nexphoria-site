@@ -12,6 +12,7 @@ import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } fr
 import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, type PeptideCategory } from "@/data/peptides";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { ProtocolSelector } from "@/components/ProtocolSelector";
 
 type Cfg = {
   pre: string; accent: string; sub: string;
@@ -240,6 +241,11 @@ export default function Category() {
           </div>
         </div>
       </section>
+
+      {/* ── PROTOCOL SELECTOR — the decision surface (Maximus grammar):
+          2–4 routes to this goal as "Best for:" comparison cards, with an
+          on-page chip question that highlights the match. ── */}
+      <ProtocolSelector goal={slug} world={world} />
 
       {/* ── Three steps ── */}
       <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="How it works">
