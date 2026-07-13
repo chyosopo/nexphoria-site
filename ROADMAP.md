@@ -255,6 +255,50 @@ prioritized fix list; fixes land page by page, gates green each time.
 - [ ] **9.3 Every-button proof** — re-run the interaction audit + funnel
   gates after each batch; nothing ships with a dead control.
 
+## PHASE 10 — The Maximus playbook (Chiya 2026-07-13: "study
+## maximustribe.com… make a full plan exactly how a senior developer
+## would"; evidence base in docs/MAXIMUS-STUDY.md; then "first lets work
+## on the visuals the tiles like hims… everything tailored" and "go")
+
+- [x] **10.1 Hims-style tiles, option B, everywhere.** (done 2026-07-13)
+  Small 16:10 image band on top, text below — never overlaid. 4-across
+  desktop / 2 mobile, equal-height rows (geometry-measured: 270px).
+  One .nx-goalgrid regrade covers both world homes + front door. Dead
+  bento CSS deleted.
+- [x] **10.2 Product-first shelf cards, cast per world.** (done 2026-07-13)
+  getPeptideCardImage(slug, world): the 8 vial/dropper/pen still-lifes
+  render anywhere; gendered lifestyle frames only in their own world;
+  fallback = the world's own category art. Fixed the man-and-child NAD+
+  frame that briefly leaked onto her formulary.
+- [x] **10.3 World-tailored protocols shelf + PDP.** (done 2026-07-13)
+  /stacks orders own-lean → shared → other-lean with "Made for her/him"
+  badges; stackArt(slug, world) swaps the four cast-mismatched canonical
+  frames (wolverine/threshold/ignite→her equivalents on her side,
+  lucidity→his on his). Her Wolverine PDP shows her climbing frame.
+- [x] **10.4 The protocol selector.** (done 2026-07-13) Every goal page is
+  a decision surface: 2–4 routes ("Best for: [persona]" cards — flagship
+  stack + top solos, badges/bullets/price anchors all data-derived), an
+  on-page "Which sounds like you?" chip row that stamps "Your match",
+  and the honest exit (the intake decides). Hero carries a "Compare your
+  N routes" anchor.
+- [x] **10.5 "Which panel do I need?" tool on /bloodwork.** (done
+  2026-07-13) Two questions; the answer is derived (a goal's tier = the
+  highest tier its routes gate on; depth only steps up). Recommended
+  tier lights up in the grid.
+- [x] **10.6 Offer-logic wiring.** (done 2026-07-13) "What do you want to
+  change?" felt-need question above the home goal grids; solo PDPs show
+  THE COMPLETE ROUTE band (compound → its flagship protocol, world-cast,
+  real from-price); goal pages cross-link their two matching journal
+  pieces ("Read before you decide").
+- [ ] **10.7 Calculators, phase 2** — biological-age estimator + peptide
+  dosage reference (true content only; the panel picker was phase 1).
+- [ ] **10.8 Comparison/education pages** — "oral vs injectable",
+  "semaglutide vs tirzepatide" journal pieces from catalog data (SEO
+  landers per MAXIMUS-STUDY §8).
+- [ ] **10.9 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
+  included" vs any % language), add-on/supplement tier, free cross-sell
+  offer, protocol-tagged real testimonials.
+
 ## PARALLEL TRACK (blocked on Chiya)
 
 - [ ] **P.1** Checkout backend: wire intake submission to Bask/MDI (needs
