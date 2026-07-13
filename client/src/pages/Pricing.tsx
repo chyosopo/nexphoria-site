@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { CadenceCalculator } from "@/components/CadenceCalculator";
 import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { Check, X } from "lucide-react";
@@ -801,6 +802,14 @@ export default function Pricing() {
             >
               What you pay. What you get. No surprises.
             </h2>
+          </Reveal>
+
+          {/* Interactive cadence calculator — the commitment ladder made
+              concrete before the full static table (Maximus §5). */}
+          <Reveal delay={30}>
+            <div style={{ marginBottom: "2rem" }}>
+              <CadenceCalculator />
+            </div>
           </Reveal>
 
           {/* Billing terms header */}
