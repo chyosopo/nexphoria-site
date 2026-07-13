@@ -301,7 +301,17 @@ prioritized fix list; fixes land page by page, gates green each time.
   two" (SURPASS-2/SURMOUNT/STEP cited) and "Oral vs injectable peptides"
   (bioavailability table, calls out transdermal overreach). Metabolic goal
   page now leads with the sema-vs-tirz read.
-- [ ] **10.9 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
+- [x] **10.9 Funnel continuity + hardening.** (done 2026-07-13)
+  · Goal pages / selector carry ?gender=&goal= into the intake, which
+    pre-fills and skips the answered steps (a fresh goal wins over a stale
+    draft; a mid-intake draft still owns the step). Verified end-to-end.
+  · A11y: intake goal tiles announce aria-pressed + a descriptive label.
+  · SEO: sitemap.xml is now GENERATED from data at build (script/
+    genSitemap.ts) — it had silently dropped all 10 journal articles and
+    all 8 goal pages; 114 URLs, every one verified to resolve. New
+    comparison articles + goal pages confirmed emitting Article/FAQPage/
+    ItemList JSON-LD, canonicals, and OG.
+- [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
 
