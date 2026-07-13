@@ -26,7 +26,7 @@ const GOAL_READING: Record<PeptideCategory, string[]> = {
   skin: ["what-is-a-peptide", "side-effects-and-contraindications"],
   cognition: ["what-is-a-peptide", "side-effects-and-contraindications"],
   sleep: ["gh-secretagogues-complete-guide", "what-is-a-peptide"],
-  metabolic: ["reading-your-bloodwork", "side-effects-and-contraindications"],
+  metabolic: ["semaglutide-vs-tirzepatide", "reading-your-bloodwork"],
   "sexual-health": ["what-is-a-peptide", "side-effects-and-contraindications"],
 };
 

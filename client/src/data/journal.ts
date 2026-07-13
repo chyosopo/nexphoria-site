@@ -86,7 +86,7 @@ export const JOURNAL_CATEGORIES: JournalCategoryMeta[] = [
     slug: "protocols",
     label: "Protocols",
     description: "Dosing, titration, cycling — the clinical playbook.",
-    count: 6,
+    count: 7,
   },
   {
     slug: "research",
@@ -98,7 +98,7 @@ export const JOURNAL_CATEGORIES: JournalCategoryMeta[] = [
     slug: "metabolic",
     label: "Metabolic",
     description: "GLP-1, GIP, insulin sensitivity, body composition.",
-    count: 4,
+    count: 5,
   },
   {
     slug: "longevity",
@@ -523,6 +523,135 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       },
     ],
     related: ["what-is-a-peptide", "side-effects-and-contraindications", "legal-landscape-compounded-peptides-2026"],
+  },
+  {
+    slug: "semaglutide-vs-tirzepatide",
+    category: "metabolic",
+    eyebrow: "Metabolic · 10 min read",
+    title: "Semaglutide vs tirzepatide: one receptor or two.",
+    dek: "Both quiet appetite. The difference is mechanism — a single incretin pathway versus two — and it shows up in the trial data and the side-effect curve.",
+    readTime: "10 MIN",
+    publishedISO: "2026-07-11",
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
+    reviewers: [
+      { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
+    ],
+    imageSrc: editorialDosingDesk,
+    sections: [
+      {
+        id: "mechanism",
+        label: "The mechanism, side by side",
+        body: "Semaglutide is a GLP-1 receptor agonist. It mimics glucagon-like peptide-1, an incretin hormone the gut releases after eating — slowing gastric emptying, prompting insulin release when glucose is high, and signaling satiety in the hypothalamus.\n\nTirzepatide is a dual agonist: it activates the GLP-1 receptor and the GIP (glucose-dependent insulinotropic polypeptide) receptor. GIP is a second incretin. The working hypothesis is that engaging both pathways produces additive metabolic effects — greater insulin sensitivity and, in the trials, greater weight loss — than GLP-1 alone.",
+        callout: "One receptor versus two is the entire distinction. Everything downstream — efficacy, titration, side-effect intensity — follows from it.",
+      },
+      {
+        id: "evidence",
+        label: "What the head-to-head data shows",
+        body: "The SURPASS-2 trial compared tirzepatide directly against semaglutide in type 2 diabetes and found greater HbA1c and weight reductions across tirzepatide's dose range. In obesity, the STEP program (semaglutide) and SURMOUNT program (tirzepatide) were run separately, but the mean weight reductions reported for tirzepatide's higher doses exceeded those reported for semaglutide.\n\nThe honest caveat: cross-trial comparison is not a head-to-head. Populations, durations, and titration schedules differ. What is well established is that both produce clinically meaningful weight and glycemic effects, and that tirzepatide's readouts trend higher.",
+        table: {
+          headers: ["", "Semaglutide", "Tirzepatide"],
+          rows: [
+            ["Targets", "GLP-1 receptor", "GLP-1 + GIP receptors"],
+            ["Class", "Single incretin agonist", "Dual incretin agonist"],
+            ["Dosing", "Weekly SC, titrated", "Weekly SC, titrated"],
+            ["Trial weight effect", "Substantial", "Substantial → greater at higher doses"],
+            ["Titration", "Slow, to limit GI effects", "Slow, to limit GI effects"],
+          ],
+        },
+      },
+      {
+        id: "side-effects",
+        label: "The side-effect curve",
+        body: "Both drugs share the same dominant side effects: nausea, and gastrointestinal upset that is worst during dose escalation and settles as the body adapts. This is why both are titrated slowly — starting low and stepping up over weeks — rather than started at the effective dose.\n\nThe more potent the metabolic effect, the more carefully titration matters. Neither is a drug you self-escalate. A physician sets the schedule against how you tolerate each step, and holds or steps back when the GI burden is too high.",
+      },
+      {
+        id: "choosing",
+        label: "How a physician chooses",
+        body: "The choice is not 'which is stronger' but 'which fits this patient.' It weighs the metabolic target, prior response to a GLP-1, tolerance of GI side effects, contraindications, and — for compounded formulations — what is appropriate and available in your state.\n\nBoth are prescription-only. Both are contraindicated in personal or family history of medullary thyroid carcinoma or MEN 2, and in pregnancy. At Nexphoria, the metabolic route is gated behind intake and bloodwork; a physician selects the molecule and the titration, and can decline. This article is educational, not a recommendation of one over the other.",
+      },
+      {
+        id: "bottom-line",
+        label: "Bottom line",
+        body: "Semaglutide engages one incretin pathway; tirzepatide engages two, and the trial data trend accordingly. But the deciding factors in practice are fit and tolerance, not a leaderboard. The right answer is the one a physician reaches with your labs in front of them.",
+      },
+    ],
+    references: [
+      {
+        n: 1,
+        citation: "Frías JP et al. Tirzepatide versus Semaglutide Once Weekly in Patients with Type 2 Diabetes (SURPASS-2). N Engl J Med. 2021;385(6):503-515.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/34170647/",
+      },
+      {
+        n: 2,
+        citation: "Jastreboff AM et al. Tirzepatide Once Weekly for the Treatment of Obesity (SURMOUNT-1). N Engl J Med. 2022;387(3):205-216.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/35658024/",
+      },
+      {
+        n: 3,
+        citation: "Wilding JPH et al. Once-Weekly Semaglutide in Adults with Overweight or Obesity (STEP 1). N Engl J Med. 2021;384(11):989-1002.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/33567185/",
+      },
+    ],
+    related: ["reading-your-bloodwork", "side-effects-and-contraindications", "what-is-a-peptide"],
+  },
+  {
+    slug: "oral-vs-injectable-peptides",
+    category: "protocols",
+    eyebrow: "Protocols · 7 min read",
+    title: "Oral vs injectable peptides: why the needle usually wins.",
+    dek: "Most peptides are injected for one reason — the gut destroys them. Where oral and other routes genuinely work, and where they are marketing.",
+    readTime: "7 MIN",
+    publishedISO: "2026-07-12",
+    author: { name: "Nexphoria Medical Team", title: "Clinical Editorial" },
+    reviewers: [
+      { name: "Nexphoria Clinical Editorial", title: "Editorial Review" },
+    ],
+    imageSrc: editorialInjectionTray,
+    sections: [
+      {
+        id: "the-problem",
+        label: "The problem: peptides are fragile",
+        body: "A peptide is a chain of amino acids held together by peptide bonds. The digestive tract is, in effect, a machine for breaking exactly those bonds. Stomach acid denatures the chain; intestinal proteases cleave it; what little survives faces first-pass metabolism in the liver. For most therapeutic peptides, oral bioavailability sits under five percent — meaning ninety-five-plus percent never reaches circulation intact.\n\nThat is the whole reason the needle exists. Subcutaneous injection bypasses the gut entirely and delivers seventy to ninety-five percent of the dose to circulation, with a predictable absorption curve a physician can dose against.",
+        callout: "The route is not a preference. For most peptides it is the difference between a therapeutic dose and a very expensive way to feed your gut bacteria.",
+      },
+      {
+        id: "routes",
+        label: "The routes, honestly compared",
+        body: "Subcutaneous injection is the standard because it is predictable and efficient. Intranasal delivery works for a handful of small, stable peptides — selank and semax are the common examples — trading lower bioavailability for genuine convenience. Oral formulations exist but are the exception, requiring either an unusually stable molecule or specialized delivery chemistry; the GLP-1 oral tablet is a heavily engineered case, not a template.\n\nTransdermal creams are where most consumer marketing overreaches. Peptides large enough to be therapeutic are usually too large to cross intact skin in meaningful quantity. A topical GHK-Cu for local skin effect is plausible; a transdermal cream promising systemic GH-axis effects generally is not.",
+        table: {
+          headers: ["Route", "Bioavailability", "Best for", "Watch for"],
+          rows: [
+            ["Subcutaneous", "70-95%", "Most therapy peptides", "Injection technique, sterility"],
+            ["Intranasal", "10-40%", "Small stable peptides (selank, semax)", "Lower, variable exposure"],
+            ["Oral", "<5%", "Rare engineered formulations", "Marketing claims outrunning chemistry"],
+            ["Transdermal", "<10%", "Local skin effect only", "Systemic claims are usually false"],
+          ],
+        },
+      },
+      {
+        id: "the-needle",
+        label: "The needle is smaller than you think",
+        body: "The anxiety about injection is almost always worse than the act. Subcutaneous peptide injections use an insulin-style fine-gauge needle into the fat of the abdomen or thigh — shallow, quick, and for most people close to painless once the first one is behind them.\n\nOur separate guide on subcutaneous technique walks through the clean, anxiety-free routine step by step. The point here is narrower: do not choose an inferior route to avoid a needle that most patients stop noticing within a week.",
+      },
+      {
+        id: "bottom-line",
+        label: "Bottom line",
+        body: "Route follows chemistry. Injection wins for most peptides because it is the only route that reliably delivers the dose; intranasal is a real option for a few small molecules; oral and transdermal are legitimate in narrow cases and oversold everywhere else. When a product promises a hard-to-deliver peptide in an easy-to-take format, that is the claim to check first — ideally with a physician who has no reason to sell you the convenient version.",
+      },
+    ],
+    references: [
+      {
+        n: 1,
+        citation: "Lau JL, Dunn MK. Therapeutic peptides: Historical perspectives, current development trends, and future directions. Bioorg Med Chem. 2018;26(10):2700-2707.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/28720325/",
+      },
+      {
+        n: 2,
+        citation: "Muttenthaler M et al. Trends in peptide drug discovery. Nat Rev Drug Discov. 2021;20(4):309-325.",
+        url: "https://pubmed.ncbi.nlm.nih.gov/33536635/",
+      },
+    ],
+    related: ["subq-injection-technique", "what-is-a-peptide", "reading-your-bloodwork"],
   },
 ];
 
