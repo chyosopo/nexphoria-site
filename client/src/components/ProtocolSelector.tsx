@@ -150,7 +150,7 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
             You don't have to pick correctly from a grid. Share your history and
             bloodwork; a physician matches you to the right route — or tells you none is appropriate.
           </p>
-          <Link href="/assessment" className="nx-text-link" data-testid="selector-assess" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+          <Link href={`/assessment?gender=${world === "women" ? "female" : "male"}&goal=${goal}`} className="nx-text-link" data-testid="selector-assess" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             Start your assessment <ArrowRight size={15} aria-hidden />
           </Link>
         </div>

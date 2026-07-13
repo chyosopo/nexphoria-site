@@ -209,7 +209,7 @@ export default function Category() {
                 {cfg.sub}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
+                <Link href={`/assessment?gender=${world === "women" ? "female" : "male"}&goal=${slug}`} className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
                   Start your assessment <ArrowRight size={17} strokeWidth={2} />
                 </Link>
                 {/* the decision surface, one tap away — no scroll hunting

@@ -52,6 +52,20 @@ const GOALS = [
   "Other / not sure yet",
 ];
 
+/* Funnel continuity: a goal page / selector links here with ?goal=<category>
+   so the intake opens on the matching goal already chosen. Maps the 8
+   PeptideCategory slugs to the closest GOALS[] string above. */
+const GOAL_PARAM_TO_GOAL: Record<string, string> = {
+  metabolic: "Metabolic health & body composition",
+  recovery: "Skin & recovery",
+  skin: "Skin & recovery",
+  longevity: "Longevity & healthy aging",
+  growth: "Strength & performance",
+  cognition: "Cognitive function",
+  sleep: "Other / not sure yet",
+  "sexual-health": "Other / not sure yet",
+};
+
 // Goal → flagship stack surfaced as the recommendation (ROADMAP 2.2).
 // Mapped only where the flagship genuinely serves the goal; the GLP-1 goal
 // maps to gated Ignite (eligibility wall — never direct checkout). Hormonal
@@ -409,10 +423,11 @@ export default function Assessment() {
     ? new URLSearchParams(window.location.search)
     : new URLSearchParams();
   const urlGender = urlParams.get("gender");
+  const urlGoal = GOAL_PARAM_TO_GOAL[urlParams.get("goal") ?? ""] ?? "";
 
   const [form, setForm] = useState<FormData>({
     gender: (urlGender === "female" || urlGender === "male") ? urlGender : null,
-    goal: "",
+    goal: urlGoal,
     age: "",
     medications: "",
     noMedications: false,
@@ -434,7 +449,8 @@ export default function Assessment() {
         if (d && d.v === 1 && d.form) {
           // Restore all fields, including the selected world (gender), so the
           // orchid/azure cast survives a refresh.
-          setForm((f) => ({ ...f, ...d.form }));
+          // A fresh ?goal= intent wins over a stale draft's goal.
+          setForm((f) => ({ ...f, ...d.form, ...(urlGoal ? { goal: urlGoal } : {}) }));
           if (typeof d.step === "number" && d.step > 0) {
             setStep(d.step);
             setDraftRestored(true);
@@ -449,10 +465,20 @@ export default function Assessment() {
     try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ v: 1, form, step })); } catch { /* ignore */ }
   }, [form, step, submitted]);
 
-  // If gender pre-selected via URL, skip to step 1
+  // Pre-selection via URL skips the steps already answered: gender skips
+  // step 0; a goal from the funnel skips step 1 too (land on step 2), so a
+  // visitor who already chose their goal doesn't re-answer it. A mid-intake
+  // draft owns the step, so bail if one exists (read synchronously — the
+  // draftRestored state isn't settled inside this mount closure).
   useEffect(() => {
+    let hasDraftStep = false;
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (raw) { const d = JSON.parse(raw); hasDraftStep = typeof d?.step === "number" && d.step > 0; }
+    } catch { /* ignore */ }
+    if (hasDraftStep) return;
     if (form.gender !== null && step === 0) {
-      setStep(1);
+      setStep(urlGoal ? 2 : 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
