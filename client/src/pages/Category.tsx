@@ -13,6 +13,8 @@ import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, type PeptideCategory } fro
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { ProtocolSelector } from "@/components/ProtocolSelector";
+import { selectorRoutes } from "@/data/protocolSelector";
+import { anchor } from "@/lib/anchors";
 
 type Cfg = {
   pre: string; accent: string; sub: string;
@@ -136,6 +138,7 @@ export default function Category() {
   const world = resolveWorld(loc);
   const heroArt =
     OUTCOME_CATEGORY[world][slug] ?? OUTCOME_CATEGORY.men[slug] ?? OUTCOME_CATEGORY.women[slug];
+  const routeCount = cfg ? selectorRoutes(slug, world).length : 0;
 
   useSeo({
     title: cfg ? `${label} peptide protocols — physician-directed` : "Protocols",
@@ -195,6 +198,13 @@ export default function Category() {
                 <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
                   Start your assessment <ArrowRight size={17} strokeWidth={2} />
                 </Link>
+                {/* the decision surface, one tap away — no scroll hunting
+                    (Chiya: information accessible fast) */}
+                {routeCount >= 2 && (
+                  <a href={anchor("#routes")} className="nx-cta-ghost inline-flex items-center gap-2" data-testid="cat-cta-routes">
+                    Compare your {routeCount} routes
+                  </a>
+                )}
                 <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
               </div>
               {/* goal chips */}
@@ -244,7 +254,8 @@ export default function Category() {
 
       {/* ── PROTOCOL SELECTOR — the decision surface (Maximus grammar):
           2–4 routes to this goal as "Best for:" comparison cards, with an
-          on-page chip question that highlights the match. ── */}
+          on-page chip question that highlights the match. Anchored from
+          the hero as #routes. ── */}
       <ProtocolSelector goal={slug} world={world} />
 
       {/* ── Three steps ── */}
