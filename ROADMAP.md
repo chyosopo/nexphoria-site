@@ -290,11 +290,17 @@ prioritized fix list; fixes land page by page, gates green each time.
   THE COMPLETE ROUTE band (compound → its flagship protocol, world-cast,
   real from-price); goal pages cross-link their two matching journal
   pieces ("Read before you decide").
-- [ ] **10.7 Calculators, phase 2** — biological-age estimator + peptide
-  dosage reference (true content only; the panel picker was phase 1).
-- [ ] **10.8 Comparison/education pages** — "oral vs injectable",
-  "semaglutide vs tirzepatide" journal pieces from catalog data (SEO
-  landers per MAXIMUS-STUDY §8).
+- [x] **10.7 Calculator, phase 2.** (done 2026-07-13) Interactive cadence
+  calculator on /pricing — pick a protocol, see per-cadence cost + the
+  real year-one saving (Wolverine $972, Ascend $1,080), panel included on
+  annual. Derived from priceAtCadence, identical to the static table. A
+  biological-age/dosage calculator was declined: both require fabricated
+  medical output (truth-only + never-self-dose laws).
+- [x] **10.8 Comparison SEO landers.** (done 2026-07-13) Two journal
+  pieces from catalog data: "Semaglutide vs tirzepatide: one receptor or
+  two" (SURPASS-2/SURMOUNT/STEP cited) and "Oral vs injectable peptides"
+  (bioavailability table, calls out transdermal overreach). Metabolic goal
+  page now leads with the sema-vs-tirz read.
 - [ ] **10.9 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
