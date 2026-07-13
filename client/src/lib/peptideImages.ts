@@ -56,6 +56,35 @@ export function getPeptideHeroImage(slug: string): string | null {
   return peptideHeroImages[key] || null;
 }
 
+/* Card-safe frame selection. The pep_hero library mixes two kinds of frame:
+   - PRODUCT still-lifes (vial / ampoule / dropper / pen, no people) — safe
+     on any card in either world.
+   - Gendered LIFESTYLE scenes (a man running, a woman sleeping) — right on
+     their own PDP, but a world leak when they land on a card in the other
+     world. Cards must only show a lifestyle frame whose cast matches the
+     visitor's world, and fall back to the world's own category art. */
+const PRODUCT_FRAMES = new Set([bpc157, cjc1295, ghkCu, ipamorelin, retatrutide, semax, tesamorelin, tirzepatide]);
+const FEMALE_CAST = new Set([dsip, epitalon, selank]);
+const MALE_CAST = new Set([methyleneBlue, motsC, nadPlus, semaglutide, sermorelin, tb500]);
+const NEUTRAL_CAST = new Set([pt141]); // couple frame — reads in both worlds
+
+export function getPeptideProductImage(slug: string): string | null {
+  const img = getPeptideHeroImage(slug);
+  return img && PRODUCT_FRAMES.has(img) ? img : null;
+}
+
+/** The frame a shared CARD may show for this compound in this world —
+ *  product still-lifes always; lifestyle only when the cast matches.
+ *  Returns null when the caller should use its world's category art. */
+export function getPeptideCardImage(slug: string, world?: "men" | "women"): string | null {
+  const img = getPeptideHeroImage(slug);
+  if (!img) return null;
+  if (PRODUCT_FRAMES.has(img) || NEUTRAL_CAST.has(img)) return img;
+  if (world === "women" && FEMALE_CAST.has(img)) return img;
+  if (world === "men" && MALE_CAST.has(img)) return img;
+  return null; // unworlded surfaces stay product-only
+}
+
 export function hasPeptideHeroImage(slug: string): boolean {
   return getPeptideHeroImage(slug) !== null;
 }

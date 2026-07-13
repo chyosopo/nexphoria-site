@@ -13,6 +13,7 @@ import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { outcomeSrcSet, OUTCOME_STACK } from "@/data/outcomeImagery";
+import { getPeptideCardImage } from "@/lib/peptideImages";
 import { F, S } from "@/lib/typography";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 
@@ -260,6 +261,15 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             return (
               <Reveal key={p.slug} delay={i * 60}>
                 <Link href={`${base}/peptides/${p.slug}`} className="nx-float-card" data-testid={`${world}-card-${p.slug}`}>
+                  {/* the compound's own card-safe frame (product still-life,
+                      or lifestyle cast in THIS world) — hims-style shelf;
+                      falls back to this world's own category art, so no
+                      cross-world frame ever lands here. */}
+                  {(getPeptideCardImage(p.slug, world) ?? config.tileArt[p.category]) && (
+                    <div className="nx-float-card__media">
+                      <img src={getPeptideCardImage(p.slug, world) ?? config.tileArt[p.category]!} alt="" aria-hidden loading="lazy" width={1600} height={1200} />
+                    </div>
+                  )}
                   <div className="nx-float-card__body">
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                       {CATEGORY_LABELS[p.category]}

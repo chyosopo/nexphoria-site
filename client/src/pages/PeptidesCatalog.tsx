@@ -12,6 +12,7 @@ import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, OUTCOME_STACK } from "@/data/outcomeImagery";
+import { getPeptideCardImage } from "@/lib/peptideImages";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 
 /* Solo category → a POOL of outcome frames, cast per world. Brand law
@@ -208,12 +209,16 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             name is the identifying second line. Filter/search flattens. */}
         {(() => {
           const card = (s: (typeof shown)[number], nth: number, i: number) => {
+            /* Show the PRODUCT, not a mood (Chiya 2026-07-13: "we're a
+               pharmacy, not a marketing site") — the compound's own vial
+               frame first; category lifestyle only as fallback. */
             const pool = CAT_IMG[s.category] ?? [world === "women" ? OUTCOME_HERO.women : OUTCOME_HERO.men];
+            const productImg = getPeptideCardImage(s.slug, world) ?? pool[nth % pool.length];
             return (
             <Reveal key={s.slug} delay={i * 35}>
               <Link href={`${base}/peptides/${s.slug}`} className="nx-float-card" data-testid={`peptide-${s.slug}`}>
                 <div className="nx-float-card__media">
-                  <img src={pool[nth % pool.length]} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                  <img src={productImg} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                   {s.gated && (
                     <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
                   )}
