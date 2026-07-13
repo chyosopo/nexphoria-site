@@ -11,13 +11,14 @@ import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
 import { getSolo, SOLO_CATALOG, SoloCategory } from "@/data/soloCatalog";
+import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowLeft, Check, X, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
-import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
+import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt } from "@/data/outcomeImagery";
 import { getPeptideHeroImage } from "@/lib/peptideImages";
 import type { PeptideCategory } from "@/data/peptides";
 
@@ -92,6 +93,24 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     .filter((s) => s.slug !== solo.slug)
     .sort((a, b) => Number(b.category === solo.category) - Number(a.category === solo.category))
     .slice(0, 3);
+
+  /* The upgrade route (Maximus offer logic): if this compound runs inside a
+     flagship protocol, say so — the complete route beats a single vial and
+     everything on the band is already in the stack's data. Never surfaces
+     the other world's flagship. */
+  const normalizeName = (n: string) => n.toLowerCase().replace(/\s*\(.*?\)/g, "").trim();
+  const parentStack = FLAGSHIP_STACKS.find(
+    (st) =>
+      st.worldLean !== (imgWorld === "women" ? "him" : "her") &&
+      st.peptides.some((p) => {
+        const a = normalizeName(p.name);
+        const b = normalizeName(solo.name);
+        return a.includes(b) || b.includes(a);
+      }),
+  );
+  const parentFrom = parentStack && !parentStack.gated
+    ? usd(Math.min(...parentStack.cadences.map((c) => c.perMonth ?? c.total)))
+    : null;
 
   const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
     { Icon: Stethoscope, t: "Physician review & prescription" },
@@ -305,6 +324,54 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div style={{ marginTop: "1.4rem" }}><Disclaimer variant="night" /></div>
         </div>
       </section>
+
+      {/* ══ THE COMPLETE ROUTE — this compound inside its flagship protocol ══ */}
+      {parentStack && (
+        <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.6rem)", paddingBottom: "0" }} aria-labelledby="solo-upgrade-title">
+          <Link
+            href={`/stacks/${parentStack.slug}`}
+            className="nx-float-card"
+            data-testid={`solo-upgrade-${parentStack.slug}`}
+            style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "stretch" }}
+          >
+            {stackArt(parentStack.slug, imgWorld) && (
+              <div className="nx-float-card__media" style={{ flex: "1 1 260px", aspectRatio: "auto", minHeight: 200, marginBottom: 10 }}>
+                <img src={stackArt(parentStack.slug, imgWorld)} alt="" aria-hidden loading="lazy" width={1632} height={1020} />
+              </div>
+            )}
+            <div className="nx-float-card__body" style={{ flex: "2 1 340px" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                The complete route
+              </p>
+              <h2 id="solo-upgrade-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.5rem" }}>
+                {solo.name} anchors The {parentStack.name} protocol.
+              </h2>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.5rem", maxWidth: "62ch" }}>
+                {parentStack.synergy}
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "0.8rem" }}>
+                {parentStack.peptides.map((p) => (
+                  <span key={p.name} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--nx-cobalt)", background: "var(--nx-cobalt-soft)", borderRadius: "var(--nx-r-pill)", padding: "3px 10px" }}>
+                    {p.name}
+                  </span>
+                ))}
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.95rem" }}>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
+                  {parentFrom ? (
+                    <>From {parentFrom}/mo<span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span></>
+                  ) : (
+                    "Physician-assessed"
+                  )}
+                </span>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  See the protocol <ArrowLeft size={15} aria-hidden style={{ transform: "rotate(180deg)" }} />
+                </span>
+              </div>
+            </div>
+          </Link>
+        </section>
+      )}
 
       {/* ══ CROSS-SELL — same-axis compounds, if-prescribed framing ══ */}
       {related.length > 0 && (

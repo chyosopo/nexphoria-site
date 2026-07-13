@@ -153,6 +153,16 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
         <div className="nx-container relative" style={{ paddingBottom: "clamp(2.6rem,5vw,4rem)", zIndex: 1 }}>
+          {/* The felt-need question (Maximus §3) — the grid IS the answer
+              surface: each tile routes to that goal's decision page. */}
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10, marginBottom: "1rem" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,2.8vw,30px)", color: "var(--nx-fg)", letterSpacing: "-0.01em" }}>
+              What do you want to change?
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", margin: 0 }}>
+              Each goal opens as a comparison — routes, prices, one physician gate.
+            </p>
+          </div>
           {/* Hims-style goal tiles (option B, Chiya 2026-07-13): small image
               band on top, text below — never overlaid. 4-across, compact,
               emotion-forward. The world's own accent carries the feeling. */}
