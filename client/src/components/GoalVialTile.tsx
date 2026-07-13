@@ -153,6 +153,8 @@ export function GoalVialTile({
       onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       data-testid={testId}
+      aria-pressed={selected}
+      aria-label={`${displayName} — ${oneLiner}`}
       style={{
         position: "relative",
         display: "block",
