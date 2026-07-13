@@ -226,24 +226,25 @@ export default function FrontDoor() {
             The complete catalog →
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 18, marginTop: "1.6rem" }}>
+        {/* Hims-style goal tiles (option B) — same anatomy as the world homes */}
+        <div className="nx-goalgrid grid grid-cols-2 lg:grid-cols-4" style={{ gap: 12, marginTop: "1.6rem" }}>
           {GOAL_TILES.map(({ cat, img }, i) => (
             <Reveal key={cat} delay={i * 50}>
               <Link href={`/goals/${cat}`} className="nx-art-tile" data-testid={`frontdoor-goal-${cat}`}>
-                <img src={img} srcSet={outcomeSrcSet(img)} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="" aria-hidden loading="lazy" width={1632} height={2048} />
+                <img src={img} srcSet={outcomeSrcSet(img)} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw" alt="" aria-hidden loading="lazy" width={1632} height={2048} />
                 <div className="nx-art-chip">
-                  <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.1vw,23px)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
-                      {CATEGORY_LABELS[cat]}
-                    </h3>
-                    <ArrowRight size={16} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
-                  </div>
-                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-cobalt)", marginTop: "0.3rem" }}>
+                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", lineHeight: 1.15 }}>
+                    {CATEGORY_LABELS[cat]}
+                  </h3>
+                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", lineHeight: 1.35, color: "var(--nx-cobalt)", marginTop: "0.2rem" }}>
                     {CATEGORY_FEELING[cat]}
                   </p>
-                  <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.55rem" }}>
-                    {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
-                  </p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.6rem" }}>
+                    <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                      {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
+                    </p>
+                    <ArrowRight size={15} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                  </div>
                 </div>
               </Link>
             </Reveal>

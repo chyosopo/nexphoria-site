@@ -152,11 +152,10 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
         <div className="nx-container relative" style={{ paddingBottom: "clamp(2.6rem,5vw,4rem)", zIndex: 1 }}>
-          {/* Weightless goal grid: uniform compact tiles, tiny square image,
-              emotion-forward. No giant feature tile — every goal reads equal
-              and scannable (Chiya 2026-07-06: smaller, weightless, screams
-              the emotion). */}
-          <div className="nx-goalgrid grid grid-cols-2 lg:grid-cols-3" style={{ gap: 12 }}>
+          {/* Hims-style goal tiles (option B, Chiya 2026-07-13): small image
+              band on top, text below — never overlaid. 4-across, compact,
+              emotion-forward. The world's own accent carries the feeling. */}
+          <div className="nx-goalgrid grid grid-cols-2 lg:grid-cols-4" style={{ gap: 12 }}>
             {config.categories.map((cat, i) => (
               <Reveal key={cat} delay={i * 45}>
                 {/* Deep-link the GOAL, not the generic shelf (found by the
@@ -166,26 +165,26 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                     <img
                       src={config.tileArt[cat]}
                       srcSet={outcomeSrcSet(config.tileArt[cat])}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                       alt="" aria-hidden loading="lazy" width={1632} height={2048}
                     />
                   )}
                   <div className="nx-art-chip">
-                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 10 }}>
-                      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(19px,2.1vw,23px)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
-                        {CATEGORY_LABELS[cat]}
-                      </h2>
-                      <ArrowRight size={16} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, transform: "translateY(2px)" }} />
-                    </div>
+                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", lineHeight: 1.15 }}>
+                      {CATEGORY_LABELS[cat]}
+                    </h2>
                     {/* The world's OWN emotional register (Chiya: worlds fully
                         separate) — feeling first; the functional job line
                         lives one click deeper on the goal page. */}
-                    <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-cobalt)", marginTop: "0.3rem" }}>
+                    <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", lineHeight: 1.35, color: "var(--nx-cobalt)", marginTop: "0.2rem" }}>
                       {feelingFor(cat, world)}
                     </p>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.55rem" }}>
-                      {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
-                    </p>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.6rem" }}>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                        {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
+                      </p>
+                      <ArrowRight size={15} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                    </div>
                   </div>
                 </Link>
               </Reveal>
