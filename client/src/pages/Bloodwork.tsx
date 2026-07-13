@@ -16,7 +16,11 @@ import {
   PANEL_TOTAL_MARKERS,
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
-import { PANELS, FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { PANELS, FLAGSHIP_STACKS, usd, type PanelTier } from "@/data/stacksCatalog";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
+import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
+import { GOAL_OF_STACK } from "@/data/protocolSelector";
+import { track } from "@/lib/analytics";
 import { Link } from "wouter";
 import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw, FlaskConical, ClipboardCheck, TestTube } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
@@ -989,12 +993,51 @@ function WhyItMatters() {
   );
 }
 
+/* ══ WHICH PANEL DO I NEED? — the Maximus-style on-page tool (study §4):
+   two questions, a true answer. The gate is DERIVED: a goal's required
+   tier is the highest tier any of its routes (flagship stack + solos)
+   actually gates on in the catalog data — no marketing logic. ══ */
+const TIER_RANK: Record<PanelTier, number> = { Basic: 0, Full: 1, Elite: 2 };
+
+function requiredTierFor(goal: PeptideCategory): PanelTier {
+  const tiers: PanelTier[] = [
+    ...FLAGSHIP_STACKS.filter((s) => GOAL_OF_STACK[s.slug] === goal).map((s) => s.panel),
+    ...peptides
+      .filter((p) => p.category === goal)
+      .map((p) => SOLO_CATALOG.find((s) => s.slug === p.slug)?.panel)
+      .filter((t): t is PanelTier => Boolean(t)),
+  ];
+  return tiers.sort((a, b) => TIER_RANK[b] - TIER_RANK[a])[0] ?? "Basic";
+}
+
+type Depth = "required" | "hormonal" | "deepest";
+const DEPTH_OPTIONS: { key: Depth; label: string }[] = [
+  { key: "required", label: "Just what my protocol requires" },
+  { key: "hormonal", label: "Add the full hormonal picture" },
+  { key: "deepest", label: "The deepest read available" },
+];
+
+function recommendTier(goal: PeptideCategory, depth: Depth): PanelTier {
+  const base = requiredTierFor(goal);
+  if (depth === "deepest") return "Elite";
+  if (depth === "hormonal") return TIER_RANK[base] > TIER_RANK.Full ? base : "Full";
+  return base;
+}
+
 /* ══ PANEL TIERS — Basic / Full / Elite pricing + stack→panel mapping (merged from BloodPanels) ══ */
 function PanelTiers() {
   // which tier do most protocols gate on?
   const demand: Record<string, number> = {};
   FLAGSHIP_STACKS.forEach((st) => { demand[st.panel] = (demand[st.panel] ?? 0) + 1; });
   const mostRequired = Object.entries(demand).sort((a, b) => b[1] - a[1])[0]?.[0];
+
+  /* the picker: goal + depth → recommended tier, highlighted below */
+  const [pickGoal, setPickGoal] = useState<PeptideCategory | null>(null);
+  const [pickDepth, setPickDepth] = useState<Depth | null>(null);
+  const rec = pickGoal && pickDepth ? recommendTier(pickGoal, pickDepth) : null;
+  const pickerGoals = (Object.keys(CATEGORY_LABELS) as PeptideCategory[]).filter(
+    (g) => peptides.some((p) => p.category === g),
+  );
 
   return (
     <section id="tiers" aria-labelledby="bw-tiers-title" className="nx-section" style={{ background: "var(--nx-bg-cream)" }}>
@@ -1007,9 +1050,64 @@ function PanelTiers() {
           Every protocol is gated on the right panel — drawn at baseline, then retested on a fixed schedule so a physician can read the trend, not a snapshot.
         </p>
 
+        {/* ── the two-question picker — answers from the catalog, not a quiz
+            script; the recommended tier lights up in the grid below ── */}
+        <div className="nx-glass-tile" data-testid="panel-picker" style={{ display: "block", marginTop: "1.8rem", padding: "1.4rem 1.5rem" }}>
+          <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>
+            Which panel do you need?
+          </p>
+          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "1rem" }}>
+            1 · What are you here to change?
+          </p>
+          <div role="group" aria-label="Your goal" style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.6rem" }}>
+            {pickerGoals.map((g) => (
+              <button
+                key={g}
+                onClick={() => { setPickGoal(g); if (pickDepth) track("panel_pick", { goal: g, depth: pickDepth, rec: recommendTier(g, pickDepth) }); }}
+                aria-pressed={pickGoal === g}
+                className="nx-filter-chip"
+                data-testid={`panel-pick-goal-${g}`}
+                style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
+              >
+                {CATEGORY_LABELS[g]}
+              </button>
+            ))}
+          </div>
+          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "1.1rem" }}>
+            2 · How deep do you want the read?
+          </p>
+          <div role="group" aria-label="Panel depth" style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.6rem" }}>
+            {DEPTH_OPTIONS.map((d) => (
+              <button
+                key={d.key}
+                onClick={() => { setPickDepth(d.key); if (pickGoal) track("panel_pick", { goal: pickGoal, depth: d.key, rec: recommendTier(pickGoal, d.key) }); }}
+                aria-pressed={pickDepth === d.key}
+                className="nx-filter-chip"
+                data-testid={`panel-pick-depth-${d.key}`}
+                style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
+              >
+                {d.label}
+              </button>
+            ))}
+          </div>
+          <p aria-live="polite" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: rec ? "var(--nx-fg)" : "var(--nx-fg-muted)", marginTop: "1.1rem", borderTop: "1px solid var(--nx-border)", paddingTop: "1rem" }} data-testid="panel-pick-result">
+            {rec && pickGoal ? (
+              <>
+                <strong style={{ fontWeight: 700, color: "var(--nx-cobalt)" }}>The {rec} panel</strong>
+                {" — "}
+                {CATEGORY_LABELS[pickGoal]} routes gate on the {requiredTierFor(pickGoal)} panel
+                {TIER_RANK[rec] > TIER_RANK[requiredTierFor(pickGoal)] ? "; your depth choice steps it up" : ""}.
+                {" "}It's highlighted below — and your physician confirms the tier at intake.
+              </>
+            ) : (
+              "Answer both and the right tier lights up below. A physician confirms it at intake — the panel is the gate, not an upsell."
+            )}
+          </p>
+        </div>
+
         <div className="mt-9 grid grid-cols-1 md:grid-cols-3" style={{ gap: 14, alignItems: "stretch" }}>
           {PANELS.map((p, i) => {
-            const hot = p.tier === mostRequired;
+            const hot = rec ? p.tier === rec : p.tier === mostRequired;
             const depth = PANELS.slice(0, i + 1).reduce((n, q) => n + q.adds.length, 0);
             const maxDepth = PANELS.reduce((n, q) => n + q.adds.length, 0);
             return (
@@ -1017,7 +1115,7 @@ function PanelTiers() {
               <div className="nx-glass-tile" style={{ height: "100%", display: "flex", flexDirection: "column", position: "relative", border: hot ? "1.5px solid var(--nx-cobalt)" : undefined }}>
                 {hot && (
                   <p style={{ position: "absolute", top: 14, right: 16, fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)" }} data-testid="panel-most-required">
-                    Most protocols gate here
+                    {rec ? "Recommended for you" : "Most protocols gate here"}
                   </p>
                 )}
                 <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
