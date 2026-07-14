@@ -505,7 +505,7 @@ function GateCard({
             color: "var(--nx-ceramic)",
           }}
         >
-          3 Flagship Protocols
+          {FLAGSHIP_STACKS.length} Flagship Protocols
         </span>
       </motion.div>
 

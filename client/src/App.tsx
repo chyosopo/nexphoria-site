@@ -39,7 +39,6 @@ const Science = lazy(() => import("@/pages/Science"));
 const Journal = lazy(() => import("@/pages/Journal"));
 const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
 const Physicians = lazy(() => import("@/pages/Physicians"));
-const LabTesting = lazy(() => import("@/pages/LabTesting"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
 const About = lazy(() => import("@/pages/About"));
 const Community = lazy(() => import("@/pages/Community"));

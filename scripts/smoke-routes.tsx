@@ -63,7 +63,7 @@ async function main() {
     ["/pricing",         "/src/pages/Pricing.tsx", {}],
     ["/science",         "/src/pages/Science.tsx", {}],
     ["/physicians",      "/src/pages/Physicians.tsx", {}],
-    ["/lab-testing",     "/src/pages/LabTesting.tsx", {}],
+    ["/lab-testing",     "/src/pages/Bloodwork.tsx", {}], // alias → /bloodwork (LabTesting.tsx deleted — dead page, no route rendered it)
     ["/journal",         "/src/pages/Journal.tsx", {}],
     ["/journal/what-is-a-peptide", "/src/pages/JournalArticle.tsx", {}],
     ["/about",           "/src/pages/About.tsx", {}],
