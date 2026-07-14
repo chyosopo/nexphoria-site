@@ -665,9 +665,13 @@ export default function Science() {
       </section>
 
       {/* ── Main content with sticky TOC ── */}
+      {/* The wrapper declared gridTemplateColumns:"1fr" — ONE column — so the
+          sticky TOC never sat beside the content and every family band ran
+          680px of prose against a dead half-viewport. Two real columns on
+          lg+ (200px rail + content); the rail hides below lg as before. */}
       <div style={{ backgroundColor: "var(--nx-bg)", position: "relative" }}>
-        <div className="nx-container max-w-screen-xl" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "4rem", paddingTop: "4rem", paddingBottom: "4rem" }}>
-          <aside className="hidden lg:block" style={{ gridColumn: "1", gridRow: "1", width: "200px", flexShrink: 0 }}>
+        <div className="nx-container max-w-screen-xl grid grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)]" style={{ gap: "4rem", paddingTop: "4rem", paddingBottom: "4rem" }}>
+          <aside className="hidden lg:block">
             <TOCSidebar activeId={activeId} />
           </aside>
 
