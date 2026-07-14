@@ -30,7 +30,7 @@ export function TrustBar() {
       {/* One row always: horizontal scroll on phones instead of five stacked
           rows of micro-text (~110px of chrome) under the nav. */}
       <div
-        className="max-w-[1400px] mx-auto px-6 py-2 flex items-center justify-start md:justify-center flex-nowrap md:flex-wrap overflow-x-auto gap-x-6 gap-y-1.5"
+        className="nx-trustbar-scroll max-w-[1400px] mx-auto px-6 py-2 flex items-center justify-start md:justify-center flex-nowrap md:flex-wrap overflow-x-auto gap-x-6 gap-y-1.5"
         style={{ scrollbarWidth: "none" }}
       >
         {items.map(({ icon: Icon, label }, i) => (

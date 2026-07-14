@@ -2053,6 +2053,16 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
   background: color-mix(in srgb, var(--nx-ceramic) 42%, transparent);
   overflow: hidden;
 }
+
+/* ══ Top nav trust strip — on phones it's a single horizontal-scroll row.
+   A right-edge fade signals "swipe for more" so a clipped signal reads as
+   scrollable, not broken. Desktop wraps/centers, so the mask is off. ══ */
+@media (max-width: 767px) {
+  .nx-trustbar-scroll {
+    -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+  }
+}
 .nx-trust-badge {
   display: flex; align-items: center; gap: 11px;
   padding: 20px 24px; flex: 1 1 0; min-width: 210px;
