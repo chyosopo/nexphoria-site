@@ -12,6 +12,7 @@ import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
 import { getSolo, SOLO_CATALOG, SoloCategory } from "@/data/soloCatalog";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { getPrice } from "@/data/pricing";
 import { ArrowLeft, Check, X, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
@@ -280,6 +281,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               gated={solo.gated}
               gatedStates={solo.stateExclusions}
               consultPriced={!solo.gated && !solo.pricing}
+              fromPrice={!solo.gated && !solo.pricing ? getPrice(solo.slug)?.monthlyPrice : undefined}
               ctaTestId="solo-cta"
             />
             <SafetyDisclosure name={solo.name} contraindications={solo.contraindications} />

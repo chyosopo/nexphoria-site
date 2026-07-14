@@ -46,6 +46,9 @@ export interface BuyBoxProps {
   gatedStates?: string[];
   /** no pricing at all — physician-priced at consult */
   consultPriced?: boolean;
+  /** consult-priced but a real from-price exists (data/pricing) — show it,
+      so the PDP never contradicts the shelf card that said "From $X/mo" */
+  fromPrice?: number;
   ctaTestId: string;
 }
 
@@ -62,7 +65,7 @@ const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }
 );
 
 export function BuyBox(props: BuyBoxProps) {
-  const { name, category, slug, addType, tiers, selected, onSelect, gated, gatedStates, consultPriced, ctaTestId } = props;
+  const { name, category, slug, addType, tiers, selected, onSelect, gated, gatedStates, consultPriced, fromPrice, ctaTestId } = props;
   const active = tiers?.find((t) => t.key === selected) ?? tiers?.[0];
   const { addStack, addPeptide } = useCart();
   const cadence = active ? TIER_TO_CADENCE[active.key] : undefined;
@@ -116,10 +119,16 @@ export function BuyBox(props: BuyBoxProps) {
         ) : consultPriced || !tiers?.length ? (
           <>
             <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.9rem", lineHeight: 1 }}>
-              Priced at consultation
+              {fromPrice ? (
+                <>From ${fromPrice}<span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-muted)" }}>/mo · if prescribed</span></>
+              ) : (
+                "Priced at consultation"
+              )}
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>
-              Dosed and priced by your physician at intake, against your protocol.
+              {fromPrice
+                ? "Cadence and final price are set by your physician at intake, against your protocol."
+                : "Dosed and priced by your physician at intake, against your protocol."}
             </p>
             <div style={{ marginTop: "1.1rem" }}>
               <CTA testId={ctaTestId}>Start your assessment</CTA>

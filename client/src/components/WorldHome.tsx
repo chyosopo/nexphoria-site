@@ -82,9 +82,12 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
     .map((slug) => peptides.find((p) => p.slug === slug))
     .filter(Boolean) as typeof peptides;
 
-  /* Hero rail tiles (hims grammar): this world's six goals on its own cast,
-     one flagship protocol with its real from-price, and the retest promise
-     on the world's hero portrait. */
+  /* Hero rail tiles (hims grammar). The rail used to repeat this world's six
+     goal frames — the SAME photos and labels as the goal grid one viewport
+     below, which read as a bug, not a collage. Now it carries the four
+     stories the grid does NOT tell: the retest promise, the flagship
+     protocol, the compounded product, and the physician gate — each on its
+     own frame, none duplicated in the first two viewports. */
   const flagshipSlug = world === "women" ? "glow" : "ascend";
   const flagship = getStack(flagshipSlug)!;
   const flagshipFrom = usd(Math.min(...flagship.cadences.map((c) => c.perMonth ?? c.total)));
@@ -92,14 +95,11 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
     ...(config.heroArt
       ? [{ img: config.heroArt, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: `${world}-rail-bloodwork` }]
       : []),
-    ...config.categories.slice(0, 6).map((cat, i) => ({
-      img: config.tileArt[cat] ?? config.heroArt ?? "",
-      label: CATEGORY_LABELS[cat],
-      sub: feelingFor(cat, world),
-      href: `/goals/${cat}`,
-      testid: `${world}-rail-${cat}`,
-    })),
     { img: OUTCOME_STACK[flagshipSlug] ?? config.heroArt ?? "", label: `The ${flagship.name} protocol`, sub: `from ${flagshipFrom}/mo`, href: `/stacks/${flagshipSlug}`, testid: `${world}-rail-flagship` },
+    { img: config.vialArt, label: "Compounded for you", sub: "State-licensed 503A pharmacies.", href: "/science", testid: `${world}-rail-compounded` },
+    ...(config.faqArt
+      ? [{ img: config.faqArt, label: "A physician on every file", sub: "Reads your labs — and can decline.", href: "/physicians", testid: `${world}-rail-physician` }]
+      : []),
   ].filter((t) => t.img);
 
   return (

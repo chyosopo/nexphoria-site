@@ -76,10 +76,13 @@ export const OUTCOME_HERO: Record<"men" | "women", string> = {
 };
 
 /**
- * srcSet for an outcome image. Every entry above has a build-time 800w
- * companion (img_x-800w.webp) so ~400px tile slots stop downloading the
- * full 1632w frame. Pair with a `sizes` attribute at the call site.
+ * srcSet for an outcome image. Every workflow-localized `img/…` frame has a
+ * build-time 800w companion (img_x-800w.webp) so ~400px tile slots stop
+ * downloading the full 1632w frame. Vite-BUNDLED assets (./assets/…) have
+ * NO companion — generating one 404s and blanks the tile (found on the
+ * hero-rail physician tile) — so those get no srcSet at all.
  */
-export function outcomeSrcSet(src: string): string {
+export function outcomeSrcSet(src: string): string | undefined {
+  if (!src.startsWith("img/")) return undefined;
   return `${src.replace(/\.webp$/, "-800w.webp")} 800w, ${src} 1632w`;
 }

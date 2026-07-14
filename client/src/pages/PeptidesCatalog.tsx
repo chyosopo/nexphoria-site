@@ -13,6 +13,7 @@ import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, OUTCOME_STACK } from "@/data/outcomeImagery";
 import { getPeptideCardImage } from "@/lib/peptideImages";
+import { getPrice } from "@/data/pricing";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 
 /* Solo category → a POOL of outcome frames, cast per world. Brand law
@@ -231,7 +232,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   </p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
                     <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
-                      {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "At consult"}
+                      {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : getPrice(s.slug) ? `From ${usd(getPrice(s.slug)!.monthlyPrice)}/mo` : "At consult"}
                     </span>
                     <ArrowRight size={16} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                   </div>
