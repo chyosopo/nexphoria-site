@@ -311,6 +311,26 @@ prioritized fix list; fixes land page by page, gates green each time.
     all 8 goal pages; 114 URLs, every one verified to resolve. New
     comparison articles + goal pages confirmed emitting Article/FAQPage/
     ItemList JSON-LD, canonicals, and OG.
+- [x] **10.11 Defect sweep** (done 2026-07-14, Chiya: "a lot needs to be
+  fixed, I'll let you figure them all out"). Found by full-page audit of
+  every major page + failure-path testing; each fix screenshot- or
+  behavior-verified:
+  · Hero rail duplicated the goal grid (same 6 frames twice in two
+    viewports) → rail now carries bloodwork / flagship / vial / physician.
+  · Price contradictions: 4 solos said "priced at consult" on PDP+catalog
+    while the home/selector said "From $X/mo" → single-sourced via getPrice.
+  · Blank rail tile: outcomeSrcSet emitted a 404 -800w candidate for
+    bundled assets → srcSet only for img/ frames.
+  · Science sticky TOC was in a ONE-column grid — rendered above content,
+    6 family bands ran against a dead half-viewport → real 200px+1fr grid.
+  · How-it-works step 06 had no visual → dashboard sample panel.
+  · Waitlist told visitors with valid emails "enter a valid email" when
+    OUR endpoint was down → invalid vs err split, honest fallback.
+  · THE BLACK HOLE: intake submit treated API failure as success — deleted
+    the draft, showed the success screen, intake gone (every current host).
+    Now fails honestly: draft kept, retry + contact-only mailto; success
+    screen only on a real 2xx. No repo-side intake endpoint added (PHI law).
+  · Mobile trust strip clipped mid-word with no affordance → edge fade.
 - [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
