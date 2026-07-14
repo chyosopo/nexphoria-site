@@ -79,7 +79,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "The science", href: "/science" },
         { label: "How it works", href: "/how-it-works" },
         { label: "Journal", href: "/journal" },
-        { label: "Lab testing", href: "/lab-testing" },
       ],
     },
     {
