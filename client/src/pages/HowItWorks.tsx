@@ -29,6 +29,9 @@ interface Step {
   /** editorial frame — a real human moment for this step (C29 law) */
   img?: string;
   imgAlt?: string;
+  /** render the abstract dashboard sample instead of a photo (step 06 —
+      the dashboard IS the subject; no PHI, clearly labeled a sample) */
+  dashboardMock?: boolean;
 }
 
 const STEPS: Step[] = [
@@ -69,6 +72,7 @@ const STEPS: Step[] = [
   },
   {
     n: "06", t: "Your dashboard", Icon: LayoutDashboard,
+    dashboardMock: true,
     d: "Markers, reference ranges, trends, your active protocol, and physician messaging — in one place.",
     detail: "Every number sits next to its range and its trend line, so you read direction, not just a snapshot. Questions to your physician run through the same portal — no phone tag.",
     objection: "“Do I just get a vial and silence?” No — you get the data, the trend, and a line to the physician who owns it.",
@@ -186,7 +190,7 @@ export default function HowItWorks() {
               <div className="nx-timeline-step" style={{ paddingBottom: i < STEPS.length - 1 ? "clamp(2.4rem,4.5vw,3.4rem)" : 0 }}>
                 <span className="nx-timeline-node" aria-hidden>{s.n}</span>
                 <div className="nx-glass-tile" style={{ display: "block" }}>
-                  <div className={s.img ? "grid grid-cols-1 md:grid-cols-[1fr_220px]" : undefined} style={s.img ? { gap: "clamp(1rem,2.5vw,1.6rem)", alignItems: "start" } : undefined}>
+                  <div className={s.img || s.dashboardMock ? "grid grid-cols-1 md:grid-cols-[1fr_220px]" : undefined} style={s.img || s.dashboardMock ? { gap: "clamp(1rem,2.5vw,1.6rem)", alignItems: "start" } : undefined}>
                     <div>
                       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                         <span className="nx-icon-circle" aria-hidden><s.Icon size={19} strokeWidth={1.9} /></span>
@@ -199,6 +203,27 @@ export default function HowItWorks() {
                     {s.img && (
                       <div className="hidden md:block" style={{ borderRadius: "var(--nx-r-md)", overflow: "hidden", boxShadow: "var(--nx-e-2)", aspectRatio: "4 / 5" }}>
                         <img src={s.img} alt={s.imgAlt ?? ""} loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                      </div>
+                    )}
+                    {s.dashboardMock && (
+                      <div className="nx-mini-panel hidden md:block" aria-hidden style={{ alignSelf: "center" }}>
+                        <div className="nx-mini-head">
+                          <span className="nx-mini-title">Biomarker index</span>
+                          <span className="nx-mini-pill">Sample</span>
+                        </div>
+                        <div className="nx-mini-bars">
+                          <div className="nx-mini-bar" style={{ height: "44%" }} />
+                          <div className="nx-mini-bar" style={{ height: "58%" }} />
+                          <div className="nx-mini-bar" style={{ height: "52%" }} />
+                          <div className="nx-mini-bar" style={{ height: "71%" }} />
+                          <div className="nx-mini-bar hi" style={{ height: "88%" }} />
+                        </div>
+                        <div className="nx-mini-row">
+                          <span>Baseline → 90 → 180 days</span>
+                        </div>
+                        <div className="nx-mini-row">
+                          <span className="nx-mini-cap">Illustrative — not a patient record</span>
+                        </div>
                       </div>
                     )}
                   </div>
