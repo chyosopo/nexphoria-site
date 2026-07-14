@@ -24,7 +24,10 @@ function currentPath() {
 export function ExitIntentModal() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "sending" | "done" | "err">("idle");
+  // "invalid" (malformed email) vs "err" (our endpoint failed) — distinct
+  // failures, distinct messages (a valid email against a down API was being
+  // told "enter a valid email").
+  const [state, setState] = useState<"idle" | "sending" | "done" | "invalid" | "err">("idle");
   const panelRef = useRef<HTMLDivElement>(null);
   const restoreFocusRef = useRef<HTMLElement | null>(null);
 
@@ -58,7 +61,7 @@ export function ExitIntentModal() {
     const val = email.trim();
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(val)) {
-      setState("err");
+      setState("invalid");
       return;
     }
     setState("sending");
@@ -249,7 +252,7 @@ export function ExitIntentModal() {
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
-                      if (state === "err") setState("idle");
+                      if (state === "err" || state === "invalid") setState("idle");
                     }}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") submit();
@@ -262,7 +265,7 @@ export function ExitIntentModal() {
                       flex: 1,
                       padding: "0.75rem 1rem",
                       borderRadius: 4,
-                      border: state === "err" ? "1px solid var(--nx-danger)" : "1px solid var(--nx-border)",
+                      border: state === "err" || state === "invalid" ? "1px solid var(--nx-danger)" : "1px solid var(--nx-border)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-base)",
                       backgroundColor: "var(--nx-ceramic)",
@@ -293,7 +296,7 @@ export function ExitIntentModal() {
                     {state === "sending" ? "…" : "Notify me"}
                   </button>
                 </div>
-                {state === "err" && (
+                {(state === "err" || state === "invalid") && (
                   <p
                     style={{
                       marginTop: 8,
@@ -303,7 +306,9 @@ export function ExitIntentModal() {
                     }}
                     role="alert"
                   >
-                    Please enter a valid email.
+                    {state === "invalid"
+                      ? "Please enter a valid email."
+                      : "We couldn't save that just now — email hello@nexphoria.com and we'll add you by hand."}
                   </p>
                 )}
                 <p

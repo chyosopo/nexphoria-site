@@ -28,14 +28,17 @@ export function Footer({ variant = "shared" }: FooterProps) {
   // Newsletter capture → /api/waitlist (same lead sink as ExitIntentModal).
   // Degrades gracefully on static hosts where the API isn't running.
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "sending" | "done" | "err">("idle");
+  // "invalid" (their email is malformed) and "err" (OUR endpoint failed) are
+  // different failures and must say different things — a valid email against
+  // a down API was being told "enter a valid email address".
+  const [state, setState] = useState<"idle" | "sending" | "done" | "invalid" | "err">("idle");
 
   const submitNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     const val = email.trim();
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(val)) {
-      setState("err");
+      setState("invalid");
       return;
     }
     setState("sending");
@@ -147,7 +150,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                   placeholder="Your email"
                   aria-label="Email address for the newsletter"
                   value={email}
-                  onChange={(e) => { setEmail(e.target.value); if (state === "err") setState("idle"); }}
+                  onChange={(e) => { setEmail(e.target.value); if (state === "err" || state === "invalid") setState("idle"); }}
                   className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-white/50 transition-colors"
                   style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
                   data-testid="footer-email-input"
@@ -168,7 +171,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 </button>
               </form>
             )}
-            {state === "err" && (
+            {(state === "err" || state === "invalid") && (
               <p
                 className="mt-2 text-xs max-w-sm"
                 style={{
@@ -177,7 +180,17 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 }}
                 data-testid="footer-newsletter-error"
               >
-                Enter a valid email address to subscribe.
+                {state === "invalid" ? (
+                  "Enter a valid email address to subscribe."
+                ) : (
+                  <>
+                    We couldn't add you just now — email{" "}
+                    <a href="mailto:hello@nexphoria.com?subject=Waitlist" style={{ color: "rgba(255,255,255,0.9)", textDecoration: "underline" }}>
+                      hello@nexphoria.com
+                    </a>{" "}
+                    and we'll do it by hand.
+                  </>
+                )}
               </p>
             )}
           </div>
