@@ -331,6 +331,22 @@ prioritized fix list; fixes land page by page, gates green each time.
     Now fails honestly: draft kept, retry + contact-only mailto; success
     screen only on a real 2xx. No repo-side intake endpoint added (PHI law).
   · Mobile trust strip clipped mid-word with no affordance → edge fade.
+- [x] **10.12 Defect sweep, round 2** (done 2026-07-14, continuing "figure
+  them all out"):
+  · Builder's curated-match banner read the LEGACY stacks shelf — banner
+    vanished for 5 of 7 goals (slugs didn't exist) and promised formulas
+    the canonical PDP contradicts (Wolverine "3 peptides · 8-week" vs 2 ·
+    12-week). Now adapted from FLAGSHIP_STACKS with world-cast stackArt.
+  · Gate chip claimed "3 Flagship Protocols" — there are 7; now derived.
+  · pages/LabTesting.tsx was dead code (route redirects to /bloodwork)
+    carrying an invented Essential/Comprehensive/Executive tier line with
+    impossible marker math — deleted (2,221 lines) with its orphaned
+    portraits lib + 6 tile assets; smoke asserts the redirect target.
+  · Intake early-email capture sent the visitor's GOAL to the repo-side
+    waitlist store — health answer, PHI-adjacency law; email+source only.
+  · Footer dropped the redundant "Lab testing" link.
+  Verified after: 22-route crawl clean, e2e funnel 0 fails both worlds,
+  all gates green.
 - [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
