@@ -1019,10 +1019,13 @@ export default function Assessment() {
                             const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                             if (emailRe.test(val)) {
                               try {
+                                // email + source ONLY — the goal is a health
+                                // answer and must not land in the repo-side
+                                // waitlist store (PHI-adjacency law)
                                 await fetch("/api/waitlist", {
                                   method: "POST",
                                   headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ email: val, source: `assessment-early-${form.gender ?? "unknown"}`, goal: form.goal || undefined }),
+                                  body: JSON.stringify({ email: val, source: `assessment-early-${form.gender ?? "unknown"}` }),
                                 });
                               } catch {}
                             }
