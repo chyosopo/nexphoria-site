@@ -1,17 +1,17 @@
 /* JOB: power-user side door — compose a custom protocol; never the primary path. */
 import { useMemo, useState, useEffect, useRef } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { ArrowLeft, ArrowRight, Check, FlaskConical, Plus, Minus, Sparkles, ShoppingBag, ShieldCheck } from "lucide-react";
-import { SiteLayout } from "@/components/SiteLayout";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
 import { pricing, formatUSD, priceAtCadence, CADENCE_DISCOUNTS, bundleDiscount, type CadenceKey } from "@/data/pricing";
 import { useCart } from "@/contexts/CartProvider";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { MolecularGlyph } from "@/components/MolecularGlyph";
-import { getStack } from "@/data/stacks";
+import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
+import { stackArt } from "@/data/outcomeImagery";
 import { getSolo } from "@/data/soloCatalog";
-import { getStackPortrait } from "@/lib/stackPortraits";
 import { F } from "@/lib/typography";
 import buildGoalsCard from "@/assets/brand/build-goals-card.webp";
 
@@ -117,15 +117,32 @@ const GOALS: Goal[] = [
    a confidence score derived from how closely their live selection
    overlaps the curated formula.
    ────────────────────────────────────────────────────────────── */
+/* CANONICAL flagship slugs (stacksCatalog). The old map pointed at the
+   legacy data/stacks.ts shelf whose slugs (metabolic/sleep/cognitive/
+   longevity) don't exist — the curated-match banner silently vanished for
+   5 of 7 goals, and where it rendered it promised a formula (Wolverine =
+   3 peptides, 8-week course) that the canonical PDP one click away
+   contradicts (2 peptides, 12 weeks). */
 const GOAL_TO_STACK: Record<string, string> = {
   recovery: "wolverine",
   skin: "glow",
-  weight: "metabolic",
-  sleep: "sleep",
-  cognitive: "cognitive",
-  longevity: "longevity",
-  performance: "metabolic",
+  weight: "ignite",
+  sleep: "threshold",
+  cognitive: "lucidity",
+  longevity: "meridian",
+  performance: "ascend",
 };
+
+/* Canonical peptide display name → soloCatalog slug ("CJC-1295 (no-DAC)" →
+   "cjc-1295", "NAD+" → "nad-plus") for overlap + use-exact-formula. */
+function nameToSoloSlug(name: string): string {
+  return name
+    .replace(/\s*\(.*?\)/g, "")
+    .trim()
+    .replace(/\+$/, "-plus")
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
 
 /* Formula overlap: how many of the flagship stack's compounds are in the
    user's live picks. Shown as an honest N-of-M count — never dressed up
@@ -185,10 +202,23 @@ export default function BuildYourStack() {
 
   // Physician-curated flagship stack that matches the chosen goal, plus a
   // live confidence score reflecting how closely the current picks overlap it.
-  const matchedStack = useMemo(
-    () => (goalId ? getStack(GOAL_TO_STACK[goalId] ?? "") ?? null : null),
-    [goalId],
-  );
+  // Adapted from the CANONICAL catalog so the banner and the PDP it links to
+  // can never disagree on the formula.
+  const [builderLoc] = useLocation();
+  const builderWorld = resolveWorld(builderLoc);
+  const matchedStack = useMemo(() => {
+    if (!goalId) return null;
+    const s = FLAGSHIP_STACKS.find((x) => x.slug === GOAL_TO_STACK[goalId]);
+    if (!s) return null;
+    const lastWk = s.timeline[s.timeline.length - 1]?.wk.replace(/^Wk\s*/, "");
+    return {
+      slug: s.slug,
+      name: s.name,
+      purpose: s.bestFor,
+      peptides: s.peptides.map((p) => nameToSoloSlug(p.name)),
+      courseLabel: lastWk ? `${lastWk}-week course` : s.category,
+    };
+  }, [goalId]);
   const overlap = useMemo(
     () => (matchedStack ? formulaOverlap(matchedStack.peptides, picked) : 0),
     [matchedStack, picked],
@@ -508,7 +538,7 @@ export default function BuildYourStack() {
                   {/* Portrait proof */}
                   <div
                     className="relative hidden sm:block"
-                    style={{ minHeight: 172, backgroundImage: `url(${getStackPortrait(matchedStack.slug)})`, backgroundSize: "cover", backgroundPosition: "center top" }}
+                    style={{ minHeight: 172, backgroundImage: `url(${stackArt(matchedStack.slug, builderWorld)})`, backgroundSize: "cover", backgroundPosition: "center top" }}
                     aria-hidden="true"
                   >
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(21, 24, 28,0) 55%, var(--nx-fg) 100%)" }} />
@@ -526,7 +556,7 @@ export default function BuildYourStack() {
                             The {matchedStack.name} stack
                           </h3>
                           <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)" }}>
-                            {matchedStack.peptides.length} peptides · {matchedStack.duration.split(",")[0]}
+                            {matchedStack.peptides.length} {matchedStack.peptides.length === 1 ? "peptide" : "peptides"} · {matchedStack.courseLabel}
                           </span>
                         </div>
                         <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "rgba(255,255,255,0.78)", marginTop: 8, maxWidth: 560 }}>
