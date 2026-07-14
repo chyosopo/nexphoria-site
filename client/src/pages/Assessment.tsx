@@ -582,7 +582,16 @@ export default function Assessment() {
     try {
       await apiRequest("/api/intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
     } catch {
-      // Endpoint may not exist yet — treat as success
+      /* NEVER fake success (the old catch did): the visitor walks away
+         believing a physician is reviewing their file while the intake
+         evaporated. Keep the draft on this device, stay on review, and
+         give an honest, actionable path. No health answers leave via the
+         mailto — contact fields only. */
+      setSubmitting(false);
+      setSubmitError(
+        "We couldn't reach the intake service just now. Your answers are saved on this device — try again in a moment, or email us and we'll complete your evaluation by phone.",
+      );
+      return;
     }
     setSubmitting(false);
     try { localStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
@@ -1517,9 +1526,26 @@ export default function Assessment() {
                               fontSize: "var(--nx-t-sm)",
                               color: "var(--nx-danger)",
                               marginBottom: "0.25rem",
+                              lineHeight: 1.5,
                             }}
                           >
-                            {submitError}
+                            {submitError}{" "}
+                            <a
+                              href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent("Complete my intake")}&body=${encodeURIComponent(
+                                [
+                                  "I completed the online intake but it couldn't be submitted — please contact me to finish my evaluation.",
+                                  "",
+                                  form.name ? `Name: ${form.name}` : null,
+                                  form.email ? `Email: ${form.email}` : null,
+                                  form.phone ? `Phone: ${form.phone}` : null,
+                                  form.state ? `State: ${form.state}` : null,
+                                ].filter(Boolean).join("\n"),
+                              )}`}
+                              style={{ color: "var(--nx-danger)", fontWeight: 600, textDecoration: "underline" }}
+                              data-testid="assessment-submit-mailto"
+                            >
+                              Email us
+                            </a>
                           </p>
                         )}
                       </div>
