@@ -462,7 +462,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.2vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.12 }}>
-          The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
+          The consultation is complimentary. <em style={{ color: "var(--nx-cobalt)" }}>A figure follows only a prescription.</em>
         </h2>
         <Link
           href="/assessment"

@@ -582,11 +582,11 @@ export default function Pricing() {
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One number</span> a month.<br />
-                <span>Everything within it.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>The price is the smallest</span><br />
+                <span>part of the decision.</span>
               </>
             }
-            subtitle="Monthly subscriptions, single-protocol purchases, or stacked bundles. Your physician consult and bloodwork are included in every plan."
+            subtitle="One figure carries the physician, the panel, the medicine, and the retest that proves it. The question was never the number — it's the condition you intend to live in."
           />
 
           {/* Editorial hero — the pricing promise as a photograph, not a diagram */}
@@ -1377,8 +1377,8 @@ export default function Pricing() {
       </section>
 
       <FinalCTAStrip
-        title="Consultation complimentary. Labs included."
-        sub="Start your intake. Physician review follows every partner-laboratory draw."
+        title="Begin with the complimentary review."
+        sub="Your intake, read by a physician. A figure only ever follows a prescription."
       />
     </SiteLayout>
   );

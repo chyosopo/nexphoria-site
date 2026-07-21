@@ -405,7 +405,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       )}
 
       <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.4rem)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em></h2>
+        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation is complimentary. <em style={{ color: "var(--nx-cobalt)" }}>A figure follows only a prescription.</em></h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Start your assessment</Link>
       </section>
     </SiteLayout>

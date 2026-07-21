@@ -38,10 +38,10 @@ export function CadenceCalculator() {
   return (
     <div className="nx-glass-tile" data-testid="cadence-calculator" style={{ display: "block", padding: "clamp(1.4rem,3vw,2rem)", maxWidth: 860 }}>
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-        See your plan
+        The commitment
       </p>
       <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>
-        What each cadence actually costs.
+        The figure, at each commitment.
       </h3>
 
       {/* protocol picker */}

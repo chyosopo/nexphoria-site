@@ -607,7 +607,7 @@ export default function Checkout() {
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
                 <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · encrypted in transit" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
-                <TrustRow icon={<Check size={14} />} text="The consultation carries no charge. You pay only if prescribed." />
+                <TrustRow icon={<Check size={14} />} text="The consultation is complimentary. You pay only if prescribed." />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 
