@@ -380,9 +380,28 @@ prioritized fix list; fixes land page by page, gates green each time.
     negation that survived the 07-14 sweep — Pricing "Nothing upsold" /
     "no add-ons, no lab upsell" / "Included free with", About/Bloodwork/
     cart badges. All recast as assurance-as-completeness.
-  PENDING: numeric small-type literals (10px×18, 11px×35) still off-ladder
-  (audit counts them; collapsing to --nx-t-xs would move badge/meta type
-  visibly — wants an eyes-on pass, Atlas lane).
+- [x] **10.15 VISUAL SYSTEM COMPLETION** (done 2026-07-21, continuation of
+  10.14 "tighten everything" + "keep enhancing especially the visuals"):
+  · Micro type: new --nx-t-2xs (11px); 131 replacements killed the
+    10px/11px badge chaos in both inline styles and tailwind text-[..]
+    classes. audit fontSize 26 → 3 (survivors: vial-art micro-print).
+  · Radius: new --nx-r-2xs (4px); 32 replacements. audit radius 50 → 3
+    ('50%' circles + hairline 1-2px kept as idioms).
+  · Tailwind rhythm: 22 responsive py pairs + solo section paddings onto
+    py-[var(--nx-section-y)] / py-[var(--nx-sp-sec)] — section rhythm now
+    fluid AND single-sourced across inline + tailwind.
+  · Caps tracking: new --nx-ls-caps (0.14em) / --nx-ls-wide (0.2em);
+    321 replacements collapsed 12 distinct tracking values.
+  · BenefitTile: text-only tiles default 4/3 (squares were ~60% air on
+    Pricing/About); image/metric tiles stay 1:1.
+  · Voice: killed surviving defensive negation on Pricing/About/Bloodwork/
+    cart badges + builder "Lock in a bundle discount".
+  · Verified: broken-image scan 18 routes (all resolve), 390px overflow
+    check 17 routes (clear), eyes-on shots of men/women/pricing/build/
+    cart/PDP. All five gates green on every commit.
+  PENDING: bespoke boxShadows (7, intentional depth — drawer/modal/nav);
+  metric-tile conditional fontSize clamps in BenefitTile (ternary
+  expressions, off-codemod); sub-8px decorative type.
 - [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
