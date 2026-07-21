@@ -61,6 +61,8 @@ async function main() {
     ["/cart",            "/src/pages/Cart.tsx", {}],
     ["/checkout",        "/src/pages/Checkout.tsx", {}],
     ["/pricing",         "/src/pages/Pricing.tsx", {}],
+    ["/gift",            "/src/pages/Gift.tsx", {}],
+    ["/gift/claim",      "/src/pages/GiftClaim.tsx", {}],
     ["/science",         "/src/pages/Science.tsx", {}],
     ["/physicians",      "/src/pages/Physicians.tsx", {}],
     ["/lab-testing",     "/src/pages/Bloodwork.tsx", {}], // alias → /bloodwork (LabTesting.tsx deleted — dead page, no route rendered it)

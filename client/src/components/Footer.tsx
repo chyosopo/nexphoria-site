@@ -67,6 +67,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "Build a stack", href: "/stacks/build" },
         { label: "Bloodwork", href: "/bloodwork" },
         { label: "Custom protocol", href: assessmentBase },
+        { label: "Give as a gift", href: "/gift" },
         { label: "Pricing", href: "/pricing" },
       ],
     },

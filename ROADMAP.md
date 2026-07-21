@@ -347,6 +347,26 @@ prioritized fix list; fixes land page by page, gates green each time.
   · Footer dropped the redundant "Lab testing" link.
   Verified after: 22-route crawl clean, e2e funnel 0 fails both worlds,
   all gates green.
+- [x] **10.13 THE GIFT** (done 2026-07-14, Chiya: hone.com "gift health"
+  grammar — give a protocol, or send a link asking someone to cover
+  yours). /gift + /gift/claim:
+  · Give: choose a non-gated protocol (real 3/12-month one-time totals
+    from the cadence engine) or a panel; concierge checkout via mailto —
+    NO fake payment capture (real-money rule; Stripe/Bask pending).
+  · Request: build your plan + first name → share link. The link carries
+    identifiers only (item, term, name — never a price, never health
+    data); the claim page re-derives everything from the catalog, and a
+    tampered/unknown link fails soft.
+  · Honesty as architecture: a gift covers the COST — recipient still
+    completes their own intake, their physician can decline, and an
+    unprescribed gift is refunded/applied (extension of the sitewide
+    pay-only-if-prescribed promise). Giver never sees recipient health
+    data. Gated (GLP-1) protocols excluded from gifting.
+  · Entries: footer "Give as a gift", both gift doors on every stack
+    buy box, sitemap 115 URLs, smoke 49/49.
+  OPEN (needs Chiya): 6-month gift term (no 6-mo cadence exists in the
+  catalog — needs a priced decision), real payment rails, gift-credit
+  policy sign-off (refund/apply language), gift email/delivery flow.
 - [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.

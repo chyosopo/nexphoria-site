@@ -45,6 +45,8 @@ const Community = lazy(() => import("@/pages/Community"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const FAQPage = lazy(() => import("@/pages/FAQ"));
 const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
+const Gift = lazy(() => import("@/pages/Gift"));
+const GiftClaim = lazy(() => import("@/pages/GiftClaim"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
@@ -125,6 +127,8 @@ function AppRouter() {
         <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
         <Route path="/catalog">{() => <R to="/men/peptides" />}</Route>
         <Route path="/pricing" component={Pricing} />
+        <Route path="/gift" component={Gift} />
+        <Route path="/gift/claim" component={GiftClaim} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />
         <Route path="/community" component={Community} />

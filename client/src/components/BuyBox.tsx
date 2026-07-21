@@ -206,6 +206,18 @@ export function BuyBox(props: BuyBoxProps) {
                 </Link>
               </div>
             )}
+            {/* the gift doors (stacks only): give this protocol, or send a
+                link asking someone else to cover it */}
+            {addType === "stack" && (
+              <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: "0.5rem", fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600 }}>
+                <Link href={`/gift?item=stack:${slug}`} data-testid={`${ctaTestId}-gift`} onClick={() => track("gift_entry", { source: "buybox", slug })} style={{ color: "var(--nx-fg-muted)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+                  Gift this protocol
+                </Link>
+                <Link href={`/gift?item=stack:${slug}&mode=request`} data-testid={`${ctaTestId}-gift-ask`} onClick={() => track("gift_entry", { source: "buybox-ask", slug })} style={{ color: "var(--nx-fg-muted)", textDecoration: "underline", textUnderlineOffset: 3 }}>
+                  Ask someone to cover it
+                </Link>
+              </div>
+            )}
           </>
         )}
         <PrescribedPromise centered testid="buybox-promise" style={{ marginTop: "0.75rem", justifyContent: "center" }} />
