@@ -42,7 +42,7 @@ export function SectionHead({
   return (
     <div style={{ textAlign: center ? "center" : "left", marginInline: center ? "auto" : undefined, maxWidth: center ? "60ch" : undefined }}>
       {eyebrow && (
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
           {eyebrow}
         </p>
       )}

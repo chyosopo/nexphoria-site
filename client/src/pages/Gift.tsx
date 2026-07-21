@@ -114,7 +114,7 @@ export default function Gift() {
           background: active ? "var(--nx-cobalt-soft)" : undefined,
         }}
       >
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
           {g.kind === "stack" ? "Protocol" : "Bloodwork"}
         </p>
         <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: 4, lineHeight: 1.12 }}>{g.name}</p>
@@ -133,7 +133,7 @@ export default function Gift() {
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             The gift
           </p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "17ch", marginTop: "0.9rem" }}>
@@ -173,7 +173,7 @@ export default function Gift() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 12, marginTop: "1.2rem" }}>
           {stacks.map(itemCard)}
         </div>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "1.6rem" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "1.6rem" }}>
           Or a bloodwork panel on its own
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "0.8rem" }}>

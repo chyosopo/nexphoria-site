@@ -117,7 +117,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
                 <ArrowLeft size={15} aria-hidden="true" /> All protocols
               </Link>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
                 {stack.category}
               </p>
               <h1 id="stack-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
@@ -130,7 +130,7 @@ export default function StackPage({ slug }: { slug: string }) {
               {STACK_GOAL[stack.slug] && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.9rem" }} data-testid="stack-triad">
                   {CATEGORY_TRIAD[STACK_GOAL[stack.slug]].map((w) => (
-                    <span key={w} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-graphite)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", padding: "6px 13px", background: "var(--nx-ceramic)" }}>
+                    <span key={w} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-graphite)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", padding: "6px 13px", background: "var(--nx-ceramic)" }}>
                       {w}
                     </span>
                   ))}
@@ -201,7 +201,7 @@ export default function StackPage({ slug }: { slug: string }) {
           {/* — LEFT: the story — */}
           <div>
             {/* Protocol — peptide chips (icon + name), then the details table */}
-            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</h2>
+            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</h2>
             {/* compact floating spec tiles — name · dose · spec, pharmaceutical-precise */}
             <div className="nx-float-grid dense" style={{ marginTop: "0.9rem" }}>
               {stack.peptides.map((p, i) => (
@@ -258,7 +258,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* Required panel */}
             <div className="nx-glass-tile" style={{ display: "block", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
               <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.4rem" }}>
                 {stack.panel} panel
               </h3>
@@ -273,7 +273,7 @@ export default function StackPage({ slug }: { slug: string }) {
             {/* GLP-1 narrative — the why of the wall, in flow */}
             {stack.gated && (
               <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                   <Lock size={15} aria-hidden="true" /> Physician-assessed only
                 </div>
                 <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "24ch" }}>
@@ -319,7 +319,7 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── ONE NIGHT BAND — contraindications, stated plainly ── */}
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0", overflow: "hidden" }} aria-labelledby="stack-contra-title">
         <div className="nx-container">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Before you begin</p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Before you begin</p>
           <h2 id="stack-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
             This protocol is not for everyone.
           </h2>
@@ -361,7 +361,7 @@ export default function StackPage({ slug }: { slug: string }) {
                     </div>
                   )}
                   <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{s.name}</h3>
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{s.tagline}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>

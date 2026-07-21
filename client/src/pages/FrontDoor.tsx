@@ -93,7 +93,7 @@ export default function FrontDoor() {
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
             <div className="nx-hero-seq">
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 Physician-prescribed peptide therapy
               </p>
               <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem" }}>
@@ -132,7 +132,7 @@ export default function FrontDoor() {
           full-screen version lives on at /gate. ══ */}
       <section aria-labelledby="frontdoor-gate-heading" style={{ paddingTop: "var(--nx-sp-band)" }}>
         <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             Two worlds · one clinical standard
           </p>
           <h2 id="frontdoor-gate-heading" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "22ch", lineHeight: 1.12 }}>
@@ -156,7 +156,7 @@ export default function FrontDoor() {
                 <img src={w.img} alt="" aria-hidden loading="lazy" width={1600} height={2000} style={{ objectPosition: w.pos }} />
                 <div className="nx-wgate-scrim" aria-hidden />
                 <div className="nx-wgate-copy">
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
                     {w.eyebrow}
                   </p>
                   <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.02, letterSpacing: "-0.015em", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
@@ -207,7 +207,7 @@ export default function FrontDoor() {
           ].map((p, i) => (
             <Reveal key={p.t} delay={i * 60}>
               <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,1.9rem)", height: "100%" }}>
-                <p aria-hidden style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", color: "var(--nx-cobalt)" }}>0{i + 1}</p>
+                <p aria-hidden style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", color: "var(--nx-cobalt)" }}>0{i + 1}</p>
                 <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>{p.t}</h3>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>{p.b}</p>
               </div>
@@ -240,7 +240,7 @@ export default function FrontDoor() {
                     {CATEGORY_FEELING[cat]}
                   </p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.6rem" }}>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
                       {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
                     </p>
                     <ArrowRight size={15} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
@@ -256,7 +256,7 @@ export default function FrontDoor() {
       <section className="nx-container" aria-labelledby="frontdoor-education" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr]" style={{ gap: "clamp(1.8rem,4vw,3rem)", alignItems: "center", background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "var(--nx-sp-band)" }} data-testid="frontdoor-education">
           <div>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               Before anything else
             </p>
             <h2 id="frontdoor-education" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, maxWidth: "18ch" }}>
@@ -301,7 +301,7 @@ export default function FrontDoor() {
           ].map((s, i) => (
             <Reveal key={s.n} delay={i * 55}>
               <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1.15rem 1.25rem", height: "100%", background: "var(--nx-bg)" }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", color: "var(--nx-cobalt)" }}>{s.n}</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", color: "var(--nx-cobalt)" }}>{s.n}</p>
                 <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", marginTop: "0.45rem" }}>{s.t}</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{s.b}</p>
               </div>
@@ -326,7 +326,7 @@ export default function FrontDoor() {
       {/* ══ 5 · THE PANEL — living texture ══ */}
       <section aria-label="Biomarkers we measure" style={{ paddingTop: "0", paddingBottom: "0" }}>
         <div className="nx-container" style={{ marginBottom: "1.1rem" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {PANEL_TOTAL_MARKERS} biomarkers · drawn at baseline · re-drawn every 90 days
           </p>
         </div>
@@ -349,7 +349,7 @@ export default function FrontDoor() {
       {/* ══ 6 · PRICE ANCHOR + THE ONE ACTION — the closer ══ */}
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden", marginTop: "clamp(3rem,5.5vw,4.5rem)" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             One number a month
           </p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "24ch", margin: "0.9rem auto 0", lineHeight: 1.1 }}>

@@ -50,7 +50,7 @@ export default function GiftClaim() {
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 860 }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             A gift ask
           </p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.07, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.9rem" }} data-testid="giftclaim-title">
@@ -63,7 +63,7 @@ export default function GiftClaim() {
 
           {/* the ask, priced from the catalog */}
           <div className="nx-glass-tile" style={{ display: "block", marginTop: "1.8rem", padding: "clamp(1.4rem,3vw,2rem)", maxWidth: 560 }} data-testid="giftclaim-card">
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               {item.kind === "stack" ? `Protocol · ${termLabel}` : "Bloodwork panel"}
             </p>
             <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", marginTop: 4 }}>{item.name}</p>

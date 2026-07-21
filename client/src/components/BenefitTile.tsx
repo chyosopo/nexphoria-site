@@ -168,7 +168,7 @@ export function BenefitTile({
             style={{
               fontFamily: FONT,
               color: hasImage ? "var(--nx-accent)" : t.eyebrow,
-              letterSpacing: "0.18em",
+              letterSpacing: "var(--nx-ls-wide)",
               fontWeight: 600,
             }}
           >
@@ -198,7 +198,7 @@ export function BenefitTile({
             </span>
             {metricUnit ? (
               <span
-                className="text-[11px] md:text-xs uppercase tracking-[0.14em]"
+                className="text-[11px] md:text-xs uppercase tracking-[var(--nx-ls-caps)]"
                 style={{ fontFamily: FONT, color: hasImage ? "var(--nx-accent)" : t.eyebrow, fontWeight: 600 }}
               >
                 {metricUnit}
@@ -246,7 +246,7 @@ export function BenefitTile({
             style={{
               fontFamily: FONT,
               color: hasImage ? "rgba(243, 245, 247,0.85)" : t.sub,
-              letterSpacing: "0.15em",
+              letterSpacing: "var(--nx-ls-caps)",
               fontWeight: 600,
             }}
           >

@@ -147,7 +147,7 @@ function PricingTiers() {
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
-              letterSpacing: "0.18em",
+              letterSpacing: "var(--nx-ls-wide)",
               textTransform: "uppercase",
               color: "var(--nx-cobalt)",
               marginBottom: "1rem",
@@ -218,7 +218,7 @@ function PricingTiers() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-xs)",
                       fontWeight: 600,
-                      letterSpacing: "0.12em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-fg)",
                       background: "var(--nx-acid)",
@@ -265,7 +265,7 @@ function PricingTiers() {
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "var(--nx-t-xs)",
                           textTransform: "uppercase",
-                          letterSpacing: "0.12em",
+                          letterSpacing: "var(--nx-ls-caps)",
                           color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
                         }}
                       >
@@ -315,7 +315,7 @@ function PricingTiers() {
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
-                      letterSpacing: "0.16em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: tier.recommended ? "rgba(255,255,255,0.5)" : "var(--nx-fg-muted)",
                       marginBottom: "0.875rem",
@@ -670,7 +670,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "var(--nx-cobalt)",
                 marginBottom: "1rem",
@@ -777,7 +777,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "var(--nx-cobalt)",
                 marginBottom: "1rem",
@@ -837,7 +837,7 @@ export default function Pricing() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.6)",
                   }}
@@ -852,7 +852,7 @@ export default function Pricing() {
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "var(--nx-t-xs)",
                           fontWeight: 700,
-                          letterSpacing: "0.14em",
+                          letterSpacing: "var(--nx-ls-caps)",
                           textTransform: "uppercase",
                           color: "var(--nx-ceramic)",
                         }}
@@ -1016,10 +1016,10 @@ export default function Pricing() {
                   gap: "0.75rem",
                 }}
               >
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
                   12-MONTH PLAN — SAVE {SAVE_12MO}% vs. MONTH-TO-MONTH
                 </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(255,255,255,0.55)", letterSpacing: "0.1em" }}>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(255,255,255,0.55)", letterSpacing: "var(--nx-ls-caps)" }}>
                   E.g. {SAVINGS_EXAMPLE.name}: {formatUSD(SAVINGS_EXAMPLE.annual)}/yr vs {formatUSD(SAVINGS_EXAMPLE.monthlyYear)}/yr monthly
                 </p>
               </div>
@@ -1050,7 +1050,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "var(--nx-cobalt)",
                 marginBottom: "1rem",
@@ -1147,7 +1147,7 @@ export default function Pricing() {
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "var(--nx-cobalt)",
                 marginBottom: "1rem",
@@ -1197,7 +1197,7 @@ export default function Pricing() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.6)",
                   }}
@@ -1209,7 +1209,7 @@ export default function Pricing() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "var(--nx-ceramic)",
                     textAlign: "center",
@@ -1222,7 +1222,7 @@ export default function Pricing() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.55)",
                     textAlign: "center",
@@ -1297,7 +1297,7 @@ export default function Pricing() {
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.18em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
                   color: "var(--nx-cobalt)",
                   marginBottom: "0.75rem",
@@ -1338,7 +1338,7 @@ export default function Pricing() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
-              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+              style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               PRICING QUESTIONS
@@ -1420,10 +1420,10 @@ export function PricingPlanTable() {
               </caption>
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Feature</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Solo Peptide</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-ceramic)", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>★ Curated Stack</th>
-                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "0.12em", textTransform: "uppercase" }}>Custom Protocol</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "left", color: "rgba(255,255,255,0.65)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase" }}>Feature</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase" }}>Solo Peptide</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "var(--nx-ceramic)", fontWeight: 700, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase" }}>★ Curated Stack</th>
+                  <th scope="col" style={{ padding: "0.875rem 1rem", textAlign: "center", color: "rgba(255,255,255,0.8)", fontWeight: 600, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase" }}>Custom Protocol</th>
                 </tr>
               </thead>
               <tbody>

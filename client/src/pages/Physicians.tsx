@@ -69,7 +69,7 @@ export default function Physicians() {
                     fontFamily: F,
                     fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.18em",
+                    letterSpacing: "var(--nx-ls-wide)",
                     textTransform: "uppercase",
                     color: "var(--nx-cobalt)",
                     marginBottom: "1rem",
@@ -132,7 +132,7 @@ export default function Physicians() {
                     fontFamily: F,
                     fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.18em",
+                    letterSpacing: "var(--nx-ls-wide)",
                     textTransform: "uppercase",
                     color: "var(--nx-cobalt)",
                     marginBottom: "1rem",
@@ -282,7 +282,7 @@ export default function Physicians() {
                         fontFamily: F,
                         fontSize: "var(--nx-t-xs)",
                         fontWeight: 500,
-                        letterSpacing: "0.1em",
+                        letterSpacing: "var(--nx-ls-caps)",
                         textTransform: "uppercase",
                         color: "var(--nx-cobalt)",
                       }}
@@ -306,7 +306,7 @@ export default function Physicians() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
-              style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+              style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 500, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
@@ -448,7 +448,7 @@ function PhysiciansHeroDark() {
                 fontFamily: F,
                 fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
-                letterSpacing: "0.22em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "var(--nx-acid)",
                 marginBottom: "1.25rem",
@@ -646,7 +646,7 @@ function PhysiciansHeroDark() {
                   fontFamily: F,
                   fontSize: "var(--nx-t-2xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "rgba(241, 243, 244,0.55)",
                 }}
@@ -672,7 +672,7 @@ const eyebrowStyle: React.CSSProperties = {
   fontFamily: F,
   fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
-  letterSpacing: "0.18em",
+  letterSpacing: "var(--nx-ls-wide)",
   textTransform: "uppercase",
   color: "var(--nx-cobalt)",
   marginBottom: "1rem",

@@ -119,7 +119,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
               <h1 id="peptides-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
                 {SOLO_CATALOG.length} peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
               </h1>
@@ -140,7 +140,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
                 }}
               >
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
                   {SOLO_CATALOG.length} peptides · physician-prescribed
                 </span>
               </div>
@@ -193,7 +193,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Peptide catalog">
-        <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
+        <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
           {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
         </p>
         {shown.length === 0 && (
@@ -270,7 +270,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                       {feelingFor(SHELF_CAT[cat], world)}
                     </em>
                   )}
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginLeft: "auto" }}>
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginLeft: "auto" }}>
                     {items.length} {items.length === 1 ? "peptide" : "peptides"}
                   </span>
                 </h2>
@@ -286,7 +286,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       {/* not sure which — route to the assessment */}
       <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-band) 0" }} aria-labelledby="peptides-assess-title">
         <div className="nx-container" style={{ textAlign: "center" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
           <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
             The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
           </h2>

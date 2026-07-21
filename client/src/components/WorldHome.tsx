@@ -112,7 +112,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
           <div className="nx-hero-seq">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "15ch", marginTop: "0.9rem" }}>
@@ -191,7 +191,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                       {feelingFor(cat, world)}
                     </p>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.6rem" }}>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
                         {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
                       </p>
                       <ArrowRight size={15} strokeWidth={2.2} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
@@ -221,7 +221,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       {/* ── BIOMARKER MARQUEE — the panel as living texture (hims-Labs grammar) ── */}
       <section aria-label="Biomarkers we measure" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
         <div className="nx-container" style={{ marginBottom: "1.1rem" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {PANEL_TOTAL_MARKERS} biomarkers · drawn at baseline · re-drawn every 90 days
           </p>
         </div>
@@ -256,7 +256,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <div className="relative" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", minHeight: 320, height: "100%", boxShadow: "var(--nx-e-3)" }}>
               <img src={config.vialArt} alt="" aria-hidden loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
               <div className="nx-art-chip" style={{ maxWidth: 260 }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                   Compounded per prescription
                 </p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", marginTop: "0.3rem" }}>
@@ -281,7 +281,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                     </div>
                   )}
                   <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                       {CATEGORY_LABELS[p.category]}
                     </p>
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>
@@ -307,7 +307,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               The panel
             </p>
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
@@ -370,7 +370,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             </div>
           </Reveal>
           <div>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               One dashboard
             </p>
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "18ch" }}>
@@ -390,7 +390,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       {/* ── THE ONE NIGHT BAND — the loop is the product ── */}
       <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             {config.nightEyebrow}
           </p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "22ch", marginTop: "0.8rem", lineHeight: 1.12 }}>
@@ -407,7 +407,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             ].map((s) => (
               <div key={s.n}>
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1 }}>{s.n}</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-acid)", marginTop: "0.5rem", opacity: 0.9 }}>{s.l}</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-acid)", marginTop: "0.5rem", opacity: 0.9 }}>{s.l}</p>
               </div>
             ))}
           </div>
@@ -422,7 +422,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.3fr]" style={{ gap: "clamp(1.8rem,4vw,3.4rem)", alignItems: "start" }}>
           <div>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               Questions
             </p>
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
@@ -458,7 +458,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
 
       {/* ── STANDARDS LINE + CLOSE ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.12 }}>

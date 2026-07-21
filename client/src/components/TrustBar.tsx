@@ -41,7 +41,7 @@ export function TrustBar() {
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.12em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "color-mix(in oklab, var(--nx-fg) 68%, transparent)",
               lineHeight: 1,

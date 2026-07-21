@@ -225,7 +225,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 style={{
                   fontSize: "var(--nx-t-2xs)",
                   color: "rgba(255,255,255,0.85)",
-                  letterSpacing: "0.1em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   fontWeight: 600,
                 }}
@@ -308,7 +308,7 @@ function FooterCol({ column }: { column: FooterColumn }) {
           fontFamily: "'General Sans', system-ui, sans-serif",
           fontSize: "var(--nx-t-2xs)",
           fontWeight: 500,
-          letterSpacing: "0.12em",
+          letterSpacing: "var(--nx-ls-caps)",
           textTransform: "uppercase",
           color: "rgba(255,255,255,0.66)",
         }}

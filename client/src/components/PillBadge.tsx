@@ -38,7 +38,7 @@ export function PillBadge({
         fontFamily: "'General Sans', system-ui, sans-serif",
         fontSize: "var(--nx-t-2xs)",
         fontWeight: 500,
-        letterSpacing: "0.18em",
+        letterSpacing: "var(--nx-ls-wide)",
         textTransform: "uppercase",
         color: "color-mix(in oklab, var(--nx-fg) 78%, transparent)",
         background: "transparent",

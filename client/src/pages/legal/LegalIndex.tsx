@@ -50,7 +50,7 @@ export default function LegalIndex() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
-                letterSpacing: "0.14em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-fg-muted)",
                 marginBottom: "1rem",

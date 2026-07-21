@@ -337,7 +337,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     fontWeight: 600,
                     color: t.ink,
@@ -360,7 +360,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     fontWeight: 600,
                     color: t.ink,
@@ -379,7 +379,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
-                    letterSpacing: "0.12em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     fontWeight: 600,
                     color: reg.color,
@@ -398,7 +398,7 @@ function VialTileInner({
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontSize: "var(--nx-t-xs)",
-                  letterSpacing: "0.12em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   fontWeight: 600,
                   color: "var(--nx-ceramic)",
@@ -491,7 +491,7 @@ function VialTileInner({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-xs)",
-                      letterSpacing: "0.12em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: t.ink,
                       opacity: 0.55,
@@ -623,7 +623,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "var(--nx-acid)",
                     marginTop: 4,
@@ -665,7 +665,7 @@ function VialTileInner({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-xs)",
-                      letterSpacing: "0.14em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "rgba(246, 249, 252,0.42)",
                     }}
@@ -691,7 +691,7 @@ function VialTileInner({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-xs)",
-                      letterSpacing: "0.14em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "rgba(246, 249, 252,0.42)",
                     }}
@@ -731,7 +731,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xs)",
-                    letterSpacing: "0.12em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "rgba(246, 249, 252,0.48)",
                   }}

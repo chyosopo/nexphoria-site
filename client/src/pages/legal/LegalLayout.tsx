@@ -85,7 +85,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
               fontFamily: FONT,
               fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.12em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "var(--nx-fg-muted)",
             }}
@@ -222,7 +222,7 @@ const eyebrowStyle: React.CSSProperties = {
   fontFamily: FONT,
   fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
-  letterSpacing: "0.14em",
+  letterSpacing: "var(--nx-ls-caps)",
   textTransform: "uppercase",
 };
 

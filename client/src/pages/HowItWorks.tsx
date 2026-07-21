@@ -128,7 +128,7 @@ export default function HowItWorks() {
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
-              <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 <ShieldCheck size={14} strokeWidth={2.2} aria-hidden="true" /> How it works
               </p>
               <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.02em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
@@ -154,7 +154,7 @@ export default function HowItWorks() {
                   borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
                 }}
               >
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
                   Seven steps · fixed order
                 </span>
               </div>
@@ -178,7 +178,7 @@ export default function HowItWorks() {
       {/* ══ THE TIMELINE — each step argues its own case ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <Reveal>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The fixed order</p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The fixed order</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
             From intake to retest, <em style={{ color: "var(--nx-cobalt)" }}>nothing is skipped.</em>
           </h2>
@@ -240,7 +240,7 @@ export default function HowItWorks() {
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden" }}>
         <div className="nx-container">
           <Reveal>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Why the loop matters</p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Why the loop matters</p>
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "1rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
               A prescription is a hypothesis. <em style={{ color: "var(--nx-acid)" }}>The retest is the evidence.</em>
             </h2>
@@ -266,7 +266,7 @@ export default function HowItWorks() {
       {/* ══ COMPARISON — the argument made explicit, in two contrasted columns ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <Reveal>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The difference, plainly</p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The difference, plainly</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
             Same molecules. <em style={{ color: "var(--nx-cobalt)" }}>Different institution.</em>
           </h2>
@@ -276,7 +276,7 @@ export default function HowItWorks() {
           {/* THEM */}
           <Reveal>
             <div className="nx-feature-card" style={{ padding: "clamp(1.4rem,3vw,2rem)", background: "color-mix(in srgb, var(--nx-fg-muted) 8%, var(--nx-ceramic))" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>The rest of the market</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>The rest of the market</p>
               <ul style={{ listStyle: "none", padding: 0, margin: "1.1rem 0 0", display: "flex", flexDirection: "column", gap: 14 }}>
                 {COMPARE.map((c) => (
                   <li key={c.row} style={{ display: "flex", gap: 11, alignItems: "flex-start", borderTop: "1px solid var(--nx-border)", paddingTop: 14 }}>
@@ -293,7 +293,7 @@ export default function HowItWorks() {
           {/* US */}
           <Reveal delay={80}>
             <div className="nx-feature-card edge-top" style={{ padding: "clamp(1.4rem,3vw,2rem)", background: "var(--nx-cobalt-soft)" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Nexphoria</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Nexphoria</p>
               <ul style={{ listStyle: "none", padding: 0, margin: "1.1rem 0 0", display: "flex", flexDirection: "column", gap: 14 }}>
                 {COMPARE.map((c) => (
                   <li key={c.row} style={{ display: "flex", gap: 11, alignItems: "flex-start", borderTop: "1px solid color-mix(in srgb, var(--nx-cobalt) 20%, transparent)", paddingTop: 14 }}>
@@ -312,7 +312,7 @@ export default function HowItWorks() {
 
       {/* ══ CLOSE ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.1 }}>

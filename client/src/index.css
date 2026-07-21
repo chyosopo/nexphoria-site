@@ -24,6 +24,10 @@
     --nx-t-h1:      clamp(38px, 5.2vw, 60px);
     --nx-t-display: clamp(44px, 6.4vw, 76px);        /* hero only */
 
+    /* ══ D1c CAPS TRACKING — the only sanctioned uppercase letter-spacing ══ */
+    --nx-ls-caps: 0.14em;   /* standard eyebrows, badges, meta labels */
+    --nx-ls-wide: 0.2em;    /* display-grade spaced caps */
+
     /* ══ D1b SECTION RHYTHM — the only sanctioned section paddings ══ */
     --nx-sp-sec:   clamp(3.8rem, 6.5vw, 5.75rem);    /* full section: page-level blocks */
     --nx-sp-band:  clamp(2.5rem, 4.5vw, 3.75rem);    /* band: strips, sub-sections */

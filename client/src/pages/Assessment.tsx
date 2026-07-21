@@ -112,7 +112,7 @@ const eyebrow: React.CSSProperties = {
   fontFamily: F,
   fontSize: "var(--nx-t-xs)",
   fontWeight: 700,
-  letterSpacing: "0.16em",
+  letterSpacing: "var(--nx-ls-caps)",
   textTransform: "uppercase",
   color: "var(--nx-cobalt)",
   marginBottom: "1rem",
@@ -144,7 +144,7 @@ const fieldLabel: React.CSSProperties = {
   fontFamily: F,
   fontSize: "var(--nx-t-xs)",
   fontWeight: 600,
-  letterSpacing: "0.12em",
+  letterSpacing: "var(--nx-ls-caps)",
   textTransform: "uppercase",
   color: "var(--nx-fg-muted)",
   marginBottom: "0.5rem",
@@ -727,7 +727,7 @@ export default function Assessment() {
                   fontFamily: F,
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 600,
-                  letterSpacing: "0.18em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
                   color: "var(--nx-cobalt)",
                   marginBottom: "1rem",
@@ -930,7 +930,7 @@ export default function Assessment() {
                                   fontFamily: F,
                                   fontSize: "var(--nx-t-xs)",
                                   fontWeight: 600,
-                                  letterSpacing: "0.12em",
+                                  letterSpacing: "var(--nx-ls-caps)",
                                   textTransform: "uppercase",
                                   color: "var(--nx-fg-muted)",
                                 }}
@@ -1362,7 +1362,7 @@ export default function Assessment() {
                             fontFamily: F,
                             fontSize: "var(--nx-t-xs)",
                             fontWeight: 700,
-                            letterSpacing: "0.14em",
+                            letterSpacing: "var(--nx-ls-caps)",
                             textTransform: "uppercase",
                             color: "var(--nx-cobalt)",
                             flexShrink: 0,
@@ -1481,7 +1481,7 @@ export default function Assessment() {
                                 fontFamily: F,
                                 fontSize: "var(--nx-t-xs)",
                                 fontWeight: 600,
-                                letterSpacing: "0.1em",
+                                letterSpacing: "var(--nx-ls-caps)",
                                 textTransform: "uppercase",
                                 color: "var(--nx-fg-muted)",
                                 flexShrink: 0,
@@ -1616,7 +1616,7 @@ export default function Assessment() {
                         // Shared label/value styles for the calm three-row spec list.
                         const specTerm: React.CSSProperties = {
                           fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700,
-                          letterSpacing: "0.12em", textTransform: "uppercase",
+                          letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
                           color: "var(--nx-fg-muted)", margin: 0,
                         };
                         const specDesc: React.CSSProperties = {
@@ -1635,7 +1635,7 @@ export default function Assessment() {
                                 <VialArt tone={tone} glyph={goalGlyphToMolecular(cfg.glyph ?? "drop")} size={72} />
                               </div>
                               <div style={{ minWidth: 0, flex: 1 }}>
-                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-bg)", opacity: 0.72, margin: "0 0 0.375rem 0" }}>
+                                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-bg)", opacity: 0.72, margin: "0 0 0.375rem 0" }}>
                                   Based on your goal
                                 </p>
                                 <h3 id="rec-protocol-name" style={{ fontFamily: F, fontSize: "var(--nx-t-h3)", fontWeight: 600, color: "var(--nx-bg)", margin: 0, lineHeight: 1.2, letterSpacing: "-0.01em" }}>

@@ -149,7 +149,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div>
               {/* Goals before chemistry (ROADMAP 3.2): the OUTCOME is the
                   headline; the molecule identifies, it no longer leads. */}
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 {solo.name} · {solo.category}
               </p>
               <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem", maxWidth: "18ch" }}>{solo.outcome}</h1>
@@ -158,11 +158,11 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </p>
               <div className="grid sm:grid-cols-2" style={{ gap: 10, maxWidth: 520, marginTop: "1.4rem" }}>
                 <div className="nx-stat-card" style={{ gap: 4 }}>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose</span>
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose</span>
                   <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{solo.dose}</span>
                 </div>
                 <div className="nx-stat-card" style={{ gap: 4 }}>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Format</span>
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Format</span>
                   <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{solo.spec}</span>
                 </div>
               </div>
@@ -180,7 +180,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
                 }}
               >
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
                   {solo.gated ? "Physician-assessed" : "Prescription only"}
                 </span>
               </div>
@@ -197,7 +197,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div>
             {/* Why this peptide — the three pillars every solo answers to.
                h2 (not p) so the tile h3s below don't skip a heading level; style unchanged. */}
-            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</h2>
+            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "0.9rem" }}>
               {WHY.map((w, i) => (
                 <Reveal key={w.t} delay={i * 55}>
@@ -247,7 +247,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="nx-icon-circle" aria-hidden><Microscope size={19} strokeWidth={1.9} /></span>
                 <div>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
                   <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)" }}>{solo.panel} panel</h3>
                 </div>
               </div>
@@ -298,7 +298,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, color-mix(in srgb, var(--nx-fg) 62%, transparent) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
               <div style={{ padding: "var(--nx-sp-band)", maxWidth: 560 }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
                 <h2 id="solo-point-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
                   We sell the measured loop — <em style={{ color: "var(--nx-acid)" }}>not the vial.</em>
                 </h2>
@@ -311,7 +311,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {/* ══ CONTRAINDICATION NIGHT BAND — dramatic ══ */}
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0", overflow: "hidden" }} aria-labelledby="solo-contra-title">
         <div className="nx-container">
-          <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
+          <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Before you begin
           </p>
           <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
@@ -342,7 +342,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </div>
             )}
             <div className="nx-float-card__body" style={{ flex: "2 1 340px" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 The complete route
               </p>
               <h2 id="solo-upgrade-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.5rem" }}>
@@ -389,7 +389,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <Reveal key={r.slug} delay={i * 60}>
                 <Link href={`${base}/peptides/${r.slug}`} className="nx-float-card" data-testid={`solo-related-${r.slug}`}>
                   <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{r.name}</h3>
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.mechanism}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>

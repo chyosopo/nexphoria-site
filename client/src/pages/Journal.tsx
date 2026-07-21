@@ -21,7 +21,7 @@ const eyebrow: React.CSSProperties = {
   fontFamily: FONT,
   fontSize: "var(--nx-t-xs)",
   fontWeight: 500,
-  letterSpacing: "0.18em",
+  letterSpacing: "var(--nx-ls-wide)",
   textTransform: "uppercase",
   color: "var(--nx-cobalt)",
 };
@@ -156,7 +156,7 @@ export default function Journal() {
                       fontFamily: FONT,
                       fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
-                      letterSpacing: "0.12em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       borderRadius: "var(--nx-r-pill)",
                     }}
@@ -179,7 +179,7 @@ export default function Journal() {
                       fontFamily: FONT,
                       fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
-                      letterSpacing: "0.14em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-rust)",
                       marginBottom: 20,
@@ -227,7 +227,7 @@ export default function Journal() {
                       style={{
                         fontFamily: FONT,
                         fontSize: "var(--nx-t-xs)",
-                        letterSpacing: "0.1em",
+                        letterSpacing: "var(--nx-ls-caps)",
                         textTransform: "uppercase",
                         color: "var(--nx-fg-muted)",
                       }}
@@ -370,7 +370,7 @@ export default function Journal() {
                   fontFamily: FONT,
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.18em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
                   color: "var(--nx-acid)",
                   marginBottom: 18,
@@ -567,7 +567,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.1em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-rust)",
                 border: "1px solid var(--nx-border)",
@@ -626,7 +626,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
                 style={{
                   fontFamily: FONT,
                   fontSize: "var(--nx-t-xs)",
-                  letterSpacing: "0.1em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "var(--nx-fg-muted)",
                 }}

@@ -97,7 +97,7 @@ export function ComparisonMatrix({
                       style={{
                         fontSize: "var(--nx-t-xs)",
                         fontWeight: 600,
-                        letterSpacing: "0.14em",
+                        letterSpacing: "var(--nx-ls-caps)",
                         textTransform: "uppercase",
                         color: "var(--nx-fg-muted)",
                       }}
@@ -127,7 +127,7 @@ export function ComparisonMatrix({
                             display: "inline-block",
                             fontSize: "var(--nx-t-xs)",
                             fontWeight: 600,
-                            letterSpacing: "0.14em",
+                            letterSpacing: "var(--nx-ls-caps)",
                             textTransform: "uppercase",
                             color: "var(--nx-cobalt)",
                             marginBottom: "0.4rem",

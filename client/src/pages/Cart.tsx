@@ -39,7 +39,7 @@ export default function Cart() {
           {/* Header */}
           <div className="mb-10">
             <div
-              className="text-[11px] uppercase tracking-[0.22em] mb-3"
+              className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3"
               style={{ fontFamily: FONT, color: "var(--nx-amber)" }}
             >
               Your Protocol
@@ -68,7 +68,7 @@ export default function Cart() {
               <Reveal>
               <section>
                 <div
-                  className="text-[11px] uppercase tracking-[0.2em] mb-4 pb-3"
+                  className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4 pb-3"
                   style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}
                 >
                   Items · {itemCount}
@@ -104,7 +104,7 @@ export default function Cart() {
 
                           <div className="flex-1 min-w-0">
                             <div
-                              className="text-[11px] uppercase tracking-[0.2em] mb-1.5"
+                              className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                               style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}
                             >
                               {line.type === "stack" ? "Curated Stack" : "Single Peptide"}
@@ -147,7 +147,7 @@ export default function Cart() {
                             {/* Cadence picker */}
                             <div className="mt-4">
                               <div
-                                className="text-[11px] uppercase tracking-[0.2em] mb-1.5"
+                                className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                                 style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
                               >
                                 Billing cadence
@@ -168,7 +168,7 @@ export default function Cart() {
                                       role="radio"
                                       aria-checked={active}
                                       onClick={() => updateCadence(line.slug, line.type, c)}
-                                      className="flex-1 inline-flex items-center justify-center px-2 text-[11px] uppercase tracking-[0.1em] transition-colors"
+                                      className="flex-1 inline-flex items-center justify-center px-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-colors"
                                       style={{
                                         fontFamily: FONT,
                                         minHeight: 44,
@@ -281,13 +281,13 @@ export default function Cart() {
 
                 {/* Add-on suggestions */}
                 <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                  <p className="text-[11px] uppercase tracking-[0.2em] mb-4" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                  <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                     Recommended add-ons
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
+                        <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
                         <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>99-Biomarker Partner-Laboratory Panel</p>
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
@@ -299,7 +299,7 @@ export default function Cart() {
                     </div>
                     <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Recovery Support</p>
+                        <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Recovery Support</p>
                         <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>BPC-157 — Tissue Repair Adjunct</p>
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Commonly paired with performance and metabolic protocols.</p>
                       </div>
@@ -321,7 +321,7 @@ export default function Cart() {
               >
                 <Reveal delay={80}>
                 <div
-                  className="text-[11px] uppercase tracking-[0.2em] mb-4 pb-3"
+                  className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4 pb-3"
                   style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
                 >
                   Order summary
@@ -336,7 +336,7 @@ export default function Cart() {
                   className="flex items-baseline justify-between mt-5 pt-5"
                   style={{ borderTop: "1px solid var(--nx-border)" }}
                 >
-                  <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
+                  <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
                     Subtotal
                   </span>
                   <span
@@ -357,7 +357,7 @@ export default function Cart() {
                   className="mb-5 p-4"
                   style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                 >
-                  <p className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                  <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                     Included at no extra cost
                   </p>
                   <div className="space-y-2.5">
@@ -371,7 +371,7 @@ export default function Cart() {
                           <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
                           {text}
                         </span>
-                        <span className="text-[11px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                        <span className="text-[11px] uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                           Included
                         </span>
                       </div>
@@ -483,7 +483,7 @@ function Chip({ children, icon, tone = "ink" }: { children: React.ReactNode; ico
   const isAmber = tone === "amber";
   return (
     <span
-      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] uppercase tracking-[0.1em]"
+      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] uppercase tracking-[var(--nx-ls-caps)]"
       style={{
         fontFamily: FONT,
         borderRadius: "var(--nx-r-pill)",

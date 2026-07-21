@@ -155,7 +155,7 @@ export function CartDrawer() {
           >
             <div>
               <div
-                className="text-[11px] uppercase tracking-[0.22em] mb-1"
+                className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1"
                 style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 500 }}
               >
                 Your Protocol
@@ -214,7 +214,7 @@ export function CartDrawer() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                               <span
-                                className="text-[11px] uppercase tracking-[0.2em] px-1.5 py-0.5"
+                                className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] px-1.5 py-0.5"
                                 style={{
                                   fontFamily: FONT,
                                   background: line.type === "stack" ? "var(--nx-fg)" : "var(--nx-bg-cream)",
@@ -228,7 +228,7 @@ export function CartDrawer() {
                               </span>
                               {spec?.badge ? (
                                 <span
-                                  className="text-[11px] uppercase tracking-[0.18em] px-1.5 py-0.5"
+                                  className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] px-1.5 py-0.5"
                                   style={{
                                     fontFamily: FONT,
                                     background: "transparent",
@@ -301,7 +301,7 @@ export function CartDrawer() {
                         {/* Cadence segmented control */}
                         <div className="mt-3">
                           <div
-                            className="text-[11px] uppercase tracking-[0.18em] mb-1.5"
+                            className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                             style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", fontWeight: 600 }}
                           >
                             Billing cadence
@@ -322,7 +322,7 @@ export function CartDrawer() {
                                   role="radio"
                                   aria-checked={active}
                                   onClick={() => updateCadence(line.slug, line.type, c)}
-                                  className="px-2 py-2 text-[11px] uppercase tracking-[0.1em] transition-colors"
+                                  className="px-2 py-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-colors"
                                   style={{
                                     fontFamily: FONT,
                                     background: active ? "var(--nx-fg)" : "transparent",
@@ -389,7 +389,7 @@ export function CartDrawer() {
                           </div>
                           <button
                             onClick={() => removeItem(line.slug, line.type)}
-                            className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] px-2 py-1.5 rounded-md transition-colors hover:bg-black/5"
+                            className="flex items-center gap-1.5 text-[11px] uppercase tracking-[var(--nx-ls-caps)] px-2 py-1.5 rounded-md transition-colors hover:bg-black/5"
                             aria-label={`Remove ${line.name}`}
                             data-testid={`button-remove-${line.type}-${line.slug}`}
                             style={{ color: "var(--nx-amber)", fontFamily: FONT, fontWeight: 500 }}
@@ -415,7 +415,7 @@ export function CartDrawer() {
                     <div className="flex items-center gap-2 mb-3">
                       <Beaker size={13} style={{ color: "var(--nx-amber)" }} />
                       <span
-                        className="text-[11px] uppercase tracking-[0.2em]"
+                        className="text-[11px] uppercase tracking-[var(--nx-ls-wide)]"
                         style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 600 }}
                       >
                         Physicians often pair with
@@ -455,7 +455,7 @@ export function CartDrawer() {
                             <button
                               type="button"
                               onClick={() => addPeptide(s.slug, { qty: 1, cadence: "3mo" })}
-                              className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[11px] uppercase tracking-[0.15em] transition-all hover:opacity-90"
+                              className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-all hover:opacity-90"
                               style={{
                                 fontFamily: FONT,
                                 background: "var(--nx-fg)",
@@ -486,7 +486,7 @@ export function CartDrawer() {
               {totalSavings > 0 ? (
                 <div className="flex items-center justify-between mb-1.5">
                   <span
-                    className="text-[11px] uppercase tracking-[0.15em]"
+                    className="text-[11px] uppercase tracking-[var(--nx-ls-caps)]"
                     style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 600 }}
                   >
                     You save
@@ -502,7 +502,7 @@ export function CartDrawer() {
               <div className="flex items-baseline justify-between mb-4">
                 <div>
                   <div
-                    className="text-[11px] uppercase tracking-[0.12em] mb-0.5"
+                    className="text-[11px] uppercase tracking-[var(--nx-ls-caps)] mb-0.5"
                     style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", fontWeight: 500 }}
                   >
                     Subtotal
@@ -532,7 +532,7 @@ export function CartDrawer() {
                 ].map((b) => (
                   <span
                     key={b.label}
-                    className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] px-2 py-1"
+                    className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[var(--nx-ls-caps)] px-2 py-1"
                     style={{
                       fontFamily: FONT,
                       background: "var(--nx-bg-cream)",
@@ -582,7 +582,7 @@ export function CartDrawer() {
               <Link
                 href="/cart"
                 onClick={close}
-                className="block w-full text-center px-6 py-2 mt-3 text-[11px] uppercase tracking-[0.14em] transition-colors no-underline hover:underline"
+                className="block w-full text-center px-6 py-2 mt-3 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-colors no-underline hover:underline"
                 style={{
                   color: "var(--nx-fg-graphite)",
                   fontFamily: FONT,
@@ -605,7 +605,7 @@ function TrustMini({ icon, label }: { icon: React.ReactNode; label: string }) {
     <div className="flex flex-col items-center text-center gap-1">
       <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
       <span
-        className="text-[11px] uppercase tracking-[0.1em] leading-tight"
+        className="text-[11px] uppercase tracking-[var(--nx-ls-caps)] leading-tight"
         style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", fontWeight: 600 }}
       >
         {label}

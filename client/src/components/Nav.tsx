@@ -296,7 +296,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mb-4 text-[11px] uppercase"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-fg-muted)",
                     fontWeight: 500,
                   }}
@@ -409,7 +409,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mb-4 text-[11px] uppercase"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-fg-muted)",
                     fontWeight: 500,
                   }}
@@ -535,7 +535,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               className="mt-8 mb-3 text-[11px] uppercase"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                letterSpacing: "0.14em",
+                letterSpacing: "var(--nx-ls-caps)",
                 color: "var(--nx-fg-muted)",
                 fontWeight: 500,
               }}

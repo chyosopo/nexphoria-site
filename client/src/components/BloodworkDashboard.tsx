@@ -175,7 +175,7 @@ export function BloodworkDashboard() {
             fontFamily: FONT,
             fontSize: "var(--nx-t-xs)",
             fontWeight: 600,
-            letterSpacing: "0.14em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg)",
           }}
@@ -187,7 +187,7 @@ export function BloodworkDashboard() {
             fontFamily: FONT,
             fontSize: "var(--nx-t-xs)",
             fontWeight: 500,
-            letterSpacing: "0.12em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg-muted)",
           }}

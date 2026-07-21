@@ -35,12 +35,12 @@ export function AnnouncementBar({
     >
       <div className="nx-container flex items-center gap-3 py-2.5">
         <span
-          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] uppercase tracking-[0.22em]"
+          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] uppercase tracking-[var(--nx-ls-wide)]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             color: "var(--nx-fg)",
             background: "var(--nx-acid)",
-            letterSpacing: "0.22em",
+            letterSpacing: "var(--nx-ls-wide)",
             fontWeight: 600,
           }}
         >

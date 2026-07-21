@@ -151,7 +151,7 @@ export default function Checkout() {
               <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-success)" }} aria-hidden="true">
                 <Check size={32} strokeWidth={1.5} />
               </div>
-              <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+              <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                 Submission #{submittedId.toString().padStart(5, "0")}
               </div>
               <h1
@@ -177,7 +177,7 @@ export default function Checkout() {
                 className="text-left p-6 mb-8 max-w-md mx-auto"
                 style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
               >
-                <div className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+                <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                   What happens next
                 </div>
                 <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
@@ -247,7 +247,7 @@ export default function Checkout() {
           {/* Breadcrumb */}
           <Link asChild href="/cart">
             <a
-              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em] mb-6 hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[var(--nx-ls-caps)] mb-6 hover:underline"
               style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
               data-testid="link-back-to-cart"
             >
@@ -257,7 +257,7 @@ export default function Checkout() {
 
           {/* Header + progress indicator */}
           <div className="mb-8 max-w-2xl">
-            <div className="text-[11px] uppercase tracking-[0.22em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+            <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
               Checkout
             </div>
             <h1
@@ -290,7 +290,7 @@ export default function Checkout() {
                 className="flex items-center justify-between gap-3 cursor-pointer list-none px-4"
                 style={{ fontFamily: FONT, minHeight: 52 }}
               >
-                <span className="text-xs uppercase tracking-[0.15em]" style={{ color: "var(--nx-fg-graphite)" }}>
+                <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ color: "var(--nx-fg-graphite)" }}>
                   Order summary · {itemCount} {itemCount === 1 ? "item" : "items"}
                 </span>
                 <span className="text-lg" style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}<span className="text-xs font-normal" style={{ color: "var(--nx-fg-muted)" }}>/mo</span></span>
@@ -399,7 +399,7 @@ export default function Checkout() {
                       </div>
                     </div>
 
-                    <p className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+                    <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                       How billing works
                     </p>
                     <ol className="list-none p-0 space-y-3">
@@ -469,7 +469,7 @@ export default function Checkout() {
 
                   {/* Order recap */}
                   <div className="pt-2">
-                    <p className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
+                    <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
                     <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}>
                       {lines.map((line) => (
                         <div
@@ -484,7 +484,7 @@ export default function Checkout() {
                         </div>
                       ))}
                       <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
-                        <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
+                        <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
                         <span className="text-lg" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
                       </div>
                     </div>
@@ -542,7 +542,7 @@ export default function Checkout() {
             >
               <Reveal delay={80}>
               <div
-                className="text-[11px] uppercase tracking-[0.2em] mb-4 pb-3"
+                className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4 pb-3"
                 style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
               >
                 Your order · {itemCount}
@@ -559,7 +559,7 @@ export default function Checkout() {
                     <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <div className="text-[11px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
+                          <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
                             {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
                           <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
@@ -590,13 +590,13 @@ export default function Checkout() {
 
               {totalSavings > 0 ? (
                 <div className="flex items-baseline justify-between py-1.5">
-                  <span className="text-xs uppercase tracking-[0.15em]" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Stack savings</span>
+                  <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Stack savings</span>
                   <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>−{formatUSD(totalSavings)}</span>
                 </div>
               ) : null}
 
               <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
+                <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
                 <span className="text-2xl" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }} data-testid="text-checkout-total">
                   {formatUSD(subtotal)}
                 </span>
@@ -659,7 +659,7 @@ function StepBar({ current, labels, onStep }: { current: number; labels: readonl
                 {done ? <Check size={13} /> : i + 1}
               </span>
               <span
-                className="text-[11px] uppercase tracking-[0.14em] hidden sm:inline"
+                className="text-[11px] uppercase tracking-[var(--nx-ls-caps)] hidden sm:inline"
                 style={{ fontFamily: FONT, color: active ? "var(--nx-fg)" : done ? "var(--nx-fg-graphite)" : "var(--nx-fg-muted)", fontWeight: active ? 600 : 500 }}
               >
                 {label}
@@ -713,7 +713,7 @@ function Section({ title, eyebrow, children }: { title: string; eyebrow: string;
   return (
     <Reveal>
       <section>
-        <div className="text-[11px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+        <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
           {eyebrow}
         </div>
         <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}>
@@ -732,7 +732,7 @@ function Row({ children }: { children: React.ReactNode }) {
 function Field({ label, helper, error, children }: { label: string; helper?: string; error?: string; children: React.ReactNode }) {
   return (
     <label className={error ? "block nx-field-error" : "block"}>
-      <span className="block text-[11px] uppercase tracking-[0.15em] mb-1.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+      <span className="block text-[11px] uppercase tracking-[var(--nx-ls-caps)] mb-1.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
         {label}
       </span>
       {helper ? (

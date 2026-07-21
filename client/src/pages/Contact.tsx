@@ -112,7 +112,7 @@ export default function Contact() {
     fontFamily: F,
     fontSize: "var(--nx-t-xs)",
     fontWeight: 700,
-    letterSpacing: "0.14em",
+    letterSpacing: "var(--nx-ls-caps)",
     textTransform: "uppercase" as const,
     color: "var(--nx-fg-muted)",
     display: "block",
@@ -202,7 +202,7 @@ export default function Contact() {
                       fontFamily: F,
                       fontSize: "var(--nx-t-2xs)",
                       fontWeight: 700,
-                      letterSpacing: "0.16em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-cobalt)",
                       marginBottom: "0.875rem",
@@ -239,7 +239,7 @@ export default function Contact() {
                             fontFamily: F,
                             fontSize: "var(--nx-t-xs)",
                             fontWeight: 700,
-                            letterSpacing: "0.14em",
+                            letterSpacing: "var(--nx-ls-caps)",
                             textTransform: "uppercase",
                             color: "var(--nx-fg-muted)",
                             marginBottom: "2px",
@@ -325,7 +325,7 @@ export default function Contact() {
                   <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-cobalt)", marginTop: 8 }} />
                 </div>
                 <div style={{ position: "relative" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
                     NYC Headquarters · 50-state coverage
                   </p>
                   <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
@@ -379,7 +379,7 @@ export default function Contact() {
                     fontFamily: F,
                     fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.18em",
+                    letterSpacing: "var(--nx-ls-wide)",
                     textTransform: "uppercase",
                     color: "var(--nx-cobalt)",
                     marginBottom: "1rem",
@@ -448,7 +448,7 @@ export default function Contact() {
                       fontFamily: F,
                       fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
-                      letterSpacing: "0.16em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-cobalt)",
                       marginBottom: "0.75rem",
@@ -480,7 +480,7 @@ export default function Contact() {
                     <a href="mailto:hello@nexphoria.com" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>hello@nexphoria.com</a>.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
                       Note: For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}
@@ -620,7 +620,7 @@ export default function Contact() {
                       color: "var(--nx-ceramic)",
                       fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
-                      letterSpacing: "0.1em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       padding: "0.875rem 2rem",
                       alignSelf: "flex-start",

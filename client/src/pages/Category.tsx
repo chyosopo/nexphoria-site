@@ -258,7 +258,7 @@ export default function Category() {
                 <Icon size={19} strokeWidth={1.7} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} />
                 <div>
                   <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-xl)", lineHeight: 1.05, color: "var(--nx-fg)", fontVariantNumeric: "tabular-nums" }}>{big}</div>
-                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.25rem", lineHeight: 1.3 }}>{small}</div>
+                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.25rem", lineHeight: 1.3 }}>{small}</div>
                 </div>
               </div>
             ))}
@@ -386,7 +386,7 @@ export default function Category() {
                 {reads.map((a) => (
                   <Link key={a.slug} href={`/journal/${a.slug}`} className="nx-float-card" data-testid={`cat-read-${a.slug}`}>
                     <div className="nx-float-card__body">
-                      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                         {a.eyebrow}
                       </p>
                       <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.45rem", lineHeight: 1.15 }}>

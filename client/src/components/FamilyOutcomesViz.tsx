@@ -142,7 +142,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
             fontFamily: MONO,
             fontSize: "var(--nx-t-xs)",
             fontWeight: 700,
-            letterSpacing: "0.16em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-cobalt)",
           }}
@@ -154,7 +154,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
           style={{
             fontFamily: MONO,
             fontSize: "var(--nx-t-xs)",
-            letterSpacing: "0.14em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg-muted)",
           }}

@@ -63,7 +63,7 @@ export function FinalCTAStrip({
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "rgba(255,255,255,0.55)",
               }}

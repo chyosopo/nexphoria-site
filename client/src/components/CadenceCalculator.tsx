@@ -37,7 +37,7 @@ export function CadenceCalculator() {
 
   return (
     <div className="nx-glass-tile" data-testid="cadence-calculator" style={{ display: "block", padding: "clamp(1.4rem,3vw,2rem)", maxWidth: 860 }}>
-      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
         The commitment
       </p>
       <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>
@@ -79,7 +79,7 @@ export function CadenceCalculator() {
                 gap: "0.2rem",
               }}
             >
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: best ? "var(--nx-cobalt)" : "var(--nx-fg-muted)" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: best ? "var(--nx-cobalt)" : "var(--nx-fg-muted)" }}>
                 {CADENCE_DISCOUNTS[k].label}
                 {best && " · best value"}
               </p>

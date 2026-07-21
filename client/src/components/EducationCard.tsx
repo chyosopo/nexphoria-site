@@ -79,7 +79,7 @@ export function EducationCard({
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontSize: "var(--nx-t-2xs)",
             fontWeight: 600,
-            letterSpacing: "0.14em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg)",
             marginBottom: "8px",
@@ -139,7 +139,7 @@ export function EducationCard({
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.1em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "var(--nx-fg-muted)",
             }}

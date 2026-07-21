@@ -81,7 +81,7 @@ function Hero() {
                   fontFamily: FONT,
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "var(--nx-acid)",
                   marginBottom: "1.5rem",
@@ -194,7 +194,7 @@ function Hero() {
                     fontFamily: FONT,
                     fontSize: "var(--nx-t-xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "rgba(246, 249, 252,0.55)",
                   }}
@@ -338,7 +338,7 @@ function TrustRow() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.1em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-fg-graphite)",
               }}
@@ -385,7 +385,7 @@ function PanelExplorer() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.16em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-fg-graphite)",
                 marginBottom: "1rem",
@@ -486,7 +486,7 @@ function PanelExplorer() {
                       className="w-full h-full transition-transform duration-700"
                       style={{ objectFit: "cover" }} />
                     <span className="absolute inset-0 flex items-end p-3" style={{ background: "linear-gradient(180deg, rgba(10,20,35,0) 52%, rgba(10,20,35,0.58))" }}>
-                      <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{cat.eyebrow}</span>
+                      <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>{cat.eyebrow}</span>
                     </span>
                   </span>
                 )}
@@ -611,7 +611,7 @@ function PanelExplorer() {
                   fontFamily: FONT,
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "var(--nx-fg-graphite)",
                   marginBottom: "0.5rem",
@@ -743,7 +743,7 @@ function LiveTrajectory() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.16em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-acid)",
                 marginBottom: "1rem",
@@ -836,7 +836,7 @@ function HowItWorks() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.16em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-fg-graphite)",
                 marginBottom: "1rem",
@@ -1118,7 +1118,7 @@ function PanelTiers() {
                     {rec ? "Recommended for you" : "Most protocols gate here"}
                   </p>
                 )}
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1 }}>{usd(p.price)}</p>
                 {p.freeWith && <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt)", fontWeight: 600, marginTop: 4 }}>{p.freeWith}</p>}
                 <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{p.summary}</p>
