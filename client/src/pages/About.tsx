@@ -818,7 +818,7 @@ export default function About() {
               eyebrow="Compounding"
               icon={<ShieldCheck size={18} strokeWidth={1.5} />}
               headline="503A US pharmacies only."
-              sub="Every vial compounded in a US 503A facility we audit. No overseas peptides. Ever."
+              sub="Every vial compounded in a US 503A facility we audit — domestic, batch-documented, every time."
               testId="about-tile-compounding"
             />
             <BenefitTile

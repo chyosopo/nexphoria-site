@@ -1100,7 +1100,7 @@ function PanelTiers() {
                 {" "}It's highlighted below — and your physician confirms the tier at intake.
               </>
             ) : (
-              "Answer both and the right tier lights up below. A physician confirms it at intake — the panel is the gate, not an upsell."
+              "Answer both and the right tier lights up below. A physician confirms it at intake — the panel is the gate the protocol passes through."
             )}
           </p>
         </div>

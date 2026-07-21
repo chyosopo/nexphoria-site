@@ -489,7 +489,7 @@ function PanelTierComparison() {
       background="var(--nx-bg-cream)"
       eyebrow="Labs, by tier"
       title="How deep the bloodwork goes."
-      lead="Every plan includes physician-reviewed labs. Which tier you draw depends on your protocol — the deeper the therapy reaches, the deeper we read. You never pay à la carte."
+      lead="Every plan includes physician-reviewed labs. Which tier you draw depends on your protocol — the deeper the therapy reaches, the deeper we read. The tier your protocol requires is carried within the figure."
       columns={[
         { label: "Basic panel", sub: basic.summary },
         { label: "Full panel", sub: full.summary, highlight: true, badge: "Most protocols" },
@@ -505,7 +505,7 @@ function PanelTierComparison() {
           ],
         },
         {
-          label: "Included free with",
+          label: "Bundled with",
           cells: [
             { text: basic.freeWith ?? "—", tone: "plain" },
             { text: full.freeWith ?? "—", tone: "plain" },
@@ -560,7 +560,7 @@ function PanelTierComparison() {
 
 export default function Pricing() {
   useSeo({
-    title: "Peptide therapy pricing — transparent, all-in, no lab upsell",
+    title: "Peptide therapy pricing — one complete monthly figure",
     description: `Single peptides from ${SOLO_FROM_LABEL}/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills within one complete figure. Cancel before dispense.`,
     path: "/pricing",
     jsonLd: [
@@ -693,7 +693,7 @@ export default function Pricing() {
                 marginBottom: "0.75rem",
               }}
             >
-              Everything bundled. Nothing upsold.
+              One figure. Everything within it.
             </h2>
             <p
               style={{
@@ -705,7 +705,7 @@ export default function Pricing() {
                 marginBottom: "3rem",
               }}
             >
-              Six things every Nexphoria plan already includes — no add-ons, no lab upsell, no consultation fee.
+              Six things every Nexphoria plan already carries. The figure is complete.
             </p>
           </Reveal>
 
@@ -715,7 +715,7 @@ export default function Pricing() {
               eyebrow="Physician"
               icon={<Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Board-certified US physician on every case."
-              sub="Not a form. A licensed physician reviews your intake and labs before anything ships."
+              sub="A licensed physician reads your intake and labs before anything ships — a clinician's judgment, start to finish."
               testId="pricing-tile-physician"
             />
             <BenefitTile
@@ -723,7 +723,7 @@ export default function Pricing() {
               eyebrow="Labs"
               icon={<FlaskConical size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Partner-laboratory bloodwork every 90 days."
-              sub="Full biomarker panels included in every plan. No à la carte lab bills."
+              sub="Full biomarker panels included in every plan — the lab work lives inside the figure."
               testId="pricing-tile-labs"
             />
             <BenefitTile
@@ -731,7 +731,7 @@ export default function Pricing() {
               eyebrow="Pharmacy"
               icon={<ShieldCheck size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="503A US-licensed compounding pharmacy only."
-              sub="Every vial compounded in a US facility we vet. No overseas peptides."
+              sub="Every vial compounded in a US facility we vet — domestic, documented, every batch."
               testId="pricing-tile-pharmacy"
             />
             <BenefitTile
@@ -747,7 +747,7 @@ export default function Pricing() {
               eyebrow="Adjustments"
               icon={<ChevronsDownUp size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Physician re-titrates each cycle."
-              sub="Every 90 days, your physician reviews your labs and adjusts your dose. No extra visit fee."
+              sub="Every 90 days, your physician reviews your labs and adjusts your dose — the review is included."
               testId="pricing-tile-titration"
             />
             <BenefitTile
@@ -755,7 +755,7 @@ export default function Pricing() {
               eyebrow="Receipts"
               icon={<Receipt size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="FSA/HSA itemized receipts, every month."
-              sub="Pre-tax dollars for medical care. Automatic receipts, no requests, no friction."
+              sub="Pre-tax dollars for medical care. Itemized receipts arrive automatically, every month."
               testId="pricing-tile-fsahsa"
             />
           </BenefitTileGrid>

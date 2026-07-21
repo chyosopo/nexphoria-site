@@ -526,9 +526,9 @@ export function CartDrawer() {
               {/* Payment badges */}
               <div className="flex items-center gap-1.5 mb-4 flex-wrap">
                 {[
-                  { label: "Klarna", detail: "4× interest-free" },
+                  { label: "Klarna", detail: "4 installments" },
                   { label: "HSA/FSA", detail: "eligible" },
-                  { label: "Free ship", detail: "cold-chain" },
+                  { label: "Shipping", detail: "included · cold-chain" },
                 ].map((b) => (
                   <span
                     key={b.label}
