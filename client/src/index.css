@@ -597,20 +597,37 @@
   .nx-footer-wordmark {
     display: block;
     font-family: 'General Sans', system-ui, sans-serif;
-    font-weight: 700;
-    font-size: clamp(3.2rem, 13vw, 12.5rem);
+    font-weight: 800;
+    font-size: clamp(3.4rem, 14.2vw, 14.5rem);
     line-height: 0.78;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.015em;
     text-align: center;
     white-space: nowrap;
     color: transparent;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.015) 100%);
+    /* World-aware cast: the fill carries a breath of --nx-cobalt, so the
+       signature reads azure in the men's world and rose in the women's —
+       two worlds, one name. Crisped by a hairline stroke at huge sizes. */
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, color-mix(in srgb, var(--nx-cobalt) 45%, #FFFFFF) 13%, transparent) 0%,
+      color-mix(in srgb, #FFFFFF 2%, transparent) 88%
+    );
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.045);
     user-select: none;
     pointer-events: none;
     margin-top: clamp(2.2rem, 5vw, 4.5rem);
     margin-bottom: -0.14em;
+    /* Rise-in as the footer enters view (class added by Footer's observer;
+       the global reduced-motion floor collapses the transition). */
+    opacity: 0;
+    transform: translateY(0.22em);
+    transition: opacity 0.9s var(--nx-reveal-ease, ease), transform 0.9s var(--nx-reveal-ease, ease);
+  }
+  .nx-footer-wordmark.is-inview {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* ── Biomarker chart card ── */

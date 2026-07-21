@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
@@ -19,6 +19,29 @@ interface FooterColumn {
 }
 
 export function Footer({ variant = "shared" }: FooterProps) {
+  /* Rise-in for the wordmark: one observer, fires once, then disconnects.
+     The global reduced-motion floor collapses the transition to instant. */
+  const wordmarkRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = wordmarkRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("is-inview");
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-inview");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const pharmacyBase =
     variant === "men" ? "/men/peptides" :
     variant === "women" ? "/women/peptides" :
@@ -297,7 +320,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
       </div>
 
       {/* The signature — full-bleed, outside the container */}
-      <span className="nx-footer-wordmark" aria-hidden="true" data-testid="footer-wordmark">
+      <span ref={wordmarkRef} className="nx-footer-wordmark" aria-hidden="true" data-testid="footer-wordmark">
         NEXPHORIA
       </span>
     </footer>
