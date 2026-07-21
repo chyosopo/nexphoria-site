@@ -146,7 +146,7 @@ export default function Checkout() {
     return (
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
-          <div className="nx-container py-16 md:py-24 max-w-2xl">
+          <div className="nx-container py-[var(--nx-sp-sec)] max-w-2xl">
             <div className="text-center">
               <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-success)" }} aria-hidden="true">
                 <Check size={32} strokeWidth={1.5} />

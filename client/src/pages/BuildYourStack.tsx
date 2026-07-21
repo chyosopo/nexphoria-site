@@ -163,7 +163,7 @@ type Step = 1 | 2 | 3;
 export default function BuildYourStack() {
   useSeo({
     title: "Build your own peptide stack — custom, physician-reviewed",
-    description: "Pick your goal, choose 2–4 compatible peptides, lock in a bundle discount. Every custom stack is reviewed by a board-certified physician and compounded in a U.S. 503A pharmacy before dispensing.",
+    description: "Pick your goal, choose 2–4 compatible peptides — the bundle rate applies on its own. Every custom stack is reviewed by a board-certified physician and compounded in a U.S. 503A pharmacy before dispensing.",
     path: "/stacks/build",
     jsonLd: [webPageJsonLd({
       name: "Build Your Peptide Stack",
@@ -304,7 +304,7 @@ export default function BuildYourStack() {
       )}
       <div style={{ background: "var(--mx-page-bg, var(--nx-ceramic))", minHeight: "100vh", paddingTop: 80 }}>
         {/* ── Hero ───────────────────────────────────────────────── */}
-        <section className="nx-container py-16 md:py-24">
+        <section className="nx-container py-[var(--nx-sp-sec)]">
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
           <div className="max-w-3xl">
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 18 }}>
@@ -338,7 +338,7 @@ export default function BuildYourStack() {
               </span>
             </h1>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.5, color: "var(--nx-fg)", marginTop: 22, maxWidth: 620 }}>
-              Pick your goal. Choose 2–5 compatible peptides. Lock in a bundle discount on top of your cadence pricing. Every custom stack still goes through a US-licensed physician review before it ships from the pharmacy.
+              Pick your goal. Choose 2–5 compatible peptides. The bundle rate settles onto your cadence pricing on its own. Every custom stack still goes through a US-licensed physician review before it ships from the pharmacy.
             </p>
           </div>
           {/* Designing his own protocol — deliberate, human, morning light */}
@@ -419,7 +419,7 @@ export default function BuildYourStack() {
         {/* ── Step 1 — pick goal ─────────────────────────────────── */}
         {step === 1 && (
           <Reveal key="step-1">
-          <section className="nx-container pb-24" data-testid="step-1-goal">
+          <section className="nx-container pb-[var(--nx-sp-sec)]" data-testid="step-1-goal">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {GOALS.map((g) => (
                 <button
@@ -501,7 +501,7 @@ export default function BuildYourStack() {
         {/* ── Step 2 — pick peptides ─────────────────────────────── */}
         {step === 2 && (
           <Reveal key="step-2">
-          <section className="nx-container pb-24" data-testid="step-2-peptides">
+          <section className="nx-container pb-[var(--nx-sp-sec)]" data-testid="step-2-peptides">
             {/* Curator note */}
             {goal && (
               <div
@@ -848,7 +848,7 @@ export default function BuildYourStack() {
         {/* ── Step 3 — review ─────────────────────────────────────── */}
         {step === 3 && (
           <Reveal key="step-3">
-          <section className="nx-container pb-24" data-testid="step-3-review">
+          <section className="nx-container pb-[var(--nx-sp-sec)]" data-testid="step-3-review">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10">
               {/* Review pane */}
               <div>

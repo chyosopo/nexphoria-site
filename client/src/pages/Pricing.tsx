@@ -137,7 +137,7 @@ const comparison = [
 function PricingTiers() {
   return (
     <section
-      className="py-24 md:py-32"
+      className="py-[var(--nx-section-y)]"
       style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
     >
       <div className="nx-container max-w-screen-xl">
@@ -660,7 +660,7 @@ export default function Pricing() {
 
       {/* ── reference-grade benefit tile grid: what every plan includes ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -767,7 +767,7 @@ export default function Pricing() {
 
       {/* ── Protocol pricing table ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -1040,7 +1040,7 @@ export default function Pricing() {
 
       {/* ── What's included ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -1137,7 +1137,7 @@ export default function Pricing() {
 
       {/* ── Comparison table ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -1286,7 +1286,7 @@ export default function Pricing() {
 
       {/* ── Refund policy ── */}
       <section
-        className="py-16 md:py-20"
+        className="py-[var(--nx-sp-sec)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -1332,7 +1332,7 @@ export default function Pricing() {
 
       {/* ── Pricing FAQ ── */}
       <section
-        className="py-16 md:py-20"
+        className="py-[var(--nx-sp-sec)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">

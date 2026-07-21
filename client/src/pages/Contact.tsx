@@ -168,7 +168,7 @@ export default function Contact() {
 
       {/* ── Three support columns ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -281,7 +281,7 @@ export default function Contact() {
 
       {/* ── Coverage strip — location visual + coverage stats ── */}
       <section
-        className="py-16 md:py-20"
+        className="py-[var(--nx-sp-sec)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -358,7 +358,7 @@ export default function Contact() {
 
       {/* ── Contact form ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">

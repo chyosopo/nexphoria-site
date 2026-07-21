@@ -277,7 +277,7 @@ export default function FAQPage() {
 
       {/* ── FAQ categories + accordion ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
