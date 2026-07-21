@@ -627,7 +627,7 @@ export default function JournalArticle() {
                       display: "block",
                       padding: 28,
                       border: "1px solid var(--nx-border)",
-                      borderRadius: 4,
+                      borderRadius: "var(--nx-r-2xs)",
                       textDecoration: "none",
                       color: "inherit",
                       backgroundColor: "var(--nx-bg-cream)",
@@ -694,7 +694,7 @@ export default function JournalArticle() {
           <div
             style={{
               backgroundColor: "var(--nx-acid)",
-              borderRadius: 4,
+              borderRadius: "var(--nx-r-2xs)",
               padding: "48px 56px",
               display: "flex",
               alignItems: "center",

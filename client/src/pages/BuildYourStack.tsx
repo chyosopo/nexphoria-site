@@ -431,7 +431,7 @@ export default function BuildYourStack() {
                   style={{
                     background: "var(--nx-ceramic)",
                     border: "1px solid var(--nx-rock)",
-                    borderRadius: 4,
+                    borderRadius: "var(--nx-r-2xs)",
                     padding: "28px 24px",
                     fontFamily: F,
                   }}
@@ -506,7 +506,7 @@ export default function BuildYourStack() {
             {goal && (
               <div
                 className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 p-5"
-                style={{ background: "var(--nx-fg)", borderRadius: 4, color: "var(--nx-ceramic)" }}
+                style={{ background: "var(--nx-fg)", borderRadius: "var(--nx-r-2xs)", color: "var(--nx-ceramic)" }}
               >
                 <div>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-acid)", textTransform: "uppercase", marginBottom: 6 }}>
@@ -651,7 +651,7 @@ export default function BuildYourStack() {
                           background: isPicked ? "var(--nx-fg)" : "var(--nx-ceramic)",
                           color: isPicked ? "var(--nx-ceramic)" : "var(--nx-fg)",
                           border: isPicked ? "1px solid var(--nx-fg)" : isRecommended ? "2px solid var(--nx-acid)" : "1px solid var(--nx-rock)",
-                          borderRadius: 4,
+                          borderRadius: "var(--nx-r-2xs)",
                           padding: "18px 18px",
                           fontFamily: F,
                           position: "relative",
@@ -720,7 +720,7 @@ export default function BuildYourStack() {
 
               {/* Sticky summary */}
               <aside className="lg:sticky lg:top-24 self-start">
-                <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: "var(--nx-r-2xs)" }}>
                   <div className="p-5 border-b" style={{ borderColor: "var(--nx-bg)" }}>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.16em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 6 }}>
                       Your stack
@@ -755,7 +755,7 @@ export default function BuildYourStack() {
                               fontSize: "var(--nx-t-xs)",
                               letterSpacing: "0.08em",
                               textTransform: "uppercase",
-                              borderRadius: 3,
+                              borderRadius: "var(--nx-r-2xs)",
                             }}
                           >
                             <div>{c === "1mo" ? "Monthly" : c === "3mo" ? "Quarterly" : "Annual"}</div>
@@ -881,7 +881,7 @@ export default function BuildYourStack() {
                       <div
                         key={slug}
                         className="flex items-start gap-4 p-5"
-                        style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}
+                        style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: "var(--nx-r-2xs)" }}
                       >
                         <div className="flex-shrink-0" aria-hidden="true" style={{ width: 56, height: 56, background: "var(--nx-bg)", borderRadius: "var(--nx-r-xs)", display: "grid", placeItems: "center" }}>
                           <MolecularGlyph glyph={p.glyph} size={36} />
@@ -914,7 +914,7 @@ export default function BuildYourStack() {
                 </div>
 
                 {/* Protocol timeline — 12 weeks */}
-                <div className="mt-10 p-6" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div className="mt-10 p-6" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: "var(--nx-r-2xs)" }}>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 4 }}>
                     Representative 12-week timeline
                   </p>
@@ -945,7 +945,7 @@ export default function BuildYourStack() {
                 </div>
 
                 {/* What happens next */}
-                <div className="mt-8 p-6" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div className="mt-8 p-6" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: "var(--nx-r-2xs)" }}>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.18em", color: "var(--nx-fg-muted)", textTransform: "uppercase", marginBottom: 12 }}>
                     What happens next
                   </p>
@@ -967,7 +967,7 @@ export default function BuildYourStack() {
 
               {/* Order summary */}
               <aside className="lg:sticky lg:top-24 self-start">
-                <div style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)", borderRadius: 4 }}>
+                <div style={{ background: "var(--nx-fg)", color: "var(--nx-ceramic)", borderRadius: "var(--nx-r-2xs)" }}>
                   <div className="p-6 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "0.16em", color: "color-mix(in srgb, var(--nx-acid) 85%, transparent)", textTransform: "uppercase", marginBottom: 6 }}>
                       Order summary
@@ -1049,7 +1049,7 @@ export default function BuildYourStack() {
                   </div>
                 </div>
 
-                <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: 4 }}>
+                <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: "var(--nx-r-2xs)" }}>
                   <FlaskConical size={16} aria-hidden="true" style={{ color: "var(--nx-fg)", flexShrink: 0, marginTop: 2 }} />
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
                     Want a physician to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "var(--nx-fg)" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your labs and goals.

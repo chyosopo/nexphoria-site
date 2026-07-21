@@ -52,7 +52,7 @@
     --nx-e-2: 0 4px 14px rgba(20, 32, 54, 0.08);
     --nx-e-3: 0 12px 32px rgba(20, 32, 54, 0.12);
     --nx-e-4: 0 24px 64px rgba(20, 32, 54, 0.18);
-    --nx-r-xs: 6px; --nx-r-sm: 10px; --nx-r-md: 16px; --nx-r-lg: 24px; --nx-r-pill: 999px;
+    --nx-r-2xs: 4px; --nx-r-xs: 6px; --nx-r-sm: 10px; --nx-r-md: 16px; --nx-r-lg: 24px; --nx-r-pill: 999px;
 
     /* ══ D4 MOTION — two speeds, one voice ══ */
     --nx-dur-fast: 160ms;

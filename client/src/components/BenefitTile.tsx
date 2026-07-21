@@ -112,7 +112,7 @@ export function BenefitTile({
         background: hasImage ? "var(--nx-fg)" : t.bg,
         color: t.fg,
         border: `1px solid ${t.border}`,
-        borderRadius: 10,
+        borderRadius: "var(--nx-r-sm)",
         // Aspect is enforced by .benefit-tile only at sm+ — a hard square on
         // 2-up 390px grids (~165px tiles) clipped headline + sub mid-word.
         ["--bt-aspect" as string]: String(resolvedAspect),
@@ -152,7 +152,7 @@ export function BenefitTile({
               height: 32,
               background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(67, 91, 115,0.10)",
               color: isDark || hasImage ? t.eyebrow : "var(--nx-amber)",
-              borderRadius: 6,
+              borderRadius: "var(--nx-r-xs)",
               border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(67, 91, 115,0.18)"}`,
               flexShrink: 0,
             }}

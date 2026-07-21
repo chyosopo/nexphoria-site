@@ -221,7 +221,7 @@ export function CartDrawer() {
                                   color: line.type === "stack" ? "var(--nx-bg)" : "var(--nx-amber)",
                                   border: line.type === "stack" ? "none" : "1px solid var(--nx-border)",
                                   fontWeight: 600,
-                                  borderRadius: 3,
+                                  borderRadius: "var(--nx-r-2xs)",
                                 }}
                               >
                                 {line.type === "stack" ? "Curated Stack" : "Single Peptide"}
@@ -235,7 +235,7 @@ export function CartDrawer() {
                                     color: "var(--nx-amber)",
                                     border: "1px solid #C4D4E8",
                                     fontWeight: 600,
-                                    borderRadius: 3,
+                                    borderRadius: "var(--nx-r-2xs)",
                                   }}
                                 >
                                   {spec.badge}
@@ -289,7 +289,7 @@ export function CartDrawer() {
                               color: "var(--nx-amber)",
                               background: "var(--nx-bg-cream)",
                               border: "1px solid #C4D4E8",
-                              borderRadius: 3,
+                              borderRadius: "var(--nx-r-2xs)",
                               letterSpacing: "0.04em",
                               fontWeight: 500,
                             }}
@@ -308,7 +308,7 @@ export function CartDrawer() {
                           </div>
                           <div
                             className="grid grid-cols-3 w-full overflow-hidden"
-                            style={{ border: "1px solid var(--nx-border)", borderRadius: 8 }}
+                            style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)" }}
                             role="radiogroup"
                             aria-label="Billing cadence"
                           >
@@ -357,7 +357,7 @@ export function CartDrawer() {
                         <div className="flex items-center justify-between mt-3">
                           <div
                             className="inline-flex items-center"
-                            style={{ border: "1px solid var(--nx-border)", borderRadius: 8 }}
+                            style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)" }}
                           >
                             <button
                               onClick={() => updateQty(line.slug, line.type, line.qty - 1)}
@@ -461,7 +461,7 @@ export function CartDrawer() {
                                 background: "var(--nx-fg)",
                                 color: "var(--nx-bg)",
                                 fontWeight: 600,
-                                borderRadius: 8,
+                                borderRadius: "var(--nx-r-sm)",
                               }}
                               data-testid={`button-add-suggestion-${s.slug}`}
                             >
@@ -538,7 +538,7 @@ export function CartDrawer() {
                       background: "var(--nx-bg-cream)",
                       color: "var(--nx-fg)",
                       border: "1px solid var(--nx-border)",
-                      borderRadius: 4,
+                      borderRadius: "var(--nx-r-2xs)",
                       fontWeight: 600,
                     }}
                   >

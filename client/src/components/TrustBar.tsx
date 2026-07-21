@@ -60,7 +60,7 @@ export function TrustBar() {
                 style={{
                   width: "3px",
                   height: "3px",
-                  borderRadius: "999px",
+                  borderRadius: "var(--nx-r-pill)",
                   background: "color-mix(in oklab, var(--nx-fg) 30%, transparent)",
                 }}
                 aria-hidden="true"

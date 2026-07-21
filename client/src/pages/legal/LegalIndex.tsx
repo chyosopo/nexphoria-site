@@ -102,7 +102,7 @@ export default function LegalIndex() {
                     gap: "1rem",
                     padding: "1.5rem 1.75rem",
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "16px",
+                    borderRadius: "var(--nx-r-md)",
                     backgroundColor: "var(--nx-ceramic)",
                   }}
                 >

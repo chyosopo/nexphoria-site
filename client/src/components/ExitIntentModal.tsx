@@ -158,7 +158,7 @@ export function ExitIntentModal() {
               zIndex: "var(--nx-z-modal)" as unknown as number,
               width: "min(460px, calc(100vw - 32px))",
               backgroundColor: "var(--nx-bg-cream, var(--nx-ceramic))",
-              borderRadius: "6px",
+              borderRadius: "var(--nx-r-xs)",
               boxShadow: "0 40px 80px -20px rgba(21, 24, 28,0.35)",
               padding: "36px 32px 28px",
               border: "1px solid var(--nx-border)",
@@ -233,7 +233,7 @@ export function ExitIntentModal() {
               <div
                 style={{
                   padding: "14px 16px",
-                  borderRadius: 4,
+                  borderRadius: "var(--nx-r-2xs)",
                   backgroundColor: "rgba(152, 182, 213, 0.18)",
                   border: "1px solid var(--nx-acid, var(--nx-acid))",
                   fontFamily: "'General Sans', system-ui, sans-serif",
@@ -264,7 +264,7 @@ export function ExitIntentModal() {
                     style={{
                       flex: 1,
                       padding: "0.75rem 1rem",
-                      borderRadius: 4,
+                      borderRadius: "var(--nx-r-2xs)",
                       border: state === "err" || state === "invalid" ? "1px solid var(--nx-danger)" : "1px solid var(--nx-border)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-base)",
@@ -280,7 +280,7 @@ export function ExitIntentModal() {
                     data-testid="exit-intent-submit"
                     style={{
                       padding: "0 1.25rem",
-                      borderRadius: 4,
+                      borderRadius: "var(--nx-r-2xs)",
                       border: "none",
                       backgroundColor: "var(--nx-fg)",
                       color: "var(--nx-bg-cream, var(--nx-ceramic))",

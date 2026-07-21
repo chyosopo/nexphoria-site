@@ -300,7 +300,7 @@ export default function Category() {
           <h2 id="category-progress-title" className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
             Progress you can <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>point to.</em>
           </h2>
-          <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
+          <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: "var(--nx-r-md)", padding: "14px 18px", maxWidth: 320 }}>
             <div className="flex items-center justify-between gap-4">
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)" }}>{GOAL_CHIP[slug]?.label}</span>
               <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: "var(--nx-r-pill)", padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>

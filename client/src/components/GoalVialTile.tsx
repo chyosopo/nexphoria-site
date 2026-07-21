@@ -160,7 +160,7 @@ export function GoalVialTile({
         display: "block",
         width: "100%",
         padding: 0,
-        borderRadius: "8px",
+        borderRadius: "var(--nx-r-sm)",
         border: selected
           ? "2px solid var(--nx-fg)"
           : hovered

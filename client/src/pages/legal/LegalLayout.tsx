@@ -183,7 +183,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                     fontWeight: 500,
                     color: "var(--nx-fg)",
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "999px",
+                    borderRadius: "var(--nx-r-pill)",
                     padding: "0.5rem 1rem",
                     backgroundColor: active ? "var(--nx-cobalt-soft)" : "transparent",
                   }}
