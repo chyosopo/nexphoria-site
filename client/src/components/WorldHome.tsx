@@ -457,6 +457,33 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
       </section>
 
+      {/* ── THE GIFT — one quiet door, institutional register. A protocol is
+          the kind of thing one person covers for another; the band states it
+          without retail energy. Both worlds theme it through --nx-cobalt. ── */}
+      <section aria-label="Give a protocol" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }}>
+        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "1rem 2rem" }}>
+          <div style={{ maxWidth: "52ch" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              The gift
+            </p>
+            <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginTop: "0.4rem" }}>
+              A protocol, given.
+            </p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>
+              Cover a course for someone — or send yours to be covered. One payment; their results stay theirs.
+            </p>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem 1.6rem", alignItems: "center" }}>
+            <Link href="/gift" className="nx-text-link" data-testid={`${world}-gift-give`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+              Give a protocol <ArrowRight size={15} aria-hidden />
+            </Link>
+            <Link href="/gift?mode=request" className="nx-text-link" data-testid={`${world}-gift-request`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+              Ask someone to cover yours <ArrowRight size={15} aria-hidden />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── STANDARDS LINE + CLOSE ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>

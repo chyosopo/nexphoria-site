@@ -424,6 +424,22 @@ export default function Checkout() {
                         </li>
                       ))}
                     </ol>
+
+                    {/* The gift door, where it matters most: the person at the
+                        figure who won't be the one paying it. Quiet, one line. */}
+                    <div
+                      className="mt-6 p-4 flex flex-wrap items-center justify-between gap-3"
+                      style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
+                      data-testid="checkout-gift-door"
+                    >
+                      <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6, margin: 0, maxWidth: "48ch" }}>
+                        <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Someone else covering this?</strong>{" "}
+                        Send them the figure — one payment on their side, and your results stay yours.
+                      </p>
+                      <Link href="/gift?mode=request" className="nx-text-link" data-testid="checkout-gift-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                        Create the link →
+                      </Link>
+                    </div>
                   </Section>
 
                   <StepNav>
