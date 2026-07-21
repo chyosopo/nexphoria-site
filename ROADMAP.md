@@ -402,6 +402,20 @@ prioritized fix list; fixes land page by page, gates green each time.
   PENDING: bespoke boxShadows (7, intentional depth — drawer/modal/nav);
   metric-tile conditional fontSize clamps in BenefitTile (ternary
   expressions, off-codemod); sub-8px decorative type.
+- [x] **10.16 TILE COMPOSITION + IMAGERY** (done 2026-07-21, Chiya: "tile
+  placement and size and imagery etc the whole visual and UX"):
+  · Goal grid on both world homes: 4+2 orphan layout -> balanced 3x2,
+    each tile ~1/3 more photo.
+  · Two new Bloom frames (blend duo, cerebrolysin ampoule) in the house
+    still-life grammar — killed the two side-by-side duplicate photos in
+    the catalog (Growth and Cognitive rows). Registered as product frames
+    (world-safe).
+  · /goals/* route cards now carry art (stack outcome art / world-safe
+    compound frames) — were the only text-only cards on the site.
+  · Stack-page vial lineup 150 -> 210px.
+  · Catalog hero "Nothing hidden." -> "Every one accounted for." (law 3).
+  · Verified both worlds in Chromium (incl. women's route cards: rose
+    outcome art + product frames, no male-cast leak). All six gates green.
 - [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
