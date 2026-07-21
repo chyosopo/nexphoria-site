@@ -80,7 +80,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "What does a Nexphoria protocol cost?",
-        a: `Single peptides start from ${SOLO_FROM_LABEL}/month. Flagship protocols run from ${usd(PROTOCOL_FROM)}/month on a 12-month plan to ${usd(PROTOCOL_TOP)}/month for the deepest longevity stack month-to-month. 3-month plans save 15%; 12-month plans save 30% and include your blood panel. Your physician consult, lab interpretation, and cold-chain shipping are included — there are no hidden fees.`,
+        a: `Single peptides start from ${SOLO_FROM_LABEL}/month. Flagship protocols run from ${usd(PROTOCOL_FROM)}/month on a 12-month plan to ${usd(PROTOCOL_TOP)}/month for the deepest longevity stack month-to-month. 3-month plans save 15%; 12-month plans save 30% and include your blood panel. Your physician consult, lab interpretation, and cold-chain shipping are included — the figure is complete.`,
       },
       {
         q: "Can I cancel after the first month?",

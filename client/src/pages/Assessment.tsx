@@ -1517,7 +1517,7 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          A licensed physician reviews your answers. No charge unless a physician prescribes — the review is free.
+                          A licensed physician reviews your answers. No charge unless a physician prescribes — the review is complimentary.
                         </p>
                       </div>
 

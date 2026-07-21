@@ -841,8 +841,8 @@ export default function About() {
               tone="cream"
               eyebrow="Pricing"
               icon={<Scale size={18} strokeWidth={1.5} />}
-              headline="All-in. No hidden lab bill."
-              sub="One monthly price. Consult, compound, labs, shipping — bundled. No consultation fee."
+              headline="All-in. Labs within the figure."
+              sub="One monthly price. Consult, compound, labs, shipping — bundled. The consultation is complimentary."
               testId="about-tile-pricing"
             />
             <BenefitTile

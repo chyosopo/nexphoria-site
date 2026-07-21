@@ -402,7 +402,7 @@ export default function Journal() {
                 }}
               >
                 Evidence reviews, protocol explainers, and physician notes, delivered the week they
-                publish. No hype, no testimonials.
+                publish. Cited, reviewed, and plainly written.
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>

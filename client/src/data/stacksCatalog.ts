@@ -245,7 +245,7 @@ export const PANELS: PanelDef[] = [
   {
     tier: "Basic",
     price: 99,
-    freeWith: "Free with any 12-month subscription",
+    freeWith: "Included with any 12-month plan",
     summary: "Baseline safety screen — the floor under any protocol.",
     adds: ["CBC with differential", "Comprehensive metabolic panel", "Lipid panel", "HbA1c", "Fasting glucose + insulin", "hs-CRP", "TSH"],
     retest: "Baseline · Month 3",

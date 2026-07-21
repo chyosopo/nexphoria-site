@@ -2,7 +2,7 @@ import { ShieldCheck } from "lucide-react";
 import { F } from "@/lib/typography";
 
 /* ROADMAP 5.2 — THE promise, one phrasing, beside every price display:
-   "No charge unless a physician prescribes — the review is free."
+   "No charge unless a physician prescribes — the review is complimentary."
    Reuse this component wherever a price is shown; never restate the promise
    in ad-hoc copy. `detail` appends operational specifics (e.g. card holds). */
 export function PrescribedPromise({
@@ -42,7 +42,7 @@ export function PrescribedPromise({
         <strong style={{ fontWeight: 600, color: onDark ? "var(--nx-acid)" : "var(--nx-fg)" }}>
           No charge unless a physician prescribes
         </strong>
-        {" "}— the review is free.{detail ? ` ${detail}` : ""}
+        {" "}— the review is complimentary.{detail ? ` ${detail}` : ""}
       </span>
     </p>
   );

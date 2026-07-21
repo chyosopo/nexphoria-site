@@ -352,7 +352,7 @@ export default function Community() {
                     }}
                   >
                     We'll email you the day the community launches.
-                    No spam. Unsubscribe anytime.
+                    Written sparingly. Unsubscribe anytime.
                   </p>
                 </div>
               ) : (

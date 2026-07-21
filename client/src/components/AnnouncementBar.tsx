@@ -15,7 +15,7 @@ interface AnnouncementBarProps {
 }
 
 export function AnnouncementBar({
-  message = "Free physician consult on your first protocol \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
+  message = "Your first consultation is complimentary \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
   tag = "Peptides",
 }: AnnouncementBarProps) {
   const [dismissed, setDismissed] = useState(false);

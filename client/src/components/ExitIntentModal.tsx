@@ -320,7 +320,7 @@ export function ExitIntentModal() {
                     lineHeight: 1.5,
                   }}
                 >
-                  No spam. Unsubscribe anytime.
+                  Written sparingly. Unsubscribe anytime.
                 </p>
               </>
             )}

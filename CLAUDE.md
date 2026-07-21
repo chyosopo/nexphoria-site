@@ -29,6 +29,12 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
    the counts).
 2. **Two worlds, one engine.** Men = azure/steel. Women = orchid/rose-quartz. Same medical engine underneath.
 3. **Institutional bank voice.** Calm, precise, authoritative. No hype, no exclamation marks, no urgency theater, no discount-brand energy.
+   **Never defensive negation** (Chiya 2026-07-14: "Transparent pricing.
+   No hidden fees" killed sitewide): a premium house does not deny
+   trickery — assurance is stated as completeness. House phrases: "One
+   number a month. Everything within it." / "The figure is complete." /
+   "complimentary" and "included," never "free" or "no fee." Legal and
+   safety disclaimers (FDA, "if prescribed") are exempt and untouched.
 4. **Crimson is reserved for blood imagery only.** Never decorative, never a UI accent.
 5. **PHI never in the repo.** (See above.)
 6. **Never declare work "done."** Work produces a *shrinking punch list*: verified / pending / failed.

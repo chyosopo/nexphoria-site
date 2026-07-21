@@ -320,7 +320,7 @@ export const stacks: Stack[] = [
       { q: "What if I have a pre-existing condition?", a: "Our intake screens for contraindications — active or recent cancer, pregnancy or breastfeeding, and untreated hyperthyroidism among them. A physician reviews every case individually and will decline or adjust the protocol when it isn't appropriate." },
       { q: "How long until I see results?", a: "Most patients report reduced swelling and better sleep within 7–14 days. Tissue remodeling builds across weeks 3–6, with strength returning around week 8 on a predictable curve." },
       { q: "Can I stack Wolverine with another protocol?", a: "Often, yes — recovery peptides pair well with Glow or Eternal. Your physician confirms the combined plan and dosing so the protocols complement rather than compete." },
-      { q: "What's included in the price?", a: "Physician consult and review, pharmacy-compounded BPC-157 + TB-500, injection supplies, cold-chain shipping, and ongoing care — with lab work covered when clinically indicated. No hidden fees." },
+      { q: "What's included in the price?", a: "Physician consult and review, pharmacy-compounded BPC-157 + TB-500, injection supplies, cold-chain shipping, and ongoing care — with lab work covered when clinically indicated. The figure is complete." },
     ],
   },
   {
@@ -387,7 +387,7 @@ export const stacks: Stack[] = [
       { q: "What if I have a pre-existing condition?", a: "Our intake screens for contraindications including active or recent cancer, pregnancy or breastfeeding, and Wilson's disease (copper sensitivity, relevant to GHK-Cu). A physician reviews every case before prescribing." },
       { q: "How long until I see results?", a: "Barrier and redness improvements often begin in the first few weeks; most patients notice the firmer, more reflective ‘glow’ shift by around week 6, consolidating by week 12." },
       { q: "Can I keep my current skincare routine?", a: "Yes — Glow works from the inside and complements topical actives. Your physician will flag any actives worth spacing out during the protocol." },
-      { q: "What's included in the price?", a: "Physician consult and review, pharmacy-compounded GHK-Cu + BPC-157, injection supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. No hidden fees." },
+      { q: "What's included in the price?", a: "Physician consult and review, pharmacy-compounded GHK-Cu + BPC-157, injection supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. The figure is complete." },
     ],
   },
   {
@@ -454,7 +454,7 @@ export const stacks: Stack[] = [
       { q: "What if I have a pre-existing condition?", a: "Our intake screens for contraindications including active malignancy, autoimmune flare, and pregnancy or breastfeeding. Because Eternal touches immune and metabolic pathways, our physicians frequently require baseline labs before prescribing." },
       { q: "How long until I see results?", a: "Cleaner energy often arrives in the first two weeks via NAD+; sleep and recovery sharpen across weeks 3–6, with biological-age and immune markers shifting by re-test around week 12." },
       { q: "Can I stack Eternal with another protocol?", a: "Yes — it commonly pairs with Deep for sleep or Lean for metabolic goals. Your physician sequences dosing so the protocols reinforce each other." },
-      { q: "What's included in the price?", a: "Physician consult and review, the compounded Epitalon / Thymosin-\u03b11 / NAD+ / MOTS-c protocol, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. No hidden fees." },
+      { q: "What's included in the price?", a: "Physician consult and review, the compounded Epitalon / Thymosin-\u03b11 / NAD+ / MOTS-c protocol, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. The figure is complete." },
     ],
   },
   {
@@ -521,7 +521,7 @@ export const stacks: Stack[] = [
       { q: "What if I have a pre-existing condition?", a: "Our intake screens for contraindications including active cancer, untreated severe sleep apnea, and pregnancy or breastfeeding. Untreated apnea must be addressed first — a physician reviews every case before prescribing." },
       { q: "How long until I see results?", a: "Most patients fall asleep faster within the first week as onset latency drops. Deep sleep climbs across weeks 3–6, with morning HRV and daytime clarity following." },
       { q: "Can I stack Deep with another protocol?", a: "Yes — Deep pairs naturally with Wolverine (recovery) and Eternal (longevity), since better sleep amplifies both. Your physician aligns the dosing schedule." },
-      { q: "What's included in the price?", a: "Physician consult and review, the compounded Ipamorelin / DSIP / Selank / CJC-1295 protocol, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. No hidden fees." },
+      { q: "What's included in the price?", a: "Physician consult and review, the compounded Ipamorelin / DSIP / Selank / CJC-1295 protocol, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. The figure is complete." },
     ],
   },
   {
@@ -588,7 +588,7 @@ export const stacks: Stack[] = [
       { q: "What if I have a pre-existing condition?", a: "Our intake screens for contraindications including a personal or family history of medullary thyroid carcinoma or MEN2, active GI disease or pancreatitis history, and pregnancy or breastfeeding. A physician reviews every case before prescribing GLP-class therapy." },
       { q: "How long until I see results?", a: "Appetite and cravings typically fall during the week 1–4 titration. Steady fat loss follows across weeks 5–12, with DEXA confirming preserved lean mass by the consolidation phase." },
       { q: "Why is this cheaper than getting Tirzepatide elsewhere?", a: "Lean uses pharmacy-compounded GLP-class therapy through an state-licensed 503A facility, which removes brand markup — with real physician oversight, not a rubber stamp. The crossed-out anchor reflects sourcing the molecules separately." },
-      { q: "What's included in the price?", a: "Physician consult and review, the compounded Tirzepatide / Retatrutide / AOD-9604 / Tesamorelin protocol with titration, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. No hidden fees." },
+      { q: "What's included in the price?", a: "Physician consult and review, the compounded Tirzepatide / Retatrutide / AOD-9604 / Tesamorelin protocol with titration, supplies, cold-chain shipping, and ongoing care. Lab work is covered when clinically indicated. The figure is complete." },
     ],
   },
 ];

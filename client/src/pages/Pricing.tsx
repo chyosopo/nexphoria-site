@@ -182,7 +182,7 @@ function PricingTiers() {
               marginBottom: "3rem",
             }}
           >
-            Every path includes physician review, US-compounded medication, and transparent pricing. No consultation fee.
+            Every path includes physician review, US-compounded medication, and one complete monthly figure. The consultation is complimentary.
           </p>
         </Reveal>
 
@@ -456,7 +456,7 @@ function PricingTiers() {
 const PRICING_FAQ_ITEMS = [
   {
     q: "How much does Nexphoria cost per month?",
-    a: `Single peptides start at ${SOLO_FROM_LABEL}/month on a 12-month plan and ${formatUSD(SOLO_1MO_FROM)}/month billed monthly. Physician-built stacks run from ${formatUSD(STACK_FROM_12MO)}/month up to ${formatUSD(STACK_TO_1MO)}/month, depending on protocol and cadence. Every plan includes your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and partner-laboratory labs. There are no hidden fees.`,
+    a: `Single peptides start at ${SOLO_FROM_LABEL}/month on a 12-month plan and ${formatUSD(SOLO_1MO_FROM)}/month billed monthly. Physician-built stacks run from ${formatUSD(STACK_FROM_12MO)}/month up to ${formatUSD(STACK_TO_1MO)}/month, depending on protocol and cadence. Every plan includes your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and partner-laboratory labs. The figure is complete.`,
   },
   {
     q: "Is the physician consultation included in the subscription price?",
@@ -561,12 +561,12 @@ function PanelTierComparison() {
 export default function Pricing() {
   useSeo({
     title: "Peptide therapy pricing — transparent, all-in, no lab upsell",
-    description: `Single peptides from ${SOLO_FROM_LABEL}/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills all included. No hidden fees. Cancel before dispense.`,
+    description: `Single peptides from ${SOLO_FROM_LABEL}/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills within one complete figure. Cancel before dispense.`,
     path: "/pricing",
     jsonLd: [
       webPageJsonLd({
         name: "Nexphoria Pricing",
-        description: "Transparent all-in pricing for physician-prescribed peptide therapy — single peptides, bundles, and stacks.",
+        description: "Physician-prescribed peptide therapy, priced as one complete figure — single peptides, bundles, and stacks.",
         path: "/pricing",
       }),
       orgJsonLd(),
@@ -582,8 +582,8 @@ export default function Pricing() {
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Transparent</span> pricing.<br />
-                <span>No hidden fees.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One number</span> a month.<br />
+                <span>Everything within it.</span>
               </>
             }
             subtitle="Monthly subscriptions, single-protocol purchases, or stacked bundles. Your physician consult and bloodwork are included in every plan."
@@ -800,7 +800,7 @@ export default function Pricing() {
                 marginBottom: "2rem",
               }}
             >
-              What you pay. What you get. No surprises.
+              The figure, protocol by protocol.
             </h2>
           </Reveal>
 
@@ -1326,8 +1326,8 @@ export default function Pricing() {
       </section>
 
       <TrustStatsStrip
-        eyebrow="Why patients trust the price"
-        heading="What ‘no hidden fees’ actually looks like."
+        eyebrow="The composition of the price"
+        heading="Everything within the figure."
       />
 
       {/* ── Pricing FAQ ── */}
@@ -1377,7 +1377,7 @@ export default function Pricing() {
       </section>
 
       <FinalCTAStrip
-        title="No consultation fee. Labs included."
+        title="Consultation complimentary. Labs included."
         sub="Start your intake. Physician review follows every partner-laboratory draw."
       />
     </SiteLayout>
