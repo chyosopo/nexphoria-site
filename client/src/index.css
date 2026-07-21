@@ -588,6 +588,29 @@
   .nx-footer {
     background-color: var(--nx-bg-dark);
     color: #FFFFFF;
+    overflow: hidden; /* the wordmark's baseline bleeds off the bottom edge */
+  }
+
+  /* ── Footer wordmark — the establishment signature. The name set
+     enormous in near-transparent letters at the footer's base; it reads
+     as confidence, not decoration. aria-hidden, non-interactive. ── */
+  .nx-footer-wordmark {
+    display: block;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 13vw, 12.5rem);
+    line-height: 0.78;
+    letter-spacing: 0.02em;
+    text-align: center;
+    white-space: nowrap;
+    color: transparent;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.015) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    user-select: none;
+    pointer-events: none;
+    margin-top: clamp(2.2rem, 5vw, 4.5rem);
+    margin-bottom: -0.14em;
   }
 
   /* ── Biomarker chart card ── */

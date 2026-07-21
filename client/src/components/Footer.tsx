@@ -295,6 +295,11 @@ export function Footer({ variant = "shared" }: FooterProps) {
           Compounded under USP &lt;797&gt; in U.S. 503A pharmacies
         </p>
       </div>
+
+      {/* The signature — full-bleed, outside the container */}
+      <span className="nx-footer-wordmark" aria-hidden="true" data-testid="footer-wordmark">
+        NEXPHORIA
+      </span>
     </footer>
   );
 }
