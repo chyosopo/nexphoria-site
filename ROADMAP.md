@@ -367,6 +367,22 @@ prioritized fix list; fixes land page by page, gates green each time.
   OPEN (needs Chiya): 6-month gift term (no 6-mo cadence exists in the
   catalog — needs a priced decision), real payment rails, gift-credit
   policy sign-off (refund/apply language), gift email/delivery flow.
+- [x] **10.14 VISUAL TIGHTENING** (done 2026-07-21, Chiya: "the whole site
+  need to be tighten up everything looks all over the place"):
+  · Collapsed 117 hand-rolled fontSize clamp() literals (82 distinct) onto
+    the 8-step --nx-t-* ladder, and 130 section paddings (56 distinct) onto
+    3 new rhythm tokens (--nx-sp-sec / --nx-sp-band / --nx-sp-tight) —
+    39 files. Card inner paddings (<2.5rem max) intentionally left.
+  · Verified: all 5 gates green, full-page shots of /men /women /pricing
+    /stacks/ascend /science, and a 17-route overflow check at 390px
+    (all clear).
+  · Follow-on voice fix (aa39f22): screenshot review caught defensive
+    negation that survived the 07-14 sweep — Pricing "Nothing upsold" /
+    "no add-ons, no lab upsell" / "Included free with", About/Bloodwork/
+    cart badges. All recast as assurance-as-completeness.
+  PENDING: numeric small-type literals (10px×18, 11px×35) still off-ladder
+  (audit counts them; collapsing to --nx-t-xs would move badge/meta type
+  visibly — wants an eyes-on pass, Atlas lane).
 - [ ] **10.10 BLOCKED ON CHIYA:** commitment-ladder framing ("first panel
   included" vs any % language), add-on/supplement tier, free cross-sell
   offer, protocol-tagged real testimonials.
