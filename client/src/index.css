@@ -97,8 +97,8 @@
     --nx-ice:          #DEE8F0;  /* warmed — was cool blue */
     --nx-ice-edge:     #BBCBD9;
     /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
-    --nx-peach:        #F7F3E9;
-    --nx-peach-edge:   #E4DCC9;
+    --nx-peach:        #F4F8FB;  /* retired warm ivory -> cool porcelain (Chiya 2026-07-21) */
+    --nx-peach-edge:   #CBD8E2;
     /* Sage — cream's deeper alternate. Used for recovery/sleep panels.  */
     --nx-sage:         #DCE4E6;
     --nx-sage-edge:    #C2CDD1;
@@ -107,7 +107,7 @@
 
     /* ── V3 tokens — locked minimal palette (locked palette) ── */
     /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #F7F3E9;
+    --nx-ceramic:      #F4F8FB;  /* elevated porcelain — was warm ivory, retired 2026-07-21 */
     --nx-rock:         #D5DFE8;
     --nx-acid:         #A9C6DE;
     --nx-danger:       #A4453C;  /* form error — muted brick */
