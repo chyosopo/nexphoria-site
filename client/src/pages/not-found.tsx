@@ -37,7 +37,7 @@ export default function NotFound() {
     <SiteLayout navVariant="gate" hideFooter>
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ minHeight: "82vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", paddingTop: "clamp(3rem,7vw,5.5rem)", paddingBottom: "clamp(3rem,7vw,5.5rem)", zIndex: 1 }} data-testid="not-found-page">
+        <div className="nx-container relative" style={{ minHeight: "82vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", zIndex: 1 }} data-testid="not-found-page">
 
           {/* icon composition — a compass that has lost its bearing */}
           <div className="nx-hero-frame" aria-hidden style={{ position: "relative", width: 132, height: 132, marginBottom: "1.8rem" }}>
@@ -53,7 +53,7 @@ export default function NotFound() {
           </div>
 
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Error 404</p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(2.6rem, 5.4vw, 4.2rem)", letterSpacing: "-0.015em", color: "var(--nx-fg)", lineHeight: 1.05, maxWidth: "16ch" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", letterSpacing: "-0.015em", color: "var(--nx-fg)", lineHeight: 1.05, maxWidth: "16ch" }}>
             This page isn’t on the shelf.
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", maxWidth: "44ch", lineHeight: 1.6, marginTop: "1rem" }}>

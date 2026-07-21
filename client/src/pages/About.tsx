@@ -42,7 +42,7 @@ const sectionHeading: React.CSSProperties = {
   // Fraunces — About was the last page speaking General Sans at display size
   fontFamily: "'Fraunces', Georgia, serif",
   fontWeight: 500,
-  fontSize: "clamp(2rem, 4.2vw, 3.25rem)",
+  fontSize: "var(--nx-t-h1)",
   letterSpacing: "-0.015em",
   color: "var(--nx-fg)",
   lineHeight: 1.06,
@@ -234,7 +234,7 @@ export default function About() {
               style={{
                 fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
-                fontSize: "clamp(2.75rem, 6vw, 4.75rem)",
+                fontSize: "var(--nx-t-display)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.02em",
                 color: "var(--nx-fg)",
@@ -334,7 +334,7 @@ export default function About() {
                   style={{
                     fontFamily: FONT,
                     fontWeight: 600,
-                    fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
+                    fontSize: "var(--nx-t-h2)",
                     letterSpacing: "-0.03em",
                     color: "var(--nx-fg)",
                     lineHeight: 1,
@@ -734,7 +734,7 @@ export default function About() {
                     style={{
                       fontFamily: FONT,
                       fontWeight: 600,
-                      fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                      fontSize: "var(--nx-t-h2)",
                       letterSpacing: "-0.02em",
                       color: "var(--nx-fg)",
                       lineHeight: 1.05,
@@ -781,7 +781,7 @@ export default function About() {
               style={{
                 fontFamily: FONT,
                 fontWeight: 600,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 letterSpacing: "-0.02em",
@@ -868,7 +868,7 @@ export default function About() {
               style={{
                 fontFamily: FONT,
                 fontWeight: 500,
-                fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
+                fontSize: "var(--nx-t-h2)",
                 letterSpacing: "-0.02em",
                 color: "var(--nx-ceramic)",
                 lineHeight: 1.25,

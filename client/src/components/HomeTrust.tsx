@@ -35,16 +35,16 @@ export function HomeTrust() {
   return (
     <>
       {/* ── PHYSICIAN-TRUST BAND — COPY-BLOCKS §3, credential-forward ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(3.5rem,6vw,5.5rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <Reveal>
           {/* Two columns: copy + a physician actually in frame — the card's
               right half was ~45% empty porcelain at desktop widths. */}
           <div className="nx-glass-card grid grid-cols-1 md:grid-cols-[1.3fr_0.7fr] overflow-hidden" style={{ padding: 0 }}>
-            <div style={{ padding: "clamp(1.8rem,4vw,2.8rem)" }}>
+            <div style={{ padding: "var(--nx-sp-tight)" }}>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 Physician oversight
               </p>
-              <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.14 }}>
+              <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.14 }}>
                 Every protocol is decided by a licensed physician.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1rem" }}>
@@ -75,11 +75,11 @@ export function HomeTrust() {
       </section>
 
       {/* ── HOW IT WORKS — COPY-BLOCKS §1, 3-step, verb-first ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(3.5rem,6vw,5.5rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
           The process
         </p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.14 }}>
+        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.14 }}>
           How it works
         </h2>
         <div className="nx-steps-lg" style={{ marginTop: "clamp(2.4rem,4vw,3.4rem)" }}>

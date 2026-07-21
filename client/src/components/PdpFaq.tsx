@@ -58,7 +58,7 @@ export function buildPdpFaq(opts: {
 export function PdpFaq({ items }: { items: FaqItem[] }) {
   return (
     <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} data-testid="pdp-faq">
-      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
         Asked plainly, answered plainly
       </h2>
       <div style={{ marginTop: "clamp(1.2rem,2vw,1.6rem)" }}>

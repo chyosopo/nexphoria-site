@@ -381,7 +381,7 @@ export default function FAQPage() {
                   style={{
                     fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
-                    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
                     marginBottom: "2rem",

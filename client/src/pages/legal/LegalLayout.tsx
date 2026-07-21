@@ -69,7 +69,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
           <h1
             style={{
               fontFamily: FONT,
-              fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+              fontSize: "var(--nx-t-h1)",
               fontWeight: 600,
               letterSpacing: "-0.03em",
               color: "var(--nx-fg)",

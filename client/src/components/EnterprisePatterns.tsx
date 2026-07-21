@@ -46,7 +46,7 @@ export function SectionHead({
           {eyebrow}
         </p>
       )}
-      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.2vw,46px)", color: "var(--nx-fg)", marginTop: eyebrow ? "0.8rem" : 0, lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: center ? undefined : maxTitle, marginInline: center ? "auto" : undefined }}>
+      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: eyebrow ? "0.8rem" : 0, lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: center ? undefined : maxTitle, marginInline: center ? "auto" : undefined }}>
         {title}
       </h2>
       {lead && (

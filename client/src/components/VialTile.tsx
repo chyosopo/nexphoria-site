@@ -443,7 +443,7 @@ function VialTileInner({
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
-                    fontSize: "clamp(18px, 1.9vw, 24px)",
+                    fontSize: "var(--nx-t-xl)",
                     lineHeight: 1.05,
                     letterSpacing: "-0.02em",
                     margin: 0,
@@ -479,7 +479,7 @@ function VialTileInner({
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 600,
-                      fontSize: "clamp(16px, 1.7vw, 22px)",
+                      fontSize: "var(--nx-t-lg)",
                       letterSpacing: "-0.02em",
                       color: t.ink,
                       lineHeight: 1,

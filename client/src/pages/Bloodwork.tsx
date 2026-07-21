@@ -63,7 +63,7 @@ function Hero() {
           at every desktop width.) */}
       <div
         className="nx-container"
-        style={{ paddingTop: "clamp(4rem, 8vw, 7rem)", paddingBottom: "clamp(3rem, 6vw, 5rem)" }}
+        style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}
       >
         <div
           style={{ display: "grid", gap: "3rem", alignItems: "end" }}
@@ -96,7 +96,7 @@ function Hero() {
               <h1
                 style={{
                   fontFamily: FONT,
-                  fontSize: "clamp(2.4rem, 5.4vw, 4.4rem)",
+                  fontSize: "var(--nx-t-display)",
                   lineHeight: 0.98,
                   fontWeight: 500,
                   letterSpacing: "-0.03em",
@@ -110,7 +110,7 @@ function Hero() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: "clamp(1rem, 1.15vw, 1.15rem)",
+                  fontSize: "var(--nx-t-lg)",
                   lineHeight: 1.55,
                   color: "rgba(246, 249, 252,0.75)",
                   maxWidth: 520,
@@ -277,7 +277,7 @@ function Hero() {
       </div>
 
       {/* ── Cinematic lab — living proof band (Higgsfield kling3.0) ── */}
-      <div className="nx-container" style={{ paddingBottom: "clamp(2.5rem, 5vw, 4rem)" }}>
+      <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }}>
         <div className="relative overflow-hidden" style={{ borderRadius: "var(--nx-r-lg)", boxShadow: "var(--nx-e-4)" }} data-testid="bloodwork-video-band">
           <video autoPlay={!reduce} muted loop={!reduce} playsInline
             src="img/img_6d36ae1989c8.mp4"
@@ -285,7 +285,7 @@ function Hero() {
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
             aria-label="Partner-laboratory lab work — every 90 days" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
-          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "clamp(16px, 2vw, 24px)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
+          <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
             Your numbers, every 90 days.
           </p>
         </div>
@@ -396,7 +396,7 @@ function PanelExplorer() {
             <h2
               style={{
                 fontFamily: FONT,
-                fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
+                fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
                 fontWeight: 500,
@@ -409,7 +409,7 @@ function PanelExplorer() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "clamp(0.95rem, 1.05vw, 1.05rem)",
+                fontSize: "var(--nx-t-body)",
                 lineHeight: 1.6,
                 color: "var(--nx-fg-graphite)",
               }}
@@ -497,7 +497,7 @@ function PanelExplorer() {
                                         <h3
                       style={{
                         fontFamily: FONT,
-                        fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)",
+                        fontSize: "var(--nx-t-xl)",
                         letterSpacing: "-0.01em",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
@@ -595,7 +595,7 @@ function PanelExplorer() {
             <div
               style={{
                 fontFamily: FONT,
-                fontSize: "clamp(2.6rem, 4.5vw, 3.4rem)",
+                fontSize: "var(--nx-t-h1)",
                 fontWeight: 500,
                 letterSpacing: "-0.03em",
                 color: "var(--nx-fg)",
@@ -622,7 +622,7 @@ function PanelExplorer() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: "clamp(0.95rem, 1.1vw, 1.05rem)",
+                  fontSize: "var(--nx-t-body)",
                   lineHeight: 1.55,
                   color: "var(--nx-fg)",
                 }}
@@ -755,7 +755,7 @@ function LiveTrajectory() {
               id="bw-live-title"
               style={{
                 fontFamily: FONT,
-                fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
+                fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
                 fontWeight: 500,
@@ -767,7 +767,7 @@ function LiveTrajectory() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "clamp(0.95rem, 1.05vw, 1.05rem)",
+                fontSize: "var(--nx-t-body)",
                 lineHeight: 1.6,
                 color: "rgba(246, 249, 252,0.7)",
               }}
@@ -848,7 +848,7 @@ function HowItWorks() {
               id="bw-how-title"
               style={{
                 fontFamily: FONT,
-                fontSize: "clamp(1.7rem, 3.2vw, 2.6rem)",
+                fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
                 fontWeight: 500,
@@ -880,7 +880,7 @@ function HowItWorks() {
                     <h3
                       style={{
                         fontFamily: FONT,
-                        fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)",
+                        fontSize: "var(--nx-t-lg)",
                         fontWeight: 500,
                         letterSpacing: "-0.01em",
                         color: "var(--nx-fg)",
@@ -1043,7 +1043,7 @@ function PanelTiers() {
     <section id="tiers" aria-labelledby="bw-tiers-title" className="nx-section" style={{ background: "var(--nx-bg-cream)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">Panel tiers</p>
-        <h2 id="bw-tiers-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 id="bw-tiers-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           Nothing is prescribed <em style={{ fontStyle: "italic", color: "var(--nx-cobalt)" }}>before it's measured.</em>
         </h2>
         <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
@@ -1119,7 +1119,7 @@ function PanelTiers() {
                   </p>
                 )}
                 <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
-                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,3.4vw,34px)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1 }}>{usd(p.price)}</p>
+                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1 }}>{usd(p.price)}</p>
                 {p.freeWith && <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt)", fontWeight: 600, marginTop: 4 }}>{p.freeWith}</p>}
                 <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{p.summary}</p>
                 <div style={{ marginTop: "1rem", flex: 1 }}>
@@ -1151,7 +1151,7 @@ function PanelTiers() {
 
         {/* stack → panel mapping */}
         <div className="mt-12">
-          <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>Which protocol needs which panel</h3>
+          <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Which protocol needs which panel</h3>
           <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "1rem" }}>
             {FLAGSHIP_STACKS.map((s) => (
               <Link key={s.slug} href={`/stacks/${s.slug}`} className="grid grid-cols-[1fr_auto] gap-4 py-3.5" style={{ borderBottom: "1px solid var(--nx-border)", textDecoration: "none", alignItems: "center" }}>
@@ -1224,8 +1224,8 @@ export default function Bloodwork() {
         <HowItWorks />
         {/* The FAQ the JSON-LD promises — visible objection-handling at the
             close (invisible FAQPage markup risks a rich-result penalty) */}
-        <section className="nx-container" aria-labelledby="bloodwork-faq-title" style={{ paddingTop: "clamp(2.6rem,5vw,4rem)", paddingBottom: "clamp(2.6rem,5vw,4rem)" }}>
-          <h2 id="bloodwork-faq-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginBottom: "1.4rem" }}>
+        <section className="nx-container" aria-labelledby="bloodwork-faq-title" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }}>
+          <h2 id="bloodwork-faq-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: "1.4rem" }}>
             Before you book the draw.
           </h2>
           <FaqAccordion items={BLOODWORK_FAQ_ITEMS} openFirst={false} />
@@ -1247,7 +1247,7 @@ function SystemsMosaic() {
     <section id="panel" aria-labelledby="bw-panel-title" className="nx-section" style={{ background: "var(--nx-bg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow">The panel</p>
-        <h2 id="bw-panel-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
+        <h2 id="bw-panel-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
           One draw. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Eleven</em> windows into you.
         </h2>
         <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1293,7 +1293,7 @@ function ResultsDashboard() {
     <section id="results" aria-labelledby="bw-results-title" className="nx-section" style={{ background: "var(--nx-fg)" }}>
       <div className="nx-container">
         <p className="nx-eyebrow" style={{ color: "rgba(243, 245, 247,0.55)" }}>Your results</p>
-        <h2 id="bw-results-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,66px)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
+        <h2 id="bw-results-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
           Not a PDF. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>A plan.</em>
         </h2>
         <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
@@ -1352,10 +1352,10 @@ function OfferStack() {
   return (
     <section id="offer" aria-labelledby="bw-offer-title" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
       <div className="nx-container">
-        <div className="nx-glass-card" style={{ padding: "clamp(2rem,4.5vw,3.4rem)" }}>
+        <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)" }}>
           <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
             <div>
-              <h2 id="bw-offer-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,3.8vw,46px)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
+              <h2 id="bw-offer-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
                 Everything your body has been <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>trying to tell you.</em>
               </h2>
               <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
@@ -1416,7 +1416,7 @@ function ActionPlan({ world }: { world: "men" | "women" }) {
           </div>
         </div>
         <div className="relative" style={{ marginTop: "4.5rem", zIndex: 2 }}>
-          <h2 id="bw-plan-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4.6vw,56px)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
+          <h2 id="bw-plan-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
             Doctor-developed. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>You</em>-specific.
           </h2>
           <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "rgba(243, 245, 247,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
@@ -1482,7 +1482,7 @@ function MarkerWall() {
     <section aria-label="The biomarkers your panel measures" className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
       <div aria-hidden style={{ textAlign: "center" }}>
         {rows.map((r, i) => (
-          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4.6vw,58px)", lineHeight: 1.28, color: "var(--nx-cobalt)", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
+          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.28, color: "var(--nx-cobalt)", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
             {r.join(",  ")},
           </p>
         ))}

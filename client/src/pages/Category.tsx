@@ -190,22 +190,22 @@ export default function Category() {
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── Hero ── */}
       <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }} aria-labelledby="category-hero-title">
-        <div className="nx-container" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(2.5rem,5vw,4rem)" }}>
+        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
           <div className={heroArt ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center" : ""}>
             <div>
               <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
-              <h1 id="category-hero-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(44px,6.4vw,84px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
+              <h1 id="category-hero-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
                 {cfg.pre}{" "}
                 <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
               </h1>
               {/* The goal's feeling line (ROADMAP 4.2) — same register as the
                   front-door tile that brought the visitor here. */}
               {CATEGORY_FEELING[slug] && (
-                <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "clamp(18px,1.6vw,22px)", color: "var(--nx-cobalt)", marginTop: "1.1rem" }} data-testid="cat-feeling">
+                <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-cobalt)", marginTop: "1.1rem" }} data-testid="cat-feeling">
                   {CATEGORY_FEELING[slug]}
                 </p>
               )}
-              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "clamp(16px,1.3vw,19px)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1rem" }}>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-lg)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1rem" }}>
                 {cfg.sub}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -246,7 +246,7 @@ export default function Category() {
           values only: compound count from the catalog, marker count from the
           panel, retest cadence is protocol law. ── */}
       <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-label="At a glance">
-        <div className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.4vw,1.9rem)", paddingBottom: "clamp(1.4rem,2.4vw,1.9rem)" }}>
+        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "clamp(1rem,2.5vw,1.75rem)" }}>
             {([
               [Pill, list.length > 0 ? String(list.length) : "Multiple", list.length === 1 ? "compound in this goal" : "compounds in this goal"],
@@ -257,7 +257,7 @@ export default function Category() {
               <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                 <Icon size={19} strokeWidth={1.7} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} />
                 <div>
-                  <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(20px,2.2vw,27px)", lineHeight: 1.05, color: "var(--nx-fg)", fontVariantNumeric: "tabular-nums" }}>{big}</div>
+                  <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-xl)", lineHeight: 1.05, color: "var(--nx-fg)", fontVariantNumeric: "tabular-nums" }}>{big}</div>
                   <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.25rem", lineHeight: 1.3 }}>{small}</div>
                 </div>
               </div>
@@ -297,7 +297,7 @@ export default function Category() {
         <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, rgba(21, 24, 28,0.1) 60%, transparent 100%)" }} />
         <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
         <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
-          <h2 id="category-progress-title" className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(30px,4.4vw,54px)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
+          <h2 id="category-progress-title" className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
             Progress you can <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>point to.</em>
           </h2>
           <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: 18, padding: "14px 18px", maxWidth: 320 }}>
@@ -372,10 +372,10 @@ export default function Category() {
           .filter((a): a is NonNullable<typeof a> => Boolean(a));
         if (reads.length === 0) return null;
         return (
-          <section className="nx-section" style={{ paddingTop: "clamp(2.4rem,4.5vw,3.4rem)", paddingBottom: "0" }} aria-labelledby="cat-reading-title">
+          <section className="nx-section" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="cat-reading-title">
             <div className="nx-container">
               <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-                <h2 id="cat-reading-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+                <h2 id="cat-reading-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
                   Read before you decide
                 </h2>
                 <Link href="/journal" className="nx-text-link" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
@@ -407,8 +407,8 @@ export default function Category() {
       {/* ── Final CTA ── */}
       <section className="nx-section" aria-labelledby="category-cta-title">
         <div className="nx-container">
-          <div className="nx-glass-card" style={{ padding: "clamp(2rem,4vw,3rem)", textAlign: "center" }}>
-            <h2 id="category-cta-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(28px,3.6vw,44px)", color: "var(--nx-fg)" }}>
+          <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)", textAlign: "center" }}>
+            <h2 id="category-cta-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)" }}>
               One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
             </h2>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>

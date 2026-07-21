@@ -25,12 +25,12 @@ export default function Booking() {
     <SiteLayout navVariant="showcase">
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ paddingTop: "clamp(3.5rem,7vw,6rem)", paddingBottom: "clamp(3.5rem,7vw,6rem)", zIndex: 1, maxWidth: 780 }}>
+        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", zIndex: 1, maxWidth: 780 }}>
           <Reveal>
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)", display: "inline-flex", alignItems: "center", gap: 8 }}>
               <CalendarClock size={14} strokeWidth={2} aria-hidden /> Consultation
             </p>
-            <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,5vw,54px)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "18ch" }}>
+            <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "18ch" }}>
               Schedule a consultation.
             </h1>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1rem" }}>

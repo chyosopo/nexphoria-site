@@ -132,11 +132,11 @@ export default function Gift() {
       {/* ── HERO ── */}
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "clamp(3.2rem,6.5vw,5.4rem)", paddingBottom: "clamp(1.8rem,3.5vw,2.8rem)", zIndex: 1 }}>
+        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             The gift
           </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,66px)", lineHeight: 1.05, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "17ch", marginTop: "0.9rem" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "17ch", marginTop: "0.9rem" }}>
             Health you can <em style={{ color: "var(--nx-cobalt)" }}>actually give.</em>
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.1rem" }}>
@@ -163,8 +163,8 @@ export default function Gift() {
       </section>
 
       {/* ── STEP 1 · CHOOSE ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.6rem,3vw,2.4rem)", paddingBottom: "0" }} aria-labelledby="gift-choose-title">
-        <h2 id="gift-choose-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "0" }} aria-labelledby="gift-choose-title">
+        <h2 id="gift-choose-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
           {mode === "give" ? "1 · Choose what to give" : "1 · Choose what you're asking for"}
         </h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "0.4rem" }}>
@@ -182,9 +182,9 @@ export default function Gift() {
       </section>
 
       {/* ── STEP 2 · TERM + SUMMARY / LINK ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(2rem,4vw,3rem)", paddingBottom: "clamp(2.4rem,4.5vw,3.4rem)" }} aria-labelledby="gift-term-title">
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="gift-term-title">
         <div className="nx-glass-tile" style={{ display: "block", padding: "clamp(1.4rem,3vw,2rem)", maxWidth: 860 }} data-testid="gift-summary">
-          <h2 id="gift-term-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)" }}>
+          <h2 id="gift-term-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
             {sel ? `2 · ${sel.name}` : "2 · Pick a supply length"}
           </h2>
           {!sel && (
@@ -210,7 +210,7 @@ export default function Gift() {
                   ))}
                 </div>
               )}
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4vw,40px)", color: "var(--nx-fg)", marginTop: "1rem", lineHeight: 1, fontVariantNumeric: "tabular-nums" }} data-testid="gift-total">
+              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "1rem", lineHeight: 1, fontVariantNumeric: "tabular-nums" }} data-testid="gift-total">
                 {term ? usd(term.total) : ""}
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-muted)" }}> · one-time{sel.kind === "stack" ? ` · ${term?.label.toLowerCase()}` : ""}</span>
               </p>
@@ -313,7 +313,7 @@ export default function Gift() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(2.8rem,5vw,4rem)", paddingBottom: "clamp(3.2rem,5.5vw,4.5rem)", maxWidth: 860 }} aria-label="Gift questions">
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)", maxWidth: 860 }} aria-label="Gift questions">
         <p className="nx-eyebrow">Questions, answered</p>
         <div style={{ marginTop: "1rem" }}>
           {GIFT_FAQ.map((f, i) => (

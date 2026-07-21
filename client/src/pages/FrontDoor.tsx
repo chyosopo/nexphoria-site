@@ -90,13 +90,13 @@ export default function FrontDoor() {
       {/* ══ 1 · HERO — what this is + the one action, in 5 seconds ══ */}
       <section className="relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ paddingTop: "clamp(3.2rem,6.5vw,5.4rem)", paddingBottom: "clamp(2.4rem,4.5vw,3.6rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
             <div className="nx-hero-seq">
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 Physician-prescribed peptide therapy
               </p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,74px)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem" }}>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem" }}>
                 Prescription peptides, built on <em style={{ color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>your bloodwork.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1.1rem" }}>
@@ -130,12 +130,12 @@ export default function FrontDoor() {
           (Chiya, 2026-07-10). Full-bleed cinematic split: breathing portraits,
           hover widens a panel and casts its world's tokens. The theatrical
           full-screen version lives on at /gate. ══ */}
-      <section aria-labelledby="frontdoor-gate-heading" style={{ paddingTop: "clamp(2.4rem, 4.5vw, 3.6rem)" }}>
+      <section aria-labelledby="frontdoor-gate-heading" style={{ paddingTop: "var(--nx-sp-band)" }}>
         <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             Two worlds · one clinical standard
           </p>
-          <h2 id="frontdoor-gate-heading" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px, 3.6vw, 38px)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "22ch", lineHeight: 1.12 }}>
+          <h2 id="frontdoor-gate-heading" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "22ch", lineHeight: 1.12 }}>
             Built for your biology.
           </h2>
         </div>
@@ -159,10 +159,10 @@ export default function FrontDoor() {
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
                     {w.eyebrow}
                   </p>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px, 4.6vw, 58px)", lineHeight: 1.02, letterSpacing: "-0.015em", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.02, letterSpacing: "-0.015em", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
                     {w.label}
                   </p>
-                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "clamp(15px, 1.7vw, 18px)", lineHeight: 1.45, color: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)", marginTop: "0.55rem", maxWidth: "30ch" }}>
+                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-body)", lineHeight: 1.45, color: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)", marginTop: "0.55rem", maxWidth: "30ch" }}>
                     {w.feel}
                   </p>
                   <span className="nx-wgate-arrow" aria-hidden style={{ marginTop: "1.1rem" }}>
@@ -176,9 +176,9 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
-      <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "clamp(2.8rem,5.5vw,4.4rem) 0" }}>
+      <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "var(--nx-sp-band) 0" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
-          <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(30px,4.6vw,52px)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.015em", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
+          <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.015em", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
             A protocol. <em style={{ color: "var(--nx-cobalt)" }}>Not a purchase.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "56ch", margin: "1.1rem auto 0" }}>
@@ -189,7 +189,7 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 1.6 · THREE PILLARS (ROADMAP 8.2) — what the model is made of ══ */}
-      <section className="nx-container" aria-label="What the model is made of" style={{ paddingTop: "clamp(2.6rem,5vw,4rem)", paddingBottom: "0" }}>
+      <section className="nx-container" aria-label="What the model is made of" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 18 }} data-testid="frontdoor-pillars">
           {[
             {
@@ -217,9 +217,9 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 3 · GOALS — what people come here for ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3rem,5.5vw,4.5rem)", paddingBottom: "0" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)" }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)" }}>
             Start from the goal.
           </h2>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
@@ -253,13 +253,13 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 3.5 · WHAT IS A PEPTIDE (ROADMAP 8.2) — the metaphor, ours ══ */}
-      <section className="nx-container" aria-labelledby="frontdoor-education" style={{ paddingTop: "clamp(3rem,5.5vw,4.5rem)", paddingBottom: "0" }}>
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr]" style={{ gap: "clamp(1.8rem,4vw,3rem)", alignItems: "center", background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.8rem,4.5vw,3.2rem)" }} data-testid="frontdoor-education">
+      <section className="nx-container" aria-labelledby="frontdoor-education" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr]" style={{ gap: "clamp(1.8rem,4vw,3rem)", alignItems: "center", background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "var(--nx-sp-band)" }} data-testid="frontdoor-education">
           <div>
             <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               Before anything else
             </p>
-            <h2 id="frontdoor-education" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, maxWidth: "18ch" }}>
+            <h2 id="frontdoor-education" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, maxWidth: "18ch" }}>
               What is a peptide?
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "54ch" }}>
@@ -288,8 +288,8 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 3.6 · THE PATH, WITH THE FINE PRINT UP FRONT (ROADMAP 8.2) ══ */}
-      <section className="nx-container" aria-labelledby="frontdoor-steps" style={{ paddingTop: "clamp(3rem,5.5vw,4.5rem)", paddingBottom: "0" }}>
-        <h2 id="frontdoor-steps" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
+      <section className="nx-container" aria-labelledby="frontdoor-steps" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
+        <h2 id="frontdoor-steps" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
           How it works — fine print first.
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 14, marginTop: "1.6rem" }} data-testid="frontdoor-steps">
@@ -347,12 +347,12 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 6 · PRICE ANCHOR + THE ONE ACTION — the closer ══ */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3.4rem,6.5vw,5.2rem) 0", overflow: "hidden", marginTop: "clamp(3rem,5.5vw,4.5rem)" }}>
+      <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden", marginTop: "clamp(3rem,5.5vw,4.5rem)" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             One number a month
           </p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.4vw,48px)", color: "var(--nx-ceramic)", maxWidth: "24ch", margin: "0.9rem auto 0", lineHeight: 1.1 }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "24ch", margin: "0.9rem auto 0", lineHeight: 1.1 }}>
             Protocols from {usd(PROTOCOL_FROM)}/mo. Single peptides from {SOLO_FROM_LABEL}/mo.
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-acid)", opacity: 0.9, maxWidth: "52ch", margin: "1rem auto 0" }}>

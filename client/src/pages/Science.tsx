@@ -345,7 +345,7 @@ export default function Science() {
 
 
       {/* ── Evidence tier explainer ── */}
-      <section aria-labelledby="sci-tiers-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-evidence-tiers">
+      <section aria-labelledby="sci-tiers-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "var(--nx-sp-sec) 0" }} data-testid="section-evidence-tiers">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-acid)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -481,7 +481,7 @@ export default function Science() {
       </section>
 
       {/* ── Foundational explainer ── */}
-      <section aria-label="What a peptide is, and why compounding" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section aria-label="What a peptide is, and why compounding" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -518,7 +518,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial pull quote — between explainer and mechanisms ── */}
-      <section aria-label="Editorial note — restoring the body's signal" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section aria-label="Editorial note — restoring the body's signal" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <blockquote style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
@@ -534,7 +534,7 @@ export default function Science() {
       </section>
 
       {/* ── Mechanisms section — 6 cards ── */}
-      <section aria-labelledby="sci-mechanisms-title" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-mechanisms">
+      <section aria-labelledby="sci-mechanisms-title" style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }} data-testid="section-mechanisms">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -565,7 +565,7 @@ export default function Science() {
       </section>
 
       {/* ── How the science works — method band + biomarker chips ── */}
-      <section aria-label="From mechanism to measured result" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4rem,7vw,6rem) 0" }} data-testid="section-science-method">
+      <section aria-label="From mechanism to measured result" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }} data-testid="section-science-method">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <SectionHead
@@ -608,7 +608,7 @@ export default function Science() {
       </section>
 
       {/* ── Why measurement matters ── */}
-      <section aria-labelledby="sci-measurement-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-measurement">
+      <section aria-labelledby="sci-measurement-title" style={{ backgroundColor: "var(--nx-bg-dark)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "var(--nx-sp-sec) 0" }} data-testid="section-measurement">
         <div className="nx-container max-w-screen-xl">
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "3rem" }} className="md:grid-cols-2">
             <Reveal>
@@ -649,7 +649,7 @@ export default function Science() {
       </section>
 
       {/* ── Editorial pull quote — Clarity Unlocks Power ── */}
-      <section aria-label="Editorial note — clarity unlocks power" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3.5rem,6vw,5.5rem) 0" }}>
+      <section aria-label="Editorial note — clarity unlocks power" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <blockquote style={{ maxWidth: "680px" }}>
@@ -684,7 +684,7 @@ export default function Science() {
                   id={`science-${family.id}`}
                   aria-labelledby={`sci-family-${family.id}-title`}
                   ref={(el) => { sectionRefs.current[family.id] = el; }}
-                  style={{ backgroundColor: bg, padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }}
+                  style={{ backgroundColor: bg, padding: "var(--nx-sp-sec) 0", borderTop: "1px solid var(--nx-border)" }}
                   data-testid={`science-family-${family.slug}`}
                 >
                   <Reveal>
@@ -723,7 +723,7 @@ export default function Science() {
             })}
 
             {/* ── Evidence table ── */}
-            <section aria-labelledby="sci-evidence-table-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
+            <section aria-labelledby="sci-evidence-table-title" style={{ padding: "var(--nx-sp-sec) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-evidence-table">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -761,7 +761,7 @@ export default function Science() {
             </section>
 
             {/* ── Safety profile data table — AGENT-3 ── */}
-            <section aria-labelledby="sci-safety-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
+            <section aria-labelledby="sci-safety-title" style={{ padding: "var(--nx-sp-sec) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-safety-profile">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -804,7 +804,7 @@ export default function Science() {
             </section>
 
             {/* ── References — accordion ── */}
-            <section aria-labelledby="sci-references-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
+            <section aria-labelledby="sci-references-title" style={{ padding: "var(--nx-sp-sec) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-references">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -840,7 +840,7 @@ export default function Science() {
             </section>
 
             {/* ── Questions we're asked most — 8 FAQ ── */}
-            <section aria-labelledby="sci-faq-title" style={{ padding: "clamp(4.5rem,7.5vw,6.5rem) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
+            <section aria-labelledby="sci-faq-title" style={{ padding: "var(--nx-sp-sec) 0", borderTop: "1px solid var(--nx-border)" }} data-testid="section-science-faq">
               <Reveal>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   <span style={{ display: "inline-block", width: "20px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
@@ -926,7 +926,7 @@ export default function Science() {
       <ScienceComparisonSection />
 
       {/* ── Work with our research team ── */}
-      <section aria-labelledby="sci-research-team-title" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(4.5rem,7.5vw,6.5rem) 0" }} data-testid="section-research-team">
+      <section aria-labelledby="sci-research-team-title" style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }} data-testid="section-research-team">
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.75rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -1049,8 +1049,8 @@ function ScienceHeroDark() {
         className="nx-container max-w-screen-xl"
         style={{
           position: "relative",
-          paddingTop: "clamp(4rem, 9vw, 7rem)",
-          paddingBottom: "clamp(3.5rem, 7vw, 5.5rem)",
+          paddingTop: "var(--nx-sp-sec)",
+          paddingBottom: "var(--nx-sp-sec)",
         }}
       >
         <div
@@ -1292,7 +1292,7 @@ function ScienceHeroDark() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 600,
-                  fontSize: "clamp(1.4rem, 2.6vw, 2rem)",
+                  fontSize: "var(--nx-t-h3)",
                   color: "var(--nx-bg)",
                   lineHeight: 1,
                   marginBottom: "0.35rem",
@@ -1343,7 +1343,7 @@ function ScienceComparisonSection() {
       style={{
         backgroundColor: "var(--nx-bg)",
         borderTop: "1px solid var(--nx-border)",
-        padding: "clamp(4rem, 8vw, 6rem) 0",
+        padding: "var(--nx-sp-sec) 0",
       }}
     >
       <div className="nx-container" style={{ maxWidth: "1080px" }}>

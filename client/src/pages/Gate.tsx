@@ -659,7 +659,7 @@ function GateCard({
           style={{
             fontFamily: S,
             fontWeight: 500,
-            fontSize: "clamp(3.5rem, 6vw, 6rem)",
+            fontSize: "var(--nx-t-display)",
             lineHeight: 1.0,
             letterSpacing: "-0.015em",
             color: "var(--nx-ceramic)",
@@ -677,7 +677,7 @@ function GateCard({
             fontFamily: S,
             fontStyle: "italic",
             fontWeight: 500,
-            fontSize: "clamp(1.05rem, 1.6vw, 1.4rem)",
+            fontSize: "var(--nx-t-lg)",
             lineHeight: 1.35,
             color: "rgba(246, 249, 252,0.85)",
             marginBottom: "22px",

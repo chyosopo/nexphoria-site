@@ -40,7 +40,7 @@ export function CadenceCalculator() {
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
         The commitment
       </p>
-      <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>
+      <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>
         The figure, at each commitment.
       </h3>
 
@@ -83,7 +83,7 @@ export function CadenceCalculator() {
                 {CADENCE_DISCOUNTS[k].label}
                 {best && " · best value"}
               </p>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.2vw,32px)", color: "var(--nx-fg)", lineHeight: 1, marginTop: 4, fontVariantNumeric: "tabular-nums" }}>
+              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1, marginTop: 4, fontVariantNumeric: "tabular-nums" }}>
                 {formatUSD(perMonth[k])}
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-muted)" }}>/mo</span>
               </p>

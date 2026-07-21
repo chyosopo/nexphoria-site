@@ -97,7 +97,7 @@ export function EducationCard({
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 500,
-            fontSize: "clamp(1.1rem, 2vw, 1.375rem)",
+            fontSize: "var(--nx-t-lg)",
             color: "var(--nx-fg)",
             lineHeight: 1.25,
             marginBottom: "8px",

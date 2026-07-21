@@ -141,7 +141,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="solo-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "clamp(2.6rem,5vw,3.8rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
+        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>
@@ -152,7 +152,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 {solo.name} · {solo.category}
               </p>
-              <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.4vw,64px)", lineHeight: 1.05, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem", maxWidth: "18ch" }}>{solo.outcome}</h1>
+              <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "-0.02em", color: "var(--nx-fg)", marginTop: "0.4rem", maxWidth: "18ch" }}>{solo.outcome}</h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
                 <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong> — {solo.mechanism}
               </p>
@@ -190,7 +190,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ BODY — content rail + sticky buy-box ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.2rem,2.5vw,2rem)", paddingBottom: "clamp(2rem,4vw,3rem)" }} aria-label="Peptide details">
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Peptide details">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
 
           {/* — LEFT — */}
@@ -211,7 +211,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             </div>
 
             {/* What to expect — drawn timeline */}
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,32px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>What to expect</h2>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>What to expect</h2>
             <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
               {solo.timeline.map((t, i) => (
                 <Reveal key={i} delay={i * 55}>
@@ -227,7 +227,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             </div>
 
             {/* What every solo protocol includes — same grid the stacks carry */}
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               {/* consult-priced pulse protocols aren't monthly subscriptions */}
               {solo.pricing ? "What is included, every month" : "What is included with your protocol"}
             </h2>
@@ -248,7 +248,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <span className="nx-icon-circle" aria-hidden><Microscope size={19} strokeWidth={1.9} /></span>
                 <div>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
-                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(20px,2.6vw,26px)", color: "var(--nx-fg)" }}>{solo.panel} panel</h3>
+                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)" }}>{solo.panel} panel</h3>
                 </div>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "56ch" }}>{solo.panelNote ?? "Reviewed by your physician before and during the protocol."}</p>
@@ -257,7 +257,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {solo.gated && (
               <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(1.8rem,3.5vw,2.4rem)" }}>
-                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", maxWidth: "26ch" }}>GLP-1 therapy is prescribed after review — not bought from a shelf.</h3>
+                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", maxWidth: "26ch" }}>GLP-1 therapy is prescribed after review — not bought from a shelf.</h3>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your physician prescribes and titrates it against your bloodwork.</p>
               </div>
             )}
@@ -291,15 +291,15 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ IMAGERY BAND — the outcome, not the vial ══ */}
-      <section className="nx-container" style={{ paddingBottom: "clamp(2rem,4vw,3rem)" }} aria-labelledby="solo-point-title">
+      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="solo-point-title">
         <Reveal>
           <div style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "16 / 7" }}>
             <img src={categoryImg} alt="" aria-hidden loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 28%", display: "block" }} />
             <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, color-mix(in srgb, var(--nx-fg) 62%, transparent) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
-              <div style={{ padding: "clamp(1.4rem,4vw,3rem)", maxWidth: 560 }}>
+              <div style={{ padding: "var(--nx-sp-band)", maxWidth: 560 }}>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
-                <h2 id="solo-point-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.6vw,40px)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
+                <h2 id="solo-point-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
                   We sell the measured loop — <em style={{ color: "var(--nx-acid)" }}>not the vial.</em>
                 </h2>
               </div>
@@ -309,12 +309,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ CONTRAINDICATION NIGHT BAND — dramatic ══ */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(3rem,6vw,4.6rem) 0", overflow: "hidden" }} aria-labelledby="solo-contra-title">
+      <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0", overflow: "hidden" }} aria-labelledby="solo-contra-title">
         <div className="nx-container">
           <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Before you begin
           </p>
-          <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.6vw,52px)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
+          <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>Not for everyone.</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {solo.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
@@ -329,7 +329,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ THE COMPLETE ROUTE — this compound inside its flagship protocol ══ */}
       {parentStack && (
-        <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.6rem)", paddingBottom: "0" }} aria-labelledby="solo-upgrade-title">
+        <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="solo-upgrade-title">
           <Link
             href={`/stacks/${parentStack.slug}`}
             className="nx-float-card"
@@ -345,7 +345,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 The complete route
               </p>
-              <h2 id="solo-upgrade-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,3vw,30px)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.5rem" }}>
+              <h2 id="solo-upgrade-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.5rem" }}>
                 {solo.name} anchors The {parentStack.name} protocol.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.5rem", maxWidth: "62ch" }}>
@@ -377,8 +377,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ CROSS-SELL — same-axis compounds, if-prescribed framing ══ */}
       {related.length > 0 && (
-        <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.6rem)", paddingBottom: "0" }} aria-labelledby="solo-crosssell-title">
-          <h2 id="solo-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(24px,3.4vw,34px)", color: "var(--nx-fg)" }}>
+        <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="solo-crosssell-title">
+          <h2 id="solo-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
             Often prescribed on the same axis
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
@@ -404,8 +404,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         </section>
       )}
 
-      <section className="nx-container" style={{ paddingTop: "clamp(2.6rem,5vw,3.4rem)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation is complimentary. <em style={{ color: "var(--nx-cobalt)" }}>A figure follows only a prescription.</em></h2>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
+        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The consultation is complimentary. <em style={{ color: "var(--nx-cobalt)" }}>A figure follows only a prescription.</em></h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Start your assessment</Link>
       </section>
     </SiteLayout>

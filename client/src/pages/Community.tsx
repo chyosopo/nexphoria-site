@@ -153,7 +153,7 @@ export default function Community() {
       </section>
 
       {/* ── Editorial — the community is people, shown before it's promised ── */}
-      <section className="nx-container max-w-screen-xl" style={{ paddingBottom: "clamp(2rem,4vw,3rem)" }}>
+      <section className="nx-container max-w-screen-xl" style={{ paddingBottom: "var(--nx-sp-band)" }}>
         <Reveal>
           <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "3 / 1.4" }}>
             <img

@@ -601,7 +601,7 @@ export default function JournalArticle() {
               style={{
                 fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
-                fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.1,
                 color: "var(--nx-fg)",
                 marginBottom: 40,
@@ -721,7 +721,7 @@ export default function JournalArticle() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 500,
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                  fontSize: "var(--nx-t-h2)",
                   color: "var(--nx-fg)",
                   lineHeight: 1.1,
                   marginBottom: 8,

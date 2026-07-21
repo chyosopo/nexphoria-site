@@ -820,7 +820,7 @@ export default function Assessment() {
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",
-            padding: "clamp(3.25rem, 7vw, 6rem) var(--nx-gutter) 3rem",
+            padding: "var(--nx-sp-sec) var(--nx-gutter) 3rem",
           }}
         >
           <div

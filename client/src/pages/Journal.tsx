@@ -80,7 +80,7 @@ export default function Journal() {
               // last General Sans holdout among page headlines)
               fontFamily: "'Fraunces', Georgia, serif",
               fontWeight: 500,
-              fontSize: "clamp(2.75rem, 6vw, 4.5rem)",
+              fontSize: "var(--nx-t-display)",
               lineHeight: 1.02,
               letterSpacing: "-0.02em",
               color: "var(--nx-fg)",
@@ -191,7 +191,7 @@ export default function Journal() {
                     style={{
                       fontFamily: FONT,
                       fontWeight: 600,
-                      fontSize: "clamp(1.9rem, 3.4vw, 2.85rem)",
+                      fontSize: "var(--nx-t-h2)",
                       lineHeight: 1.04,
                       letterSpacing: "-0.03em",
                       color: "var(--nx-fg)",
@@ -383,7 +383,7 @@ export default function Journal() {
                 style={{
                   fontFamily: FONT,
                   fontWeight: 600,
-                  fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)",
+                  fontSize: "var(--nx-t-h2)",
                   lineHeight: 1.05,
                   letterSpacing: "-0.03em",
                   color: "var(--nx-ceramic)",

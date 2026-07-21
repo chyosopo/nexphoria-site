@@ -14,7 +14,7 @@ export function SafetyDisclosure({
 }) {
   return (
     <details className="nx-faq-item" data-testid="pdp-safety-disclosure" style={{ marginTop: "1rem" }}>
-      <summary style={{ fontSize: "clamp(15px, 1.6vw, 17px)", padding: "14px 2px" }}>
+      <summary style={{ fontSize: "var(--nx-t-body)", padding: "14px 2px" }}>
         Important safety information
         <span className="nx-faq-plus" aria-hidden />
       </summary>

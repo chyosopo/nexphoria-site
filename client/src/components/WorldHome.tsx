@@ -109,13 +109,13 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <div className="nx-aurora" aria-hidden>
           <i /><i /><i />
         </div>
-        <div className="nx-container relative" style={{ paddingTop: "clamp(3.4rem,7vw,5.8rem)", paddingBottom: "clamp(2rem,4vw,3rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
           <div className="nx-hero-seq">
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(40px,6vw,74px)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "15ch", marginTop: "0.9rem" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "15ch", marginTop: "0.9rem" }}>
             {config.h1}
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1.1rem" }}>
@@ -152,11 +152,11 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
-        <div className="nx-container relative" style={{ paddingBottom: "clamp(2.6rem,5vw,4rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
           {/* The felt-need question (Maximus §3) — the grid IS the answer
               surface: each tile routes to that goal's decision page. */}
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10, marginBottom: "1rem" }}>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(22px,2.8vw,30px)", color: "var(--nx-fg)", letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", letterSpacing: "-0.01em" }}>
               What do you want to change?
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", margin: 0 }}>
@@ -205,7 +205,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── TRUST BADGE STRIP — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,2.4vw,2.2rem)", paddingBottom: "0" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "0" }}>
         <Reveal>
           <div className="nx-trust-strip" data-testid={`${world}-trust-strip`}>
             {TRUST_BADGES.map(({ Icon, label }) => (
@@ -219,7 +219,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── BIOMARKER MARQUEE — the panel as living texture (hims-Labs grammar) ── */}
-      <section aria-label="Biomarkers we measure" style={{ paddingTop: "clamp(2.6rem,4.5vw,3.6rem)", paddingBottom: "0" }}>
+      <section aria-label="Biomarkers we measure" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
         <div className="nx-container" style={{ marginBottom: "1.1rem" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {PANEL_TOTAL_MARKERS} biomarkers · drawn at baseline · re-drawn every 90 days
@@ -242,9 +242,9 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── PRODUCT CARD ROW — the shelf, if-prescribed framing ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(3.5rem,6vw,5.5rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,38px)", color: "var(--nx-fg)" }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)" }}>
             From the formulary
           </h2>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }} data-testid={`${world}-formulary-all`}>
@@ -304,13 +304,13 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── BIOMARKER CHIPS — the panel, read as rounded pill chips (rythm grammar) ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               The panel
             </p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.2vw,46px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
               {PANEL_TOTAL_MARKERS} markers. Eleven systems.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1.1rem", maxWidth: "44ch" }}>
@@ -344,7 +344,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       {config.trustSlot}
 
       {/* ── OUTCOME DASHBOARD + CLINICAL STANDARD — abstract preview, no PHI ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(2.2rem,5vw,4rem)", alignItems: "center" }}>
           <Reveal>
             <div className="nx-mini-panel" data-testid={`${world}-dashboard`} aria-hidden>
@@ -373,7 +373,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               One dashboard
             </p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.8vw,40px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "18ch" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "18ch" }}>
               Your markers, plotted against every retest.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "48ch" }}>
@@ -388,12 +388,12 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── THE ONE NIGHT BAND — the loop is the product ── */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(4rem,7vw,6rem) 0" }}>
+      <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container">
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>
             {config.nightEyebrow}
           </p>
-          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.4vw,46px)", color: "var(--nx-ceramic)", maxWidth: "22ch", marginTop: "0.8rem", lineHeight: 1.12 }}>
+          <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "22ch", marginTop: "0.8rem", lineHeight: 1.12 }}>
             {config.nightH2}
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "56ch", marginTop: "1rem" }}>
@@ -406,7 +406,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               { n: "503A", l: "state-licensed compounding" },
             ].map((s) => (
               <div key={s.n}>
-                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(34px,4.4vw,48px)", color: "var(--nx-ceramic)", lineHeight: 1 }}>{s.n}</p>
+                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1 }}>{s.n}</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-acid)", marginTop: "0.5rem", opacity: 0.9 }}>{s.l}</p>
               </div>
             ))}
@@ -419,13 +419,13 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── FAQ — clean spacious accordion, native <details> ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.8rem,7vw,6rem)", paddingBottom: "clamp(3.8rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1.3fr]" style={{ gap: "clamp(1.8rem,4vw,3.4rem)", alignItems: "start" }}>
           <div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               Questions
             </p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.8vw,40px)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
               What to expect.
             </h2>
             {config.faqArt && (
@@ -457,11 +457,11 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
       </section>
 
       {/* ── STANDARDS LINE + CLOSE ── */}
-      <section className="nx-container" style={{ paddingTop: "clamp(3.5rem,6vw,5.5rem)", paddingBottom: "clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
-        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(28px,4.2vw,44px)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.12 }}>
+        <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.12 }}>
           The consultation is complimentary. <em style={{ color: "var(--nx-cobalt)" }}>A figure follows only a prescription.</em>
         </h2>
         <Link

@@ -125,7 +125,7 @@ export default function HowItWorks() {
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "clamp(3.4rem,6vw,5.4rem)", paddingBottom: "clamp(1.8rem,3vw,2.6rem)", zIndex: 1 }}>
+        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
               <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
@@ -176,7 +176,7 @@ export default function HowItWorks() {
       </section>
 
       {/* ══ THE TIMELINE — each step argues its own case ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(4rem,7vw,6rem)", paddingBottom: "clamp(3.5rem,6vw,5rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <Reveal>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The fixed order</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
@@ -237,7 +237,7 @@ export default function HowItWorks() {
       <div className="nx-divider-ornament" aria-hidden style={{ marginBottom: "clamp(2rem,4vw,3rem)" }}><i /></div>
 
       {/* ══ NIGHT BAND — the loop, made dramatic ══ */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "clamp(4.5rem,8vw,7rem) 0", overflow: "hidden" }}>
+      <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden" }}>
         <div className="nx-container">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Why the loop matters</p>
@@ -264,7 +264,7 @@ export default function HowItWorks() {
       </section>
 
       {/* ══ COMPARISON — the argument made explicit, in two contrasted columns ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(4rem,7vw,6rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         <Reveal>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The difference, plainly</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
@@ -311,7 +311,7 @@ export default function HowItWorks() {
       </section>
 
       {/* ══ CLOSE ══ */}
-      <section className="nx-container" style={{ paddingTop: "clamp(2rem,4vw,3rem)", paddingBottom: "clamp(4.5rem,7vw,6rem)", textAlign: "center" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>

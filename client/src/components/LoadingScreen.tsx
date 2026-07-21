@@ -31,7 +31,7 @@ export function LoadingScreen() {
       {/* Hero-shaped block */}
       <div
         className="nx-container grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]"
-        style={{ gap: "clamp(1.6rem, 4vw, 3rem)", alignItems: "center", paddingTop: "clamp(2.6rem, 5vw, 3.8rem)" }}
+        style={{ gap: "clamp(1.6rem, 4vw, 3rem)", alignItems: "center", paddingTop: "var(--nx-sp-band)" }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <span className="nx-skeleton" style={{ width: "38%", height: 12 }} />
@@ -47,7 +47,7 @@ export function LoadingScreen() {
       {/* Tile-row block */}
       <div
         className="nx-container grid grid-cols-2 md:grid-cols-4"
-        style={{ gap: 14, paddingTop: "clamp(2rem, 4vw, 3rem)", paddingBottom: "3rem" }}
+        style={{ gap: 14, paddingTop: "var(--nx-sp-band)", paddingBottom: "3rem" }}
       >
         {[0, 1, 2, 3].map((i) => (
           <span key={i} className="nx-skeleton" style={{ aspectRatio: "4 / 5", width: "100%" }} />

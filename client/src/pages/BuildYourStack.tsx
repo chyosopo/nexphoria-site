@@ -314,7 +314,7 @@ export default function BuildYourStack() {
             <h1
               style={{
                 fontFamily: F,
-                fontSize: "clamp(36px, 5vw, 64px)",
+                fontSize: "var(--nx-t-h1)",
                 lineHeight: 1.04,
                 letterSpacing: "-0.02em",
                 color: "var(--nx-fg)",

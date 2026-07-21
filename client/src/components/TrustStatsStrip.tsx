@@ -81,7 +81,7 @@ export function TrustStatsStrip({
               fontFamily: "'General Sans', system-ui, sans-serif",
               
               fontWeight: 400,
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
+              fontSize: "var(--nx-t-h1)",
               lineHeight: 1.1,
               letterSpacing: "-0.015em",
               maxWidth: 720,
@@ -168,7 +168,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
           fontFamily: "'General Sans', system-ui, sans-serif",
           
           fontWeight: 400,
-          fontSize: "clamp(2.5rem, 5vw, 4.25rem)",
+          fontSize: "var(--nx-t-display)",
           lineHeight: 1,
           letterSpacing: "-0.02em",
           marginBottom: 16,

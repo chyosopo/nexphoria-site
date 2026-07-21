@@ -1401,7 +1401,7 @@ export function PricingPlanTable() {
   return (
     <section
       aria-labelledby="pricing-plan-table-heading"
-      style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "clamp(3rem, 6vw, 5rem) 0" }}
+      style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}
     >
       <div className="nx-container" style={{ maxWidth: "900px" }}>
         <Reveal>

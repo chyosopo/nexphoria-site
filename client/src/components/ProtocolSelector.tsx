@@ -40,7 +40,7 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
     <section id="routes" className="nx-section" aria-labelledby={`selector-title-${goal}`} data-testid={`selector-${goal}`}>
       <div className="nx-container">
         <p className="nx-eyebrow">Choose your route</p>
-        <h2 id={`selector-title-${goal}`} style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,3.6vw,40px)", color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "22ch" }}>
+        <h2 id={`selector-title-${goal}`} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "22ch" }}>
           {routes.length} routes to the same goal.
         </h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "0.8rem" }}>

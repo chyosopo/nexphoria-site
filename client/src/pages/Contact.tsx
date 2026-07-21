@@ -297,7 +297,7 @@ export default function Contact() {
                   border: "1px solid var(--nx-border)",
                   background:
                     "radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--nx-cobalt) 14%, transparent) 0%, transparent 55%), var(--nx-cobalt-soft)",
-                  padding: "clamp(1.6rem,4vw,2.6rem)",
+                  padding: "var(--nx-sp-tight)",
                   minHeight: 220,
                 }}
               >
@@ -346,7 +346,7 @@ export default function Contact() {
                   { label: "Physician Availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
                   <div key={label} className="nx-stat-card" style={{ justifyContent: "center" }}>
-                    <span className="nx-stat-num" style={{ fontSize: "clamp(24px, 3vw, 34px)" }}>{value}</span>
+                    <span className="nx-stat-num" style={{ fontSize: "var(--nx-t-h3)" }}>{value}</span>
                     <span className="nx-stat-lbl">{label}</span>
                   </div>
                 ))}

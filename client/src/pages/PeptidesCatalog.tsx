@@ -116,11 +116,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     <SiteLayout navVariant={world ?? "showcase"} footerVariant={world ?? "shared"}>
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(1.6rem,3vw,2.4rem)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
               <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
-              <h1 id="peptides-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(38px,5.6vw,64px)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+              <h1 id="peptides-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
                 {SOLO_CATALOG.length} peptides. <em style={{ color: "var(--nx-cobalt)" }}>Nothing hidden.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
@@ -151,7 +151,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
 
 
       {/* ── Biomarker chip strip — every shelf item is lab-monitored (TRUE) ── */}
-      <section className="nx-container" style={{ paddingBottom: "clamp(1.4rem,3vw,2.2rem)" }} aria-label="Lab-monitored biomarkers">
+      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }} aria-label="Lab-monitored biomarkers">
         <Reveal>
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every protocol here is lab-monitored</p>
           <div className="nx-biochip-grid" data-testid="catalog-biochips">
@@ -192,7 +192,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      <section className="nx-container" style={{ paddingTop: "clamp(1.4rem,3vw,2.2rem)", paddingBottom: "clamp(4rem,7vw,6rem)" }} aria-label="Peptide catalog">
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Peptide catalog">
         <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
           {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
         </p>
@@ -284,10 +284,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       {/* not sure which — route to the assessment */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "clamp(2.6rem,5vw,4rem) 0" }} aria-labelledby="peptides-assess-title">
+      <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-band) 0" }} aria-labelledby="peptides-assess-title">
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
-          <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "clamp(26px,4vw,42px)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
+          <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
             The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>

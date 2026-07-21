@@ -37,7 +37,7 @@ export default function Physicians() {
         data-testid="physicians-editorial-band"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
-        <div className="nx-container max-w-screen-xl" style={{ paddingTop: "clamp(4rem, 8vw, 6.5rem)", paddingBottom: "clamp(4rem, 8vw, 6.5rem)" }}>
+        <div className="nx-container max-w-screen-xl" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
           <div
             className="physicians-band-grid"
             style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2.5rem", alignItems: "center" }}
@@ -255,7 +255,7 @@ export default function Physicians() {
                       fontFamily: F,
 
                       fontWeight: 400,
-                      fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                      fontSize: "var(--nx-t-h2)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.35,
                       marginBottom: "2rem",
@@ -311,7 +311,7 @@ export default function Physicians() {
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
             </p>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "clamp(2rem, 4vw, 3rem)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
               Three steps.<br />Zero algorithmic shortcuts.
             </h2>
           </Reveal>
@@ -329,7 +329,7 @@ export default function Physicians() {
             {physicianReview.steps.map(({ n, label, body }) => (
               <Reveal key={n}>
                 <div role="listitem" style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.5rem 2.25rem", height: "100%" }}>
-                  <p style={{ fontFamily: F, fontSize: "clamp(2.25rem, 4vw, 3rem)", fontWeight: 500, color: "var(--nx-cobalt)", lineHeight: 1, marginBottom: "1.25rem", opacity: 0.85 }}>{n}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-h2)", fontWeight: 500, color: "var(--nx-cobalt)", lineHeight: 1, marginBottom: "1.25rem", opacity: 0.85 }}>{n}</p>
                   <p style={{ fontFamily: F,  fontSize: "var(--nx-t-lg)", fontWeight: 500, color: "var(--nx-fg)", marginBottom: "0.75rem" }}>{label}</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}>{body}</p>
                 </div>
@@ -363,7 +363,7 @@ export default function Physicians() {
           {/* CTA to assessment */}
           <Reveal delay={100}>
             <div className="mt-12">
-              <p style={{ fontFamily: F, fontWeight: 500,  fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
+              <p style={{ fontFamily: F, fontWeight: 500,  fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginBottom: "1rem", maxWidth: "520px" }}>
                 A physician on every case. A lab value behind every decision.
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "480px", marginBottom: "1.75rem" }}>
@@ -428,8 +428,8 @@ function PhysiciansHeroDark() {
         className="nx-container max-w-screen-xl"
         style={{
           position: "relative",
-          paddingTop: "clamp(4rem, 9vw, 7rem)",
-          paddingBottom: "clamp(3.5rem, 7vw, 5.5rem)",
+          paddingTop: "var(--nx-sp-sec)",
+          paddingBottom: "var(--nx-sp-sec)",
         }}
       >
         <div
@@ -464,7 +464,7 @@ function PhysiciansHeroDark() {
               style={{
                 fontFamily: "'Fraunces', Georgia, serif",
                 fontWeight: 500,
-                fontSize: "clamp(2.4rem, 5.4vw, 4.5rem)",
+                fontSize: "var(--nx-t-display)",
                 lineHeight: 1.02,
                 letterSpacing: "-0.02em",
                 color: "var(--nx-bg)",
@@ -633,7 +633,7 @@ function PhysiciansHeroDark() {
                 style={{
                   fontFamily: F,
                   fontWeight: 600,
-                  fontSize: "clamp(1.4rem, 2.6vw, 2rem)",
+                  fontSize: "var(--nx-t-h3)",
                   color: "var(--nx-bg)",
                   lineHeight: 1,
                   marginBottom: "0.35rem",
