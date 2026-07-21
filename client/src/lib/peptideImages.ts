@@ -17,6 +17,8 @@ import motsC from "@/assets/peptides/pep_hero_mots_c.webp";
 import epitalon from "@/assets/peptides/pep_hero_epitalon.webp";
 import pt141 from "@/assets/peptides/pep_hero_pt141.webp";
 import methyleneBlue from "@/assets/peptides/pep_hero_methylene_blue.webp";
+import blendDuo from "@/assets/peptides/pep_hero_blend_duo.webp";
+import cerebrolysinAmp from "@/assets/peptides/pep_hero_cerebrolysin.webp";
 
 // Keyed by peptide slug (lowercased). Also maps common alternate slugs.
 // Combo entries reuse the lead compound's frame (ipa-cjc → cjc,
@@ -33,8 +35,10 @@ export const peptideHeroImages: Record<string, string> = {
   "semax": semax,
   "cjc-1295": cjc1295,
   "cjc1295": cjc1295,
-  "cjc-1295-ipamorelin": cjc1295,
-  "ipa-cjc": cjc1295,
+  // Combos get their own two-vial frame — reusing the lead compound's frame
+  // put identical photos side by side in the Growth row.
+  "cjc-1295-ipamorelin": blendDuo,
+  "ipa-cjc": blendDuo,
   "retatrutide": retatrutide,
   "semaglutide": semaglutide,
   "sermorelin": sermorelin,
@@ -48,7 +52,7 @@ export const peptideHeroImages: Record<string, string> = {
   "epitalon": epitalon,
   "pt-141": pt141,
   "methylene-blue": methyleneBlue,
-  "cerebrolysin": methyleneBlue, // cognition-axis share until a dedicated frame ships
+  "cerebrolysin": cerebrolysinAmp, // dedicated ampoule frame (was duplicating methylene-blue)
 };
 
 export function getPeptideHeroImage(slug: string): string | null {
@@ -63,7 +67,7 @@ export function getPeptideHeroImage(slug: string): string | null {
      their own PDP, but a world leak when they land on a card in the other
      world. Cards must only show a lifestyle frame whose cast matches the
      visitor's world, and fall back to the world's own category art. */
-const PRODUCT_FRAMES = new Set([bpc157, cjc1295, ghkCu, ipamorelin, retatrutide, semax, tesamorelin, tirzepatide]);
+const PRODUCT_FRAMES = new Set([bpc157, cjc1295, ghkCu, ipamorelin, retatrutide, semax, tesamorelin, tirzepatide, blendDuo, cerebrolysinAmp]);
 const FEMALE_CAST = new Set([dsip, epitalon, selank]);
 const MALE_CAST = new Set([methyleneBlue, motsC, nadPlus, semaglutide, sermorelin, tb500]);
 const NEUTRAL_CAST = new Set([pt141]); // couple frame — reads in both worlds

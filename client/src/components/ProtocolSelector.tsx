@@ -11,6 +11,8 @@ import { selectorRoutes } from "@/data/protocolSelector";
 import type { PeptideCategory } from "@/data/peptides";
 import { track } from "@/lib/analytics";
 import { F, S } from "@/lib/typography";
+import { stackArt } from "@/data/outcomeImagery";
+import { getPeptideCardImage } from "@/lib/peptideImages";
 
 type Pick = "protocol" | "compound" | "unsure" | null;
 
@@ -71,6 +73,11 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 270px), 1fr))", gap: 14, marginTop: "1.6rem", alignItems: "stretch" }}>
           {routes.map((r) => {
             const matched = matchSlug === r.slug;
+            /* Route cards carry the same imagery language as every other card
+               surface: protocol routes show the stack's outcome art, compound
+               routes a world-safe product/lifestyle frame. Text-only cards on
+               an image-led site read as unfinished. */
+            const art = r.kind === "protocol" ? stackArt(r.slug, world) : getPeptideCardImage(r.slug, world);
             return (
               <Link
                 key={r.slug}
@@ -80,6 +87,12 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
                 style={matched ? { borderColor: "var(--nx-cobalt)", boxShadow: "var(--nx-e-2)" } : undefined}
                 aria-current={matched ? "true" : undefined}
               >
+                {art && (
+                  <div className="nx-float-card__media" style={{ aspectRatio: "16 / 8" }}>
+                    <img src={art} alt="" aria-hidden loading="lazy"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                )}
                 <div className="nx-float-card__body">
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
                     {matched && (

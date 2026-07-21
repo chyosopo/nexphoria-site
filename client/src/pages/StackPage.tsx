@@ -183,7 +183,7 @@ export default function StackPage({ slug }: { slug: string }) {
               return (
                 <Reveal key={p.name} delay={i * 70}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
-                    <VialArt tone={VIAL_TONES[i % VIAL_TONES.length]} glyph={glyphForPeptide(slug)} size={150} />
+                    <VialArt tone={VIAL_TONES[i % VIAL_TONES.length]} glyph={glyphForPeptide(slug)} size={210} />
                     <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
                   </div>

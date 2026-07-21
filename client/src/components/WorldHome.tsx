@@ -164,9 +164,10 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             </p>
           </div>
           {/* Hims-style goal tiles (option B, Chiya 2026-07-13): small image
-              band on top, text below — never overlaid. 4-across, compact,
-              emotion-forward. The world's own accent carries the feeling. */}
-          <div className="nx-goalgrid grid grid-cols-2 lg:grid-cols-4" style={{ gap: 12 }}>
+              band on top, text below — never overlaid. 3-across on desktop:
+              six goals sit as a balanced 3x2, never a 4+2 orphan row, and
+              each tile gains a third more photographic presence. */}
+          <div className="nx-goalgrid grid grid-cols-2 lg:grid-cols-3" style={{ gap: 14 }}>
             {config.categories.map((cat, i) => (
               <Reveal key={cat} delay={i * 45}>
                 {/* Deep-link the GOAL, not the generic shelf (found by the
@@ -176,7 +177,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                     <img
                       src={config.tileArt[cat]}
                       srcSet={outcomeSrcSet(config.tileArt[cat])}
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                       alt="" aria-hidden loading="lazy" width={1632} height={2048}
                     />
                   )}
