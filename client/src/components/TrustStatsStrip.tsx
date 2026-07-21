@@ -66,7 +66,7 @@ export function TrustStatsStrip({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: 11,
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
@@ -198,7 +198,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
       <p
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: 11,
+          fontSize: "var(--nx-t-2xs)",
           fontWeight: 500,
           letterSpacing: "0.16em",
           textTransform: "uppercase",
@@ -212,7 +212,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: 12,
+            fontSize: "var(--nx-t-xs)",
             lineHeight: 1.45,
             color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
           }}

@@ -155,7 +155,7 @@ export function CartDrawer() {
           >
             <div>
               <div
-                className="text-[10px] uppercase tracking-[0.22em] mb-1"
+                className="text-[11px] uppercase tracking-[0.22em] mb-1"
                 style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 500 }}
               >
                 Your Protocol
@@ -214,7 +214,7 @@ export function CartDrawer() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                               <span
-                                className="text-[10px] uppercase tracking-[0.2em] px-1.5 py-0.5"
+                                className="text-[11px] uppercase tracking-[0.2em] px-1.5 py-0.5"
                                 style={{
                                   fontFamily: FONT,
                                   background: line.type === "stack" ? "var(--nx-fg)" : "var(--nx-bg-cream)",
@@ -228,7 +228,7 @@ export function CartDrawer() {
                               </span>
                               {spec?.badge ? (
                                 <span
-                                  className="text-[10px] uppercase tracking-[0.18em] px-1.5 py-0.5"
+                                  className="text-[11px] uppercase tracking-[0.18em] px-1.5 py-0.5"
                                   style={{
                                     fontFamily: FONT,
                                     background: "transparent",
@@ -266,13 +266,13 @@ export function CartDrawer() {
                               {formatUSD(line.lineTotal)}
                             </div>
                             <div
-                              className="text-[10px] mt-1"
+                              className="text-[11px] mt-1"
                               style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}
                             >
                               {formatUSD(line.unitPrice)}/mo
                             </div>
                             <div
-                              className="text-[10px] mt-0.5"
+                              className="text-[11px] mt-0.5"
                               style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", letterSpacing: "0.02em" }}
                             >
                               {billingNote(line.cadence, line.unitPrice)}
@@ -301,7 +301,7 @@ export function CartDrawer() {
                         {/* Cadence segmented control */}
                         <div className="mt-3">
                           <div
-                            className="text-[10px] uppercase tracking-[0.18em] mb-1.5"
+                            className="text-[11px] uppercase tracking-[0.18em] mb-1.5"
                             style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", fontWeight: 600 }}
                           >
                             Billing cadence
@@ -322,7 +322,7 @@ export function CartDrawer() {
                                   role="radio"
                                   aria-checked={active}
                                   onClick={() => updateCadence(line.slug, line.type, c)}
-                                  className="px-2 py-2 text-[10px] uppercase tracking-[0.1em] transition-colors"
+                                  className="px-2 py-2 text-[11px] uppercase tracking-[0.1em] transition-colors"
                                   style={{
                                     fontFamily: FONT,
                                     background: active ? "var(--nx-fg)" : "transparent",
@@ -334,14 +334,14 @@ export function CartDrawer() {
                                   <span className="block leading-tight">{meta.label}</span>
                                   {meta.savePct > 0 ? (
                                     <span
-                                      className="block text-[10px] mt-0.5"
+                                      className="block text-[11px] mt-0.5"
                                       style={{ color: active ? "#A8CBF5" : "var(--nx-amber)", opacity: 1, fontWeight: 600 }}
                                     >
                                       SAVE {meta.savePct}%
                                     </span>
                                   ) : (
                                     <span
-                                      className="block text-[10px] mt-0.5"
+                                      className="block text-[11px] mt-0.5"
                                       style={{ opacity: 0.6, color: active ? "#A8CBF5" : "var(--nx-fg-muted)" }}
                                     >
                                       Flex
@@ -389,7 +389,7 @@ export function CartDrawer() {
                           </div>
                           <button
                             onClick={() => removeItem(line.slug, line.type)}
-                            className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.14em] px-2 py-1.5 rounded-md transition-colors hover:bg-black/5"
+                            className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.14em] px-2 py-1.5 rounded-md transition-colors hover:bg-black/5"
                             aria-label={`Remove ${line.name}`}
                             data-testid={`button-remove-${line.type}-${line.slug}`}
                             style={{ color: "var(--nx-amber)", fontFamily: FONT, fontWeight: 500 }}
@@ -415,7 +415,7 @@ export function CartDrawer() {
                     <div className="flex items-center gap-2 mb-3">
                       <Beaker size={13} style={{ color: "var(--nx-amber)" }} />
                       <span
-                        className="text-[10px] uppercase tracking-[0.2em]"
+                        className="text-[11px] uppercase tracking-[0.2em]"
                         style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 600 }}
                       >
                         Physicians often pair with
@@ -446,7 +446,7 @@ export function CartDrawer() {
                                 {s.reason}
                               </div>
                               <div
-                                className="text-[10px] mt-1"
+                                className="text-[11px] mt-1"
                                 style={{ fontFamily: MONO, color: "var(--nx-amber)", letterSpacing: "0.02em", fontWeight: 600 }}
                               >
                                 from {formatUSD(p.monthlyPrice)}/mo
@@ -455,7 +455,7 @@ export function CartDrawer() {
                             <button
                               type="button"
                               onClick={() => addPeptide(s.slug, { qty: 1, cadence: "3mo" })}
-                              className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[10px] uppercase tracking-[0.15em] transition-all hover:opacity-90"
+                              className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[11px] uppercase tracking-[0.15em] transition-all hover:opacity-90"
                               style={{
                                 fontFamily: FONT,
                                 background: "var(--nx-fg)",
@@ -508,7 +508,7 @@ export function CartDrawer() {
                     Subtotal
                   </div>
                   <div
-                    className="text-[10px]"
+                    className="text-[11px]"
                     style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}
                   >
                     Per month · billing cadence shown per item
@@ -532,7 +532,7 @@ export function CartDrawer() {
                 ].map((b) => (
                   <span
                     key={b.label}
-                    className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.15em] px-2 py-1"
+                    className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.15em] px-2 py-1"
                     style={{
                       fontFamily: FONT,
                       background: "var(--nx-bg-cream)",
@@ -559,7 +559,7 @@ export function CartDrawer() {
                   color: "var(--nx-bg)",
                   fontFamily: FONT,
                   fontWeight: 600,
-                  fontSize: "0.9375rem",
+                  fontSize: "var(--nx-t-base)",
                   letterSpacing: "0.02em",
                   borderRadius: "var(--nx-r-md)",
                   boxShadow: "0 2px 8px rgba(21, 24, 28,0.15)",
@@ -605,7 +605,7 @@ function TrustMini({ icon, label }: { icon: React.ReactNode; label: string }) {
     <div className="flex flex-col items-center text-center gap-1">
       <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
       <span
-        className="text-[10px] uppercase tracking-[0.1em] leading-tight"
+        className="text-[11px] uppercase tracking-[0.1em] leading-tight"
         style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", fontWeight: 600 }}
       >
         {label}
@@ -644,7 +644,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
             background: "var(--nx-fg)",
             color: "var(--nx-bg)",
             fontFamily: FONT,
-            fontSize: "0.8125rem",
+            fontSize: "var(--nx-t-sm)",
             fontWeight: 600,
             borderRadius: "var(--nx-r-sm)",
           }}
@@ -659,7 +659,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           style={{
             color: "var(--nx-fg)",
             fontFamily: FONT,
-            fontSize: "0.8125rem",
+            fontSize: "var(--nx-t-sm)",
             fontWeight: 500,
             border: "1px solid var(--nx-border)",
             borderRadius: "var(--nx-r-sm)",

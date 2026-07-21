@@ -200,7 +200,7 @@ export default function Contact() {
                   <p
                     style={{
                       fontFamily: F,
-                      fontSize: "10px",
+                      fontSize: "var(--nx-t-2xs)",
                       fontWeight: 700,
                       letterSpacing: "0.16em",
                       textTransform: "uppercase",
@@ -325,7 +325,7 @@ export default function Contact() {
                   <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-cobalt)", marginTop: 8 }} />
                 </div>
                 <div style={{ position: "relative" }}>
-                  <p style={{ fontFamily: F, fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
                     NYC Headquarters · 50-state coverage
                   </p>
                   <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
@@ -377,7 +377,7 @@ export default function Contact() {
                 <p
                   style={{
                     fontFamily: F,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",

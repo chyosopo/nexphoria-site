@@ -48,7 +48,7 @@ export default function LegalIndex() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "11px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -74,7 +74,7 @@ export default function LegalIndex() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "17px",
+                fontSize: "var(--nx-t-body)",
                 lineHeight: 1.6,
                 color: "var(--nx-fg-graphite)",
                 maxWidth: 560,
@@ -110,7 +110,7 @@ export default function LegalIndex() {
                     <p
                       style={{
                         fontFamily: FONT,
-                        fontSize: "1.125rem",
+                        fontSize: "var(--nx-t-lg)",
                         fontWeight: 600,
                         letterSpacing: "-0.01em",
                         color: "var(--nx-fg)",
@@ -122,7 +122,7 @@ export default function LegalIndex() {
                     <p
                       style={{
                         fontFamily: FONT,
-                        fontSize: "14px",
+                        fontSize: "var(--nx-t-sm)",
                         lineHeight: 1.55,
                         color: "var(--nx-fg-graphite)",
                       }}

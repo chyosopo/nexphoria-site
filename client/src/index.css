@@ -12,6 +12,7 @@
 @layer base {
   :root {
     /* ══ D1 TYPE SCALE — the only sanctioned sizes. Fluid where display-class. ══ */
+    --nx-t-2xs:     11px;                            /* micro badges, chips, tags */
     --nx-t-xs:      12px;                            /* legal fine print, badges */
     --nx-t-sm:      13.5px;                          /* captions, meta, eyebrows */
     --nx-t-base:    15px;                            /* UI default */

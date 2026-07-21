@@ -218,7 +218,7 @@ export function GoalVialTile({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "10px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 700,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -232,7 +232,7 @@ export function GoalVialTile({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "17px",
+                fontSize: "var(--nx-t-body)",
                 fontWeight: 600,
                 lineHeight: 1.2,
                 color: ink,
@@ -284,7 +284,7 @@ export function GoalVialTile({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "14px",
+              fontSize: "var(--nx-t-sm)",
               fontWeight: 600,
               lineHeight: 1.25,
               color: ink,
@@ -302,7 +302,7 @@ export function GoalVialTile({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "10px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 700,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -327,7 +327,7 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "10px",
+          fontSize: "var(--nx-t-2xs)",
           fontWeight: 700,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
@@ -341,7 +341,7 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "12px",
+          fontSize: "var(--nx-t-xs)",
           fontWeight: 500,
           color: ink,
           textAlign: "right",

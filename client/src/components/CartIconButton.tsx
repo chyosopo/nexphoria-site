@@ -17,7 +17,7 @@ export function CartIconButton({ className = "" }: { className?: string }) {
       <ShoppingBag size={18} strokeWidth={1.5} />
       {itemCount > 0 ? (
         <span
-          className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 flex items-center justify-center text-[10px] rounded-full"
+          className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 flex items-center justify-center text-[11px] rounded-full"
           style={{
             background: "var(--nx-amber)",
             color: "var(--nx-bg)",

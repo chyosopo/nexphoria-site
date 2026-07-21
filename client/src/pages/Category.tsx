@@ -279,7 +279,7 @@ export default function Category() {
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map(([t, d], i) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.9rem 1.7rem" }}>
-                <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 30, color: "var(--nx-amber)", lineHeight: 1 }}>{i + 1}</div>
+                <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-amber)", lineHeight: 1 }}>{i + 1}</div>
                 <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)", marginTop: "0.8rem" }}>{t}</h3>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
               </div>
@@ -323,7 +323,7 @@ export default function Category() {
               <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 21, color: "var(--nx-fg)" }}>{p.name}</h3>
+                    <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</h3>
                     <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{p.tagline}</p>
                   </div>
                   <span className="nx-icon-chip" style={{ width: 36, height: 36 }} aria-hidden>

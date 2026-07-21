@@ -33,7 +33,7 @@ export class RouteErrorBoundary extends Component<Props, State> {
     return (
       <div style={{ minHeight: "70vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "3rem 1.5rem", textAlign: "center" }} data-testid="route-error">
         <div style={{ maxWidth: 460 }}>
-          <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {stale ? "New version available" : "Something interrupted"}
           </p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginTop: "0.8rem" }}>

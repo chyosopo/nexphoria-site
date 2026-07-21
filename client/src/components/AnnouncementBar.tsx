@@ -35,7 +35,7 @@ export function AnnouncementBar({
     >
       <div className="nx-container flex items-center gap-3 py-2.5">
         <span
-          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[10px] uppercase tracking-[0.22em]"
+          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] uppercase tracking-[0.22em]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             color: "var(--nx-fg)",
@@ -47,7 +47,7 @@ export function AnnouncementBar({
           {tag}
         </span>
         <span
-          className="flex-1 text-[11px] sm:text-[12px] leading-tight"
+          className="flex-1 text-[11px] sm:text-xs leading-tight"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             color: "var(--nx-bg)",

@@ -41,7 +41,7 @@ export function HomeTrust() {
               right half was ~45% empty porcelain at desktop widths. */}
           <div className="nx-glass-card grid grid-cols-1 md:grid-cols-[1.3fr_0.7fr] overflow-hidden" style={{ padding: 0 }}>
             <div style={{ padding: "var(--nx-sp-tight)" }}>
-              <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 Physician oversight
               </p>
               <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.14 }}>
@@ -76,7 +76,7 @@ export function HomeTrust() {
 
       {/* ── HOW IT WORKS — COPY-BLOCKS §1, 3-step, verb-first ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
-        <p style={{ fontFamily: F, fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
           The process
         </p>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.14 }}>

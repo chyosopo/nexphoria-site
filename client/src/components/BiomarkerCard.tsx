@@ -265,7 +265,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
             data-testid={`${testId}-value`}
             style={{
               fontFamily: FONT,
-              fontSize: 30,
+              fontSize: "var(--nx-t-h3)",
               fontWeight: 600,
               color: "var(--nx-fg)",
               lineHeight: 1,

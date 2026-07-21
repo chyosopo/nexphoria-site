@@ -61,7 +61,7 @@ export function FinalCTAStrip({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "10px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -99,7 +99,7 @@ export function FinalCTAStrip({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "1.0625rem",
+              fontSize: "var(--nx-t-body)",
               color: "rgba(246, 249, 252,0.72)",
               lineHeight: 1.6,
               maxWidth: "480px",

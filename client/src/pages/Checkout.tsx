@@ -177,7 +177,7 @@ export default function Checkout() {
                 className="text-left p-6 mb-8 max-w-md mx-auto"
                 style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
               >
-                <div className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+                <div className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                   What happens next
                 </div>
                 <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
@@ -188,7 +188,7 @@ export default function Checkout() {
                     "Compounded shipment sent in cold-chain packaging",
                   ].map((t, i) => (
                     <li key={i} className="flex gap-2.5 items-start">
-                      <span style={{ color: "var(--nx-amber)", fontWeight: 600, fontSize: 11, marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
+                      <span style={{ color: "var(--nx-amber)", fontWeight: 600, fontSize: "var(--nx-t-2xs)", marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
                       <span>{t}</span>
                     </li>
                   ))}
@@ -197,7 +197,7 @@ export default function Checkout() {
               <Link asChild href="/">
                 <a
                   className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
-                  style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
+                  style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                   data-testid="link-back-home"
                 >
                   <ArrowLeft size={14} aria-hidden="true" /> Back to Nexphoria
@@ -225,7 +225,7 @@ export default function Checkout() {
             <Link asChild href="/stacks">
               <a
                 className="inline-block px-6 py-3"
-                style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "0.875rem", borderRadius: "var(--nx-r-md)" }}
+                style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", borderRadius: "var(--nx-r-md)" }}
                 data-testid="link-empty-checkout-stacks"
               >
                 Browse stacks
@@ -399,7 +399,7 @@ export default function Checkout() {
                       </div>
                     </div>
 
-                    <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+                    <p className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
                       How billing works
                     </p>
                     <ol className="list-none p-0 space-y-3">
@@ -416,7 +416,7 @@ export default function Checkout() {
                         >
                           <span
                             className="inline-flex items-center justify-center flex-shrink-0"
-                            style={{ width: 22, height: 22, borderRadius: "var(--nx-r-pill)", background: "var(--nx-fg)", color: "var(--nx-bg)", fontSize: 11, fontWeight: 600, marginTop: 1 }}
+                            style={{ width: 22, height: 22, borderRadius: "var(--nx-r-pill)", background: "var(--nx-fg)", color: "var(--nx-bg)", fontSize: "var(--nx-t-2xs)", fontWeight: 600, marginTop: 1 }}
                           >
                             {i + 1}
                           </span>
@@ -469,7 +469,7 @@ export default function Checkout() {
 
                   {/* Order recap */}
                   <div className="pt-2">
-                    <p className="text-[10px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
+                    <p className="text-[11px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
                     <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}>
                       {lines.map((line) => (
                         <div
@@ -542,7 +542,7 @@ export default function Checkout() {
             >
               <Reveal delay={80}>
               <div
-                className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
+                className="text-[11px] uppercase tracking-[0.2em] mb-4 pb-3"
                 style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
               >
                 Your order · {itemCount}
@@ -559,22 +559,22 @@ export default function Checkout() {
                     <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
-                          <div className="text-[10px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
+                          <div className="text-[11px] uppercase tracking-[0.2em] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
                             {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
                           <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
                             {line.name}
                           </div>
-                          <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
+                          <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
                             {billingNote(line.cadence, line.unitPrice)}
                           </div>
                           {stack ? (
-                            <div className="text-[10px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
+                            <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
                               {stack.peptides.length} peptides
                             </div>
                           ) : null}
                           {line.savings && line.savings > 0 ? (
-                            <div className="text-[10px] mt-1" style={{ fontFamily: FONT, color: "var(--nx-amber)", letterSpacing: "0.05em" }}>
+                            <div className="text-[11px] mt-1" style={{ fontFamily: FONT, color: "var(--nx-amber)", letterSpacing: "0.05em" }}>
                               −{formatUSD(line.savings)} saved
                             </div>
                           ) : null}
@@ -701,7 +701,7 @@ function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; on
       type="button"
       onClick={onClick}
       className="px-6 py-4 transition-colors hover:bg-black/5"
-      style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "0.9375rem", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
+      style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
       data-testid={testId}
     >
       {children}
@@ -713,7 +713,7 @@ function Section({ title, eyebrow, children }: { title: string; eyebrow: string;
   return (
     <Reveal>
       <section>
-        <div className="text-[10px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+        <div className="text-[11px] uppercase tracking-[0.22em] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
           {eyebrow}
         </div>
         <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}>

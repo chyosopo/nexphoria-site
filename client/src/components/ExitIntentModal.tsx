@@ -181,7 +181,7 @@ export function ExitIntentModal() {
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 color: "var(--nx-fg-muted)",
-                fontSize: 18,
+                fontSize: "var(--nx-t-lg)",
                 lineHeight: 1,
               }}
             >
@@ -207,7 +207,7 @@ export function ExitIntentModal() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontSize: "1.75rem",
+                fontSize: "var(--nx-t-h3)",
                 lineHeight: 1.15,
                 color: "var(--nx-fg)",
                 marginBottom: 10,

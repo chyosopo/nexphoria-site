@@ -385,7 +385,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   </span>
                   <span className="mt-3 flex items-center justify-between">
                     <span>
-                      <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: 17, color: "var(--nx-fg)" }}>
+                      <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
                         The Recovery Protocol
                       </span>
                       <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
@@ -517,7 +517,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     style={{
                       color: "var(--nx-fg)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 18,
+                      fontSize: "var(--nx-t-lg)",
                       fontWeight: 600,
                     }}
                     data-testid={`nav-mobile-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}

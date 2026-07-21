@@ -83,7 +83,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
           <p
             style={{
               fontFamily: FONT,
-              fontSize: "11px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
@@ -120,7 +120,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                             className="legal-toc-link"
                             style={{
                               fontFamily: FONT,
-                              fontSize: "13px",
+                              fontSize: "var(--nx-t-sm)",
                               lineHeight: 1.4,
                               color: "var(--nx-fg-graphite)",
                               textDecoration: "none",
@@ -148,7 +148,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
               className="legal-content"
               style={{
                 fontFamily: FONT,
-                fontSize: "16px",
+                fontSize: "var(--nx-t-body)",
                 lineHeight: 1.75,
                 color: "var(--nx-fg-graphite)",
                 maxWidth: "72ch",
@@ -179,7 +179,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                   className="no-underline legal-footer-pill"
                   style={{
                     fontFamily: FONT,
-                    fontSize: "13px",
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 500,
                     color: "var(--nx-fg)",
                     border: "1px solid var(--nx-border)",
@@ -220,7 +220,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
 
 const eyebrowStyle: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "11px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
   letterSpacing: "0.14em",
   textTransform: "uppercase",
@@ -234,7 +234,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
         id={id}
         style={{
           fontFamily: FONT,
-          fontSize: "1.25rem",
+          fontSize: "var(--nx-t-lg)",
           fontWeight: 600,
           letterSpacing: "-0.01em",
           color: "var(--nx-fg)",

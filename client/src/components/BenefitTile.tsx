@@ -161,7 +161,7 @@ export function BenefitTile({
         )}
         {eyebrow ? (
           <span
-            className="text-[10px] uppercase"
+            className="text-[11px] uppercase"
             style={{
               fontFamily: FONT,
               color: hasImage ? "var(--nx-accent)" : t.eyebrow,
@@ -222,7 +222,7 @@ export function BenefitTile({
             className="leading-relaxed"
             style={{
               fontFamily: FONT,
-              fontSize: "0.8125rem",
+              fontSize: "var(--nx-t-sm)",
               color: hasImage ? "rgba(243, 245, 247,0.75)" : t.sub,
               lineHeight: 1.5,
             }}
@@ -239,7 +239,7 @@ export function BenefitTile({
           style={{ borderTop: `1px solid ${hasImage ? "rgba(255,255,255,0.14)" : t.border}` }}
         >
           <span
-            className="text-[10px] uppercase"
+            className="text-[11px] uppercase"
             style={{
               fontFamily: FONT,
               color: hasImage ? "rgba(243, 245, 247,0.85)" : t.sub,

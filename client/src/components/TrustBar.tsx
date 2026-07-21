@@ -39,7 +39,7 @@ export function TrustBar() {
             className="flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "10px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
               letterSpacing: "0.12em",
               textTransform: "uppercase",

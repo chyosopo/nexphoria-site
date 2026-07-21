@@ -36,7 +36,7 @@ export function PillBadge({
         borderRadius: "var(--nx-r-pill)",
         padding: "6px 14px 6px 10px",
         fontFamily: "'General Sans', system-ui, sans-serif",
-        fontSize: 10,
+        fontSize: "var(--nx-t-2xs)",
         fontWeight: 500,
         letterSpacing: "0.18em",
         textTransform: "uppercase",

@@ -324,7 +324,7 @@ export default function FAQPage() {
                           cursor: "pointer",
                           padding: "0.5rem 0",
                           fontFamily: F,
-                          fontSize: "14px",
+                          fontSize: "var(--nx-t-sm)",
                           fontWeight: activeCategory === i ? 600 : 400,
                           color: activeCategory === i ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
                           display: "flex",
@@ -367,7 +367,7 @@ export default function FAQPage() {
                 <p
                   style={{
                     fontFamily: F,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",

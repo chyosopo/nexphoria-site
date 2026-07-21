@@ -179,7 +179,7 @@ export default function Community() {
             <p
               style={{
                 fontFamily: F,
-                fontSize: "11px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -230,7 +230,7 @@ export default function Community() {
                   <p
                     style={{
                       fontFamily: F,
-                      fontSize: "10px",
+                      fontSize: "var(--nx-t-2xs)",
                       fontWeight: 700,
                       letterSpacing: "0.15em",
                       color: "var(--nx-cobalt)",
@@ -287,7 +287,7 @@ export default function Community() {
               <p
                 style={{
                   fontFamily: F,
-                  fontSize: "11px",
+                  fontSize: "var(--nx-t-2xs)",
                   fontWeight: 500,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -360,7 +360,7 @@ export default function Community() {
                   <label
                     style={{
                       fontFamily: F,
-                      fontSize: "10px",
+                      fontSize: "var(--nx-t-2xs)",
                       fontWeight: 700,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
@@ -418,7 +418,7 @@ export default function Community() {
                     id="community-waitlist-note"
                     style={{
                       fontFamily: F,
-                      fontSize: "11px",
+                      fontSize: "var(--nx-t-2xs)",
                       color: "rgba(255,255,255,0.45)",
                     }}
                   >

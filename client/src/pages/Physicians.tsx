@@ -67,7 +67,7 @@ export default function Physicians() {
                 <p
                   style={{
                     fontFamily: F,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
@@ -130,7 +130,7 @@ export default function Physicians() {
                 <p
                   style={{
                     fontFamily: F,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
@@ -306,7 +306,7 @@ export default function Physicians() {
         <div className="nx-container max-w-screen-xl">
           <Reveal>
             <p
-              style={{ fontFamily: F, fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
+              style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "0.75rem" }}
             >
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
@@ -446,7 +446,7 @@ function PhysiciansHeroDark() {
             <p
               style={{
                 fontFamily: F,
-                fontSize: "11px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
@@ -644,7 +644,7 @@ function PhysiciansHeroDark() {
               <div
                 style={{
                   fontFamily: F,
-                  fontSize: "10px",
+                  fontSize: "var(--nx-t-2xs)",
                   fontWeight: 500,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
@@ -670,7 +670,7 @@ function PhysiciansHeroDark() {
 // PhysicianCredentials — board certifications as clean type (no institution claims)
 const eyebrowStyle: React.CSSProperties = {
   fontFamily: F,
-  fontSize: "11px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
   letterSpacing: "0.18em",
   textTransform: "uppercase",

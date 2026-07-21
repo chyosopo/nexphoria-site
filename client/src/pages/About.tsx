@@ -23,7 +23,7 @@ import { FONT } from "@/lib/typography";
 
 const eyebrow: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "11px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
   letterSpacing: "0.18em",
   textTransform: "uppercase",
@@ -58,7 +58,7 @@ const bodyCopy: React.CSSProperties = {
 
 const monoCaption: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "10px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
   letterSpacing: "0.12em",
   textTransform: "uppercase",
@@ -441,7 +441,7 @@ export default function About() {
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
                     letterSpacing: "0.15em",
                     color: "var(--nx-rust)",
@@ -668,7 +668,7 @@ export default function About() {
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
                     letterSpacing: "0.15em",
                     color: "var(--nx-rust)",
@@ -751,7 +751,7 @@ export default function About() {
                     backgroundColor: "var(--nx-fg)",
                     color: "var(--nx-bg-cream)",
                     fontFamily: FONT,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 600,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
@@ -883,7 +883,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "10px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",

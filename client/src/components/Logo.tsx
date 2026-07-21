@@ -76,7 +76,7 @@ export function Logo({
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "17px",
+          fontSize: "var(--nx-t-body)",
           fontWeight: 600,
           letterSpacing: "0.14em",
           color: ink,
@@ -99,7 +99,7 @@ export function Logo({
             className="hidden sm:inline-block"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "10px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
               letterSpacing: "0.18em",
               color: sub,
