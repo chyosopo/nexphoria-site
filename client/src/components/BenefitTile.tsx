@@ -76,7 +76,9 @@ interface BenefitTileProps {
   cta?: string;
   /** Visual tone. */
   tone?: TileTone;
-  /** Aspect ratio — 1 = square (default), 4/5 = portrait, 5/4 = landscape. */
+  /** Aspect ratio — 1 = square, 4/5 = portrait, 5/4 = landscape.
+   *  Default: 1 for image/metric tiles; 4/3 for text-only tiles, whose
+   *  short copy leaves a square mostly air. */
   aspect?: number;
   /** Test id. */
   testId?: string;
@@ -94,13 +96,14 @@ export function BenefitTile({
   href,
   cta,
   tone = "cream",
-  aspect = 1,
+  aspect,
   testId,
   image,
 }: BenefitTileProps) {
   const t = TONES[tone];
   const isDark = tone === "dark" || tone === "cobalt" || tone === "ember";
   const hasImage = !!image;
+  const resolvedAspect = aspect ?? (hasImage || metric ? 1 : 4 / 3);
 
   const Inner = (
     <div
@@ -112,7 +115,7 @@ export function BenefitTile({
         borderRadius: 10,
         // Aspect is enforced by .benefit-tile only at sm+ — a hard square on
         // 2-up 390px grids (~165px tiles) clipped headline + sub mid-word.
-        ["--bt-aspect" as string]: String(aspect),
+        ["--bt-aspect" as string]: String(resolvedAspect),
       }}
       data-testid={testId}
     >
