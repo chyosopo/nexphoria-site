@@ -1,8 +1,10 @@
+/* JOB: editorial trust and SEO; every article advances one next step. */
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo, webPageJsonLd, itemListJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { FONT } from "@/lib/typography";
 import {
   JOURNAL_ARTICLES,
   JOURNAL_CATEGORIES,
@@ -15,13 +17,11 @@ import {
    newsletter CTA. General Sans throughout, no italics, no serif.
    ───────────────────────────────────────────────────────────── */
 
-const FONT = "'General Sans', system-ui, sans-serif";
-
 const eyebrow: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: 11,
+  fontSize: "var(--nx-t-xs)",
   fontWeight: 500,
-  letterSpacing: "0.18em",
+  letterSpacing: "var(--nx-ls-wide)",
   textTransform: "uppercase",
   color: "var(--nx-cobalt)",
 };
@@ -32,25 +32,17 @@ export default function Journal() {
     description:
       "Long-form evidence reviews, protocol explainers, and physician notes on every peptide we prescribe. The science behind BPC-157, GLP-1, NAD+, Epitalon, and more — plainly written, rigorously sourced.",
     path: "/journal",
-    jsonLd: [
-      webPageJsonLd({
-        name: "Nexphoria Journal",
-        description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
-        path: "/journal",
-        type: "MedicalWebPage",
-      }),
-      itemListJsonLd({
-        name: "Nexphoria Journal articles",
-        description: "Long-form, physician-reviewed writing on peptide science and protocols.",
-        items: JOURNAL_ARTICLES.map((a) => ({
-          name: a.title,
-          path: `/journal/${a.slug}`,
-          description: a.dek,
-        })),
-      }),
+    jsonLd: [webPageJsonLd({
+      name: "Nexphoria Journal",
+      description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
+      path: "/journal",
+      type: "MedicalWebPage",
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Journal", path: "/journal" }]),
     ],
   });
 
+  const reduce = useReducedMotion();
   const [activeCategory, setActiveCategory] = useState<JournalCategory | "all">("all");
 
   const filteredArticles = useMemo(() => {
@@ -73,6 +65,7 @@ export default function Journal() {
       {/* ══════════════ EDITORIAL MASTHEAD ══════════════ */}
       <section
         data-testid="journal-masthead"
+        aria-labelledby="journal-masthead-title"
         style={{
           backgroundColor: "var(--nx-bg)",
           borderBottom: "1px solid var(--nx-border)",
@@ -81,17 +74,20 @@ export default function Journal() {
         <div className="nx-container" style={{ paddingTop: 72, paddingBottom: 40 }}>
           <p style={{ ...eyebrow, marginBottom: 20 }}>The Journal</p>
           <h1
+            id="journal-masthead-title"
             style={{
-              fontFamily: FONT,
-              fontWeight: 600,
-              fontSize: "clamp(2.75rem, 6vw, 4.5rem)",
-              lineHeight: 0.98,
-              letterSpacing: "-0.035em",
+              // Fraunces — the site's one display voice (this masthead was the
+              // last General Sans holdout among page headlines)
+              fontFamily: "'Fraunces', Georgia, serif",
+              fontWeight: 500,
+              fontSize: "var(--nx-t-display)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.02em",
               color: "var(--nx-fg)",
               maxWidth: 900,
             }}
           >
-            <span style={{ color: "color-mix(in oklab, var(--nx-fg) 34%, transparent)" }}>
+            <span style={{ color: "color-mix(in oklab, var(--nx-fg) 40%, transparent)" }}>
               Peptide science,
             </span>
             <br />
@@ -100,8 +96,8 @@ export default function Journal() {
           <p
             style={{
               fontFamily: FONT,
-              fontSize: 18,
-              lineHeight: 1.55,
+              fontSize: "var(--nx-t-lg)",
+              lineHeight: 1.65,
               color: "var(--nx-fg-graphite)",
               maxWidth: 620,
               marginTop: 24,
@@ -116,6 +112,7 @@ export default function Journal() {
       {/* ══════════════ FEATURED POST HERO ══════════════ */}
       <section
         data-testid="journal-featured"
+        aria-label="Featured article"
         style={{ backgroundColor: "var(--nx-bg)", paddingTop: 48, paddingBottom: 56 }}
       >
         <div className="nx-container">
@@ -125,15 +122,15 @@ export default function Journal() {
               style={{ textDecoration: "none", color: "inherit", display: "block" }}
             >
               <motion.article
-                whileHover={{ y: -4 }}
+                whileHover={reduce ? undefined : { y: -4 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="journal-featured-grid"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1.05fr 0.95fr",
-                  backgroundColor: "#FFFFF3",
+                  backgroundColor: "var(--nx-ceramic)",
                   border: "1px solid var(--nx-border)",
-                  borderRadius: 20,
+                  borderRadius: "var(--nx-r-lg)",
                   overflow: "hidden",
                   cursor: "pointer",
                 }}
@@ -154,14 +151,14 @@ export default function Journal() {
                       top: 20,
                       left: 20,
                       padding: "7px 14px",
-                      backgroundColor: "rgba(10,10,10,0.92)",
-                      color: "#FFFFF3",
+                      backgroundColor: "rgba(21, 24, 28,0.92)",
+                      color: "var(--nx-ceramic)",
                       fontFamily: FONT,
-                      fontSize: 11,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
-                      letterSpacing: "0.12em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
-                      borderRadius: 999,
+                      borderRadius: "var(--nx-r-pill)",
                     }}
                   >
                     Editor's pick
@@ -180,9 +177,9 @@ export default function Journal() {
                   <p
                     style={{
                       fontFamily: FONT,
-                      fontSize: 12,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 500,
-                      letterSpacing: "0.14em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-rust)",
                       marginBottom: 20,
@@ -194,7 +191,7 @@ export default function Journal() {
                     style={{
                       fontFamily: FONT,
                       fontWeight: 600,
-                      fontSize: "clamp(1.9rem, 3.4vw, 2.85rem)",
+                      fontSize: "var(--nx-t-h2)",
                       lineHeight: 1.04,
                       letterSpacing: "-0.03em",
                       color: "var(--nx-fg)",
@@ -206,7 +203,7 @@ export default function Journal() {
                   <p
                     style={{
                       fontFamily: FONT,
-                      fontSize: 17,
+                      fontSize: "var(--nx-t-body)",
                       lineHeight: 1.6,
                       color: "var(--nx-fg-graphite)",
                       marginBottom: 28,
@@ -218,19 +215,19 @@ export default function Journal() {
                     <span
                       style={{
                         fontFamily: FONT,
-                        fontSize: 14,
+                        fontSize: "var(--nx-t-sm)",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
                       }}
                     >
                       {featured.author.name}
                     </span>
-                    <span style={{ color: "var(--nx-border)" }}>·</span>
+                    <span aria-hidden="true" style={{ color: "var(--nx-border)" }}>·</span>
                     <span
                       style={{
                         fontFamily: FONT,
-                        fontSize: 11,
-                        letterSpacing: "0.1em",
+                        fontSize: "var(--nx-t-xs)",
+                        letterSpacing: "var(--nx-ls-caps)",
                         textTransform: "uppercase",
                         color: "var(--nx-fg-muted)",
                       }}
@@ -248,6 +245,7 @@ export default function Journal() {
       {/* ══════════════ CATEGORY FILTER ROW ══════════════ */}
       <section
         data-testid="journal-categories"
+        aria-label="Filter articles by category"
         style={{
           backgroundColor: "var(--nx-bg)",
           borderTop: "1px solid var(--nx-border)",
@@ -298,7 +296,9 @@ export default function Journal() {
       {/* ══════════════ ARTICLE GRID (type-first cards) ══════════════ */}
       <section
         data-testid="journal-grid"
-        style={{ backgroundColor: "var(--nx-bg)", paddingTop: 48, paddingBottom: 96 }}
+        aria-label="Articles"
+        className="nx-section-y"
+        style={{ backgroundColor: "var(--nx-bg)" }}
       >
         <div className="nx-container">
           <AnimatePresence mode="wait">
@@ -312,7 +312,7 @@ export default function Journal() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(2, 1fr)",
-                gap: 28,
+                gap: 36,
               }}
             >
               {gridArticles.map((article, i) => (
@@ -336,10 +336,10 @@ export default function Journal() {
                 color: "var(--nx-fg-muted)",
               }}
             >
-              <p style={{ fontSize: 18, marginBottom: 8, color: "var(--nx-fg)" }}>
+              <p style={{ fontSize: "var(--nx-t-lg)", marginBottom: 8, color: "var(--nx-fg)" }}>
                 No articles in this category yet.
               </p>
-              <p style={{ fontSize: 14 }}>New writing publishes every other week.</p>
+              <p style={{ fontSize: "var(--nx-t-sm)" }}>New writing publishes every other week.</p>
             </div>
           )}
         </div>
@@ -348,6 +348,7 @@ export default function Journal() {
       {/* ══════════════ NEWSLETTER CTA ══════════════ */}
       <section
         data-testid="journal-newsletter"
+        aria-labelledby="journal-newsletter-title"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container" style={{ paddingTop: 72, paddingBottom: 72 }}>
@@ -359,7 +360,7 @@ export default function Journal() {
               gap: 40,
               alignItems: "center",
               backgroundColor: "var(--nx-fg)",
-              borderRadius: 20,
+              borderRadius: "var(--nx-r-lg)",
               padding: "48px 48px",
             }}
           >
@@ -367,9 +368,9 @@ export default function Journal() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 11,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.18em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
                   color: "var(--nx-acid)",
                   marginBottom: 18,
@@ -378,13 +379,14 @@ export default function Journal() {
                 The Journal · Weekly
               </p>
               <h2
+                id="journal-newsletter-title"
                 style={{
                   fontFamily: FONT,
                   fontWeight: 600,
-                  fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)",
+                  fontSize: "var(--nx-t-h2)",
                   lineHeight: 1.05,
                   letterSpacing: "-0.03em",
-                  color: "#FFFFF3",
+                  color: "var(--nx-ceramic)",
                   marginBottom: 16,
                 }}
               >
@@ -393,35 +395,38 @@ export default function Journal() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 16,
+                  fontSize: "var(--nx-t-body)",
                   lineHeight: 1.6,
-                  color: "rgba(255,255,243,0.72)",
+                  color: "rgba(246, 249, 252,0.72)",
                   maxWidth: 480,
                 }}
               >
                 Evidence reviews, protocol explainers, and physician notes, delivered the week they
-                publish. No hype, no testimonials.
+                publish. Cited, reviewed, and plainly written.
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               <a
                 href="mailto:journal@nexphoria.com?subject=Subscribe%20to%20The%20Journal"
                 data-testid="button-newsletter-subscribe"
+                className="journal-subscribe"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 8,
                   backgroundColor: "var(--nx-acid)",
-                  color: "#0A0A0A",
+                  color: "var(--nx-fg)",
                   fontFamily: FONT,
-                  fontSize: 13,
+                  fontSize: "var(--nx-t-sm)",
                   fontWeight: 600,
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
                   padding: "16px 24px",
-                  borderRadius: 12,
+                  borderRadius: "var(--nx-r-md)",
                   textDecoration: "none",
+                  willChange: "transform",
+                  transition: "transform var(--nx-dur-2) var(--nx-ease)",
                 }}
               >
                 Subscribe by email
@@ -429,9 +434,9 @@ export default function Journal() {
               <p
                 style={{
                   fontFamily: FONT,
-                  fontSize: 11,
+                  fontSize: "var(--nx-t-xs)",
                   letterSpacing: "0.06em",
-                  color: "rgba(255,255,243,0.5)",
+                  color: "rgba(246, 249, 252,0.5)",
                   textAlign: "center",
                 }}
               >
@@ -443,6 +448,13 @@ export default function Journal() {
       </section>
 
       <style>{`
+        .journal-chip:not([aria-pressed="true"]):hover { border-color: var(--nx-fg); color: var(--nx-fg); }
+        .journal-subscribe:hover { transform: translateY(-2px); }
+        .journal-subscribe:active { transform: translateY(0); transition-duration: var(--nx-dur-1); }
+        @media (prefers-reduced-motion: reduce) {
+          .journal-subscribe { transition: none; }
+          .journal-subscribe:hover, .journal-subscribe:active { transform: none; }
+        }
         @media (max-width: 900px) {
           .journal-card-grid { grid-template-columns: 1fr !important; }
         }
@@ -479,26 +491,28 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
       data-testid={testId}
       onClick={onClick}
       aria-pressed={isActive}
+      className="journal-chip"
       style={{
         display: "inline-flex",
         alignItems: "center",
         gap: 8,
-        padding: "9px 16px",
-        borderRadius: 999,
+        minHeight: 44,
+        padding: "0 16px",
+        borderRadius: "var(--nx-r-pill)",
         border: `1px solid ${isActive ? "var(--nx-fg)" : "var(--nx-border)"}`,
         backgroundColor: isActive ? "var(--nx-fg)" : "transparent",
-        color: isActive ? "#FFFFF3" : "var(--nx-fg)",
+        color: isActive ? "var(--nx-ceramic)" : "var(--nx-fg)",
         fontFamily: FONT,
-        fontSize: 12,
+        fontSize: "var(--nx-t-xs)",
         fontWeight: 500,
         letterSpacing: "0.06em",
         cursor: "pointer",
         whiteSpace: "nowrap",
-        transition: "all 0.2s ease",
+        transition: "border-color var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease)",
       }}
     >
       {label}
-      <span style={{ fontSize: 11, opacity: 0.55 }}>{count}</span>
+      <span style={{ fontSize: "var(--nx-t-xs)", opacity: 0.55 }}>{count}</span>
     </button>
   );
 }
@@ -515,6 +529,7 @@ interface ArticleCardProps {
 }
 
 function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
+  const reduce = useReducedMotion();
   return (
     <Link asChild href={`/journal/${article.slug}`}>
       <a
@@ -525,11 +540,11 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
-          whileHover={{ y: -4 }}
+          whileHover={reduce ? undefined : { y: -4 }}
           style={{
-            backgroundColor: "#FFFFF3",
+            backgroundColor: "var(--nx-ceramic)",
             border: "1px solid var(--nx-border)",
-            borderRadius: 16,
+            borderRadius: "var(--nx-r-md)",
             overflow: "hidden",
             cursor: "pointer",
             height: "100%",
@@ -550,13 +565,13 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               style={{
                 alignSelf: "flex-start",
                 fontFamily: FONT,
-                fontSize: 11,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.1em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: "var(--nx-rust)",
                 border: "1px solid var(--nx-border)",
-                borderRadius: 999,
+                borderRadius: "var(--nx-r-pill)",
                 padding: "4px 12px",
                 marginBottom: 18,
               }}
@@ -567,7 +582,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               style={{
                 fontFamily: FONT,
                 fontWeight: 600,
-                fontSize: 23,
+                fontSize: "var(--nx-t-xl)",
                 lineHeight: 1.14,
                 letterSpacing: "-0.02em",
                 color: "var(--nx-fg)",
@@ -579,7 +594,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: 15,
+                fontSize: "var(--nx-t-base)",
                 lineHeight: 1.55,
                 color: "var(--nx-fg-graphite)",
                 marginBottom: 20,
@@ -600,7 +615,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               <span
                 style={{
                   fontFamily: FONT,
-                  fontSize: 13,
+                  fontSize: "var(--nx-t-sm)",
                   color: "var(--nx-fg)",
                   fontWeight: 500,
                 }}
@@ -610,8 +625,8 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
               <span
                 style={{
                   fontFamily: FONT,
-                  fontSize: 11,
-                  letterSpacing: "0.1em",
+                  fontSize: "var(--nx-t-xs)",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "var(--nx-fg-muted)",
                 }}

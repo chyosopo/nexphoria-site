@@ -1,0 +1,428 @@
+/* JOB: one goal, its protocols and peptides; one click deeper to a price. */
+/* ────────────────────────────────────────────────────────────────
+   CATEGORY / CONDITION PAGE — one template, six goals
+   Skeleton: emotional hero → 3 steps (if prescribed) → goal chips
+   → treatment grid (real data) → FAQ (+JSON-LD) → CTA → footnote
+   ──────────────────────────────────────────────────────────────── */
+import { Link, useRoute, useLocation } from "wouter";
+import { ArrowRight, Pill, Activity, Stethoscope, RefreshCw } from "lucide-react";
+import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
+import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
+import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, type PeptideCategory } from "@/data/peptides";
+import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { ProtocolSelector } from "@/components/ProtocolSelector";
+import { selectorRoutes } from "@/data/protocolSelector";
+import { anchor } from "@/lib/anchors";
+import { JOURNAL_ARTICLES } from "@/data/journal";
+
+/* Goal → the journal pieces that actually answer it (content engine,
+   MAXIMUS-STUDY §8): every slug below exists in journal.ts. */
+const GOAL_READING: Record<PeptideCategory, string[]> = {
+  growth: ["gh-secretagogues-complete-guide", "reading-your-bloodwork"],
+  recovery: ["bpc-157-tissue-repair-evidence", "subq-injection-technique"],
+  longevity: ["longevity-nad-mots-c", "reading-your-bloodwork"],
+  skin: ["what-is-a-peptide", "side-effects-and-contraindications"],
+  cognition: ["what-is-a-peptide", "side-effects-and-contraindications"],
+  sleep: ["gh-secretagogues-complete-guide", "what-is-a-peptide"],
+  metabolic: ["semaglutide-vs-tirzepatide", "reading-your-bloodwork"],
+  "sexual-health": ["what-is-a-peptide", "side-effects-and-contraindications"],
+};
+
+type Cfg = {
+  pre: string; accent: string; sub: string;
+  chips: string[];
+  faqs: { q: string; a: string }[];
+};
+
+const IF_RX = "Medication is dispensed only if a licensed provider determines a prescription is appropriate.";
+
+const CONFIG: Record<PeptideCategory, Cfg> = {
+  recovery: {
+    pre: "Train hard. Recover", accent: "smarter.",
+    sub: "Physician-directed peptide protocols oriented around tissue recovery, joint comfort, and training resilience — calibrated to your bloodwork, not a guess.",
+    chips: ["Post-injury support", "Joint comfort", "Training load", "Tendon & tissue"],
+    faqs: [
+      { q: "How do recovery protocols start?", a: "With a structured intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
+      { q: "How soon are protocols adjusted?", a: "Labs are re-run every 90 days. Your physician reviews the change in your markers and adjusts, holds, or tapers the protocol accordingly." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies and prescribed off-label by licensed physicians." },
+    ],
+  },
+  skin: {
+    pre: "Radiance, from the", accent: "inside out.",
+    sub: "Protocols oriented around skin quality, collagen support, and hair — designed by licensed physicians and adjusted against your own labs.",
+    chips: ["Skin quality", "Collagen support", "Hair support", "Healthy aging"],
+    faqs: [
+      { q: "What does a skin protocol involve?", a: "An online evaluation, baseline labs, and — if a physician prescribes — a compounded protocol with check-ins. " + IF_RX },
+      { q: "When do people typically reassess?", a: "Bloodwork is repeated every 90 days and the protocol is reviewed against your markers and your goals." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
+    ],
+  },
+  growth: {
+    pre: "Composition,", accent: "engineered.",
+    sub: "Physician-directed protocols oriented around lean mass, GH pulse, and body composition — gated by labs before, during, and after.",
+    chips: ["Lean mass", "GH pulse", "Body composition", "Strength support"],
+    faqs: [
+      { q: "How is eligibility decided?", a: "By a licensed physician, from your intake and baseline bloodwork — never by a questionnaire alone. " + IF_RX },
+      { q: "How is progress measured?", a: "Quarterly labs plus your own training data. Protocols are adjusted against numbers, not feelings." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
+    ],
+  },
+  longevity: {
+    pre: "Add life to your", accent: "years.",
+    sub: "Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a 99-marker baseline and re-tested every quarter.",
+    chips: ["Cellular energy", "Immune resilience", "Healthspan", "Daily vitality"],
+    faqs: [
+      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork — ${PANEL_TOTAL_MARKERS} markers across 11 systems — reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
+      { q: "What makes this different from supplements?", a: "Everything here is prescription-only, physician-directed, and adjusted against your own labs every 90 days." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
+    ],
+  },
+  cognition: {
+    pre: "Clarity you can", accent: "measure.",
+    sub: "Protocols oriented around focus, mood, and cognitive support — physician-directed, lab-gated, and adjusted to how you actually respond.",
+    chips: ["Focus", "Mental clarity", "Mood support", "Stress resilience"],
+    faqs: [
+      { q: "How do cognition protocols work?", a: "A licensed physician reviews your intake and labs, then prescribes a protocol if appropriate, with check-ins through the portal. " + IF_RX },
+      { q: "What if something doesn't feel right?", a: "Message your physician through the portal. Most adjustments are dose-related and handled quickly; compounds can be substituted or removed." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
+    ],
+  },
+  sleep: {
+    pre: "Deeper nights,", accent: "better days.",
+    sub: "Physician-directed protocols oriented around sleep quality, onset, and overnight recovery — matched to your labs and adjusted to how you actually respond.",
+    chips: ["Sleep quality", "Sleep onset", "Overnight recovery", "Morning energy"],
+    faqs: [
+      { q: "How do sleep protocols start?", a: "With a private online intake and baseline bloodwork reviewed by a licensed physician, who prescribes a protocol only if appropriate. " + IF_RX },
+      { q: "How is progress tracked?", a: "Through your own reporting and quarterly labs — protocols are held, adjusted, or tapered against real markers." },
+      { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
+    ],
+  },
+  metabolic: {
+    pre: "Metabolic health,", accent: "on your terms.",
+    sub: "Medically supervised protocols oriented around appetite, weight, and glucose control — with real labs before the first dose and every 90 days after.",
+    chips: ["Appetite control", "Weight management", "Glucose support", "Energy"],
+    faqs: [
+      { q: "How does a metabolic protocol start?", a: "Online intake, baseline bloodwork, and physician review. If a prescription is appropriate, your protocol ships from a state-licensed 503A compounding pharmacy. " + IF_RX },
+      { q: "How is dosing handled?", a: "Dosing is individualized by your physician and reviewed against your labs and response every quarter — it is never self-directed." },
+      { q: "Are these products FDA-approved?", a: "Some molecules in this category exist as FDA-approved branded medications; compounded versions are not approved or evaluated by the FDA for safety, effectiveness, or quality." },
+    ],
+  },
+  "sexual-health": {
+    pre: "Desire, addressed\u2014", accent: "clinically.",
+    sub: "Physician-directed protocols oriented around libido and arousal through a central melanocortin pathway \u2014 evaluated, prescribed, and monitored like any other therapy.",
+    chips: ["Libido support", "Arousal response", "Centrally mediated", "On-demand dosing"],
+    faqs: [
+      { q: "How does a protocol in this category start?", a: "With a private online intake and physician review. If a prescription is appropriate, your protocol ships from a state-licensed 503A compounding pharmacy. " + IF_RX },
+      { q: "Is this the same as a PDE5 inhibitor?", a: "No. This pathway works centrally on melanocortin receptors rather than on vascular blood flow, which is why a physician evaluates fit against your history and any other medications." },
+      { q: "Are these products FDA-approved?", a: "One molecule in this category exists as an FDA-approved branded medication; compounded versions are not approved or evaluated by the FDA for safety, effectiveness, or quality." },
+    ],
+  },
+};
+
+
+const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: string }> = {
+  recovery: { label: "Tissue recovery", status: "On track", pos: "26%" },
+  skin: { label: "Collagen support", status: "Improving", pos: "30%" },
+  sleep: { label: "Sleep architecture", status: "Improving", pos: "34%" },
+  growth: { label: "Lean mass", status: "Building", pos: "34%" },
+  longevity: { label: "Cellular energy", status: "Optimal", pos: "18%" },
+  cognition: { label: "Focus & clarity", status: "Steady", pos: "24%" },
+  metabolic: { label: "Glucose control", status: "Improving", pos: "32%" },
+  "sexual-health": { label: "Libido & arousal", status: "Responding", pos: "28%" },
+};
+
+const STEPS: [string, string][] = [
+  ["Share your history", "A private structured intake covering your goals, training, and medical history."],
+  ["Get evaluated", "Baseline bloodwork plus review by a U.S.-licensed physician — the only person who decides if a prescription is appropriate."],
+  ["Start & stay monitored", "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with labs re-run every 90 days."],
+];
+
+export default function Category() {
+  const [, params] = useRoute("/goals/:slug");
+  const slug = (params?.slug ?? "") as PeptideCategory;
+  const cfg = CONFIG[slug];
+  const label = CATEGORY_LABELS[slug] ?? "Protocols";
+  const list = peptides.filter((p) => p.category === slug);
+  // Outcome hero art — cast to the visitor's world so a woman arriving from her
+  // goal tile never lands on a man's photo (the old code hardcoded the men
+  // frame first, leaking male imagery into her world on every goal page).
+  const [loc] = useLocation();
+  const world = resolveWorld(loc);
+  const heroArt =
+    OUTCOME_CATEGORY[world][slug] ?? OUTCOME_CATEGORY.men[slug] ?? OUTCOME_CATEGORY.women[slug];
+  const routeCount = cfg ? selectorRoutes(slug, world).length : 0;
+
+  useSeo({
+    title: cfg ? `${label} peptide protocols — physician-directed` : "Protocols",
+    description: cfg ? cfg.sub : "Physician-directed peptide protocols.",
+    path: `/goals/${slug}`,
+    jsonLd: cfg
+      ? [
+          webPageJsonLd({ name: `${label} protocols`, description: cfg.sub, path: `/goals/${slug}` }),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: label, path: `/goals/${slug}` }]),
+          faqJsonLd(cfg.faqs),
+          // ItemList of the peptides in this goal — only when real children exist.
+          ...(list.length > 0
+            ? [itemListJsonLd({
+                name: `${label} peptides`,
+                description: cfg.sub,
+                items: list.map((p) => ({ name: p.name, path: `/peptides/${p.slug}` })),
+              })]
+            : []),
+        ]
+      : [],
+  });
+
+  if (!cfg) {
+    return (
+      <SiteLayout>
+        <section className="nx-section" aria-labelledby="category-notfound-title"><div className="nx-container">
+          <h1 id="category-notfound-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500 }}>Protocol area not found.</h1>
+          <Link href="/peptides" className="nx-cta-cobalt mt-6 inline-flex">Browse all peptides</Link>
+        </div></section>
+      </SiteLayout>
+    );
+  }
+
+  return (
+    <SiteLayout navVariant={world} footerVariant={world}>
+      {/* ── Hero ── */}
+      <section className="relative overflow-hidden" style={{ background: "linear-gradient(180deg, #F8FBFF 0%, var(--nx-bg) 100%)" }} aria-labelledby="category-hero-title">
+        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
+          <div className={heroArt ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center" : ""}>
+            <div>
+              <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
+              <h1 id="category-hero-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
+                {cfg.pre}{" "}
+                <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
+              </h1>
+              {/* The goal's feeling line (ROADMAP 4.2) — same register as the
+                  front-door tile that brought the visitor here. */}
+              {CATEGORY_FEELING[slug] && (
+                <p style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-cobalt)", marginTop: "1.1rem" }} data-testid="cat-feeling">
+                  {CATEGORY_FEELING[slug]}
+                </p>
+              )}
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-lg)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1rem" }}>
+                {cfg.sub}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link href={`/assessment?gender=${world === "women" ? "female" : "male"}&goal=${slug}`} className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
+                  Start your assessment <ArrowRight size={17} strokeWidth={2} />
+                </Link>
+                {/* the decision surface, one tap away — no scroll hunting
+                    (Chiya: information accessible fast) */}
+                {routeCount >= 2 && (
+                  <a href={anchor("#routes")} className="nx-cta-ghost inline-flex items-center gap-2" data-testid="cat-cta-routes">
+                    Compare your {routeCount} routes
+                  </a>
+                )}
+                <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
+              </div>
+              {/* goal chips */}
+              <div className="mt-8 flex flex-wrap gap-2">
+                {cfg.chips.map((c) => (
+                  <span key={c} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-cobalt)", background: "var(--nx-cobalt-soft)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 24%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "7px 14px" }}>
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {heroArt && (
+              <Reveal delay={80} className="hidden lg:block">
+                <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", border: "1px solid var(--nx-border)" }}>
+                  <img src={heroArt} alt="" aria-hidden style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" />
+                </div>
+              </Reveal>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── At-a-glance clinical facts — surfaced immediately, no scrolling
+          (Chiya 2026-07-06: information accessible fast, not buried). TRUE
+          values only: compound count from the catalog, marker count from the
+          panel, retest cadence is protocol law. ── */}
+      <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-label="At a glance">
+        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
+          <div className="grid grid-cols-2 md:grid-cols-4" style={{ gap: "clamp(1rem,2.5vw,1.75rem)" }}>
+            {([
+              [Pill, list.length > 0 ? String(list.length) : "Multiple", list.length === 1 ? "compound in this goal" : "compounds in this goal"],
+              [Activity, String(PANEL_TOTAL_MARKERS), "biomarkers monitored"],
+              [Stethoscope, "Physician", "prescribes every protocol"],
+              [RefreshCw, "90 days", "retested, every cycle"],
+            ] as const).map(([Icon, big, small], i) => (
+              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
+                <Icon size={19} strokeWidth={1.7} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 4 }} />
+                <div>
+                  <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-xl)", lineHeight: 1.05, color: "var(--nx-fg)", fontVariantNumeric: "tabular-nums" }}>{big}</div>
+                  <div style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.25rem", lineHeight: 1.3 }}>{small}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PROTOCOL SELECTOR — the decision surface (Maximus grammar):
+          2–4 routes to this goal as "Best for:" comparison cards, with an
+          on-page chip question that highlights the match. Anchored from
+          the hero as #routes. ── */}
+      <ProtocolSelector goal={slug} world={world} />
+
+      {/* ── Three steps ── */}
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="How it works">
+        <div className="nx-container">
+          <p className="nx-eyebrow">How it works</p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {STEPS.map(([t, d], i) => (
+              <div key={t} className="nx-glass-card" style={{ padding: "1.9rem 1.7rem" }}>
+                <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-amber)", lineHeight: 1 }}>{i + 1}</div>
+                <h3 style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)", marginTop: "0.8rem" }}>{t}</h3>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{d}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.2rem" }}>
+            †{IF_RX}
+          </p>
+        </div>
+      </section>
+
+      {/* ── Goal composite — UI over film ── */}
+      <section className="relative overflow-hidden flex items-center" style={{ minHeight: "70vh" }} aria-labelledby="category-progress-title">
+        <img src="img/img_beb6d78848a2.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
+        <div className="absolute inset-0" aria-hidden="true" style={{ background: "linear-gradient(90deg, rgba(21, 24, 28,0.55) 0%, rgba(21, 24, 28,0.1) 60%, transparent 100%)" }} />
+        <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
+        <div className="nx-container relative" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>
+          <h2 id="category-progress-title" className="relative" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.1, color: "var(--nx-bg)", maxWidth: "16ch", zIndex: 2 }}>
+            Progress you can <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>point to.</em>
+          </h2>
+          <div className="mt-6" style={{ background: "rgba(21, 24, 28,0.55)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", border: "1px solid rgba(243, 245, 247,0.14)", borderRadius: "var(--nx-r-md)", padding: "14px 18px", maxWidth: 320 }}>
+            <div className="flex items-center justify-between gap-4">
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-sm)", color: "var(--nx-bg)" }}>{GOAL_CHIP[slug]?.label}</span>
+              <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontWeight: 600, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg)", background: "var(--nx-success)", borderRadius: "var(--nx-r-pill)", padding: "3px 9px" }}>{GOAL_CHIP[slug]?.status}</span>
+            </div>
+            <div className="relative mt-2.5" aria-hidden="true" style={{ height: 5, borderRadius: "var(--nx-r-pill)", background: "linear-gradient(90deg,var(--nx-success),var(--nx-acid),var(--nx-rust))" }}>
+              <span className="absolute nx-pulse-dot" style={{ left: GOAL_CHIP[slug]?.pos, top: -3.5, width: 12, height: 12, borderRadius: "var(--nx-r-pill)", background: "var(--nx-bg)", boxShadow: "0 0 0 3px rgba(243, 245, 247,0.3)" }} />
+            </div>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(243, 245, 247,0.5)", marginTop: 8, marginBottom: 0 }}>Illustration · tracked against your quarterly labs</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Treatment options (real data) ── */}
+      <section className="nx-section" aria-label="Peptides in this area">
+        <div className="nx-container">
+          <p className="nx-eyebrow">Peptides in this area</p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {list.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 45}>
+              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</h3>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{p.tagline}</p>
+                  </div>
+                  <span className="nx-icon-chip" style={{ width: 36, height: 36 }} aria-hidden>
+                    <ArrowRight size={17} strokeWidth={1.9} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
+                  Prescription only · if prescribed†
+                </p>
+              </Link>
+              </Reveal>
+            ))}
+          </div>
+          {list.length === 0 && (
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "var(--nx-fg-graphite)" }}>
+              Protocols in this area are physician-designed per patient. <Link href="/assessment" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>Start your intake</Link>.
+            </p>
+          )}
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="Frequently asked questions">
+        <div className="nx-container" style={{ maxWidth: 860 }}>
+          <p className="nx-eyebrow">Questions, answered</p>
+          <Reveal>
+          <div className="mt-6">
+            {cfg.faqs.map((f, i) => (
+              <details key={f.q} className="nx-faq-item" open={i === 0}>
+                <summary>
+                  <span>{f.q}</span>
+                  <span className="nx-faq-plus" aria-hidden />
+                </summary>
+                <p className="nx-faq-a">{f.a}</p>
+              </details>
+            ))}
+          </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── Further reading — the journal answers this goal's questions ── */}
+      {(() => {
+        const reads = (GOAL_READING[slug] ?? [])
+          .map((s) => JOURNAL_ARTICLES.find((a) => a.slug === s))
+          .filter((a): a is NonNullable<typeof a> => Boolean(a));
+        if (reads.length === 0) return null;
+        return (
+          <section className="nx-section" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="cat-reading-title">
+            <div className="nx-container">
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+                <h2 id="cat-reading-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+                  Read before you decide
+                </h2>
+                <Link href="/journal" className="nx-text-link" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                  The journal <ArrowRight size={15} aria-hidden />
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 14, marginTop: "1.2rem" }}>
+                {reads.map((a) => (
+                  <Link key={a.slug} href={`/journal/${a.slug}`} className="nx-float-card" data-testid={`cat-read-${a.slug}`}>
+                    <div className="nx-float-card__body">
+                      <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                        {a.eyebrow}
+                      </p>
+                      <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.45rem", lineHeight: 1.15 }}>
+                        {a.title}
+                      </h3>
+                      <p className="nx-line-2" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
+                        {a.dek}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* ── Final CTA ── */}
+      <section className="nx-section" aria-labelledby="category-cta-title">
+        <div className="nx-container">
+          <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)", textAlign: "center" }}>
+            <h2 id="category-cta-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)" }}>
+              One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
+            </h2>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>
+              The evaluation is complimentary. You pay only if a physician prescribes.
+            </p>
+            <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2 mt-6">
+              Start your assessment <ArrowRight size={17} strokeWidth={2} />
+            </Link>
+            <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>
+              Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Availability varies by state.
+            </p>
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
+  );
+}

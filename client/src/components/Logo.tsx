@@ -29,13 +29,13 @@ export function Logo({
   markSize = 28,
 }: LogoProps) {
   const ink =
-    variant === "light" ? "#FFFFFF" : variant === "green" ? "#c6f184" : "#0A0A0A";
+    variant === "light" ? "var(--nx-ceramic)" : variant === "green" ? "var(--nx-acid)" : "var(--nx-fg)";
   const sub =
     variant === "light"
       ? "rgba(255,255,255,0.7)"
       : variant === "green"
-      ? "rgba(198,241,132,0.75)"
-      : "rgba(10,10,10,0.65)";
+      ? "rgba(152, 182, 213,0.75)"
+      : "rgba(21, 24, 28,0.65)";
 
   return (
     <Link
@@ -76,9 +76,9 @@ export function Logo({
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "17px",
+          fontSize: "var(--nx-t-body)",
           fontWeight: 600,
-          letterSpacing: "0.14em",
+          letterSpacing: "var(--nx-ls-caps)",
           color: ink,
           lineHeight: 1,
           textTransform: "uppercase",
@@ -99,9 +99,9 @@ export function Logo({
             className="hidden sm:inline-block"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.18em",
+              letterSpacing: "var(--nx-ls-wide)",
               color: sub,
               textTransform: "uppercase",
               lineHeight: 1,

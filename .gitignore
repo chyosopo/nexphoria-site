@@ -14,3 +14,14 @@ data.db-journal
 
 *.log
 .DS_Store
+qa_shots/baseline/
+.playwright-mcp/
+
+# QA screenshot output — regenerate locally, never commit (~300MB)
+qa_shots/
+qa/
+qa-screenshots*/
+qa-rebuild-final/
+.v0-out/
+.vercel
+.cf-deploy/

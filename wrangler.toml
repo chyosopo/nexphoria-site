@@ -1,0 +1,12 @@
+# Cloudflare Pages deploy config — apex production (nexphoria.com).
+# Deploy with `npm run deploy:apex`: builds, copies dist/public to .cf-deploy
+# WITHOUT 404.html (a top-level 404.html kills Pages' SPA fallback — every
+# deep link would hard-404; the file is gh-pages-only), then deploys with
+# the functions/ directory (Pages Functions) and the bindings below.
+name = "nexphoria"
+pages_build_output_dir = ".cf-deploy"
+compatibility_date = "2026-07-10"
+
+[[kv_namespaces]]
+binding = "WAITLIST"
+id = "3475b441427c4bc980a3a174d8320a54"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────────
-   AnnouncementBar — Maximus-style sticky promo strip.
+   AnnouncementBar — reference-grade sticky promo strip.
    Sits above the nav. Cobalt (ink) background, cream text,
    one rust accent. Dismissable, no localStorage (session only).
    ────────────────────────────────────────────────────────────── */
@@ -12,16 +12,11 @@ interface AnnouncementBarProps {
   message?: string;
   /** small accent tag on the left */
   tag?: string;
-  /** optional CTA link */
-  ctaLabel?: string;
-  ctaHref?: string;
 }
 
 export function AnnouncementBar({
-  message = "Free physician consult on your first protocol \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
+  message = "Your first consultation is complimentary \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
   tag = "Peptides",
-  ctaLabel = "Start intake",
-  ctaHref = "/assessment",
 }: AnnouncementBarProps) {
   const [dismissed, setDismissed] = useState(false);
   if (dismissed) return null;
@@ -30,9 +25,9 @@ export function AnnouncementBar({
     <div
       className="w-full"
       style={{
-        background: "#0A0A0A",
-        color: "#FAF7F0",
-        borderBottom: "1px solid rgba(250,247,240,0.08)",
+        background: "var(--nx-fg)",
+        color: "var(--nx-bg)",
+        borderBottom: "1px solid rgba(243, 245, 247,0.08)",
       }}
       data-testid="announcement-bar"
       role="region"
@@ -40,47 +35,36 @@ export function AnnouncementBar({
     >
       <div className="nx-container flex items-center gap-3 py-2.5">
         <span
-          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[9px] uppercase tracking-[0.22em]"
+          className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] uppercase tracking-[var(--nx-ls-wide)]"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#0A0A0A",
-            background: "#c6f184",
-            letterSpacing: "0.22em",
+            color: "var(--nx-fg)",
+            background: "var(--nx-acid)",
+            letterSpacing: "var(--nx-ls-wide)",
             fontWeight: 600,
           }}
         >
           {tag}
         </span>
         <span
-          className="flex-1 text-[11px] sm:text-[12px] leading-tight"
+          className="flex-1 text-[11px] sm:text-xs leading-tight"
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#FAF7F0",
+            color: "var(--nx-bg)",
             fontWeight: 400,
           }}
         >
           {message}
         </span>
-        <a
-          href={`#${ctaHref}`}
-          className="hidden sm:inline text-[10px] uppercase tracking-[0.18em] hover:opacity-80 transition-opacity"
-          style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            color: "#FAF7F0",
-            borderBottom: "1px solid rgba(250,247,240,0.4)",
-            paddingBottom: 1,
-          }}
-          data-testid="link-announcement-cta"
-        >
-          {ctaLabel} →
-        </a>
+        {/* CTA law (ROADMAP 1.1): the bar carries the message only — its CTA
+            competed with the nav's primary button in the same viewport */}
         <button
           type="button"
           onClick={() => setDismissed(true)}
           className="p-1 -mr-1 hover:opacity-70 transition-opacity"
           aria-label="Dismiss announcement"
           data-testid="button-dismiss-announcement"
-          style={{ color: "#FAF7F0" }}
+          style={{ color: "var(--nx-bg)" }}
         >
           <X size={14} />
         </button>

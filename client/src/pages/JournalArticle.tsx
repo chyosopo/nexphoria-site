@@ -1,14 +1,17 @@
+/* JOB: one article read cleanly end-to-end; one quiet next step. */
 import { useEffect, useState } from "react";
+import { anchor } from "@/lib/anchors";
 import { Link, useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { Reveal } from "@/components/Reveal";
+import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import {
   getArticleBySlug,
   getRelatedArticles,
   JOURNAL_CATEGORIES,
 } from "@/data/journal";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 /* ─────────────────────────────────────────────────────────────
    JournalArticle — Long-form editorial article page with
@@ -40,11 +43,14 @@ export default function JournalArticle() {
     path: `/journal/${slug}`,
     jsonLd: article
       ? [
-          webPageJsonLd({
-            name: article.title,
+          // Article schema with real datePublished/author/image from the article data.
+          articleJsonLd({
+            headline: article.title,
             description: article.dek,
             path: `/journal/${slug}`,
-            type: "MedicalWebPage",
+            datePublished: article.publishedISO,
+            authorName: article.author?.name,
+            image: article.imageSrc,
           }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
@@ -86,8 +92,8 @@ export default function JournalArticle() {
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: 18,
-              color: "var(--nx-text-muted)",
+              fontSize: "var(--nx-t-lg)",
+              color: "var(--nx-fg-muted)",
               marginBottom: 16,
             }}
           >
@@ -98,17 +104,17 @@ export default function JournalArticle() {
             onClick={() => navigate("/journal")}
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: 12,
+              fontSize: "var(--nx-t-xs)",
               padding: "10px 20px",
               border: "1px solid var(--nx-cobalt)",
               backgroundColor: "transparent",
               color: "var(--nx-cobalt)",
               cursor: "pointer",
-              letterSpacing: "0.1em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
             }}
           >
-            ← Back to Journal
+            <span aria-hidden="true">← </span>Back to Journal
           </button>
         </section>
       </SiteLayout>
@@ -131,13 +137,12 @@ export default function JournalArticle() {
 
           <div className="mx-grid">
             <ColoredHeroTile
-              href={`/journal/${article.slug}`}
+              href={anchor(`#sec-${article.sections[0]?.id ?? ""}`)}
               tone="sand"
               glyph={TileGlyphs.leaf}
-              priority
               label={<span>{article.title}</span>}
               caption={`${article.readTime} read · ${articleDate}`}
-              ctaLabel="Read article"
+              ctaLabel="Start reading"
             />
             <ColoredHeroTile
               href="/journal"
@@ -157,17 +162,18 @@ export default function JournalArticle() {
         data-testid="article-image"
       >
         <div className="nx-container">
+          <Reveal>
           <div
             style={{
               marginTop: -48,
-              borderRadius: 4,
+              borderRadius: "var(--nx-r-xs)",
               overflow: "hidden",
               aspectRatio: "16/9",
               border: "1px solid var(--nx-border)",
               maxWidth: 1080,
               marginLeft: "auto",
               marginRight: "auto",
-              boxShadow: "0 24px 48px -16px rgba(10,10,10,0.18)",
+              boxShadow: "var(--nx-e-3)",
             }}
           >
             <img
@@ -176,13 +182,15 @@ export default function JournalArticle() {
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── Body + sticky TOC ─────────────────────────────── */}
       <section
         data-testid="article-body"
-        style={{ backgroundColor: "var(--nx-bg-cream)", paddingTop: 80, paddingBottom: 120 }}
+        className="nx-section-y"
+        style={{ backgroundColor: "var(--nx-bg-cream)" }}
       >
         <div
           className="nx-container article-grid"
@@ -204,14 +212,16 @@ export default function JournalArticle() {
               paddingTop: 8,
             }}
           >
+            <nav aria-labelledby="toc-heading">
             <p
+              id="toc-heading"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 10,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.2em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
-                color: "var(--nx-text-muted)",
+                color: "var(--nx-fg-muted)",
                 marginBottom: 20,
                 paddingBottom: 16,
                 borderBottom: "1px solid var(--nx-border)",
@@ -224,7 +234,8 @@ export default function JournalArticle() {
                 <li key={s.id}>
                   <a
                     data-testid={`toc-link-${s.id}`}
-                    href={`#sec-${s.id}`}
+                    href={anchor(`#sec-${s.id}`)}
+                    aria-current={activeSection === `sec-${s.id}` ? "location" : undefined}
                     onClick={(e) => {
                       e.preventDefault();
                       document.getElementById(`sec-${s.id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -232,14 +243,14 @@ export default function JournalArticle() {
                     style={{
                       display: "block",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 13,
+                      fontSize: "var(--nx-t-sm)",
                       lineHeight: 1.45,
-                      color: activeSection === `sec-${s.id}` ? "var(--nx-cobalt)" : "var(--nx-text-muted)",
+                      color: activeSection === `sec-${s.id}` ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
                       fontWeight: activeSection === `sec-${s.id}` ? 600 : 400,
                       textDecoration: "none",
                       paddingLeft: 12,
-                      borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "#C97A4A" : "transparent"}`,
-                      transition: "all 0.2s ease",
+                      borderLeft: `2px solid ${activeSection === `sec-${s.id}` ? "var(--nx-rust)" : "transparent"}`,
+                      transition: "color var(--nx-dur-2) var(--nx-ease), border-left-color var(--nx-dur-2) var(--nx-ease)",
                     }}
                   >
                     {s.label}
@@ -247,21 +258,25 @@ export default function JournalArticle() {
                 </li>
               ))}
             </ul>
+            </nav>
           </aside>
 
-          {/* Body */}
-          <article style={{ maxWidth: 720 }}>
+          {/* Body — tighter reading measure for editorial calm (~68ch at 17px).
+              minWidth 0 stops wide tables leaking intrinsic width into the 1fr
+              track (they scroll internally instead of dragging copy off-screen). */}
+          <article style={{ maxWidth: 680, minWidth: 0 }}>
             {article.sections.map((s) => (
               <div key={s.id} id={`sec-${s.id}`} style={{ marginBottom: 56, scrollMarginTop: 96 }}>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
-                    fontWeight: 400,
-                    fontSize: 32,
+                    // Fraunces display voice — the 400-weight cobalt sans read
+                    // LIGHTER than the 17px body it was meant to head
+                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontWeight: 500,
+                    fontSize: "var(--nx-t-h2)",
                     lineHeight: 1.15,
                     letterSpacing: "-0.012em",
-                    color: "var(--nx-cobalt)",
+                    color: "var(--nx-fg)",
                     marginBottom: 24,
                   }}
                 >
@@ -272,9 +287,9 @@ export default function JournalArticle() {
                     key={i}
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 17,
+                      fontSize: "var(--nx-t-body)",
                       lineHeight: 1.75,
-                      color: "var(--nx-text)",
+                      color: "var(--nx-fg-graphite)",
                       marginBottom: 20,
                     }}
                   >
@@ -282,9 +297,10 @@ export default function JournalArticle() {
                   </p>
                 ))}
                 {s.callout && (
+                  <Reveal>
                   <aside
                     style={{
-                      borderLeft: "3px solid #C97A4A",
+                      borderLeft: "3px solid var(--nx-rust)",
                       paddingLeft: 24,
                       marginTop: 28,
                       marginBottom: 28,
@@ -293,9 +309,9 @@ export default function JournalArticle() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        
+
                         fontWeight: 400,
-                        fontSize: 22,
+                        fontSize: "var(--nx-t-xl)",
                         lineHeight: 1.35,
                         color: "var(--nx-cobalt)",
                       }}
@@ -303,6 +319,7 @@ export default function JournalArticle() {
                       "{s.callout}"
                     </p>
                   </aside>
+                  </Reveal>
                 )}
                 {s.steps && (
                   <ol
@@ -329,9 +346,9 @@ export default function JournalArticle() {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: 13,
+                            fontSize: "var(--nx-t-sm)",
                             fontWeight: 500,
-                            color: "#C97A4A",
+                            color: "var(--nx-rust)",
                             letterSpacing: "0.05em",
                           }}
                         >
@@ -340,9 +357,9 @@ export default function JournalArticle() {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: 16,
+                            fontSize: "var(--nx-t-body)",
                             lineHeight: 1.6,
-                            color: "var(--nx-text)",
+                            color: "var(--nx-fg-graphite)",
                           }}
                         >
                           {step}
@@ -358,7 +375,7 @@ export default function JournalArticle() {
                         width: "100%",
                         borderCollapse: "collapse",
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 14,
+                        fontSize: "var(--nx-t-sm)",
                       }}
                     >
                       <thead>
@@ -370,9 +387,9 @@ export default function JournalArticle() {
                                 textAlign: "left",
                                 padding: "12px 16px 12px 0",
                                 fontFamily: "'General Sans', system-ui, sans-serif",
-                                fontSize: 10,
+                                fontSize: "var(--nx-t-xs)",
                                 fontWeight: 500,
-                                letterSpacing: "0.14em",
+                                letterSpacing: "var(--nx-ls-caps)",
                                 textTransform: "uppercase",
                                 color: "var(--nx-cobalt)",
                               }}
@@ -390,9 +407,9 @@ export default function JournalArticle() {
                                 key={j}
                                 style={{
                                   padding: "14px 16px 14px 0",
-                                  fontSize: 14,
+                                  fontSize: "var(--nx-t-sm)",
                                   lineHeight: 1.5,
-                                  color: "var(--nx-text)",
+                                  color: "var(--nx-fg-graphite)",
                                   verticalAlign: "top",
                                 }}
                               >
@@ -424,11 +441,11 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.2em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
-                  color: "var(--nx-text-muted)",
+                  color: "var(--nx-fg-muted)",
                   marginRight: 8,
                 }}
               >
@@ -446,9 +463,9 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 6,
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "var(--nx-cobalt)",
                   background: "transparent",
@@ -471,9 +488,9 @@ export default function JournalArticle() {
                   alignItems: "center",
                   gap: 6,
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.1em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   color: "var(--nx-cobalt)",
                   background: "transparent",
@@ -497,19 +514,20 @@ export default function JournalArticle() {
               }}
             >
               <p
+                id="references-heading"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.2em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
-                  color: "var(--nx-text-muted)",
+                  color: "var(--nx-fg-muted)",
                   marginBottom: 20,
                 }}
               >
                 References
               </p>
-              <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              <ol aria-labelledby="references-heading" style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                 {article.references.map((ref) => (
                   <li
                     key={ref.n}
@@ -518,16 +536,16 @@ export default function JournalArticle() {
                       gridTemplateColumns: "32px 1fr",
                       gap: 12,
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 13,
+                      fontSize: "var(--nx-t-sm)",
                       lineHeight: 1.55,
-                      color: "var(--nx-text-muted)",
+                      color: "var(--nx-fg-muted)",
                     }}
                   >
                     <span
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 11,
-                        color: "#C97A4A",
+                        fontSize: "var(--nx-t-xs)",
+                        color: "var(--nx-rust)",
                       }}
                     >
                       [{ref.n}]
@@ -539,6 +557,7 @@ export default function JournalArticle() {
                           href={ref.url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Open source for reference ${ref.n}`}
                           style={{ color: "var(--nx-cobalt)", textDecoration: "underline", textUnderlineOffset: 2 }}
                         >
                           Link
@@ -558,7 +577,7 @@ export default function JournalArticle() {
         <section
           data-testid="article-related"
           style={{
-            backgroundColor: "#FFFFF3",
+            backgroundColor: "var(--nx-ceramic)",
             borderTop: "1px solid var(--nx-border)",
             paddingTop: 80,
             paddingBottom: 120,
@@ -568,11 +587,11 @@ export default function JournalArticle() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 10,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.22em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
-                color: "#C97A4A",
+                color: "var(--nx-rust)",
                 marginBottom: 16,
               }}
             >
@@ -580,18 +599,19 @@ export default function JournalArticle() {
             </p>
             <h2
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                
-                fontWeight: 400,
-                fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontWeight: 500,
+                fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.1,
-                color: "var(--nx-cobalt)",
+                color: "var(--nx-fg)",
                 marginBottom: 40,
               }}
             >
               Related research.
             </h2>
             <div
+              role="list"
+              aria-label="Related articles"
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -599,28 +619,29 @@ export default function JournalArticle() {
               }}
             >
               {related.map((r) => (
-                <Link asChild key={r.slug} href={`/journal/${r.slug}`}>
+                <div role="listitem" key={r.slug}>
+                <Link asChild href={`/journal/${r.slug}`}>
                   <a
                     data-testid={`link-related-${r.slug}`}
                     style={{
                       display: "block",
                       padding: 28,
                       border: "1px solid var(--nx-border)",
-                      borderRadius: 4,
+                      borderRadius: "var(--nx-r-2xs)",
                       textDecoration: "none",
                       color: "inherit",
                       backgroundColor: "var(--nx-bg-cream)",
-                      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                      transition: "transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease)",
                     }}
                   >
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 9,
+                        fontSize: "var(--nx-t-xs)",
                         fontWeight: 500,
-                        letterSpacing: "0.18em",
+                        letterSpacing: "var(--nx-ls-wide)",
                         textTransform: "uppercase",
-                        color: "#C97A4A",
+                        color: "var(--nx-rust)",
                         marginBottom: 16,
                       }}
                     >
@@ -631,7 +652,7 @@ export default function JournalArticle() {
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         
                         fontWeight: 400,
-                        fontSize: 20,
+                        fontSize: "var(--nx-t-lg)",
                         lineHeight: 1.2,
                         color: "var(--nx-cobalt)",
                         marginBottom: 12,
@@ -642,15 +663,16 @@ export default function JournalArticle() {
                     <p
                       style={{
                         fontFamily: "'General Sans', system-ui, sans-serif",
-                        fontSize: 13,
+                        fontSize: "var(--nx-t-sm)",
                         lineHeight: 1.55,
-                        color: "var(--nx-text-muted)",
+                        color: "var(--nx-fg-muted)",
                       }}
                     >
                       {r.dek}
                     </p>
                   </a>
                 </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -662,7 +684,7 @@ export default function JournalArticle() {
       <section
         data-testid="article-get-next-issue"
         style={{
-          backgroundColor: "#000",
+          backgroundColor: "var(--nx-bg-dark)",
           borderTop: "1px solid rgba(255,255,255,0.08)",
           paddingTop: 80,
           paddingBottom: 80,
@@ -671,8 +693,8 @@ export default function JournalArticle() {
         <div className="nx-container" style={{ maxWidth: 1180, margin: "0 auto" }}>
           <div
             style={{
-              backgroundColor: "#c6f184",
-              borderRadius: 4,
+              backgroundColor: "var(--nx-acid)",
+              borderRadius: "var(--nx-r-2xs)",
               padding: "48px 56px",
               display: "flex",
               alignItems: "center",
@@ -685,11 +707,11 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 9,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.18em",
+                  letterSpacing: "var(--nx-ls-wide)",
                   textTransform: "uppercase",
-                  color: "rgba(0,0,0,0.55)",
+                  color: "rgba(21, 24, 28,0.55)",
                   marginBottom: 12,
                 }}
               >
@@ -699,8 +721,8 @@ export default function JournalArticle() {
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
                   fontWeight: 500,
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-                  color: "#000",
+                  fontSize: "var(--nx-t-h2)",
+                  color: "var(--nx-fg)",
                   lineHeight: 1.1,
                   marginBottom: 8,
                 }}
@@ -710,9 +732,9 @@ export default function JournalArticle() {
               <p
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 16,
+                  fontSize: "var(--nx-t-body)",
                   lineHeight: 1.6,
-                  color: "rgba(0,0,0,0.7)",
+                  color: "rgba(21, 24, 28,0.7)",
                   maxWidth: 440,
                 }}
               >
@@ -727,19 +749,19 @@ export default function JournalArticle() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 8,
-                  backgroundColor: "#000",
-                  color: "#c6f184",
+                  backgroundColor: "var(--nx-bg-dark)",
+                  color: "var(--nx-acid)",
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: 10,
+                  fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
-                  letterSpacing: "0.14em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   padding: "14px 24px",
                   borderRadius: 2,
                   textDecoration: "none",
                 }}
               >
-                Email journal@nexphoria.com →
+                Email journal@nexphoria.com <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
@@ -755,6 +777,10 @@ export default function JournalArticle() {
           .article-toc {
             position: static !important;
             order: -1;
+            min-width: 0;
+          }
+          .article-grid > article {
+            min-width: 0;
           }
         }
       `}</style>

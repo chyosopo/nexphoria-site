@@ -37,7 +37,7 @@ export const stacks: Stack[] = [
     name: "Wolverine",
     tagline: "The repair stack.",
     purpose: "Accelerate tendon, ligament, and soft-tissue recovery from training or injury.",
-    curator: "Dr. Marcus Bennett, MD — Sports Medicine",
+    curator: "Board-certified physician — Sports Medicine",
     description: "Three peptides working in concert: BPC-157 drives local repair signaling, TB-500 coordinates systemic cellular migration, GHK-Cu accelerates collagen synthesis. Tracks CRP, ESR, and CK-MB to confirm inflammatory resolution.",
     peptides: ["bpc-157", "tb-500", "ghk-cu"],
     labMarkers: ["CRP", "ESR", "CK-MB", "Vitamin D"],
@@ -53,7 +53,7 @@ export const stacks: Stack[] = [
     name: "Glow",
     tagline: "The skin stack.",
     purpose: "Restore dermal collagen, even skin tone, reduce visible aging from the inside.",
-    curator: "Dr. Sofia Chen, MD — Endocrinology",
+    curator: "Board-certified physician — Endocrinology",
     description: "GHK-Cu, the copper-binding tripeptide that's been studied in dermatology for 40 years, pairs with BPC-157 for systemic repair and a low-dose tirzepatide micropulse for metabolic skin support. Tracks Vitamin D, fasting insulin, and HbA1c.",
     peptides: ["ghk-cu", "bpc-157", "tirzepatide"],
     labMarkers: ["Vitamin D", "Fasting Insulin", "HbA1c", "ALT/AST"],
@@ -69,7 +69,7 @@ export const stacks: Stack[] = [
     name: "Restore",
     tagline: "The sleep stack.",
     purpose: "Deeper sleep, faster onset, more restorative REM cycles.",
-    curator: "Dr. Aisha Patel, MD — Internal Medicine",
+    curator: "Board-certified physician — Internal Medicine",
     description: "DSIP (delta sleep–inducing peptide) plus Epitalon for circadian regulation and Selank for pre-sleep anxiolysis. The combination has been studied for shift workers and chronic insomnia.",
     peptides: ["dsip", "epitalon", "selank"],
     labMarkers: ["Cortisol AM/PM", "DHEA-S", "Melatonin"],
@@ -84,7 +84,7 @@ export const stacks: Stack[] = [
     name: "Clarity",
     tagline: "The cognitive stack.",
     purpose: "Improved focus, mood resilience, and stress recovery without stimulants.",
-    curator: "Dr. James Okafor, MD — Neurology",
+    curator: "Board-certified physician — Neurology",
     description: "Semax and Selank — both Russian-developed neuropeptides with decades of clinical literature — paired with low-dose Epitalon for circadian alignment. BDNF and inflammatory markers monitored quarterly.",
     peptides: ["semax", "selank", "epitalon"],
     labMarkers: ["hs-CRP", "Homocysteine", "Vitamin B12", "Ferritin"],
@@ -99,7 +99,7 @@ export const stacks: Stack[] = [
     name: "Prime",
     tagline: "The metabolic stack.",
     purpose: "Sustainable weight loss with muscle preservation and metabolic monitoring.",
-    curator: "Dr. Sofia Chen, MD — Endocrinology",
+    curator: "Board-certified physician — Endocrinology",
     description: "Tirzepatide titrated by your physician, paired with MOTS-c for mitochondrial support and Ipamorelin to preserve lean mass during the deficit. Full metabolic panel monitored monthly.",
     peptides: ["tirzepatide", "mots-c", "ipamorelin"],
     labMarkers: ["HbA1c", "Fasting Insulin", "Lipid Panel", "ALT/AST", "IGF-1"],
@@ -115,7 +115,7 @@ export const stacks: Stack[] = [
     name: "Balance",
     tagline: "The cellular stack.",
     purpose: "Mitochondrial function, telomere health, and biological-age regression markers.",
-    curator: "Dr. Diego Reyes, MD — Internal Medicine",
+    curator: "Board-certified physician — Internal Medicine",
     description: "NAD+ for cellular energetics, MOTS-c for mitochondrial signaling, Epitalon for telomerase support. Optional epigenetic-clock testing add-on to track biological age over the protocol.",
     peptides: ["nad-plus", "mots-c", "epitalon"],
     labMarkers: ["IGF-1", "hs-CRP", "Homocysteine", "Epigenetic Clock (opt)"],
@@ -148,10 +148,6 @@ export function resolveStackSlug(slug: string): string {
 export function getStack(slug: string): Stack | undefined {
   const resolved = resolveStackSlug(slug);
   return stacks.find((s) => s.slug === resolved);
-}
-
-export function getStacksForGender(g: "her" | "him"): Stack[] {
-  return stacks.filter((s) => s.gender === g || s.gender === "both");
 }
 
 /** Compute discounted bundle price — 12% off sum of individual peptide prices */

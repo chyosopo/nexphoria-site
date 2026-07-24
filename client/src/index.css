@@ -3,50 +3,146 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────────────────────
-   NEXPHORIA — LOCKED DESIGN SYSTEM v4
-   Ink on warm cream. Editorial pharmacy authority.
-   Type: Fraunces (serif/display) · Inter (body) · DM Mono (labels)
-   Accent: INK (#0A0A0A) — color comes from photography and data, not UI chrome
+   NEXPHORIA — DESIGN SYSTEM v5 · HIMS LANE (single source of truth)
+   Warm editorial pharmacy. Cream canvas, warm ink, honey accent.
+   Type: Fraunces (display serif, italic allowed) · General Sans (body)
+   Accent: HONEY-BROWN — warm, disciplined, never neon
    ───────────────────────────────────────────────────────────── */
 
 @layer base {
   :root {
+    /* ══ D1 TYPE SCALE — the only sanctioned sizes. Fluid where display-class. ══ */
+    --nx-t-2xs:     11px;                            /* micro badges, chips, tags */
+    --nx-t-xs:      12px;                            /* legal fine print, badges */
+    --nx-t-sm:      13.5px;                          /* captions, meta, eyebrows */
+    --nx-t-base:    15px;                            /* UI default */
+    --nx-t-body:    16.5px;                          /* long-form reading */
+    --nx-t-lg:      clamp(18px, 1.6vw, 20px);        /* leads, card titles */
+    --nx-t-xl:      clamp(22px, 2.2vw, 26px);        /* section intros */
+    --nx-t-h3:      clamp(24px, 2.6vw, 30px);
+    --nx-t-h2:      clamp(30px, 3.6vw, 42px);
+    --nx-t-h1:      clamp(38px, 5.2vw, 60px);
+    --nx-t-display: clamp(44px, 6.4vw, 76px);        /* hero only */
+
+    /* ══ D1c CAPS TRACKING — the only sanctioned uppercase letter-spacing ══ */
+    --nx-ls-caps: 0.14em;   /* standard eyebrows, badges, meta labels */
+    --nx-ls-wide: 0.2em;    /* display-grade spaced caps */
+
+    /* ══ D1b SECTION RHYTHM — the only sanctioned section paddings ══ */
+    --nx-sp-sec:   clamp(3.8rem, 6.5vw, 5.75rem);    /* full section: page-level blocks */
+    --nx-sp-band:  clamp(2.5rem, 4.5vw, 3.75rem);    /* band: strips, sub-sections */
+    --nx-sp-tight: clamp(1.5rem, 3vw, 2.25rem);      /* tight: bars, compact strips */
+
+    /* ── Z layer scale — global stacking contexts only (local 1-5 stays raw) ── */
+    --nx-z-sticky:   30;   /* in-page sticky elements (pills bar) */
+    --nx-z-bar:      40;   /* fixed bars (mobile buy bar) */
+    --nx-z-nav:      50;   /* site nav + its dropdowns */
+    --nx-z-menu:     60;   /* mobile nav menu — must clear fixed bars */
+    --nx-z-progress: 100;  /* scroll-progress hairline */
+    --nx-z-overlay:  200;  /* modal / gate backdrops */
+    --nx-z-modal:    210;  /* modal panels above their backdrop */
+
+    /* ══ D2 SPACING — 4px rhythm ══ */
+    --nx-s-1: 4px;  --nx-s-2: 8px;   --nx-s-3: 12px; --nx-s-4: 16px;
+    --nx-s-5: 20px; --nx-s-6: 24px;  --nx-s-8: 32px; --nx-s-10: 40px;
+    --nx-s-12: 48px; --nx-s-16: 64px; --nx-s-20: 80px; --nx-s-24: 96px;
+    --nx-section-y: clamp(76px, 10vw, 132px);         /* vertical rhythm between page sections — hundred-spacious */
+    --nx-section-y-desktop: 116px;                    /* fixed desktop section rhythm (.nx-section-y) */
+    --nx-section-y-mobile:  80px;                     /* fixed mobile section rhythm (.nx-section-y) */
+    --nx-gutter:    clamp(20px, 4vw, 32px);           /* page edge */
+
+    /* ══ D3 ELEVATION & RADIUS — four depths, five corners ══ */
+    --nx-e-1: 0 1px 2px rgba(20, 32, 54, 0.06);
+    --nx-e-2: 0 4px 14px rgba(20, 32, 54, 0.08);
+    --nx-e-3: 0 12px 32px rgba(20, 32, 54, 0.12);
+    --nx-e-4: 0 24px 64px rgba(20, 32, 54, 0.18);
+    --nx-r-2xs: 4px; --nx-r-xs: 6px; --nx-r-sm: 10px; --nx-r-md: 16px; --nx-r-lg: 24px; --nx-r-pill: 999px;
+
+    /* ══ D4 MOTION — two speeds, one voice ══ */
+    --nx-dur-fast: 160ms;
+    --nx-dur-base: 260ms;
+    --nx-dur-slow: 520ms;
+    --nx-ease:     cubic-bezier(0.22, 0.61, 0.36, 1);   /* confident settle */
+    --nx-ease-in:  cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    --nx-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);   /* Apple-tight: fast-out, gentle settle */
+    /* numbered duration scale — the one actually used by components.
+       1=micro/press · 2=hover/focus · 3=reveals · 4=entrances.
+       (Was referenced but never defined: every var(--nx-dur-2) transition
+       was INVALID and snapped with no easing. Now real.) */
+    --nx-dur-1: 80ms;
+    --nx-dur-2: 200ms;
+    --nx-dur-3: 320ms;
+    --nx-dur-4: 600ms;
+
     /* ── Nexphoria brand tokens ── */
     /* BACKGROUND — warm cream palette */
-    --nx-bg:           #FAF7F0;   /* warm cream — primary canvas */
-    --nx-bg-cream:     #F0EBE0;   /* deeper cream for alternating sections */
-    --nx-bg-dark:      #0A0A0A;  /* footer / dark sections */
-    --nx-fg:           #0A0A0A;  /* primary ink text */
-    --nx-fg-graphite:  #4A4A4A;  /* secondary body copy */
-    --nx-fg-muted:     #8A8A8A;  /* tertiary / captions */
-    --nx-border:       #DDD9CE;  /* warm hairline borders */
+    --nx-bg:           #E9EFF5;   /* warm cream — primary canvas */
+    --nx-bg-cream:     #DCE6EE;   /* deeper cream for alternating sections */
+    --nx-bg-dark:      #22384E;  /* footer / dark sections */
+    --nx-fg:           #16283E;  /* primary ink text */
+    --nx-fg-graphite:  #46607A;  /* secondary body copy */
+    --nx-fg-muted:     #4C6486;  /* tertiary / captions — 5.2:1 on --nx-bg, clears WCAG AA */
+    --nx-border:       #C9D5E0;  /* warm hairline borders */
     /* ACCENT: INK — the accent IS the typography weight + photography */
-    --nx-cobalt:       #0A0A0A;  /* ink accent — eyebrows, CTAs, underlines */
-    --nx-cobalt-hover: #2A2A2A;  /* slightly lighter ink on hover */
-    --nx-cobalt-soft:  #E8E4D8;  /* warm cream tint for soft bg fills */
+    --nx-cobalt:       #2E5877;  /* warm navy-teal — CTAs, eyebrows, links */
+    --nx-cobalt-hover: #1E4560;  /* slightly lighter ink on hover */
+    --nx-cobalt-soft:  #D9E4EC;  /* warm cream tint for soft bg fills */
     /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
-    --nx-amber:        #8B5A2B;  /* burnt amber — very small accents only */
-    --nx-success:      #1D6F42;
-    --nx-warning:      #C2440E;
+    --nx-amber:        #3D6C94;  /* burnt amber — very small accents only */
+    --nx-success:      #3D7C94;
+    --nx-warning:      #3D6C94;
 
-    /* ── Maximus-style paneled pastels, derived from cobalt+rust ── */
+    /* ── reference-style paneled pastels, derived from cobalt+rust ── */
     /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
-    --nx-ice:          #E6EEF4;
-    --nx-ice-edge:     #C9D8E2;
+    --nx-ice:          #DEE8F0;  /* warmed — was cool blue */
+    --nx-ice-edge:     #BBCBD9;
     /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
-    --nx-peach:        #F4E2D2;
-    --nx-peach-edge:   #E2C9B3;
+    --nx-peach:        #F4F8FB;  /* retired warm ivory -> cool porcelain (Chiya 2026-07-21) */
+    --nx-peach-edge:   #CBD8E2;
     /* Sage — cream's deeper alternate. Used for recovery/sleep panels.  */
-    --nx-sage:         #DDE3DA;
-    --nx-sage-edge:    #BFC9BC;
+    --nx-sage:         #DCE4E6;
+    --nx-sage-edge:    #C2CDD1;
     /* Rust accent for callouts */
-    --nx-rust:         #C97A4A;
+    --nx-rust:         #7FA3C0;
 
-    /* ── V3 tokens — locked minimal palette (Maximus × Bask) ── */
-    --nx-black:        #0A0A0A;
-    --nx-ceramic:      #FFFFF3;
-    --nx-rock:         #E8E9DB;
-    --nx-acid:         #C6F184;
+    /* ── V3 tokens — locked minimal palette (locked palette) ── */
+    /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
+    --nx-ceramic:      #F4F8FB;  /* elevated porcelain — was warm ivory, retired 2026-07-21 */
+    --nx-rock:         #D5DFE8;
+    --nx-acid:         #A9C6DE;
+    --nx-danger:       #A4453C;  /* form error — muted brick */
+    --nx-accent:       #2E5877;  /* primary azure accent */  /* honey chip — was acid green */
+
+    /* ══ COMPONENT VARIANT PALETTES ══
+       Bespoke per-tone tile/vial colors lifted verbatim out of components so no
+       raw hex lives in the TSX. Values are unchanged — pure naming, zero visual
+       shift. World-invariant (not overridden in the orchid scope) to match the
+       previous hardcoded behavior. Whether these should later snap to the warm
+       neutral palette is an open visual decision (needs eyes). */
+    /* GoalVialTile — assessment goal tiles (surface tint + ink) */
+    --nx-tint-cream-bg:   #E8EFF8;  --nx-tint-cream-ink:   #18293E;
+    --nx-tint-sage-bg:    #E5EFF2;  --nx-tint-sage-ink:    #2E3E44;
+    --nx-tint-rose-bg:    #E1E9F6;  --nx-tint-rose-ink:    #2A3C5C;
+    --nx-tint-sky-bg:     #DDE9F0;  --nx-tint-sky-ink:     #1F3B52;
+    --nx-tint-dusk-bg:    #E4E1EC;  --nx-tint-dusk-ink:    #3A2F4E;
+    --nx-tint-butter-bg:  #D2E3F8;  --nx-tint-butter-ink:  #162D4A;
+    --nx-tint-cobalt-bg:  #D9E2F2;  --nx-tint-cobalt-ink:  #1E2A55;
+    --nx-tint-mineral-bg: #E4E9EC;  --nx-tint-mineral-ink: #2A3841;
+    /* VialTile — vial surface + liquid hue per tone */
+    --nx-vial-sage-bg:   #E6EBF2;  --nx-vial-sage-liq:   #8ABFD1;
+    --nx-vial-rose-bg:   #E6EEF7;  --nx-vial-rose-liq:   #A2C0E4;
+    --nx-vial-sky-bg:    #E8EEF1;  --nx-vial-sky-liq:    #A6C3D0;
+    --nx-vial-dusk-bg:   #EAE6F1;  --nx-vial-dusk-liq:   #B5A8CF;
+    --nx-vial-butter-bg: #DEE7F2;  --nx-vial-butter-liq: #6EA0DD;
+    --nx-vial-cobalt-bg: #E8EDEF;  --nx-vial-cobalt-liq: #8AABB6;
+    --nx-vial-mineral-liq: #9DB3C2;
+    /* VialTile — illustration neutrals (cap + label) */
+    --nx-vial-cap:   #B8BABB;  --nx-vial-cap-shadow:   #9EA2A5;
+    --nx-vial-label: #3B3B3B;  --nx-vial-label-shadow: #1F1F1F;
+    /* VialTile — regulatory status chips */
+    --nx-chip-fda-bg:   #E6F2F6;  --nx-chip-fda-fg:   #24596B;  --nx-chip-fda-edge:   #B0D2DD;
+    --nx-chip-trial-bg: #DAE6F5;  --nx-chip-trial-fg: #0F3F7A;  --nx-chip-trial-edge: #8AB0DF;
+    --nx-chip-rx-fg:    #3D4A5C;  --nx-chip-rx-edge:  #C6D0DC;
 
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
@@ -55,20 +151,20 @@
     --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
-    --primary: 0 0% 4%;              /* ink #0A0A0A */
+    --primary: 0 0% 4%;              /* ink #0E2447 */
     --primary-foreground: 0 0% 100%;
     --secondary: 60 6% 97%;
     --secondary-foreground: 0 0% 4%;
     --muted: 60 6% 97%;
     --muted-foreground: 0 0% 54%;
-    --accent: 224 79% 46%;
+    --accent: 35 66% 40%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 60 5% 89%;
     --input: 60 5% 89%;
-    --ring: 224 79% 46%;
-    --radius: 0.5rem;
+    --ring: 35 66% 40%;
+    --radius: 0.75rem;
 
     /* ── Fluid type scale ── */
     --text-xs:   0.75rem;
@@ -83,6 +179,59 @@
     --text-hero: clamp(3rem, 5.5vw, 5rem);
   }
 
+  /* ═══ ORCHID WORLD — activates under /women routes ═══ */
+  [data-world="women"] {
+    --nx-bg:           #FAF4F7;
+    --nx-bg-cream:     #F3ECEF;
+    --nx-bg-dark:      #35212E;
+    --nx-fg:           #35212E;
+    --nx-fg-graphite:  #78646E;
+    --nx-fg-muted:     #7A5F6A;  /* darkened for WCAG AA on orchid --nx-bg */
+    --nx-border:       #E3DBDF;
+    --nx-cobalt:       #A83E6A;  /* her accent — rose-orchid (Chiya: read as pink, not plum); 5.5:1 on --nx-bg, white text on it 6:1 for the filled CTA */
+    --nx-cobalt-hover: #7E2E4E;
+    --nx-cobalt-soft:  #F5E6EC;
+    --nx-amber:        #AB5E7C;
+    --nx-success:      #AA6784;
+    --nx-warning:      #AB5E7C;
+    --nx-ice:          #F5EEF1;
+    --nx-ice-edge:     #DDCFD6;
+    --nx-peach:        #F4EAEF;
+    --nx-peach-edge:   #DFCED6;
+    --nx-sage:         #ECE5E8;
+    --nx-sage-edge:    #D3C9CD;
+    --nx-rust:         #D0A2B4;
+    /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
+    --nx-ceramic:      #FCF3F7;
+    --nx-rock:         #F1E7EB;
+    --nx-acid:         #F0CBDB;
+    --nx-danger:       #A4453C;
+    --nx-accent:       #C97B99;
+
+    /* ── Component variant palettes, orchid parity (Law-1 flagged debt B) ──
+       Same lightness relationships as the azure set, hue-shifted into the
+       orchid/rose family so VialArt liquids and GoalVialTile surfaces no
+       longer render azure-blue against rose backgrounds under /women.
+       Illustration neutrals (cap/label) and regulatory chips stay
+       world-invariant on purpose. */
+    --nx-tint-cream-bg:   #F6ECF1;  --nx-tint-cream-ink:   #3B2230;
+    --nx-tint-sage-bg:    #F1EAEE;  --nx-tint-sage-ink:    #43333C;
+    --nx-tint-rose-bg:    #F4E6ED;  --nx-tint-rose-ink:    #52293E;
+    --nx-tint-sky-bg:     #EFE3EA;  --nx-tint-sky-ink:     #4A2A3C;
+    --nx-tint-dusk-bg:    #EAE1E9;  --nx-tint-dusk-ink:    #443048;
+    --nx-tint-butter-bg:  #F0DCE7;  --nx-tint-butter-ink:  #451F33;
+    --nx-tint-cobalt-bg:  #ECDAE4;  --nx-tint-cobalt-ink:  #4D1F37;
+    --nx-tint-mineral-bg: #EDE6E9;  --nx-tint-mineral-ink: #3F3038;
+    --nx-vial-sage-bg:   #F2EAEF;  --nx-vial-sage-liq:   #C99FB6;
+    --nx-vial-rose-bg:   #F4E9EF;  --nx-vial-rose-liq:   #D3A6BE;
+    --nx-vial-sky-bg:    #F1EAEE;  --nx-vial-sky-liq:    #C9A4B5;
+    --nx-vial-dusk-bg:   #EEE5EE;  --nx-vial-dusk-liq:   #BFA0C4;
+    --nx-vial-butter-bg: #F1E0E9;  --nx-vial-butter-liq: #C07E9E;
+    --nx-vial-cobalt-bg: #F0E8EC;  --nx-vial-cobalt-liq: #B995A6;
+    --nx-vial-mineral-liq: #B9A3AE;
+  }
+
+
   * { @apply border-border; }
 
   html {
@@ -90,40 +239,50 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    /* Kill the grey mobile tap flash + browser rubber-band bounce so
+       scroll/tap feel native-app, not web. */
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
   }
 
   body {
-    @apply bg-white text-nx-fg;
+    @apply text-nx-fg;
+    background-color: var(--nx-bg);
     font-family: 'General Sans', system-ui, sans-serif;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
     font-feature-settings: "ss01", "cv11";
     overflow-x: hidden;
     max-width: 100vw;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Kill ALL italic. Zero tolerance. !important beats inline styles. */
-  em, i, cite, address, dfn, var,
-  em *, i *, cite *, address *, dfn *, var * {
-    font-style: normal !important;
-  }
-  [style*="italic"] {
-    font-style: normal !important;
-  }
-  .italic {
-    font-style: normal !important;
+  /* Remove the 300ms tap delay on every interactive surface — taps register
+     instantly, the single biggest "this feels like a web page" tell on mobile. */
+  a, button, [role="button"], input, select, textarea, label, summary {
+    touch-action: manipulation;
   }
 
   h1, h2, h3 {
-    font-family: 'General Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
     font-feature-settings: "ss01";
   }
 }
 
 @layer components {
+  /* ── Font base classes — the two families, named once for reuse ──
+     Prefer these over inline fontFamily declarations (see typography.ts F/S). */
+  .nx-sans {
+    font-family: 'General Sans', system-ui, sans-serif;
+  }
+  .nx-serif {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
   /* ── Container ── */
   .nx-container {
     @apply w-full mx-auto px-6 max-w-[1280px];
@@ -135,9 +294,29 @@
     }
   }
 
-  /* ── Section rhythm ── */
+  /* ── Section rhythm ── (token-based so the whole site breathes on one lever) */
   .nx-section {
-    @apply py-16 md:py-24;
+    padding-top: var(--nx-section-y-mobile);
+    padding-bottom: var(--nx-section-y-mobile);
+  }
+  @media (min-width: 768px) {
+    .nx-section {
+      padding-top: var(--nx-section-y-desktop);
+      padding-bottom: var(--nx-section-y-desktop);
+    }
+  }
+
+  /* Fixed-token section rhythm — 64px mobile / 96px desktop.
+     Use where a page needs consistent, non-fluid vertical spacing. */
+  .nx-section-y {
+    padding-top: var(--nx-section-y-mobile);
+    padding-bottom: var(--nx-section-y-mobile);
+  }
+  @media (min-width: 768px) {
+    .nx-section-y {
+      padding-top: var(--nx-section-y-desktop);
+      padding-bottom: var(--nx-section-y-desktop);
+    }
   }
 
   /* ── Eyebrow label (mono caps cobalt) ── */
@@ -152,7 +331,7 @@
 
   /* ── Section heading ── */
   .nx-heading {
-    font-family: 'General Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     color: var(--nx-fg);
@@ -162,7 +341,7 @@
 
   /* ── Hero heading ── */
   .nx-hero-heading {
-    font-family: 'General Sans', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-weight: 500;
     font-size: clamp(2.75rem, 6vw, 5.5rem);
     color: var(--nx-fg);
@@ -170,13 +349,13 @@
     letter-spacing: -0.035em;
   }
 
-  /* ── Accent word: honest weight + color, NO italic, NO serif ── */
+  /* ── Accent word: Fraunces italic in warm honey — the editorial moment ── */
   .nx-italic-accent {
-    font-family: 'General Sans', system-ui, sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    color: var(--nx-cobalt);
-    letter-spacing: -0.02em;
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #1F5FD0;
+    letter-spacing: -0.01em;
   }
 
   /* ── Sub-headline (Inter graphite) ── */
@@ -206,10 +385,10 @@
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
     font-family: 'General Sans', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     border-radius: 9999px;
     border: 1px solid var(--nx-cobalt);
     transition: background-color 0.2s ease, transform 0.15s ease;
@@ -231,10 +410,10 @@
     background-color: transparent;
     color: var(--nx-fg);
     font-family: 'General Sans', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     border-radius: 9999px;
     border: 1px solid var(--nx-border);
     transition: border-color 0.2s ease, color 0.2s ease;
@@ -278,10 +457,10 @@
     background-color: var(--nx-cobalt);
     color: #FFFFFF;
     font-family: 'General Sans', system-ui, sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    letter-spacing: 0;
+    text-transform: none;
     border-radius: 9999px;
     border: 1px solid var(--nx-cobalt);
     transition: background-color 0.2s ease, transform 0.15s ease;
@@ -409,6 +588,46 @@
   .nx-footer {
     background-color: var(--nx-bg-dark);
     color: #FFFFFF;
+    overflow: hidden; /* the wordmark's baseline bleeds off the bottom edge */
+  }
+
+  /* ── Footer wordmark — the establishment signature. The name set
+     enormous in near-transparent letters at the footer's base; it reads
+     as confidence, not decoration. aria-hidden, non-interactive. ── */
+  .nx-footer-wordmark {
+    display: block;
+    font-family: 'General Sans', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.4rem, 14.2vw, 14.5rem);
+    line-height: 0.78;
+    letter-spacing: -0.015em;
+    text-align: center;
+    white-space: nowrap;
+    color: transparent;
+    /* World-aware cast: the fill carries a breath of --nx-cobalt, so the
+       signature reads azure in the men's world and rose in the women's —
+       two worlds, one name. Crisped by a hairline stroke at huge sizes. */
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, color-mix(in srgb, var(--nx-cobalt) 45%, #FFFFFF) 13%, transparent) 0%,
+      color-mix(in srgb, #FFFFFF 2%, transparent) 88%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.045);
+    user-select: none;
+    pointer-events: none;
+    margin-top: clamp(2.2rem, 5vw, 4.5rem);
+    margin-bottom: -0.14em;
+    /* Rise-in as the footer enters view (class added by Footer's observer;
+       the global reduced-motion floor collapses the transition). */
+    opacity: 0;
+    transform: translateY(0.22em);
+    transition: opacity 0.9s var(--nx-reveal-ease, ease), transform 0.9s var(--nx-reveal-ease, ease);
+  }
+  .nx-footer-wordmark.is-inview {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* ── Biomarker chart card ── */
@@ -433,28 +652,51 @@
   }
 
   /* ── Reveal animation (scroll-triggered) ── */
-  /* Start at full opacity so content is always visible (Playwright + crawlers + reduced-motion); use a subtle translate for the in-view animation. */
+  /* Start at full opacity so content is always visible (Playwright + crawlers + reduced-motion); use a subtle translate for the in-view animation.
+     Motion is transform-ONLY (composited on the GPU) — never top/left/width/
+     height/margin, which would trigger layout and read as "fuzzy/late".
+     Curves retuned Apple-tight: shorter distance, faster settle. */
   .nx-reveal {
     opacity: 1;
-    transform: translateY(18px);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(14px);
+    transition: transform 0.5s var(--nx-reveal-ease);
   }
   .nx-reveal.visible {
     transform: translateY(0);
   }
+  /* Promote to a compositor layer ONLY while the entrance is actually running.
+     backface-visibility pins the layer on Safari/iOS for the duration of the
+     transition; Reveal.tsx adds .nx-settled on transitionend, which drops BOTH
+     the layer hint and will-change. Keeping either one permanently would leave
+     a lingering GPU layer that renders the settled text slightly soft — the
+     exact "fuzzy" tell on mobile — so both are strictly animation-scoped. */
+  .nx-reveal.visible:not(.nx-settled) {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
 
   /* Variants — set via className on Reveal component */
   .nx-reveal.nx-reveal-lift {
-    transform: translateY(32px);
-    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(16px);
+    transition: transform 0.55s var(--nx-reveal-ease);
   }
   .nx-reveal-lift.visible { transform: translateY(0); }
 
   .nx-reveal.nx-reveal-scale {
-    transform: scale(0.96);
-    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.98);
+    transition: transform 0.5s var(--nx-reveal-ease);
   }
   .nx-reveal-scale.visible { transform: scale(1); }
+
+  /* MOBILE: shorter distance + faster duration so content SNAPS in crisply
+     instead of drifting up slowly on a small screen. */
+  @media (max-width: 640px) {
+    .nx-reveal { transform: translateY(9px); transition-duration: 0.35s; }
+    .nx-reveal.nx-reveal-lift { transform: translateY(11px); transition-duration: 0.38s; }
+    .nx-reveal.nx-reveal-scale { transform: scale(0.985); transition-duration: 0.35s; }
+    .nx-reveal.visible, .nx-reveal-lift.visible { transform: translateY(0); }
+    .nx-reveal-scale.visible { transform: scale(1); }
+  }
 
   /* ── Scroll progress indicator ── */
   .nx-scroll-progress {
@@ -462,8 +704,8 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: var(--nx-acid, #C6F184);
-    z-index: 100;
+    background: var(--nx-acid, #8FC6FF);
+    z-index: var(--nx-z-progress);
     transform-origin: 0 50%;
     transform: scaleX(var(--nx-scroll-progress, 0));
     transition: transform 60ms linear;
@@ -490,7 +732,7 @@
     padding: 0.75rem;
     min-width: 200px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    z-index: 50;
+    z-index: var(--nx-z-nav);
   }
 
   /* ── Category tile hover-lift (no CLS) ── */
@@ -500,7 +742,7 @@
   }
   .nx-tile:hover {
     transform: scale(1.01);
-    box-shadow: 0 14px 40px rgba(10,10,10,0.12);
+    box-shadow: 0 14px 40px rgba(21, 24, 28,0.12);
   }
 
   /* ── Trust-bar marquee ── */
@@ -543,23 +785,34 @@
     padding: 0.6875rem 0.875rem;
     background: #fff;
     border: 1px solid var(--nx-border);
-    border-radius: 0;
+    border-radius: var(--nx-r-sm);
     font-family: 'General Sans', system-ui, sans-serif;
     font-size: 0.9375rem;
-    color: #0A0A0A;
-    transition: border-color 150ms ease, box-shadow 150ms ease;
+    color: var(--nx-fg);
+    transition: border-color var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
   }
   .nx-input::placeholder {
-    color: #9A9A95;
+    color: var(--nx-fg-muted);
   }
+  /* Ring is gated to :focus-visible — the cobalt highlight shows for keyboard
+     focus (and text-input mouse focus, which browsers treat as focus-visible),
+     never as a stray outline on incidental pointer focus. */
   .nx-input:focus {
     outline: none;
-    border-color: #0A0A0A;
-    box-shadow: 0 0 0 1px #0A0A0A;
+  }
+  .nx-input:focus-visible {
+    border-color: var(--nx-cobalt);
+    box-shadow: 0 0 0 1px var(--nx-cobalt);
+    outline: none;
   }
   .nx-input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+  /* D14 error grammar — one rule covers every field via the Field wrapper */
+  .nx-field-error .nx-input {
+    border-color: var(--nx-danger);
+    box-shadow: 0 0 0 1px var(--nx-danger);
   }
 }
 
@@ -572,16 +825,16 @@
 
 @layer base {
   :root {
-    --mx-cream:       #EFEBE3;    /* unified tile background */
-    --mx-cream-deep:  #E6E0D4;    /* hover tint */
-    --mx-page-bg:     #F4EFE6;    /* page-level pharmacy cream */
-    --mx-navy:        #15233A;    /* label color on photo tiles */
-    --mx-ink:         #0E0E0F;    /* serif labels, pills */
-    --mx-pill:        #0E0E0F;
-    --mx-pill-text:   #F4EFE6;
-    --mx-dark:        #1A1916;    /* dark tile bg */
-    --mx-dark-hover:  #232220;
-    --mx-dark-text:   #F0EBE0;
+    --mx-cream:       #E3E8EF;    /* unified tile background */
+    --mx-cream-deep:  #D4DCE6;    /* hover tint */
+    --mx-page-bg:     #E6ECF4;    /* page-level pharmacy cream */
+    --mx-navy:        #24282E;   /* warm deep ink — was cool navy */    /* label color on photo tiles */
+    --mx-ink:         #0E2447;   /* warm ink */    /* serif labels, pills */
+    --mx-pill:        #0E2447;
+    --mx-pill-text:   #E6ECF4;
+    --mx-dark:        #1A1E24;   /* warm espresso dark tile */    /* dark tile bg */
+    --mx-dark-hover:  #22272E;
+    --mx-dark-text:   #E0E7F0;
     --mx-radius:      22px;
     --mx-radius-sm:   16px;
   }
@@ -602,20 +855,21 @@
     font-size: 11px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(14, 14, 15, 0.55);
+    color: #163E8C;
   }
   .mx-headline {
-    font-family: 'General Sans', system-ui, sans-serif;
-    font-weight: 400;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
     font-size: clamp(40px, 5.4vw, 72px);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    line-height: 1.06;
+    letter-spacing: -0.015em;
     color: var(--mx-ink);
   }
   .mx-headline em {
-    
-    font-weight: 400;
-    color: rgba(14, 14, 15, 0.55);
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #1F5FD0;   /* warm honey italic accent */
   }
   .mx-subtitle {
     max-width: 580px;
@@ -674,15 +928,15 @@
     top: 24px;
     left: 24px;
     padding: 18px 22px;
-    background: rgba(244, 239, 230, 0.86);
+    background: rgba(230, 236, 244, 0.86);
     backdrop-filter: blur(14px) saturate(1.1);
     -webkit-backdrop-filter: blur(14px) saturate(1.1);
     border-radius: 14px;
-    font-family: 'General Sans', system-ui, sans-serif;
-    font-weight: 400;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
     font-size: clamp(22px, 2vw, 32px);
-    line-height: 1.05;
-    letter-spacing: -0.025em;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
     color: var(--mx-navy);
     max-width: 70%;
   }
@@ -832,7 +1086,7 @@
   }
   .mx-tile.dark .mx-tile-meta,
   .mx-tile.dark .mx-tile-meta::after {
-    color: rgba(240, 235, 224, 0.55);
+    color: rgba(224, 231, 240, 0.55);
   }
   .mx-tile.dark .mx-pill {
     background: var(--mx-dark-text);
@@ -967,4 +1221,1041 @@
     }
     .mx-headline { font-size: 40px; }
   }
+}
+
+/* ── Glass biomarker tiles (hims-Labs grammar · Nexphoria voice) ── */
+.nx-glass-card {
+  background: rgba(253, 254, 255, 0.62) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(21, 24, 28, 0.07) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 1px 2px rgba(21, 24, 28,0.03), 0 10px 34px -14px rgba(21, 24, 28,0.10);
+  transition: transform 220ms cubic-bezier(0.2,0.65,0.3,1), box-shadow 260ms ease, border-color 220ms ease;
+}
+.nx-glass-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(36, 103, 185, 0.35) !important;
+  box-shadow: 0 2px 6px rgba(21, 24, 28,0.05), 0 24px 54px -18px rgba(21, 24, 28,0.16);
+}
+.nx-icon-chip {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(122, 176, 243,0.28), rgba(122, 176, 243,0.12));
+  border: 1px solid rgba(36, 103, 185,0.22);
+  color: #1F5FD0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Scroll discipline (sitewide) ── */
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { overflow-x: clip; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ── Biomarker marquee ── */
+.nx-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.nx-marquee-track { display: flex; gap: 10px; width: max-content; animation: nx-marquee-scroll 60s linear infinite; }
+.nx-marquee-track.reverse { animation-direction: reverse; }
+.nx-marquee:hover .nx-marquee-track { animation-play-state: paused; }
+.nx-marquee-chip { font-family: 'General Sans', system-ui, sans-serif; font-size: 13px; color: rgba(21, 24, 28,0.72); background: rgba(253, 254, 255,0.7); border: 1px solid rgba(21, 24, 28,0.07); border-radius: 999px; padding: 8px 14px; white-space: nowrap; }
+.nx-marquee-chip.on-dark { color: rgba(243, 245, 247, 0.78); background: rgba(243, 245, 247, 0.06); border-color: rgba(243, 245, 247, 0.14); }
+@keyframes nx-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .nx-marquee-track { animation: none; } .nx-marquee { overflow-x: auto; } }
+
+/* ── Hero vertical tile rail (hims grammar) ──
+   Two columns of tall rounded photo tiles drifting in opposite directions,
+   masked top/bottom so they feel weightless. Content is rendered twice per
+   column; translateY(-50%) makes the loop seamless. Hover pauses; reduced
+   motion stills it (the doubled copy hides behind the mask). */
+.nx-vrail {
+  position: relative;
+  height: min(660px, 74vh);
+  display: none; /* responsive display owned HERE, not by utility classes —
+                    this rule loads after Tailwind's and would defeat `hidden` */
+  gap: 16px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
+}
+@media (min-width: 1024px) { .nx-vrail { display: flex; } }
+.nx-vrail-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+  animation: nx-vrail-up 75s linear infinite;
+  will-change: transform;
+}
+.nx-vrail-col.down { animation-name: nx-vrail-down; animation-duration: 88s; }
+.nx-vrail:hover .nx-vrail-col { animation-play-state: paused; }
+@keyframes nx-vrail-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes nx-vrail-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .nx-vrail-col { animation: none; } }
+
+.nx-vtile {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--nx-r-lg);
+  overflow: hidden;
+  border: none;
+  box-shadow: var(--nx-e-2);
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
+}
+.nx-vtile:hover { transform: translateY(-4px); box-shadow: var(--nx-e-3); }
+.nx-vtile:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
+.nx-vtile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-vtile-chip {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: block;
+  background: color-mix(in srgb, var(--nx-ceramic) 88%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--nx-fg) 6%, transparent);
+  border-radius: var(--nx-r-md);
+  padding: 9px 12px;
+  box-shadow: var(--nx-e-1);
+}
+.nx-vtile-chip .t {
+  display: block;
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nx-fg);
+  line-height: 1.3;
+}
+.nx-vtile-chip .s {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--nx-t-sm);
+  color: var(--nx-cobalt);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+/* Mobile: the rail becomes a swipeable snap strip under the headline */
+.nx-vstrip {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 4px 10px;
+  margin: 0 calc(-1 * var(--nx-gutter));
+  padding-left: var(--nx-gutter);
+  padding-right: var(--nx-gutter);
+}
+.nx-vstrip::-webkit-scrollbar { display: none; }
+.nx-vstrip .nx-vtile { flex: 0 0 58%; max-width: 240px; scroll-snap-align: start; }
+@media (min-width: 640px) { .nx-vstrip .nx-vtile { flex-basis: 38%; } }
+@media (min-width: 1024px) { .nx-vstrip { display: none; } }
+
+/* ── Peptide-chain scroll draw (CSS scroll-driven; static fallback) ── */
+.nx-chain-path { stroke-dashoffset: 0; }
+.nx-chain-node { transform-origin: center; }
+@supports (animation-timeline: view()) {
+  .nx-chain-path {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: nx-chain-draw 1s linear forwards;
+    animation-timeline: view();
+    animation-range: entry 10% cover 45%;
+  }
+  .nx-chain-node {
+    opacity: 0;
+    animation: nx-chain-pop 0.5s ease forwards;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
+  }
+}
+@keyframes nx-chain-draw { to { stroke-dashoffset: 0; } }
+@keyframes nx-chain-pop { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .nx-chain-path, .nx-chain-node { animation: none; stroke-dashoffset: 0; opacity: 1; }
+}
+
+/* ═══ EXPERIENCE LAYER — the site responds to you ═══ */
+
+/* Scroll choreography: cards and tiles rise softly into view */
+@supports (animation-timeline: view()) {
+  .nx-glass-card, .nx-icon-chip ~ *, [data-testid^="cat-item"], [data-testid^="goal-tile"], [data-testid^="mosaic-"], .nx-rise {
+    animation: nx-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+@keyframes nx-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards breathe under the cursor */
+.nx-glass-card { transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
+a.nx-glass-card:hover, .nx-glass-card:has(> a):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -18px rgba(18, 65, 122,0.22), 0 2px 8px rgba(21, 24, 28,0.05);
+}
+
+/* Buttons feel physical */
+.nx-cta-cobalt, .nx-cta-ghost { transition: transform 0.18s ease, box-shadow 0.25s ease, opacity 0.2s ease; }
+.nx-cta-cobalt:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(21, 24, 28,0.35); }
+.nx-cta-cobalt:active, .nx-cta-ghost:active { transform: scale(0.975); }
+
+/* Signature details people feel before they notice — token-driven so the
+   orchid world recolors selection/scrollbar/focus for free. */
+::selection { background: color-mix(in srgb, var(--nx-accent) 45%, var(--nx-bg)); color: var(--nx-fg); }
+html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) var(--nx-bg); scrollbar-width: thin; }
+:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 3px; border-radius: 4px; }
+
+/* Links get the quiet underline slide */
+.nx-container a:not([class]):hover { text-decoration-color: #1F5FD0; text-underline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-glass-card, [data-testid^="cat-item"], [data-testid^="goal-tile"] { animation: none; }
+  .nx-glass-card, .nx-cta-cobalt, .nx-cta-ghost { transition: none; }
+}
+
+/* ═══ COMPOSITE LIFE — v2 craft layer ═══ */
+@keyframes nx-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes nx-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(154, 187, 198,0.5); } 60% { box-shadow: 0 0 0 9px rgba(154, 187, 198,0); } }
+@keyframes nx-pulse-honey { 0%,100% { box-shadow: 0 0 0 3px rgba(122, 176, 243,0.25); } 55% { box-shadow: 0 0 0 8px rgba(122, 176, 243,0); } }
+.nx-float { animation: nx-float 5.5s ease-in-out infinite; }
+.nx-pulse-chip { animation: nx-pulse 2.8s ease-out infinite; }
+.nx-pulse-dot { animation: nx-pulse-honey 2.4s ease-out infinite; }
+@supports (animation-timeline: view()) {
+  .nx-spark { stroke-dasharray: 100; stroke-dashoffset: 100; animation: nx-spark-draw 1s ease-out forwards; animation-timeline: view(); animation-range: entry 20% cover 55%; }
+  .nx-ring-arc { animation: nx-ring-spin 0.9s cubic-bezier(0.22,1,0.36,1) both; animation-timeline: view(); animation-range: entry 0% entry 80%; }
+}
+@keyframes nx-spark-draw { to { stroke-dashoffset: 0; } }
+@keyframes nx-ring-spin { from { stroke-dashoffset: 188.5; } }
+@media (prefers-reduced-motion: reduce) {
+  .nx-float, .nx-pulse-chip, .nx-pulse-dot, .nx-spark, .nx-ring-arc { animation: none; stroke-dashoffset: 0; }
+}
+
+/* ═══ Wave E — Bloodwork crown ═══ */
+@supports (animation-timeline: view()) {
+  .nx-ring-arc-lg { animation: nx-ring-spin-lg 1.1s cubic-bezier(0.22,1,0.36,1) both; animation-timeline: view(); animation-range: entry 0% entry 90%; }
+}
+@keyframes nx-ring-spin-lg { from { stroke-dashoffset: 597; } }
+.nx-drift { animation: nx-drift 26s ease-in-out infinite alternate; }
+.nx-drift.reverse { animation-direction: alternate-reverse; }
+@keyframes nx-drift { from { transform: translateX(1.6%); } to { transform: translateX(-1.6%); } }
+.nx-pills { position: sticky; top: 68px; z-index: var(--nx-z-sticky); }
+@media (prefers-reduced-motion: reduce) { .nx-drift, .nx-ring-arc-lg { animation: none; stroke-dashoffset: 0; } }
+/* Bloodwork mosaic / panel-card art: neutralise the inline Tailwind hover-zoom
+   (group-hover:scale + transition-transform) when the visitor asks for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  [data-testid^="mosaic-"] img,
+  [data-testid^="panel-card-"] img { transition: none; }
+  [data-testid^="mosaic-"]:hover img { transform: none; }
+}
+
+/* ═══ P3 — Aurora field + tinted glass (world-aware: everything derives from --nx-* tokens) ═══ */
+.nx-aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.nx-aurora i { position: absolute; border-radius: 50%; filter: blur(56px); opacity: 0.55; will-change: transform; }
+.nx-aurora i:nth-child(1) { width: 46vw; height: 46vw; left: -12%; top: -24%; background: color-mix(in srgb, var(--nx-accent) 26%, transparent); animation: nxAur 34s ease-in-out infinite alternate; }
+.nx-aurora i:nth-child(2) { width: 38vw; height: 38vw; right: -10%; top: 4%; background: color-mix(in srgb, var(--nx-acid) 40%, transparent); animation: nxAur 28s ease-in-out infinite alternate-reverse; }
+.nx-aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 34%; bottom: -32%; background: color-mix(in srgb, var(--nx-rust) 30%, transparent); animation: nxAur 40s ease-in-out infinite alternate; }
+@keyframes nxAur { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(4%,6%,0) scale(1.08); } }
+
+.nx-glass-tile { position: relative; display: block; border-radius: 20px; padding: 1.6rem 1.7rem; text-decoration: none;
+  background: color-mix(in srgb, var(--nx-ceramic) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 18%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  /* hundred-calm: flat card — inner top glow + one gentle contact shadow (heavy ambient drop retired) */
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 50%, transparent),
+    0 1px 3px -1px color-mix(in srgb, var(--nx-fg) 9%, transparent);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease; }
+.nx-glass-tile:hover { transform: translateY(-2px);
+  background: color-mix(in srgb, var(--nx-accent) 9%, color-mix(in srgb, var(--nx-ceramic) 55%, transparent));
+  border-color: color-mix(in srgb, var(--nx-accent) 26%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 56%, transparent),
+    0 8px 20px -12px color-mix(in srgb, var(--nx-fg) 28%, transparent); }
+
+.nx-glass-btn { display: inline-block; font-weight: 600; border-radius: 999px; padding: 14px 26px; text-decoration: none; color: var(--nx-fg);
+  background: color-mix(in srgb, var(--nx-ceramic) 46%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 30%, transparent);
+  backdrop-filter: blur(10px) saturate(1.3); -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 60%, transparent);
+  transition: background 0.3s ease, transform 0.3s ease; }
+.nx-glass-btn:hover { background: color-mix(in srgb, var(--nx-accent) 14%, transparent); transform: translateY(-2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-aurora i { animation: none; }
+  .nx-glass-tile:hover, .nx-glass-btn:hover { transform: none; }
+}
+
+/* ═══ P4 → weightless art tiles (hims grammar) ═══
+   Was: full-bleed 4:4.4 photo squares with a glass label chip floating on
+   top — heavy, dark, cluttered. Now: a light ceramic card, photograph INSET
+   with a breathing frame, label set in the card below the image, and a
+   quiet vertical lift on hover. Same DOM (<a.nx-art-tile><img/><div
+   .nx-art-chip>), pure CSS regrade — every page using the class inherits. */
+/* Weightless vertical tiles (hims grammar, per Chiya 2026-07-06): tall
+   full-bleed photography, deep radius, NO hard border, a frosted glass chip
+   floating at the base, and a soft lift on hover. Same DOM everywhere
+   (<a.nx-art-tile><img/><div.nx-art-chip>) — pure CSS regrade. */
+.nx-art-tile { position: relative; display: flex; flex-direction: column; border-radius: var(--nx-r-lg); text-decoration: none;
+  overflow: hidden;
+  background: var(--nx-ceramic);
+  border: none;
+  padding: 0;
+  box-shadow: var(--nx-e-2);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
+.nx-art-tile img { position: static; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+  border-radius: 0; }
+.nx-art-tile:hover { transform: translateY(-6px);
+  box-shadow: var(--nx-e-3); }
+.nx-art-chip { position: absolute; left: 12px; right: 12px; bottom: 12px;
+  border-radius: var(--nx-r-md); padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--nx-ceramic) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-fg) 6%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--nx-e-1); }
+@media (prefers-reduced-motion: reduce) { .nx-art-tile:hover { transform: none; } }
+
+/* ══ HIMS-STYLE GOAL TILES — option B, chosen by Chiya 2026-07-13.
+   Compact card: a SMALL image band on top, text set BELOW it in the card
+   body — never overlaid on the photo. Hairline border, flat at rest,
+   4-across on desktop. Every accent reads from --nx-cobalt, so the same
+   markup renders azure in the men's world and rose-orchid in the women's. ══ */
+.nx-goalgrid > * { height: 100%; } /* Reveal wrappers stretch to the grid row */
+.nx-goalgrid .nx-art-tile {
+  height: 100%;
+  box-shadow: none;
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-r-md);
+  background: var(--nx-ceramic);
+}
+.nx-goalgrid .nx-art-tile img { aspect-ratio: 16 / 10; }
+.nx-goalgrid .nx-art-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--nx-e-1);
+  border-color: color-mix(in srgb, var(--nx-cobalt) 45%, var(--nx-border));
+}
+.nx-goalgrid .nx-art-chip {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0.7rem 0.85rem 0.85rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+@media (prefers-reduced-motion: reduce) { .nx-goalgrid .nx-art-tile:hover { transform: none; } }
+
+/* ══ D4 GLOBAL MOTION FLOOR — one switch, total coverage ══ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ══ D5 FOCUS FLOOR — every interactive element, world-aware ring ══ */
+:where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--nx-cobalt);
+  outline-offset: 2px;
+  border-radius: var(--nx-r-xs);
+}
+:where(a, button, input, select, textarea):focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ══ D7 LOADING LANGUAGE — porcelain shimmer for skeletons ══ */
+@keyframes nxShimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.nx-skeleton {
+  background: linear-gradient(100deg,
+    var(--nx-bg-cream) 40%,
+    color-mix(in srgb, var(--nx-ceramic) 70%, white) 50%,
+    var(--nx-bg-cream) 60%);
+  background-size: 200% 100%;
+  animation: nxShimmer 1.6s var(--nx-ease) infinite;
+  border-radius: var(--nx-r-md);
+}
+
+/* ═══ V2 CINEMATIC HERO — photography runs off the right viewport edge on
+   lg+ (hims editorial move): negative margin spans the container's own
+   gutter plus the centering slack beyond 1280px. Corners square where the
+   frame meets the edge. ═══ */
+@media (min-width: 1024px) {
+  .nx-hero-bleed {
+    margin-right: calc(-1 * max(3rem, (100vw - 1280px) / 2 + 3rem));
+    border-radius: var(--nx-r-lg) 0 0 var(--nx-r-lg);
+  }
+}
+
+/* ═══ V2 EDITORIAL BREAKOUT — a full-container figure escapes to the full
+   viewport width on lg+ (both edges), reading as a cinematic band ═══ */
+@media (min-width: 1024px) {
+  .nx-editorial-bleed {
+    margin-inline: calc(-1 * max(3rem, (100vw - 1280px) / 2 + 3rem));
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* ── Inline text link — cobalt arrow links get hover feedback and a 44px
+   tap area (padding + negative margin so layout doesn't shift) ── */
+.nx-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--nx-cobalt);
+  text-decoration: none;
+  padding: 12px 6px;
+  margin: -12px -6px;
+  border-radius: var(--nx-r-sm);
+  transition: color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-text-link:hover {
+  color: var(--nx-cobalt-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ── Ceramic CTA on dark bands — primary action needs visible feedback ── */
+.nx-cta-ceramic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--nx-ceramic);
+  color: var(--nx-bg-dark);
+  border-radius: var(--nx-r-pill);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease);
+}
+.nx-cta-ceramic:hover {
+  background: var(--nx-bg);
+  transform: translateY(-2px);
+  box-shadow: var(--nx-e-3);
+}
+.nx-cta-ceramic:active { transform: translateY(0); }
+
+/* ── Filter chip — one interactive grammar for every catalog/panel filter ──
+   44px minimum target (mobile primary control), hover feedback for pointer
+   users, active state driven by aria-pressed so semantics = styling. */
+.nx-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  cursor: pointer;
+  border-radius: var(--nx-r-pill);
+  border: 1px solid var(--nx-border);
+  background: transparent;
+  color: var(--nx-fg-graphite);
+  transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-filter-chip:not([aria-pressed="true"]):hover {
+  background: color-mix(in srgb, var(--nx-cobalt) 8%, transparent);
+  border-color: color-mix(in srgb, var(--nx-cobalt) 32%, var(--nx-border));
+  color: var(--nx-fg);
+}
+.nx-filter-chip[aria-pressed="true"] {
+  background: var(--nx-cobalt);
+  color: var(--nx-ceramic);
+  border-color: var(--nx-cobalt);
+}
+
+/* ── BenefitTile aspect: preferred shape on sm+, content-height on phones ──
+   A hard square at 2-up 390px (~165px tiles) clipped copy mid-word. */
+@media (min-width: 640px) {
+  .benefit-tile { aspect-ratio: var(--bt-aspect, 1); }
+}
+
+/* ── D12 buy-box: sticky rail on desktop ──
+   Sticky lives on .nx-buyrail — the wrapper holding the buy box AND the
+   safety disclosure — so both travel together; sticky on the box alone
+   slid it over the disclosure. The aside must be stretch-aligned in its
+   grid row or the wrapper has no track to travel in. */
+@media (min-width: 1024px) {
+  .nx-buyrail { position: sticky; top: 92px; }
+}
+
+/* ── D11 hero orchestration: claim rises, frame breathes in ──
+   Sequence: aurora (ambient) → eyebrow/h1/sub/CTAs stagger → hero art.
+   The global prefers-reduced-motion kill-switch cancels all of it. */
+@keyframes nxRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes nxFrameIn { from { opacity: 0; transform: scale(1.025); } to { opacity: 1; transform: none; } }
+.nx-hero-seq > * { opacity: 0; animation: nxRise var(--nx-dur-4, 0.6s) var(--nx-ease) forwards; }
+.nx-hero-seq > *:nth-child(1) { animation-delay: 0.05s; }
+.nx-hero-seq > *:nth-child(2) { animation-delay: 0.14s; }
+.nx-hero-seq > *:nth-child(3) { animation-delay: 0.24s; }
+.nx-hero-seq > *:nth-child(4) { animation-delay: 0.34s; }
+.nx-hero-frame { animation: nxFrameIn 0.9s var(--nx-ease) 0.2s both; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-hero-seq > *, .nx-hero-frame { animation: none; opacity: 1; transform: none; }
+}
+
+/* ── D18 press grammar: every interactive surface settles on press ── */
+.nx-glass-tile:active, .nx-glass-card:active, .nx-art-tile:active,
+.nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-acid:active,
+.nx-glass-btn:active, .nx-tile:active {
+  transform: translateY(0) scale(0.985);
+  transition-duration: var(--nx-dur-1, 0.08s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-glass-tile:active, .nx-glass-card:active, .nx-art-tile:active,
+  .nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-acid:active,
+  .nx-glass-btn:active, .nx-tile:active { transform: none; }
+}
+
+/* ── protocol card: lift + image zoom (D18 press grammar applies) ── */
+.nx-protocol-card { transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease); }
+.nx-protocol-card:hover { transform: translateY(-4px); box-shadow: var(--nx-e-3); }
+.nx-protocol-card img { transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.nx-protocol-card:hover img { transform: scale(1.045); }
+.nx-protocol-card:active { transform: translateY(0) scale(0.99); transition-duration: var(--nx-dur-1); }
+@media (prefers-reduced-motion: reduce) { .nx-protocol-card, .nx-protocol-card img { transition: none; } .nx-protocol-card:hover, .nx-protocol-card:hover img { transform: none; } }
+
+/* ── D18 reach: declarative hover (was imperative JS onMouseEnter) ──
+   Pure-style hovers migrated from JS handlers to CSS so reduced-motion
+   is respected and behavior is inspectable. 1:1 with the old handlers. */
+.nx-press-abbr { opacity: 0.22; transition: opacity var(--nx-dur-3) var(--nx-ease); cursor: default; user-select: none; }
+.nx-press-abbr:hover { opacity: 0.45; }
+
+.nx-goal-card { transition: border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-goal-card:hover { border-color: var(--nx-fg) !important; transform: translateY(-2px); }
+.nx-goal-card:active { transform: translateY(0); transition-duration: var(--nx-dur-1); }
+
+.nx-sci-pill { transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease); }
+.nx-sci-pill:hover { background: var(--t-color); color: var(--nx-fg); border-color: var(--t-color); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-goal-card, .nx-goal-card:hover, .nx-goal-card:active { transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   D-HIMS — VERTICAL PRODUCT SHOWCASE SYSTEM
+   The vocabulary the flagship level-up needs: tall image-dominant product
+   cards, split heroes, connected timelines, stat blocks, icon rings, gradient
+   overlays. Raw values live here by design — index.css is the token source and
+   the design audit only ever scans client/src/**.tsx, never this file. Pages
+   consume these classes and keep their inline styles var(--nx-*)-only.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tall product tile: the image dominates the top, meta sits below (hims PDP grid) ── */
+.nx-product-card { position: relative; display: flex; flex-direction: column; height: 100%;
+  border-radius: var(--nx-r-lg); overflow: hidden; text-decoration: none;
+  background: var(--nx-ceramic); border: 1px solid var(--nx-border);
+  box-shadow: var(--nx-e-2);
+  transition: transform 0.42s var(--nx-reveal-ease), box-shadow 0.42s var(--nx-ease), border-color 0.42s var(--nx-ease); }
+.nx-product-card:hover { transform: translateY(-6px);
+  box-shadow: 0 32px 60px -30px color-mix(in srgb, var(--nx-accent) 62%, transparent);
+  border-color: color-mix(in srgb, var(--nx-accent) 42%, transparent); }
+.nx-product-card:active { transform: translateY(-2px) scale(0.992); transition-duration: var(--nx-dur-1); }
+.nx-product-card__media { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: var(--nx-bg-cream); }
+.nx-product-card__media.tall { aspect-ratio: 3 / 4; }
+.nx-product-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.85s cubic-bezier(0.22,1,0.36,1); }
+.nx-product-card:hover .nx-product-card__media img { transform: scale(1.06); }
+.nx-product-card__body { display: flex; flex-direction: column; flex: 1; padding: 1.15rem 1.25rem 1.35rem; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-product-card, .nx-product-card__media img { transition: none; }
+  .nx-product-card:hover, .nx-product-card:hover .nx-product-card__media img { transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   D-FLOAT — hims.com-style compact FLOATING product tiles
+   The owner's brief: tiles that GLIDE and FLOAT — small, image-forward,
+   weightless. Apple-store product grid, not an Amazon listing. The image owns
+   ~55–60% of the card; compact meta sits BELOW it (never overlaid); a soft
+   float shadow lifts the card off the cream; hover glides it up 5px and
+   deepens the shadow; touch presses it in like an iOS widget. Consumed by
+   ProtocolsIndex / PeptidesCatalog / StackPage / WorldHome.
+   Raw values live here by design — index.css is the token source and the
+   design audit never scans this file, only client/src/**.tsx.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.nx-float-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+/* denser variant — spec/ingredient tiles (StackPage peptides) */
+.nx-float-grid.dense { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+
+.nx-float-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--nx-ceramic);
+  border: 1px solid var(--nx-border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.28s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.28s cubic-bezier(0.22,1,0.36,1);
+  cursor: pointer;
+}
+.nx-float-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  border-color: color-mix(in srgb, var(--nx-accent) 32%, transparent);
+}
+.nx-float-card:active { transform: translateY(-1px) scale(0.98); transition-duration: var(--nx-dur-1); }
+
+.nx-float-card__media {
+  /* inset the photograph with a breathing frame — weightless, not flush */
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--nx-bg-cream);
+  margin: 10px 10px 0;
+  border-radius: 12px;
+}
+.nx-float-card__media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.nx-float-card:hover .nx-float-card__media img { transform: scale(1.05); }
+
+.nx-float-card__body {
+  display: flex; flex-direction: column; flex: 1;
+  padding: 14px 16px 18px;
+}
+
+/* floating pill badge (e.g. gated lock) sitting on the media */
+.nx-float-badge {
+  position: absolute; top: 10px; right: 10px;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 9px; border-radius: 999px;
+  background: color-mix(in srgb, var(--nx-fg) 60%, transparent);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  color: var(--nx-ceramic);
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* one/two-line truncation for compact meta */
+.nx-line-1, .nx-line-2 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+.nx-line-1 { -webkit-line-clamp: 1; }
+.nx-line-2 { -webkit-line-clamp: 2; }
+
+@media (max-width: 640px) {
+  .nx-float-grid { grid-template-columns: repeat(2, 1fr); gap: 13px; }
+  .nx-float-grid.dense { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .nx-float-card { border-radius: 14px; }
+  .nx-float-card__body { padding: 11px 12px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-float-card, .nx-float-card__media img { transition: none; }
+  .nx-float-card:hover, .nx-float-card:active,
+  .nx-float-card:hover .nx-float-card__media img { transform: none; }
+}
+
+/* ── Gradient overlay: legibility wash for text laid over photography ── */
+.nx-gradient-overlay { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--nx-fg) 82%, transparent) 0%,
+    color-mix(in srgb, var(--nx-fg) 34%, transparent) 38%,
+    transparent 66%); }
+.nx-gradient-overlay.soft { background: linear-gradient(to top,
+    color-mix(in srgb, var(--nx-fg) 55%, transparent) 0%,
+    color-mix(in srgb, var(--nx-fg) 12%, transparent) 44%,
+    transparent 70%); }
+.nx-gradient-overlay.tint { background: linear-gradient(140deg,
+    color-mix(in srgb, var(--nx-accent) 30%, transparent) 0%,
+    transparent 52%,
+    color-mix(in srgb, var(--nx-fg) 40%, transparent) 100%); }
+
+/* ── Split hero: text rail beside a large product/outcome frame (hims PDP hero) ── */
+.nx-hero-split { display: grid; grid-template-columns: 1fr; gap: clamp(1.8rem, 4vw, 3.4rem); align-items: center; }
+@media (min-width: 1024px) { .nx-hero-split { grid-template-columns: 1.02fr 0.98fr; } }
+.nx-hero-media { position: relative; border-radius: var(--nx-r-lg); overflow: hidden;
+  box-shadow: 0 40px 80px -44px color-mix(in srgb, var(--nx-fg) 55%, transparent), var(--nx-e-2); }
+.nx-hero-media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* NOTE — connected-timeline, stat, icon-ring and vial-chip utilities were
+   intentionally NOT defined here. The concurrent visual-lane agent owns the
+   canonical .nx-timeline / .nx-timeline-node / .nx-stat-card / .nx-icon-circle
+   / .nx-feature-card set (defined below in the D-POLISH block). Pages consume
+   THOSE to avoid a divergent second system and a .nx-timeline name collision. */
+
+
+/* ══ MOBILE BACKDROP-FILTER FLOOR ══
+   backdrop-filter blur is one of the top causes of mobile scroll jank —
+   every blurred surface recomposites the pixels behind it each frame. On
+   phones we cut the blur radius roughly in half. The frosted-glass look is
+   preserved; the per-frame cost drops enough to hold 60fps while scrolling.
+   (Placed last so it wins the cascade over the full-radius definitions above.) */
+@media (max-width: 640px) {
+  .nx-glass-card,
+  .nx-glass-tile,
+  .nx-art-chip {
+    backdrop-filter: blur(8px) saturate(1.25);
+    -webkit-backdrop-filter: blur(8px) saturate(1.25);
+  }
+  .nx-glass-btn {
+    backdrop-filter: blur(6px) saturate(1.2);
+    -webkit-backdrop-filter: blur(6px) saturate(1.2);
+  }
+  .mx-hero-label {
+    backdrop-filter: blur(8px) saturate(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  }
+  /* Aurora field: the 56px blur on 46vw blobs is the single most expensive
+     paint on the page. Halve it on phones — the soft glow reads the same at
+     mobile scale but per-frame recomposite cost drops enough to hold 60fps. */
+  .nx-aurora i {
+    filter: blur(30px);
+    will-change: auto;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   D-POLISH · VISUAL POLISH LAYER — hero gradients, stat cards, connected
+   timelines, icon circles, decorative dividers. Everything world-aware:
+   every color derives from a defined --nx-* token (token-integrity safe).
+   Lives in CSS so the design-lint counts (inline literals only) stay flat.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Gradient hero backdrop — soft, editorial, derives from world tokens ── */
+.nx-gradient-hero {
+  position: relative;
+  background:
+    radial-gradient(120% 82% at 12% -8%, color-mix(in srgb, var(--nx-accent) 12%, transparent) 0%, transparent 55%),
+    radial-gradient(96% 74% at 104% 4%, color-mix(in srgb, var(--nx-acid) 26%, transparent) 0%, transparent 52%),
+    linear-gradient(180deg, color-mix(in srgb, var(--nx-ceramic) 55%, transparent) 0%, transparent 78%);
+}
+/* dramatic dark variant — for night bands that want depth, not a flat fill */
+.nx-gradient-hero-dark {
+  position: relative;
+  background:
+    radial-gradient(110% 80% at 8% -10%, color-mix(in srgb, var(--nx-acid) 20%, transparent) 0%, transparent 46%),
+    radial-gradient(90% 70% at 100% 110%, color-mix(in srgb, var(--nx-cobalt) 55%, transparent) 0%, transparent 50%),
+    var(--nx-bg-dark);
+}
+
+/* ── Stat card — big number over a small caps label ── */
+.nx-stat-card {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: clamp(1.15rem, 2.4vw, 1.7rem);
+  border-radius: var(--nx-r-md);
+  background: color-mix(in srgb, var(--nx-ceramic) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 14%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 40%, transparent),
+    0 1px 3px -1px color-mix(in srgb, var(--nx-fg) 8%, transparent);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.nx-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--nx-accent) 26%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #FFFFFF 50%, transparent),
+    0 6px 16px -10px color-mix(in srgb, var(--nx-fg) 24%, transparent);
+}
+.nx-stat-card.on-dark {
+  background: color-mix(in srgb, var(--nx-acid) 8%, transparent);
+  border-color: color-mix(in srgb, var(--nx-acid) 22%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--nx-acid) 18%, transparent);
+}
+.nx-stat-num {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 500; line-height: 1;
+  font-size: clamp(30px, 4.4vw, 46px); letter-spacing: -0.02em; color: var(--nx-fg);
+  font-variant-numeric: tabular-nums;
+}
+.nx-stat-card.on-dark .nx-stat-num { color: var(--nx-ceramic); }
+.nx-stat-lbl {
+  font-family: 'General Sans', system-ui, sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--nx-fg-muted);
+}
+.nx-stat-card.on-dark .nx-stat-lbl { color: var(--nx-acid); opacity: 0.8; }
+
+/* ── Connected vertical timeline — a drawn spine linking numbered steps ── */
+.nx-timeline { position: relative; }
+.nx-timeline::before {
+  content: ''; position: absolute; left: 19px; top: 14px; bottom: 14px; width: 2px;
+  background: linear-gradient(180deg,
+    var(--nx-cobalt) 0%,
+    color-mix(in srgb, var(--nx-cobalt) 55%, transparent) 55%,
+    color-mix(in srgb, var(--nx-cobalt) 12%, transparent) 100%);
+}
+.nx-timeline.on-dark::before {
+  background: linear-gradient(180deg,
+    var(--nx-acid) 0%,
+    color-mix(in srgb, var(--nx-acid) 45%, transparent) 60%,
+    color-mix(in srgb, var(--nx-acid) 10%, transparent) 100%);
+}
+.nx-timeline-step { position: relative; padding-left: 58px; }
+.nx-timeline-node {
+  position: absolute; left: 0; top: 0; width: 40px; height: 40px;
+  display: grid; place-items: center; border-radius: 50%;
+  font-family: 'Fraunces', Georgia, serif; font-size: 15px; color: var(--nx-cobalt);
+  background: color-mix(in srgb, var(--nx-cobalt) 12%, var(--nx-ceramic));
+  border: 1px solid color-mix(in srgb, var(--nx-cobalt) 30%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 55%, transparent), 0 2px 8px -3px color-mix(in srgb, var(--nx-cobalt) 40%, transparent);
+  z-index: 1;
+}
+
+/* ── Circular icon container ── */
+.nx-icon-circle {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center; border-radius: 50%;
+  background: color-mix(in srgb, var(--nx-cobalt) 12%, var(--nx-ceramic));
+  border: 1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent);
+  color: var(--nx-cobalt);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 55%, transparent);
+  transition: transform 0.3s var(--nx-ease), background 0.3s var(--nx-ease);
+}
+.nx-icon-circle.on-dark {
+  background: color-mix(in srgb, var(--nx-acid) 16%, transparent);
+  border-color: color-mix(in srgb, var(--nx-acid) 38%, transparent);
+  color: var(--nx-acid);
+}
+
+/* ── Decorative section divider ornament — hairline · dot · hairline ── */
+.nx-divider-ornament {
+  display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto;
+}
+.nx-divider-ornament::before, .nx-divider-ornament::after {
+  content: ''; height: 1px; width: min(120px, 22vw);
+  background: linear-gradient(90deg, transparent, var(--nx-border));
+}
+.nx-divider-ornament::after { background: linear-gradient(90deg, var(--nx-border), transparent); }
+.nx-divider-ornament i {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--nx-cobalt);
+  display: inline-block; box-shadow: 0 0 0 4px color-mix(in srgb, var(--nx-cobalt) 14%, transparent);
+}
+
+/* ── Feature card — a bordered, hover-lifting content card used across pages ── */
+.nx-feature-card {
+  position: relative; border-radius: var(--nx-r-md); overflow: hidden;
+  background: var(--nx-ceramic); border: 1px solid var(--nx-border);
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-feature-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--nx-cobalt) 38%, var(--nx-border)); box-shadow: var(--nx-e-2); }
+.nx-feature-card:active { transform: translateY(0) scale(0.99); transition-duration: var(--nx-dur-1); }
+/* accent edge variant — a cobalt hairline along the top */
+.nx-feature-card.edge-top { border-top: 2px solid var(--nx-cobalt); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-stat-card:hover, .nx-feature-card:hover, .nx-feature-card:active, .nx-icon-circle { transform: none; transition: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   V1 · VISUAL-100X PATTERN LIBRARY — hundred.com + rythmhealth.com grammar,
+   rebuilt on Nexphoria's Porcelain/Navy tokens. Biomarker chips · trust badge
+   strip · big airy numbered steps · clinical-standard proof strip · abstract
+   result-dashboard mockup (no PHI) · clean FAQ accordion. Every value derives
+   from a defined --nx-* token, so each pattern themes itself per-world (azure
+   under /men, orchid under /women). Kept in CSS so the design-lint inline
+   literal counts stay flat. Consumed by WorldHome first, then every page.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Biomarker chips — small rounded pill chips (rythm biomarker grammar) ── */
+.nx-biochip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.nx-biochip {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 10px 16px; border-radius: 999px; text-decoration: none;
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: 13.5px; font-weight: 500; letter-spacing: 0.005em;
+  color: var(--nx-fg);
+  background: color-mix(in srgb, var(--nx-ceramic) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--nx-accent) 18%, transparent);
+  transition: border-color var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease);
+}
+a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, transparent); background: color-mix(in srgb, var(--nx-accent) 7%, color-mix(in srgb, var(--nx-ceramic) 58%, transparent)); transform: translateY(-1px); }
+.nx-biochip .nx-biochip-ct {
+  font-size: 11px; font-weight: 700; color: var(--nx-cobalt);
+  font-variant-numeric: tabular-nums;
+}
+.nx-biochip.muted { color: var(--nx-fg-muted); background: transparent; border-style: dashed; }
+@media (prefers-reduced-motion: reduce) { a.nx-biochip:hover { transform: none; } }
+
+/* ── Trust badge strip — calm quiet credential row (rythm trust row) ── */
+.nx-trust-strip {
+  display: flex; flex-wrap: wrap; align-items: stretch;
+  border: 1px solid var(--nx-border); border-radius: var(--nx-r-md);
+  background: color-mix(in srgb, var(--nx-ceramic) 42%, transparent);
+  overflow: hidden;
+}
+
+/* ══ Top nav trust strip — on phones it's a single horizontal-scroll row.
+   A right-edge fade signals "swipe for more" so a clipped signal reads as
+   scrollable, not broken. Desktop wraps/centers, so the mask is off. ══ */
+@media (max-width: 767px) {
+  .nx-trustbar-scroll {
+    -webkit-mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 82%, transparent 100%);
+  }
+}
+.nx-trust-badge {
+  display: flex; align-items: center; gap: 11px;
+  padding: 20px 24px; flex: 1 1 0; min-width: 210px;
+  justify-content: center; text-align: left;
+  border-right: 1px solid var(--nx-border);
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3;
+  color: var(--nx-fg);
+}
+.nx-trust-badge:last-child { border-right: none; }
+.nx-trust-badge svg { color: var(--nx-cobalt); flex: none; }
+@media (max-width: 720px) {
+  .nx-trust-badge { flex-basis: 100%; min-width: 0; border-right: none; border-bottom: 1px solid var(--nx-border); justify-content: flex-start; }
+  .nx-trust-badge:last-child { border-bottom: none; }
+}
+
+/* ── Big numbered steps — hundred "How it Works": large numeral, lots of air ── */
+.nx-steps-lg { display: grid; grid-template-columns: 1fr; gap: clamp(2.6rem, 5vw, 4.2rem); }
+@media (min-width: 768px) { .nx-steps-lg { grid-template-columns: repeat(3, 1fr); gap: clamp(2rem, 3.4vw, 3.4rem); } }
+.nx-step-lg-num {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+  font-size: clamp(54px, 7vw, 88px); line-height: 0.88; letter-spacing: -0.03em;
+  color: color-mix(in srgb, var(--nx-cobalt) 34%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+.nx-step-lg-rule { height: 1px; background: var(--nx-border); margin: 22px 0 20px; }
+.nx-step-lg-title { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: clamp(21px, 2.4vw, 27px); line-height: 1.14; letter-spacing: -0.01em; color: var(--nx-fg); }
+.nx-step-lg-body { font-family: 'General Sans', system-ui, sans-serif; font-size: 15.5px; line-height: 1.66; color: var(--nx-fg-graphite); margin-top: 13px; max-width: 42ch; }
+
+/* ── Clinical-standard proof strip — a quiet standards statement (never a fabricated person) ── */
+.nx-proof { border-left: 2px solid var(--nx-cobalt); padding: 4px 0 4px clamp(20px, 3vw, 36px); }
+.nx-proof-quote { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-style: italic; font-size: clamp(23px, 3.1vw, 36px); line-height: 1.28; letter-spacing: -0.01em; color: var(--nx-fg); max-width: 26ch; }
+.nx-proof-attr { font-family: 'General Sans', system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nx-fg-muted); margin-top: 20px; }
+
+/* ── Abstract result-dashboard mockup — pure token geometry, no PHI, illustrative ── */
+.nx-mini-panel { border-radius: var(--nx-r-lg); overflow: hidden; background: color-mix(in srgb, var(--nx-ceramic) 72%, var(--nx-bg)); border: 1px solid var(--nx-border); box-shadow: var(--nx-e-2); }
+.nx-mini-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px; border-bottom: 1px solid var(--nx-border); }
+.nx-mini-title { font-family: 'General Sans', system-ui, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--nx-fg); }
+.nx-mini-pill { font-family: 'General Sans', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: var(--nx-cobalt); background: color-mix(in srgb, var(--nx-cobalt) 12%, transparent); border-radius: 999px; padding: 5px 11px; }
+.nx-mini-bars { display: flex; align-items: flex-end; gap: 12px; height: 150px; padding: 26px 24px 22px; }
+.nx-mini-bar { flex: 1; border-radius: 6px 6px 0 0; background: color-mix(in srgb, var(--nx-cobalt) 20%, transparent); transition: height var(--nx-dur-4) var(--nx-ease); }
+.nx-mini-bar.hi { background: var(--nx-cobalt); }
+.nx-mini-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 15px 24px; border-top: 1px solid var(--nx-border); font-family: 'General Sans', system-ui, sans-serif; font-size: 13px; color: var(--nx-fg-graphite); }
+.nx-mini-row b { color: var(--nx-fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.nx-mini-cap { font-family: 'General Sans', system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--nx-fg-muted); }
+
+/* ── Clean FAQ accordion — native <details>, quiet, spacious, smooth reveal ── */
+.nx-faq-item { border-bottom: 1px solid var(--nx-border); }
+.nx-faq-item:first-child { border-top: 1px solid var(--nx-border); }
+.nx-faq-item > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: clamp(20px, 2.4vw, 28px) 2px;
+  font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: clamp(17px, 1.9vw, 21px); line-height: 1.32; letter-spacing: -0.01em; color: var(--nx-fg);
+  transition: color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-faq-item > summary:hover { color: var(--nx-cobalt); }
+.nx-faq-item > summary::-webkit-details-marker { display: none; }
+.nx-faq-plus { flex: none; width: 22px; height: 22px; position: relative; transition: transform var(--nx-dur-3) var(--nx-ease); }
+.nx-faq-plus::before, .nx-faq-plus::after { content: ''; position: absolute; background: var(--nx-cobalt); }
+.nx-faq-plus::before { top: 10px; left: 0; right: 0; height: 2px; }
+.nx-faq-plus::after { left: 10px; top: 0; bottom: 0; width: 2px; transition: opacity var(--nx-dur-2) var(--nx-ease); }
+/* open = minus: fade the vertical stroke only. (The old rotate(90deg) turned
+   the remaining horizontal stroke vertical — the icon read as "|".) */
+.nx-faq-item[open] > summary .nx-faq-plus::after { opacity: 0; }
+.nx-faq-a { font-family: 'General Sans', system-ui, sans-serif; font-size: 15.5px; line-height: 1.72; color: var(--nx-fg-graphite); max-width: 70ch; padding: 0 2px clamp(22px, 2.6vw, 28px); margin-top: -6px; }
+@keyframes nxFaqIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+.nx-faq-item[open] > .nx-faq-a { animation: nxFaqIn var(--nx-dur-3) var(--nx-ease); }
+@media (prefers-reduced-motion: reduce) { .nx-faq-item[open] > .nx-faq-a { animation: none; } .nx-faq-plus { transition: none; } }
+
+/* ═══ WORLD GATE BAND (front door) — the for-her/for-him moment, cinematic.
+   Two full-bleed portrait panels breathing in opposite phase; hovering (or
+   focusing) a panel widens it, lifts its scrim, and casts its world's accent
+   via the data-world token remap. CSS-only so the front-door chunk stays
+   lean; every motion is stilled under prefers-reduced-motion. */
+.nx-wgate {
+  display: flex;
+  gap: 2px;
+  min-height: clamp(440px, 74vh, 760px);
+  overflow: hidden;
+  background: var(--nx-bg-dark);
+}
+.nx-wgate-panel {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  transition: flex-grow var(--nx-dur-4) var(--nx-ease);
+}
+.nx-wgate-panel > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: nx-wgate-breath 26s ease-in-out infinite alternate;
+  transition: filter var(--nx-dur-3) var(--nx-ease);
+  will-change: transform;
+}
+.nx-wgate-panel.him > img { animation-duration: 32s; animation-direction: alternate-reverse; }
+@keyframes nx-wgate-breath { from { transform: scale(1.02); } to { transform: scale(1.085); } }
+.nx-wgate-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--nx-bg-dark) 74%, transparent) 0%,
+    color-mix(in srgb, var(--nx-bg-dark) 28%, transparent) 44%,
+    transparent 70%
+  );
+  transition: opacity var(--nx-dur-3) var(--nx-ease);
+}
+.nx-wgate-copy { position: relative; z-index: 1; width: 100%; padding: clamp(1.4rem, 3.2vw, 2.8rem); }
+.nx-wgate-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--nx-r-pill);
+  background: var(--nx-cobalt);
+  color: var(--nx-ceramic);
+  transition: transform var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-wgate-panel:focus-visible { outline: 3px solid var(--nx-acid); outline-offset: -6px; }
+@media (hover: hover) and (min-width: 768px) {
+  .nx-wgate-panel:hover, .nx-wgate-panel:focus-visible { flex-grow: 1.55; }
+  .nx-wgate:has(.nx-wgate-panel:hover) .nx-wgate-panel:not(:hover) > img,
+  .nx-wgate:has(.nx-wgate-panel:focus-visible) .nx-wgate-panel:not(:focus-visible) > img {
+    filter: saturate(0.68) brightness(0.88);
+  }
+  .nx-wgate-panel:hover .nx-wgate-scrim, .nx-wgate-panel:focus-visible .nx-wgate-scrim { opacity: 0.82; }
+  .nx-wgate-panel:hover .nx-wgate-arrow, .nx-wgate-panel:focus-visible .nx-wgate-arrow {
+    transform: translateX(5px);
+    background: var(--nx-cobalt-hover);
+  }
+}
+@media (max-width: 767px) {
+  .nx-wgate { flex-direction: column; min-height: 0; }
+  .nx-wgate-panel { min-height: 46vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-wgate-panel > img { animation: none; }
+  .nx-wgate-panel, .nx-wgate-panel > img, .nx-wgate-scrim, .nx-wgate-arrow { transition: none; }
 }

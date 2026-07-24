@@ -1,11 +1,15 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function Privacy() {
   useSeo({
     title: "Privacy Policy | Nexphoria",
     description: "How Nexphoria collects, uses, and protects your personal and health information. HIPAA-compliant.",
     path: "/legal/privacy",
+    jsonLd: [
+      webPageJsonLd({ name: "Privacy Policy", description: "How Nexphoria collects, uses, and protects your personal and health information. HIPAA-compliant.", path: "/legal/privacy" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Privacy Policy", path: "/legal/privacy" }]),
+    ],
   });
   return (
     <LegalLayout title="Privacy Policy" lastUpdated="June 2026">
@@ -16,7 +20,7 @@ export default function Privacy() {
 
       <LegalSection title="2. Information We Collect">
         <LegalP><strong>Identifying information.</strong> When you create an account or complete an intake assessment, we collect your full legal name, date of birth, sex assigned at birth, mailing address, shipping address, email address, and phone number. We also collect a government-issued photo identification when required to verify your identity prior to a telehealth consultation.</LegalP>
-        <LegalP><strong>Health information.</strong> We collect health history, current medications, allergies, lifestyle data, fitness goals, symptoms, and any other clinical information you provide during intake or follow-up communications. We collect laboratory results uploaded by you or ordered through our network of CLIA-certified laboratories, including Quest Diagnostics. We collect prescription history and dispensing records from our compounding pharmacy partners.</LegalP>
+        <LegalP><strong>Health information.</strong> We collect health history, current medications, allergies, lifestyle data, fitness goals, symptoms, and any other clinical information you provide during intake or follow-up communications. We collect laboratory results uploaded by you or ordered through our network of CLIA-certified partner laboratories. We collect prescription history and dispensing records from our compounding pharmacy partners.</LegalP>
         <LegalP><strong>Payment information.</strong> Payment card information is collected and processed by our PCI-DSS-compliant payment processor. Nexphoria does not store full card numbers on its servers; we retain only tokenized references, the last four digits, and the card brand to support future transactions and customer service.</LegalP>
         <LegalP><strong>Technical and usage data.</strong> We automatically collect device type, browser type, IP address, operating system, referring page, pages viewed, session duration, and similar diagnostic information. We use cookies and similar technologies as described in Section 9.</LegalP>
       </LegalSection>
@@ -27,12 +31,12 @@ export default function Privacy() {
       </LegalSection>
 
       <LegalSection title="4. HIPAA Compliance and Safeguards">
-        <LegalP>Nexphoria maintains administrative, physical, and technical safeguards designed to protect the confidentiality, integrity, and availability of PHI as required by the HIPAA Privacy Rule (45 CFR Part 164, Subpart E) and the HIPAA Security Rule (45 CFR Part 164, Subpart C). These include role-based access controls, mandatory multi-factor authentication for all workforce members, encryption of PHI in transit using TLS 1.2 or higher and at rest using AES-256, audit logging of access to PHI, annual workforce training, and a written information security program reviewed at least annually.</LegalP>
+        <LegalP>Nexphoria maintains administrative, physical, and technical safeguards designed to protect the confidentiality, integrity, and availability of PHI as required by the HIPAA Privacy Rule (45 CFR Part 164, Subpart E) and the HIPAA Security Rule (45 CFR Part 164, Subpart C). These include role-based access controls, mandatory multi-factor authentication for all workforce members, encryption of PHI in transit using TLS 1.2 or higher and encryption of PHI at rest within our HIPAA-covered systems, audit logging of access to PHI, annual workforce training, and a written information security program reviewed at least annually.</LegalP>
         <LegalP>We execute Business Associate Agreements ("BAAs") with every vendor, partner, or service provider that may access or transmit PHI on our behalf — including our telehealth platform, compounding pharmacies, laboratory partners, payment processor, and cloud infrastructure provider — as required by 45 CFR 164.504(e).</LegalP>
       </LegalSection>
 
       <LegalSection title="5. How We Share Information">
-        <LegalP>We share your health information only with: (a) the independent licensed physician treating you through the Nexphoria platform; (b) the 503A FDA-registered compounding pharmacy fulfilling your prescription; (c) the CLIA-certified laboratory processing your blood panel; (d) the shipping carrier delivering your medication, limited to the information necessary to complete delivery; and (e) any other party you specifically authorize in writing.</LegalP>
+        <LegalP>We share your health information only with: (a) the independent licensed physician treating you through the Nexphoria platform; (b) the 503A state-licensed compounding pharmacy fulfilling your prescription; (c) the CLIA-certified laboratory processing your blood panel; (d) the shipping carrier delivering your medication, limited to the information necessary to complete delivery; and (e) any other party you specifically authorize in writing.</LegalP>
         <LegalP>We may disclose PHI without your authorization when required by law, including in response to a valid subpoena, court order, or other legal process; to public health authorities for reporting communicable diseases or adverse events; to law enforcement when required by applicable statute; or to avert a serious and imminent threat to health or safety in accordance with 45 CFR 164.512(j).</LegalP>
         <LegalP>In the event of a corporate transaction such as a merger, acquisition, or sale of assets, your information may be transferred to the successor entity, subject to the protections of this policy and applicable law.</LegalP>
       </LegalSection>

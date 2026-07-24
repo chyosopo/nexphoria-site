@@ -1,6 +1,7 @@
 import { Children, isValidElement, useMemo } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Link } from "wouter";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    LegalLayout — visual chrome only. Copy is LOCKED and passed in
@@ -9,8 +10,6 @@ import { Link } from "wouter";
    auto-derived from <LegalSection> titles, section anchors, and
    footer navigation. General Sans, no italics, no serif.
    ───────────────────────────────────────────────────────────── */
-
-const FONT = "'General Sans', system-ui, sans-serif";
 
 const LEGAL_NAV = [
   { label: "Terms of Service", href: "/legal/terms" },
@@ -70,7 +69,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
           <h1
             style={{
               fontFamily: FONT,
-              fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+              fontSize: "var(--nx-t-h1)",
               fontWeight: 600,
               letterSpacing: "-0.03em",
               color: "var(--nx-fg)",
@@ -84,9 +83,9 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
           <p
             style={{
               fontFamily: FONT,
-              fontSize: "11px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.12em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "var(--nx-fg-muted)",
             }}
@@ -121,7 +120,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                             className="legal-toc-link"
                             style={{
                               fontFamily: FONT,
-                              fontSize: "13px",
+                              fontSize: "var(--nx-t-sm)",
                               lineHeight: 1.4,
                               color: "var(--nx-fg-graphite)",
                               textDecoration: "none",
@@ -149,7 +148,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
               className="legal-content"
               style={{
                 fontFamily: FONT,
-                fontSize: "16px",
+                fontSize: "var(--nx-t-body)",
                 lineHeight: 1.75,
                 color: "var(--nx-fg-graphite)",
                 maxWidth: "72ch",
@@ -180,11 +179,11 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                   className="no-underline legal-footer-pill"
                   style={{
                     fontFamily: FONT,
-                    fontSize: "13px",
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 500,
                     color: "var(--nx-fg)",
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "999px",
+                    borderRadius: "var(--nx-r-pill)",
                     padding: "0.5rem 1rem",
                     backgroundColor: active ? "var(--nx-cobalt-soft)" : "transparent",
                   }}
@@ -221,9 +220,9 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
 
 const eyebrowStyle: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "11px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
-  letterSpacing: "0.14em",
+  letterSpacing: "var(--nx-ls-caps)",
   textTransform: "uppercase",
 };
 
@@ -235,7 +234,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
         id={id}
         style={{
           fontFamily: FONT,
-          fontSize: "1.25rem",
+          fontSize: "var(--nx-t-lg)",
           fontWeight: 600,
           letterSpacing: "-0.01em",
           color: "var(--nx-fg)",

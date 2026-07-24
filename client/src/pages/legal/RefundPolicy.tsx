@@ -1,11 +1,15 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function RefundPolicy() {
   useSeo({
     title: "Refund Policy | Nexphoria",
     description: "Cancellation, returns, and refund request procedures for Nexphoria subscriptions and compounded medications.",
     path: "/legal/refund-policy",
+    jsonLd: [
+      webPageJsonLd({ name: "Refund Policy", description: "Cancellation, returns, and refund request procedures for Nexphoria subscriptions and compounded medications.", path: "/legal/refund-policy" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Refund Policy", path: "/legal/refund-policy" }]),
+    ],
   });
   return (
     <LegalLayout title="Refund Policy" lastUpdated="June 2026">

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
@@ -17,41 +18,39 @@ interface NavLink {
   mega?: boolean;
 }
 
+/* Nav law (ROADMAP 1.3): ONE button, ≤5 links, cart icon. Journal,
+   How-It-Works, Custom Protocol, Booking et al. live in the footer —
+   a first-time visitor gets goals, protocols, proof, and price. */
 const showcaseLinks: NavLink[] = [
   { label: "Peptides", href: "/peptides", mega: true },
-  { label: "Stacks", href: "/stacks" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
   { label: "Science", href: "/science" },
-  { label: "Journal", href: "/journal" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const womenLinks: NavLink[] = [
   { label: "Peptides", href: "/women/peptides", mega: true },
-  { label: "Stacks", href: "/stacks" },
-  { label: "Custom Protocol", href: "/assessment" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Journal", href: "/journal" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Science", href: "/science" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const menLinks: NavLink[] = [
   { label: "Peptides", href: "/men/peptides", mega: true },
-  { label: "Stacks", href: "/stacks" },
-  { label: "Custom Protocol", href: "/assessment" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Journal", href: "/journal" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Science", href: "/science" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const gateLinks: NavLink[] = [
   { label: "For Women", href: "/women" },
   { label: "For Men", href: "/men" },
-  { label: "Stacks", href: "/stacks" },
+  { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Science", href: "/science" },
-  { label: "Journal", href: "/journal" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 /* Six category tiles for the Peptides mega-menu. Order + copy tuned for
@@ -79,6 +78,7 @@ export function Nav({ variant = "gate" }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [, location] = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const megaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -145,18 +145,56 @@ export function Nav({ variant = "gate" }: NavProps) {
     closeTimer.current = setTimeout(() => setMegaOpen(false), 140);
   };
 
+  // Roving arrow-key navigation between mega-menu links. Tab still works
+  // natively; arrows (and Home/End) let keyboard users move item-to-item.
+  const onMegaKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const nodes = megaRef.current?.querySelectorAll<HTMLElement>("a[href]");
+    if (!nodes || nodes.length === 0) return;
+    const items = Array.from(nodes);
+    const current = items.indexOf(document.activeElement as HTMLElement);
+    let next = -1;
+    switch (e.key) {
+      case "ArrowDown":
+      case "ArrowRight":
+        next = current < 0 ? 0 : (current + 1) % items.length;
+        break;
+      case "ArrowUp":
+      case "ArrowLeft":
+        next = current <= 0 ? items.length - 1 : current - 1;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = items.length - 1;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    items[next]?.focus();
+  };
+
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
         scrolled || megaOpen
-          ? "bg-white/95 backdrop-blur-md shadow-sm"
-          : "bg-white backdrop-blur-sm"
+          ? "bg-white/95 md:backdrop-blur-md shadow-sm"
+          : "bg-white"
       }`}
-      style={{ borderBottom: "1px solid var(--nx-border)" }}
+      // translateZ(0) isolates the sticky bar on its own GPU layer so scrolling
+      // the page underneath doesn't repaint it every frame. Transition is scoped
+      // to background-color + box-shadow (paint-only) — we no longer animate the
+      // backdrop-filter blur radius on scroll, which was the costly part.
+      // backdrop-blur is now gated to md+ AND the scrolled state only: at the top
+      // the bar is fully opaque white (blur invisible, pure GPU waste), and on
+      // mobile the scrolled bg is 95% opaque so the blur reads near-identical while
+      // backdrop-filter is the single biggest per-frame scroll-jank cost on phones.
+      style={{ borderBottom: "1px solid var(--nx-border)", transform: "translateZ(0)" }}
       data-testid="site-nav"
     >
       <nav
-        className="nx-container h-14 grid grid-cols-[auto_1fr_auto] items-center gap-4"
+        className="nx-container h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4"
         aria-label="Primary"
       >
         {/* Left: Logo */}
@@ -211,7 +249,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             size="sm"
             className="text-xs"
           >
-            Start Intake
+            Start assessment
           </StartIntakeButton>
           <CartIconButton />
         </div>
@@ -235,17 +273,20 @@ export function Nav({ variant = "gate" }: NavProps) {
       {/* ── Desktop Peptides mega-menu ── */}
       {megaOpen && (
         <div
+          ref={megaRef}
           className="hidden md:block absolute left-0 right-0 top-full"
           onMouseEnter={openMega}
           onMouseLeave={scheduleCloseMega}
+          onKeyDown={onMegaKeyDown}
           data-testid="nav-mega-pharmacy"
         >
           <div
             className="shadow-lg"
             style={{
-              background: "#ffffff",
+              background: "var(--nx-ceramic)",
               borderTop: "1px solid var(--nx-border)",
               borderBottom: "1px solid var(--nx-border)",
+              boxShadow: "0 24px 48px -24px rgba(21, 24, 28,0.14)",
             }}
           >
             <div className="nx-container py-8 grid grid-cols-[1.6fr_1fr] gap-10">
@@ -255,7 +296,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mb-4 text-[11px] uppercase"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-fg-muted)",
                     fontWeight: 500,
                   }}
@@ -267,11 +308,11 @@ export function Nav({ variant = "gate" }: NavProps) {
                   {MEGA_CATEGORIES.map((c) => (
                     <Link
                       key={c.key}
-                      href={`${pharmacyBase}?category=${c.key}`}
+                      href={`/goals/${c.key}`}
                       className="group block no-underline transition-colors"
                       style={{
                         border: "1px solid var(--nx-border)",
-                        borderRadius: 14,
+                        borderRadius: "var(--nx-r-md)",
                         padding: "1rem 1.05rem",
                         background: "var(--nx-bg)",
                       }}
@@ -282,7 +323,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         className="flex items-center justify-between"
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: 15,
+                          fontSize: "var(--nx-t-base)",
                           fontWeight: 600,
                           color: "var(--nx-fg)",
                         }}
@@ -299,7 +340,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         className="mt-1 block"
                         style={{
                           fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: 12.5,
+                          fontSize: "var(--nx-t-xs)",
                           color: "var(--nx-fg-graphite)",
                           lineHeight: 1.45,
                         }}
@@ -314,25 +355,61 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mt-4 inline-flex items-center gap-1.5 no-underline"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 13,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
                   }}
                   data-testid="mega-view-all"
                   onClick={() => setMegaOpen(false)}
                 >
-                  View the full pharmacy
+                  View all peptides
                   <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
                 </Link>
               </div>
 
               {/* Featured peptides */}
               <div style={{ borderLeft: "1px solid var(--nx-border)", paddingLeft: "2.5rem" }}>
+                <Link
+                  href="/stacks/wolverine"
+                  className="group block no-underline mb-5"
+                  onClick={() => setMegaOpen(false)}
+                  data-testid="mega-featured-card"
+                >
+                  <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
+                    <img
+                      src="img/img_b02fe34b47f7.webp"
+                      alt="Nexphoria compounded peptide vial"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span className="mt-3 flex items-center justify-between">
+                    <span>
+                      <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
+                        The Recovery Protocol
+                      </span>
+                      <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
+                        Physician-directed · if prescribed
+                      </span>
+                    </span>
+                    <ArrowRight size={16} strokeWidth={2} style={{ color: "var(--nx-cobalt)" }} aria-hidden="true" />
+                  </span>
+                </Link>
+                <Link
+                  href="/how-it-works"
+                  className="inline-flex items-center gap-1.5 no-underline mb-5"
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}
+                  onClick={() => setMegaOpen(false)}
+                  data-testid="mega-education-link"
+                >
+                  New to peptides? Start here
+                  <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
+                </Link>
                 <p
                   className="mb-4 text-[11px] uppercase"
                   style={{
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-fg-muted)",
                     fontWeight: 500,
                   }}
@@ -352,7 +429,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: 14,
+                            fontSize: "var(--nx-t-sm)",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
                           }}
@@ -362,7 +439,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         <span
                           style={{
                             fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: 12,
+                            fontSize: "var(--nx-t-xs)",
                             color: "var(--nx-fg-graphite)",
                           }}
                         >
@@ -377,7 +454,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   className="mt-5 block no-underline"
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: 14,
+                    borderRadius: "var(--nx-r-md)",
                     padding: "0.9rem 1rem",
                     background: "var(--nx-bg)",
                   }}
@@ -388,7 +465,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     className="block"
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 14,
+                      fontSize: "var(--nx-t-sm)",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
                     }}
@@ -399,7 +476,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     className="mt-0.5 inline-flex items-center gap-1.5"
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 12.5,
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-graphite)",
                     }}
                   >
@@ -413,14 +490,21 @@ export function Nav({ variant = "gate" }: NavProps) {
         </div>
       )}
 
-      {/* ── Mobile full-screen drawer ── */}
-      {menuOpen && (
+      {/* ── Mobile full-screen drawer — PORTALED to <body>. The sticky header
+          carries a translateZ(0) transform (scroll-perf isolation), and a
+          transformed ancestor becomes the containing block for position:fixed:
+          the drawer was resolving against the page, landing thousands of
+          pixels off-screen whenever the user had scrolled before opening it. */}
+      {menuOpen && createPortal(
         <div
-          className="md:hidden fixed left-0 right-0 bg-white z-40 flex flex-col"
-          style={{ top: "56px", height: "calc(100vh - 56px)", borderTop: "1px solid var(--nx-border)" }}
+          className="md:hidden fixed left-0 right-0 bg-white z-[60] flex flex-col"
+          style={{ top: "64px", height: "calc(100dvh - 64px)", borderTop: "1px solid var(--nx-border)" }}
           data-testid="nav-mobile-drawer"
         >
-          <div className="nx-container flex-1 overflow-y-auto py-6">
+          <div
+            className="nx-container flex-1 overflow-y-auto py-6"
+            style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
+          >
             <ul className="flex flex-col list-none m-0">
               {links.map((link) => (
                 <li
@@ -433,7 +517,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     style={{
                       color: "var(--nx-fg)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 18,
+                      fontSize: "var(--nx-t-lg)",
                       fontWeight: 600,
                     }}
                     data-testid={`nav-mobile-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
@@ -451,7 +535,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               className="mt-8 mb-3 text-[11px] uppercase"
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                letterSpacing: "0.14em",
+                letterSpacing: "var(--nx-ls-caps)",
                 color: "var(--nx-fg-muted)",
                 fontWeight: 500,
               }}
@@ -462,15 +546,15 @@ export function Nav({ variant = "gate" }: NavProps) {
               {MEGA_CATEGORIES.map((c) => (
                 <Link
                   key={c.key}
-                  href={`${pharmacyBase}?category=${c.key}`}
+                  href={`/goals/${c.key}`}
                   className="no-underline"
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: 14,
+                    borderRadius: "var(--nx-r-md)",
                     padding: "0.75rem 0.85rem",
                     background: "var(--nx-bg)",
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 13.5,
+                    fontSize: "var(--nx-t-sm)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
                   }}
@@ -494,10 +578,11 @@ export function Nav({ variant = "gate" }: NavProps) {
               size="md"
               className="w-full justify-center"
             >
-              Start Intake
+              Start assessment
             </StartIntakeButton>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </header>
   );

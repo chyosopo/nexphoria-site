@@ -1,33 +1,31 @@
+/* JOB: who is behind this and why they can be trusted. */
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
+import { FaqAccordion, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, orgJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare, Activity, RefreshCw, Stethoscope, ClipboardList, FlaskConical, Snowflake, LayoutDashboard, Target, Ruler, type LucideIcon } from "lucide-react";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
-import md1 from "@/assets/brand/physicians/md-1.webp";
-import md2 from "@/assets/brand/physicians/md-2.webp";
-import md3 from "@/assets/brand/physicians/md-3.webp";
-import md4 from "@/assets/brand/physicians/md-4.webp";
+import heroAbout from "@/assets/brand/hero-about.webp";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
-   About — founder + mission narrative. Maximus-tier.
+   About — founder + mission narrative. reference-tier.
    Hero + proof stats → The problem we saw → Our approach (3 pillars)
    → The team → Standards → manifesto + CTA.
-   General Sans throughout. No italics. No serif.
+   Display voice: Fraunces 500 (site-wide); General Sans for UI/body.
    ───────────────────────────────────────────────────────────── */
-
-const FONT = "'General Sans', system-ui, sans-serif";
 
 // ─── Shared style helpers ──────────────────────────────────────────────────
 
 const eyebrow: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "11px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
-  letterSpacing: "0.18em",
+  letterSpacing: "var(--nx-ls-wide)",
   textTransform: "uppercase",
   color: "var(--nx-cobalt)",
   marginBottom: "1rem",
@@ -41,38 +39,56 @@ const eyebrowRule = (
 );
 
 const sectionHeading: React.CSSProperties = {
-  fontFamily: FONT,
-  fontWeight: 600,
-  fontSize: "clamp(2rem, 4.2vw, 3.25rem)",
-  letterSpacing: "-0.03em",
+  // Fraunces — About was the last page speaking General Sans at display size
+  fontFamily: "'Fraunces', Georgia, serif",
+  fontWeight: 500,
+  fontSize: "var(--nx-t-h1)",
+  letterSpacing: "-0.015em",
   color: "var(--nx-fg)",
-  lineHeight: 1.04,
+  lineHeight: 1.06,
   marginBottom: "1.25rem",
 };
 
 const bodyCopy: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "1.0625rem",
+  fontSize: "var(--nx-t-body)",
   color: "var(--nx-fg-graphite)",
   lineHeight: 1.7,
 };
 
 const monoCaption: React.CSSProperties = {
   fontFamily: FONT,
-  fontSize: "10px",
+  fontSize: "var(--nx-t-2xs)",
   fontWeight: 500,
-  letterSpacing: "0.12em",
+  letterSpacing: "var(--nx-ls-caps)",
   textTransform: "uppercase",
   color: "var(--nx-fg-muted)",
 };
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
-const PROOF_STATS = [
-  { value: "38", label: "Biomarkers per panel" },
-  { value: "503A", label: "FDA-registered pharmacy" },
-  { value: "90 days", label: "Recalibration cadence" },
-  { value: "5", label: "Board-certified advisors" },
+const PROOF_STATS: { value: string; label: string; Icon: LucideIcon }[] = [
+  { value: "38", label: "Biomarkers per panel", Icon: Activity },
+  { value: "503A", label: "state-licensed pharmacy", Icon: ShieldCheck },
+  { value: "90 days", label: "Recalibration cadence", Icon: RefreshCw },
+  { value: "100%", label: "Physician-reviewed", Icon: Stethoscope },
+];
+
+// The fixed clinical order — rendered as a drawn process timeline.
+const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
+  { t: "Structured intake", d: "History, goals, medications, and contraindications — routed to a physician, not an algorithm.", Icon: ClipboardList },
+  { t: "Laboratory bloodwork", d: "A baseline panel at a CLIA-certified partner lab across every system a protocol can touch.", Icon: Microscope },
+  { t: "Physician review", d: "A licensed U.S. physician reads your labs against your intake and writes — or declines — the prescription.", Icon: Stethoscope },
+  { t: "503A compounding", d: "Sterile-prepared under USP <797>, batch-documented, third-party verified.", Icon: FlaskConical },
+  { t: "Cold-chain delivery", d: "Temperature-controlled to your door in discreet, unbranded packaging.", Icon: Snowflake },
+  { t: "Dashboard & 90-day retest", d: "Markers, trends, and messaging in one place — then the panel is re-drawn and the dose reviewed.", Icon: LayoutDashboard },
+];
+
+// The three tenets of the manifesto, as visual principle cards.
+const PRINCIPLES: { t: string; d: string; Icon: LucideIcon }[] = [
+  { t: "Labs before guesswork", d: "No protocol begins without a baseline panel. Dose changes follow measured data, never a symptom report.", Icon: Ruler },
+  { t: "Physicians before protocols", d: "A board-certified U.S. physician owns every prescription and the liability for it. Not marketing, not a score.", Icon: Stethoscope },
+  { t: "Mechanism before marketing", d: "We publish what is in the vial, who made it, and how it works — before we make a single claim.", Icon: Target },
 ];
 
 const PILLARS = [
@@ -84,48 +100,44 @@ const PILLARS = [
   {
     num: "02",
     title: "Compounded",
-    desc: "Sterile-prepared in an FDA-registered 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
+    desc: "Sterile-prepared in a state-licensed 503A US pharmacy under USP <797>. Batch-tested, third-party verified, cold-chain shipped. We publish what is in the vial and who made it.",
   },
   {
     num: "03",
     title: "Measured",
-    desc: "A 38-biomarker Quest panel is required before any prescription. Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on.",
+    desc: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on.",
   },
 ];
 
-const LEADERSHIP = [
+// Role-based description of the functions accountable for care.
+// No individual names, photos, or institution claims — prescribing is
+// performed by independent, U.S.-licensed physicians via our telehealth partner.
+const ROLES = [
   {
-    photo: md4,
-    name: "Chiya Yosopov",
-    title: "Founder & CEO",
-    bio: "Built Nexphoria after watching the peptide market scale on testimonial instead of clinical evidence. Structured the company in the order a clinic would: physician oversight first, 503A compounding second, labs gating everything.",
+    title: "Medical leadership",
+    desc: "Board-certified U.S. physicians own the clinical standard that gates every prescription — physician oversight first, always.",
   },
   {
-    photo: md1,
-    name: "Dr. Sarah Chen, MD",
-    title: "Chief Medical Officer",
-    bio: "ABIM board-certified endocrinologist, 12 years at NYU Langone. Sets all clinical protocols.",
+    title: "Physician review",
+    desc: "A licensed physician reads your labs and intake and writes every prescription. A patient, not a checkout flow — never an algorithm.",
   },
   {
-    photo: md2,
-    name: "Marcus Torres",
-    title: "Head of Pharmacy Ops",
-    bio: "Two decades in 503A sterile compounding. Owns cold-chain integrity end to end.",
+    title: "Pharmacy operations",
+    desc: "Sterile 503A compounding under USP <797>, batch-tested and third-party verified, with cold-chain integrity owned end to end.",
   },
   {
-    photo: md3,
-    name: "Aliyah Park",
-    title: "Head of Patient Experience",
-    bio: "Designs the intake-to-monitoring journey around clarity, consent, and patient agency.",
+    title: "Patient experience",
+    desc: "The intake-to-monitoring journey is built around clarity, consent, and patient agency.",
   },
 ];
 
-const ADVISORS = [
-  { name: "Dr. Elena Rossi, MD", cred: "Endocrinology", inst: "Johns Hopkins" },
-  { name: "Dr. James Okafor, MD", cred: "Internal Medicine", inst: "Mayo Clinic" },
-  { name: "Dr. Priya Nair, PharmD", cred: "Clinical Pharmacology", inst: "UCSF" },
-  { name: "Dr. Daniel Weiss, MD", cred: "Sports Medicine", inst: "Stanford Health" },
-  { name: "Dr. Maya Lindqvist, MD", cred: "Preventive Medicine", inst: "Cleveland Clinic" },
+// Fields of practice reviewed on the network — specialties, not named individuals or institutions.
+const ADVISORY_SPECIALTIES = [
+  "Internal Medicine",
+  "Endocrinology",
+  "Sports Medicine",
+  "Preventive Medicine",
+  "Clinical Pharmacology",
 ];
 
 const STANDARDS = [
@@ -137,7 +149,7 @@ const STANDARDS = [
   {
     num: "02",
     title: "503A / USP <797>",
-    detail: "Every prescription compounded to sterile-preparation standards in an FDA-registered US pharmacy.",
+    detail: "Every prescription compounded to sterile-preparation standards in a state-licensed US pharmacy.",
   },
   {
     num: "03",
@@ -147,11 +159,10 @@ const STANDARDS = [
   {
     num: "04",
     title: "Laboratory-gated prescribing",
-    detail: "No labs, no protocol. Quest Diagnostics panels required before and throughout therapy.",
+    detail: "No labs, no protocol. CLIA-certified partner-laboratory panels required before and throughout therapy.",
   },
 ];
 
-const PRESS = ["GQ", "Men's Health", "Forbes", "Bloomberg", "Biohacker"];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -163,7 +174,7 @@ const ABOUT_FAQ_ITEMS = [
   },
   {
     q: "What makes Nexphoria different from other peptide companies?",
-    a: "Nexphoria is a physician-supervised platform, not a supplement company. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with Quest Diagnostics labs every 90 days. Most peptide providers online are supplement companies or research-chemical vendors with no physician oversight.",
+    a: "Nexphoria is a physician-supervised platform, not a supplement company. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with CLIA-certified partner-laboratory panels every 90 days. Most peptide providers online are supplement companies or research-chemical vendors with no physician oversight.",
   },
   {
     q: "Is Nexphoria affiliated with Bask Health?",
@@ -179,12 +190,12 @@ export default function About() {
   useSeo({
     title: "About Nexphoria — physician-founded, pharmacy-grade peptide care",
     description:
-      "Nexphoria was built by physicians who got tired of seeing patients self-administer unverified compounds. Meet the team behind the only end-to-end peptide platform with 503A compounding, physician oversight, and Quest Diagnostics monitoring.",
+      "Nexphoria is a physician-guided peptide platform with 503A compounding, board-certified physician oversight, and CLIA-certified partner-laboratory monitoring.",
     path: "/about",
     jsonLd: [
       webPageJsonLd({
         name: "About Nexphoria",
-        description: "Physician-founded peptide therapy platform with 503A compounding, board-certified physicians, and Quest Diagnostics lab monitoring.",
+        description: "Physician-guided peptide therapy platform with 503A compounding, board-certified physicians, and CLIA-certified partner-laboratory monitoring.",
         path: "/about",
       }),
       orgJsonLd(),
@@ -197,6 +208,7 @@ export default function About() {
     <SiteLayout navVariant="showcase">
       {/* ════════════════ EDITORIAL HERO + PROOF STATS ════════════════ */}
       <section
+        className="nx-gradient-hero"
         data-testid="about-hero"
         aria-labelledby="about-h1"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
@@ -208,7 +220,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "0.9375rem",
+                fontSize: "var(--nx-t-base)",
                 color: "var(--nx-fg-muted)",
                 lineHeight: 1.6,
                 marginBottom: "1rem",
@@ -220,11 +232,11 @@ export default function About() {
             <h1
               id="about-h1"
               style={{
-                fontFamily: FONT,
-                fontWeight: 600,
-                fontSize: "clamp(2.75rem, 6vw, 4.75rem)",
-                lineHeight: 0.98,
-                letterSpacing: "-0.035em",
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontWeight: 500,
+                fontSize: "var(--nx-t-display)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.02em",
                 color: "var(--nx-fg)",
                 maxWidth: 960,
               }}
@@ -237,7 +249,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: 19,
+                fontSize: "var(--nx-t-lg)",
                 lineHeight: 1.55,
                 color: "var(--nx-fg-graphite)",
                 maxWidth: 660,
@@ -251,8 +263,52 @@ export default function About() {
           </Reveal>
         </div>
 
+        {/* Editorial opener — the physician is the product */}
+        <div className="nx-container" style={{ paddingTop: 56 }}>
+          <Reveal>
+            <figure
+              className="relative overflow-hidden nx-editorial-bleed"
+              style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
+              data-testid="about-hero-editorial"
+            >
+              <img
+                src={heroAbout}
+                alt="A board-certified physician in a white coat stands in a warm consultation room, arms folded, meeting the camera with a direct, compassionate gaze"
+                className="w-full object-cover"
+                style={{ aspectRatio: "21 / 9", minHeight: 300 }}
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption
+                className="absolute left-0 bottom-0 p-6 md:p-8"
+                style={{ maxWidth: "44ch" }}
+              >
+                <p
+                  style={{
+                    fontFamily: FONT,
+                    fontSize: "var(--nx-t-sm)",
+                    fontWeight: 500,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    color: "var(--nx-ceramic)",
+                    background: "color-mix(in srgb, var(--nx-fg) 58%, transparent)",
+                    backdropFilter: "blur(6px)",
+                    WebkitBackdropFilter: "blur(6px)",
+                    padding: "10px 16px",
+                    borderRadius: "var(--nx-r-xs)",
+                    display: "inline-block",
+                  }}
+                >
+                  Real medicine. A physician on every case.
+                </p>
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+
         {/* Proof stat row */}
         <div className="nx-container" style={{ paddingTop: 56, paddingBottom: 0 }}>
+          <Reveal>
           <div
             className="about-proof-grid"
             style={{
@@ -271,11 +327,14 @@ export default function About() {
                   borderBottom: "1px solid var(--nx-border)",
                 }}
               >
+                <span className="nx-icon-circle" aria-hidden style={{ marginBottom: "1rem" }}>
+                  <s.Icon size={19} strokeWidth={1.9} />
+                </span>
                 <p
                   style={{
                     fontFamily: FONT,
                     fontWeight: 600,
-                    fontSize: "clamp(2rem, 3.5vw, 2.75rem)",
+                    fontSize: "var(--nx-t-h2)",
                     letterSpacing: "-0.03em",
                     color: "var(--nx-fg)",
                     lineHeight: 1,
@@ -288,12 +347,14 @@ export default function About() {
               </div>
             ))}
           </div>
+          </Reveal>
         </div>
       </section>
 
+
       {/* ════════════════ THE PROBLEM WE SAW ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-problem"
       >
@@ -334,7 +395,7 @@ export default function About() {
             <Reveal delay={100}>
               <div
                 style={{
-                  borderRadius: "16px",
+                  borderRadius: "var(--nx-r-md)",
                   overflow: "hidden",
                   aspectRatio: "4/5",
                   border: "1px solid var(--nx-border)",
@@ -355,7 +416,7 @@ export default function About() {
 
       {/* ════════════════ OUR APPROACH — 3 PILLARS ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-approach"
       >
@@ -366,22 +427,23 @@ export default function About() {
               Physician-guided. Compounded. Measured.
             </h2>
           </Reveal>
+          <Reveal>
           <div
             className="about-pillars-grid"
-            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", borderRadius: 16, overflow: "hidden" }}
+            style={{ display: "grid", gridTemplateColumns: "1fr", gap: "1.5px", backgroundColor: "var(--nx-border)", border: "1.5px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}
           >
             {PILLARS.map((p, i) => (
               <div
                 key={p.num}
                 data-testid={`about-pillar-${i}`}
-                style={{ backgroundColor: "#FFFFF3", padding: "2.75rem 2.25rem" }}
+                style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.75rem 2.25rem" }}
               >
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.15em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-rust)",
                     marginBottom: "1.25rem",
                   }}
@@ -392,7 +454,7 @@ export default function About() {
                   style={{
                     fontFamily: FONT,
                     fontWeight: 600,
-                    fontSize: "1.625rem",
+                    fontSize: "var(--nx-t-xl)",
                     letterSpacing: "-0.02em",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
@@ -401,8 +463,75 @@ export default function About() {
                 >
                   {p.title}
                 </h3>
-                <p style={{ ...bodyCopy, fontSize: "0.9375rem" }}>{p.desc}</p>
+                <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{p.desc}</p>
               </div>
+            ))}
+          </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ════════════════ OUR PROCESS — DRAWN TIMELINE ════════════════ */}
+      <section
+        className="py-[var(--nx-section-y)]"
+        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
+        data-testid="about-process"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p style={eyebrow}>{eyebrowRule}Our process</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "1.25rem" }}>
+              Built in the order a clinic would.
+            </h2>
+            <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
+              Six steps, one fixed order. No step is optional, and none of them bends to speed a sale.
+            </p>
+          </Reveal>
+          <div className="nx-timeline" style={{ maxWidth: 780 }}>
+            {PROCESS.map((p, i) => (
+              <Reveal key={p.t} delay={i * 45}>
+                <div className="nx-timeline-step" style={{ paddingBottom: i < PROCESS.length - 1 ? "1.1rem" : 0 }}>
+                  <span className="nx-timeline-node" aria-hidden>{String(i + 1).padStart(2, "0")}</span>
+                  <div className="nx-glass-tile" style={{ display: "block" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      <span className="nx-icon-circle" aria-hidden><p.Icon size={19} strokeWidth={1.9} /></span>
+                      <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-lg)", letterSpacing: "-0.01em", color: "var(--nx-fg)", lineHeight: 1.15 }}>{p.t}</h3>
+                    </div>
+                    <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)", marginTop: "0.7rem" }}>{p.d}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════ OUR PRINCIPLES — ICON CARDS ════════════════ */}
+      <section
+        className="py-[var(--nx-section-y)]"
+        style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
+        data-testid="about-principles"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <p style={eyebrow}>{eyebrowRule}Our principles</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
+              Three rules we do not break.
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1.25rem" }}>
+            {PRINCIPLES.map((p, i) => (
+              <Reveal key={p.t} delay={i * 60}>
+                <div
+                  data-testid={`about-principle-${i}`}
+                  className="nx-feature-card edge-top"
+                  style={{ padding: "2.25rem 2rem", height: "100%" }}
+                >
+                  <span className="nx-icon-circle" aria-hidden><p.Icon size={20} strokeWidth={1.9} /></span>
+                  <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-xl)", letterSpacing: "-0.02em", color: "var(--nx-fg)", lineHeight: 1.12, margin: "1.1rem 0 0.75rem" }}>{p.t}</h3>
+                  <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{p.d}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -410,124 +539,90 @@ export default function About() {
 
       {/* ════════════════ THE TEAM ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-team"
       >
         <div className="nx-container max-w-screen-xl">
           <Reveal>
-            <p style={eyebrow}>{eyebrowRule}The team</p>
-            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
-              The people accountable for your care.
+            <p style={eyebrow}>{eyebrowRule}How care is structured</p>
+            <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "1.25rem" }}>
+              The functions accountable for your care.
             </h2>
+            <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
+              Nexphoria is founder-led and physician-guided. Prescribing is performed by
+              independent, U.S.-licensed physicians through our telehealth partner — Nexphoria
+              coordinates the platform and does not direct clinical decision-making.
+            </p>
           </Reveal>
           <div
             className="about-leadership-grid"
             style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }}
           >
-            {LEADERSHIP.map((p, i) => (
-              <Reveal key={p.name} delay={i * 50}>
+            {ROLES.map((p, i) => (
+              <Reveal key={p.title} delay={i * 50}>
                 <div
-                  data-testid={`about-leader-${i}`}
+                  data-testid={`about-role-${i}`}
+                  className="nx-protocol-card"
                   style={{
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "16px",
+                    borderRadius: "var(--nx-r-md)",
                     overflow: "hidden",
-                    backgroundColor: "#FFFFF3",
+                    backgroundColor: "var(--nx-ceramic)",
                     height: "100%",
+                    borderTop: "2px solid var(--nx-cobalt)",
                   }}
                 >
-                  <div style={{ aspectRatio: "4/5", overflow: "hidden", backgroundColor: "var(--nx-bg-cream)" }}>
-                    <img
-                      src={p.photo}
-                      alt={p.name}
-                      loading="lazy"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                    />
-                  </div>
-                  <div style={{ padding: "1.5rem 1.5rem" }}>
+                  <div style={{ padding: "1.75rem 1.5rem" }}>
                     <h3
                       style={{
                         fontFamily: FONT,
                         fontWeight: 600,
-                        fontSize: "1.25rem",
+                        fontSize: "var(--nx-t-lg)",
                         letterSpacing: "-0.01em",
                         color: "var(--nx-fg)",
                         lineHeight: 1.15,
-                        marginBottom: "0.25rem",
+                        marginBottom: "0.75rem",
                       }}
                     >
-                      {p.name}
-                    </h3>
-                    <p style={{ ...monoCaption, color: "var(--nx-rust)", marginBottom: "0.875rem" }}>
                       {p.title}
-                    </p>
-                    <p style={{ ...bodyCopy, fontSize: "0.875rem" }}>{p.bio}</p>
+                    </h3>
+                    <p style={{ ...bodyCopy, fontSize: "var(--nx-t-sm)" }}>{p.desc}</p>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* Advisory board — compact list */}
+          {/* Fields reviewed on the network — specialties, not named individuals */}
           <div style={{ marginTop: "4rem" }}>
             <Reveal>
-              <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "1.5rem" }}>
-                Medical advisory board
+              <p style={{ ...monoCaption, color: "var(--nx-cobalt)", marginBottom: "1rem" }}>
+                Specialties reviewed on the network
+              </p>
+              <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "1.5rem" }}>
+                Protocols are reviewed by board-certified physicians across the fields that peptide
+                therapy touches. Physicians are matched to your state of residence.
               </p>
             </Reveal>
-            <div
-              className="about-advisory-grid"
-              style={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)", gap: "1rem" }}
-            >
-              {ADVISORS.map((a, i) => (
-                <Reveal key={a.name} delay={i * 40}>
-                  <div
-                    data-testid={`about-advisor-${i}`}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
+              {ADVISORY_SPECIALTIES.map((s, i) => (
+                <Reveal key={s} delay={i * 40}>
+                  <span
+                    data-testid={`about-specialty-${i}`}
                     style={{
+                      fontFamily: FONT,
+                      fontSize: "var(--nx-t-sm)",
+                      fontWeight: 500,
+                      color: "var(--nx-fg)",
                       border: "1px solid var(--nx-border)",
-                      borderRadius: "12px",
-                      backgroundColor: "#FFFFF3",
-                      padding: "1.5rem 1.25rem",
-                      height: "100%",
+                      borderRadius: "var(--nx-r-pill)",
+                      padding: "0.5rem 1rem",
+                      backgroundColor: "var(--nx-ceramic)",
                     }}
                   >
-                    <span
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: "44px",
-                        height: "44px",
-                        borderRadius: "50%",
-                        backgroundColor: "var(--nx-cobalt-soft)",
-                        color: "var(--nx-fg)",
-                        fontFamily: FONT,
-                        fontWeight: 600,
-                        fontSize: "1.0625rem",
-                        marginBottom: "1rem",
-                      }}
-                      aria-hidden="true"
-                    >
-                      {a.name.split(" ")[1]?.[0] ?? a.name[0]}
-                    </span>
-                    <h4
-                      style={{
-                        fontFamily: FONT,
-                        fontWeight: 600,
-                        fontSize: "1rem",
-                        color: "var(--nx-fg)",
-                        lineHeight: 1.2,
-                        marginBottom: "0.4rem",
-                      }}
-                    >
-                      {a.name}
-                    </h4>
-                    <p style={{ ...monoCaption, color: "var(--nx-rust)", marginBottom: "0.2rem" }}>
-                      {a.cred}
-                    </p>
-                    <p style={monoCaption}>{a.inst}</p>
-                  </div>
+                    {s}
+                  </span>
                 </Reveal>
               ))}
             </div>
@@ -537,7 +632,7 @@ export default function About() {
 
       {/* ════════════════ STANDARDS ════════════════ */}
       <section
-        className="py-20 md:py-28"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-standards"
       >
@@ -551,6 +646,7 @@ export default function About() {
               No exceptions, no add-on tiers.
             </p>
           </Reveal>
+          <Reveal>
           <div
             className="about-standards-grid"
             style={{
@@ -559,7 +655,7 @@ export default function About() {
               gap: "1.5px",
               backgroundColor: "var(--nx-border)",
               border: "1.5px solid var(--nx-border)",
-              borderRadius: 16,
+              borderRadius: "var(--nx-r-md)",
               overflow: "hidden",
             }}
           >
@@ -567,14 +663,14 @@ export default function About() {
               <div
                 key={item.num}
                 data-testid={`about-standard-${i}`}
-                style={{ backgroundColor: "#FFFFF3", padding: "2.5rem 2rem" }}
+                style={{ backgroundColor: "var(--nx-ceramic)", padding: "2.5rem 2rem" }}
               >
                 <p
                   style={{
                     fontFamily: FONT,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.15em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-rust)",
                     marginBottom: "1rem",
                   }}
@@ -585,7 +681,7 @@ export default function About() {
                   style={{
                     fontFamily: FONT,
                     fontWeight: 600,
-                    fontSize: "1.375rem",
+                    fontSize: "var(--nx-t-xl)",
                     letterSpacing: "-0.02em",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
@@ -594,48 +690,21 @@ export default function About() {
                 >
                   {item.title}
                 </h3>
-                <p style={{ ...bodyCopy, fontSize: "0.9375rem" }}>{item.detail}</p>
+                <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{item.detail}</p>
               </div>
             ))}
           </div>
-
-          {/* Press strip */}
-          <Reveal>
-            <div
-              data-testid="about-press-strip"
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.5rem 2.5rem",
-                marginTop: "3.5rem",
-                paddingTop: "2.5rem",
-                borderTop: "1px solid var(--nx-border)",
-              }}
-            >
-              <span style={{ ...monoCaption, flexShrink: 0 }}>Featured in —</span>
-              {PRESS.map((p) => (
-                <span
-                  key={p}
-                  style={{
-                    fontFamily: FONT,
-                    fontWeight: 500,
-                    fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
-                    color: "var(--nx-fg)",
-                    opacity: 0.55,
-                  }}
-                >
-                  {p}
-                </span>
-              ))}
-            </div>
           </Reveal>
+
+          {/* Press strip removed pending real coverage — a fabricated
+              "Featured in" list violates the TRUE-claims law. Reinstate
+              only with verifiable placements. */}
         </div>
       </section>
 
       {/* ════════════════ CONTACT CTA ════════════════ */}
       <section
-        className="py-20 md:py-24"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
         data-testid="about-contact-cta"
       >
@@ -646,8 +715,8 @@ export default function About() {
                 className="about-contact-tile"
                 style={{
                   border: "1px solid var(--nx-border)",
-                  borderRadius: "16px",
-                  backgroundColor: "#FFFFF3",
+                  borderRadius: "var(--nx-r-md)",
+                  backgroundColor: "var(--nx-ceramic)",
                   padding: "2.5rem 2.25rem",
                   display: "flex",
                   flexWrap: "wrap",
@@ -665,7 +734,7 @@ export default function About() {
                     style={{
                       fontFamily: FONT,
                       fontWeight: 600,
-                      fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                      fontSize: "var(--nx-t-h2)",
                       letterSpacing: "-0.02em",
                       color: "var(--nx-fg)",
                       lineHeight: 1.05,
@@ -682,12 +751,12 @@ export default function About() {
                     backgroundColor: "var(--nx-fg)",
                     color: "var(--nx-bg-cream)",
                     fontFamily: FONT,
-                    fontSize: "11px",
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 600,
-                    letterSpacing: "0.1em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     padding: "0.875rem 1.75rem",
-                    borderRadius: "999px",
+                    borderRadius: "var(--nx-r-pill)",
                     flexShrink: 0,
                   }}
                 >
@@ -701,7 +770,7 @@ export default function About() {
 
       {/* ════════════════ WHY NEXPHORIA — MAXIMUS TILES ════════════════ */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
         data-testid="about-why-tiles"
       >
@@ -712,7 +781,7 @@ export default function About() {
               style={{
                 fontFamily: FONT,
                 fontWeight: 600,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
                 letterSpacing: "-0.02em",
@@ -724,7 +793,7 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "1.0625rem",
+                fontSize: "var(--nx-t-body)",
                 color: "var(--nx-fg-graphite)",
                 lineHeight: 1.6,
                 maxWidth: 640,
@@ -749,14 +818,14 @@ export default function About() {
               eyebrow="Compounding"
               icon={<ShieldCheck size={18} strokeWidth={1.5} />}
               headline="503A US pharmacies only."
-              sub="Every vial compounded in a US 503A facility we audit. No overseas peptides. Ever."
+              sub="Every vial compounded in a US 503A facility we audit — domestic, batch-documented, every time."
               testId="about-tile-compounding"
             />
             <BenefitTile
               tone="cream"
               eyebrow="Bloodwork"
               icon={<Microscope size={18} strokeWidth={1.5} />}
-              headline="Quest Diagnostics every 90 days."
+              headline="Partner-laboratory panels every 90 days."
               sub="Every plan includes full biomarker panels. Dose changes follow labs, not vibes."
               testId="about-tile-bloodwork"
             />
@@ -772,8 +841,8 @@ export default function About() {
               tone="cream"
               eyebrow="Pricing"
               icon={<Scale size={18} strokeWidth={1.5} />}
-              headline="All-in. No hidden lab bill."
-              sub="One monthly price. Consult, compound, labs, shipping — bundled. No consultation fee."
+              headline="All-in. Labs within the figure."
+              sub="One monthly price. Consult, compound, labs, shipping — bundled. The consultation is complimentary."
               testId="about-tile-pricing"
             />
             <BenefitTile
@@ -781,7 +850,7 @@ export default function About() {
               eyebrow="Care"
               icon={<MessageSquare size={18} strokeWidth={1.5} />}
               headline="Physician messaging between visits."
-              sub="Side effect? Question about a dose? Message your care team — replies within one business day."
+              sub="Side effect? Question about a dose? Message your care team — a physician-guided team replies."
               testId="about-tile-care"
             />
           </BenefitTileGrid>
@@ -799,9 +868,9 @@ export default function About() {
               style={{
                 fontFamily: FONT,
                 fontWeight: 500,
-                fontSize: "clamp(1.5rem, 3.5vw, 2.75rem)",
+                fontSize: "var(--nx-t-h2)",
                 letterSpacing: "-0.02em",
-                color: "#FFFFF3",
+                color: "var(--nx-ceramic)",
                 lineHeight: 1.25,
                 maxWidth: "860px",
               }}
@@ -814,11 +883,11 @@ export default function About() {
             <p
               style={{
                 fontFamily: FONT,
-                fontSize: "10px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
-                letterSpacing: "0.16em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
-                color: "rgba(255,255,243,0.55)",
+                color: "color-mix(in oklab, var(--nx-ceramic) 55%, transparent)",
                 marginTop: "2.5rem",
               }}
             >
@@ -828,10 +897,25 @@ export default function About() {
         </div>
       </section>
 
+      {/* ── Clean FAQ accordion — renders the same Q&As that drive FAQPage JSON-LD ── */}
+      <section
+        className="py-[var(--nx-section-y)]"
+        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
+        data-testid="about-faq"
+      >
+        <div className="nx-container max-w-screen-xl">
+          <Reveal>
+            <SectionHead eyebrow="Common questions" title="About the company." />
+          </Reveal>
+          <div style={{ maxWidth: 820, marginTop: "clamp(2rem,3vw,2.6rem)" }}>
+            <FaqAccordion items={ABOUT_FAQ_ITEMS} />
+          </div>
+        </div>
+      </section>
+
       <FinalCTAStrip
-        gender="women"
         title="Your protocol, built on your bloodwork."
-        sub="Start your intake and receive a physician-reviewed protocol built for your physiology. Quest Diagnostics labs included."
+        sub="Start your intake and receive a physician-reviewed protocol built for your physiology. CLIA-certified partner-laboratory panel included."
       />
 
       <style>{`
@@ -843,7 +927,9 @@ export default function About() {
           .about-leadership-grid { grid-template-columns: repeat(4, 1fr) !important; }
           .about-advisory-grid { grid-template-columns: repeat(5, 1fr) !important; }
         }
-        .about-contact-tile:hover { border-color: var(--nx-fg) !important; }
+        .about-contact-tile { transition: transform var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease); }
+        .about-contact-tile:hover { border-color: var(--nx-fg) !important; transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+        @media (prefers-reduced-motion: reduce) { .about-contact-tile { transition: none; } .about-contact-tile:hover { transform: none; } }
       `}</style>
     </SiteLayout>
   );

@@ -1,27 +1,36 @@
+/* JOB: route support, press, and consult requests to the right door. */
 import { useState } from "react";
+import { F } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo, webPageJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
 import { PillBadge } from "@/components/PillBadge";
+import { MessageSquare, Stethoscope, Newspaper, MapPin, Lock, ShieldCheck, Clock, type LucideIcon } from "lucide-react";
+import contactCareTeam from "@/assets/brand/contact-care-team.webp";
 
-const contactColumns = [
+const contactColumns: {
+  eyebrow: string; title: string; Icon: LucideIcon;
+  items: { label: string; value: string }[]; note: string;
+}[] = [
   {
     eyebrow: "PATIENT SUPPORT",
     title: "Clinical and order questions.",
+    Icon: MessageSquare,
     items: [
       { label: "EMAIL", value: "hello@nexphoria.com" },
       { label: "HOURS", value: "Mon–Fri, 9am–6pm ET" },
-      { label: "RESPONSE", value: "Within 24 hours on business days" },
+      { label: "RESPONSE", value: "On business days" },
     ],
     note: "For billing, shipping, order status, and portal access questions.",
   },
   {
     eyebrow: "MEDICAL QUESTIONS",
     title: "Physician portal messaging.",
+    Icon: Stethoscope,
     items: [
       { label: "CHANNEL", value: "Secure member portal" },
-      { label: "RESPONSE", value: "Physician within 48 hours" },
+      { label: "RESPONSE", value: "Reviewed by a physician" },
       { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
     ],
     note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal — not email — for clinical questions.",
@@ -29,6 +38,7 @@ const contactColumns = [
   {
     eyebrow: "PRESS & PARTNERSHIPS",
     title: "Media and business inquiries.",
+    Icon: Newspaper,
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
       { label: "MAILING ADDRESS", value: "Nexphoria Health, LLC\n800 Third Ave, Suite 1000\nNew York, NY 10022" },
@@ -52,42 +62,57 @@ const reasons = [
 export default function Contact() {
   useSeo({
     title: "Contact Nexphoria — physician questions, protocol support",
-    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message within 24 hours, Monday to Friday. Physician-guided support from a real team.",
+    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Physician-guided support from a real team.",
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
-      description: "Reach the Nexphoria team for questions about peptide therapy, protocols, or getting started. 24-hour response, Mon–Fri.",
+      description: "Reach the Nexphoria team for questions about peptide therapy, protocols, or getting started. Response on business days, Mon–Fri.",
       path: "/contact",
-    })],
+    }),
+    breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]),
+    ],
   });
   const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (form.name && form.email && form.message && form.reason !== reasons[0]) {
+      setError("");
+      /* No repo-side endpoint: the old handler faked "message received" while
+         sending nothing. We route through the visitor's own mail client so the
+         message actually reaches a person — and so nothing (including any
+         health details) is ever persisted in this repo. PHI-never-in-repo. */
+      const to =
+        form.reason === "Press or media" || form.reason === "Partnership or wholesale"
+          ? "press@nexphoria.com"
+          : "hello@nexphoria.com";
+      const body = [
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        form.phone ? `Phone: ${form.phone}` : null,
+        form.state ? `State: ${form.state}` : null,
+        `Reason: ${form.reason}`,
+        "",
+        form.message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+      window.location.href = `mailto:${to}?subject=${encodeURIComponent(
+        `[${form.reason}] ${form.name}`,
+      )}&body=${encodeURIComponent(body)}`;
       setSubmitted(true);
+    } else {
+      setError("Please complete your name, email, reason, and message before sending.");
     }
   };
 
-  const inputStyle: React.CSSProperties = {
-    fontFamily: "'General Sans', system-ui, sans-serif",
-    fontSize: "14px",
-    padding: "0.875rem 1.125rem",
-    border: "1px solid var(--nx-border)",
-    borderRadius: "4px",
-    backgroundColor: "#FFFFFF",
-    color: "var(--nx-fg)",
-    width: "100%",
-    outline: "none",
-    appearance: "none" as React.CSSProperties["appearance"],
-  };
-
   const labelStyle: React.CSSProperties = {
-    fontFamily: "'General Sans', system-ui, sans-serif",
-    fontSize: "9px",
+    fontFamily: F,
+    fontSize: "var(--nx-t-xs)",
     fontWeight: 700,
-    letterSpacing: "0.14em",
+    letterSpacing: "var(--nx-ls-caps)",
     textTransform: "uppercase" as const,
     color: "var(--nx-fg-muted)",
     display: "block",
@@ -102,7 +127,7 @@ export default function Contact() {
             badge={<PillBadge tone="acid">Get in touch</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Questions?</span><br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Questions?</span><br />
                 <span>We're listening.</span>
               </>
             }
@@ -111,11 +136,11 @@ export default function Contact() {
 
           <div className="mx-grid">
             <ColoredHeroTile
-              href="mailto:support@nexphoria.com"
+              href="mailto:hello@nexphoria.com"
               tone="sky"
               glyph={TileGlyphs.circle}
-              label={<>Patient support<br /><span>24/7 available</span></>}
-              caption="Average reply: 2hrs"
+              label={<>Patient support<br /><span>Mon–Fri, 9–6 ET</span></>}
+              caption="Replies on business days"
               ctaLabel="Message us"
             />
             <ColoredHeroTile
@@ -126,20 +151,33 @@ export default function Contact() {
               caption="Average reply: 2hrs"
               ctaLabel="Message us"
             />
+            {/* Booking's side-door entrance (ROADMAP 2.3): reachable from
+                contact + footer only — never from the primary nav. */}
+            <ColoredHeroTile
+              href="/booking"
+              tone="cobalt"
+              glyph={TileGlyphs.circle}
+              label={<>Prefer to talk first?<br /><span>schedule a consultation</span></>}
+              caption="Physician review decides every protocol"
+              ctaLabel="Book a consultation"
+            />
           </div>
         </div>
       </main>
 
+
       {/* ── Three support columns ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
           <div
+            role="list"
+            aria-label="Ways to reach us"
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: "1.5px",
               backgroundColor: "var(--nx-border)",
               border: "1.5px solid var(--nx-border)",
@@ -148,18 +186,23 @@ export default function Contact() {
             {contactColumns.map((col, i) => (
               <Reveal key={col.eyebrow} delay={i * 80}>
                 <div
+                  role="listitem"
                   style={{
-                    backgroundColor: "#FFFFFF",
-                    padding: "2.5rem 2rem",
+                    backgroundColor: "var(--nx-ceramic)",
+                    padding: "2.85rem 2.25rem",
                     height: "100%",
+                    borderTop: "2px solid var(--nx-cobalt)",
                   }}
                 >
+                  <span className="nx-icon-circle" aria-hidden style={{ marginBottom: "1.1rem" }}>
+                    <col.Icon size={20} strokeWidth={1.9} />
+                  </span>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "10px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-2xs)",
                       fontWeight: 700,
-                      letterSpacing: "0.16em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-cobalt)",
                       marginBottom: "0.875rem",
@@ -169,10 +212,9 @@ export default function Contact() {
                   </p>
                   <h2
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
+                      fontFamily: F,
                       fontWeight: 500,
-                      fontSize: "1.375rem",
+                      fontSize: "var(--nx-t-xl)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.2,
                       marginBottom: "1.5rem",
@@ -194,10 +236,10 @@ export default function Contact() {
                       <li key={item.label}>
                         <p
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "8px",
+                            fontFamily: F,
+                            fontSize: "var(--nx-t-xs)",
                             fontWeight: 700,
-                            letterSpacing: "0.14em",
+                            letterSpacing: "var(--nx-ls-caps)",
                             textTransform: "uppercase",
                             color: "var(--nx-fg-muted)",
                             marginBottom: "2px",
@@ -207,8 +249,8 @@ export default function Contact() {
                         </p>
                         <p
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "14px",
+                            fontFamily: F,
+                            fontSize: "var(--nx-t-sm)",
                             fontWeight: 500,
                             color: "var(--nx-fg)",
                             lineHeight: 1.5,
@@ -222,8 +264,8 @@ export default function Contact() {
                   </ul>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-muted)",
                       lineHeight: 1.5,
                     }}
@@ -237,47 +279,86 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── Coverage strip ── */}
+      {/* ── Coverage strip — location visual + coverage stats ── */}
       <section
-        className="py-10 md:py-12"
+        className="py-[var(--nx-sp-sec)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
-          <Reveal>
-            <div
-              style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", alignItems: "center", justifyContent: "space-between" }}
-            >
-              <div>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.5rem" }}>
-                  NYC HEADQUARTERS · 50-STATE COVERAGE
-                </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif",  fontWeight: 500, fontSize: "1.375rem", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.5rem" }}>
-                  Nexphoria Health, LLC
-                </p>
-                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "14px", color: "#4A4A4A", lineHeight: 1.6 }}>
-                  800 Third Ave, Suite 1000 · New York, NY 10022
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.4rem,3vw,2.4rem)", alignItems: "stretch" }}>
+            {/* Stylized location panel — a dot-grid "map" field with a pinned HQ */}
+            <Reveal>
+              <div
+                data-testid="contact-location"
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: "var(--nx-r-lg)",
+                  border: "1px solid var(--nx-border)",
+                  background:
+                    "radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--nx-cobalt) 14%, transparent) 0%, transparent 55%), var(--nx-cobalt-soft)",
+                  padding: "var(--nx-sp-tight)",
+                  minHeight: 220,
+                }}
+              >
+                {/* dot-grid map texture */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage:
+                      "radial-gradient(color-mix(in srgb, var(--nx-cobalt) 26%, transparent) 1.2px, transparent 1.2px)",
+                    backgroundSize: "22px 22px",
+                    maskImage: "linear-gradient(120deg, transparent, #000 60%)",
+                    WebkitMaskImage: "linear-gradient(120deg, transparent, #000 60%)",
+                    opacity: 0.7,
+                  }}
+                />
+                {/* pinned HQ marker — desktop only; at 390px the pin sat on
+                    top of the headline. display lives in classes so the
+                    sm:hidden actually wins. */}
+                <div aria-hidden className="hidden sm:flex" style={{ position: "absolute", right: "18%", top: "26%", flexDirection: "column", alignItems: "center" }}>
+                  <span className="nx-icon-circle" style={{ boxShadow: "var(--nx-e-3)" }}>
+                    <MapPin size={20} strokeWidth={2} />
+                  </span>
+                  <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-cobalt)", marginTop: 8 }} />
+                </div>
+                <div style={{ position: "relative" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
+                    NYC Headquarters · 50-state coverage
+                  </p>
+                  <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
+                    Nexphoria Health, LLC
+                  </p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: "24ch" }}>
+                    800 Third Ave, Suite 1000 · New York, NY 10022
+                  </p>
+                </div>
               </div>
-              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+            </Reveal>
+            {/* Coverage stats */}
+            <Reveal delay={80}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1" style={{ gap: 12, height: "100%" }}>
                 {[
                   { label: "States Covered", value: "50" },
-                  { label: "Response Time", value: "24 hrs" },
+                  { label: "Human Review", value: "Every message" },
                   { label: "Physician Availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
-                  <div key={label} style={{ textAlign: "center" }}>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "2rem", fontWeight: 500, color: "var(--nx-fg)", lineHeight: 1 }}>{value}</p>
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "4px" }}>{label}</p>
+                  <div key={label} className="nx-stat-card" style={{ justifyContent: "center" }}>
+                    <span className="nx-stat-num" style={{ fontSize: "var(--nx-t-h3)" }}>{value}</span>
+                    <span className="nx-stat-lbl">{label}</span>
                   </div>
                 ))}
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* ── Contact form ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -295,10 +376,10 @@ export default function Contact() {
               <div>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "11px",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.18em",
+                    letterSpacing: "var(--nx-ls-wide)",
                     textTransform: "uppercase",
                     color: "var(--nx-cobalt)",
                     marginBottom: "1rem",
@@ -312,16 +393,40 @@ export default function Contact() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    
+                    fontFamily: F,
                     fontWeight: 500,
-                    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                    fontSize: "var(--nx-t-h3)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
                   }}
                 >
                   We read every message.
                 </h2>
+                {/* Trust signals near the form */}
+                <ul style={{ listStyle: "none", padding: 0, margin: "1.75rem 0 0", display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+                  {[
+                    { Icon: Lock, t: "Encrypted in transit and at rest" },
+                    { Icon: ShieldCheck, t: "HIPAA-aware handling of your details" },
+                    { Icon: Clock, t: "Replies on business days, Mon–Fri ET" },
+                  ].map(({ Icon, t }) => (
+                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 11 }}>
+                      <span className="nx-icon-circle" aria-hidden style={{ width: 34, height: 34 }}><Icon size={16} strokeWidth={1.9} /></span>
+                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.4 }}>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+                {/* A person answers — the care team, not a queue */}
+                <div style={{ marginTop: "1.75rem", borderRadius: "var(--nx-r-md)", overflow: "hidden", border: "1px solid var(--nx-border)", aspectRatio: "3 / 2" }}>
+                  <img
+                    src={contactCareTeam}
+                    alt="A care coordinator with a headset smiles mid-conversation at a warm wood desk"
+                    loading="lazy"
+                    decoding="async"
+                    width={1600}
+                    height={1063}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                </div>
               </div>
             </Reveal>
 
@@ -329,50 +434,53 @@ export default function Contact() {
             <Reveal delay={80}>
               {submitted ? (
                 <div
+                  role="status"
+                  aria-live="polite"
                   style={{
                     padding: "2.5rem",
                     border: "1px solid var(--nx-border)",
-                    borderRadius: "4px",
+                    borderRadius: "var(--nx-r-sm)",
                     backgroundColor: "var(--nx-bg-cream)",
                   }}
                 >
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "9px",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
-                      letterSpacing: "0.16em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       color: "var(--nx-cobalt)",
                       marginBottom: "0.75rem",
                     }}
                   >
-                    MESSAGE RECEIVED
+                    ONE MORE STEP
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      
+                      fontFamily: F,
                       fontWeight: 500,
-                      fontSize: "1.5rem",
+                      fontSize: "var(--nx-t-h3)",
                       color: "var(--nx-fg)",
                       marginBottom: "0.625rem",
                     }}
                   >
-                    We're on it.
+                    Check your email app.
                   </p>
                   <p
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "14px",
-                      color: "#4A4A4A",
+                      fontFamily: F,
+                      fontSize: "var(--nx-t-sm)",
+                      color: "var(--nx-fg-graphite)",
                       lineHeight: 1.65,
                     }}
                   >
-                    We'll respond within 24 hours on business days (Monday through Friday ET). Clinical questions are routed to a physician within 48 hours.
+                    We've opened a pre-filled message to our team — just press send. We reply on business days
+                    (Monday through Friday ET). If your mail app didn't open, email us directly at{" "}
+                    <a href="mailto:hello@nexphoria.com" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>hello@nexphoria.com</a>.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "#8B5A2B", marginTop: "1rem" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
                       Note: For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}
@@ -381,7 +489,17 @@ export default function Contact() {
                 <form
                   data-testid="contact-form"
                   onSubmit={handleSubmit}
-                  style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1.5rem",
+                    padding: "clamp(1.6rem, 3vw, 2.4rem)",
+                    borderRadius: "var(--nx-r-lg)",
+                    border: "1px solid var(--nx-border)",
+                    borderTop: "2px solid var(--nx-cobalt)",
+                    backgroundColor: "var(--nx-ceramic)",
+                    boxShadow: "var(--nx-e-2)",
+                  }}
                 >
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                     <div>
@@ -392,7 +510,10 @@ export default function Contact() {
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         required
-                        style={inputStyle}
+                        aria-required="true"
+                        aria-invalid={error && !form.name ? true : undefined}
+                        aria-describedby="contact-form-error"
+                        className="nx-input"
                         data-testid="contact-name-input"
                       />
                     </div>
@@ -404,7 +525,10 @@ export default function Contact() {
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         required
-                        style={inputStyle}
+                        aria-required="true"
+                        aria-invalid={error && !form.email ? true : undefined}
+                        aria-describedby="contact-form-error"
+                        className="nx-input"
                         data-testid="contact-email-input"
                       />
                     </div>
@@ -418,7 +542,7 @@ export default function Contact() {
                         type="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        style={inputStyle}
+                        className="nx-input"
                       />
                     </div>
                     <div>
@@ -429,7 +553,7 @@ export default function Contact() {
                         value={form.state}
                         onChange={(e) => setForm({ ...form, state: e.target.value })}
                         placeholder="e.g. NY"
-                        style={inputStyle}
+                        className="nx-input"
                       />
                     </div>
                   </div>
@@ -441,7 +565,10 @@ export default function Contact() {
                       value={form.reason}
                       onChange={(e) => setForm({ ...form, reason: e.target.value })}
                       required
-                      style={{ ...inputStyle, cursor: "pointer" }}
+                      aria-required="true"
+                      aria-invalid={error && (!form.reason || form.reason === reasons[0]) ? true : undefined}
+                      aria-describedby="contact-form-error"
+                      className="nx-input" style={{ cursor: "pointer" }}
                       data-testid="contact-subject-select"
                     >
                       {reasons.map((r) => (
@@ -459,35 +586,47 @@ export default function Contact() {
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       required
+                      aria-required="true"
+                      aria-invalid={error && !form.message ? true : undefined}
+                      aria-describedby="contact-form-error"
                       rows={5}
-                      style={{ ...inputStyle, resize: "none" }}
+                      className="nx-input" style={{ resize: "none" }}
                       data-testid="contact-message-input"
                     />
+                  </div>
+
+                  {/* Screen-reader + visual validation feedback */}
+                  <div id="contact-form-error" aria-live="polite" role="alert" data-testid="contact-form-error">
+                    {error && (
+                      <p
+                        style={{
+                          fontFamily: F,
+                          fontSize: "var(--nx-t-sm)",
+                          color: "var(--nx-danger)",
+                          margin: 0,
+                        }}
+                      >
+                        {error}
+                      </p>
+                    )}
                   </div>
 
                   <button
                     type="submit"
                     data-testid="contact-submit-button"
+                    className="nx-cta-cobalt"
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
                       justifyContent: "center",
-                      gap: "0.5rem",
-                      backgroundColor: "var(--nx-cobalt)",
-                      color: "#FFFFFF",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "12px",
+                      color: "var(--nx-ceramic)",
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 700,
-                      letterSpacing: "0.1em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       padding: "0.875rem 2rem",
-                      borderRadius: "100px",
-                      border: "none",
-                      cursor: "pointer",
                       alignSelf: "flex-start",
                     }}
                   >
-                    SEND MESSAGE →
+                    SEND MESSAGE <span aria-hidden="true">→</span>
                   </button>
                 </form>
               )}

@@ -1,8 +1,9 @@
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
+import { FONT } from "@/lib/typography";
 
 /* ──────────────────────────────────────────────────────────────
-   BenefitTile — Maximus-style square tile
+   BenefitTile — reference-grade square tile
    Small, square, benefit-first. No decoration. Copy leads.
 
    Use in tight grids (2/3/4 col) across category grids,
@@ -10,51 +11,49 @@ import { ArrowUpRight } from "lucide-react";
    destination — the whole tile is clickable when `href` is set.
    ────────────────────────────────────────────────────────────── */
 
-const FONT = "'General Sans', system-ui, sans-serif";
-const MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, monospace";
 
 export type TileTone = "dark" | "cream" | "white" | "cobalt" | "ember";
 
 const TONES: Record<TileTone, { bg: string; fg: string; eyebrow: string; sub: string; border: string; hover: string }> = {
   dark: {
-    bg: "#0A0A0A",
-    fg: "#FAF7F0",
-    eyebrow: "#E28A3D",
-    sub: "rgba(250,247,240,0.62)",
-    border: "rgba(226,138,61,0.22)",
+    bg: "var(--nx-fg)",
+    fg: "var(--nx-bg)",
+    eyebrow: "var(--nx-accent)",
+    sub: "rgba(243, 245, 247,0.62)",
+    border: "rgba(102, 143, 185,0.22)",
     hover: "#141311",
   },
   cream: {
     bg: "var(--nx-bg-cream)",
-    fg: "#0A0A0A",
-    eyebrow: "#8B5A2B",
-    sub: "#4A4A4A",
+    fg: "var(--nx-fg)",
+    eyebrow: "var(--nx-amber)",
+    sub: "var(--nx-fg-graphite)",
     border: "var(--nx-border)",
-    hover: "#F0E9D8",
+    hover: "var(--nx-cobalt-soft)",
   },
   white: {
-    bg: "#fff",
-    fg: "#0A0A0A",
-    eyebrow: "#8B5A2B",
-    sub: "#4A4A4A",
+    bg: "var(--nx-bg)",
+    fg: "var(--nx-fg)",
+    eyebrow: "var(--nx-amber)",
+    sub: "var(--nx-fg-graphite)",
     border: "var(--nx-border)",
-    hover: "#FBF5EA",
+    hover: "var(--nx-bg)",
   },
   cobalt: {
-    bg: "linear-gradient(160deg, #0A1730 0%, #142344 65%, #1A2D57 100%)",
-    fg: "#F5F0E4",
+    bg: "linear-gradient(160deg, var(--nx-bg-dark) 0%, #18222E 65%, var(--nx-fg) 100%)",
+    fg: "var(--nx-bg)",
     eyebrow: "#5591C7",
-    sub: "rgba(245,240,228,0.68)",
-    border: "rgba(85,145,199,0.28)",
+    sub: "rgba(232, 237, 241,0.68)",
+    border: "rgba(114, 142, 171,0.28)",
     hover: "#0F1D3A",
   },
   ember: {
-    bg: "linear-gradient(180deg, #141311 0%, #1A1815 100%)",
-    fg: "#F5F0E4",
-    eyebrow: "#E28A3D",
-    sub: "rgba(245,240,228,0.62)",
-    border: "rgba(226,138,61,0.28)",
-    hover: "#1E1B18",
+    bg: "linear-gradient(180deg, #141311 0%, var(--nx-bg-dark) 100%)",
+    fg: "var(--nx-bg)",
+    eyebrow: "var(--nx-accent)",
+    sub: "rgba(232, 237, 241,0.62)",
+    border: "rgba(102, 143, 185,0.28)",
+    hover: "#181B1E",
   },
 };
 
@@ -77,7 +76,9 @@ interface BenefitTileProps {
   cta?: string;
   /** Visual tone. */
   tone?: TileTone;
-  /** Aspect ratio — 1 = square (default), 4/5 = portrait, 5/4 = landscape. */
+  /** Aspect ratio — 1 = square, 4/5 = portrait, 5/4 = landscape.
+   *  Default: 1 for image/metric tiles; 4/3 for text-only tiles, whose
+   *  short copy leaves a square mostly air. */
   aspect?: number;
   /** Test id. */
   testId?: string;
@@ -95,23 +96,26 @@ export function BenefitTile({
   href,
   cta,
   tone = "cream",
-  aspect = 1,
+  aspect,
   testId,
   image,
 }: BenefitTileProps) {
   const t = TONES[tone];
   const isDark = tone === "dark" || tone === "cobalt" || tone === "ember";
   const hasImage = !!image;
+  const resolvedAspect = aspect ?? (hasImage || metric ? 1 : 4 / 3);
 
   const Inner = (
     <div
       className="benefit-tile group relative flex flex-col h-full w-full p-5 md:p-6 overflow-hidden transition-all duration-300"
       style={{
-        background: hasImage ? "#0A0A0A" : t.bg,
+        background: hasImage ? "var(--nx-fg)" : t.bg,
         color: t.fg,
         border: `1px solid ${t.border}`,
-        borderRadius: 10,
-        aspectRatio: aspect,
+        borderRadius: "var(--nx-r-sm)",
+        // Aspect is enforced by .benefit-tile only at sm+ — a hard square on
+        // 2-up 390px grids (~165px tiles) clipped headline + sub mid-word.
+        ["--bt-aspect" as string]: String(resolvedAspect),
       }}
       data-testid={testId}
     >
@@ -131,7 +135,7 @@ export function BenefitTile({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(10,10,10,0.05) 0%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.92) 100%)",
+                "linear-gradient(180deg, rgba(21, 24, 28,0.05) 0%, rgba(21, 24, 28,0.55) 60%, rgba(21, 24, 28,0.92) 100%)",
             }}
             aria-hidden="true"
           />
@@ -146,10 +150,10 @@ export function BenefitTile({
             style={{
               width: 32,
               height: 32,
-              background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(139,90,43,0.10)",
-              color: isDark || hasImage ? t.eyebrow : "#8B5A2B",
-              borderRadius: 6,
-              border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(139,90,43,0.18)"}`,
+              background: isDark || hasImage ? "rgba(255,255,255,0.08)" : "rgba(67, 91, 115,0.10)",
+              color: isDark || hasImage ? t.eyebrow : "var(--nx-amber)",
+              borderRadius: "var(--nx-r-xs)",
+              border: `1px solid ${isDark || hasImage ? "rgba(255,255,255,0.10)" : "rgba(67, 91, 115,0.18)"}`,
               flexShrink: 0,
             }}
           >
@@ -160,11 +164,11 @@ export function BenefitTile({
         )}
         {eyebrow ? (
           <span
-            className="text-[9px] uppercase"
+            className="text-[11px] uppercase"
             style={{
-              fontFamily: MONO,
-              color: hasImage ? "#E28A3D" : t.eyebrow,
-              letterSpacing: "0.18em",
+              fontFamily: FONT,
+              color: hasImage ? "var(--nx-accent)" : t.eyebrow,
+              letterSpacing: "var(--nx-ls-wide)",
               fontWeight: 600,
             }}
           >
@@ -187,15 +191,15 @@ export function BenefitTile({
                     : "clamp(2.25rem, 4vw, 3.25rem)",
                 fontWeight: 700,
                 letterSpacing: "-0.03em",
-                color: hasImage ? "#FAF7F0" : t.fg,
+                color: hasImage ? "var(--nx-bg)" : t.fg,
               }}
             >
               {metric}
             </span>
             {metricUnit ? (
               <span
-                className="text-[11px] md:text-xs uppercase tracking-[0.14em]"
-                style={{ fontFamily: MONO, color: hasImage ? "#E28A3D" : t.eyebrow, fontWeight: 600 }}
+                className="text-[11px] md:text-xs uppercase tracking-[var(--nx-ls-caps)]"
+                style={{ fontFamily: FONT, color: hasImage ? "var(--nx-accent)" : t.eyebrow, fontWeight: 600 }}
               >
                 {metricUnit}
               </span>
@@ -210,7 +214,7 @@ export function BenefitTile({
             fontSize: metric ? "0.9375rem" : "clamp(1.125rem, 1.6vw, 1.375rem)",
             fontWeight: metric ? 500 : 600,
             letterSpacing: "-0.015em",
-            color: hasImage ? "#FAF7F0" : t.fg,
+            color: hasImage ? "var(--nx-bg)" : t.fg,
           }}
         >
           {headline}
@@ -221,8 +225,8 @@ export function BenefitTile({
             className="leading-relaxed"
             style={{
               fontFamily: FONT,
-              fontSize: "0.8125rem",
-              color: hasImage ? "rgba(250,247,240,0.75)" : t.sub,
+              fontSize: "var(--nx-t-sm)",
+              color: hasImage ? "rgba(243, 245, 247,0.75)" : t.sub,
               lineHeight: 1.5,
             }}
           >
@@ -238,11 +242,11 @@ export function BenefitTile({
           style={{ borderTop: `1px solid ${hasImage ? "rgba(255,255,255,0.14)" : t.border}` }}
         >
           <span
-            className="text-[10px] uppercase"
+            className="text-[11px] uppercase"
             style={{
-              fontFamily: MONO,
-              color: hasImage ? "rgba(250,247,240,0.85)" : t.sub,
-              letterSpacing: "0.15em",
+              fontFamily: FONT,
+              color: hasImage ? "rgba(243, 245, 247,0.85)" : t.sub,
+              letterSpacing: "var(--nx-ls-caps)",
               fontWeight: 600,
             }}
           >
@@ -250,7 +254,8 @@ export function BenefitTile({
           </span>
           <ArrowUpRight
             size={16}
-            style={{ color: hasImage ? "#E28A3D" : t.eyebrow }}
+            aria-hidden="true"
+            style={{ color: hasImage ? "var(--nx-accent)" : t.eyebrow }}
             className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
           />
         </div>
@@ -273,7 +278,7 @@ export function BenefitTile({
 }
 
 /* ──────────────────────────────────────────────────────────────
-   BenefitTileGrid — helper wrapper enforcing the Maximus grid.
+   BenefitTileGrid — helper wrapper enforcing the reference grid.
    Renders a 2/3/4 responsive column grid with tight gaps.
    ────────────────────────────────────────────────────────────── */
 

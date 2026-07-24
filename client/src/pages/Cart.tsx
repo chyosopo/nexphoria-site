@@ -1,14 +1,18 @@
+/* JOB: confirm the selection and move to checkout; no competing noise. */
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { Reveal } from "@/components/Reveal";
+import { useSeo } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
-import { CADENCE_DISCOUNTS, pricing, type CadenceKey } from "@/data/pricing";
-
-const FONT = "'General Sans', system-ui, sans-serif";
+import { CADENCE_DISCOUNTS, pricing, billingNote, type CadenceKey } from "@/data/pricing";
+import { FONT } from "@/lib/typography";
+import { PrescribedPromise } from "@/components/PrescribedPromise";
 
 export default function Cart() {
+  useSeo({ title: "Your cart — Nexphoria", description: "Review your selected protocols before physician intake." });
   const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
 
   // Cart is a private transactional page — noindex to keep crawl budget on content pages
@@ -29,27 +33,29 @@ export default function Cart() {
   return (
     <SiteLayout variant="gate">
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
-        <div className="nx-container py-12 md:py-16">
+        {/* trimmed top padding — the nav offset + section padding stacked
+            ~210px of empty porcelain above "Review your cart" */}
+        <div className="nx-container nx-section-y" style={{ paddingTop: "1.25rem" }}>
           {/* Header */}
           <div className="mb-10">
             <div
-              className="text-[11px] uppercase tracking-[0.22em] mb-3"
-              style={{ fontFamily: FONT, color: "#8B5A2B" }}
+              className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3"
+              style={{ fontFamily: FONT, color: "var(--nx-amber)" }}
             >
-              Your Cart
+              Your Protocol
             </div>
             <h1
               className="text-4xl md:text-5xl"
-              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.02em" }}
             >
               Review your cart
             </h1>
             <p
               className="mt-3 text-base max-w-xl"
-              style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.6 }}
+              style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}
             >
               {itemCount === 0
-                ? "Your cart is empty. Add single peptides or a curated stack to begin."
+                ? "Your protocol is empty. Add single peptides or a curated stack to begin."
                 : "Confirm your selections, then continue to checkout for physician review and shipping."}
             </p>
           </div>
@@ -59,10 +65,11 @@ export default function Cart() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 lg:gap-16 items-start">
               {/* Lines */}
+              <Reveal>
               <section>
                 <div
-                  className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
-                  style={{ fontFamily: FONT, color: "#6B6B6B", borderBottom: "1px solid var(--nx-border)" }}
+                  className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4 pb-3"
+                  style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}
                 >
                   Items · {itemCount}
                 </div>
@@ -74,13 +81,13 @@ export default function Cart() {
                         key={`${line.type}-${line.slug}`}
                         style={{
                           border: "1px solid var(--nx-border)",
-                          borderRadius: 16,
-                          background: "#fff",
+                          borderRadius: "var(--nx-r-md)",
+                          background: "var(--nx-ceramic)",
                           overflow: "hidden",
                         }}
                         data-testid={`cart-page-line-${line.type}-${line.slug}`}
                       >
-                        <div className="flex items-start gap-5 p-5 md:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-start gap-5 p-5 md:p-6">
                           {/* Vial visual */}
                           <div
                             className="hidden sm:flex flex-shrink-0 items-center justify-center"
@@ -89,7 +96,7 @@ export default function Cart() {
                               height: 110,
                               background: "var(--nx-bg-cream)",
                               border: "1px solid var(--nx-border)",
-                              borderRadius: 12,
+                              borderRadius: "var(--nx-r-md)",
                             }}
                           >
                             <VialGlyph label={line.type === "stack" ? "STACK" : glyphLetter(line.name)} />
@@ -97,36 +104,39 @@ export default function Cart() {
 
                           <div className="flex-1 min-w-0">
                             <div
-                              className="text-[10px] uppercase tracking-[0.2em] mb-1.5"
-                              style={{ fontFamily: FONT, color: line.type === "stack" ? "#8B5A2B" : "#6B6B6B" }}
+                              className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
+                              style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}
                             >
                               {line.type === "stack" ? "Curated Stack" : "Single Peptide"}
                             </div>
                             <h3
                               className="text-lg md:text-xl mb-1"
-                              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600, letterSpacing: "-0.01em" }}
+                              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}
                             >
                               {line.name}
                             </h3>
 
                             {/* Dose + protocol */}
                             {spec ? (
-                              <p className="text-[13px] mb-2" style={{ fontFamily: FONT, color: "#4A4A4A", lineHeight: 1.5 }}>
+                              <p className="text-[13.5px] mb-2" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
                                 {spec.vialSpec}
-                                <span style={{ color: "#8A8A8A" }}> · {spec.vialDuration}</span>
+                                <span style={{ color: "var(--nx-fg-muted)" }}> · {spec.vialDuration}</span>
                               </p>
                             ) : line.type === "stack" ? (
                               <StackContents slug={line.slug} />
                             ) : null}
 
-                            <p className="text-sm" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
-                              <span style={{ color: "#0A0A0A", fontWeight: 500 }}>{formatUSD(line.unitPrice)}</span>
-                              <span className="text-xs" style={{ color: "#6B6B6B" }}> / month supply</span>
+                            <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                              <span style={{ color: "var(--nx-fg)", fontWeight: 500 }}>{formatUSD(line.unitPrice)}</span>
+                              <span className="text-xs" style={{ color: "var(--nx-fg-graphite)" }}> / month supply</span>
+                            </p>
+                            <p className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
+                              {billingNote(line.cadence, line.unitPrice)}
                             </p>
 
                             {/* Chips */}
                             <div className="flex flex-wrap items-center gap-2 mt-3">
-                              <Chip icon={<Stethoscope size={11} />}>Physician review included</Chip>
+                              <Chip icon={<Stethoscope size={11} aria-hidden="true" />}>Physician review included</Chip>
                               {line.savings && line.savings > 0 ? (
                                 <Chip tone="amber">
                                   Save {formatUSD(line.savings)} · {line.cadenceLabel}
@@ -137,14 +147,14 @@ export default function Cart() {
                             {/* Cadence picker */}
                             <div className="mt-4">
                               <div
-                                className="text-[9px] uppercase tracking-[0.2em] mb-1.5"
-                                style={{ fontFamily: FONT, color: "#6B6B6B" }}
+                                className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
+                                style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
                               >
                                 Billing cadence
                               </div>
                               <div
-                                className="inline-flex"
-                                style={{ border: "1px solid var(--nx-border)", borderRadius: 999, overflow: "hidden" }}
+                                className="flex w-full max-w-[360px]"
+                                style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", overflow: "hidden" }}
                                 role="radiogroup"
                                 aria-label="Billing cadence"
                               >
@@ -158,11 +168,12 @@ export default function Cart() {
                                       role="radio"
                                       aria-checked={active}
                                       onClick={() => updateCadence(line.slug, line.type, c)}
-                                      className="px-3.5 py-1.5 text-[10px] uppercase tracking-[0.12em] transition-colors"
+                                      className="flex-1 inline-flex items-center justify-center px-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-colors"
                                       style={{
                                         fontFamily: FONT,
-                                        background: active ? "#0A0A0A" : "transparent",
-                                        color: active ? "#FAF7F0" : "#0A0A0A",
+                                        minHeight: 44,
+                                        background: active ? "var(--nx-fg)" : "transparent",
+                                        color: active ? "var(--nx-bg)" : "var(--nx-fg)",
                                         borderRight: c === "12mo" ? "none" : "1px solid var(--nx-border)",
                                       }}
                                       data-testid={`button-cadence-page-${c}-${line.type}-${line.slug}`}
@@ -170,8 +181,8 @@ export default function Cart() {
                                       <span>{meta.label}</span>
                                       {meta.savePct > 0 ? (
                                         <span
-                                          className="ml-1.5 text-[9px]"
-                                          style={{ color: active ? "#FAF7F0" : "#8B5A2B", opacity: active ? 0.85 : 1 }}
+                                          className="ml-1.5 text-[11px]"
+                                          style={{ color: active ? "var(--nx-bg)" : "var(--nx-amber)", opacity: active ? 0.85 : 1 }}
                                         >
                                           −{meta.savePct}%
                                         </span>
@@ -183,27 +194,34 @@ export default function Cart() {
                             </div>
                           </div>
 
-                          <div className="text-right flex-shrink-0">
+                          {/* Price + qty + remove: inline row under the content on
+                              mobile, right-aligned column beside it on sm+ — the
+                              side-by-side squeeze is what clipped the cadence
+                              control and shrank every tap target at 390px. */}
+                          <div className="flex-shrink-0 flex items-center justify-between gap-4 sm:block sm:text-right">
                             <div
-                              className="text-xl mb-3"
-                              style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}
+                              className="text-xl sm:mb-3"
+                              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}
                               data-testid={`text-line-total-${line.type}-${line.slug}`}
                             >
                               {formatUSD(line.lineTotal)}
                             </div>
+                            <div className="flex items-center gap-3 sm:block">
                             {/* Qty */}
                             <div
                               className="inline-flex items-center"
-                              style={{ border: "1px solid var(--nx-border)", borderRadius: 999, overflow: "hidden" }}
+                              style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", overflow: "hidden" }}
                             >
                               <button
                                 onClick={() => updateQty(line.slug, line.type, line.qty - 1)}
-                                className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
+                                disabled={line.qty <= 1}
+                                className="inline-flex items-center justify-center px-3 hover:bg-black/5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent"
                                 aria-label="Decrease quantity"
+                                title={line.qty <= 1 ? "Use Remove to delete this item" : undefined}
                                 data-testid={`button-qty-decrease-page-${line.type}-${line.slug}`}
-                                style={{ color: "#0A0A0A" }}
+                                style={{ color: "var(--nx-fg)", minHeight: 44, minWidth: 40 }}
                               >
-                                <Minus size={12} />
+                                <Minus size={13} />
                               </button>
                               <span
                                 className="px-3 text-sm min-w-[28px] text-center"
@@ -214,23 +232,24 @@ export default function Cart() {
                               </span>
                               <button
                                 onClick={() => updateQty(line.slug, line.type, line.qty + 1)}
-                                className="px-2.5 py-1.5 hover:bg-black/5 transition-colors"
+                                className="inline-flex items-center justify-center px-3 hover:bg-black/5 transition-colors"
                                 aria-label="Increase quantity"
                                 data-testid={`button-qty-increase-page-${line.type}-${line.slug}`}
-                                style={{ color: "#0A0A0A" }}
+                                style={{ color: "var(--nx-fg)", minHeight: 44, minWidth: 40 }}
                               >
-                                <Plus size={12} />
+                                <Plus size={13} />
                               </button>
                             </div>
-                            <div className="mt-2">
+                            <div className="sm:mt-1">
                               <button
                                 onClick={() => removeItem(line.slug, line.type)}
                                 className="text-xs inline-flex items-center gap-1 hover:underline"
-                                style={{ fontFamily: FONT, color: "#8B5A2B" }}
+                                style={{ fontFamily: FONT, color: "var(--nx-amber)", minHeight: 44, padding: "0 4px" }}
                                 data-testid={`button-remove-page-${line.type}-${line.slug}`}
                               >
-                                <Trash2 size={11} /> Remove
+                                <Trash2 size={11} aria-hidden="true" /> Remove
                               </button>
+                            </div>
                             </div>
                           </div>
                         </div>
@@ -243,7 +262,7 @@ export default function Cart() {
                   <Link asChild href="/stacks">
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
-                      style={{ fontFamily: FONT, color: "#0A0A0A", border: "1px solid var(--nx-border)", borderRadius: 999 }}
+                      style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }}
                       data-testid="link-continue-stacks"
                     >
                       Browse more stacks
@@ -252,7 +271,7 @@ export default function Cart() {
                   <Link asChild href="/peptides">
                     <a
                       className="text-sm px-5 py-2.5 inline-flex items-center gap-1.5 hover:bg-black/5 transition-colors"
-                      style={{ fontFamily: FONT, color: "#0A0A0A", border: "1px solid var(--nx-border)", borderRadius: 999 }}
+                      style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }}
                       data-testid="link-continue-peptides"
                     >
                       Add single peptides
@@ -262,30 +281,30 @@ export default function Cart() {
 
                 {/* Add-on suggestions */}
                 <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                  <p className="text-[10px] uppercase tracking-[0.2em] mb-4" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                  <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                     Recommended add-ons
                   </p>
                   <div className="space-y-3">
-                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
+                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "#8B5A2B" }}>Lab Testing Add-On</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "#0A0A0A" }}>Quest Diagnostics 38-Biomarker Panel</p>
-                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "#6B6B6B" }}>Required before your first prescription. Included with most protocols.</p>
+                        <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
+                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>99-Biomarker Partner-Laboratory Panel</p>
+                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
                       <Link asChild href="/lab-testing">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#0A0A0A", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-labs">
+                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-labs">
                           See panel details
                         </a>
                       </Link>
                     </div>
-                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 12 }}>
+                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[0.12em] mb-0.5" style={{ fontFamily: FONT, color: "#8B5A2B" }}>Recovery Support</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "#0A0A0A" }}>BPC-157 — Tissue Repair Adjunct</p>
-                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "#6B6B6B" }}>Commonly paired with performance and metabolic protocols.</p>
+                        <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Recovery Support</p>
+                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>BPC-157 — Tissue Repair Adjunct</p>
+                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Commonly paired with performance and metabolic protocols.</p>
                       </div>
                       <Link asChild href="/stacks">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "#0A0A0A", border: "1px solid var(--nx-border)", borderRadius: 999, whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
+                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
                           View stack
                         </a>
                       </Link>
@@ -293,15 +312,17 @@ export default function Cart() {
                   </div>
                 </div>
               </section>
+              </Reveal>
 
               {/* Summary */}
               <aside
                 className="lg:sticky lg:top-24 p-7"
-                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: 20 }}
+                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)" }}
               >
+                <Reveal delay={80}>
                 <div
-                  className="text-[10px] uppercase tracking-[0.2em] mb-4 pb-3"
-                  style={{ fontFamily: FONT, color: "#8B5A2B", borderBottom: "1px solid var(--nx-border)" }}
+                  className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4 pb-3"
+                  style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
                 >
                   Order summary
                 </div>
@@ -315,41 +336,42 @@ export default function Cart() {
                   className="flex items-baseline justify-between mt-5 pt-5"
                   style={{ borderTop: "1px solid var(--nx-border)" }}
                 >
-                  <span className="text-sm uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#0A0A0A" }}>
+                  <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
                     Subtotal
                   </span>
                   <span
                     className="text-3xl"
-                    style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}
+                    style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}
                     data-testid="text-cart-page-subtotal"
                   >
                     {formatUSD(subtotal)}
                   </span>
                 </div>
-                <p className="text-[11px] mt-2 mb-5 leading-relaxed" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                <p className="text-[11px] mt-2 leading-relaxed" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                   Final pricing confirmed after intake review.
                 </p>
+                <PrescribedPromise testid="cart-promise" style={{ marginTop: "0.5rem", marginBottom: "1.25rem" }} />
 
                 {/* Included list */}
                 <div
                   className="mb-5 p-4"
-                  style={{ background: "#fff", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+                  style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                 >
-                  <p className="text-[9px] uppercase tracking-[0.2em] mb-3" style={{ fontFamily: FONT, color: "#6B6B6B" }}>
+                  <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                     Included at no extra cost
                   </p>
                   <div className="space-y-2.5">
                     {[
-                      { icon: <Stethoscope size={13} />, text: "Physician review + follow-ups" },
-                      { icon: <Truck size={13} />, text: "Cold-chain overnight shipping" },
-                      { icon: <RefreshCw size={13} />, text: "Quarterly lab re-evaluation" },
+                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Physician review + follow-ups" },
+                      { icon: <Truck size={13} aria-hidden="true" />, text: "Cold-chain overnight shipping" },
+                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Quarterly lab re-evaluation" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
-                        <span className="flex items-center gap-2 text-[12px]" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
-                          <span style={{ color: "#8B5A2B" }}>{icon}</span>
+                        <span className="flex items-center gap-2 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                          <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
                           {text}
                         </span>
-                        <span className="text-[10px] uppercase tracking-[0.12em]" style={{ fontFamily: FONT, color: "#1D6F42" }}>
+                        <span className="text-[11px] uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                           Included
                         </span>
                       </div>
@@ -359,31 +381,22 @@ export default function Cart() {
 
                 <Link asChild href="/checkout">
                   <a
-                    className="block w-full text-center px-6 py-3.5 transition-all"
-                    style={{
-                      background: "#0A0A0A",
-                      color: "#FAF7F0",
-                      fontFamily: FONT,
-                      fontWeight: 500,
-                      fontSize: "0.875rem",
-                      letterSpacing: "0.02em",
-                      borderRadius: 12,
-                    }}
+                    className="nx-cta-cobalt w-full justify-center"
                     data-testid="button-checkout-page"
                   >
-                    Continue to checkout <ArrowRight size={14} className="inline ml-1" />
+                    Continue to checkout <ArrowRight size={14} aria-hidden="true" />
                   </a>
                 </Link>
 
                 {/* Trust ticker */}
                 <div className="mt-5 pt-5 space-y-2.5" style={{ borderTop: "1px solid var(--nx-border)" }}>
                   {[
-                    { icon: <ShieldCheck size={13} />, text: "HIPAA-compliant data handling" },
-                    { icon: <ShieldCheck size={13} />, text: "US-compounded · 503A pharmacy" },
-                    { icon: <Stethoscope size={13} />, text: "Licensed US physicians on every case" },
+                    { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "HIPAA-compliant data handling" },
+                    { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "US-compounded · 503A pharmacy" },
+                    { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Licensed US physicians on every case" },
                   ].map(({ icon, text }) => (
-                    <div key={text} className="flex items-center gap-2 text-[11px]" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
-                      <span style={{ color: "#8B5A2B" }}>{icon}</span>
+                    <div key={text} className="flex items-center gap-2 text-[11px]" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                      <span style={{ color: "var(--nx-amber)" }}>{icon}</span>
                       <span>{text}</span>
                     </div>
                   ))}
@@ -391,18 +404,21 @@ export default function Cart() {
 
                 <div
                   className="mt-4 pt-4 text-[11px] space-y-1.5"
-                  style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}
+                  style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}
                 >
                   <p>Intake screening at checkout (~3 min)</p>
-                  <p>Physician sign-off in 24–48 hours</p>
+                  <p>Physician sign-off upon review</p>
                   <p>Cold-chain packaging with temp indicators</p>
                 </div>
+                </Reveal>
               </aside>
             </div>
           )}
         </div>
       </div>
-      {/* Sticky mobile checkout CTA */}
+      {/* Sticky mobile checkout CTA — with an in-flow spacer so the fixed bar
+          never covers the page's last content line on mobile */}
+      {lines.length > 0 && <div className="lg:hidden" style={{ height: 76 }} aria-hidden />}
       {lines.length > 0 && (
         <div
           className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4"
@@ -410,8 +426,7 @@ export default function Cart() {
         >
           <Link asChild href="/checkout">
             <a
-              className="block w-full text-center py-3.5 font-medium"
-              style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.9375rem", letterSpacing: "0.02em", borderRadius: 12 }}
+              className="nx-cta-cobalt w-full justify-center"
               data-testid="button-checkout-mobile"
             >
               Checkout — {formatUSD(subtotal)}
@@ -428,16 +443,25 @@ function VialGlyph({ label }: { label: string }) {
   return (
     <svg width="52" height="76" viewBox="0 0 52 76" fill="none" aria-hidden="true">
       {/* cap */}
-      <rect x="16" y="2" width="20" height="8" rx="2" fill="#0A0A0A" />
-      <rect x="14" y="9" width="24" height="6" rx="2" fill="#8B5A2B" />
+      <rect x="16" y="2" width="20" height="8" rx="2" fill="var(--nx-fg)" />
+      <rect x="14" y="9" width="24" height="6" rx="2" fill="var(--nx-amber)" />
       {/* body */}
-      <rect x="12" y="15" width="28" height="56" rx="6" fill="#fff" stroke="#0A0A0A" strokeWidth="1.5" />
+      <rect x="12" y="15" width="28" height="56" rx="6" fill="var(--nx-ceramic)" stroke="var(--nx-fg)" strokeWidth="1.5" />
       {/* fill line */}
       <rect x="14" y="40" width="24" height="29" rx="4" fill="var(--nx-bg-cream)" />
-      <line x1="14" y1="40" x2="38" y2="40" stroke="#0A0A0A" strokeWidth="1" opacity="0.4" />
+      <line x1="14" y1="40" x2="38" y2="40" stroke="var(--nx-fg)" strokeWidth="1" opacity="0.4" />
       {/* label band */}
-      <rect x="12" y="46" width="28" height="16" fill="#0A0A0A" />
-      <text x="26" y="57" textAnchor="middle" fill="#FAF7F0" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: 8, fontWeight: 600, letterSpacing: "0.05em" }}>
+      <rect x="12" y="46" width="28" height="16" fill="var(--nx-fg)" />
+      <text
+        x="26"
+        y="57"
+        textAnchor="middle"
+        fill="var(--nx-bg)"
+        // squeeze long labels into the 28px band instead of spilling past it
+        textLength={label.length > 3 ? 24 : undefined}
+        lengthAdjust="spacingAndGlyphs"
+        style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "0.05em" }}
+      >
         {label}
       </text>
     </svg>
@@ -459,16 +483,16 @@ function Chip({ children, icon, tone = "ink" }: { children: React.ReactNode; ico
   const isAmber = tone === "amber";
   return (
     <span
-      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] uppercase tracking-[0.1em]"
+      className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] uppercase tracking-[var(--nx-ls-caps)]"
       style={{
         fontFamily: FONT,
-        borderRadius: 999,
-        border: `1px solid ${isAmber ? "#E2C9B3" : "var(--nx-border)"}`,
-        background: isAmber ? "var(--nx-bg-cream)" : "#fff",
-        color: isAmber ? "#8B5A2B" : "#0A0A0A",
+        borderRadius: "var(--nx-r-pill)",
+        border: `1px solid ${isAmber ? "color-mix(in srgb, var(--nx-cobalt) 30%, var(--nx-border))" : "var(--nx-border)"}`,
+        background: isAmber ? "var(--nx-bg-cream)" : "var(--nx-ceramic)",
+        color: isAmber ? "var(--nx-amber)" : "var(--nx-fg)",
       }}
     >
-      {icon ? <span style={{ color: isAmber ? "#8B5A2B" : "#8B5A2B" }}>{icon}</span> : null}
+      {icon ? <span style={{ color: isAmber ? "var(--nx-amber)" : "var(--nx-amber)" }}>{icon}</span> : null}
       {children}
     </span>
   );
@@ -478,7 +502,7 @@ function StackContents({ slug }: { slug: string }) {
   const stack = stacks.find((s) => s.slug === slug);
   if (!stack) return null;
   return (
-    <p className="text-xs mb-2" style={{ fontFamily: FONT, color: "#6B6B6B", letterSpacing: "0.05em" }}>
+    <p className="text-xs mb-2" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
       INCLUDES · {stack.peptides.map((p) => p.toUpperCase()).join(" + ")}
     </p>
   );
@@ -487,10 +511,10 @@ function StackContents({ slug }: { slug: string }) {
 function SummaryRow({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
   return (
     <div className="flex items-baseline justify-between py-1.5">
-      <span className="text-sm" style={{ fontFamily: FONT, color: "#4A4A4A" }}>
+      <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
         {label}
       </span>
-      <span className="text-sm" style={{ fontFamily: FONT, color: accent ? "#8B5A2B" : "#0A0A0A" }}>
+      <span className="text-sm" style={{ fontFamily: FONT, color: accent ? "var(--nx-amber)" : "var(--nx-fg)" }}>
         {value}
       </span>
     </div>
@@ -501,22 +525,22 @@ function EmptyCart() {
   return (
     <div
       className="py-20 text-center max-w-md mx-auto"
-      style={{ border: "1px solid var(--nx-border)", background: "#fff", borderRadius: 20 }}
+      style={{ border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)" }}
     >
-      <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "#8B5A2B" }}>
-        <ShoppingBag size={32} strokeWidth={1.25} />
+      <div className="inline-flex p-5 rounded-full mb-5" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-amber)" }}>
+        <ShoppingBag size={32} strokeWidth={1.25} aria-hidden="true" />
       </div>
-      <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "#0A0A0A", fontWeight: 600 }}>
-        Your cart is empty
+      <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>
+        Your protocol is empty
       </h2>
-      <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "#6B6B6B", lineHeight: 1.6 }}>
+      <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
         Start with a curated stack, browse single peptides, or take the assessment for a custom physician-built protocol.
       </p>
       <div className="flex flex-col gap-2 max-w-[240px] mx-auto">
         <Link asChild href="/stacks">
           <a
             className="block w-full px-5 py-3 transition-all text-center"
-            style={{ background: "#0A0A0A", color: "#FAF7F0", fontFamily: FONT, fontSize: "0.875rem", fontWeight: 500, borderRadius: 12 }}
+            style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 500, borderRadius: "var(--nx-r-md)" }}
             data-testid="link-empty-browse-stacks"
           >
             Browse curated stacks
@@ -525,7 +549,7 @@ function EmptyCart() {
         <Link asChild href="/assessment">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "#0A0A0A", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+            style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
             data-testid="link-empty-take-assessment"
           >
             Take the assessment
@@ -534,7 +558,7 @@ function EmptyCart() {
         <Link asChild href="/peptides">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "#6B6B6B", fontFamily: FONT, fontSize: "0.875rem", border: "1px solid var(--nx-border)", borderRadius: 12 }}
+            style={{ color: "var(--nx-fg-graphite)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
             data-testid="link-empty-browse-peptides"
           >
             Browse single peptides

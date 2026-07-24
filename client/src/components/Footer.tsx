@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
@@ -18,11 +19,65 @@ interface FooterColumn {
 }
 
 export function Footer({ variant = "shared" }: FooterProps) {
+  /* Rise-in for the wordmark: one observer, fires once, then disconnects.
+     The global reduced-motion floor collapses the transition to instant. */
+  const wordmarkRef = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = wordmarkRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("is-inview");
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-inview");
+          io.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const pharmacyBase =
     variant === "men" ? "/men/peptides" :
     variant === "women" ? "/women/peptides" :
     "/peptides";
   const assessmentBase = "/assessment";
+
+  // Newsletter capture → /api/waitlist (same lead sink as ExitIntentModal).
+  // Degrades gracefully on static hosts where the API isn't running.
+  const [email, setEmail] = useState("");
+  // "invalid" (their email is malformed) and "err" (OUR endpoint failed) are
+  // different failures and must say different things — a valid email against
+  // a down API was being told "enter a valid email address".
+  const [state, setState] = useState<"idle" | "sending" | "done" | "invalid" | "err">("idle");
+
+  const submitNewsletter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const val = email.trim();
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(val)) {
+      setState("invalid");
+      return;
+    }
+    setState("sending");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: val, source: "footer-newsletter" }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setState("done");
+      setEmail("");
+    } catch {
+      setState("err");
+    }
+  };
 
   // 4-column editorial footer — Product / Company / Legal / Contact.
   const columns: FooterColumn[] = [
@@ -35,6 +90,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "Build a stack", href: "/stacks/build" },
         { label: "Bloodwork", href: "/bloodwork" },
         { label: "Custom protocol", href: assessmentBase },
+        { label: "Give as a gift", href: "/gift" },
         { label: "Pricing", href: "/pricing" },
       ],
     },
@@ -47,7 +103,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "The science", href: "/science" },
         { label: "How it works", href: "/how-it-works" },
         { label: "Journal", href: "/journal" },
-        { label: "Lab testing", href: "/lab-testing" },
       ],
     },
     {
@@ -56,7 +111,10 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "Terms of service", href: "/legal/terms" },
         { label: "Privacy policy", href: "/legal/privacy" },
+        { label: "HIPAA notice", href: "/legal/hipaa-notice" },
         { label: "Telehealth consent", href: "/legal/telehealth-consent" },
+        { label: "Prescribing policy", href: "/legal/prescribing-policy" },
+        { label: "State availability", href: "/legal/state-availability" },
         { label: "Refund policy", href: "/legal/refund-policy" },
       ],
     },
@@ -66,7 +124,8 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "Support center", href: "/contact" },
         { label: "FAQ", href: "/faq" },
-        { label: "care@nexphoria.com", href: "mailto:care@nexphoria.com" },
+        { label: "hello@nexphoria.com", href: "mailto:hello@nexphoria.com" },
+        { label: "Book a consultation", href: "/booking" },
         { label: "Member login", href: "/assessment" },
       ],
     },
@@ -91,33 +150,72 @@ export function Footer({ variant = "shared" }: FooterProps) {
             >
               Early access to new protocols, published research, and member-only pricing.
             </p>
-            <form
-              className="mt-5 flex gap-2 max-w-sm"
-              onSubmit={(e) => e.preventDefault()}
-              data-testid="footer-newsletter-form"
-            >
-              <input
-                type="email"
-                placeholder="Your email"
-                aria-label="Email address for the newsletter"
-                className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 transition-colors"
-                style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
-                data-testid="footer-email-input"
-              />
-              <button
-                type="submit"
-                className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5"
+            {state === "done" ? (
+              <p
+                className="mt-5 text-sm max-w-sm"
                 style={{
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  backgroundColor: "var(--nx-acid)",
-                  color: "var(--nx-black)",
-                  letterSpacing: "0.04em",
+                  color: "var(--nx-acid)",
+                  lineHeight: 1.6,
                 }}
-                data-testid="footer-email-submit"
+                data-testid="footer-newsletter-success"
               >
-                Join
-              </button>
-            </form>
+                You're on the list. Look for the next issue in your inbox.
+              </p>
+            ) : (
+              <form
+                className="mt-5 flex gap-2 max-w-sm"
+                onSubmit={submitNewsletter}
+                data-testid="footer-newsletter-form"
+              >
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  aria-label="Email address for the newsletter"
+                  value={email}
+                  onChange={(e) => { setEmail(e.target.value); if (state === "err" || state === "invalid") setState("idle"); }}
+                  className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-white/50 transition-colors"
+                  style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
+                  data-testid="footer-email-input"
+                />
+                <button
+                  type="submit"
+                  disabled={state === "sending"}
+                  className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                  style={{
+                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    backgroundColor: "var(--nx-acid)",
+                    color: "var(--nx-fg)",
+                    letterSpacing: "0.04em",
+                  }}
+                  data-testid="footer-email-submit"
+                >
+                  {state === "sending" ? "Joining…" : "Join"}
+                </button>
+              </form>
+            )}
+            {(state === "err" || state === "invalid") && (
+              <p
+                className="mt-2 text-xs max-w-sm"
+                style={{
+                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  color: "rgba(255,255,255,0.7)",
+                }}
+                data-testid="footer-newsletter-error"
+              >
+                {state === "invalid" ? (
+                  "Enter a valid email address to subscribe."
+                ) : (
+                  <>
+                    We couldn't add you just now — email{" "}
+                    <a href="mailto:hello@nexphoria.com?subject=Waitlist" style={{ color: "rgba(255,255,255,0.9)", textDecoration: "underline" }}>
+                      hello@nexphoria.com
+                    </a>{" "}
+                    and we'll do it by hand.
+                  </>
+                )}
+              </p>
+            )}
           </div>
 
           {/* 4 nav columns */}
@@ -135,10 +233,10 @@ export function Footer({ variant = "shared" }: FooterProps) {
           data-testid="footer-trust-badges"
         >
           {[
-            { label: "503A · FDA-registered", sub: "Compounding partners" },
+            { label: "503A · state-licensed", sub: "Compounding pharmacy" },
             { label: "All 50 states", sub: "US-licensed physicians" },
             { label: "HIPAA", sub: "Encrypted intake" },
-            { label: "Quest Diagnostics", sub: "Lab partner" },
+            { label: "CLIA-Certified Laboratories", sub: "Lab partners" },
             { label: "LegitScript", sub: "Pending verification" },
           ].map((b) => (
             <div
@@ -148,9 +246,9 @@ export function Footer({ variant = "shared" }: FooterProps) {
             >
               <span
                 style={{
-                  fontSize: 11,
+                  fontSize: "var(--nx-t-2xs)",
                   color: "rgba(255,255,255,0.85)",
-                  letterSpacing: "0.1em",
+                  letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   fontWeight: 600,
                 }}
@@ -159,8 +257,8 @@ export function Footer({ variant = "shared" }: FooterProps) {
               </span>
               <span
                 style={{
-                  fontSize: 9,
-                  color: "rgba(255,255,255,0.4)",
+                  fontSize: "var(--nx-t-2xs)",
+                  color: "rgba(255,255,255,0.66)",
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   marginTop: 2,
@@ -178,7 +276,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
             <Logo variant="light" withSubmark={false} markSize={18} />
             <span
               className="text-xs"
-              style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+              style={{ color: "rgba(255,255,255,0.66)", fontFamily: "'General Sans', system-ui, sans-serif" }}
               data-testid="footer-copyright"
             >
               © 2026 Nexphoria · All rights reserved
@@ -195,7 +293,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 key={label}
                 href={href}
                 className="text-xs no-underline hover:text-white transition-colors"
-                style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+                style={{ color: "rgba(255,255,255,0.66)", fontFamily: "'General Sans', system-ui, sans-serif" }}
                 data-testid={`footer-legal-${label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 {label}
@@ -207,19 +305,24 @@ export function Footer({ variant = "shared" }: FooterProps) {
         {/* Regulatory disclaimers */}
         <p
           className="mt-6 text-xs leading-relaxed"
-          style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
+          style={{ color: "rgba(255,255,255,0.62)", fontFamily: "'General Sans', system-ui, sans-serif", maxWidth: "720px" }}
           data-testid="footer-research-disclaimer"
         >
-          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in FDA-registered 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease.
+          For research purposes only. These statements have not been evaluated by the Food and Drug Administration. Nexphoria peptide protocols are prescribed off-label by licensed US physicians and compounded in state-licensed 503A pharmacies. They are not intended to diagnose, treat, cure, or prevent any disease. From-pricing shown throughout the site; medication is dispensed only if a licensed provider determines a prescription is appropriate. Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. Ozempic®, Wegovy®, Mounjaro®, and Zepbound® are registered trademarks of their respective owners; Nexphoria is not affiliated with, or endorsed by, Novo Nordisk or Eli Lilly.
         </p>
         <p
           className="mt-3 text-xs"
-          style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.06em" }}
+          style={{ color: "rgba(255,255,255,0.66)", fontFamily: "'General Sans', system-ui, sans-serif", letterSpacing: "0.06em" }}
           data-testid="footer-usp-line"
         >
           Compounded under USP &lt;797&gt; in U.S. 503A pharmacies
         </p>
       </div>
+
+      {/* The signature — full-bleed, outside the container */}
+      <span ref={wordmarkRef} className="nx-footer-wordmark" aria-hidden="true" data-testid="footer-wordmark">
+        NEXPHORIA
+      </span>
     </footer>
   );
 }
@@ -231,11 +334,11 @@ function FooterCol({ column }: { column: FooterColumn }) {
         className="mb-4"
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "10px",
+          fontSize: "var(--nx-t-2xs)",
           fontWeight: 500,
-          letterSpacing: "0.12em",
+          letterSpacing: "var(--nx-ls-caps)",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.4)",
+          color: "rgba(255,255,255,0.66)",
         }}
       >
         {column.heading}

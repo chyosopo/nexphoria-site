@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -24,7 +24,12 @@ function currentPath() {
 export function ExitIntentModal() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
-  const [state, setState] = useState<"idle" | "sending" | "done" | "err">("idle");
+  // "invalid" (malformed email) vs "err" (our endpoint failed) — distinct
+  // failures, distinct messages (a valid email against a down API was being
+  // told "enter a valid email").
+  const [state, setState] = useState<"idle" | "sending" | "done" | "invalid" | "err">("idle");
+  const panelRef = useRef<HTMLDivElement>(null);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (isMobile()) return;
@@ -56,16 +61,17 @@ export function ExitIntentModal() {
     const val = email.trim();
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(val)) {
-      setState("err");
+      setState("invalid");
       return;
     }
     setState("sending");
     try {
-      await fetch("/api/waitlist", {
+      const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: val, source: `exit-intent:${currentPath()}` }),
       });
+      if (!res.ok) throw new Error(String(res.status));
       setState("done");
     } catch {
       setState("err");
@@ -73,6 +79,45 @@ export function ExitIntentModal() {
   };
 
   const close = () => setOpen(false);
+
+  // On open: remember what had focus, move focus into the dialog. On close:
+  // restore focus to the trigger context (WCAG 2.4.3 focus order).
+  useEffect(() => {
+    if (!open) return;
+    restoreFocusRef.current = document.activeElement as HTMLElement | null;
+    const firstFocusable = panelRef.current?.querySelector<HTMLElement>(
+      'input, button, [href], select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    firstFocusable?.focus();
+    return () => {
+      restoreFocusRef.current?.focus?.();
+    };
+  }, [open]);
+
+  // Escape closes; Tab is trapped inside the dialog (manual focus trap, no deps).
+  const onDialogKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
+      e.stopPropagation();
+      close();
+      return;
+    }
+    if (e.key !== "Tab") return;
+    const nodes = panelRef.current?.querySelectorAll<HTMLElement>(
+      'input:not([disabled]), button:not([disabled]), [href], select, textarea, [tabindex]:not([tabindex="-1"])',
+    );
+    if (!nodes || nodes.length === 0) return;
+    const items = Array.from(nodes);
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement as HTMLElement;
+    if (e.shiftKey && active === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -88,14 +133,16 @@ export function ExitIntentModal() {
             style={{
               position: "fixed",
               inset: 0,
-              zIndex: 200,
-              backgroundColor: "rgba(0,0,0,0.55)",
+              zIndex: "var(--nx-z-overlay)" as unknown as number,
+              backgroundColor: "rgba(21, 24, 28,0.55)",
               backdropFilter: "blur(4px)",
             }}
             data-testid="exit-intent-backdrop"
           />
           <motion.div
             key="exit-modal"
+            ref={panelRef}
+            onKeyDown={onDialogKeyDown}
             role="dialog"
             aria-modal="true"
             aria-labelledby="exit-intent-title"
@@ -108,11 +155,11 @@ export function ExitIntentModal() {
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              zIndex: 201,
+              zIndex: "var(--nx-z-modal)" as unknown as number,
               width: "min(460px, calc(100vw - 32px))",
-              backgroundColor: "var(--nx-bg-cream, #FFFFF3)",
-              borderRadius: "6px",
-              boxShadow: "0 40px 80px -20px rgba(0,0,0,0.35)",
+              backgroundColor: "var(--nx-bg-cream, var(--nx-ceramic))",
+              borderRadius: "var(--nx-r-xs)",
+              boxShadow: "0 40px 80px -20px rgba(21, 24, 28,0.35)",
               padding: "36px 32px 28px",
               border: "1px solid var(--nx-border)",
             }}
@@ -134,7 +181,7 @@ export function ExitIntentModal() {
                 backgroundColor: "transparent",
                 cursor: "pointer",
                 color: "var(--nx-fg-muted)",
-                fontSize: 18,
+                fontSize: "var(--nx-t-lg)",
                 lineHeight: 1,
               }}
             >
@@ -144,9 +191,9 @@ export function ExitIntentModal() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: 9,
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "var(--nx-cobalt)",
                 marginBottom: 14,
@@ -160,7 +207,7 @@ export function ExitIntentModal() {
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
                 fontWeight: 500,
-                fontSize: "1.75rem",
+                fontSize: "var(--nx-t-h3)",
                 lineHeight: 1.15,
                 color: "var(--nx-fg)",
                 marginBottom: 10,
@@ -172,25 +219,25 @@ export function ExitIntentModal() {
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "0.9375rem",
+                fontSize: "var(--nx-t-base)",
                 color: "var(--nx-fg-muted)",
                 lineHeight: 1.55,
                 marginBottom: 20,
               }}
             >
               We&rsquo;ll email you when your peptide protocol is ready to prescribe.
-              Physician-reviewed, FDA-registered compounding, no commitment.
+              Physician-reviewed, state-licensed compounding, no commitment.
             </p>
 
             {state === "done" ? (
               <div
                 style={{
                   padding: "14px 16px",
-                  borderRadius: 4,
-                  backgroundColor: "rgba(198, 241, 132, 0.18)",
-                  border: "1px solid var(--nx-acid, #c6f184)",
+                  borderRadius: "var(--nx-r-2xs)",
+                  backgroundColor: "rgba(152, 182, 213, 0.18)",
+                  border: "1px solid var(--nx-acid, var(--nx-acid))",
                   fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "0.9375rem",
+                  fontSize: "var(--nx-t-base)",
                   color: "var(--nx-fg)",
                 }}
                 data-testid="exit-intent-success"
@@ -205,23 +252,24 @@ export function ExitIntentModal() {
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
-                      if (state === "err") setState("idle");
+                      if (state === "err" || state === "invalid") setState("idle");
                     }}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") submit();
                     }}
                     placeholder="you@example.com"
+                    aria-label="Email address"
+                    className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-1"
                     data-testid="exit-intent-email"
                     style={{
                       flex: 1,
                       padding: "0.75rem 1rem",
-                      borderRadius: 4,
-                      border: state === "err" ? "1px solid #c0392b" : "1px solid var(--nx-border)",
+                      borderRadius: "var(--nx-r-2xs)",
+                      border: state === "err" || state === "invalid" ? "1px solid var(--nx-danger)" : "1px solid var(--nx-border)",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "0.9375rem",
-                      backgroundColor: "#FFFFFF",
+                      fontSize: "var(--nx-t-base)",
+                      backgroundColor: "var(--nx-ceramic)",
                       color: "var(--nx-fg)",
-                      outline: "none",
                     }}
                     autoFocus
                   />
@@ -232,14 +280,14 @@ export function ExitIntentModal() {
                     data-testid="exit-intent-submit"
                     style={{
                       padding: "0 1.25rem",
-                      borderRadius: 4,
+                      borderRadius: "var(--nx-r-2xs)",
                       border: "none",
                       backgroundColor: "var(--nx-fg)",
-                      color: "var(--nx-bg-cream, #FFFFF3)",
+                      color: "var(--nx-bg-cream, var(--nx-ceramic))",
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 11,
+                      fontSize: "var(--nx-t-xs)",
                       fontWeight: 600,
-                      letterSpacing: "0.1em",
+                      letterSpacing: "var(--nx-ls-caps)",
                       textTransform: "uppercase",
                       cursor: state === "sending" ? "wait" : "pointer",
                       opacity: state === "sending" ? 0.7 : 1,
@@ -248,28 +296,31 @@ export function ExitIntentModal() {
                     {state === "sending" ? "…" : "Notify me"}
                   </button>
                 </div>
-                {state === "err" && (
+                {(state === "err" || state === "invalid") && (
                   <p
                     style={{
                       marginTop: 8,
                       fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: 12,
-                      color: "#c0392b",
+                      fontSize: "var(--nx-t-xs)",
+                      color: "var(--nx-danger)",
                     }}
+                    role="alert"
                   >
-                    Please enter a valid email.
+                    {state === "invalid"
+                      ? "Please enter a valid email."
+                      : "We couldn't save that just now — email hello@nexphoria.com and we'll add you by hand."}
                   </p>
                 )}
                 <p
                   style={{
                     marginTop: 14,
                     fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: 11,
+                    fontSize: "var(--nx-t-xs)",
                     color: "var(--nx-fg-muted)",
                     lineHeight: 1.5,
                   }}
                 >
-                  No spam. Unsubscribe anytime.
+                  Written sparingly. Unsubscribe anytime.
                 </p>
               </>
             )}

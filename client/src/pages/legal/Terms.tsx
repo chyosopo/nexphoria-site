@@ -1,11 +1,15 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function Terms() {
   useSeo({
     title: "Terms of Service | Nexphoria",
     description: "Service agreements, user eligibility, and platform terms for Nexphoria peptide therapy.",
     path: "/legal/terms",
+    jsonLd: [
+      webPageJsonLd({ name: "Terms of Service", description: "Service agreements, user eligibility, and platform terms for Nexphoria peptide therapy.", path: "/legal/terms" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Terms of Service", path: "/legal/terms" }]),
+    ],
   });
   return (
     <LegalLayout title="Terms of Service" lastUpdated="June 2026">
@@ -15,8 +19,8 @@ export default function Terms() {
       </LegalSection>
 
       <LegalSection title="2. Description of Services">
-        <LegalP>Nexphoria is a digital health platform that connects patients with licensed physicians for telehealth consultations and, where clinically appropriate, prescriptions for compounded peptide medications. Nexphoria is not a pharmacy and does not dispense medication directly. All compounded preparations are dispensed by independent 503A FDA-registered compounding pharmacies holding valid state pharmacy permits across all 50 United States.</LegalP>
-        <LegalP>Telehealth consultations are conducted through Bask Health, our licensed telehealth platform partner. Laboratory services, including baseline and follow-up blood panels, are fulfilled through Quest Diagnostics or other CLIA-certified laboratories. Nexphoria coordinates access to these services but does not employ the physicians, pharmacists, or laboratory professionals who provide them. Nexphoria holds LegitScript certification confirming compliance with applicable laws governing online healthcare and pharmacy advertising.</LegalP>
+        <LegalP>Nexphoria is a digital health platform that connects patients with licensed physicians for telehealth consultations and, where clinically appropriate, prescriptions for compounded peptide medications. Nexphoria is not a pharmacy and does not dispense medication directly. All compounded preparations are dispensed by independent 503A state-licensed compounding pharmacies holding valid state pharmacy permits across all 50 United States.</LegalP>
+        <LegalP>Telehealth consultations are conducted through Bask Health, our licensed telehealth platform partner. Laboratory services, including baseline and follow-up blood panels, are fulfilled through CLIA-certified partner laboratories. Nexphoria coordinates access to these services but does not employ the physicians, pharmacists, or laboratory professionals who provide them. Nexphoria's LegitScript certification is pending verification.</LegalP>
       </LegalSection>
 
       <LegalSection title="3. Medical Services and Disclaimer">
@@ -26,9 +30,9 @@ export default function Terms() {
       </LegalSection>
 
       <LegalSection title="4. Compounding Pharmacy">
-        <LegalP>Compounded medications dispensed through Nexphoria are prepared by 503A FDA-registered compounding pharmacies operating under state pharmacy board oversight and complying with applicable USP sterile compounding standards. All compounds are prepared pursuant to a valid prescription issued by a licensed physician following a legitimate patient-physician relationship established through our telehealth platform.</LegalP>
+        <LegalP>Compounded medications dispensed through Nexphoria are prepared by 503A state-licensed compounding pharmacies operating under state pharmacy board oversight and complying with applicable USP sterile compounding standards. All compounds are prepared pursuant to a valid prescription issued by a licensed physician following a legitimate patient-physician relationship established through our telehealth platform.</LegalP>
         <LegalP>Compounded medications are not FDA-approved drug products. The FDA does not verify the safety, effectiveness, or quality of compounded drugs in the same manner as FDA-approved products. Your physician will explain the clinical rationale for compounding and the current state of clinical evidence before prescribing any compounded preparation.</LegalP>
-        <LegalP>Our compounding pharmacy partners are LegitScript certified and subject to regular quality audits. We require that all pharmacy partners maintain current state licensure in every state to which they ship and comply with applicable pedigree and serialization requirements under the Drug Supply Chain Security Act (DSCSA).</LegalP>
+        <LegalP>Our compounding pharmacy partners are subject to regular quality audits. We require that all pharmacy partners maintain current state licensure in every state to which they ship and comply with applicable pedigree and serialization requirements under the Drug Supply Chain Security Act (DSCSA).</LegalP>
       </LegalSection>
 
       <LegalSection title="5. User Eligibility">

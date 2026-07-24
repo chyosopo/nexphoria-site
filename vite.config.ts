@@ -18,11 +18,23 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ["react", "react-dom"],
-          motion: ["framer-motion"],
-          router: ["wouter"],
-          charts: ["recharts"],
+        manualChunks(id) {
+          // Vendor splits — order matters (check specific libs before react)
+          if (id.includes("node_modules")) {
+            if (id.includes("framer-motion")) return "motion";
+            if (id.includes("lucide-react")) return "lucide";
+            if (id.includes("wouter")) return "router";
+            if (
+              id.includes("react-dom") ||
+              id.includes("scheduler") ||
+              /[\\/]react[\\/]/.test(id)
+            )
+              return "react";
+            return;
+          }
+          // Shared layout shell — rendered on every route
+          if (/[\\/]components[\\/](Nav|Footer|SiteLayout)\./.test(id))
+            return "components";
         },
       },
     },

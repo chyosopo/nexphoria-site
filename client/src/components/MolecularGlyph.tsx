@@ -2,12 +2,12 @@
  * MolecularGlyph — hand-drawn, monoline line-art suggestive of molecular
  * structure. NOT chemically accurate; each glyph is a distinct, recognizable
  * silhouette per peptide family. Strokes use currentColor; key functional
- * groups are accented in acid green (#c6f184). Respects the brand palette only.
+ * groups are accented in acid green (var(--nx-acid)). Respects the brand palette only.
  *
  * One <svg> per glyph id (matches Peptide.glyph). 200x200 viewBox.
  */
 
-const ACID = "#c6f184";
+const ACID = "var(--nx-acid)";
 
 type GlyphId =
   | "chain"
@@ -17,7 +17,14 @@ type GlyphId =
   | "branch"
   | "ghrh"
   | "secretagogue"
-  | "fragment";
+  | "fragment"
+  // Goal-tile glyph names — intentionally render the default (ring) form.
+  | "flask"
+  | "leaf"
+  | "spark"
+  | "crescent"
+  | "bolt"
+  | "drop";
 
 export function MolecularGlyph({
   glyph,
@@ -91,7 +98,7 @@ export function MolecularGlyph({
           <circle cx="164" cy="150" r="9" {...stroke} />
           {/* central copper ion */}
           <circle cx="100" cy="64" r="14" fill={ACID} stroke={ACID} />
-          <text x="100" y="69" textAnchor="middle" fontSize="13" fill="#000" fontFamily="monospace">Cu</text>
+          <text x="100" y="69" textAnchor="middle" fontSize="13" fill="currentColor" fontFamily="monospace">Cu</text>
           {/* coordination bonds (dashed) */}
           <line x1="76" y1="116" x2="92" y2="78" {...stroke} strokeDasharray="4 5" />
           <line x1="124" y1="116" x2="108" y2="78" {...stroke} strokeDasharray="4 5" />
