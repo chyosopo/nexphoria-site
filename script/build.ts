@@ -2,6 +2,7 @@ import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "node:fs/promises";
 import { generateSitemap } from "./genSitemap";
+import { generateLlms } from "./genLlms";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -37,6 +38,11 @@ async function buildAll() {
   // Regenerate sitemap.xml from data BEFORE vite copies client/public → dist.
   const urlCount = await generateSitemap();
   console.log(`sitemap.xml regenerated — ${urlCount} URLs`);
+
+  // Regenerate llms.txt from the canonical catalogs (the hand-written file
+  // had drifted to fictional stacks + dead hash-URLs — see docs/LAUNCH-AUDIT.md §5).
+  const llms = await generateLlms();
+  console.log(`llms.txt regenerated — ${llms.stacks} stacks · ${llms.solos} peptides`);
 
   console.log("building client...");
   await viteBuild();
