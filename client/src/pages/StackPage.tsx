@@ -160,6 +160,8 @@ export default function StackPage({ slug }: { slug: string }) {
               <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
                 <img
                   src={stackArt(stack.slug, world)}
+                  srcSet={outcomeSrcSet(stackArt(stack.slug, world)!)}
+                  sizes="(max-width: 1024px) 100vw, 45vw"
                   alt=""
                   aria-hidden
                   fetchPriority="high"
