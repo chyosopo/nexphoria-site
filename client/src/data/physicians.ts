@@ -9,6 +9,8 @@
    physicians or direct clinical decision-making.
    ────────────────────────────────────────────────────────────── */
 
+import { PANEL_TOTAL_MARKERS } from "./biomarkerPanel";
+
 export type ReviewStep = {
   /** Ordinal label, e.g. "01" */
   n: string;
@@ -41,7 +43,7 @@ export type PhysicianReview = {
 export const physicianReview: PhysicianReview = {
   stats: [
     { k: "100%", v: "Protocols physician-reviewed" },
-    { k: "38", v: "Biomarkers reviewed first" },
+    { k: String(PANEL_TOTAL_MARKERS), v: "Biomarkers reviewed first" },
     { k: "50", v: "States covered" },
     { k: "0", v: "Algorithmic approvals" },
   ],
