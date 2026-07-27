@@ -7,8 +7,6 @@ import { Link } from "wouter";
 import { Plus, Minus, FileText, BookOpen, Send, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
-import { PillBadge } from "@/components/PillBadge";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { FaqAccordion, NumberedSteps, SectionHead } from "@/components/EnterprisePatterns";
@@ -118,14 +116,6 @@ const SCIENCE_METHOD_STEPS = [
 
 /* ── Biomarkers the science tracks — all referenced in the mechanisms above ── */
 const SCIENCE_BIOMARKERS = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "LH / FSH", "Lipid panel", "eGFR"];
-
-/* ── Evidence strip figures ──────────────────────────────────────────────── */
-const EVIDENCE_STRIP = [
-  { value: "12", label: "Randomized controlled trials cited" },
-  { value: "47", label: "Peer-reviewed studies referenced" },
-  { value: "6", label: "Distinct mechanisms of action" },
-  { value: "4", label: "FDA approvals among the class" },
-];
 
 /* ── Evidence table — by peptide family ──────────────────────────────────── */
 type Tier = "Established" | "Emerging" | "Investigational";
@@ -819,6 +809,8 @@ export default function Science() {
                       <button
                         onClick={() => setOpenRef(openRef === i ? null : i)}
                         aria-expanded={openRef === i}
+                        aria-controls={`reference-abstract-${ref.num}`}
+                        id={`reference-toggle-${ref.num}`}
                         data-testid={`reference-item-${ref.num}`}
                         style={{ width: "100%", display: "flex", gap: "0.75rem", alignItems: "flex-start", justifyContent: "space-between", padding: "1rem 0", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}
                       >
@@ -829,7 +821,7 @@ export default function Science() {
                         {openRef === i ? <Minus size={14} style={{ color: "var(--nx-amber)", flexShrink: 0, marginTop: 4 }} /> : <Plus size={14} style={{ color: "var(--nx-fg-muted)", flexShrink: 0, marginTop: 4 }} />}
                       </button>
                       {openRef === i && (
-                        <p data-testid={`reference-abstract-${ref.num}`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, paddingLeft: "1.85rem", paddingBottom: "1rem", maxWidth: 720 }}>
+                        <p id={`reference-abstract-${ref.num}`} role="region" aria-labelledby={`reference-toggle-${ref.num}`} data-testid={`reference-abstract-${ref.num}`} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, paddingLeft: "1.85rem", paddingBottom: "1rem", maxWidth: 720 }}>
                           {ref.abstract}
                         </p>
                       )}
@@ -1283,7 +1275,7 @@ function ScienceHeroDark() {
         >
           {[
             { k: "6", v: "Peptide families" },
-            { k: "38", v: "Biomarkers tracked" },
+            { k: `${PANEL_TOTAL_MARKERS}`, v: "Biomarkers tracked" },
             { k: "A → B−", v: "Evidence tiering" },
             { k: "80+", v: "Cited studies" },
           ].map((s) => (
