@@ -89,7 +89,7 @@ export function VialArt({
           bottom: 8,
           width: "58%",
           height: 14,
-          borderRadius: "50%",
+          borderRadius: "var(--nx-r-pill)",
           background: "rgba(21, 24, 28,0.14)",
           filter: "blur(8px)",
         }}
@@ -528,7 +528,7 @@ function VialTileInner({
                 right: 14,
                 width: 28,
                 height: 28,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 background: "rgba(21, 24, 28,0.06)",
                 display: "flex",
                 alignItems: "center",
@@ -576,7 +576,7 @@ function VialTileInner({
               right: -80,
               width: 240,
               height: 240,
-              borderRadius: "50%",
+              borderRadius: "var(--nx-r-pill)",
               background: "radial-gradient(circle, rgba(152, 182, 213,0.24), rgba(152, 182, 213,0) 70%)",
               pointerEvents: "none",
             }}

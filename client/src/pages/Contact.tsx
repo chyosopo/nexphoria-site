@@ -322,7 +322,7 @@ export default function Contact() {
                   <span className="nx-icon-circle" style={{ boxShadow: "var(--nx-e-3)" }}>
                     <MapPin size={20} strokeWidth={2} />
                   </span>
-                  <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--nx-cobalt)", marginTop: 8 }} />
+                  <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-cobalt)", marginTop: 8 }} />
                 </div>
                 <div style={{ position: "relative" }}>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>

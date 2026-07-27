@@ -176,7 +176,7 @@ export function ExitIntentModal() {
                 right: 12,
                 width: 32,
                 height: 32,
-                borderRadius: "50%",
+                borderRadius: "var(--nx-r-pill)",
                 border: "none",
                 backgroundColor: "transparent",
                 cursor: "pointer",

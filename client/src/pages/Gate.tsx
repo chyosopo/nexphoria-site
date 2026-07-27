@@ -489,7 +489,7 @@ function GateCard({
             display: "inline-block",
             width: 6,
             height: 6,
-            borderRadius: "50%",
+            borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-rust)",
           }}
           animate={reducedMotion ? {} : { opacity: [1, 0.35, 1], scale: [1, 0.85, 1] }}
@@ -696,7 +696,7 @@ function GateCard({
           style={{
             width: "40px",
             height: "40px",
-            borderRadius: "50%",
+            borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-cobalt)",
             display: "flex",
             alignItems: "center",

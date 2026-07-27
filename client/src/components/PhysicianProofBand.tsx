@@ -16,7 +16,7 @@ export function PhysicianGate({ testid = "physician-gate", style }: { testid?: s
         decoding="async"
         width={34}
         height={34}
-        style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0, boxShadow: "var(--nx-e-1)" }}
+        style={{ width: 34, height: 34, borderRadius: "var(--nx-r-pill)", objectFit: "cover", flexShrink: 0, boxShadow: "var(--nx-e-1)" }}
       />
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", margin: 0, textAlign: "left" }}>
         <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Reviewed by a board-certified U.S. physician</strong>
@@ -46,7 +46,7 @@ export function PhysicianProofBand({ name }: { name: string }) {
           padding: "clamp(1.4rem,3vw,2.2rem)",
         }}
       >
-        <div style={{ width: 96, height: 96, borderRadius: "50%", overflow: "hidden", boxShadow: "var(--nx-e-2)" }}>
+        <div style={{ width: 96, height: 96, borderRadius: "var(--nx-r-pill)", overflow: "hidden", boxShadow: "var(--nx-e-2)" }}>
           <img
             src={physicianPortrait}
             alt="A physician on the Nexphoria review network"

@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Check, ShieldCheck, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, ShieldCheck, ChevronDown, Info } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
@@ -401,6 +401,11 @@ export default function Assessment() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [draftRestored, setDraftRestored] = useState(false);
   const [emailBlurred, setEmailBlurred] = useState(false);
+  // Sighted-only validation nudge: surfaces WHAT the step still needs, but only
+  // once the visitor reaches for the (aria-disabled) primary action — calm, not
+  // naggy-on-entry. Screen readers already get this via aria-describedby →
+  // #assessment-sr-status, so the visible hint stays aria-hidden (no double read).
+  const [nudge, setNudge] = useState(false);
   // When the user jumps back from Review to fix one answer, "Continue" returns
   // them straight to Review rather than re-walking every step (hims-tier edit-in-place).
   const [editReturn, setEditReturn] = useState(false);
@@ -494,6 +499,10 @@ export default function Assessment() {
     topRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "nearest" });
   }, [step, prefersReducedMotion]);
 
+  // The nudge is per-step: clear it on any navigation so it never trails the
+  // visitor onto a fresh step (it re-arms only if they reach for Next again).
+  useEffect(() => { setNudge(false); }, [step]);
+
   const valid = isStepValid(step, form);
   const inFlow = step > 0 && step <= TOTAL_STEPS;
   // ROADMAP 2.2 — resolve the flagship protocol matched to the chosen goal
@@ -509,7 +518,9 @@ export default function Assessment() {
   const showEmailHint = emailBlurred && form.email.trim().length > 0 && !emailValid;
 
   function goNext() {
-    if (!valid) return;
+    // Invalid → surface the calm sighted hint (SR already has it via
+    // aria-describedby) and hold position; the aria-disabled action no-ops.
+    if (!valid) { setNudge(true); return; }
     wantsFocusRef.current = true;
     // Edit-in-place: a corrected answer returns to the Review step directly.
     if (editReturn && step < 7) {
@@ -1757,6 +1768,31 @@ export default function Assessment() {
               {/* Trust strip ABOVE the sticky bar so the bar is the column's
                   last element and never detaches from the viewport bottom */}
               {inFlow && <TrustStrip />}
+
+              {/* Sighted-only validation hint — mirrors the screen-reader
+                  requirement text, appears only after the visitor reaches for
+                  the disabled action. Calm graphite, no red-scare; aria-hidden
+                  so assistive tech isn't told twice (#assessment-sr-status owns
+                  the announcement). */}
+              {inFlow && nudge && !valid && (
+                <p
+                  aria-hidden="true"
+                  data-testid="assessment-step-hint"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    margin: "1.25rem 0 0",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-sm)",
+                    color: "var(--nx-fg-graphite)",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  <Info size={15} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                  {stepRequirement(step, form)}
+                </p>
+              )}
 
               {/* Sticky bottom action — persistent across steps 1–7 */}
               {inFlow && (

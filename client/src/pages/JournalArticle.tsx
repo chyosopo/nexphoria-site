@@ -470,7 +470,7 @@ export default function JournalArticle() {
                   color: "var(--nx-cobalt)",
                   background: "transparent",
                   border: "1px solid var(--nx-cobalt)",
-                  borderRadius: 2,
+                  borderRadius: "var(--nx-r-3xs)",
                   padding: "8px 14px",
                   cursor: "pointer",
                 }}
@@ -495,7 +495,7 @@ export default function JournalArticle() {
                   color: "var(--nx-cobalt)",
                   background: "transparent",
                   border: "1px solid var(--nx-cobalt)",
-                  borderRadius: 2,
+                  borderRadius: "var(--nx-r-3xs)",
                   padding: "8px 14px",
                   cursor: "pointer",
                 }}
@@ -757,7 +757,7 @@ export default function JournalArticle() {
                   letterSpacing: "var(--nx-ls-caps)",
                   textTransform: "uppercase",
                   padding: "14px 24px",
-                  borderRadius: 2,
+                  borderRadius: "var(--nx-r-3xs)",
                   textDecoration: "none",
                 }}
               >

@@ -197,7 +197,7 @@ export default function Physicians() {
                         style={{
                           width: "6px",
                           height: "6px",
-                          borderRadius: "50%",
+                          borderRadius: "var(--nx-r-pill)",
                           backgroundColor: "var(--nx-cobalt)",
                           flexShrink: 0,
                           marginTop: "8px",

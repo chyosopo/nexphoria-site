@@ -244,7 +244,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                   height: 6,
                   width: "100%",
                   background: "var(--nx-border)",
-                  borderRadius: 1,
+                  borderRadius: "var(--nx-r-3xs)",
                   overflow: "hidden",
                 }}
               >
@@ -256,7 +256,7 @@ export function FamilyOutcomesViz({ outcomes }: { outcomes: string }) {
                     height: "100%",
                     width: visible ? `${w}%` : "0%",
                     background: "var(--nx-cobalt)",
-                    borderRadius: 1,
+                    borderRadius: "var(--nx-r-3xs)",
                     transition: `width 900ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 80}ms`,
                   }}
                 />

@@ -185,7 +185,7 @@ export function GoalVialTile({
             right: "12px",
             width: "24px",
             height: "24px",
-            borderRadius: "50%",
+            borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-fg)",
             display: "flex",
             alignItems: "center",

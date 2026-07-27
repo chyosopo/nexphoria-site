@@ -462,7 +462,7 @@ export default function BuildYourStack() {
                             background: "var(--nx-bg)",
                             color: "var(--nx-fg)",
                             padding: "3px 8px",
-                            borderRadius: 2,
+                            borderRadius: "var(--nx-r-3xs)",
                           }}
                         >
                           {p.name}
@@ -658,7 +658,7 @@ export default function BuildYourStack() {
                         }}
                       >
                         {isRecommended && (
-                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg)", background: "var(--nx-acid)", padding: "2px 6px", borderRadius: 2 }}>
+                          <span style={{ position: "absolute", top: 8, right: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg)", background: "var(--nx-acid)", padding: "2px 6px", borderRadius: "var(--nx-r-3xs)" }}>
                             Recommended
                           </span>
                         )}
