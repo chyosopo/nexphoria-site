@@ -3,7 +3,6 @@ import { useState, useMemo } from "react";
 import { useReducedMotion } from "framer-motion";
 import { StickyAssessBar } from "@/components/StickyAssessBar";
 import { useLocation } from "wouter";
-import { anchor } from "@/lib/anchors";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
@@ -22,16 +21,14 @@ import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides
 import { GOAL_OF_STACK } from "@/data/protocolSelector";
 import { track } from "@/lib/analytics";
 import { Link } from "wouter";
-import { ArrowRight, Check, Activity, Brain, Shield, Apple, Droplet, Stethoscope, RefreshCw, FlaskConical, ClipboardCheck, TestTube } from "lucide-react";
+import { ArrowRight, Check, Droplet, Stethoscope, RefreshCw, FlaskConical, ClipboardCheck, TestTube } from "lucide-react";
 import { FONT, S } from "@/lib/typography";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import {
   PANEL_ART,
-  PANEL_TINTS,
   heroSampleRows,
-  RESULTS_ROWS,
   SURFACE_PILLS,
   BLOODWORK_FAQ_ITEMS,
 } from "@/data/bloodworkContent";
@@ -421,10 +418,14 @@ function PanelExplorer() {
           </div>
         </Reveal>
 
-        {/* Filter chips */}
+        {/* Filter chips — these toggle a filtered grid, they do not switch
+            tab panels; an ARIA tablist without tabpanels/roving-tabindex/
+            arrow-keys promises AT users navigation that does not exist, so
+            model them honestly as an aria-pressed toggle group (matching the
+            PanelTiers picker below). */}
         <div
-          role="tablist"
-          aria-label="Biomarker categories"
+          role="group"
+          aria-label="Filter biomarker categories"
           style={{
             display: "flex",
             gap: "0.5rem",
@@ -439,8 +440,8 @@ function PanelExplorer() {
             return (
               <button
                 key={c.id}
-                role="tab"
-                aria-selected={isActive}
+                type="button"
+                aria-pressed={isActive}
                 data-testid={`chip-${c.id}`}
                 onClick={() => setActive(c.id)}
                 className="nx-filter-chip"
@@ -909,90 +910,6 @@ function HowItWorks() {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════
-   WHY IT MATTERS — 4 value tiles
-   ══════════════════════════════════════════════════════════════ */
-function WhyItMatters() {
-  const V = [
-    {
-      k: "Signal, not guesswork",
-      v: `${PANEL_TOTAL_MARKERS} lab values — not a symptom questionnaire — decide your protocol.`,
-    },
-    {
-      k: "Baseline you own",
-      v: "Every trend is measured against your own numbers, not a population average.",
-    },
-    {
-      k: "Adjusted quarterly",
-      v: "Dose changes are triggered by data. Every 90 days the loop closes.",
-    },
-    {
-      k: "Safety floor",
-      v: "Liver, kidney, and blood panels rule out risk before a single peptide is prescribed.",
-    },
-  ];
-  return (
-    <section
-      aria-label="Why bloodwork guides every protocol"
-      className="nx-section"
-      style={{ backgroundColor: "var(--nx-ceramic)" }}
-    >
-      <div className="nx-container">
-        <Reveal>
-          <div
-            style={{
-              display: "grid",
-              gap: "1.25rem",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            }}
-          >
-            {V.map((v) => (
-              <div
-                key={v.k}
-                data-testid={`why-tile-${v.k.toLowerCase().replace(/\s+/g, "-")}`}
-                className="nx-feature-card edge-top"
-                style={{
-                  background: "var(--nx-bg)",
-                  padding: "1.5rem 1.4rem",
-                  minHeight: 170,
-                }}
-              >
-                <Check
-                  size={18}
-                  strokeWidth={2}
-                  style={{ color: "var(--nx-cobalt)", marginBottom: "0.75rem" }}
-                />
-                <h3
-                  style={{
-                    fontFamily: FONT,
-                    fontSize: "var(--nx-t-base)",
-                    fontWeight: 500,
-                    letterSpacing: "-0.005em",
-                    color: "var(--nx-fg)",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {v.k}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: FONT,
-                    fontSize: "var(--nx-t-sm)",
-                    lineHeight: 1.5,
-                    color: "var(--nx-fg-graphite)",
-                  }}
-                >
-                  {v.v}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 /* ══ WHICH PANEL DO I NEED? — the Maximus-style on-page tool (study §4):
    two questions, a true answer. The gate is DERIVED: a goal's required
    tier is the highest tier any of its routes (flagship stack + solos)
@@ -1211,7 +1128,10 @@ export default function Bloodwork() {
           surfaces → THE OFFER → depth → the retest moat → path → close.
           Cut from 15 stacked sections (16k px of scroll): SectionPills,
           SystemsMosaic, ResultsDashboard, ActionPlan, OfferStack, MarkerWall,
-          WhyItMatters — each duplicated a kept section or served no JOB. */}
+          WhyItMatters — each duplicated a kept section or served no JOB. Those
+          seven de-rendered components have now been deleted outright (they were
+          the last in-repo home of the retiring amber/rust/bg-cream aliases);
+          only the sections composed below remain. */}
       <main id="main-content">
         <Hero />
         <TrustRow />
@@ -1238,194 +1158,6 @@ export default function Bloodwork() {
       {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
       <StickyAssessBar label="It starts with the panel" testid="sticky-assess-bloodwork" />
     </SiteLayout>
-  );
-}
-
-/* ══ SYSTEMS MOSAIC — twelve warm-tinted windows ══ */
-function SystemsMosaic() {
-  return (
-    <section id="panel" aria-labelledby="bw-panel-title" className="nx-section" style={{ background: "var(--nx-bg)" }}>
-      <div className="nx-container">
-        <p className="nx-eyebrow">The panel</p>
-        <h2 id="bw-panel-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
-          One draw. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Eleven</em> windows into you.
-        </h2>
-        <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {BIOMARKER_PANEL.map((cat) => {
-            const [bg, ink] = PANEL_TINTS[cat.id] ?? PANEL_TINTS["bio-age"];
-            return (
-              <a key={cat.id} href={anchor("#explore")} className="group block no-underline overflow-hidden" style={{ background: bg, borderRadius: "var(--nx-r-md)", padding: 10 }} data-testid={`mosaic-${cat.id}`}>
-                <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "1 / 1" }}>
-                  <img src={PANEL_ART[cat.id]} alt="" aria-hidden loading="lazy" className="w-full h-full transition-transform duration-700 group-hover:scale-[1.05]" style={{ objectFit: "cover" }} />
-                </span>
-                <span className="block px-1.5 pt-2.5 pb-1">
-                  <span className="flex items-baseline justify-between gap-2">
-                    <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>{cat.name}</span>
-                    <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: ink, whiteSpace: "nowrap" }}>{cat.markers.length} markers</span>
-                  </span>
-                  <span className="block mt-0.5" style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", lineHeight: 1.4, color: ink, opacity: 0.85 }}>
-                    {cat.markers.slice(0, 2).map((m) => m.name.split(" (")[0]).join(" · ")}
-                  </span>
-                </span>
-              </a>
-            );
-          })}
-          <a href="assessment" className="group flex flex-col justify-between no-underline" style={{ background: "var(--nx-fg)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.05rem" }} data-testid="mosaic-cta">
-            <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.15, color: "var(--nx-bg)" }}>
-              Re-tested every <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>90 days.</em>
-            </span>
-            <span className="inline-flex items-center gap-1.5 mt-4" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-acid)" }}>
-              Book your baseline <ArrowRight size={14} strokeWidth={2.2} />
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ══ RESULTS DASHBOARD — rendered live, not a screenshot ══ */
-function ResultsDashboard() {
-  const rows = RESULTS_ROWS;
-  const spark = [96, 91, 82, 72];
-  const pts = spark.map((v, i) => `${20 + i * 86},${104 - (v - 60) * 1.6}`).join(" ");
-  return (
-    <section id="results" aria-labelledby="bw-results-title" className="nx-section" style={{ background: "var(--nx-fg)" }}>
-      <div className="nx-container">
-        <p className="nx-eyebrow" style={{ color: "rgba(243, 245, 247,0.55)" }}>Your results</p>
-        <h2 id="bw-results-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.08, color: "var(--nx-bg)", marginTop: "0.7rem" }}>
-          Not a PDF. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>A plan.</em>
-        </h2>
-        <div className="mt-9 grid gap-4 lg:grid-cols-[1.35fr_1fr]">
-          <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: "var(--nx-r-lg)", padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
-            {rows.map((r) => {
-              const pct = ((r.v - r.lo) / (r.hi - r.lo)) * 100;
-              const oL = ((r.opt[0] - r.lo) / (r.hi - r.lo)) * 100, oW = ((r.opt[1] - r.opt[0]) / (r.hi - r.lo)) * 100;
-              return (
-                <div key={r.m} className="py-3.5" style={{ borderBottom: "1px solid rgba(243, 245, 247,0.08)" }}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-bg)" }}>{r.m}</span>
-                    <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: r.s === "Watch" ? "var(--nx-accent)" : "var(--nx-success)" }}>{r.s} · {r.v} {r.unit}</span>
-                  </div>
-                  <div className="relative mt-2.5" style={{ height: 6, borderRadius: "var(--nx-r-pill)", background: "rgba(243, 245, 247,0.12)" }}>
-                    <span className="absolute top-0 h-full" style={{ left: oL + "%", width: oW + "%", borderRadius: "var(--nx-r-pill)", background: "rgba(243, 245, 247,0.28)" }} />
-                    <span className="absolute nx-pulse-dot" style={{ left: `calc(${pct}% - 6px)`, top: -3, width: 12, height: 12, borderRadius: "var(--nx-r-pill)", background: "var(--nx-acid)" }} data-pulse />
-                  </div>
-                </div>
-              );
-            })}
-            <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", color: "rgba(243, 245, 247,0.4)", marginTop: "0.9rem" }}>Illustration of the member dashboard.</p>
-          </div>
-          <div style={{ background: "rgba(243, 245, 247,0.05)", border: "1px solid rgba(243, 245, 247,0.1)", borderRadius: "var(--nx-r-lg)", padding: "1.4rem 1.5rem", backdropFilter: "blur(8px)" }}>
-            <div className="flex items-baseline justify-between">
-              <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-bg)" }}>ApoB · 12 months</span>
-              <span style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-success)" }}>−25%</span>
-            </div>
-            <svg viewBox="0 0 300 120" className="mt-4 w-full" style={{ height: 120 }}>
-              <polyline className="nx-spark" pathLength={100} points={pts} fill="none" stroke="var(--nx-acid)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              {spark.map((v, i) => (
-                <circle key={i} cx={20 + i * 86} cy={104 - (v - 60) * 1.6} r="4" fill="var(--nx-fg)" stroke="var(--nx-acid)" strokeWidth="2" />
-              ))}
-            </svg>
-            <div className="flex justify-between" style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", color: "rgba(243, 245, 247,0.45)" }}>
-              <span>Baseline</span><span>Q2</span><span>Q3</span><span>Q4</span>
-            </div>
-            <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "rgba(243, 245, 247,0.75)", marginTop: "1rem" }}>
-              Every 90 days your physician reviews the trend — and adjusts the protocol against it. Numbers first. Always.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ══ OFFER STACK — the close ══ */
-function OfferStack() {
-  const items = [
-    `${PANEL_TOTAL_MARKERS} biomarkers across 11 systems — heart to biological age`,
-    "Every marker reviewed by a U.S.-licensed physician",
-    "A written action plan, not a raw lab report",
-    "Re-tested every 90 days to prove what's working",
-    "Draw at 2,000+ partner locations, on your schedule",
-  ];
-  return (
-    <section id="offer" aria-labelledby="bw-offer-title" className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }}>
-      <div className="nx-container">
-        <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)" }}>
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-            <div>
-              <h2 id="bw-offer-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", lineHeight: 1.1, color: "var(--nx-fg)" }}>
-                Everything your body has been <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>trying to tell you.</em>
-              </h2>
-              <ul className="mt-6 flex flex-col gap-2.5 list-none m-0 p-0">
-                {items.map((t) => (
-                  <li key={t} className="flex gap-2.5 items-start" style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>
-                    <Check size={16} strokeWidth={2.4} className="shrink-0 mt-1" style={{ color: "var(--nx-amber)" }} /> {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Included with every protocol. Available standalone.</p>
-              <div className="mt-4 flex flex-col gap-2.5">
-                <a href="assessment" className="nx-cta-cobalt inline-flex items-center justify-center gap-2" data-testid="offer-cta">
-                  Book your baseline panel <ArrowRight size={16} strokeWidth={2.2} />
-                </a>
-                <a href="how-it-works" className="nx-cta-ghost inline-flex items-center justify-center">See how protocols work</a>
-              </div>
-              <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-muted)", marginTop: "1.1rem" }}>
-                Panels require eligibility review and a physician order. Results inform your protocol; they are not a standalone diagnosis. Availability varies by state.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ══ ACTION PLAN — guidance cards floating over life ══
-   World-cast: this shared page inherits [data-world] from the visitor's
-   chosen world, so the photography must follow the palette. */
-function ActionPlan({ world }: { world: "men" | "women" }) {
-  return (
-    <section id="plan" aria-labelledby="bw-plan-title" className="relative overflow-hidden flex items-center" style={{ minHeight: "82vh" }}>
-      <img src={world === "women" ? "img/img_484de9509e9f.webp" : "img/img_beb6d78848a2.webp"} alt="" aria-hidden className="absolute inset-0 w-full h-full" style={{ objectFit: "cover" }} loading="lazy" />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(21, 24, 28,0.25) 0%, rgba(21, 24, 28,0.05) 35%, rgba(21, 24, 28,0.62) 100%)" }} />
-      <img src="img/img_0354fd0a9688.webp" alt="" aria-hidden className="absolute inset-0 w-full h-full pointer-events-none" style={{ objectFit: "cover", zIndex: 1 }} loading="lazy" />
-      {/* zIndex 2: all content paints above BOTH overlay frames — the second
-          overlay (zIndex 1) was covering the guidance card at 390px */}
-      <div className="nx-container relative" style={{ paddingTop: "3.5rem", paddingBottom: "3.5rem", zIndex: 2 }}>
-        <div className="flex flex-wrap gap-x-7 gap-y-2" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-bg)" }}>
-          <span className="inline-flex items-center gap-2"><Activity size={16} strokeWidth={2} /> Movement</span>
-          <span className="inline-flex items-center gap-2"><Apple size={16} strokeWidth={2} /> Nutrition</span>
-          <span className="inline-flex items-center gap-2"><Brain size={16} strokeWidth={2} /> Recovery</span>
-          <span className="inline-flex items-center gap-2"><Shield size={16} strokeWidth={2} /> Protocol</span>
-        </div>
-        <div className="relative mt-10 max-w-xl">
-          <div className="absolute left-3 right-3 -bottom-3 h-full" style={{ background: "rgba(243, 245, 247,0.45)", borderRadius: "var(--nx-r-md)", filter: "blur(0.5px)" }} aria-hidden />
-          <div className="relative nx-rise" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-md)", padding: "1.3rem 1.5rem", boxShadow: "var(--nx-e-4)" }}>
-            <div className="flex items-center justify-between gap-4">
-              <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.5, color: "var(--nx-fg)", fontWeight: 500, margin: 0 }}>
-                Front-load protein within an hour of waking — steadier glucose, stronger recovery.
-              </p>
-              <ArrowRight size={18} strokeWidth={2} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-            </div>
-            <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-amber)", marginTop: 8 }}>Supports 6 metabolic markers</p>
-          </div>
-        </div>
-        <div className="relative" style={{ marginTop: "4.5rem", zIndex: 2 }}>
-          <h2 id="bw-plan-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.06, color: "var(--nx-bg)", maxWidth: "14ch" }}>
-            Doctor-developed. <em style={{ fontStyle: "italic", color: "var(--nx-acid)" }}>You</em>-specific.
-          </h2>
-          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "rgba(243, 245, 247,0.85)", maxWidth: "48ch", marginTop: "0.9rem" }}>
-            Every panel becomes a written plan — movement, nutrition, recovery, and if appropriate, a prescribed protocol. Reviewed against your next draw.
-          </p>
-          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", color: "rgba(243, 245, 247,0.5)", marginTop: "1.2rem" }}>Illustration of member guidance.</p>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -1471,48 +1203,3 @@ function GlowingBody({ world }: { world: "men" | "women" }) {
   );
 }
 
-/* ══ MARKER WALL — the language of your body ══ */
-function MarkerWall() {
-  // Dedupe after stripping parentheticals — "Lymphocytes (absolute count)"
-  // and "(percentage)" would otherwise drift past as side-by-side twins.
-  const names = Array.from(new Set(BIOMARKER_PANEL.flatMap((c) => c.markers.map((m) => m.name.split(" (")[0]))));
-  const rows = [names.slice(0, 5), names.slice(9, 13), names.slice(18, 22), names.slice(27, 31), names.slice(36, 40), names.slice(45, 49), names.slice(54, 58)];
-  const ops = [0.16, 0.3, 0.5, 0.75, 0.5, 0.3, 0.16];
-  return (
-    <section aria-label="The biomarkers your panel measures" className="relative overflow-hidden" style={{ background: "var(--nx-bg)", padding: "7rem 0" }}>
-      <div aria-hidden style={{ textAlign: "center" }}>
-        {rows.map((r, i) => (
-          <p key={i} className={i % 2 ? "nx-drift reverse" : "nx-drift"} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.28, color: "var(--nx-cobalt)", opacity: ops[i], margin: 0, whiteSpace: "nowrap" }}>
-            {r.join(",  ")},
-          </p>
-        ))}
-      </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: "var(--nx-ceramic)", borderRadius: "var(--nx-r-lg)", padding: "1.2rem 1.4rem", boxShadow: "var(--nx-e-4)", minWidth: 260 }}>
-        <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", margin: 0 }}>Out of range → In range</p>
-        <svg viewBox="0 0 240 70" style={{ width: 240, height: 70, display: "block", marginTop: 8 }}>
-          <line x1="30" y1="22" x2="180" y2="48" stroke="var(--nx-amber)" strokeWidth="1.6" strokeDasharray="4 5" />
-          <circle cx="30" cy="22" r="7" fill="var(--nx-ceramic)" stroke="var(--nx-rust)" strokeWidth="2.5" />
-          <circle cx="180" cy="48" r="9" fill="var(--nx-acid)" stroke="var(--nx-amber)" strokeWidth="2.5" />
-          <text x="30" y="64" textAnchor="middle" fill="rgba(21, 24, 28,0.5)" style={{ font: "500 10px " + FONT }}>Baseline</text>
-          <text x="180" y="16" textAnchor="middle" fill="rgba(21, 24, 28,0.5)" style={{ font: "500 10px " + FONT }}>90 days</text>
-        </svg>
-      </div>
-    </section>
-  );
-}
-
-/* ══ Sticky pill sub-nav ══ */
-function SectionPills() {
-  const items = [["The panel", "#panel"], ["Your results", "#results"], ["Your plan", "#plan"], ["What it surfaces", "#surface"], ["Get started", "#offer"]];
-  return (
-    <div className="nx-pills" style={{ background: "rgba(243, 245, 247,0.85)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", borderBottom: "1px solid var(--nx-border)" }}>
-      <div className="nx-container flex gap-2 overflow-x-auto" style={{ paddingTop: "10px", paddingBottom: "10px", scrollbarWidth: "none" }}>
-        {items.map(([t, h]) => (
-          <a key={h} href={anchor(h)} className="whitespace-nowrap no-underline" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-hover)", background: "color-mix(in srgb, var(--nx-cobalt) 16%, transparent)", border: "1px solid color-mix(in srgb, var(--nx-cobalt) 26%, transparent)", borderRadius: "var(--nx-r-pill)", padding: "12px 15px" }}>
-            {t}
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
