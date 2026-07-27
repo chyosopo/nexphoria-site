@@ -70,8 +70,6 @@ export interface WorldHomeConfig {
   trustSlot?: React.ReactNode;
   /** optional human frame beside the FAQ intro — person mid-consult with a clinician */
   faqArt?: string;
-  /** floating marker chip on the hero frame — clearly labeled as a sample */
-  heroMarker?: { label: string; delta: string; state: string };
 }
 
 export function WorldHome({ config }: { config: WorldHomeConfig }) {
