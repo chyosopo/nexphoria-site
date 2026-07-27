@@ -7,6 +7,7 @@ import { FaqAccordion, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, orgJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ArrowUpRight, Microscope, ShieldCheck, Beaker, Scale, HeartPulse, MessageSquare, Activity, RefreshCw, Stethoscope, ClipboardList, FlaskConical, Snowflake, LayoutDashboard, Target, Ruler, type LucideIcon } from "lucide-react";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
 import lifestylePharmacyShelf from "@/assets/brand/lifestyle-pharmacy-shelf.webp";
 import heroAbout from "@/assets/brand/hero-about.webp";
@@ -68,7 +69,7 @@ const monoCaption: React.CSSProperties = {
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const PROOF_STATS: { value: string; label: string; Icon: LucideIcon }[] = [
-  { value: "38", label: "Biomarkers per panel", Icon: Activity },
+  { value: String(PANEL_TOTAL_MARKERS), label: "Biomarkers per panel", Icon: Activity },
   { value: "503A", label: "state-licensed pharmacy", Icon: ShieldCheck },
   { value: "90 days", label: "Recalibration cadence", Icon: RefreshCw },
   { value: "100%", label: "Physician-reviewed", Icon: Stethoscope },
