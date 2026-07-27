@@ -220,7 +220,10 @@ export default function FAQPage() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+      {/* NOT a <main id="main-content">: SiteLayout already renders the sole
+          <main id="main-content"> landmark + skip-link target around all
+          children. A second one here duplicated the landmark AND the id. */}
+      <div style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
@@ -272,7 +275,7 @@ export default function FAQPage() {
             </figcaption>
           </figure>
         </div>
-      </main>
+      </div>
 
 
       {/* ── FAQ categories + accordion ── */}
@@ -361,8 +364,10 @@ export default function FAQPage() {
               </nav>
             </aside>
 
-            {/* Accordion */}
-            <main>
+            {/* Accordion — plain div, NOT a second <main>: the page already
+                has one <main id="main-content"> landmark above (house pattern,
+                cf. Pricing.tsx). Two <main> elements is invalid HTML5. */}
+            <div>
               <Reveal>
                 <p
                   style={{
@@ -392,7 +397,7 @@ export default function FAQPage() {
 
                 <FaqAccordion key={activeCategory} items={categories[activeCategory].items} openFirst={false} />
               </Reveal>
-            </main>
+            </div>
           </div>
         </div>
       </section>
