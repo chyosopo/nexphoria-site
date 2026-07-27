@@ -13,11 +13,10 @@ import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { CATEGORY_LABELS, CATEGORY_FEELING, peptides, type PeptideCategory } from "@/data/peptides";
-import { OUTCOME_CATEGORY, OUTCOME_STACK } from "@/data/outcomeImagery";
+import { OUTCOME_CATEGORY, OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
-import { outcomeSrcSet } from "@/data/outcomeImagery";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 /* The dedicated per-world gate portraits (Bloom, 2026-07-06) — same faces
@@ -158,7 +157,7 @@ export default function FrontDoor() {
                 data-testid={w.testId}
                 aria-label={w.side === "her" ? "Enter the women's experience" : "Enter the men's experience"}
               >
-                <img src={w.img} alt="" aria-hidden loading="lazy" width={1600} height={2000} style={{ objectPosition: w.pos }} />
+                <img src={w.img} srcSet={outcomeSrcSet(w.img)} sizes="(max-width: 767px) 100vw, 50vw" alt="" aria-hidden loading="lazy" width={1600} height={2000} style={{ objectPosition: w.pos }} />
                 <div className="nx-wgate-scrim" aria-hidden />
                 <div className="nx-wgate-copy">
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
