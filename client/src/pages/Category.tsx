@@ -10,8 +10,8 @@ import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { peptides, CATEGORY_LABELS, CATEGORY_FEELING, type PeptideCategory } from "@/data/peptides";
-import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
-import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { OUTCOME_CATEGORY, outcomeSrcSet } from "@/data/outcomeImagery";
+import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT } from "@/data/biomarkerPanel";
 import { ProtocolSelector } from "@/components/ProtocolSelector";
 import { selectorRoutes } from "@/data/protocolSelector";
 import { anchor } from "@/lib/anchors";
@@ -71,10 +71,10 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
   },
   longevity: {
     pre: "Add life to your", accent: "years.",
-    sub: "Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a 99-marker baseline and re-tested every quarter.",
+    sub: `Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a ${PANEL_TOTAL_MARKERS}-marker baseline and re-tested every quarter.`,
     chips: ["Cellular energy", "Immune resilience", "Healthspan", "Daily vitality"],
     faqs: [
-      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork — ${PANEL_TOTAL_MARKERS} markers across 11 systems — reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
+      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork — ${PANEL_TOTAL_MARKERS} markers across ${PANEL_CATEGORY_COUNT} systems — reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
       { q: "What makes this different from supplements?", a: "Everything here is prescription-only, physician-directed, and adjusted against your own labs every 90 days." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
@@ -235,7 +235,7 @@ export default function Category() {
             {heroArt && (
               <Reveal delay={80} className="hidden lg:block">
                 <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", border: "1px solid var(--nx-border)" }}>
-                  <img src={heroArt} alt="" aria-hidden style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" />
+                  <img src={heroArt} srcSet={outcomeSrcSet(heroArt)} sizes="(max-width: 1024px) 100vw, 45vw" alt="" aria-hidden width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" />
                 </div>
               </Reveal>
             )}
