@@ -21,6 +21,8 @@ export default function GiftClaim() {
     title: ask ? `Cover ${ask.from ? `${ask.from}'s` : "their"} ${ask.item.name} — Nexphoria` : "Gift link — Nexphoria",
     description: "A one-time payment covers their protocol or panel. They still qualify with their own physician; unprescribed gifts are refunded.",
     path: "/gift/claim",
+    // Private per-recipient claim link — never index; not in the sitemap.
+    noindex: true,
     jsonLd: [webPageJsonLd({ name: "Nexphoria gift link", description: "Cover someone's protocol or panel.", path: "/gift/claim" })],
   });
 

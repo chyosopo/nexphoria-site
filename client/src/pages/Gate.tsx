@@ -22,6 +22,8 @@ export default function Gate() {
     title: "Nexphoria — peptide therapy, physician-prescribed and lab-monitored",
     description: "Single peptides, physician-curated stacks, or a fully custom protocol. Every compound prescribed by a board-certified physician and compounded in a U.S. 503A pharmacy. Tell us your goals.",
     path: "/gate",
+    // Interstitial world-chooser — no evergreen content; keep it out of the index.
+    noindex: true,
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Gateway",
       description: "Choose your path: single peptides, physician-curated stacks, or a custom protocol.",

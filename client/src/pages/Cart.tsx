@@ -1,10 +1,9 @@
 /* JOB: confirm the selection and move to checkout; no competing noise. */
-import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
 import { CADENCE_DISCOUNTS, pricing, billingNote, type CadenceKey } from "@/data/pricing";
@@ -12,23 +11,17 @@ import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 
 export default function Cart() {
-  useSeo({ title: "Your cart — Nexphoria", description: "Review your selected protocols before physician intake." });
+  // Cart is a private transactional page — noindex (centralized in useSeo) to
+  // keep crawl budget on content pages. A breadcrumb gives the trail navigational
+  // context even though the page itself stays out of the index.
+  useSeo({
+    title: "Your cart — Nexphoria",
+    description: "Review your selected protocols before physician intake.",
+    path: "/cart",
+    noindex: true,
+    jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }])],
+  });
   const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
-
-  // Cart is a private transactional page — noindex to keep crawl budget on content pages
-  useEffect(() => {
-    document.title = "Your Cart | Nexphoria";
-    let metaRobots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
-    if (!metaRobots) {
-      metaRobots = document.createElement("meta");
-      metaRobots.setAttribute("name", "robots");
-      document.head.appendChild(metaRobots);
-    }
-    metaRobots.setAttribute("content", "noindex, nofollow");
-    return () => {
-      metaRobots?.setAttribute("content", "index, follow, max-image-preview:large");
-    };
-  }, []);
 
   return (
     <SiteLayout variant="gate">

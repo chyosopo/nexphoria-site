@@ -25,6 +25,13 @@ export interface SeoOptions {
   ogImage?: string;
   /** JSON-LD objects to inject for this page. */
   jsonLd?: Record<string, unknown>[];
+  /**
+   * When true, emit <meta name="robots" content="noindex, nofollow"> for this
+   * page and restore indexability on unmount. For transactional / private
+   * routes (cart, checkout, gate, gift-claim) that must stay out of the index
+   * — they carry no evergreen content and would only dilute crawl budget.
+   */
+  noindex?: boolean;
 }
 
 /**
@@ -59,7 +66,7 @@ function setLink(rel: string, href: string) {
   el.setAttribute("href", href);
 }
 
-export function useSeo({ title, description, path, ogImage, jsonLd }: SeoOptions) {
+export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: SeoOptions) {
   // Stable serialization of the JSON-LD payload so the effect re-runs when the
   // structured data changes even if title/description/path are identical across
   // a client-side navigation. A string primitive compares by value in the dep
@@ -84,6 +91,10 @@ export function useSeo({ title, description, path, ogImage, jsonLd }: SeoOptions
     setMeta("name", "twitter:description", description);
     setMeta("name", "twitter:image", img);
 
+    // Transactional / private routes opt out of indexing. Restored on cleanup
+    // so a client-side navigation back to a content page re-enables indexing.
+    if (noindex) setMeta("name", "robots", "noindex, nofollow");
+
     // Inject page-specific JSON-LD; tag them so we can remove on unmount.
     const nodes: HTMLScriptElement[] = [];
     (jsonLd ?? []).forEach((obj) => {
@@ -99,10 +110,11 @@ export function useSeo({ title, description, path, ogImage, jsonLd }: SeoOptions
 
     return () => {
       nodes.forEach((n) => n.remove());
+      if (noindex) setMeta("name", "robots", "index, follow, max-image-preview:large");
     };
     // jsonLdKey stands in for jsonLd (a fresh array each render); the primitives
     // are listed explicitly. eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path, ogImage, jsonLdKey]);
+  }, [title, description, path, ogImage, jsonLdKey, noindex]);
 }
 
 /** Shared structured-data builders. */

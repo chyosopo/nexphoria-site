@@ -1,6 +1,6 @@
 /* JOB: capture the order for physician review; zero distractions. */
 import { track } from "@/lib/analytics";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +9,7 @@ import { z } from "zod";
 import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { useSeo } from "@/lib/seo";
+import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { billingNote } from "@/data/pricing";
 import { isGLP1Excluded, getStack, GLP1_STATE_EXCLUSIONS } from "@/data/stacksCatalog";
@@ -44,7 +44,15 @@ type FormValues = z.infer<typeof formSchema>;
 const STEPS = ["Address", "Billing", "Review"] as const;
 
 export default function Checkout() {
-  useSeo({ title: "Secure intake — Nexphoria", description: "Submit your information for physician review. No charge until a licensed physician approves your protocol." });
+  // Checkout is a private transactional page — noindex (centralized in useSeo).
+  // Breadcrumb (Home → Cart → Checkout) records the real navigational trail.
+  useSeo({
+    title: "Secure intake — Nexphoria",
+    description: "Submit your information for physician review. No charge until a licensed physician approves your protocol.",
+    path: "/checkout",
+    noindex: true,
+    jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }, { name: "Checkout", path: "/checkout" }])],
+  });
   const { lines, subtotal, totalSavings, itemCount, clear } = useCart();
 
   /* ─── GLP-1 state gate (defense-in-depth: PDPs already gate; this enforces at checkout) ─── */
@@ -53,21 +61,6 @@ export default function Checkout() {
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);
   const [step, setStep] = useState(0); // 0 Address, 1 Payment, 2 Review
-
-  // Checkout is a private transactional page — noindex
-  useEffect(() => {
-    document.title = "Checkout | Nexphoria";
-    let metaRobots = document.head.querySelector<HTMLMetaElement>('meta[name="robots"]');
-    if (!metaRobots) {
-      metaRobots = document.createElement("meta");
-      metaRobots.setAttribute("name", "robots");
-      document.head.appendChild(metaRobots);
-    }
-    metaRobots.setAttribute("content", "noindex, nofollow");
-    return () => {
-      metaRobots?.setAttribute("content", "index, follow, max-image-preview:large");
-    };
-  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
