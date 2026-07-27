@@ -53,7 +53,9 @@ export default function StackPage({ slug }: { slug: string }) {
     description: stack ? `${stack.name}: ${stack.bestFor} Physician-prescribed, bloodwork-gated, retested.` : "",
     jsonLd: stack
       ? [
-          webPageJsonLd({ name: stack.name, description: stack.tagline, path: `/stacks/${stack.slug}` }),
+          // Prescription protocol PDP — MedicalWebPage for clinical E-E-A-T,
+          // parity with SoloPDP (which already types itself MedicalWebPage).
+          webPageJsonLd({ name: stack.name, description: stack.tagline, path: `/stacks/${stack.slug}`, type: "MedicalWebPage" }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }, { name: stack.name, path: `/stacks/${stack.slug}` }]),
           faqJsonLd(faq),
           // Prescription protocol: name/brand/category enrichment only — no offers/price (pharma rich-result policy).

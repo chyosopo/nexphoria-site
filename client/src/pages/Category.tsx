@@ -160,7 +160,9 @@ export default function Category() {
     path: `/goals/${slug}`,
     jsonLd: cfg
       ? [
-          webPageJsonLd({ name: `${label} protocols`, description: cfg.sub, path: `/goals/${slug}` }),
+          // Goal protocol pages are clinical peptide content — MedicalWebPage for
+          // the E-E-A-T signal, matching SoloPDP / Bloodwork / Science.
+          webPageJsonLd({ name: `${label} protocols`, description: cfg.sub, path: `/goals/${slug}`, type: "MedicalWebPage" }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: label, path: `/goals/${slug}` }]),
           faqJsonLd(cfg.faqs),
           // ItemList of the peptides in this goal — only when real children exist.
