@@ -665,7 +665,8 @@ export default function Science() {
             <TOCSidebar activeId={activeId} />
           </aside>
 
-          <main style={{ minWidth: 0 }}>
+          {/* Content region, NOT a <main>: SiteLayout owns the sole <main> landmark; a second <main> is invalid HTML5 (house pattern). Styled grid column only. */}
+          <div style={{ minWidth: 0 }}>
             {families.map((family, i) => {
               const bg = i % 2 === 0 ? "var(--nx-bg)" : "var(--nx-bg-cream)";
               return (
@@ -846,7 +847,7 @@ export default function Science() {
                 </div>
               </Reveal>
             </section>
-          </main>
+          </div>
         </div>
       </div>
 

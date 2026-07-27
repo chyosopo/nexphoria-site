@@ -1132,7 +1132,8 @@ export default function Bloodwork() {
           seven de-rendered components have now been deleted outright (they were
           the last in-repo home of the retiring amber/rust/bg-cream aliases);
           only the sections composed below remain. */}
-      <main id="main-content">
+      {/* Plain wrapper, NOT a second <main id="main-content">: SiteLayout owns the sole <main> landmark + skip-link target. A nested <main>/duplicate id is invalid HTML5 (house pattern, cf. Pricing/Contact/FAQ). */}
+      <div>
         <Hero />
         <TrustRow />
         <GlowingBody world={world} />
@@ -1154,7 +1155,7 @@ export default function Bloodwork() {
           title="Every protocol starts with proof."
           sub={`A physician reviews all ${PANEL_TOTAL_MARKERS} markers before a single dose is prescribed. Book your panel in five minutes.`}
         />
-      </main>
+      </div>
       {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}
       <StickyAssessBar label="It starts with the panel" testid="sticky-assess-bloodwork" />
     </SiteLayout>
