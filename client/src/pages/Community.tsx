@@ -57,7 +57,11 @@ export default function Community() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+      {/* NOT a <main id="main-content">: SiteLayout already renders the sole
+          <main id="main-content"> landmark + skip-link target around all
+          children. A second one here duplicated the landmark AND the id
+          (invalid HTML5; cf. FAQ c785c4b, Journal, Pricing). */}
+      <div style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
             badge={<PillBadge tone="acid">Community · launching soon</PillBadge>}
@@ -89,7 +93,7 @@ export default function Community() {
             />
           </div>
         </div>
-      </main>
+      </div>
 
 
       {/* ── Launch notice ── */}
