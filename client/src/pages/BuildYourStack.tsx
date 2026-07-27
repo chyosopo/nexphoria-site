@@ -163,7 +163,7 @@ type Step = 1 | 2 | 3;
 export default function BuildYourStack() {
   useSeo({
     title: "Build your own peptide stack — custom, physician-reviewed",
-    description: "Pick your goal, choose 2–4 compatible peptides — the bundle rate applies on its own. Every custom stack is reviewed by a board-certified physician and compounded in a U.S. 503A pharmacy before dispensing.",
+    description: "Pick your goal, choose 2–5 compatible peptides — the bundle rate applies on its own. Every custom stack is reviewed by a US-licensed physician and compounded in a U.S. 503A pharmacy before dispensing.",
     path: "/stacks/build",
     jsonLd: [webPageJsonLd({
       name: "Build Your Peptide Stack",
