@@ -255,7 +255,13 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.5fr]" style={{ gap: 14, marginTop: "1.9rem", alignItems: "stretch" }}>
           <Reveal>
             <div className="relative" style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", minHeight: 320, height: "100%", boxShadow: "var(--nx-e-3)" }}>
-              <img src={config.vialArt} alt="" aria-hidden loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+              <img
+                src={config.vialArt}
+                srcSet={outcomeSrcSet(config.vialArt)}
+                sizes="(min-width: 1024px) calc((100vw - 110px) * 0.375), 100vw"
+                alt="" aria-hidden loading="lazy"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              />
               <div className="nx-art-chip" style={{ maxWidth: 260 }}>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                   Compounded per prescription
