@@ -47,7 +47,7 @@ export default function Booking() {
                 style={{ fontSize: "var(--nx-t-base)", padding: "14px 26px" }}
                 data-testid="booking-calendly"
               >
-                Book a time <ArrowRight size={16} strokeWidth={2.2} aria-hidden />
+                Book a time<span className="sr-only"> (opens in a new tab)</span> <ArrowRight size={16} strokeWidth={2.2} aria-hidden />
               </a>
               <Link
                 href="/assessment"
