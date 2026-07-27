@@ -80,7 +80,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       : "Peptides — The Full Catalog | Nexphoria",
     description: `${SOLO_CATALOG.length} physician-prescribed peptides${world === "women" ? " for women" : world === "men" ? " for men" : ""}, each with dosing, mechanism, timeline, and required bloodwork stated plainly.`,
     jsonLd: [
-      webPageJsonLd({ name: "Peptides", description: "Solo peptide catalog.", path: "/peptides" }),
+      // World-aware path so the WebPage node's url matches this page's own
+      // canonical/og:url + breadcrumb + itemList (all `${base}/peptides`) on
+      // /men/peptides and /women/peptides — not a neutral /peptides that
+      // contradicts its siblings on the worlded routes.
+      webPageJsonLd({ name: "Peptides", description: "Solo peptide catalog.", path: `${base}/peptides` }),
       breadcrumbJsonLd(
         world
           ? [{ name: "Home", path: "/" }, { name: world === "men" ? "Men" : "Women", path: `/${world}` }, { name: "Peptides", path: `/${world}/peptides` }]
