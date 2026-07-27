@@ -19,7 +19,6 @@ import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 import { F, FONT } from "@/lib/typography";
 import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
-import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { FLAGSHIP_STACKS, getStack, PANELS, usd } from "@/data/stacksCatalog";
 import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 
@@ -32,9 +31,7 @@ const SAVE_12MO = CADENCE_DISCOUNTS["12mo"].savePct;
 
 /* The shelf stacks that are actually sold (gated GLP-1 excluded). */
 const NON_GATED_STACKS = FLAGSHIP_STACKS.filter((s) => !s.gated && s.cadences.length > 0);
-const SOLO_1MO_FROM = Math.min(...SOLO_CATALOG.filter((s) => s.pricing).map((s) => s.pricing!.m1));
 const STACK_FROM_12MO = Math.min(...NON_GATED_STACKS.map((s) => priceAtCadence(s.slug, "12mo")));
-const STACK_TO_1MO = Math.max(...NON_GATED_STACKS.map((s) => priceAtCadence(s.slug, "1mo")));
 
 /* Protocol rows = the shelf stacks, each priced straight from the catalog. */
 const protocols = NON_GATED_STACKS.map((s) => ({
@@ -452,27 +449,30 @@ function PricingTiers() {
   );
 }
 
-/* ── Pricing FAQ data — drives FAQPage JSON-LD ───────────────── */
+/* ── Pricing FAQ data — feeds FAQPage JSON-LD AND renders visibly in the
+   FaqAccordion below (single source, byte-parity by construction — the house
+   pattern per bloodworkContent.ts / About). Every schema Q&A appears on-page
+   and vice versa: no schema-only or page-only entries. ───────────── */
 const PRICING_FAQ_ITEMS = [
   {
-    q: "How much does Nexphoria cost per month?",
-    a: `Single peptides start at ${SOLO_FROM_LABEL}/month on a 12-month plan and ${formatUSD(SOLO_1MO_FROM)}/month billed monthly. Physician-built stacks run from ${formatUSD(STACK_FROM_12MO)}/month up to ${formatUSD(STACK_TO_1MO)}/month, depending on protocol and cadence. Every plan includes your physician consultation, compounded peptides from a U.S. 503A-licensed pharmacy, overnight cold-chain shipping, and partner-laboratory labs. The figure is complete.`,
+    q: "Is the physician consult included in the price?",
+    a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consultation fee.",
   },
   {
-    q: "Is the physician consultation included in the subscription price?",
-    a: "Yes. Your initial board-certified physician consultation and all follow-up consultations within your active subscription cycle are included in the plan price. There is no separate consultation fee. If your physician declines to issue a prescription, you are not charged for pharmacy compounding.",
+    q: "Are labs included?",
+    a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 99-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans.",
   },
   {
-    q: "Can I save money by prepaying?",
-    a: `Yes. A quarterly (3-month) plan saves ${SAVE_3MO}% off the monthly rate. A 12-month annual plan saves ${SAVE_12MO}% — the lowest per-month cost available. Both include the same physician consultations, quarterly bloodwork, and compounding benefits as the monthly plan.`,
+    q: "Can I use FSA or HSA funds?",
+    a: "Yes. Compounded prescription medications and physician consultations are generally FSA/HSA-eligible. We provide itemized receipts at checkout. Confirm eligibility with your plan administrator.",
   },
   {
-    q: "Is peptide therapy FSA or HSA eligible?",
-    a: "Compounded prescription medications and physician consultations are generally FSA/HSA-eligible medical expenses. Nexphoria provides itemized receipts at checkout that identify the prescription component separately from shipping. Confirm eligibility with your plan administrator before purchase, as rules vary by FSA/HSA type.",
+    q: "What if the physician declines my protocol?",
+    a: "If a physician determines your requested protocol is clinically inappropriate, no prescription is issued and you are not charged for pharmacy compounding. The physician may propose a modified alternative.",
   },
   {
-    q: "What if I want to switch peptides mid-subscription?",
-    a: "Protocol changes require a physician re-evaluation, which is included in your subscription. Your physician will review updated labs and goals before modifying your compound selection. Simple dose adjustments within the same compound can typically be handled via secure portal message without a full consult.",
+    q: "Is there a cancellation fee?",
+    a: "No. Cancel anytime from your member portal with no penalty. Cancellation takes effect at the end of your current billing cycle. Compounded medications that have shipped cannot be returned.",
   },
 ];
 
@@ -576,7 +576,10 @@ export default function Pricing() {
   });
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+      {/* SiteLayout renders the sole <main id="main-content"> landmark; this is a
+          styled section wrapper only (a second <main>/duplicate id is invalid
+          HTML5 and breaks skip-link + SR landmark nav — cf. FAQ c785c4b, Journal 213a890). */}
+      <div style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
@@ -652,7 +655,7 @@ export default function Pricing() {
             </figcaption>
           </figure>
         </div>
-      </main>
+      </div>
 
 
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
@@ -1350,13 +1353,7 @@ export default function Pricing() {
             </h2>
           </Reveal>
           <div style={{ maxWidth: "820px" }}>
-            <FaqAccordion items={[
-              { q: "Is the physician consult included in the price?", a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consultation fee." },
-              { q: "Are labs included?", a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 99-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans." },
-              { q: "Can I use FSA or HSA funds?", a: "Yes. Compounded prescription medications and physician consultations are generally FSA/HSA-eligible. We provide itemized receipts at checkout. Confirm eligibility with your plan administrator." },
-              { q: "What if the physician declines my protocol?", a: "If a physician determines your requested protocol is clinically inappropriate, no prescription is issued and you are not charged for pharmacy compounding. The physician may propose a modified alternative." },
-              { q: "Is there a cancellation fee?", a: "No. Cancel anytime from your member portal with no penalty. Cancellation takes effect at the end of your current billing cycle. Compounded medications that have shipped cannot be returned." },
-            ]} />
+            <FaqAccordion items={PRICING_FAQ_ITEMS} />
           </div>
 
           {/* Assessment CTA */}
