@@ -47,7 +47,14 @@ export default function Gate() {
   };
 
   return (
-    <div
+    /* Gate renders OUTSIDE SiteLayout (standalone full-viewport interstitial,
+       App.tsx route), so — unlike pages nested under SiteLayout — it carries
+       NO main landmark of its own. A screen-reader user navigating by landmark
+       finds nothing on the one screen whose whole job is the her/him choice.
+       This <main id="main-content"> is therefore the SOLE landmark on the
+       route, not a duplicate. */
+    <main
+      id="main-content"
       style={{
         position: "relative",
         width: "100vw",
@@ -264,7 +271,7 @@ export default function Gate() {
         @keyframes gateBreath { from { transform: scale(1); } to { transform: scale(1.055); } }
         @media (prefers-reduced-motion: reduce) { .gate-card-img { animation: none; } }
       `}</style>
-    </div>
+    </main>
   );
 }
 
