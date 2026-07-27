@@ -19,7 +19,7 @@ import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
-import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt } from "@/data/outcomeImagery";
+import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { getPeptideHeroImage } from "@/lib/peptideImages";
 import type { PeptideCategory } from "@/data/peptides";
 
@@ -112,6 +112,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const parentFrom = parentStack && !parentStack.gated
     ? usd(Math.min(...parentStack.cadences.map((c) => c.perMonth ?? c.total)))
     : null;
+  // Bind the flagship frame once (it was resolved twice) so the responsive
+  // srcSet is typed and the world-cast lookup runs a single time.
+  const parentStackArt = parentStack ? stackArt(parentStack.slug, imgWorld) : undefined;
 
   const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
     { Icon: Stethoscope, t: "Physician review & prescription" },
@@ -170,7 +173,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             {/* square frame FILLS the column (the 4:5 + maxHeight cap left it
                 floating ~100px narrower than its track) */}
             <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
-              <img src={heroImg} alt="" aria-hidden fetchPriority="high" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid={`solo-outcome-${solo.slug}`} />
+              <img src={heroImg} srcSet={outcomeSrcSet(heroImg)} sizes="(max-width: 1024px) 100vw, 45vw" alt="" aria-hidden fetchPriority="high" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid={`solo-outcome-${solo.slug}`} />
               <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
               <div
                 style={{
@@ -294,7 +297,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="solo-point-title">
         <Reveal>
           <div style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "16 / 7" }}>
-            <img src={categoryImg} alt="" aria-hidden loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 28%", display: "block" }} />
+            <img src={categoryImg} srcSet={outcomeSrcSet(categoryImg)} sizes="100vw" alt="" aria-hidden loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 28%", display: "block" }} />
             <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, color-mix(in srgb, var(--nx-fg) 62%, transparent) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
               <div style={{ padding: "var(--nx-sp-band)", maxWidth: 560 }}>
@@ -336,9 +339,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             data-testid={`solo-upgrade-${parentStack.slug}`}
             style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "stretch" }}
           >
-            {stackArt(parentStack.slug, imgWorld) && (
+            {parentStackArt && (
               <div className="nx-float-card__media" style={{ flex: "1 1 260px", aspectRatio: "auto", minHeight: 200, marginBottom: 10 }}>
-                <img src={stackArt(parentStack.slug, imgWorld)} alt="" aria-hidden loading="lazy" width={1632} height={1020} />
+                <img src={parentStackArt} srcSet={outcomeSrcSet(parentStackArt)} sizes="(max-width: 640px) 100vw, 300px" alt="" aria-hidden loading="lazy" width={1632} height={1020} />
               </div>
             )}
             <div className="nx-float-card__body" style={{ flex: "2 1 340px" }}>
