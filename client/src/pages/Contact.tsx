@@ -121,7 +121,11 @@ export default function Contact() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+      {/* NOT a <main id="main-content">: SiteLayout already renders the sole
+          <main id="main-content"> landmark + skip-link target around all
+          children. A second one here duplicated the landmark AND the id
+          (invalid HTML5; cf. Community 6fdc1e7b, FAQ c785c4b, Journal, Pricing). */}
+      <div style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
             badge={<PillBadge tone="acid">Get in touch</PillBadge>}
@@ -148,7 +152,7 @@ export default function Contact() {
               tone="sage"
               glyph={TileGlyphs.wave}
               label={<>Press & partners<br /><span>media kit</span></>}
-              caption="Average reply: 2hrs"
+              caption="Replies on business days"
               ctaLabel="Message us"
             />
             {/* Booking's side-door entrance (ROADMAP 2.3): reachable from
@@ -163,7 +167,7 @@ export default function Contact() {
             />
           </div>
         </div>
-      </main>
+      </div>
 
 
       {/* ── Three support columns ── */}
