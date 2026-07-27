@@ -138,7 +138,11 @@ export default function JournalArticle() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+      {/* SiteLayout already renders the sole <main id="main-content"> landmark +
+          skip-link target around all children; a second <main id> here duplicated
+          the landmark and the id in prerendered HTML (invalid; SR landmark nav +
+          skip-link degrade). Demoted to a styled <div>; background preserved. */}
+      <div style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
             eyebrow={`${categoryMeta?.label ?? article.category} · Journal`}
@@ -165,7 +169,7 @@ export default function JournalArticle() {
             />
           </div>
         </div>
-      </main>
+      </div>
 
       {/* ── Editorial image ───────────────────────────────── */}
       <section
