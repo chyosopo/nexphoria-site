@@ -39,11 +39,23 @@ export default function ProtocolsIndex() {
   const otherLean = world === "women" ? "him" : "her";
   const leanRank = (lean?: "him" | "her" | "both") =>
     lean === ownLean ? 0 : lean === otherLean ? 2 : 1;
+  // Single-sourced so the meta description and the webPage JSON-LD node can't
+  // drift apart. Typed MedicalWebPage for clinical E-E-A-T parity with the
+  // protocol PDPs it indexes (StackPage) and the sibling goal-protocol index
+  // (Category) — both already MedicalWebPage; this flagship index was the
+  // lone plain WebPage outlier.
+  const desc = "Seven flagship peptide protocols, each with defined bloodwork, timeline, and physician oversight.";
   useSeo({
     title: "Protocols — Physician-Curated Peptide Stacks | Nexphoria",
-    description: "Seven flagship peptide protocols, each with defined bloodwork, timeline, and physician oversight.",
+    description: desc,
+    // Neutral canonical. This index renders at four routes (/stacks,
+    // /protocols, /men/protocols, /women/protocols); consolidate them onto
+    // /stacks — the same URL the webPage/breadcrumb JSON-LD already declares —
+    // so Google indexes one page. Omitting path silently canonicalized the
+    // whole index onto the homepage (the SoloPDP omitted-path deindex bug).
+    path: "/stacks",
     jsonLd: [
-      webPageJsonLd({ name: "Protocols", description: "Flagship peptide stacks.", path: "/stacks" }),
+      webPageJsonLd({ name: "Protocols", description: desc, path: "/stacks", type: "MedicalWebPage" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }]),
       // ItemList of the flagship protocols — real names/paths only, no prices here.
       itemListJsonLd({
