@@ -20,6 +20,7 @@ import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp 
 import { F, FONT } from "@/lib/typography";
 import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
 import { FLAGSHIP_STACKS, getStack, PANELS, usd } from "@/data/stacksCatalog";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 
 /* ── Catalog-derived pricing — single source of truth is the pricing engine
@@ -460,7 +461,7 @@ const PRICING_FAQ_ITEMS = [
   },
   {
     q: "Are labs included?",
-    a: "Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the 99-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans.",
+    a: `Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the ${PANEL_TOTAL_MARKERS}-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans.`,
   },
   {
     q: "Can I use FSA or HSA funds?",
@@ -1387,7 +1388,7 @@ const PLAN_COMPARISON_ROWS = [
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
-  { feature: "Partner-laboratory labs (99 markers)", solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
+  { feature: `Partner-laboratory labs (${PANEL_TOTAL_MARKERS} markers)`, solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
   { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
   { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },
