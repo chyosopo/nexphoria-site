@@ -3,6 +3,7 @@ import { build as viteBuild } from "vite";
 import { rm, readFile } from "node:fs/promises";
 import { generateSitemap } from "./genSitemap";
 import { generateLlms } from "./genLlms";
+import { prerender } from "./prerender";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -46,6 +47,13 @@ async function buildAll() {
 
   console.log("building client...");
   await viteBuild();
+
+  // Snapshot rendered HTML for every sitemap route so crawlers/LLMs see real
+  // content, not an empty shell (LAUNCH-AUDIT §4.1). Must run AFTER the client
+  // build (it serves dist/public and drives it with headless chromium). A
+  // throw here fails the build — do not swallow.
+  const { pages } = await prerender();
+  console.log(`prerender complete — ${pages} static HTML snapshots`);
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));

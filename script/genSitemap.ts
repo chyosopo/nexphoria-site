@@ -45,7 +45,15 @@ const STATIC_ROUTES = [
   "/legal/telehealth-consent", "/legal/terms",
 ];
 
-export async function generateSitemap(): Promise<number> {
+/**
+ * The ordered, deduplicated list of every real, indexable route — composed
+ * from the canonical catalogs, the 8 goal categories, and the static route
+ * list. This is the SINGLE SOURCE OF TRUTH consumed by BOTH generateSitemap
+ * (below) and script/prerender.ts, so the sitemap and the prerendered HTML
+ * snapshots can never drift apart. Alias/redirect and cart/checkout/gate
+ * routes are intentionally excluded (they are not in STATIC_ROUTES).
+ */
+export async function collectRoutes(): Promise<string[]> {
   const root = process.cwd();
   const solos = await slugsFrom(`${root}/client/src/data/soloCatalog.ts`);
   const stacks = await slugsFrom(`${root}/client/src/data/stacksCatalog.ts`);
@@ -70,7 +78,12 @@ export async function generateSitemap(): Promise<number> {
   // journal articles
   articles.forEach((a) => paths.add(`/journal/${a}`));
 
-  const ordered = [...paths].sort();
+  return [...paths].sort();
+}
+
+export async function generateSitemap(): Promise<number> {
+  const root = process.cwd();
+  const ordered = await collectRoutes();
   const body = ordered
     .map((p) => `  <url><loc>${BASE}${p}</loc></url>`)
     .join("\n");
