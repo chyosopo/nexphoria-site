@@ -49,13 +49,13 @@ export default function GiftClaim() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <section className="relative" style={{ overflow: "hidden" }}>
+      <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="giftclaim-title">
         <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 860 }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             A gift ask
           </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.07, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.9rem" }} data-testid="giftclaim-title">
+          <h1 id="giftclaim-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.07, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.9rem" }} data-testid="giftclaim-title">
             {from ? <>{from} asked you to cover <em style={{ color: "var(--nx-cobalt)" }}>{item.name}.</em></> : <>You've been asked to cover <em style={{ color: "var(--nx-cobalt)" }}>{item.name}.</em></>}
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
