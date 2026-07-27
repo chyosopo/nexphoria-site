@@ -93,7 +93,7 @@ const MEDICAL_HISTORY_OPTIONS = [
 const LAB_OPTIONS = [
   { id: "yes-recent", label: "Yes — within the last 6 months", sub: "I can share them" },
   { id: "yes-older", label: "Yes — but older than 6 months", sub: "May need a redraw" },
-  { id: "no", label: "No — I will use the Nexphoria panel", sub: "We'll order labs for you" },
+  { id: "no", label: "No — I will use the Nexphoria panel", sub: "We arrange your lab panel" },
 ];
 
 const US_STATES = [
@@ -1056,7 +1056,7 @@ export default function Assessment() {
                             lineHeight: 1.5,
                           }}
                         >
-                          We’ll email your protocol match so you can return where you left off. We contact you only about your intake, and you can unsubscribe at any time.
+                          Your protocol match is emailed so you can return where you left off. We contact you only about your intake, and you may unsubscribe at any time.
                         </p>
                       </div>
                       <WhyWeAsk funnelStep={1} />
@@ -1255,6 +1255,7 @@ export default function Assessment() {
                           <p
                             id="contact-email-hint"
                             aria-live="polite"
+                            aria-atomic="true"
                             data-testid="assessment-email-hint"
                             style={{
                               marginTop: "0.5rem",
@@ -1474,6 +1475,12 @@ export default function Assessment() {
                             </span>
                             <span
                               style={{
+                                // minWidth:0 + overflowWrap lets a long value
+                                // (multi-drug medication list, a long email) wrap
+                                // and shrink inside the flex row instead of
+                                // shoving the Edit affordance off the card edge.
+                                minWidth: 0,
+                                overflowWrap: "anywhere",
                                 fontFamily: F,
                                 fontSize: "var(--nx-t-base)",
                                 color: "var(--nx-fg)",
@@ -1657,7 +1664,7 @@ export default function Assessment() {
 
                             {/* Spec list — what's in it, monthly cost, and the panel */}
                             <div style={{ backgroundColor: "var(--nx-cobalt-soft)", padding: "clamp(1.25rem, 4vw, 1.75rem)" }}>
-                              <dl style={{ margin: 0, display: "grid", gap: "1rem" }}>
+                              <dl style={{ margin: 0, display: "grid", gap: "clamp(1.25rem, 2.5vw, 1.75rem)" }}>
                                 <div>
                                   <dt style={specTerm}>What's in it</dt>
                                   <dd style={specDesc}>{recStack ? recStack.peptides.map((p) => p.name).join(" · ") : cfg.peptides}</dd>
