@@ -88,7 +88,26 @@ export async function prerender(): Promise<{ pages: number }> {
   const { server, port } = await startStaticServer(DIST);
   const base = `http://127.0.0.1:${port}`;
 
-  const browser = await chromium.launch({ headless: true });
+  // The browser binary is not part of `npm ci` — it lives in Playwright's
+  // own cache. Locally it's usually present; on a fresh CI runner it is not,
+  // and chromium.launch() then throws "Executable doesn't exist". Rather than
+  // require a workflow-file edit (needs elevated push scope), self-heal here:
+  // launch, and on a missing-executable error run `playwright install chromium`
+  // once (idempotent — a no-op when already cached) and retry.
+  async function launchChromium() {
+    return chromium.launch({ headless: true });
+  }
+  let browser;
+  try {
+    browser = await launchChromium();
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (!/Executable doesn't exist|playwright install/i.test(msg)) throw err;
+    console.log("prerender: chromium not found — installing via `playwright install chromium`\u2026");
+    const { execFileSync } = await import("node:child_process");
+    execFileSync("npx", ["playwright", "install", "chromium"], { stdio: "inherit" });
+    browser = await launchChromium();
+  }
   let done = 0;
   const failures: string[] = [];
 
