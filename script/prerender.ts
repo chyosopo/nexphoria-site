@@ -43,8 +43,17 @@ const MIME: Record<string, string> = {
 /** Minimal static file server for dist/public with SPA fallback to index.html.
     Bound to 127.0.0.1 on an ephemeral port. Unknown paths (deep SPA routes)
     serve the shell so wouter can render them. */
-function startStaticServer(root: string): Promise<{ server: Server; port: number }> {
+async function startStaticServer(root: string): Promise<{ server: Server; port: number }> {
   const shell = join(root, "index.html");
+  // Read the shell ONCE, up front, and serve THIS pristine copy for every SPA
+  // fallback. CRITICAL: prerendering "/" writes its snapshot to
+  // dist/public/index.html — the very file that is the SPA-fallback shell. If
+  // the fallback re-read that file from disk, every route prerendered AFTER "/"
+  // would boot from FrontDoor's fully-rendered snapshot and inherit its baked
+  // <head> (JSON-LD identity nodes, canonical, OG…), cross-polluting the whole
+  // site with the home page's structured data. Serving the in-memory original
+  // keeps each route's snapshot clean — only its own useSeo output.
+  const shellHtml = await readFile(shell);
   const server = createServer((req, res) => {
     try {
       const url = new URL(req.url || "/", "http://127.0.0.1");
@@ -56,6 +65,13 @@ function startStaticServer(root: string): Promise<{ server: Server; port: number
         filePath = join(filePath, "index.html");
       // SPA fallback: no real file / no extension → serve the shell.
       if (!existsSync(filePath) || !statSync(filePath).isFile()) filePath = shell;
+      // Any resolution to the shell serves the pristine in-memory copy, never a
+      // possibly-overwritten dist/public/index.html (see note above).
+      if (filePath === shell) {
+        res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+        res.end(shellHtml);
+        return;
+      }
       const type = MIME[extname(filePath).toLowerCase()] || "application/octet-stream";
       res.writeHead(200, { "Content-Type": type });
       createReadStream(filePath).pipe(res);
@@ -110,6 +126,12 @@ export async function prerender(): Promise<{ pages: number }> {
   }
   let done = 0;
   const failures: string[] = [];
+  // Non-blocking SEO coverage report: how many snapshots carry a JSON-LD block.
+  // Purely informational — a route without structured data is NOT a hard fail
+  // (some routes legitimately may not), so this never throws; it just surfaces
+  // coverage so a regression is visible in the build log.
+  let withJsonLd = 0;
+  const missingJsonLd: string[] = [];
 
   async function snapshot(route: string): Promise<void> {
     const page = await browser.newPage();
@@ -138,6 +160,8 @@ export async function prerender(): Promise<{ pages: number }> {
       const out = outPathFor(route);
       await mkdir(join(out, ".."), { recursive: true });
       await writeFile(out, html, "utf-8");
+      if (/application\/ld\+json/i.test(html)) withJsonLd++;
+      else missingJsonLd.push(route);
       done++;
       if (done % 10 === 0 || done === routes.length)
         console.log(`  prerendered ${done}/${routes.length}`);
@@ -161,6 +185,11 @@ export async function prerender(): Promise<{ pages: number }> {
 
   await browser.close();
   await new Promise<void>((resolve) => server.close(() => resolve()));
+
+  // SEO coverage summary (non-blocking).
+  console.log(`  seo: ${withJsonLd}/${done} prerendered routes carry a JSON-LD block`);
+  if (missingJsonLd.length)
+    console.log(`  seo: no JSON-LD on ${missingJsonLd.length} route(s): ${missingJsonLd.slice(0, 8).join(", ")}${missingJsonLd.length > 8 ? " …" : ""}`);
 
   if (failures.length) {
     console.error(`prerender: ${failures.length} route(s) failed:`);

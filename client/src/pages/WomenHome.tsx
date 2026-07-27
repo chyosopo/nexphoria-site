@@ -3,7 +3,7 @@
    Orchid tokens apply automatically under /women via [data-world]. */
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 import faqConsultWomen from "@/assets/brand/faq-consult-women.webp";
 
@@ -13,6 +13,10 @@ export default function WomenHome() {
     description:
       "Ninety-nine biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for women, read properly.",
     jsonLd: [
+      // Identity graph (once each; distinct @types) — /women is a world entry door.
+      orgJsonLd(),
+      websiteJsonLd(),
+      medicalBusinessJsonLd(),
       webPageJsonLd({ name: "Nexphoria for Women", description: "Physician-prescribed peptide protocols for women — read properly, then treated.", path: "/women" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Women", path: "/women" }]),
     ],

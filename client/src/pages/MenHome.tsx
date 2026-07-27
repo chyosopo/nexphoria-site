@@ -2,7 +2,7 @@
 /* ═══ MEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══ */
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
 import { OUTCOME_CATEGORY, OUTCOME_HERO } from "@/data/outcomeImagery";
 import faqConsultMen from "@/assets/brand/faq-consult-men.webp";
 
@@ -12,6 +12,10 @@ export default function MenHome() {
     description:
       "Ninety-nine biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for men, measured first.",
     jsonLd: [
+      // Identity graph (once each; distinct @types) — /men is a world entry door.
+      orgJsonLd(),
+      websiteJsonLd(),
+      medicalBusinessJsonLd(),
       webPageJsonLd({ name: "Nexphoria for Men", description: "Physician-prescribed peptide protocols for men — measured, prescribed, retested.", path: "/men" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Men", path: "/men" }]),
     ],

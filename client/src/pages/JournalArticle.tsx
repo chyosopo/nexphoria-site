@@ -11,7 +11,7 @@ import {
   getRelatedArticles,
   JOURNAL_CATEGORIES,
 } from "@/data/journal";
-import { useSeo, articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, articleJsonLd, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 
 /* ─────────────────────────────────────────────────────────────
    JournalArticle — Long-form editorial article page with
@@ -44,6 +44,8 @@ export default function JournalArticle() {
     jsonLd: article
       ? [
           // Article schema with real datePublished/author/image from the article data.
+          // (No dateModified is emitted — the JournalArticle data model has no
+          // updated/modified field, so fabricating one is off-limits.)
           articleJsonLd({
             headline: article.title,
             description: article.dek,
@@ -51,6 +53,15 @@ export default function JournalArticle() {
             datePublished: article.publishedISO,
             authorName: article.author?.name,
             image: article.imageSrc,
+          }),
+          // Journal content is clinical peptide science — layer MedicalWebPage
+          // alongside the editorial Article so search engines read the medical
+          // signal. Distinct @type from Article; no duplicated node.
+          webPageJsonLd({
+            name: article.title,
+            description: article.dek,
+            path: `/journal/${slug}`,
+            type: "MedicalWebPage",
           }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },

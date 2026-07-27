@@ -110,11 +110,56 @@ export const orgJsonLd = (): Record<string, unknown> => ({
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Nexphoria",
+  // Real registered entity (see CLAUDE.md / repo header): Nexphoria Research LLC.
+  legalName: "Nexphoria Research LLC",
   url: BASE_URL,
   logo: `${BASE_URL}/favicon/favicon-512.png`,
   description:
     "Physician-guided peptide therapy. Science you can feel. Results you can measure.",
   slogan: "Science you can feel. Results you can measure.",
+  // Real, in-use inboxes — hello@ (Contact.tsx / Footer.tsx) and press@
+  // (Contact.tsx press desk). No phone number is published anywhere on the
+  // site, so none is emitted.
+  email: "hello@nexphoria.com",
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "hello@nexphoria.com",
+      areaServed: "US",
+      availableLanguage: "English",
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "press",
+      email: "press@nexphoria.com",
+      areaServed: "US",
+      availableLanguage: "English",
+    },
+  ],
+  // sameAs is INTENTIONALLY omitted. No confirmed public social/profile URL
+  // for Nexphoria exists in the codebase — the footer, nav, and contact page
+  // expose only mailto: links, never a social handle. Fabricating a sameAs
+  // profile URL is a structured-data honesty violation; add entries here ONLY
+  // when a real, verified profile URL exists.
+});
+
+/**
+ * WebSite identity node for the site entry pages. Establishes the canonical
+ * site name + URL for search engines (enables the name in sitelinks).
+ *
+ * potentialAction (a SearchAction / sitelinks searchbox) is INTENTIONALLY
+ * omitted: the site has no on-site search endpoint, and advertising a
+ * "/search?q={query}" template that 404s is fabricated capability. Add a
+ * potentialAction ONLY once a real search route exists.
+ */
+export const websiteJsonLd = (): Record<string, unknown> => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Nexphoria",
+  url: BASE_URL,
+  inLanguage: "en-US",
+  publisher: { "@type": "Organization", name: "Nexphoria", url: BASE_URL },
 });
 
 export const medicalBusinessJsonLd = (): Record<string, unknown> => ({

@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
-import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { FONT } from "@/lib/typography";
 import {
   JOURNAL_ARTICLES,
@@ -37,6 +37,13 @@ export default function Journal() {
       description: "Physician-written peptide science: evidence reviews, protocol guides, and clinical notes.",
       path: "/journal",
       type: "MedicalWebPage",
+    }),
+    // Enumerate the real published articles in display order so the editorial
+    // index is a crawlable ItemList (titles/paths sourced from JOURNAL_ARTICLES,
+    // the single source of truth — no hand-duplicated list).
+    itemListJsonLd({
+      name: "Nexphoria Journal articles",
+      items: JOURNAL_ARTICLES.map((a) => ({ name: a.title, path: `/journal/${a.slug}` })),
     }),
     breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Journal", path: "/journal" }]),
     ],

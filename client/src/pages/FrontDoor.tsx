@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { HomeTrust } from "@/components/HomeTrust";
-import { useSeo, webPageJsonLd, orgJsonLd } from "@/lib/seo";
+import { useSeo, webPageJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
@@ -74,7 +74,12 @@ export default function FrontDoor() {
       `Physician-prescribed peptide protocols: a ${PANEL_TOTAL_MARKERS}-marker panel, a licensed physician who reads it, state-licensed 503A compounding, and a 90-day retest. Protocols from ${usd(PROTOCOL_FROM)}/mo.`,
     path: "/",
     jsonLd: [
+      // Identity graph — emitted once each on the site entry pages: who we are
+      // (Organization), the site itself (WebSite), and the regulated business
+      // (MedicalBusiness). Distinct @types, no duplication on the page.
       orgJsonLd(),
+      websiteJsonLd(),
+      medicalBusinessJsonLd(),
       webPageJsonLd({
         name: "Nexphoria",
         description: "Physician-prescribed peptide protocols, built on your bloodwork.",
