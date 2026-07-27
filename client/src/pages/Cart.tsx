@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import { stacks } from "@/data/stacks";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { CADENCE_DISCOUNTS, pricing, billingNote, type CadenceKey } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
@@ -281,7 +282,7 @@ export default function Cart() {
                     <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>99-Biomarker Partner-Laboratory Panel</p>
+                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{PANEL_TOTAL_MARKERS}-Biomarker Partner-Laboratory Panel</p>
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
                       <Link asChild href="/lab-testing">
