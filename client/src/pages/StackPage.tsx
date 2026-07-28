@@ -24,6 +24,7 @@ const STACK_GOAL: Record<string, PeptideCategory> = {
 };
 import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { SpecPlate } from "@/components/DataPlate";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialArt, Tone } from "@/components/VialTile";
 import { glyphForPeptide } from "@/lib/protocols";
@@ -206,20 +207,19 @@ export default function StackPage({ slug }: { slug: string }) {
           <div>
             {/* Protocol — peptide chips (icon + name), then the details table */}
             <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</h2>
-            {/* compact floating spec tiles — name · dose · spec, pharmaceutical-precise */}
-            <div className="nx-float-grid dense" style={{ marginTop: "0.9rem" }}>
+            {/* Seed-grammar spec plates (SEED-STUDY S1): each compound as a
+                specimen label — ruled DOSE/FORMAT rows in tabular numerals. */}
+            <div className="grid sm:grid-cols-2" style={{ gap: 12, marginTop: "0.9rem" }}>
               {stack.peptides.map((p, i) => (
                 <Reveal key={p.name} delay={i * 40}>
-                  <div className="nx-float-card" style={{ cursor: "default", height: "100%" }}>
-                    <div className="nx-float-card__body">
-                      <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                        <span className="nx-icon-circle" aria-hidden style={{ width: 30, height: 30, flexShrink: 0 }}><Pill size={15} strokeWidth={2} /></span>
-                        <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{p.name}</p>
-                      </div>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", marginTop: "0.7rem" }}>{p.dose}</p>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-muted)", marginTop: "0.2rem" }}>{p.spec}</p>
-                    </div>
-                  </div>
+                  <SpecPlate
+                    name={p.name}
+                    rows={[
+                      { label: "Dose", value: p.dose },
+                      { label: "Format", value: p.spec },
+                    ]}
+                    testId={`stack-spec-${i}`}
+                  />
                 </Reveal>
               ))}
             </div>

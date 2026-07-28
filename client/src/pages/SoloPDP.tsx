@@ -15,6 +15,7 @@ import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
 import { ArrowLeft, Check, X, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { SpecPlate } from "@/components/DataPlate";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
@@ -159,15 +160,20 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
                 <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong> — {solo.mechanism}
               </p>
-              <div className="grid sm:grid-cols-2" style={{ gap: 10, maxWidth: 520, marginTop: "1.4rem" }}>
-                <div className="nx-stat-card" style={{ gap: 4 }}>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose</span>
-                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{solo.dose}</span>
-                </div>
-                <div className="nx-stat-card" style={{ gap: 4 }}>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Format</span>
-                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{solo.spec}</span>
-                </div>
+              {/* Seed-grammar spec plate (SEED-STUDY S1): the compound as a
+                  specimen label — taxonomy line + ruled LABEL→value rows in
+                  tabular numerals. Replaces the two loose stat cards. */}
+              <div style={{ maxWidth: 460, marginTop: "1.4rem" }}>
+                <SpecPlate
+                  name={solo.name}
+                  nomenclature={`${solo.category.toLowerCase()} · physician-prescribed`}
+                  rows={[
+                    { label: "Dose", value: solo.dose },
+                    { label: "Format", value: solo.spec },
+                    { label: "Monitoring", value: "Panel at baseline · retest every 90 days" },
+                  ]}
+                  testId={`spec-plate-${solo.slug}`}
+                />
               </div>
             </div>
             {/* square frame FILLS the column (the 4:5 + maxHeight cap left it

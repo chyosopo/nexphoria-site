@@ -15,6 +15,7 @@ import { MolecularGlyph } from "@/components/MolecularGlyph";
 import { FamilyOutcomesViz } from "@/components/FamilyOutcomesViz";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { BigFigureRow } from "@/components/DataPlate";
 
 import lifestyleProtocolBinder from "@/assets/brand/lifestyle-protocol-binder.webp";
 import sciencePanelRead from "@/assets/brand/science-panel-read.webp";
@@ -1265,48 +1266,18 @@ function ScienceHeroDark() {
           background: "rgba(21, 24, 28,0.20)",
         }}
       >
-        <div
-          className="nx-container max-w-screen-xl"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "1rem",
-            padding: "1.5rem 0",
-          }}
-        >
-          {[
-            { k: "6", v: "Peptide families" },
-            { k: `${PANEL_TOTAL_MARKERS}`, v: "Biomarkers tracked" },
-            { k: "A → B−", v: "Evidence tiering" },
-            { k: "80+", v: "Cited studies" },
-          ].map((s) => (
-            <div key={s.v} style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "var(--nx-t-h3)",
-                  color: "var(--nx-bg)",
-                  lineHeight: 1,
-                  marginBottom: "0.35rem",
-                }}
-              >
-                {s.k}
-              </div>
-              <div
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "var(--nx-t-xs)",
-                  fontWeight: 500,
-                  letterSpacing: "var(--nx-ls-caps)",
-                  textTransform: "uppercase",
-                  color: "rgba(241, 243, 244,0.55)",
-                }}
-              >
-                {s.v}
-              </div>
-            </div>
-          ))}
+        {/* Seed-grammar figure row (SEED-STUDY S1) — dark tone. */}
+        <div className="nx-container max-w-screen-xl" style={{ padding: "1.2rem 0" }}>
+          <BigFigureRow
+            tone="dark"
+            testId="science-figures"
+            figures={[
+              { value: "6", unit: "families", caption: "peptide classes, each with its mechanism stated" },
+              { value: String(PANEL_TOTAL_MARKERS), unit: "markers", caption: "tracked across eleven systems" },
+              { value: "A→B−", unit: "tiering", caption: "evidence graded, never flattered" },
+              { value: "80+", unit: "studies", caption: "cited in the literature behind this page" },
+            ]}
+          />
         </div>
       </div>
 
