@@ -23,6 +23,7 @@
     --nx-t-h2:      clamp(30px, 3.6vw, 42px);
     --nx-t-h1:      clamp(38px, 5.2vw, 60px);
     --nx-t-display: clamp(44px, 6.4vw, 76px);        /* hero only */
+    --nx-t-giant:   clamp(46px, 7.5vw, 124px);       /* Seed-scale statement — world heroes only */
 
     /* ══ D1c CAPS TRACKING — the only sanctioned uppercase letter-spacing ══ */
     --nx-ls-caps: 0.14em;   /* standard eyebrows, badges, meta labels */

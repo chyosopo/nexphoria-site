@@ -107,27 +107,27 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         <div className="nx-aurora" aria-hidden>
           <i /><i /><i />
         </div>
-        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
-          <div className="nx-hero-seq">
+        {/* SEED RECOMPOSITION (SEED-STUDY, Chiya: 'fully enhancements'):
+            the split hero becomes a single centered statement at giant
+            scale — one idea, enormous air, imagery floating BELOW the
+            words instead of beside them. Same content, Seed composition. */}
+        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "15ch", marginTop: "0.9rem" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)", lineHeight: 1.0, letterSpacing: "-0.022em", color: "var(--nx-fg)", maxWidth: "13ch", margin: "1.1rem auto 0" }}>
             {config.h1}
           </h1>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1.1rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "1.4rem auto 0" }}>
             {config.sub}
           </p>
-          {/* CTA law (ROADMAP 1.1): ONE solid action; the panel becomes a
-              text link; the protocols button is gone — the goal grid IS the
-              protocols entrance, one viewport below. */}
-          <div style={{ marginTop: "1.8rem", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.4rem" }}>
+          {/* CTA law (ROADMAP 1.1): ONE solid action; the panel is a text link. */}
+          <div style={{ marginTop: "2rem", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: "1.4rem" }}>
             <Link
               href="/assessment"
               data-testid={`${world}-hero-cta`}
               className="nx-cta-cobalt"
-              style={{ fontSize: "var(--nx-t-base)", padding: "15px 30px" }}
+              style={{ fontSize: "var(--nx-t-base)", padding: "16px 34px" }}
             >
               Start your assessment
             </Link>
@@ -135,18 +135,18 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
               What the {PANEL_TOTAL_MARKERS}-marker panel checks →
             </Link>
           </div>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
             2 minutes · no charge unless a physician prescribes
           </p>
           {/* Physician presence at the decision moment (ROADMAP 5.1) */}
-          <PhysicianGate testid={`${world}-hero-physician`} style={{ marginTop: "0.9rem" }} />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <PhysicianGate testid={`${world}-hero-physician`} style={{ marginTop: "0.9rem" }} />
           </div>
-          {/* The weightless vertical tile rail — the hims-grammar hero:
-              this world's goals, flagship, and the retest promise on its own
-              photographic cast. Desktop: two counter-scrolling columns.
-              Mobile: snap strip. */}
+        </div>
+        {/* The weightless rail, now a full-width floating band beneath the
+            statement — imagery gets its own moment instead of a column. */}
+        <div className="nx-container relative" style={{ zIndex: 1, display: "flex", justifyContent: "center", paddingBottom: "var(--nx-sp-band)" }}>
           <HeroTileRail tiles={railTiles} testid={`${world}-rail`} />
-          </div>
         </div>
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}
