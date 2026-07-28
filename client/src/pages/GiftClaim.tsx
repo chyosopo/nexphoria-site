@@ -8,6 +8,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, webPageJsonLd } from "@/lib/seo";
 import { usd } from "@/data/stacksCatalog";
 import { decodeGiftAsk } from "@/data/gift";
+import { stripeGiftLink } from "@/data/stripeLinks";
 import { track } from "@/lib/analytics";
 import { F, S } from "@/lib/typography";
 
@@ -77,21 +78,56 @@ export default function GiftClaim() {
               Refunded — or applied to what the physician does prescribe — if this isn't.
             </p>
             <div style={{ marginTop: "1.2rem", borderTop: "1px solid var(--nx-border)", paddingTop: "1.1rem" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
-                Gift checkout is concierge for now — one email and we arrange payment and confirmation
-                with you directly. Nothing is charged until you confirm with a person.
-              </p>
-              <a
-                href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Covering ${whose} gift: ${item.name} (${termLabel})`)}&body=${encodeURIComponent(
-                  `I'd like to cover ${whose} ${item.name} — ${termLabel}, ${usd(total)} one-time.${from ? `\nRequested by: ${from}` : ""}\n\nMy name:\nBest email or phone to reach me:`,
-                )}`}
-                className="nx-cta-cobalt"
-                data-testid="giftclaim-cta"
-                style={{ marginTop: "1rem", fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
-                onClick={() => track("gift_claim_started", { item: item.slug, term: ask.termKey })}
-              >
-                Cover this gift
-              </a>
+              {(() => {
+                const payLink = stripeGiftLink(item.kind, item.slug, ask.termKey ?? "once");
+                return payLink ? (
+                  <>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
+                      One payment, handled by Stripe. {from ? `${from} still completes` : "They still complete"} their own
+                      intake, and a physician can decline — in which case the gift is refunded or applied.
+                    </p>
+                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.2rem", marginTop: "1rem" }}>
+                      <a
+                        href={payLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="nx-cta-cobalt"
+                        data-testid="giftclaim-cta"
+                        style={{ fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
+                        onClick={() => track("gift_claim_started", { item: item.slug, term: ask.termKey, rail: "stripe" })}
+                      >
+                        Cover this gift — {usd(total)}
+                      </a>
+                      <a
+                        href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Covering ${whose} gift: ${item.name} (${termLabel})`)}`}
+                        className="nx-text-link"
+                        data-testid="giftclaim-concierge"
+                        style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
+                      >
+                        Prefer to arrange it by email?
+                      </a>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
+                      Gift checkout is concierge for now — one email and we arrange payment and confirmation
+                      with you directly. Nothing is charged until you confirm with a person.
+                    </p>
+                    <a
+                      href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Covering ${whose} gift: ${item.name} (${termLabel})`)}&body=${encodeURIComponent(
+                        `I'd like to cover ${whose} ${item.name} — ${termLabel}, ${usd(total)} one-time.${from ? `\nRequested by: ${from}` : ""}\n\nMy name:\nBest email or phone to reach me:`,
+                      )}`}
+                      className="nx-cta-cobalt"
+                      data-testid="giftclaim-cta"
+                      style={{ marginTop: "1rem", fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
+                      onClick={() => track("gift_claim_started", { item: item.slug, term: ask.termKey, rail: "concierge" })}
+                    >
+                      Cover this gift
+                    </a>
+                  </>
+                );
+              })()}
             </div>
           </div>
 

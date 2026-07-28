@@ -13,6 +13,7 @@ import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { usd } from "@/data/stacksCatalog";
 import { allGiftItems, encodeGiftAsk, TERM_LABELS, type GiftItem } from "@/data/gift";
+import { stripeGiftLink } from "@/data/stripeLinks";
 import { track } from "@/lib/analytics";
 import { F, S } from "@/lib/typography";
 
@@ -219,26 +220,63 @@ export default function Gift() {
               </p>
 
               {mode === "give" ? (
-                /* ── GIVE: payment capture is pending the payments backend —
-                   route the giver to the concierge path honestly rather than
-                   fake a checkout. */
+                /* ── GIVE: real Stripe checkout when a Payment Link exists for
+                   this SKU (data/stripeLinks.ts); the honest concierge path
+                   otherwise. Never a fake checkout. */
+                (() => {
+                  const payLink = stripeGiftLink(sel.kind, sel.slug, term?.key ?? "once");
+                  return (
                 <div style={{ marginTop: "1.4rem", borderTop: "1px solid var(--nx-border)", paddingTop: "1.2rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "58ch" }}>
-                    Gift checkout is concierge for now: tell us who it's for and we arrange payment and
-                    delivery by email — nothing is charged until you confirm with a person.
-                  </p>
-                  <a
-                    href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Gift: ${sel.name} (${term?.label ?? ""})`)}&body=${encodeURIComponent(
-                      `I'd like to gift ${sel.name} — ${term?.label ?? ""}, ${term ? usd(term.total) : ""} one-time.\n\nMy name:\nRecipient's first name:\nWhen should it arrive (date or "right away"):\nA note to include (optional):`,
-                    )}`}
-                    className="nx-cta-cobalt"
-                    data-testid="gift-give-cta"
-                    style={{ marginTop: "1rem", fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
-                    onClick={() => track("gift_give_started", { item: sel.slug, term: term?.key })}
-                  >
-                    Arrange this gift
-                  </a>
+                  {payLink ? (
+                    <>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "58ch" }}>
+                        One payment, handled by Stripe. The recipient still completes their own intake;
+                        if their physician doesn't prescribe, the gift is refunded or applied.
+                      </p>
+                      <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.2rem", marginTop: "1rem" }}>
+                        <a
+                          href={payLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="nx-cta-cobalt"
+                          data-testid="gift-give-cta"
+                          style={{ fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
+                          onClick={() => track("gift_give_started", { item: sel.slug, term: term?.key, rail: "stripe" })}
+                        >
+                          Cover it — {term ? usd(term.total) : ""}
+                        </a>
+                        <a
+                          href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Gift: ${sel.name} (${term?.label ?? ""})`)}`}
+                          className="nx-text-link"
+                          data-testid="gift-give-concierge"
+                          style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
+                        >
+                          Prefer to arrange it by email?
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "58ch" }}>
+                        Gift checkout is concierge for now: tell us who it's for and we arrange payment and
+                        delivery by email — nothing is charged until you confirm with a person.
+                      </p>
+                      <a
+                        href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Gift: ${sel.name} (${term?.label ?? ""})`)}&body=${encodeURIComponent(
+                          `I'd like to gift ${sel.name} — ${term?.label ?? ""}, ${term ? usd(term.total) : ""} one-time.\n\nMy name:\nRecipient's first name:\nWhen should it arrive (date or "right away"):\nA note to include (optional):`,
+                        )}`}
+                        className="nx-cta-cobalt"
+                        data-testid="gift-give-cta"
+                        style={{ marginTop: "1rem", fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
+                        onClick={() => track("gift_give_started", { item: sel.slug, term: term?.key, rail: "concierge" })}
+                      >
+                        Arrange this gift
+                      </a>
+                    </>
+                  )}
                 </div>
+                  );
+                })()
               ) : (
                 /* ── REQUEST: generate the share link ── */
                 <div style={{ marginTop: "1.4rem", borderTop: "1px solid var(--nx-border)", paddingTop: "1.2rem" }}>
