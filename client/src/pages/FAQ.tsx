@@ -48,6 +48,14 @@ const categories: { label: string; items: FAQItem[] }[] = [
         q: "What does a 503A-licensed pharmacy mean?",
         a: "503A pharmacies compound medications for individual patients under a valid physician prescription. This allows dosage and formulation customization that mass-manufactured products cannot provide. Every Nexphoria compound is sterile-prepared in an ISO-compliant cleanroom, batch-tested for potency and purity, and ships with a certificate of analysis.",
       },
+      {
+        q: "Who provides the clinical care?",
+        a: "Arora Health & Aesthetics, LLC provides the clinical care for this program. Our licensed providers serve patients in all 50 U.S. states in accordance with applicable state licensure requirements and telehealth regulations. For provider-related questions, contact medicalcompliance@arorahealthgroup.com. Arora Health's office is located at 300 Lenora Street, Seattle, WA 98121. Learn more at www.arora-health.com.",
+      },
+      {
+        q: "Which pharmacy fills the prescriptions?",
+        a: "Our partner pharmacy is VialsRX, 6220 Westpark Dr, Houston, TX 77057 — phone (713) 497-5590, vials.ai. Services are available in all 50 US states through affiliated medical providers and pharmacy partners operating in accordance with applicable state licensure requirements. Please note that certain medications, formulations, or fulfillment options may vary depending on state-specific pharmacy regulations and dispensing restrictions.",
+      },
     ],
   },
   {

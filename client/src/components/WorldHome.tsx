@@ -33,7 +33,7 @@ const HOME_FAQ = [
   },
   {
     q: "Is a prescription required?",
-    a: "Yes. Every compound is prescribed by a U.S.-licensed physician of MDI Providers PLLC after reviewing your intake and bloodwork. They can — and do — decline when a protocol is not appropriate.",
+    a: "Yes. Every compound is prescribed by a U.S.-licensed physician of Arora Health & Aesthetics, LLC after reviewing your intake and bloodwork. They can — and do — decline when a protocol is not appropriate.",
   },
   {
     q: "Where are the peptides compounded?",

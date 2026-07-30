@@ -237,7 +237,7 @@ function VialTileInner({
   const reg = (() => {
     if (!fdaStatus) return null;
     const s = fdaStatus.toLowerCase();
-    if (s.startsWith("fda-approved")) return { label: "FDA-approved molecule", bg: "var(--nx-chip-fda-bg)", color: "var(--nx-chip-fda-fg)", border: "var(--nx-chip-fda-edge)" };
+    if (s.startsWith("fda-approved")) return { label: "Phase 3-studied molecule", bg: "var(--nx-chip-fda-bg)", color: "var(--nx-chip-fda-fg)", border: "var(--nx-chip-fda-edge)" };
     if (s.includes("development halted") || s.includes("phase 2") || s.includes("phase 3") || s.includes("clinical trial")) return { label: "In trials", bg: "var(--nx-chip-trial-bg)", color: "var(--nx-chip-trial-fg)", border: "var(--nx-chip-trial-edge)" };
     if (s.startsWith("not fda-approved") || s.includes("investigational") || s.includes("compounded") || s.includes("registered as a drug in russia")) return { label: "Rx \u00b7 Compounded", bg: "var(--nx-ice)", color: "var(--nx-chip-rx-fg)", border: "var(--nx-chip-rx-edge)" };
     return { label: "Rx", bg: "var(--nx-ice)", color: "var(--nx-chip-rx-fg)", border: "var(--nx-chip-rx-edge)" };

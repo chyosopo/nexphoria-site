@@ -48,7 +48,7 @@ export function HomeTrust() {
                 Every protocol is decided by a licensed physician.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1rem" }}>
-                Your intake and bloodwork are reviewed by board-certified, U.S.-licensed physicians of MDI Providers PLLC. They determine whether a prescription is appropriate — and decline when it is not.
+                Your intake and bloodwork are reviewed by board-certified, U.S.-licensed physicians of Arora Health & Aesthetics, LLC. They determine whether a prescription is appropriate — and decline when it is not.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: "1.6rem" }}>
                 {CREDENTIALS.map((c) => (

@@ -324,7 +324,7 @@ const RAW_PEPTIDES: Peptide[] = [
     category: "growth",
     glyph: "ghrh",
     summary:
-      "A stabilized analog of growth-hormone-releasing hormone (GHRH). It is FDA-approved to reduce excess visceral abdominal fat in a specific clinical population, and is studied for its favorable effects on body composition and metabolic markers.",
+      "A stabilized analog of growth-hormone-releasing hormone (GHRH). It carries Phase 3 randomized-trial evidence (NEJM) for reducing excess visceral abdominal fat in a specific clinical population, and is studied for its favorable effects on body composition and metabolic markers.",
     mechanism:
       "Tesamorelin binds GHRH receptors in the pituitary and stimulates the natural, pulsatile release of growth hormone, which in turn raises IGF-1. Because it works upstream through the body's own feedback loops, it preserves physiologic GH rhythm rather than overriding it.",
     halfLife: "~26–38 minutes; downstream GH/IGF-1 effects persist",
@@ -346,9 +346,9 @@ const RAW_PEPTIDES: Peptide[] = [
     inStacks: ["lean"],
     evidenceTier: {
       grade: "A",
-      description: "FDA-approved (Egrifta / Egrifta SV) · NEJM Phase 3 RCTs",
+      description: "NEJM Phase 3 RCTs · prescribed off-label · compounded",
       studyCount: 22,
-      fdaStatus: "FDA-approved for HIV-associated lipodystrophy · prescribed off-label for adult GH-axis support",
+      fdaStatus: "Compounded tesamorelin is not FDA-approved or evaluated · prescribed off-label for adult GH-axis support",
     },
     contraindications:
       "NOT FOR: pregnancy · mannitol or tesamorelin hypersensitivity · hypothalamic-pituitary axis disruption (hypophysectomy, hypopituitarism, pituitary tumor, head trauma) · active malignancy · use with caution in diabetic retinopathy · <18 yrs",
