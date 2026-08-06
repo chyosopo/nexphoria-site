@@ -17,6 +17,7 @@ import { getPeptideCardImage } from "@/lib/peptideImages";
 import { F, S } from "@/lib/typography";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { BigFigureRow } from "@/components/DataPlate";
+import { ProtocolPipeline } from "@/components/ProtocolPipeline";
 
 /* The four credentials that are TRUE for Nexphoria — no invented CLIA/FDA/CAP. */
 const TRUST_BADGES = [
@@ -232,8 +233,15 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
         </div>
       </section>
 
+      {/* ── PROTOCOL PIPELINE (FLAGSHIP-REBUILD P1) — the medical engine as
+          a numbered 01→05 method, Seed grammar. Answers "how does this
+          actually work?" right after the goal grid. ── */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)" }}>
+        <ProtocolPipeline testId={`${world}-pipeline`} />
+      </section>
+
       {/* ── TRUST BADGE STRIP — calm quiet credential row (TRUE claims only) ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "0" }}>
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
         <Reveal>
           <div className="nx-trust-strip" data-testid={`${world}-trust-strip`}>
             {TRUST_BADGES.map(({ Icon, label }) => (

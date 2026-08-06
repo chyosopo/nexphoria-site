@@ -610,6 +610,36 @@
   }
   .nx-proofband__lede { min-width: 0; }
 
+  /* ── Protocol pipeline (FLAGSHIP-REBUILD) — five numbered stages as a
+     paper-method ledger. A hairline rule runs across the top of the row;
+     each stage's giant index sits on it. 5-up desktop → 2-up tablet →
+     horizontal snap-scroll on phones. ── */
+  .nx-pipeline {
+    list-style: none;
+    margin: clamp(1.8rem, 4vw, 2.8rem) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  @media (min-width: 900px) {
+    .nx-pipeline { grid-template-columns: repeat(5, 1fr); }
+  }
+  .nx-pipeline__stage {
+    padding: 1.2rem 1.3rem 1.4rem 0;
+    border-top: 1px solid var(--nx-border);
+    margin-right: 1.3rem;
+  }
+  .nx-pipeline__idx {
+    display: block;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: color-mix(in srgb, var(--nx-cobalt) 32%, var(--nx-border));
+    margin-top: -0.15rem;
+  }
+
   /* ── Footer wordmark — the establishment signature. The name set
      enormous in near-transparent letters at the footer's base; it reads
      as confidence, not decoration. aria-hidden, non-interactive. ── */
