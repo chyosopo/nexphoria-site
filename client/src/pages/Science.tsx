@@ -90,7 +90,7 @@ const families = [
     mechanism:
       "Selank is a synthetic analog of tuftsin that modulates GABA-A receptor activity and upregulates brain-derived neurotrophic factor (BDNF) expression — reducing anxiety indices without sedation and improving working memory in clinical models. Semax is a heptapeptide analog of ACTH(4-7) that raises BDNF and nerve growth factor (NGF) levels in the prefrontal cortex and hippocampus. Both cross the blood-brain barrier via intranasal delivery, exploiting the olfactory nerve route.",
     protocol: "Intranasal administration, 2–3× daily. 2–4-week cycles with 2-week washout intervals. No tolerance development observed at standard clinical doses.",
-    outcomes: "Cognitive flexibility and processing speed improvements in clinical anxiety populations · Anxiety scores −30–45% · BDNF elevation +40–80%",
+    outcomes: "Studied for cognitive flexibility and processing speed · BDNF elevation reported in preclinical models · outcomes vary by individual",
     pullQuote: "The olfactory nerve provides a direct anatomical route past the blood-brain barrier. For small peptides like Selank and Semax, intranasal delivery is pharmacokinetically superior to systemic injection for CNS targeting.",
     evidenceNote: "Selank and Semax are approved drugs in Russia and widely studied in Eastern European clinical literature. Independent Western RCT data is limited. Compounded for US patients off-label under physician prescription.",
   },
@@ -218,7 +218,7 @@ const SCIENCE_FAQ = [
   { q: "What is the difference between GLP-1 peptides and GH secretagogues?", a: "GLP-1 agonists (tirzepatide, semaglutide) bind incretin receptors in the hypothalamus and gut to lower the body-weight set point and improve insulin response — primarily metabolic action. Growth hormone secretagogues (CJC-1295, Ipamorelin) stimulate pulsatile GH release from the pituitary, raising IGF-1 and driving lean-mass accretion and recovery — primarily anabolic and regenerative action." },
   { q: "How strong is the evidence behind these peptides?", a: "It varies by family, and we label it honestly. GLP-1 agonists and copper peptide (GHK-Cu) have established human evidence — Phase III trials or decades of dermatology data. GH secretagogues and cognitive peptides are emerging, with human pharmacology and clinical use but limited large Western RCTs. Tissue-repair and longevity compounds are largely investigational, with strong preclinical data and early human safety reports. The evidence table above shows the tier for each." },
   { q: "What does the evidence tier system mean?", a: "Our tiers classify compounds by the depth of their clinical data. 'Established' means FDA approval or multiple Phase III RCTs. 'Emerging' means Phase II human data or robust Phase I safety data. 'Investigational' means strong preclinical data with limited controlled human trials. All tiers may be prescribed off-label when a physician judges the evidence-to-risk ratio appropriate." },
-  { q: "Are these peptides FDA-approved?", a: "Some are. Tirzepatide and semaglutide are FDA-approved for chronic weight management; tesamorelin is approved for HIV-associated lipodystrophy. Most other peptides are prescribed off-label and prepared by licensed 503A compounding pharmacies under a valid prescription — the same regulatory framework used for compounded hormones and many ophthalmic drugs." },
+  { q: "Are these peptides FDA-approved?", a: "The branded drugs are — semaglutide (Ozempic, Wegovy) and tirzepatide (Mounjaro, Zepbound) are FDA-approved, and tesamorelin is approved for HIV-associated lipodystrophy — but the compounded formulations we prepare are not themselves FDA-approved or evaluated. Most other peptides are prescribed off-label and prepared by licensed 503A compounding pharmacies under a valid prescription." },
   { q: "What does \"off-label\" actually mean here?", a: "Off-label prescribing means a licensed physician prescribes a medication for an indication, dose, or population not specified on the FDA label. It is legal, common, and a standard part of medical practice. Your physician weighs the evidence-to-risk ratio for your specific situation before prescribing." },
   { q: "Why compounded rather than commercially manufactured?", a: "Most peptides used in clinical practice are not sold as FDA-approved commercial drugs. 503A pharmacies compound patient-specific formulations under prescription, allowing customized dose and concentration. Every compound is sterile-prepared under USP-797 standards and batch-tested for identity, potency, and sterility before release." },
   { q: "Is BPC-157 safe?", a: "BPC-157 has demonstrated a favorable safety profile in rodent studies and early human case reports, with no serious adverse events reported at standard therapeutic doses. It is not FDA-approved for human use and has not completed large randomized controlled trials. Our physicians weigh the preclinical evidence against individual patient risk factors before prescribing, and every patient is monitored with quarterly bloodwork." },
@@ -700,6 +700,9 @@ export default function Science() {
                     </div>
 
                     <FamilyOutcomesViz outcomes={family.outcomes} />
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem", marginBottom: "1.4rem", maxWidth: "680px", lineHeight: 1.5 }}>
+                      Figures summarize published research; they are not results Nexphoria promises. Individual outcomes vary, and these compounds are prescribed only where a physician determines it appropriate.
+                    </p>
 
                     <div style={{ marginBottom: "2.5rem" }}>
                       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }}>EVIDENCE STATUS</p>
@@ -860,7 +863,7 @@ export default function Science() {
         lead="The same molecule name sits behind three very different things. Only one is a prescription — made in a licensed pharmacy, tested before it ships, and dosed to your bloodwork."
         columns={[
           { label: "Nexphoria", sub: "Physician-prescribed, 503A-compounded", highlight: true, badge: "Nexphoria" },
-          { label: "Research-chemical vendors", sub: "“Not for human use” peptides" },
+          { label: "Unregulated online vendors", sub: "No physician, no sterility testing" },
           { label: "OTC “peptide” supplements", sub: "Pills, creams, nasal sprays" },
         ]}
         rows={[
@@ -868,7 +871,7 @@ export default function Science() {
             label: "Legal status",
             cells: [
               { text: "Prescription, via a licensed physician", tone: "pos" },
-              { text: "Sold as “research only,” not for humans", tone: "neg" },
+              { text: "Sold with no prescription or oversight", tone: "neg" },
               { text: "Unregulated supplement", tone: "neg" },
             ],
           },
@@ -913,7 +916,7 @@ export default function Science() {
             ],
           },
         ]}
-        footnote="Peptides sold as “research chemicals” are explicitly labeled not for human consumption — the label is the tell. Nexphoria only dispenses prescriptions written by a licensed physician and compounded by a licensed 503A pharmacy."
+        footnote="Unregulated online peptides carry no physician oversight, no sterility testing, and no accountability. Nexphoria only dispenses prescriptions written by a licensed physician and compounded by a licensed 503A pharmacy."
       />
 
       {/* ── Compound comparison — reference table, sits with the evidence cluster ── */}
@@ -1293,9 +1296,9 @@ function ScienceHeroDark() {
 /* ── SCIENCE COMPARISON TABLE — peptide family best-for guide ────── */
 const PEPTIDE_FAMILY_COMPARISON = [
   { family: "GLP-1 / GIP Agonists", bestFor: "Fat loss, blood sugar control, appetite regulation", avoidIf: "Personal/family history of MEN-2, thyroid cancer, pancreatitis", verdict: "Gold standard for metabolic weight loss with physician titration" },
-  { family: "GH Secretagogues", bestFor: "Lean mass gain, recovery, IGF-1 optimization, anti-aging", avoidIf: "Active malignancy, acromegaly, untreated diabetes, insulin resistance", verdict: "Best for body composition in adults 35+ with confirmed low IGF-1" },
-  { family: "Tissue Repair (BPC-157 / TB-500)", bestFor: "Tendon, ligament, gut, and soft-tissue healing post-injury", avoidIf: "Active cancer, pregnancy, pro-angiogenic risk, WADA testing", verdict: "First-choice for athletes and post-surgical patients with acute injuries" },
-  { family: "Copper Peptide (GHK-Cu)", bestFor: "Skin elasticity, collagen synthesis, wound healing, hair density", avoidIf: "Wilson's disease, copper sensitivity, confirmed copper overload", verdict: "Safe and well-studied for dermal and wound-healing indications" },
+  { family: "GH Secretagogues", bestFor: "Lean mass, recovery, and IGF-1 support in adults 35+", avoidIf: "Active malignancy, acromegaly, untreated diabetes, insulin resistance", verdict: "Best for body composition in adults 35+ with confirmed low IGF-1" },
+  { family: "Tissue Repair (BPC-157 / TB-500)", bestFor: "Tendon, ligament, gut, and soft-tissue healing post-injury", avoidIf: "Active cancer, pregnancy, pro-angiogenic risk, WADA testing", verdict: "Studied in athletes and post-surgical recovery; prescribed at physician discretion" },
+  { family: "Copper Peptide (GHK-Cu)", bestFor: "Skin elasticity, collagen synthesis, wound healing, hair density", avoidIf: "Wilson's disease, copper sensitivity, confirmed copper overload", verdict: "Well-tolerated in published dermatology studies; not FDA-approved" },
   { family: "Longevity (NAD+ / MOTS-c / Epitalon)", bestFor: "Mitochondrial function, biological age, telomere support", avoidIf: "Active malignancy (AMPK caution), limited data in pregnancy", verdict: "Strong rationale for adults 45+ with measurable metabolic decline" },
   { family: "Cognitive (Selank / Semax)", bestFor: "Focus, anxiety reduction, BDNF elevation, stress resilience", avoidIf: "Active seizure disorder, concurrent MAOI use, pregnancy", verdict: "Best for high-performers with burnout or chronic cognitive load" },
 ];

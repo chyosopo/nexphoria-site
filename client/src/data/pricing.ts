@@ -1,6 +1,6 @@
 /* ──────────────────────────────────────────────────────────────
    Nexphoria Pricing — single source of truth for peptide MSRPs
-   Pricing reflects compounded research-grade vial cost / 4-week supply.
+   Pricing reflects compounded prescription vial cost / 4-week supply.
    All peptides require physician sign-off at checkout intake.
 
    SUBSCRIPTION CADENCE (reference-style):

@@ -88,3 +88,71 @@ Arora media agreement · GA/GTM IDs.
 **Bask:** DNS record values · GLP-1 questionnaire links · portal URL.
 **Site (this repo):** done for every item actionable today; re-audits run
 in CI on every push.
+
+
+---
+
+## ADDENDUM — RUO + claims perfection pass (2026-08, agent-audited)
+
+Two Explore agents swept every user-facing file. Every LIVE finding fixed;
+verified against the real tree, all 5 gates green.
+
+### RUO language — eliminated (the hard-fail category)
+- **Footer "For research purposes only."** removed from the sitewide FDA
+  disclaimer (both render branches); required FDA/compounding text kept.
+  testid `footer-research-disclaimer` → `footer-fda-disclaimer`.
+- "research-grade" as a self-description → removed (pricing.ts comment).
+- Comparative RUO phrasing ("research-grade peptides… not for human use")
+  in FAQ + Science reworded to "unregulated online peptides / no physician
+  oversight" — same argument, without putting the trigger phrases on our
+  own domain for a reviewer's crawler.
+- KEPT (documented decision): the Journal article "legal landscape of
+  compounded peptides" quotes "for research only / not for human
+  consumption" to REPUDIATE gray-market vendors and tell readers not to
+  self-administer. This is pro-compliance educational content and is the
+  strongest on-site evidence of legitimacy; removing it would weaken the
+  posture. Flag for Mason if he wants the section anchor renamed.
+
+### Claim red-flags — fixed
+- "Reverse visible aging from the inside" (BuildYourStack) → "supported
+  from the inside".
+- "anti-aging" (Science verdict) → removed; "First-choice… post-surgical"
+  → hedged.
+- BPC-157 "used to accelerate… healing" → "investigated for… repair";
+  Thymosin-α1 "restores age-related decline" → "studied for"; Cerebrolysin
+  stroke/dementia clinical-use line → hedged + "not FDA-approved in the US".
+- Epitalon "The clock you can rewind" → "Studied at the cellular clock".
+- Quantified anxiety-score outcome → hedged; GHK "Safe" → "well-tolerated
+  in published studies".
+- FDA-approved-vs-compounded: FAQ + Science now state the branded drug is
+  approved but the COMPOUNDED formulation is not (mirrors peptides.ts).
+- FamilyOutcomesViz: added an inline "figures summarize published research,
+  not results we promise; individual outcomes vary" footnote under every
+  outcomes chart on /science.
+- "investigational" removed as a product-level descriptor (9 strings) →
+  "prescribed off-label" / "in Phase 3 clinical trials".
+
+### Dead code carrying pre-compliance language — quarantined
+- `lib/scienceContent.ts` (0 importers) — deleted.
+- `lib/protocols.ts` — reduced to the one consumed export
+  (glyphForPeptide); ~590 lines of unrendered peptide/stack prose with
+  disease/healing claims removed.
+- `data/stacks.ts` — unrendered purpose/description prose neutralized
+  (cart uses only stacks[]/computeStackPrice).
+
+### From Slack/Gmail (2026-08)
+- **Application scope**: Bask (Mason) advises submitting LegitScript with
+  the GLPs (semaglutide + tirzepatide) first; both are correctly gated on
+  the site. Full peptide catalog/pricing still pending from Bask.
+- **Stripe**: Maddie (Stripe) sent the Pharma DDQ. Chiya action: complete
+  DDQ → return with Stripe acct_1TxxpZ3ToKa8JOSh + LegitScript cert once
+  approved → risk review 1–3 days.
+- **Provider entity to confirm**: Maddie's note says "direct Stripe +
+  MD Integrations"; Mason's site requirement says Arora Health. Site shows
+  Arora (per Mason). Chiya: confirm which provider network serves at launch.
+
+### ⚠️ DEPLOY GAP (unchanged, most urgent)
+All of the above is on `design/azure` + the gh-pages PREVIEW. **Mason
+audits nexphoria.com**, which still serves the OLD build. The apex Cloudflare
+deploy (Atlas wrangler upload, or the CLOUDFLARE_API_TOKEN secret for the
+Deploy Apex workflow) must run before his review.

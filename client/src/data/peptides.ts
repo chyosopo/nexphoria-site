@@ -139,7 +139,7 @@ const RAW_PEPTIDES: Peptide[] = [
     category: "recovery",
     glyph: "chain",
     summary:
-      "A 15-amino-acid fragment of a protective protein found in gastric juice. The most-studied recovery peptide of the last decade — used to accelerate tendon, ligament, muscle, and gut healing.",
+      "A 15-amino-acid fragment of a protective protein found in gastric juice. The most-studied recovery peptide of the last decade — investigated for tendon, ligament, muscle, and gut repair.",
     mechanism:
       "BPC-157 upregulates VEGF and growth-hormone receptor expression at injury sites, driving angiogenesis (new blood-vessel formation) and fibroblast migration. It also modulates the nitric-oxide pathway and appears to protect the gut lining, which is part of why it is investigated for both musculoskeletal and gastrointestinal repair.",
     halfLife: "~4 hours (subcutaneous)",
@@ -163,7 +163,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "Preclinical",
       description: "Rodent tendon, ligament, and gut-lining models · limited human data",
       studyCount: 40,
-      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+      fdaStatus: "Not FDA-approved · prescribed off-label · compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · personal or family history of cancer · active malignancy · pro-angiogenic risk (untreated retinopathy, recent DVT) · competitive athletes under WADA testing · <18 yrs",
@@ -200,7 +200,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "Preclinical",
       description: "Rodent cardiac + wound-healing models · human trials are limited to topical/veterinary use",
       studyCount: 32,
-      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+      fdaStatus: "Not FDA-approved · prescribed off-label · compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · active malignancy or cancer history (angiogenic risk) · uncontrolled diabetic retinopathy · recent DVT or PE · competitive athletes under WADA testing · <18 yrs",
@@ -385,7 +385,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "B",
       description: "Small human RCTs (GH pulse pharmacology) · widely used clinically",
       studyCount: 18,
-      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+      fdaStatus: "Not FDA-approved · prescribed off-label · compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · active malignancy · Prader-Willi syndrome with severe obesity or respiratory impairment · uncontrolled type 2 diabetes · use with caution alongside insulin or glucocorticoids · <18 yrs",
@@ -431,7 +431,7 @@ const RAW_PEPTIDES: Peptide[] = [
     slug: "epitalon",
     name: "Epitalon",
     fullName: "Epithalamin tetrapeptide (Ala-Glu-Asp-Gly)",
-    tagline: "The clock you can rewind.",
+    tagline: "Studied at the cellular clock.",
     category: "longevity",
     glyph: "fragment",
     summary:
@@ -472,7 +472,7 @@ const RAW_PEPTIDES: Peptide[] = [
     category: "longevity",
     glyph: "chain",
     summary:
-      "A thymus-derived peptide that restores age-related decline in T-cell function. Studied worldwide as Zadaxin for immune modulation; part of the Eternal longevity protocol.",
+      "A thymus-derived peptide studied for its effects on age-related decline in T-cell function. Studied worldwide as Zadaxin for immune modulation; part of the Eternal longevity protocol.",
     mechanism:
       "Thymosin-\u03b11 stimulates the maturation of T-cells and the activity of dendritic and natural-killer cells, helping restore the CD4/CD8 ratio that drifts with age. It modulates innate immune surveillance and has been studied in sepsis, chronic infection, and immune senescence.",
     halfLife: "~2 hours",
@@ -570,7 +570,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "B-",
       description: "Mechanistic human + rodent metabolic studies · no Phase 2/3 RCTs",
       studyCount: 13,
-      fdaStatus: "Not FDA-approved · investigational mitochondrial-derived peptide · compounded by prescription only",
+      fdaStatus: "Not FDA-approved · mitochondrial-derived peptide prescribed off-label · compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · active malignancy · severe mitochondrial disease · uncontrolled type 2 diabetes without physician oversight · <18 yrs",
@@ -607,7 +607,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "B-",
       description: "Human sleep-lab EEG + polysomnography studies from the 1970s-90s · limited modern trials",
       studyCount: 9,
-      fdaStatus: "Not FDA-approved · investigational · compounded by prescription only",
+      fdaStatus: "Not FDA-approved · prescribed off-label · compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · severe untreated sleep apnea · concurrent benzodiazepine or opioid use without physician oversight · <18 yrs",
@@ -657,7 +657,7 @@ const RAW_PEPTIDES: Peptide[] = [
     category: "metabolic",
     glyph: "chain",
     summary:
-      "An investigational triple-hormone receptor agonist showing the largest weight-loss effect reported to date. Part of the Lean protocol where indicated, under close physician supervision.",
+      "A triple-hormone receptor agonist in Phase 3 clinical trials, with the largest weight-loss effect reported to date. Part of the Lean protocol where indicated, under close physician supervision.",
     mechanism:
       "Retatrutide activates the GIP, GLP-1, and glucagon receptors simultaneously. Adding glucagon-receptor agonism increases energy expenditure on top of the appetite suppression of the other two, producing greater fat loss in Phase 2 trials than dual agonists.",
     halfLife: "~6 days (once-weekly dosing)",
@@ -681,7 +681,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "A-",
       description: "Phase 2 RCTs published in NEJM (2023) · Phase 3 program (TRIUMPH) ongoing at Lilly",
       studyCount: 8,
-      fdaStatus: "Not yet FDA-approved · Phase 3 investigational · compounded triple-agonist by prescription only",
+      fdaStatus: "Not FDA-approved · in Phase 3 clinical trials · compounded triple-agonist by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · personal or family history of medullary thyroid carcinoma · MEN-2 · history of pancreatitis · severe gastroparesis · use with caution alongside sulfonylureas or insulin · <18 yrs",
@@ -718,7 +718,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "C+",
       description: "Small human RCTs showed no clinically meaningful fat loss · osteoarthritis Phase 2 signals",
       studyCount: 7,
-      fdaStatus: "Not FDA-approved · investigational · FDA declined GRAS petition (2014) · compounded by prescription only",
+      fdaStatus: "Not FDA-approved · prescribed off-label · FDA declined GRAS petition (2014) · compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy · active malignancy · Prader-Willi syndrome · known hypersensitivity to GH-fragment peptides · <18 yrs",
@@ -804,7 +804,7 @@ const RAW_PEPTIDES: Peptide[] = [
     category: "cognition",
     glyph: "fragment",
     summary:
-      "A porcine-derived mixture of low-molecular-weight neuropeptides and free amino acids that mimics the action of endogenous neurotrophic factors. It is used clinically in several countries for stroke recovery and dementia, and is among the more rigorously trialed compounds in this category.",
+      "A porcine-derived mixture of low-molecular-weight neuropeptides and free amino acids that mimics the action of endogenous neurotrophic factors. It has been studied in clinical trials in several countries, and is among the more rigorously trialed compounds in this category. It is not FDA-approved in the United States and is prescribed off-label at physician discretion.",
     mechanism:
       "Cerebrolysin's peptide fraction is thought to mimic neurotrophic factors (BDNF, GDNF, NGF), supporting neuronal survival, synaptic plasticity, and neurogenesis while reducing excitotoxic and inflammatory injury. It has been evaluated in randomized controlled trials for acute ischemic stroke, vascular dementia, and Alzheimer's disease, with Cochrane reviews noting mixed but non-trivial signals.",
     halfLife: "Administered as a course of infusions rather than dosed by half-life",
@@ -895,7 +895,7 @@ const RAW_PEPTIDES: Peptide[] = [
       grade: "Preclinical",
       description: "Both components rest on rodent repair models - combination use is off-label",
       studyCount: 50,
-      fdaStatus: "Not FDA-approved - investigational - compounded by prescription only",
+      fdaStatus: "Not FDA-approved - prescribed off-label - compounded by prescription only",
     },
     contraindications:
       "NOT FOR: pregnancy - personal or family history of cancer - active malignancy - pro-angiogenic risk (untreated retinopathy, recent DVT) - WADA-tested athletes - <18 yrs",

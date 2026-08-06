@@ -38,7 +38,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "How is this different from buying research peptides online?",
-        a: "Research-grade peptides sold online are not intended for human use, lack sterility testing, and have no dosing oversight. Nexphoria protocols are prescribed by a board-certified physician, compounded in a licensed 503A US pharmacy under sterile conditions, batch-tested for potency and purity, and shipped cold-chain. The compound you administer is the compound you were prescribed — not an unverified powder.",
+        a: "Unregulated peptides sold online carry no sterility testing, no dosing oversight, and no physician involvement. Nexphoria protocols are prescribed by a board-certified physician, compounded in a licensed 503A US pharmacy under sterile conditions, batch-tested for potency and purity, and shipped cold-chain. The compound you administer is the compound you were prescribed.",
       },
       {
         q: "What compounds do you offer?",
@@ -168,7 +168,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Is this FDA-approved?",
-        a: "Tirzepatide and semaglutide are FDA-approved drugs that may also be compounded. Most other peptides in our formulary are prescribed off-label — not FDA-approved for any specific indication. Off-label prescribing is a legal, routine component of clinical practice in the United States. Compounding under a physician's prescription is regulated by state pharmacy boards and the FDA.",
+        a: "Tirzepatide and semaglutide are available as FDA-approved branded drugs; the compounded formulations we prepare are not themselves FDA-approved or evaluated. Most other peptides in our formulary are prescribed off-label — not FDA-approved for any specific indication. Off-label prescribing is a legal, routine component of clinical practice in the United States. Compounding under a physician's prescription is regulated by state pharmacy boards and the FDA.",
       },
       {
         q: "Do you ship internationally?",
@@ -189,7 +189,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What is the difference between Nexphoria and buying peptides from a research chemical site?",
-        a: "Research-grade peptides sold online are labeled 'not for human use,' lack sterility certification, and carry no dosing guidance or physician oversight. Nexphoria peptides are prescribed by a board-certified clinician, compounded in a 503A-licensed sterile facility, batch-tested for potency and purity, and shipped cold-chain with full chain-of-custody documentation. The compound you inject is the compound you were prescribed.",
+        a: "Unregulated online peptides carry no sterility certification and no dosing guidance or physician oversight. Nexphoria peptides are prescribed by a board-certified clinician, compounded in a 503A-licensed sterile facility, batch-tested for potency and purity, and shipped cold-chain with full chain-of-custody documentation. The compound you inject is the compound you were prescribed.",
       },
       {
         q: "What is the difference between GLP-1 (Ozempic/Wegovy) and Retatrutide from Nexphoria?",

@@ -24,7 +24,7 @@ const BENEFIT_BULLETS: Record<string, [string, string]> = {
   "bpc-157": ["Accelerates tendon & gut repair", "Calms local inflammation"],
   "tb-500": ["Systemic tissue recovery", "Eases nagging strains"],
   "ghk-cu": ["Rebuilds collagen & elastin", "Evens tone, softens lines"],
-  semax: ["Sharpens focus & recall", "Lifts mental fatigue"],
+  semax: ["Studied for focus & recall", "Studied for mental fatigue"],
   selank: ["Calm without sedation", "Steadies mood under stress"],
   tesamorelin: ["Targets visceral fat", "Raises IGF-1 physiologically"],
   ipamorelin: ["Clean GH pulse", "Deepens sleep & recovery"],
@@ -34,7 +34,7 @@ const BENEFIT_BULLETS: Record<string, [string, string]> = {
   "nad-plus": ["Fuels mitochondrial energy", "Supports DNA repair"],
   "mots-c": ["Exercise-mimetic metabolism", "Improves glucose handling"],
   dsip: ["Deeper slow-wave sleep", "Shortens sleep-onset latency"],
-  tirzepatide: ["Steady weight loss", "Curbs cravings & food noise"],
+  tirzepatide: ["Studied for weight loss", "Studied for appetite regulation"],
   retatrutide: ["Largest fat-loss lever", "Raises energy expenditure"],
   "aod-9604": ["Targeted lipolysis", "Spares glucose & IGF-1"],
 };
@@ -56,7 +56,7 @@ const GOALS: Goal[] = [
   {
     id: "recovery",
     title: "Repair & recover",
-    blurb: "Tendon, joint, soft-tissue healing. Train harder, bounce back faster.",
+    blurb: "Tendon, joint, and soft-tissue recovery — studied for training resilience.",
     categories: ["recovery", "growth"],
     recommended: ["bpc-157", "tb-500", "ghk-cu"],
     curatorNote: "Local repair signal + systemic cell migration + collagen synthesis. The classic injury-rehab triad.",
@@ -64,7 +64,7 @@ const GOALS: Goal[] = [
   {
     id: "skin",
     title: "Skin & aesthetics",
-    blurb: "Collagen, tone, dermal density. Reverse visible aging from the inside.",
+    blurb: "Collagen, tone, dermal density — supported from the inside.",
     categories: ["skin", "recovery"],
     recommended: ["ghk-cu", "bpc-157"],
     curatorNote: "Copper-binding tripeptide for dermal renewal, BPC-157 for systemic repair support.",
