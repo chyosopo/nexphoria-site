@@ -16,6 +16,7 @@ import { outcomeSrcSet, OUTCOME_STACK } from "@/data/outcomeImagery";
 import { getPeptideCardImage } from "@/lib/peptideImages";
 import { F, S } from "@/lib/typography";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
+import { BigFigureRow } from "@/components/DataPlate";
 
 /* The four credentials that are TRUE for Nexphoria — no invented CLIA/FDA/CAP. */
 const TRUST_BADGES = [
@@ -147,6 +148,34 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             statement — imagery gets its own moment instead of a column. */}
         <div className="nx-container relative" style={{ zIndex: 1, display: "flex", justifyContent: "center", paddingBottom: "var(--nx-sp-band)" }}>
           <HeroTileRail tiles={railTiles} testid={`${world}-rail`} />
+        </div>
+
+        {/* ── BIOLOGY PROOF BAND (FLAGSHIP-REBUILD P1) — "measured, not
+            marketed": the three numbers that define the brand, stated as a
+            lab report, with the physician anchor. Ledger rules, tabular
+            numerals, both worlds theme through --nx-cobalt. ── */}
+        <div className="nx-container relative" style={{ zIndex: 1, paddingBottom: "var(--nx-sp-band)" }}>
+          <div className="nx-proofband" data-testid={`${world}-proofband`}>
+            <div className="nx-proofband__lede">
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+                Measured, not marketed
+              </p>
+              <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.12, marginTop: "0.5rem", maxWidth: "18ch" }}>
+                Your biology, read before anything is prescribed.
+              </h2>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.7rem", maxWidth: "42ch" }}>
+                A board-certified physician reads your panel and your history, prescribes only what your numbers justify, and re-reads the same markers every quarter. The change is proven, not assumed.
+              </p>
+            </div>
+            <BigFigureRow
+              testId={`${world}-proof-figures`}
+              figures={[
+                { value: String(PANEL_TOTAL_MARKERS), unit: "markers", caption: "across eleven systems, drawn at baseline" },
+                { value: "90", unit: "days", caption: "between every retest, every cycle" },
+                { value: "503A", unit: "compounded", caption: "US state-licensed pharmacy, per prescription" },
+              ]}
+            />
+          </div>
         </div>
 
         {/* ── GOAL TILES — tinted glass, inside the aurora, first glance ── */}

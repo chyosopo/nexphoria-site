@@ -592,6 +592,24 @@
     overflow: hidden; /* the wordmark's baseline bleeds off the bottom edge */
   }
 
+  /* ── Biology proof band (FLAGSHIP-REBUILD P1) — lede column beside a
+     ledger of big figures. Card-quiet: hairline frame, ceramic ground,
+     the numbers do the work. Stacks on mobile. ── */
+  .nx-proofband {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.6rem, 4vw, 3rem);
+    align-items: center;
+    padding: clamp(1.6rem, 4vw, 2.75rem);
+    background: var(--nx-ceramic);
+    border: 1px solid var(--nx-border);
+    border-radius: var(--nx-r-lg);
+  }
+  @media (min-width: 900px) {
+    .nx-proofband { grid-template-columns: 0.9fr 1.1fr; }
+  }
+  .nx-proofband__lede { min-width: 0; }
+
   /* ── Footer wordmark — the establishment signature. The name set
      enormous in near-transparent letters at the footer's base; it reads
      as confidence, not decoration. aria-hidden, non-interactive. ── */
