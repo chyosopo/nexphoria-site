@@ -646,6 +646,44 @@
     margin-top: -0.15rem;
   }
 
+  /* ── Post-submit timeline (FLAGSHIP-REBUILD P6) — vertical rail with
+     numbered nodes; a hairline connector runs down the left. ── */
+  .nx-timeline { list-style: none; margin: 0; padding: 0; }
+  .nx-timeline__row {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: clamp(1rem, 2.5vw, 1.8rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .nx-timeline__row:last-child { padding-bottom: 0; }
+  .nx-timeline__rail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nx-timeline__rail::after {
+    content: "";
+    position: absolute;
+    top: 1.9rem; bottom: -1rem; left: 50%;
+    width: 1px;
+    background: var(--nx-border);
+    transform: translateX(-50%);
+  }
+  .nx-timeline__row:last-child .nx-timeline__rail::after { display: none; }
+  .nx-timeline__dot {
+    width: 13px; height: 13px; border-radius: var(--nx-r-pill);
+    background: var(--nx-cobalt);
+    box-shadow: 0 0 0 5px var(--nx-cobalt-soft);
+    margin-top: 0.4rem;
+  }
+  .nx-timeline__idx {
+    margin-top: 0.7rem;
+    font-size: var(--nx-t-sm);
+    font-weight: 700;
+    color: color-mix(in srgb, var(--nx-cobalt) 45%, var(--nx-border));
+  }
+
   /* ── Footer wordmark — the establishment signature. The name set
      enormous in near-transparent letters at the footer's base; it reads
      as confidence, not decoration. aria-hidden, non-interactive. ── */

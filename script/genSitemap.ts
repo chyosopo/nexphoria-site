@@ -38,6 +38,7 @@ const STATIC_ROUTES = [
   "/", "/men", "/women",
   "/about", "/science", "/physicians", "/pricing", "/bloodwork",
   "/how-it-works", "/faq", "/contact", "/community", "/booking", "/assessment",
+  "/what-happens-next",
   "/protocols", "/stacks", "/stacks/build", "/peptides", "/gift",
   "/men/peptides", "/women/peptides", "/journal",
   "/legal", "/legal/hipaa-notice", "/legal/prescribing-policy",

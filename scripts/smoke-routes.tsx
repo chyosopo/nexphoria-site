@@ -60,6 +60,7 @@ async function main() {
     ["/assessment",      "/src/pages/Assessment.tsx", {}],
     ["/cart",            "/src/pages/Cart.tsx", {}],
     ["/checkout",        "/src/pages/Checkout.tsx", {}],
+    ["/what-happens-next", "/src/pages/WhatHappensNext.tsx", {}],
     ["/pricing",         "/src/pages/Pricing.tsx", {}],
     ["/gift",            "/src/pages/Gift.tsx", {}],
     ["/gift/claim",      "/src/pages/GiftClaim.tsx", {}],

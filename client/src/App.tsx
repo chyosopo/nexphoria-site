@@ -33,6 +33,7 @@ const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
 const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
+const WhatHappensNext = lazy(() => import("@/pages/WhatHappensNext"));
 const Gate = lazy(() => import("@/pages/Gate"));
 const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
 const Science = lazy(() => import("@/pages/Science"));
@@ -113,6 +114,7 @@ function AppRouter() {
         {/* Cart + Checkout (pharmacy flow) */}
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/what-happens-next" component={WhatHappensNext} />
 
         {/* Shared informational */}
         <Route path="/how-it-works" component={HowItWorks} />
