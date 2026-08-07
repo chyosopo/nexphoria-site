@@ -75,23 +75,27 @@
     --nx-dur-3: 320ms;
     --nx-dur-4: 600ms;
 
-    /* ── Nexphoria brand tokens ── */
-    /* BACKGROUND — warm cream palette */
-    --nx-bg:           #E9EFF5;   /* warm cream — primary canvas */
-    --nx-bg-cream:     #DCE6EE;   /* deeper cream for alternating sections */
-    --nx-bg-dark:      #22384E;  /* footer / dark sections */
-    --nx-fg:           #16283E;  /* primary ink text */
-    --nx-fg-graphite:  #46607A;  /* secondary body copy */
-    --nx-fg-muted:     #4C6486;  /* tertiary / captions — 5.2:1 on --nx-bg, clears WCAG AA */
-    --nx-border:       #C9D5E0;  /* warm hairline borders */
-    /* ACCENT: INK — the accent IS the typography weight + photography */
-    --nx-cobalt:       #2E5877;  /* warm navy-teal — CTAs, eyebrows, links */
-    --nx-cobalt-hover: #1E4560;  /* slightly lighter ink on hover */
-    --nx-cobalt-soft:  #D9E4EC;  /* warm cream tint for soft bg fills */
+    /* ── Nexphoria brand tokens — REFINED PORCELAIN & NAVY (Chiya 2026-08:
+       "the whole color design needs to be fully reconsidered and polished"
+       → chose Refined Porcelain & Navy: calmer near-white canvas, deeper
+       richer navy ink, a precise jewel cobalt accent replacing the muddy
+       navy-teal). Same family, polished to a private-bank register. ── */
+    /* BACKGROUND — cool porcelain, near-white */
+    --nx-bg:           #F4F7FA;   /* calmer near-white canvas (was #E9EFF5) */
+    --nx-bg-cream:     #E7EEF5;   /* the alternating-section porcelain */
+    --nx-bg-dark:      #132741;  /* footer / dark sections — richer deep navy */
+    --nx-fg:           #0F2038;  /* primary ink — deeper navy, more authority */
+    --nx-fg-graphite:  #435B76;  /* secondary body copy */
+    --nx-fg-muted:     #536A88;  /* tertiary / captions — AA on the lighter canvas */
+    --nx-border:       #D6E0EB;  /* clean cool hairline borders */
+    /* ACCENT — precise jewel cobalt. The accent IS the typography + photography */
+    --nx-cobalt:       #1E5A9E;  /* jewel cobalt — CTAs, eyebrows, links */
+    --nx-cobalt-hover: #17497F;  /* deeper cobalt on hover */
+    --nx-cobalt-soft:  #DEE9F6;  /* cobalt-tinted soft bg fills */
     /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
-    --nx-amber:        #3D6C94;  /* burnt amber — very small accents only */
-    --nx-success:      #3D7C94;
-    --nx-warning:      #3D6C94;
+    --nx-amber:        #2F6BAE;  /* aligned to the cobalt family — small accents only */
+    --nx-success:      #2C7A8F;
+    --nx-warning:      #2F6BAE;
 
     /* ── reference-style paneled pastels, derived from cobalt+rust ── */
     /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
@@ -108,11 +112,11 @@
 
     /* ── V3 tokens — locked minimal palette (locked palette) ── */
     /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #F4F8FB;  /* elevated porcelain — was warm ivory, retired 2026-07-21 */
-    --nx-rock:         #D5DFE8;
-    --nx-acid:         #A9C6DE;
+    --nx-ceramic:      #FAFCFE;  /* elevated porcelain — lifts above the new canvas */
+    --nx-rock:         #DDE6EF;
+    --nx-acid:         #9CBEE0;
     --nx-danger:       #A4453C;  /* form error — muted brick */
-    --nx-accent:       #2E5877;  /* primary azure accent */  /* honey chip — was acid green */
+    --nx-accent:       #1E5A9E;  /* primary jewel cobalt — mirrors --nx-cobalt */
 
     /* ══ COMPONENT VARIANT PALETTES ══
        Bespoke per-tone tile/vial colors lifted verbatim out of components so no
@@ -182,29 +186,31 @@
 
   /* ═══ ORCHID WORLD — activates under /women routes ═══ */
   [data-world="women"] {
-    --nx-bg:           #FAF4F7;
-    --nx-bg-cream:     #F3ECEF;
-    --nx-bg-dark:      #35212E;
-    --nx-fg:           #35212E;
-    --nx-fg-graphite:  #78646E;
-    --nx-fg-muted:     #7A5F6A;  /* darkened for WCAG AA on orchid --nx-bg */
-    --nx-border:       #E3DBDF;
-    --nx-cobalt:       #A83E6A;  /* her accent — rose-orchid (Chiya: read as pink, not plum); 5.5:1 on --nx-bg, white text on it 6:1 for the filled CTA */
-    --nx-cobalt-hover: #7E2E4E;
-    --nx-cobalt-soft:  #F5E6EC;
-    --nx-amber:        #AB5E7C;
+    /* Refined rose-quartz — cleaner near-white warm canvas, deeper plum ink,
+       a clearer rose accent. Moves with the men's polish (2026-08). */
+    --nx-bg:           #FBF6F8;
+    --nx-bg-cream:     #F6EFF2;
+    --nx-bg-dark:      #2C1A26;
+    --nx-fg:           #2C1A26;
+    --nx-fg-graphite:  #75606B;
+    --nx-fg-muted:     #785C68;  /* AA on the refined orchid --nx-bg */
+    --nx-border:       #ECE2E7;
+    --nx-cobalt:       #AE3E6C;  /* her accent — clearer rose-quartz; white CTA text ≥6:1 */
+    --nx-cobalt-hover: #872F52;
+    --nx-cobalt-soft:  #F8E9EF;
+    --nx-amber:        #AF5E7E;
     --nx-success:      #AA6784;
-    --nx-warning:      #AB5E7C;
-    --nx-ice:          #F5EEF1;
-    --nx-ice-edge:     #DDCFD6;
-    --nx-peach:        #F4EAEF;
-    --nx-peach-edge:   #DFCED6;
-    --nx-sage:         #ECE5E8;
-    --nx-sage-edge:    #D3C9CD;
-    --nx-rust:         #D0A2B4;
+    --nx-warning:      #AF5E7E;
+    --nx-ice:          #F7F0F3;
+    --nx-ice-edge:     #E1D3DA;
+    --nx-peach:        #F7EEF3;
+    --nx-peach-edge:   #E3D2DA;
+    --nx-sage:         #EFE7EB;
+    --nx-sage-edge:    #D7CDD1;
+    --nx-rust:         #D2A4B6;
     /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #FCF3F7;
-    --nx-rock:         #F1E7EB;
+    --nx-ceramic:      #FDF8FB;
+    --nx-rock:         #F3E9EE;
     --nx-acid:         #F0CBDB;
     --nx-danger:       #A4453C;
     --nx-accent:       #C97B99;
