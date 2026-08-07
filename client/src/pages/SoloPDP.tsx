@@ -4,13 +4,14 @@
    card + persistent price bar. "Why this peptide" pillars, a drawn expectation
    timeline, a gradient-edged bloodwork card, and a dramatic contraindication
    band. Three commerce states: tiers / GLP-1 wall / consult-priced. */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
 import { getSolo, SOLO_CATALOG, SoloCategory } from "@/data/soloCatalog";
+import { analytics } from "@/lib/analytics";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
 import { ArrowLeft, Check, X, Stethoscope, Microscope, RefreshCw, FlaskConical, Snowflake, LayoutDashboard } from "lucide-react";
@@ -44,6 +45,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const imgWorld = world ?? resolveWorld(loc);
   const solo = getSolo(slug);
   const [tier, setTier] = useState<string>("m3");
+  useEffect(() => {
+    if (solo) analytics.productViewed({ kind: "solo", slug: solo.slug, category: solo.category, gated: !!solo.gated, world: imgWorld });
+  }, [solo, imgWorld]);
   const faq = solo
     ? buildPdpFaq({ name: solo.name, panel: solo.panel, gated: solo.gated, gatedStates: solo.stateExclusions, hasPricing: !!solo.pricing, firstMark: solo.timeline[0] })
     : [];

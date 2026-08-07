@@ -3,7 +3,7 @@
    Hero: outcome frame beside the claim. Body: content rail + sticky
    buy-box (lg+); mobile gets an in-flow card + persistent price bar.
    Ignite (GLP-1) renders the physician wall in both rails. */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -41,10 +41,15 @@ function panelFor(tier: PanelTier) {
   return PANELS.find((p) => p.tier === tier);
 }
 
+import { analytics } from "@/lib/analytics";
+
 export default function StackPage({ slug }: { slug: string }) {
   const stack = getStack(slug);
   const [loc] = useLocation();
   const [selected, setSelected] = useState<string>("3mo");
+  useEffect(() => {
+    if (stack) analytics.productViewed({ kind: "stack", slug: stack.slug, category: stack.category, gated: !!stack.gated });
+  }, [stack]);
   const faq = stack
     ? buildPdpFaq({ name: stack.name, panel: stack.panel, gated: stack.gated, gatedStates: stack.stateExclusions, hasPricing: !stack.gated, firstMark: stack.timeline[0] })
     : [];

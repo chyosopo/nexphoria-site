@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 /* ComparisonMatrix — the "not all X is created equal" diagram.
    A visually-informative matrix: dimensions down the left, options across
    the top, our column highlighted. Every cell states what a thing IS or
@@ -7,6 +8,7 @@
    semantic <table> for accessibility, contained horizontal scroll on
    narrow screens so the body never scrolls sideways. */
 import { Check, Minus } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/EnterprisePatterns";
 import { F } from "@/lib/typography";
@@ -45,6 +47,12 @@ export function ComparisonMatrix({
   background?: string;
   testid?: string;
 }) {
+  // Fire comparison_viewed once when a matrix mounts (funnel instrumentation —
+  // stub was defined but never called). Keyed on testid so each distinct
+  // matrix on a page reports separately.
+  useEffect(() => {
+    analytics.comparisonViewed({ matrix: testid });
+  }, [testid]);
   return (
     <section
       data-testid={testid}
