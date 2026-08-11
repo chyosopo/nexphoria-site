@@ -1,5 +1,5 @@
 /* JOB: remove the last objection; hand off to support or the assessment. */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
@@ -215,6 +215,34 @@ export default function FAQPage() {
   });
   const [activeCategory, setActiveCategory] = useState(0);
 
+  // Roving-tabindex focus targets for the vertical tablist (WAI-ARIA tabs).
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const onTabsKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+    const count = categories.length;
+    let next = activeCategory;
+    switch (e.key) {
+      case "ArrowDown":
+      case "ArrowRight":
+        next = (activeCategory + 1) % count;
+        break;
+      case "ArrowUp":
+      case "ArrowLeft":
+        next = (activeCategory - 1 + count) % count;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = count - 1;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    setActiveCategory(next);
+    tabRefs.current[next]?.focus();
+  };
+
   const categoryHeadings: Record<string, string> = {
     Products: "What you're getting.",
     Process: "Clinical process and monitoring.",
@@ -322,12 +350,23 @@ export default function FAQPage() {
                 >
                   CATEGORIES
                 </p>
-                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <ul
+                  role="tablist"
+                  aria-label="FAQ categories"
+                  aria-orientation="vertical"
+                  onKeyDown={onTabsKeyDown}
+                  style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}
+                >
                   {categories.map((cat, i) => (
                     <li key={cat.label}>
                       <button
+                        ref={(el) => { tabRefs.current[i] = el; }}
+                        id={`faq-tab-${i}`}
+                        role="tab"
+                        aria-selected={activeCategory === i}
+                        aria-controls={`faq-panel-${i}`}
+                        tabIndex={activeCategory === i ? 0 : -1}
                         onClick={() => setActiveCategory(i)}
-                        aria-current={activeCategory === i ? "true" : undefined}
                         className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
                         style={{
                           background: "none",
@@ -374,8 +413,14 @@ export default function FAQPage() {
 
             {/* Accordion — plain div, NOT a second <main>: the page already
                 has one <main id="main-content"> landmark above (house pattern,
-                cf. Pricing.tsx). Two <main> elements is invalid HTML5. */}
-            <div>
+                cf. Pricing.tsx). Two <main> elements is invalid HTML5.
+                Doubles as the tabpanel for the category tablist. */}
+            <div
+              id={`faq-panel-${activeCategory}`}
+              role="tabpanel"
+              aria-labelledby={`faq-tab-${activeCategory}`}
+              tabIndex={0}
+            >
               <Reveal>
                 <p
                   style={{
