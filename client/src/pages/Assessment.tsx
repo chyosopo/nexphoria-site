@@ -400,6 +400,11 @@ export default function Assessment() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [draftRestored, setDraftRestored] = useState(false);
+  // Sighted parity for the screen-reader restore announcement: a returning
+  // visitor lands mid-flow, so a calm, dismissible "welcome back" line explains
+  // why — the SR region (#assessment-sr-status) already voices this, so the
+  // visible banner stays aria-hidden (no double read).
+  const [restoreDismissed, setRestoreDismissed] = useState(false);
   const [emailBlurred, setEmailBlurred] = useState(false);
   // Sighted-only validation nudge: surfaces WHAT the step still needs, but only
   // once the visitor reaches for the (aria-disabled) primary action — calm, not
@@ -446,6 +451,12 @@ export default function Assessment() {
 
   // E38 — the draft survives a refresh. Restore once, then autosave.
   const DRAFT_KEY = "nx-assessment-draft";
+  // A restore/deep-link step jump lands the visitor deep in the flow AFTER
+  // mount, which the step-change scroll effect would otherwise treat as a
+  // navigation and scroll past — hiding the progress bar and the welcome-back
+  // banner. Flag those non-navigational jumps so the scroll effect skips once
+  // and the top of the flow stays in view.
+  const skipRestoreScroll = useRef(false);
   useEffect(() => {
     try {
       const raw = localStorage.getItem(DRAFT_KEY);
@@ -457,6 +468,7 @@ export default function Assessment() {
           // A fresh ?goal= intent wins over a stale draft's goal.
           setForm((f) => ({ ...f, ...d.form, ...(urlGoal ? { goal: urlGoal } : {}) }));
           if (typeof d.step === "number" && d.step > 0) {
+            skipRestoreScroll.current = true;
             setStep(d.step);
             setDraftRestored(true);
           }
@@ -483,6 +495,7 @@ export default function Assessment() {
     } catch { /* ignore */ }
     if (hasDraftStep) return;
     if (form.gender !== null && step === 0) {
+      skipRestoreScroll.current = true;
       setStep(urlGoal ? 2 : 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -494,6 +507,9 @@ export default function Assessment() {
   const skipMountScroll = useRef(true);
   useEffect(() => {
     if (skipMountScroll.current) { skipMountScroll.current = false; return; }
+    // A restore/deep-link jump is not a navigation — keep the top of the flow
+    // (progress + welcome-back banner) in view rather than scrolling to the card.
+    if (skipRestoreScroll.current) { skipRestoreScroll.current = false; return; }
     // Smooth scrolling is motion — honor prefers-reduced-motion by jumping
     // instantly for users who opted out, matching the flow's calm-motion posture.
     topRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "nearest" });
@@ -817,6 +833,55 @@ export default function Assessment() {
 
         {/* ── Top progress bar ── */}
         {inFlow && <LabeledProgress step={step} />}
+
+        {/* ── Welcome-back banner ── sighted parity for the SR restore
+            announcement. Calm, dismissible, token-driven; aria-hidden so
+            assistive tech isn't told twice. Colour-only fade, reduced-motion safe. */}
+        {inFlow && draftRestored && !restoreDismissed && (
+          <div
+            aria-hidden="true"
+            data-testid="assessment-restore-banner"
+            style={{
+              borderBottom: "1px solid var(--nx-border)",
+              backgroundColor: "var(--nx-cobalt-soft)",
+              padding: "0.75rem var(--nx-gutter)",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "1040px",
+                margin: "0 auto",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.625rem",
+              }}
+            >
+              <Check size={15} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+              <p
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  margin: 0,
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-sm)",
+                  color: "var(--nx-fg-graphite)",
+                  lineHeight: 1.5,
+                }}
+              >
+                Welcome back — your progress was saved. You are picking up where you left off.
+              </p>
+              <button
+                type="button"
+                onClick={() => setRestoreDismissed(true)}
+                data-testid="assessment-restore-dismiss"
+                className="nx-restore-dismiss"
+                aria-label="Dismiss"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* ── Main content + sidebar ── */}
         {/* Labeled region, NOT <main> — SiteLayout already owns the page's single
@@ -1879,6 +1944,29 @@ export default function Assessment() {
         }
         .nx-opt-box[data-selected="true"] { background-color: var(--nx-cobalt); border-color: var(--nx-cobalt); }
 
+        /* ── Welcome-back banner dismiss — quiet text button ── */
+        .nx-restore-dismiss {
+          flex-shrink: 0;
+          background: none;
+          border: none;
+          padding: 0.25rem 0.25rem;
+          cursor: pointer;
+          font-family: ${F};
+          font-size: var(--nx-t-xs);
+          font-weight: 600;
+          letter-spacing: var(--nx-ls-caps);
+          text-transform: uppercase;
+          color: var(--nx-fg-muted);
+          -webkit-tap-highlight-color: transparent;
+          transition: color var(--nx-dur-2) var(--nx-ease);
+        }
+        .nx-restore-dismiss:hover { color: var(--nx-cobalt); }
+        .nx-restore-dismiss:focus-visible {
+          outline: 2px solid var(--nx-cobalt);
+          outline-offset: 2px;
+          border-radius: var(--nx-r-xs);
+        }
+
         /* ── Review summary rows — editable, jump back to the source step ── */
         .nx-review-row {
           width: 100%;
@@ -1995,7 +2083,7 @@ export default function Assessment() {
           .assessment-goal-grid { grid-template-columns: minmax(0, 1fr) !important; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .nx-opt, .nx-sex, .nx-step-next, .nx-step-back, .nx-review-row { transition: none !important; }
+          .nx-opt, .nx-sex, .nx-step-next, .nx-step-back, .nx-review-row, .nx-restore-dismiss { transition: none !important; }
           .assessment-stepnav { -webkit-backdrop-filter: none; backdrop-filter: none; }
         }
       `}</style>
