@@ -1944,6 +1944,18 @@ export default function Assessment() {
         }
         .nx-opt-box[data-selected="true"] { background-color: var(--nx-cobalt); border-color: var(--nx-cobalt); }
 
+        /* Micro-interaction: the check glyph mounts on select, so it pops in —
+           a small tactile confirmation of the choice. Compositor-only
+           (transform + opacity), token-timed, dropped under reduced-motion. */
+        @keyframes nx-check-pop {
+          from { transform: scale(0.4); opacity: 0; }
+          to   { transform: scale(1);   opacity: 1; }
+        }
+        .nx-opt-check[data-selected="true"] svg,
+        .nx-opt-box[data-selected="true"] svg {
+          animation: nx-check-pop var(--nx-dur-2) var(--nx-ease);
+        }
+
         /* ── Welcome-back banner dismiss — quiet text button ── */
         .nx-restore-dismiss {
           flex-shrink: 0;
@@ -2084,6 +2096,7 @@ export default function Assessment() {
         }
         @media (prefers-reduced-motion: reduce) {
           .nx-opt, .nx-sex, .nx-step-next, .nx-step-back, .nx-review-row, .nx-restore-dismiss { transition: none !important; }
+          .nx-opt-check[data-selected="true"] svg, .nx-opt-box[data-selected="true"] svg { animation: none !important; }
           .assessment-stepnav { -webkit-backdrop-filter: none; backdrop-filter: none; }
         }
       `}</style>
