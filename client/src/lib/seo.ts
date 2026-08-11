@@ -300,6 +300,10 @@ export const webPageJsonLd = (p: {
   name: p.name,
   description: p.description,
   url: `${BASE_URL}${p.path}`,
+  // Single-language site — asserted truthfully on WebSite.inLanguage and the
+  // en-US hreflang alternate; mirror it on the page node so each route is
+  // language-explicit for crawlers that read the page graph in isolation.
+  inLanguage: "en-US",
   // Reference the site-wide WebSite singleton by @id (defined on the entry
   // pages) instead of duplicating an anonymous WebSite node on every route.
   isPartOf: { "@id": WEBSITE_ID },
@@ -419,6 +423,10 @@ export const articleJsonLd = (p: {
   description: p.description,
   mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}${p.path}` },
   url: `${BASE_URL}${p.path}`,
+  inLanguage: "en-US",
+  // Bind editorial content into the site graph by @id, the same way WebPage
+  // nodes reference the WebSite singleton — so an Article resolves to its site.
+  isPartOf: { "@id": WEBSITE_ID },
   ...(p.datePublished ? { datePublished: p.datePublished } : {}),
   ...(p.authorName ? { author: { "@type": "Organization", name: p.authorName } } : {}),
   ...(p.image ? { image: absUrl(p.image) } : {}),
