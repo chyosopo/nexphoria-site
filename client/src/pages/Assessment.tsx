@@ -962,7 +962,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Your goal</p>
                       <h2 id="q-goal" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your primary clinical goal?</h2>
                       <p style={subCopy}>
-                        This shapes protocol selection. You can note secondary goals in your physician consult.
+                        This sets the direction of your protocol; secondary goals are covered later with your physician.
                       </p>
                       <div
                         className="assessment-goal-grid"
@@ -1069,7 +1069,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Age</p>
                       <h2 id="q-age" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your age range?</h2>
                       <p style={subCopy}>
-                        Hormone reference intervals shift by decade. Age informs lab interpretation and safe dosing parameters.
+                        A decade-level range is precise enough for your physician to calibrate dosing.
                       </p>
                       <div
                         role="radiogroup"
@@ -1100,7 +1100,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Medications</p>
                       <h2 id="q-medications" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Are you currently taking any medications?</h2>
                       <p style={subCopy}>
-                        Include prescription drugs, hormone therapy, insulin, and any controlled substances. Your physician reviews all of this before prescribing.
+                        Include prescriptions, hormone therapy, insulin, and any controlled substances.
                       </p>
 
                       {/* Grouped so assistive tech ties the None toggle and the
@@ -1152,7 +1152,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Medical history</p>
                       <h2 id="q-history" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do any of the following apply to your medical history?</h2>
                       <p style={subCopy}>
-                        Select all that apply. Certain conditions affect protocol eligibility and require additional physician review before a prescription can be issued.
+                        Select all that apply — some conditions call for closer physician review before a protocol is designed.
                       </p>
                       <div role="group" aria-labelledby="q-history" aria-describedby="assessment-why-text-4" style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}>
                         {MEDICAL_HISTORY_OPTIONS.map(({ id, label }) => (
@@ -1175,7 +1175,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Bloodwork</p>
                       <h2 id="q-labs" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do you have recent comprehensive labs?</h2>
                       <p style={subCopy}>
-                        A complete blood panel is required before any prescription is written. Labs drawn within 6 months are generally acceptable; older results may require a redraw.
+                        Results drawn within six months are generally current; older ones may call for a redraw.
                       </p>
                       <div
                         role="radiogroup"
@@ -1207,7 +1207,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Contact</p>
                       <h2 id="q-contact" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Where should your physician reach you?</h2>
                       <p style={subCopy}>
-                        A licensed physician reviews your intake and contacts you to schedule a consult.
+                        A licensed physician follows up personally once your intake is complete.
                       </p>
 
                       {/* Field group tied to the contact question + rationale so
