@@ -727,19 +727,19 @@ export default function Science() {
                 <h2 id="sci-evidence-table-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
                   Where each family stands.
                 </h2>
-                <div style={{ width: "100%", overflowX: "auto" }}>
+                <div role="region" aria-label="Evidence by peptide family, scrollable table" tabIndex={0} style={{ width: "100%", overflowX: "auto" }}>
                   <table className="border-separate border-spacing-0" style={{ width: "100%", minWidth: 820, background: "var(--nx-bg)", border: "1px solid var(--nx-border)" }} data-testid="table-evidence">
                     <thead>
                       <tr>
                         {["Peptide family", "Mechanism", "Indication", "Evidence tier", "Studies", "FDA status"].map((h) => (
-                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                          <th key={h} scope="col" style={{ textAlign: "left", padding: "12px 14px", fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {evidenceRows.map((r) => (
                         <tr key={r.family} data-testid={`evidence-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
-                          <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 500, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</td>
+                          <th scope="row" style={{ textAlign: "left", padding: "14px", fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 500, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)" }}>{r.family}</th>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.mechanism}</td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)" }}>{r.indication}</td>
                           <td style={{ padding: "14px", borderBottom: "1px solid var(--nx-border)" }}>
@@ -768,19 +768,19 @@ export default function Science() {
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: 620, marginBottom: "2rem" }}>
                   Every family carries a specific risk profile. Your physician screens for contraindications before prescribing and monitors the listed markers on each 90-day draw.
                 </p>
-                <div style={{ width: "100%", overflowX: "auto" }}>
+                <div role="region" aria-label="Safety profile by peptide family, scrollable table" tabIndex={0} style={{ width: "100%", overflowX: "auto" }}>
                   <table className="border-separate border-spacing-0" style={{ width: "100%", minWidth: 900, background: "var(--nx-bg)", border: "1px solid var(--nx-border)", fontVariantNumeric: "tabular-nums lining-nums", fontFeatureSettings: "'tnum'" }} data-testid="table-safety">
                     <thead>
                       <tr>
                         {["Peptide family", "Common effects", "Key contraindications", "Monitored markers", "Risk"].map((h) => (
-                          <th key={h} style={{ textAlign: "left", padding: "12px 14px", fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
+                          <th key={h} scope="col" style={{ textAlign: "left", padding: "12px 14px", fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg-cream)" }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {SAFETY_ROWS.map((r) => (
                         <tr key={r.family} data-testid={`safety-row-${r.family.replace(/[^a-z0-9]/gi, "-").toLowerCase().slice(0, 24)}`}>
-                          <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</td>
+                          <th scope="row" style={{ textAlign: "left", padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top" }}>{r.family}</th>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.common}</td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.contraindications}</td>
                           <td style={{ padding: "14px", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", borderBottom: "1px solid var(--nx-border)", verticalAlign: "top", lineHeight: 1.5 }}>{r.monitoring}</td>
@@ -1330,7 +1330,7 @@ function ScienceComparisonSection() {
           </p>
         </Reveal>
         <Reveal delay={60}>
-          <div style={{ overflowX: "auto" }}>
+          <div role="region" aria-label="Peptide family guide, scrollable table" tabIndex={0} style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "var(--nx-t-sm)" }}>
               <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
                 All compounds require physician prescription and quarterly biomarker monitoring. Evidence tiers vary; see individual compound pages for citations.
