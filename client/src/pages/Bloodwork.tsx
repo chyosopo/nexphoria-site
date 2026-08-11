@@ -461,6 +461,15 @@ function PanelExplorer() {
           })}
         </div>
 
+        {/* Screen-reader status — the chips re-render the grid silently; mirror
+            the Assessment.tsx sr-only live pattern so AT users hear the result
+            of a filter change (which panel, and how many are now shown). */}
+        <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="panel-explorer-status">
+          {active === "all"
+            ? `Showing all ${BIOMARKER_PANEL.length} biomarker panels.`
+            : `Showing 1 of ${BIOMARKER_PANEL.length} biomarker panels: ${visible[0]?.name ?? ""}.`}
+        </p>
+
         {/* Category grid */}
         <div
           style={{
@@ -604,7 +613,10 @@ function PanelExplorer() {
                 ...NUM,
               }}
             >
-              1,000+
+              {/* Bound to the single source of truth — the closing anchor
+                  restates the panel's real breadth (was an unsourced "1,000+"
+                  with no unit, off-voice against the page's precise count). */}
+              {PANEL_TOTAL_MARKERS}
             </div>
             <div>
               <p
