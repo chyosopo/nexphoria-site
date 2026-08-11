@@ -318,7 +318,7 @@ export default function Category() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p, i) => (
               <Reveal key={p.slug} delay={i * 45}>
-              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
+              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} aria-label={`${p.name} — ${p.tagline}`} data-testid={`cat-item-${p.slug}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</h3>

@@ -1,6 +1,6 @@
 /* JOB: browse by goal, reach a PDP in one click; nothing else. */
 /* ═══ PEPTIDES CATALOG — P5 wave 2 · the 19-solo shelf ═══ */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -68,6 +68,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   const base = world ? `/${world}` : "";
   const [filter, setFilter] = useState<string>("All");
   const [q, setQ] = useState("");
+  // Roving tabindex for the category filter toolbar (same idiom as Journal's
+  // filter row): exactly one chip is Tab-reachable; Arrow/Home/End move focus
+  // only (focus-follows, no auto-activation — a filter must not swap the grid
+  // on mere traversal); Enter/Space/click still activate. Seeded to "All" (0).
+  const chipRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [focusIdx, setFocusIdx] = useState(0);
   useSeo({
     // World-aware path + title/description so /peptides, /men/peptides, and
     // /women/peptides each carry their own canonical/og:url and aren't three
@@ -111,6 +117,40 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         s.outcome.toLowerCase().includes(needle) ||
         s.mechanism.toLowerCase().includes(needle)),
   );
+
+  const onFilterKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const n = cats.length;
+    let next = focusIdx;
+    switch (e.key) {
+      case "ArrowRight":
+        next = (focusIdx + 1) % n;
+        break;
+      case "ArrowLeft":
+        next = (focusIdx - 1 + n) % n;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = n - 1;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    setFocusIdx(next);
+    chipRefs.current[next]?.focus();
+  };
+
+  // sr-only announcement mirrors the visible count so AT users hear the new
+  // filtered result set on every filter/search change (the plural word and
+  // count match exactly what the grid shows).
+  const noun = shown.length === 1 ? "peptide" : "peptides";
+  const resultStatus = needle
+    ? `Showing ${shown.length} ${noun} matching “${q.trim()}”${filter !== "All" ? ` in ${filter}` : ""}.`
+    : filter === "All"
+    ? `Showing all ${shown.length} ${noun}.`
+    : `Showing ${shown.length} ${noun} in ${filter}.`;
 
   return (
     /* Carry the visitor's world into the chrome — otherwise a woman on
@@ -180,14 +220,28 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           data-testid="catalog-search"
           style={{ maxWidth: 420, marginBottom: 14 }}
         />
-        <div role="group" aria-label="Filter the catalog by category" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {cats.map((c) => {
+        <div
+          role="toolbar"
+          aria-orientation="horizontal"
+          aria-label="Filter the catalog by category"
+          onKeyDown={onFilterKeyDown}
+          style={{ display: "flex", flexWrap: "wrap", gap: 8 }}
+        >
+          {cats.map((c, i) => {
             const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
             const active = filter === c;
             return (
-              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`filter-${c.toLowerCase()}`} className="nx-filter-chip focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{
-                fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600,
-              }}>
+              <button
+                key={c}
+                ref={(el) => { chipRefs.current[i] = el; }}
+                onClick={() => { setFilter(c); setFocusIdx(i); }}
+                aria-pressed={active}
+                aria-controls="catalog-results"
+                tabIndex={i === focusIdx ? 0 : -1}
+                data-testid={`filter-${c.toLowerCase()}`}
+                className="nx-filter-chip focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
+                style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
+              >
                 {c}
                 <span style={{ opacity: 0.65, marginLeft: 6, fontWeight: 500 }}>{n}</span>
               </button>
@@ -196,8 +250,15 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Peptide catalog">
-        <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
+      <section id="catalog-results" className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Peptide catalog">
+        {/* Screen-reader-only live region: announces the new filtered count on
+            every filter/search change without the whole grid being re-read. The
+            visible count below is a styled label, not the live region (avoids a
+            doubled announcement). */}
+        <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="catalog-sr-status">
+          {resultStatus}
+        </p>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
           {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
         </p>
         {shown.length === 0 && (
