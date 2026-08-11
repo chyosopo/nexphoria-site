@@ -66,6 +66,25 @@ function setLink(rel: string, href: string) {
   el.setAttribute("href", href);
 }
 
+/**
+ * Keep the en-US hreflang alternate self-referential (== canonical). The static
+ * shell ships one `<link rel="alternate" hreflang="en-US" href=".../">` anchored
+ * to the homepage; without this, EVERY prerendered interior page would inherit
+ * that homepage href, telling crawlers "the en-US version of /science is the
+ * home page" — a hreflang/canonical mismatch that undermines consolidation. The
+ * site is single-language, so the correct alternate is the page's own canonical.
+ */
+function setAltLang(href: string) {
+  let el = document.head.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang]');
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "alternate");
+    el.setAttribute("hreflang", "en-US");
+    document.head.appendChild(el);
+  }
+  el.setAttribute("href", href);
+}
+
 export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: SeoOptions) {
   // Stable serialization of the JSON-LD payload so the effect re-runs when the
   // structured data changes even if title/description/path are identical across
@@ -80,6 +99,7 @@ export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: S
     document.title = fullTitle;
     setMeta("name", "description", description);
     setLink("canonical", url);
+    setAltLang(url);
 
     setMeta("property", "og:title", fullTitle);
     setMeta("property", "og:description", description);
@@ -118,9 +138,20 @@ export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: S
 }
 
 /** Shared structured-data builders. */
+/**
+ * Stable @id anchors for the site's identity graph. Every node that describes
+ * Nexphoria or the site references these instead of re-declaring an anonymous
+ * duplicate — so crawlers consolidate one Organization / one WebSite across all
+ * 116 routes (Google explicitly supports cross-page @id references). Fragment
+ * @ids on the origin are the schema.org convention for site-wide singletons.
+ */
+export const ORG_ID = `${BASE_URL}/#organization`;
+export const WEBSITE_ID = `${BASE_URL}/#website`;
+
 export const orgJsonLd = (): Record<string, unknown> => ({
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": ORG_ID,
   name: "Nexphoria",
   // Real registered entity (see CLAUDE.md / repo header): Nexphoria Research LLC.
   legalName: "Nexphoria Research LLC",
@@ -168,15 +199,18 @@ export const orgJsonLd = (): Record<string, unknown> => ({
 export const websiteJsonLd = (): Record<string, unknown> => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": WEBSITE_ID,
   name: "Nexphoria",
   url: BASE_URL,
   inLanguage: "en-US",
-  publisher: { "@type": "Organization", name: "Nexphoria", url: BASE_URL },
+  // Reference the single Organization node by @id rather than re-declaring it.
+  publisher: { "@id": ORG_ID },
 });
 
 export const medicalBusinessJsonLd = (): Record<string, unknown> => ({
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
+  "@id": `${BASE_URL}/#medical-business`,
   name: "Nexphoria",
   url: BASE_URL,
   description:
@@ -223,7 +257,9 @@ export const webPageJsonLd = (p: {
   name: p.name,
   description: p.description,
   url: `${BASE_URL}${p.path}`,
-  isPartOf: { "@type": "WebSite", name: "Nexphoria", url: BASE_URL },
+  // Reference the site-wide WebSite singleton by @id (defined on the entry
+  // pages) instead of duplicating an anonymous WebSite node on every route.
+  isPartOf: { "@id": WEBSITE_ID },
 });
 
 export const breadcrumbJsonLd = (

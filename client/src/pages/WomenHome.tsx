@@ -12,6 +12,7 @@ export default function WomenHome() {
     title: "Nexphoria for Women — Physician-Prescribed Peptide Protocols",
     description:
       "Ninety-nine biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for women, read properly.",
+    path: "/women",
     jsonLd: [
       // Identity graph (once each; distinct @types) — /women is a world entry door.
       orgJsonLd(),
