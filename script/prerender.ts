@@ -188,7 +188,39 @@ export async function prerender(): Promise<{ pages: number }> {
           (s) => s.textContent || "",
         ),
       );
-      const html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
+      let html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
+      // ── Snapshot asset hygiene ──────────────────────────────────────────────
+      // Two runtime artifacts of rendering the SPA against the ephemeral static
+      // server must be cleaned before writing the crawlable snapshot (the same
+      // spirit as the runtime <base> removal above — bake only what belongs).
+      //
+      // (1) Drop the SPA's runtime-injected lazy-chunk modulepreloads. Vite's
+      // preload helper injects <link rel="modulepreload" as="script" …> for the
+      // chunks THIS route happened to lazy-load in the browser (FrontDoor on "/",
+      // SoloPDP/SafetyDisclosure on a PDP …). They vary per route, point at
+      // page-specific chunks, and are re-injected correctly on hydration — so
+      // baking them serves no crawler/no-JS client and would eager-preload the
+      // wrong chunks per route. The four STATIC shell modulepreloads Vite emits
+      // (react/router/lucide/components — no `as="script"`) are kept. The
+      // `as="script"` marker cleanly distinguishes runtime-injected from static.
+      html = html.replace(
+        /<link\b(?=[^>]*\brel="modulepreload")(?=[^>]*\bas="script")[^>]*>\s*/g,
+        "",
+      );
+      // (2) Rebase any leaked ephemeral-server origin back to the authored
+      // base:"./" form. <img> content assets (and any srcset/preload href) are
+      // resolved by the browser against the runtime <base href="http://127.0.0.1:
+      // <port>/"> during this render, so they bake the throwaway localhost origin —
+      // a snapshot-only defect leaving crawlers, LLM bots, and no-JS clients with
+      // dead-host image URLs. absUrl() already fixes head og:image/JSON-LD to the
+      // canonical domain; this fixes the rendered BODY. Strip the origin to "./" so
+      // every asset ref matches the shell's own <script src="./assets/…"> convention
+      // (host-agnostic; correct on both apex and the /nexphoria-site/ project base via
+      // the same runtime <base> the shell already relies on). Bound to THIS run's port
+      // so nothing legitimate is touched; a global replace covers src and multi-URL
+      // srcset in one pass.
+      const leakedOrigin = new RegExp(`http://(?:127\\.0\\.0\\.1|localhost):${port}/`, "g");
+      html = html.replace(leakedOrigin, "./");
       const out = outPathFor(route);
       await mkdir(join(out, ".."), { recursive: true });
       await writeFile(out, html, "utf-8");
