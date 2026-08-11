@@ -32,6 +32,18 @@ export interface SeoOptions {
    * — they carry no evergreen content and would only dilute crawl budget.
    */
   noindex?: boolean;
+  /**
+   * Open Graph object type. Defaults to "website". Editorial routes pass
+   * "article" so the og:type matches their Article JSON-LD (and social/LLM
+   * unfurlers treat the page as a dated article, not a generic page).
+   */
+  ogType?: "website" | "article";
+  /**
+   * Open Graph article:* metadata — emitted ONLY when ogType === "article"
+   * and the value is real (never fabricated). These page-type-specific tags
+   * are removed on unmount so they never linger onto a non-article route.
+   */
+  articleMeta?: { publishedTime?: string; author?: string; section?: string };
 }
 
 /**
@@ -40,7 +52,15 @@ export interface SeoOptions {
  * asset paths (e.g. "./assets/x.webp") — never produces "nexphoria.com./…".
  */
 function absUrl(src: string): string {
-  if (/^https?:\/\//.test(src)) return src;
+  if (/^https?:\/\//.test(src)) {
+    // Rebase a prerender-time localhost origin onto the canonical host: bundled
+    // assets (base:"./") resolve against the ephemeral 127.0.0.1:<port> <base>
+    // during snapshotting, so an already-absolute src can carry that port. A
+    // crawlable og:image / JSON-LD image MUST be https://nexphoria.com, never
+    // the throwaway prerender port.
+    const local = src.match(/^https?:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?(\/.*)?$/i);
+    return local ? `${BASE_URL}${local[1] ?? ""}` : src;
+  }
   if (src.startsWith("//")) return `https:${src}`;
   const clean = src.replace(/^\.?\/*/, ""); // strip leading "./", "/", "."
   return `${BASE_URL}/${clean}`;
@@ -85,16 +105,20 @@ function setAltLang(href: string) {
   el.setAttribute("href", href);
 }
 
-export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: SeoOptions) {
+export function useSeo({ title, description, path, ogImage, jsonLd, noindex, ogType, articleMeta }: SeoOptions) {
   // Stable serialization of the JSON-LD payload so the effect re-runs when the
   // structured data changes even if title/description/path are identical across
   // a client-side navigation. A string primitive compares by value in the dep
   // array, so this cannot loop.
   const jsonLdKey = JSON.stringify(jsonLd ?? []);
+  const articleMetaKey = JSON.stringify(articleMeta ?? null);
   useEffect(() => {
     const fullTitle = title.includes(SITE) ? title : `${title} | ${SITE}`;
     const url = path ? `${BASE_URL}${path}` : BASE_URL;
-    const img = ogImage ? (ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`) : DEFAULT_OG;
+    // absUrl handles absolute, protocol-relative, root-relative AND Vite's
+    // base:"./" asset paths (e.g. an imported "./assets/x.webp") — so a
+    // per-page ogImage from a bundled import never yields "nexphoria.com./…".
+    const img = ogImage ? absUrl(ogImage) : DEFAULT_OG;
 
     document.title = fullTitle;
     setMeta("name", "description", description);
@@ -105,7 +129,7 @@ export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: S
     setMeta("property", "og:description", description);
     setMeta("property", "og:url", url);
     setMeta("property", "og:image", img);
-    setMeta("property", "og:type", "website");
+    setMeta("property", "og:type", ogType ?? "website");
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", fullTitle);
     setMeta("name", "twitter:description", description);
@@ -126,15 +150,34 @@ export function useSeo({ title, description, path, ogImage, jsonLd, noindex }: S
       nodes.push(s);
     });
 
+    // Article-only OG metadata. Unlike the shared og:* tags (overwritten each
+    // navigation), these are created fresh and removed on cleanup so an article
+    // page's published_time/author never bleeds onto the next, non-article route.
+    const articleNodes: HTMLMetaElement[] = [];
+    if (ogType === "article" && articleMeta) {
+      const addArticleMeta = (key: string, content: string) => {
+        const el = document.createElement("meta");
+        el.setAttribute("property", key);
+        el.setAttribute("content", content);
+        el.setAttribute("data-nx-article", "true");
+        document.head.appendChild(el);
+        articleNodes.push(el);
+      };
+      if (articleMeta.publishedTime) addArticleMeta("article:published_time", articleMeta.publishedTime);
+      if (articleMeta.author) addArticleMeta("article:author", articleMeta.author);
+      if (articleMeta.section) addArticleMeta("article:section", articleMeta.section);
+    }
+
     window.scrollTo(0, 0);
 
     return () => {
       nodes.forEach((n) => n.remove());
+      articleNodes.forEach((n) => n.remove());
       if (noindex) setMeta("name", "robots", "index, follow, max-image-preview:large");
     };
     // jsonLdKey stands in for jsonLd (a fresh array each render); the primitives
     // are listed explicitly. eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path, ogImage, jsonLdKey, noindex]);
+  }, [title, description, path, ogImage, jsonLdKey, noindex, ogType, articleMetaKey]);
 }
 
 /** Shared structured-data builders. */
