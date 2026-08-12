@@ -20,6 +20,7 @@ import { SpecPlate } from "@/components/DataPlate";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
+import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { getPeptideHeroImage } from "@/lib/peptideImages";
@@ -298,6 +299,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               ctaTestId="solo-cta"
             />
             <SafetyDisclosure name={solo.name} contraindications={solo.contraindications} />
+            {/* Regulatory standing sits AT the decision point, beside the buy
+                box — not in a footer. Per the teardown, disclosure that the
+                buyer must scroll past is disclosure that reviewers discount. */}
+            <div style={{ marginTop: "1rem" }}>
+              <RegulatoryDisclosure sku={solo} testid="solo-regulatory" />
+            </div>
             </div>
           </aside>
         </div>
