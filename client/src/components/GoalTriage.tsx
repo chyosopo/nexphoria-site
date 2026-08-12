@@ -143,7 +143,13 @@ export function GoalTriage({
                   <div style={{ flex: 1 }} />
 
                   <Link
-                    href={toIntake ? `${base}/assessment` : `${base}/peptides/${skus[0].slug}`}
+                    /* /assessment is NOT worlded — there is one route, not a
+                       per-world variant. Using `${base}/assessment` here shipped
+                       a dead primary CTA on both world homes (audit:legitscript
+                       §1 caught it; smoke and audit:funnel did not, because the
+                       funnel path clicks the goal tile rather than this button).
+                       PDP links ARE worlded, so base still applies there. */
+                    href={toIntake ? "/assessment" : `${base}/peptides/${skus[0].slug}`}
                     data-testid={`goal-cta-${g.slug}`}
                     style={{
                       marginTop: "1.5rem",

@@ -51,6 +51,11 @@ jobs:
       - name: "Gate — build"
         run: npm run build
 
+      # Reads the built artifact, so it runs after the build. Fails only on
+      # site-side regressions; vendor-blocked items are reported, not fatal.
+      - name: "Gate — LegitScript readiness"
+        run: npm run audit:legitscript
+
       - name: Prepare apex artifact (no 404.html on the apex)
         run: rm -f dist/public/404.html
 

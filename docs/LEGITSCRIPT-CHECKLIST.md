@@ -10,9 +10,11 @@ Statuses: ✅ verified done · 🔧 done this pass (2026-07-29) · ⏳ NEEDS CHI
 · 🏗️ needs Bask/vendor · ☐ open build item.
 
 ## 1 · General site requirements
-- ✅ **No dead links** — 49/49 smoke routes pass; 114/115 sitemap URLs
-  crawl-verified 200 (the 115th is the sitemap itself); footer + legal +
-  questionnaire links all resolve. Re-verified every commit by CI.
+- ✅ **No dead links** — verified by `npm run audit:legitscript` against the
+  RENDERED artifact: every same-origin href on all 57 prerendered pages
+  resolves. (The former "114/115 sitemap URLs" line was measured at a
+  115-route catalog and went stale silently when the launch scope cut it to
+  57 — which is exactly why this is now a gate, not a sentence.)
 - ⏳ **Login / Patient Portal link** — portal.nexphoria.com is a Bask
   domain; needs the DNS A records (see §4) before the nav "Member login"
   target can point at it. Currently routes to /assessment (functional, not
@@ -81,6 +83,22 @@ Statuses: ✅ verified done · 🔧 done this pass (2026-07-29) · ⏳ NEEDS CHI
   marketing plans pre-launch content accordingly).
 - ☐ When Mason's audit begins, hand him the live URL + this checklist.
 
+## Machine-verified as of 2026-08-12 (`npm run audit:legitscript`)
+Run against the built artifact, never source — a requirement can be satisfied
+in source and still fail to render. **0 site-side failures, 7 vendor-blocked.**
+Verified: no dead links (57 pages) · all five policies exist AND are
+footer-linked · business-contact block renders on every legal page · provider
++ pharmacy named with contact details on /faq · no stale "MDI Providers" ·
+no RUO language (one documented exemption, the article that repudiates
+gray-market labels) · no brand-equivalence · no FDA-approval claim for what we
+dispense · all 4 product pages carry the non-approval disclosure · 503A
+language present.
+
+Two defects the gate caught on first run, both since fixed: dead
+/men/assessment and /women/assessment links introduced by GoalTriage
+(/assessment is not worlded), and the catalog cut had left the dead-link
+figure above overstated.
+
 ## The short version of what's left
 **Chiya (five items, ~30 min total):** business address + phone · Bask
 policy templates (or dashboard access) · HIPAA template text · signed
@@ -142,8 +160,14 @@ verified against the real tree, all 5 gates green.
 
 ### From Slack/Gmail (2026-08)
 - **Application scope**: Bask (Mason) advises submitting LegitScript with
-  the GLPs (semaglutide + tirzepatide) first; both are correctly gated on
-  the site. Full peptide catalog/pricing still pending from Bask.
+  the GLPs (semaglutide + tirzepatide) first.
+  ⚠️ **CHANGED 2026-08-12 — Mason must be told.** Both GLPs were gated when
+  this line was written. On Chiya's instruction they are now DIRECTLY
+  PURCHASABLE (priced, ungated; state exclusions retained and rendered on
+  every path). Selling compounded GLP-1 is a materially larger compliance
+  surface than gating it behind eligibility, and it is the most scrutinised
+  category post-shortage — Mason should review before submission rather than
+  discover it during his audit.
 - **Stripe**: Maddie (Stripe) sent the Pharma DDQ. Chiya action: complete
   DDQ → return with Stripe acct_1TxxpZ3ToKa8JOSh + LegitScript cert once
   approved → risk review 1–3 days.

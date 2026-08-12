@@ -15,7 +15,8 @@
     "audit:bundle": "tsx scripts/audit-bundle.ts",
     "audit:funnel": "node scripts/audit-funnel.mjs",
     "deploy:apex": "npm run build && rm -rf .cf-deploy && cp -R dist/public .cf-deploy && rm -f .cf-deploy/404.html && npx wrangler pages deploy --branch=main --commit-dirty=true",
-    "audit:compliance": "tsx scripts/audit-compliance.ts"
+    "audit:compliance": "tsx scripts/audit-compliance.ts",
+    "audit:legitscript": "tsx scripts/audit-legitscript.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
