@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Check, ShieldCheck, ChevronDown, Info } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, ChevronDown, Info } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
@@ -1576,13 +1576,16 @@ export default function Assessment() {
                         ))}
                       </div>
 
-                      {/* Trust close — the institutional reassurance next to the commit action */}
+                      {/* Trust close — the institutional reassurance next to the commit
+                          action. The promise line is the single-sourced PrescribedPromise
+                          (ROADMAP 5.2), never restated ad-hoc, so its wording can never
+                          drift from every other price display on the site. */}
                       <div
                         data-testid="assessment-trust-close"
                         style={{
                           display: "flex",
-                          gap: "0.75rem",
-                          alignItems: "flex-start",
+                          flexDirection: "column",
+                          gap: "0.6rem",
                           padding: "1rem 1.25rem",
                           borderRadius: "var(--nx-r-sm)",
                           border: "1px solid var(--nx-border)",
@@ -1590,7 +1593,6 @@ export default function Assessment() {
                           marginBottom: submitError ? "1rem" : "0.25rem",
                         }}
                       >
-                        <ShieldCheck size={18} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "1px" }} />
                         <p
                           style={{
                             fontFamily: F,
@@ -1600,8 +1602,9 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          A licensed physician reviews your answers. No charge unless a physician prescribes — the review is complimentary.
+                          A licensed physician reviews every answer before any protocol is prescribed.
                         </p>
+                        <PrescribedPromise testid="assessment-review-promise" />
                       </div>
 
                       <div aria-live="polite" role="alert" data-testid="assessment-submit-error">
@@ -1647,8 +1650,6 @@ export default function Assessment() {
                         : { initial: { opacity: 0, scale: 0.97 }, animate: { opacity: 1, scale: 1 }, transition: { duration: 0.35, ease: APPLE_EASE } })}
                       style={{ textAlign: "center" }}
                       data-testid="assessment-complete"
-                      role="status"
-                      aria-live="polite"
                     >
                       <div
                         style={{
@@ -1664,24 +1665,31 @@ export default function Assessment() {
                       >
                         <Check size={30} aria-hidden="true" style={{ color: "var(--nx-bg)" }} />
                       </div>
-                      <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
-                      <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
-                        {recStack
-                          ? <>Based on your goals: the {recStack.name} protocol.</>
-                          : "Your intake is under review."}
-                      </h2>
-                      <p
-                        style={{
-                          ...subCopy,
-                          fontSize: "var(--nx-t-lg)",
-                          textAlign: "center",
-                          marginBottom: "2rem",
-                        }}
-                      >
-                        {recStack
-                          ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
-                          : "A licensed physician reviews your intake and emails you the next step."}
-                      </p>
+                      {/* Scope the polite live region to the confirmation trio only —
+                          eyebrow + headline + one calm line. The outer wrapper used to
+                          be the live region, so submitting read the WHOLE success screen
+                          (recommendation tile, CTAs, four next-step items) aloud at once.
+                          Focus still lands on the headline for keyboard/AT users. */}
+                      <div role="status" aria-live="polite" aria-atomic="true">
+                        <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
+                        <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
+                          {recStack
+                            ? <>Based on your goals: the {recStack.name} protocol.</>
+                            : "Your intake is under review."}
+                        </h2>
+                        <p
+                          style={{
+                            ...subCopy,
+                            fontSize: "var(--nx-t-lg)",
+                            textAlign: "center",
+                            marginBottom: "2rem",
+                          }}
+                        >
+                          {recStack
+                            ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
+                            : "A licensed physician reviews your intake and emails you the next step."}
+                        </p>
+                      </div>
 
                       {/* ══ Recommendation peak (ROADMAP 2.2) — the named protocol
                           matched to the chosen goal, what's in it, monthly cost, the
