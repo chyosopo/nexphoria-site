@@ -16,6 +16,24 @@ export interface SoloPricing {
   m1: number; m3: number; m12: number;
 }
 
+/* Route of administration is a first-class compliance field, not a detail.
+   The IvyRx teardown (docs/IVYRX-STUDY.md §5) established the operative rule:
+   sterile injectables carry 503A/503B exposure and are defensible only for
+   actives with real regulatory standing; anything without an approved active
+   belongs in a non-sterile route. Route therefore determines both what may be
+   offered and which disclosure the surface must render. */
+export type SoloRoute = "subcutaneous" | "oral" | "nasal" | "topical";
+
+/* Regulatory standing of the ACTIVE, which is not the same as approval of the
+   preparation. A compounded preparation is never itself FDA-approved — that is
+   true even when its active is. We state that plainly everywhere rather than
+   letting the distinction blur (LegitScript reads our exact wording). */
+export type SoloRegulatory =
+  /** Active is an FDA-approved drug; dispensed as a compounded preparation. */
+  | "compounded-approved-active"
+  /** No FDA-approved active for any indication. Experimental / off-label. */
+  | "compounded-no-approved-active";
+
 export interface SoloPeptide {
   slug: string;
   name: string;
@@ -32,9 +50,39 @@ export interface SoloPeptide {
   pricing?: SoloPricing;      // omit => priced at consult
   gated?: boolean;            // GLP-1
   stateExclusions?: string[];
+  /** Falls back to subcutaneous, which is the strictest reading (sterile).
+      Not a claim that every entry is SC — Selank, for one, is intranasal.
+      Annotate explicitly before offering anything; do not lean on the default. */
+  route?: SoloRoute;
+  /** Defaults to the conservative reading: no approved active. */
+  regulatory?: SoloRegulatory;
 }
 
-export const SOLO_CATALOG: SoloPeptide[] = [
+export function routeOf(s: SoloPeptide): SoloRoute {
+  return s.route ?? "subcutaneous";
+}
+export function regulatoryOf(s: SoloPeptide): SoloRegulatory {
+  return s.regulatory ?? "compounded-no-approved-active";
+}
+
+/* ── LAUNCH SCOPE (Chiya, 2026-08-12) ──────────────────────────
+   The LegitScript application ships with these four and only these four.
+   Each is a compounded preparation of an active with real regulatory
+   standing — semaglutide (Ozempic/Wegovy), tirzepatide (Mounjaro/Zepbound),
+   tesamorelin (Egrifta), bremelanotide/PT-141 (Vyleesi). That shared property
+   is precisely why they are the launch set.
+
+   Everything else is RETIRED, not deleted. The data below stays intact so
+   that restoring a molecule is a one-line change to this set rather than a
+   rebuild — and per the teardown, several retired entries have a legitimate
+   route back as ORAL preparations, which carry no sterile-compounding
+   exposure. Do not delete retired entries to "clean up"; the retention is
+   deliberate and load-bearing. */
+export const LAUNCH_SLUGS = new Set([
+  "semaglutide", "tirzepatide", "tesamorelin", "pt-141",
+]);
+
+const ALL_SOLO: SoloPeptide[] = [
   /* ── GROWTH / GH-AXIS ── */
   {
     slug: "sermorelin", name: "Sermorelin", category: "Growth",
@@ -77,7 +125,7 @@ export const SOLO_CATALOG: SoloPeptide[] = [
     pricing: { m1: 249, m3: 219, m12: 179 },
   },
   {
-    slug: "tesamorelin", name: "Tesamorelin", category: "Growth",
+    slug: "tesamorelin", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tesamorelin", category: "Growth",
     outcome: "Visceral fat, addressed on the axis.",
     dose: "2 mg daily SC", spec: "5 mg/mL · 3 mL vial",
     mechanism: "A stabilized GHRH analog studied for visceral-fat reduction, acting on the GH/IGF-1 axis.",
@@ -205,7 +253,7 @@ export const SOLO_CATALOG: SoloPeptide[] = [
 
   /* ── METABOLIC / GLP-1 (GATED) ── */
   {
-    slug: "semaglutide", name: "Semaglutide", category: "Metabolic",
+    slug: "semaglutide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Semaglutide", category: "Metabolic",
     outcome: "Appetite signaling, physician-titrated.",
     dose: "0.25 → 2.4 mg weekly SC (titrated)", spec: "physician-directed · with glycine + B12",
     mechanism: "A GLP-1 receptor agonist, titrated slowly under physician supervision with metabolic bloodwork gating each increase.",
@@ -215,7 +263,7 @@ export const SOLO_CATALOG: SoloPeptide[] = [
     gated: true, stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
   },
   {
-    slug: "tirzepatide", name: "Tirzepatide", category: "Metabolic",
+    slug: "tirzepatide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tirzepatide", category: "Metabolic",
     outcome: "A metabolic reset on two receptors.",
     dose: "2.5 → 15 mg weekly SC (titrated)", spec: "physician-directed · with glycine + B12",
     mechanism: "A dual GLP-1 / GIP agonist, titrated under physician supervision with metabolic bloodwork gating each dose step.",
@@ -237,7 +285,7 @@ export const SOLO_CATALOG: SoloPeptide[] = [
     // pricing TBD
   },
   {
-    slug: "pt-141", name: "PT-141", category: "Sexual Health",
+    slug: "pt-141", route: "subcutaneous", regulatory: "compounded-approved-active", name: "PT-141", category: "Sexual Health",
     outcome: "Arousal, addressed centrally.",
     dose: "1.75 mg as-needed SC", spec: "10 mg/mL · 3 mL vial",
     mechanism: "A melanocortin agonist studied for sexual arousal, acting centrally rather than vascularly.",
@@ -247,6 +295,15 @@ export const SOLO_CATALOG: SoloPeptide[] = [
     // pricing TBD
   },
 ];
+
+/** What the site sells and shows. Every consumer reads this, so the launch
+    scope propagates to catalog, PDPs, sitemap, structured data and pricing
+    from one place. */
+export const SOLO_CATALOG: SoloPeptide[] = ALL_SOLO.filter((s) => LAUNCH_SLUGS.has(s.slug));
+
+/** Held off the shelf pending an oral formulation or a scope decision.
+    Retained deliberately — see LAUNCH_SLUGS. */
+export const RETIRED_SOLO: SoloPeptide[] = ALL_SOLO.filter((s) => !LAUNCH_SLUGS.has(s.slug));
 
 export function getSolo(slug: string): SoloPeptide | undefined {
   return SOLO_CATALOG.find((s) => s.slug === slug);
