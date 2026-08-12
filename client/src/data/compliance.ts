@@ -10,11 +10,35 @@
 export const BUSINESS = {
   entity: "Nexphoria Research LLC",
   email: "hello@nexphoria.com",
-  /** e.g. "123 Example St, Suite 4, City, ST 00000" — pending */
-  address: "",
-  /** e.g. "(555) 000-0000" — pending */
-  phone: "",
+  /** PLACEHOLDER — replace with the real registered business address. */
+  address: "[BUSINESS ADDRESS — PENDING]",
+  /** PLACEHOLDER — replace with the real business phone. */
+  phone: "[PHONE — PENDING]",
 };
+
+/* ⚠ PLACEHOLDER POLICY — read before touching the two fields above.
+   Chiya asked for placeholders (2026-08-12) so the legal pages render complete
+   while the real values are gathered. They are deliberately written as visibly
+   bracketed non-values rather than a plausible-looking street address, because
+   this is the one field where a CONVINCING placeholder is more dangerous than
+   an empty one: LegitScript verifies the business address, and submitting a
+   fake that reads as real fails the application harder than a blank would.
+
+   isPlaceholder() below backs the audit:compliance gate, which fails while any
+   placeholder remains. Do not "fix" that gate by making these look realistic —
+   replace them with the true values, and the gate goes quiet on its own. */
+const PLACEHOLDER_RE = /^\s*\[.*(PENDING|PLACEHOLDER|TODO).*\]\s*$/i;
+
+export function isPlaceholder(v: string): boolean {
+  return PLACEHOLDER_RE.test(v);
+}
+
+/** Every compliance value still unresolved. Empty array = ready to submit. */
+export function compliancePlaceholders(): string[] {
+  return Object.entries(BUSINESS)
+    .filter(([, v]) => typeof v === "string" && isPlaceholder(v))
+    .map(([k]) => `BUSINESS.${k}`);
+}
 
 /** Provider block — verbatim from Bask. */
 export const PROVIDER_INFO = {

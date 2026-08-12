@@ -40,6 +40,14 @@ jobs:
       - name: "Gate — typecheck"
         run: npm run check
 
+      # The apex is the domain LegitScript reviews. Publishing placeholder
+      # business facts there fails the application harder than a blank would,
+      # and the failure is silent because the pages look finished. This gate
+      # stops the publish instead. Fix by supplying real values in
+      # client/src/data/compliance.ts — never by loosening the check.
+      - name: "Gate — compliance facts"
+        run: npm run audit:compliance
+
       - name: "Gate — build"
         run: npm run build
 
