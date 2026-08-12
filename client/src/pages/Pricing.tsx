@@ -19,7 +19,8 @@ import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 import { F, FONT } from "@/lib/typography";
 import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
-import { FLAGSHIP_STACKS, getStack, PANELS, usd } from "@/data/stacksCatalog";
+import { FLAGSHIP_STACKS, PANELS, usd } from "@/data/stacksCatalog";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 
@@ -30,9 +31,16 @@ const CADENCE_ORDER = ["1mo", "3mo", "12mo"] as const;
 const SAVE_3MO = CADENCE_DISCOUNTS["3mo"].savePct;
 const SAVE_12MO = CADENCE_DISCOUNTS["12mo"].savePct;
 
-/* The shelf stacks that are actually sold (gated GLP-1 excluded). */
+/* The shelf stacks that are actually sold (gated GLP-1 excluded).
+   Under the launch scope this list is EMPTY — six flagships are retired and
+   Ignite is gated. Math.min() of an empty list is Infinity, so this must
+   resolve to null rather than printing "from $Infinity" on the plan tiles;
+   the tier already renders a null priceFrom without a figure. Restores itself
+   the moment a stack becomes sellable again. */
 const NON_GATED_STACKS = FLAGSHIP_STACKS.filter((s) => !s.gated && s.cadences.length > 0);
-const STACK_FROM_12MO = Math.min(...NON_GATED_STACKS.map((s) => priceAtCadence(s.slug, "12mo")));
+const STACK_FROM_12MO: number | null = NON_GATED_STACKS.length
+  ? Math.min(...NON_GATED_STACKS.map((s) => priceAtCadence(s.slug, "12mo")))
+  : null;
 
 /* Protocol rows = the shelf stacks, each priced straight from the catalog. */
 const protocols = NON_GATED_STACKS.map((s) => ({
@@ -51,12 +59,18 @@ const billingTerms = CADENCE_ORDER.map((k) => ({
   badge: k === "12mo" ? "Best value" : null,
 }));
 
-/* Worked annual example for the savings callout — real catalog figures. */
+/* Worked annual example for the savings callout — real catalog figures.
+   This used to read getStack("meridian")!, which crashed /pricing outright once
+   Meridian was retired. Hardcoding a different slug would just reset the same
+   trap, so the example is DERIVED: the sellable product with the largest real
+   annual saving. It follows the catalog and cannot point at something retired. */
 const SAVINGS_EXAMPLE = (() => {
-  const ex = getStack("meridian")!;
-  const annual = ex.cadences.find((c) => c.key === "12mo")!.total;
-  const monthlyYear = priceAtCadence("meridian", "1mo") * 12;
-  return { name: ex.name, annual, monthlyYear };
+  const candidates = SOLO_CATALOG.filter((s) => !s.gated && s.pricing).map((s) => ({
+    name: s.name,
+    annual: s.pricing!.m12 * 12,
+    monthlyYear: s.pricing!.m1 * 12,
+  }));
+  return candidates.sort((a, b) => (b.monthlyYear - b.annual) - (a.monthlyYear - a.annual))[0];
 })();
 
 const included = [
@@ -1384,7 +1398,9 @@ export default function Pricing() {
 
 /* ── PRICING PLAN COMPARISON TABLE — semantic, AI-liftable ──────── */
 const PLAN_COMPARISON_ROWS = [
-  { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: `From ${formatUSD(STACK_FROM_12MO)}/mo`, custom: "Quoted at consult" },
+  // Stacks have no sellable price under the launch scope (see STACK_FROM_12MO)
+  // — say so plainly rather than printing a figure that does not exist.
+  { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: STACK_FROM_12MO === null ? "Quoted at consult" : `From ${formatUSD(STACK_FROM_12MO)}/mo`, custom: "Quoted at consult" },
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },

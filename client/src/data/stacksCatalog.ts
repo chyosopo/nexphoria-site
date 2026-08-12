@@ -64,7 +64,25 @@ const cad = (
   { key: "fixed", label: "Fixed 8–12 wk Cycle", sublabel: "Physician-defined protocol", total: fixed, perMonth: fixed, badge: "Doctor-defined" },
 ];
 
-export const FLAGSHIP_STACKS: FlagshipStack[] = [
+/* ── LAUNCH SCOPE (2026-08-12) ─────────────────────────────────
+   Six of the seven flagships are composed ENTIRELY of retired molecules —
+   Wolverine (BPC-157, TB-500), Glow (GHK-Cu, Epitalon), Ascend (CJC-1295,
+   Ipamorelin), Lucidity (Selank, Semax), Meridian (NAD+, Epitalon, MOTS-c)
+   and Threshold (DSIP, Epitalon). Leaving them visible would mean actively
+   offering compounds we do not sell, which is the exact LegitScript failure
+   the launch scope exists to remove.
+
+   Only Ignite survives, because tirzepatide is in the launch set. It stays
+   GATED and without cadences: it is a GLP-1 protocol, eligibility genuinely
+   comes first, and no price is invented here to keep a surface populated.
+
+   Retired, not deleted — same discipline as LAUNCH_SLUGS in soloCatalog. The
+   compositions are intact and a stack returns by adding its slug back once its
+   molecules are sellable again. Goals (data/goals.ts) are the merchandising
+   unit now; stacks are no longer load-bearing for conversion. */
+export const LAUNCH_STACK_SLUGS = new Set(["ignite"]);
+
+const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "wolverine",
     name: "Wolverine",
@@ -226,6 +244,12 @@ export const FLAGSHIP_STACKS: FlagshipStack[] = [
     worldLean: "both",
   },
 ];
+
+/** Stacks the site shows and sells. Every consumer reads this. */
+export const FLAGSHIP_STACKS: FlagshipStack[] = ALL_STACKS.filter((s) => LAUNCH_STACK_SLUGS.has(s.slug));
+
+/** Held off the shelf until their molecules return. Retained deliberately. */
+export const RETIRED_STACKS: FlagshipStack[] = ALL_STACKS.filter((s) => !LAUNCH_STACK_SLUGS.has(s.slug));
 
 export function getStack(slug: string): FlagshipStack | undefined {
   return FLAGSHIP_STACKS.find((s) => s.slug === slug);

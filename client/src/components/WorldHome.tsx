@@ -8,7 +8,7 @@ import { ArrowRight, Stethoscope, FlaskConical, ClipboardCheck, Activity } from 
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { peptides, CATEGORY_LABELS, feelingFor, PeptideCategory } from "@/data/peptides";
-import { getStack, usd } from "@/data/stacksCatalog";
+import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { getPrice } from "@/data/pricing";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
@@ -89,14 +89,30 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
      stories the grid does NOT tell: the retest promise, the flagship
      protocol, the compounded product, and the physician gate — each on its
      own frame, none duplicated in the first two viewports. */
-  const flagshipSlug = world === "women" ? "glow" : "ascend";
-  const flagship = getStack(flagshipSlug)!;
-  const flagshipFrom = usd(Math.min(...flagship.cadences.map((c) => c.perMonth ?? c.total)));
+  /* The flagship tile used to hardcode "glow" / "ascend" and assert the lookup
+     with `!`. Both are now retired, so that assertion would have crashed the
+     home page outright. It reads from the live catalog instead, and the tile
+     drops out entirely rather than rendering a broken protocol — with a gated
+     flagship there is also no honest "from $X/mo" to print, so the subtitle
+     states the eligibility posture instead of inventing a price. */
+  const flagship = FLAGSHIP_STACKS[0];
+  const flagshipFrom =
+    flagship && !flagship.gated && flagship.cadences.length
+      ? usd(Math.min(...flagship.cadences.map((c) => c.perMonth ?? c.total)))
+      : null;
   const railTiles: RailTile[] = [
     ...(config.heroArt
       ? [{ img: config.heroArt, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: `${world}-rail-bloodwork` }]
       : []),
-    { img: OUTCOME_STACK[flagshipSlug] ?? config.heroArt ?? "", label: `The ${flagship.name} protocol`, sub: `from ${flagshipFrom}/mo`, href: `/stacks/${flagshipSlug}`, testid: `${world}-rail-flagship` },
+    ...(flagship
+      ? [{
+          img: OUTCOME_STACK[flagship.slug] ?? config.heroArt ?? "",
+          label: `The ${flagship.name} protocol`,
+          sub: flagshipFrom ? `from ${flagshipFrom}/mo` : "Eligibility reviewed first.",
+          href: `/stacks/${flagship.slug}`,
+          testid: `${world}-rail-flagship`,
+        }]
+      : []),
     { img: config.vialArt, label: "Compounded for you", sub: "State-licensed 503A pharmacies.", href: "/science", testid: `${world}-rail-compounded` },
     ...(config.faqArt
       ? [{ img: config.faqArt, label: "A physician on every file", sub: "Reads your labs — and can decline.", href: "/physicians", testid: `${world}-rail-physician` }]

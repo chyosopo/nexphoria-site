@@ -17,6 +17,7 @@ import { OUTCOME_CATEGORY, OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeIm
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 /* The dedicated per-world gate portraits (Bloom, 2026-07-06) — same faces
@@ -40,30 +41,30 @@ const GOAL_TILES: { cat: PeptideCategory; img: string }[] = [
 // Goal tiles speak the goal's feeling line (ROADMAP 4.2) — one register per
 // goal, shared with category heroes, catalog shelves, and the assessment.
 
-/* Lowest real non-gated protocol per-month — derived, never hardcoded. */
-const PROTOCOL_FROM = Math.min(
-  ...FLAGSHIP_STACKS.filter((s) => !s.gated).flatMap((s) =>
-    s.cadences.map((c) => c.perMonth ?? c.total),
-  ),
+/* Lowest real non-gated protocol per-month — derived, never hardcoded.
+   Six of seven flagships are retired and the survivor (Ignite) is gated, so
+   there is no ungated stack cadence left to reduce over. Math.min() of an
+   empty list is Infinity, which would have rendered "from $Infinity" on the
+   front door rather than failing loudly. Falls back to the solo catalog,
+   which carries real prices, and the label follows what actually exists. */
+const UNGATED_STACK_MONTHLY = FLAGSHIP_STACKS.filter((s) => !s.gated).flatMap((s) =>
+  s.cadences.map((c) => c.perMonth ?? c.total),
 );
-
-/* From-price of one stack — its lowest real per-month cadence. */
-const stackFrom = (slug: string) => {
-  const s = FLAGSHIP_STACKS.find((x) => x.slug === slug)!;
-  return usd(Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)));
-};
+const SOLO_MONTHLY = SOLO_CATALOG.filter((s) => !s.gated && s.pricing).map((s) => s.pricing!.m12);
+const PROTOCOL_FROM = Math.min(...(UNGATED_STACK_MONTHLY.length ? UNGATED_STACK_MONTHLY : SOLO_MONTHLY));
 
 /* The hero rail (hims grammar): six goals + two flagship protocols + the
    retest promise, all on existing Bloom photography and real prices. */
+/* The rail previously carried the Wolverine and Glow protocol tiles plus goal
+   links for recovery / skin / cognition. All of those are retired: the two
+   stacks no longer exist on the shelf, and those categories have no sellable
+   molecule behind them, so every one of those tiles was a dead end on the
+   site's main entry point. It now shows only what the launch catalog can
+   actually answer — the live goals, the panel, and the physician gate. */
 const HERO_TILES: RailTile[] = [
-  { img: OUTCOME_CATEGORY.women.recovery!, label: CATEGORY_LABELS.recovery, sub: CATEGORY_FEELING.recovery, href: "/goals/recovery", testid: "rail-recovery" },
-  { img: OUTCOME_STACK.wolverine, label: "The Wolverine protocol", sub: `from ${stackFrom("wolverine")}/mo`, href: "/stacks/wolverine", testid: "rail-wolverine" },
-  { img: OUTCOME_CATEGORY.women.skin!, label: CATEGORY_LABELS.skin, sub: CATEGORY_FEELING.skin, href: "/goals/skin", testid: "rail-skin" },
-  { img: OUTCOME_CATEGORY.men.growth!, label: CATEGORY_LABELS.growth, sub: CATEGORY_FEELING.growth, href: "/goals/growth", testid: "rail-growth" },
-  { img: OUTCOME_STACK.glow, label: "The Glow protocol", sub: `from ${stackFrom("glow")}/mo`, href: "/stacks/glow", testid: "rail-glow" },
   { img: OUTCOME_CATEGORY.men.metabolic!, label: CATEGORY_LABELS.metabolic, sub: CATEGORY_FEELING.metabolic, href: "/goals/metabolic", testid: "rail-metabolic" },
+  { img: OUTCOME_CATEGORY.men.growth!, label: CATEGORY_LABELS.growth, sub: CATEGORY_FEELING.growth, href: "/goals/growth", testid: "rail-growth" },
   { img: HERO_ART, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: "rail-bloodwork" },
-  { img: OUTCOME_CATEGORY.women.cognition!, label: CATEGORY_LABELS.cognition, sub: CATEGORY_FEELING.cognition, href: "/goals/cognition", testid: "rail-cognition" },
 ];
 
 export default function FrontDoor() {
