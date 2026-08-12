@@ -13,6 +13,13 @@ const BASE = "https://nexphoria.com";
 type Stack = { slug: string; name: string; tagline: string; peptides: string[]; gated: boolean };
 type Solo = { slug: string; name: string; outcome: string };
 
+/* Launch-scope Set literal (LAUNCH_SLUGS / LAUNCH_STACK_SLUGS) read out of a
+   catalog source. Returns null when absent, so unscoped catalogs are unchanged. */
+function launchScope(src: string, name: string): Set<string> | null {
+  const m = new RegExp(`${name}\\s*=\\s*new Set\\(\\[([^\\]]*)\\]`, "s").exec(src);
+  return m ? new Set([...m[1].matchAll(/"([a-z0-9-]+)"/g)].map((x) => x[1])) : null;
+}
+
 async function readStacks(root: string): Promise<Stack[]> {
   const src = await readFile(`${root}/client/src/data/stacksCatalog.ts`, "utf-8");
   // Split on stack object starts; each block begins with slug then name/tagline.
@@ -28,15 +35,40 @@ async function readStacks(root: string): Promise<Stack[]> {
     const gated = /gated:\s*true/.test(block);
     out.push({ ...starts[i], peptides, gated });
   }
-  return out;
+  const scope = launchScope(src, "LAUNCH_STACK_SLUGS");
+  return scope ? out.filter((s) => scope.has(s.slug)) : out;
 }
 
+/* Solos this file may advertise.
+
+   Two defects fixed here, and together they made llms.txt publish the exact
+   INVERSE of the catalog — every retired molecule listed, three of the four
+   launch SKUs missing:
+
+   1. The old pattern required `name:` to sit immediately after `slug:`. Adding
+      the route/regulatory compliance fields to the four launch entries broke
+      that adjacency, so precisely the SKUs we sell stopped matching. Now the
+      entry is located by slug and its fields read from the block.
+   2. It scanned the whole source, which under retire-don't-delete still holds
+      every retired entry. Now intersected with LAUNCH_SLUGS.
+
+   llms.txt is what AI agents read to learn what we sell, so a stale one tells
+   them we dispense compounds we deliberately removed. */
 async function readSolos(root: string): Promise<Solo[]> {
   const src = await readFile(`${root}/client/src/data/soloCatalog.ts`, "utf-8");
-  const re = /slug:\s*"([a-z0-9-]+)",\s*name:\s*"([^"]+)",\s*category:\s*"[^"]+",\s*\n\s*outcome:\s*"([^"]+)"/g;
+  const scope = launchScope(src, "LAUNCH_SLUGS");
+  const starts = [...src.matchAll(/slug:\s*"([a-z0-9-]+)"/g)];
   const out: Solo[] = [];
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(src)) !== null) out.push({ slug: m[1], name: m[2], outcome: m[3] });
+  for (let i = 0; i < starts.length; i++) {
+    const slug = starts[i][1];
+    if (scope && !scope.has(slug)) continue;
+    const from = starts[i].index!;
+    const to = i + 1 < starts.length ? starts[i + 1].index! : src.length;
+    const block = src.slice(from, to);
+    const name = /name:\s*"([^"]+)"/.exec(block)?.[1];
+    const outcome = /outcome:\s*"([^"]+)"/.exec(block)?.[1];
+    if (name && outcome && !out.some((o) => o.slug === slug)) out.push({ slug, name, outcome });
+  }
   return out;
 }
 
@@ -44,8 +76,25 @@ export async function generateLlms(): Promise<{ stacks: number; solos: number }>
   const root = process.cwd();
   const stacks = await readStacks(root);
   const solos = await readSolos(root);
-  if (stacks.length < 5 || solos.length < 10) {
-    throw new Error(`genLlms: implausible catalog sizes (stacks=${stacks.length}, solos=${solos.length}) — data shape changed?`);
+  /* Sanity guard against a silent parse break. The old floors (5 stacks, 10
+     solos) were calibrated to the pre-launch catalog and rejected the real one
+     outright once the scope narrowed to 1 stack and 4 solos.
+
+     Rather than pick new magic numbers that will rot the same way, this asserts
+     the parse against the catalogs' OWN launch-scope sets. That is a strictly
+     stronger check: the previous floors could not have caught the bug this
+     replaces, where the parser matched 20 retired solos and none of the four we
+     actually sell — the count looked healthy while the content was inverted. */
+  const soloScope = launchScope(await readFile(`${root}/client/src/data/soloCatalog.ts`, "utf-8"), "LAUNCH_SLUGS");
+  const stackScope = launchScope(await readFile(`${root}/client/src/data/stacksCatalog.ts`, "utf-8"), "LAUNCH_STACK_SLUGS");
+  if (soloScope && solos.length !== soloScope.size) {
+    throw new Error(`genLlms: parsed ${solos.length} solos but LAUNCH_SLUGS declares ${soloScope.size} — parser and catalog disagree`);
+  }
+  if (stackScope && stacks.length !== stackScope.size) {
+    throw new Error(`genLlms: parsed ${stacks.length} stacks but LAUNCH_STACK_SLUGS declares ${stackScope.size} — parser and catalog disagree`);
+  }
+  if (!stacks.length || !solos.length) {
+    throw new Error(`genLlms: empty catalog (stacks=${stacks.length}, solos=${solos.length}) — data shape changed?`);
   }
 
   const lines: string[] = [];
