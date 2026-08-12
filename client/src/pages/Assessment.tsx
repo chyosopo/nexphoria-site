@@ -651,6 +651,18 @@ export default function Assessment() {
   const footerNextDisabled = step === 7 ? submitting : !valid;
   const footerOnNext = step === 7 ? handleSubmit : goNext;
 
+  // Enter advances from the contact step's single-line fields — the flow's one
+  // pure-typing step, where reaching for the mouse to press Continue is the
+  // friction hims/Ro remove. Only on Enter (never Shift+Enter or IME compose),
+  // and it routes through the same validated goNext, so an incomplete step
+  // still holds and surfaces its hint rather than skipping ahead. Not wired to
+  // the review step, so a stray Enter can never fire an unintended submit.
+  const advanceOnEnter = (e: React.KeyboardEvent) => {
+    if (e.key !== "Enter" || e.shiftKey || (e.nativeEvent as { isComposing?: boolean }).isComposing) return;
+    e.preventDefault();
+    goNext();
+  };
+
   // ── Render ──────────────────────────────────────────────────────────────────
 
   return (
@@ -819,8 +831,14 @@ export default function Assessment() {
       >
         {/* Polite, screen-reader-only announcements: draft restoral + what the
             current step still needs. No visual noise, no red-scare. */}
+        {/* This node doubles as the Next button's aria-describedby target, so a
+            persistent restore phrase would re-read on every focus of Next long
+            after the visitor acknowledged it. Gate it on the banner's own
+            dismissed state: the live region still announces the restore once on
+            mount, then the phrase drops so focusing Next hears only what the
+            step still needs. */}
         <p id="assessment-sr-status" className="sr-only" aria-live="polite" aria-atomic="true" data-testid="assessment-sr-status">
-          {draftRestored ? "Your saved progress was restored. " : ""}
+          {draftRestored && !restoreDismissed ? "Your saved progress was restored. " : ""}
           {inFlow ? stepRequirement(step, form) : ""}
         </p>
         {/* Positive navigation confirmation — depends only on `step`, so it
@@ -1287,6 +1305,7 @@ export default function Assessment() {
                             type="text"
                             value={form.name}
                             onChange={(e) => setField("name", e.target.value)}
+                            onKeyDown={advanceOnEnter}
                             placeholder="Your legal name"
                             autoComplete="name"
                             autoCapitalize="words"
@@ -1305,6 +1324,7 @@ export default function Assessment() {
                             value={form.email}
                             onChange={(e) => setField("email", e.target.value)}
                             onBlur={() => setEmailBlurred(true)}
+                            onKeyDown={advanceOnEnter}
                             placeholder="you@example.com"
                             autoComplete="email"
                             inputMode="email"
@@ -1344,6 +1364,7 @@ export default function Assessment() {
                             type="tel"
                             value={form.phone}
                             onChange={(e) => setField("phone", e.target.value)}
+                            onKeyDown={advanceOnEnter}
                             placeholder="(212) 555-0100"
                             autoComplete="tel"
                             inputMode="tel"
