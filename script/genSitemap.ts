@@ -82,9 +82,30 @@ export async function collectRoutes(): Promise<string[]> {
   return [...paths].sort();
 }
 
+/**
+ * The canonical-only route list for the sitemap. Starts from collectRoutes()
+ * (the full route universe that prerender snapshots) and drops the
+ * world-scoped per-slug PDPs `/men/peptides/<slug>` and `/women/peptides/<slug>`
+ * because BOTH emit `<link rel="canonical" href=".../peptides/<slug>">` — they
+ * canonicalize to the neutral `/peptides/<slug>`. Listing non-canonical URLs in
+ * a sitemap dilutes crawl budget and triggers Search Console's "Duplicate,
+ * submitted URL not selected as canonical". Those routes are STILL real, linked,
+ * live pages — collectRoutes() keeps them so prerender still snapshots all three
+ * worlds; only the sitemap omits the canonicalized-away variants.
+ *
+ * The `/men/peptides` and `/women/peptides` LISTING pages are their own canonical
+ * routes (they do NOT canonicalize away), so the predicate is anchored to match
+ * ONLY per-slug PDPs (`^/(men|women)/peptides/<slug>$`) and leaves listings,
+ * `/goals/*`, and every other route untouched.
+ */
+export async function sitemapRoutes(): Promise<string[]> {
+  const WORLD_PDP = /^\/(?:men|women)\/peptides\/[^/]+$/;
+  return (await collectRoutes()).filter((p) => !WORLD_PDP.test(p));
+}
+
 export async function generateSitemap(): Promise<number> {
   const root = process.cwd();
-  const ordered = await collectRoutes();
+  const ordered = await sitemapRoutes();
   const body = ordered
     .map((p) => `  <url><loc>${BASE}${p}</loc></url>`)
     .join("\n");
