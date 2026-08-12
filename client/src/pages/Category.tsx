@@ -248,8 +248,12 @@ export default function Category() {
           (Chiya 2026-07-06: information accessible fast, not buried). TRUE
           values only: compound count from the catalog, marker count from the
           panel, retest cadence is protocol law. ── */}
-      <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-label="At a glance">
+      <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-glance-title">
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
+          {/* Real heading (visually hidden) so this figure region joins the
+              heading outline instead of being an aria-label-only landmark a
+              screen-reader user skips over. Zero visual change. */}
+          <h2 id="category-glance-title" className="sr-only">At a glance</h2>
           {/* Seed-grammar figure row (SEED-STUDY S1): the numbers ARE the
               display type — giant tabular numerals, ruled dividers. */}
           <BigFigureRow
