@@ -348,12 +348,13 @@ export default function FAQPage() {
                     color: "var(--nx-fg-muted)",
                     marginBottom: "1rem",
                   }}
+                  id="faq-categories-heading"
                 >
                   CATEGORIES
                 </p>
                 <ul
                   role="tablist"
-                  aria-label="FAQ categories"
+                  aria-labelledby="faq-categories-heading"
                   aria-orientation="vertical"
                   onKeyDown={onTabsKeyDown}
                   style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}
