@@ -54,8 +54,14 @@ const families = [
     mechanism:
       "BPC-157 (Body Protection Compound-157) upregulates VEGF expression and growth-factor receptor sensitivity at injury sites, accelerating angiogenesis and fibroblast migration. TB-500 (Thymosin Beta-4) modulates actin polymerization in a manner that enables cell motility in wound repair and reduces inflammatory mediators. GHK-Cu (copper peptide) activates collagen and elastin synthesis genes and has demonstrated epigenetic regulatory activity in fibroblast cultures.",
     protocol: "Daily SC injection or oral (BPC-157 at pH-stable formulations). 8–16-week cycles. GHK-Cu may be administered topically or subcutaneously depending on indication.",
-    outcomes: "Skin elasticity +34% over 12 weeks · Wound closure time −47% in tissue repair studies · hsCRP reduction of 20–38%",
-    pullQuote: "BPC-157 has shown regenerative activity in every tissue type studied: tendon, ligament, muscle, nerve, and GI mucosa. It remains one of the most tissue-selective signaling molecules in the research literature.",
+    /* Outcome figures and the pull-quote below asserted efficacy for BPC-157,
+       TB-500 and GHK-Cu — none of which the launch scope carries, and BPC-157
+       is on FDA's Category 2 list. Education about a compound we do not sell
+       is defensible; efficacy claims about it are not, and they serve no
+       commercial purpose here. Reframed as what the literature is, not what
+       the compounds do. */
+    outcomes: "Reported in the research literature; effect sizes vary widely by model and are not established in large human trials.",
+    pullQuote: "Tissue-repair peptides are among the most studied signalling molecules in preclinical work, and among the least settled in humans — which is why Nexphoria does not currently prescribe them.",
     evidenceNote: "BPC-157 and TB-500 have robust animal-model data and early-stage human safety reports; large randomized controlled trials in humans have not been completed. GHK-Cu has human in vitro data. These are compounded off-label medications. Physicians will weigh the evidence-to-risk ratio at your consultation.",
   },
   {
