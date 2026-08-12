@@ -195,7 +195,11 @@ export default function BuildYourStack() {
   const skipMountScroll = useRef(true);
   useEffect(() => {
     if (skipMountScroll.current) { skipMountScroll.current = false; return; }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // JS smooth-scroll bypasses the CSS reduced-motion floor (scroll-behavior:
+    // auto only governs CSS-triggered scrolls) — gate it explicitly so a
+    // reduced-motion visitor gets an instant jump, not a swept scroll.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
   }, [step]);
 
   const goal = useMemo(() => GOALS.find((g) => g.id === goalId) ?? null, [goalId]);
@@ -607,6 +611,16 @@ export default function BuildYourStack() {
               </div>
             )}
 
+            {/* Screen-reader-only live region: mirrors the sticky summary's
+                running count + total so a keyboard/AT user hears every add or
+                removal (the visible summary is not a live region, so toggling a
+                peptide was silent until the final add-to-cart toast). */}
+            <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="stack-sr-status">
+              {picked.length < 2
+                ? `${picked.length} of 5 peptides selected. Select at least 2 to continue.`
+                : `${picked.length} of 5 peptides selected. Stack total ${formatUSD(bundleTotal)} per month.`}
+            </p>
+
             {/* Layout: peptide grid + sticky summary */}
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10">
               {/* Peptide picker */}
@@ -645,6 +659,7 @@ export default function BuildYourStack() {
                         key={p.slug}
                         type="button"
                         onClick={() => togglePeptide(p.slug)}
+                        aria-pressed={isPicked}
                         className="text-left transition-all"
                         data-testid={`button-pick-${p.slug}`}
                         style={{
@@ -744,6 +759,7 @@ export default function BuildYourStack() {
                             key={c}
                             type="button"
                             onClick={() => setCadence(c)}
+                            aria-pressed={active}
                             className="flex-1 transition-all"
                             data-testid={`button-cadence-${c}`}
                             style={{

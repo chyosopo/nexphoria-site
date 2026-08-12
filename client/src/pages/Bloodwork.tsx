@@ -15,6 +15,7 @@ import {
   PANEL_TOTAL_MARKERS,
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
+import { SITE_STATS } from "@/data/siteStats";
 import { PANELS, FLAGSHIP_STACKS, usd, type PanelTier } from "@/data/stacksCatalog";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
@@ -461,6 +462,15 @@ function PanelExplorer() {
           })}
         </div>
 
+        {/* Screen-reader status — the chips re-render the grid silently; mirror
+            the Assessment.tsx sr-only live pattern so AT users hear the result
+            of a filter change (which panel, and how many are now shown). */}
+        <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="panel-explorer-status">
+          {active === "all"
+            ? `Showing all ${BIOMARKER_PANEL.length} biomarker panels.`
+            : `Showing 1 of ${BIOMARKER_PANEL.length} biomarker panels: ${visible[0]?.name ?? ""}.`}
+        </p>
+
         {/* Category grid */}
         <div
           style={{
@@ -604,7 +614,10 @@ function PanelExplorer() {
                 ...NUM,
               }}
             >
-              1,000+
+              {/* Bound to the single source of truth — the closing anchor
+                  restates the panel's real breadth (was an unsourced "1,000+"
+                  with no unit, off-voice against the page's precise count). */}
+              {PANEL_TOTAL_MARKERS}
             </div>
             <div>
               <p
@@ -703,7 +716,7 @@ function PanelComparison() {
         {
           label: "Where you draw",
           cells: [
-            { text: "2,000+ partner labs or an at-home kit", tone: "pos" },
+            { text: `${SITE_STATS.labSites.display} partner labs or an at-home kit`, tone: "pos" },
             { text: "A clinic appointment", tone: "plain" },
             { text: "At-home finger-prick", tone: "plain" },
           ],
@@ -806,7 +819,7 @@ function HowItWorks() {
       n: "01",
       Icon: Droplet,
       title: "Baseline draw",
-      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of 2,000+ centers or use the at-home collection kit.`,
+      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of ${SITE_STATS.labSites.display} centers or use the at-home collection kit.`,
     },
     {
       n: "02",
@@ -1081,7 +1094,7 @@ function PanelTiers() {
             ))}
           </div>
           <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1.4rem", maxWidth: "60ch" }}>
-            Draw at 2,000+ partner laboratory locations or with the at-home collection kit. Your results populate one dashboard and are read by your physician before anything is prescribed or adjusted.
+            Draw at {SITE_STATS.labSites.display} partner laboratory locations or with the at-home collection kit. Your results populate one dashboard and are read by your physician before anything is prescribed or adjusted.
           </p>
           {/* THE offer's local next step (fleet audit S2: a desktop buyer at
               peak price-consideration had no in-flow CTA for ~10,000px) */}
@@ -1189,7 +1202,7 @@ function GlowingBody({ world }: { world: "men" | "women" }) {
           ))}
         </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
-          {[["One draw", "5-minute booking, 2,000+ locations"], [`${PANEL_TOTAL_MARKERS} markers`, "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
+          {[["One draw", `5-minute booking, ${SITE_STATS.labSites.display} locations`], [`${PANEL_TOTAL_MARKERS} markers`, "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.2rem" }}>
               <div style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-hover)" }}>{t}</div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>

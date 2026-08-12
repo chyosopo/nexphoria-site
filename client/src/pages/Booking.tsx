@@ -16,6 +16,7 @@ export default function Booking() {
     title: "Book a consultation — Nexphoria",
     description:
       "Schedule a consultation to discuss your goals and bloodwork with the medical team. Physician review decides every protocol.",
+    path: "/booking",
     jsonLd: [
       webPageJsonLd({ name: "Book a consultation", description: "Schedule a Nexphoria consultation.", path: "/booking" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Booking", path: "/booking" }]),

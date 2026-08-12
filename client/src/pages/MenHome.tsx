@@ -12,6 +12,7 @@ export default function MenHome() {
     title: "Nexphoria for Men — Physician-Prescribed Peptide Protocols",
     description:
       "Ninety-nine biomarkers, physician review, state-licensed 503A compounding, and a 90-day retest loop. Peptide protocols for men, measured first.",
+    path: "/men",
     jsonLd: [
       // Identity graph (once each; distinct @types) — /men is a world entry door.
       orgJsonLd(),

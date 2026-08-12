@@ -248,8 +248,12 @@ export default function Category() {
           (Chiya 2026-07-06: information accessible fast, not buried). TRUE
           values only: compound count from the catalog, marker count from the
           panel, retest cadence is protocol law. ── */}
-      <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-label="At a glance">
+      <section style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-glance-title">
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
+          {/* Real heading (visually hidden) so this figure region joins the
+              heading outline instead of being an aria-label-only landmark a
+              screen-reader user skips over. Zero visual change. */}
+          <h2 id="category-glance-title" className="sr-only">At a glance</h2>
           {/* Seed-grammar figure row (SEED-STUDY S1): the numbers ARE the
               display type — giant tabular numerals, ruled dividers. */}
           <BigFigureRow
@@ -271,9 +275,9 @@ export default function Category() {
       <ProtocolSelector goal={slug} world={world} />
 
       {/* ── Three steps ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="How it works">
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-labelledby="category-how-title">
         <div className="nx-container">
-          <p className="nx-eyebrow">How it works</p>
+          <h2 id="category-how-title" className="nx-eyebrow">How it works</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map(([t, d], i) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.9rem 1.7rem" }}>
@@ -312,13 +316,13 @@ export default function Category() {
       </section>
 
       {/* ── Treatment options (real data) ── */}
-      <section className="nx-section" aria-label="Peptides in this area">
+      <section className="nx-section" aria-labelledby="category-peptides-title">
         <div className="nx-container">
-          <p className="nx-eyebrow">Peptides in this area</p>
+          <h2 id="category-peptides-title" className="nx-eyebrow">Peptides in this area</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p, i) => (
               <Reveal key={p.slug} delay={i * 45}>
-              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} data-testid={`cat-item-${p.slug}`}>
+              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} aria-label={`${p.name} — ${p.tagline}`} data-testid={`cat-item-${p.slug}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</h3>
@@ -344,9 +348,9 @@ export default function Category() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="Frequently asked questions">
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-labelledby="category-faq-title">
         <div className="nx-container" style={{ maxWidth: 860 }}>
-          <p className="nx-eyebrow">Questions, answered</p>
+          <h2 id="category-faq-title" className="nx-eyebrow">Questions, answered</h2>
           <Reveal>
           <div className="mt-6">
             {cfg.faqs.map((f, i) => (

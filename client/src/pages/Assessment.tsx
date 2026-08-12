@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Check, ShieldCheck, ChevronDown, Info } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, ChevronDown, Info } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { LabeledProgress, WhyWeAsk, IntakeSidebar, TrustStrip, STEP_LABELS } from "./AssessmentParts";
@@ -400,6 +400,11 @@ export default function Assessment() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [draftRestored, setDraftRestored] = useState(false);
+  // Sighted parity for the screen-reader restore announcement: a returning
+  // visitor lands mid-flow, so a calm, dismissible "welcome back" line explains
+  // why — the SR region (#assessment-sr-status) already voices this, so the
+  // visible banner stays aria-hidden (no double read).
+  const [restoreDismissed, setRestoreDismissed] = useState(false);
   const [emailBlurred, setEmailBlurred] = useState(false);
   // Sighted-only validation nudge: surfaces WHAT the step still needs, but only
   // once the visitor reaches for the (aria-disabled) primary action — calm, not
@@ -446,6 +451,12 @@ export default function Assessment() {
 
   // E38 — the draft survives a refresh. Restore once, then autosave.
   const DRAFT_KEY = "nx-assessment-draft";
+  // A restore/deep-link step jump lands the visitor deep in the flow AFTER
+  // mount, which the step-change scroll effect would otherwise treat as a
+  // navigation and scroll past — hiding the progress bar and the welcome-back
+  // banner. Flag those non-navigational jumps so the scroll effect skips once
+  // and the top of the flow stays in view.
+  const skipRestoreScroll = useRef(false);
   useEffect(() => {
     try {
       const raw = localStorage.getItem(DRAFT_KEY);
@@ -457,6 +468,7 @@ export default function Assessment() {
           // A fresh ?goal= intent wins over a stale draft's goal.
           setForm((f) => ({ ...f, ...d.form, ...(urlGoal ? { goal: urlGoal } : {}) }));
           if (typeof d.step === "number" && d.step > 0) {
+            skipRestoreScroll.current = true;
             setStep(d.step);
             setDraftRestored(true);
           }
@@ -483,6 +495,7 @@ export default function Assessment() {
     } catch { /* ignore */ }
     if (hasDraftStep) return;
     if (form.gender !== null && step === 0) {
+      skipRestoreScroll.current = true;
       setStep(urlGoal ? 2 : 1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -494,6 +507,9 @@ export default function Assessment() {
   const skipMountScroll = useRef(true);
   useEffect(() => {
     if (skipMountScroll.current) { skipMountScroll.current = false; return; }
+    // A restore/deep-link jump is not a navigation — keep the top of the flow
+    // (progress + welcome-back banner) in view rather than scrolling to the card.
+    if (skipRestoreScroll.current) { skipRestoreScroll.current = false; return; }
     // Smooth scrolling is motion — honor prefers-reduced-motion by jumping
     // instantly for users who opted out, matching the flow's calm-motion posture.
     topRef.current?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "nearest" });
@@ -634,6 +650,18 @@ export default function Assessment() {
   const footerBackLabel = step === 7 ? "Edit" : "Back";
   const footerNextDisabled = step === 7 ? submitting : !valid;
   const footerOnNext = step === 7 ? handleSubmit : goNext;
+
+  // Enter advances from the contact step's single-line fields — the flow's one
+  // pure-typing step, where reaching for the mouse to press Continue is the
+  // friction hims/Ro remove. Only on Enter (never Shift+Enter or IME compose),
+  // and it routes through the same validated goNext, so an incomplete step
+  // still holds and surfaces its hint rather than skipping ahead. Not wired to
+  // the review step, so a stray Enter can never fire an unintended submit.
+  const advanceOnEnter = (e: React.KeyboardEvent) => {
+    if (e.key !== "Enter" || e.shiftKey || (e.nativeEvent as { isComposing?: boolean }).isComposing) return;
+    e.preventDefault();
+    goNext();
+  };
 
   // ── Render ──────────────────────────────────────────────────────────────────
 
@@ -803,8 +831,14 @@ export default function Assessment() {
       >
         {/* Polite, screen-reader-only announcements: draft restoral + what the
             current step still needs. No visual noise, no red-scare. */}
+        {/* This node doubles as the Next button's aria-describedby target, so a
+            persistent restore phrase would re-read on every focus of Next long
+            after the visitor acknowledged it. Gate it on the banner's own
+            dismissed state: the live region still announces the restore once on
+            mount, then the phrase drops so focusing Next hears only what the
+            step still needs. */}
         <p id="assessment-sr-status" className="sr-only" aria-live="polite" aria-atomic="true" data-testid="assessment-sr-status">
-          {draftRestored ? "Your saved progress was restored. " : ""}
+          {draftRestored && !restoreDismissed ? "Your saved progress was restored. " : ""}
           {inFlow ? stepRequirement(step, form) : ""}
         </p>
         {/* Positive navigation confirmation — depends only on `step`, so it
@@ -817,6 +851,55 @@ export default function Assessment() {
 
         {/* ── Top progress bar ── */}
         {inFlow && <LabeledProgress step={step} />}
+
+        {/* ── Welcome-back banner ── sighted parity for the SR restore
+            announcement. Calm, dismissible, token-driven; aria-hidden so
+            assistive tech isn't told twice. Colour-only fade, reduced-motion safe. */}
+        {inFlow && draftRestored && !restoreDismissed && (
+          <div
+            aria-hidden="true"
+            data-testid="assessment-restore-banner"
+            style={{
+              borderBottom: "1px solid var(--nx-border)",
+              backgroundColor: "var(--nx-cobalt-soft)",
+              padding: "0.75rem var(--nx-gutter)",
+            }}
+          >
+            <div
+              style={{
+                maxWidth: "1040px",
+                margin: "0 auto",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.625rem",
+              }}
+            >
+              <Check size={15} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+              <p
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  margin: 0,
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-sm)",
+                  color: "var(--nx-fg-graphite)",
+                  lineHeight: 1.5,
+                }}
+              >
+                Welcome back — your progress was saved. You are picking up where you left off.
+              </p>
+              <button
+                type="button"
+                onClick={() => setRestoreDismissed(true)}
+                data-testid="assessment-restore-dismiss"
+                className="nx-restore-dismiss"
+                aria-label="Dismiss"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* ── Main content + sidebar ── */}
         {/* Labeled region, NOT <main> — SiteLayout already owns the page's single
@@ -962,7 +1045,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Your goal</p>
                       <h2 id="q-goal" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your primary clinical goal?</h2>
                       <p style={subCopy}>
-                        This shapes protocol selection. You can note secondary goals in your physician consult.
+                        This sets the direction of your protocol; secondary goals are covered later with your physician.
                       </p>
                       <div
                         className="assessment-goal-grid"
@@ -1069,7 +1152,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Age</p>
                       <h2 id="q-age" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your age range?</h2>
                       <p style={subCopy}>
-                        Hormone reference intervals shift by decade. Age informs lab interpretation and safe dosing parameters.
+                        A decade-level range is precise enough for your physician to calibrate dosing.
                       </p>
                       <div
                         role="radiogroup"
@@ -1100,7 +1183,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Medications</p>
                       <h2 id="q-medications" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Are you currently taking any medications?</h2>
                       <p style={subCopy}>
-                        Include prescription drugs, hormone therapy, insulin, and any controlled substances. Your physician reviews all of this before prescribing.
+                        Include prescriptions, hormone therapy, insulin, and any controlled substances.
                       </p>
 
                       {/* Grouped so assistive tech ties the None toggle and the
@@ -1152,7 +1235,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Medical history</p>
                       <h2 id="q-history" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do any of the following apply to your medical history?</h2>
                       <p style={subCopy}>
-                        Select all that apply. Certain conditions affect protocol eligibility and require additional physician review before a prescription can be issued.
+                        Select all that apply — some conditions call for closer physician review before a protocol is designed.
                       </p>
                       <div role="group" aria-labelledby="q-history" aria-describedby="assessment-why-text-4" style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}>
                         {MEDICAL_HISTORY_OPTIONS.map(({ id, label }) => (
@@ -1175,7 +1258,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Bloodwork</p>
                       <h2 id="q-labs" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do you have recent comprehensive labs?</h2>
                       <p style={subCopy}>
-                        A complete blood panel is required before any prescription is written. Labs drawn within 6 months are generally acceptable; older results may require a redraw.
+                        Results drawn within six months are generally current; older ones may call for a redraw.
                       </p>
                       <div
                         role="radiogroup"
@@ -1207,7 +1290,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Contact</p>
                       <h2 id="q-contact" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Where should your physician reach you?</h2>
                       <p style={subCopy}>
-                        A licensed physician reviews your intake and contacts you to schedule a consult.
+                        A licensed physician follows up personally once your intake is complete.
                       </p>
 
                       {/* Field group tied to the contact question + rationale so
@@ -1222,6 +1305,7 @@ export default function Assessment() {
                             type="text"
                             value={form.name}
                             onChange={(e) => setField("name", e.target.value)}
+                            onKeyDown={advanceOnEnter}
                             placeholder="Your legal name"
                             autoComplete="name"
                             autoCapitalize="words"
@@ -1240,6 +1324,7 @@ export default function Assessment() {
                             value={form.email}
                             onChange={(e) => setField("email", e.target.value)}
                             onBlur={() => setEmailBlurred(true)}
+                            onKeyDown={advanceOnEnter}
                             placeholder="you@example.com"
                             autoComplete="email"
                             inputMode="email"
@@ -1279,6 +1364,7 @@ export default function Assessment() {
                             type="tel"
                             value={form.phone}
                             onChange={(e) => setField("phone", e.target.value)}
+                            onKeyDown={advanceOnEnter}
                             placeholder="(212) 555-0100"
                             autoComplete="tel"
                             inputMode="tel"
@@ -1511,13 +1597,16 @@ export default function Assessment() {
                         ))}
                       </div>
 
-                      {/* Trust close — the institutional reassurance next to the commit action */}
+                      {/* Trust close — the institutional reassurance next to the commit
+                          action. The promise line is the single-sourced PrescribedPromise
+                          (ROADMAP 5.2), never restated ad-hoc, so its wording can never
+                          drift from every other price display on the site. */}
                       <div
                         data-testid="assessment-trust-close"
                         style={{
                           display: "flex",
-                          gap: "0.75rem",
-                          alignItems: "flex-start",
+                          flexDirection: "column",
+                          gap: "0.6rem",
                           padding: "1rem 1.25rem",
                           borderRadius: "var(--nx-r-sm)",
                           border: "1px solid var(--nx-border)",
@@ -1525,7 +1614,6 @@ export default function Assessment() {
                           marginBottom: submitError ? "1rem" : "0.25rem",
                         }}
                       >
-                        <ShieldCheck size={18} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "1px" }} />
                         <p
                           style={{
                             fontFamily: F,
@@ -1535,8 +1623,9 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          A licensed physician reviews your answers. No charge unless a physician prescribes — the review is complimentary.
+                          A licensed physician reviews every answer before any protocol is prescribed.
                         </p>
+                        <PrescribedPromise testid="assessment-review-promise" />
                       </div>
 
                       <div aria-live="polite" role="alert" data-testid="assessment-submit-error">
@@ -1582,8 +1671,6 @@ export default function Assessment() {
                         : { initial: { opacity: 0, scale: 0.97 }, animate: { opacity: 1, scale: 1 }, transition: { duration: 0.35, ease: APPLE_EASE } })}
                       style={{ textAlign: "center" }}
                       data-testid="assessment-complete"
-                      role="status"
-                      aria-live="polite"
                     >
                       <div
                         style={{
@@ -1599,24 +1686,31 @@ export default function Assessment() {
                       >
                         <Check size={30} aria-hidden="true" style={{ color: "var(--nx-bg)" }} />
                       </div>
-                      <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
-                      <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
-                        {recStack
-                          ? <>Based on your goals: the {recStack.name} protocol.</>
-                          : "Your intake is under review."}
-                      </h2>
-                      <p
-                        style={{
-                          ...subCopy,
-                          fontSize: "var(--nx-t-lg)",
-                          textAlign: "center",
-                          marginBottom: "2rem",
-                        }}
-                      >
-                        {recStack
-                          ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
-                          : "A licensed physician reviews your intake and emails you the next step."}
-                      </p>
+                      {/* Scope the polite live region to the confirmation trio only —
+                          eyebrow + headline + one calm line. The outer wrapper used to
+                          be the live region, so submitting read the WHOLE success screen
+                          (recommendation tile, CTAs, four next-step items) aloud at once.
+                          Focus still lands on the headline for keyboard/AT users. */}
+                      <div role="status" aria-live="polite" aria-atomic="true">
+                        <p style={{ ...eyebrow, textAlign: "center" }}>Intake received</p>
+                        <h2 ref={setHeadingRef} tabIndex={-1} style={{ ...question, fontSize: "var(--nx-t-h1)", textAlign: "center", outline: "none" }}>
+                          {recStack
+                            ? <>Based on your goals: the {recStack.name} protocol.</>
+                            : "Your intake is under review."}
+                        </h2>
+                        <p
+                          style={{
+                            ...subCopy,
+                            fontSize: "var(--nx-t-lg)",
+                            textAlign: "center",
+                            marginBottom: "2rem",
+                          }}
+                        >
+                          {recStack
+                            ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
+                            : "A licensed physician reviews your intake and emails you the next step."}
+                        </p>
+                      </div>
 
                       {/* ══ Recommendation peak (ROADMAP 2.2) — the named protocol
                           matched to the chosen goal, what's in it, monthly cost, the
@@ -1879,6 +1973,41 @@ export default function Assessment() {
         }
         .nx-opt-box[data-selected="true"] { background-color: var(--nx-cobalt); border-color: var(--nx-cobalt); }
 
+        /* Micro-interaction: the check glyph mounts on select, so it pops in —
+           a small tactile confirmation of the choice. Compositor-only
+           (transform + opacity), token-timed, dropped under reduced-motion. */
+        @keyframes nx-check-pop {
+          from { transform: scale(0.4); opacity: 0; }
+          to   { transform: scale(1);   opacity: 1; }
+        }
+        .nx-opt-check[data-selected="true"] svg,
+        .nx-opt-box[data-selected="true"] svg {
+          animation: nx-check-pop var(--nx-dur-2) var(--nx-ease);
+        }
+
+        /* ── Welcome-back banner dismiss — quiet text button ── */
+        .nx-restore-dismiss {
+          flex-shrink: 0;
+          background: none;
+          border: none;
+          padding: 0.25rem 0.25rem;
+          cursor: pointer;
+          font-family: ${F};
+          font-size: var(--nx-t-xs);
+          font-weight: 600;
+          letter-spacing: var(--nx-ls-caps);
+          text-transform: uppercase;
+          color: var(--nx-fg-muted);
+          -webkit-tap-highlight-color: transparent;
+          transition: color var(--nx-dur-2) var(--nx-ease);
+        }
+        .nx-restore-dismiss:hover { color: var(--nx-cobalt); }
+        .nx-restore-dismiss:focus-visible {
+          outline: 2px solid var(--nx-cobalt);
+          outline-offset: 2px;
+          border-radius: var(--nx-r-xs);
+        }
+
         /* ── Review summary rows — editable, jump back to the source step ── */
         .nx-review-row {
           width: 100%;
@@ -1995,7 +2124,8 @@ export default function Assessment() {
           .assessment-goal-grid { grid-template-columns: minmax(0, 1fr) !important; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .nx-opt, .nx-sex, .nx-step-next, .nx-step-back, .nx-review-row { transition: none !important; }
+          .nx-opt, .nx-sex, .nx-step-next, .nx-step-back, .nx-review-row, .nx-restore-dismiss { transition: none !important; }
+          .nx-opt-check[data-selected="true"] svg, .nx-opt-box[data-selected="true"] svg { animation: none !important; }
           .assessment-stepnav { -webkit-backdrop-filter: none; backdrop-filter: none; }
         }
       `}</style>

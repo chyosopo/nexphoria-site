@@ -1,5 +1,5 @@
 /* JOB: editorial trust and SEO; every article advances one next step. */
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, forwardRef } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -70,6 +70,61 @@ export default function Journal() {
 
   const catLabel = (slug: JournalCategory) =>
     JOURNAL_CATEGORIES.find((c) => c.slug === slug)?.label ?? slug;
+
+  // Filter toolbar model: "All" + every category that actually has articles.
+  // Single derived list so the roving-tabindex handler, the render, and the
+  // ref array all index the same sequence.
+  const chips = useMemo(() => {
+    const list: { key: JournalCategory | "all"; label: string; count: number }[] = [
+      { key: "all", label: "All", count: JOURNAL_ARTICLES.length },
+    ];
+    for (const cat of JOURNAL_CATEGORIES) {
+      const count = JOURNAL_ARTICLES.filter((a) => a.category === cat.slug).length;
+      if (count > 0) list.push({ key: cat.slug, label: cat.label, count });
+    }
+    return list;
+  }, []);
+
+  const activeIdx = Math.max(0, chips.findIndex((c) => c.key === activeCategory));
+
+  // Roving tabindex: exactly one chip is Tab-reachable at a time. `focusIdx`
+  // is the roving tab stop, seeded to the selected filter. Arrow/Home/End move
+  // focus ONLY (focus-follows, no auto-activation) — a filter toolbar must not
+  // swap the grid on mere arrow traversal; Enter/Space/click still activate.
+  const chipRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [focusIdx, setFocusIdx] = useState(activeIdx);
+
+  const onToolbarKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const n = chips.length;
+    let next = focusIdx;
+    switch (e.key) {
+      case "ArrowRight":
+        next = (focusIdx + 1) % n;
+        break;
+      case "ArrowLeft":
+        next = (focusIdx - 1 + n) % n;
+        break;
+      case "Home":
+        next = 0;
+        break;
+      case "End":
+        next = n - 1;
+        break;
+      default:
+        return;
+    }
+    e.preventDefault();
+    setFocusIdx(next);
+    chipRefs.current[next]?.focus();
+  };
+
+  // sr-only announcement: chip counts (filteredArticles) is what the visible
+  // chip badges promise, so the spoken count matches the number the user sees.
+  const resultCount = filteredArticles.length;
+  const resultStatus =
+    activeCategory === "all"
+      ? `Showing ${resultCount} ${resultCount === 1 ? "article" : "articles"} across all categories.`
+      : `Showing ${resultCount} ${resultCount === 1 ? "article" : "articles"} in ${catLabel(activeCategory)}.`;
 
   return (
     <SiteLayout navVariant="showcase">
@@ -269,7 +324,14 @@ export default function Journal() {
         }}
       >
         <div className="nx-container">
+          {/* Inner flex row is the ARIA toolbar. The accessible name lives on
+              the parent <section aria-label> only — the toolbar deliberately
+              carries NO aria-label so the rotor reads a single name, not a
+              doubled one. aria-orientation reflects the horizontal scroll row. */}
           <div
+            role="toolbar"
+            aria-orientation="horizontal"
+            onKeyDown={onToolbarKeyDown}
             style={{
               display: "flex",
               alignItems: "center",
@@ -279,27 +341,21 @@ export default function Journal() {
               scrollbarWidth: "none",
             }}
           >
-            <CategoryChip
-              label="All"
-              isActive={activeCategory === "all"}
-              count={JOURNAL_ARTICLES.length}
-              onClick={() => setActiveCategory("all")}
-              testId="chip-category-all"
-            />
-            {JOURNAL_CATEGORIES.map((cat) => {
-              const realCount = JOURNAL_ARTICLES.filter((a) => a.category === cat.slug).length;
-              if (realCount === 0) return null;
-              return (
-                <CategoryChip
-                  key={cat.slug}
-                  label={cat.label}
-                  isActive={activeCategory === cat.slug}
-                  count={realCount}
-                  onClick={() => setActiveCategory(cat.slug)}
-                  testId={`chip-category-${cat.slug}`}
-                />
-              );
-            })}
+            {chips.map((chip, i) => (
+              <CategoryChip
+                key={chip.key}
+                ref={(el) => (chipRefs.current[i] = el)}
+                label={chip.label}
+                isActive={activeCategory === chip.key}
+                count={chip.count}
+                tabIndex={i === focusIdx ? 0 : -1}
+                onClick={() => {
+                  setActiveCategory(chip.key);
+                  setFocusIdx(i);
+                }}
+                testId={`chip-category-${chip.key}`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -307,10 +363,22 @@ export default function Journal() {
       {/* ══════════════ ARTICLE GRID (type-first cards) ══════════════ */}
       <section
         data-testid="journal-grid"
+        id="journal-results"
         aria-label="Articles"
         className="nx-section-y"
         style={{ backgroundColor: "var(--nx-bg)" }}
       >
+        {/* Polite, screen-reader-only status inside the results region so AT
+            users hear the new filtered count without the whole card grid being
+            re-read (aria-live lives here, not on the card container). */}
+        <p
+          className="sr-only"
+          aria-live="polite"
+          aria-atomic="true"
+          data-testid="journal-sr-status"
+        >
+          {resultStatus}
+        </p>
         <div className="nx-container">
           <AnimatePresence mode="wait">
             <motion.div
@@ -494,14 +562,21 @@ interface CategoryChipProps {
   count: number;
   onClick: () => void;
   testId: string;
+  tabIndex: number;
 }
 
-function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipProps) {
+const CategoryChip = forwardRef<HTMLButtonElement, CategoryChipProps>(function CategoryChip(
+  { label, isActive, count, onClick, testId, tabIndex },
+  ref,
+) {
   return (
     <button
+      ref={ref}
       data-testid={testId}
       onClick={onClick}
       aria-pressed={isActive}
+      aria-controls="journal-results"
+      tabIndex={tabIndex}
       className="journal-chip"
       style={{
         display: "inline-flex",
@@ -526,7 +601,7 @@ function CategoryChip({ label, isActive, count, onClick, testId }: CategoryChipP
       <span style={{ fontSize: "var(--nx-t-xs)", opacity: 0.55 }}>{count}</span>
     </button>
   );
-}
+});
 
 /* ─────────────────────────────────────────────────────────────
    ArticleCard — type-first: small image top, category chip,
@@ -548,9 +623,11 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
         style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}
       >
         <motion.article
-          initial={{ opacity: 0, y: 16 }}
+          // Entrance is a JS (framer) animation, so it bypasses the global CSS
+          // reduced-motion floor — guard it explicitly like every other reveal.
+          initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
+          transition={reduce ? { duration: 0 } : { delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
           whileHover={reduce ? undefined : { y: -4 }}
           style={{
             backgroundColor: "var(--nx-ceramic)",

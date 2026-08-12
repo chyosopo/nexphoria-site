@@ -132,6 +132,31 @@ export async function prerender(): Promise<{ pages: number }> {
   // coverage so a regression is visible in the build log.
   let withJsonLd = 0;
   const missingJsonLd: string[] = [];
+  // BLOCKING structured-data validation: every emitted JSON-LD block must be
+  // valid JSON and a real schema.org node (has @context + @type, or is a
+  // @graph of such nodes). A malformed block is worse than none — it earns a
+  // Search Console error and can suppress the whole page's rich results — so
+  // this DOES throw at the end if any route ships invalid markup.
+  const badJsonLd: string[] = [];
+
+  /** Assert a parsed JSON-LD value is a schema.org node (or array/@graph of them). */
+  function assertLdNode(v: unknown, where: string): void {
+    if (Array.isArray(v)) {
+      v.forEach((n, i) => assertLdNode(n, `${where}[${i}]`));
+      return;
+    }
+    if (!v || typeof v !== "object") throw new Error(`${where}: not an object`);
+    const obj = v as Record<string, unknown>;
+    if (Array.isArray(obj["@graph"])) {
+      if (!obj["@context"]) throw new Error(`${where}: @graph without @context`);
+      (obj["@graph"] as unknown[]).forEach((n, i) => assertLdNode(n, `${where}.@graph[${i}]`));
+      return;
+    }
+    if (!obj["@type"]) throw new Error(`${where}: missing @type`);
+    // Node references ({"@id": …}) legitimately omit @context; every other node
+    // that stands alone in a <script> block must carry it.
+    if (!obj["@context"] && !obj["@id"]) throw new Error(`${where}: missing @context`);
+  }
 
   async function snapshot(route: string): Promise<void> {
     const page = await browser.newPage();
@@ -156,12 +181,59 @@ export async function prerender(): Promise<{ pages: number }> {
       // github.io project page → "/<repo>/"). Leaving a stale "/" base baked in
       // would fight that script on github.io. Keep the SPA module <script>.
       await page.evaluate(() => document.querySelectorAll("base").forEach((b) => b.remove()));
-      const html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
+      // Collect the raw JSON-LD payloads from the live DOM (exact textContent —
+      // no lossy HTML re-parse) so we can parse + validate each block.
+      const ldBlocks: string[] = await page.evaluate(() =>
+        Array.from(document.querySelectorAll('script[type="application/ld+json"]')).map(
+          (s) => s.textContent || "",
+        ),
+      );
+      let html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
+      // ── Snapshot asset hygiene ──────────────────────────────────────────────
+      // Two runtime artifacts of rendering the SPA against the ephemeral static
+      // server must be cleaned before writing the crawlable snapshot (the same
+      // spirit as the runtime <base> removal above — bake only what belongs).
+      //
+      // (1) Drop the SPA's runtime-injected lazy-chunk modulepreloads. Vite's
+      // preload helper injects <link rel="modulepreload" as="script" …> for the
+      // chunks THIS route happened to lazy-load in the browser (FrontDoor on "/",
+      // SoloPDP/SafetyDisclosure on a PDP …). They vary per route, point at
+      // page-specific chunks, and are re-injected correctly on hydration — so
+      // baking them serves no crawler/no-JS client and would eager-preload the
+      // wrong chunks per route. The four STATIC shell modulepreloads Vite emits
+      // (react/router/lucide/components — no `as="script"`) are kept. The
+      // `as="script"` marker cleanly distinguishes runtime-injected from static.
+      html = html.replace(
+        /<link\b(?=[^>]*\brel="modulepreload")(?=[^>]*\bas="script")[^>]*>\s*/g,
+        "",
+      );
+      // (2) Rebase any leaked ephemeral-server origin back to the authored
+      // base:"./" form. <img> content assets (and any srcset/preload href) are
+      // resolved by the browser against the runtime <base href="http://127.0.0.1:
+      // <port>/"> during this render, so they bake the throwaway localhost origin —
+      // a snapshot-only defect leaving crawlers, LLM bots, and no-JS clients with
+      // dead-host image URLs. absUrl() already fixes head og:image/JSON-LD to the
+      // canonical domain; this fixes the rendered BODY. Strip the origin to "./" so
+      // every asset ref matches the shell's own <script src="./assets/…"> convention
+      // (host-agnostic; correct on both apex and the /nexphoria-site/ project base via
+      // the same runtime <base> the shell already relies on). Bound to THIS run's port
+      // so nothing legitimate is touched; a global replace covers src and multi-URL
+      // srcset in one pass.
+      const leakedOrigin = new RegExp(`http://(?:127\\.0\\.0\\.1|localhost):${port}/`, "g");
+      html = html.replace(leakedOrigin, "./");
       const out = outPathFor(route);
       await mkdir(join(out, ".."), { recursive: true });
       await writeFile(out, html, "utf-8");
-      if (/application\/ld\+json/i.test(html)) withJsonLd++;
-      else missingJsonLd.push(route);
+      if (ldBlocks.length) {
+        withJsonLd++;
+        ldBlocks.forEach((raw, i) => {
+          try {
+            assertLdNode(JSON.parse(raw), `${route} block#${i + 1}`);
+          } catch (e: any) {
+            badJsonLd.push(`${route} :: ${(e?.message || e).toString().slice(0, 120)}`);
+          }
+        });
+      } else missingJsonLd.push(route);
       done++;
       if (done % 10 === 0 || done === routes.length)
         console.log(`  prerendered ${done}/${routes.length}`);
@@ -190,6 +262,15 @@ export async function prerender(): Promise<{ pages: number }> {
   console.log(`  seo: ${withJsonLd}/${done} prerendered routes carry a JSON-LD block`);
   if (missingJsonLd.length)
     console.log(`  seo: no JSON-LD on ${missingJsonLd.length} route(s): ${missingJsonLd.slice(0, 8).join(", ")}${missingJsonLd.length > 8 ? " …" : ""}`);
+
+  // Structured-data validity (BLOCKING). Presence alone is not enough — a
+  // malformed block hurts more than an absent one.
+  if (badJsonLd.length) {
+    console.error(`  seo: ${badJsonLd.length} invalid JSON-LD block(s):`);
+    badJsonLd.forEach((b) => console.error(`  BAD  ${b}`));
+    throw new Error(`prerender: ${badJsonLd.length} invalid JSON-LD block(s) — fix before shipping`);
+  }
+  console.log(`  seo: all JSON-LD blocks parsed and validated (schema.org @type + @context)`);
 
   if (failures.length) {
     console.error(`prerender: ${failures.length} route(s) failed:`);

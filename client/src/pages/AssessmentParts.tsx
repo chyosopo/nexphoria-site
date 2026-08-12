@@ -126,16 +126,21 @@ export function LabeledProgress({ step }: { step: number }) {
         >
           {Array.from({ length: total }).map((_, i) => {
             const done = i < step; // step 1..7 fills segments 0..(step-1)
+            const active = i === activeIndex; // the step you're on right now
             return (
               <span
                 key={i}
                 className="nx-prog-seg"
-                data-active={i === activeIndex}
+                data-active={active}
                 data-done={done}
                 aria-hidden="true"
                 style={{
                   flex: 1,
-                  height: "3px",
+                  // "You are here": the current segment stands a touch taller than
+                  // the completed/upcoming ones, so position reads at a glance and
+                  // the last-filled bar isn't mistaken for merely completed. Height
+                  // snaps (layout-cheap on a hairline); only colour transitions.
+                  height: active ? "5px" : "3px",
                   borderRadius: "var(--nx-r-pill)",
                   backgroundColor: done ? "var(--nx-cobalt)" : "var(--nx-border)",
                 }}

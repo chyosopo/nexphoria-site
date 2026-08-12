@@ -471,7 +471,7 @@ function PricingTiers() {
 const PRICING_FAQ_ITEMS = [
   {
     q: "Is the physician consult included in the price?",
-    a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consultation fee.",
+    a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included in the figure — the consultation is complimentary.",
   },
   {
     q: "Are labs included?",
@@ -1275,10 +1275,17 @@ export default function Pricing() {
                   </p>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Check size={16} aria-hidden="true" style={{ color: "var(--nx-success)" }} />
+                    {/* icon-only cell → text equivalent for AT; reading order is
+                        feature → Nexphoria → other clinics, so bare Yes/No maps
+                        to the right column without needing header association. */}
+                    <span className="sr-only">Yes</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     {row.others === true ? (
-                      <Check size={16} aria-hidden="true" style={{ color: "var(--nx-success)" }} />
+                      <>
+                        <Check size={16} aria-hidden="true" style={{ color: "var(--nx-success)" }} />
+                        <span className="sr-only">Yes</span>
+                      </>
                     ) : row.others === "varies" || row.others === "rarely" ? (
                       <span
                         style={{
@@ -1292,7 +1299,10 @@ export default function Pricing() {
                         {row.others}
                       </span>
                     ) : (
-                      <X size={16} aria-hidden="true" style={{ color: "var(--nx-fg-muted)" }} />
+                      <>
+                        <X size={16} aria-hidden="true" style={{ color: "var(--nx-fg-muted)" }} />
+                        <span className="sr-only">No</span>
+                      </>
                     )}
                   </div>
                 </div>

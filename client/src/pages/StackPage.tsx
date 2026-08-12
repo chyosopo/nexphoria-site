@@ -57,6 +57,10 @@ export default function StackPage({ slug }: { slug: string }) {
   useSeo({
     title: stack ? `${stack.name} — ${stack.category} | Nexphoria` : "Stack — Nexphoria",
     description: stack ? `${stack.name}: ${stack.bestFor} Physician-prescribed, bloodwork-gated, retested.` : "",
+    // Self-referential canonical/og:url. Without this the page defaulted to the
+    // bare homepage URL, collapsing every flagship protocol PDP onto "/" for
+    // canonicalization — the same catalog-deindexing trap SoloPDP guards against.
+    path: stack ? `/stacks/${stack.slug}` : "/stacks",
     jsonLd: stack
       ? [
           // Prescription protocol PDP — MedicalWebPage for clinical E-E-A-T,

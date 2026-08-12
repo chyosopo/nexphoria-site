@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { anchor } from "@/lib/anchors";
 import { Link, useRoute, useLocation } from "wouter";
-import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
@@ -37,10 +36,23 @@ export default function JournalArticle() {
       : article.dek
     : "Physician-reviewed peptide science from the Nexphoria Journal.";
 
+  // Human-readable category label for og article:section (falls back to the
+  // slug only if the category is somehow unlisted — never fabricated).
+  const sectionLabel = article
+    ? JOURNAL_CATEGORIES.find((c) => c.slug === article.category)?.label ?? article.category
+    : undefined;
+
   useSeo({
     title: seoTitle,
     description: seoDescription,
     path: `/journal/${slug}`,
+    // Editorial page: og:type=article to match the Article JSON-LD, with real
+    // published_time / author / section from the article data (never invented).
+    ogType: "article",
+    ogImage: article?.imageSrc,
+    articleMeta: article
+      ? { publishedTime: article.publishedISO, author: article.author?.name, section: sectionLabel }
+      : undefined,
     jsonLd: article
       ? [
           // Article schema with real datePublished/author/image from the article data.
