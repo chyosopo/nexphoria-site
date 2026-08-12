@@ -1,6 +1,7 @@
 /* JOB: the women's front door — cast the engine orchid and start the assessment. */
 /* ═══ WOMEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══
    Orchid tokens apply automatically under /women via [data-world]. */
+import { liveCategories } from "@/data/peptides";
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
@@ -37,7 +38,10 @@ export default function WomenHome() {
           </>
         ),
         sub: "Begin with the change you want — skin that repairs, sleep that restores, energy that holds. A physician reads your labs against your history, prescribes only what your results support, and re-reads the same markers every ninety days.",
-        categories: ["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"],
+        // Preferred order, filtered to goals with a sellable molecule behind
+        // them (data/peptides LIVE_CATEGORIES). Tiles for retired goals were
+        // dead ends and broke audit:funnel.
+        categories: liveCategories(["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"]),
         featured: ["ghk-cu", "bpc-157", "nad-plus", "epitalon"],
         nightEyebrow: "The standard",
         nightH2: (

@@ -4,7 +4,7 @@
    Voice: institutional / bank register — NOT the doc's "Beyond
    Boundaries" hype line. Data is the doc's; tone is ours.
    Pricing is explicit per-stack (doc's real figures), not a
-   global discount engine. GLP-1 (Ignite) is gated, not sold.
+   global discount engine. Ignite (GLP-1) is sold as of 2026-08-12.
    ══════════════════════════════════════════════════════════════ */
 
 export type PanelTier = "Basic" | "Full" | "Elite";
@@ -72,9 +72,9 @@ const cad = (
    offering compounds we do not sell, which is the exact LegitScript failure
    the launch scope exists to remove.
 
-   Only Ignite survives, because tirzepatide is in the launch set. It stays
-   GATED and without cadences: it is a GLP-1 protocol, eligibility genuinely
-   comes first, and no price is invented here to keep a surface populated.
+   Only Ignite survives, because tirzepatide is in the launch set. It is sold
+   at the solo's own tiers — see the note on its cadences; no price was
+   invented to keep a surface populated.
 
    Retired, not deleted — same discipline as LAUNCH_SLUGS in soloCatalog. The
    compositions are intact and a stack returns by adding its slug back once its
@@ -217,8 +217,15 @@ const ALL_STACKS: FlagshipStack[] = [
       "Pregnancy",
       "History of pancreatitis",
     ],
-    cadences: [],
-    gated: true,
+    /* Ignite is the tirzepatide protocol, and tirzepatide became directly
+       purchasable on 2026-08-12. Leaving the protocol gated and unpriced while
+       selling the same molecule on its PDP was incoherent, and it left /stacks
+       unable to reach a price at all — audit:funnel's third broken path.
+       Cadences are the solo's OWN tiers (399 / 339 / 279 per month), not new
+       numbers: the solo already includes the panel, physician review and
+       retest, so the protocol is the same offer with the method made explicit.
+       State exclusions stay — those are legal, not a gate. */
+    cadences: cad(399, 1017, 3348, 439, "Full"),
     stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
     worldLean: "both",
   },

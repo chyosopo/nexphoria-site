@@ -1,5 +1,6 @@
 /* JOB: the men's front door — cast the engine azure and start the assessment. */
 /* ═══ MEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══ */
+import { liveCategories } from "@/data/peptides";
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
@@ -36,7 +37,10 @@ export default function MenHome() {
           </>
         ),
         sub: "Start with what you want back — recovery, drive, deep sleep, lean strength. A licensed physician reads your bloodwork, prescribes only what your numbers justify, and re-draws the same markers every ninety days, so the change is proven, not assumed.",
-        categories: ["growth", "recovery", "metabolic", "longevity", "cognition", "sleep"],
+        // Preferred order, filtered to goals with a sellable molecule behind
+        // them (data/peptides LIVE_CATEGORIES). Tiles for retired goals were
+        // dead ends and broke audit:funnel.
+        categories: liveCategories(["growth", "recovery", "metabolic", "longevity", "cognition", "sleep"]),
         featured: ["bpc-157", "ipamorelin", "tesamorelin", "nad-plus"],
         nightEyebrow: "The standard",
         nightH2: (

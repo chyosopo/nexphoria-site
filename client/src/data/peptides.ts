@@ -985,3 +985,24 @@ export const peptides: Peptide[] = RAW_PEPTIDES.filter((p) => CANON.has(p.slug))
   name: CANON.get(p.slug)!.name,
 }));
 
+
+/* Goal categories that still have a sellable molecule behind them.
+
+   Derived from `peptides` (already filtered through SOLO_CATALOG's launch
+   scope), so it can never disagree with the catalog. Added 2026-08-12 because
+   three separate files hardcoded their own category lists — MenHome shipped
+   four retired goals of six, WomenHome led with "skin", which is retired, and
+   FrontDoor had its own list again. Each tile pointed at /goals/<cat> for a
+   goal with nothing behind it: dead ends on the highest-traffic surfaces, and
+   the reason audit:funnel failed three paths. One source, three consumers. */
+export const LIVE_CATEGORIES: PeptideCategory[] = Array.from(
+  new Set(peptides.map((p) => p.category)),
+);
+
+/** The live subset of a desired category order, preserving that order. */
+export function liveCategories(preferred: PeptideCategory[]): PeptideCategory[] {
+  const live = new Set(LIVE_CATEGORIES);
+  const kept = preferred.filter((c) => live.has(c));
+  // Anything live but unlisted still appears, so a new SKU is never orphaned.
+  return [...kept, ...LIVE_CATEGORIES.filter((c) => !kept.includes(c))];
+}

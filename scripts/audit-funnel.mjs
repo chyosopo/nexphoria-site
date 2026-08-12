@@ -36,7 +36,9 @@ const CTA_SEL = '.nx-cta-cobalt:visible, .nx-cta-acid:visible, .nx-cta-ceramic:v
 
 const PATHS = [
   { name: "front door → goal → PDP", entry: "/", clicks: [
-    '[data-testid="frontdoor-goal-recovery"]',
+    // was frontdoor-goal-recovery; recovery is retired under the launch scope
+    // and the tile no longer exists, so the selector matched nothing.
+    '[data-testid^="frontdoor-goal-"]',
     'a[href*="/peptides/"]',
   ]},
   { name: "front door → nav pricing", entry: "/", clicks: ['nav >> text=Pricing'] },

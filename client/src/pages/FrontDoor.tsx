@@ -12,7 +12,7 @@ import { useSeo, webPageJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd 
 import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
 import { BIOMARKER_PANEL, PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
-import { CATEGORY_LABELS, CATEGORY_FEELING, peptides, type PeptideCategory } from "@/data/peptides";
+import { CATEGORY_LABELS, CATEGORY_FEELING, peptides, type PeptideCategory, liveCategories } from "@/data/peptides";
 import { OUTCOME_CATEGORY, OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeImagery";
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
@@ -28,15 +28,27 @@ const gateHim = "img/img_84799b6e21dc.webp";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
 
-/* Neutral goal cast — mixed worlds on the shared front door. */
-const GOAL_TILES: { cat: PeptideCategory; img: string }[] = [
-  { cat: "recovery", img: OUTCOME_CATEGORY.women.recovery! },
-  { cat: "growth", img: OUTCOME_CATEGORY.men.growth! },
-  { cat: "metabolic", img: OUTCOME_CATEGORY.men.metabolic! },
-  { cat: "skin", img: OUTCOME_CATEGORY.women.skin! },
-  { cat: "longevity", img: OUTCOME_CATEGORY.men.longevity! },
-  { cat: "cognition", img: OUTCOME_CATEGORY.women.cognition! },
-];
+/* Neutral goal cast — mixed worlds on the shared front door.
+   Filtered to goals with a sellable molecule behind them: four of the six
+   listed here (recovery, skin, longevity, cognition) are retired, and their
+   tiles led to /goals/<cat> pages with nothing in them — dead ends in the
+   first viewport of the site's main entry, and one of the three paths
+   audit:funnel reported broken. Imagery is kept per category so a returning
+   goal keeps its art. */
+const GOAL_TILE_ART: Partial<Record<PeptideCategory, string>> = {
+  recovery: OUTCOME_CATEGORY.women.recovery!,
+  growth: OUTCOME_CATEGORY.men.growth!,
+  metabolic: OUTCOME_CATEGORY.men.metabolic!,
+  skin: OUTCOME_CATEGORY.women.skin!,
+  longevity: OUTCOME_CATEGORY.men.longevity!,
+  cognition: OUTCOME_CATEGORY.women.cognition!,
+  "sexual-health": OUTCOME_CATEGORY.women.longevity ?? OUTCOME_CATEGORY.men.longevity!,
+};
+const GOAL_TILES: { cat: PeptideCategory; img: string }[] = liveCategories([
+  "recovery", "growth", "metabolic", "skin", "longevity", "cognition",
+])
+  .map((cat) => ({ cat, img: GOAL_TILE_ART[cat] ?? OUTCOME_CATEGORY.men.metabolic! }))
+  .filter((t) => t.img);
 
 // Goal tiles speak the goal's feeling line (ROADMAP 4.2) — one register per
 // goal, shared with category heroes, catalog shelves, and the assessment.
