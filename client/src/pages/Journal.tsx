@@ -30,7 +30,11 @@ export default function Journal() {
   useSeo({
     title: "Nexphoria Journal — peptide science, protocols, and physician notes",
     description:
-      "Long-form evidence reviews, protocol explainers, and physician notes on every peptide we prescribe. The science behind BPC-157, GLP-1, NAD+, Epitalon, and more — plainly written, rigorously sourced.",
+      // Named BPC-157, NAD+ and Epitalon as things "we prescribe". After the
+      // launch-scope cut that is simply untrue of our catalog, and naming a
+      // Category 2 substance as something we prescribe is the worst version of
+      // the error. Describes the archive without claiming a formulary.
+      "Long-form evidence reviews, protocol explainers, and physician notes. The science behind GLP-1 therapy, the GH axis, and peptide pharmacology — plainly written, rigorously sourced.",
     path: "/journal",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Journal",
