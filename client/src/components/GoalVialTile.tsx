@@ -12,6 +12,7 @@
 
 import * as React from "react";
 import { useRef, useState, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
 import { VialArt, categoryToTone, type Tone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
 import { CATEGORY_FEELING } from "@/data/peptides";
@@ -66,6 +67,7 @@ export function GoalVialTile({
   testId,
 }: GoalVialTileProps) {
   const tone: Tone = categoryToTone(category);
+  const prefersReducedMotion = useReducedMotion();
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);     // keyboard parity for hover
   const [tapped, setTapped] = useState(false);       // mobile fallback
@@ -179,8 +181,14 @@ export function GoalVialTile({
         cursor: "pointer",
         textAlign: "left",
         transition: "border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-base) var(--nx-ease), box-shadow var(--nx-dur-base) var(--nx-ease)",
-        transform: hovered && !selected ? "translateY(-2px)" : "translateY(0)",
-        boxShadow: hovered && !selected ? "0 8px 24px rgba(21, 24, 28, 0.08)" : "none",
+        // The hover lift + shadow bloom are the tile's only motion, and inline
+        // styles are missed by the per-component reduced-motion floors in
+        // index.css — so suppress both when the visitor opts out (the border
+        // and back-face still respond, just without the translate/shadow). This
+        // brings the goal grid in line with the rest of the intake, which
+        // guards every motion under prefers-reduced-motion.
+        transform: hovered && !selected && !prefersReducedMotion ? "translateY(-2px)" : "translateY(0)",
+        boxShadow: hovered && !selected && !prefersReducedMotion ? "0 8px 24px rgba(21, 24, 28, 0.08)" : "none",
         overflow: "hidden",
         minHeight: "168px",
       }}
