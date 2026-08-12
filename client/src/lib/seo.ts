@@ -17,6 +17,42 @@ const SITE = "Nexphoria";
 const BASE_URL = "https://nexphoria.com";
 const DEFAULT_OG = `${BASE_URL}/og/og-default.png`; // MUST be absolute: crawlers require full URLs.
 
+/**
+ * ── SECTION → OG SOCIAL-CARD MAP (single source of truth) ───────────────────
+ * Resolve a page's canonical `path` to its section-branded 1200×630 OG card so
+ * every social share (LinkedIn, X, Slack, iMessage, Facebook) unfurls a card
+ * that matches the SECTION — /science reads differently from /peptides,
+ * /bloodwork, the journal, etc. Before this, all ~100 prerendered routes emitted
+ * the SAME generic og-default.png (a brand + CTR defect on every social surface).
+ *
+ * The PNGs are generated at build-time from typographic templates by
+ * scripts/gen-og.ts (run `npm run gen:og`) and committed to client/public/og/.
+ * Each `og-*` name below MUST have a matching CARD in gen-og.ts and vice-versa —
+ * keep the two in lockstep so the map can't silently drift from the assets.
+ *
+ * Precedence: an explicit useSeo({ ogImage }) ALWAYS wins (e.g. JournalArticle
+ * passes the article's own hero image — more specific than a section card).
+ * Anything not matched here falls back to the generic DEFAULT_OG (about, faq,
+ * pricing, contact, physicians, legal/*, …) — an acceptable neutral card.
+ *
+ * Matched off `path` (not the live URL) because every content page passes its
+ * canonical path to useSeo; world variants canonicalize into the same section
+ * (/men/peptides & /women/peptides/<slug> → peptides), so one test covers all.
+ */
+function ogCardForPath(path?: string): string {
+  if (!path) return DEFAULT_OG;
+  const p = (path.split(/[?#]/)[0] || "/").replace(/\/+$/, "") || "/";
+  const card = (name: string) => `${BASE_URL}/og/${name}.png`;
+  // Order: specific sections first; home last (so /men/peptides ≠ /men home).
+  if (/(?:^|\/)peptides(?:\/|$)/.test(p)) return card("og-peptides");
+  if (/^\/science(?:\/|$)/.test(p)) return card("og-science");
+  if (/^\/(?:bloodwork|lab-testing|blood-work)(?:\/|$)/.test(p)) return card("og-bloodwork");
+  if (/^\/journal(?:\/|$)/.test(p)) return card("og-journal");
+  if (/(?:^|\/)(?:stacks|protocols)(?:\/|$)/.test(p) || /^\/goals(?:\/|$)/.test(p)) return card("og-stacks");
+  if (p === "/" || p === "/men" || p === "/women") return card("og-home");
+  return DEFAULT_OG;
+}
+
 export interface SeoOptions {
   title: string;
   description: string;
@@ -118,7 +154,9 @@ export function useSeo({ title, description, path, ogImage, jsonLd, noindex, ogT
     // absUrl handles absolute, protocol-relative, root-relative AND Vite's
     // base:"./" asset paths (e.g. an imported "./assets/x.webp") — so a
     // per-page ogImage from a bundled import never yields "nexphoria.com./…".
-    const img = ogImage ? absUrl(ogImage) : DEFAULT_OG;
+    // No explicit ogImage → the section-branded card for this canonical path
+    // (ogCardForPath), falling back to DEFAULT_OG for unmapped routes.
+    const img = ogImage ? absUrl(ogImage) : ogCardForPath(path);
 
     document.title = fullTitle;
     setMeta("name", "description", description);

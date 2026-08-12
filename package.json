@@ -9,6 +9,7 @@
     "start": "NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
     "db:push": "drizzle-kit push",
+    "gen:og": "tsx scripts/gen-og.ts",
     "smoke": "tsx scripts/smoke-routes.tsx",
     "audit:data": "tsx scripts/audit-data-drift.ts",
     "audit:design": "tsx scripts/audit-design.ts",
