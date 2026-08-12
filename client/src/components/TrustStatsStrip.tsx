@@ -1,5 +1,6 @@
 import { motion, useInView, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { SITE_STATS } from "@/data/siteStats";
 
 /* ─────────────────────────────────────────────────────────────
    TrustStatsStrip — reference-grade proof-strip with animated
@@ -32,7 +33,7 @@ const DEFAULT_STATS: TrustStat[] = [
   { number: 50000, suffix: "+", label: "Patients served", caption: "Across all 50 states" },
   { number: 7, label: "Peer-reviewed publications", caption: "By our medical team" },
   { number: 3, label: "Formulation patents", caption: "Filed in the United States" },
-  { number: 2000, suffix: "+", label: "Lab testing sites", caption: "Nationwide partnership network" },
+  { number: SITE_STATS.labSites.value, suffix: "+", label: "Lab testing sites", caption: "Nationwide partnership network" },
 ];
 
 export function TrustStatsStrip({

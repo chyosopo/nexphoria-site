@@ -10,6 +10,7 @@ import { PillBadge } from "@/components/PillBadge";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { F } from "@/lib/typography";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { SITE_STATS } from "@/data/siteStats";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
 
 interface FAQItem {
@@ -63,7 +64,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does the process work start to finish?",
-        a: "Complete a structured medical intake. A partner-laboratory requisition is generated in your member portal, and you can draw at any of 2,000+ partner laboratory locations nationwide. A board-certified physician reviews your labs and intake, your telehealth consult is scheduled through Bask Health, and the protocol is prescribed, compounded, and shipped cold-chain.",
+        a: `Complete a structured medical intake. A partner-laboratory requisition is generated in your member portal, and you can draw at any of ${SITE_STATS.labSites.display} partner laboratory locations nationwide. A board-certified physician reviews your labs and intake, your telehealth consult is scheduled through Bask Health, and the protocol is prescribed, compounded, and shipped cold-chain.`,
       },
       {
         q: "What if the physician declines my protocol?",
