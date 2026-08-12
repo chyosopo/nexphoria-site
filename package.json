@@ -8,7 +8,13 @@
     "build": "tsx script/build.ts",
     "start": "NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "smoke": "tsx scripts/smoke-routes.tsx",
+    "audit:data": "tsx scripts/audit-data-drift.ts",
+    "audit:design": "tsx scripts/audit-design.ts",
+    "audit:bundle": "tsx scripts/audit-bundle.ts",
+    "audit:funnel": "node scripts/audit-funnel.mjs",
+    "deploy:apex": "npm run build && rm -rf .cf-deploy && cp -R dist/public .cf-deploy && rm -f .cf-deploy/404.html && npx wrangler pages deploy --branch=main --commit-dirty=true"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -92,6 +98,9 @@
     "autoprefixer": "^10.4.20",
     "drizzle-kit": "^0.31.8",
     "esbuild": "^0.25.0",
+    "glob": "^13.0.6",
+    "jsdom": "^29.1.1",
+    "playwright": "^1.61.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.20.5",

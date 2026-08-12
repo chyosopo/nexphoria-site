@@ -1,10 +1,13 @@
 import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
-import { pricing, priceAtCadence, CADENCE_DISCOUNTS, formatUSD, type CadenceKey } from "@/data/pricing";
+import { pricing, priceAtCadence, CADENCE_DISCOUNTS, bundleDiscount, formatUSD, type CadenceKey } from "@/data/pricing";
 import { stacks, computeStackPrice } from "@/data/stacks";
+import { getStack as getFlagship } from "@/data/stacksCatalog";
 
 /* ──────────────────────────────────────────────────────────────
-   Nexphoria Cart — React Context (NO localStorage — blocked in iframe)
-   Cart survives page navigation within a session; not across reloads.
+   Nexphoria Cart — React Context + guarded sessionStorage.
+   Cart survives navigation AND reloads within a browser session; if
+   storage is unavailable (sandboxed iframe, private mode) it degrades
+   to in-memory without erroring.
 
    Each item carries a billing cadence (1mo / 3mo / 12mo) which
    controls the per-month price the user actually pays.
@@ -35,6 +38,8 @@ interface CartContextValue {
   lines: CartLine[];
   subtotal: number;
   totalSavings: number;
+  /** multi-peptide bundle discount (2=10%, 3=12%, 4+=15%) already netted out of subtotal */
+  bundleSavings: number;
   itemCount: number;
   addPeptide: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
   addStack: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
@@ -50,9 +55,47 @@ interface CartContextValue {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
+/* Session-scoped cart persistence. sessionStorage can throw in sandboxed
+   iframes and private modes, so every access is guarded — worst case the
+   cart silently falls back to in-memory (the previous behavior). */
+const CART_STORAGE_KEY = "nx-cart-v1";
+
+function readStoredCart(): CartItem[] {
+  try {
+    const raw = window.sessionStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(
+      (i): i is CartItem =>
+        i && typeof i.slug === "string" &&
+        (i.type === "peptide" || i.type === "stack") &&
+        typeof i.qty === "number" && i.qty > 0,
+    );
+  } catch {
+    return [];
+  }
+}
+
+function writeStoredCart(items: CartItem[]) {
+  try {
+    window.sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  } catch {
+    /* storage unavailable — in-memory cart only */
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItemsRaw] = useState<CartItem[]>(readStoredCart);
   const [isOpen, setIsOpen] = useState(false);
+
+  const setItems = useCallback((update: CartItem[] | ((prev: CartItem[]) => CartItem[])) => {
+    setItemsRaw((prev) => {
+      const next = typeof update === "function" ? update(prev) : update;
+      writeStoredCart(next);
+      return next;
+    });
+  }, []);
 
   const addPeptide = useCallback((slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => {
     const qty = opts?.qty ?? 1;
@@ -103,7 +146,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const toggle = useCallback(() => setIsOpen((v) => !v), []);
 
   /** Derive line items + totals from items + data */
-  const { lines, subtotal, totalSavings } = useMemo(() => {
+  const { lines, subtotal, totalSavings, bundleSavings } = useMemo(() => {
     const lines: CartLine[] = items.map((item) => {
       const cadenceLabel = CADENCE_DISCOUNTS[item.cadence]?.label || "Monthly";
       if (item.type === "peptide") {
@@ -121,12 +164,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
           cadenceLabel,
         };
       }
-      // stack
+      // stack — priced straight from the flagship catalog (single source of truth)
+      const flagship = getFlagship(item.slug);
+      if (flagship) {
+        const unitPrice = priceAtCadence(item.slug, item.cadence);
+        const base = priceAtCadence(item.slug, "1mo");
+        const cadenceSavings = (base - unitPrice) * item.qty;
+        return {
+          ...item,
+          name: `${flagship.name} Protocol`,
+          unitPrice,
+          lineTotal: unitPrice * item.qty,
+          savings: cadenceSavings > 0 ? cadenceSavings : undefined,
+          cadenceLabel,
+        };
+      }
+      // legacy fallback (unrouted paths only)
       const stack = stacks.find((s) => s.slug === item.slug);
       if (!stack) {
         return { ...item, name: item.slug, unitPrice: 0, lineTotal: 0, cadenceLabel };
       }
-      const { sum, bundle, savings: bundleSavings } = computeStackPrice(stack, pricing);
+      const { bundle, savings: bundleSavings } = computeStackPrice(stack, pricing);
       const disc = CADENCE_DISCOUNTS[item.cadence].pct;
       const unitPrice = Math.round(bundle * (1 - disc));
       const cadenceSavings = (bundle - unitPrice) * item.qty;
@@ -140,9 +198,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
         cadenceLabel,
       };
     });
-    const subtotal = lines.reduce((acc, l) => acc + l.lineTotal, 0);
-    const totalSavings = lines.reduce((acc, l) => acc + (l.savings || 0), 0);
-    return { lines, subtotal, totalSavings };
+    const rawSubtotal = lines.reduce((acc, l) => acc + l.lineTotal, 0);
+    // Multi-peptide bundle discount — the same schedule the stack builder
+    // advertises (2=10%, 3=12%, 4+=15%), applied to the peptide lines only
+    // (flagship stacks already carry their own bundle pricing).
+    const distinctPeptides = new Set(lines.filter((l) => l.type === "peptide").map((l) => l.slug)).size;
+    const peptideSubtotal = lines.filter((l) => l.type === "peptide").reduce((acc, l) => acc + l.lineTotal, 0);
+    const bundleSavings = Math.round(peptideSubtotal * bundleDiscount(distinctPeptides));
+    const subtotal = rawSubtotal - bundleSavings;
+    const totalSavings = lines.reduce((acc, l) => acc + (l.savings || 0), 0) + bundleSavings;
+    return { lines, subtotal, totalSavings, bundleSavings };
   }, [items]);
 
   const itemCount = items.reduce((acc, i) => acc + i.qty, 0);
@@ -152,6 +217,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     lines,
     subtotal,
     totalSavings,
+    bundleSavings,
     itemCount,
     addPeptide,
     addStack,

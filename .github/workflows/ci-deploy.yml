@@ -1,0 +1,85 @@
+# CI + deploy for design/azure.
+#
+# Every push runs the full gate battery (the same six gates CLAUDE.md
+# requires before any commit). If — and only if — all gates pass on
+# design/azure, the fresh build is published to gh-pages. This replaces
+# the manual two-agent deploy copy (which could clobber the other
+# agent's shipped work when built from a stale tree): gh-pages now
+# always mirrors the last green design/azure commit.
+name: CI & Deploy
+
+on:
+  push:
+    branches: [design/azure]
+  pull_request:
+    branches: [design/azure]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: "Gate 1 — typecheck (tsc)"
+        run: npm run check
+
+      - name: "Gate 2 — route smoke"
+        run: npm run smoke
+
+      - name: "Gate 3 — data drift"
+        run: npm run audit:data
+
+      - name: "Gate 4 — design tokens"
+        run: npm run audit:design
+
+      - name: "Gate 5 — build"
+        run: npm run build
+
+      - name: "Gate 6 — bundle budget"
+        run: npm run audit:bundle
+
+      - name: Prepare pages artifact
+        if: github.ref == 'refs/heads/design/azure' && github.event_name == 'push'
+        run: touch dist/public/.nojekyll
+
+      - name: Upload build
+        if: github.ref == 'refs/heads/design/azure' && github.event_name == 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist/public
+          retention-days: 7
+
+  deploy:
+    needs: gates
+    if: github.ref == 'refs/heads/design/azure' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages
+          commit_message: "deploy: ${{ github.event.head_commit.message }} — source ${{ github.sha }}"

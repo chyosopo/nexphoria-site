@@ -77,9 +77,9 @@ export function EducationCard({
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontSize: "var(--nx-t-2xs)",
             fontWeight: 600,
-            letterSpacing: "0.14em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg)",
             marginBottom: "8px",
@@ -97,7 +97,7 @@ export function EducationCard({
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
             fontWeight: 500,
-            fontSize: "clamp(1.1rem, 2vw, 1.375rem)",
+            fontSize: "var(--nx-t-lg)",
             color: "var(--nx-fg)",
             lineHeight: 1.25,
             marginBottom: "8px",
@@ -111,7 +111,7 @@ export function EducationCard({
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "13px",
+            fontSize: "var(--nx-t-sm)",
             fontWeight: 400,
             color: "var(--nx-fg-graphite)",
             lineHeight: 1.6,
@@ -137,9 +137,9 @@ export function EducationCard({
           <span
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "9px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.1em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "var(--nx-fg-muted)",
             }}
@@ -155,7 +155,7 @@ export function EducationCard({
             transition={{ duration: 0.2, ease: "easeOut" }}
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "12px",
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
               color: "var(--nx-fg)",
               display: "inline-flex",

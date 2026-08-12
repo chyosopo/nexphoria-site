@@ -1,24 +1,26 @@
 import { StartIntakeButton } from "./StartIntakeButton";
 import { Link } from "wouter";
 import { Reveal } from "./Reveal";
+import { S } from "@/lib/typography";
 
 interface FinalCTAStripProps {
+  /** omit on shared/unworlded pages — the browse CTA then goes to the neutral catalog */
   gender?: "women" | "men";
   title?: string;
   sub?: string;
 }
 
 /**
- * FinalCTAStrip — Maximus pattern: full-bleed Deep Sage background, ~280-320px tall.
+ * FinalCTAStrip — reference pattern: full-bleed Deep Sage background, ~280-320px tall.
  * Centered headline in cream + 1-sentence subhead + cream CTA button.
  * Scroll-fade entrance via Reveal.
  */
 export function FinalCTAStrip({
-  gender = "women",
+  gender,
   title,
   sub = "Complete your intake in 4 minutes. Blood panel included with every protocol.",
 }: FinalCTAStripProps) {
-  const browsePath = gender === "men" ? "/men/peptides" : "/women/peptides";
+  const browsePath = gender ? `/${gender}/peptides` : "/peptides";
 
   const defaultTitle =
     gender === "men"
@@ -37,7 +39,7 @@ export function FinalCTAStrip({
       }}
       data-testid="final-cta-strip"
     >
-      <div className="nx-container" style={{ padding: "5rem 3rem", textAlign: "center" }}>
+      <div className="nx-container" style={{ padding: "var(--nx-sp-sec) var(--nx-gutter)", textAlign: "center" }}>
         <Reveal>
           {/* Eyebrow */}
           <div
@@ -59,9 +61,9 @@ export function FinalCTAStrip({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "10px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 500,
-                letterSpacing: "0.18em",
+                letterSpacing: "var(--nx-ls-wide)",
                 textTransform: "uppercase",
                 color: "rgba(255,255,255,0.55)",
               }}
@@ -77,17 +79,15 @@ export function FinalCTAStrip({
             />
           </div>
 
-          {/* Main headline — Playfair italic, cream */}
+          {/* Main headline — Fraunces serif, cream (editorial hero voice) */}
           <h2
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              
+              fontFamily: S,
               fontWeight: 500,
-              fontSize: "clamp(2rem, 4.5vw, 3.625rem)",
-              color: "#FFFFF3",
+              fontSize: "var(--nx-t-h1)",
+              color: "var(--nx-ceramic)",
               lineHeight: 1.1,
               letterSpacing: "-0.01em",
-              marginBottom: "1.25rem",
               maxWidth: "700px",
               margin: "0 auto 1.25rem",
             }}
@@ -99,8 +99,8 @@ export function FinalCTAStrip({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "1.0625rem",
-              color: "rgba(255,255,243,0.72)",
+              fontSize: "var(--nx-t-body)",
+              color: "rgba(246, 249, 252,0.72)",
               lineHeight: 1.6,
               maxWidth: "480px",
               margin: "0 auto 2.75rem",
@@ -120,12 +120,12 @@ export function FinalCTAStrip({
           >
             {/* Cream button (inverted) */}
             <StartIntakeButton
-              productSlug={`${gender}-final-cta`}
+              productSlug={gender ? `${gender}-final-cta` : "final-cta"}
               source="final-cta-strip"
               style={{
-                backgroundColor: "#FFFFF3",
+                backgroundColor: "var(--nx-ceramic)",
                 color: "var(--nx-cobalt)",
-                borderColor: "#FFFFF3",
+                borderColor: "var(--nx-ceramic)",
                 padding: "0.875rem 2rem",
               }}
             >

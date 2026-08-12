@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    BloodworkDashboard — Wave 5
@@ -83,8 +84,8 @@ function TrendArrow({ trend }: { trend: TrendDir }) {
     return (
       <span
         style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "10px",
+          fontFamily: FONT,
+          fontSize: "var(--nx-t-xs)",
           color: "var(--nx-fg-muted)",
           marginLeft: "6px",
         }}
@@ -98,7 +99,7 @@ function TrendArrow({ trend }: { trend: TrendDir }) {
   return (
     <span
       style={{
-        fontSize: "10px",
+        fontSize: "var(--nx-t-xs)",
         marginLeft: "6px",
         color: isUp ? "var(--nx-fg)" : "var(--nx-fg-graphite)",
         fontWeight: 600,
@@ -125,8 +126,20 @@ const containerVariants = {
   visible: { transition: { staggerChildren: 0.05 } },
 };
 
+/* Reduced-motion fallbacks — no offset, no stagger. */
+const staticVariants = {
+  hidden: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0 },
+};
+const staticContainer = { hidden: {}, visible: {} };
+
 /* ── Main component ─────────────────────────────────────── */
 export function BloodworkDashboard() {
+  // Respect prefers-reduced-motion: collapse the stagger/offset so rows
+  // resolve in place with no entrance travel.
+  const reduce = useReducedMotion();
+  const rows = reduce ? staticVariants : rowVariants;
+  const container = reduce ? staticContainer : containerVariants;
   return (
     <motion.div
       data-testid="bloodwork-dashboard"
@@ -136,8 +149,8 @@ export function BloodworkDashboard() {
       style={{
         backgroundColor: "var(--nx-bg-cream)",
         border: "1px solid var(--nx-fg)",
-        borderRadius: "2px",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+        borderRadius: "var(--nx-r-xs)",
+        boxShadow: "var(--nx-e-1)",
         maxWidth: "860px",
         minWidth: "560px",
         width: "100%",
@@ -147,7 +160,7 @@ export function BloodworkDashboard() {
       {/* ── Header bar ──────────────────────────────────── */}
       <div
         style={{
-          backgroundColor: "#E6E0D4",
+          backgroundColor: "color-mix(in srgb, var(--nx-cobalt) 12%, var(--nx-bg-cream))",
           borderBottom: "1px solid var(--nx-fg)",
           padding: "10px 20px",
           display: "flex",
@@ -159,10 +172,10 @@ export function BloodworkDashboard() {
       >
         <span
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "10px",
+            fontFamily: FONT,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 600,
-            letterSpacing: "0.14em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg)",
           }}
@@ -171,10 +184,10 @@ export function BloodworkDashboard() {
         </span>
         <span
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontFamily: FONT,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 500,
-            letterSpacing: "0.12em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: "var(--nx-fg-muted)",
           }}
@@ -193,15 +206,15 @@ export function BloodworkDashboard() {
       >
         <span
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: "9px",
+            fontFamily: FONT,
+            fontSize: "var(--nx-t-xs)",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
             textTransform: "uppercase",
           }}
         >
           Patient: J. Reyes&nbsp;&nbsp;/&nbsp;&nbsp;DOB 1978-06-12&nbsp;&nbsp;/&nbsp;&nbsp;Drawn
-          2026-06-15&nbsp;&nbsp;/&nbsp;&nbsp;Quest Diagnostics
+          2026-06-15&nbsp;&nbsp;/&nbsp;&nbsp;Partner Laboratory
         </span>
       </div>
 
@@ -212,15 +225,15 @@ export function BloodworkDashboard() {
           gridTemplateColumns: "1fr 110px 130px 64px",
           padding: "7px 20px",
           borderBottom: "1px solid var(--nx-border)",
-          backgroundColor: "#EAE4D8",
+          backgroundColor: "color-mix(in srgb, var(--nx-cobalt) 8%, var(--nx-bg-cream))",
         }}
       >
         {["BIOMARKER", "VALUE", "REF RANGE", "TREND"].map((col) => (
           <span
             key={col}
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "8.5px",
+              fontFamily: FONT,
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 600,
               letterSpacing: "0.13em",
               textTransform: "uppercase",
@@ -233,14 +246,14 @@ export function BloodworkDashboard() {
       </div>
 
       {/* ── Biomarker rows ──────────────────────────────── */}
-      <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
+      <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
         {biomarkers.map((row, i) => {
           const hasAnnotation = !!row.annotation;
           return (
             <motion.div
               key={row.name}
               custom={i}
-              variants={rowVariants}
+              variants={rows}
               data-testid={`bw-row-${row.name.toLowerCase().replace(/[\s,()]/g, "-").replace(/-+/g, "-")}`}
               style={{
                 display: "grid",
@@ -248,22 +261,22 @@ export function BloodworkDashboard() {
                 padding: hasAnnotation ? "10px 20px 6px" : "9px 20px",
                 borderBottom: i < biomarkers.length - 1 ? "1px solid var(--nx-border)" : "none",
                 alignItems: "start",
-                backgroundColor: i % 2 === 0 ? "var(--nx-bg-cream)" : "rgba(240,235,224,0.4)",
+                backgroundColor: i % 2 === 0 ? "var(--nx-bg-cream)" : "color-mix(in srgb, var(--nx-fg) 4%, transparent)",
               }}
             >
               {/* Biomarker name */}
               <div>
                 <span
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "10px",
+                    fontFamily: FONT,
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 500,
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     color: "var(--nx-fg)",
                     display: "block",
                     paddingBottom: hasAnnotation ? "4px" : "0",
-                    borderBottom: hasAnnotation ? `1px solid #8B5A2B` : "none",
+                    borderBottom: hasAnnotation ? `1px solid var(--nx-amber)` : "none",
                     marginBottom: hasAnnotation ? "4px" : "0",
                   }}
                 >
@@ -272,10 +285,10 @@ export function BloodworkDashboard() {
                 {hasAnnotation && (
                   <span
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
-                      fontSize: "8.5px",
+                      fontFamily: FONT,
+                      fontSize: "var(--nx-t-xs)",
                       letterSpacing: "0.06em",
-                      color: "#8B5A2B",
+                      color: "var(--nx-amber)",
                       display: "block",
                     }}
                   >
@@ -287,8 +300,8 @@ export function BloodworkDashboard() {
               {/* Value */}
               <span
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "13px",
+                  fontFamily: FONT,
+                  fontSize: "var(--nx-t-sm)",
                   fontWeight: 700,
                   color: "var(--nx-fg)",
                   fontVariantNumeric: "tabular-nums lining-nums",
@@ -297,7 +310,7 @@ export function BloodworkDashboard() {
                 }}
               >
                 {row.value}&thinsp;
-                <span style={{ fontSize: "9px", fontWeight: 400, color: "var(--nx-fg-muted)" }}>
+                <span style={{ fontSize: "var(--nx-t-xs)", fontWeight: 400, color: "var(--nx-fg-muted)" }}>
                   {row.unit}
                 </span>
               </span>
@@ -305,8 +318,8 @@ export function BloodworkDashboard() {
               {/* Reference range */}
               <span
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  fontSize: "9.5px",
+                  fontFamily: FONT,
+                  fontSize: "var(--nx-t-xs)",
                   color: "var(--nx-fg-muted)",
                   letterSpacing: "0.04em",
                   paddingTop: "2px",
@@ -330,19 +343,18 @@ export function BloodworkDashboard() {
         style={{
           borderTop: "1px solid var(--nx-border)",
           padding: "10px 20px",
-          backgroundColor: "#E6E0D4",
+          backgroundColor: "color-mix(in srgb, var(--nx-cobalt) 12%, var(--nx-bg-cream))",
         }}
       >
         <span
           style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            
-            fontSize: "9px",
+            fontFamily: FONT,
+            fontSize: "var(--nx-t-xs)",
             letterSpacing: "0.08em",
             color: "var(--nx-fg-muted)",
           }}
         >
-          Reviewed by Dr. Sarah Chen, MD — UCSF / Internal Medicine · Board Certified
+          Reviewed by a board-certified physician · Internal Medicine
         </span>
       </div>
     </motion.div>

@@ -1,16 +1,32 @@
+/* JOB: remove the last objection; hand off to support or the assessment. */
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
-import { Plus, Minus } from "lucide-react";
-import { useSeo, faqJsonLd, webPageJsonLd } from "@/lib/seo";
-import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/MaximusTile";
+import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { MxHeader } from "@/components/SignatureTile";
+import heroFaq from "@/assets/brand/hero-faq.webp";
 import { PillBadge } from "@/components/PillBadge";
+import { FaqAccordion } from "@/components/EnterprisePatterns";
+import { F } from "@/lib/typography";
+import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { SOLO_FROM_LABEL } from "@/data/pricing";
 
 interface FAQItem {
   q: string;
   a: string;
 }
+
+/* Pricing facts derived from the catalog — never hardcoded (truth law).
+   FROM = lowest per-month across non-gated flagship cadences (12-month tier);
+   TOP = highest month-to-month flagship price. */
+const NON_GATED = FLAGSHIP_STACKS.filter((s) => !s.gated);
+const PROTOCOL_FROM = Math.min(
+  ...NON_GATED.flatMap((s) => s.cadences.map((c) => c.perMonth ?? c.total)),
+);
+const PROTOCOL_TOP = Math.max(
+  ...NON_GATED.flatMap((s) => s.cadences.filter((c) => c.key === "1mo").map((c) => c.perMonth ?? c.total)),
+);
 
 const categories: { label: string; items: FAQItem[] }[] = [
   {
@@ -22,7 +38,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "How is this different from buying research peptides online?",
-        a: "Research-grade peptides sold online are not intended for human use, lack sterility testing, and have no dosing oversight. Nexphoria protocols are prescribed by a board-certified physician, compounded in a licensed 503A US pharmacy under sterile conditions, batch-tested for potency and purity, and shipped cold-chain. The compound you administer is the compound you were prescribed — not an unverified powder.",
+        a: "Unregulated peptides sold online carry no sterility testing, no dosing oversight, and no physician involvement. Nexphoria protocols are prescribed by a board-certified physician, compounded in a licensed 503A US pharmacy under sterile conditions, batch-tested for potency and purity, and shipped cold-chain. The compound you administer is the compound you were prescribed.",
       },
       {
         q: "What compounds do you offer?",
@@ -32,6 +48,14 @@ const categories: { label: string; items: FAQItem[] }[] = [
         q: "What does a 503A-licensed pharmacy mean?",
         a: "503A pharmacies compound medications for individual patients under a valid physician prescription. This allows dosage and formulation customization that mass-manufactured products cannot provide. Every Nexphoria compound is sterile-prepared in an ISO-compliant cleanroom, batch-tested for potency and purity, and ships with a certificate of analysis.",
       },
+      {
+        q: "Who provides the clinical care?",
+        a: "Arora Health & Aesthetics, LLC provides the clinical care for this program. Our licensed providers serve patients in all 50 U.S. states in accordance with applicable state licensure requirements and telehealth regulations. For provider-related questions, contact medicalcompliance@arorahealthgroup.com. Arora Health's office is located at 300 Lenora Street, Seattle, WA 98121. Learn more at www.arora-health.com.",
+      },
+      {
+        q: "Which pharmacy fills the prescriptions?",
+        a: "Our partner pharmacy is VialsRX, 6220 Westpark Dr, Houston, TX 77057 — phone (713) 497-5590, vials.ai. Services are available in all 50 US states through affiliated medical providers and pharmacy partners operating in accordance with applicable state licensure requirements. Please note that certain medications, formulations, or fulfillment options may vary depending on state-specific pharmacy regulations and dispensing restrictions.",
+      },
     ],
   },
   {
@@ -39,7 +63,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does the process work start to finish?",
-        a: "Complete the 5-minute intake assessment. A Quest Diagnostics lab requisition is generated in your member portal. Draw at any of 2,500+ Quest locations nationwide. A board-certified physician reviews your labs and intake within 24–48 hours. Your telehealth consult is scheduled through Bask Health. Protocol is prescribed, compounded, and shipped cold-chain.",
+        a: "Complete a structured medical intake. A partner-laboratory requisition is generated in your member portal, and you can draw at any of 2,000+ partner laboratory locations nationwide. A board-certified physician reviews your labs and intake, your telehealth consult is scheduled through Bask Health, and the protocol is prescribed, compounded, and shipped cold-chain.",
       },
       {
         q: "What if the physician declines my protocol?",
@@ -47,11 +71,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What labs do I need?",
-        a: "A 38-biomarker Quest Diagnostics panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
+        a: "A 99-biomarker partner-laboratory panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
       },
       {
         q: "Who reviews my bloodwork?",
-        a: "Your assigned board-certified physician reviews your Quest Diagnostics results within 24 hours of receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
+        a: "Your assigned board-certified physician reviews your partner-laboratory results promptly after receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
       },
       {
         q: "How quickly will I see results?",
@@ -64,7 +88,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "What does a Nexphoria protocol cost?",
-        a: "Protocols start from $249/month (single cognitive peptides) to $389/month (longevity stacks). 6-month plans save 10%. 12-month plans save 20% and are our best-value option. Your physician consult, lab interpretation, and cold-chain shipping are included — there are no hidden fees.",
+        a: `Single peptides start from ${SOLO_FROM_LABEL}/month. Flagship protocols run from ${usd(PROTOCOL_FROM)}/month on a 12-month plan to ${usd(PROTOCOL_TOP)}/month for the deepest longevity stack month-to-month. 3-month plans save 15%; 12-month plans save 30% and include your blood panel. Your physician consult, lab interpretation, and cold-chain shipping are included — the figure is complete.`,
       },
       {
         q: "Can I cancel after the first month?",
@@ -106,7 +130,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How are peptides shipped?",
-        a: "All orders ship cold-chain overnight with temperature-monitored packaging and temperature indicator cards. We currently ship to the contiguous 48 US states. Each shipment includes your prescription label, a certificate of analysis, and administration instructions from your physician.",
+        a: "All orders ship cold-chain overnight with temperature-monitored packaging and temperature indicator cards. We ship to all 50 US states; GLP-1 protocols are not available in AK, AR, IN, MI, MN, or SC. Each shipment includes your prescription label, a certificate of analysis, and administration instructions from your physician.",
       },
       {
         q: "How long does it take to receive my order?",
@@ -144,7 +168,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Is this FDA-approved?",
-        a: "Tirzepatide and semaglutide are FDA-approved drugs that may also be compounded. Most other peptides in our formulary are prescribed off-label — not FDA-approved for any specific indication. Off-label prescribing is a legal, routine component of clinical practice in the United States. Compounding under a physician's prescription is regulated by state pharmacy boards and the FDA.",
+        a: "Tirzepatide and semaglutide are available as FDA-approved branded drugs; the compounded formulations we prepare are not themselves FDA-approved or evaluated. Most other peptides in our formulary are prescribed off-label — not FDA-approved for any specific indication. Off-label prescribing is a legal, routine component of clinical practice in the United States. Compounding under a physician's prescription is regulated by state pharmacy boards and the FDA.",
       },
       {
         q: "Do you ship internationally?",
@@ -160,12 +184,12 @@ const categories: { label: string; items: FAQItem[] }[] = [
         a: "Nexphoria is a physician-supervised peptide provider that routes every prescription through a board-certified clinician via the Bask Health telehealth platform. Compounds are prepared in a U.S. 503A-licensed compounding pharmacy under sterile ISO conditions, batch-tested with a Certificate of Analysis on file, and shipped cold-chain. No prescription is dispensed without physician sign-off.",
       },
       {
-        q: "How does Nexphoria compare to Hims or Maximus for peptide therapy?",
-        a: "Nexphoria is the only platform combining 16+ physician-prescribed peptides, mandatory quarterly Quest Diagnostics monitoring, 503A-compounded sterile formulations, and COA documentation in a single subscription. Hims and Ro focus on TRT, GLP-1, and hair loss with limited peptide breadth. Maximus specializes in testosterone optimization. Neither provides Nexphoria's scope of peptide protocols or biomarker follow-up.",
+        q: "What makes Nexphoria different for peptide therapy?",
+        a: "Nexphoria combines 16+ physician-prescribed peptides, quarterly biomarker monitoring at CLIA-certified labs, sterile formulations from state-licensed 503A compounding pharmacies, and COA documentation — all in a single subscription, with every protocol reviewed against your own labs.",
       },
       {
         q: "What is the difference between Nexphoria and buying peptides from a research chemical site?",
-        a: "Research-grade peptides sold online are labeled 'not for human use,' lack sterility certification, and carry no dosing guidance or physician oversight. Nexphoria peptides are prescribed by a board-certified clinician, compounded in a 503A-licensed sterile facility, batch-tested for potency and purity, and shipped cold-chain with full chain-of-custody documentation. The compound you inject is the compound you were prescribed.",
+        a: "Unregulated online peptides carry no sterility certification and no dosing guidance or physician oversight. Nexphoria peptides are prescribed by a board-certified clinician, compounded in a 503A-licensed sterile facility, batch-tested for potency and purity, and shipped cold-chain with full chain-of-custody documentation. The compound you inject is the compound you were prescribed.",
       },
       {
         q: "What is the difference between GLP-1 (Ozempic/Wegovy) and Retatrutide from Nexphoria?",
@@ -174,97 +198,6 @@ const categories: { label: string; items: FAQItem[] }[] = [
     ],
   },
 ];
-
-interface AccordionItemProps {
-  item: FAQItem;
-  index: number;
-  isOpen: boolean;
-  onToggle: () => void;
-}
-
-function AccordionItem({ item, index, isOpen, onToggle }: AccordionItemProps) {
-  return (
-    <div
-      style={{
-        borderBottom: "1px solid var(--nx-cobalt)",
-        borderColor: "rgba(45,74,43,0.15)",
-      }}
-    >
-      <button
-        className="w-full"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        data-testid={`faq-item-${index}`}
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-          gap: "1.5rem",
-          padding: "1.5rem 0",
-          textAlign: "left",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          width: "100%",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "'General Sans', system-ui, sans-serif",
-            fontStyle: isOpen ? "" : "normal",
-            fontWeight: 500,
-            fontSize: "clamp(1rem, 2vw, 1.375rem)",
-            color: isOpen ? "var(--nx-cobalt)" : "var(--nx-fg)",
-            lineHeight: 1.3,
-            transition: "color 0.2s, font-style 0.2s",
-          }}
-        >
-          {item.q}
-        </p>
-        <span
-          style={{
-            flexShrink: 0,
-            width: "24px",
-            height: "24px",
-            borderRadius: "50%",
-            border: `1px solid ${isOpen ? "var(--nx-cobalt)" : "var(--nx-border)"}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "3px",
-            transition: "border-color 0.2s",
-          }}
-        >
-          {isOpen ? (
-            <Minus size={12} style={{ color: "var(--nx-cobalt)" }} />
-          ) : (
-            <Plus size={12} style={{ color: "var(--nx-fg-muted)" }} />
-          )}
-        </span>
-      </button>
-      {isOpen && (
-        <div
-          data-testid={`faq-answer-${index}`}
-          style={{
-            paddingBottom: "1.5rem",
-            paddingRight: "2.5rem",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "1rem",
-              color: "#4A4A4A",
-              lineHeight: 1.7,
-            }}
-          >
-            {item.a}
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
 
 export default function FAQPage() {
   // Flatten all FAQ items for JSON-LD
@@ -276,15 +209,11 @@ export default function FAQPage() {
     path: "/faq",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria FAQ", description: "Frequently asked questions about physician-prescribed peptide therapy at Nexphoria.", path: "/faq", type: "MedicalWebPage" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "FAQ", path: "/faq" }]),
       faqJsonLd(allFaqItems),
     ],
   });
-  const [openItem, setOpenItem] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState(0);
-
-  const toggleItem = (key: string) => {
-    setOpenItem((prev) => (prev === key ? null : key));
-  };
 
   const categoryHeadings: Record<string, string> = {
     Products: "What you're getting.",
@@ -299,46 +228,67 @@ export default function FAQPage() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <main id="main-content" style={{ background: "var(--mx-page-bg)" }}>
+      {/* NOT a <main id="main-content">: SiteLayout already renders the sole
+          <main id="main-content"> landmark + skip-link target around all
+          children. A second one here duplicated the landmark AND the id. */}
+      <div style={{ background: "var(--mx-page-bg)" }}>
         <div className="mx-page">
           <MxHeader
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 32%, transparent)" }}>Everything you wanted</span><br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Everything you wanted</span><br />
                 <span>to ask your doctor.</span>
               </>
             }
             subtitle="Answers on dosing, safety, side effects, shipping, insurance, and what to expect. Still curious? Message your physician any time."
           />
 
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="/faq"
-              tone="sand"
-              glyph={TileGlyphs.hex}
-              label={<>Protocol questions<br /><span>dosing &amp; timing</span></>}
-              caption="Most common asks"
-              ctaLabel="See answers"
+          {/* Editorial hero — questions answered, mind settled */}
+          <figure
+            className="relative overflow-hidden"
+            style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
+            data-testid="faq-hero-editorial"
+          >
+            <img
+              src={heroFaq}
+              alt="A woman reads calmly in a sunlit armchair by a tall window, tea on the side table"
+              className="w-full object-cover"
+              style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
+              loading="eager"
+              decoding="async"
             />
-            <ColoredHeroTile
-              href="/faq"
-              tone="sky"
-              glyph={TileGlyphs.circle}
-              label={<>Safety &amp; science<br /><span>peer-reviewed</span></>}
-              caption="Most common asks"
-              ctaLabel="See answers"
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, color-mix(in srgb, var(--nx-fg) 52%, transparent) 0%, color-mix(in srgb, var(--nx-fg) 10%, transparent) 34%, transparent 55%)",
+              }}
             />
-          </div>
+            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
+              <p
+                style={{
+                  fontFamily: F,
+                  fontSize: "var(--nx-t-xl)",
+                  fontWeight: 500,
+                  lineHeight: 1.35,
+                  color: "var(--nx-ceramic)",
+                  maxWidth: "40ch",
+                  textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
+                }}
+              >
+                Dosing, safety, shipping, insurance — answered plainly, and your physician is a message away.
+              </p>
+            </figcaption>
+          </figure>
         </div>
-      </main>
-
-      {/* EVERYTHING BELOW STAYS UNCHANGED */}
+      </div>
 
 
       {/* ── FAQ categories + accordion ── */}
       <section
-        className="py-24 md:py-32"
+        className="py-[var(--nx-section-y)]"
         style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container max-w-screen-xl">
@@ -361,10 +311,10 @@ export default function FAQPage() {
               >
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "9px",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-xs)",
                     fontWeight: 700,
-                    letterSpacing: "0.16em",
+                    letterSpacing: "var(--nx-ls-caps)",
                     textTransform: "uppercase",
                     color: "var(--nx-fg-muted)",
                     marginBottom: "1rem",
@@ -376,24 +326,27 @@ export default function FAQPage() {
                   {categories.map((cat, i) => (
                     <li key={cat.label}>
                       <button
-                        onClick={() => { setActiveCategory(i); setOpenItem(null); }}
+                        onClick={() => setActiveCategory(i)}
+                        aria-current={activeCategory === i ? "true" : undefined}
+                        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
                         style={{
                           background: "none",
                           border: "none",
                           cursor: "pointer",
                           padding: "0.5rem 0",
-                          fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "14px",
+                          fontFamily: F,
+                          fontSize: "var(--nx-t-sm)",
                           fontWeight: activeCategory === i ? 600 : 400,
                           color: activeCategory === i ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
                           display: "flex",
                           alignItems: "center",
                           gap: "0.5rem",
-                          transition: "color 0.2s",
+                          transition: "color var(--nx-dur-2) var(--nx-ease)",
                         }}
                       >
                         {activeCategory === i && (
                           <span
+                            aria-hidden="true"
                             style={{
                               display: "inline-block",
                               width: "16px",
@@ -405,8 +358,8 @@ export default function FAQPage() {
                         {cat.label}
                         <span
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "9px",
+                            fontFamily: F,
+                            fontSize: "var(--nx-t-xs)",
                             color: "var(--nx-fg-muted)",
                           }}
                         >
@@ -419,15 +372,17 @@ export default function FAQPage() {
               </nav>
             </aside>
 
-            {/* Accordion */}
-            <main>
+            {/* Accordion — plain div, NOT a second <main>: the page already
+                has one <main id="main-content"> landmark above (house pattern,
+                cf. Pricing.tsx). Two <main> elements is invalid HTML5. */}
+            <div>
               <Reveal>
                 <p
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "11px",
+                    fontFamily: F,
+                    fontSize: "var(--nx-t-2xs)",
                     fontWeight: 500,
-                    letterSpacing: "0.18em",
+                    letterSpacing: "var(--nx-ls-wide)",
                     textTransform: "uppercase",
                     color: "var(--nx-cobalt)",
                     marginBottom: "0.625rem",
@@ -437,10 +392,9 @@ export default function FAQPage() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: "'Fraunces', Georgia, serif",
                     fontWeight: 500,
-                    
-                    fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+                    fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
                     marginBottom: "2rem",
@@ -449,30 +403,16 @@ export default function FAQPage() {
                   {categoryHeadings[categories[activeCategory].label] ?? `${categories[activeCategory].label} questions.`}
                 </h2>
 
-                <div>
-                  {categories[activeCategory].items.map((item, i) => {
-                    const key = `${activeCategory}-${i}`;
-                    return (
-                      <AccordionItem
-                        key={key}
-                        item={item}
-                        index={i}
-                        isOpen={openItem === key}
-                        onToggle={() => toggleItem(key)}
-                      />
-                    );
-                  })}
-                </div>
+                <FaqAccordion key={activeCategory} items={categories[activeCategory].items} openFirst={false} />
               </Reveal>
-            </main>
+            </div>
           </div>
         </div>
       </section>
 
       <FinalCTAStrip
-        gender="women"
         title="Still have questions?"
-        sub="Your assigned physician answers clinical questions via secure portal message within 48 hours."
+        sub="Your assigned physician answers clinical questions via secure portal message after review."
       />
     </SiteLayout>
   );

@@ -1,16 +1,20 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
-import { useSeo } from "@/lib/seo";
+import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function TelehealthConsent() {
   useSeo({
     title: "Telehealth Consent | Nexphoria",
     description: "Your consent to receive care via telehealth and off-label prescribing of compounded peptides. State-specific requirements.",
     path: "/legal/telehealth-consent",
+    jsonLd: [
+      webPageJsonLd({ name: "Telehealth Consent", description: "Your consent to receive care via telehealth and off-label prescribing of compounded peptides. State-specific requirements.", path: "/legal/telehealth-consent" }),
+      breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Legal", path: "/legal" }, { name: "Telehealth Consent", path: "/legal/telehealth-consent" }]),
+    ],
   });
   return (
     <LegalLayout title="Telehealth Informed Consent" lastUpdated="June 2026">
       <LegalSection title="1. Nature of Telehealth Services">
-        <LegalP>By using the Nexphoria platform, you ("Patient," "you") consent to receive medical evaluation, consultation, and prescription services through telehealth. Telehealth services are delivered through Bask Health, our licensed telehealth platform partner, and are conducted by independent physicians licensed to practice in your state of residence. Services may include real-time video consultations, audio-only consultations where permitted by state law, secure messaging, asynchronous (store-and-forward) review of submitted health information, electronic ordering of laboratory testing, and electronic prescribing of compounded medications dispensed by 503A FDA-registered compounding pharmacies.</LegalP>
+        <LegalP>By using the Nexphoria platform, you ("Patient," "you") consent to receive medical evaluation, consultation, and prescription services through telehealth. Telehealth services are delivered through Bask Health, our licensed telehealth platform partner, and are conducted by independent physicians licensed to practice in your state of residence. Services may include real-time video consultations, audio-only consultations where permitted by state law, secure messaging, asynchronous (store-and-forward) review of submitted health information, electronic ordering of laboratory testing, and electronic prescribing of compounded medications dispensed by 503A state-licensed compounding pharmacies.</LegalP>
         <LegalP>You understand that the physicians reviewing your case are independent licensed clinicians and not employees of Nexphoria. Nexphoria coordinates access to and administration of the platform; it does not practice medicine or supervise the clinical judgment of treating physicians.</LegalP>
       </LegalSection>
 
@@ -42,7 +46,7 @@ export default function TelehealthConsent() {
       </LegalSection>
 
       <LegalSection title="8. Laboratory Monitoring">
-        <LegalP>Many peptide protocols require baseline laboratory testing before prescribing and follow-up testing during therapy. Laboratory orders will be issued electronically to Quest Diagnostics or another CLIA-certified laboratory. You consent to the release of laboratory results directly to your treating Nexphoria physician. Refusal or failure to complete required laboratory monitoring may result in suspension or discontinuation of therapy at the discretion of your physician.</LegalP>
+        <LegalP>Many peptide protocols require baseline laboratory testing before prescribing and follow-up testing during therapy. Laboratory orders will be issued electronically to a CLIA-certified partner laboratory. You consent to the release of laboratory results directly to your treating Nexphoria physician. Refusal or failure to complete required laboratory monitoring may result in suspension or discontinuation of therapy at the discretion of your physician.</LegalP>
       </LegalSection>
 
       <LegalSection title="9. Withdrawal of Consent">
