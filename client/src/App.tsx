@@ -72,8 +72,16 @@ function AppRouter() {
         <Route path="/" component={FrontDoor} />
         <Route path="/gate" component={Gate} />
 
-        {/* Gender-neutral pharmacy shelf */}
-        <Route path="/peptides">{() => <R to="/men/peptides" />}</Route>
+        {/* Gender-neutral pharmacy shelf — render the world-neutral catalog
+            DIRECTLY (no redirect). A prior `<R to="/men/peptides">` bounced this
+            route into the men world, so the prerendered /peptides/index.html
+            snapshotted the men catalog and self-canonicalized to /men/peptides.
+            But /peptides is its OWN canonical route in sitemap.xml (STATIC_ROUTES),
+            so the snapshot's canonical+og:url=/men/peptides was a sitemap↔canonical
+            contradiction — Search Console drops it as "Duplicate, submitted URL not
+            selected as canonical". Rendering PeptidesCatalog with no world makes it
+            self-canonicalize to /peptides; the /men|/women variants are unchanged. */}
+        <Route path="/peptides">{() => <PeptidesCatalog />}</Route>
         <Route path="/peptides/:slug">{(p) => <SoloPDP slug={(p as {slug:string}).slug} />}</Route>
         <Route path="/goals/:slug" component={Category} />
 
