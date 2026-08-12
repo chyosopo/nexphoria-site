@@ -1,7 +1,10 @@
 import { QueryClient } from "@tanstack/react-query";
 
-// API base — handles dev (relative) and deployed (port-prefixed proxy) paths
-const API_BASE = ((import.meta.env.VITE_API_BASE as string) || "").replace(/\/$/, "") || "__PORT_5000__";
+// API base — VITE_API_BASE when a backend is deployed, else same-origin relative.
+// On the static production host there is no /api server: requests 404 fast and
+// every caller degrades gracefully. (The old "__PORT_5000__" dev-proxy literal
+// produced invalid URLs in production and broke all form capture.)
+const API_BASE = ((import.meta.env.VITE_API_BASE as string) || "").replace(/\/$/, "");
 
 export async function apiRequest<T = unknown>(
   path: string,

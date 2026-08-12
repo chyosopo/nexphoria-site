@@ -1,6 +1,9 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
 import { rm, readFile } from "node:fs/promises";
+import { generateSitemap } from "./genSitemap";
+import { generateLlms } from "./genLlms";
+import { prerender } from "./prerender";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -33,8 +36,24 @@ const allowlist = [
 async function buildAll() {
   await rm("dist", { recursive: true, force: true });
 
+  // Regenerate sitemap.xml from data BEFORE vite copies client/public → dist.
+  const urlCount = await generateSitemap();
+  console.log(`sitemap.xml regenerated — ${urlCount} URLs`);
+
+  // Regenerate llms.txt from the canonical catalogs (the hand-written file
+  // had drifted to fictional stacks + dead hash-URLs — see docs/LAUNCH-AUDIT.md §5).
+  const llms = await generateLlms();
+  console.log(`llms.txt regenerated — ${llms.stacks} stacks · ${llms.solos} peptides`);
+
   console.log("building client...");
   await viteBuild();
+
+  // Snapshot rendered HTML for every sitemap route so crawlers/LLMs see real
+  // content, not an empty shell (LAUNCH-AUDIT §4.1). Must run AFTER the client
+  // build (it serves dist/public and drives it with headless chromium). A
+  // throw here fails the build — do not swallow.
+  const { pages } = await prerender();
+  console.log(`prerender complete — ${pages} static HTML snapshots`);
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));

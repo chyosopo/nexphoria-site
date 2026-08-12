@@ -1,8 +1,9 @@
 import { motion, useInView, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { SITE_STATS } from "@/data/siteStats";
 
 /* ─────────────────────────────────────────────────────────────
-   TrustStatsStrip — Maximus-style proof-strip with animated
+   TrustStatsStrip — reference-grade proof-strip with animated
    counters. Drops into Home, About, Physicians, Pharmacy.
    ───────────────────────────────────────────────────────────── */
 
@@ -26,11 +27,13 @@ export interface TrustStatsStripProps {
   variant?: "light" | "dark";
 }
 
+// {PLACEHOLDER} Default stats are illustrative until verified operating
+// metrics are supplied — replace before launch.
 const DEFAULT_STATS: TrustStat[] = [
   { number: 50000, suffix: "+", label: "Patients served", caption: "Across all 50 states" },
   { number: 7, label: "Peer-reviewed publications", caption: "By our medical team" },
   { number: 3, label: "Formulation patents", caption: "Filed in the United States" },
-  { number: 2000, suffix: "+", label: "Lab testing sites", caption: "Nationwide partnership network" },
+  { number: SITE_STATS.labSites.value, suffix: "+", label: "Lab testing sites", caption: "Nationwide partnership network" },
 ];
 
 export function TrustStatsStrip({
@@ -45,10 +48,10 @@ export function TrustStatsStrip({
     <section
       data-testid="trust-stats-strip"
       style={{
-        backgroundColor: isDark ? "var(--nx-cobalt)" : "#FFFFF3",
-        color: isDark ? "#FFFFF3" : "var(--nx-cobalt)",
-        borderTop: `1px solid ${isDark ? "rgba(255,255,243,0.08)" : "var(--nx-border)"}`,
-        borderBottom: `1px solid ${isDark ? "rgba(255,255,243,0.08)" : "var(--nx-border)"}`,
+        backgroundColor: isDark ? "var(--nx-cobalt)" : "var(--nx-ceramic)",
+        color: isDark ? "var(--nx-ceramic)" : "var(--nx-cobalt)",
+        borderTop: `1px solid ${isDark ? "rgba(246, 249, 252,0.08)" : "var(--nx-border)"}`,
+        borderBottom: `1px solid ${isDark ? "rgba(246, 249, 252,0.08)" : "var(--nx-border)"}`,
         paddingTop: 96,
         paddingBottom: 96,
       }}
@@ -64,11 +67,11 @@ export function TrustStatsStrip({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: 11,
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.22em",
+              letterSpacing: "var(--nx-ls-wide)",
               textTransform: "uppercase",
-              color: isDark ? "rgba(255,255,243,0.55)" : "var(--nx-text-muted)",
+              color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
               marginBottom: 20,
             }}
           >
@@ -79,7 +82,7 @@ export function TrustStatsStrip({
               fontFamily: "'General Sans', system-ui, sans-serif",
               
               fontWeight: 400,
-              fontSize: "clamp(2rem, 4vw, 3.5rem)",
+              fontSize: "var(--nx-t-h1)",
               lineHeight: 1.1,
               letterSpacing: "-0.015em",
               maxWidth: 720,
@@ -96,8 +99,8 @@ export function TrustStatsStrip({
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gap: 0,
-            borderTop: `1px solid ${isDark ? "rgba(255,255,243,0.12)" : "var(--nx-border)"}`,
-            borderBottom: `1px solid ${isDark ? "rgba(255,255,243,0.12)" : "var(--nx-border)"}`,
+            borderTop: `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
+            borderBottom: `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
           }}
         >
           {stats.map((stat, i) => (
@@ -157,7 +160,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
         textAlign: "center",
         borderRight: isLast
           ? "none"
-          : `1px solid ${isDark ? "rgba(255,255,243,0.12)" : "var(--nx-border)"}`,
+          : `1px solid ${isDark ? "rgba(246, 249, 252,0.12)" : "var(--nx-border)"}`,
       }}
       className="stat-cell"
     >
@@ -166,7 +169,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
           fontFamily: "'General Sans', system-ui, sans-serif",
           
           fontWeight: 400,
-          fontSize: "clamp(2.5rem, 5vw, 4.25rem)",
+          fontSize: "var(--nx-t-display)",
           lineHeight: 1,
           letterSpacing: "-0.02em",
           marginBottom: 16,
@@ -182,7 +185,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
               fontStyle: "normal",
               fontSize: "0.45em",
               fontWeight: 500,
-              color: "#C97A4A",
+              color: "var(--nx-rust)",
               marginLeft: 4,
               verticalAlign: "top",
               position: "relative",
@@ -196,11 +199,11 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
       <p
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: 11,
+          fontSize: "var(--nx-t-2xs)",
           fontWeight: 500,
-          letterSpacing: "0.16em",
+          letterSpacing: "var(--nx-ls-caps)",
           textTransform: "uppercase",
-          color: isDark ? "rgba(255,255,243,0.85)" : "var(--nx-cobalt)",
+          color: isDark ? "rgba(246, 249, 252,0.85)" : "var(--nx-cobalt)",
           marginBottom: 6,
         }}
       >
@@ -210,9 +213,9 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
         <p
           style={{
             fontFamily: "'General Sans', system-ui, sans-serif",
-            fontSize: 12,
+            fontSize: "var(--nx-t-xs)",
             lineHeight: 1.45,
-            color: isDark ? "rgba(255,255,243,0.55)" : "var(--nx-text-muted)",
+            color: isDark ? "rgba(246, 249, 252,0.55)" : "var(--nx-fg-muted)",
           }}
         >
           {stat.caption}

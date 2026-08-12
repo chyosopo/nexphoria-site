@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /#/cart
-Disallow: /#/checkout
-Disallow: /#/showcase
+Disallow: /cart
+Disallow: /checkout
+Disallow: /showcase
 
 # AI crawlers — explicitly welcomed
 User-agent: GPTBot
@@ -32,4 +32,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://nexphoria.pplx.app/sitemap.xml
+Sitemap: https://nexphoria.com/sitemap.xml

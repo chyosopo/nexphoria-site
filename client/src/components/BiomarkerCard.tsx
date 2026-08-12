@@ -1,4 +1,6 @@
+import { memo } from "react";
 import { ResponsiveContainer, LineChart, Line, YAxis, ReferenceArea } from "recharts";
+import { FONT } from "@/lib/typography";
 
 /* ─────────────────────────────────────────────────────────────
    BiomarkerCard — AGENT-3 · v11 data-credibility layer
@@ -14,7 +16,6 @@ import { ResponsiveContainer, LineChart, Line, YAxis, ReferenceArea } from "rech
    NO ITALICS. NO decoration.
    ───────────────────────────────────────────────────────────── */
 
-const FONT = "'General Sans', system-ui, sans-serif";
 const NUM: React.CSSProperties = {
   fontVariantNumeric: "tabular-nums lining-nums",
   fontFeatureSettings: "'tnum'",
@@ -44,10 +45,10 @@ const STATUS_META: Record<
   BiomarkerStatus,
   { label: string; color: string; bg: string }
 > = {
-  optimal: { label: "OPTIMAL", color: "#0A0A0A", bg: "var(--nx-acid)" },
-  "in-range": { label: "IN RANGE", color: "#4A4A4A", bg: "var(--nx-rock)" },
-  watch: { label: "WATCH", color: "#C2440E", bg: "#F6E2D6" },
-  low: { label: "BELOW TARGET", color: "#C2440E", bg: "#F6E2D6" },
+  optimal: { label: "OPTIMAL", color: "var(--nx-fg)", bg: "var(--nx-acid)" },
+  "in-range": { label: "IN RANGE", color: "var(--nx-fg-graphite)", bg: "var(--nx-rock)" },
+  watch: { label: "WATCH", color: "var(--nx-amber)", bg: "#D6E4F6" },
+  low: { label: "BELOW TARGET", color: "var(--nx-amber)", bg: "#D6E4F6" },
 };
 
 function deltaPct(history: number[]): number {
@@ -103,7 +104,7 @@ function RangeBar({ m }: { m: Biomarker }) {
         style={{
           position: "relative",
           height: 8,
-          borderRadius: 999,
+          borderRadius: "var(--nx-r-pill)",
           backgroundColor: "var(--nx-bg-cream)",
           border: "1px solid var(--nx-border)",
         }}
@@ -118,7 +119,7 @@ function RangeBar({ m }: { m: Biomarker }) {
             width: `${bandWidth}%`,
             backgroundColor: inRange ? "var(--nx-acid)" : "var(--nx-rock)",
             opacity: inRange ? 0.55 : 0.7,
-            borderRadius: 999,
+            borderRadius: "var(--nx-r-pill)",
           }}
         />
         {/* current value marker */}
@@ -130,9 +131,9 @@ function RangeBar({ m }: { m: Biomarker }) {
             transform: "translate(-50%, -50%)",
             width: 12,
             height: 12,
-            borderRadius: 999,
+            borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-cobalt)",
-            border: "2px solid #FFFFFF",
+            border: "2px solid var(--nx-ceramic)",
             boxShadow: "0 0 0 1px var(--nx-cobalt)",
           }}
         />
@@ -143,14 +144,14 @@ function RangeBar({ m }: { m: Biomarker }) {
           justifyContent: "space-between",
           marginTop: 6,
           fontFamily: FONT,
-          fontSize: 10,
+          fontSize: "var(--nx-t-xs)",
           color: "var(--nx-fg-muted)",
           letterSpacing: "0.03em",
           ...NUM,
         }}
       >
         <span>{m.refLow}</span>
-        <span style={{ letterSpacing: "0.1em", textTransform: "uppercase", fontSize: 9 }}>
+        <span style={{ letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", fontSize: "var(--nx-t-xs)" }}>
           Reference {m.refLabel}
         </span>
         <span>{m.refHigh}</span>
@@ -171,7 +172,7 @@ function Delta({ history }: { history: number[] }) {
     <span
       style={{
         fontFamily: FONT,
-        fontSize: 12,
+        fontSize: "var(--nx-t-xs)",
         fontWeight: 600,
         color,
         display: "inline-flex",
@@ -188,7 +189,7 @@ function Delta({ history }: { history: number[] }) {
 }
 
 /* ── The card ───────────────────────────────────────────────── */
-export function BiomarkerCard({ m }: { m: Biomarker }) {
+function BiomarkerCardInner({ m }: { m: Biomarker }) {
   const meta = STATUS_META[m.status];
   const testId = `biomarker-${(m.abbr || m.name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 
@@ -196,9 +197,9 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
     <div
       data-testid={testId}
       style={{
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "var(--nx-ceramic)",
         border: "1px solid var(--nx-border)",
-        borderRadius: 16,
+        borderRadius: "var(--nx-r-md)",
         padding: "18px 20px 16px",
         display: "flex",
         flexDirection: "column",
@@ -211,9 +212,9 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
           <p
             style={{
               fontFamily: FONT,
-              fontSize: 9,
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
-              letterSpacing: "0.12em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "var(--nx-fg-muted)",
               marginBottom: 3,
@@ -224,7 +225,7 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
           <h3
             style={{
               fontFamily: FONT,
-              fontSize: 15,
+              fontSize: "var(--nx-t-base)",
               fontWeight: 600,
               color: "var(--nx-fg)",
               lineHeight: 1.15,
@@ -233,7 +234,7 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
           >
             {m.name}
             {m.abbr && (
-              <span style={{ color: "var(--nx-fg-muted)", fontWeight: 500 }}> · {m.abbr}</span>
+              <span style={{ color: "var(--nx-fg-muted)", fontWeight: 500 }}><span aria-hidden="true"> · </span>{m.abbr}</span>
             )}
           </h3>
         </div>
@@ -242,14 +243,14 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
           style={{
             flexShrink: 0,
             fontFamily: FONT,
-            fontSize: 8.5,
+            fontSize: "var(--nx-t-xs)",
             fontWeight: 600,
-            letterSpacing: "0.1em",
+            letterSpacing: "var(--nx-ls-caps)",
             textTransform: "uppercase",
             color: meta.color,
             backgroundColor: meta.bg,
             padding: "4px 8px",
-            borderRadius: 999,
+            borderRadius: "var(--nx-r-pill)",
             whiteSpace: "nowrap",
           }}
         >
@@ -264,7 +265,7 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
             data-testid={`${testId}-value`}
             style={{
               fontFamily: FONT,
-              fontSize: 30,
+              fontSize: "var(--nx-t-h3)",
               fontWeight: 600,
               color: "var(--nx-fg)",
               lineHeight: 1,
@@ -277,7 +278,7 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
           <span
             style={{
               fontFamily: FONT,
-              fontSize: 12,
+              fontSize: "var(--nx-t-xs)",
               fontWeight: 500,
               color: "var(--nx-fg-muted)",
               ...NUM,
@@ -300,7 +301,7 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
         data-testid={`${testId}-interpretation`}
         style={{
           fontFamily: FONT,
-          fontSize: 12.5,
+          fontSize: "var(--nx-t-xs)",
           fontWeight: 400,
           color: "var(--nx-fg-graphite)",
           lineHeight: 1.5,
@@ -314,5 +315,8 @@ export function BiomarkerCard({ m }: { m: Biomarker }) {
     </div>
   );
 }
+
+/* m is a stable object from the BIOMARKERS catalog — shallow memo is safe. */
+export const BiomarkerCard = memo(BiomarkerCardInner);
 
 export default BiomarkerCard;

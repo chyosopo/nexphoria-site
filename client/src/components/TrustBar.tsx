@@ -13,7 +13,7 @@ const items = [
   { icon: FlaskConical, label: "US-compounded via 503A partners" },
   { icon: ShieldCheck, label: "HIPAA-compliant" },
   { icon: Package, label: "Discreet 3–5 day shipping" },
-  { icon: Star, label: "Money-back guarantee" },
+  { icon: Star, label: "Lab-monitored every 90 days" },
 ];
 
 export function TrustBar() {
@@ -27,16 +27,21 @@ export function TrustBar() {
       data-testid="trust-bar"
       aria-label="Trust signals"
     >
-      <div className="max-w-[1400px] mx-auto px-6 py-2 flex items-center justify-center flex-wrap gap-x-6 gap-y-1.5">
+      {/* One row always: horizontal scroll on phones instead of five stacked
+          rows of micro-text (~110px of chrome) under the nav. */}
+      <div
+        className="nx-trustbar-scroll max-w-[1400px] mx-auto px-6 py-2 flex items-center justify-start md:justify-center flex-nowrap md:flex-wrap overflow-x-auto gap-x-6 gap-y-1.5"
+        style={{ scrollbarWidth: "none" }}
+      >
         {items.map(({ icon: Icon, label }, i) => (
           <div
             key={label}
-            className="flex items-center gap-1.5"
+            className="flex items-center gap-1.5 flex-shrink-0 whitespace-nowrap"
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "10px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
-              letterSpacing: "0.12em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: "color-mix(in oklab, var(--nx-fg) 68%, transparent)",
               lineHeight: 1,
@@ -55,7 +60,7 @@ export function TrustBar() {
                 style={{
                   width: "3px",
                   height: "3px",
-                  borderRadius: "999px",
+                  borderRadius: "var(--nx-r-pill)",
                   background: "color-mix(in oklab, var(--nx-fg) 30%, transparent)",
                 }}
                 aria-hidden="true"

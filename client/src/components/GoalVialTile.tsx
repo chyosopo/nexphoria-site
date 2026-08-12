@@ -10,15 +10,19 @@
  * user commits to a consult. Debounced 200ms so cursor sweeps don't inflate.
  */
 
+import * as React from "react";
 import { useRef, useState, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
 import { VialArt, categoryToTone, type Tone } from "@/components/VialTile";
 import { track } from "@/lib/analytics";
+import { CATEGORY_FEELING } from "@/data/peptides";
 import { Check } from "lucide-react";
 
 export interface GoalVialTileProps {
   goal: string;                 // the raw GOALS[] string used as form.goal
   displayName: string;          // rendered on the tile — can be a shorter label
   oneLiner: string;             // front-face qualifier under the goal name
+  feeling?: string;             // the goal's feeling line (ROADMAP 4.2) — shown on the front face when present
   category: string;             // maps to Tone via categoryToTone()
   protocol: string;             // e.g. "Metabolic Protocol (GLP-1 Agonist)"
   peptides: string;             // e.g. "Tirzepatide · Retatrutide"
@@ -29,10 +33,30 @@ export interface GoalVialTileProps {
   testId?: string;
 }
 
+/**
+ * Goal glyphs are friendly aliases; VialArt/MolecularGlyph only draw the
+ * molecular set. Map every alias to a real molecular glyph so the vial art
+ * never renders empty.
+ */
+export type GoalGlyph = "flask" | "leaf" | "spark" | "crescent" | "bolt" | "drop";
+type MolecularGlyphId = React.ComponentProps<typeof VialArt>["glyph"];
+const GOAL_GLYPH_TO_MOLECULAR: Record<GoalGlyph, MolecularGlyphId> = {
+  drop: "fragment",
+  flask: "ring",
+  leaf: "branch",
+  spark: "secretagogue",
+  crescent: "ghrh",
+  bolt: "helix",
+};
+export function goalGlyphToMolecular(glyph: GoalGlyph): MolecularGlyphId {
+  return GOAL_GLYPH_TO_MOLECULAR[glyph];
+}
+
 export function GoalVialTile({
   goal,
   displayName,
   oneLiner,
+  feeling,
   category,
   protocol,
   peptides,
@@ -43,7 +67,9 @@ export function GoalVialTile({
   testId,
 }: GoalVialTileProps) {
   const tone: Tone = categoryToTone(category);
+  const prefersReducedMotion = useReducedMotion();
   const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);     // keyboard parity for hover
   const [tapped, setTapped] = useState(false);       // mobile fallback
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const trackedOnce = useRef(false);
@@ -53,29 +79,32 @@ export function GoalVialTile({
     if (hoverTimer.current) clearTimeout(hoverTimer.current);
   }, []);
 
-  const flipped = hovered || tapped || selected;
+  // Keyboard focus reveals the same protocol/peptides/range back-face that
+  // mouse hover does — sighted keyboard users get full parity, not just the
+  // front-face label. (Screen-reader users get the same detail via aria-label.)
+  const flipped = hovered || focused || tapped || selected;
 
   // Tint helpers — pull the tone palette from VialArt so tile + vial share a hue.
   // We keep VialArt as the source of truth; local defaults just mirror the visible cream/ink used inside VialArt so the surface reads as tinted at low density.
   const tintBg: Record<Tone, string> = {
-    cream:   "#F8F4E8",
-    sage:    "#EBF2E5",
-    rose:    "#F6E4E1",
-    sky:     "#DDE9F0",
-    dusk:    "#E4E1EC",
-    butter:  "#F8EED2",
-    cobalt:  "#D9E2F2",
-    mineral: "#E4E9EC",
+    cream:   "var(--nx-tint-cream-bg)",
+    sage:    "var(--nx-tint-sage-bg)",
+    rose:    "var(--nx-tint-rose-bg)",
+    sky:     "var(--nx-tint-sky-bg)",
+    dusk:    "var(--nx-tint-dusk-bg)",
+    butter:  "var(--nx-tint-butter-bg)",
+    cobalt:  "var(--nx-tint-cobalt-bg)",
+    mineral: "var(--nx-tint-mineral-bg)",
   };
   const tintInk: Record<Tone, string> = {
-    cream:   "#3E2A18",
-    sage:    "#2E4432",
-    rose:    "#5C2A2C",
-    sky:     "#1F3B52",
-    dusk:    "#3A2F4E",
-    butter:  "#4A3A16",
-    cobalt:  "#1E2A55",
-    mineral: "#2A3841",
+    cream:   "var(--nx-tint-cream-ink)",
+    sage:    "var(--nx-tint-sage-ink)",
+    rose:    "var(--nx-tint-rose-ink)",
+    sky:     "var(--nx-tint-sky-ink)",
+    dusk:    "var(--nx-tint-dusk-ink)",
+    butter:  "var(--nx-tint-butter-ink)",
+    cobalt:  "var(--nx-tint-cobalt-ink)",
+    mineral: "var(--nx-tint-mineral-ink)",
   };
 
   const bg = tintBg[tone];
@@ -128,14 +157,21 @@ export function GoalVialTile({
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       onTouchStart={handleTouchStart}
       data-testid={testId}
+      aria-pressed={selected}
+      // Carry the back-face preview (protocol + range) into the label so
+      // screen-reader users hear what mouse users see on hover — not just the
+      // front-face one-liner.
+      aria-label={`${displayName}. ${oneLiner} ${protocol}, typical range ${monthlyRange}.`}
       style={{
         position: "relative",
         display: "block",
         width: "100%",
         padding: 0,
-        borderRadius: "8px",
+        borderRadius: "var(--nx-r-sm)",
         border: selected
           ? "2px solid var(--nx-fg)"
           : hovered
@@ -144,9 +180,15 @@ export function GoalVialTile({
         backgroundColor: bg,
         cursor: "pointer",
         textAlign: "left",
-        transition: "border-color 0.18s ease, transform 0.25s ease, box-shadow 0.25s ease",
-        transform: hovered && !selected ? "translateY(-2px)" : "translateY(0)",
-        boxShadow: hovered && !selected ? "0 8px 24px rgba(10, 10, 10, 0.08)" : "none",
+        transition: "border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-base) var(--nx-ease), box-shadow var(--nx-dur-base) var(--nx-ease)",
+        // The hover lift + shadow bloom are the tile's only motion, and inline
+        // styles are missed by the per-component reduced-motion floors in
+        // index.css — so suppress both when the visitor opts out (the border
+        // and back-face still respond, just without the translate/shadow). This
+        // brings the goal grid in line with the rest of the intake, which
+        // guards every motion under prefers-reduced-motion.
+        transform: hovered && !selected && !prefersReducedMotion ? "translateY(-2px)" : "translateY(0)",
+        boxShadow: hovered && !selected && !prefersReducedMotion ? "0 8px 24px rgba(21, 24, 28, 0.08)" : "none",
         overflow: "hidden",
         minHeight: "168px",
       }}
@@ -160,7 +202,7 @@ export function GoalVialTile({
             right: "12px",
             width: "24px",
             height: "24px",
-            borderRadius: "50%",
+            borderRadius: "var(--nx-r-pill)",
             backgroundColor: "var(--nx-fg)",
             display: "flex",
             alignItems: "center",
@@ -181,21 +223,21 @@ export function GoalVialTile({
             gap: "0.875rem",
             alignItems: "center",
             opacity: flipped ? 0 : 1,
-            transition: "opacity 0.22s ease",
+            transition: "opacity var(--nx-dur-2) var(--nx-ease)",
             position: flipped ? "absolute" : "static",
             inset: flipped ? "1rem 1.125rem" : "auto",
           }}
         >
           <div style={{ flexShrink: 0 }}>
-            <VialArt tone={tone} glyph={glyph} size={78} />
+            <VialArt tone={tone} glyph={goalGlyphToMolecular(glyph)} size={78} />
           </div>
           <div style={{ minWidth: 0 }}>
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "9px",
+                fontSize: "var(--nx-t-2xs)",
                 fontWeight: 700,
-                letterSpacing: "0.14em",
+                letterSpacing: "var(--nx-ls-caps)",
                 textTransform: "uppercase",
                 color: ink,
                 opacity: 0.6,
@@ -207,7 +249,7 @@ export function GoalVialTile({
             <p
               style={{
                 fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "17px",
+                fontSize: "var(--nx-t-body)",
                 fontWeight: 600,
                 lineHeight: 1.2,
                 color: ink,
@@ -218,15 +260,16 @@ export function GoalVialTile({
             </p>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
-                fontSize: "12.5px",
+                fontFamily: feeling ? "'Fraunces', Georgia, serif" : "'General Sans', system-ui, sans-serif",
+                fontStyle: feeling ? "italic" : undefined,
+                fontSize: feeling ? "13.5px" : "12.5px",
                 lineHeight: 1.4,
                 color: ink,
-                opacity: 0.72,
+                opacity: 0.78,
                 margin: 0,
               }}
             >
-              {oneLiner}
+              {feeling ?? oneLiner}
             </p>
           </div>
         </div>
@@ -235,7 +278,7 @@ export function GoalVialTile({
         <div
           style={{
             opacity: flipped ? 1 : 0,
-            transition: "opacity 0.22s ease 0.06s",
+            transition: "opacity var(--nx-dur-2) var(--nx-ease) var(--nx-dur-1)",
             pointerEvents: flipped ? "auto" : "none",
             position: flipped ? "static" : "absolute",
             inset: flipped ? "auto" : "1rem 1.125rem",
@@ -246,7 +289,7 @@ export function GoalVialTile({
               fontFamily: "'General Sans', system-ui, sans-serif",
               fontSize: "8.5px",
               fontWeight: 700,
-              letterSpacing: "0.14em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: ink,
               opacity: 0.55,
@@ -258,7 +301,7 @@ export function GoalVialTile({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "14px",
+              fontSize: "var(--nx-t-sm)",
               fontWeight: 600,
               lineHeight: 1.25,
               color: ink,
@@ -276,9 +319,9 @@ export function GoalVialTile({
           <p
             style={{
               fontFamily: "'General Sans', system-ui, sans-serif",
-              fontSize: "10px",
+              fontSize: "var(--nx-t-2xs)",
               fontWeight: 700,
-              letterSpacing: "0.14em",
+              letterSpacing: "var(--nx-ls-caps)",
               textTransform: "uppercase",
               color: ink,
               margin: 0,
@@ -301,9 +344,9 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "9px",
+          fontSize: "var(--nx-t-2xs)",
           fontWeight: 700,
-          letterSpacing: "0.12em",
+          letterSpacing: "var(--nx-ls-caps)",
           textTransform: "uppercase",
           color: ink,
           opacity: 0.55,
@@ -315,7 +358,7 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
       <span
         style={{
           fontFamily: "'General Sans', system-ui, sans-serif",
-          fontSize: "12px",
+          fontSize: "var(--nx-t-xs)",
           fontWeight: 500,
           color: ink,
           textAlign: "right",
@@ -337,6 +380,8 @@ export const GOAL_TILE_CONFIG: Record<
   {
     displayName: string;
     oneLiner: string;
+    /** the goal's feeling line (ROADMAP 4.2) — reuses CATEGORY_FEELING where the goal maps 1:1 */
+    feeling: string;
     category: string;
     protocol: string;
     peptides: string;
@@ -345,7 +390,8 @@ export const GOAL_TILE_CONFIG: Record<
   }
 > = {
   "Metabolic health & body composition": {
-    displayName: "Metabolic & body comp",
+    displayName: "Metabolic & body composition",
+    feeling: CATEGORY_FEELING.metabolic,
     oneLiner: "GLP-1 agonists for fat loss and glycemic control.",
     category: "metabolic",
     protocol: "Metabolic Protocol (GLP-1 Agonist)",
@@ -355,6 +401,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Strength & performance": {
     displayName: "Strength & performance",
+    feeling: CATEGORY_FEELING.growth,
     oneLiner: "Growth hormone pulse for lean mass and recovery.",
     category: "growth",
     protocol: "Performance Protocol (CJC-1295 + Ipamorelin)",
@@ -364,6 +411,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Longevity & healthy aging": {
     displayName: "Longevity & aging",
+    feeling: CATEGORY_FEELING.longevity,
     oneLiner: "NAD+ restoration and senescence signaling.",
     category: "longevity",
     protocol: "Longevity Protocol (NAD+ / Epitalon)",
@@ -373,6 +421,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Cognitive function": {
     displayName: "Cognitive function",
+    feeling: CATEGORY_FEELING.cognition,
     oneLiner: "Nootropic peptides for focus, memory, and mood.",
     category: "cognition",
     protocol: "Cognitive Protocol (Selank / Semax)",
@@ -382,6 +431,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Skin & recovery": {
     displayName: "Skin & recovery",
+    feeling: "Repair, inside and out.",
     oneLiner: "Tissue repair and dermal remodeling stack.",
     category: "recovery",
     protocol: "Repair Protocol (BPC-157 / GHK-Cu)",
@@ -391,6 +441,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Hormonal optimization": {
     displayName: "Hormonal optimization",
+    feeling: "Your own axis, restarted.",
     oneLiner: "HPG-axis restart — endogenous testosterone preservation.",
     category: "growth",
     protocol: "HPG-Axis Protocol (Enclomiphene)",
@@ -400,6 +451,7 @@ export const GOAL_TILE_CONFIG: Record<
   },
   "Other / not sure yet": {
     displayName: "Not sure yet",
+    feeling: "Start where you are.",
     oneLiner: "A physician will help you triage after labs return.",
     category: "cognition",
     protocol: "Physician-Guided Match",
