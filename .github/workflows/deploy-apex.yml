@@ -56,6 +56,12 @@ jobs:
       - name: "Gate — LegitScript readiness"
         run: npm run audit:legitscript
 
+      # Catches the failure mode a catalog change actually causes: not a crash,
+      # but correct-looking code rendering the wrong thing. Reads dist/, so it
+      # runs after the build.
+      - name: "Gate — catalog assumptions"
+        run: npm run audit:catalog
+
       - name: Prepare apex artifact (no 404.html on the apex)
         run: rm -f dist/public/404.html
 
