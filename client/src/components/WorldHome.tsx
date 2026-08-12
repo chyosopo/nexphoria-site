@@ -18,6 +18,7 @@ import { F, S } from "@/lib/typography";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { BigFigureRow } from "@/components/DataPlate";
 import { ProtocolPipeline } from "@/components/ProtocolPipeline";
+import { GoalTriage } from "@/components/GoalTriage";
 
 /* The four credentials that are TRUE for Nexphoria — no invented CLIA/FDA/CAP. */
 const TRUST_BADGES = [
@@ -232,6 +233,13 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           </div>
         </div>
       </section>
+
+      {/* ── GOAL TRIAGE — outcome before molecule. The legacy goal tiles above
+          still deep-link the catalog by category; this states the two goals the
+          launch catalog can actually answer and routes each to the assessment.
+          Sits before the pipeline so the order reads: what you want → how it
+          works → who does it. ── */}
+      <GoalTriage world={world} background="var(--nx-bg-cream)" testid={`${world}-goal-triage`} />
 
       {/* ── PROTOCOL PIPELINE (FLAGSHIP-REBUILD P1) — the medical engine as
           a numbered 01→05 method, Seed grammar. Answers "how does this
