@@ -19,7 +19,16 @@ type Pick = "protocol" | "compound" | "unsure" | null;
 export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world: "men" | "women" }) {
   const routes = selectorRoutes(goal, world);
   const [pick, setPick] = useState<Pick>(null);
-  if (routes.length < 2) return null; // no real choice to offer
+  /* Was `< 2 return null` — reasonable for a COMPARISON surface, but the
+     launch scope left growth and sexual-health with exactly one route each, so
+     the whole section vanished and took the only price and product CTA on those
+     goal pages with it. Two of the three live goal pages were dead ends in a
+     goal-first IA. A single route still deserves presenting — it just isn't a
+     comparison, so the chips and the "N routes" framing are suppressed below
+     rather than the section being dropped. Zero routes still renders nothing,
+     which is correct: there is genuinely nothing to offer. */
+  if (routes.length === 0) return null;
+  const isComparison = routes.length >= 2;
 
   const hasProtocol = routes.some((r) => r.kind === "protocol");
   const matchSlug =
@@ -41,16 +50,18 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
   return (
     <section id="routes" className="nx-section" aria-labelledby={`selector-title-${goal}`} data-testid={`selector-${goal}`}>
       <div className="nx-container">
-        <p className="nx-eyebrow">Choose your route</p>
+        <p className="nx-eyebrow">{isComparison ? "Choose your route" : "The route to this goal"}</p>
         <h2 id={`selector-title-${goal}`} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "22ch" }}>
-          {routes.length} routes to the same goal.
+          {isComparison ? `${routes.length} routes to the same goal.` : "One route, stated plainly."}
         </h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "0.8rem" }}>
-          Pick the shape that fits how you want to work. Whichever you choose, a
-          physician confirms it against your bloodwork — and can decline.
+          {isComparison
+            ? "Pick the shape that fits how you want to work. Whichever you choose, a physician confirms it against your bloodwork — and can decline."
+            : "This is what the formulary currently offers for this goal. A physician confirms it against your bloodwork — and can decline."}
         </p>
 
         {/* ── the question — on-page, low-commitment (Maximus §3) ── */}
+        {isComparison && (
         <div role="group" aria-label="Which sounds like you?" style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "1.4rem" }}>
           <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", alignSelf: "center", marginRight: 4 }}>
             Which sounds like you?
@@ -68,6 +79,7 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
             </button>
           ))}
         </div>
+        )}
 
         {/* ── the routes — uniform comparison skeleton ── */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 270px), 1fr))", gap: 14, marginTop: "1.6rem", alignItems: "stretch" }}>
