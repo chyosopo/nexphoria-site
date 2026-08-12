@@ -67,6 +67,7 @@ export function GoalVialTile({
 }: GoalVialTileProps) {
   const tone: Tone = categoryToTone(category);
   const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);     // keyboard parity for hover
   const [tapped, setTapped] = useState(false);       // mobile fallback
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const trackedOnce = useRef(false);
@@ -76,7 +77,10 @@ export function GoalVialTile({
     if (hoverTimer.current) clearTimeout(hoverTimer.current);
   }, []);
 
-  const flipped = hovered || tapped || selected;
+  // Keyboard focus reveals the same protocol/peptides/range back-face that
+  // mouse hover does — sighted keyboard users get full parity, not just the
+  // front-face label. (Screen-reader users get the same detail via aria-label.)
+  const flipped = hovered || focused || tapped || selected;
 
   // Tint helpers — pull the tone palette from VialArt so tile + vial share a hue.
   // We keep VialArt as the source of truth; local defaults just mirror the visible cream/ink used inside VialArt so the surface reads as tinted at low density.
@@ -151,10 +155,15 @@ export function GoalVialTile({
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       onTouchStart={handleTouchStart}
       data-testid={testId}
       aria-pressed={selected}
-      aria-label={`${displayName} — ${oneLiner}`}
+      // Carry the back-face preview (protocol + range) into the label so
+      // screen-reader users hear what mouse users see on hover — not just the
+      // front-face one-liner.
+      aria-label={`${displayName}. ${oneLiner} ${protocol}, typical range ${monthlyRange}.`}
       style={{
         position: "relative",
         display: "block",
