@@ -274,8 +274,26 @@ export default function BuildYourStack() {
     setStep(2);
   }
 
+  /* Molecules that must never be selected together. Two GLP-1 receptor
+     agonists is the case that matters today: after the launch scope, the
+     builder's three selectable compounds include BOTH semaglutide and
+     tirzepatide, so a visitor could assemble dual GLP-1 agonist therapy —
+     which no physician would prescribe. The physician gate means such a cart
+     could never actually ship, but a LegitScript-facing surface should not
+     PRESENT the combination as buildable in the first place. Selecting one
+     now deselects the other rather than silently allowing the pair. */
+  const MUTUALLY_EXCLUSIVE: string[][] = [["semaglutide", "tirzepatide"]];
+
+  function conflictsWith(slug: string): string[] {
+    return MUTUALLY_EXCLUSIVE.flatMap((g) => (g.includes(slug) ? g.filter((x) => x !== slug) : []));
+  }
+
   function togglePeptide(slug: string) {
-    setPicked((prev) => (prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]));
+    setPicked((prev) => {
+      if (prev.includes(slug)) return prev.filter((s) => s !== slug);
+      const blocked = conflictsWith(slug);
+      return [...prev.filter((s) => !blocked.includes(s)), slug];
+    });
   }
 
   function addBundleToCart() {

@@ -87,7 +87,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "All peptides", href: pharmacyBase },
         { label: "Doctor-built stacks", href: "/stacks" },
-        { label: "Build a stack", href: "/stacks/build" },
         { label: "Bloodwork", href: "/bloodwork" },
         { label: "Custom protocol", href: assessmentBase },
         { label: "Give as a gift", href: "/gift" },
