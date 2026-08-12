@@ -271,9 +271,9 @@ export default function Category() {
       <ProtocolSelector goal={slug} world={world} />
 
       {/* ── Three steps ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="How it works">
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-labelledby="category-how-title">
         <div className="nx-container">
-          <p className="nx-eyebrow">How it works</p>
+          <h2 id="category-how-title" className="nx-eyebrow">How it works</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map(([t, d], i) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.9rem 1.7rem" }}>
@@ -312,9 +312,9 @@ export default function Category() {
       </section>
 
       {/* ── Treatment options (real data) ── */}
-      <section className="nx-section" aria-label="Peptides in this area">
+      <section className="nx-section" aria-labelledby="category-peptides-title">
         <div className="nx-container">
-          <p className="nx-eyebrow">Peptides in this area</p>
+          <h2 id="category-peptides-title" className="nx-eyebrow">Peptides in this area</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p, i) => (
               <Reveal key={p.slug} delay={i * 45}>
@@ -344,9 +344,9 @@ export default function Category() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-label="Frequently asked questions">
+      <section className="nx-section" style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)" }} aria-labelledby="category-faq-title">
         <div className="nx-container" style={{ maxWidth: 860 }}>
-          <p className="nx-eyebrow">Questions, answered</p>
+          <h2 id="category-faq-title" className="nx-eyebrow">Questions, answered</h2>
           <Reveal>
           <div className="mt-6">
             {cfg.faqs.map((f, i) => (
