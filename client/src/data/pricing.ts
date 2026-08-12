@@ -55,6 +55,7 @@ export const pricing: Record<string, PeptidePricing> = {
   "nad-plus": { slug: "nad-plus", monthlyPrice: 199, vialSpec: "500 mg vial · 100–250 mg SC", vialDuration: "~4 weeks", requiresOversight: ["general"], badge: "Most popular" },
   "mots-c": { slug: "mots-c", monthlyPrice: 269, vialSpec: "10 mg vial · 5–10 mg/week SC", vialDuration: "~4 weeks", requiresOversight: ["metabolic"] },
   "dsip": { slug: "dsip", monthlyPrice: 149, vialSpec: "5 mg vial · 100–300 mcg SC", vialDuration: "~4 weeks", requiresOversight: ["general"] },
+  "semaglutide": { slug: "semaglutide", monthlyPrice: 299, vialSpec: "vial · weekly titration, with glycine + B12", vialDuration: "~4 weeks", requiresOversight: ["metabolic", "cardiac"], badge: "GLP-1" },
   "tirzepatide": { slug: "tirzepatide", monthlyPrice: 399, vialSpec: "10 mg/40 mg vial · weekly titration", vialDuration: "~4 weeks", requiresOversight: ["metabolic", "cardiac"], badge: "GLP-1" },
   "retatrutide": { slug: "retatrutide", monthlyPrice: 489, vialSpec: "12 mg vial · weekly titration", vialDuration: "~4 weeks", requiresOversight: ["metabolic", "cardiac"], badge: "New" },
   "aod-9604": { slug: "aod-9604", monthlyPrice: 179, vialSpec: "5 mg vial · 300 mcg/day SC", vialDuration: "~4 weeks", requiresOversight: ["general"] },

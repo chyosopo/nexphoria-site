@@ -4,7 +4,9 @@
    Voice = ours (institutional). Data = doc's.
    Pricing tiers are [1-month, 3-month/mo, 12-month/mo] per doc.
    "priceAtConsult" solos are held off the shelf (doc TBD).
-   GLP-1 solos (semaglutide, tirzepatide) are GATED, not sold.
+   GLP-1 solos are DIRECTLY SELLABLE as of 2026-08-12 (Chiya) — priced and
+   ungated. State exclusions remain: gating and legal availability are
+   separate things, and BuyBox renders the exclusions on every path.
    ══════════════════════════════════════════════════════════════ */
 
 export type SoloCategory =
@@ -260,7 +262,8 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Appetite signaling changes." }, { wk: "Wk 4", effect: "Physician reviews response." }, { wk: "Wk 12", effect: "Reassessed against bloodwork." }],
     panel: "Full", panelNote: "Full panel plus insulin / HOMA-IR.",
     contraindications: ["Personal/family history of medullary thyroid carcinoma", "MEN 2", "Pregnancy", "Pancreatitis history"],
-    gated: true, stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
+    stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
+    pricing: { m1: 299, m3: 254, m12: 209 },
   },
   {
     slug: "tirzepatide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tirzepatide", category: "Metabolic",
@@ -270,7 +273,8 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Appetite signaling changes." }, { wk: "Wk 4", effect: "Physician reviews response." }, { wk: "Wk 12", effect: "Reassessed against bloodwork." }],
     panel: "Full", panelNote: "Full panel plus insulin / HOMA-IR.",
     contraindications: ["Personal/family history of medullary thyroid carcinoma", "MEN 2", "Pregnancy", "Pancreatitis history"],
-    gated: true, stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
+    stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
+    pricing: { m1: 399, m3: 339, m12: 279 },
   },
 
   /* ── SLEEP + SEXUAL HEALTH ── */

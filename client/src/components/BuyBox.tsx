@@ -99,6 +99,19 @@ export function BuyBox(props: BuyBoxProps) {
           {name}
         </p>
 
+        {/* State exclusions are a LEGAL constraint, not a property of gating.
+            They previously rendered only inside the gated branch, so ungating a
+            product silently dropped the notice. Hoisted here so it shows on
+            every path a restricted product can take. */}
+        {!gated && gatedStates && gatedStates.length > 0 && (
+          <p
+            data-testid="buybox-state-exclusions"
+            style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.7rem" }}
+          >
+            Not available in {gatedStates.join(", ")}.
+          </p>
+        )}
+
         {gated ? (
           <>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "0.9rem" }}>

@@ -20,7 +20,6 @@
 - [Ipamorelin](https://nexphoria.com/peptides/ipamorelin): Pulse frequency, without the cortisol.
 - [CJC-1295 (no-DAC)](https://nexphoria.com/peptides/cjc-1295): GH pulse amplitude, raised.
 - [Ipamorelin / CJC-1295 Blend](https://nexphoria.com/peptides/ipa-cjc): Amplitude and frequency, in one vial.
-- [Tesamorelin](https://nexphoria.com/peptides/tesamorelin): Visceral fat, addressed on the axis.
 - [Selank](https://nexphoria.com/peptides/selank): A steadier mood floor, without sedation.
 - [Semax](https://nexphoria.com/peptides/semax): Focus and executive function, supported.
 - [Cerebrolysin](https://nexphoria.com/peptides/cerebrolysin): Neurotrophic support, as a defined course.
@@ -32,10 +31,7 @@
 - [Epitalon](https://nexphoria.com/peptides/epitalon): The cellular clock, addressed in pulses.
 - [NAD+](https://nexphoria.com/peptides/nad-plus): Cellular energy, restored.
 - [MOTS-c](https://nexphoria.com/peptides/mots-c): Metabolic signaling, exercise-mimetic.
-- [Semaglutide](https://nexphoria.com/peptides/semaglutide): Appetite signaling, physician-titrated.
-- [Tirzepatide](https://nexphoria.com/peptides/tirzepatide): A metabolic reset on two receptors.
 - [DSIP](https://nexphoria.com/peptides/dsip): Deep sleep — onset and architecture.
-- [PT-141](https://nexphoria.com/peptides/pt-141): Arousal, addressed centrally.
 
 ## Key pages
 - [Pricing](https://nexphoria.com/pricing): one complete monthly figure — physician, labs, medication, shipping included; cadence pricing at 1/3/12 months.
