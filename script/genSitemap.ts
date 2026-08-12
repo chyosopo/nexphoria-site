@@ -9,20 +9,54 @@ import { readFile, writeFile } from "node:fs/promises";
 const BASE = "https://nexphoria.com";
 
 /** Pull the string after `slug: "` from a data source file. */
-async function slugsFrom(path: string): Promise<string[]> {
+/* Reads the launch-scope Set literal (LAUNCH_SLUGS / LAUNCH_STACK_SLUGS) out of
+   a catalog source. Returns null when the file declares no such set, so
+   catalogs without a scope filter (journal) keep their previous behaviour. */
+async function launchScopeFrom(src: string, name: string): Promise<Set<string> | null> {
+  const m = new RegExp(`${name}\\s*=\\s*new Set\\(\\[([^\\]]*)\\]`, "s").exec(src);
+  if (!m) return null;
+  return new Set([...m[1].matchAll(/"([a-z0-9-]+)"/g)].map((x) => x[1]));
+}
+
+/* Slugs a catalog actually PUBLISHES.
+
+   This regexed every `slug:` in the source and returned them all, which was
+   correct only while the catalogs listed exactly what was for sale. Under
+   retire-don't-delete the retired entries are still in the file on purpose, so
+   the raw scan re-advertised every one of them: the sitemap listed
+   /peptides/bpc-157 and /stacks/wolverine, and prerender.ts — which shares
+   collectRoutes() — kept emitting 116 snapshots as if nothing had been cut.
+   Both point search engines and reviewers at molecules we do not sell.
+
+   So the scan is now intersected with the file's own launch-scope Set. Reading
+   it from source rather than importing keeps this script free of the "@/" alias
+   resolution the rest of the file deliberately avoids. */
+async function slugsFrom(path: string, scopeName?: string): Promise<string[]> {
   const src = await readFile(path, "utf-8");
   const out: string[] = [];
   const re = /\bslug:\s*"([a-z0-9-]+)"/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(src)) !== null) out.push(m[1]);
-  return [...new Set(out)];
+  const all = [...new Set(out)];
+  if (!scopeName) return all;
+  const scope = await launchScopeFrom(src, scopeName);
+  return scope ? all.filter((s) => scope.has(s)) : all;
 }
 
-/* The 8 goal categories — the PeptideCategory union in data/peptides.ts. */
-const GOAL_CATEGORIES = [
-  "recovery", "skin", "cognition", "sleep",
-  "growth", "longevity", "metabolic", "sexual-health",
-];
+/* Goal categories that still have a sellable molecule behind them.
+
+   The full PeptideCategory union is eight; under the launch scope only three
+   are answerable — metabolic (semaglutide, tirzepatide), growth (tesamorelin)
+   and sexual-health (PT-141). Listing the other five put /goals/recovery,
+   /goals/skin, /goals/cognition, /goals/sleep and /goals/longevity in the
+   sitemap and prerendered them, i.e. asked search engines to index pages that
+   answer a goal we cannot currently serve.
+
+   Kept as an explicit list rather than derived: deriving means mapping
+   SoloCategory -> PeptideCategory, and that mapping already lives in SoloPDP;
+   duplicating it here would be a second source of truth for the same fact.
+   Update this alongside LAUNCH_SLUGS — audit:data's census is the check. */
+const GOAL_CATEGORIES = ["growth", "metabolic", "sexual-health"];
 
 /* journal.ts also declares JournalCategory slugs (foundations, protocols, …)
    with the same `slug:` shape as articles. These are NOT article routes —
@@ -56,8 +90,8 @@ const STATIC_ROUTES = [
  */
 export async function collectRoutes(): Promise<string[]> {
   const root = process.cwd();
-  const solos = await slugsFrom(`${root}/client/src/data/soloCatalog.ts`);
-  const stacks = await slugsFrom(`${root}/client/src/data/stacksCatalog.ts`);
+  const solos = await slugsFrom(`${root}/client/src/data/soloCatalog.ts`, "LAUNCH_SLUGS");
+  const stacks = await slugsFrom(`${root}/client/src/data/stacksCatalog.ts`, "LAUNCH_STACK_SLUGS");
   const articles = (await slugsFrom(`${root}/client/src/data/journal.ts`))
     .filter((s) => !JOURNAL_CATEGORY_SLUGS.has(s));
 

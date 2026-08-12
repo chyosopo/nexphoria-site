@@ -1,5 +1,7 @@
 /* JOB: compare the seven flagship protocols and pick one. */
-/* ═══ PROTOCOLS INDEX — P5 · the seven flagship stacks ═══ */
+/* ═══ PROTOCOLS INDEX — the flagship stacks still on the shelf ═══
+   Reads FLAGSHIP_STACKS, which the launch scope filters (stacksCatalog
+   LAUNCH_STACK_SLUGS). It was 'the seven'; six are retired. ═══ */
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
