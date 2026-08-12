@@ -619,9 +619,11 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
         style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}
       >
         <motion.article
-          initial={{ opacity: 0, y: 16 }}
+          // Entrance is a JS (framer) animation, so it bypasses the global CSS
+          // reduced-motion floor — guard it explicitly like every other reveal.
+          initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
+          transition={reduce ? { duration: 0 } : { delay: 0.04 + index * 0.05, duration: 0.4, ease: "easeOut" }}
           whileHover={reduce ? undefined : { y: -4 }}
           style={{
             backgroundColor: "var(--nx-ceramic)",

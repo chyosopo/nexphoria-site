@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { anchor } from "@/lib/anchors";
 import { Link, useRoute, useLocation } from "wouter";
-import { motion } from "framer-motion";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { HeroTile, MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
