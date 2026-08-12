@@ -1,5 +1,6 @@
 /* JOB: capture the order for physician review; zero distractions. */
 import { track } from "@/lib/analytics";
+import { CONDITIONAL } from "@/components/RegulatoryDisclosure";
 import { useState } from "react";
 import { Link } from "wouter";
 import { useForm } from "react-hook-form";
@@ -496,7 +497,7 @@ export default function Checkout() {
                         </div>
                       ))}
                       <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
-                        <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
+                        <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{CONDITIONAL.totalLabel} · per month</span>
                         <span className="text-lg" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
                       </div>
                     </div>
@@ -608,7 +609,7 @@ export default function Checkout() {
               ) : null}
 
               <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Total · per month</span>
+                <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{CONDITIONAL.totalLabel} · per month</span>
                 <span className="text-2xl" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }} data-testid="text-checkout-total">
                   {formatUSD(subtotal)}
                 </span>
@@ -619,7 +620,7 @@ export default function Checkout() {
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
                 <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · encrypted in transit" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
-                <TrustRow icon={<Check size={14} />} text="The consultation is complimentary. You pay only if prescribed." />
+                <TrustRow icon={<Check size={14} />} text={`The consultation is complimentary. ${CONDITIONAL.chargeCondition}`} />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 

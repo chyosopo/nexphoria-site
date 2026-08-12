@@ -11,7 +11,7 @@ import { track } from "@/lib/analytics";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { useCart } from "@/contexts/CartProvider";
-import { billingNote, type CadenceKey } from "@/data/pricing";
+import { billingNote, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 
 export interface BuyTier {
   key: string;
@@ -179,9 +179,33 @@ export function BuyBox(props: BuyBoxProps) {
                       </span>
                       <span style={{ display: "block", fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: 2 }}>{t.sub}</span>
                     </span>
-                    <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", whiteSpace: "nowrap" }}>
-                      {usd(t.amount)}
-                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, color: "var(--nx-fg-muted)" }}>{t.per}</span>
+                    <span style={{ textAlign: "right", whiteSpace: "nowrap" }}>
+                      <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>
+                        {usd(t.amount)}
+                        <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, color: "var(--nx-fg-muted)" }}>{t.per}</span>
+                      </span>
+                      {/* The COMMITMENT TOTAL, on every tier — not only the
+                          selected one, and not only below the CTA.
+
+                          The reference site shows a per-month figure on each
+                          term, pre-selects the longest, and never surfaces what
+                          the term actually costs (IVYRX-STUDY-VISUAL.md §V3.4):
+                          $97/mo reads cheapest while committing the patient to
+                          $1,164. We compete by being legible instead — a term
+                          is only comparable against another term on complete
+                          figures, and the house line is "The figure is
+                          complete." Suppressed where months <= 1, where a total
+                          would just restate the monthly price. */}
+                      {(() => {
+                        const cad = TIER_TO_CADENCE[t.key];
+                        const months = cad ? CADENCE_DISCOUNTS[cad].months : 1;
+                        if (t.per !== "/mo" || months <= 1) return null;
+                        return (
+                          <span style={{ display: "block", fontFamily: F, fontSize: "var(--nx-t-2xs)", color: "var(--nx-fg-muted)", marginTop: 2 }}>
+                            {usd(t.amount * months)} total
+                          </span>
+                        );
+                      })()}
                     </span>
                   </button>
                 );

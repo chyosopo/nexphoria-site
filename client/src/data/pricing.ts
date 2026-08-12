@@ -134,7 +134,9 @@ export function billingNote(cadence: CadenceKey, perMonth: number): string {
 
 /* Lowest shelf-priced single-peptide monthly (1-mo cadence). Single source for
    the "single peptides from $X/mo" copy that recurs across the site, so the
-   headline "from" price can never drift from the catalog. Currently bpc-157 @ $149. */
+   headline "from" price can never drift from the catalog. (It named
+   bpc-157 @ $149 until the launch scope retired it — the value is derived,
+   so it followed the catalog; only this comment had to be corrected.) */
 export const SOLO_FROM_PRICE: number = Math.min(
   ...SOLO_CATALOG.filter((s) => s.pricing).map((s) => s.pricing!.m1),
 );
