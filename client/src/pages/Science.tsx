@@ -728,7 +728,7 @@ export default function Science() {
                   Where each family stands.
                 </h2>
                 <div role="region" aria-label="Evidence by peptide family, scrollable table" tabIndex={0} style={{ width: "100%", overflowX: "auto" }}>
-                  <table className="border-separate border-spacing-0" style={{ width: "100%", minWidth: 820, background: "var(--nx-bg)", border: "1px solid var(--nx-border)" }} data-testid="table-evidence">
+                  <table className="border-separate border-spacing-0" aria-label="Evidence tier by peptide family" style={{ width: "100%", minWidth: 820, background: "var(--nx-bg)", border: "1px solid var(--nx-border)" }} data-testid="table-evidence">
                     <thead>
                       <tr>
                         {["Peptide family", "Mechanism", "Indication", "Evidence tier", "Studies", "FDA status"].map((h) => (
@@ -769,7 +769,7 @@ export default function Science() {
                   Every family carries a specific risk profile. Your physician screens for contraindications before prescribing and monitors the listed markers on each 90-day draw.
                 </p>
                 <div role="region" aria-label="Safety profile by peptide family, scrollable table" tabIndex={0} style={{ width: "100%", overflowX: "auto" }}>
-                  <table className="border-separate border-spacing-0" style={{ width: "100%", minWidth: 900, background: "var(--nx-bg)", border: "1px solid var(--nx-border)", fontVariantNumeric: "tabular-nums lining-nums", fontFeatureSettings: "'tnum'" }} data-testid="table-safety">
+                  <table className="border-separate border-spacing-0" aria-label="Safety profile by peptide family" style={{ width: "100%", minWidth: 900, background: "var(--nx-bg)", border: "1px solid var(--nx-border)", fontVariantNumeric: "tabular-nums lining-nums", fontFeatureSettings: "'tnum'" }} data-testid="table-safety">
                     <thead>
                       <tr>
                         {["Peptide family", "Common effects", "Key contraindications", "Monitored markers", "Risk"].map((h) => (
@@ -808,9 +808,9 @@ export default function Science() {
                 <h2 id="sci-references-title" style={{ fontFamily: F, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "2rem" }}>
                   The primary literature.
                 </h2>
-                <div>
+                <ol style={{ listStyle: "none", margin: 0, padding: 0 }}>
                   {references.map((ref, i) => (
-                    <div key={ref.num} style={{ borderBottom: "1px solid var(--nx-border)" }}>
+                    <li key={ref.num} style={{ borderBottom: "1px solid var(--nx-border)" }}>
                       <button
                         onClick={() => setOpenRef(openRef === i ? null : i)}
                         aria-expanded={openRef === i}
@@ -830,9 +830,9 @@ export default function Science() {
                           {ref.abstract}
                         </p>
                       )}
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </Reveal>
             </section>
 
