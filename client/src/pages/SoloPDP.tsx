@@ -22,6 +22,7 @@ import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
+import { EvidenceStrip } from "@/components/EvidenceStrip";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import type { PeptideCategory } from "@/data/peptides";
@@ -334,6 +335,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your physician prescribes and titrates it against your bloodwork.</p>
               </div>
             )}
+
+            <EvidenceStrip slug={solo.slug} name={solo.name} />
 
             <PhysicianProofBand name={solo.name} />
 

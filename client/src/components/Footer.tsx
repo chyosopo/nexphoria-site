@@ -100,7 +100,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "About", href: "/about" },
         { label: "Physicians", href: "/physicians" },
-        { label: "The science", href: "/science" },
         { label: "How it works", href: "/how-it-works" },
         { label: "Journal", href: "/journal" },
       ],

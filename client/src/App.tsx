@@ -34,7 +34,6 @@ const Checkout = lazy(() => import("@/pages/Checkout"));
 const WhatHappensNext = lazy(() => import("@/pages/WhatHappensNext"));
 const Gate = lazy(() => import("@/pages/Gate"));
 const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
-const Science = lazy(() => import("@/pages/Science"));
 const Journal = lazy(() => import("@/pages/Journal"));
 const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
 const Physicians = lazy(() => import("@/pages/Physicians"));
@@ -122,7 +121,15 @@ function AppRouter() {
 
         {/* Shared informational */}
         <Route path="/how-it-works" component={HowItWorks} />
-        <Route path="/science" component={Science} />
+        {/* SCIENCE — DELETED 2026-08-13 (Chiya: "I think we can kill the
+            science page, it doesn't make sense"). 1,376 lines carrying 20
+            citations for a 20-SKU catalog, of which 4 SKUs remain. Education
+            as a DESTINATION loses: nobody weighing tirzepatide detours to a
+            library. The citations were not lost — they are re-keyed by
+            molecule in data/evidence.ts and render on the PDP of the molecule
+            they support, between the mechanism and the price. Redirects rather
+            than 404s: the URL is in the sitemap history and possibly indexed. */}
+        <Route path="/science"><R to="/peptides" /></Route>
         <Route path="/journal" component={Journal} />
         <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />

@@ -25,7 +25,6 @@ const showcaseLinks: NavLink[] = [
   { label: "Peptides", href: "/peptides", mega: true },
   { label: "Protocols", href: "/stacks" },
   { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Science", href: "/science" },
   { label: "Pricing", href: "/pricing" },
 ];
 

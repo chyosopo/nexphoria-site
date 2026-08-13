@@ -129,7 +129,7 @@ function Hero() {
                   Start your assessment
                 </StartIntakeButton>
                 <Link
-                  href="/science"
+                  href="/peptides"
                   data-testid="bloodwork-hero-cta-science"
                   style={{
                     fontFamily: FONT,

@@ -375,8 +375,12 @@ export default function FrontDoor() {
               once cut for itself: a signal to repair, to release, to settle. A protocol selects
               the keys. Your bloodwork proves the doors opened.
             </p>
-            <Link href="/science" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.1rem" }}>
-              The science, in depth →
+            {/* Was "The science, in depth →" pointing at the deleted Science
+                page. The evidence now lives on each molecule's own PDP, so the
+                link goes where the evidence went — and to a page that can also
+                sell, which "in depth" never could. */}
+            <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.1rem" }}>
+              See the molecules and their evidence →
             </Link>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
