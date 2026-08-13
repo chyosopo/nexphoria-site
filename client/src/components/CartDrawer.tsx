@@ -162,7 +162,7 @@ export function CartDrawer() {
               </div>
               <h2
                 className="text-[1.35rem] leading-tight"
-                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}
+                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
               >
                 {itemCount === 0 ? "Cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"} · pending physician review`}
               </h2>
@@ -244,7 +244,7 @@ export function CartDrawer() {
                             </div>
                             <div
                               className="text-base leading-tight mb-1"
-                              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}
+                              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
                             >
                               {line.name}
                             </div>
@@ -516,7 +516,7 @@ export function CartDrawer() {
                 </div>
                 <span
                   className="text-[1.75rem] leading-none"
-                  style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 700, letterSpacing: "-0.02em" }}
+                  style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 700, letterSpacing: "var(--nx-ls-tight)" }}
                   data-testid="text-cart-subtotal"
                 >
                   {formatUSD(subtotal)}
@@ -625,7 +625,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
       </div>
       <h3
         className="text-lg mb-2"
-        style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}
+        style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
       >
         Your protocol is empty
       </h3>

@@ -19,15 +19,33 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: Porcelain & Navy** (reaffirmed by
-   Chiya 2026-07-06: "can we keep our colors?" — the Bone & Espresso
-   experiment from the theprotocole.com study was reverted the same day;
-   the protocole GRAMMAR stayed, its palette did not. See
-   docs/PROTOCOLE-STUDY.md). No off-palette color introductions. Use the
-   token system; do not hardcode hex, fontSize, radius, shadow, or
-   transition off-token (the design audit tracks these — do not regress
-   the counts).
-2. **Two worlds, one engine.** Men = azure/steel. Women = orchid/rose-quartz. Same medical engine underneath.
+1. **Design tokens only — current sheet: GRAPHITE & ICE** (chosen by Chiya
+   2026-08-13 from three costed options, replacing Porcelain & Navy).
+   Cold-white canvas #F7F8FA, graphite ink #17191C, true-graphite night
+   #101317, ice-blue accent #2B6CB0. Women's world runs the SAME graphite
+   system with a rose accent #A03D6B on a barely-warm canvas — one system,
+   two accents, rather than two separate palettes. Every pair verified
+   WCAG AA in both worlds.
+
+   HISTORY, kept because it is the reason to ask before repainting: the
+   sheet was Porcelain & Navy, reaffirmed 2026-07-06 ("can we keep our
+   colors?") after the Bone & Espresso experiment from the
+   theprotocole.com study was reverted the same day — the protocole
+   GRAMMAR stayed, its palette did not (docs/PROTOCOLE-STUDY.md). Palette
+   changes here have a history of being reverted, so propose options and
+   get a decision; do not repaint on inference. Graphite & Ice was an
+   explicit override by the principal, not an agent's choice.
+
+   No off-palette color introductions. Use the token system; do not
+   hardcode hex, fontSize, radius, shadow, transition, or letter-spacing
+   off-token (the design audit tracks these — do not regress the counts).
+   Negative tracking is tokenised: --nx-ls-display / -tight / -snug /
+   -normal. Do not reintroduce inline letterSpacing literals.
+2. **Two worlds, one engine.** Same medical engine underneath. Under
+   Graphite & Ice (2026-08-13) the worlds share one neutral system and
+   separate on ACCENT plus canvas temperature — men ice-blue on cold white,
+   women rose on barely-warm — rather than the previous azure/steel vs
+   orchid/rose-quartz split palettes.
 3. **Institutional bank voice.** Calm, precise, authoritative. No hype, no exclamation marks, no urgency theater, no discount-brand energy.
    **Never defensive negation** (Chiya 2026-07-14: "Transparent pricing.
    No hidden fees" killed sitewide): a premium house does not deny
@@ -46,11 +64,16 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 A commit ships only if these pass / non-regress. Use Node 20 LTS (`.nvmrc` pins it; better-sqlite3 does not compile on Node 26).
 
 ```
-npm run check         # 1. tsc — must be clean (currently 0 errors; keep it 0)
-npm run smoke         # 2. smoke routes — all must PASS (currently 47/47)
-npm run audit:data    # 3. data drift — no drift; gated/orphan items must stay excluded
-npm run audit:design  # 4. design tokens — counts must NOT regress vs the printed baseline
-npm run audit:funnel  # 5. ≤3 clicks entry→price+buy in real Chromium (run `npm run build` first)
+npm run check             # 1. tsc — must be clean (currently 0 errors; keep it 0)
+npm run smoke             # 2. smoke routes — all must PASS (currently 50/50)
+npm run audit:data        # 3. data drift — no drift; gated/orphan items must stay excluded
+npm run audit:design      # 4. design tokens — counts must NOT regress vs the printed baseline
+npm run audit:funnel      # 5. ≤3 clicks entry→price+buy in real Chromium (build first)
+npm run audit:compliance  # 6. business facts real, not placeholder (blocks apex deploy)
+npm run audit:legitscript # 7. LegitScript requirements vs the RENDERED artifact (build first)
+npm run audit:catalog     # 8. catalog assumptions — derived figures finite, live surfaces
+                          #    populated. Catches the failure mode a catalog cut causes:
+                          #    not a crash, but correct-looking code rendering nothing.
 ```
 Also run `npm run build` before deploy-affecting commits, and `npm run audit:bundle` when touching entry/imports (entry ≤300KB budget, recharts banned from entry, Bloodwork stays lazy).
 

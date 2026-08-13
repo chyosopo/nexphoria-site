@@ -84,7 +84,7 @@ export function TrustStatsStrip({
               fontWeight: 400,
               fontSize: "var(--nx-t-h1)",
               lineHeight: 1.1,
-              letterSpacing: "-0.015em",
+              letterSpacing: "var(--nx-ls-snug)",
               maxWidth: 720,
               margin: "0 auto",
             }}
@@ -171,7 +171,7 @@ function StatCell({ stat, index, isDark, isLast }: StatCellProps) {
           fontWeight: 400,
           fontSize: "var(--nx-t-display)",
           lineHeight: 1,
-          letterSpacing: "-0.02em",
+          letterSpacing: "var(--nx-ls-tight)",
           marginBottom: 16,
           fontVariantNumeric: "tabular-nums",
         }}

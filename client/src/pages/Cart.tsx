@@ -40,7 +40,7 @@ export default function Cart() {
             </div>
             <h1
               className="text-4xl md:text-5xl"
-              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
             >
               Review your cart
             </h1>
@@ -105,7 +105,7 @@ export default function Cart() {
                             </div>
                             <h3
                               className="text-lg md:text-xl mb-1"
-                              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}
+                              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
                             >
                               {line.name}
                             </h3>

@@ -44,7 +44,7 @@ const sectionHeading: React.CSSProperties = {
   fontFamily: "'Fraunces', Georgia, serif",
   fontWeight: 500,
   fontSize: "var(--nx-t-h1)",
-  letterSpacing: "-0.015em",
+  letterSpacing: "var(--nx-ls-snug)",
   color: "var(--nx-fg)",
   lineHeight: 1.06,
   marginBottom: "1.25rem",
@@ -237,7 +237,7 @@ export default function About() {
                 fontWeight: 500,
                 fontSize: "var(--nx-t-display)",
                 lineHeight: 1.02,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 color: "var(--nx-fg)",
                 maxWidth: 960,
               }}
@@ -336,7 +336,7 @@ export default function About() {
                     fontFamily: FONT,
                     fontWeight: 600,
                     fontSize: "var(--nx-t-h2)",
-                    letterSpacing: "-0.03em",
+                    letterSpacing: "var(--nx-ls-display)",
                     color: "var(--nx-fg)",
                     lineHeight: 1,
                     marginBottom: "0.5rem",
@@ -456,7 +456,7 @@ export default function About() {
                     fontFamily: FONT,
                     fontWeight: 600,
                     fontSize: "var(--nx-t-xl)",
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "var(--nx-ls-tight)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.1,
                     marginBottom: "0.875rem",
@@ -496,7 +496,7 @@ export default function About() {
                   <div className="nx-glass-tile" style={{ display: "block" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                       <span className="nx-icon-circle" aria-hidden><p.Icon size={19} strokeWidth={1.9} /></span>
-                      <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-lg)", letterSpacing: "-0.01em", color: "var(--nx-fg)", lineHeight: 1.15 }}>{p.t}</h3>
+                      <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-lg)", letterSpacing: "var(--nx-ls-normal)", color: "var(--nx-fg)", lineHeight: 1.15 }}>{p.t}</h3>
                     </div>
                     <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)", marginTop: "0.7rem" }}>{p.d}</p>
                   </div>
@@ -529,7 +529,7 @@ export default function About() {
                   style={{ padding: "2.25rem 2rem", height: "100%" }}
                 >
                   <span className="nx-icon-circle" aria-hidden><p.Icon size={20} strokeWidth={1.9} /></span>
-                  <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-xl)", letterSpacing: "-0.02em", color: "var(--nx-fg)", lineHeight: 1.12, margin: "1.1rem 0 0.75rem" }}>{p.t}</h3>
+                  <h3 style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-xl)", letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", lineHeight: 1.12, margin: "1.1rem 0 0.75rem" }}>{p.t}</h3>
                   <p style={{ ...bodyCopy, fontSize: "var(--nx-t-base)" }}>{p.d}</p>
                 </div>
               </Reveal>
@@ -580,7 +580,7 @@ export default function About() {
                         fontFamily: FONT,
                         fontWeight: 600,
                         fontSize: "var(--nx-t-lg)",
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "var(--nx-ls-normal)",
                         color: "var(--nx-fg)",
                         lineHeight: 1.15,
                         marginBottom: "0.75rem",
@@ -683,7 +683,7 @@ export default function About() {
                     fontFamily: FONT,
                     fontWeight: 600,
                     fontSize: "var(--nx-t-xl)",
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "var(--nx-ls-tight)",
                     color: "var(--nx-fg)",
                     lineHeight: 1.15,
                     marginBottom: "0.75rem",
@@ -736,7 +736,7 @@ export default function About() {
                       fontFamily: FONT,
                       fontWeight: 600,
                       fontSize: "var(--nx-t-h2)",
-                      letterSpacing: "-0.02em",
+                      letterSpacing: "var(--nx-ls-tight)",
                       color: "var(--nx-fg)",
                       lineHeight: 1.05,
                     }}
@@ -785,7 +785,7 @@ export default function About() {
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 marginBottom: "0.75rem",
               }}
             >
@@ -870,7 +870,7 @@ export default function About() {
                 fontFamily: FONT,
                 fontWeight: 500,
                 fontSize: "var(--nx-t-h2)",
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 color: "var(--nx-ceramic)",
                 lineHeight: 1.25,
                 maxWidth: "860px",

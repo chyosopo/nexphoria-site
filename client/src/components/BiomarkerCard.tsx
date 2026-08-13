@@ -229,7 +229,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
               fontWeight: 600,
               color: "var(--nx-fg)",
               lineHeight: 1.15,
-              letterSpacing: "-0.01em",
+              letterSpacing: "var(--nx-ls-normal)",
             }}
           >
             {m.name}
@@ -269,7 +269,7 @@ function BiomarkerCardInner({ m }: { m: Biomarker }) {
               fontWeight: 600,
               color: "var(--nx-fg)",
               lineHeight: 1,
-              letterSpacing: "-0.02em",
+              letterSpacing: "var(--nx-ls-tight)",
               ...NUM,
             }}
           >

@@ -466,7 +466,7 @@ function PhysiciansHeroDark() {
                 fontWeight: 500,
                 fontSize: "var(--nx-t-display)",
                 lineHeight: 1.02,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 color: "var(--nx-bg)",
                 marginBottom: "1.5rem",
               }}

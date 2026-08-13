@@ -113,7 +113,7 @@ export default function FrontDoor() {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 Physician-prescribed peptide therapy
               </p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "-0.018em", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem" }}>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem" }}>
                 Prescription peptides, built on <em style={{ color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>your bloodwork.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1.1rem" }}>
@@ -176,7 +176,7 @@ export default function FrontDoor() {
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
                     {w.eyebrow}
                   </p>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.02, letterSpacing: "-0.015em", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.02, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
                     {w.label}
                   </p>
                   <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-body)", lineHeight: 1.45, color: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)", marginTop: "0.55rem", maxWidth: "30ch" }}>
@@ -195,7 +195,7 @@ export default function FrontDoor() {
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
       <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "var(--nx-sp-band) 0" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
-          <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "-0.015em", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
+          <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "var(--nx-ls-snug)", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
             A protocol. <em style={{ color: "var(--nx-cobalt)" }}>Not a purchase.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "56ch", margin: "1.1rem auto 0" }}>

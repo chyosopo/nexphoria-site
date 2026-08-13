@@ -582,7 +582,7 @@ function GateCard({
                           
                           fontSize: "var(--nx-t-sm)",
                           color: "var(--nx-rust)",
-                          letterSpacing: "-0.01em",
+                          letterSpacing: "var(--nx-ls-normal)",
                           lineHeight: 1,
                         }}
                       >
@@ -594,7 +594,7 @@ function GateCard({
                           fontSize: "var(--nx-t-sm)",
                           fontWeight: 600,
                           color: "var(--nx-ceramic)",
-                          letterSpacing: "-0.01em",
+                          letterSpacing: "var(--nx-ls-normal)",
                         }}
                       >
                         {s.name}
@@ -670,7 +670,7 @@ function GateCard({
             fontWeight: 500,
             fontSize: "var(--nx-t-display)",
             lineHeight: 1.0,
-            letterSpacing: "-0.015em",
+            letterSpacing: "var(--nx-ls-snug)",
             color: "var(--nx-ceramic)",
             marginBottom: "20px",
           }}

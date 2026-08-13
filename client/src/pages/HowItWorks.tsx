@@ -133,7 +133,7 @@ export default function HowItWorks() {
               <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
                 <ShieldCheck size={14} strokeWidth={2.2} aria-hidden="true" /> How it works
               </p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "-0.02em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
+              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
                 Seven steps. <em style={{ color: "var(--nx-cobalt)" }}>No improvisation.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1.1rem" }}>
@@ -243,7 +243,7 @@ export default function HowItWorks() {
         <div className="nx-container">
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Why the loop matters</p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "1rem", lineHeight: 1.06, letterSpacing: "-0.015em" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "1rem", lineHeight: 1.06, letterSpacing: "var(--nx-ls-snug)" }}>
               A prescription is a hypothesis. <em style={{ color: "var(--nx-acid)" }}>The retest is the evidence.</em>
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.65, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "58ch", marginTop: "1.3rem" }}>

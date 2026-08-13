@@ -51,7 +51,7 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
     <section id="routes" className="nx-section" aria-labelledby={`selector-title-${goal}`} data-testid={`selector-${goal}`}>
       <div className="nx-container">
         <p className="nx-eyebrow">{isComparison ? "Choose your route" : "The route to this goal"}</p>
-        <h2 id={`selector-title-${goal}`} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "22ch" }}>
+        <h2 id={`selector-title-${goal}`} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.7rem", lineHeight: 1.12, letterSpacing: "var(--nx-ls-snug)", maxWidth: "22ch" }}>
           {isComparison ? `${routes.length} routes to the same goal.` : "One route, stated plainly."}
         </h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "0.8rem" }}>

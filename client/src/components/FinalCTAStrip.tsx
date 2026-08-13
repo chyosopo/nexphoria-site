@@ -87,7 +87,7 @@ export function FinalCTAStrip({
               fontSize: "var(--nx-t-h1)",
               color: "var(--nx-ceramic)",
               lineHeight: 1.1,
-              letterSpacing: "-0.01em",
+              letterSpacing: "var(--nx-ls-normal)",
               maxWidth: "700px",
               margin: "0 auto 1.25rem",
             }}

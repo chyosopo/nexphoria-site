@@ -1100,7 +1100,7 @@ function ScienceHeroDark() {
                 fontWeight: 500,
                 fontSize: "var(--nx-t-display)",
                 lineHeight: 1.04,
-                letterSpacing: "-0.018em",
+                letterSpacing: "var(--nx-ls-tight)",
                 color: "var(--nx-bg)",
                 marginBottom: "1.5rem",
                 maxWidth: "14ch",
@@ -1334,7 +1334,7 @@ function ScienceComparisonSection() {
           </p>
           <h2
             id="science-comparison-heading"
-            style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "0.75rem" }}
+            style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-tight)", marginBottom: "0.75rem" }}
           >
             Best for · Avoid if · Verdict.
           </h2>

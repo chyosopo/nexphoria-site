@@ -28,6 +28,16 @@
     /* ══ D1c CAPS TRACKING — the only sanctioned uppercase letter-spacing ══ */
     --nx-ls-caps: 0.14em;   /* standard eyebrows, badges, meta labels */
     --nx-ls-wide: 0.2em;    /* display-grade spaced caps */
+    /* NEGATIVE TRACKING — was ~100 inline letterSpacing literals spread across
+       components in seven near-identical values (-0.01 / -0.012 / -0.015 /
+       -0.018 / -0.02 / -0.022 / -0.03em). That is a type scale with no source
+       of truth: nothing stopped the next component inventing an eighth. Four
+       steps now, mapped by role, so display tracking can be tuned once for the
+       whole site the way the palette can. */
+    --nx-ls-display: -0.03em;   /* giant + display + h1 — the tight editorial set */
+    --nx-ls-tight:   -0.02em;   /* h2 / h3 */
+    --nx-ls-snug:    -0.015em;  /* section heads, card titles */
+    --nx-ls-normal:  -0.01em;   /* large body, leads */
 
     /* ══ D1b SECTION RHYTHM — the only sanctioned section paddings ══ */
     --nx-sp-sec:   clamp(3.8rem, 6.5vw, 5.75rem);    /* full section: page-level blocks */
@@ -53,11 +63,20 @@
     --nx-gutter:    clamp(20px, 4vw, 32px);           /* page edge */
 
     /* ══ D3 ELEVATION & RADIUS — four depths, five corners ══ */
-    --nx-e-1: 0 1px 2px rgba(16, 19, 23, 0.06);
-    --nx-e-2: 0 4px 14px rgba(16, 19, 23, 0.08);
-    --nx-e-3: 0 12px 32px rgba(16, 19, 23, 0.12);
-    --nx-e-4: 0 24px 64px rgba(16, 19, 23, 0.18);
-    --nx-r-3xs: 2px; --nx-r-2xs: 4px; --nx-r-xs: 6px; --nx-r-sm: 10px; --nx-r-md: 16px; --nx-r-lg: 24px; --nx-r-pill: 999px;
+    /* ELEVATION — flattened for Graphite & Ice (2026-08-13). A cold-neutral
+       precision system carries hierarchy on HAIRLINES, not on soft drop
+       shadows; the previous ramp was tuned for a warm porcelain canvas and
+       read as plastic against graphite. Kept as four steps so no component
+       needs editing — only the values changed. */
+    --nx-e-1: 0 1px 1px rgba(16, 19, 23, 0.04);
+    --nx-e-2: 0 2px 8px rgba(16, 19, 23, 0.05);
+    --nx-e-3: 0 8px 24px rgba(16, 19, 23, 0.07);
+    --nx-e-4: 0 18px 48px rgba(16, 19, 23, 0.10);
+    /* RADII — sharpened ~40%. This is the single strongest carrier of the
+       "precision instrument" read after colour: 16px cards feel consumer-app,
+       10px cards feel like equipment. Scale keeps its seven steps so every
+       existing var() reference resolves unchanged. */
+    --nx-r-3xs: 1px; --nx-r-2xs: 2px; --nx-r-xs: 4px; --nx-r-sm: 6px; --nx-r-md: 10px; --nx-r-lg: 14px; --nx-r-pill: 999px;
 
     /* ══ D4 MOTION — two speeds, one voice ══ */
     --nx-dur-fast: 160ms;

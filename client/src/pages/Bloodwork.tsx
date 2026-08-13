@@ -97,7 +97,7 @@ function Hero() {
                   fontSize: "var(--nx-t-display)",
                   lineHeight: 0.98,
                   fontWeight: 500,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "var(--nx-ls-display)",
                   marginBottom: "1.5rem",
                 }}
               >
@@ -396,7 +396,7 @@ function PanelExplorer() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.05,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 fontWeight: 500,
                 color: "var(--nx-fg)",
                 marginBottom: "0.9rem",
@@ -509,7 +509,7 @@ function PanelExplorer() {
                       style={{
                         fontFamily: FONT,
                         fontSize: "var(--nx-t-xl)",
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "var(--nx-ls-normal)",
                         fontWeight: 500,
                         color: "var(--nx-fg)",
                       }}
@@ -608,7 +608,7 @@ function PanelExplorer() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-h1)",
                 fontWeight: 500,
-                letterSpacing: "-0.03em",
+                letterSpacing: "var(--nx-ls-display)",
                 color: "var(--nx-fg)",
                 lineHeight: 0.9,
                 ...NUM,
@@ -771,7 +771,7 @@ function LiveTrajectory() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.05,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 fontWeight: 500,
                 marginBottom: "0.9rem",
               }}
@@ -864,7 +864,7 @@ function HowItWorks() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.05,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 fontWeight: 500,
                 color: "var(--nx-fg)",
               }}
@@ -896,7 +896,7 @@ function HowItWorks() {
                         fontFamily: FONT,
                         fontSize: "var(--nx-t-lg)",
                         fontWeight: 500,
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "var(--nx-ls-normal)",
                         color: "var(--nx-fg)",
                       }}
                     >

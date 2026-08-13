@@ -53,7 +53,7 @@ export default function NotFound() {
           </div>
 
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Error 404</p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", letterSpacing: "-0.015em", color: "var(--nx-fg)", lineHeight: 1.05, maxWidth: "16ch" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", lineHeight: 1.05, maxWidth: "16ch" }}>
             This page isn’t on the shelf.
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", maxWidth: "44ch", lineHeight: 1.6, marginTop: "1rem" }}>

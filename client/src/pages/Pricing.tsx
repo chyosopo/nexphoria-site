@@ -178,7 +178,7 @@ function PricingTiers() {
               fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",
               lineHeight: 1.1,
-              letterSpacing: "-0.02em",
+              letterSpacing: "var(--nx-ls-tight)",
               marginBottom: "0.75rem",
             }}
           >
@@ -247,7 +247,7 @@ function PricingTiers() {
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontSize: "var(--nx-t-xl)",
                     fontWeight: 600,
-                    letterSpacing: "-0.01em",
+                    letterSpacing: "var(--nx-ls-normal)",
                     color: tier.recommended ? "var(--nx-bg-cream)" : "var(--nx-fg)",
                     marginBottom: "0.4rem",
                   }}
@@ -288,7 +288,7 @@ function PricingTiers() {
                           fontFamily: "'General Sans', system-ui, sans-serif",
                           fontSize: "var(--nx-t-display)",
                           fontWeight: 600,
-                          letterSpacing: "-0.03em",
+                          letterSpacing: "var(--nx-ls-display)",
                           lineHeight: 1,
                           color: tier.recommended ? "var(--nx-ceramic)" : "var(--nx-fg)",
                         }}
@@ -311,7 +311,7 @@ function PricingTiers() {
                         fontFamily: "'General Sans', system-ui, sans-serif",
                         fontSize: "var(--nx-t-xl)",
                         fontWeight: 600,
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "var(--nx-ls-normal)",
                         lineHeight: 1.1,
                         color: tier.recommended ? "var(--nx-ceramic)" : "var(--nx-fg)",
                       }}
@@ -707,7 +707,7 @@ export default function Pricing() {
                 fontSize: "var(--nx-t-h2)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.1,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 marginBottom: "0.75rem",
               }}
             >
@@ -1431,7 +1431,7 @@ export function PricingPlanTable() {
         <Reveal>
           <h2
             id="pricing-plan-table-heading"
-            style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "2rem" }}
+            style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-tight)", marginBottom: "2rem" }}
           >
             Plan comparison at a glance.
           </h2>

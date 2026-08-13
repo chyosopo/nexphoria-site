@@ -124,7 +124,7 @@ const question: React.CSSProperties = {
   fontSize: "var(--nx-t-h2)",
   color: "var(--nx-fg)",
   lineHeight: 1.15,
-  letterSpacing: "-0.01em",
+  letterSpacing: "var(--nx-ls-normal)",
   marginBottom: "1.125rem",
 };
 
@@ -785,7 +785,7 @@ export default function Assessment() {
                   fontSize: "var(--nx-t-h1)",
                   color: "var(--nx-fg)",
                   lineHeight: 1.1,
-                  letterSpacing: "-0.01em",
+                  letterSpacing: "var(--nx-ls-normal)",
                   marginBottom: "1.25rem",
                 }}
               >
@@ -1750,7 +1750,7 @@ export default function Assessment() {
                                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-bg)", opacity: 0.72, margin: "0 0 0.375rem 0" }}>
                                   Based on your goal
                                 </p>
-                                <h3 id="rec-protocol-name" style={{ fontFamily: F, fontSize: "var(--nx-t-h3)", fontWeight: 600, color: "var(--nx-bg)", margin: 0, lineHeight: 1.2, letterSpacing: "-0.01em" }}>
+                                <h3 id="rec-protocol-name" style={{ fontFamily: F, fontSize: "var(--nx-t-h3)", fontWeight: 600, color: "var(--nx-bg)", margin: 0, lineHeight: 1.2, letterSpacing: "var(--nx-ls-normal)" }}>
                                   the {recStack ? `${recStack.name} protocol` : cfg.protocol}
                                 </h3>
                               </div>

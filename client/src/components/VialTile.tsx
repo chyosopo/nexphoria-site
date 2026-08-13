@@ -445,7 +445,7 @@ function VialTileInner({
                     fontWeight: 600,
                     fontSize: "var(--nx-t-xl)",
                     lineHeight: 1.05,
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "var(--nx-ls-tight)",
                     margin: 0,
                     color: t.ink,
                     overflow: "hidden",
@@ -480,7 +480,7 @@ function VialTileInner({
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontWeight: 600,
                       fontSize: "var(--nx-t-lg)",
-                      letterSpacing: "-0.02em",
+                      letterSpacing: "var(--nx-ls-tight)",
                       color: t.ink,
                       lineHeight: 1,
                     }}
@@ -612,7 +612,7 @@ function VialTileInner({
                     fontFamily: "'General Sans', system-ui, sans-serif",
                     fontWeight: 600,
                     fontSize: "var(--nx-t-lg)",
-                    letterSpacing: "-0.01em",
+                    letterSpacing: "var(--nx-ls-normal)",
                     color: "var(--nx-ceramic)",
                     lineHeight: 1,
                   }}
@@ -744,7 +744,7 @@ function VialTileInner({
                     fontWeight: 600,
                     fontSize: "var(--nx-t-xl)",
                     color: "var(--nx-ceramic)",
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "var(--nx-ls-tight)",
                   }}
                 >
                   ${price}
@@ -776,7 +776,7 @@ function VialTileInner({
                 fontSize: "var(--nx-t-sm)",
                 fontWeight: 600,
                 textDecoration: "none",
-                letterSpacing: "-0.01em",
+                letterSpacing: "var(--nx-ls-normal)",
                 width: "100%",
                 justifyContent: "center",
               }}

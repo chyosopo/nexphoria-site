@@ -150,7 +150,7 @@ export default function Checkout() {
               </div>
               <h1
                 className="text-4xl md:text-5xl mb-5"
-                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.02em" }}
+                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
               >
                 Intake complete
               </h1>
@@ -259,7 +259,7 @@ export default function Checkout() {
             </div>
             <h1
               className="text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.02em" }}
+              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
             >
               Submit for physician review
             </h1>
@@ -729,7 +729,7 @@ function Section({ title, eyebrow, children }: { title: string; eyebrow: string;
         <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
           {eyebrow}
         </div>
-        <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "-0.01em" }}>
+        <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}>
           {title}
         </h2>
         {children}

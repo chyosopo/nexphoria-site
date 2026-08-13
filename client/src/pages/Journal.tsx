@@ -148,7 +148,7 @@ export default function Journal() {
               fontWeight: 500,
               fontSize: "var(--nx-t-display)",
               lineHeight: 1.02,
-              letterSpacing: "-0.02em",
+              letterSpacing: "var(--nx-ls-tight)",
               color: "var(--nx-fg)",
               maxWidth: 900,
             }}
@@ -259,7 +259,7 @@ export default function Journal() {
                       fontWeight: 600,
                       fontSize: "var(--nx-t-h2)",
                       lineHeight: 1.04,
-                      letterSpacing: "-0.03em",
+                      letterSpacing: "var(--nx-ls-display)",
                       color: "var(--nx-fg)",
                       marginBottom: 20,
                     }}
@@ -464,7 +464,7 @@ export default function Journal() {
                   fontWeight: 600,
                   fontSize: "var(--nx-t-h2)",
                   lineHeight: 1.05,
-                  letterSpacing: "-0.03em",
+                  letterSpacing: "var(--nx-ls-display)",
                   color: "var(--nx-ceramic)",
                   marginBottom: 16,
                 }}
@@ -672,7 +672,7 @@ function ArticleCard({ article, index, categoryLabel }: ArticleCardProps) {
                 fontWeight: 600,
                 fontSize: "var(--nx-t-xl)",
                 lineHeight: 1.14,
-                letterSpacing: "-0.02em",
+                letterSpacing: "var(--nx-ls-tight)",
                 color: "var(--nx-fg)",
                 marginBottom: 12,
               }}

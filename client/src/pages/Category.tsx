@@ -197,7 +197,7 @@ export default function Category() {
           <div className={heroArt ? "grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center" : ""}>
             <div>
               <p className="nx-eyebrow" data-testid="cat-eyebrow">{label} · physician-directed</p>
-              <h1 id="category-hero-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.06, letterSpacing: "-0.015em", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
+              <h1 id="category-hero-title" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.06, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }} data-testid="cat-h1">
                 {cfg.pre}{" "}
                 <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>{cfg.accent}</em>
               </h1>

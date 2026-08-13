@@ -302,7 +302,7 @@ export default function JournalArticle() {
                     fontWeight: 500,
                     fontSize: "var(--nx-t-h2)",
                     lineHeight: 1.15,
-                    letterSpacing: "-0.012em",
+                    letterSpacing: "var(--nx-ls-normal)",
                     color: "var(--nx-fg)",
                     marginBottom: 24,
                   }}

@@ -190,7 +190,7 @@ export function BenefitTile({
                     ? "clamp(1.75rem, 3vw, 2.5rem)"
                     : "clamp(2.25rem, 4vw, 3.25rem)",
                 fontWeight: 700,
-                letterSpacing: "-0.03em",
+                letterSpacing: "var(--nx-ls-display)",
                 color: hasImage ? "var(--nx-bg)" : t.fg,
               }}
             >
@@ -213,7 +213,7 @@ export function BenefitTile({
             fontFamily: FONT,
             fontSize: metric ? "0.9375rem" : "clamp(1.125rem, 1.6vw, 1.375rem)",
             fontWeight: metric ? 500 : 600,
-            letterSpacing: "-0.015em",
+            letterSpacing: "var(--nx-ls-snug)",
             color: hasImage ? "var(--nx-bg)" : t.fg,
           }}
         >

@@ -134,7 +134,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             {config.eyebrow}
           </p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)", lineHeight: 1.0, letterSpacing: "-0.022em", color: "var(--nx-fg)", maxWidth: "13ch", margin: "1.1rem auto 0" }}>
+          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)", lineHeight: 1.0, letterSpacing: "var(--nx-ls-display)", color: "var(--nx-fg)", maxWidth: "13ch", margin: "1.1rem auto 0" }}>
             {config.h1}
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "1.4rem auto 0" }}>
@@ -201,7 +201,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
           {/* The felt-need question (Maximus §3) — the grid IS the answer
               surface: each tile routes to that goal's decision page. */}
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10, marginBottom: "1rem" }}>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", letterSpacing: "var(--nx-ls-normal)" }}>
               What do you want to change?
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", margin: 0 }}>
@@ -376,7 +376,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               The panel
             </p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.1, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", maxWidth: "14ch" }}>
               {PANEL_TOTAL_MARKERS} markers. Eleven systems.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1.1rem", maxWidth: "44ch" }}>
@@ -439,7 +439,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               One dashboard
             </p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "18ch" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "var(--nx-ls-snug)", maxWidth: "18ch" }}>
               Your markers, plotted against every retest.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "48ch" }}>
@@ -491,7 +491,7 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
               Questions
             </p>
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "14ch" }}>
+            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", lineHeight: 1.12, letterSpacing: "var(--nx-ls-snug)", maxWidth: "14ch" }}>
               What to expect.
             </h2>
             {config.faqArt && (

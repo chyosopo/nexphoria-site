@@ -41,7 +41,7 @@ export function BigFigure({
             fontWeight: 600,
             fontSize: "var(--nx-t-h1)",
             lineHeight: 0.95,
-            letterSpacing: "-0.03em",
+            letterSpacing: "var(--nx-ls-display)",
             fontVariantNumeric: "tabular-nums",
             color: fgOf(tone),
           }}

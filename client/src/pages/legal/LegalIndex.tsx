@@ -63,7 +63,7 @@ export default function LegalIndex() {
                 fontFamily: FONT,
                 fontSize: "var(--nx-t-h1)",
                 fontWeight: 600,
-                letterSpacing: "-0.03em",
+                letterSpacing: "var(--nx-ls-display)",
                 color: "var(--nx-fg)",
                 lineHeight: 1.02,
                 marginBottom: "0.75rem",
@@ -112,7 +112,7 @@ export default function LegalIndex() {
                         fontFamily: FONT,
                         fontSize: "var(--nx-t-lg)",
                         fontWeight: 600,
-                        letterSpacing: "-0.01em",
+                        letterSpacing: "var(--nx-ls-normal)",
                         color: "var(--nx-fg)",
                         marginBottom: "0.25rem",
                       }}
