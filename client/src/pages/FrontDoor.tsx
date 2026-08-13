@@ -104,42 +104,84 @@ export default function FrontDoor() {
 
   return (
     <SiteLayout navVariant="showcase">
-      {/* ══ 1 · HERO — what this is + the one action, in 5 seconds ══ */}
-      <section className="relative" style={{ overflow: "hidden" }}>
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
-        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1 }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center" }}>
-            <div className="nx-hero-seq">
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                Physician-prescribed peptide therapy
-              </p>
-              <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem" }}>
-                Prescription peptides, built on <em style={{ color: "var(--nx-cobalt)", whiteSpace: "nowrap" }}>your bloodwork.</em>
-              </h1>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1.1rem" }}>
-                A {PANEL_TOTAL_MARKERS}-marker panel, a licensed physician who reads it, protocols
-                compounded in state-licensed U.S. pharmacies — and a retest every 90 days that
-                decides what happens next.
-              </p>
-              <div style={{ marginTop: "1.8rem", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.4rem" }}>
-                <Link href="/assessment" data-testid="frontdoor-hero-cta" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "15px 30px" }}>
-                  Start your assessment
-                </Link>
-                <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  How it works →
-                </Link>
-              </div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
-                2 minutes · no charge unless a physician prescribes
-              </p>
-              {/* Physician presence at the decision moment (ROADMAP 5.1) */}
-              <PhysicianGate testid="frontdoor-hero-physician" style={{ marginTop: "0.9rem" }} />
-            </div>
-            {/* The weightless vertical tile rail — the hims-grammar hero:
-                every goal and flagship on Bloom photography, drifting slowly.
-                Desktop: two counter-scrolling columns. Mobile: snap strip. */}
-            <HeroTileRail tiles={HERO_TILES} testid="frontdoor-rail" />
+      {/* ══ 1 · HERO — recomposed 2026-08-13 to the measured reference grammar.
+
+          Was: a dense two-column split (copy left, an animated counter-scrolling
+          photo rail right) over three blurred aurora discs. Every element
+          competed, and the fold was ~100% full.
+
+          Now: centred, one idea, with the fold deliberately mostly EMPTY.
+          Atlas measured IvyRx heroes at 50–65% empty and Seed runs the same
+          discipline — the confidence signal in this category is restraint, not
+          density. Eye path is the one he recorded: credential chip → outcome
+          headline → a single dark CTA. The photography moves BELOW the fold
+          instead of fighting the sentence. ══ */}
+      <section style={{ background: "var(--nx-bg)" }}>
+        <div
+          className="nx-container"
+          style={{
+            paddingTop: "clamp(5rem, 12vh, 9rem)",
+            paddingBottom: "clamp(4rem, 10vh, 7.5rem)",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {/* Credential chip — first fixation, sits ABOVE the headline. Ours is
+              a licence fact, not a star rating: we have no reviews and will not
+              invent them. */}
+          <p
+            style={{
+              fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
+              letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
+              color: "var(--nx-fg-muted)", border: "1px solid var(--nx-border)",
+              borderRadius: "var(--nx-r-pill)", padding: "0.45rem 0.9rem",
+              background: "var(--nx-ceramic)",
+            }}
+          >
+            Prescribed by U.S.-licensed physicians
+          </p>
+
+          <h1
+            style={{
+              fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)",
+              lineHeight: 1.02, letterSpacing: "var(--nx-ls-display)",
+              color: "var(--nx-fg)", maxWidth: "15ch", margin: "1.6rem 0 0",
+            }}
+          >
+            Prescription peptides, built on <em style={{ color: "var(--nx-cobalt)" }}>your bloodwork.</em>
+          </h1>
+
+          <p
+            style={{
+              fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.55,
+              color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "1.5rem 0 0",
+            }}
+          >
+            A {PANEL_TOTAL_MARKERS}-marker panel, a physician who reads it, and a retest
+            every 90 days that decides what happens next.
+          </p>
+
+          {/* ONE action. The secondary route is a text link, not a second button. */}
+          <div style={{ marginTop: "2.4rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+            <Link
+              href="/assessment"
+              data-testid="frontdoor-hero-cta"
+              className="nx-cta-cobalt"
+              style={{ fontSize: "var(--nx-t-base)", padding: "16px 34px" }}
+            >
+              Start your assessment
+            </Link>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: 0 }}>
+              Two minutes · billed only if a physician prescribes
+            </p>
           </div>
+        </div>
+
+        {/* Photography below the statement, not beside it. */}
+        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }}>
+          <HeroTileRail tiles={HERO_TILES} testid="frontdoor-rail" />
         </div>
       </section>
 

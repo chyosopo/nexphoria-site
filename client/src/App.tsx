@@ -16,8 +16,6 @@ import { CartDrawer } from "@/components/CartDrawer";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 // Pages — eagerly loaded (fast/common paths)
-import WomenHome from "@/pages/WomenHome";
-import MenHome from "@/pages/MenHome";
 
 import NotFound from "@/pages/not-found";
 
@@ -85,29 +83,29 @@ function AppRouter() {
         <Route path="/peptides/:slug">{(p) => <SoloPDP slug={(p as {slug:string}).slug} />}</Route>
         <Route path="/goals/:slug" component={Category} />
 
-        {/* Women routes */}
-        <Route path="/women" component={WomenHome} />
-        <Route path="/women/peptides">
-          {() => <PeptidesCatalog world="women" />}
+        {/* ── TWO WORLDS RETIRED (Chiya 2026-08-13) ──────────────────
+            The men/women split doubled every surface — two homes, two
+            catalogs, two PDP variants, two imagery casts — to differentiate a
+            four-SKU formulary that is identical for both. It also forced every
+            component to thread a `world` prop and every goal tile to have two
+            photographs. One site now.
+
+            The old URLs REDIRECT rather than 404: they are in the wild, in the
+            sitemap history, and possibly indexed. /men and /women land on the
+            home page; the per-slug PDPs land on their neutral canonical, which
+            is the URL they already declared via <link rel="canonical"> anyway. */}
+        <Route path="/men"><R to="/" /></Route>
+        <Route path="/women"><R to="/" /></Route>
+        <Route path="/men/peptides"><R to="/peptides" /></Route>
+        <Route path="/women/peptides"><R to="/peptides" /></Route>
+        <Route path="/men/peptides/:slug">
+          {(params) => <R to={`/peptides/${(params as { slug: string }).slug}`} />}
         </Route>
         <Route path="/women/peptides/:slug">
-          {(params) => <SoloPDP world="women" slug={(params as { slug: string }).slug} />}
+          {(params) => <R to={`/peptides/${(params as { slug: string }).slug}`} />}
         </Route>
-        <Route path="/women/protocols">
-          {() => <ProtocolsIndex />}
-        </Route>
-
-        {/* Men routes */}
-        <Route path="/men" component={MenHome} />
-        <Route path="/men/peptides">
-          {() => <PeptidesCatalog world="men" />}
-        </Route>
-        <Route path="/men/peptides/:slug">
-          {(params) => <SoloPDP world="men" slug={(params as { slug: string }).slug} />}
-        </Route>
-        <Route path="/men/protocols">
-          {() => <ProtocolsIndex />}
-        </Route>
+        <Route path="/men/protocols"><R to="/stacks" /></Route>
+        <Route path="/women/protocols"><R to="/stacks" /></Route>
 
         {/* Stacks (pharmacy tier 2) */}
         <Route path="/stacks" component={ProtocolsIndex} />
@@ -132,7 +130,7 @@ function AppRouter() {
         <Route path="/protocols" component={ProtocolsIndex} />
         {/* /blood-work consolidated → canonical /bloodwork (BloodPanels retired) */}
         <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
-        <Route path="/catalog">{() => <R to="/men/peptides" />}</Route>
+        <Route path="/catalog">{() => <R to="/peptides" />}</Route>
         <Route path="/pricing" component={Pricing} />
         <Route path="/gift" component={Gift} />
         <Route path="/gift/claim" component={GiftClaim} />
