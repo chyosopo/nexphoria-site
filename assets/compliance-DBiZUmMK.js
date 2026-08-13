@@ -1,1 +1,0 @@
-const a={entity:"Nexphoria Research LLC",email:"hello@nexphoria.com",address:"[BUSINESS ADDRESS — PENDING]",phone:"[PHONE — PENDING]"},e={name:"Arora Health & Aesthetics, LLC",email:"medicalcompliance@arorahealthgroup.com"},o={name:"VialsRX",phone:"(713) 497-5590"};export{a as B,e as P,o as a};
