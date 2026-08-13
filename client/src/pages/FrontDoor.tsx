@@ -21,6 +21,7 @@ import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
+import { ProductShelf } from "@/components/ProductCard";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
 
@@ -195,6 +196,33 @@ export default function FrontDoor() {
           redirect to this page. Left in place it would have been the second
           thing a visitor saw, offering a choice that no longer exists and
           pointing at its own URL. The standalone /gate route is untouched. ══ */}
+
+      {/* ══ 1.45 · THE FORMULARY — what you can actually buy.
+
+          Added 2026-08-13. The product row lived on the per-world homes, so
+          deleting the two-worlds split took every product card off the front
+          door: the home page showed goal tiles, a panel, a process and a price
+          claim, but not one thing you could buy. The reference puts priced
+          product cards on its home page and so should we.
+
+          Uses the shared ProductShelf so this is the SAME block the catalog
+          renders — one card grammar, not a second implementation. ══ */}
+      <section className="nx-container" aria-labelledby="frontdoor-formulary" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap", marginBottom: "clamp(1.2rem,2.5vw,1.8rem)" }}>
+          <div>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+              The formulary
+            </p>
+            <h2 id="frontdoor-formulary" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem", maxWidth: "20ch" }}>
+              Everything a physician can prescribe here.
+            </h2>
+          </div>
+          <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+            The complete catalog →
+          </Link>
+        </div>
+        <ProductShelf skus={SOLO_CATALOG} testId="frontdoor-formulary-shelf" />
+      </section>
 
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
       <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}>

@@ -86,7 +86,18 @@ export function getPeptideCardImage(slug: string, world?: "men" | "women"): stri
   if (PRODUCT_FRAMES.has(img) || NEUTRAL_CAST.has(img)) return img;
   if (world === "women" && FEMALE_CAST.has(img)) return img;
   if (world === "men" && MALE_CAST.has(img)) return img;
-  return null; // unworlded surfaces stay product-only
+
+  /* The old rule ended here with `return null` — "unworlded surfaces stay
+     product-only". That existed for ONE reason: to stop a male-cast frame
+     appearing inside the women's world, and vice versa. The two-worlds split
+     was deleted 2026-08-13, so there is no other world for a cast to leak
+     into, and the rule now only produces holes: on the new home formulary
+     shelf, Semaglutide rendered as a text-only card with no media because its
+     frame is a gendered cast, breaking the row's alignment.
+
+     A card with no image is worse than a card with a cast the visitor does not
+     match. Returns the frame. */
+  return img;
 }
 
 export function hasPeptideHeroImage(slug: string): boolean {

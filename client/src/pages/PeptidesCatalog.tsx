@@ -15,6 +15,7 @@ import { OUTCOME_CATEGORY, OUTCOME_HERO, OUTCOME_STACK } from "@/data/outcomeIma
 import { getPeptideCardImage } from "@/lib/peptideImages";
 import { getPrice } from "@/data/pricing";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
+import { ProductCard } from "@/components/ProductCard";
 
 /* Solo category → a POOL of outcome frames, cast per world. Brand law
    (C29): sell the outcome, never the vial — and never the same outcome
@@ -282,27 +283,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             const productImg = getPeptideCardImage(s.slug, world) ?? pool[nth % pool.length];
             return (
             <Reveal key={s.slug} delay={i * 35}>
-              <Link href={`${base}/peptides/${s.slug}`} className="nx-float-card" data-testid={`peptide-${s.slug}`}>
-                <div className="nx-float-card__media">
-                  <img src={productImg} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
-                  {s.gated && (
-                    <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
-                  )}
-                </div>
-                <div className="nx-float-card__body">
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{s.category}</p>
-                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>{s.outcome}</h3>
-                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-graphite)", marginTop: "0.25rem" }}>
-                    <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>{s.name}</strong> · {s.dose}
-                  </p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
-                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
-                      {s.gated ? "Physician-assessed" : s.pricing ? `From ${usd(s.pricing.m12)}/mo` : getPrice(s.slug) ? `From ${usd(getPrice(s.slug)!.monthlyPrice)}/mo` : "At consult"}
-                    </span>
-                    <ArrowRight size={16} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-                  </div>
-                </div>
-              </Link>
+              {/* Same block the home formulary renders — one card grammar,
+                  not a second implementation of it. The price line lives in
+                  ProductCard so a shelf card can never disagree with the PDP
+                  it links to. */}
+              <ProductCard sku={s} />
             </Reveal>
             );
           };
