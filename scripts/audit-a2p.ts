@@ -113,6 +113,17 @@ if (stale.length) failures.push(`Site also claims "${stale.join('", "')}" — tw
 /* Address and phone are required on the registration. They are Chiya-blocked
    here, so they are reported as BLOCKERS rather than failures: the gate should
    tell the truth about what is missing without pretending the site can fix it. */
+/* A placeholder that reaches the PUBLISHED site is worse than a missing line:
+   a reviewer reading "[PHONE — PENDING]" on a policy page fails the
+   application outright. LegalLayout was doing exactly this, because its
+   `BUSINESS.address &&` truthiness test is true for the bracketed string.
+   Asserted against rendered HTML so the render, not the intent, is checked. */
+console.log("\n─ no placeholders published ─");
+const PLACEHOLDER_IN_HTML = /\[[^\]]*(PENDING|PLACEHOLDER|TODO)[^\]]*\]/i;
+const leaky = LEGAL_ROUTES.filter((r) => PLACEHOLDER_IN_HTML.test(textAt(r)));
+console.log(`  ${leaky.length ? "✖" : "✓"} legal pages publish no bracketed placeholders`);
+if (leaky.length) failures.push(`Placeholder text is PUBLISHED on ${leaky.join(", ")}. Reviewers read these pages.`);
+
 console.log("\n─ business facts required by the registration ─");
 for (const [k, v] of [["address", BUSINESS.address], ["phone", BUSINESS.phone]] as const) {
   const pending = isPlaceholder(v);

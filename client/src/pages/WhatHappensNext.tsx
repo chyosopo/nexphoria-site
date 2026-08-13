@@ -55,7 +55,6 @@ export default function WhatHappensNext() {
     <SiteLayout navVariant="showcase">
       {/* Hero */}
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="whn-title">
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 820 }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             The path from here

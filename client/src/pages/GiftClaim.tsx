@@ -51,7 +51,6 @@ export default function GiftClaim() {
   return (
     <SiteLayout navVariant="showcase">
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="giftclaim-title">
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 860 }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             A gift ask

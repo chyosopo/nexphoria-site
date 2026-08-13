@@ -75,7 +75,6 @@ export default function ProtocolsIndex() {
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>

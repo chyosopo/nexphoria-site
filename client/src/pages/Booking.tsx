@@ -25,7 +25,6 @@ export default function Booking() {
   return (
     <SiteLayout navVariant="showcase">
       <section className="relative" style={{ overflow: "hidden" }}>
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", zIndex: 1, maxWidth: 780 }}>
           <Reveal>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)", display: "inline-flex", alignItems: "center", gap: 8 }}>

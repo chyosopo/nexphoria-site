@@ -130,7 +130,6 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
        her world. Worlded catalog keeps her in it. */
     <SiteLayout navVariant={world ?? "showcase"} footerVariant={world ?? "shared"}>
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>

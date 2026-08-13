@@ -126,7 +126,6 @@ export default function HowItWorks() {
     <SiteLayout>
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>

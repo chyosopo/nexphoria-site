@@ -1588,10 +1588,6 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
    accent. Atlas measured IvyRx at 2–8% accent on money pages; three 40vw
    blurred discs is an order of magnitude past that.
 
-   Kept as a no-op selector rather than deleted from 12 call sites: the markup
-   is harmless once it paints nothing, and a single CSS block is reversible in
-   one line if this proves wrong. */
-.nx-aurora { display: none; }
 
 /* GLASS TILE — de-glassed 2026-08-13. Translucency + backdrop-blur + an inner
    white glow is the same 2021-SaaS register as the aurora, and it only reads as
@@ -1619,7 +1615,6 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
 .nx-glass-btn:hover { background: color-mix(in srgb, var(--nx-accent) 14%, transparent); transform: translateY(-2px); }
 
 @media (prefers-reduced-motion: reduce) {
-  .nx-aurora i { animation: none; }
   .nx-glass-tile:hover, .nx-glass-btn:hover { transform: none; }
 }
 
@@ -2048,13 +2043,6 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
   .mx-hero-label {
     backdrop-filter: blur(8px) saturate(1.1);
     -webkit-backdrop-filter: blur(8px) saturate(1.1);
-  }
-  /* Aurora field: the 56px blur on 46vw blobs is the single most expensive
-     paint on the page. Halve it on phones — the soft glow reads the same at
-     mobile scale but per-frame recomposite cost drops enough to hold 60fps. */
-  .nx-aurora i {
-    filter: blur(30px);
-    will-change: auto;
   }
 }
 

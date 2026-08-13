@@ -29,29 +29,18 @@ const showcaseLinks: NavLink[] = [
   { label: "Pricing", href: "/pricing" },
 ];
 
-const womenLinks: NavLink[] = [
-  { label: "Peptides", href: "/women/peptides", mega: true },
-  { label: "Protocols", href: "/stacks" },
-  { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Science", href: "/science" },
-  { label: "Pricing", href: "/pricing" },
-];
+/* ONE link set, every variant. There used to be four: showcase, women, men,
+   and a "gate" set whose first two entries were "For Women" / "For Men".
+   gateLinks was the DEFAULT fallthrough, so after the two-worlds split was
+   deleted (2026-08-13) every page that did not explicitly ask for the
+   showcase nav still offered a choice between two worlds that no longer
+   exist — on the legal pages, the catalog, the PDP, everywhere. The world
+   variants only differed by pointing Peptides at /women/peptides or
+   /men/peptides, aliases of the neutral route they now all use.
 
-const menLinks: NavLink[] = [
-  { label: "Peptides", href: "/men/peptides", mega: true },
-  { label: "Protocols", href: "/stacks" },
-  { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Science", href: "/science" },
-  { label: "Pricing", href: "/pricing" },
-];
-
-const gateLinks: NavLink[] = [
-  { label: "For Women", href: "/women" },
-  { label: "For Men", href: "/men" },
-  { label: "Protocols", href: "/stacks" },
-  { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Pricing", href: "/pricing" },
-];
+   `variant` survives because it still drives the PALETTE (the women's world
+   keeps its rose accent on the shared graphite system) and the analytics
+   source below. It no longer changes what the nav offers. */
 
 /* Six category tiles for the Peptides mega-menu. Order + copy tuned for
    the Hims-style "quiet mega-menu on hover" pattern: six restrained tiles,
@@ -114,11 +103,7 @@ export function Nav({ variant = "gate" }: NavProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const links =
-    variant === "showcase" ? showcaseLinks :
-    variant === "women" ? womenLinks :
-    variant === "men" ? menLinks :
-    gateLinks;
+  const links = showcaseLinks;
 
   const navSource =
     variant === "showcase" ? "showcase-nav" :

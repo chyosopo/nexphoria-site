@@ -132,7 +132,6 @@ export default function Gift() {
     <SiteLayout navVariant="showcase">
       {/* ── HERO ── */}
       <section className="relative" style={{ overflow: "hidden" }}>
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
             The gift

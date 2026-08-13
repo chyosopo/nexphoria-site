@@ -26,11 +26,9 @@ import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical,
 import { F, S } from "@/lib/typography";
 import { SpecPlate } from "@/components/DataPlate";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
-import { VialArt, Tone } from "@/components/VialTile";
-import { glyphForPeptide } from "@/lib/protocols";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 
 /* on-brand tone cycle so a multi-vial lineup reads varied, not uniform */
-const VIAL_TONES: Tone[] = ["sage", "cobalt", "mineral", "sky", "butter", "rose", "dusk"];
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { SafetyDisclosure } from "@/components/SafetyDisclosure";
@@ -122,7 +120,6 @@ export default function StackPage({ slug }: { slug: string }) {
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
       <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
-        <div className="nx-aurora" aria-hidden><i /><i /><i /></div>
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
@@ -193,11 +190,14 @@ export default function StackPage({ slug }: { slug: string }) {
           <h2 id="stack-vials-title" className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</h2>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end", gap: "clamp(1.5rem,5vw,3.5rem)", marginTop: "1.4rem" }}>
             {stack.peptides.map((p, i) => {
-              const slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
               return (
                 <Reveal key={p.name} delay={i * 70}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
-                    <VialArt tone={VIAL_TONES[i % VIAL_TONES.length]} glyph={glyphForPeptide(slug)} size={210} />
+                    {/* Same object the PDP, the shelf and the catalog hero
+                        render. This section was still on the old flat VialArt,
+                        so "the vials in this protocol" showed a different
+                        drawing of a vial from every other vial on the site. */}
+                    <VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />
                     <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
                   </div>

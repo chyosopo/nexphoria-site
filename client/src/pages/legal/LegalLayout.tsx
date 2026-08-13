@@ -2,7 +2,7 @@ import { Children, isValidElement, useMemo } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Link } from "wouter";
 import { FONT } from "@/lib/typography";
-import { BUSINESS } from "@/data/compliance";
+import { BUSINESS, isPlaceholder } from "@/data/compliance";
 
 /* ─────────────────────────────────────────────────────────────
    LegalLayout — visual chrome only. Copy is LOCKED and passed in
@@ -160,15 +160,24 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
               {/* Business contact block — LegitScript requires the legal
                   entity, business address, and contact number on every
                   policy page. Renders what BUSINESS provides; address/phone
-                  appear automatically once supplied in data/compliance.ts. */}
+                  appear automatically once supplied in data/compliance.ts.
+
+                  The truthiness test here USED to be `BUSINESS.address &&`,
+                  which is true for the string "[BUSINESS ADDRESS — PENDING]" —
+                  so every legal page was publishing its own placeholders. A
+                  reviewer (LegitScript, or A2P brand verification) reading
+                  "[PHONE — PENDING]" on a policy page fails the application
+                  harder than a missing line would, which is the exact reason
+                  compliance.ts writes them as visibly bracketed non-values.
+                  isPlaceholder() is the predicate that was always intended. */}
               <div
                 data-testid="legal-business-contact"
                 style={{ borderTop: "1px solid var(--nx-border)", marginTop: "2.5rem", paddingTop: "1.25rem" }}
               >
                 <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", margin: 0 }}>
                   <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>{BUSINESS.entity}</strong>
-                  {BUSINESS.address && <> · {BUSINESS.address}</>}
-                  {BUSINESS.phone && <> · {BUSINESS.phone}</>}
+                  {!isPlaceholder(BUSINESS.address) && <> · {BUSINESS.address}</>}
+                  {!isPlaceholder(BUSINESS.phone) && <> · {BUSINESS.phone}</>}
                   {" · "}
                   <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--nx-cobalt)" }}>{BUSINESS.email}</a>
                 </p>
