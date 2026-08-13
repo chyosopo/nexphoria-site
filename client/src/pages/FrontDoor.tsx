@@ -87,6 +87,11 @@ const HERO_TILES: RailTile[] = [
    advertise something we no longer sell. */
 const HERO_WORDS = ["weight loss", "lean composition", "desire", "your bloodwork"];
 
+/* The single vial the "what arrives" band shows. First in the catalog, so a
+   catalog cut moves this image instead of leaving a retired SKU standing as
+   the site's hero object. */
+const ARRIVES_SKU = SOLO_CATALOG[0];
+
 const GOAL_COPY: Record<string, { kicker: string; headline: string; blurb: string; cta: string }> = {
   Metabolic: {
     kicker: "Lose weight with",
@@ -151,7 +156,14 @@ export default function FrontDoor() {
   const countFor = (c: PeptideCategory) => peptides.filter((p) => p.category === c).length;
 
   return (
-    <SiteLayout navVariant="showcase">
+    /* hideTrustBar: the home page carries the same five facts THREE times
+       above the fold — the announcement bar, this strip under the nav, and
+       the trust pills under the hero CTA. "503A" appeared three times and
+       shipping three times before a visitor read a single sentence. The pills
+       are the best-designed of the three and sit where the eye already is, so
+       the strip stands down HERE and stays on interior pages, which have no
+       pills of their own. */
+    <SiteLayout navVariant="showcase" hideTrustBar>
       {/* ══ 1 · HERO — recomposed 2026-08-13 to the measured reference grammar.
 
           Was: a dense two-column split (copy left, an animated counter-scrolling
@@ -203,7 +215,12 @@ export default function FrontDoor() {
             style={{
               fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)",
               lineHeight: 1.06, letterSpacing: "var(--nx-ls-tight)",
-              color: "var(--nx-fg)", maxWidth: "20ch", margin: "1.4rem 0 0",
+              /* 26ch, not 20ch. At 20 the second line broke as "prescribed by
+                 a U.S." / "physician." — a wrap through the middle of a noun
+                 phrase, which reads as a typo rather than a line break. The
+                 explicit <br/> already controls where the real break falls, so
+                 the cap only needs to be wide enough not to fight it. */
+              color: "var(--nx-fg)", maxWidth: "26ch", margin: "1.4rem 0 0",
             }}
           >
             Peptides for{" "}
@@ -299,50 +316,59 @@ export default function FrontDoor() {
       {/* ══ 1.47 · WHAT ARRIVES — the object, on the dark.
 
           The formulary above sells the outcome; this sells the thing in the
-          box. Reference sites put a rendered product shot here, and ours is a
-          drawn one — but drawn to be looked at rather than to fill a slot, and
-          it carries the real molecule and the real concentration off the
-          catalog, so a vial can never print a spec the PDP disagrees with.
+          box, and gives the long light run a dark spine.
 
-          Also the site's SECOND dark band. The reference alternates light and
-          dark to give a long page a spine; we had one dark band (the closer)
-          and a long unbroken light run before it. ══ */}
+          REBUILT 2026-08-13. It used to render three vials through
+          `.nx-vial-row` / `.nx-vial-cell` — two class names that were never
+          defined in any stylesheet. With no grid, the three cells were plain
+          blocks at container width, so each vial painted roughly a thousand
+          pixels tall and this one section ran about four thousand pixels.
+          Chiya, twice: "those big images of the vials in the home page don't
+          make sense" and "clean up the clutter."
+
+          It is now ONE vial beside the copy, at a bounded width, because the
+          formulary directly above already shows all four bottles with more
+          information attached to each. A second gallery of the same four
+          objects was redundant at any size; the missing CSS only made it
+          enormous as well. The molecule is taken from the catalog rather than
+          named here, so a catalog cut moves this image too. ══ */}
       <section
         className="nx-gradient-hero-dark"
         aria-labelledby="frontdoor-arrives"
         style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden", marginTop: "var(--nx-sp-band)" }}
       >
-        <div className="nx-container">
-          <div style={{ textAlign: "center", maxWidth: "48ch", margin: "0 auto clamp(2rem,4vw,3.2rem)" }}>
+        <div className="nx-container nx-arrives">
+          <div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
               What arrives
             </p>
-            <h2 id="frontdoor-arrives" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem" }}>
+            <h2 id="frontdoor-arrives" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem", maxWidth: "18ch" }}>
               A sealed vial, a named physician, a dose you can read.
             </h2>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "0.9rem" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "1rem", maxWidth: "46ch" }}>
               Compounded by a licensed United States pharmacy, shipped cold, labelled with your
               name and the physician who signed for it. One number a month. Everything within it.
             </p>
+            <dl className="nx-arrives__facts">
+              {[
+                ["Sealed", "Single-patient vial, batch-documented."],
+                ["Named", "Your name and your physician's, on the label."],
+                ["Readable", `${ARRIVES_SKU.spec} — the dose stated in full.`],
+              ].map(([t, d]) => (
+                <div key={t}>
+                  <dt>{t}</dt>
+                  <dd>{d}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
-          <div className="nx-vial-row">
-            {SOLO_CATALOG.slice(0, 3).map((s) => (
-              <div key={s.slug} className="nx-vial-cell">
-                <VialHero sku={s} width="100%" testId={`frontdoor-vial-${s.slug}`} />
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-ceramic)", marginTop: "0.9rem" }}>
-                  {s.name}
-                </p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "0.2rem" }}>
-                  {s.spec}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", textAlign: "center", marginTop: "clamp(1.8rem,3.5vw,2.6rem)" }}>
-            Illustrative. Prescribed by a U.S. physician after physician review.
-          </p>
+          <figure className="nx-arrives__shot">
+            <VialHero sku={ARRIVES_SKU} width="100%" testId={`frontdoor-vial-${ARRIVES_SKU.slug}`} />
+            <figcaption>
+              Illustrative. Prescribed by a U.S. physician after review.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

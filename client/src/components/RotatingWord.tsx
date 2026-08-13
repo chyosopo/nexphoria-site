@@ -13,16 +13,21 @@
    · The words come from the LIVE catalog, so the headline can never advertise
      a goal we no longer sell — the failure that had the nav pointing at four
      dead categories.
-   · It animates opacity and transform only, so it never triggers layout. The
-     slot is sized to the LONGEST word up front, which is why the sentence
-     after it does not jump on every cycle.
+   · The slot used to be sized to the LONGEST word so the sentence would not
+     jump on every tick. That fixed the jump and bought a worse problem: with
+     "lean composition" holding the slot open, the short words left a visible
+     hole after "Peptides for" — a gap that reads as a broken layout, and one
+     that is on screen most of the cycle. The slot now MEASURES the current
+     word and animates its width to it, so the headline closes up around each
+     word instead of sitting in the widest one's footprint. The width change is
+     the motion; the word itself still only fades and lifts.
    · Under prefers-reduced-motion it does not cycle at all. It renders the
      first word and stops — not a faster animation, no animation. Someone who
      asked the OS to stop moving things did not ask for a subtler version.
    · aria-live is off and the full list ships in a visually-hidden span, so a
      screen reader is read one coherent sentence rather than being interrupted
      every three seconds by a word changing under it. */
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 function prefersReduced(): boolean {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -48,20 +53,68 @@ export function RotatingWord({
     return () => clearInterval(t);
   }, [reduced, words.length, intervalMs]);
 
-  /* The widest word reserves the slot. Without this the rest of the sentence
-     reflows on every tick, which reads as a bug rather than a flourish. */
-  const widest = words.reduce((a, b) => (b.length > a.length ? b : a), words[0] ?? "");
+  /* Measure the CURRENT word and animate the slot to it. Width is read off a
+     hidden span rendering that exact word in the inherited face, so the number
+     is the real rendered advance rather than a character-count estimate.
+     Re-measured when the webfont finishes loading and on resize, because the
+     display face lands after first paint and a fallback-metric width would
+     leave the slot slightly wrong for the life of the page. */
+  const sizerRef = useRef<HTMLSpanElement>(null);
+  const [w, setW] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const el = sizerRef.current;
+      if (el) setW(el.getBoundingClientRect().width);
+    };
+    measure();
+    const fonts = typeof document !== "undefined" ? document.fonts : undefined;
+    fonts?.ready?.then(measure).catch(() => {});
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [i, words]);
 
   return (
-    <span className={className} style={{ ...style, position: "relative", display: "inline-grid", verticalAlign: "baseline" }}>
-      {/* Invisible sizer — occupies the row, holds the width open. */}
-      <span aria-hidden style={{ visibility: "hidden", gridArea: "1 / 1", whiteSpace: "nowrap" }}>{widest}</span>
+    <span
+      className={className}
+      style={{
+        ...style,
+        position: "relative", display: "inline-grid", verticalAlign: "baseline",
+        width: w === null ? undefined : `${w}px`,
+        /* Not transitioned under reduced motion: the word never changes there,
+           so the only width change would be the one-off measurement snap. */
+        transition: reduced ? undefined : "width 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
+    >
+      {/* Invisible sizer — the current word, holding the row open at its own
+          width while the slot animates toward it. */}
+      {/* justifySelf/width are load-bearing, not cosmetic. Every span here
+          shares grid-area 1/1, so a stretched sizer measures the COLUMN —
+          which the longest word sets — and the slot would keep reporting the
+          widest word's width no matter which word is showing. max-content
+          makes it measure its own text. */}
+      <span
+        ref={sizerRef}
+        aria-hidden
+        style={{ visibility: "hidden", gridArea: "1 / 1", whiteSpace: "nowrap", justifySelf: "start", width: "max-content" }}
+      >
+        {words[i]}
+      </span>
       {words.map((w, n) => (
+        /* Each word is its OWN width, pinned to the slot's left edge.
+           Without this they stretch to the grid column — whose min-content is
+           set by the longest word and cannot shrink below it — and then centre
+           their text inside that wider box, pushing the visible word right by
+           half the difference. That offset was the gap after "Peptides for",
+           and it survived fixing the measurement because the container was
+           already the right width; it was the CHILD that was not. Longer words
+           overflow to the right for the half second the slot is animating,
+           which is invisible: they are fading out as it happens. */
         <span
           key={w}
           aria-hidden
           className={n === i ? "nx-rotword is-in" : "nx-rotword"}
-          style={{ gridArea: "1 / 1", whiteSpace: "nowrap" }}
+          style={{ gridArea: "1 / 1", whiteSpace: "nowrap", justifySelf: "start", width: "max-content" }}
         >
           {w}
         </span>

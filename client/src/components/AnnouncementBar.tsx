@@ -15,7 +15,11 @@ interface AnnouncementBarProps {
 }
 
 export function AnnouncementBar({
-  message = "Your first consultation is complimentary \u00B7 503A compounded in the U.S. \u00B7 Cold-chain shipped to all 50 states",
+  /* ONE message. This bar used to run three clauses, two of which the trust
+     strip and the hero pills also carried \u2014 so the first thing anyone read on
+     the site was the same fact three times in three typefaces. A banner that
+     says one thing is read; a banner that says three is skipped. */
+  message = "Your first consultation is complimentary.",
   tag = "Peptides",
 }: AnnouncementBarProps) {
   const [dismissed, setDismissed] = useState(false);

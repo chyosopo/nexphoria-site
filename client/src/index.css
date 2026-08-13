@@ -2754,6 +2754,53 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 }
 
 /* ═══ YOUR PLAN — the merged pricing + lab page ═══ */
+/* ── WHAT ARRIVES ───────────────────────────────────────────────────────────
+   Copy beside one bounded product shot. The width cap on the figure is the
+   point of this block: the section it replaced used two class names that were
+   never defined, so its images had no width constraint at all and each one
+   painted at full container width. A rule that exists is the difference
+   between a product shot and a billboard. */
+.nx-arrives {
+  display: grid; gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: 1fr; align-items: center;
+}
+@media (min-width: 900px) { .nx-arrives { grid-template-columns: 1fr 0.85fr; } }
+/* The product shot keeps its own light ground (glass mattes badly, so it is
+   never cut out). Against a dark band that ground reads as an untrimmed
+   rectangle unless it is deliberately framed — so it gets a radius, a hairline
+   and a shadow, and becomes a lit plate the vial stands on. */
+.nx-arrives__shot { margin: 0; max-width: 460px; justify-self: center; width: 100%; }
+.nx-arrives__shot img {
+  border-radius: var(--nx-r-lg);
+  box-shadow: var(--nx-e-4);
+  outline: 1px solid color-mix(in srgb, var(--nx-acid) 18%, transparent);
+  outline-offset: -1px;
+}
+.nx-arrives__shot figcaption {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); line-height: 1.5; text-align: center;
+  color: color-mix(in srgb, var(--nx-acid) 76%, transparent);
+  margin-top: 0.9rem;
+}
+.nx-arrives__facts {
+  margin: clamp(1.4rem, 3vw, 2rem) 0 0; display: grid; gap: 0.75rem;
+}
+.nx-arrives__facts div {
+  display: grid; grid-template-columns: 6.5rem 1fr; gap: 0.9rem;
+  padding-top: 0.75rem; border-top: 1px solid color-mix(in srgb, var(--nx-acid) 22%, transparent);
+}
+.nx-arrives__facts dt {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); font-weight: 700;
+  letter-spacing: var(--nx-ls-caps); text-transform: uppercase;
+  color: var(--nx-acid);
+}
+.nx-arrives__facts dd {
+  margin: 0; font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-sm); line-height: 1.5;
+  color: color-mix(in srgb, var(--nx-acid) 84%, transparent);
+}
+
 /* The hero figure. Baseline-aligned so "from" and "/month" sit on the number's
    baseline rather than floating beside its box — the difference between a
    price set by a house and a price set by a plugin. */
