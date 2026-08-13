@@ -13,8 +13,8 @@ import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { getPrice } from "@/data/pricing";
-import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 import { ProductCard } from "@/components/ProductCard";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
@@ -144,9 +144,24 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   : "Every peptide lists its dose, its format, its mechanism, and the bloodwork it requires — before you ever begin."}
               </p>
             </div>
-            <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
-              <img src={vialLineupHero} alt="The Nexphoria peptide formulary" fetchPriority="high" width={1600} height={1280} />
-              <div className="nx-gradient-overlay tint" aria-hidden />
+            {/* THE FORMULARY, RENDERED — replaces vial-lineup-hero.webp.
+
+                That photograph was shot under the previous palette: its caps
+                are NAVY, which is off-sheet under Graphite & Ice, and it shows
+                five vials on a shelf that stocks four. Regenerating it was not
+                available (no image credits), and a photo cannot stay in sync
+                with the catalog anyway — a cut or an addition silently makes
+                it a lie. Drawn from SOLO_CATALOG instead: it repaints with the
+                palette, always shows exactly what is on the shelf, and each
+                vial carries its own molecule. */}
+            <div className="nx-hero-media nx-hero-frame nx-hero-bleed nx-vial-lineup" style={{ position: "relative", aspectRatio: "5 / 4" }}>
+              <div className="nx-vial-lineup__row">
+                {SOLO_CATALOG.map((s) => (
+                  <div key={s.slug} className="nx-vial-cell">
+                    <VialMockup name={s.name} dose={labelSpec(s.spec)} size="clamp(150px, 78%, 340px)" fill={0.6} onDark label={false} />
+                  </div>
+                ))}
+              </div>
               <div
                 style={{
                   position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,

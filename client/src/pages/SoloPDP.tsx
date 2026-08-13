@@ -182,7 +182,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <VialPanel
                 name={solo.name}
                 dose={labelSpec(solo.spec)}
-                size="clamp(160px, 46%, 330px)"
+                size="80%"
                 testId={`solo-vial-${solo.slug}`}
               />
               <span

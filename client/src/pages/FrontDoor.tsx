@@ -261,7 +261,7 @@ export default function FrontDoor() {
                 <VialMockup
                   name={s.name}
                   dose={labelSpec(s.spec)}
-                  size="clamp(140px, 22vw, 230px)"
+                  size="clamp(210px, 30vw, 330px)"
                   fill={0.58}
                   onDark
                   testId={`frontdoor-vial-${s.slug}`}

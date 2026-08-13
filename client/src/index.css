@@ -2389,3 +2389,90 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 @media (max-width: 767px) {
   .nx-vial-panel { aspect-ratio: 4 / 3 !important; }
 }
+
+/* ═══ CARD REVEAL — "how it works", on hover and on keyboard focus ═══
+   Rises over the product inside the media slot. The card's own name and price
+   sit BELOW the slot and stay visible the whole time, so the reveal adds
+   information rather than trading one set for another.
+
+   :focus-within matters as much as :hover here — the card is a link, so a
+   keyboard user tabbing the shelf gets the same reveal a mouse user gets.
+   Touch has no hover state at all, which is exactly why every line inside is
+   also printed on the PDP the card opens. */
+.nx-card-reveal {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: clamp(0.7rem, 4%, 1.05rem);
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--nx-bg-dark) 95%, transparent) 0%,
+    color-mix(in srgb, var(--nx-bg-dark) 88%, transparent) 62%,
+    color-mix(in srgb, var(--nx-bg-dark) 52%, transparent) 100%
+  );
+  opacity: 0;
+  transform: translateY(12%);
+  transition: opacity var(--nx-dur-3) var(--nx-ease), transform var(--nx-dur-3) var(--nx-reveal-ease);
+  pointer-events: none;
+}
+.nx-float-card:hover .nx-card-reveal,
+.nx-float-card:focus-within .nx-card-reveal { opacity: 1; transform: translateY(0); }
+
+.nx-card-reveal__eyebrow {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); font-weight: 600;
+  letter-spacing: var(--nx-ls-caps); text-transform: uppercase;
+  color: var(--nx-acid);
+}
+.nx-card-reveal__body {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs); line-height: 1.5;
+  color: var(--nx-ceramic);
+  margin-top: 0.35rem;
+  /* three lines, then ellipsis — a mechanism sentence that overflows its own
+     tile is worse than one that visibly continues on the page it links to */
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+}
+.nx-card-reveal__facts {
+  display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem;
+  margin-top: 0.6rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid color-mix(in srgb, var(--nx-ceramic) 22%, transparent);
+}
+.nx-card-reveal__facts dt {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); font-weight: 600;
+  letter-spacing: var(--nx-ls-caps); text-transform: uppercase;
+  color: color-mix(in srgb, var(--nx-acid) 78%, transparent);
+}
+.nx-card-reveal__facts dd {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); line-height: 1.35;
+  color: var(--nx-ceramic);
+  margin: 0.1rem 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-card-reveal { transition: opacity var(--nx-dur-1) linear; transform: none; }
+  .nx-float-card:hover .nx-card-reveal,
+  .nx-float-card:focus-within .nx-card-reveal { transform: none; }
+}
+
+/* The formulary lineup — a dark plinth the whole shelf stands on, so the
+   catalog hero shows the actual catalog rather than a photograph of a
+   different one. Vials share the .nx-vial-cell stagger already defined above,
+   so no two float in lockstep. */
+.nx-vial-lineup {
+  background:
+    radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--nx-cobalt) 22%, transparent) 0%, transparent 66%),
+    linear-gradient(178deg, var(--nx-bg-dark) 0%, color-mix(in srgb, var(--nx-bg-dark) 88%, var(--nx-cobalt)) 100%);
+  overflow: hidden;
+}
+.nx-vial-lineup__row {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(0.1rem, 1.5%, 1rem);
+  padding: 4% 5% 2%;
+}
+.nx-vial-lineup .nx-vial-cell { flex: 1 1 0%; min-width: 0; }
+.nx-vial-cell:nth-child(4) .nx-vial-float { animation-delay: -1.1s; }
+.nx-vial-cell:nth-child(4) .nx-vial-sweep { animation-delay: -7.4s; }

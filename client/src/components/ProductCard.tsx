@@ -50,10 +50,30 @@ export function ProductCard({
           The photography keeps the surfaces it is right for — category heroes
           and the lower PDP band. */}
       <div className="nx-float-card__media">
-        <VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="clamp(120px, 54%, 210px)" ratio="4 / 3" fill={0.58} />
+        <VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="84%" ratio="4 / 3" fill={0.58} />
         {sku.gated && (
           <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
         )}
+
+        {/* HOW IT WORKS — rises over the product on hover or keyboard focus.
+            Three facts a shelf card could not otherwise afford to print:
+            what the molecule does, how it is dosed, and which panel gates it.
+
+            It is an ENHANCEMENT, never the only home for any of this: every
+            line here is stated in full on the PDP the card links to, and the
+            panel is aria-hidden so a screen reader is not read a duplicate of
+            the destination page. Rising from the media slot rather than
+            covering the card keeps the name and the price visible throughout —
+            a reveal that hides the price to show a description is a worse
+            card, not a fancier one. */}
+        <div className="nx-card-reveal" aria-hidden>
+          <p className="nx-card-reveal__eyebrow">How it works</p>
+          <p className="nx-card-reveal__body">{sku.mechanism}</p>
+          <dl className="nx-card-reveal__facts">
+            <div><dt>Dose</dt><dd>{sku.dose}</dd></div>
+            <div><dt>Gated on</dt><dd>{sku.panel} panel</dd></div>
+          </dl>
+        </div>
       </div>
       <div className="nx-float-card__body">
         <p
