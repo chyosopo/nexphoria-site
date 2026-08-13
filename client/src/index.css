@@ -2693,3 +2693,54 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 @media (prefers-reduced-motion: reduce) {
   .nx-plan__step { opacity: 1; transform: none; transition: none; }
 }
+
+/* ═══ YOUR PLAN — the merged pricing + lab page ═══ */
+.nx-plan-prices { display: grid; gap: clamp(0.8rem,2vw,1.1rem); grid-template-columns: 1fr; }
+@media (min-width: 720px)  { .nx-plan-prices { grid-template-columns: repeat(2, 1fr); } }
+.nx-planprice {
+  display: flex; align-items: center; gap: 1rem;
+  border: 1px solid; border-radius: var(--nx-r-lg);
+  padding: 0.9rem 1.2rem 0.9rem 0.9rem; text-decoration: none;
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
+}
+@media (hover: hover) { .nx-planprice:hover { transform: translateY(-2px); box-shadow: var(--nx-e-3); } }
+.nx-planprice:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 3px; }
+.nx-planprice img { border-radius: var(--nx-r-md); flex-shrink: 0; }
+
+.nx-plan-incl {
+  display: grid; gap: clamp(0.9rem,2vw,1.3rem);
+  grid-template-columns: 1fr; margin-top: clamp(1.8rem,4vw,2.6rem);
+}
+@media (min-width: 700px)  { .nx-plan-incl { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .nx-plan-incl { grid-template-columns: repeat(3, 1fr); } }
+.nx-plan-incl__item {
+  display: flex; gap: 0.9rem; align-items: flex-start; height: 100%;
+  background: var(--nx-ceramic); border: 1px solid var(--nx-border);
+  border-radius: var(--nx-r-lg); padding: 1.1rem 1.2rem;
+}
+
+.nx-plan-panel {
+  display: grid; gap: clamp(0.8rem,2vw,1.1rem);
+  grid-template-columns: 1fr; margin-top: clamp(1.8rem,4vw,2.6rem);
+}
+@media (min-width: 640px)  { .nx-plan-panel { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .nx-plan-panel { grid-template-columns: repeat(3, 1fr); } }
+.nx-plan-panel__cat {
+  height: 100%; background: var(--nx-ceramic);
+  border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: 1.1rem 1.2rem;
+}
+.nx-plan-panel__markers {
+  list-style: none; margin: 0.8rem 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 5px;
+}
+.nx-plan-panel__markers li {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); color: var(--nx-fg-graphite);
+  background: var(--nx-bg); border: 1px solid var(--nx-border);
+  border-radius: var(--nx-r-pill); padding: 3px 9px;
+}
+.nx-plan-panel__markers li.more { color: var(--nx-cobalt); border-style: dashed; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-planprice { transition: none; }
+  .nx-planprice:hover { transform: none; }
+}

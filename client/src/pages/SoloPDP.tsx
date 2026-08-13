@@ -321,7 +321,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 </div>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "56ch" }}>{solo.panelNote ?? "Reviewed by your physician before and during the protocol."}</p>
-              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See the panels →</Link>
+              <Link href="/plan" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See the panels →</Link>
             </div>
 
             {solo.gated && (

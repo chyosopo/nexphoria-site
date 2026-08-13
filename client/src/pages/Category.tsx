@@ -222,7 +222,7 @@ export default function Category() {
                     Compare your {routeCount} routes
                   </a>
                 )}
-                <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
+                <Link href="/plan" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
               </div>
               {/* goal chips */}
               <div className="mt-8 flex flex-wrap gap-2">

@@ -41,7 +41,12 @@ const PATHS = [
     '[data-testid^="frontdoor-goal-"]',
     'a[href*="/peptides/"]',
   ]},
-  { name: "front door → nav pricing", entry: "/", clicks: ['nav >> text=Pricing'] },
+  /* The nav's price route. "Pricing" and "Bloodwork" merged into ONE page
+     (/plan) on 2026-08-13 — one number a month, and the panel it includes —
+     so the nav link this path clicks is now "Your plan". The path is kept, not
+     dropped: a visitor still has to reach a real figure from the front door in
+     one click, whatever the destination is called. */
+  { name: "front door → nav plan", entry: "/", clicks: ['nav >> text=Your plan'] },
   /* The two per-world home paths are retired with the men/women split
      (2026-08-13). /men and /women now REDIRECT to the single home, so their
      goal-tile selectors no longer exist — which is what this gate correctly
@@ -61,7 +66,11 @@ const PATHS = [
   ]},
   { name: "catalog → PDP", entry: "/peptides", clicks: ['[data-testid^="peptide-"]'] },
   { name: "protocols index → stack page", entry: "/stacks", clicks: ['a[href*="/stacks/"]:not([href$="/stacks"]):not([href*="build"])'] },
-  { name: "bloodwork (priced on entry)", entry: "/bloodwork", clicks: [] },
+  { name: "plan (priced on entry)", entry: "/plan", clicks: [] },
+  /* The retired URLs still have to land somewhere priced — both are in the
+     wild. A redirect that reaches a dead end fails silently otherwise. */
+  { name: "legacy /pricing redirect", entry: "/pricing", clicks: [] },
+  { name: "legacy /bloodwork redirect", entry: "/bloodwork", clicks: [] },
 ];
 
 const browser = await chromium.launch({ executablePath: EXEC });

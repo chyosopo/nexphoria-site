@@ -34,13 +34,12 @@ const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
 const Journal = lazy(() => import("@/pages/Journal"));
 const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
 const Physicians = lazy(() => import("@/pages/Physicians"));
-const Pricing = lazy(() => import("@/pages/Pricing"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const FAQPage = lazy(() => import("@/pages/FAQ"));
-const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
+const Plan = lazy(() => import("@/pages/Plan"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
 const Messaging = lazy(() => import("@/pages/legal/Messaging"));
 const TelehealthConsent = lazy(() => import("@/pages/legal/TelehealthConsent"));
@@ -125,6 +124,19 @@ function AppRouter() {
             molecule in data/evidence.ts and render on the PDP of the molecule
             they support, between the mechanism and the price. Redirects rather
             than 404s: the URL is in the sitemap history and possibly indexed. */}
+        <Route path="/plan" component={Plan} />
+        {/* PRICING + BLOODWORK MERGED into /plan (Chiya 2026-08-13: "maybe we
+            can kill the pages that don't need, like the pricing and blood
+            work — do it like hims.com action plan lab page"). Between them
+            they were 2,688 lines answering ONE question — what do I get and
+            what does it cost — in two places, which forced a visitor to hold
+            half the answer while navigating to the other half, and let the two
+            drift apart. Both redirect; the URLs are indexed. */}
+        <Route path="/pricing"><R to="/plan" /></Route>
+        <Route path="/bloodwork"><R to="/plan" /></Route>
+        <Route path="/blood-work"><R to="/plan" /></Route>
+        <Route path="/lab-testing"><R to="/plan" /></Route>
+
         <Route path="/science"><R to="/peptides" /></Route>
 
         {/* CUT 2026-08-13 (Chiya: "clean up the clutter, there's so much
@@ -148,13 +160,11 @@ function AppRouter() {
         <Route path="/journal" component={Journal} />
         <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />
-        <Route path="/lab-testing">{() => <R to="/bloodwork" />}</Route>
-        <Route path="/bloodwork" component={Bloodwork} />
+        <Route path="/lab-testing">{() => <R to="/plan" />}</Route>
         <Route path="/protocols" component={ProtocolsIndex} />
         {/* /blood-work consolidated → canonical /bloodwork (BloodPanels retired) */}
-        <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
+        <Route path="/blood-work">{() => <R to="/plan" />}</Route>
         <Route path="/catalog">{() => <R to="/peptides" />}</Route>
-        <Route path="/pricing" component={Pricing} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />

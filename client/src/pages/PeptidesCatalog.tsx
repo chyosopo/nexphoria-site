@@ -185,7 +185,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every protocol here is lab-monitored</p>
           <div className="nx-biochip-grid" data-testid="catalog-biochips">
             {(world === "women" ? CATALOG_BIOMARKERS_WOMEN : CATALOG_BIOMARKERS_MEN).map((name) => (
-              <Link key={name} href="/bloodwork" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
+              <Link key={name} href="/plan" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
                 {name}
               </Link>
             ))}

@@ -285,7 +285,7 @@ export default function Cart() {
                         <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{PANEL_TOTAL_MARKERS}-Biomarker Partner-Laboratory Panel</p>
                         <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
                       </div>
-                      <Link asChild href="/lab-testing">
+                      <Link asChild href="/plan">
                         <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-labs">
                           See panel details
                         </a>

@@ -76,7 +76,7 @@ const PROTOCOL_FROM = Math.min(...(UNGATED_STACK_MONTHLY.length ? UNGATED_STACK_
 const HERO_TILES: RailTile[] = [
   { img: OUTCOME_CATEGORY.men.metabolic!, label: CATEGORY_LABELS.metabolic, sub: CATEGORY_FEELING.metabolic, href: "/goals/metabolic", testid: "rail-metabolic" },
   { img: OUTCOME_CATEGORY.men.growth!, label: CATEGORY_LABELS.growth, sub: CATEGORY_FEELING.growth, href: "/goals/growth", testid: "rail-growth" },
-  { img: HERO_ART, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: "rail-bloodwork" },
+  { img: HERO_ART, label: "Your plan", sub: "Bloodwork retested every 90 days.", href: "/plan", testid: "rail-plan" },
 ];
 
 /* The two-tile goal band. Grouped from the LIVE catalog, so a goal with

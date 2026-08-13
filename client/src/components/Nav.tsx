@@ -28,8 +28,7 @@ interface NavLink {
 const showcaseLinks: NavLink[] = [
   { label: "Peptides", href: "/peptides", mega: true },
   { label: "Protocols", href: "/stacks" },
-  { label: "Bloodwork", href: "/bloodwork" },
-  { label: "Pricing", href: "/pricing" },
+  { label: "Your plan", href: "/plan" },
 ];
 
 /* ONE link set, every variant. There used to be four: showcase, women, men,
@@ -386,10 +385,10 @@ export function Nav({ variant = "gate" }: NavProps) {
                 </p>
                 <ul className="flex flex-col gap-1 list-none m-0">
                   {[
-                    { href: "/bloodwork", name: "Your bloodwork", note: "Gates every dose" },
+                    { href: "/plan", name: "Your plan", note: "One number, bloodwork within it" },
                     { href: "/how-it-works", name: "How it works", note: "Intake, review, dispatch" },
                     { href: "/physicians", name: "Your physician", note: "Who signs — and can decline" },
-                    { href: "/pricing", name: "What it costs", note: "One number a month" },
+                    { href: "/faq", name: "Common questions", note: "Answered plainly" },
                   ].map((x) => (
                     <li key={x.href}>
                       <Link
