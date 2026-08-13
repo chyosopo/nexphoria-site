@@ -19,7 +19,8 @@
     "audit:compliance": "tsx scripts/audit-compliance.ts",
     "audit:legitscript": "tsx scripts/audit-legitscript.ts",
     "audit:catalog": "tsx scripts/audit-catalog.ts",
-    "audit:a2p": "tsx scripts/audit-a2p.ts"
+    "audit:a2p": "tsx scripts/audit-a2p.ts",
+    "audit:voice": "tsx scripts/audit-voice.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

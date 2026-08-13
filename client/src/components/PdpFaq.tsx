@@ -30,7 +30,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "What bloodwork is required?",
-    a: `${name} is gated on the ${panel} panel — drawn at baseline before anything is prescribed, then retested on a fixed schedule so your physician reads the trend, not a snapshot.`,
+    a: `${name} is gated on the ${panel} panel — drawn at baseline before anything is prescribed, then retested on a fixed schedule so your physician reads the trend rather than one reading in isolation.`,
   });
 
   if (firstMark) {

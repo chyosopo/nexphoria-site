@@ -132,7 +132,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   ];
 
   const WHY: { Icon: typeof Stethoscope; t: string; d: string }[] = [
-    { Icon: Stethoscope, t: "Prescribed, not sold", d: "A licensed U.S. physician authorizes it against your intake — never a checkout button." },
+    { Icon: Stethoscope, t: "Prescribed", d: "A licensed U.S. physician authorizes it against your intake and your panel, and signs for it." },
     { Icon: Microscope, t: `${solo.panel} panel, gated`, d: "Baseline bloodwork is required before the first dose, and read by your physician." },
     { Icon: RefreshCw, t: "Retested at 90 days", d: "The same markers are re-drawn and the dose is held, adjusted, or tapered from data." },
   ];

@@ -39,29 +39,29 @@ const STEPS: Step[] = [
     n: "01", t: "Structured intake", Icon: ClipboardList,
     img: stepIntake, imgAlt: "A man begins his intake on a tablet at a dawn-lit desk",
     d: "A medical questionnaire covering history, goals, current medications, and contraindications — reviewed in full before anything else happens.",
-    detail: "Not a checkbox funnel. The intake screens for the conditions that make each peptide class unsafe — malignancy history, pregnancy, cardiovascular disease, drug interactions — and routes that information to the physician, not an algorithm.",
+    detail: "The intake screens for the conditions that make each peptide class unsafe — malignancy history, pregnancy, cardiovascular disease, drug interactions — and puts every answer in front of the physician who decides.",
     objection: "“Is this just a form that rubber-stamps a sale?” No. It exists to disqualify people for whom a protocol is wrong, before a physician ever spends time on the file.",
   },
   {
     n: "02", t: "Bloodwork at the lab", Icon: TestTube,
     img: stepBloodwork, imgAlt: "Vacutainer tubes on a ceramic tray, prepared for a draw",
     d: "A single draw at a partner laboratory near you. A comprehensive panel across the systems a protocol can touch — cardiac, hormonal, metabolic, hepatic, renal — establishing your baseline.",
-    detail: "Three panel tiers — Basic, Full, and Elite — matched to what a protocol actually requires. A GH-axis peptide mandates IGF-1; a metabolic protocol pulls insulin, HOMA-IR, and ApoB. You are not billed for markers your protocol doesn’t use.",
+    detail: "Three panel tiers — Basic, Full, and Elite — matched to what a protocol actually requires. A GH-axis peptide mandates IGF-1; a metabolic protocol pulls insulin, HOMA-IR, and ApoB. You are billed for the markers your protocol reads.",
     objection: "“Why can’t I skip the labs?” Because without a baseline there is nothing to compare the retest against — and the retest is the entire point.",
   },
   {
     n: "03", t: "Physician review", Icon: Stethoscope,
     img: stepPhysician, imgAlt: "Two physicians review a patient chart together",
     d: "A licensed U.S. physician reads your intake against your markers. If a protocol is appropriate, it is prescribed. If it is not, you are told so plainly.",
-    detail: "The physician is the only party who can authorize a prescription — not a questionnaire score, not a sales team. Some intakes end here with “not a candidate,” and that outcome carries no charge.",
+    detail: "A physician is the only party who can authorize a prescription here, and that authority sits with them alone. Some intakes end at this step with “not a candidate,” and that outcome carries no charge.",
     objection: "“Is there really a doctor, or a checkbox?” A named, state-licensed physician owns the decision and the liability for it.",
   },
   {
     n: "04", t: "503A compounding", Icon: FlaskConical,
     img: stepCompounding, imgAlt: "A sterile compounding room in a licensed pharmacy",
     d: "Prescriptions are compounded for you in a state-licensed 503A pharmacy — batch-documented and prescription-only.",
-    detail: "503A pharmacies compound to an individual prescription under state board oversight. Every batch is documented. This is the same regulatory class that prepares countless everyday prescriptions — not a gray-market supplier.",
-    objection: "“Where does the actual medication come from?” A licensed U.S. compounding pharmacy, dispensing against your specific prescription — never a bulk shelf.",
+    detail: "503A pharmacies compound to an individual prescription under state board oversight. Every batch is documented. This is the same regulatory class that prepares countless everyday prescriptions.",
+    objection: "“Where does the actual medication come from?” A licensed U.S. compounding pharmacy, preparing your vial against your specific prescription, batch by documented batch.",
   },
   {
     n: "05", t: "Cold-chain delivery", Icon: Snowflake,
@@ -82,7 +82,7 @@ const STEPS: Step[] = [
     img: stepRetest, imgAlt: "A physician reads a printed lab panel at a light table",
     d: "Your panel is drawn again. The trend is placed next to the protocol, and a physician decides what changes.",
     detail: "This is the step the rest of the market skips. The same markers are re-drawn, the movement is read against your protocol, and the physician holds, adjusts, or tapers accordingly. The loop is the product — not the vial.",
-    objection: "“What am I actually paying for?” Ongoing physician oversight anchored to your own labs — not a subscription to a substance.",
+    objection: "“What am I actually paying for?” Ongoing physician oversight, anchored to your own labs and re-read every 90 days.",
   },
 ];
 
@@ -181,7 +181,7 @@ export default function HowItWorks() {
         <Reveal>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The fixed order</p>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", marginTop: "0.6rem", lineHeight: 1.1 }}>
-            From intake to retest, <em style={{ color: "var(--nx-cobalt)" }}>nothing is skipped.</em>
+            From intake to retest, <em style={{ color: "var(--nx-cobalt)" }}>every step is on the record.</em>
           </h2>
         </Reveal>
 

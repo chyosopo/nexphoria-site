@@ -60,7 +60,7 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 
 ---
 
-## Gate Battery — run ALL NINE before EVERY commit
+## Gate Battery — run ALL TEN before EVERY commit
 A commit ships only if these pass / non-regress. Use Node 20 LTS (`.nvmrc` pins it; better-sqlite3 does not compile on Node 26).
 
 ```
@@ -77,6 +77,13 @@ npm run audit:catalog     # 8. catalog assumptions — derived figures finite, l
 npm run audit:a2p         # 9. A2P 10DLC / SMS — the disclosures carriers check, asserted
                           #    against the PRERENDERED HTML per route (build first). A
                           #    clause that is bundled but not rendered still fails.
+npm run audit:voice       # 10. house voice — law 3, defensive negation, against the
+                          #    PRERENDERED HTML (build first). Law 3 was written down in
+                          #    2026-07 and drifted anyway: by 2026-08-13 the site carried
+                          #    a dozen "not a checkout flow / never an algorithm"
+                          #    constructions. A law nobody can check is a preference.
+                          #    Exemptions are LITERAL strings with a stated reason
+                          #    (clinical, FDA, or A2P-mandated wording) — never patterns.
 ```
 Also run `npm run build` before deploy-affecting commits, and `npm run audit:bundle` when touching entry/imports (entry ≤300KB budget, recharts banned from entry, Bloodwork stays lazy).
 

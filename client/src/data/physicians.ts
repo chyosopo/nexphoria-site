@@ -51,7 +51,7 @@ export const physicianReview: PhysicianReview = {
   standards: [
     {
       label: "Board certification required",
-      detail: "Every prescribing physician holds active board certification. Board certification is the minimum standard — not a differentiator.",
+      detail: "Every prescribing physician holds active board certification. We treat that as the floor to practice here, and start from it.",
     },
     {
       label: "Laboratory review mandatory before any Rx",
@@ -80,7 +80,7 @@ export const physicianReview: PhysicianReview = {
     {
       n: "02",
       label: "Physician Review",
-      body: "A board-certified physician reviews your full panel and intake — not an algorithm. They look for absolute contraindications, relative cautions, and protocol optimization based on your specific baseline, not population averages. You are notified when review is complete.",
+      body: "A board-certified physician reads your full panel and intake themselves. They look for absolute contraindications, relative cautions, and protocol optimization against your own baseline. You are notified when review is complete.",
     },
     {
       n: "03",

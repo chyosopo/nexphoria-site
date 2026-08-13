@@ -167,10 +167,10 @@ export default function Physicians() {
                     marginBottom: "2rem",
                   }}
                 >
-                  Every prescribing physician is U.S.-licensed, board-certified, and
-                  DEA-registered. We do not contract with international or non-licensed
-                  providers. Every physician reviews actual laboratory results before
-                  issuing a prescription — intake questionnaires alone are insufficient.
+                  Every prescribing physician is U.S.-licensed, board-certified and
+                  DEA-registered, and holds a current licence in the state where you live.
+                  Each one reviews actual laboratory results before issuing a prescription;
+                  an intake questionnaire on its own is never enough to prescribe against.
                 </p>
                 <ul
                   style={{
@@ -562,7 +562,7 @@ function PhysiciansHeroDark() {
               { k: "Board-certified", v: "Active certification required of every prescriber" },
               { k: "Lab-gated", v: "No prescription precedes a CLIA-certified lab panel" },
               { k: "State-licensed", v: "Matched to a physician licensed where you live" },
-              { k: "Human review", v: "A physician reads your file — never an algorithm" },
+              { k: "Human review", v: "A named physician reads your file" },
             ].map((tile) => (
               <div
                 key={tile.k}

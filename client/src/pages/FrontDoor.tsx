@@ -383,11 +383,11 @@ export default function FrontDoor() {
       <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
           <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "var(--nx-ls-snug)", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
-            A protocol. <em style={{ color: "var(--nx-cobalt)" }}>Not a purchase.</em>
+            A protocol. <em style={{ color: "var(--nx-cobalt)" }}>Written for you.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "56ch", margin: "1.1rem auto 0" }}>
-            Nothing here is bought from a shelf. You bring a goal; a licensed physician brings
-            judgment; your bloodwork decides. That is the entire model.
+            You bring a goal; a licensed physician brings judgment; your bloodwork decides the
+            dose. That is the entire model.
           </p>
         </div>
       </section>
@@ -482,7 +482,7 @@ export default function FrontDoor() {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             {[
-              { t: "Amino-acid chains", b: "Biology's native signal language — not a synthetic stimulant." },
+              { t: "Amino-acid chains", b: "Biology's own signalling language, written in amino acids." },
               { t: "Signals, not overrides", b: "They ask cells to do what cells already know how to do." },
               { t: "Prescription-only here", b: "Physician-prescribed, 503A-compounded, lab-monitored." },
             ].map((c) => (

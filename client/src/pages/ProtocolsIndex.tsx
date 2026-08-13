@@ -83,7 +83,7 @@ export default function ProtocolsIndex() {
                 Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. Not a cart of vials. A plan.
+                A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. A plan, with a date on every step.
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
@@ -110,7 +110,7 @@ export default function ProtocolsIndex() {
       <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Why a protocol">
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
-            { h: "Chosen to combine", d: "Each peptide is picked for how it works with the others in the stack — synergy a physician plans, not a basket you assemble." },
+            { h: "Chosen to combine", d: "Each peptide is picked for how it works alongside the others in the stack — synergy a physician plans in advance." },
             { h: "One panel, one timeline", d: "A single bloodwork tier gates the whole protocol, and every component runs on the same twelve-week arc — one baseline, one retest." },
             { h: "Priced as a plan", d: "Cadence pricing — one month, three months at 15% off, twelve months at 30% with the panel included — applies to the protocol as a whole." },
           ].map((b) => (

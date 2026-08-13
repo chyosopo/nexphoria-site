@@ -77,7 +77,7 @@ const PROOF_STATS: { value: string; label: string; Icon: LucideIcon }[] = [
 
 // The fixed clinical order — rendered as a drawn process timeline.
 const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
-  { t: "Structured intake", d: "History, goals, medications, and contraindications — routed to a physician, not an algorithm.", Icon: ClipboardList },
+  { t: "Structured intake", d: "History, goals, medications, and contraindications — read by the physician who signs the prescription.", Icon: ClipboardList },
   { t: "Laboratory bloodwork", d: "A baseline panel at a CLIA-certified partner lab across every system a protocol can touch.", Icon: Microscope },
   { t: "Physician review", d: "A licensed U.S. physician reads your labs against your intake and writes — or declines — the prescription.", Icon: Stethoscope },
   { t: "503A compounding", d: "Sterile-prepared under USP <797>, batch-documented, third-party verified.", Icon: FlaskConical },
@@ -87,8 +87,8 @@ const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
 
 // The three tenets of the manifesto, as visual principle cards.
 const PRINCIPLES: { t: string; d: string; Icon: LucideIcon }[] = [
-  { t: "Labs before guesswork", d: "No protocol begins without a baseline panel. Dose changes follow measured data, never a symptom report.", Icon: Ruler },
-  { t: "Physicians before protocols", d: "A board-certified U.S. physician owns every prescription and the liability for it. Not marketing, not a score.", Icon: Stethoscope },
+  { t: "Labs before guesswork", d: "Every protocol begins with a baseline panel, and every dose change follows the measured data.", Icon: Ruler },
+  { t: "Physicians before protocols", d: "A board-certified U.S. physician owns every prescription, and the liability that comes with signing it.", Icon: Stethoscope },
   { t: "Mechanism before marketing", d: "We publish what is in the vial, who made it, and how it works — before we make a single claim.", Icon: Target },
 ];
 
@@ -96,7 +96,7 @@ const PILLARS = [
   {
     num: "01",
     title: "Physician-guided",
-    desc: "Board-certified US physicians review your labs and write every prescription. A patient, not a checkout flow. Protocols are designed by MDs reading your bloodwork, never by marketing or testimonial.",
+    desc: "Board-certified US physicians review your labs and write every prescription. You arrive as a patient and are treated as one. Every protocol is designed by an MD reading your bloodwork.",
   },
   {
     num: "02",
@@ -106,7 +106,7 @@ const PILLARS = [
   {
     num: "03",
     title: "Measured",
-    desc: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Labs rerun every 90 days. Dose adjusted from measured data, not symptom report. Included, not an add-on.",
+    desc: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Labs rerun every 90 days. Your dose is set from measured data, and the panel sits inside the monthly figure.",
   },
 ];
 
@@ -120,7 +120,7 @@ const ROLES = [
   },
   {
     title: "Physician review",
-    desc: "A licensed physician reads your labs and intake and writes every prescription. A patient, not a checkout flow — never an algorithm.",
+    desc: "A licensed physician reads your labs and your intake, and writes every prescription. A clinician decides, and signs.",
   },
   {
     title: "Pharmacy operations",
@@ -175,7 +175,7 @@ const ABOUT_FAQ_ITEMS = [
   },
   {
     q: "What makes Nexphoria different from other peptide companies?",
-    a: "Nexphoria is a physician-supervised platform, not a supplement company. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with CLIA-certified partner-laboratory panels every 90 days. Most peptide providers online are supplement companies or research-chemical vendors with no physician oversight.",
+    a: "Nexphoria is a physician-supervised telehealth platform. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with CLIA-certified partner-laboratory panels every 90 days. That chain — clinician, licensed pharmacy, documented batch, measured markers — is what you are buying.",
   },
   {
     q: "Is Nexphoria affiliated with Bask Health?",
@@ -243,9 +243,9 @@ export default function About() {
               }}
             >
               <span style={{ color: "color-mix(in oklab, var(--nx-fg) 34%, transparent)" }}>
-                Peptide therapy needs a pharmacy,
+                Peptide therapy belongs
               </span>{" "}
-              not an influencer.
+              in a pharmacy.
             </h1>
             <p
               style={{
@@ -259,7 +259,7 @@ export default function About() {
             >
               We build physician-supervised peptide protocols for performance, longevity, and
               recovery. Designed by clinicians. Compounded in US 503A pharmacies. Gated on your
-              bloodwork, not a testimonial.
+              own bloodwork.
             </p>
           </Reveal>
         </div>
@@ -381,9 +381,9 @@ export default function About() {
                 </p>
                 <p style={bodyCopy}>
                   We started Nexphoria from a single conviction: peptide therapy is a clinical
-                  practice, and a clinical practice needs a pharmacy behind it, not a personality.
-                  A pharmacy is accountable to regulators, to sterility standards, to a chain of
-                  custody. An influencer is accountable to an algorithm.
+                  practice, and a clinical practice runs on a pharmacy. A pharmacy answers to
+                  regulators, to sterility standards, to a documented chain of custody. Those are
+                  the accountabilities we wanted behind every vial we ship.
                 </p>
                 <p style={bodyCopy}>
                   So we built the company in the order a clinic would: physician oversight first,
@@ -517,7 +517,7 @@ export default function About() {
           <Reveal>
             <p style={eyebrow}>{eyebrowRule}Our principles</p>
             <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
-              Three rules we do not break.
+              Three rules we hold to.
             </h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: "1.25rem" }}>
@@ -876,10 +876,9 @@ export default function About() {
                 maxWidth: "860px",
               }}
             >
-              "Precision medicine is not a marketing category. It is a commitment to treating every
-              patient as a unique biological system, not a population average. Labs before
-              guesswork. Physicians before protocols. Mechanism before marketing claim. That is
-              Nexphoria."
+              "Precision medicine is a commitment to treating every patient as a unique biological
+              system. Labs before guesswork. Physicians before protocols. Mechanism before claim.
+              That is Nexphoria."
             </p>
             <p
               style={{
