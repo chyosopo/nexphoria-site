@@ -1,7 +1,7 @@
 /* JOB: the women's front door — cast the engine orchid and start the assessment. */
 /* ═══ WOMEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══
    Orchid tokens apply automatically under /women via [data-world]. */
-import { liveCategories } from "@/data/peptides";
+import { liveCategories, liveFeatured } from "@/data/peptides";
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
@@ -43,7 +43,12 @@ export default function WomenHome() {
         // them (data/peptides LIVE_CATEGORIES). Tiles for retired goals were
         // dead ends and broke audit:funnel.
         categories: liveCategories(["skin", "recovery", "metabolic", "longevity", "cognition", "sleep"]),
-        featured: ["ghk-cu", "bpc-157", "nad-plus", "epitalon"],
+        // Preferred order, filtered to what the catalog actually carries.
+        // The hardcoded list had gone stale under the launch scope — men's
+        // was 3-of-4 retired and women's was ALL FOUR, so her formulary row
+        // rendered zero cards. Visible only by looking at the page; no gate
+        // covered it.
+        featured: liveFeatured(["ghk-cu", "bpc-157", "nad-plus", "epitalon"]),
         nightEyebrow: "The standard",
         nightH2: (
           <>

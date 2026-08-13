@@ -218,10 +218,15 @@ export function WorldHome({ config }: { config: WorldHomeConfig }) {
                 {/* Deep-link the GOAL, not the generic shelf (found by the
                     6.1 funnel gate): recovery lands on /goals/recovery. */}
                 <Link href={`/goals/${cat}`} className="nx-art-tile" data-testid={`${world}-goal-${cat}`}>
-                  {config.tileArt[cat] && (
+                  {/* A goal tile with no art renders as a blank white box —
+                      which is exactly what /men showed for sexual-health, the
+                      one live category with no entry in OUTCOME_CATEGORY.men.
+                      Falls back to the world's hero frame so a newly-live goal
+                      can never present as an empty card. */}
+                  {(config.tileArt[cat] ?? config.heroArt) && (
                     <img
-                      src={config.tileArt[cat]}
-                      srcSet={outcomeSrcSet(config.tileArt[cat])}
+                      src={config.tileArt[cat] ?? config.heroArt}
+                      srcSet={outcomeSrcSet((config.tileArt[cat] ?? config.heroArt)!)}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                       alt="" aria-hidden loading="lazy" width={1632} height={2048}
                     />

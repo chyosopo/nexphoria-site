@@ -1006,3 +1006,18 @@ export function liveCategories(preferred: PeptideCategory[]): PeptideCategory[] 
   // Anything live but unlisted still appears, so a new SKU is never orphaned.
   return [...kept, ...LIVE_CATEGORIES.filter((c) => !kept.includes(c))];
 }
+
+/** A preferred slug order, filtered to what the catalog actually carries, then
+ *  topped up from the live catalog so the row is never short.
+ *
+ *  Added 2026-08-13 after a rendered screenshot showed the formulary card rows
+ *  half-empty on /men and COMPLETELY empty on /women: both pages hardcoded four
+ *  slugs, and the launch scope had retired three of men's and all four of
+ *  women's. Nothing failed — the rows just silently emptied, which is the same
+ *  class as the goal-page and sitemap defects. Deriving removes the trap. */
+export function liveFeatured(preferred: string[], count = 4): string[] {
+  const live = new Set(peptides.map((p) => p.slug));
+  const kept = preferred.filter((s) => live.has(s));
+  const fill = peptides.map((p) => p.slug).filter((s) => !kept.includes(s));
+  return [...kept, ...fill].slice(0, count);
+}

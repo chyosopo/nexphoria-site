@@ -1,6 +1,6 @@
 /* JOB: the men's front door — cast the engine azure and start the assessment. */
 /* ═══ MEN'S HOME — P3 rebuild · thin config over the WorldHome engine ═══ */
-import { liveCategories } from "@/data/peptides";
+import { liveCategories, liveFeatured } from "@/data/peptides";
 import { WorldHome } from "@/components/WorldHome";
 import { HomeTrust } from "@/components/HomeTrust";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd } from "@/lib/seo";
@@ -42,7 +42,12 @@ export default function MenHome() {
         // them (data/peptides LIVE_CATEGORIES). Tiles for retired goals were
         // dead ends and broke audit:funnel.
         categories: liveCategories(["growth", "recovery", "metabolic", "longevity", "cognition", "sleep"]),
-        featured: ["bpc-157", "ipamorelin", "tesamorelin", "nad-plus"],
+        // Preferred order, filtered to what the catalog actually carries.
+        // The hardcoded list had gone stale under the launch scope — men's
+        // was 3-of-4 retired and women's was ALL FOUR, so her formulary row
+        // rendered zero cards. Visible only by looking at the page; no gate
+        // covered it.
+        featured: liveFeatured(["bpc-157", "ipamorelin", "tesamorelin", "nad-plus"]),
         nightEyebrow: "The standard",
         nightH2: (
           <>

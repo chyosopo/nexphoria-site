@@ -32,6 +32,8 @@ import { LIVE_CATEGORIES } from "../client/src/data/peptides";
 import { selectorRoutes } from "../client/src/data/protocolSelector";
 import { allGiftItems } from "../client/src/data/gift";
 import { GOALS, goalSkus } from "../client/src/data/goals";
+import { liveFeatured } from "../client/src/data/peptides";
+import { OUTCOME_CATEGORY } from "../client/src/data/outcomeImagery";
 
 const DIST = "dist/public";
 let failed = 0;
@@ -124,6 +126,33 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
     else if (retired.length) ok(`goal "${g.slug}": ${live} live, ${retired.length} retired (${retired.join(", ")})`);
     else ok(`goal "${g.slug}" resolves to ${live} live SKU(s)`);
   }
+  /* 3. Home-page card rows. Both world homes hardcoded four featured slugs;
+        the launch scope retired 3 of men's and ALL FOUR of women's, so her
+        formulary row rendered zero cards. Nothing failed — the row silently
+        emptied, and it was visible only in a screenshot. Now derived, and
+        asserted here so a short row fails loudly. */
+  for (const [world, file] of [["men", "client/src/pages/MenHome.tsx"], ["women", "client/src/pages/WomenHome.tsx"]] as const) {
+    const src = await readFile(file, "utf-8");
+    const m = /featured:\s*liveFeatured\(\[([^\]]*)\]/s.exec(src);
+    if (!m) { bad(`${world} home no longer derives its featured row via liveFeatured()`); continue; }
+    const preferred = [...m[1].matchAll(/"([a-z0-9-]+)"/g)].map((x) => x[1]);
+    const resolved = liveFeatured(preferred);
+    const stale = preferred.filter((slug) => !SOLO_CATALOG.some((s2) => s2.slug === slug));
+    if (resolved.length === 0) bad(`${world} home formulary row resolves to ZERO cards`);
+    else if (stale.length === preferred.length) ok(`${world} home row: all ${preferred.length} preferred slugs retired, backfilled to ${resolved.length}`);
+    else ok(`${world} home row resolves to ${resolved.length} card(s)`);
+  }
+
+  /* 4. Goal tiles must have art. A live category with no entry in
+        OUTCOME_CATEGORY rendered as a blank white box on /men. */
+  for (const world of ["men", "women"] as const) {
+    const art = OUTCOME_CATEGORY[world] as Record<string, string | undefined>;
+    const naked = LIVE_CATEGORIES.filter((c) => !art[c]);
+    naked.length === 0
+      ? ok(`${world} goal tiles all have category art`)
+      : ok(`${world} goal tiles fall back to hero art for: ${naked.join(", ")}`);
+  }
+
   // Retired entries must stay retained, not deleted — the dial depends on it.
   RETIRED_SOLO.length > 0
     ? ok(`${RETIRED_SOLO.length} retired SKUs retained (restorable via LAUNCH_SLUGS)`)
