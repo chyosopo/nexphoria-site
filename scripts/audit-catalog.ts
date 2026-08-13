@@ -130,14 +130,19 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
         four featured slugs each — the launch scope retired 3 of men's and ALL
         FOUR of women's, so her row rendered zero cards. Those files are now
         deleted with the two-worlds split, and the single home renders the
-        shared ProductShelf over the live catalog, so the check moves with it:
-        assert the home still puts products on the page at all. That is the
-        defect worth catching — the home shipped with NO product cards the
-        moment the world homes were unrouted. */
+        shared block over the live catalog, so the check moves with it: assert
+        the home still puts products on the page at all. That is the defect
+        worth catching — the home shipped with NO product cards the moment the
+        world homes were unrouted.
+
+        The component name is deliberately NOT pinned: it has been ProductShelf
+        and is now ProductTiles, and rewriting this assertion each time invites
+        someone to weaken it instead. What must hold is that the home renders
+        the LIVE CATALOG, whatever the block is called. */
   {
     const src = await readFile("client/src/pages/FrontDoor.tsx", "utf-8");
-    if (!/<ProductShelf\s+skus=\{SOLO_CATALOG\}/.test(src)) {
-      bad("home page no longer renders the live catalog via ProductShelf");
+    if (!/<Product\w+\s+skus=\{SOLO_CATALOG\}/.test(src)) {
+      bad("home page no longer renders the live catalog (no <Product… skus={SOLO_CATALOG}> block)");
     } else if (SOLO_CATALOG.length === 0) {
       bad("home formulary shelf would render zero cards");
     } else {

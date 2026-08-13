@@ -2446,3 +2446,81 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 }
 
 
+
+/* ═══ PRODUCT TILE — the conversion block ═══
+   A coloured tile per goal: product shot, outcome, mechanism, the physician's
+   own review schedule, price, one action. The tint identifies the goal, so a
+   returning visitor reads the shelf by colour before reading a word. */
+.nx-ptile-grid {
+  display: grid;
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+  /* Explicit columns, not auto-fit. auto-fit optimises for filling a row, which
+     with four tiles gives 3-and-1 and orphans the last one on its own line at
+     desktop width. 1 → 2 → 4 keeps the shelf balanced at every size. */
+  grid-template-columns: 1fr;
+}
+@media (min-width: 620px)  { .nx-ptile-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1180px) { .nx-ptile-grid { grid-template-columns: repeat(4, 1fr); } }
+.nx-ptile {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  border-radius: var(--nx-r-lg);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform var(--nx-dur-3) var(--nx-reveal-ease), box-shadow var(--nx-dur-3) var(--nx-ease);
+}
+@media (hover: hover) {
+  .nx-ptile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-4); }
+}
+.nx-ptile:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 3px; }
+
+/* The photograph keeps its own light ground — glass mattes badly, and a ragged
+   cutout on a colour costs more trust than the colour buys. */
+.nx-ptile__media { position: relative; background: var(--nx-ceramic); }
+.nx-ptile__cat {
+  position: absolute; left: 12px; top: 12px;
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); font-weight: 600;
+  letter-spacing: var(--nx-ls-caps); text-transform: uppercase;
+  color: var(--nx-ceramic);
+  padding: 5px 10px; border-radius: var(--nx-r-pill);
+}
+.nx-ptile__body { display: flex; flex-direction: column; flex: 1; padding: clamp(1rem, 3%, 1.35rem); }
+.nx-ptile__mech {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+}
+
+/* The review schedule. A rule runs down the markers so three dates read as one
+   sequence rather than three loose facts. */
+.nx-ptile__timeline { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+.nx-ptile__timeline li { display: flex; gap: 0.6rem; align-items: baseline; }
+.nx-ptile__wk {
+  flex-shrink: 0; min-width: 3.4rem;
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); font-weight: 700;
+  letter-spacing: var(--nx-ls-caps); text-transform: uppercase;
+  border-right: 1px solid; padding-right: 0.6rem;
+}
+.nx-ptile__eff {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite);
+}
+
+.nx-ptile__foot {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 10px;
+  margin-top: auto; padding-top: 0.9rem; border-top: 1px solid;
+}
+.nx-ptile__go {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: var(--nx-r-pill);
+  color: var(--nx-ceramic); flex-shrink: 0;
+  transition: transform var(--nx-dur-2) var(--nx-ease);
+}
+@media (hover: hover) { .nx-ptile:hover .nx-ptile__go { transform: translateX(3px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-ptile, .nx-ptile__go { transition: none; }
+  .nx-ptile:hover { transform: none; }
+  .nx-ptile:hover .nx-ptile__go { transform: none; }
+}

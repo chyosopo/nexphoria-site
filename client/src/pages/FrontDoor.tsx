@@ -21,7 +21,7 @@ import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
-import { ProductShelf } from "@/components/ProductCard";
+import { ProductTiles } from "@/components/ProductTile";
 import { VialHero } from "@/components/VialHero";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
@@ -215,14 +215,14 @@ export default function FrontDoor() {
               The formulary
             </p>
             <h2 id="frontdoor-formulary" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem", maxWidth: "20ch" }}>
-              Everything a physician can prescribe here.
+              What each one does, and when you will know.
             </h2>
           </div>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             The complete catalog →
           </Link>
         </div>
-        <ProductShelf skus={SOLO_CATALOG} testId="frontdoor-formulary-shelf" />
+        <ProductTiles skus={SOLO_CATALOG} testId="frontdoor-formulary-shelf" />
       </section>
 
       {/* ══ 1.47 · WHAT ARRIVES — the object, on the dark.

@@ -293,7 +293,7 @@ const ALL_SOLO: SoloPeptide[] = [
     outcome: "Arousal, addressed centrally.",
     dose: "1.75 mg as-needed SC", spec: "10 mg/mL · 3 mL vial",
     mechanism: "A melanocortin agonist studied for sexual arousal, acting centrally rather than vascularly.",
-    timeline: [{ wk: "As needed", effect: "Onset 1–3 hrs." }, { wk: "Ongoing", effect: "Response reviewed." }, { wk: "—", effect: "Physician adjusts." }],
+    timeline: [{ wk: "As needed", effect: "Onset 1–3 hrs." }, { wk: "Ongoing", effect: "Response reviewed." }, { wk: "Follow-up", effect: "Physician adjusts the dose." }],
     panel: "Basic",
     contraindications: ["Uncontrolled hypertension", "Cardiovascular disease (physician review)", "Pregnancy"],
     // pricing TBD
