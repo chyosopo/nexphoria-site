@@ -24,6 +24,36 @@ function count(rx: RegExp, label: string, allow?: RegExp) {
   return values.size;
 }
 
+import { contrast } from "./lib-contrast";
+
+/* ── GOAL ACCENT CONTRAST ──
+   The goal accent family (added 2026-08-13) makes colour carry navigation:
+   metabolic is always the same green, growth always the same amber. That only
+   works if the text on each tint is readable, so every -ink/-tint pair is
+   asserted at WCAG AA (4.5:1) on every build. A pale palette is exactly where
+   this goes wrong quietly — a tint two steps too light still looks fine to the
+   person who chose it. */
+{
+  const css = readFileSync("client/src/index.css", "utf8");
+  const tok = (n: string) => css.match(new RegExp(`--nx-goal-${n}:\\s*(#[0-9a-fA-F]{6})`))?.[1];
+  const goals = [...new Set([...css.matchAll(/--nx-goal-([a-z-]+)-tint:/g)].map((m) => m[1]))];
+  console.log("\n═══ GOAL ACCENT CONTRAST (WCAG AA = 4.5:1) ═══");
+  let bad = 0;
+  for (const g of goals) {
+    const tint = tok(`${g}-tint`), ink = tok(`${g}-ink`), edge = tok(`${g}-edge`);
+    if (!tint || !ink || !edge) { console.log(`   ✖ ${g}: incomplete triple (needs -tint, -edge, -ink)`); bad++; continue; }
+    const r = contrast(ink, tint);
+    const ok = r >= 4.5;
+    if (!ok) bad++;
+    console.log(`   ${ok ? "✓" : "✖"} ${g.padEnd(15)} ink on tint ${r.toFixed(2)}:1`);
+  }
+  if (bad) {
+    console.log(`\n✖ ${bad} goal accent pair(s) fail WCAG AA. A tile nobody can read is not a tile.\n`);
+    process.exit(1);
+  }
+  console.log(`   ${goals.length} goal accents, all AA or better`);
+}
+
 console.log("═══ DESIGN ENTROPY (target: tokens only — var(--nx-*)) ═══");
 const a = count(/fontSize: ?"?[\d.]+(px)?"?/g, "off-scale fontSize literals");
 const b = count(/borderRadius: ?"?[\d.]+(px)?"?/g, "off-scale borderRadius literals", /var\(/);

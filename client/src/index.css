@@ -137,6 +137,49 @@
     --nx-ceramic:      #FDFDFE;  /* elevated surface — lifts above the cold canvas */
     --nx-rock:         #DDE2E8;
     --nx-acid:         #9FBBDA;
+
+    /* ══ GOAL ACCENT FAMILY (Chiya 2026-08-13) ══════════════════════════════
+       "Everything should be coloured tiles, even menu items — like ivyrx.com."
+
+       THE RULE THAT KEEPS THIS FROM BECOMING DECORATION: a colour identifies a
+       GOAL. It is never picked for variety. Two tiles share a colour if and
+       only if they lead to the same goal, so a returning visitor learns the
+       map — metabolic is always the same green, growth always the same amber.
+       Colour is navigation here, not garnish.
+
+       Graphite & Ice remains the SYSTEM: the canvas, the ink, the CTA, and
+       every band stay exactly as they are. These tints appear ONLY on tiles,
+       menu items, and band edges, which is the discipline Atlas measured on
+       the reference (neutral base, a small pastel set, severe accent ratio).
+
+       Each goal carries three values, and they are three because a tile needs
+       all three to work: -tint is the fill, -edge is the hairline that keeps a
+       pale fill from dissolving into a pale canvas, and -ink is the ONLY
+       colour allowed for text on that tint. Every -ink on its -tint was picked
+       to clear WCAG AA (4.5:1) — audit:design asserts every pair on every
+       build, so a tint that fails contrast fails the build.
+
+       Only LIVE goals get a colour. Retired categories are deliberately absent
+       rather than defined-and-unused: a token that exists invites a tile, and
+       a tile invites a dead end. */
+    --nx-goal-metabolic-tint: #E3F0EA;
+    --nx-goal-metabolic-edge: #BFDCCF;
+    --nx-goal-metabolic-ink:  #1C5340;
+
+    --nx-goal-growth-tint:    #F4EBDC;
+    --nx-goal-growth-edge:    #E2D0B4;
+    --nx-goal-growth-ink:     #6B4715;
+
+    --nx-goal-sexual-health-tint: #F6E7EC;
+    --nx-goal-sexual-health-edge: #E6C6D2;
+    --nx-goal-sexual-health-ink:  #7A2E47;
+
+    /* Non-goal tiles that still need to be tiles, not text links: the panel,
+       the physician gate, the process. Slate keeps them clearly OUTSIDE the
+       goal map so a visitor never reads them as a fourth goal. */
+    --nx-goal-neutral-tint:   #E7EBF1;
+    --nx-goal-neutral-edge:   #CBD4E0;
+    --nx-goal-neutral-ink:    #29384B;
     --nx-danger:       #A4453C;  /* form error — muted brick */
     --nx-accent:       #2B6CB0;  /* mirrors --nx-cobalt */
 
@@ -2476,3 +2519,9 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 @media (prefers-reduced-motion: reduce) {
   .nx-evidence-row, .nx-evidence-chev { transition: none; }
 }
+
+/* The vial photo is a container for its label: the label's type scales with
+   the OBJECT, not the viewport, so a 140px shelf thumbnail and a 400px PDP
+   hero carry an identically proportioned label instead of one with giant text
+   and one with none. cqw units need this declaration to resolve. */
+.nx-vialphoto { container-type: inline-size; }
