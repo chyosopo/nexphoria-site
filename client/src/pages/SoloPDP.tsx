@@ -23,8 +23,7 @@ import { SafetyDisclosure } from "@/components/SafetyDisclosure";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
-import { getPeptideHeroImage } from "@/lib/peptideImages";
-import { VialMockup, labelSpec } from "@/components/VialMockup";
+import { VialPanel, labelSpec } from "@/components/VialMockup";
 import type { PeptideCategory } from "@/data/peptides";
 
 /* SoloCategory → the outcome-imagery key it reads as. */
@@ -94,7 +93,6 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
      frames (product + outcome) instead of the same photo twice. */
   const categoryImg =
     OUTCOME_CATEGORY[imgWorld][SOLO_OUTCOME[solo.category]] ?? OUTCOME_HERO[imgWorld];
-  const heroImg = getPeptideHeroImage(solo.slug) ?? categoryImg;
 
   /* Same-category companions first, then fill from the wider formulary. */
   const related = SOLO_CATALOG
@@ -146,6 +144,23 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       ]
     : undefined;
 
+  /* The hero figure, off the same three sources the buy box reads and in the
+     same order of precedence: a gated SKU has no shelf price at all, a priced
+     SKU leads with its lowest real cadence, and anything else is honest about
+     being set at consultation. Derived, never a second hardcoded number. */
+  const heroPrice = solo.gated
+    ? "Assessed first"
+    : solo.pricing
+      ? `From ${usd(solo.pricing.m12)}/mo`
+      : getPrice(solo.slug)
+        ? `From ${usd(getPrice(solo.slug)!.monthlyPrice)}/mo`
+        : "Set at consultation";
+  const heroPriceSub = solo.gated
+    ? "Priced once a physician has reviewed your intake"
+    : solo.pricing
+      ? "on the 12-month cadence · panel included"
+      : undefined;
+
   return (
     <SiteLayout>
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
@@ -155,7 +170,37 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center", marginTop: "1rem" }}>
+          {/* Reference grammar (IVYRX-STUDY-VISUAL §V2.2): marketing heroes are
+              centred and 50–65% empty, but PDPs INVERT — a tight, left-aligned
+              two-column split at ~30% empty, product image LEFT, headline +
+              price + CTA right, and the product takes first fixation. Ours had
+              the opposite: copy left, an editorial photo right, and no price in
+              the hero at all — you had to scroll to learn what it cost. */}
+          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center", marginTop: "1rem" }}>
+            {/* — LEFT · the product, first fixation — */}
+            <div style={{ position: "relative", order: 0 }}>
+              <VialPanel
+                name={solo.name}
+                dose={labelSpec(solo.spec)}
+                size="clamp(160px, 46%, 330px)"
+                testId={`solo-vial-${solo.slug}`}
+              />
+              <span
+                style={{
+                  position: "absolute", top: 14, left: 14,
+                  fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
+                  letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
+                  color: "var(--nx-fg-muted)", background: "var(--nx-ceramic)",
+                  border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)",
+                  padding: "6px 12px",
+                }}
+                data-testid={`solo-posture-${solo.slug}`}
+              >
+                {solo.gated ? "Physician-assessed" : "Prescription only"}
+              </span>
+            </div>
+
+            {/* — RIGHT · the claim, the number, the one action — */}
             <div>
               {/* Goals before chemistry (ROADMAP 3.2): the OUTCOME is the
                   headline; the molecule identifies, it no longer leads. */}
@@ -181,35 +226,38 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   testId={`spec-plate-${solo.slug}`}
                 />
               </div>
-            </div>
-            {/* square frame FILLS the column (the 4:5 + maxHeight cap left it
-                floating ~100px narrower than its track) */}
-            <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
-              <img src={heroImg} srcSet={outcomeSrcSet(heroImg)} sizes="(max-width: 1024px) 100vw, 45vw" alt="" aria-hidden fetchPriority="high" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid={`solo-outcome-${solo.slug}`} />
-              <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
-              {/* The object itself, resting over the editorial frame. A photo
-                  says what the outcome feels like; the vial says what actually
-                  arrives. Both, in one frame, is the whole promise. */}
-              <div style={{ position: "absolute", left: "3%", bottom: "1%", pointerEvents: "none" }}>
-                <VialMockup
-                  name={solo.name}
-                  dose={labelSpec(solo.spec)}
-                  size="clamp(112px, 30vw, 218px)"
-                  testId={`solo-vial-${solo.slug}`}
-                />
-              </div>
-              <div
-                style={{
-                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
-                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
-                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
-                }}
-              >
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
-                  {solo.gated ? "Physician-assessed" : "Prescription only"}
+              {/* The number, in the hero. The reference's PDP eye-path is
+                  product → headline → price/CTA, and ours stopped at the
+                  headline: the figure lived only in the buy box further down.
+                  Derived from the SAME source the buy box reads, so the hero
+                  can never quote a price the rail disagrees with. */}
+              <div style={{ display: "flex", alignItems: "baseline", gap: "0.65rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
+                <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1 }} data-testid={`solo-hero-price-${solo.slug}`}>
+                  {heroPrice}
                 </span>
+                {heroPriceSub && (
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)" }}>
+                    {heroPriceSub}
+                  </span>
+                )}
               </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", flexWrap: "wrap", marginTop: "1.1rem" }}>
+                <Link
+                  href="/assessment"
+                  className="nx-cta-cobalt"
+                  data-testid="solo-hero-cta"
+                  style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}
+                >
+                  Start your assessment
+                </Link>
+                <a href="#buy" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                  See every cadence →
+                </a>
+              </div>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.55, color: "var(--nx-fg-muted)", marginTop: "0.8rem", maxWidth: "44ch" }}>
+                A licensed physician decides — and can decline. Dispensed only if prescribed.
+              </p>
             </div>
           </div>
         </div>
@@ -294,7 +342,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           </div>
 
           {/* — RIGHT — */}
-          <aside style={{ alignSelf: "stretch" }}>
+          <aside id="buy" style={{ alignSelf: "stretch", scrollMarginTop: "96px" }}>
             <div className="nx-buyrail">
             <BuyBox
               name={solo.name}

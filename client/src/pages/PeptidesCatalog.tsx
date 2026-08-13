@@ -11,40 +11,11 @@ import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { OUTCOME_CATEGORY, OUTCOME_HERO, OUTCOME_STACK } from "@/data/outcomeImagery";
-import { getPeptideCardImage } from "@/lib/peptideImages";
+import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { getPrice } from "@/data/pricing";
 import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
 import { ProductCard } from "@/components/ProductCard";
 
-/* Solo category → a POOL of outcome frames, cast per world. Brand law
-   (C29): sell the outcome, never the vial — and never the same outcome
-   five cards in a row (five Growth cards once shared one frame). Cards
-   rotate through their category's pool by position. The unworlded
-   /peptides route defaults to the men set; skin casts female in both. */
-function catImg(world: "men" | "women" | undefined): Record<string, string[]> {
-  const women = world === "women";
-  const w = women ? OUTCOME_CATEGORY.women : OUTCOME_CATEGORY.men;
-  const hero = women ? OUTCOME_HERO.women : OUTCOME_HERO.men;
-  const pool = (...frames: (string | undefined)[]) =>
-    frames.filter((f): f is string => Boolean(f));
-  // Her pools are all-female-cast: the men-leaning stack frames (ascend pull-up,
-  // wolverine doorway, threshold track) only pool on his side. Her Growth and
-  // Sexual Health now have dedicated female frames instead of male fallbacks.
-  return {
-    Growth: women
-      ? pool(w.growth, hero, OUTCOME_STACK.glow, w.recovery)
-      : pool(w.growth ?? OUTCOME_CATEGORY.men.growth, OUTCOME_STACK.ascend, OUTCOME_STACK.threshold, hero),
-    Cognitive: pool(w.cognition, OUTCOME_STACK.lucidity, hero),
-    Recovery: women
-      ? pool(w.recovery, hero, OUTCOME_STACK.glow)
-      : pool(w.recovery, OUTCOME_STACK.wolverine, hero),
-    "Skin & Longevity": pool(OUTCOME_CATEGORY.women.skin, OUTCOME_STACK.glow, w.longevity, OUTCOME_STACK.meridian),
-    Metabolic: pool(w.metabolic, hero),
-    Sleep: pool(w.sleep, hero),
-    "Sexual Health": women ? pool(w["sexual-health"], hero) : pool(hero),
-  };
-}
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
    lab-monitored law (TRUE: bloodwork every 90 days). Echoes the Science page. */
@@ -106,7 +77,6 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     ],
   });
 
-  const CAT_IMG = catImg(world);
   const cats = ["All", ...SOLO_CATEGORIES];
   const needle = q.trim().toLowerCase();
   const shown = SOLO_CATALOG.filter(
@@ -275,12 +245,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             shelf by goal with the OUTCOME as each card's title; the compound
             name is the identifying second line. Filter/search flattens. */}
         {(() => {
+          /* "Show the PRODUCT, not a mood" (Chiya 2026-07-13: "we're a
+             pharmacy, not a marketing site") is now literal — ProductCard
+             draws the vial itself, so this closure no longer picks a photo.
+             The per-SKU frame and the category fallback pool it used to
+             resolve were left computed-and-unused by that change. */
           const card = (s: (typeof shown)[number], nth: number, i: number) => {
-            /* Show the PRODUCT, not a mood (Chiya 2026-07-13: "we're a
-               pharmacy, not a marketing site") — the compound's own vial
-               frame first; category lifestyle only as fallback. */
-            const pool = CAT_IMG[s.category] ?? [world === "women" ? OUTCOME_HERO.women : OUTCOME_HERO.men];
-            const productImg = getPeptideCardImage(s.slug, world) ?? pool[nth % pool.length];
             return (
             <Reveal key={s.slug} delay={i * 35}>
               {/* Same block the home formulary renders — one card grammar,

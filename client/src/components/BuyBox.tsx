@@ -289,7 +289,7 @@ export function BuyBox(props: BuyBoxProps) {
             {gated ? "Eligibility first" : consultPriced || !active ? "At consult" : (
               <>
                 {usd(active.amount)}
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, color: "var(--nx-fg-muted)" }}>{active.per} · if prescribed</span>
+                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, color: "var(--nx-fg-muted)" }}>{active.per} · {active.label.toLowerCase()} · if prescribed</span>
               </>
             )}
           </p>

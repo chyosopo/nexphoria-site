@@ -260,3 +260,38 @@ export function VialMockup({
     </div>
   );
 }
+
+/* ═══ VIAL PANEL — the product plinth ═══
+
+   The reference shoots product exactly one way (IVYRX-STUDY-VISUAL §V2.4):
+   upright, front-facing, on a white→pastel SEAMLESS gradient, soft shadow, no
+   props. Props appear only on closing lifestyle bands, never on a product
+   surface. This is that frame, drawn rather than photographed.
+
+   It replaces editorial photography in two places where a photo was actively
+   working against the product:
+     · the PDP hero, where tirzepatide's frame is a branded AUTOINJECTOR PEN —
+       the delivery device of an FDA-approved brand, not the vial a 503A
+       pharmacy compounds and ships. Depicting one to sell the other is a
+       product misrepresentation before it is a design mismatch.
+     · the shelf card, where the same pen followed the SKU onto every surface
+       that lists products.
+   The lifestyle photography is not lost; it keeps the lower PDP band, where
+   it belongs — that band's own headline is "we sell the measured loop, not
+   the vial." */
+export function VialPanel({
+  name, dose, size = "clamp(150px, 26vw, 260px)", ratio = "1 / 1", fill = 0.6, testId,
+}: {
+  name: string;
+  dose?: string;
+  size?: string;
+  ratio?: string;
+  fill?: number;
+  testId?: string;
+}) {
+  return (
+    <div className="nx-vial-panel" style={{ aspectRatio: ratio }} data-testid={testId}>
+      <VialMockup name={name} dose={dose} size={size} fill={fill} />
+    </div>
+  );
+}

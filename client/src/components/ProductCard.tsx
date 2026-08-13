@@ -15,7 +15,7 @@ import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
-import { getPeptideCardImage } from "@/lib/peptideImages";
+import { VialPanel, labelSpec } from "@/components/VialMockup";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
 /** The price line for a SKU, in one place. Mirrors the PDP's own logic:
@@ -34,21 +34,27 @@ export function ProductCard({
   sku: SoloPeptide;
   testId?: string;
 }) {
-  const img = getPeptideCardImage(sku.slug);
   return (
     <Link
       href={`/peptides/${sku.slug}`}
       className="nx-float-card"
       data-testid={testId ?? `peptide-${sku.slug}`}
     >
-      {img && (
-        <div className="nx-float-card__media">
-          <img src={img} alt="" aria-hidden loading="lazy" width={1632} height={2048} />
-          {sku.gated && (
-            <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
-          )}
-        </div>
-      )}
+      {/* The card media is the PRODUCT, drawn — not editorial photography.
+          The reference shoots every catalog card the same way: the vial
+          upright and front-facing on a seamless gradient, no props
+          (IVYRX-STUDY-VISUAL §V2.4). Ours was pulling per-SKU photos, and two
+          of the four launch frames were actively wrong for a compounded vial:
+          tirzepatide's is a branded autoinjector PEN, semaglutide's is a
+          lifestyle scene. Both followed the SKU onto every shelf on the site.
+          The photography keeps the surfaces it is right for — category heroes
+          and the lower PDP band. */}
+      <div className="nx-float-card__media">
+        <VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="clamp(120px, 54%, 210px)" ratio="4 / 3" fill={0.58} />
+        {sku.gated && (
+          <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
+        )}
+      </div>
       <div className="nx-float-card__body">
         <p
           style={{
