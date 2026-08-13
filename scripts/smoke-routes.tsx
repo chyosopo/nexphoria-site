@@ -37,7 +37,11 @@ async function main() {
     const { QueryClient, QueryClientProvider } = await import("@tanstack/react-query");
   const { CartProvider } = (await load("/src/contexts/CartProvider.tsx")) as any;
 
-  // route → [module, props, path]
+  /* route → [module, props, path]
+     /gate, /community, /gift, /gift/claim, /stacks/build and /booking were cut
+     2026-08-13 as clutter. They are REDIRECTS now, with no page module, so
+     they leave this list the same way /men and /women did — audit:funnel
+     covers that the redirects still land somewhere real. */
   const routes: [string, string, Record<string, any>][] = [
     ["/",                "/src/pages/FrontDoor.tsx", {}],
     // /men and /women are REDIRECTS since the two-worlds split was deleted
@@ -63,8 +67,6 @@ async function main() {
     ["/checkout",        "/src/pages/Checkout.tsx", {}],
     ["/what-happens-next", "/src/pages/WhatHappensNext.tsx", {}],
     ["/pricing",         "/src/pages/Pricing.tsx", {}],
-    ["/gift",            "/src/pages/Gift.tsx", {}],
-    ["/gift/claim",      "/src/pages/GiftClaim.tsx", {}],
     ["/physicians",      "/src/pages/Physicians.tsx", {}],
     ["/lab-testing",     "/src/pages/Bloodwork.tsx", {}], // alias → /bloodwork (LabTesting.tsx deleted — dead page, no route rendered it)
     ["/journal",         "/src/pages/Journal.tsx", {}],
@@ -72,11 +74,7 @@ async function main() {
     ["/about",           "/src/pages/About.tsx", {}],
     ["/faq",             "/src/pages/FAQ.tsx", {}],
     ["/contact",         "/src/pages/Contact.tsx", {}],
-    ["/community",       "/src/pages/Community.tsx", {}],
-    ["/booking",         "/src/pages/Booking.tsx", {}],
 
-    ["/stacks/build",    "/src/pages/BuildYourStack.tsx", {}],
-    ["/gate",            "/src/pages/Gate.tsx", {}],
     ["/goals/recovery",  "/src/pages/Category.tsx", { slug: "recovery" }],
     ["/goals/sleep",     "/src/pages/Category.tsx", { slug: "sleep" }],
     ["/women/protocols", "/src/pages/ProtocolsIndex.tsx", {}],

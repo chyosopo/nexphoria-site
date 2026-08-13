@@ -21,30 +21,24 @@ import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
 const Category = lazy(() => import("@/pages/Category"));
-const Booking = lazy(() => import("@/pages/Booking"));
 const FrontDoor = lazy(() => import("@/pages/FrontDoor"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
 const SoloPDP = lazy(() => import("@/pages/SoloPDP"));
 const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
-const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
 const WhatHappensNext = lazy(() => import("@/pages/WhatHappensNext"));
-const Gate = lazy(() => import("@/pages/Gate"));
 const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
 const Journal = lazy(() => import("@/pages/Journal"));
 const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
 const Physicians = lazy(() => import("@/pages/Physicians"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
 const About = lazy(() => import("@/pages/About"));
-const Community = lazy(() => import("@/pages/Community"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const FAQPage = lazy(() => import("@/pages/FAQ"));
 const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
-const Gift = lazy(() => import("@/pages/Gift"));
-const GiftClaim = lazy(() => import("@/pages/GiftClaim"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
@@ -68,7 +62,6 @@ function AppRouter() {
         {/* Front door (ROADMAP 1.2) — value prop in 5 seconds; the old
             her/him photo gate lives on at /gate for returning users */}
         <Route path="/" component={FrontDoor} />
-        <Route path="/gate" component={Gate} />
 
         {/* Gender-neutral pharmacy shelf — render the world-neutral catalog
             DIRECTLY (no redirect). A prior `<R to="/men/peptides">` bounced this
@@ -109,7 +102,10 @@ function AppRouter() {
 
         {/* Stacks (pharmacy tier 2) */}
         <Route path="/stacks" component={ProtocolsIndex} />
-        <Route path="/stacks/build" component={BuildYourStack} />
+        {/* MUST precede /stacks/:slug — wouter matches in order, so the
+            parameterised route would otherwise swallow "build" as a slug and
+            render the protocol-not-found page instead of redirecting. */}
+        <Route path="/stacks/build"><R to="/stacks" /></Route>
         <Route path="/stacks/:slug">
           {(params) => <StackPage slug={(params as { slug: string }).slug} />}
         </Route>
@@ -130,6 +126,25 @@ function AppRouter() {
             they support, between the mechanism and the price. Redirects rather
             than 404s: the URL is in the sitemap history and possibly indexed. */}
         <Route path="/science"><R to="/peptides" /></Route>
+
+        {/* CUT 2026-08-13 (Chiya: "clean up the clutter, there's so much
+            clutter out there on the site, it's ridiculous"). Six routes that
+            earned nothing against the only two jobs the site has right now —
+            prove legitimacy to LegitScript, and convert:
+              /gate           the her/him photo gate, for worlds deleted weeks ago
+              /community      a community that does not exist
+              /gift, /claim   gifting a prescription medication — a compliance
+                              oddity and a distraction before launch
+              /stacks/build   a custom-protocol builder for a catalog of 4 SKUs
+                              and 1 protocol; every path through it dead-ends
+              /booking        a second consult path competing with the assessment
+            2,897 lines of page code. All redirect rather than 404 — they are in
+            the sitemap history and possibly indexed. */}
+        <Route path="/gate"><R to="/" /></Route>
+        <Route path="/community"><R to="/" /></Route>
+        <Route path="/gift"><R to="/peptides" /></Route>
+        <Route path="/gift/claim"><R to="/peptides" /></Route>
+        <Route path="/booking"><R to="/assessment" /></Route>
         <Route path="/journal" component={Journal} />
         <Route path="/journal/:slug" component={JournalArticle} />
         <Route path="/physicians" component={Physicians} />
@@ -140,11 +155,8 @@ function AppRouter() {
         <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
         <Route path="/catalog">{() => <R to="/peptides" />}</Route>
         <Route path="/pricing" component={Pricing} />
-        <Route path="/gift" component={Gift} />
-        <Route path="/gift/claim" component={GiftClaim} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/about" component={About} />
-        <Route path="/community" component={Community} />
         <Route path="/contact" component={Contact} />
         <Route path="/assessment" component={Assessment} />
 
@@ -161,8 +173,6 @@ function AppRouter() {
         {/* Short-path aliases so external links to /privacy and /terms resolve */}
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
-
-        <Route path="/booking" component={Booking} />
         {/* 404 */}
         <Route component={NotFound} />
       </Switch>

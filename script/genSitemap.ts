@@ -71,9 +71,9 @@ const JOURNAL_CATEGORY_SLUGS = new Set([
 const STATIC_ROUTES = [
   "/", "/men", "/women",
   "/about", "/physicians", "/pricing", "/bloodwork",
-  "/how-it-works", "/faq", "/contact", "/community", "/booking", "/assessment",
+  "/how-it-works", "/faq", "/contact", "/assessment",
   "/what-happens-next",
-  "/protocols", "/stacks", "/stacks/build", "/peptides", "/gift",
+  "/protocols", "/stacks", "/peptides",
   "/men/peptides", "/women/peptides", "/journal",
   "/legal", "/legal/hipaa-notice", "/legal/prescribing-policy",
   "/legal/privacy", "/legal/refund-policy", "/legal/state-availability",

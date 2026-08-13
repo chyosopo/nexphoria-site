@@ -162,7 +162,7 @@ export default function Contact() {
             {/* Booking's side-door entrance (ROADMAP 2.3): reachable from
                 contact + footer only — never from the primary nav. */}
             <ColoredHeroTile
-              href="/booking"
+              href="/assessment"
               tone="cobalt"
               glyph={TileGlyphs.circle}
               label={<>Prefer to talk first?<br /><span>schedule a consultation</span></>}
