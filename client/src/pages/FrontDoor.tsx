@@ -22,6 +22,7 @@ import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
 import { ProductShelf } from "@/components/ProductCard";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
 
@@ -222,6 +223,63 @@ export default function FrontDoor() {
           </Link>
         </div>
         <ProductShelf skus={SOLO_CATALOG} testId="frontdoor-formulary-shelf" />
+      </section>
+
+      {/* ══ 1.47 · WHAT ARRIVES — the object, on the dark.
+
+          The formulary above sells the outcome; this sells the thing in the
+          box. Reference sites put a rendered product shot here, and ours is a
+          drawn one — but drawn to be looked at rather than to fill a slot, and
+          it carries the real molecule and the real concentration off the
+          catalog, so a vial can never print a spec the PDP disagrees with.
+
+          Also the site's SECOND dark band. The reference alternates light and
+          dark to give a long page a spine; we had one dark band (the closer)
+          and a long unbroken light run before it. ══ */}
+      <section
+        className="nx-gradient-hero-dark"
+        aria-labelledby="frontdoor-arrives"
+        style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden", marginTop: "var(--nx-sp-band)" }}
+      >
+        <div className="nx-container">
+          <div style={{ textAlign: "center", maxWidth: "48ch", margin: "0 auto clamp(2rem,4vw,3.2rem)" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
+              What arrives
+            </p>
+            <h2 id="frontdoor-arrives" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem" }}>
+              A sealed vial, a named physician, a dose you can read.
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "0.9rem" }}>
+              Compounded by a licensed United States pharmacy, shipped cold, labelled with your
+              name and the physician who signed for it. One number a month. Everything within it.
+            </p>
+          </div>
+
+          <div className="nx-vial-row">
+            {SOLO_CATALOG.slice(0, 3).map((s) => (
+              <div key={s.slug} className="nx-vial-cell">
+                <VialMockup
+                  name={s.name}
+                  dose={labelSpec(s.spec)}
+                  size="clamp(140px, 22vw, 230px)"
+                  fill={0.58}
+                  onDark
+                  testId={`frontdoor-vial-${s.slug}`}
+                />
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-ceramic)", marginTop: "0.9rem" }}>
+                  {s.name}
+                </p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "0.2rem" }}>
+                  {s.spec}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", textAlign: "center", marginTop: "clamp(1.8rem,3.5vw,2.6rem)" }}>
+            Illustrative. Prescription only · dispensed if prescribed after physician review.
+          </p>
+        </div>
       </section>
 
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}

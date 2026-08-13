@@ -24,6 +24,7 @@ import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { getPeptideHeroImage } from "@/lib/peptideImages";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 import type { PeptideCategory } from "@/data/peptides";
 
 /* SoloCategory → the outcome-imagery key it reads as. */
@@ -186,6 +187,17 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
               <img src={heroImg} srcSet={outcomeSrcSet(heroImg)} sizes="(max-width: 1024px) 100vw, 45vw" alt="" aria-hidden fetchPriority="high" width={1632} height={2048} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} data-testid={`solo-outcome-${solo.slug}`} />
               <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
+              {/* The object itself, resting over the editorial frame. A photo
+                  says what the outcome feels like; the vial says what actually
+                  arrives. Both, in one frame, is the whole promise. */}
+              <div style={{ position: "absolute", left: "3%", bottom: "1%", pointerEvents: "none" }}>
+                <VialMockup
+                  name={solo.name}
+                  dose={labelSpec(solo.spec)}
+                  size="clamp(112px, 30vw, 218px)"
+                  testId={`solo-vial-${solo.slug}`}
+                />
+              </div>
               <div
                 style={{
                   position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,

@@ -93,6 +93,9 @@
     --nx-dur-2: 200ms;
     --nx-dur-3: 320ms;
     --nx-dur-4: 600ms;
+    --nx-dur-5: 1100ms;  /* object-scale entrances (a vial filling) — slower
+                            than any UI transition on purpose: it is the
+                            product arriving, not a control responding. */
 
     /* ── Nexphoria brand tokens — REFINED PORCELAIN & NAVY (Chiya 2026-08:
        "the whole color design needs to be fully reconsidered and polished"
@@ -2303,80 +2306,45 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 .nx-faq-item[open] > .nx-faq-a { animation: nxFaqIn var(--nx-dur-3) var(--nx-ease); }
 @media (prefers-reduced-motion: reduce) { .nx-faq-item[open] > .nx-faq-a { animation: none; } .nx-faq-plus { transition: none; } }
 
-/* ═══ WORLD GATE BAND (front door) — the for-her/for-him moment, cinematic.
-   Two full-bleed portrait panels breathing in opposite phase; hovering (or
-   focusing) a panel widens it, lifts its scrim, and casts its world's accent
-   via the data-world token remap. CSS-only so the front-door chunk stays
-   lean; every motion is stilled under prefers-reduced-motion. */
-.nx-wgate {
-  display: flex;
-  gap: 2px;
-  min-height: clamp(440px, 74vh, 760px);
-  overflow: hidden;
-  background: var(--nx-bg-dark);
+/* ═══ VIAL MOTION — the object, alive but never busy ═══
+   Replaces the world-gate band's CSS, deleted with the two-worlds split.
+
+   Two loops, both compositor-only (transform), both long enough that they read
+   as "this is a real object under real light" rather than as an animation:
+     · FLOAT  ~7s, ±3px. Below conscious notice.
+     · SWEEP  9s, but the highlight is only visible for the first ~28% of it —
+              light crosses the glass, then a long dark interval. A continuous
+              sweep reads as a shimmer gimmick; the pause is what sells it.
+   The component also stills itself in JS (prefersReduced), so this is the
+   second of two independent guards. */
+.nx-vial-float { animation: nx-vial-float 7s var(--nx-ease) infinite; will-change: transform; }
+@keyframes nx-vial-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
 }
-.nx-wgate-panel {
-  position: relative;
-  flex: 1 1 0%;
-  min-width: 0;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  transition: flex-grow var(--nx-dur-4) var(--nx-ease);
+
+.nx-vial-sweep { animation: nx-vial-sweep 9s var(--nx-ease) infinite; will-change: transform; }
+@keyframes nx-vial-sweep {
+  0%      { transform: skewX(-12deg) translateX(0); }
+  28%     { transform: skewX(-12deg) translateX(230px); }
+  100%    { transform: skewX(-12deg) translateX(230px); }
 }
-.nx-wgate-panel > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  animation: nx-wgate-breath 26s ease-in-out infinite alternate;
-  transition: filter var(--nx-dur-3) var(--nx-ease);
-  will-change: transform;
-}
-.nx-wgate-panel.him > img { animation-duration: 32s; animation-direction: alternate-reverse; }
-@keyframes nx-wgate-breath { from { transform: scale(1.02); } to { transform: scale(1.085); } }
-.nx-wgate-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--nx-bg-dark) 74%, transparent) 0%,
-    color-mix(in srgb, var(--nx-bg-dark) 28%, transparent) 44%,
-    transparent 70%
-  );
-  transition: opacity var(--nx-dur-3) var(--nx-ease);
-}
-.nx-wgate-copy { position: relative; z-index: 1; width: 100%; padding: clamp(1.4rem, 3.2vw, 2.8rem); }
-.nx-wgate-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--nx-r-pill);
-  background: var(--nx-cobalt);
-  color: var(--nx-ceramic);
-  transition: transform var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease);
-}
-.nx-wgate-panel:focus-visible { outline: 3px solid var(--nx-acid); outline-offset: -6px; }
-@media (hover: hover) and (min-width: 768px) {
-  .nx-wgate-panel:hover, .nx-wgate-panel:focus-visible { flex-grow: 1.55; }
-  .nx-wgate:has(.nx-wgate-panel:hover) .nx-wgate-panel:not(:hover) > img,
-  .nx-wgate:has(.nx-wgate-panel:focus-visible) .nx-wgate-panel:not(:focus-visible) > img {
-    filter: saturate(0.68) brightness(0.88);
-  }
-  .nx-wgate-panel:hover .nx-wgate-scrim, .nx-wgate-panel:focus-visible .nx-wgate-scrim { opacity: 0.82; }
-  .nx-wgate-panel:hover .nx-wgate-arrow, .nx-wgate-panel:focus-visible .nx-wgate-arrow {
-    transform: translateX(5px);
-    background: var(--nx-cobalt-hover);
-  }
-}
-@media (max-width: 767px) {
-  .nx-wgate { flex-direction: column; min-height: 0; }
-  .nx-wgate-panel { min-height: 46vh; }
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .nx-wgate-panel > img { animation: none; }
-  .nx-wgate-panel, .nx-wgate-panel > img, .nx-wgate-scrim, .nx-wgate-arrow { transition: none; }
+  .nx-vial-float, .nx-vial-sweep { animation: none; }
 }
+
+/* A row of vials floating in lockstep looks mechanical. Negative delays start
+   each one mid-cycle, so the three drift independently from first paint. */
+.nx-vial-row {
+  display: grid;
+  gap: clamp(0.5rem, 3vw, 2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  align-items: end;
+  justify-items: center;
+}
+.nx-vial-cell { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.nx-vial-cell:nth-child(2) .nx-vial-float { animation-delay: -2.3s; }
+.nx-vial-cell:nth-child(3) .nx-vial-float { animation-delay: -4.6s; }
+.nx-vial-cell:nth-child(2) .nx-vial-sweep { animation-delay: -3s; }
+.nx-vial-cell:nth-child(3) .nx-vial-sweep { animation-delay: -6s; }
