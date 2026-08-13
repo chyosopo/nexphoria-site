@@ -1,4 +1,5 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
+import { BUSINESS } from "@/data/compliance";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function Terms() {
@@ -14,7 +15,7 @@ export default function Terms() {
   return (
     <LegalLayout title="Terms of Service" lastUpdated="June 2026">
       <LegalSection title="1. Acceptance of Terms">
-        <LegalP>By accessing or using any Nexphoria service — including this website, the patient portal, telehealth consultations, laboratory ordering, or compounded medication fulfillment — you agree to be bound by these Terms of Service ("Terms"), our Privacy Policy, our Telehealth Consent, and all applicable federal and state laws. These Terms constitute a legally binding agreement between you and Nexphoria, Inc. ("Nexphoria," "we," "us," or "our").</LegalP>
+        <LegalP>By accessing or using any Nexphoria service — including this website, the patient portal, telehealth consultations, laboratory ordering, or compounded medication fulfillment — you agree to be bound by these Terms of Service ("Terms"), our Privacy Policy, our Telehealth Consent, and all applicable federal and state laws. These Terms constitute a legally binding agreement between you and {BUSINESS.entity} ("Nexphoria," "we," "us," or "our").</LegalP>
         <LegalP>If you do not agree with any provision of these Terms, you must immediately discontinue use of our services. We reserve the right to modify these Terms at any time. Material changes will be communicated by email or by a prominent notice on our website. Continued use after the effective date of any change constitutes your acceptance of the revised Terms.</LegalP>
       </LegalSection>
 
@@ -53,7 +54,7 @@ export default function Terms() {
 
       <LegalSection title="8. Intellectual Property">
         <LegalP>All content on this website — including text, images, graphics, protocol guides, editorial articles, data visualizations, and software — is owned by or licensed to Nexphoria and is protected by United States and international copyright, trademark, and trade secret laws. You may not reproduce, distribute, modify, create derivative works of, publicly display, or otherwise exploit any Nexphoria content for commercial purposes without our prior written consent.</LegalP>
-        <LegalP>The Nexphoria name, logo, and brand marks are trademarks of Nexphoria, Inc. Nothing in these Terms grants any right to use our trademarks, logos, or brand elements without our explicit prior written permission.</LegalP>
+        <LegalP>The Nexphoria name, logo, and brand marks are trademarks of {BUSINESS.entity}. Nothing in these Terms grants any right to use our trademarks, logos, or brand elements without our explicit prior written permission.</LegalP>
       </LegalSection>
 
       <LegalSection title="9. Limitation of Liability">
@@ -71,7 +72,7 @@ export default function Terms() {
       </LegalSection>
 
       <LegalSection title="12. Contact">
-        <LegalP>Questions about these Terms? Contact our team at hello@nexphoria.com. We respond to written inquiries within 10 business days. Nexphoria, Inc. operates under the laws of the State of New York.</LegalP>
+        <LegalP>Questions about these Terms? Contact our team at hello@nexphoria.com. We respond to written inquiries within 10 business days. {BUSINESS.entity} operates under the laws of the State of New York.</LegalP>
       </LegalSection>
     </LegalLayout>
   );

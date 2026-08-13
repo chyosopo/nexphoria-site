@@ -25,24 +25,33 @@
      pre-checked) and it is explicitly not copied. */
 import { F } from "@/lib/typography";
 import { Link } from "wouter";
+import { smsConsentLabel } from "@/data/messaging";
 
 export interface ConsentState {
   telehealth: boolean;
   truthful: boolean;
   /** Only required when the intake flagged a contraindication. */
   contraindication: boolean;
+  /** SMS opt-in. NEVER required — see requiredConsents(). */
+  sms: boolean;
 }
 
 export const EMPTY_CONSENT: ConsentState = {
   telehealth: false,
   truthful: false,
   contraindication: false,
+  sms: false,
 };
 
 /** Every gate the current answers require. Contraindication acknowledgment is
  *  demanded ONLY when something was actually flagged — asking everyone to
  *  acknowledge a risk they did not report trains people to tick without
- *  reading, which defeats the purpose of a gate. */
+ *  reading, which defeats the purpose of a gate.
+ *
+ *  `sms` is deliberately ABSENT from every branch. Messaging consent may not
+ *  be a condition of purchase or of care under A2P 10DLC rules, so the SMS box
+ *  must never be able to block submission. If you are adding a consent here,
+ *  check first whether it is one the patient is allowed to decline. */
 export function requiredConsents(hasFlaggedCondition: boolean): (keyof ConsentState)[] {
   return hasFlaggedCondition
     ? ["telehealth", "truthful", "contraindication"]
@@ -129,6 +138,32 @@ export function ConsentGates({
           before anything is prescribed.
         </Gate>
       )}
+
+      {/* SMS OPT-IN — the box A2P 10DLC campaign review looks for.
+          Set apart from the gates above and labelled optional, because it is
+          the one consent here the patient may decline with no consequence.
+          Unchecked by default and disclosed in the label rather than behind
+          the link: a checkbox whose meaning requires a click elsewhere is not
+          express written consent. */}
+      <p
+        style={{
+          fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
+          letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
+          color: "var(--nx-fg-muted)", margin: "0.7rem 0 0.15rem",
+        }}
+      >
+        Optional
+      </p>
+      <Gate id="sms" checked={value.sms} onChange={set("sms")}>
+        {smsConsentLabel()}{" "}
+        <Link href="/legal/messaging" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+          Messaging Terms
+        </Link>
+        {" · "}
+        <Link href="/legal/privacy" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+          Privacy Policy
+        </Link>
+      </Gate>
     </div>
   );
 }

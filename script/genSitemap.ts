@@ -77,7 +77,7 @@ const STATIC_ROUTES = [
   "/men/peptides", "/women/peptides", "/journal",
   "/legal", "/legal/hipaa-notice", "/legal/prescribing-policy",
   "/legal/privacy", "/legal/refund-policy", "/legal/state-availability",
-  "/legal/telehealth-consent", "/legal/terms",
+  "/legal/telehealth-consent", "/legal/terms", "/legal/messaging",
 ];
 
 /**

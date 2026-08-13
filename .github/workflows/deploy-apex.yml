@@ -62,6 +62,13 @@ jobs:
       - name: "Gate — catalog assumptions"
         run: npm run audit:catalog
 
+      # A2P 10DLC campaign review reads the public site. This asserts the
+      # required disclosures against the PRERENDERED HTML per route, so a
+      # clause that is bundled but never rendered still fails. Chiya-blocked
+      # business facts are reported, not fatal.
+      - name: "Gate — A2P 10DLC / SMS compliance"
+        run: npm run audit:a2p
+
       - name: Prepare apex artifact (no 404.html on the apex)
         run: rm -f dist/public/404.html
 

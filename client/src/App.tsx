@@ -49,6 +49,7 @@ const GiftClaim = lazy(() => import("@/pages/GiftClaim"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
+const Messaging = lazy(() => import("@/pages/legal/Messaging"));
 const TelehealthConsent = lazy(() => import("@/pages/legal/TelehealthConsent"));
 const RefundPolicy = lazy(() => import("@/pages/legal/RefundPolicy"));
 const HipaaNotice = lazy(() => import("@/pages/legal/HipaaNotice"));
@@ -144,6 +145,7 @@ function AppRouter() {
         <Route path="/legal" component={LegalIndex} />
         <Route path="/legal/terms" component={Terms} />
         <Route path="/legal/privacy" component={Privacy} />
+        <Route path="/legal/messaging" component={Messaging} />
         <Route path="/legal/telehealth-consent" component={TelehealthConsent} />
         <Route path="/legal/refund-policy" component={RefundPolicy} />
         <Route path="/legal/hipaa-notice" component={HipaaNotice} />

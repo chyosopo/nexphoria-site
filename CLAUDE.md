@@ -60,7 +60,7 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 
 ---
 
-## Gate Battery — run ALL FIVE before EVERY commit
+## Gate Battery — run ALL NINE before EVERY commit
 A commit ships only if these pass / non-regress. Use Node 20 LTS (`.nvmrc` pins it; better-sqlite3 does not compile on Node 26).
 
 ```
@@ -74,6 +74,9 @@ npm run audit:legitscript # 7. LegitScript requirements vs the RENDERED artifact
 npm run audit:catalog     # 8. catalog assumptions — derived figures finite, live surfaces
                           #    populated. Catches the failure mode a catalog cut causes:
                           #    not a crash, but correct-looking code rendering nothing.
+npm run audit:a2p         # 9. A2P 10DLC / SMS — the disclosures carriers check, asserted
+                          #    against the PRERENDERED HTML per route (build first). A
+                          #    clause that is bundled but not rendered still fails.
 ```
 Also run `npm run build` before deploy-affecting commits, and `npm run audit:bundle` when touching entry/imports (entry ≤300KB budget, recharts banned from entry, Bloodwork stays lazy).
 

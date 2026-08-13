@@ -1,5 +1,7 @@
 /* JOB: route support, press, and consult requests to the right door. */
 import { useState } from "react";
+import { Link } from "wouter";
+import { smsConsentLabel } from "@/data/messaging";
 import { F } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -72,7 +74,7 @@ export default function Contact() {
     breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]),
     ],
   });
-  const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", state: "", reason: "", message: "", sms: false });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
 
@@ -561,6 +563,37 @@ export default function Contact() {
                       />
                     </div>
                   </div>
+
+                  {/* SMS OPT-IN — required on every surface that collects a
+                      mobile number, not just the intake. A2P campaign review
+                      checks the site for a visible, unchecked opt-in with the
+                      disclosure in the label; a phone field without one is the
+                      second most common rejection after the missing privacy
+                      clause. Optional by rule: messaging consent may not be a
+                      condition of anything, so this never gates submission. */}
+                  <label
+                    htmlFor="contact-sms"
+                    data-testid="contact-sms-consent"
+                    style={{
+                      display: "flex", gap: "0.7rem", alignItems: "flex-start", cursor: "pointer",
+                      border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)",
+                      borderRadius: "var(--nx-r-sm)", padding: "0.85rem 0.95rem",
+                    }}
+                  >
+                    <input
+                      id="contact-sms"
+                      type="checkbox"
+                      checked={form.sms}
+                      onChange={(e) => setForm({ ...form, sms: e.target.checked })}
+                      style={{ marginTop: 3, width: 16, height: 16, accentColor: "var(--nx-cobalt)", flexShrink: 0 }}
+                    />
+                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
+                      {smsConsentLabel()}{" "}
+                      <Link href="/legal/messaging" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>Messaging Terms</Link>
+                      {" · "}
+                      <Link href="/legal/privacy" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>Privacy Policy</Link>
+                    </span>
+                  </label>
 
                   <div>
                     <label style={labelStyle} htmlFor="contact-reason">Reason</label>

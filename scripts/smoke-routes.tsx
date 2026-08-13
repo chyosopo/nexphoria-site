@@ -86,6 +86,7 @@ async function main() {
     ["/legal",           "/src/pages/legal/LegalIndex.tsx", {}],
     ["/legal/terms",     "/src/pages/legal/Terms.tsx", {}],
     ["/legal/privacy",   "/src/pages/legal/Privacy.tsx", {}],
+    ["/legal/messaging", "/src/pages/legal/Messaging.tsx", {}],
     ["/legal/telehealth-consent", "/src/pages/legal/TelehealthConsent.tsx", {}],
     ["/legal/refund-policy",      "/src/pages/legal/RefundPolicy.tsx", {}],
     ["/privacy",         "/src/pages/legal/Privacy.tsx", {}],

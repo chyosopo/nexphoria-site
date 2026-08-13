@@ -1,4 +1,6 @@
 import { LegalLayout, LegalSection, LegalP } from "./LegalLayout";
+import { BUSINESS } from "@/data/compliance";
+import { MOBILE_DATA_CLAUSE } from "@/data/messaging";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 
 export default function Privacy() {
@@ -14,7 +16,7 @@ export default function Privacy() {
   return (
     <LegalLayout title="Privacy Policy" lastUpdated="June 2026">
       <LegalSection title="1. Introduction">
-        <LegalP>This Privacy Policy describes how Nexphoria, Inc. ("Nexphoria," "we," "us," or "our") collects, uses, discloses, and protects information about individuals who use our website, patient portal, telehealth services, and related platforms (collectively, the "Services"). Nexphoria operates as a covered entity under the Health Insurance Portability and Accountability Act ("HIPAA") and is committed to safeguarding the confidentiality, integrity, and availability of your protected health information ("PHI").</LegalP>
+        <LegalP>This Privacy Policy describes how {BUSINESS.entity} ("Nexphoria," "we," "us," or "our") collects, uses, discloses, and protects information about individuals who use our website, patient portal, telehealth services, and related platforms (collectively, the "Services"). Nexphoria operates as a covered entity under the Health Insurance Portability and Accountability Act ("HIPAA") and is committed to safeguarding the confidentiality, integrity, and availability of your protected health information ("PHI").</LegalP>
         <LegalP>This policy applies to all visitors, prospective patients, and active members of the Nexphoria platform. By using our Services, you acknowledge that you have read and understood this policy. If you do not agree, please do not use the Services.</LegalP>
       </LegalSection>
 
@@ -39,6 +41,11 @@ export default function Privacy() {
         <LegalP>We share your health information only with: (a) the independent licensed physician treating you through the Nexphoria platform; (b) the 503A state-licensed compounding pharmacy fulfilling your prescription; (c) the CLIA-certified laboratory processing your blood panel; (d) the shipping carrier delivering your medication, limited to the information necessary to complete delivery; and (e) any other party you specifically authorize in writing.</LegalP>
         <LegalP>We may disclose PHI without your authorization when required by law, including in response to a valid subpoena, court order, or other legal process; to public health authorities for reporting communicable diseases or adverse events; to law enforcement when required by applicable statute; or to avert a serious and imminent threat to health or safety in accordance with 45 CFR 164.512(j).</LegalP>
         <LegalP>In the event of a corporate transaction such as a merger, acquisition, or sale of assets, your information may be transferred to the successor entity, subject to the protections of this policy and applicable law.</LegalP>
+      </LegalSection>
+
+      <LegalSection title="5a. Mobile Information and Text Messaging">
+        <LegalP><strong>{MOBILE_DATA_CLAUSE}</strong></LegalP>
+        <LegalP>If you consent to text messages, we use the mobile number you give us to send service messages about your assessment, prescription, laboratory scheduling, and shipments. Consent to messaging is never a condition of purchase or of care, and you can withdraw it at any time by replying STOP. We disclose your mobile number to the messaging vendors that deliver those messages on our behalf, for that purpose only and under contract. Our full messaging programme — what we send, how often, and how to stop — is described in our <a href="/legal/messaging">Messaging Terms</a>.</LegalP>
       </LegalSection>
 
       <LegalSection title="6. Data Retention">
