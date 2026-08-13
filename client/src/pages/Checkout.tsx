@@ -391,7 +391,7 @@ export default function Checkout() {
                         <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                           When you submit, your intake and cart go to a US-licensed physician. If your protocol is
                           approved, you'll receive a secure payment link from Bask Health, our telehealth billing
-                          partner, to complete checkout. You are never charged before a physician approves.
+                          partner, to complete checkout. Payment follows the prescription.
                         </p>
                       </div>
                     </div>

@@ -2632,3 +2632,64 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
   .nx-goalband__tile:hover { transform: none; }
   .nx-goalband__tile:hover .nx-goalband__btn { transform: none; }
 }
+
+/* ═══ ROTATING HEADLINE WORD ═══
+   Opacity + transform only — never layout. The word rises in as the previous
+   one falls away, which reads as one word replacing another rather than two
+   words crossfading. */
+.nx-rotword {
+  opacity: 0;
+  transform: translateY(0.42em);
+  transition: opacity var(--nx-dur-3) var(--nx-ease), transform var(--nx-dur-4) var(--nx-reveal-ease);
+  pointer-events: none;
+}
+.nx-rotword.is-in { opacity: 1; transform: translateY(0); }
+.nx-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-rotword { transition: none; }
+}
+
+/* ═══ THE ACTION PLAN — three steps ═══
+   Steps rise in sequence on scroll, staggered by inline transition-delay.
+   The motion encodes the fact: these happen in ORDER, and the animation says
+   so before the numbers do. */
+.nx-plan {
+  list-style: none; margin: clamp(2rem, 4vw, 3rem) 0 0; padding: 0;
+  display: grid; gap: clamp(0.9rem, 2vw, 1.4rem);
+  grid-template-columns: 1fr;
+  counter-reset: plan;
+}
+@media (min-width: 780px) { .nx-plan { grid-template-columns: repeat(3, 1fr); } }
+.nx-plan__step {
+  background: var(--nx-ceramic);
+  border: 1px solid var(--nx-border);
+  border-radius: var(--nx-r-lg);
+  padding: clamp(1.3rem, 3vw, 1.9rem);
+  opacity: 0; transform: translateY(18px);
+  transition: opacity var(--nx-dur-4) var(--nx-ease), transform var(--nx-dur-4) var(--nx-reveal-ease);
+}
+.nx-plan.is-in .nx-plan__step { opacity: 1; transform: none; }
+.nx-plan__n {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 2.4rem; height: 2.4rem;
+  border-radius: var(--nx-r-pill);
+  background: var(--nx-cobalt-soft); color: var(--nx-cobalt);
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-sm); font-weight: 700; letter-spacing: var(--nx-ls-caps);
+}
+.nx-plan__t {
+  font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+  font-size: var(--nx-t-xl); color: var(--nx-fg);
+  line-height: 1.18; margin-top: 0.9rem;
+}
+.nx-plan__d {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-sm); line-height: 1.6;
+  color: var(--nx-fg-graphite); margin-top: 0.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-plan__step { opacity: 1; transform: none; transition: none; }
+}

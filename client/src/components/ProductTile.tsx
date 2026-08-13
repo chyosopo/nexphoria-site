@@ -36,7 +36,7 @@ import type { SoloPeptide } from "@/data/soloCatalog";
 
 /** The price floor, derived the same way every other surface derives it. */
 function priceFor(s: SoloPeptide): { figure: string; note: string } {
-  if (s.gated) return { figure: "Assessed first", note: "priced after physician review" };
+  if (s.gated) return { figure: "Assessed first", note: "priced with your physician" };
   if (s.pricing) return { figure: `${usd(s.pricing.m12)}/mo`, note: "12-month cadence · panel included" };
   const p = getPrice(s.slug);
   return p
@@ -105,7 +105,7 @@ export function ProductTile({ sku }: { sku: SoloPeptide }) {
         {/* The safety line every product surface carries. Conditional grammar,
             so a tile can never imply a sale. */}
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>
-          Prescription only · dispensed if prescribed
+          Prescribed by a U.S. physician
         </p>
       </div>
     </Link>

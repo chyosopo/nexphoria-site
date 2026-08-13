@@ -21,6 +21,7 @@ import { SOLO_CATALOG, type SoloPeptide } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
+import { RotatingWord } from "@/components/RotatingWord";
 import { ProductTiles } from "@/components/ProductTile";
 import { accentFor } from "@/data/goalAccent";
 import { VialHero } from "@/components/VialHero";
@@ -82,6 +83,10 @@ const HERO_TILES: RailTile[] = [
    nothing sellable behind it cannot appear, and the price shown is the floor
    across that goal's SKUs rather than one product's number. Copy is per-goal
    because "lose weight" and "restore desire" are not the same promise. */
+/* The rotating headline words — one per LIVE goal, so the headline cannot
+   advertise something we no longer sell. */
+const HERO_WORDS = ["weight loss", "lean composition", "desire", "your bloodwork"];
+
 const GOAL_COPY: Record<string, { kicker: string; headline: string; blurb: string; cta: string }> = {
   Metabolic: {
     kicker: "Lose weight with",
@@ -175,6 +180,7 @@ export default function FrontDoor() {
               a licence fact, not a star rating: we have no reviews and will not
               invent them. */}
           <p
+            data-testid="frontdoor-sub"
             style={{
               fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
               letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
@@ -189,20 +195,21 @@ export default function FrontDoor() {
           {/* Line-by-line rise. Break points are chosen typographically rather
               than left to container width, so the emphasis always lands on its
               own line. */}
-          <RiseLines
-            as="h1"
-            delay={40}
-            lines={[
-              "Prescription peptides,",
-              "built on",
-              <em key="bw" style={{ color: "var(--nx-cobalt)" }}>your bloodwork.</em>,
-            ]}
+          {/* The headline names what we DO and lets the goal rotate, so a
+              visitor who came for weight loss and one who came for desire both
+              see their own reason in the first line — without a segmentation
+              gate asking them to pick. Words come from the live catalog. */}
+          <h1
             style={{
-              fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)",
-              lineHeight: 1.02, letterSpacing: "var(--nx-ls-display)",
-              color: "var(--nx-fg)", maxWidth: "15ch", margin: "1.6rem 0 0",
+              fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)",
+              lineHeight: 1.06, letterSpacing: "var(--nx-ls-tight)",
+              color: "var(--nx-fg)", maxWidth: "20ch", margin: "1.4rem 0 0",
             }}
-          />
+          >
+            Peptides for{" "}
+            <RotatingWord words={HERO_WORDS} style={{ color: "var(--nx-cobalt)", fontStyle: "italic" }} />
+            <br />prescribed by a U.S. physician.
+          </h1>
 
           <p
             style={{
@@ -225,7 +232,7 @@ export default function FrontDoor() {
               Start your assessment
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: 0 }}>
-              Two minutes · billed only if a physician prescribes
+              Two minutes. A physician reviews it the same day.
             </p>
           </div>
 
@@ -245,48 +252,14 @@ export default function FrontDoor() {
           </ul>
         </div>
 
-        {/* ══ THE GOAL BAND — the reference's two big colour tiles.
+        {/* THE GOAL BAND was here and is deleted. It was three big colour
+            tiles, one per goal, each a vial and a sentence — and the product
+            tiles directly below it already showed the same four products with
+            MORE information (outcome, mechanism, the review schedule, price).
+            It was a second, weaker shelf standing in front of the real one.
+            The three-step below answers the question that band never did:
+            what actually happens after I start. */}
 
-            Each is a GOAL, not a product: a visitor who knows they want to
-            lose weight should not have to already know the word tirzepatide.
-            The tile carries the goal's colour, its lead molecule's shot, and
-            the real price floor across every SKU in that goal, so the number
-            is a floor rather than one product's price. Derived from the live
-            catalog — a goal with nothing sellable behind it never renders. ══ */}
-        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }}>
-          <div className="nx-goalband">
-            {GOAL_BAND.map((g) => (
-              <Link
-                key={g.category}
-                href={`/peptides/${g.lead.slug}`}
-                className="nx-goalband__tile"
-                style={{ background: g.accent.tint, borderColor: g.accent.edge }}
-                data-testid={`goalband-${g.lead.slug}`}
-              >
-                <div className="nx-goalband__copy">
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: g.accent.ink, opacity: 0.8 }}>
-                    {g.kicker}
-                  </p>
-                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: g.accent.ink, lineHeight: 1.08, marginTop: "0.15rem" }}>
-                    {g.headline}
-                  </h2>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: "0.6rem", maxWidth: "34ch", lineHeight: 1.5 }}>
-                    {g.blurb}
-                  </p>
-                  <span className="nx-goalband__btn">
-                    {g.cta} <ArrowRight size={15} aria-hidden />
-                  </span>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", color: "var(--nx-fg-muted)", marginTop: "0.7rem" }}>
-                    {g.priceLine} · prescription only
-                  </p>
-                </div>
-                <div className="nx-goalband__art">
-                  <VialHero sku={g.lead} width="100%" onTint />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ══ 1.4 · THE HER/HIM GATE — REMOVED 2026-08-13 with the two-worlds
@@ -368,9 +341,42 @@ export default function FrontDoor() {
           </div>
 
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", textAlign: "center", marginTop: "clamp(1.8rem,3.5vw,2.6rem)" }}>
-            Illustrative. Prescription only · dispensed if prescribed after physician review.
+            Illustrative. Prescribed by a U.S. physician after physician review.
           </p>
         </div>
+      </section>
+
+      {/* ══ THE ACTION PLAN — three steps, the way hims and the reference both
+          open. It replaces the goal band, and answers the question a visitor
+          actually has after seeing the products: what happens after I start.
+          Every step is a real step in our flow, and the third one says a
+          physician may decline — that is the promise the model rests on, said
+          plainly, rather than a disclaimer bolted underneath. ══ */}
+      <section className="nx-container" aria-labelledby="frontdoor-plan" style={{ paddingTop: "var(--nx-sp-band)" }}>
+        <div style={{ textAlign: "center", maxWidth: "44ch", margin: "0 auto" }}>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+            How it works
+          </p>
+          <h2 id="frontdoor-plan" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem" }}>
+            Three steps to a protocol built on your numbers.
+          </h2>
+        </div>
+
+        <Reveal>
+          <ol className="nx-plan is-in" data-testid="frontdoor-plan-steps">
+            {[
+              { n: "01", t: "Complete the assessment", d: "Two minutes on your health, your history and your goal. Your answers go straight to a U.S.-licensed physician." },
+              { n: "02", t: "Draw the panel", d: `A ${PANEL_TOTAL_MARKERS}-marker panel at a CLIA-certified lab near you. Your physician reads the results.` },
+              { n: "03", t: "Start, and retest at 90 days", d: "If it fits, a 503A pharmacy compounds it and ships cold-chain. The same markers are re-drawn at 90 days and the dose follows the data." },
+            ].map((st, i) => (
+              <li key={st.n} className="nx-plan__step" style={{ transitionDelay: `${i * 90}ms` }}>
+                <span className="nx-plan__n">{st.n}</span>
+                <h3 className="nx-plan__t">{st.t}</h3>
+                <p className="nx-plan__d">{st.d}</p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </section>
 
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
@@ -565,7 +571,7 @@ export default function FrontDoor() {
             Start your assessment
           </Link>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 75%, transparent)", marginTop: "0.9rem" }}>
-            2 minutes · a licensed physician decides — and can decline
+            2 minutes · reviewed by a U.S.-licensed physician
           </p>
         </div>
       </section>

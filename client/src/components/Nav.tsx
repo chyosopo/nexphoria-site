@@ -355,7 +355,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                           {FLAGSHIP_STACKS[0].name}
                         </span>
                         <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                          Physician-directed · if prescribed
+                          Physician-directed protocol
                         </span>
                       </span>
                       <ArrowRight size={16} strokeWidth={2} style={{ color: "var(--nx-cobalt)" }} aria-hidden="true" />

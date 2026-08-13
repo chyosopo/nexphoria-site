@@ -118,7 +118,7 @@ export function ProductCard({
             color: "var(--nx-fg-muted)", marginTop: "0.55rem",
           }}
         >
-          Prescription only · dispensed if prescribed
+          Prescribed by a U.S. physician
         </p>
       </div>
     </Link>
