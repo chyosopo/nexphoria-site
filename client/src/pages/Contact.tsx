@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { smsConsentLabel } from "@/data/messaging";
+import { BUSINESS, BUSINESS_ADDRESS } from "@/data/compliance";
 import { F } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -21,6 +22,7 @@ const contactColumns: {
     Icon: MessageSquare,
     items: [
       { label: "EMAIL", value: "hello@nexphoria.com" },
+      { label: "PHONE", value: BUSINESS.phone },
       { label: "HOURS", value: "Mon–Fri, 9am–6pm ET" },
       { label: "RESPONSE", value: "On business days" },
     ],
@@ -43,7 +45,7 @@ const contactColumns: {
     Icon: Newspaper,
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
-      { label: "MAILING ADDRESS", value: "Nexphoria Health, LLC\n800 Third Ave, Suite 1000\nNew York, NY 10022" },
+      { label: "MAILING ADDRESS", value: `${BUSINESS.entity}\n${BUSINESS_ADDRESS.streetAddress}\n${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}` },
       { label: "PHARMACY LICENSE", value: "Available on request — verified 503A facility" },
     ],
     note: "Media inquiries, research collaborations, and pharmacy partnership discussions.",
@@ -331,14 +333,25 @@ export default function Contact() {
                   <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-cobalt)", marginTop: 8 }} />
                 </div>
                 <div style={{ position: "relative" }}>
+                  {/* Was hardcoded to "Nexphoria Health, LLC" at "800 Third
+                      Ave, Suite 1000, New York, NY 10022" — a THIRD entity
+                      name and an address that is not ours, published on the
+                      site's own contact page. compliance.ts exists precisely
+                      so a business fact has one source; this block predated it
+                      and never got wired up. Derived now, so the contact page,
+                      the legal pages and the structured data cannot disagree
+                      about who we are or where we are. */}
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
-                    NYC Headquarters · 50-state coverage
+                    Brooklyn, NY · 50-state coverage
                   </p>
                   <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
-                    Nexphoria Health, LLC
+                    {BUSINESS.entity}
                   </p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: "24ch" }}>
-                    800 Third Ave, Suite 1000 · New York, NY 10022
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: "26ch" }}>
+                    {BUSINESS.address}
+                  </p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginTop: "0.35rem" }}>
+                    <a href={`tel:${BUSINESS.phoneE164}`} style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>{BUSINESS.phone}</a>
                   </p>
                 </div>
               </div>

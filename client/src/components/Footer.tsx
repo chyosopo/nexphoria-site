@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import { BUSINESS } from "@/data/compliance";
 import { ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 
@@ -125,6 +126,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "Support center", href: "/contact" },
         { label: "FAQ", href: "/faq" },
         { label: "hello@nexphoria.com", href: "mailto:hello@nexphoria.com" },
+        { label: BUSINESS.phone, href: `tel:${BUSINESS.phoneE164}` },
         { label: "Book a consultation", href: "/booking" },
         { label: "Member login", href: "/assessment" },
       ],

@@ -105,10 +105,31 @@ const entityOk = textAt("/legal/messaging").includes(norm(BUSINESS.entity));
 console.log(`  ${entityOk ? "✓" : "✖"} legal entity "${BUSINESS.entity}" appears on the site`);
 if (!entityOk) failures.push(`Legal entity "${BUSINESS.entity}" not found. Brand verification compares this to the registration.`);
 
+/* Every entity name and address that has ever been hardcoded here. The site
+   has carried THREE at once: "Nexphoria, Inc." on Terms and Privacy, and
+   "Nexphoria Health, LLC" at "800 Third Ave, Suite 1000, New York, NY 10022"
+   on the contact page — an invented company at an address that is not ours.
+   Brand verification cross-checks the site against the registration, so a
+   second name or a second address is a failure even when the real one is also
+   present. Checked across CONTENT routes, not just the legal ones, because
+   that is where the invented pair was living. */
 const LEGAL_ROUTES = ["/legal/terms", "/legal/privacy", "/legal/messaging", "/legal/refund-policy", "/legal/telehealth-consent"];
-const stale = ["Nexphoria, Inc.", "Nexphoria Inc."].filter((n) => LEGAL_ROUTES.some((r) => textAt(r).includes(norm(n))));
-console.log(`  ${stale.length ? "✖" : "✓"} no conflicting entity name`);
-if (stale.length) failures.push(`Site also claims "${stale.join('", "')}" — two entities on one site fails verification.`);
+const IDENTITY_ROUTES = [...LEGAL_ROUTES, "/contact", "/about", "/"];
+const FORBIDDEN_IDENTITY = [
+  "Nexphoria, Inc.", "Nexphoria Inc.", "Nexphoria Health, LLC", "Nexphoria Health LLC",
+  "800 Third Ave",
+];
+const stale = FORBIDDEN_IDENTITY.filter((n) => IDENTITY_ROUTES.some((r) => textAt(r).includes(norm(n))));
+console.log(`  ${stale.length ? "✖" : "✓"} no conflicting entity name or address`);
+if (stale.length) failures.push(`Site still claims "${stale.join('", "')}" — a second identity on one site fails verification.`);
+
+const addrOk = IDENTITY_ROUTES.some((r) => textAt(r).includes(norm(BUSINESS.address)));
+console.log(`  ${addrOk ? "✓" : "✖"} real business address published`);
+if (!addrOk) failures.push(`Business address "${BUSINESS.address}" appears on no checked page. Registration requires a verifiable address.`);
+
+const phoneOk = IDENTITY_ROUTES.some((r) => textAt(r).includes(norm(BUSINESS.phone)));
+console.log(`  ${phoneOk ? "✓" : "✖"} business phone published`);
+if (!phoneOk) failures.push(`Business phone "${BUSINESS.phone}" appears on no checked page.`);
 
 /* Address and phone are required on the registration. They are Chiya-blocked
    here, so they are reported as BLOCKERS rather than failures: the gate should

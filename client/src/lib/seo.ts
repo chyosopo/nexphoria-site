@@ -11,6 +11,7 @@
  */
 
 import { useEffect } from "react";
+import { BUSINESS, BUSINESS_ADDRESS } from "@/data/compliance";
 
 const SITE = "Nexphoria";
 // Production domain — live on Cloudflare Pages.
@@ -298,6 +299,13 @@ export const medicalBusinessJsonLd = (): Record<string, unknown> => ({
     "Telehealth peptide therapy prescribed by board-certified physicians, partnered with U.S. state-licensed 503A compounding pharmacies.",
   medicalSpecialty: ["Endocrinology", "SportsMedicine", "InternalMedicine"],
   areaServed: "US",
+  /* Address and telephone were absent while they were placeholders — emitting
+     a bracketed non-value into structured data would have published it to
+     every consumer that reads schema.org, not just to a human on the page.
+     Real since 2026-08-13, sourced from compliance.ts so the markup and the
+     legal pages can never disagree. */
+  telephone: BUSINESS.phoneE164,
+  address: { "@type": "PostalAddress", ...BUSINESS_ADDRESS },
 });
 
 export const drugJsonLd = (opts: {
