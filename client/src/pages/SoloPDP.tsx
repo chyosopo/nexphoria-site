@@ -24,7 +24,6 @@ import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { EvidenceStrip } from "@/components/EvidenceStrip";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
-import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { VialHero } from "@/components/VialHero";
 import type { PeptideCategory } from "@/data/peptides";
 
@@ -180,7 +179,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center", marginTop: "1rem" }}>
             {/* — LEFT · the product, first fixation — */}
             <div style={{ position: "relative", order: 0, borderRadius: "var(--nx-r-lg)", overflow: "hidden" }}>
-              <VialHero sku={solo} width="100%" testId={`solo-vial-${solo.slug}`} />
+              <VialHero sku={solo} width="100%" priority testId={`solo-vial-${solo.slug}`} />
               <span
                 style={{
                   position: "absolute", top: 14, left: 14,

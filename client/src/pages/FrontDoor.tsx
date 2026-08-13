@@ -22,7 +22,7 @@ import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
 import { ProductShelf } from "@/components/ProductCard";
-import { VialMockup, labelSpec } from "@/components/VialMockup";
+import { VialHero } from "@/components/VialHero";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
 
@@ -258,14 +258,7 @@ export default function FrontDoor() {
           <div className="nx-vial-row">
             {SOLO_CATALOG.slice(0, 3).map((s) => (
               <div key={s.slug} className="nx-vial-cell">
-                <VialMockup
-                  name={s.name}
-                  dose={labelSpec(s.spec)}
-                  size="clamp(210px, 30vw, 330px)"
-                  fill={0.58}
-                  onDark
-                  testId={`frontdoor-vial-${s.slug}`}
-                />
+                <VialHero sku={s} width="100%" testId={`frontdoor-vial-${s.slug}`} />
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-ceramic)", marginTop: "0.9rem" }}>
                   {s.name}
                 </p>

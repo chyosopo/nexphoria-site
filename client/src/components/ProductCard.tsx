@@ -15,7 +15,7 @@ import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
-import { VialPanel, labelSpec } from "@/components/VialMockup";
+import { VialHero } from "@/components/VialHero";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
 /** The price line for a SKU, in one place. Mirrors the PDP's own logic:
@@ -40,17 +40,14 @@ export function ProductCard({
       className="nx-float-card"
       data-testid={testId ?? `peptide-${sku.slug}`}
     >
-      {/* The card media is the PRODUCT, drawn — not editorial photography.
-          The reference shoots every catalog card the same way: the vial
-          upright and front-facing on a seamless gradient, no props
-          (IVYRX-STUDY-VISUAL §V2.4). Ours was pulling per-SKU photos, and two
-          of the four launch frames were actively wrong for a compounded vial:
-          tirzepatide's is a branded autoinjector PEN, semaglutide's is a
-          lifestyle scene. Both followed the SKU onto every shelf on the site.
-          The photography keeps the surfaces it is right for — category heroes
-          and the lower PDP band. */}
+      {/* The card media is this SKU's finished product shot — the same file
+          the PDP hero uses, so the shelf and the product page can never show
+          two different bottles for one molecule. It replaced per-SKU editorial
+          photography, two frames of which were actively wrong for a compounded
+          vial: tirzepatide's was a branded autoinjector PEN, semaglutide's a
+          lifestyle scene, and both followed the SKU onto every shelf. */}
       <div className="nx-float-card__media">
-        <VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="84%" ratio="4 / 3" fill={0.58} />
+        <VialHero sku={sku} width="100%" />
         {sku.gated && (
           <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
         )}

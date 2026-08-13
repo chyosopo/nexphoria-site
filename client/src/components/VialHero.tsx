@@ -1,172 +1,79 @@
-/* ═══ VIAL HERO — the cinematic product object ═══
+/* ═══ VIAL HERO — one finished product shot per SKU ═══
 
-   Direction C, chosen by Chiya from a four-option board, after she sent the
-   Google Shopping row for "ivyrx" — six competitor vials side by side. That
-   screenshot is the brief, and it says something the site teardowns did not:
+   Four SKUs, four photographs, nothing composited. Chiya: "We just have four
+   SKUs. Let's have them perfectly done, so it's great that we can advertise
+   with it."
 
-     THE LABEL IS A SOLID SATURATED COLOUR WRAPPING THE WHOLE VIAL, WITH ONE
-     HUGE LOWERCASE SHORT NAME ON IT.
+   That sentence killed the previous three approaches, and it was right to.
+   Every one of them was a SYSTEM for generating vials — a vector drawing, then
+   a photo with a live-DOM label, then a coloured wrap with a giant word — when
+   the actual requirement is four finished images good enough to put in a
+   Google Shopping ad. A system that renders four things is only worth building
+   if the four need to differ at runtime. These do not. They are fixed product
+   photography and should be treated the way every brand treats it: shot once,
+   checked, shipped as files.
 
-   IvyRx ships purple "tirz" and green "GLP-1"; SnagRx ships orange "sema".
-   Not a white clinical label with a small colour band and six lines of
-   pharmacy fine print — which is exactly what I had built, and why ours
-   disappeared next to theirs in a shopping row. At thumbnail size the only
-   things that survive are the colour and one word, so the design has to be
-   the colour and one word.
+   WHAT WENT WRONG BEFORE, recorded so it is not repeated:
+   · Label text as live DOM over a blank label. It never sat right on the
+     curve, and it turned the vial into a layout problem instead of an image.
+   · Then a full-bleed colour wrap with a huge lowercase short name. On PT-141
+     the short name IS the full name, so it rendered as an enormous "pt-141"
+     across the bottle. It looked absurd and I shipped it anyway.
+   · Both were machinery built instead of looking at what competitors actually
+     advertise with: a modest white label, a colour band, the molecule at
+     readable size, "Rx only", on a light seamless ground.
 
-   HOW IT IS ASSEMBLED
-     · GLASS + COLOURED WRAP are photographed (higgsfield / Recraft V4.1),
-       one shot per goal colour, on a graphite ground with rim light and haze.
-       The colour is in the photograph rather than a CSS tint over grey, so it
-       carries real specular falloff around the cylinder.
-     · TYPE is live DOM over it — the short name, the full molecule, and the
-       Rx line. Never baked in: generated label text arrives warped and
-       misspelled, and on a MEDICAL product that is a compliance problem
-       before it is an ugly one. Live type also re-renders per SKU from the
-       catalog, so a vial cannot print a molecule the PDP disagrees with.
-
-   The fine print that used to crowd the label did not vanish — it moved to
-   the PDP spec plate, where it is readable. A vial label is a poster, not a
-   package insert. */
-import { F } from "@/lib/typography";
-import wrapMetabolic from "@/assets/vials/wrap-metabolic.webp";
-import wrapGrowth from "@/assets/vials/wrap-growth.webp";
-import wrapSexual from "@/assets/vials/wrap-sexual-health.webp";
-import wrapNeutral from "@/assets/vials/wrap-neutral.webp";
-import { goalKeyFor, type GoalKey } from "@/data/goalAccent";
+   The images carry their own text, rendered in-image. The one thing NOT baked
+   in is fine print — the first generation produced convincing-looking
+   gibberish, and on a medical product that is worse than blank — so the label
+   ends after "Rx only" and the real strength, route, compounder and storage
+   live on the PDP spec plate, derived from the catalog and legible. */
+import tirzepatide from "@/assets/vials/sku-tirzepatide.webp";
+import semaglutide from "@/assets/vials/sku-semaglutide.webp";
+import tesamorelin from "@/assets/vials/sku-tesamorelin.webp";
+import pt141 from "@/assets/vials/sku-pt-141.webp";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
-const WRAP: Record<GoalKey, string> = {
-  metabolic: wrapMetabolic,
-  growth: wrapGrowth,
-  "sexual-health": wrapSexual,
-  neutral: wrapNeutral,
+/** Slug → its finished product shot. A SKU with no photo renders NOTHING
+ *  rather than borrowing another molecule's bottle: a vial is a claim about
+ *  what arrives, so showing the wrong one is a misrepresentation, not a
+ *  cosmetic fallback. */
+export const VIAL_BY_SLUG: Record<string, string> = {
+  tirzepatide,
+  semaglutide,
+  tesamorelin,
+  "pt-141": pt141,
 };
 
-/** The short name printed large on the wrap — the competitors' "tirz" / "sema"
- *  move. Explicit per SKU rather than truncated: an algorithm would render
- *  PT-141 as "pt-1", and a clipped drug name on a label is worse than a long
- *  one. Any SKU without an entry falls back to its full name. */
-const SHORT_NAME: Record<string, string> = {
-  tirzepatide: "tirz",
-  semaglutide: "sema",
-  tesamorelin: "tesa",
-  "pt-141": "pt-141",
-};
-
-/* Where the coloured wrap sits inside the photographs, as fractions of the
-   frame. All four were generated from one prompt skeleton so they share a
-   box; re-measure if a shot is ever replaced. */
-const WRAP_BOX = { left: 31, right: 69, top: 31, bottom: 88 };
+export function vialFor(slug: string): string | undefined {
+  return VIAL_BY_SLUG[slug];
+}
 
 export function VialHero({
   sku,
   width = "100%",
+  priority = false,
   testId,
 }: {
   sku: SoloPeptide;
   width?: string;
+  /** True on the PDP hero, where the vial is the LCP element. */
+  priority?: boolean;
   testId?: string;
 }) {
-  const goal = goalKeyFor(sku.category);
-  const short = SHORT_NAME[sku.slug] ?? sku.name.toLowerCase();
+  const src = vialFor(sku.slug);
+  if (!src) return null;
 
   return (
-    <figure
+    <img
+      src={src}
+      alt={`${sku.name} vial — Nexphoria, prescription only`}
+      width={1024}
+      height={1024}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : undefined}
       data-testid={testId ?? `vialhero-${sku.slug}`}
-      className="nx-vialhero"
-      style={{ width, position: "relative", margin: 0, aspectRatio: "1 / 1" }}
-    >
-      <img
-        src={WRAP[goal]}
-        alt={`${sku.name} vial`}
-        width={2048}
-        height={2048}
-        loading="lazy"
-        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-      />
-
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          left: `${WRAP_BOX.left}%`,
-          right: `${100 - WRAP_BOX.right}%`,
-          top: `${WRAP_BOX.top}%`,
-          bottom: `${100 - WRAP_BOX.bottom}%`,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        {/* THE ONE WORD. Sized in container units so it scales with the object
-            — the whole point is that this survives at thumbnail size. */}
-        <span
-          style={{
-            fontFamily: F,
-            fontSize: "18cqw",
-            fontWeight: 700,
-            letterSpacing: "-0.04em",
-            lineHeight: 0.85,
-            color: "var(--nx-ceramic)",
-            /* The wrap curves away at both edges, so flat type reads as a
-               decal. A soft inner shading matches the cylinder's falloff. */
-            textShadow: "0 1px 2px rgba(16,19,23,0.22)",
-          }}
-        >
-          {short}
-        </span>
-
-        <span
-          style={{
-            fontFamily: F,
-            fontSize: "3.6cqw",
-            fontWeight: 600,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "color-mix(in srgb, var(--nx-ceramic) 88%, transparent)",
-            marginTop: "6%",
-            lineHeight: 1.2,
-          }}
-        >
-          {sku.name}
-        </span>
-
-        <span
-          style={{
-            fontFamily: F,
-            fontSize: "2.6cqw",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "color-mix(in srgb, var(--nx-ceramic) 66%, transparent)",
-            marginTop: "3%",
-          }}
-        >
-          Rx only
-        </span>
-      </div>
-
-      {/* The wordmark, small, at the foot of the wrap — where a pharmaceutical
-          label carries the manufacturer. Ours, not a generated approximation. */}
-      <span
-        aria-hidden
-        style={{
-          position: "absolute",
-          left: `${WRAP_BOX.left}%`,
-          right: `${100 - WRAP_BOX.right}%`,
-          bottom: `${100 - WRAP_BOX.bottom + 3}%`,
-          textAlign: "center",
-          fontFamily: F,
-          fontSize: "2.4cqw",
-          fontWeight: 700,
-          letterSpacing: "0.28em",
-          color: "color-mix(in srgb, var(--nx-ceramic) 55%, transparent)",
-        }}
-      >
-        NEXPHORIA
-      </span>
-    </figure>
+      style={{ width, aspectRatio: "1 / 1", objectFit: "cover", display: "block" }}
+    />
   );
 }
