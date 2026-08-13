@@ -818,11 +818,27 @@
   .nx-reveal {
     opacity: 1;
     transform: translateY(14px);
-    transition: transform 0.5s var(--nx-reveal-ease);
+    transition: opacity 0.62s var(--nx-reveal-ease), transform 0.62s var(--nx-reveal-ease);
   }
   .nx-reveal.visible {
     transform: translateY(0);
   }
+
+  /* THE FADE. Until 2026-08-13 the reveal was a 14px slide at full opacity —
+     motion that is technically present and perceptually absent, which is what
+     "I don't see any motions" was reporting. A slide with no fade reads as a
+     layout settle, not an entrance.
+
+     The opacity floor is gated on .nx-js, a class an inline script in
+     index.html sets on <html> before first paint. That is the whole reason
+     the old rule started at opacity 1: content must never be stuck invisible
+     if the observer never runs. With the gate, the failure mode is inverted —
+     no JS means no class means no hidden state, and the page renders fully
+     opaque exactly as it did before. Prerendered HTML still carries every
+     word regardless of opacity, so crawlers and the text-reading gates are
+     unaffected, and Playwright treats opacity:0 as visible for clicks. */
+  .nx-js .nx-reveal { opacity: 0; }
+  .nx-js .nx-reveal.visible { opacity: 1; }
   /* Promote to a compositor layer ONLY while the entrance is actually running.
      backface-visibility pins the layer on Safari/iOS for the duration of the
      transition; Reveal.tsx adds .nx-settled on transitionend, which drops BOTH
@@ -846,6 +862,37 @@
     transition: transform 0.5s var(--nx-reveal-ease);
   }
   .nx-reveal-scale.visible { transform: scale(1); }
+
+  /* ── STAGGER ────────────────────────────────────────────────────────────
+     A grid whose cards all arrive on the same frame reads as one block
+     appearing; the same cards 70ms apart read as a deal being dealt. Put
+     .nx-stagger on the GRID and the cascade is free — no per-card delay prop
+     threaded through JSX, and no JS timers to leak.
+
+     Capped at 8. Past that the last card in a long shelf would wait most of a
+     second after the first, which stops feeling considered and starts feeling
+     slow; every child beyond the eighth shares the eighth's delay.
+
+     Scoped to .nx-reveal children on purpose. `.nx-stagger > *` would also
+     delay each card's HOVER transition by up to half a second, which is the
+     kind of bug that gets described as "the site feels laggy" and never traced
+     back to an entrance animation. */
+  /* The wrapper is a grid ITEM, so it has to behave like the card it replaced:
+     never wider than its track, and full-height so a shelf of cards still
+     bottom-aligns its price row. */
+  .nx-stagger > .nx-reveal { min-width: 0; }
+  .nx-stagger > .nx-reveal > * { height: 100%; }
+  .nx-stagger > .nx-reveal:nth-child(1) { transition-delay: 0ms; }
+  .nx-stagger > .nx-reveal:nth-child(2) { transition-delay: 70ms; }
+  .nx-stagger > .nx-reveal:nth-child(3) { transition-delay: 140ms; }
+  .nx-stagger > .nx-reveal:nth-child(4) { transition-delay: 210ms; }
+  .nx-stagger > .nx-reveal:nth-child(5) { transition-delay: 280ms; }
+  .nx-stagger > .nx-reveal:nth-child(6) { transition-delay: 350ms; }
+  .nx-stagger > .nx-reveal:nth-child(7) { transition-delay: 420ms; }
+  .nx-stagger > .nx-reveal:nth-child(n+8) { transition-delay: 490ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .nx-stagger > .nx-reveal { transition-delay: 0ms !important; }
+  }
 
   /* MOBILE: shorter distance + faster duration so content SNAPS in crisply
      instead of drifting up slowly on a small screen. */
@@ -919,7 +966,8 @@
 
   /* ── Reduced motion overrides ── */
   @media (prefers-reduced-motion: reduce) {
-    .nx-reveal {
+    .nx-reveal,
+    .nx-js .nx-reveal {
       opacity: 1;
       transform: none;
       transition: none;
@@ -2471,7 +2519,17 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
   transition: transform var(--nx-dur-3) var(--nx-reveal-ease), box-shadow var(--nx-dur-3) var(--nx-ease);
 }
 @media (hover: hover) {
-  .nx-ptile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-4); }
+  /* Two things move, at two speeds. The card lifts, and the bottle inside it
+     pushes forward slightly slower — the small parallax that separates a card
+     that responds from a card that merely highlights. The media box clips, so
+     the scale reads as the product coming toward you rather than the tile
+     growing. */
+  .nx-ptile:hover { transform: translateY(-6px); box-shadow: var(--nx-e-4); }
+  .nx-ptile:hover .nx-ptile__media img { transform: scale(1.045); }
+  .nx-ptile:focus-visible .nx-ptile__media img { transform: scale(1.045); }
+}
+.nx-ptile__media img {
+  transition: transform 0.55s var(--nx-reveal-ease);
 }
 .nx-ptile:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 3px; }
 
@@ -2520,9 +2578,10 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 @media (hover: hover) { .nx-ptile:hover .nx-ptile__go { transform: translateX(3px); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .nx-ptile, .nx-ptile__go { transition: none; }
+  .nx-ptile, .nx-ptile__go, .nx-ptile__media img { transition: none; }
   .nx-ptile:hover { transform: none; }
   .nx-ptile:hover .nx-ptile__go { transform: none; }
+  .nx-ptile:hover .nx-ptile__media img { transform: none; }
 }
 
 /* ═══ MEGA-MENU TILES ═══
@@ -2695,6 +2754,27 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 }
 
 /* ═══ YOUR PLAN — the merged pricing + lab page ═══ */
+/* The hero figure. Baseline-aligned so "from" and "/month" sit on the number's
+   baseline rather than floating beside its box — the difference between a
+   price set by a house and a price set by a plugin. */
+.nx-plan-figure {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 0.45rem; margin-top: clamp(1.6rem, 4vw, 2.4rem);
+  font-family: 'Editorial New', Georgia, serif;
+  color: var(--nx-fg);
+}
+.nx-plan-figure__num {
+  font-size: var(--nx-t-giant);
+  font-weight: 500; line-height: 0.92;
+  letter-spacing: var(--nx-ls-display);
+  font-variant-numeric: tabular-nums;
+}
+.nx-plan-figure__pre, .nx-plan-figure__suf {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-base); font-weight: 500;
+  color: var(--nx-fg-muted);
+}
+
 .nx-plan-prices { display: grid; gap: clamp(0.8rem,2vw,1.1rem); grid-template-columns: 1fr; }
 @media (min-width: 720px)  { .nx-plan-prices { grid-template-columns: repeat(2, 1fr); } }
 .nx-planprice {

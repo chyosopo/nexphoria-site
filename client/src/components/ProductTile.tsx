@@ -32,6 +32,7 @@ import { usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
 import { accentFor } from "@/data/goalAccent";
 import { VialHero } from "@/components/VialHero";
+import { Reveal } from "@/components/Reveal";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
 /** The price floor, derived the same way every other surface derives it. */
@@ -115,8 +116,16 @@ export function ProductTile({ sku }: { sku: SoloPeptide }) {
 export function ProductTiles({ skus, testId }: { skus: SoloPeptide[]; testId?: string }) {
   if (skus.length === 0) return null;
   return (
-    <div className="nx-ptile-grid" data-testid={testId}>
-      {skus.map((s) => <ProductTile key={s.slug} sku={s} />)}
+    /* .nx-stagger deals the tiles in one after another as the shelf enters
+       view rather than dropping all four on the same frame. Each tile is
+       wrapped in its own Reveal because the cascade is driven by nth-child on
+       the wrappers — the grid itself cannot stagger its children. */
+    <div className="nx-ptile-grid nx-stagger" data-testid={testId}>
+      {skus.map((s) => (
+        <Reveal key={s.slug} className="nx-reveal-lift">
+          <ProductTile sku={s} />
+        </Reveal>
+      ))}
     </div>
   );
 }

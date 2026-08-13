@@ -54,6 +54,10 @@ export default function Plan() {
   });
 
   const priced = SOLO_CATALOG.filter((s) => s.pricing);
+  /* The lowest real monthly figure in the live catalog. null when nothing is
+     priced, which is why the hero figure is conditional — a catalog cut must
+     remove the number, not render "from $Infinity". */
+  const floor = priced.length ? Math.min(...priced.map((s) => s.pricing!.m12)) : null;
 
   return (
     <SiteLayout navVariant="showcase">
@@ -69,6 +73,25 @@ export default function Plan() {
           The consultation, the {PANEL_TOTAL_MARKERS}-marker panel, the medication, the shipping and the
           90-day retest are all inside the figure. Your physician sets the dose; the price does not change with it.
         </p>
+
+        {/* THE FIGURE ITSELF. A headline that says "one number a month" and
+            then shows no number makes the visitor scroll to find out whether
+            they can afford us — which is the moment they leave. The floor is
+            derived from the catalog, so a price change or a SKU cut moves it.
+            It is deliberately NOT a count-up: a price that spins up from $0 is
+            a casino tell, and this is a medical purchase. */}
+        {floor !== null && (
+          <Reveal className="nx-reveal-lift">
+            <p className="nx-plan-figure" data-testid="plan-floor">
+              <span className="nx-plan-figure__pre">from</span>
+              <span className="nx-plan-figure__num">{usd(floor)}</span>
+              <span className="nx-plan-figure__suf">/month</span>
+            </p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.5rem" }}>
+              On the 12-month cadence. Every protocol and every term is listed below.
+            </p>
+          </Reveal>
+        )}
       </section>
 
       {/* ── 2 · PRICE PER MOLECULE — derived, one card each ── */}
