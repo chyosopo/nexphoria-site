@@ -126,21 +126,23 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
     else if (retired.length) ok(`goal "${g.slug}": ${live} live, ${retired.length} retired (${retired.join(", ")})`);
     else ok(`goal "${g.slug}" resolves to ${live} live SKU(s)`);
   }
-  /* 3. Home-page card rows. Both world homes hardcoded four featured slugs;
-        the launch scope retired 3 of men's and ALL FOUR of women's, so her
-        formulary row rendered zero cards. Nothing failed — the row silently
-        emptied, and it was visible only in a screenshot. Now derived, and
-        asserted here so a short row fails loudly. */
-  for (const [world, file] of [["men", "client/src/pages/MenHome.tsx"], ["women", "client/src/pages/WomenHome.tsx"]] as const) {
-    const src = await readFile(file, "utf-8");
-    const m = /featured:\s*liveFeatured\(\[([^\]]*)\]/s.exec(src);
-    if (!m) { bad(`${world} home no longer derives its featured row via liveFeatured()`); continue; }
-    const preferred = [...m[1].matchAll(/"([a-z0-9-]+)"/g)].map((x) => x[1]);
-    const resolved = liveFeatured(preferred);
-    const stale = preferred.filter((slug) => !SOLO_CATALOG.some((s2) => s2.slug === slug));
-    if (resolved.length === 0) bad(`${world} home formulary row resolves to ZERO cards`);
-    else if (stale.length === preferred.length) ok(`${world} home row: all ${preferred.length} preferred slugs retired, backfilled to ${resolved.length}`);
-    else ok(`${world} home row resolves to ${resolved.length} card(s)`);
+  /* 3. Home-page card row. Originally read MenHome/WomenHome, which hardcoded
+        four featured slugs each — the launch scope retired 3 of men's and ALL
+        FOUR of women's, so her row rendered zero cards. Those files are now
+        deleted with the two-worlds split, and the single home renders the
+        shared ProductShelf over the live catalog, so the check moves with it:
+        assert the home still puts products on the page at all. That is the
+        defect worth catching — the home shipped with NO product cards the
+        moment the world homes were unrouted. */
+  {
+    const src = await readFile("client/src/pages/FrontDoor.tsx", "utf-8");
+    if (!/<ProductShelf\s+skus=\{SOLO_CATALOG\}/.test(src)) {
+      bad("home page no longer renders the live catalog via ProductShelf");
+    } else if (SOLO_CATALOG.length === 0) {
+      bad("home formulary shelf would render zero cards");
+    } else {
+      ok(`home formulary shelf renders ${SOLO_CATALOG.length} product card(s)`);
+    }
   }
 
   /* 4. Goal tiles must have art. A live category with no entry in

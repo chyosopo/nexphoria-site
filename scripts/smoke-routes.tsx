@@ -40,8 +40,9 @@ async function main() {
   // route → [module, props, path]
   const routes: [string, string, Record<string, any>][] = [
     ["/",                "/src/pages/FrontDoor.tsx", {}],
-    ["/men",             "/src/pages/MenHome.tsx", {}],
-    ["/women",           "/src/pages/WomenHome.tsx", {}],
+    // /men and /women are REDIRECTS since the two-worlds split was deleted
+    // (2026-08-13). They resolve via App.tsx's <R> and have no page module;
+    // audit:funnel asserts they still reach price + buy.
     ["/stacks",          "/src/pages/ProtocolsIndex.tsx", {}],
     ["/stacks/wolverine","/src/pages/StackPage.tsx", { slug: "wolverine" }],
     ["/stacks/ignite",   "/src/pages/StackPage.tsx", { slug: "ignite" }],
