@@ -21,11 +21,6 @@ import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
-/* The dedicated per-world gate portraits (Bloom, 2026-07-06) — same faces
-   that greet visitors at /gate, so the two-worlds moment is consistent. */
-const gateHer = "img/img_8742acc94d7e.webp";
-const gateHim = "img/img_84799b6e21dc.webp";
-
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
 
@@ -194,57 +189,15 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 1.4 · THE GATE — the for-her/for-him moment, restored to the entry
-          (Chiya, 2026-07-10). Full-bleed cinematic split: breathing portraits,
-          hover widens a panel and casts its world's tokens. The theatrical
-          full-screen version lives on at /gate. ══ */}
-      <section aria-labelledby="frontdoor-gate-heading" style={{ paddingTop: "var(--nx-sp-band)" }}>
-        <div className="nx-container" style={{ marginBottom: "1.6rem" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-            Two worlds · one clinical standard
-          </p>
-          <h2 id="frontdoor-gate-heading" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "22ch", lineHeight: 1.12 }}>
-            Built for your biology.
-          </h2>
-        </div>
-        <Reveal>
-          <div className="nx-wgate">
-            {([
-              { side: "her", world: "women", to: "/women", img: gateHer, pos: "50% 20%", eyebrow: "Peptides built for women", label: "For her.", feel: "How you want to feel has a biology.", testId: "frontdoor-women" },
-              { side: "him", world: "men", to: "/men", img: gateHim, pos: "50% 22%", eyebrow: "Peptides built for men", label: "For him.", feel: "The strongest version of you is measurable.", testId: "frontdoor-men" },
-            ] as const).map((w) => (
-              <Link
-                key={w.to}
-                href={w.to}
-                className={`nx-wgate-panel ${w.side}`}
-                data-world={w.world}
-                data-testid={w.testId}
-                aria-label={w.side === "her" ? "Enter the women's experience" : "Enter the men's experience"}
-              >
-                <img src={w.img} srcSet={outcomeSrcSet(w.img)} sizes="(max-width: 767px) 100vw, 50vw" alt="" aria-hidden loading="lazy" width={1600} height={2000} style={{ objectPosition: w.pos }} />
-                <div className="nx-wgate-scrim" aria-hidden />
-                <div className="nx-wgate-copy">
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "color-mix(in srgb, var(--nx-ceramic) 85%, transparent)" }}>
-                    {w.eyebrow}
-                  </p>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.02, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-ceramic)", marginTop: "0.5rem" }}>
-                    {w.label}
-                  </p>
-                  <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-body)", lineHeight: 1.45, color: "color-mix(in srgb, var(--nx-ceramic) 92%, transparent)", marginTop: "0.55rem", maxWidth: "30ch" }}>
-                    {w.feel}
-                  </p>
-                  <span className="nx-wgate-arrow" aria-hidden style={{ marginTop: "1.1rem" }}>
-                    <ArrowRight size={20} strokeWidth={2.2} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Reveal>
-      </section>
+      {/* ══ 1.4 · THE HER/HIM GATE — REMOVED 2026-08-13 with the two-worlds
+          split. It was a full-bleed cinematic panel reading "Two worlds · one
+          clinical standard", linking to /women and /men — both of which now
+          redirect to this page. Left in place it would have been the second
+          thing a visitor saw, offering a choice that no longer exists and
+          pointing at its own URL. The standalone /gate route is untouched. ══ */}
 
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
-      <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "var(--nx-sp-band) 0" }}>
+      <section aria-labelledby="frontdoor-positioning" style={{ background: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)", padding: "var(--nx-sp-sec) 0" }}>
         <div className="nx-container" style={{ textAlign: "center" }}>
           <h2 id="frontdoor-positioning" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "var(--nx-ls-snug)", maxWidth: "20ch", margin: "0 auto" }} data-testid="frontdoor-positioning">
             A protocol. <em style={{ color: "var(--nx-cobalt)" }}>Not a purchase.</em>
