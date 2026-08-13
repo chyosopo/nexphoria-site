@@ -19,6 +19,7 @@ import { getStack, usd } from "@/data/stacksCatalog";
 import { useCart } from "@/contexts/CartProvider";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import assessmentTrustHero from "@/assets/nx_v11_trust_assessment_hero.webp";
+import { ConsentGates, EMPTY_CONSENT, consentSatisfied, type ConsentState } from "@/components/ConsentGates";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -449,6 +450,12 @@ export default function Assessment() {
     state: "",
   });
 
+  /* Consent acknowledgments. Held OUTSIDE FormData on purpose: FormData is
+     drafted to storage and restored on refresh, and a consent that survives a
+     refresh is a consent nobody gave on this visit. These always start
+     unchecked. (docs/ASSESSMENT-AUDIT.md §A7 — the flow had zero hard gates.) */
+  const [consent, setConsent] = useState<ConsentState>(EMPTY_CONSENT);
+
   // E38 — the draft survives a refresh. Restore once, then autosave.
   const DRAFT_KEY = "nx-assessment-draft";
   // A restore/deep-link step jump lands the visitor deep in the flow AFTER
@@ -520,6 +527,15 @@ export default function Assessment() {
   useEffect(() => { setNudge(false); }, [step]);
 
   const valid = isStepValid(step, form);
+
+  /* A reported condition that warrants explicit acknowledgment. "none" is not a
+     flag, and asking everyone to acknowledge a risk they did not report trains
+     people to tick without reading — which is exactly what a gate must avoid. */
+  const flaggedConditions = form.medicalHistory.filter((id) => id !== "none");
+  const hasFlaggedCondition = flaggedConditions.length > 0;
+  const flaggedLabel = flaggedConditions
+    .map((id) => MEDICAL_HISTORY_OPTIONS.find((o) => o.id === id)?.label?.toLowerCase() ?? id)
+    .join("; ");
   const inFlow = step > 0 && step <= TOTAL_STEPS;
   // ROADMAP 2.2 — resolve the flagship protocol matched to the chosen goal
   // once; the success screen presents it as the recommendation peak.
@@ -648,7 +664,11 @@ export default function Assessment() {
         ? (submitting ? "Submitting…" : "Submit intake")
         : "Continue";
   const footerBackLabel = step === 7 ? "Edit" : "Back";
-  const footerNextDisabled = step === 7 ? submitting : !valid;
+  /* Submission now requires the acknowledgments, not just a complete form.
+     This is the hard gate the audit found missing — previously every
+     disclaimer was passive text and nothing blocked Submit. */
+  const consentOk = consentSatisfied(consent, hasFlaggedCondition);
+  const footerNextDisabled = step === 7 ? (submitting || !consentOk) : !valid;
   const footerOnNext = step === 7 ? handleSubmit : goNext;
 
   // Enter advances from the contact step's single-line fields — the flow's one
@@ -1595,6 +1615,16 @@ export default function Assessment() {
                             </span>
                           </button>
                         ))}
+                      </div>
+
+                      {/* Hard consent gates — must be satisfied before Submit enables. */}
+                      <div style={{ marginBottom: "1rem" }}>
+                        <ConsentGates
+                          value={consent}
+                          onChange={setConsent}
+                          hasFlaggedCondition={hasFlaggedCondition}
+                          flaggedLabel={flaggedLabel}
+                        />
                       </div>
 
                       {/* Trust close — the institutional reassurance next to the commit
