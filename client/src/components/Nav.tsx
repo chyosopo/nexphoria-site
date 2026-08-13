@@ -5,7 +5,11 @@ import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { StartIntakeButton } from "./StartIntakeButton";
 import { CartIconButton } from "./CartIconButton";
-import { CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
+import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
+import { accentFor } from "@/data/goalAccent";
+import { VialHero } from "@/components/VialHero";
+import { priceLineFor } from "@/components/ProductCard";
 
 interface NavProps {
   variant?: "women" | "men" | "gate" | "showcase";
@@ -41,24 +45,22 @@ const showcaseLinks: NavLink[] = [
    keeps its rose accent on the shared graphite system) and the analytics
    source below. It no longer changes what the nav offers. */
 
-/* Six category tiles for the Peptides mega-menu. Order + copy tuned for
-   the Hims-style "quiet mega-menu on hover" pattern: six restrained tiles,
-   each a benefit line, plus a featured-peptides column on the right. */
-const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = [
-  { key: "recovery", blurb: "Tissue repair, injury, training load" },
-  { key: "skin", blurb: "Collagen, tone, aesthetic outcomes" },
-  { key: "growth", blurb: "GH pulse, lean mass, body composition" },
-  { key: "longevity", blurb: "Cellular energy, immune, healthspan" },
-  { key: "cognition", blurb: "Focus, mood, neuroprotection" },
-  { key: "metabolic", blurb: "Appetite, weight, glucose control" },
-];
+/* The mega-menu is DERIVED from the live catalog now (2026-08-13).
 
-const MEGA_FEATURED: { name: string; slug: string; note: string }[] = [
-  { name: "BPC-157", slug: "bpc-157", note: "The repair signal" },
-  { name: "GHK-Cu", slug: "ghk-cu", note: "The skin reset" },
-  { name: "Tirzepatide", slug: "tirzepatide", note: "The appetite reset" },
-  { name: "NAD+", slug: "nad-plus", note: "The energy currency" },
-];
+   It was two hardcoded lists, and both had rotted into advertising things we
+   do not sell: six category tiles of which four (recovery, skin, longevity,
+   cognition) have no sellable molecule behind them, and a "featured peptides"
+   column led by BPC-157 and NAD+ — retired SKUs whose PDPs no longer exist.
+   The site's main navigation was pointing at dead ends.
+
+   Nothing here is a list any more. The tiles ARE SOLO_CATALOG, each carrying
+   its goal colour, its real product shot and its real price floor, so the menu
+   cannot outlive the catalog: cut a SKU and its tile disappears. Colour does
+   the navigating — the green that marks metabolic on a product tile marks it
+   here too. The right-hand column stopped duplicating those same four
+   products and now answers the questions that are NOT a product: the panel,
+   the process, the physician, the price. */
+
 
 export function Nav({ variant = "gate" }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -286,53 +288,30 @@ export function Nav({ variant = "gate" }: NavProps) {
                   }}
                   data-testid="mega-heading-categories"
                 >
-                  Shop by outcome
+                  The formulary
                 </p>
-                <div className="grid grid-cols-3 gap-2">
-                  {MEGA_CATEGORIES.map((c) => (
-                    <Link
-                      key={c.key}
-                      href={`/goals/${c.key}`}
-                      className="group block no-underline transition-colors"
-                      style={{
-                        border: "1px solid var(--nx-border)",
-                        borderRadius: "var(--nx-r-md)",
-                        padding: "1rem 1.05rem",
-                        background: "var(--nx-bg)",
-                      }}
-                      data-testid={`mega-category-${c.key}`}
-                      onClick={() => setMegaOpen(false)}
-                    >
-                      <span
-                        className="flex items-center justify-between"
-                        style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "var(--nx-t-base)",
-                          fontWeight: 600,
-                          color: "var(--nx-fg)",
-                        }}
+                <div className="grid grid-cols-2 gap-2">
+                  {SOLO_CATALOG.map((sku) => {
+                    const a = accentFor(sku.category);
+                    return (
+                      <Link
+                        key={sku.slug}
+                        href={`/peptides/${sku.slug}`}
+                        className="nx-megatile"
+                        style={{ background: a.tint, borderColor: a.edge }}
+                        data-testid={`mega-sku-${sku.slug}`}
+                        onClick={() => setMegaOpen(false)}
                       >
-                        {CATEGORY_LABELS[c.key]}
-                        <ArrowUpRight
-                          size={15}
-                          strokeWidth={2}
-                          className="opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
-                          aria-hidden="true"
-                        />
-                      </span>
-                      <span
-                        className="mt-1 block"
-                        style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
-                          fontSize: "var(--nx-t-xs)",
-                          color: "var(--nx-fg-graphite)",
-                          lineHeight: 1.45,
-                        }}
-                      >
-                        {c.blurb}
-                      </span>
-                    </Link>
-                  ))}
+                        <VialHero sku={sku} width="66px" />
+                        <span className="nx-megatile__txt">
+                          <span className="nx-megatile__cat" style={{ color: a.ink }}>{sku.category}</span>
+                          <span className="nx-megatile__name" style={{ color: a.ink }}>{sku.name}</span>
+                          <span className="nx-megatile__out">{sku.outcome}</span>
+                          <span className="nx-megatile__price" style={{ color: a.ink }}>{priceLineFor(sku)}</span>
+                        </span>
+                      </Link>
+                    );
+                  })}
                 </div>
                 <Link
                   href={pharmacyBase}
@@ -351,34 +330,38 @@ export function Nav({ variant = "gate" }: NavProps) {
                 </Link>
               </div>
 
-              {/* Featured peptides */}
+              {/* Before you start — the non-product answers */}
               <div style={{ borderLeft: "1px solid var(--nx-border)", paddingLeft: "2.5rem" }}>
-                <Link
-                  href="/stacks/wolverine"
-                  className="group block no-underline mb-5"
-                  onClick={() => setMegaOpen(false)}
-                  data-testid="mega-featured-card"
-                >
-                  <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
-                    <img
-                      src="img/img_b02fe34b47f7.webp"
-                      alt="Nexphoria compounded peptide vial"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      loading="lazy"
-                    />
-                  </span>
-                  <span className="mt-3 flex items-center justify-between">
-                    <span>
-                      <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
-                        The Recovery Protocol
-                      </span>
-                      <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                        Physician-directed · if prescribed
-                      </span>
+                {/* Was a hero card for "The Recovery Protocol" at
+                    /stacks/wolverine — a RETIRED stack, on a navy-capped vial
+                    photo from the previous palette. The nav's most prominent
+                    visual was a dead link to a product we do not sell. It now
+                    renders the live flagship from FLAGSHIP_STACKS, and renders
+                    nothing at all if that list is ever empty, so it cannot rot
+                    the same way twice. */}
+                {FLAGSHIP_STACKS[0] && (
+                  <Link
+                    href={`/stacks/${FLAGSHIP_STACKS[0].slug}`}
+                    className="group block no-underline mb-5"
+                    onClick={() => setMegaOpen(false)}
+                    data-testid="mega-featured-card"
+                  >
+                    <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", background: "var(--nx-goal-metabolic-tint)" }}>
+                      <VialHero sku={SOLO_CATALOG[0]} width="100%" />
                     </span>
-                    <ArrowRight size={16} strokeWidth={2} style={{ color: "var(--nx-cobalt)" }} aria-hidden="true" />
-                  </span>
-                </Link>
+                    <span className="mt-3 flex items-center justify-between">
+                      <span>
+                        <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
+                          {FLAGSHIP_STACKS[0].name}
+                        </span>
+                        <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
+                          Physician-directed · if prescribed
+                        </span>
+                      </span>
+                      <ArrowRight size={16} strokeWidth={2} style={{ color: "var(--nx-cobalt)" }} aria-hidden="true" />
+                    </span>
+                  </Link>
+                )}
                 <Link
                   href="/how-it-works"
                   className="inline-flex items-center gap-1.5 no-underline mb-5"
@@ -399,35 +382,27 @@ export function Nav({ variant = "gate" }: NavProps) {
                   }}
                   data-testid="mega-heading-featured"
                 >
-                  Featured peptides
+                  Before you start
                 </p>
                 <ul className="flex flex-col gap-1 list-none m-0">
-                  {MEGA_FEATURED.map((p) => (
-                    <li key={p.slug}>
+                  {[
+                    { href: "/bloodwork", name: "Your bloodwork", note: "Gates every dose" },
+                    { href: "/how-it-works", name: "How it works", note: "Intake, review, dispatch" },
+                    { href: "/physicians", name: "Your physician", note: "Who signs — and can decline" },
+                    { href: "/pricing", name: "What it costs", note: "One number a month" },
+                  ].map((x) => (
+                    <li key={x.href}>
                       <Link
-                        href={`${pharmacyBase}/${p.slug}`}
+                        href={x.href}
                         className="group flex items-baseline justify-between no-underline py-1.5"
-                        data-testid={`mega-featured-${p.slug}`}
+                        data-testid={`mega-featured-${x.href.slice(1)}`}
                         onClick={() => setMegaOpen(false)}
                       >
-                        <span
-                          style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "var(--nx-t-sm)",
-                            fontWeight: 600,
-                            color: "var(--nx-fg)",
-                          }}
-                        >
-                          {p.name}
+                        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)" }}>
+                          {x.name}
                         </span>
-                        <span
-                          style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
-                            fontSize: "var(--nx-t-xs)",
-                            color: "var(--nx-fg-graphite)",
-                          }}
-                        >
-                          {p.note}
+                        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)" }}>
+                          {x.note}
                         </span>
                       </Link>
                     </li>
@@ -524,30 +499,28 @@ export function Nav({ variant = "gate" }: NavProps) {
                 fontWeight: 500,
               }}
             >
-              Shop by outcome
+              The formulary
             </p>
             <div className="grid grid-cols-2 gap-2">
-              {MEGA_CATEGORIES.map((c) => (
-                <Link
-                  key={c.key}
-                  href={`/goals/${c.key}`}
-                  className="no-underline"
-                  style={{
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "var(--nx-r-md)",
-                    padding: "0.75rem 0.85rem",
-                    background: "var(--nx-bg)",
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    fontSize: "var(--nx-t-sm)",
-                    fontWeight: 600,
-                    color: "var(--nx-fg)",
-                  }}
-                  data-testid={`nav-mobile-category-${c.key}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {CATEGORY_LABELS[c.key]}
-                </Link>
-              ))}
+              {SOLO_CATALOG.map((sku) => {
+                const a = accentFor(sku.category);
+                return (
+                  <Link
+                    key={sku.slug}
+                    href={`/peptides/${sku.slug}`}
+                    className="nx-megatile nx-megatile--stack"
+                    style={{ background: a.tint, borderColor: a.edge }}
+                    data-testid={`nav-mobile-sku-${sku.slug}`}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <VialHero sku={sku} width="100%" />
+                    <span className="nx-megatile__txt">
+                      <span className="nx-megatile__name" style={{ color: a.ink }}>{sku.name}</span>
+                      <span className="nx-megatile__price" style={{ color: a.ink }}>{priceLineFor(sku)}</span>
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           </div>
 

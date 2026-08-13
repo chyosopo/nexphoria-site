@@ -17,11 +17,12 @@ import { OUTCOME_CATEGORY, OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeIm
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
-import { SOLO_CATALOG } from "@/data/soloCatalog";
+import { SOLO_CATALOG, type SoloPeptide } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
 import { ProductTiles } from "@/components/ProductTile";
+import { accentFor } from "@/data/goalAccent";
 import { VialHero } from "@/components/VialHero";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
@@ -76,6 +77,50 @@ const HERO_TILES: RailTile[] = [
   { img: OUTCOME_CATEGORY.men.growth!, label: CATEGORY_LABELS.growth, sub: CATEGORY_FEELING.growth, href: "/goals/growth", testid: "rail-growth" },
   { img: HERO_ART, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: "rail-bloodwork" },
 ];
+
+/* The two-tile goal band. Grouped from the LIVE catalog, so a goal with
+   nothing sellable behind it cannot appear, and the price shown is the floor
+   across that goal's SKUs rather than one product's number. Copy is per-goal
+   because "lose weight" and "restore desire" are not the same promise. */
+const GOAL_COPY: Record<string, { kicker: string; headline: string; blurb: string; cta: string }> = {
+  Metabolic: {
+    kicker: "Lose weight with",
+    headline: "GLP-1 injections",
+    blurb: "Semaglutide and tirzepatide, titrated against your bloodwork by a physician who reviews every dose step.",
+    cta: "Lose weight",
+  },
+  Growth: {
+    kicker: "Change your composition with",
+    headline: "Tesamorelin",
+    blurb: "A GHRH analog studied for visceral fat, acting on the GH/IGF-1 axis and gated on a full panel.",
+    cta: "See the protocol",
+  },
+  "Sexual Health": {
+    kicker: "Address desire with",
+    headline: "PT-141",
+    blurb: "A melanocortin agonist that acts centrally rather than vascularly, prescribed after physician review.",
+    cta: "See the protocol",
+  },
+};
+
+const GOAL_BAND = (() => {
+  const byCat: Record<string, SoloPeptide[]> = {};
+  for (const sku of SOLO_CATALOG) (byCat[sku.category] ??= []).push(sku);
+  const ORDER = ["Metabolic", "Growth", "Sexual Health"];
+  return Object.entries(byCat)
+    .filter(([cat]) => GOAL_COPY[cat])
+    .sort(([a], [b]) => ORDER.indexOf(a) - ORDER.indexOf(b))
+    .map(([category, skus]) => {
+      const priced = skus.filter((x) => x.pricing).map((x) => x.pricing!.m12);
+      return {
+        category,
+        lead: skus[0],
+        accent: accentFor(category),
+        ...GOAL_COPY[category],
+        priceLine: priced.length ? `From ${usd(Math.min(...priced))}/mo` : "Priced at consultation",
+      };
+    });
+})();
 
 export default function FrontDoor() {
   useSeo({
@@ -183,11 +228,64 @@ export default function FrontDoor() {
               Two minutes · billed only if a physician prescribes
             </p>
           </div>
+
+          {/* TRUST PILLS — the row the reference runs under its CTA. Theirs
+              reads "200,000+ patients · 4.7, 6000+ reviews". Ours cannot: we
+              have no patients yet and no reviews, and inventing either is the
+              one thing this site will never do. These four are all verifiable
+              facts about how the service is actually built, which is a weaker
+              hook and a stronger claim. */}
+          <ul className="nx-trustpills" aria-label="How this works">
+            {[
+              "Physician-prescribed, or not at all",
+              "503A compounded in the U.S.",
+              "Cold-chain to all 50 states",
+              "Consultation is complimentary",
+            ].map((t) => <li key={t}>{t}</li>)}
+          </ul>
         </div>
 
-        {/* Photography below the statement, not beside it. */}
+        {/* ══ THE GOAL BAND — the reference's two big colour tiles.
+
+            Each is a GOAL, not a product: a visitor who knows they want to
+            lose weight should not have to already know the word tirzepatide.
+            The tile carries the goal's colour, its lead molecule's shot, and
+            the real price floor across every SKU in that goal, so the number
+            is a floor rather than one product's price. Derived from the live
+            catalog — a goal with nothing sellable behind it never renders. ══ */}
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }}>
-          <HeroTileRail tiles={HERO_TILES} testid="frontdoor-rail" />
+          <div className="nx-goalband">
+            {GOAL_BAND.map((g) => (
+              <Link
+                key={g.category}
+                href={`/peptides/${g.lead.slug}`}
+                className="nx-goalband__tile"
+                style={{ background: g.accent.tint, borderColor: g.accent.edge }}
+                data-testid={`goalband-${g.lead.slug}`}
+              >
+                <div className="nx-goalband__copy">
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: g.accent.ink, opacity: 0.8 }}>
+                    {g.kicker}
+                  </p>
+                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: g.accent.ink, lineHeight: 1.08, marginTop: "0.15rem" }}>
+                    {g.headline}
+                  </h2>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: "0.6rem", maxWidth: "34ch", lineHeight: 1.5 }}>
+                    {g.blurb}
+                  </p>
+                  <span className="nx-goalband__btn">
+                    {g.cta} <ArrowRight size={15} aria-hidden />
+                  </span>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", color: "var(--nx-fg-muted)", marginTop: "0.7rem" }}>
+                    {g.priceLine} · prescription only
+                  </p>
+                </div>
+                <div className="nx-goalband__art">
+                  <VialHero sku={g.lead} width="100%" onTint />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

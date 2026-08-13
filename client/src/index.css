@@ -2524,3 +2524,111 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
   .nx-ptile:hover { transform: none; }
   .nx-ptile:hover .nx-ptile__go { transform: none; }
 }
+
+/* ═══ MEGA-MENU TILES ═══
+   The nav's Peptides panel is the live catalog, not a list of section names:
+   each SKU a coloured tile with its product shot, outcome and price floor.
+   Same tint as the product tiles, so the menu and the shelf teach one map. */
+.nx-megatile {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid; border-radius: var(--nx-r-md);
+  text-decoration: none;
+  transition: transform var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease);
+}
+@media (hover: hover) { .nx-megatile:hover { transform: translateY(-2px); box-shadow: var(--nx-e-3); } }
+.nx-megatile:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 2px; }
+.nx-megatile img { border-radius: var(--nx-r-sm); flex-shrink: 0; }
+.nx-megatile__txt { display: flex; flex-direction: column; min-width: 0; }
+.nx-megatile__cat {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-2xs); font-weight: 700;
+  letter-spacing: var(--nx-ls-caps); text-transform: uppercase; opacity: 0.72;
+}
+.nx-megatile__name {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-base); font-weight: 600; line-height: 1.2; margin-top: 1px;
+}
+.nx-megatile__out {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs); line-height: 1.35; color: var(--nx-fg-graphite);
+  margin-top: 2px;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+.nx-megatile__price {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs); font-weight: 600; margin-top: 4px;
+}
+/* The drawer has no room for a row, so mobile tiles stack. */
+.nx-megatile--stack { flex-direction: column; align-items: stretch; gap: 0.5rem; padding: 0.5rem; }
+.nx-megatile--stack .nx-megatile__txt { align-items: center; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-megatile { transition: none; }
+  .nx-megatile:hover { transform: none; }
+}
+
+/* ═══ TRUST PILLS — the row under the hero CTA ═══
+   The reference runs "200,000+ patients · 4.7 from 6000+ reviews" here. Ours
+   carries verifiable facts about how the service is built instead, because we
+   have no patients yet and no reviews, and inventing either is the one thing
+   this site will not do. */
+.nx-trustpills {
+  list-style: none; margin: clamp(1.6rem, 4vw, 2.6rem) 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+}
+.nx-trustpills li {
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-xs); color: var(--nx-fg-graphite);
+  background: var(--nx-ceramic); border: 1px solid var(--nx-border);
+  border-radius: var(--nx-r-pill); padding: 0.5rem 0.95rem; white-space: nowrap;
+}
+
+/* ═══ GOAL BAND — the reference's big colour tiles ═══
+   Copy left, product right, the goal's colour as the ground. Each is a GOAL
+   rather than a product: someone who wants to lose weight should not need to
+   already know the word tirzepatide. */
+.nx-goalband { display: grid; gap: clamp(0.9rem, 2vw, 1.4rem); grid-template-columns: 1fr; }
+@media (min-width: 900px) { .nx-goalband { grid-template-columns: repeat(2, 1fr); } }
+.nx-goalband__tile {
+  position: relative; display: flex; align-items: stretch; gap: 1rem;
+  border: 1px solid; border-radius: var(--nx-r-lg); overflow: hidden;
+  text-decoration: none; min-height: 260px;
+  transition: transform var(--nx-dur-3) var(--nx-reveal-ease), box-shadow var(--nx-dur-3) var(--nx-ease);
+}
+@media (hover: hover) { .nx-goalband__tile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-4); } }
+.nx-goalband__tile:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 3px; }
+.nx-goalband__copy {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding: clamp(1.2rem, 3.5%, 2rem); flex: 1 1 58%; min-width: 0;
+}
+.nx-goalband__art { flex: 0 0 40%; display: flex; align-items: flex-end; justify-content: center; }
+.nx-goalband__art img {
+  width: 100%; height: auto;
+  /* The photo is shot on the goal tint, but a generated background never
+     matches a CSS token exactly. Fading the inner edge hides the seam without
+     touching the product itself. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 18%);
+}
+/* The white pill button the reference puts inside each colour tile. */
+.nx-goalband__btn {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  margin-top: auto; padding: 0.75rem 1.4rem;
+  background: var(--nx-ceramic); color: var(--nx-fg);
+  border-radius: var(--nx-r-pill);
+  font-family: 'General Sans', system-ui, sans-serif;
+  font-size: var(--nx-t-sm); font-weight: 600;
+  box-shadow: var(--nx-e-2);
+  transition: transform var(--nx-dur-2) var(--nx-ease);
+}
+@media (hover: hover) { .nx-goalband__tile:hover .nx-goalband__btn { transform: translateX(3px); } }
+@media (max-width: 560px) {
+  .nx-goalband__tile { flex-direction: column; }
+  .nx-goalband__art { flex: none; max-width: 62%; align-self: flex-end; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-goalband__tile, .nx-goalband__btn { transition: none; }
+  .nx-goalband__tile:hover { transform: none; }
+  .nx-goalband__tile:hover .nx-goalband__btn { transform: none; }
+}

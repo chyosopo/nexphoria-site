@@ -32,6 +32,16 @@ import tirzepatide from "@/assets/vials/sku-tirzepatide.webp";
 import semaglutide from "@/assets/vials/sku-semaglutide.webp";
 import tesamorelin from "@/assets/vials/sku-tesamorelin.webp";
 import pt141 from "@/assets/vials/sku-pt-141.webp";
+/* Second set, shot on each goal's TINT rather than studio grey. Needed
+   because a grey-ground photo dropped onto a coloured tile shows its own
+   background as a visible rectangle — the thing that made the first goal band
+   look broken. Background removal was tried first and returned the image
+   unchanged: the matter cannot cut transparent glass, which is why the colour
+   has to be in the photograph. */
+import tirzepatideTint from "@/assets/vials/tint-tirzepatide.webp";
+import semaglutideTint from "@/assets/vials/tint-semaglutide.webp";
+import tesamorelinTint from "@/assets/vials/tint-tesamorelin.webp";
+import pt141Tint from "@/assets/vials/tint-pt-141.webp";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
 /** Slug → its finished product shot. A SKU with no photo renders NOTHING
@@ -45,23 +55,35 @@ export const VIAL_BY_SLUG: Record<string, string> = {
   "pt-141": pt141,
 };
 
-export function vialFor(slug: string): string | undefined {
-  return VIAL_BY_SLUG[slug];
+/** The same four bottles, photographed on their goal tint. Used wherever the
+ *  vial sits on a coloured ground. */
+export const VIAL_TINT_BY_SLUG: Record<string, string> = {
+  tirzepatide: tirzepatideTint,
+  semaglutide: semaglutideTint,
+  tesamorelin: tesamorelinTint,
+  "pt-141": pt141Tint,
+};
+
+export function vialFor(slug: string, onTint = false): string | undefined {
+  return (onTint ? VIAL_TINT_BY_SLUG : VIAL_BY_SLUG)[slug];
 }
 
 export function VialHero({
   sku,
   width = "100%",
   priority = false,
+  /** Use the goal-tint shot — for any surface where the vial sits on colour. */
+  onTint = false,
   testId,
 }: {
   sku: SoloPeptide;
   width?: string;
   /** True on the PDP hero, where the vial is the LCP element. */
   priority?: boolean;
+  onTint?: boolean;
   testId?: string;
 }) {
-  const src = vialFor(sku.slug);
+  const src = vialFor(sku.slug, onTint);
   if (!src) return null;
 
   return (
