@@ -2525,3 +2525,9 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
    hero carry an identically proportioned label instead of one with giant text
    and one with none. cqw units need this declaration to resolve. */
 .nx-vialphoto { container-type: inline-size; }
+
+/* The hero vial is a container for its label, so the printed type scales with
+   the OBJECT rather than the viewport — the same wrap reads correctly as a
+   400px PDP hero and a 120px shelf thumbnail, which is the whole reason the
+   competitors' vials survive a Google Shopping row. */
+.nx-vialhero { container-type: inline-size; }
