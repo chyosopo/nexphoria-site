@@ -42,14 +42,21 @@ const PATHS = [
     'a[href*="/peptides/"]',
   ]},
   { name: "front door → nav pricing", entry: "/", clicks: ['nav >> text=Pricing'] },
-  // the bento goal tiles, NOT the hero rail — the rail's marquee animation
-  // never stabilizes for scrollIntoViewIfNeeded (same destination either way)
-  { name: "men home → goal tile → PDP", entry: "/men", clicks: [
-    '[data-testid^="men-goal-"]',
+  /* The two per-world home paths are retired with the men/women split
+     (2026-08-13). /men and /women now REDIRECT to the single home, so their
+     goal-tile selectors no longer exist — which is what this gate correctly
+     reported the moment the split was deleted.
+
+     They are replaced, not simply dropped: the redirects themselves are now
+     asserted to land somewhere that reaches price + buy. Those URLs are in the
+     wild and possibly indexed, so an arriving visitor must still complete the
+     funnel — a redirect into a dead end would be invisible otherwise. */
+  { name: "legacy /men redirect → goal → PDP", entry: "/men", clicks: [
+    '[data-testid^="frontdoor-goal-"]',
     'a[href*="/peptides/"]',
   ]},
-  { name: "women home → goal tile → PDP", entry: "/women", clicks: [
-    '[data-testid^="women-goal-"]',
+  { name: "legacy /women redirect → goal → PDP", entry: "/women", clicks: [
+    '[data-testid^="frontdoor-goal-"]',
     'a[href*="/peptides/"]',
   ]},
   { name: "catalog → PDP", entry: "/peptides", clicks: ['[data-testid^="peptide-"]'] },

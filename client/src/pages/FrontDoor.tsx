@@ -20,6 +20,7 @@ import { SOLO_FROM_LABEL } from "@/data/pricing";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
+import { RiseLines } from "@/components/Motion";
 /* The dedicated per-world gate portraits (Bloom, 2026-07-06) — same faces
    that greet visitors at /gate, so the two-worlds moment is consistent. */
 const gateHer = "img/img_8742acc94d7e.webp";
@@ -143,15 +144,23 @@ export default function FrontDoor() {
             Prescribed by U.S.-licensed physicians
           </p>
 
-          <h1
+          {/* Line-by-line rise. Break points are chosen typographically rather
+              than left to container width, so the emphasis always lands on its
+              own line. */}
+          <RiseLines
+            as="h1"
+            delay={40}
+            lines={[
+              "Prescription peptides,",
+              "built on",
+              <em key="bw" style={{ color: "var(--nx-cobalt)" }}>your bloodwork.</em>,
+            ]}
             style={{
               fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)",
               lineHeight: 1.02, letterSpacing: "var(--nx-ls-display)",
               color: "var(--nx-fg)", maxWidth: "15ch", margin: "1.6rem 0 0",
             }}
-          >
-            Prescription peptides, built on <em style={{ color: "var(--nx-cobalt)" }}>your bloodwork.</em>
-          </h1>
+          />
 
           <p
             style={{

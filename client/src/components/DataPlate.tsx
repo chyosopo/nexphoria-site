@@ -11,6 +11,7 @@
    Tokens only; both worlds theme through --nx-cobalt. No new claims —
    these are presentation primitives for numbers the site already states. */
 import { F, S } from "@/lib/typography";
+import { CountUp } from "@/components/Motion";
 
 type Tone = "light" | "dark";
 
@@ -46,7 +47,13 @@ export function BigFigure({
             color: fgOf(tone),
           }}
         >
-          {value}
+          {/* Purely numeric figures COUNT to their value on entry; anything
+              with letters ("503A", "≤3") renders as-is. Splitting on that test
+              rather than on a prop means no call site has to know, and a figure
+              can never animate to a number it does not actually contain. */}
+          {/^\d+(\.\d+)?$/.test(value.trim())
+            ? <CountUp to={parseFloat(value)} decimals={value.includes(".") ? 1 : 0} />
+            : value}
         </span>
         {unit && (
           <span

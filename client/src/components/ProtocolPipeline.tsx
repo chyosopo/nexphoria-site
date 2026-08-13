@@ -5,6 +5,7 @@
    through --nx-cobalt. No claims — describes the process, which is true. */
 import { F, S } from "@/lib/typography";
 import { Reveal } from "@/components/Reveal";
+import { ScrollDrawLine } from "@/components/Motion";
 
 export interface PipelineStage {
   index: string; // "01"
@@ -40,6 +41,11 @@ export function ProtocolPipeline({
       <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem", maxWidth: "20ch" }}>
         {heading}
       </h2>
+      {/* The rule that draws the process. Tied to scroll POSITION, not a timer,
+          so the reader advances it themselves — the line literally completes as
+          they read 01 through 05. Decorative, so aria-hidden inside the
+          primitive; the ordered list below carries the real semantics. */}
+      <ScrollDrawLine style={{ margin: "clamp(1.6rem,3vw,2.4rem) 0 clamp(1.2rem,2.4vw,1.8rem)" }} />
       <ol className="nx-pipeline">
         {stages.map((s, i) => (
           <Reveal key={s.index} delay={i * 70}>
