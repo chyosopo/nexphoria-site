@@ -367,7 +367,7 @@ export default function FrontDoor() {
             {[
               { n: "01", t: "Complete the assessment", d: "Two minutes on your health, your history and your goal. Your answers go straight to a U.S.-licensed physician." },
               { n: "02", t: "Draw the panel", d: `A ${PANEL_TOTAL_MARKERS}-marker panel at a CLIA-certified lab near you. Your physician reads the results.` },
-              { n: "03", t: "Start, and retest at 90 days", d: "If it fits, a 503A pharmacy compounds it and ships cold-chain. The same markers are re-drawn at 90 days and the dose follows the data." },
+              { n: "03", t: "Start, and retest at 90 days", d: "Your physician decides. If it fits, a 503A pharmacy compounds it and ships cold-chain; the same markers are re-drawn at 90 days and the dose follows the data." },
             ].map((st, i) => (
               <li key={st.n} className="nx-plan__step" style={{ transitionDelay: `${i * 90}ms` }}>
                 <span className="nx-plan__n">{st.n}</span>
@@ -377,6 +377,22 @@ export default function FrontDoor() {
             ))}
           </ol>
         </Reveal>
+
+        {/* The fine print, directly under the steps it qualifies. It used to sit
+            600px further down under a SECOND four-step list that told the same
+            story in different words — so a visitor read the process twice and
+            met the terms attached to neither telling. All three lines are true
+            and stated before anyone thinks to ask, which is the whole point of
+            putting them here rather than in a policy page. */}
+        <div style={{ marginTop: "1.4rem", display: "flex", flexDirection: "column", gap: 6, maxWidth: "70ch", marginInline: "auto", textAlign: "center" }} data-testid="frontdoor-fineprint">
+          <PrescribedPromise testid="frontdoor-steps-promise" />
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
+            If the physician declines, nothing is compounded and nothing is billed.
+          </p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
+            Prices are monthly equivalents; 12-month plans include the blood panel.
+          </p>
+        </div>
       </section>
 
       {/* ══ 1.5 · POSITIONING BAND (ROADMAP 8.2) — the register, stated once ══ */}
@@ -392,33 +408,17 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 1.6 · THREE PILLARS (ROADMAP 8.2) — what the model is made of ══ */}
-      <section className="nx-container" aria-label="What the model is made of" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
-        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 18 }} data-testid="frontdoor-pillars">
-          {[
-            {
-              t: "Medical-grade, compounded",
-              b: "Compounded in state-licensed U.S. 503A pharmacies and shipped cold-chain. The compound you receive is the compound prescribed.",
-            },
-            {
-              t: "A physician on every file",
-              b: "Board-certified physicians review every intake against your bloodwork — and decline what your numbers don't support.",
-            },
-            {
-              t: "Measured every 90 days",
-              b: "The same panel, drawn again each quarter. Protocols continue on evidence, not momentum.",
-            },
-          ].map((p, i) => (
-            <Reveal key={p.t} delay={i * 60}>
-              <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,1.9rem)", height: "100%" }}>
-                <p aria-hidden style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", color: "var(--nx-cobalt)" }}>0{i + 1}</p>
-                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>{p.t}</h3>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>{p.b}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {/* ══ 1.6 · THREE PILLARS — REMOVED 2026-08-13.
+
+          Three cards reading "Medical-grade, compounded" / "A physician on
+          every file" / "Measured every 90 days" — which is the action plan
+          directly above restated as nouns, and then said a THIRD time by
+          HomeTrust further down. Chiya: "clean up the clutter. There's so
+          much clutter out there on the site. It's ridiculous."
+
+          Repetition is not emphasis. A claim made once and then supported
+          reads as confidence; the same claim made three times in three
+          registers reads as a house that does not believe you heard it. ══ */}
 
       {/* ══ 3 · GOALS — what people come here for ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
@@ -495,38 +495,17 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 3.6 · THE PATH, WITH THE FINE PRINT UP FRONT (ROADMAP 8.2) ══ */}
-      <section className="nx-container" aria-labelledby="frontdoor-steps" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
-        <h2 id="frontdoor-steps" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
-          How it works — fine print first.
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 14, marginTop: "1.6rem" }} data-testid="frontdoor-steps">
-          {[
-            { n: "01", t: "Tell us the goal", b: "A structured assessment — about two minutes." },
-            { n: "02", t: "Draw the panel", b: "A partner-laboratory requisition, drawn near you." },
-            { n: "03", t: "A physician decides", b: "Board-certified review of your labs and history. Declines happen." },
-            { n: "04", t: "Compounded, shipped, retested", b: "503A-compounded, cold-chain shipped, re-measured every 90 days." },
-          ].map((s, i) => (
-            <Reveal key={s.n} delay={i * 55}>
-              <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1.15rem 1.25rem", height: "100%", background: "var(--nx-bg)" }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", color: "var(--nx-cobalt)" }}>{s.n}</p>
-                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", marginTop: "0.45rem" }}>{s.t}</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{s.b}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        {/* The footnotes ARE the trust — stated before anyone asks. All TRUE. */}
-        <div style={{ marginTop: "1.1rem", display: "flex", flexDirection: "column", gap: 6 }} data-testid="frontdoor-fineprint">
-          <PrescribedPromise testid="frontdoor-steps-promise" />
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-            * If the physician declines, nothing is compounded and nothing is billed.
-          </p>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-            * Prices are monthly equivalents; 12-month plans include the blood panel.
-          </p>
-        </div>
-      </section>
+      {/* ══ 3.6 · THE PATH — REMOVED 2026-08-13.
+
+          A second four-step walkthrough of the same flow the action plan
+          already gives, 600px below it: "Tell us the goal / Draw the panel /
+          A physician decides / Compounded, shipped, retested". Telling a
+          visitor the process twice does not make it clearer; it makes them
+          wonder which telling is the real one.
+
+          Its fine print was the part that earned its place, so that moved UP
+          to sit directly under the steps it qualifies, and step 03 of the
+          action plan now says the physician decides in as many words. ══ */}
 
       {/* ══ 4 · PROOF — the physician and the process ══ */}
       <HomeTrust />
