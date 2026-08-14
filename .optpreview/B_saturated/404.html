@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Nexphoria</title>
+    <!--
+      SPA fallback for GitHub Pages (rafgraph/spa-github-pages).
+      Pages serves this 404.html for any deep link it can't find on disk
+      (e.g. /peptides/bpc-157). We encode the requested path into a query
+      string and redirect to the site root; index.html then decodes it back
+      into the real path via history.replaceState, so wouter picks up the
+      correct route. pathSegmentsToKeep = 0 because the site is served at the
+      domain root (custom domain nexphoria.com / gh-pages at repo root).
+    -->
+    <script type="text/javascript">
+      // Host-aware: on *.github.io project pages the repo name is the first
+      // path segment and must be kept; on a custom domain the app lives at
+      // the origin root. Keep this in sync with the app-root detection in
+      // client/index.html.
+      var pathSegmentsToKeep = /\.github\.io$/.test(window.location.hostname) ? 1 : 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

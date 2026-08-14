@@ -180,6 +180,37 @@
     --nx-goal-neutral-tint:   #E7EBF1;
     --nx-goal-neutral-edge:   #CBD4E0;
     --nx-goal-neutral-ink:    #29384B;
+
+    /* ── SOLID GOAL BLOCKS (Chiya 2026-08-13) ──
+       She chose the colour-block direction — "every button is a colored tile,
+       there's no text to click" — and then set the register: "an expensive
+       color." So these are JEWEL tones, not the bright primaries a saturated
+       palette reaches for by default. A card in deep emerald or lapis reads
+       like a house that owns its colour; the same card in signal-green reads
+       like a free trial.
+
+       -solid is the ground, -on is heading text, -onsoft is body text. All
+       three roles are asserted at WCAG AA by audit:design — the whole reason
+       the pale palette needed a gate applies double here, because saturated
+       grounds make near-white body text look fine at a glance while sitting
+       under 4.5:1. The tint/edge/ink triple above is NOT replaced: pale
+       surfaces are still what the nav chips, the plan rows and the PDP
+       accents want. Two registers of one colour, not two palettes. */
+    --nx-goal-metabolic-solid:  #07684B;
+    --nx-goal-metabolic-on:     #FFFFFF;
+    --nx-goal-metabolic-onsoft: #C9E6DA;
+
+    --nx-goal-growth-solid:     #153E7E;
+    --nx-goal-growth-on:        #FFFFFF;
+    --nx-goal-growth-onsoft:    #CBDBF4;
+
+    --nx-goal-sexual-health-solid:  #701C42;
+    --nx-goal-sexual-health-on:     #FFFFFF;
+    --nx-goal-sexual-health-onsoft: #EFCEDD;
+
+    --nx-goal-neutral-solid:    #1E2833;
+    --nx-goal-neutral-on:       #FFFFFF;
+    --nx-goal-neutral-onsoft:   #CFD8E2;
     --nx-danger:       #A4453C;  /* form error — muted brick */
     --nx-accent:       #2B6CB0;  /* mirrors --nx-cobalt */
 
@@ -2575,6 +2606,20 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
   color: var(--nx-ceramic); flex-shrink: 0;
   transition: transform var(--nx-dur-2) var(--nx-ease);
 }
+
+/* ── SOLID VARIANT ──
+   The hairline rules above assume a pale card on a pale canvas. On a jewel
+   ground a --nx-border hairline is a dark scratch, so the internal rules
+   become a translucent white: the same separation, drawn in the card's own
+   light rather than the page's. currentColor is deliberate on the week rule —
+   it inherits the accent's `on` from the span, so the divider can never drift
+   away from the text it divides. */
+.nx-ptile--solid .nx-ptile__wk { border-right-color: color-mix(in srgb, currentColor 38%, transparent); }
+.nx-ptile--solid .nx-ptile__foot { border-top-color: rgba(255, 255, 255, 0.24); }
+.nx-ptile--solid .nx-ptile__mech { opacity: 1; }
+/* The media plate keeps its own light ground; a hairline separates it from
+   the colour block so the photograph reads as a plate, not a hole. */
+.nx-ptile--solid .nx-ptile__media { border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
 @media (hover: hover) { .nx-ptile:hover .nx-ptile__go { transform: translateX(3px); } }
 
 @media (prefers-reduced-motion: reduce) {

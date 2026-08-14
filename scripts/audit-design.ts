@@ -46,6 +46,23 @@ import { contrast } from "./lib-contrast";
     const ok = r >= 4.5;
     if (!ok) bad++;
     console.log(`   ${ok ? "✓" : "✖"} ${g.padEnd(15)} ink on tint ${r.toFixed(2)}:1`);
+
+    /* The SOLID register (Chiya chose colour blocks, 2026-08-13). Checked with
+       the same threshold and for a sharper reason: on a pale tint, text that
+       fails contrast usually LOOKS wrong too, so the eye catches it. On a
+       saturated jewel ground, near-white body text looks completely correct at
+       every glance while measuring around 3:1 — the failure is invisible
+       precisely to the person choosing it. Both roles are required, so adding
+       a goal without them fails the build rather than silently rendering
+       transparent text on a coloured card. */
+    const solid = tok(`${g}-solid`), on = tok(`${g}-on`), onsoft = tok(`${g}-onsoft`);
+    if (!solid || !on || !onsoft) { console.log(`   ✖ ${g}: incomplete solid triple (needs -solid, -on, -onsoft)`); bad++; continue; }
+    for (const [label, fg] of [["on", on], ["onsoft", onsoft]] as const) {
+      const rs = contrast(fg, solid);
+      const oks = rs >= 4.5;
+      if (!oks) bad++;
+      console.log(`   ${oks ? "✓" : "✖"} ${g.padEnd(15)} ${label.padEnd(6)} on solid ${rs.toFixed(2)}:1`);
+    }
   }
   if (bad) {
     console.log(`\n✖ ${bad} goal accent pair(s) fail WCAG AA. A tile nobody can read is not a tile.\n`);
