@@ -25,3 +25,7 @@ qa-rebuild-final/
 .v0-out/
 .vercel
 .cf-deploy/
+
+# Agent preview renders — regenerate on demand, never commit.
+# Added 2026-08-14 after `git add -A` swept 25MB of them into four commits.
+shots/
