@@ -166,9 +166,16 @@
     --nx-goal-metabolic-edge: #BFDCCF;
     --nx-goal-metabolic-ink:  #1C5340;
 
-    --nx-goal-growth-tint:    #F4EBDC;
-    --nx-goal-growth-edge:    #E2D0B4;
-    --nx-goal-growth-ink:     #6B4715;
+    /* Growth moved from amber to lapis on 2026-08-13. Not a taste change:
+       when the solid register arrived, growth was amber pale and lapis solid —
+       one goal wearing two different hues depending on which surface you met
+       it on, which is precisely the map this family exists to keep honest. The
+       pale and solid registers of a goal must be the same colour at two
+       temperatures. Chiya's brief pushed the same way: "I don't like the black
+       and gold." */
+    --nx-goal-growth-tint:    #DCE6F6;
+    --nx-goal-growth-edge:    #B6C9E8;
+    --nx-goal-growth-ink:     #153E7E;
 
     --nx-goal-sexual-health-tint: #F6E7EC;
     --nx-goal-sexual-health-edge: #E6C6D2;
