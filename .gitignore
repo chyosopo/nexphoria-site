@@ -29,3 +29,6 @@ qa-rebuild-final/
 # Agent preview renders — regenerate on demand, never commit.
 # Added 2026-08-14 after `git add -A` swept 25MB of them into four commits.
 shots/
+
+# Apex deploy staging copy — built by docs/APEX-DEPLOY.md, never committed.
+.deploy-apex/
