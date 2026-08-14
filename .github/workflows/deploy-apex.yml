@@ -25,9 +25,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # Deploys THE REF IT WAS DISPATCHED ON, not a hardcoded branch.
+      #
+      # This used to pin `ref: design/azure`, which meant dispatching the
+      # workflow against any other branch silently published design/azure
+      # instead — the run would go green while shipping a tree nobody asked
+      # for. That is the worst class of deploy bug: it succeeds.
+      #
+      # workflow_dispatch runs the workflow file from the ref you dispatch on,
+      # so the version of this file and the code it ships now always agree.
       - uses: actions/checkout@v4
-        with:
-          ref: design/azure
 
       - uses: actions/setup-node@v4
         with:
@@ -69,6 +76,29 @@ jobs:
       - name: "Gate — A2P 10DLC / SMS compliance"
         run: npm run audit:a2p
 
+      # House voice — CLAUDE.md law 3, defensive negation. Reads the
+      # prerendered HTML per route, so it runs after the build.
+      - name: "Gate — house voice"
+        run: npm run audit:voice
+
+      - name: "Gate — route smoke"
+        run: npm run smoke
+
+      - name: "Gate — data drift"
+        run: npm run audit:data
+
+      - name: "Gate — design tokens + accent contrast"
+        run: npm run audit:design
+
+      - name: "Gate — bundle budget"
+        run: npm run audit:bundle
+
+      # audit:funnel is deliberately NOT here. It drives a real Chromium and
+      # resolves it from PLAYWRIGHT_CHROMIUM or /opt/pw-browsers/chromium —
+      # neither exists on a GitHub runner, so it would fail for environment
+      # reasons rather than site reasons and block a good deploy. It runs in
+      # the sandbox and on the Mac, where that binary is present.
+
       - name: Prepare apex artifact (no 404.html on the apex)
         run: rm -f dist/public/404.html
 
@@ -87,7 +117,13 @@ jobs:
         run: |
           sleep 20
           fail=0
-          for p in / /pricing /stacks/ascend /women; do
+          # Every path below is PRERENDERED, which is what makes this a real
+          # check. The routes it used to probe (/pricing, /stacks/ascend,
+          # /women) are all retired now and answer 200 from the SPA fallback
+          # whether or not the deploy is sound — so the check would have
+          # passed on a broken publish. A prerendered deep link is the one
+          # thing the 404.html trap actually breaks.
+          for p in / /plan /peptides /peptides/tesamorelin /legal/messaging /faq; do
             code=$(curl -s -o /dev/null -w "%{http_code}" "https://nexphoria.com$p")
             echo "https://nexphoria.com$p -> $code"
             [ "$code" = "200" ] || fail=1
