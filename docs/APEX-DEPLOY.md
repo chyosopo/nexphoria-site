@@ -91,6 +91,40 @@ removal did not take — redeploy the copy, do not patch DNS.
 Then confirm by eye that the formulary tiles are emerald / lapis / garnet and
 that the Tesamorelin bottle is blue. If it is gold, an old build shipped.
 
+## Finding: the waitlist Function has never been live (2026-08-17)
+
+Surfaced by run 4, which uploaded all 286 files and then failed on:
+
+    Failed to publish your Function. Got error: KV namespace
+    '3475b441427c4bc980a3a174d8320a54' not found.
+
+Checked in the dashboard: the account holds **zero** KV namespaces. Not a
+missing ID — none has ever existed. Confirmed against production:
+
+    curl -X POST https://nexphoria.com/api/waitlist  →  405, empty body
+
+That 405 is Cloudflare Pages' static handler refusing POST. Our Function
+answers JSON (200 `{"ok":true}` or a 400), so it is not deployed at all.
+Every apex deploy to date was a direct upload of `dist/public`, which
+contains no `functions/` directory — the Function only enters the picture
+when wrangler reads the repo-root `wrangler.toml`, which CI does.
+
+So `functions/api/waitlist.ts` has never run in production, and the three
+surfaces that POST to it — the footer newsletter, the exit-intent modal and
+the assessment — have been failing since they were written. Not silently, at
+least on the footer: it throws on a non-OK response and shows an error
+state, so visitors were told it failed rather than shown a false success.
+
+**A correction worth recording, because it nearly cost more than the bug.**
+The first hypothesis was that the deploy token's `Cloudflare Pages: Edit`
+scope could not see KV, and the proposed fix was to add
+`Workers KV Storage: Edit`. That was wrong on the mechanism — a Pages
+Function reads KV through a runtime binding on the project, not through the
+deploy token's scope — and the fix would have widened a narrow deploy
+credential into account-wide read/write across every KV namespace, including
+the one about to hold customer email addresses. It was caught in review
+before being applied. The narrow fix is to create the namespace.
+
 ## Open items this deploy does NOT resolve
 
 - `client/public/img/img_2724ef984ae9.mp4` and `img_6d36ae1989c8.mp4` —
