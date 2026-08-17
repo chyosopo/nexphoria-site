@@ -111,6 +111,18 @@ jobs:
             echo "::error::CLOUDFLARE_API_TOKEN secret is not set. Create a Cloudflare API token with 'Cloudflare Pages: Edit' and add it under Settings → Secrets and variables → Actions."
             exit 1
           fi
+          # A Pages-scoped token cannot enumerate accounts, so wrangler has no
+          # account to address unless we hand it one. Without this check the
+          # failure is a Cloudflare 7003 forty seconds later, whose message
+          # ("perhaps your object identifier is invalid?") points at the
+          # PROJECT NAME rather than the missing ID — the giveaway is a double
+          # slash in the URL it prints, /accounts//pages/projects/nexphoria,
+          # which is easy to read straight past. Fail here and say the real
+          # thing instead. Observed on run 3, 2026-08-17.
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_ACCOUNT_ID secret is not set. A Pages-scoped token cannot look up the account by itself. Find the Account ID in the Cloudflare dashboard (right-hand column of the account overview, or the hex string in the dashboard URL) and add it under Settings → Secrets and variables → Actions. It is an identifier, not a credential."
+            exit 1
+          fi
           npx wrangler pages deploy dist/public --project-name=nexphoria --branch=main --commit-dirty=true
 
       - name: Verify apex serves the new build (deep links must 200)

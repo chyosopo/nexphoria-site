@@ -57,17 +57,27 @@ read the zone, cannot reach any other service.
 
 Done. Tell Claude it is in, and the deploy can be triggered.
 
-## Only if the deploy still complains about the account
+## Part 3 — Add the Account ID (required, not optional)
 
-Scoping the token to one account in step 6 normally avoids this. If wrangler
-reports more than one account, add a second secret the same way:
+Measured on run 3 (2026-08-17): with the token alone, the deploy authenticated
+and then failed, because a Pages-scoped token cannot enumerate accounts and
+wrangler had nothing to address. It built the URL
+`/accounts//pages/projects/nexphoria` — note the double slash where the
+account should be — and Cloudflare answered 7003. Add the second secret:
 
 - **Name:** `CLOUDFLARE_ACCOUNT_ID`
-- **Value:** the Account ID from the Cloudflare dashboard — open the account,
-  and it is in the right-hand column of the overview page, and also the long
+- **Value:** the Account ID from the Cloudflare dashboard. Open the account;
+  it is in the right-hand column of the overview page, and it is also the long
   hex string in the dashboard URL: `dash.cloudflare.com/<account-id>/...`
 
-That value is not a credential; it is fine to share.
+Same place as Part 2: **New repository secret**.
+
+That value is an identifier, not a credential. It is fine to paste anywhere,
+including into a chat.
+
+The workflow now checks for it up front, so a future setup fails in one second
+with that sentence instead of forty seconds later with a Cloudflare error
+whose wording blames the project name.
 
 ## Rotating or revoking
 
