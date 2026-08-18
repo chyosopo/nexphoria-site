@@ -9,4 +9,12 @@ compatibility_date = "2026-07-10"
 
 [[kv_namespaces]]
 binding = "WAITLIST"
-id = "3475b441427c4bc980a3a174d8320a54"
+id = "21fe4694892a4d66941d5d1e62c319e0"
+
+# The WAITLIST namespace above was created 2026-08-17 and replaces id
+# 3475b441427c4bc980a3a174d8320a54, which was in this file but existed in NO
+# Cloudflare account — the dashboard and the API both reported zero KV
+# namespaces. Because of it the Function never published, so /api/waitlist
+# answered Pages' static 405 and the footer, exit-intent and assessment forms
+# had been failing since they were written. Stale binding ids fail at deploy,
+# not at build, which is why nothing caught it until CI ran the deploy.
