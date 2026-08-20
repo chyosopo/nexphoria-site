@@ -112,6 +112,25 @@ jobs:
       - name: Prepare apex artifact (no 404.html on the apex)
         run: rm -f dist/public/404.html
 
+      # Ask Cloudflare what this project's production branch actually is,
+      # instead of guessing. A deploy whose --branch does not match it lands as
+      # a PREVIEW: it uploads, it publishes, wrangler prints "Deployment
+      # complete", and the apex keeps serving the old build. main and
+      # production have both been tried and both aliased, so the value is read
+      # from the source of truth here and printed into the log. Non-fatal: a
+      # diagnostic must never be the thing that blocks a release.
+      - name: Report the Pages project config (production branch)
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "───── wrangler pages project list ─────"
+          npx wrangler pages project list || true
+          echo
+          echo "───── recent deployments (environment + branch) ─────"
+          npx wrangler pages deployment list --project-name=nexphoria || true
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
