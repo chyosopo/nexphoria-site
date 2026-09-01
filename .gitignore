@@ -32,3 +32,6 @@ shots/
 
 # Apex deploy staging copy — built by docs/APEX-DEPLOY.md, never committed.
 .deploy-apex/
+
+# 10k pipeline: raws, review frames, generation inputs. Never ships.
+review/
