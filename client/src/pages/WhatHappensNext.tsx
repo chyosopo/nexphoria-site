@@ -63,7 +63,7 @@ export default function WhatHappensNext() {
             What happens after you submit.
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.1rem" }}>
-            No black box. Here is exactly how your intake becomes a protocol — and the point at which a physician can decline. Payment follows the prescription.
+            No black box. Here is exactly how your intake becomes a protocol — and the point at which a physician can decline. You are never charged before that decision.
           </p>
         </div>
       </section>

@@ -189,22 +189,6 @@ export async function prerender(): Promise<{ pages: number }> {
         ),
       );
       let html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
-
-      // ── Never serialize a client-only HIDDEN state ──────────────────────────
-      // Reveal.tsx adds .nx-armed to blocks that are off-screen at mount, and
-      // .nx-armed carries opacity:0. This snapshot is taken AFTER React mounts,
-      // so without this strip the crawlable HTML ships with a dozen invisible
-      // sections — which is exactly what went live on nexphoria.com and read as
-      // "a weird site": a hero above a stretch of empty canvas until hydration
-      // finished. A prerendered page has to stand on its own, so any state that
-      // only means something once JS is running is removed here.
-      //
-      // Stripping the class is safe in both directions: on hydration React
-      // re-derives it from real geometry, and if JS never runs the content is
-      // simply readable, which is the whole point of prerendering.
-      html = html
-        .replace(/\s*\bnx-armed\b/g, "")
-        .replace(/\bnx-armed\b\s*/g, "");
       // ── Snapshot asset hygiene ──────────────────────────────────────────────
       // Two runtime artifacts of rendering the SPA against the ephemeral static
       // server must be cleaned before writing the crawlable snapshot (the same

@@ -14,7 +14,7 @@ import { F, S } from "@/lib/typography";
 import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { getPrice } from "@/data/pricing";
 import { ProductCard } from "@/components/ProductCard";
-import { VialHero } from "@/components/VialHero";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
@@ -157,7 +157,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               <div className="nx-vial-lineup__row">
                 {SOLO_CATALOG.map((s) => (
                   <div key={s.slug} className="nx-vial-cell">
-                    <VialHero sku={s} width="100%" />
+                    <VialMockup name={s.name} dose={labelSpec(s.spec)} size="clamp(150px, 78%, 340px)" fill={0.6} onDark label={false} />
                   </div>
                 ))}
               </div>
@@ -185,7 +185,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every protocol here is lab-monitored</p>
           <div className="nx-biochip-grid" data-testid="catalog-biochips">
             {(world === "women" ? CATALOG_BIOMARKERS_WOMEN : CATALOG_BIOMARKERS_MEN).map((name) => (
-              <Link key={name} href="/plan" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
+              <Link key={name} href="/bloodwork" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
                 {name}
               </Link>
             ))}

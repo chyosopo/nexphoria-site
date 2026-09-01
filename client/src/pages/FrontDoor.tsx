@@ -17,14 +17,12 @@ import { OUTCOME_CATEGORY, OUTCOME_STACK, outcomeSrcSet } from "@/data/outcomeIm
 import { HeroTileRail, type RailTile } from "@/components/HeroTileRail";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
-import { SOLO_CATALOG, type SoloPeptide } from "@/data/soloCatalog";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { RiseLines } from "@/components/Motion";
-import { RotatingWord } from "@/components/RotatingWord";
-import { ProductTiles } from "@/components/ProductTile";
-import { accentFor } from "@/data/goalAccent";
-import { VialHero } from "@/components/VialHero";
+import { ProductShelf } from "@/components/ProductCard";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 /* Universal hero — couple on the morning trail (Bloom, C29 grammar). */
 const HERO_ART = "img/img_82c3e3ceeecf.webp";
 
@@ -76,61 +74,8 @@ const PROTOCOL_FROM = Math.min(...(UNGATED_STACK_MONTHLY.length ? UNGATED_STACK_
 const HERO_TILES: RailTile[] = [
   { img: OUTCOME_CATEGORY.men.metabolic!, label: CATEGORY_LABELS.metabolic, sub: CATEGORY_FEELING.metabolic, href: "/goals/metabolic", testid: "rail-metabolic" },
   { img: OUTCOME_CATEGORY.men.growth!, label: CATEGORY_LABELS.growth, sub: CATEGORY_FEELING.growth, href: "/goals/growth", testid: "rail-growth" },
-  { img: HERO_ART, label: "Your plan", sub: "Bloodwork retested every 90 days.", href: "/plan", testid: "rail-plan" },
+  { img: HERO_ART, label: "Your bloodwork", sub: "Retested every 90 days.", href: "/bloodwork", testid: "rail-bloodwork" },
 ];
-
-/* The two-tile goal band. Grouped from the LIVE catalog, so a goal with
-   nothing sellable behind it cannot appear, and the price shown is the floor
-   across that goal's SKUs rather than one product's number. Copy is per-goal
-   because "lose weight" and "restore desire" are not the same promise. */
-/* The rotating headline words — one per LIVE goal, so the headline cannot
-   advertise something we no longer sell. */
-const HERO_WORDS = ["weight loss", "lean composition", "desire", "your bloodwork"];
-
-/* The single vial the "what arrives" band shows. First in the catalog, so a
-   catalog cut moves this image instead of leaving a retired SKU standing as
-   the site's hero object. */
-const ARRIVES_SKU = SOLO_CATALOG[0];
-
-const GOAL_COPY: Record<string, { kicker: string; headline: string; blurb: string; cta: string }> = {
-  Metabolic: {
-    kicker: "Lose weight with",
-    headline: "GLP-1 injections",
-    blurb: "Semaglutide and tirzepatide, titrated against your bloodwork by a physician who reviews every dose step.",
-    cta: "Lose weight",
-  },
-  Growth: {
-    kicker: "Change your composition with",
-    headline: "Tesamorelin",
-    blurb: "A GHRH analog studied for visceral fat, acting on the GH/IGF-1 axis and gated on a full panel.",
-    cta: "See the protocol",
-  },
-  "Sexual Health": {
-    kicker: "Address desire with",
-    headline: "PT-141",
-    blurb: "A melanocortin agonist that acts centrally rather than vascularly, prescribed after physician review.",
-    cta: "See the protocol",
-  },
-};
-
-const GOAL_BAND = (() => {
-  const byCat: Record<string, SoloPeptide[]> = {};
-  for (const sku of SOLO_CATALOG) (byCat[sku.category] ??= []).push(sku);
-  const ORDER = ["Metabolic", "Growth", "Sexual Health"];
-  return Object.entries(byCat)
-    .filter(([cat]) => GOAL_COPY[cat])
-    .sort(([a], [b]) => ORDER.indexOf(a) - ORDER.indexOf(b))
-    .map(([category, skus]) => {
-      const priced = skus.filter((x) => x.pricing).map((x) => x.pricing!.m12);
-      return {
-        category,
-        lead: skus[0],
-        accent: accentFor(category),
-        ...GOAL_COPY[category],
-        priceLine: priced.length ? `From ${usd(Math.min(...priced))}/mo` : "Priced at consultation",
-      };
-    });
-})();
 
 export default function FrontDoor() {
   useSeo({
@@ -156,14 +101,7 @@ export default function FrontDoor() {
   const countFor = (c: PeptideCategory) => peptides.filter((p) => p.category === c).length;
 
   return (
-    /* hideTrustBar: the home page carries the same five facts THREE times
-       above the fold — the announcement bar, this strip under the nav, and
-       the trust pills under the hero CTA. "503A" appeared three times and
-       shipping three times before a visitor read a single sentence. The pills
-       are the best-designed of the three and sit where the eye already is, so
-       the strip stands down HERE and stays on interior pages, which have no
-       pills of their own. */
-    <SiteLayout navVariant="showcase" hideTrustBar>
+    <SiteLayout navVariant="showcase">
       {/* ══ 1 · HERO — recomposed 2026-08-13 to the measured reference grammar.
 
           Was: a dense two-column split (copy left, an animated counter-scrolling
@@ -192,7 +130,6 @@ export default function FrontDoor() {
               a licence fact, not a star rating: we have no reviews and will not
               invent them. */}
           <p
-            data-testid="frontdoor-sub"
             style={{
               fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
               letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
@@ -207,26 +144,20 @@ export default function FrontDoor() {
           {/* Line-by-line rise. Break points are chosen typographically rather
               than left to container width, so the emphasis always lands on its
               own line. */}
-          {/* The headline names what we DO and lets the goal rotate, so a
-              visitor who came for weight loss and one who came for desire both
-              see their own reason in the first line — without a segmentation
-              gate asking them to pick. Words come from the live catalog. */}
-          <h1
+          <RiseLines
+            as="h1"
+            delay={40}
+            lines={[
+              "Prescription peptides,",
+              "built on",
+              <em key="bw" style={{ color: "var(--nx-cobalt)" }}>your bloodwork.</em>,
+            ]}
             style={{
-              fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)",
-              lineHeight: 1.06, letterSpacing: "var(--nx-ls-tight)",
-              /* 26ch, not 20ch. At 20 the second line broke as "prescribed by
-                 a U.S." / "physician." — a wrap through the middle of a noun
-                 phrase, which reads as a typo rather than a line break. The
-                 explicit <br/> already controls where the real break falls, so
-                 the cap only needs to be wide enough not to fight it. */
-              color: "var(--nx-fg)", maxWidth: "26ch", margin: "1.4rem 0 0",
+              fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-giant)",
+              lineHeight: 1.02, letterSpacing: "var(--nx-ls-display)",
+              color: "var(--nx-fg)", maxWidth: "15ch", margin: "1.6rem 0 0",
             }}
-          >
-            Peptides for{" "}
-            <RotatingWord words={HERO_WORDS} style={{ color: "var(--nx-cobalt)", fontStyle: "italic" }} />
-            <br />prescribed by a U.S. physician.
-          </h1>
+          />
 
           <p
             style={{
@@ -249,34 +180,15 @@ export default function FrontDoor() {
               Start your assessment
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: 0 }}>
-              Two minutes. A physician reviews it the same day.
+              Two minutes · billed only if a physician prescribes
             </p>
           </div>
-
-          {/* TRUST PILLS — the row the reference runs under its CTA. Theirs
-              reads "200,000+ patients · 4.7, 6000+ reviews". Ours cannot: we
-              have no patients yet and no reviews, and inventing either is the
-              one thing this site will never do. These four are all verifiable
-              facts about how the service is actually built, which is a weaker
-              hook and a stronger claim. */}
-          <ul className="nx-trustpills" aria-label="How this works">
-            {[
-              "Physician-prescribed, or not at all",
-              "503A compounded in the U.S.",
-              "Cold-chain to all 50 states",
-              "Consultation is complimentary",
-            ].map((t) => <li key={t}>{t}</li>)}
-          </ul>
         </div>
 
-        {/* THE GOAL BAND was here and is deleted. It was three big colour
-            tiles, one per goal, each a vial and a sentence — and the product
-            tiles directly below it already showed the same four products with
-            MORE information (outcome, mechanism, the review schedule, price).
-            It was a second, weaker shelf standing in front of the real one.
-            The three-step below answers the question that band never did:
-            what actually happens after I start. */}
-
+        {/* Photography below the statement, not beside it. */}
+        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }}>
+          <HeroTileRail tiles={HERO_TILES} testid="frontdoor-rail" />
+        </div>
       </section>
 
       {/* ══ 1.4 · THE HER/HIM GATE — REMOVED 2026-08-13 with the two-worlds
@@ -303,120 +215,69 @@ export default function FrontDoor() {
               The formulary
             </p>
             <h2 id="frontdoor-formulary" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem", maxWidth: "20ch" }}>
-              What each one does, and when you will know.
+              Everything a physician can prescribe here.
             </h2>
           </div>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             The complete catalog →
           </Link>
         </div>
-        <ProductTiles skus={SOLO_CATALOG} testId="frontdoor-formulary-shelf" />
+        <ProductShelf skus={SOLO_CATALOG} testId="frontdoor-formulary-shelf" />
       </section>
 
       {/* ══ 1.47 · WHAT ARRIVES — the object, on the dark.
 
           The formulary above sells the outcome; this sells the thing in the
-          box, and gives the long light run a dark spine.
+          box. Reference sites put a rendered product shot here, and ours is a
+          drawn one — but drawn to be looked at rather than to fill a slot, and
+          it carries the real molecule and the real concentration off the
+          catalog, so a vial can never print a spec the PDP disagrees with.
 
-          REBUILT 2026-08-13. It used to render three vials through
-          `.nx-vial-row` / `.nx-vial-cell` — two class names that were never
-          defined in any stylesheet. With no grid, the three cells were plain
-          blocks at container width, so each vial painted roughly a thousand
-          pixels tall and this one section ran about four thousand pixels.
-          Chiya, twice: "those big images of the vials in the home page don't
-          make sense" and "clean up the clutter."
-
-          It is now ONE vial beside the copy, at a bounded width, because the
-          formulary directly above already shows all four bottles with more
-          information attached to each. A second gallery of the same four
-          objects was redundant at any size; the missing CSS only made it
-          enormous as well. The molecule is taken from the catalog rather than
-          named here, so a catalog cut moves this image too. ══ */}
+          Also the site's SECOND dark band. The reference alternates light and
+          dark to give a long page a spine; we had one dark band (the closer)
+          and a long unbroken light run before it. ══ */}
       <section
         className="nx-gradient-hero-dark"
         aria-labelledby="frontdoor-arrives"
         style={{ padding: "var(--nx-sp-sec) 0", overflow: "hidden", marginTop: "var(--nx-sp-band)" }}
       >
-        <div className="nx-container nx-arrives">
-          <div>
+        <div className="nx-container">
+          <div style={{ textAlign: "center", maxWidth: "48ch", margin: "0 auto clamp(2rem,4vw,3.2rem)" }}>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
               What arrives
             </p>
-            <h2 id="frontdoor-arrives" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem", maxWidth: "18ch" }}>
+            <h2 id="frontdoor-arrives" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem" }}>
               A sealed vial, a named physician, a dose you can read.
             </h2>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "1rem", maxWidth: "46ch" }}>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "0.9rem" }}>
               Compounded by a licensed United States pharmacy, shipped cold, labelled with your
               name and the physician who signed for it. One number a month. Everything within it.
             </p>
-            <dl className="nx-arrives__facts">
-              {[
-                ["Sealed", "Single-patient vial, batch-documented."],
-                ["Named", "Your name and your physician's, on the label."],
-                ["Readable", `${ARRIVES_SKU.spec} — the dose stated in full.`],
-              ].map(([t, d]) => (
-                <div key={t}>
-                  <dt>{t}</dt>
-                  <dd>{d}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
-          <figure className="nx-arrives__shot">
-            <VialHero sku={ARRIVES_SKU} width="100%" testId={`frontdoor-vial-${ARRIVES_SKU.slug}`} />
-            <figcaption>
-              Illustrative. Prescribed by a U.S. physician after review.
-            </figcaption>
-          </figure>
-        </div>
-      </section>
-
-      {/* ══ THE ACTION PLAN — three steps, the way hims and the reference both
-          open. It replaces the goal band, and answers the question a visitor
-          actually has after seeing the products: what happens after I start.
-          Every step is a real step in our flow, and the third one says a
-          physician may decline — that is the promise the model rests on, said
-          plainly, rather than a disclaimer bolted underneath. ══ */}
-      <section className="nx-container" aria-labelledby="frontdoor-plan" style={{ paddingTop: "var(--nx-sp-band)" }}>
-        <div style={{ textAlign: "center", maxWidth: "44ch", margin: "0 auto" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-            How it works
-          </p>
-          <h2 id="frontdoor-plan" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, letterSpacing: "var(--nx-ls-snug)", marginTop: "0.6rem" }}>
-            Three steps to a protocol built on your numbers.
-          </h2>
-        </div>
-
-        <Reveal>
-          <ol className="nx-plan is-in" data-testid="frontdoor-plan-steps">
-            {[
-              { n: "01", t: "Complete the assessment", d: "Two minutes on your health, your history and your goal. Your answers go straight to a U.S.-licensed physician." },
-              { n: "02", t: "Draw the panel", d: `A ${PANEL_TOTAL_MARKERS}-marker panel at a CLIA-certified lab near you. Your physician reads the results.` },
-              { n: "03", t: "Start, and retest at 90 days", d: "Your physician decides. If it fits, a 503A pharmacy compounds it and ships cold-chain; the same markers are re-drawn at 90 days and the dose follows the data." },
-            ].map((st, i) => (
-              <li key={st.n} className="nx-plan__step" style={{ transitionDelay: `${i * 90}ms` }}>
-                <span className="nx-plan__n">{st.n}</span>
-                <h3 className="nx-plan__t">{st.t}</h3>
-                <p className="nx-plan__d">{st.d}</p>
-              </li>
+          <div className="nx-vial-row">
+            {SOLO_CATALOG.slice(0, 3).map((s) => (
+              <div key={s.slug} className="nx-vial-cell">
+                <VialMockup
+                  name={s.name}
+                  dose={labelSpec(s.spec)}
+                  size="clamp(210px, 30vw, 330px)"
+                  fill={0.58}
+                  onDark
+                  testId={`frontdoor-vial-${s.slug}`}
+                />
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-ceramic)", marginTop: "0.9rem" }}>
+                  {s.name}
+                </p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", marginTop: "0.2rem" }}>
+                  {s.spec}
+                </p>
+              </div>
             ))}
-          </ol>
-        </Reveal>
+          </div>
 
-        {/* The fine print, directly under the steps it qualifies. It used to sit
-            600px further down under a SECOND four-step list that told the same
-            story in different words — so a visitor read the process twice and
-            met the terms attached to neither telling. All three lines are true
-            and stated before anyone thinks to ask, which is the whole point of
-            putting them here rather than in a policy page. */}
-        <div style={{ marginTop: "1.4rem", display: "flex", flexDirection: "column", gap: 6, maxWidth: "70ch", marginInline: "auto", textAlign: "center" }} data-testid="frontdoor-fineprint">
-          <PrescribedPromise testid="frontdoor-steps-promise" />
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-            If the physician declines, nothing is compounded and nothing is billed.
-          </p>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-            Prices are monthly equivalents; 12-month plans include the blood panel.
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-acid) 82%, transparent)", textAlign: "center", marginTop: "clamp(1.8rem,3.5vw,2.6rem)" }}>
+            Illustrative. Prescription only · dispensed if prescribed after physician review.
           </p>
         </div>
       </section>
@@ -434,17 +295,33 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 1.6 · THREE PILLARS — REMOVED 2026-08-13.
-
-          Three cards reading "Medical-grade, compounded" / "A physician on
-          every file" / "Measured every 90 days" — which is the action plan
-          directly above restated as nouns, and then said a THIRD time by
-          HomeTrust further down. Chiya: "clean up the clutter. There's so
-          much clutter out there on the site. It's ridiculous."
-
-          Repetition is not emphasis. A claim made once and then supported
-          reads as confidence; the same claim made three times in three
-          registers reads as a house that does not believe you heard it. ══ */}
+      {/* ══ 1.6 · THREE PILLARS (ROADMAP 8.2) — what the model is made of ══ */}
+      <section className="nx-container" aria-label="What the model is made of" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 18 }} data-testid="frontdoor-pillars">
+          {[
+            {
+              t: "Medical-grade, compounded",
+              b: "Compounded in state-licensed U.S. 503A pharmacies and shipped cold-chain. The compound you receive is the compound prescribed.",
+            },
+            {
+              t: "A physician on every file",
+              b: "Board-certified physicians review every intake against your bloodwork — and decline what your numbers don't support.",
+            },
+            {
+              t: "Measured every 90 days",
+              b: "The same panel, drawn again each quarter. Protocols continue on evidence, not momentum.",
+            },
+          ].map((p, i) => (
+            <Reveal key={p.t} delay={i * 60}>
+              <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,1.9rem)", height: "100%" }}>
+                <p aria-hidden style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", color: "var(--nx-cobalt)" }}>0{i + 1}</p>
+                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.15 }}>{p.t}</h3>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>{p.b}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
       {/* ══ 3 · GOALS — what people come here for ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
@@ -521,17 +398,38 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 3.6 · THE PATH — REMOVED 2026-08-13.
-
-          A second four-step walkthrough of the same flow the action plan
-          already gives, 600px below it: "Tell us the goal / Draw the panel /
-          A physician decides / Compounded, shipped, retested". Telling a
-          visitor the process twice does not make it clearer; it makes them
-          wonder which telling is the real one.
-
-          Its fine print was the part that earned its place, so that moved UP
-          to sit directly under the steps it qualifies, and step 03 of the
-          action plan now says the physician decides in as many words. ══ */}
+      {/* ══ 3.6 · THE PATH, WITH THE FINE PRINT UP FRONT (ROADMAP 8.2) ══ */}
+      <section className="nx-container" aria-labelledby="frontdoor-steps" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }}>
+        <h2 id="frontdoor-steps" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.12 }}>
+          How it works — fine print first.
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: 14, marginTop: "1.6rem" }} data-testid="frontdoor-steps">
+          {[
+            { n: "01", t: "Tell us the goal", b: "A structured assessment — about two minutes." },
+            { n: "02", t: "Draw the panel", b: "A partner-laboratory requisition, drawn near you." },
+            { n: "03", t: "A physician decides", b: "Board-certified review of your labs and history. Declines happen." },
+            { n: "04", t: "Compounded, shipped, retested", b: "503A-compounded, cold-chain shipped, re-measured every 90 days." },
+          ].map((s, i) => (
+            <Reveal key={s.n} delay={i * 55}>
+              <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1.15rem 1.25rem", height: "100%", background: "var(--nx-bg)" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", color: "var(--nx-cobalt)" }}>{s.n}</p>
+                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", marginTop: "0.45rem" }}>{s.t}</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{s.b}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        {/* The footnotes ARE the trust — stated before anyone asks. All TRUE. */}
+        <div style={{ marginTop: "1.1rem", display: "flex", flexDirection: "column", gap: 6 }} data-testid="frontdoor-fineprint">
+          <PrescribedPromise testid="frontdoor-steps-promise" />
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
+            * If the physician declines, nothing is compounded and nothing is billed.
+          </p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
+            * Prices are monthly equivalents; 12-month plans include the blood panel.
+          </p>
+        </div>
+      </section>
 
       {/* ══ 4 · PROOF — the physician and the process ══ */}
       <HomeTrust />
@@ -576,7 +474,7 @@ export default function FrontDoor() {
             Start your assessment
           </Link>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 75%, transparent)", marginTop: "0.9rem" }}>
-            2 minutes · reviewed by a U.S.-licensed physician
+            2 minutes · a licensed physician decides — and can decline
           </p>
         </div>
       </section>

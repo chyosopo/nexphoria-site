@@ -88,8 +88,10 @@ export function Footer({ variant = "shared" }: FooterProps) {
       links: [
         { label: "All peptides", href: pharmacyBase },
         { label: "Doctor-built stacks", href: "/stacks" },
+        { label: "Bloodwork", href: "/bloodwork" },
         { label: "Custom protocol", href: assessmentBase },
-        { label: "Your plan", href: "/plan" },
+        { label: "Give as a gift", href: "/gift" },
+        { label: "Pricing", href: "/pricing" },
       ],
     },
     {
@@ -124,6 +126,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "FAQ", href: "/faq" },
         { label: "hello@nexphoria.com", href: "mailto:hello@nexphoria.com" },
         { label: BUSINESS.phone, href: `tel:${BUSINESS.phoneE164}` },
+        { label: "Book a consultation", href: "/booking" },
         { label: "Member login", href: "/assessment" },
       ],
     },

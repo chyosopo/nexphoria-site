@@ -222,7 +222,7 @@ export default function Category() {
                     Compare your {routeCount} routes
                   </a>
                 )}
-                <Link href="/plan" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
+                <Link href="/bloodwork" className="nx-cta-ghost inline-flex items-center gap-2">See the bloodwork</Link>
               </div>
               {/* goal chips */}
               <div className="mt-8 flex flex-wrap gap-2">
@@ -414,7 +414,7 @@ export default function Category() {
               One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
             </h2>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>
-              The evaluation is complimentary. You pay when a physician prescribes.
+              The evaluation is complimentary. You pay only if a physician prescribes.
             </p>
             <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2 mt-6">
               Start your assessment <ArrowRight size={17} strokeWidth={2} />

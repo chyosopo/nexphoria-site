@@ -26,7 +26,7 @@ import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical,
 import { F, S } from "@/lib/typography";
 import { SpecPlate } from "@/components/DataPlate";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
-import { vialFor } from "@/components/VialHero";
+import { VialMockup, labelSpec } from "@/components/VialMockup";
 
 /* on-brand tone cycle so a multi-vial lineup reads varied, not uniform */
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
@@ -193,16 +193,11 @@ export default function StackPage({ slug }: { slug: string }) {
               return (
                 <Reveal key={p.name} delay={i * 70}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
-                    {/* The SKU's real product shot, matched by name. A stack
-                        peptide that is not a live SKU has no photo and renders
-                        none — never another molecule's bottle. */}
-                    {vialFor(p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")) && (
-                      <img
-                        src={vialFor(p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""))}
-                        alt={`${p.name} vial`} width={1024} height={1024} loading="lazy"
-                        style={{ width: "clamp(190px, 22vw, 260px)", aspectRatio: "1 / 1", objectFit: "cover", display: "block" }}
-                      />
-                    )}
+                    {/* Same object the PDP, the shelf and the catalog hero
+                        render. This section was still on the old flat VialArt,
+                        so "the vials in this protocol" showed a different
+                        drawing of a vial from every other vial on the site. */}
+                    <VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />
                     <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
                   </div>
@@ -283,7 +278,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
                 {stack.panelNote ?? panel?.summary}
               </p>
-              <Link href="/plan" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
+              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
                 See the {stack.panel} panel in detail →
               </Link>
             </div>

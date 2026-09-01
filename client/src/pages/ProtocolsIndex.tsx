@@ -186,9 +186,25 @@ export default function ProtocolsIndex() {
               </Reveal>
             );
           })}
-          {/* The build-your-own tile was removed with /stacks/build: a custom
-              protocol builder over 4 SKUs and 1 protocol dead-ends on every
-              path through it. */}
+          {/* Build-your-own — same floating silhouette, vial imagery */}
+          {filter === "All" && (
+            <Reveal delay={shown.length * 45}>
+              <Link href="/stacks/build" data-testid="protocol-build" className="nx-float-card">
+                <div className="nx-float-card__media">
+                  <img src={vialLineupMaster} alt="" aria-hidden loading="lazy" width={1600} height={2000} />
+                </div>
+                <div className="nx-float-card__body">
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Custom</p>
+                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>Build your own</h2>
+                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>Start from a goal — a physician reviews it.</p>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
+                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building</span>
+                    <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+          )}
         </div>
       </section>
 

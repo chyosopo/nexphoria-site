@@ -11,7 +11,7 @@
 export const BUSINESS = {
   entity: "Nexphoria Research LLC",
   email: "hello@nexphoria.com",
-  address: "670 Flushing Ave, Brooklyn, NY 11206",
+  address: "670 Flushing Ave, Brooklyn, NY 11213",
   /** Display form. Use `phoneE164` for tel: links and structured data. */
   phone: "(929) 728-2869",
   /** E.164 — what tel: hrefs, schema.org and the A2P registration want. */
@@ -22,16 +22,11 @@ export const BUSINESS = {
  *  string rather than parsed out of it: a regex over a one-line address is a
  *  silent-wrong waiting to happen, and structured data reviewers read is not
  *  the place for a best-effort split. */
-/* ZIP corrected 11213 → 11206 (Chiya confirmed 2026-08-13). 670 Flushing Ave
-   sits on the Bed-Stuy / Williamsburg line, which is 11206; 11213 is Crown
-   Heights. This matters beyond tidiness — LegitScript and A2P brand
-   verification both check the address, and a ZIP that does not match the
-   street is exactly the mismatch that stalls an application. */
 export const BUSINESS_ADDRESS = {
   streetAddress: "670 Flushing Ave",
   addressLocality: "Brooklyn",
   addressRegion: "NY",
-  postalCode: "11206",
+  postalCode: "11213",
   addressCountry: "US",
 };
 

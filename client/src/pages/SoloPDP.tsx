@@ -24,7 +24,7 @@ import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { PhysicianProofBand } from "@/components/PhysicianProofBand";
 import { EvidenceStrip } from "@/components/EvidenceStrip";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
-import { VialHero } from "@/components/VialHero";
+import { VialPanel, labelSpec } from "@/components/VialMockup";
 import type { PeptideCategory } from "@/data/peptides";
 
 /* SoloCategory → the outcome-imagery key it reads as. */
@@ -178,8 +178,13 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               the hero at all — you had to scroll to learn what it cost. */}
           <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center", marginTop: "1rem" }}>
             {/* — LEFT · the product, first fixation — */}
-            <div style={{ position: "relative", order: 0, borderRadius: "var(--nx-r-lg)", overflow: "hidden" }}>
-              <VialHero sku={solo} width="100%" priority testId={`solo-vial-${solo.slug}`} />
+            <div style={{ position: "relative", order: 0 }}>
+              <VialPanel
+                name={solo.name}
+                dose={labelSpec(solo.spec)}
+                size="80%"
+                testId={`solo-vial-${solo.slug}`}
+              />
               <span
                 style={{
                   position: "absolute", top: 14, left: 14,
@@ -321,7 +326,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 </div>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "56ch" }}>{solo.panelNote ?? "Reviewed by your physician before and during the protocol."}</p>
-              <Link href="/plan" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See the panels →</Link>
+              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See the panels →</Link>
             </div>
 
             {solo.gated && (

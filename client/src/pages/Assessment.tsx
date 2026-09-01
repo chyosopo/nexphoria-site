@@ -593,7 +593,7 @@ export default function Assessment() {
       track("assessment_rec_eligibility", { goal: form.goal, stack: recStack.slug });
       navigate(`/stacks/${recStack.slug}`);
     } else {
-      navigate("/plan");
+      navigate("/pricing");
     }
   }
 
