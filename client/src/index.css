@@ -853,30 +853,30 @@
      Motion is transform-ONLY (composited on the GPU) — never top/left/width/
      height/margin, which would trigger layout and read as "fuzzy/late".
      Curves retuned Apple-tight: shorter distance, faster settle. */
+  /* The base class carries NO hidden state — only the transition. An element
+     is hidden solely when Reveal.tsx adds .nx-armed, which it does only for
+     content that is already off-screen. Prerendered HTML therefore paints
+     fully opaque, and a visitor never watches something they can see
+     disappear. See the header comment in Reveal.tsx for what shipping the
+     inverse cost. */
   .nx-reveal {
-    opacity: 1;
-    transform: translateY(14px);
     transition: opacity 0.62s var(--nx-reveal-ease), transform 0.62s var(--nx-reveal-ease);
   }
-  .nx-reveal.visible {
+  .nx-reveal.nx-armed {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  .nx-reveal.nx-armed.visible {
+    opacity: 1;
     transform: translateY(0);
   }
 
-  /* THE FADE. Until 2026-08-13 the reveal was a 14px slide at full opacity —
-     motion that is technically present and perceptually absent, which is what
-     "I don't see any motions" was reporting. A slide with no fade reads as a
-     layout settle, not an entrance.
-
-     The opacity floor is gated on .nx-js, a class an inline script in
-     index.html sets on <html> before first paint. That is the whole reason
-     the old rule started at opacity 1: content must never be stuck invisible
-     if the observer never runs. With the gate, the failure mode is inverted —
-     no JS means no class means no hidden state, and the page renders fully
-     opaque exactly as it did before. Prerendered HTML still carries every
-     word regardless of opacity, so crawlers and the text-reading gates are
-     unaffected, and Playwright treats opacity:0 as visible for clicks. */
-  .nx-js .nx-reveal { opacity: 0; }
-  .nx-js .nx-reveal.visible { opacity: 1; }
+  /* The .nx-js opacity gate that used to live here is GONE. It set
+     `.nx-js .nx-reveal { opacity: 0 }` from an inline script before first
+     paint, which meant the prerendered page rendered its content invisible
+     until React hydrated — a real broken-looking site in production. The
+     hidden state now belongs to .nx-armed above, applied by JS only to
+     off-screen elements. Do not reintroduce a default-hidden rule here. */
   /* Promote to a compositor layer ONLY while the entrance is actually running.
      backface-visibility pins the layer on Safari/iOS for the duration of the
      transition; Reveal.tsx adds .nx-settled on transitionend, which drops BOTH
@@ -889,17 +889,15 @@
   }
 
   /* Variants — set via className on Reveal component */
-  .nx-reveal.nx-reveal-lift {
+  .nx-reveal.nx-reveal-lift.nx-armed {
     transform: translateY(16px);
-    transition: transform 0.55s var(--nx-reveal-ease);
   }
-  .nx-reveal-lift.visible { transform: translateY(0); }
+  .nx-reveal-lift.nx-armed.visible { transform: translateY(0); }
 
-  .nx-reveal.nx-reveal-scale {
+  .nx-reveal.nx-reveal-scale.nx-armed {
     transform: scale(0.98);
-    transition: transform 0.5s var(--nx-reveal-ease);
   }
-  .nx-reveal-scale.visible { transform: scale(1); }
+  .nx-reveal-scale.nx-armed.visible { transform: scale(1); }
 
   /* ── STAGGER ────────────────────────────────────────────────────────────
      A grid whose cards all arrive on the same frame reads as one block
@@ -935,11 +933,11 @@
   /* MOBILE: shorter distance + faster duration so content SNAPS in crisply
      instead of drifting up slowly on a small screen. */
   @media (max-width: 640px) {
-    .nx-reveal { transform: translateY(9px); transition-duration: 0.35s; }
-    .nx-reveal.nx-reveal-lift { transform: translateY(11px); transition-duration: 0.38s; }
-    .nx-reveal.nx-reveal-scale { transform: scale(0.985); transition-duration: 0.35s; }
-    .nx-reveal.visible, .nx-reveal-lift.visible { transform: translateY(0); }
-    .nx-reveal-scale.visible { transform: scale(1); }
+    .nx-reveal.nx-armed { transform: translateY(9px); transition-duration: 0.35s; }
+    .nx-reveal.nx-reveal-lift.nx-armed { transform: translateY(11px); transition-duration: 0.38s; }
+    .nx-reveal.nx-reveal-scale.nx-armed { transform: scale(0.985); transition-duration: 0.35s; }
+    .nx-reveal.nx-armed.visible, .nx-reveal-lift.nx-armed.visible { transform: translateY(0); }
+    .nx-reveal-scale.nx-armed.visible { transform: scale(1); }
   }
 
   /* ── Scroll progress indicator ── */
@@ -1004,8 +1002,7 @@
 
   /* ── Reduced motion overrides ── */
   @media (prefers-reduced-motion: reduce) {
-    .nx-reveal,
-    .nx-js .nx-reveal {
+    .nx-reveal, .nx-reveal.nx-armed {
       opacity: 1;
       transform: none;
       transition: none;

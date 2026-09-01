@@ -209,6 +209,44 @@ if (!existsSync(DIST)) {
   else for (const [label, rs] of hits) bad(`${label} on: ${rs.slice(0, 6).join(", ")}${rs.length > 6 ? ` (+${rs.length - 6})` : ""}`);
 }
 
+/* ── THE SNAPSHOT MUST STAND ALONE ──────────────────────────────────────────
+   This gate exists for "correct-looking code that renders nothing", and on
+   2026-08-20 that shipped to nexphoria.com in a new form. Reveal.tsx hides
+   off-screen blocks by adding .nx-armed (opacity:0), the prerenderer snapshots
+   the DOM after React mounts, and so twelve invisible sections were baked into
+   the crawlable HTML. Every gate was green: the markup was complete, the text
+   was present, the routes returned 200. It just could not be seen until
+   hydration finished. Chiya's report was "a weird site."
+
+   Two invariants, asserted against the built artifact:
+     1. No serialized client-only hidden state in any prerendered page.
+     2. No CSS rule that hides .nx-reveal by default — the hidden state must be
+        opt-in via .nx-armed, which only JS applies and only off-screen.
+   A page a crawler or a slow connection sees as blank is not a rendered page. */
+{
+  const pages = ["/", "/plan", "/peptides", "/peptides/tesamorelin", "/faq"];
+  let serialized = 0;
+  for (const r of pages) {
+    const f = r === "/" ? `${DIST}/index.html` : `${DIST}${r}/index.html`;
+    let raw: string;
+    try { raw = await readFile(f, "utf-8"); } catch { continue; }
+    const n = (raw.match(/\bnx-armed\b/g) || []).length;
+    if (n > 0) { bad(`${r} ships ${n} block(s) with nx-armed — invisible until hydration`); serialized += n; }
+  }
+  if (serialized === 0) ok(`no client-only hidden state serialized across ${pages.length} prerendered pages`);
+
+  const css = (await readFile(`${DIST}/index.html`, "utf-8")).match(/assets\/[A-Za-z0-9_.-]+\.css/)?.[0];
+  if (css) {
+    const sheet = await readFile(`${DIST}/${css}`, "utf-8");
+    // A default-hidden reveal is the shape of the bug: .nx-reveal{opacity:0}
+    // with no .nx-armed qualifier anywhere in the selector.
+    const offenders = (sheet.match(/[^{}]*\.nx-reveal[^{}]*\{[^}]*opacity:\s*0[^}]*\}/g) || [])
+      .filter((rule) => !/\.nx-armed/.test(rule));
+    if (offenders.length) bad(`CSS hides .nx-reveal by default: ${offenders[0].slice(0, 90)}`);
+    else ok("no CSS rule hides .nx-reveal by default (hidden state is opt-in via .nx-armed)");
+  }
+}
+
 console.log("\n═ SUMMARY ═");
 if (failed) {
   console.log(`  ${failed} failure(s)\n\nRESULT: FAIL — a catalog assumption broke silently\n`);

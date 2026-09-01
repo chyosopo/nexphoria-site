@@ -27,15 +27,6 @@
         }
       })(window.location);
     </script>
-    <!--
-      Scroll-reveal opacity gate. The reveal primitive fades content in from
-      opacity 0; this class is what licenses that hidden starting state, and it
-      only exists when scripting is on. No JS → no class → every .nx-reveal
-      paints fully opaque, so a scripting failure can never leave the page
-      blank. Must run before first paint (it does: parser-blocking, in <head>),
-      otherwise revealed content flashes at full opacity and then hides.
-    -->
-    <script>document.documentElement.className += " nx-js";</script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png" />
     <link rel="icon" href="favicon/favicon.ico" sizes="any" />
