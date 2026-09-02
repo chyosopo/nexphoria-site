@@ -39,15 +39,15 @@ const STEPS: Step[] = [
     n: "01", t: "Your plan, then your questionnaire", Icon: ClipboardList,
     img: stepIntake, imgAlt: "A man begins his intake on a tablet at a dawn-lit desk",
     d: "Choose your peptide and your plan length, and check out. Then a medical questionnaire covering your history, goals, current medications and contraindications, reviewed in full before anything else happens.",
-    detail: "The intake screens for the conditions that make each peptide class unsafe — malignancy history, pregnancy, cardiovascular disease, drug interactions — and puts every answer in front of the physician who decides.",
+    detail: "The intake screens for the conditions that make each peptide class unsafe: malignancy history, pregnancy, cardiovascular disease, drug interactions, and puts every answer in front of the physician who decides.",
     objection: "“Is this just a form that rubber-stamps a sale?” It exists to rule out people for whom a protocol is wrong, before a physician spends time on the file, and it can end there.",
   },
   {
     n: "02", t: "Bloodwork at the lab", Icon: TestTube,
     img: stepBloodwork, imgAlt: "Vacutainer tubes on a ceramic tray, prepared for a draw",
-    d: "A single draw at a partner laboratory near you. A comprehensive panel across the systems a protocol can touch — cardiac, hormonal, metabolic, hepatic, renal — establishing your baseline.",
-    detail: "Three panel tiers — Basic, Full, and Elite — matched to what a protocol actually requires. A GH-axis peptide mandates IGF-1; a metabolic protocol pulls insulin, HOMA-IR, and ApoB. You are billed for the markers your protocol reads.",
-    objection: "“Why can’t I skip the labs?” Because without a baseline there is nothing to compare the retest against — and the retest is the entire point.",
+    d: "A single draw at a partner laboratory near you. A comprehensive panel across the systems a protocol can touch: cardiac, hormonal, metabolic, hepatic, renal, establishing your baseline.",
+    detail: "Three panel tiers, Basic, Full and Elite, matched to what a protocol actually requires. A GH-axis peptide mandates IGF-1; a metabolic protocol pulls insulin, HOMA-IR, and ApoB. You are billed for the markers your protocol reads.",
+    objection: "“Why can’t I skip the labs?” Because without a baseline there is nothing to compare the retest against, and the retest is the entire point.",
   },
   {
     n: "03", t: "Physician review", Icon: Stethoscope,
@@ -59,7 +59,7 @@ const STEPS: Step[] = [
   {
     n: "04", t: "503A compounding", Icon: FlaskConical,
     img: stepCompounding, imgAlt: "A sterile compounding room in a licensed pharmacy",
-    d: "Prescriptions are compounded for you in a state-licensed 503A pharmacy — batch-documented and prescription-only.",
+    d: "Prescriptions are compounded for you in a state-licensed 503A pharmacy, batch documented and prescription only.",
     detail: "503A pharmacies compound to an individual prescription under state board oversight. Every batch is documented. This is the same regulatory class that prepares countless everyday prescriptions.",
     objection: "“Where does the actual medication come from?” A licensed U.S. compounding pharmacy, preparing your vial against your specific prescription, batch by documented batch.",
   },
@@ -73,15 +73,15 @@ const STEPS: Step[] = [
   {
     n: "06", t: "Your dashboard", Icon: LayoutDashboard,
     dashboardMock: true,
-    d: "Markers, reference ranges, trends, your active protocol, and physician messaging — in one place.",
-    detail: "Every number sits next to its range and its trend line, so you read direction, not just a snapshot. Questions to your physician run through the same portal — no phone tag.",
-    objection: "“Do I just get a vial and silence?” No — you get the data, the trend, and a line to the physician who owns it.",
+    d: "Markers, reference ranges, trends and your active protocol, in one place.",
+    detail: "Every number sits next to its range and its trend line, so you read direction, not just a snapshot.",
+    objection: "“Do I just get a vial and silence?” You get the data, the trend, and the doctor who owns the decision.",
   },
   {
     n: "07", t: "The 90-day retest", Icon: RefreshCw,
     img: stepRetest, imgAlt: "A physician reads a printed lab panel at a light table",
     d: "Your panel is drawn again. The trend is placed next to the protocol, and a physician decides what changes.",
-    detail: "This is the step the rest of the market skips. The same markers are re-drawn, the movement is read against your protocol, and the physician holds, adjusts, or tapers accordingly. The loop is the product — not the vial.",
+    detail: "This is the step the rest of the market skips. The same markers are re-drawn, the movement is read against your protocol, and the physician holds, adjusts, or tapers accordingly. The loop is the product, not the vial.",
     objection: "“What am I actually paying for?” Ongoing physician oversight, anchored to your own labs and re-read every 90 days.",
   },
 ];
@@ -108,8 +108,8 @@ export default function HowItWorks() {
   const world = resolveWorld(loc);
   const heroImg = OUTCOME_HERO[world === "women" ? "women" : "men"];
   useSeo({
-    title: "How It Works — Nexphoria",
-    description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, and 90-day retesting — in a fixed order that does not bend.",
+    title: "How It Works | Nexphoria",
+    description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, and 90-day retesting, in a fixed order.",
     path: "/how-it-works",
     jsonLd: [
       webPageJsonLd({ name: "How It Works", description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.", path: "/how-it-works", type: "MedicalWebPage" }),
@@ -223,7 +223,7 @@ export default function HowItWorks() {
                           <span>Baseline → 90 → 180 days</span>
                         </div>
                         <div className="nx-mini-row">
-                          <span className="nx-mini-cap">Illustrative — not a patient record</span>
+                          <span className="nx-mini-cap">Illustrative, not a patient record</span>
                         </div>
                       </div>
                     )}

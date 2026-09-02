@@ -53,10 +53,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     // homepage-canonical duplicates (the old omitted-path bug).
     path: `${base}/peptides`,
     title: world === "women"
-      ? "Peptides for Women — The Full Catalog | Nexphoria"
+      ? "Peptides for Women: The Full Catalog | Nexphoria"
       : world === "men"
-      ? "Peptides for Men — The Full Catalog | Nexphoria"
-      : "Peptides — The Full Catalog | Nexphoria",
+      ? "Peptides for Men: The Full Catalog | Nexphoria"
+      : "Peptides: The Full Catalog | Nexphoria",
     description: `${SOLO_CATALOG.length} physician-prescribed peptides${world === "women" ? " for women" : world === "men" ? " for men" : ""}, each with dosing, mechanism, timeline, and required bloodwork stated plainly.`,
     jsonLd: [
       // World-aware path so the WebPage node's url matches this page's own
@@ -200,7 +200,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Find a peptide — name, goal, or mechanism"
+          placeholder="Find a peptide by name, goal, or mechanism"
           aria-label="Search the catalog"
           className="nx-input"
           data-testid="catalog-search"
@@ -250,7 +250,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         {shown.length === 0 && (
           <div className="nx-glass-tile" style={{ display: "block", textAlign: "center", padding: "3rem 1.5rem" }} data-testid="filter-empty">
             <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>{needle ? `No matches for “${q.trim()}”.` : `No matches in ${filter}.`}</p>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>The formulary is curated — some shelves are short by design.</p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>The formulary is curated. some shelves are short by design.</p>
             <button onClick={() => { setFilter("All"); setQ(""); }} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
               Clear — show all
             </button>
@@ -323,7 +323,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
           <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
+            Your doctor decides, <em style={{ color: "var(--nx-acid)" }}>from your questionnaire.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
             You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right compound, or tells you none is appropriate.

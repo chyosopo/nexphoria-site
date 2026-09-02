@@ -42,7 +42,7 @@ const IF_RX = "Medication is dispensed only if a licensed provider determines a 
 const CONFIG: Record<PeptideCategory, Cfg> = {
   recovery: {
     pre: "Train hard. Recover", accent: "smarter.",
-    sub: "Physician-directed peptide protocols oriented around tissue recovery, joint comfort, and training resilience — calibrated to your bloodwork, not a guess.",
+    sub: "Physician-directed peptide protocols oriented around tissue recovery, joint comfort, and training resilience, calibrated to your bloodwork.",
     chips: ["Post-injury support", "Joint comfort", "Training load", "Tendon & tissue"],
     faqs: [
       { q: "How do recovery protocols start?", a: "With a structured intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
@@ -52,20 +52,20 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
   },
   skin: {
     pre: "Radiance, from the", accent: "inside out.",
-    sub: "Protocols oriented around skin quality, collagen support, and hair — designed by licensed physicians and adjusted against your own labs.",
+    sub: "Protocols oriented around skin quality, collagen support, and hair, designed by licensed physicians and adjusted against your own labs.",
     chips: ["Skin quality", "Collagen support", "Hair support", "Healthy aging"],
     faqs: [
-      { q: "What does a skin protocol involve?", a: "An online evaluation, baseline labs, and — if a physician prescribes — a compounded protocol with check-ins. " + IF_RX },
+      { q: "What does a skin protocol involve?", a: "An online evaluation, baseline labs, and, if a physician prescribes, a compounded protocol with check-ins. " + IF_RX },
       { q: "When do people typically reassess?", a: "Bloodwork is repeated every 90 days and the protocol is reviewed against your markers and your goals." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
   growth: {
     pre: "Composition,", accent: "engineered.",
-    sub: "Physician-directed protocols oriented around lean mass, GH pulse, and body composition — gated by labs before, during, and after.",
+    sub: "Physician-directed protocols oriented around lean mass, GH pulse, and body composition, gated by labs before, during, and after.",
     chips: ["Lean mass", "GH pulse", "Body composition", "Strength support"],
     faqs: [
-      { q: "How is eligibility decided?", a: "By a licensed physician, from your intake and baseline bloodwork — never by a questionnaire alone. " + IF_RX },
+      { q: "How is eligibility decided?", a: "By a licensed physician, from your intake and baseline bloodwork. " + IF_RX },
       { q: "How is progress measured?", a: "Quarterly labs plus your own training data. Protocols are adjusted against numbers, not feelings." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
@@ -75,14 +75,14 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: `Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a ${PANEL_TOTAL_MARKERS}-marker baseline and re-tested every quarter.`,
     chips: ["Cellular energy", "Immune resilience", "Healthspan", "Daily vitality"],
     faqs: [
-      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork — ${PANEL_TOTAL_MARKERS} markers across ${PANEL_CATEGORY_COUNT} systems — reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
+      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork: ${PANEL_TOTAL_MARKERS} markers across ${PANEL_CATEGORY_COUNT} systems, reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
       { q: "What makes this different from supplements?", a: "Everything here is prescription-only, physician-directed, and adjusted against your own labs every 90 days." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
   cognition: {
     pre: "Clarity you can", accent: "measure.",
-    sub: "Protocols oriented around focus, mood, and cognitive support — physician-directed, lab-gated, and adjusted to how you actually respond.",
+    sub: "Protocols oriented around focus, mood, and cognitive support, physician-directed, lab-gated, and adjusted to how you actually respond.",
     chips: ["Focus", "Mental clarity", "Mood support", "Stress resilience"],
     faqs: [
       { q: "How do cognition protocols work?", a: "A licensed physician reviews your intake and labs, then prescribes a protocol if appropriate, with check-ins through the portal. " + IF_RX },
@@ -92,21 +92,21 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
   },
   sleep: {
     pre: "Deeper nights,", accent: "better days.",
-    sub: "Physician-directed protocols oriented around sleep quality, onset, and overnight recovery — matched to your labs and adjusted to how you actually respond.",
+    sub: "Physician-directed protocols oriented around sleep quality, onset, and overnight recovery, matched to your labs and adjusted to how you actually respond.",
     chips: ["Sleep quality", "Sleep onset", "Overnight recovery", "Morning energy"],
     faqs: [
       { q: "How do sleep protocols start?", a: "With a private online intake and baseline bloodwork reviewed by a licensed physician, who prescribes a protocol only if appropriate. " + IF_RX },
-      { q: "How is progress tracked?", a: "Through your own reporting and quarterly labs — protocols are held, adjusted, or tapered against real markers." },
+      { q: "How is progress tracked?", a: "Through your own reporting and quarterly labs, protocols are held, adjusted, or tapered against real markers." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
   metabolic: {
     pre: "Metabolic health,", accent: "on your terms.",
-    sub: "Medically supervised protocols oriented around appetite, weight, and glucose control — with real labs before the first dose and every 90 days after.",
+    sub: "Medically supervised protocols oriented around appetite, weight, and glucose control, with real labs before the first dose and every 90 days after.",
     chips: ["Appetite control", "Weight management", "Glucose support", "Energy"],
     faqs: [
       { q: "How does a metabolic protocol start?", a: "Online intake, baseline bloodwork, and physician review. If a prescription is appropriate, your protocol ships from a state-licensed 503A compounding pharmacy. " + IF_RX },
-      { q: "How is dosing handled?", a: "Dosing is individualized by your physician and reviewed against your labs and response every quarter — it is never self-directed." },
+      { q: "How is dosing handled?", a: "Dosing is individualized by your physician and reviewed against your labs and response every quarter." },
       { q: "Are these products FDA-approved?", a: "Some molecules in this category exist as FDA-approved branded medications; compounded versions are not approved or evaluated by the FDA for safety, effectiveness, or quality." },
     ],
   },
@@ -136,7 +136,7 @@ const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: s
 
 const STEPS: [string, string][] = [
   ["Share your history", "A private structured intake covering your goals, training, and medical history."],
-  ["Get evaluated", "Baseline bloodwork plus review by a U.S.-licensed physician — the only person who decides if a prescription is appropriate."],
+  ["Get evaluated", "Baseline bloodwork plus review by a U.S.-licensed physician. They alone decide whether a prescription is appropriate."],
   ["Start & stay monitored", "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with labs re-run every 90 days."],
 ];
 
@@ -156,7 +156,7 @@ export default function Category() {
   const routeCount = cfg ? selectorRoutes(slug, world).length : 0;
 
   useSeo({
-    title: cfg ? `${label} peptide protocols — physician-directed` : "Protocols",
+    title: cfg ? `${label} peptide protocols: physician-directed` : "Protocols",
     description: cfg ? cfg.sub : "Physician-directed peptide protocols.",
     path: `/goals/${slug}`,
     jsonLd: cfg
@@ -261,7 +261,7 @@ export default function Category() {
             figures={[
               { value: list.length > 0 ? String(list.length) : "—", unit: list.length === 1 ? "compound" : "compounds", caption: "in this goal, each with dose and format stated" },
               { value: String(PANEL_TOTAL_MARKERS), unit: "markers", caption: "drawn at baseline, monitored throughout" },
-              { value: "1", unit: "physician", caption: "prescribes every protocol — and can decline" },
+              { value: "1", unit: "physician", caption: "prescribes every protocol, and can decline" },
               { value: "90", unit: "days", caption: "between every retest, every cycle" },
             ]}
           />
@@ -322,7 +322,7 @@ export default function Category() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((p, i) => (
               <Reveal key={p.slug} delay={i * 45}>
-              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} aria-label={`${p.name} — ${p.tagline}`} data-testid={`cat-item-${p.slug}`}>
+              <Link href={`/${world}/peptides/${p.slug}`} className="nx-glass-card group block no-underline" style={{ padding: "1.5rem 1.4rem" }} aria-label={`${p.name}: ${p.tagline}`} data-testid={`cat-item-${p.slug}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{p.name}</h3>

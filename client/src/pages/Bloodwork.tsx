@@ -280,7 +280,7 @@ function Hero() {
             src="img/img_6d36ae1989c8.mp4"
             poster="img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
-            aria-label="Partner-laboratory lab work — every 90 days" />
+            aria-label="Partner-laboratory lab work, every 90 days" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
           <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
             Your numbers, every 90 days.
@@ -665,7 +665,7 @@ function PanelComparison() {
       testid="bloodwork-comparison"
       eyebrow="Why this panel"
       title="Not all bloodwork is the same."
-      lead="A once-a-year physical and a mail-order kit both stop at a number. This panel exists to change a prescription — read against optimal ranges, by a physician, and retested until the trend proves it."
+      lead="A once-a-year physical and a mail-order kit both stop at a number. This panel exists to change a prescription: read against optimal ranges, by a physician, and retested until the trend proves it."
       columns={[
         { label: "The Nexphoria panel", sub: "Included with every protocol", highlight: true, badge: "Nexphoria" },
         { label: "A standard annual physical", sub: "Once-a-year checkup" },
@@ -824,7 +824,7 @@ function HowItWorks() {
       n: "02",
       Icon: Stethoscope,
       title: "Physician-reviewed protocol",
-      body: "A board-certified physician reads every marker against your goals — not a population average — and prescribes the peptides and doses your chemistry calls for.",
+      body: "A board-certified physician reads every marker against your goals, and prescribes the peptides and doses your chemistry calls for.",
     },
     {
       n: "03",
@@ -1023,13 +1023,13 @@ function PanelTiers() {
             {rec && pickGoal ? (
               <>
                 <strong style={{ fontWeight: 700, color: "var(--nx-cobalt)" }}>The {rec} panel</strong>
-                {" — "}
+                {": "}
                 {CATEGORY_LABELS[pickGoal]} routes gate on the {requiredTierFor(pickGoal)} panel
                 {TIER_RANK[rec] > TIER_RANK[requiredTierFor(pickGoal)] ? "; your depth choice steps it up" : ""}.
-                {" "}It's highlighted below — and your physician confirms the tier at intake.
+                {" "}It is highlighted below. Your physician confirms the tier at intake.
               </>
             ) : (
-              "Answer both and the right tier lights up below. A physician confirms it at intake — the panel is the gate the protocol passes through."
+              "Answer both and the right tier lights up below. A physician confirms it at intake. The panel is the gate the protocol passes through."
             )}
           </p>
         </div>
