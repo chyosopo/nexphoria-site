@@ -49,7 +49,7 @@ export default function Checkout() {
   // Breadcrumb (Home → Cart → Checkout) records the real navigational trail.
   useSeo({
     title: "Secure intake — Nexphoria",
-    description: "Submit your information for physician review. No charge until a licensed physician approves your protocol.",
+    description: "Submit your information for physician review. A licensed physician reviews every order before anything is dispensed.",
     path: "/checkout",
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }, { name: "Checkout", path: "/checkout" }])],
@@ -401,7 +401,7 @@ export default function Checkout() {
                     </p>
                     <ol className="list-none p-0 space-y-3">
                       {[
-                        "Submit your intake and cart for physician review — complimentary, no card required.",
+                        "Submit your intake and cart for physician review.",
                         "A US-licensed physician reviews your protocol after you submit.",
                         "On approval, a secure payment link is emailed to you.",
                         "You complete payment through our PCI-compliant billing partner; your order then ships cold-chain.",
@@ -620,7 +620,7 @@ export default function Checkout() {
                 <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
                 <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · encrypted in transit" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
-                <TrustRow icon={<Check size={14} />} text={`The consultation is complimentary. ${CONDITIONAL.chargeCondition}`} />
+                <TrustRow icon={<Check size={14} />} text={CONDITIONAL.chargeCondition} />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 

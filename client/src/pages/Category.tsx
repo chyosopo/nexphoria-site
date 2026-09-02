@@ -414,7 +414,7 @@ export default function Category() {
               One intake. <em style={{ fontStyle: "italic", color: "var(--nx-amber)" }}>Your</em> protocol.
             </h2>
             <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>
-              The evaluation is complimentary. You pay only if a physician prescribes.
+              A physician reviews your questionnaire and your blood panel. Nothing is made without a prescription.
             </p>
             <Link href="/assessment" className="nx-cta-cobalt inline-flex items-center gap-2 mt-6">
               Start your assessment <ArrowRight size={17} strokeWidth={2} />

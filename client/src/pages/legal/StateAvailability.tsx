@@ -48,7 +48,7 @@ export default function StateAvailability() {
         <LegalP>
           Licensing coverage expands over time. If service is not available in your
           state, you may join the waitlist and we will notify you when coverage opens.
-          No charge is made for an intake that cannot proceed to a consultation.
+          If an intake cannot proceed to a consultation, any consultation fee is refunded in full, per the refund policy.
         </LegalP>
       </LegalSection>
       <LegalSection title="Questions">

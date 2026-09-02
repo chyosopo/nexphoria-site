@@ -843,7 +843,7 @@ export default function About() {
               eyebrow="Pricing"
               icon={<Scale size={18} strokeWidth={1.5} />}
               headline="All-in. Labs within the figure."
-              sub="One monthly price. Consult, compound, labs, shipping — bundled. The consultation is complimentary."
+              sub="One monthly price. Consult, compound, labs, shipping, bundled."
               testId="about-tile-pricing"
             />
             <BenefitTile

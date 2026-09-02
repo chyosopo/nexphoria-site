@@ -53,7 +53,7 @@ const STEPS: Step[] = [
     n: "03", t: "Physician review", Icon: Stethoscope,
     img: stepPhysician, imgAlt: "Two physicians review a patient chart together",
     d: "A licensed U.S. physician reads your intake against your markers. If a protocol is appropriate, it is prescribed. If it is not, you are told so plainly.",
-    detail: "A physician is the only party who can authorize a prescription here, and that authority sits with them alone. Some intakes end at this step with “not a candidate,” and that outcome carries no charge.",
+    detail: "A physician is the only party who can authorize a prescription here, and that authority sits with them alone. Some intakes end at this step with “not a candidate.” The refund policy sets out what is refunded.",
     objection: "“Is there really a doctor, or a checkbox?” A named, state-licensed physician owns the decision and the liability for it.",
   },
   {
@@ -317,7 +317,7 @@ export default function HowItWorks() {
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.1 }}>
-          The consultation carries no charge. <em style={{ color: "var(--nx-cobalt)" }}>You pay only if prescribed.</em>
+          Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Nothing is made without a prescription.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.7rem" }} data-testid="hiw-cta">
           Start your assessment

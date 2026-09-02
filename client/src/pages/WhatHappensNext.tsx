@@ -25,8 +25,8 @@ const PHASES: Phase[] = [
   {
     when: "Within a few business days",
     title: "The physician makes a decision",
-    body: "They determine whether a protocol is appropriate. If it is, you receive a secure approval and a final payment link by email. If it isn't, they tell you so — and there is no charge.",
-    note: "No charge unless a physician prescribes.",
+    body: "They determine whether a protocol is appropriate. If it is, your prescription goes to the pharmacy and you get a confirmation by email. If it is not, they tell you so, and the refund policy sets out what is refunded.",
+    note: "Nothing is made without a prescription.",
   },
   {
     when: "If prescribed",
@@ -44,7 +44,7 @@ export default function WhatHappensNext() {
   useSeo({
     path: "/what-happens-next",
     title: "What happens after you submit — Nexphoria",
-    description: "The path from intake to prescription to the 90-day retest loop. A physician reviews every case and can decline; there is no charge unless prescribed.",
+    description: "The path from intake to prescription to the 90-day retest loop. A physician reviews every case and can decline; nothing is made without a prescription.",
     jsonLd: [
       webPageJsonLd({ name: "What happens next", description: "The intake-to-retest timeline.", path: "/what-happens-next" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "What happens next", path: "/what-happens-next" }]),
@@ -96,7 +96,7 @@ export default function WhatHappensNext() {
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.12, maxWidth: "20ch", margin: "0 auto" }}>
-            The consultation is complimentary. <em style={{ color: "var(--nx-cobalt)" }}>A figure follows only a prescription.</em>
+            Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Nothing is made without a prescription.</em>
           </h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1.2rem", justifyContent: "center", alignItems: "center", marginTop: "1.6rem" }}>
             <Link href="/assessment" className="nx-cta-cobalt" data-testid="whn-cta" style={{ fontSize: "var(--nx-t-base)", padding: "15px 32px" }}>

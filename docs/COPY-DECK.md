@@ -223,20 +223,23 @@ Job: three steps, and the reassurance that none of them is automated.
 Feeling: simple and safe.
 Fact: physicians.ts (no algorithmic approvals).
 
-**1 "Tell us about you." / "Two minutes on your health, your history and
-your goal. It goes straight to a U.S. licensed doctor."** · LIVE
-**2 "Get your blood drawn." / "99 markers at a CLIA-certified lab near you.
-Your doctor reads every one."** · LIVE
-**3 "Start, then retest at 90 days." / "If it fits you, a licensed 503A
-pharmacy makes it for you and ships it cold. At 90 days you test again, and
-your dose follows your numbers."** · LIVE
-Job: the path, in the order it happens, each step ending with the doctor.
-Feeling: "I can see the whole road."
-Fact: intake, CLIA lab draw, physician review, 503A, 90-day retest
-(physicians.ts, compliance.ts).
+**1 "Choose your plan." / "Pick the peptide and the plan length, and check
+out. Two minutes."** · LIVE
+**2 "Answer the questionnaire." / "Your health, your history and your goal,
+plus 99 markers drawn at a lab near you. All of it goes to a U.S. licensed
+doctor."** · LIVE
+**3 "Your doctor decides. Then it ships." / "If it fits you, your
+prescription goes to a licensed 503A pharmacy, is made for you, and ships
+cold. At 90 days you test again, and your dose follows your numbers."** · LIVE
+Job: the path in the order it actually happens (Chiya, 2026-09-02: checkout
+first, then the questionnaire, then the doctor), each step ending with the
+doctor.
+Feeling: "I can see the whole road, and where the money goes."
+Fact: checkout before questionnaire (Chiya); CLIA lab draw, physician
+review, 503A, 90-day retest (physicians.ts, compliance.ts).
 
-**Fine print: "If your doctor says no, nothing is made."** · LIVE (was "and
-nothing is billed": the billing half is OPEN, see below)
+**Fine print: "If your doctor says no, nothing is made. The refund policy
+sets out what is refunded."** · LIVE
 **Fine print: "Prices are per month. Twelve-month plans include your blood
 panel."** · LIVE
 Job: the two things a careful reader wants in writing before they start.
@@ -320,7 +323,21 @@ the product renders used sitewide.
 
 ## The open facts (Chiya to confirm, one at a time)
 
-1. **Billing.** Is a visitor charged anything before a doctor prescribes?
+1. **Billing.** ANSWERED 2026-09-02 by Chiya: something is charged up
+   front. "The checkout can be before the questionnaire. The questionnaire
+   goes to the doctor, and they make the prescription." So every
+   "complimentary consultation", "no charge unless prescribed" and "you pay
+   only if prescribed" line was untrue and is retired sitewide (17 files
+   plus the llms.txt generator). The legal refund policy already said the
+   consultation fee and the lab panel fee are paid and non-refundable once
+   used; the marketing copy now agrees with it. Replacement lines state the
+   review condition ("a licensed doctor reviews your order before anything
+   is made", "nothing is made without a prescription") and point to the
+   refund policy for money outcomes. The home page steps now run in the true
+   order: choose your plan, answer the questionnaire, your doctor decides.
+   Still open: the exact amount and timing of the up-front charge, for a
+   plain line about it. Original question:
+   Is a visitor charged anything before a doctor prescribes?
    If the answer is "no charge before a prescription," the lines "You pay
    only if a doctor prescribes," "nothing is billed," and the sitewide
    promise "No charge unless a doctor prescribes. The review is

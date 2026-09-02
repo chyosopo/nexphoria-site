@@ -32,8 +32,8 @@ export const CONDITIONAL = {
   mayBeEligible: "you may be eligible",
   /** For any figure shown before a physician has reviewed. */
   totalLabel: "Total if prescribed",
-  /** Never "no charge" as a promise — this states the billing condition. */
-  chargeCondition: "Billed only after a licensed provider approves your prescription.",
+  /** Never a billing promise: checkout can precede the questionnaire (Chiya, 2026-09-02). This states the review condition. */
+  chargeCondition: "A licensed physician reviews every order before anything is dispensed.",
 } as const;
 
 /** The non-approval sentence, keyed to the active's regulatory standing. */

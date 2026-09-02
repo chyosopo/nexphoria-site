@@ -194,7 +194,7 @@ function PricingTiers() {
               marginBottom: "3rem",
             }}
           >
-            Every path includes physician review, US-compounded medication, and one complete monthly figure. The consultation is complimentary.
+            Every path includes physician review, US-compounded medication, and one complete monthly figure.
           </p>
         </Reveal>
 
@@ -471,7 +471,7 @@ function PricingTiers() {
 const PRICING_FAQ_ITEMS = [
   {
     q: "Is the physician consult included in the price?",
-    a: "Yes. Your initial physician consultation and all follow-up consultations within your subscription cycle are included in the figure — the consultation is complimentary.",
+    a: "Yes. Your initial physician consultation and follow-up consultations within your subscription cycle are part of your plan. The refund policy sets out the terms.",
   },
   {
     q: "Are labs included?",
@@ -1399,8 +1399,8 @@ export default function Pricing() {
       </section>
 
       <FinalCTAStrip
-        title="Begin with the complimentary review."
-        sub="Your intake, read by a physician. A figure only ever follows a prescription."
+        title="Begin with your questionnaire."
+        sub="Your intake, read by a physician. Nothing is made without a prescription."
       />
     </SiteLayout>
   );

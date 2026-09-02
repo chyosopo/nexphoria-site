@@ -25,7 +25,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "Do I need a prescription?",
-    a: `Yes — always. Every Nexphoria protocol begins with a structured intake reviewed by a US-licensed physician. Nothing ships without a valid prescription, and the consultation is complimentary: you pay only if prescribed.`,
+    a: `Yes, always. Your questionnaire goes to a U.S. licensed physician, who reviews it with your blood panel. Nothing ships without a valid prescription.`,
   });
 
   items.push({

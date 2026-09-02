@@ -189,7 +189,7 @@ export default function Gate() {
               lineHeight: 1.6,
             }}
           >
-            Physician-prescribed · 503A-compounded · No charge unless a physician prescribes
+            Physician-prescribed · 503A-compounded · Nothing made without a prescription
           </p>
         </div>
       )}

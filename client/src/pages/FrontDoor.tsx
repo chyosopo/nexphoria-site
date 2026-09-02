@@ -49,16 +49,16 @@ const CHECKLIST = [
 ] as const;
 
 const STEPS = [
-  ["Tell us about you.", "Two minutes on your health, your history and your goal. It goes straight to a U.S. licensed doctor."],
-  ["Get your blood drawn.", `${PANEL_TOTAL_MARKERS} markers at a CLIA-certified lab near you. Your doctor reads every one.`],
-  ["Start, then retest at 90 days.", "If it fits you, a licensed 503A pharmacy makes it for you and ships it cold. At 90 days you test again, and your dose follows your numbers."],
+  ["Choose your plan.", "Pick the peptide and the plan length, and check out. Two minutes."],
+  ["Answer the questionnaire.", `Your health, your history and your goal, plus ${PANEL_TOTAL_MARKERS} markers drawn at a lab near you. All of it goes to a U.S. licensed doctor.`],
+  ["Your doctor decides. Then it ships.", "If it fits you, your prescription goes to a licensed 503A pharmacy, is made for you, and ships cold. At 90 days you test again, and your dose follows your numbers."],
 ] as const;
 
 const FAQ = [
   { q: "Is this legit?", a: "Yes. A named, U.S. licensed doctor reviews your intake and your blood, and signs every prescription. Your medication is made for you in a licensed 503A pharmacy and shipped cold. Your blood is drawn again at 90 days." },
   { q: "Do I actually talk to a doctor?", a: `Yes. A doctor reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel and makes the call. Your dose is reviewed at every retest.` },
   { q: "Do I need bloodwork?", a: "Yes, before anything is prescribed. It is drawn at a lab near you, and it is inside your monthly figure. Without a baseline there is nothing to compare your retest against, and the retest is the point." },
-  { q: "What if the doctor says no?", a: "Then nothing is made. Some intakes end there." },
+  { q: "What if the doctor says no?", a: "Then nothing is made. Some questionnaires end there, and the refund policy sets out what is refunded." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
   { q: "How is it shipped?", a: "Cold, in a plain package, to your door in all 50 states." },
 ];
@@ -224,7 +224,7 @@ export default function FrontDoor() {
           </ol>
           <div style={{ marginTop: "clamp(1.4rem,3vw,2rem)", display: "flex", flexDirection: "column", gap: 6 }} data-testid="frontdoor-fineprint">
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-              If your doctor says no, nothing is made.
+              If your doctor says no, nothing is made. The refund policy sets out what is refunded.
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
               Prices are per month. Twelve-month plans include your blood panel.

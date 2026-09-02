@@ -2,8 +2,8 @@
    "Gift of Hone" grammar). What can truthfully be gifted here is the
    COVERAGE: a one-time payment for a protocol term or a bloodwork panel.
    The recipient still completes their own intake; their own physician
-   reviews their labs and can decline — in which case the sitewide promise
-   applies (you pay only if prescribed → an unprescribed gift is refunded).
+   reviews their labs and can decline, in which case the refund policy
+   (/legal/refund-policy) governs what is refunded.
    Every price is DERIVED from the canonical catalogs; the share link
    carries only identifiers and a first name — never a price. */
 import { FLAGSHIP_STACKS, PANELS, type PanelTier } from "@/data/stacksCatalog";
