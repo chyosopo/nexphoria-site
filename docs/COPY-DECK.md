@@ -357,3 +357,36 @@ the product renders used sitewide.
 
 Everything else on the page rests on facts already in the repo's data files
 (compliance.ts, physicians.ts, biomarkerPanel.ts, pricing.ts, soloCatalog.ts).
+
+
+---
+
+## Sitewide claims found on 2026-09-02 that only Chiya can confirm
+
+Found by searching every rendered string for portals, messaging, testing,
+privacy, shipping time and payment claims. None of these were changed; each
+is either true and stays, or comes out. One answer per line is enough.
+
+1. **Third-party batch testing.** About page: "Every batch third-party
+   tested", "batch-tested, third-party verified"; checkout: "third-party
+   COA on every batch". Does the pharmacy partner issue a third-party
+   certificate of analysis for every batch?
+2. **Physician messaging between visits.** About page headline
+   "Physician messaging between visits"; physicians.ts "ongoing secure
+   portal messaging"; assessment "requisition generated in your member
+   portal". Is there a patient portal with messaging today?
+3. **HIPAA-compliant.** About page, the assessment trust row, the trust
+   strip, the footer "HIPAA · Encrypted intake". Is intake handled in a
+   HIPAA-covered system (Bask), so the claim holds?
+4. **HSA/FSA eligible.** Cart drawer. Confirmed with the payment processor?
+5. **Cancel anytime before dispense.** Assessment trust row. True under the
+   refund policy? The policy says monthly fees already charged are not
+   refunded; "before dispense" needs to match it.
+6. **Discreet 3 to 5 day shipping.** Trust strip. The actual transit window?
+7. **Tested twice a year.** Biomarker panel data. Is the retest cadence
+   90 days (four times a year) or twice a year? Both appear on the site.
+
+Already handled today: "complimentary consultation" and "no charge unless
+prescribed" (retired sitewide), "marker dashboard & messaging" and "secure
+telehealth messaging" (reduced to what is confirmed), "you pay only if a
+doctor prescribes" (off the home page).
