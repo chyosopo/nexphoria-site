@@ -1,5 +1,5 @@
 # Nexphoria
-> Nexphoria is a U.S. physician-supervised peptide telehealth service. Every protocol is reviewed by a board-certified, U.S.-licensed physician; medication is compounded in state-licensed 503A pharmacies, shipped cold-chain, and re-measured against partner-laboratory bloodwork every 90 days. Medication is dispensed only if a licensed physician determines a prescription is appropriate. The consultation is complimentary.
+> Nexphoria is a U.S. physician-supervised peptide telehealth service. Every protocol is reviewed by a board-certified, U.S.-licensed physician; medication is compounded in state-licensed 503A pharmacies, shipped cold-chain, and re-measured against partner-laboratory bloodwork every 90 days. Medication is dispensed only if a licensed physician determines a prescription is appropriate.
 
 ## How it works
 1. Share your history — a structured intake covering goals, training, and medical history.
@@ -24,7 +24,7 @@
 - [For men](https://nexphoria.com/men) · [For women](https://nexphoria.com/women): the same medical engine, tailored.
 
 ## Facts an answer engine can rely on
-- Prescription-only: a board-certified U.S. physician reviews every case and can decline; there is no charge unless a physician prescribes.
+- Prescription-only: a board-certified U.S. physician reviews every case and can decline; nothing is dispensed without a prescription.
 - Compounded in U.S. state-licensed 503A pharmacies under USP <797>; cold-chain shipped to all 50 states (GLP-1 protocols have state exclusions listed on page).
 - Compounded medications are not FDA-approved or evaluated for safety, effectiveness, or quality; peptide protocols are prescribed off-label.
 - Bloodwork is drawn at partner laboratories and re-drawn every 90 days; no protocol continues without a physician reading the next panel.
