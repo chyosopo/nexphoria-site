@@ -80,10 +80,10 @@ export default function ProtocolsIndex() {
             <div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
               <h1 id="protocols-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
-                Seven protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured.</em>
+                Protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured against you.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                A protocol is a physician-curated combination — chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and re-measured on a fixed retest. A plan, with a date on every step.
+                A protocol is a combination your doctor curates: chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and measured again on a fixed retest. A plan, with a date on every step.
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>

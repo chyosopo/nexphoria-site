@@ -36,11 +36,11 @@ interface Step {
 
 const STEPS: Step[] = [
   {
-    n: "01", t: "Structured intake", Icon: ClipboardList,
+    n: "01", t: "Your plan, then your questionnaire", Icon: ClipboardList,
     img: stepIntake, imgAlt: "A man begins his intake on a tablet at a dawn-lit desk",
-    d: "A medical questionnaire covering history, goals, current medications, and contraindications — reviewed in full before anything else happens.",
+    d: "Choose your peptide and your plan length, and check out. Then a medical questionnaire covering your history, goals, current medications and contraindications, reviewed in full before anything else happens.",
     detail: "The intake screens for the conditions that make each peptide class unsafe — malignancy history, pregnancy, cardiovascular disease, drug interactions — and puts every answer in front of the physician who decides.",
-    objection: "“Is this just a form that rubber-stamps a sale?” No. It exists to disqualify people for whom a protocol is wrong, before a physician ever spends time on the file.",
+    objection: "“Is this just a form that rubber-stamps a sale?” It exists to rule out people for whom a protocol is wrong, before a physician spends time on the file, and it can end there.",
   },
   {
     n: "02", t: "Bloodwork at the lab", Icon: TestTube,
@@ -133,10 +133,10 @@ export default function HowItWorks() {
                 <ShieldCheck size={14} strokeWidth={2.2} aria-hidden="true" /> How it works
               </p>
               <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
-                Seven steps. <em style={{ color: "var(--nx-cobalt)" }}>No improvisation.</em>
+                Seven steps. <em style={{ color: "var(--nx-cobalt)" }}>Your doctor in every one.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1.1rem" }}>
-                You shouldn't have to take a company's word for what happens to your body. So here is the entire path — from the first question to the first cold-chain shipment — in the fixed order it always runs, and why each step exists.
+                You should not have to take our word for what happens to your body. Here is the whole path, from checkout to your first cold shipment, in the order it always runs, and why each step is there.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Start your assessment</Link>

@@ -471,7 +471,7 @@ function PhysiciansHeroDark() {
                 marginBottom: "1.5rem",
               }}
             >
-              A licensed physician<br />
+              Your doctor<br />
               <span style={{ color: "var(--nx-acid)" }}>reads your file.</span>
             </h1>
             <p
@@ -484,9 +484,8 @@ function PhysiciansHeroDark() {
                 marginBottom: "2rem",
               }}
             >
-              Every peptide protocol is reviewed by a board-certified, U.S.-licensed physician
-              against your bloodwork, and signed by a doctor licensed in your state. No algorithms,
-              no auto-approval.
+              Every plan is reviewed by a board-certified, U.S. licensed doctor against your
+              bloodwork, and signed by a doctor licensed in your state. A person decides, every time.
             </p>
             <div role="list" style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
               {[

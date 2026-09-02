@@ -101,9 +101,9 @@ function Hero() {
                   marginBottom: "1.5rem",
                 }}
               >
-                See what's driving your results
-                <br />
-                <span style={{ color: "var(--nx-acid)" }}>before you start.</span>
+                Your blood knows first.
+              <br />
+              <span style={{ color: "var(--nx-acid)" }}>So your doctor reads it first.</span>
               </h1>
               <p
                 style={{
@@ -115,10 +115,9 @@ function Hero() {
                   marginBottom: "2rem",
                 }}
               >
-                The fatigue, the plateau, the slow recovery — your blood already knows why.
-                {" "}{PANEL_TOTAL_MARKERS} biomarkers across {PANEL_CATEGORY_COUNT} panels, re-drawn
-                every 90 days. Every Nexphoria protocol starts here and adjusts every quarter
-                against your own numbers.
+                Tired, stuck, slow to recover? Your numbers usually say why.
+              {" "}{PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} panels, drawn before anything is
+              prescribed and again every 90 days, so your plan follows you, not a template.
               </p>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
                 <StartIntakeButton

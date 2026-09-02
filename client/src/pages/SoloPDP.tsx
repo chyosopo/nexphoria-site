@@ -209,7 +209,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </p>
               <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.4rem", maxWidth: "18ch" }}>{solo.outcome}</h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
-                <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong> — {solo.mechanism}
+                <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong>. {solo.mechanism}
               </p>
               {/* Seed-grammar spec plate (SEED-STUDY S1): the compound as a
                   specimen label — taxonomy line + ruled LABEL→value rows in
@@ -256,7 +256,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 </a>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.55, color: "var(--nx-fg-muted)", marginTop: "0.8rem", maxWidth: "44ch" }}>
-                A licensed physician decides — and can decline. Dispensed only if prescribed.
+                Your doctor decides. Nothing is made without a prescription.
               </p>
             </div>
           </div>
