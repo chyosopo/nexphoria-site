@@ -270,7 +270,7 @@ export default function FAQPage() {
                 <span>to ask your doctor.</span>
               </>
             }
-            subtitle="Answers on dosing, safety, side effects, shipping, insurance, and what to expect. Still curious? Message your physician any time."
+            subtitle="Plain answers on dosing, safety, side effects, shipping, insurance, and what to expect, before you start."
           />
 
           {/* Editorial hero — questions answered, mind settled */}

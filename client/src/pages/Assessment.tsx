@@ -377,7 +377,7 @@ function StepNav({
 export default function Assessment() {
   useSeo({
     title: "Start your peptide protocol — structured intake, physician-reviewed",
-    description: "Tell us your goals, history, and medications. A board-certified U.S. physician reviews your bloodwork and designs a 503A-compounded peptide protocol after review. No algorithms, no auto-approvals.",
+    description: "Tell us about your goals, your history and your medications. A board-certified U.S. physician reviews your bloodwork and your answers, then writes your plan.",
     path: "/assessment",
     jsonLd: [
       webPageJsonLd({
@@ -694,9 +694,9 @@ export default function Assessment() {
             <MxHeader
               eyebrow="Start your protocol"
               headline={
-                <>Tell us your goal.<br /><span>We’ll build the protocol.</span></>
+                <>Tell us about you.<br /><span>Your doctor builds your plan.</span></>
               }
-              subtitle="A short, structured intake. Your peptide protocol is compounded and shipped only after a licensed physician reviews your labs."
+              subtitle="A short questionnaire about your health, your history and your goal. Your plan is made and shipped only after a licensed doctor reviews your answers and your labs."
             />
 
             {/* Editorial hero — the first deliberate step, dawn light */}

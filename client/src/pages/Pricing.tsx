@@ -600,11 +600,10 @@ export default function Pricing() {
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>The price is the smallest</span><br />
-                <span>part of the decision.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One number a month.</span><br /><span>Everything within it.</span>
               </>
             }
-            subtitle="One figure carries the physician, the panel, the medicine, and the retest that proves it. The question was never the number — it's the condition you intend to live in."
+            subtitle="Your doctor, your blood panel, your medication and your 90-day retest are all inside the figure. Your doctor sets the dose. The price does not change with it."
           />
 
           {/* Editorial hero — the pricing promise as a photograph, not a diagram */}
