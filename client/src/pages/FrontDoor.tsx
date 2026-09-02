@@ -8,7 +8,7 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { ScrubHero } from "@/components/ScrubHero";
+import { PhotoHero } from "@/components/PhotoHero";
 import { HoldToRun } from "@/components/HoldToRun";
 import { SectionLine } from "@/components/SectionLine";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
@@ -51,25 +51,25 @@ const PRICED = SOLO_CATALOG.filter((s) => s.pricing);
 const FLOOR = PRICED.length ? Math.min(...PRICED.map((s) => s.pricing!.m12)) : NaN;
 
 const CHECKLIST = [
-  ["A licensed physician on record.", "A named, state-licensed doctor signs every prescription."],
-  ["A 503A pharmacy.", "Your prescription is compounded for you, batch documented, in a licensed U.S. pharmacy."],
-  ["Your labs, read first.", `A ${PANEL_TOTAL_MARKERS}-marker panel is drawn and reviewed before anything is prescribed.`],
-  ["A retest on the calendar.", "The same panel again at 90 days, and the dose follows what it shows."],
+  ["Your own doctor.", "A named, state-licensed physician reads your file and signs your prescription."],
+  ["Your own batch.", "Made for you in a licensed U.S. 503A pharmacy, batch documented, shipped cold."],
+  ["Your blood, read first.", `${PANEL_TOTAL_MARKERS} markers, drawn and reviewed before anything is prescribed.`],
+  ["Your retest, already booked.", `The same ${PANEL_TOTAL_MARKERS} markers again at 90 days. Your dose follows what they show.`],
 ] as const;
 
 const STEPS = [
-  ["Complete the assessment.", "Two minutes on your health, your history and your goal. It goes straight to a U.S. licensed physician."],
-  ["Draw the panel.", `A ${PANEL_TOTAL_MARKERS}-marker panel at a CLIA-certified lab near you. Your physician reads the results.`],
-  ["Start, and retest at 90 days.", "Your physician decides. If it fits, a 503A pharmacy compounds it and ships it cold. The same markers are drawn again at 90 days and the dose follows the data."],
+  ["Tell us about you.", "Two minutes on your health, your history and your goal. It goes straight to a U.S. licensed doctor."],
+  ["Get your blood drawn.", `${PANEL_TOTAL_MARKERS} markers at a CLIA-certified lab near you. Your doctor reads every one.`],
+  ["Start, then retest at 90 days.", "If it fits you, a licensed 503A pharmacy makes it for you and ships it cold. At 90 days you test again, and your dose follows your numbers."],
 ] as const;
 
 const FAQ = [
-  { q: "Is this legit?", a: "Yes. A named, U.S. licensed physician reviews your intake and your labs and signs every prescription. The medication is compounded for you in a licensed 503A pharmacy and shipped cold. Your labs are drawn again at 90 days." },
-  { q: "Do I actually talk to a doctor?", a: `A physician reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel, and makes the call. You can message them through the portal, and your dose is reviewed at every retest.` },
-  { q: "Do I need bloodwork?", a: "Yes, before anything is prescribed. It is drawn at a CLIA-certified lab near you, and it is inside the monthly figure. Without a baseline there is nothing to compare the retest against, and the retest is the point." },
-  { q: "What if the doctor says no?", a: "Then nothing is compounded and nothing is billed. Some intakes end there, and that outcome carries no charge." },
+  { q: "Is this legit?", a: "Yes. A named, U.S. licensed doctor reviews your intake and your blood, and signs every prescription. Your medication is made for you in a licensed 503A pharmacy and shipped cold. Your blood is drawn again at 90 days." },
+  { q: "Do I actually talk to a doctor?", a: `Yes. A doctor reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel and makes the call. You can message them through your portal, and your dose is reviewed at every retest.` },
+  { q: "Do I need bloodwork?", a: "Yes, before anything is prescribed. It is drawn at a lab near you, and it is inside your monthly figure. Without a baseline there is nothing to compare your retest against, and the retest is the point." },
+  { q: "What if the doctor says no?", a: "Then nothing is made and nothing is billed. Some intakes end there, and that carries no charge." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
-  { q: "How is it shipped?", a: "Cold, in an unbranded package, to all 50 states." },
+  { q: "How is it shipped?", a: "Cold, in a plain package, to your door in all 50 states." },
 ];
 
 const kicker: React.CSSProperties = {
@@ -87,15 +87,15 @@ function priceLine(s: SoloPeptide) {
 
 export default function FrontDoor() {
   useSeo({
-    title: "Nexphoria: peptides, prescribed on your numbers",
+    title: "Nexphoria: your body, your numbers, your plan",
     description:
-      `Prescription peptides built on your bloodwork: a ${PANEL_TOTAL_MARKERS}-marker panel a U.S. physician reads first, a licensed 503A pharmacy, cold shipping, and the same panel again at 90 days.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
+      `Prescription peptides built around your blood test: a U.S. doctor checks ${PANEL_TOTAL_MARKERS} markers first, a licensed U.S. pharmacy makes it for you, it ships cold, and you retest at 90 days.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
     path: "/",
     jsonLd: [
       orgJsonLd(),
       websiteJsonLd(),
       medicalBusinessJsonLd(),
-      webPageJsonLd({ name: "Nexphoria", description: "Prescription peptides, built on your bloodwork.", path: "/" }),
+      webPageJsonLd({ name: "Nexphoria", description: "Your body. Your numbers. Your plan. Prescription peptides built around your blood test.", path: "/" }),
       faqJsonLd(FAQ),
     ],
   });
@@ -106,14 +106,14 @@ export default function FrontDoor() {
     <SiteLayout navVariant="showcase" hideTrustBar>
       <div className="nx-env" aria-hidden="true" />
 
-      {/* ══ 1 · THE HERO — the scroll-scrubbed shot ══ */}
-      <ScrubHero />
+      {/* ══ 1 · THE HERO — the morning photograph, the you voice ══ */}
+      <PhotoHero />
 
       {/* ══ 6.1 · THE CHECKLIST — proof, in buyers' own words ══ */}
       <section className="nx-container" aria-labelledby="fd-checklist" style={{ paddingTop: "var(--nx-sp-sec)" }}>
         <Reveal>
-          <p style={kicker}>What a real clinic has</p>
-          <h2 id="fd-checklist" style={{ ...h2, maxWidth: "16ch" }}>Four things. We have all four.</h2>
+          <p style={kicker}>What you get</p>
+          <h2 id="fd-checklist" style={{ ...h2, maxWidth: "22ch" }}>Four things to expect from a real clinic. You get all four.</h2>
         </Reveal>
         <ol className="nx-check-grid" data-testid="frontdoor-checklist">
           {CHECKLIST.map(([t, b], i) => (
@@ -128,7 +128,7 @@ export default function FrontDoor() {
         </ol>
         <Reveal>
           <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "clamp(1.6rem,3vw,2.4rem)", maxWidth: "48ch" }}>
-            That is the whole model. It is also the checklist people use to spot a real clinic.
+            That is the whole model. It is also how you tell a real clinic from a website.
           </p>
         </Reveal>
       </section>
@@ -139,8 +139,8 @@ export default function FrontDoor() {
       <section className="nx-container" aria-labelledby="fd-formulary">
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
           <Reveal>
-            <p style={kicker}>The formulary</p>
-            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "22ch" }}>What each one does, and when you will know.</h2>
+            <p style={kicker}>Your options</p>
+            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "24ch" }}>What each one does for you, and when you will know.</h2>
           </Reveal>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             The complete catalog <ArrowRight size={14} aria-hidden style={{ display: "inline", verticalAlign: "-2px" }} />
@@ -168,7 +168,7 @@ export default function FrontDoor() {
 
         {/* Or start from the goal: the assessment's second doorway. */}
         <div className="nx-goal-row" data-testid="frontdoor-goals">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)", margin: 0 }}>Or start from the goal</p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)", margin: 0 }}>Or start with your goal</p>
           <div className="nx-goal-tiles">
             {GOAL_TILES.map(({ cat, img }) => (
               <Link key={cat} href={`/goals/${cat}`} className="nx-goal-tile" data-testid={`frontdoor-goal-${cat}`}>
@@ -193,7 +193,7 @@ export default function FrontDoor() {
         <div className="nx-container">
           <Reveal>
             <p style={kicker}>How it works</p>
-            <h2 id="fd-steps" style={{ ...h2, maxWidth: "22ch" }}>Three steps to a protocol built on your numbers.</h2>
+            <h2 id="fd-steps" style={{ ...h2, maxWidth: "22ch" }}>Three steps. Your doctor is in every one.</h2>
           </Reveal>
           <ol className="nx-steps" data-testid="frontdoor-steps">
             {STEPS.map(([t, b], i) => (
@@ -209,10 +209,10 @@ export default function FrontDoor() {
           <div style={{ marginTop: "clamp(1.4rem,3vw,2rem)", display: "flex", flexDirection: "column", gap: 6 }} data-testid="frontdoor-fineprint">
             <PrescribedPromise testid="frontdoor-steps-promise" />
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-              If the physician declines, nothing is compounded and nothing is billed.
+              If your doctor says no, nothing is made and nothing is billed.
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-              Prices are monthly figures. Twelve-month plans include the blood panel.
+              Prices are per month. Twelve-month plans include your blood panel.
             </p>
           </div>
         </div>
@@ -223,9 +223,9 @@ export default function FrontDoor() {
         <div className="nx-hold-copy">
           <Reveal>
             <p style={kicker}>Try it</p>
-            <h2 id="fd-hold" style={{ ...h2, maxWidth: "14ch" }}>Hold to run the 90 days.</h2>
+            <h2 id="fd-hold" style={{ ...h2, maxWidth: "14ch" }}>Hold to run your 90 days.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "40ch" }}>
-              A baseline panel, a physician's read, and the same panel again. The dose follows the data. Run it yourself.
+              Your first panel, your doctor's read, your retest. Your dose follows your numbers. Run it yourself.
             </p>
           </Reveal>
         </div>
@@ -239,10 +239,10 @@ export default function FrontDoor() {
       {/* ══ 6.5 · PRICING — one number ══ */}
       <section className="nx-container" aria-labelledby="fd-pricing">
         <Reveal>
-          <p style={kicker}>One number</p>
+          <p style={kicker}>Your price</p>
           <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>One number a month. Everything within it.</h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "58ch" }}>
-            The consultation, the panel, the medication, the shipping and the 90-day retest are all inside the figure. Your physician sets the dose. The price does not change with it.
+            Your consultation, your blood panel, your medication, shipping and your 90-day retest are all inside the figure. Your doctor sets the dose. The price does not change with it.
           </p>
         </Reveal>
         <Reveal>
@@ -279,8 +279,8 @@ export default function FrontDoor() {
       {/* ══ 6.6 · FAQ — the real objections, answered plainly ══ */}
       <section className="nx-container nx-faq-section" aria-labelledby="fd-faq">
         <Reveal>
-          <p style={kicker}>Asked plainly</p>
-          <h2 id="fd-faq" style={{ ...h2, maxWidth: "16ch" }}>The questions people actually ask.</h2>
+          <p style={kicker}>Your questions</p>
+          <h2 id="fd-faq" style={{ ...h2, maxWidth: "18ch" }}>What people ask before they start.</h2>
         </Reveal>
         <div className="nx-faq-list" data-testid="frontdoor-faq">
           {FAQ.map((it, i) => (
@@ -302,13 +302,13 @@ export default function FrontDoor() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="fd-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "20ch", margin: "0 auto", textWrap: "balance" }}>
-              Prescribed on your numbers. Reviewed on your numbers.
+              Your numbers decide. Your doctor signs. Your plan.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               Start your assessment
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 78%, transparent)", marginTop: "0.9rem" }}>
-              Two minutes. Billed only if a physician prescribes.
+              Two minutes. You pay only if a doctor prescribes.
             </p>
           </Reveal>
         </div>

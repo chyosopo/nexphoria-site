@@ -17,6 +17,20 @@ Deviations from the skill, said out loud:
   scrub-pipeline standard. The one-file rule exists for beginners on fresh sites;
   a live regulated brand earns the deviation.
 
+## 0. Decision log, 2026-09-02
+
+Chiya watched the scroll-scrubbed film on the preview and rejected the idea
+("there's no point behind this motion scroll video"). Seven hero mockups
+were rendered as HTML with the real fonts and photographs; she rejected the
+copy across all of them ("I don't like the copy at all") and chose the
+"You, you, you" voice: second person, plain, friendly, straight to the
+point. The hero is now one lifestyle photograph (layout A of the mockups)
+with "Your body. Your numbers. Your plan." and every line on the home page
+was rewritten in that voice. The scroll engine, its assets and the band map
+below are retired; the film and frames stay in review/ for reference. Law 3
+(institutional voice) is deliberately relaxed on tone by the principal; the
+voice gate (no defensive negation) still runs.
+
 ## 1. The brand premise
 
 One word from the subject's world: **measured**. A Nexphoria dose is set from a

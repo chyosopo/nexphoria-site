@@ -195,11 +195,10 @@ export async function prerender(): Promise<{ pages: number }> {
       let html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
       // Reveal arms only off-screen elements with nx-armed (opacity 0); a
       // snapshot must never carry it, or the static page hides its content.
-      // nx-video-ready would fade a src-less video over the poster.
+      // nx-motion is the client-only flag that runs the hero entrance.
       html = html
         .replace(/\s*\bnx-armed\b/g, "")
-        .replace(/\s*\bnx-video-(?:ready|failed)\b/g, "")
-        .replace(/\s*\bnx-scrub-on\b/g, "")
+        .replace(/\s*\bnx-motion\b/g, "")
         // The scrub hero's video src is a blob: URL minted in THIS browser. Baked
         // into the snapshot it becomes a dead "blob:./…" that errors on load and
         // flips the hero into its failed state before the real fetch runs.

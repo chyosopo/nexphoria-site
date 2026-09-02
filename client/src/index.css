@@ -2461,140 +2461,37 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
   .nx-evidence-row, .nx-evidence-chev { transition: none; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   SCRUB HERO — docs/DESIGN-PACKAGE.md §4–§8. Engine: components/ScrubHero.tsx
-   A cold-white world, so the legibility system is inverted from the skill's
-   dark default: light scrims and a light halo under graphite type. Every
-   colour here is a house token or an rgba of --nx-bg / --nx-bg-dark.
-   ═══════════════════════════════════════════════════════════════════════ */
-:root {
-  --nx-hero-h: 550vh; /* scroll range 450vh: every 0.22 band is a ~87vh plateau, five to six flicks */
-  --nx-hero-poster: none; /* set at runtime by ScrubHero, only on the scrub path, to url(poster) */
-  /* the light halo: tight edge, mid glow, wide falloff — canvas rgb */
-  --nx-tshadow: 0 1px 2px rgba(247,248,250,.92), 0 3px 12px rgba(247,248,250,.72), 0 10px 44px rgba(247,248,250,.8);
-}
+/* ═══ PHOTO HERO — components/PhotoHero.tsx (Chiya, 2026-09-02) ═══ */
 html, body { overflow-x: hidden; overflow-x: clip; }
-
-.nx-hero { position: relative; height: var(--nx-hero-h); background: var(--nx-bg); }
-.nx-hero-stage {
-  position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden;
-  background: var(--nx-bg);
+.nx-phero { position: relative; min-height: min(86vh, 840px); display: flex; align-items: center; background: var(--nx-bg); overflow: hidden; }
+.nx-phero-art { position: absolute; inset: 0; }
+.nx-phero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 40%; display: block; animation: nx-phero-breathe 22s var(--nx-ease) infinite alternate; transform-origin: 70% 40%; }
+.nx-phero-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(247,248,250,.94) 0%, rgba(247,248,250,.8) 36%, rgba(247,248,250,.28) 58%, rgba(247,248,250,0) 74%); }
+@keyframes nx-phero-breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
+.nx-phero-copy { position: relative; padding-top: clamp(4rem, 10vh, 7rem); padding-bottom: clamp(3.5rem, 9vh, 6rem); max-width: 1280px; }
+.nx-phero-kicker { font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-phero-h1 { margin: 1rem 0 0; font-weight: 500; font-size: var(--nx-t-giant); line-height: 0.98; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); }
+.nx-phero-line { display: block; }
+.nx-phero-line em { font-style: italic; color: var(--nx-cobalt); }
+.nx-phero-sub { margin: 1.4rem 0 0; font-size: var(--nx-t-lg); line-height: 1.5; color: var(--nx-fg-graphite); max-width: 42ch; }
+.nx-phero-cta { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; margin-top: 2rem; }
+.nx-phero-btn { padding: 16px 34px; font-size: var(--nx-t-base); }
+.nx-phero-micro { font-size: var(--nx-t-xs); color: var(--nx-fg-graphite); }
+/* the entrance: lines rise once on load, client only, motion allowed only */
+.nx-motion .nx-phero-line, .nx-motion .nx-phero-sub, .nx-motion .nx-phero-cta, .nx-motion .nx-phero-kicker {
+  animation: nx-rise .9s var(--nx-reveal-ease) both; animation-delay: calc(80ms + var(--i, 0) * 110ms);
 }
-.nx-hero-poster, .nx-hero-video, .nx-hero-scrim, .nx-hero-motes, .nx-hero-bands {
-  position: absolute; inset: 0;
+.nx-motion .nx-phero-sub { --i: 3; } .nx-motion .nx-phero-cta { --i: 4; }
+@keyframes nx-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (max-width: 860px) {
+  .nx-phero { min-height: 0; display: block; }
+  .nx-phero-art { position: relative; aspect-ratio: 4 / 3; max-height: 56vh; }
+  .nx-phero-art img { animation: none; object-position: 60% 30%; }
+  .nx-phero-art::after { background: linear-gradient(180deg, rgba(247,248,250,0) 70%, rgba(247,248,250,1) 100%); }
+  .nx-phero-copy { padding-top: 1.2rem; }
+  .nx-phero-h1 { font-size: var(--nx-t-h1); }
 }
-.nx-hero-poster {
-  background: var(--nx-hero-poster, none) center / cover no-repeat;
-}
-.nx-hero-video {
-  width: 100%; height: 100%; object-fit: cover; opacity: 0;
-  transition: opacity var(--nx-dur-4) var(--nx-ease);
-  will-change: transform; transform: translateZ(0);
-  pointer-events: none;
-}
-.nx-video-ready .nx-hero-video { opacity: 1; }
-.nx-video-failed .nx-hero-video { display: none; }
-/* 1. the global base scrim: the calm left third stays calm on every frame */
-.nx-hero-scrim {
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(247,248,250,.55) 0%, rgba(247,248,250,.28) 34%, rgba(247,248,250,0) 58%),
-    linear-gradient(180deg, rgba(247,248,250,.35) 0%, rgba(247,248,250,0) 22%, rgba(247,248,250,0) 80%, rgba(247,248,250,.35) 100%);
-}
-/* loading ring: honest progress, gone the moment the video is ready or failed */
-.nx-hero-ring {
-  position: absolute; right: clamp(1.2rem, 3vw, 2.4rem); bottom: clamp(1.2rem, 3vw, 2.4rem);
-  width: 30px; height: 30px; color: var(--nx-cobalt); opacity: .9;
-  transform: rotate(-90deg); transition: opacity var(--nx-dur-3) var(--nx-ease);
-}
-.nx-hero-ring circle { transition: stroke-dashoffset 120ms linear; }
-.nx-video-ready .nx-hero-ring, .nx-video-failed .nx-hero-ring { opacity: 0; }
-
-/* whisper particles: frost motes, below 0.2 opacity, paused unless scrubbing */
-.nx-hero-motes { pointer-events: none; overflow: hidden; }
-.nx-hero-motes i {
-  position: absolute; display: block; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--nx-cobalt); opacity: 0; left: var(--x); top: var(--y);
-  animation: nx-mote 16s linear infinite; animation-play-state: paused;
-  animation-delay: var(--d);
-}
-.nx-scrub-on .nx-hero-motes i { animation-play-state: running; }
-.nx-hero-motes i:nth-child(1){--x:8%;--y:70%;--d:-2s}  .nx-hero-motes i:nth-child(2){--x:18%;--y:40%;--d:-6s;width:4px;height:4px}
-.nx-hero-motes i:nth-child(3){--x:27%;--y:82%;--d:-9s} .nx-hero-motes i:nth-child(4){--x:36%;--y:22%;--d:-12s;width:3px;height:3px}
-.nx-hero-motes i:nth-child(5){--x:48%;--y:64%;--d:-4s} .nx-hero-motes i:nth-child(6){--x:61%;--y:14%;--d:-14s;width:4px;height:4px}
-.nx-hero-motes i:nth-child(7){--x:72%;--y:78%;--d:-7s} .nx-hero-motes i:nth-child(8){--x:84%;--y:36%;--d:-10s;width:3px;height:3px}
-.nx-hero-motes i:nth-child(9){--x:93%;--y:58%;--d:-1s}
-@keyframes nx-mote {
-  0%   { transform: translate3d(0, 0, 0) scale(.6); opacity: 0; }
-  12%  { opacity: .18; }
-  50%  { transform: translate3d(14px, -60px, 0) scale(1); opacity: .12; }
-  88%  { opacity: .16; }
-  100% { transform: translate3d(-10px, -130px, 0) scale(.7); opacity: 0; }
-}
-
-/* ── caption bands: the calm left third ── */
-.nx-hb {
-  position: absolute; left: clamp(1.5rem, 7vw, 6.5rem); top: 50%;
-  transform: translateY(-50%);
-  width: min(40vw, 36rem); color: var(--nx-fg);
-  text-shadow: var(--nx-tshadow);
-  will-change: opacity;
-}
-/* 2. the per-band scrim rides the band's opacity and deepens with --k */
-.nx-hb::before {
-  content: ""; position: absolute; inset: -18% -22%; z-index: -1; pointer-events: none;
-  opacity: calc(.25 + .75 * var(--k, 1));
-  background: radial-gradient(ellipse 74% 70% at 50% 50%, rgba(247,248,250,.72) 0%, rgba(247,248,250,.46) 46%, rgba(247,248,250,0) 76%);
-}
-/* ch on the text element itself: a container's ch is measured in the body font */
-.nx-hb-line-text {
-  margin: 0; font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.06;
-  letter-spacing: var(--nx-ls-display); text-wrap: balance; max-width: 15ch;
-}
-.nx-hb-copy { position: relative; display: block; }
-/* (c) blur-to-sharp: the soft copy carries a STATIC blur; only opacity moves */
-.nx-hb-soft { position: absolute; inset: 0; filter: blur(10px); opacity: calc(1 - var(--k, 1)); }
-.nx-hb-sharp { position: relative; opacity: var(--k, 1); }
-/* word spans: inline-block so transforms apply; the space lives outside */
-.nx-hb-w { display: inline-block; }
-/* (f) drift-down: the words fall into place while the camera descends */
-.nx-hb-drift .nx-hb-w {
-  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 2.8, 1);
-  opacity: var(--kc);
-  transform: translateY(calc((1 - var(--kc)) * -24px));
-}
-/* (e) the settle: word-by-word rise, then the line draws, then the subline, then the CTA */
-.nx-hb-settle {
-  top: auto; bottom: clamp(3rem, 11vh, 8rem); transform: none;
-  width: min(30vw, 28rem); /* stays clear of the landed vials at every desktop width */
-}
-.nx-hb-settle::before { inset: -14% -18% -20%; background: radial-gradient(ellipse 78% 74% at 50% 50%, rgba(247,248,250,.86) 0%, rgba(247,248,250,.6) 46%, rgba(247,248,250,0) 76%); }
-.nx-hb-headline {
-  margin: 0; font-weight: 500; font-size: var(--nx-t-display); line-height: 1;
-  letter-spacing: var(--nx-ls-display); text-wrap: balance; max-width: 11ch;
-}
-.nx-hb-headline .nx-hb-w {
-  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 3, 1);
-  opacity: var(--kc);
-  transform: translateY(calc((1 - var(--kc)) * 18px));
-}
-.nx-hb-settle .nx-hb-line {
-  --draw: clamp(0, (var(--k, 0) - .5) * 3, 1);
-  display: block; width: min(240px, 60%); height: 18px; margin-top: .9rem;
-}
-.nx-hb-sub {
-  --ks: clamp(0, (var(--k, 0) - .66) * 4, 1);
-  margin: .9rem 0 0; font-size: var(--nx-t-lg); line-height: 1.45; color: var(--nx-fg-graphite);
-  opacity: var(--ks); transform: translateY(calc((1 - var(--ks)) * 10px));
-  max-width: 30ch;
-}
-.nx-hb-cta {
-  --kb: clamp(0, (var(--k, 0) - .78) * 5, 1);
-  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.1rem; margin-top: 1.4rem;
-  opacity: var(--kb); transform: translateY(calc((1 - var(--kb)) * 10px));
-}
-.nx-hb-btn { text-shadow: none; padding: 14px 30px; font-size: var(--nx-t-base); }
-.nx-hb-micro { font-size: var(--nx-t-xs); color: var(--nx-fg-graphite); }
+@media (prefers-reduced-motion: reduce) { .nx-phero-art img { animation: none; } .nx-motion .nx-phero-line, .nx-motion .nx-phero-sub, .nx-motion .nx-phero-cta, .nx-motion .nx-phero-kicker { animation: none; } }
 
 /* ── the signature: the marker line, baseline dot to retest dot ── */
 .nx-marker-line { overflow: visible; }
@@ -2606,44 +2503,6 @@ html, body { overflow-x: hidden; overflow-x: clip; }
 .nx-marker-line .nx-ml-a { opacity: clamp(0, var(--draw, 1) * 6, 1); }
 .nx-marker-line .nx-ml-b { opacity: clamp(0, (var(--draw, 1) - .85) * 7, 1); }
 .nx-marker-line.nx-marker-drawn path, .nx-marker-line.nx-marker-drawn circle { --draw: 1; }
-
-/* ── the scroll cue ── */
-.nx-hero-cue {
-  position: absolute; left: 50%; bottom: clamp(1rem, 3vh, 2rem); transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: .45rem;
-  color: var(--nx-fg-muted); font-size: var(--nx-t-2xs); letter-spacing: var(--nx-ls-caps);
-  text-transform: uppercase; text-shadow: var(--nx-tshadow); pointer-events: none;
-  transition: opacity var(--nx-dur-4) var(--nx-ease);
-}
-.nx-hero-cue i { display: block; width: 1px; height: 34px; background: var(--nx-fg-muted); transform-origin: top; animation: nx-cue 2.6s var(--nx-ease) infinite; animation-delay: -1s; }
-@keyframes nx-cue { 0% { transform: scaleY(0); opacity: 0 } 30% { opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
-@media (max-height: 560px) { .nx-hero-cue, .nx-hero-ring { display: none; } }
-
-/* ── the static hero (composed over the ending frame) ── */
-.nx-hero-static { display: none; background: var(--nx-bg); }
-.nx-hero-static img { display: block; width: 100%; height: auto; aspect-ratio: 1300 / 1071; object-fit: cover; object-position: 50% 50%; max-height: 62vh; }
-.nx-hero-static-copy { padding: clamp(1.6rem, 5vw, 2.6rem) var(--nx-gutter) clamp(2rem, 6vw, 3rem); max-width: 640px; }
-.nx-hero-kicker { font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
-.nx-hero-static-h { margin: .7rem 0 0; font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); text-wrap: balance; }
-.nx-hero-static-sub { margin: 1rem 0 0; font-size: var(--nx-t-body); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 42ch; }
-.nx-hero-static-copy .nx-hb-btn { margin-top: 1.4rem; }
-.nx-hero-static-copy .nx-hb-micro { display: block; margin-top: .7rem; }
-
-/* ── STATIC-HERO GATES — five queries, character for character the same as
-      GATES in components/ScrubHero.tsx. Decided live by the browser here and
-      by the change listeners there. ── */
-@media (max-width: 720px),
-       (orientation: portrait) and (max-width: 1024px),
-       (orientation: portrait) and (pointer: coarse),
-       (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
-       (prefers-reduced-motion: reduce) {
-  .nx-hero { height: auto; }
-  .nx-hero-stage { position: relative; height: auto; overflow: visible; }
-  .nx-hero-poster, .nx-hero-video, .nx-hero-scrim, .nx-hero-motes, .nx-hero-ring, .nx-hero-bands, .nx-hero-cue { display: none; }
-  .nx-hero-static { display: block; }
-  .nx-marker-line path, .nx-marker-line circle { --draw: 1; }
-}
-@media (pointer: coarse) { .nx-hb-btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; } }
 
 /* ── the environment layer: one fixed cold-light drift behind the whole page ── */
 .nx-env {
@@ -2660,18 +2519,6 @@ html, body { overflow-x: hidden; overflow-x: clip; }
 .nx-env ~ * { position: relative; z-index: 1; }
 body.nx-paused *, body.nx-paused *::before, body.nx-paused *::after { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) { .nx-env { animation: none; } }
-
-/* (g) approach-from-depth: the rush toward the camera, sharpening as it arrives */
-.nx-hb-depth .nx-hb-sharp { transform: scale(calc(.82 + .18 * var(--k, 1))); transform-origin: left center; }
-.nx-hb-depth .nx-hb-soft { transform: scale(calc(.82 + .18 * var(--k, 1))); transform-origin: left center; }
-/* (d) word-punch with overshoot: each word lands like a vial snapping into the row */
-.nx-hb-punch .nx-hb-w {
-  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 3, 1);
-  --ks: clamp(0, (var(--k, 0) - var(--th, 0) - .1) * 3.2, 1);
-  opacity: var(--kc);
-  transform: scale(calc(0.6 + (0.4 + .12) * var(--kc) - .12 * var(--ks)));
-  transform-origin: left bottom;
-}
 
 /* ── HOLD TO RUN — the one interactive moment ── */
 .nx-hold { display: grid; gap: 1.2rem; justify-items: start; }
