@@ -22,7 +22,10 @@ export function AnimatedCounter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [display, setDisplay] = useState("0");
+  // The static HTML carries the true value (a crawler or a slow connection
+  // must never read "0 markers"); the count from zero runs only on the client
+  // once the element is in view and motion is allowed.
+  const [display, setDisplay] = useState(value.toFixed(decimals));
 
   useEffect(() => {
     if (!inView) return;

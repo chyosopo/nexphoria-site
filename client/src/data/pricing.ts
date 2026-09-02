@@ -127,8 +127,8 @@ export function formatUSD(amount: number): string {
    without the actual amount and cadence the customer is committing to. */
 export function billingNote(cadence: CadenceKey, perMonth: number): string {
   const months = CADENCE_DISCOUNTS[cadence].months;
-  if (cadence === "3mo") return `Billed quarterly — ${formatUSD(perMonth * months)} every 3 months`;
-  if (cadence === "12mo") return `Billed monthly · 12-month term — ${formatUSD(perMonth * months)}/year`;
+  if (cadence === "3mo") return `Billed quarterly: ${formatUSD(perMonth * months)} every 3 months`;
+  if (cadence === "12mo") return `Billed monthly · 12-month term: ${formatUSD(perMonth * months)}/year`;
   return "Billed monthly · cancel anytime";
 }
 

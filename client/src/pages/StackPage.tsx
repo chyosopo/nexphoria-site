@@ -113,7 +113,7 @@ export default function StackPage({ slug }: { slug: string }) {
     { Icon: Microscope, t: `${stack.panel} bloodwork panel` },
     { Icon: FlaskConical, t: "503A pharmacy compounding" },
     { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
-    { Icon: LayoutDashboard, t: "Marker dashboard & messaging" },
+    { Icon: LayoutDashboard, t: "Marker dashboard" },
     { Icon: RefreshCw, t: "90-day retest & dose review" },
   ];
 

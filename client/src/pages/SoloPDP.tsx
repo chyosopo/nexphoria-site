@@ -128,7 +128,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     { Icon: Microscope, t: `${solo.panel} bloodwork panel` },
     { Icon: FlaskConical, t: "503A pharmacy compounding" },
     { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
-    { Icon: LayoutDashboard, t: "Marker dashboard & messaging" },
+    { Icon: LayoutDashboard, t: "Marker dashboard" },
     { Icon: RefreshCw, t: "90-day retest & dose review" },
   ];
 

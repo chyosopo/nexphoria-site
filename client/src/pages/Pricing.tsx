@@ -79,7 +79,7 @@ const included = [
   "Partner-laboratory labs every 90 days",
   "Overnight cold-chain shipping",
   "Physician re-evaluation at each lab cycle",
-  "Secure telehealth messaging between visits",
+  "Physician review at every retest between visits",
   "Itemized receipts for FSA/HSA submission",
 ];
 
@@ -95,7 +95,7 @@ const tiers = [
       "Board-certified physician review",
       "503A US-compounded vial",
       "Cold-chain overnight shipping",
-      "Secure telehealth messaging",
+      "Physician review at every retest",
     ],
     cta: "Browse peptides",
     href: "/peptides",

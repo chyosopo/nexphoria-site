@@ -59,7 +59,7 @@ export function PhysicianProofBand({ name }: { name: string }) {
         </div>
         <div>
           <p className="nx-proof-quote" style={{ fontSize: "var(--nx-t-xl)" }}>
-            Every {name} prescription is written by a U.S.-licensed physician who has read your bloodwork — and declined when the numbers say no.
+            Every {name} prescription is written by a U.S. licensed physician who has read your bloodwork. Some files end there.
           </p>
           <p className="nx-proof-attr" style={{ marginTop: 10 }}>The Nexphoria clinical standard</p>
         </div>

@@ -225,7 +225,7 @@ export function BuyBox(props: BuyBoxProps) {
                   className="nx-cta-cobalt"
                   style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: "var(--nx-t-base)", padding: "14px 26px", border: "none", cursor: "pointer" }}
                 >
-                  Add to protocol — {active ? usd(active.amount) : ""}{active?.per}
+                  Add to protocol · {active ? usd(active.amount) : ""}{active?.per}
                 </button>
               ) : (
                 <CTA testId={ctaTestId}>Start your assessment</CTA>
