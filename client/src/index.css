@@ -2660,4 +2660,4 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 /* the catalog lineup shows photographs now: a light stage, the vials large */
 .nx-vial-lineup.nx-vial-lineup { background: linear-gradient(180deg, var(--nx-bg) 0%, var(--nx-bg-cream) 100%); border: 1px solid var(--nx-border); }
 .nx-vial-lineup .nx-vial-cell { overflow: hidden; border-radius: var(--nx-r-md); }
-.nx-vial-lineup .nx-vial-cell .nx-sku-img--lineup { transform: scale(1.22); transform-origin: 50% 55%; border-radius: 0; background: transparent; }
+.nx-vial-lineup .nx-vial-cell .nx-sku-img--lineup { transform: scale(1.7); transform-origin: 50% 58%; border-radius: 0; background: transparent; }

@@ -504,7 +504,7 @@ function PanelTierComparison() {
       background="var(--nx-bg-cream)"
       eyebrow="Labs, by tier"
       title="How deep the bloodwork goes."
-      lead="Every plan includes physician-reviewed labs. Which tier you draw depends on your protocol — the deeper the therapy reaches, the deeper we read. The tier your protocol requires is carried within the figure."
+      lead="Every plan includes physician-reviewed labs. Which tier you draw depends on your protocol. The deeper the therapy reaches, the deeper your doctor reads. The tier your protocol requires is carried within the figure."
       columns={[
         { label: "Basic panel", sub: basic.summary },
         { label: "Full panel", sub: full.summary, highlight: true, badge: "Most protocols" },
@@ -528,7 +528,7 @@ function PanelTierComparison() {
           ],
         },
         {
-          label: "Safety screen — CBC, metabolic, lipids, HbA1c, hs-CRP, TSH",
+          label: "Safety screen: CBC, metabolic, lipids, HbA1c, hs-CRP, TSH",
           cells: [
             { text: "Included", tone: "pos" },
             { text: "Included", tone: "pos" },
@@ -536,7 +536,7 @@ function PanelTierComparison() {
           ],
         },
         {
-          label: "Hormonal + GH axis — testosterone, LH/FSH, IGF-1, full thyroid",
+          label: "Hormonal + GH axis: testosterone, LH/FSH, IGF-1, full thyroid",
           cells: [
             { text: "Not in Basic", tone: "neg" },
             { text: "Included", tone: "pos" },
@@ -544,7 +544,7 @@ function PanelTierComparison() {
           ],
         },
         {
-          label: "Advanced cardiometabolic — ApoB, Lp(a), LDL-P, HOMA-IR, IL-6/TNF-α",
+          label: "Advanced cardiometabolic: ApoB, Lp(a), LDL-P, HOMA-IR, IL-6/TNF-α",
           cells: [
             { text: "Not in Basic", tone: "neg" },
             { text: "Not in Full", tone: "neg" },
@@ -568,20 +568,20 @@ function PanelTierComparison() {
           ],
         },
       ]}
-      footnote="Prices shown are standalone rates. On 3- and 12-month plans the panel your protocol requires is bundled in — there is no separate lab bill."
+      footnote="Prices shown are standalone rates. On 3- and 12-month plans the panel your protocol requires is bundled in. The lab work is inside the figure."
     />
   );
 }
 
 export default function Pricing() {
   useSeo({
-    title: "Peptide therapy pricing — one complete monthly figure",
+    title: "Peptide therapy pricing: one complete monthly figure",
     description: `Single peptides from ${SOLO_FROM_LABEL}/mo, physician-curated stacks bundled at 12% off. Partner-laboratory bloodwork, physician consult, and refills within one complete figure. Cancel before dispense.`,
     path: "/pricing",
     jsonLd: [
       webPageJsonLd({
         name: "Nexphoria Pricing",
-        description: "Physician-prescribed peptide therapy, priced as one complete figure — single peptides, bundles, and stacks.",
+        description: "Physician-prescribed peptide therapy, priced as one complete figure: single peptides, bundles, and stacks.",
         path: "/pricing",
       }),
       orgJsonLd(),
@@ -732,7 +732,7 @@ export default function Pricing() {
               eyebrow="Physician"
               icon={<Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Board-certified US physician on every case."
-              sub="A licensed physician reads your intake and labs before anything ships — a clinician's judgment, start to finish."
+              sub="A licensed physician reads your intake and labs before anything ships. A clinician's judgment, start to finish."
               testId="pricing-tile-physician"
             />
             <BenefitTile
@@ -740,7 +740,7 @@ export default function Pricing() {
               eyebrow="Labs"
               icon={<FlaskConical size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Partner-laboratory bloodwork every 90 days."
-              sub="Full biomarker panels included in every plan — the lab work lives inside the figure."
+              sub="Full biomarker panels included in every plan. The lab work lives inside the figure."
               testId="pricing-tile-labs"
             />
             <BenefitTile
@@ -748,7 +748,7 @@ export default function Pricing() {
               eyebrow="Pharmacy"
               icon={<ShieldCheck size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="503A US-licensed compounding pharmacy only."
-              sub="Every vial compounded in a US facility we vet — domestic, documented, every batch."
+              sub="Every vial compounded in a US facility we vet. Domestic, documented, every batch."
               testId="pricing-tile-pharmacy"
             />
             <BenefitTile
@@ -764,7 +764,7 @@ export default function Pricing() {
               eyebrow="Adjustments"
               icon={<ChevronsDownUp size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Physician re-titrates each cycle."
-              sub="Every 90 days, your physician reviews your labs and adjusts your dose — the review is included."
+              sub="Every 90 days, your physician reviews your labs and adjusts your dose. The review is included."
               testId="pricing-tile-titration"
             />
             <BenefitTile
@@ -1413,7 +1413,7 @@ const PLAN_COMPARISON_ROWS = [
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
-  { feature: `Partner-laboratory labs (${PANEL_TOTAL_MARKERS} markers)`, solo: "Add $199", stack: "Every 90 days — included", custom: "Extended panels — included" },
+  { feature: `Partner-laboratory labs (${PANEL_TOTAL_MARKERS} markers)`, solo: "Add $199", stack: "Every 90 days, included", custom: "Extended panels, included" },
   { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
   { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },

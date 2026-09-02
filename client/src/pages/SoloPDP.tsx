@@ -56,8 +56,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     : [];
 
   useSeo({
-    title: solo ? `${solo.name} — ${solo.category} | Nexphoria` : "Peptide — Nexphoria",
-    description: solo ? `${solo.name}: ${solo.dose}. Physician-prescribed, ${solo.panel}-panel gated, retested. Educational — not medical advice.` : "",
+    title: solo ? `${solo.name}: ${solo.category} | Nexphoria` : "Peptide | Nexphoria",
+    description: solo ? `${solo.name}: ${solo.dose}. Physician-prescribed, ${solo.panel}-panel gated, retested. Educational content, not medical advice.` : "",
     // Canonicalize all three variants (/peptides, /men/peptides, /women/peptides)
     // to the neutral PDP so Google consolidates them instead of collapsing every
     // PDP onto the homepage (the old omitted-path bug deindexed the whole catalog).
@@ -327,7 +327,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {solo.gated && (
               <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(1.8rem,3.5vw,2.4rem)" }}>
-                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", maxWidth: "26ch" }}>GLP-1 therapy is prescribed after review — not bought from a shelf.</h3>
+                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", maxWidth: "26ch" }}>GLP-1 therapy is prescribed after your doctor reviews you.</h3>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your physician prescribes and titrates it against your bloodwork.</p>
               </div>
             )}
@@ -378,7 +378,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ padding: "var(--nx-sp-band)", maxWidth: 560 }}>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
                 <h2 id="solo-point-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
-                  We sell the measured loop — <em style={{ color: "var(--nx-acid)" }}>not the vial.</em>
+                  You get the measured loop. <em style={{ color: "var(--nx-acid)" }}>The vial is only part of it.</em>
                 </h2>
               </div>
             </div>
