@@ -60,20 +60,37 @@ ice-blue glow, graphite shadow.
 
 ## 4. The band map
 
-Hero height 400vh. Scroll range is 300vh, so 0.02 of progress is 6vh; plateaus
-below are sized to survive five normal flicks. Camera: descending through cold
-mist onto the four vials, which resolve on the right two thirds of frame. All
-captions live in the calm left third until the settle, where the text drops to
-the lower left under the landed product.
+Decision log, 2026-09-01 evening: Chiya watched the cold-chain shot (Seedance
+2.5, 54 credits) and asked for something more fun and fast. Concept revised to
+**the rush**: the camera whips through a tunnel of cold light and flying
+droplets, bursts into the studio, and the four vials snap into the row one by
+one with a splash, landing on the same composed ending. Generated on Kling 3.0
+Pro (10.5 credits) from a new start frame (2 credits); the ending frame and
+every line of copy are unchanged. The captions now echo the rush: approach
+from depth, blur to sharp, word punch, then the settle.
+
+Hero height 550vh (400vh failed the flick test by one flick). Scroll range is
+450vh, so 0.02 of progress is 9vh and each 0.22 band is a plateau of about
+87vh, five to six normal flicks. All captions live in the calm
+left third until the settle, where the text sits lower left beside the landed
+product.
 
 | Band | Range (start) | Footage moment | Copy (verbatim) | Entrance |
 |---|---|---|---|---|
-| 1 | 0.00 to 0.22 | Frost on the lens, soft shapes below | "Peptides, prescribed on your numbers." | Blur to sharp, opens settled on load |
-| 2 | 0.26 to 0.48 | Descending, mist thinning, glass catching light | "A doctor reads a 99-marker panel before anything ships." | Drift down |
-| 3 | 0.52 to 0.74 | Frost clearing, four vials resolving | "The same panel again at 90 days. The dose follows the data." | Blur to sharp |
-| 4 | 0.80 to 1.00 | Landed. Four vials at rest, light warm, margin above and below | Headline "Built on your bloodwork." Subline "Physician prescribed. Compounded in a licensed U.S. pharmacy. Shipped cold." CTA "Start your assessment" Microline "Two minutes. Billed only if a physician prescribes." | Word by word rise into a staged settle |
+| 1 | 0.00 to 0.22 | Inside the light tunnel, droplets streaking past | "Peptides, prescribed on your numbers." | Approach from depth, opens settled on load |
+| 2 | 0.26 to 0.48 | The tunnel brightens to white | "A doctor reads a 99-marker panel before anything ships." | Blur to sharp |
+| 3 | 0.52 to 0.74 | Burst into the studio, vials snapping in with splashes | "The same panel again at 90 days. The dose follows the data." | Word punch with overshoot |
+| 4 | 0.80 to 1.00 | Landed. Four vials at rest, margin above and below | Headline "Built on your bloodwork." Subline "Physician prescribed. Compounded in a licensed U.S. pharmacy. Shipped cold." CTA "Start your assessment" Microline "Two minutes. Billed only if a physician prescribes." | Word by word rise into a staged settle |
 
 Band 1 skips the ease in. Band 4 skips the ease out.
+
+Engineering notes earned in the build: caption widths are set in rem on the
+band and in ch on the text element itself (a container's ch is measured in
+the body font); the poster URL is resolved in JS against the document, never
+placed as a relative url() inside a CSS custom property (that resolves
+against the stylesheet folder); the prerenderer strips the blob: video src
+and the scrub state classes from snapshots; a VP9 WebM sits beside the H.264
+MP4 and the engine fetches whichever the browser can decode.
 
 ## 5. The static hero copy block
 
@@ -132,7 +149,7 @@ Price rows from the catalog, derived, never typed.
 - Q "Do I actually talk to a doctor?" A "A physician reads your full intake and your 99-marker panel, and makes the call. You can message them through the portal, and your dose is reviewed at every retest."
 - Q "Do I need bloodwork?" A "Yes, before anything is prescribed. It is drawn at a CLIA-certified lab near you, and it is inside the monthly figure. Without a baseline there is nothing to compare the retest against, and the retest is the point."
 - Q "What if the doctor says no?" A "Then nothing is compounded and nothing is billed. Some intakes end there, and that outcome carries no charge."
-- Q "Is compounded semaglutide the same as Ozempic?" A "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." (FDA-required wording; exempt from the voice gate.)
+- Q "How is compounded semaglutide different from Ozempic?" A "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." (FDA-required wording; exempt from the voice gate. The question was "Is compounded semaglutide the same as Ozempic?" until audit:legitscript flagged the equivalence framing; the buyer's question is the same, asked as a difference.)
 - Q "How is it shipped?" A "Cold, in an unbranded package, to all 50 states."
 
 **6.7 The closer**

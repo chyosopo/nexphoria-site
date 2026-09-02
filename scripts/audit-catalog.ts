@@ -141,8 +141,10 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
         the LIVE CATALOG, whatever the block is called. */
   {
     const src = await readFile("client/src/pages/FrontDoor.tsx", "utf-8");
-    if (!/<Product\w+\s+skus=\{SOLO_CATALOG\}/.test(src)) {
-      bad("home page no longer renders the live catalog (no <Product… skus={SOLO_CATALOG}> block)");
+    // Either a shelf component fed the live catalog, or the page maps the
+    // live catalog itself (the 2026-09 front door renders its own tiles).
+    if (!/<Product\w+\s+skus=\{SOLO_CATALOG\}|SOLO_CATALOG\.map\(/.test(src)) {
+      bad("home page no longer renders the live catalog (no <Product… skus={SOLO_CATALOG}> block and no SOLO_CATALOG.map)");
     } else if (SOLO_CATALOG.length === 0) {
       bad("home formulary shelf would render zero cards");
     } else {

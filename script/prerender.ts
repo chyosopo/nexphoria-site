@@ -162,6 +162,10 @@ export async function prerender(): Promise<{ pages: number }> {
     const page = await browser.newPage();
     try {
       page.setDefaultNavigationTimeout(NAV_TIMEOUT);
+      // Snapshots need markup, not webfonts. Behind a proxy that resets these
+      // connections each route waited ~12s for them; with many routes in
+      // flight that blew the navigation timeout. Abort them up front.
+      await page.route(/fonts\.googleapis\.com|fonts\.gstatic\.com|fontshare\.com/, (r) => r.abort());
       await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
       // Wait until the Suspense skeleton is gone and real content has mounted.
       // The lazy chunks (e.g. Bloodwork's heavy chunk) resolve via network, so
@@ -189,6 +193,17 @@ export async function prerender(): Promise<{ pages: number }> {
         ),
       );
       let html = "<!doctype html>\n" + (await page.content()).replace(/^<!doctype html>\s*/i, "");
+      // Reveal arms only off-screen elements with nx-armed (opacity 0); a
+      // snapshot must never carry it, or the static page hides its content.
+      // nx-video-ready would fade a src-less video over the poster.
+      html = html
+        .replace(/\s*\bnx-armed\b/g, "")
+        .replace(/\s*\bnx-video-(?:ready|failed)\b/g, "")
+        .replace(/\s*\bnx-scrub-on\b/g, "")
+        // The scrub hero's video src is a blob: URL minted in THIS browser. Baked
+        // into the snapshot it becomes a dead "blob:./…" that errors on load and
+        // flips the hero into its failed state before the real fetch runs.
+        .replace(/(<video\b[^>]*?)\s+src="blob:[^"]*"/g, "$1");
       // ── Snapshot asset hygiene ──────────────────────────────────────────────
       // Two runtime artifacts of rendering the SPA against the ephemeral static
       // server must be cleaned before writing the crawlable snapshot (the same

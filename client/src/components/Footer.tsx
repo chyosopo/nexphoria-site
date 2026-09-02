@@ -318,6 +318,13 @@ export function Footer({ variant = "shared" }: FooterProps) {
         >
           Compounded under USP &lt;797&gt; in U.S. 503A pharmacies
         </p>
+        <p
+          className="mt-3 text-xs"
+          style={{ color: "rgba(255,255,255,0.62)", fontFamily: "'General Sans', system-ui, sans-serif" }}
+          data-testid="footer-imagery-line"
+        >
+          Lifestyle imagery is illustrative. Product photography shows the actual vials.
+        </p>
       </div>
 
       {/* The signature — full-bleed, outside the container */}

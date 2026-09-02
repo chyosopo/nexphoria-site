@@ -70,6 +70,9 @@ let failures = 0;
 
 for (const { name, entry, clicks } of PATHS) {
   const page = await ctx.newPage();
+  // Third-party webfonts are not part of the funnel; behind a proxy that resets
+  // them each navigation waited ~12s and the /men, /women redirects timed out.
+  await page.route(/fonts\.googleapis\.com|fonts\.gstatic\.com|fontshare\.com/, (r) => r.abort());
   try {
     if (clicks.length > 3) throw new Error(`path defines ${clicks.length} clicks — the law is ≤3`);
     await page.goto(BASE + entry, { waitUntil: "networkidle", timeout: 30000 });

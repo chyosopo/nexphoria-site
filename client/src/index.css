@@ -774,44 +774,28 @@
      Curves retuned Apple-tight: shorter distance, faster settle. */
   .nx-reveal {
     opacity: 1;
-    transform: translateY(14px);
-    transition: transform 0.5s var(--nx-reveal-ease);
+    transform: none;
+    transition: opacity 0.62s var(--nx-reveal-ease), transform 0.62s var(--nx-reveal-ease);
   }
-  .nx-reveal.visible {
-    transform: translateY(0);
-  }
-  /* Promote to a compositor layer ONLY while the entrance is actually running.
-     backface-visibility pins the layer on Safari/iOS for the duration of the
-     transition; Reveal.tsx adds .nx-settled on transitionend, which drops BOTH
-     the layer hint and will-change. Keeping either one permanently would leave
-     a lingering GPU layer that renders the settled text slightly soft — the
-     exact "fuzzy" tell on mobile — so both are strictly animation-scoped. */
-  .nx-reveal.visible:not(.nx-settled) {
-    will-change: transform;
+  /* Armed ONLY by Reveal.tsx for elements safely below the fold; the
+     prerenderer strips the class, so static HTML never hides content. */
+  .nx-reveal.nx-armed { opacity: 0; transform: translateY(14px); }
+  .nx-reveal.nx-armed.visible { opacity: 1; transform: none; }
+  /* Promote to a compositor layer ONLY while the entrance is running;
+     Reveal.tsx adds .nx-settled on transitionend, dropping the layer. */
+  .nx-reveal.nx-armed.visible:not(.nx-settled) {
+    will-change: transform, opacity;
     backface-visibility: hidden;
   }
-
-  /* Variants — set via className on Reveal component */
-  .nx-reveal.nx-reveal-lift {
-    transform: translateY(16px);
-    transition: transform 0.55s var(--nx-reveal-ease);
-  }
-  .nx-reveal-lift.visible { transform: translateY(0); }
-
-  .nx-reveal.nx-reveal-scale {
-    transform: scale(0.98);
-    transition: transform 0.5s var(--nx-reveal-ease);
-  }
-  .nx-reveal-scale.visible { transform: scale(1); }
-
-  /* MOBILE: shorter distance + faster duration so content SNAPS in crisply
-     instead of drifting up slowly on a small screen. */
+  /* Variants, set via className on Reveal */
+  .nx-reveal.nx-armed.nx-reveal-lift { transform: translateY(20px); }
+  .nx-reveal.nx-armed.nx-reveal-lift.visible { transform: none; }
+  .nx-reveal.nx-armed.nx-reveal-scale { transform: scale(0.97); }
+  .nx-reveal.nx-armed.nx-reveal-scale.visible { transform: none; }
   @media (max-width: 640px) {
-    .nx-reveal { transform: translateY(9px); transition-duration: 0.35s; }
-    .nx-reveal.nx-reveal-lift { transform: translateY(11px); transition-duration: 0.38s; }
-    .nx-reveal.nx-reveal-scale { transform: scale(0.985); transition-duration: 0.35s; }
-    .nx-reveal.visible, .nx-reveal-lift.visible { transform: translateY(0); }
-    .nx-reveal-scale.visible { transform: scale(1); }
+    .nx-reveal.nx-armed { transform: translateY(9px); transition-duration: 0.4s; }
+    .nx-reveal.nx-armed.nx-reveal-lift { transform: translateY(11px); }
+    .nx-reveal.nx-armed.visible, .nx-reveal.nx-armed.nx-reveal-lift.visible, .nx-reveal.nx-armed.nx-reveal-scale.visible { transform: none; }
   }
 
   /* ── Scroll progress indicator ── */
@@ -2476,3 +2460,304 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 @media (prefers-reduced-motion: reduce) {
   .nx-evidence-row, .nx-evidence-chev { transition: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SCRUB HERO — docs/DESIGN-PACKAGE.md §4–§8. Engine: components/ScrubHero.tsx
+   A cold-white world, so the legibility system is inverted from the skill's
+   dark default: light scrims and a light halo under graphite type. Every
+   colour here is a house token or an rgba of --nx-bg / --nx-bg-dark.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root {
+  --nx-hero-h: 550vh; /* scroll range 450vh: every 0.22 band is a ~87vh plateau, five to six flicks */
+  --nx-hero-poster: none; /* set at runtime by ScrubHero, only on the scrub path, to url(poster) */
+  /* the light halo: tight edge, mid glow, wide falloff — canvas rgb */
+  --nx-tshadow: 0 1px 2px rgba(247,248,250,.92), 0 3px 12px rgba(247,248,250,.72), 0 10px 44px rgba(247,248,250,.8);
+}
+html, body { overflow-x: hidden; overflow-x: clip; }
+
+.nx-hero { position: relative; height: var(--nx-hero-h); background: var(--nx-bg); }
+.nx-hero-stage {
+  position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden;
+  background: var(--nx-bg);
+}
+.nx-hero-poster, .nx-hero-video, .nx-hero-scrim, .nx-hero-motes, .nx-hero-bands {
+  position: absolute; inset: 0;
+}
+.nx-hero-poster {
+  background: var(--nx-hero-poster, none) center / cover no-repeat;
+}
+.nx-hero-video {
+  width: 100%; height: 100%; object-fit: cover; opacity: 0;
+  transition: opacity var(--nx-dur-4) var(--nx-ease);
+  will-change: transform; transform: translateZ(0);
+  pointer-events: none;
+}
+.nx-video-ready .nx-hero-video { opacity: 1; }
+.nx-video-failed .nx-hero-video { display: none; }
+/* 1. the global base scrim: the calm left third stays calm on every frame */
+.nx-hero-scrim {
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(247,248,250,.55) 0%, rgba(247,248,250,.28) 34%, rgba(247,248,250,0) 58%),
+    linear-gradient(180deg, rgba(247,248,250,.35) 0%, rgba(247,248,250,0) 22%, rgba(247,248,250,0) 80%, rgba(247,248,250,.35) 100%);
+}
+/* loading ring: honest progress, gone the moment the video is ready or failed */
+.nx-hero-ring {
+  position: absolute; right: clamp(1.2rem, 3vw, 2.4rem); bottom: clamp(1.2rem, 3vw, 2.4rem);
+  width: 30px; height: 30px; color: var(--nx-cobalt); opacity: .9;
+  transform: rotate(-90deg); transition: opacity var(--nx-dur-3) var(--nx-ease);
+}
+.nx-hero-ring circle { transition: stroke-dashoffset 120ms linear; }
+.nx-video-ready .nx-hero-ring, .nx-video-failed .nx-hero-ring { opacity: 0; }
+
+/* whisper particles: frost motes, below 0.2 opacity, paused unless scrubbing */
+.nx-hero-motes { pointer-events: none; overflow: hidden; }
+.nx-hero-motes i {
+  position: absolute; display: block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--nx-cobalt); opacity: 0; left: var(--x); top: var(--y);
+  animation: nx-mote 16s linear infinite; animation-play-state: paused;
+  animation-delay: var(--d);
+}
+.nx-scrub-on .nx-hero-motes i { animation-play-state: running; }
+.nx-hero-motes i:nth-child(1){--x:8%;--y:70%;--d:-2s}  .nx-hero-motes i:nth-child(2){--x:18%;--y:40%;--d:-6s;width:4px;height:4px}
+.nx-hero-motes i:nth-child(3){--x:27%;--y:82%;--d:-9s} .nx-hero-motes i:nth-child(4){--x:36%;--y:22%;--d:-12s;width:3px;height:3px}
+.nx-hero-motes i:nth-child(5){--x:48%;--y:64%;--d:-4s} .nx-hero-motes i:nth-child(6){--x:61%;--y:14%;--d:-14s;width:4px;height:4px}
+.nx-hero-motes i:nth-child(7){--x:72%;--y:78%;--d:-7s} .nx-hero-motes i:nth-child(8){--x:84%;--y:36%;--d:-10s;width:3px;height:3px}
+.nx-hero-motes i:nth-child(9){--x:93%;--y:58%;--d:-1s}
+@keyframes nx-mote {
+  0%   { transform: translate3d(0, 0, 0) scale(.6); opacity: 0; }
+  12%  { opacity: .18; }
+  50%  { transform: translate3d(14px, -60px, 0) scale(1); opacity: .12; }
+  88%  { opacity: .16; }
+  100% { transform: translate3d(-10px, -130px, 0) scale(.7); opacity: 0; }
+}
+
+/* ── caption bands: the calm left third ── */
+.nx-hb {
+  position: absolute; left: clamp(1.5rem, 7vw, 6.5rem); top: 50%;
+  transform: translateY(-50%);
+  width: min(40vw, 36rem); color: var(--nx-fg);
+  text-shadow: var(--nx-tshadow);
+  will-change: opacity;
+}
+/* 2. the per-band scrim rides the band's opacity and deepens with --k */
+.nx-hb::before {
+  content: ""; position: absolute; inset: -18% -22%; z-index: -1; pointer-events: none;
+  opacity: calc(.25 + .75 * var(--k, 1));
+  background: radial-gradient(ellipse 74% 70% at 50% 50%, rgba(247,248,250,.72) 0%, rgba(247,248,250,.46) 46%, rgba(247,248,250,0) 76%);
+}
+/* ch on the text element itself: a container's ch is measured in the body font */
+.nx-hb-line-text {
+  margin: 0; font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.06;
+  letter-spacing: var(--nx-ls-display); text-wrap: balance; max-width: 15ch;
+}
+.nx-hb-copy { position: relative; display: block; }
+/* (c) blur-to-sharp: the soft copy carries a STATIC blur; only opacity moves */
+.nx-hb-soft { position: absolute; inset: 0; filter: blur(10px); opacity: calc(1 - var(--k, 1)); }
+.nx-hb-sharp { position: relative; opacity: var(--k, 1); }
+/* word spans: inline-block so transforms apply; the space lives outside */
+.nx-hb-w { display: inline-block; }
+/* (f) drift-down: the words fall into place while the camera descends */
+.nx-hb-drift .nx-hb-w {
+  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 2.8, 1);
+  opacity: var(--kc);
+  transform: translateY(calc((1 - var(--kc)) * -24px));
+}
+/* (e) the settle: word-by-word rise, then the line draws, then the subline, then the CTA */
+.nx-hb-settle {
+  top: auto; bottom: clamp(3rem, 11vh, 8rem); transform: none;
+  width: min(30vw, 28rem); /* stays clear of the landed vials at every desktop width */
+}
+.nx-hb-settle::before { inset: -14% -18% -20%; background: radial-gradient(ellipse 78% 74% at 50% 50%, rgba(247,248,250,.86) 0%, rgba(247,248,250,.6) 46%, rgba(247,248,250,0) 76%); }
+.nx-hb-headline {
+  margin: 0; font-weight: 500; font-size: var(--nx-t-display); line-height: 1;
+  letter-spacing: var(--nx-ls-display); text-wrap: balance; max-width: 11ch;
+}
+.nx-hb-headline .nx-hb-w {
+  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 3, 1);
+  opacity: var(--kc);
+  transform: translateY(calc((1 - var(--kc)) * 18px));
+}
+.nx-hb-settle .nx-hb-line {
+  --draw: clamp(0, (var(--k, 0) - .5) * 3, 1);
+  display: block; width: min(240px, 60%); height: 18px; margin-top: .9rem;
+}
+.nx-hb-sub {
+  --ks: clamp(0, (var(--k, 0) - .66) * 4, 1);
+  margin: .9rem 0 0; font-size: var(--nx-t-lg); line-height: 1.45; color: var(--nx-fg-graphite);
+  opacity: var(--ks); transform: translateY(calc((1 - var(--ks)) * 10px));
+  max-width: 30ch;
+}
+.nx-hb-cta {
+  --kb: clamp(0, (var(--k, 0) - .78) * 5, 1);
+  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.1rem; margin-top: 1.4rem;
+  opacity: var(--kb); transform: translateY(calc((1 - var(--kb)) * 10px));
+}
+.nx-hb-btn { text-shadow: none; padding: 14px 30px; font-size: var(--nx-t-base); }
+.nx-hb-micro { font-size: var(--nx-t-xs); color: var(--nx-fg-graphite); }
+
+/* ── the signature: the marker line, baseline dot to retest dot ── */
+.nx-marker-line { overflow: visible; }
+.nx-marker-line path {
+  fill: none; stroke: var(--nx-cobalt); stroke-width: 2; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--draw, 1));
+}
+.nx-marker-line circle { fill: var(--nx-cobalt); }
+.nx-marker-line .nx-ml-a { opacity: clamp(0, var(--draw, 1) * 6, 1); }
+.nx-marker-line .nx-ml-b { opacity: clamp(0, (var(--draw, 1) - .85) * 7, 1); }
+.nx-marker-line.nx-marker-drawn path, .nx-marker-line.nx-marker-drawn circle { --draw: 1; }
+
+/* ── the scroll cue ── */
+.nx-hero-cue {
+  position: absolute; left: 50%; bottom: clamp(1rem, 3vh, 2rem); transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .45rem;
+  color: var(--nx-fg-muted); font-size: var(--nx-t-2xs); letter-spacing: var(--nx-ls-caps);
+  text-transform: uppercase; text-shadow: var(--nx-tshadow); pointer-events: none;
+  transition: opacity var(--nx-dur-4) var(--nx-ease);
+}
+.nx-hero-cue i { display: block; width: 1px; height: 34px; background: var(--nx-fg-muted); transform-origin: top; animation: nx-cue 2.6s var(--nx-ease) infinite; animation-delay: -1s; }
+@keyframes nx-cue { 0% { transform: scaleY(0); opacity: 0 } 30% { opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
+@media (max-height: 560px) { .nx-hero-cue, .nx-hero-ring { display: none; } }
+
+/* ── the static hero (composed over the ending frame) ── */
+.nx-hero-static { display: none; background: var(--nx-bg); }
+.nx-hero-static img { display: block; width: 100%; height: auto; aspect-ratio: 1300 / 1071; object-fit: cover; object-position: 50% 50%; max-height: 62vh; }
+.nx-hero-static-copy { padding: clamp(1.6rem, 5vw, 2.6rem) var(--nx-gutter) clamp(2rem, 6vw, 3rem); max-width: 640px; }
+.nx-hero-kicker { font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-hero-static-h { margin: .7rem 0 0; font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); text-wrap: balance; }
+.nx-hero-static-sub { margin: 1rem 0 0; font-size: var(--nx-t-body); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 42ch; }
+.nx-hero-static-copy .nx-hb-btn { margin-top: 1.4rem; }
+.nx-hero-static-copy .nx-hb-micro { display: block; margin-top: .7rem; }
+
+/* ── STATIC-HERO GATES — five queries, character for character the same as
+      GATES in components/ScrubHero.tsx. Decided live by the browser here and
+      by the change listeners there. ── */
+@media (max-width: 720px),
+       (orientation: portrait) and (max-width: 1024px),
+       (orientation: portrait) and (pointer: coarse),
+       (orientation: landscape) and (pointer: coarse) and (max-height: 560px),
+       (prefers-reduced-motion: reduce) {
+  .nx-hero { height: auto; }
+  .nx-hero-stage { position: relative; height: auto; overflow: visible; }
+  .nx-hero-poster, .nx-hero-video, .nx-hero-scrim, .nx-hero-motes, .nx-hero-ring, .nx-hero-bands, .nx-hero-cue { display: none; }
+  .nx-hero-static { display: block; }
+  .nx-marker-line path, .nx-marker-line circle { --draw: 1; }
+}
+@media (pointer: coarse) { .nx-hb-btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; } }
+
+/* ── the environment layer: one fixed cold-light drift behind the whole page ── */
+.nx-env {
+  position: fixed; inset: -20%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 50% at 20% 30%, rgba(43,108,176,.07) 0%, rgba(43,108,176,0) 70%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(43,108,176,.05) 0%, rgba(43,108,176,0) 70%);
+  animation: nx-env-drift 70s ease-in-out infinite alternate; animation-delay: -20s;
+}
+@keyframes nx-env-drift {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to   { transform: translate3d(6%, 4%, 0) rotate(3deg); }
+}
+.nx-env ~ * { position: relative; z-index: 1; }
+body.nx-paused *, body.nx-paused *::before, body.nx-paused *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .nx-env { animation: none; } }
+
+/* (g) approach-from-depth: the rush toward the camera, sharpening as it arrives */
+.nx-hb-depth .nx-hb-sharp { transform: scale(calc(.82 + .18 * var(--k, 1))); transform-origin: left center; }
+.nx-hb-depth .nx-hb-soft { transform: scale(calc(.82 + .18 * var(--k, 1))); transform-origin: left center; }
+/* (d) word-punch with overshoot: each word lands like a vial snapping into the row */
+.nx-hb-punch .nx-hb-w {
+  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 3, 1);
+  --ks: clamp(0, (var(--k, 0) - var(--th, 0) - .1) * 3.2, 1);
+  opacity: var(--kc);
+  transform: scale(calc(0.6 + (0.4 + .12) * var(--kc) - .12 * var(--ks)));
+  transform-origin: left bottom;
+}
+
+/* ── HOLD TO RUN — the one interactive moment ── */
+.nx-hold { display: grid; gap: 1.2rem; justify-items: start; }
+.nx-hold-stage { width: 100%; max-width: 640px; }
+.nx-hold-readout { display: flex; align-items: baseline; gap: .5rem; color: var(--nx-fg-graphite); font-size: var(--nx-t-sm); }
+.nx-hold-days { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: var(--nx-t-h2); line-height: 1; color: var(--nx-fg); min-width: 2.2ch; }
+.nx-hold-label { letter-spacing: var(--nx-ls-caps); text-transform: uppercase; font-size: var(--nx-t-2xs); font-weight: 600; }
+.nx-hold-line { display: block; width: 100%; height: auto; margin-top: .6rem; }
+.nx-hold-line path { stroke-width: 2.5; }
+.nx-hold-axis { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; fill: var(--nx-fg-muted); letter-spacing: .08em; text-transform: uppercase; }
+.nx-hold-lines { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .3rem; }
+.nx-hold-lines li {
+  font-weight: 500; font-size: var(--nx-t-xl); line-height: 1.2; color: var(--nx-fg);
+  opacity: .18; transform: translateY(6px);
+  transition: opacity var(--nx-dur-4) var(--nx-ease), transform var(--nx-dur-4) var(--nx-ease);
+}
+.nx-hold-done .nx-hold-lines li { opacity: 1; transform: none; }
+.nx-hold-done .nx-hold-lines li:first-child { color: var(--nx-cobalt); }
+.nx-hold-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 52px; padding: .9rem 1.8rem; border-radius: var(--nx-r-pill);
+  background: var(--nx-fg); color: var(--nx-bg); font-weight: 600; font-size: var(--nx-t-base);
+  border: 1px solid var(--nx-fg); cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: none;
+  transition: transform var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-hold-btn.nx-hold-active { transform: scale(.97); background: var(--nx-cobalt); border-color: var(--nx-cobalt); }
+.nx-hold-done .nx-hold-btn { background: var(--nx-cobalt); border-color: var(--nx-cobalt); cursor: default; }
+.nx-hold-btn:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 3px; }
+.nx-hold-help { margin: 0; font-size: var(--nx-t-xs); color: var(--nx-fg-muted); max-width: 44ch; }
+@media (prefers-reduced-motion: reduce) { .nx-hold-lines li { transition: none; opacity: 1; transform: none; } }
+
+/* ═══ FRONT DOOR SECTIONS — docs/DESIGN-PACKAGE.md §6. No two neighbours share a skeleton. ═══ */
+.nx-section-line { padding: clamp(2.4rem, 5vw, 4rem) var(--nx-gutter) 0; }
+.nx-section-line svg { display: block; width: 100%; height: 24px; }
+.nx-section-line path { transition: stroke-dashoffset 1.6s var(--nx-ease); }
+.nx-section-line circle { transition: opacity var(--nx-dur-4) var(--nx-ease); }
+
+/* 6.1 the checklist: a numbered 2x2 */
+.nx-check-grid { list-style: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--nx-border); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); overflow: hidden; }
+.nx-check-grid > .nx-reveal { background: var(--nx-bg); height: 100%; }
+.nx-check-item { padding: clamp(1.4rem, 3vw, 2.2rem); height: 100%; position: relative; }
+.nx-check-n { display: block; font-size: var(--nx-t-xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); color: var(--nx-cobalt); margin-bottom: 1.2rem; }
+@media (max-width: 720px) { .nx-check-grid { grid-template-columns: 1fr; } }
+
+/* 6.2 the formulary: four photographed tiles */
+.nx-sku-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); margin-top: clamp(1.6rem, 3vw, 2.4rem); }
+.nx-sku-tile { display: flex; flex-direction: column; height: 100%; padding: clamp(1rem, 2vw, 1.4rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); text-decoration: none; transition: transform var(--nx-dur-3) var(--nx-reveal-ease), box-shadow var(--nx-dur-3) var(--nx-ease), border-color var(--nx-dur-3) var(--nx-ease); }
+.nx-sku-tile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); border-color: var(--nx-ice-edge); }
+.nx-sku-photo { aspect-ratio: 1; border-radius: var(--nx-r-md); overflow: hidden; background: var(--nx-bg); margin-bottom: 1rem; }
+.nx-sku-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-sku-tile:hover .nx-sku-photo img { transform: scale(1.04); }
+.nx-sku-mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: var(--nx-t-2xs); letter-spacing: .06em; text-transform: uppercase; color: var(--nx-cobalt); margin-right: .3rem; }
+.nx-sku-price { margin: auto 0 0; padding-top: 1rem; font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg); }
+@media (max-width: 1024px) { .nx-sku-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nx-goal-row { margin-top: clamp(1.6rem, 3vw, 2.4rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 1.2rem; align-items: start; }
+.nx-goal-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+.nx-goal-tile { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: var(--nx-r-md); overflow: hidden; text-decoration: none; background: var(--nx-bg-cream); }
+.nx-goal-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-goal-tile:hover img { transform: scale(1.04); }
+.nx-goal-chip { position: absolute; left: .6rem; right: .6rem; bottom: .6rem; display: flex; flex-direction: column; gap: .15rem; padding: .7rem .8rem; background: color-mix(in srgb, var(--nx-bg) 88%, transparent); backdrop-filter: blur(8px); border-radius: var(--nx-r-sm); min-height: 5.4rem; }
+@media (max-width: 720px) { .nx-goal-row { grid-template-columns: 1fr; } .nx-goal-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* 6.3 how it works: a band, three columns with big ordinals */
+.nx-steps-band { padding: var(--nx-sp-sec) 0; margin-top: clamp(2.4rem, 5vw, 4rem); background: var(--nx-bg-cream); border-top: 1px solid var(--nx-border); border-bottom: 1px solid var(--nx-border); }
+.nx-steps { list-style: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.4rem, 3vw, 2.6rem); }
+.nx-step { position: relative; padding-top: 1rem; border-top: 2px solid var(--nx-cobalt); }
+.nx-step-n { display: block; font-size: var(--nx-t-xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); color: var(--nx-cobalt); margin-bottom: .8rem; }
+@media (max-width: 860px) { .nx-steps { grid-template-columns: 1fr; } }
+
+/* 6.4 the hold: copy left, the instrument right */
+.nx-hold-section { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.6rem, 4vw, 3.6rem); align-items: center; padding-top: var(--nx-sp-sec); padding-bottom: 0; }
+@media (max-width: 860px) { .nx-hold-section { grid-template-columns: 1fr; } }
+
+/* 6.5 pricing: rows, not cards */
+.nx-price-table { margin-top: clamp(1.6rem, 3vw, 2.4rem); border-top: 1px solid var(--nx-fg); }
+.nx-price-row { display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--nx-border); text-decoration: none; color: var(--nx-fg); transition: background-color var(--nx-dur-2) var(--nx-ease); }
+a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
+.nx-price-head { padding: .6rem 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-price-fig { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; font-size: var(--nx-t-lg); color: var(--nx-fg-graphite); }
+.nx-price-fig i { font-style: normal; font-size: var(--nx-t-xs); color: var(--nx-fg-muted); margin-left: .1rem; }
+.nx-price-best { color: var(--nx-fg); font-weight: 600; }
+.nx-price-span { grid-column: span 3; font-family: inherit; font-size: var(--nx-t-sm); }
+@media (max-width: 640px) { .nx-price-row { grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: .5rem; } .nx-price-fig { font-size: var(--nx-t-sm); } }
+
+/* 6.6 faq */
+.nx-faq-list { margin-top: clamp(1.4rem, 3vw, 2rem); max-width: 760px; }
+
+/* 6.7 the closer */
+.nx-closer { padding: var(--nx-sp-sec) 0; margin-top: var(--nx-sp-sec); overflow: hidden; }

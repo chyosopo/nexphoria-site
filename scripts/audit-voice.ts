@@ -75,6 +75,8 @@ const EXEMPT: { text: string; reason: string }[] = [
     reason: "FDA disclaimer language. Fixed wording." },
   { text: "not a condition of purchase",
     reason: "A2P 10DLC required consent language (data/messaging.ts). Carriers check for this exact construction; rewording it fails campaign review. Asserted verbatim by audit:a2p." },
+  { text: "not an fda-approved drug",
+    reason: "FDA compounded-drug wording (DESIGN-PACKAGE §6.6): a compounded preparation is never itself an approved drug, and the distinction must be stated plainly beside any brand comparison." },
   { text: "no charge",
     reason: "states that a declined intake costs nothing — a patient-protective fact, not a price boast." },
 ];

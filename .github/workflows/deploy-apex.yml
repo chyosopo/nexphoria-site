@@ -170,7 +170,7 @@ jobs:
           # whether or not the deploy is sound — so the check would have
           # passed on a broken publish. A prerendered deep link is the one
           # thing the 404.html trap actually breaks.
-          for p in / /plan /peptides /peptides/tesamorelin /legal/messaging /faq; do
+          for p in / /pricing /bloodwork /peptides /peptides/tesamorelin /legal/messaging /faq; do
             # -L is load-bearing: Pages answers a prerendered directory route
             # with a 308 to its trailing-slash form, so without following
             # redirects a perfectly good deploy reports 308 and fails. Measured
