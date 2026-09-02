@@ -10,7 +10,8 @@ export const HERO = {
   subline:
     "A U.S. doctor checks 99 markers in your blood, then writes a plan that is actually yours. Made for you in a licensed U.S. pharmacy. Delivered cold.",
   cta: "Start your assessment",
-  micro: "Two minutes. You pay only if a doctor prescribes.",
+  /* billing claim OFF until Chiya confirms how billing runs (docs/COPY-DECK.md) */
+  micro: "Two minutes to start.",
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,

@@ -15,7 +15,6 @@ import { GoalPicker } from "@/components/GoalPicker";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import coldBox from "@/assets/life/cold-box.webp";
 import coldBox800 from "@/assets/life/cold-box-800.webp";
-import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { useSeo, webPageJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd, faqJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
@@ -57,9 +56,9 @@ const STEPS = [
 
 const FAQ = [
   { q: "Is this legit?", a: "Yes. A named, U.S. licensed doctor reviews your intake and your blood, and signs every prescription. Your medication is made for you in a licensed 503A pharmacy and shipped cold. Your blood is drawn again at 90 days." },
-  { q: "Do I actually talk to a doctor?", a: `Yes. A doctor reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel and makes the call. You can message them through your portal, and your dose is reviewed at every retest.` },
+  { q: "Do I actually talk to a doctor?", a: `Yes. A doctor reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel and makes the call. Your dose is reviewed at every retest.` },
   { q: "Do I need bloodwork?", a: "Yes, before anything is prescribed. It is drawn at a lab near you, and it is inside your monthly figure. Without a baseline there is nothing to compare your retest against, and the retest is the point." },
-  { q: "What if the doctor says no?", a: "Then nothing is made and nothing is billed. Some intakes end there, and that carries no charge." },
+  { q: "What if the doctor says no?", a: "Then nothing is made. Some intakes end there." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
   { q: "How is it shipped?", a: "Cold, in a plain package, to your door in all 50 states." },
 ];
@@ -95,7 +94,7 @@ export default function FrontDoor() {
   const countFor = (c: PeptideCategory) => peptides.filter((p) => p.category === c).length;
 
   return (
-    <SiteLayout navVariant="showcase" hideTrustBar>
+    <SiteLayout navVariant="showcase" hideTrustBar hideAnnouncementBar>
       <div className="nx-env" aria-hidden="true" />
 
       {/* ══ 1 · THE HERO — the morning photograph, the you voice ══ */}
@@ -190,7 +189,7 @@ export default function FrontDoor() {
             <ul className="nx-arrives-list">
               {[
                 ["Your vials, made for you.", "Compounded to your prescription in a licensed U.S. 503A pharmacy, packed on ice."],
-                ["Your doctor's note inside.", "Your dose, your schedule, and how to reach your doctor through the portal."],
+                ["Your dose and your schedule, in writing.", "Set by your doctor from your numbers, and reviewed again at your retest."],
                 ["The outside is plain.", "The inside is yours. Delivered cold to all 50 states."],
               ].map(([t, b]) => (
                 <li key={t}>
@@ -199,7 +198,6 @@ export default function FrontDoor() {
                 </li>
               ))}
             </ul>
-            <PrescribedPromise testid="frontdoor-arrives-promise" />
           </Reveal>
         </div>
       </section>
@@ -225,9 +223,8 @@ export default function FrontDoor() {
             ))}
           </ol>
           <div style={{ marginTop: "clamp(1.4rem,3vw,2rem)", display: "flex", flexDirection: "column", gap: 6 }} data-testid="frontdoor-fineprint">
-            <PrescribedPromise testid="frontdoor-steps-promise" />
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-              If your doctor says no, nothing is made and nothing is billed.
+              If your doctor says no, nothing is made.
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
               Prices are per month. Twelve-month plans include your blood panel.
@@ -286,9 +283,6 @@ export default function FrontDoor() {
               </Link>
             ))}
           </div>
-          <div style={{ marginTop: "1rem" }}>
-            <PrescribedPromise testid="frontdoor-pricing-promise" />
-          </div>
         </Reveal>
       </section>
 
@@ -326,7 +320,7 @@ export default function FrontDoor() {
               Start your assessment
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 78%, transparent)", marginTop: "0.9rem" }}>
-              Two minutes. You pay only if a doctor prescribes.
+              Two minutes to start.
             </p>
           </Reveal>
         </div>
