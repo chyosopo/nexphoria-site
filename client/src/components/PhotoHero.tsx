@@ -29,7 +29,7 @@ export function PhotoHero() {
           sizes="(max-width: 860px) 100vw, 100vw"
           alt=""
           width={2400}
-          height={1340}
+          height={1152}
           fetchPriority="high"
           decoding="async"
         />

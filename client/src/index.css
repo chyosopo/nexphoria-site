@@ -2465,7 +2465,7 @@ a.nx-biochip:hover { border-color: color-mix(in srgb, var(--nx-accent) 42%, tran
 html, body { overflow-x: hidden; overflow-x: clip; }
 .nx-phero { position: relative; min-height: min(86vh, 840px); display: flex; align-items: center; background: var(--nx-bg); overflow: hidden; }
 .nx-phero-art { position: absolute; inset: 0; }
-.nx-phero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 68%; display: block; animation: nx-phero-breathe 22s var(--nx-ease) infinite alternate; transform-origin: 70% 40%; }
+.nx-phero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; display: block; animation: nx-phero-breathe 22s var(--nx-ease) infinite alternate; transform-origin: 70% 40%; }
 .nx-phero-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(247,248,250,.94) 0%, rgba(247,248,250,.8) 36%, rgba(247,248,250,.28) 58%, rgba(247,248,250,0) 74%); }
 @keyframes nx-phero-breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
 .nx-phero-copy { position: relative; padding-top: clamp(4rem, 10vh, 7rem); padding-bottom: clamp(3.5rem, 9vh, 6rem); max-width: 1280px; }
@@ -2486,7 +2486,7 @@ html, body { overflow-x: hidden; overflow-x: clip; }
 @media (max-width: 860px) {
   .nx-phero { min-height: 0; display: block; }
   .nx-phero-art { position: relative; aspect-ratio: 4 / 3; max-height: 56vh; }
-  .nx-phero-art img { animation: none; object-position: 62% 62%; }
+  .nx-phero-art img { animation: none; object-position: 62% 30%; }
   .nx-phero-art::after { background: linear-gradient(180deg, rgba(247,248,250,0) 70%, rgba(247,248,250,1) 100%); }
   .nx-phero-copy { padding-top: 1.2rem; }
   .nx-phero-h1 { font-size: var(--nx-t-h1); }
