@@ -2649,3 +2649,15 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-count { font-variant-numeric: tabular-nums; }
 
 @media (prefers-reduced-motion: reduce) { .nx-goal-card img, .nx-arrives-art img { animation: none; } .nx-step::before { transition: none; } }
+
+/* ═══ SKU PHOTOGRAPHS (components/SkuPhoto.tsx): the real vials everywhere ═══ */
+.nx-sku-img { display: block; object-fit: cover; background: var(--nx-bg-cream); }
+.nx-sku-img--card { width: 100%; height: 100%; object-position: 50% 45%; }
+.nx-sku-img--pdp { width: 100%; height: auto; aspect-ratio: 1; border-radius: var(--nx-r-lg); box-shadow: var(--nx-e-3); }
+.nx-sku-img--lineup { width: 100%; height: 100%; aspect-ratio: 1; border-radius: var(--nx-r-md); }
+.nx-vial-lineup .nx-vial-cell .nx-sku-img--lineup { max-width: 100%; }
+.nx-sku-img--stack { width: clamp(190px, 22vw, 260px); height: clamp(190px, 22vw, 260px); border-radius: var(--nx-r-md); }
+/* the catalog lineup shows photographs now: a light stage, the vials large */
+.nx-vial-lineup.nx-vial-lineup { background: linear-gradient(180deg, var(--nx-bg) 0%, var(--nx-bg-cream) 100%); border: 1px solid var(--nx-border); }
+.nx-vial-lineup .nx-vial-cell { overflow: hidden; border-radius: var(--nx-r-md); }
+.nx-vial-lineup .nx-vial-cell .nx-sku-img--lineup { transform: scale(1.22); transform-origin: 50% 55%; border-radius: 0; background: transparent; }

@@ -15,6 +15,7 @@ import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { getPrice } from "@/data/pricing";
 import { ProductCard } from "@/components/ProductCard";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
+import { SkuPhoto } from "@/components/SkuPhoto";
 
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
@@ -157,7 +158,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               <div className="nx-vial-lineup__row">
                 {SOLO_CATALOG.map((s) => (
                   <div key={s.slug} className="nx-vial-cell">
-                    <VialMockup name={s.name} dose={labelSpec(s.spec)} size="clamp(150px, 78%, 340px)" fill={0.6} onDark label={false} />
+                    <SkuPhoto slug={s.slug} name={s.name} eager className="nx-sku-img nx-sku-img--lineup" fallback={<VialMockup name={s.name} dose={labelSpec(s.spec)} size="clamp(150px, 78%, 340px)" fill={0.6} onDark label={false} />} />
                   </div>
                 ))}
               </div>

@@ -27,6 +27,7 @@ import { F, S } from "@/lib/typography";
 import { SpecPlate } from "@/components/DataPlate";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
+import { SkuPhoto } from "@/components/SkuPhoto";
 
 /* on-brand tone cycle so a multi-vial lineup reads varied, not uniform */
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
@@ -197,7 +198,7 @@ export default function StackPage({ slug }: { slug: string }) {
                         render. This section was still on the old flat VialArt,
                         so "the vials in this protocol" showed a different
                         drawing of a vial from every other vial on the site. */}
-                    <VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />
+                    <SkuPhoto name={p.name} className="nx-sku-img nx-sku-img--stack" fallback={<VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />} />
                     <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
                   </div>

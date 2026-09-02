@@ -16,6 +16,7 @@ import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
+import { SkuPhoto } from "@/components/SkuPhoto";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
 /** The price line for a SKU, in one place. Mirrors the PDP's own logic:
@@ -50,7 +51,7 @@ export function ProductCard({
           The photography keeps the surfaces it is right for — category heroes
           and the lower PDP band. */}
       <div className="nx-float-card__media">
-        <VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="84%" ratio="4 / 3" fill={0.58} />
+        <SkuPhoto slug={sku.slug} name={sku.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="84%" ratio="4 / 3" fill={0.58} />} />
         {sku.gated && (
           <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
         )}
