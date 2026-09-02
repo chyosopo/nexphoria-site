@@ -11,13 +11,16 @@ import { Reveal } from "@/components/Reveal";
 import { PhotoHero } from "@/components/PhotoHero";
 import { HoldToRun } from "@/components/HoldToRun";
 import { SectionLine } from "@/components/SectionLine";
+import { GoalPicker } from "@/components/GoalPicker";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import coldBox from "@/assets/life/cold-box.webp";
+import coldBox800 from "@/assets/life/cold-box-800.webp";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { useSeo, webPageJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd, faqJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { ArrowRight } from "lucide-react";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
-import { CATEGORY_LABELS, CATEGORY_FEELING, peptides, type PeptideCategory, liveCategories } from "@/data/peptides";
-import { OUTCOME_CATEGORY, outcomeSrcSet } from "@/data/outcomeImagery";
+import { peptides, type PeptideCategory } from "@/data/peptides";
 import { usd } from "@/data/stacksCatalog";
 import { SOLO_CATALOG, type SoloPeptide } from "@/data/soloCatalog";
 import skuTesamorelin from "@/assets/vials/sku-tesamorelin.webp";
@@ -34,17 +37,6 @@ const SKU_PHOTO: Record<string, string> = {
   tirzepatide: skuTirzepatide,
   "pt-141": skuPt141,
 };
-
-/* Goal tiles: the two live goals with a sellable molecule behind them. Kept
-   because the assessment funnel enters through them (audit:funnel). */
-const GOAL_TILE_ART: Partial<Record<PeptideCategory, string>> = {
-  growth: OUTCOME_CATEGORY.men.growth!,
-  metabolic: OUTCOME_CATEGORY.men.metabolic!,
-  "sexual-health": OUTCOME_CATEGORY.women.longevity ?? OUTCOME_CATEGORY.men.longevity!,
-};
-const GOAL_TILES = liveCategories(["metabolic", "growth", "sexual-health"])
-  .map((cat) => ({ cat, img: GOAL_TILE_ART[cat] }))
-  .filter((t): t is { cat: PeptideCategory; img: string } => !!t.img);
 
 /* The price floor: lowest priced launch SKU at the 12-month cadence, derived. */
 const PRICED = SOLO_CATALOG.filter((s) => s.pricing);
@@ -109,8 +101,19 @@ export default function FrontDoor() {
       {/* ══ 1 · THE HERO — the morning photograph, the you voice ══ */}
       <PhotoHero />
 
+      {/* ══ 2 · START WITH YOUR GOAL — three photographed doors into the assessment ══ */}
+      <section className="nx-container" aria-labelledby="fd-goals" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+        <Reveal>
+          <p style={kicker}>Start with your goal</p>
+          <h2 id="fd-goals" style={{ ...h2, maxWidth: "20ch" }}>What do you want help with?</h2>
+        </Reveal>
+        <GoalPicker counts={{ metabolic: countFor("metabolic"), growth: countFor("growth"), "sexual-health": countFor("sexual-health") }} />
+      </section>
+
+      <SectionLine />
+
       {/* ══ 6.1 · THE CHECKLIST — proof, in buyers' own words ══ */}
-      <section className="nx-container" aria-labelledby="fd-checklist" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container" aria-labelledby="fd-checklist">
         <Reveal>
           <p style={kicker}>What you get</p>
           <h2 id="fd-checklist" style={{ ...h2, maxWidth: "22ch" }}>Four things to expect from a real clinic. You get all four.</h2>
@@ -121,7 +124,13 @@ export default function FrontDoor() {
               <li className="nx-check-item">
                 <span className="nx-check-n" aria-hidden="true" style={{ fontFamily: F }}>0{i + 1}</span>
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", lineHeight: 1.2, color: "var(--nx-fg)", margin: 0 }}>{t}</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>{b}</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
+                  {i === 2 ? (
+                    <>
+                      <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, drawn and reviewed before anything is prescribed.
+                    </>
+                  ) : b}
+                </p>
               </li>
             </Reveal>
           ))}
@@ -165,24 +174,33 @@ export default function FrontDoor() {
             </Reveal>
           ))}
         </div>
+      </section>
 
-        {/* Or start from the goal: the assessment's second doorway. */}
-        <div className="nx-goal-row" data-testid="frontdoor-goals">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)", margin: 0 }}>Or start with your goal</p>
-          <div className="nx-goal-tiles">
-            {GOAL_TILES.map(({ cat, img }) => (
-              <Link key={cat} href={`/goals/${cat}`} className="nx-goal-tile" data-testid={`frontdoor-goal-${cat}`}>
-                <img src={img} srcSet={outcomeSrcSet(img)} sizes="(max-width: 640px) 50vw, 25vw" alt="" aria-hidden loading="lazy" width={1632} height={2048} />
-                <span className="nx-goal-chip">
-                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", lineHeight: 1.15 }}>{CATEGORY_LABELS[cat]}</span>
-                  <span style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt)" }}>{CATEGORY_FEELING[cat]}</span>
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "auto" }}>
-                    {countFor(cat)} {countFor(cat) === 1 ? "protocol" : "protocols"}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
+      {/* ══ 6.25 · WHAT ARRIVES — the plain cold box ══ */}
+      <section className="nx-arrives" aria-labelledby="fd-arrives">
+        <div className="nx-container nx-arrives-grid">
+          <Reveal className="nx-reveal-lift">
+            <div className="nx-arrives-art">
+              <img src={coldBox} srcSet={`${coldBox800} 800w, ${coldBox} 1600w`} sizes="(max-width: 860px) 100vw, 56vw" alt="An open plain white insulated box with ice packs and four vials" loading="lazy" decoding="async" width={1600} height={893} />
+            </div>
+          </Reveal>
+          <Reveal>
+            <p style={kicker}>What arrives</p>
+            <h2 id="fd-arrives" style={{ ...h2, maxWidth: "14ch" }}>A plain box, cold, at your door.</h2>
+            <ul className="nx-arrives-list">
+              {[
+                ["Your vials, made for you.", "Compounded to your prescription in a licensed U.S. 503A pharmacy, packed on ice."],
+                ["Your doctor's note inside.", "Your dose, your schedule, and how to reach your doctor through the portal."],
+                ["The outside is plain.", "The inside is yours. Delivered cold to all 50 states."],
+              ].map(([t, b]) => (
+                <li key={t}>
+                  <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{t}</span>
+                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <PrescribedPromise testid="frontdoor-arrives-promise" />
+          </Reveal>
         </div>
       </section>
 

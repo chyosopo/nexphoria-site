@@ -31,6 +31,19 @@ below are retired; the film and frames stay in review/ for reference. Law 3
 (institutional voice) is deliberately relaxed on tone by the principal; the
 voice gate (no defensive negation) still runs.
 
+**The 1000x pass, later on 2026-09-02.** Chiya: "Make it 1000 times better."
+Done without further questions: new 2K photography generated in one world
+(7am, cold white, ice blue; Nano Banana Pro, 10 credits, one of each pair
+rejected on sight) for the hero (woman at the kitchen window), three goal
+cards (jeans, home gym, a couple on a frosted walk) and the plain cold box;
+a "Start with your goal" section of three photographed doors plus quick
+chips that land in the assessment with the goal preselected; a "What
+arrives" section around the cold box; trust chips under the hero button;
+the 99 counts up; the step line draws in; every photograph breathes slowly
+while on screen and holds still under reduced motion. The promise line now
+reads "No charge unless a doctor prescribes." Assets live in
+client/src/assets/life at two widths each.
+
 ## 1. The brand premise
 
 One word from the subject's world: **measured**. A Nexphoria dose is set from a

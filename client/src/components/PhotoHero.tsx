@@ -26,10 +26,10 @@ export function PhotoHero() {
         <img
           src={HERO.image}
           srcSet={HERO.imageSrcSet}
-          sizes="(max-width: 860px) 100vw, 70vw"
+          sizes="(max-width: 860px) 100vw, 100vw"
           alt=""
-          width={1600}
-          height={1000}
+          width={2400}
+          height={1340}
           fetchPriority="high"
           decoding="async"
         />
@@ -53,6 +53,11 @@ export function PhotoHero() {
           </Link>
           <span className="nx-phero-micro" style={{ fontFamily: F }}>{HERO.micro}</span>
         </div>
+        <ul className="nx-phero-chips" aria-label="What you get">
+          {HERO.chips.map((c) => (
+            <li key={c} style={{ fontFamily: F }}>{c}</li>
+          ))}
+        </ul>
       </div>
     </section>
   );
