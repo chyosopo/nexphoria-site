@@ -30,7 +30,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "What bloodwork is required?",
-    a: `${name} is gated on the ${panel} panel — drawn at baseline before anything is prescribed, then retested on a fixed schedule so your physician reads the trend rather than one reading in isolation.`,
+    a: `You start first. At week 12 of your plan a full blood panel, included, is drawn and read by your physician, so the dose of ${name} follows what actually changed.`,
   });
 
   if (firstMark) {

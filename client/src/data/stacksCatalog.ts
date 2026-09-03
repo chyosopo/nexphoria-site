@@ -277,9 +277,9 @@ export const PANELS: PanelDef[] = [
     tier: "Basic",
     price: 99,
     freeWith: "Included with any 12-month plan",
-    summary: "Baseline safety screen — the floor under any protocol.",
+    summary: "The full panel, the floor under any protocol.",
     adds: ["CBC with differential", "Comprehensive metabolic panel", "Lipid panel", "HbA1c", "Fasting glucose + insulin", "hs-CRP", "TSH"],
-    retest: "Baseline · Month 3",
+    retest: "Week 12",
   },
   {
     tier: "Full",
@@ -287,7 +287,7 @@ export const PANELS: PanelDef[] = [
     freeWith: "Bundled in 3- and 12-month stacks",
     summary: "Everything in Basic, plus the hormonal and GH-axis panel.",
     adds: ["Total T · Free T · SHBG · Estradiol (sensitive)", "LH · FSH · Prolactin", "Free T3 · Free T4 · Reverse T3", "IGF-1 (mandatory for any GH-axis peptide)", "DHEA-S · AM Cortisol", "Vit D · B12 · Ferritin · Homocysteine", "ALT/AST/GGT", "Uric acid"],
-    retest: "Baseline · Month 3 · Month 6",
+    retest: "Week 12 · Month 6",
   },
   {
     tier: "Elite",
@@ -295,7 +295,7 @@ export const PANELS: PanelDef[] = [
     freeWith: "Bundled in Meridian and 12-month Ignite / Ascend",
     summary: "Everything in Full, plus advanced cardiometabolic and inflammatory depth.",
     adds: ["Apolipoprotein B · Lp(a) · LDL particle count", "Fasting insulin · HOMA-IR · C-peptide", "Adiponectin · Leptin", "IL-6 · TNF-α", "Full iron panel", "HRV wearable integration (baseline)", "Optional: epigenetic age testing"],
-    retest: "Baseline · Month 3 · Month 6 · Month 12",
+    retest: "Week 12 · Month 6 · Month 12",
   },
 ];
 

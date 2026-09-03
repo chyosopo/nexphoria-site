@@ -34,7 +34,7 @@ export const WHY_WE_ASK: Record<number, string> = {
   2: "Hormone reference intervals shift by decade. Age calibrates how your labs are interpreted and where safe dosing windows fall.",
   3: "Drug interactions are the most common reason a protocol is modified or declined. Your physician screens every medication against the proposed compound before prescribing.",
   4: "Certain conditions change the risk-benefit calculus entirely. Disclosing them lets your physician flag contraindications before — not after — a prescription is written.",
-  5: "A current lab panel is the clinical floor for dosing. Without baseline biomarkers, dosing would be an estimate; we calibrate to your measured values instead.",
+  5: "At week 12 a full blood panel shows your doctor what changed, so your dose follows measured values instead of an estimate.",
   6: "Your physician contacts you directly to confirm the protocol and answer questions. State of residence determines which licensed physician reviews your file.",
 };
 

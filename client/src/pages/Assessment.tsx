@@ -773,7 +773,7 @@ export default function Assessment() {
             >
               <img
                 src={assessmentTrustHero}
-                alt="A 99-biomarker peptide lab panel and physician dashboard used to calibrate your protocol"
+                alt="A full blood panel and physician dashboard used to adjust your plan"
                 loading="eager"
                 decoding="async"
                 data-testid="assessment-landing-image"
@@ -1737,7 +1737,7 @@ export default function Assessment() {
                           }}
                         >
                           {recStack
-                            ? "A licensed physician still reviews everything before anything ships — this is the protocol your answers point to."
+                            ? "A licensed physician still reviews everything before anything ships. This is the plan your answers point to."
                             : "A licensed physician reviews your intake and emails you the next step."}
                         </p>
                       </div>

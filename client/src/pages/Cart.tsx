@@ -358,7 +358,7 @@ export default function Cart() {
                     {[
                       { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Physician review + follow-ups" },
                       { icon: <Truck size={13} aria-hidden="true" />, text: "Cold-chain overnight shipping" },
-                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Quarterly lab re-evaluation" },
+                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Week-12 panel and dose review" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-2 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>

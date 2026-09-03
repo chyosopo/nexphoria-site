@@ -76,7 +76,7 @@ const SAVINGS_EXAMPLE = (() => {
 const included = [
   "Board-certified physician consultation (initial + follow-up)",
   "Compounded peptides from a 503A-licensed US pharmacy",
-  "Partner-laboratory labs every 90 days",
+  "Full blood panel at week 12",
   "Overnight cold-chain shipping",
   "Physician re-evaluation at each lab cycle",
   "Physician review at every retest between visits",
@@ -109,7 +109,7 @@ const tiers = [
     features: [
       "2\u20134 synergistic peptides",
       "Everything in Solo",
-      "Partner-laboratory labs every 90 days",
+      "Full blood panel at week 12",
       "Physician re-evaluation each lab cycle",
       "Protocol tuned to your biomarkers",
       "FSA/HSA itemized receipts",
@@ -128,7 +128,7 @@ const tiers = [
       "Everything in Stack",
       "Extended biomarker + epigenetic panels",
       "Dedicated physician case ownership",
-      "Quarterly dose titration",
+      "Dose review at week 12",
       "Priority telehealth response",
     ],
     cta: "Start assessment",
@@ -140,7 +140,7 @@ const comparison = [
   { feature: "Partner-laboratory labs included", nexphoria: true, others: false },
   { feature: "Board-certified US physician on every case", nexphoria: true, others: "varies" },
   { feature: "503A US compounding pharmacy only", nexphoria: true, others: false },
-  { feature: "Quarterly monitoring included", nexphoria: true, others: false },
+  { feature: "Week-12 blood panel included", nexphoria: true, others: false },
   { feature: "No long-term contracts", nexphoria: true, others: false },
   { feature: "FSA/HSA receipts provided", nexphoria: true, others: false },
   { feature: "Physician declines if inappropriate", nexphoria: true, others: "rarely" },
@@ -475,7 +475,7 @@ const PRICING_FAQ_ITEMS = [
   },
   {
     q: "Are labs included?",
-    a: `Partner-laboratory lab panels are included with 3-month and 12-month plans. Monthly plan members can add the ${PANEL_TOTAL_MARKERS}-biomarker panel for $199 standalone, or it will be required before your first prescription at no additional charge on longer plans.`,
+    a: `A full blood panel of ${PANEL_TOTAL_MARKERS} markers is drawn at week 12 and included in your plan. Your physician reads it and adjusts your dose from it.`,
   },
   {
     q: "Can I use FSA or HSA funds?",
@@ -603,7 +603,7 @@ export default function Pricing() {
                 <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One number a month.</span><br /><span>Everything within it.</span>
               </>
             }
-            subtitle="Your doctor, your blood panel, your medication and your 90-day retest are all inside the figure. Your doctor sets the dose. The price does not change with it."
+            subtitle="Your doctor, your medication, shipping and your week-12 blood panel are all inside the figure. Your doctor sets the dose. The price does not change with it."
           />
 
           {/* Editorial hero — the pricing promise as a photograph, not a diagram */}
@@ -732,14 +732,14 @@ export default function Pricing() {
               eyebrow="Physician"
               icon={<Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Board-certified US physician on every case."
-              sub="A licensed physician reads your intake and labs before anything ships. A clinician's judgment, start to finish."
+              sub="A licensed physician reads your questionnaire before anything ships, and your full blood panel at week 12. A clinician's judgment, start to finish."
               testId="pricing-tile-physician"
             />
             <BenefitTile
               tone="cream"
               eyebrow="Labs"
               icon={<FlaskConical size={18} strokeWidth={1.5} aria-hidden="true" />}
-              headline="Partner-laboratory bloodwork every 90 days."
+              headline="A full blood panel at week 12, included."
               sub="Full biomarker panels included in every plan. The lab work lives inside the figure."
               testId="pricing-tile-labs"
             />
@@ -764,7 +764,7 @@ export default function Pricing() {
               eyebrow="Adjustments"
               icon={<ChevronsDownUp size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Physician re-titrates each cycle."
-              sub="Every 90 days, your physician reviews your labs and adjusts your dose. The review is included."
+              sub="At week 12, your physician reads your panel and adjusts your dose. The review is included."
               testId="pricing-tile-titration"
             />
             <BenefitTile
@@ -1413,7 +1413,7 @@ const PLAN_COMPARISON_ROWS = [
   { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
-  { feature: `Partner-laboratory labs (${PANEL_TOTAL_MARKERS} markers)`, solo: "Add $199", stack: "Every 90 days, included", custom: "Extended panels, included" },
+  { feature: `Full blood panel (${PANEL_TOTAL_MARKERS} markers)`, solo: "Week 12, included", stack: "Week 12, included", custom: "Extended panels, included" },
   { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
   { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },

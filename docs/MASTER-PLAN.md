@@ -45,7 +45,26 @@ see how it is working, before you can feel it, is in the blood. Three jobs:
 That is the whole story, and it is a good one. It does not need 99 markers.
 It needs the right dozen for each peptide, drawn twice.
 
-### The recommended model (decision 1, 2 and 3 for Chiya)
+### Chiya's decisions, 2026-09-02
+
+1. **Start first, test later.** The doctor prescribes from the questionnaire.
+   There is no blood draw before the first dose. (Recommendation was a small
+   baseline; Chiya chose start first. Recorded, and the site says so plainly.
+   The physicians' intake must carry the screens a baseline would have
+   caught: thyroid cancer history, pancreatitis, pregnancy, diabetes
+   medication, cancer history, blood pressure.)
+2. **Week 12 retest, included in the price.** One full panel at the end of
+   the first twelve weeks, read by the doctor, who continues, adjusts or
+   stops.
+3. **One full panel for everyone.** The same panel for every plan, and the
+   reason for every marker printed on the page. Its contents are proposed in
+   `client/src/data/monitoring.ts` and need the physicians' sign-off.
+
+So the model in one line: **choose your plan, answer the questionnaire, your
+doctor prescribes, you start; at week 12 a full blood panel, included, shows
+your doctor what changed, and your dose follows it.**
+
+### The recommendation that was made (kept for the record)
 
 **Decision 1: baseline before the first dose, or start first and test
 later?** Chiya's instinct: "we first get a peptide, then we monitor."

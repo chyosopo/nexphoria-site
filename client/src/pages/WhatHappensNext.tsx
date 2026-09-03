@@ -30,13 +30,13 @@ const PHASES: Phase[] = [
   },
   {
     when: "If prescribed",
-    title: "Bloodwork, then compounding",
-    body: "Baseline bloodwork is ordered to a partner laboratory near you. Once your panel is read, your protocol is compounded in a state-licensed 503A pharmacy under USP <797> and shipped cold-chain to all 50 states.",
+    title: "Made for you, shipped cold",
+    body: "Your protocol is compounded in a state-licensed 503A pharmacy under USP <797> and shipped cold-chain to all 50 states.",
   },
   {
-    when: "Every 90 days, ongoing",
-    title: "The same markers, re-read",
-    body: "Your panel is re-drawn each quarter. Your physician reads the trend against your protocol and adjusts, holds, or stops. Nothing continues on assumption — the change is proven, not presumed.",
+    when: "Week 12",
+    title: "Your full panel, read",
+    body: "A full blood panel is drawn at week 12, included. Your physician reads it against your protocol and adjusts, holds, or stops. The change is measured."
   },
 ];
 
@@ -44,7 +44,7 @@ export default function WhatHappensNext() {
   useSeo({
     path: "/what-happens-next",
     title: "What happens after you submit — Nexphoria",
-    description: "The path from intake to prescription to the 90-day retest loop. A physician reviews every case and can decline; nothing is made without a prescription.",
+    description: "The path from checkout to prescription to the week-12 panel. A physician reviews every case and can decline; nothing is made without a prescription.",
     jsonLd: [
       webPageJsonLd({ name: "What happens next", description: "The intake-to-retest timeline.", path: "/what-happens-next" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "What happens next", path: "/what-happens-next" }]),

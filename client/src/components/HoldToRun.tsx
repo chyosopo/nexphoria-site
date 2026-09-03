@@ -1,6 +1,6 @@
 /* ═══ HoldToRun — the one interactive moment (DESIGN-PACKAGE.md §6.4)
 
-   "Hold to run the 90 days." While the visitor holds, the marker line draws
+   "Hold to run your 12 weeks." While the visitor holds, the marker line draws
    from the baseline dot to the retest dot and a readout counts the days from
    0 to 90. Releasing early eases the progress back; it never snaps.
    Completing it lights three lines in sequence: Panel drawn. Physician
@@ -12,7 +12,7 @@
 import { useEffect, useRef, useState } from "react";
 import { F, S } from "@/lib/typography";
 
-const LINES = ["Panel drawn.", "Doctor reviewed.", "Dose adjusted."];
+const LINES = ["You start.", "Week 12: panel drawn.", "Dose adjusted."];
 const HOLD_MS = 2200;
 
 export function HoldToRun() {
@@ -46,7 +46,7 @@ export function HoldToRun() {
 
     const write = (now: number) => {
       line.style.setProperty("--draw", p.toFixed(3));
-      const days = Math.round(p * 90);
+      const days = Math.round(p * 12);
       const text = String(days);
       if (now - lastTextAt > 100 || p === 1 || p === 0) {
         if (text !== lastText) { lastText = text; lastTextAt = now; readout.textContent = text; }
@@ -107,9 +107,9 @@ export function HoldToRun() {
     <div className={`nx-hold ${done ? "nx-hold-done" : ""}`} data-testid="hold-to-run">
       <div className="nx-hold-stage">
         <div className="nx-hold-readout" style={{ fontFamily: F }}>
-          <span className="nx-hold-label">Day</span>
-          <span ref={readoutRef} className="nx-hold-days" aria-live="off">{done ? "90" : "0"}</span>
-          <span className="nx-hold-label">of 90</span>
+          <span className="nx-hold-label">Week</span>
+          <span ref={readoutRef} className="nx-hold-days" aria-live="off">{done ? "12" : "0"}</span>
+          <span className="nx-hold-label">of 12</span>
         </div>
         <svg
           ref={lineRef}
@@ -121,8 +121,8 @@ export function HoldToRun() {
           <circle className="nx-ml-a" cx="12" cy="30" r="6" />
           <path d="M20 30 C 120 30, 180 14, 260 30 S 420 48, 500 30 S 600 22, 620 30" pathLength={1} />
           <circle className="nx-ml-b" cx="628" cy="30" r="6" />
-          <text x="4" y="54" className="nx-hold-axis">baseline</text>
-          <text x="636" y="54" textAnchor="end" className="nx-hold-axis">retest</text>
+          <text x="4" y="54" className="nx-hold-axis">start</text>
+          <text x="636" y="54" textAnchor="end" className="nx-hold-axis">week 12</text>
         </svg>
         <ul className="nx-hold-lines" aria-live="polite">
           {LINES.map((l, i) => (
@@ -139,11 +139,11 @@ export function HoldToRun() {
         style={{ fontFamily: F }}
         data-testid="hold-to-run-button"
       >
-        {done ? "Ninety days, run." : "Hold to run your 90 days"}
+        {done ? "Twelve weeks, run." : "Hold to run your 12 weeks"}
       </button>
       <p id="hold-help" className="nx-hold-help" style={{ fontFamily: F }}>
         {done
-          ? "That is the whole model: your panel, read twice, and your dose in between."
+          ? "That is the whole model: you start, your blood is read at week 12, and your dose follows it."
           : "Press and hold. Let go early and the days ease back."}
       </p>
     </div>

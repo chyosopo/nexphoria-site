@@ -101,9 +101,9 @@ function Hero() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Your blood knows first.
+                You start. Then your blood
               <br />
-              <span style={{ color: "var(--nx-acid)" }}>So your doctor reads it first.</span>
+              <span style={{ color: "var(--nx-acid)" }}>tells your doctor what changed.</span>
               </h1>
               <p
                 style={{
@@ -116,8 +116,7 @@ function Hero() {
                 }}
               >
                 Tired, stuck, slow to recover? Your numbers usually say why.
-              {" "}{PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} panels, drawn before anything is
-              prescribed and again every 90 days, so your plan follows you, not a template.
+              {" "}A full panel of {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} groups, drawn at week 12 of your plan and included, so your doctor adjusts your dose from what actually changed.
               </p>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
                 <StartIntakeButton
@@ -280,7 +279,7 @@ function Hero() {
             src="img/img_6d36ae1989c8.mp4"
             poster="img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
-            aria-label="Partner-laboratory lab work, every 90 days" />
+            aria-label="Partner-laboratory lab work at week 12" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
           <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
             Your numbers, every 90 days.
@@ -699,7 +698,7 @@ function PanelComparison() {
         {
           label: "Retested",
           cells: [
-            { text: "Every 90 days, trended", tone: "pos" },
+            { text: "At week 12, read against your start", tone: "pos" },
             { text: "Once a year", tone: "neg" },
             { text: "One-time snapshot", tone: "neg" },
           ],
@@ -817,20 +816,20 @@ function HowItWorks() {
     {
       n: "01",
       Icon: Droplet,
-      title: "Baseline draw",
-      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory before a single dose. Walk into any of ${SITE_STATS.labSites.display} centers or use the at-home collection kit.`,
+      title: "You start",
+      body: "Your doctor prescribes from your questionnaire. Your plan is made for you and ships cold, and you begin.",
     },
     {
       n: "02",
       Icon: Stethoscope,
-      title: "Physician-reviewed protocol",
-      body: "A board-certified physician reads every marker against your goals, and prescribes the peptides and doses your chemistry calls for.",
+      title: "Week 12: the full panel",
+      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory, included. Walk into any of ${SITE_STATS.labSites.display} centers or use the at-home collection kit.`,
     },
     {
       n: "03",
       Icon: RefreshCw,
-      title: "90-day recheck",
-      body: "The panel repeats every quarter. We track each marker against your own baseline and adjust dose the moment a value drifts outside its target band.",
+      title: "Your dose, adjusted",
+      body: "A board-certified physician reads every marker against your goals and holds, adjusts or tapers your dose from what changed.",
     },
   ];
   return (
@@ -1118,13 +1117,13 @@ export default function Bloodwork() {
   const [loc] = useLocation();
   const world = resolveWorld(loc);
   useSeo({
-    title: `Peptide therapy bloodwork — ${PANEL_TOTAL_MARKERS} biomarkers, every 90 days`,
+    title: `Peptide therapy bloodwork: a full ${PANEL_TOTAL_MARKERS}-marker panel at week 12`,
     description: `${PANEL_TOTAL_MARKERS} biomarkers across ${PANEL_CATEGORY_COUNT} partner-laboratory panels. Calibrate your protocol to your chemistry, not a population average. Results appear in your portal after physician review.`,
     path: "/bloodwork",
     jsonLd: [
       webPageJsonLd({
         name: "Nexphoria Bloodwork",
-        description: `${PANEL_TOTAL_MARKERS} biomarkers. Every Nexphoria protocol is calibrated to your chemistry and retested every 90 days via a partner laboratory.`,
+        description: `A full ${PANEL_TOTAL_MARKERS}-marker blood panel at week 12 of every Nexphoria plan, included, read by your physician so your dose follows what changed.`,
         path: "/bloodwork",
         type: "MedicalWebPage",
       }),
@@ -1201,7 +1200,7 @@ function GlowingBody({ world }: { world: "men" | "women" }) {
           ))}
         </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
-          {[["One draw", `5-minute booking, ${SITE_STATS.labSites.display} locations`], [`${PANEL_TOTAL_MARKERS} markers`, "heart to biological age"], ["4x a year", "quarterly re-testing keeps you ahead"]].map(([t, s]) => (
+          {[["One draw", `5-minute booking, ${SITE_STATS.labSites.display} locations`], [`${PANEL_TOTAL_MARKERS} markers`, "sugar to hormones"], ["Week 12", "included in your plan"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.2rem" }}>
               <div style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-hover)" }}>{t}</div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>

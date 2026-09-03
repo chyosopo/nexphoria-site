@@ -390,3 +390,59 @@ Already handled today: "complimentary consultation" and "no charge unless
 prescribed" (retired sitewide), "marker dashboard & messaging" and "secure
 telehealth messaging" (reduced to what is confirmed), "you pay only if a
 doctor prescribes" (off the home page).
+
+
+---
+
+## Model change, 2026-09-02 evening: start first, one full panel at week 12
+
+Chiya's three decisions (docs/MASTER-PLAN.md Part 1) retire "labs before
+anything is prescribed" and the number 99 from the whole site. The lines
+below replace their earlier entries above; job and feeling carry over
+unless restated. The panel count is derived from data/monitoring.ts and is
+never typed.
+
+**Hero subline: "A U.S. doctor writes your plan from your questionnaire.
+Made for you in a licensed U.S. pharmacy, delivered cold. At week 12 a full
+blood panel, included, shows what changed."** · LIVE
+Fact: Chiya, 2026-09-02: start first; week 12 full panel, included.
+
+**Trust chip: "Full blood panel at week 12, included"** · LIVE (replaces "99
+markers read first").
+
+**Checklist 03: "Your blood, read at week 12." / "A full panel of N markers,
+included, drawn at week 12 and read by your doctor."** · LIVE (N derived).
+**Checklist 04: "Your dose, adjusted from it." / "Your doctor continues,
+adjusts or stops from what your blood shows. Every change has a number
+behind it."** · LIVE
+
+**Step 2: "Answer the questionnaire." / "Your health, your history, your
+goal, and the screens that matter for your peptide. All of it goes to a
+U.S. licensed doctor."** · LIVE
+Fact: with no draw before the first dose, the questionnaire carries the
+screens (thyroid cancer history, pancreatitis, pregnancy, diabetes drugs,
+cancer history, blood pressure). PENDING the physicians' confirmation that
+their intake asks them.
+**Step 3: "...At week 12 a full blood panel, included, shows your doctor
+what changed, and your dose follows it."** · LIVE
+
+**The hold: "Hold to run your 12 weeks." Readout "Week 0 of 12", axis
+"start" to "week 12", lines "You start." "Week 12: panel drawn." "Dose
+adjusted."** · LIVE
+
+**Pricing line: "Your doctor, your medication, shipping and your week-12
+blood panel are all inside the figure."** · LIVE. Fact: OPEN (price
+completeness) as before.
+
+**FAQ "Do I need bloodwork?": "Yes, at week 12. You start first. Then a full
+panel, drawn at a lab near you and included in your plan, shows your doctor
+what changed, so your dose follows your numbers."** · LIVE
+**FAQ "Is this legit?": "...reviews your questionnaire and signs every
+prescription... At week 12 your blood is drawn and read."** · LIVE
+
+Sitewide, the same model now appears on bloodwork, how it works,
+physicians, pricing, the product pages, the goal pages, what happens next,
+about, the FAQ, the trust strip, the cart and the legal consent page. The
+"Basic / Full / Elite" panel tiers still exist in the catalog data and on
+the bloodwork and pricing pages; with one panel for everyone they should
+collapse to one, which is the next step.

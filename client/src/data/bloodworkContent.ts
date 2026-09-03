@@ -83,11 +83,11 @@ export const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[]
 export const BLOODWORK_FAQ_ITEMS = [
   {
     q: "What bloodwork does Nexphoria require before prescribing?",
-    a: `A partner-laboratory blood panel is required before any prescription is issued — the Basic, Full, or Elite tier your protocol calls for, drawn from a catalog of ${PANEL_TOTAL_MARKERS} biomarkers: hormonal axis (testosterone, LH, FSH, estradiol), metabolic (HbA1c, fasting insulin, lipids), inflammatory (hs-CRP), hepatic and renal function. Your requisition is generated in your member portal after the assessment.`,
+    a: `A full blood panel of ${PANEL_TOTAL_MARKERS} markers is drawn at week 12 of your plan, included: sugar and insulin, cholesterol and heart, liver and kidneys, hormones, and blood and nutrients. You start first; your requisition is issued as week 12 approaches.`,
   },
   {
     q: "How often are labs required during a Nexphoria subscription?",
-    a: "Partner-laboratory panels are required every 90 days throughout your active subscription. Lab results trigger a physician re-evaluation, at which point dosing may be adjusted or a new compound introduced based on updated biomarkers. Labs are included in all multi-month plans and available as an add-on for monthly subscribers.",
+    a: "A full panel is drawn at week 12 of your plan and read by your physician, who may adjust your dose or your plan from what it shows. The panel is included in your plan.",
   },
   {
     q: "Who reviews my bloodwork at Nexphoria?",

@@ -72,7 +72,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What labs do I need?",
-        a: "A 99-biomarker partner-laboratory panel is required before any prescription is written. Your requisition is generated in your member portal. If you have CLIA-certified results from within the past 30 days, your physician may accept them in lieu of a new draw — subject to physician discretion.",
+        a: "A full blood panel is drawn at week 12 of your plan, included. Your requisition is issued as week 12 approaches. If you have recent CLIA-certified results, your physician may read those too.",
       },
       {
         q: "Who reviews my bloodwork?",
@@ -148,11 +148,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How do refills work?",
-        a: "Active subscribers receive automatic refill shipments based on their protocol cadence. Your physician reviews your labs before each refill cycle and may adjust dosing. You can pause or reschedule refills from your member portal with at least 5 business days' notice.",
+        a: "Active subscribers receive automatic refill shipments based on their protocol cadence. Your physician reviews your file, and your week-12 panel once drawn, before each refill cycle and may adjust dosing. You can pause or reschedule refills from your member portal with at least 5 business days' notice.",
       },
       {
         q: "What if I want to change my protocol?",
-        a: "Request a protocol modification through your member portal. Your physician reviews the request and your most recent labs before approving any change. Protocol changes may require a new lab draw if your last panel is more than 90 days old.",
+        a: "Request a protocol modification through your member portal. Your physician reviews the request and your most recent panel before approving any change.",
       },
       {
         q: "What if I miss a dose?",
@@ -186,7 +186,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What makes Nexphoria different for peptide therapy?",
-        a: "Nexphoria combines 16+ physician-prescribed peptides, quarterly biomarker monitoring at CLIA-certified labs, sterile formulations from state-licensed 503A compounding pharmacies, and COA documentation — all in a single subscription, with every protocol reviewed against your own labs.",
+        a: "Nexphoria combines 16+ physician-prescribed peptides, a full blood panel at week 12 at CLIA-certified labs, sterile formulations from state-licensed 503A compounding pharmacies, and COA documentation — all in a single subscription, with every protocol reviewed against your own labs.",
       },
       {
         q: "What is the difference between Nexphoria and buying peptides from a research chemical site?",

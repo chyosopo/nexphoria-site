@@ -1,7 +1,7 @@
 /* ═══ FRONT DOOR — the homepage, rebuilt to docs/DESIGN-PACKAGE.md (2026-09-01)
 
-   One premise, "measured": a dose set from a 99-marker panel a doctor reads
-   first, and set again from the same panel at 90 days. The hero performs it
+   One premise, "measured": you start on your doctor's read of your
+   questionnaire, and at week 12 a full blood panel sets the dose again. The hero performs it
    in footage, the checklist proves it in buyers' words, the hold performs it
    by hand, and the closer restates it. Every section funnels to one anchor:
    the assessment. Copy below is verbatim from the package; change it there. */
@@ -44,20 +44,20 @@ const FLOOR = PRICED.length ? Math.min(...PRICED.map((s) => s.pricing!.m12)) : N
 const CHECKLIST = [
   ["Your own doctor.", "A named, state-licensed physician reads your file and signs your prescription."],
   ["Your own batch.", "Made for you in a licensed U.S. 503A pharmacy, batch documented, shipped cold."],
-  ["Your blood, read first.", `${PANEL_TOTAL_MARKERS} markers, drawn and reviewed before anything is prescribed.`],
-  ["Your retest, already booked.", `The same ${PANEL_TOTAL_MARKERS} markers again at 90 days. Your dose follows what they show.`],
+  ["Your blood, read at week 12.", `A full panel of ${PANEL_TOTAL_MARKERS} markers, included, drawn at week 12 and read by your doctor.`],
+  ["Your dose, adjusted from it.", "Your doctor continues, adjusts or stops from what your blood shows. Every change has a number behind it."],
 ] as const;
 
 const STEPS = [
   ["Choose your plan.", "Pick the peptide and the plan length, and check out. Two minutes."],
-  ["Answer the questionnaire.", `Your health, your history and your goal, plus ${PANEL_TOTAL_MARKERS} markers drawn at a lab near you. All of it goes to a U.S. licensed doctor.`],
-  ["Your doctor decides. Then it ships.", "If it fits you, your prescription goes to a licensed 503A pharmacy, is made for you, and ships cold. At 90 days you test again, and your dose follows your numbers."],
+  ["Answer the questionnaire.", "Your health, your history, your goal, and the screens that matter for your peptide. All of it goes to a U.S. licensed doctor."],
+  ["Your doctor decides. Then it ships.", "If it fits you, your prescription goes to a licensed 503A pharmacy, is made for you, and ships cold. At week 12 a full blood panel, included, shows your doctor what changed, and your dose follows it."],
 ] as const;
 
 const FAQ = [
-  { q: "Is this legit?", a: "Yes. A named, U.S. licensed doctor reviews your intake and your blood, and signs every prescription. Your medication is made for you in a licensed 503A pharmacy and shipped cold. Your blood is drawn again at 90 days." },
+  { q: "Is this legit?", a: "Yes. A named, U.S. licensed doctor reviews your questionnaire and signs every prescription. Your medication is made for you in a licensed 503A pharmacy and shipped cold. At week 12 your blood is drawn and read." },
   { q: "Do I actually talk to a doctor?", a: `Yes. A doctor reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel and makes the call. Your dose is reviewed at every retest.` },
-  { q: "Do I need bloodwork?", a: "Yes, before anything is prescribed. It is drawn at a lab near you, and it is inside your monthly figure. Without a baseline there is nothing to compare your retest against, and the retest is the point." },
+  { q: "Do I need bloodwork?", a: "Yes, at week 12. You start first. Then a full panel, drawn at a lab near you and included in your plan, shows your doctor what changed, so your dose follows your numbers." },
   { q: "What if the doctor says no?", a: "Then nothing is made. Some questionnaires end there, and the refund policy sets out what is refunded." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
   { q: "How is it shipped?", a: "Cold, in a plain package, to your door in all 50 states." },
@@ -80,7 +80,7 @@ export default function FrontDoor() {
   useSeo({
     title: "Nexphoria: your body, your numbers, your plan",
     description:
-      `Prescription peptides built around your blood test: a U.S. doctor checks ${PANEL_TOTAL_MARKERS} markers first, a licensed U.S. pharmacy makes it for you, it ships cold, and you retest at 90 days.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
+      `Prescription peptides, made for you: a U.S. doctor writes your plan from your questionnaire, a licensed U.S. pharmacy makes it, it ships cold, and at week 12 a full blood panel of ${PANEL_TOTAL_MARKERS} markers shows what changed.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
     path: "/",
     jsonLd: [
       orgJsonLd(),
@@ -126,7 +126,7 @@ export default function FrontDoor() {
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
                   {i === 2 ? (
                     <>
-                      <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, drawn and reviewed before anything is prescribed.
+                      A full panel of <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, included, drawn at week 12 and read by your doctor.
                     </>
                   ) : b}
                 </p>
@@ -238,9 +238,9 @@ export default function FrontDoor() {
         <div className="nx-hold-copy">
           <Reveal>
             <p style={kicker}>Try it</p>
-            <h2 id="fd-hold" style={{ ...h2, maxWidth: "14ch" }}>Hold to run your 90 days.</h2>
+            <h2 id="fd-hold" style={{ ...h2, maxWidth: "14ch" }}>Hold to run your 12 weeks.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "40ch" }}>
-              Your first panel, your doctor's read, your retest. Your dose follows your numbers. Run it yourself.
+              You start. At week 12 your blood is drawn and your doctor reads it. Your dose follows your numbers. Run it yourself.
             </p>
           </Reveal>
         </div>
@@ -257,7 +257,7 @@ export default function FrontDoor() {
           <p style={kicker}>Your price</p>
           <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>One number a month. Everything within it.</h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "58ch" }}>
-            Your consultation, your blood panel, your medication, shipping and your 90-day retest are all inside the figure. Your doctor sets the dose. The price does not change with it.
+            Your doctor, your medication, shipping and your week-12 blood panel are all inside the figure. Your doctor sets the dose. The price does not change with it.
           </p>
         </Reveal>
         <Reveal>

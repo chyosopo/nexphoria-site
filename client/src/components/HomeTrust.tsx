@@ -21,13 +21,13 @@ const STEPS = [
     n: "02",
     Icon: FlaskConical,
     title: "Get evaluated.",
-    body: "Baseline bloodwork and a review by a U.S.-licensed physician. They are the only party who decides whether a prescription is appropriate.",
+    body: "A structured questionnaire reviewed by a U.S. licensed physician. They are the only party who decides whether a prescription is appropriate.",
   },
   {
     n: "03",
     Icon: ShieldCheck,
     title: "Start under supervision.",
-    body: "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with labs re-run every 90 days and adjustments made against your markers.",
+    body: "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with a full blood panel at week 12 and adjustments made against your markers.",
   },
 ];
 

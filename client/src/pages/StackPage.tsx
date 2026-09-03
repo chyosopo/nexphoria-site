@@ -114,7 +114,7 @@ export default function StackPage({ slug }: { slug: string }) {
     { Icon: FlaskConical, t: "503A pharmacy compounding" },
     { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
     { Icon: LayoutDashboard, t: "Marker dashboard" },
-    { Icon: RefreshCw, t: "90-day retest & dose review" },
+    { Icon: RefreshCw, t: "Week-12 panel & dose review" },
   ];
 
   return (

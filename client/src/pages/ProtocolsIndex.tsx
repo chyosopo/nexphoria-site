@@ -111,7 +111,7 @@ export default function ProtocolsIndex() {
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
             { h: "Chosen to combine", d: "Each peptide is picked for how it works alongside the others in the stack — synergy a physician plans in advance." },
-            { h: "One panel, one timeline", d: "A single bloodwork tier gates the whole protocol, and every component runs on the same twelve-week arc — one baseline, one retest." },
+            { h: "One panel, one timeline", d: "Every component runs on the same twelve-week arc, with one full blood panel at week 12." },
             { h: "Priced as a plan", d: "Cadence pricing — one month, three months at 15% off, twelve months at 30% with the panel included — applies to the protocol as a whole." },
           ].map((b) => (
             <div key={b.h} className="nx-glass-tile" style={{ display: "block" }}>

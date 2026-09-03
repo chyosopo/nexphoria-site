@@ -14,7 +14,7 @@ export default function Physicians() {
   useSeo({
     title: "Nexphoria physicians — board-certified U.S. medical review",
     description:
-      "Every Nexphoria protocol is reviewed by a board-certified, U.S.-licensed physician who reads your labs before prescribing. No algorithms, no auto-approval — a licensed physician reviews your file.",
+      "Every Nexphoria plan is reviewed by a board-certified, U.S. licensed physician who reads your questionnaire before prescribing and your full blood panel at week 12.",
     path: "/physicians",
     jsonLd: [
       webPageJsonLd({
@@ -54,7 +54,7 @@ export default function Physicians() {
               >
                 <img
                   src={physicianTrustHero}
-                  alt="A board-certified physician reviewing a 99-biomarker peptide lab panel before prescribing"
+                  alt="A board-certified physician reviewing a full blood panel"
                   loading="eager"
                   decoding="async"
                   data-testid="physicians-hero-portrait"
@@ -381,7 +381,7 @@ export default function Physicians() {
 
       <FinalCTAStrip
         title="A physician is ready to read your file."
-        sub="A CLIA-certified partner-laboratory panel is drawn first. A board-certified physician reviews it before any prescription."
+        sub="A board-certified physician reviews your questionnaire before any prescription, and reads your full blood panel at week 12."
       />
       <style>{`
         @media (min-width: 768px) {
@@ -489,7 +489,7 @@ function PhysiciansHeroDark() {
             </p>
             <div role="list" style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
               {[
-                "Reads your labs first",
+                "Reads your file first",
                 "Signs every refill",
                 "Direct portal messaging",
                 "Licensed in your state",
@@ -559,7 +559,7 @@ function PhysiciansHeroDark() {
           >
             {[
               { k: "Board-certified", v: "Active certification required of every prescriber" },
-              { k: "Lab-gated", v: "No prescription precedes a CLIA-certified lab panel" },
+              { k: "Measured", v: "A full blood panel at week 12, read by your physician" },
               { k: "State-licensed", v: "Matched to a physician licensed where you live" },
               { k: "Human review", v: "A named physician reads your file" },
             ].map((tile) => (

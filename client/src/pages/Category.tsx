@@ -45,8 +45,8 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: "Physician-directed peptide protocols oriented around tissue recovery, joint comfort, and training resilience, calibrated to your bloodwork.",
     chips: ["Post-injury support", "Joint comfort", "Training load", "Tendon & tissue"],
     faqs: [
-      { q: "How do recovery protocols start?", a: "With a structured intake and baseline bloodwork. A licensed physician reviews both and, if appropriate, prescribes a protocol matched to your training load and history. " + IF_RX },
-      { q: "How soon are protocols adjusted?", a: "Labs are re-run every 90 days. Your physician reviews the change in your markers and adjusts, holds, or tapers the protocol accordingly." },
+      { q: "How do recovery protocols start?", a: "With a structured intake reviewed by a licensed physician who, if appropriate, prescribes a protocol matched to your training load and history. A full blood panel follows at week 12. " + IF_RX },
+      { q: "How soon are protocols adjusted?", a: "At week 12 a full blood panel is drawn. Your physician reviews the change in your markers and adjusts, holds, or tapers the protocol accordingly." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies and prescribed off-label by licensed physicians." },
     ],
   },
@@ -55,28 +55,28 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: "Protocols oriented around skin quality, collagen support, and hair, designed by licensed physicians and adjusted against your own labs.",
     chips: ["Skin quality", "Collagen support", "Hair support", "Healthy aging"],
     faqs: [
-      { q: "What does a skin protocol involve?", a: "An online evaluation, baseline labs, and, if a physician prescribes, a compounded protocol with check-ins. " + IF_RX },
-      { q: "When do people typically reassess?", a: "Bloodwork is repeated every 90 days and the protocol is reviewed against your markers and your goals." },
+      { q: "What does a skin protocol involve?", a: "An online evaluation and, if a physician prescribes, a compounded protocol with check-ins and a full blood panel at week 12. " + IF_RX },
+      { q: "When do people typically reassess?", a: "A full blood panel is drawn at week 12 and the protocol is reviewed against your markers and your goals." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
   growth: {
     pre: "Composition,", accent: "engineered.",
-    sub: "Physician-directed protocols oriented around lean mass, GH pulse, and body composition, gated by labs before, during, and after.",
+    sub: "Physician-directed protocols oriented around lean mass, GH pulse, and body composition, with a full blood panel at week 12.",
     chips: ["Lean mass", "GH pulse", "Body composition", "Strength support"],
     faqs: [
-      { q: "How is eligibility decided?", a: "By a licensed physician, from your intake and baseline bloodwork. " + IF_RX },
-      { q: "How is progress measured?", a: "Quarterly labs plus your own training data. Protocols are adjusted against numbers, not feelings." },
+      { q: "How is eligibility decided?", a: "By a licensed physician, from your intake. A full blood panel follows at week 12. " + IF_RX },
+      { q: "How is progress measured?", a: "Your week-12 blood panel plus your own training data. Protocols are adjusted against your numbers." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
   longevity: {
     pre: "Add life to your", accent: "years.",
-    sub: `Foundational protocols oriented around cellular energy, immune resilience, and healthspan — built on a ${PANEL_TOTAL_MARKERS}-marker baseline and re-tested every quarter.`,
+    sub: `Foundational protocols oriented around cellular energy, immune resilience, and healthspan, with a full blood panel of ${PANEL_TOTAL_MARKERS} markers at week 12.`,
     chips: ["Cellular energy", "Immune resilience", "Healthspan", "Daily vitality"],
     faqs: [
-      { q: "Where does a longevity protocol begin?", a: `With comprehensive baseline bloodwork: ${PANEL_TOTAL_MARKERS} markers across ${PANEL_CATEGORY_COUNT} systems, reviewed by a licensed physician who designs a protocol if appropriate. ` + IF_RX },
-      { q: "What makes this different from supplements?", a: "Everything here is prescription-only, physician-directed, and adjusted against your own labs every 90 days." },
+      { q: "Where does a longevity protocol begin?", a: `With a private online intake reviewed by a licensed physician who designs a protocol if appropriate, and a full blood panel of ${PANEL_TOTAL_MARKERS} markers at week 12. ` + IF_RX },
+      { q: "What makes this different from supplements?", a: "Everything here is prescription-only, physician-directed, and adjusted against your own blood at week 12." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
@@ -95,18 +95,18 @@ const CONFIG: Record<PeptideCategory, Cfg> = {
     sub: "Physician-directed protocols oriented around sleep quality, onset, and overnight recovery, matched to your labs and adjusted to how you actually respond.",
     chips: ["Sleep quality", "Sleep onset", "Overnight recovery", "Morning energy"],
     faqs: [
-      { q: "How do sleep protocols start?", a: "With a private online intake and baseline bloodwork reviewed by a licensed physician, who prescribes a protocol only if appropriate. " + IF_RX },
-      { q: "How is progress tracked?", a: "Through your own reporting and quarterly labs, protocols are held, adjusted, or tapered against real markers." },
+      { q: "How do sleep protocols start?", a: "With a private online intake reviewed by a licensed physician, who prescribes a protocol only if appropriate. A full blood panel follows at week 12. " + IF_RX },
+      { q: "How is progress tracked?", a: "Through your own reporting and your week-12 panel, protocols are held, adjusted, or tapered against real markers." },
       { q: "Are these products FDA-approved?", a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared by state-licensed 503A compounding pharmacies." },
     ],
   },
   metabolic: {
     pre: "Metabolic health,", accent: "on your terms.",
-    sub: "Medically supervised protocols oriented around appetite, weight, and glucose control, with real labs before the first dose and every 90 days after.",
+    sub: "Medically supervised protocols oriented around appetite, weight, and glucose control, with a full blood panel at week 12.",
     chips: ["Appetite control", "Weight management", "Glucose support", "Energy"],
     faqs: [
-      { q: "How does a metabolic protocol start?", a: "Online intake, baseline bloodwork, and physician review. If a prescription is appropriate, your protocol ships from a state-licensed 503A compounding pharmacy. " + IF_RX },
-      { q: "How is dosing handled?", a: "Dosing is individualized by your physician and reviewed against your labs and response every quarter." },
+      { q: "How does a metabolic protocol start?", a: "Online intake and physician review. If a prescription is appropriate, your protocol ships from a state-licensed 503A compounding pharmacy, and a full blood panel follows at week 12. " + IF_RX },
+      { q: "How is dosing handled?", a: "Dosing is individualized by your physician and reviewed against your week-12 panel and your response." },
       { q: "Are these products FDA-approved?", a: "Some molecules in this category exist as FDA-approved branded medications; compounded versions are not approved or evaluated by the FDA for safety, effectiveness, or quality." },
     ],
   },
@@ -136,8 +136,8 @@ const GOAL_CHIP: Record<PeptideCategory, { label: string; status: string; pos: s
 
 const STEPS: [string, string][] = [
   ["Share your history", "A private structured intake covering your goals, training, and medical history."],
-  ["Get evaluated", "Baseline bloodwork plus review by a U.S.-licensed physician. They alone decide whether a prescription is appropriate."],
-  ["Start & stay monitored", "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with labs re-run every 90 days."],
+  ["Get evaluated", "A structured intake reviewed by a U.S. licensed physician. They alone decide whether a prescription is appropriate."],
+  ["Start & stay monitored", "If prescribed, your protocol ships from a state-licensed 503A pharmacy, with a full blood panel at week 12."],
 ];
 
 export default function Category() {
@@ -260,7 +260,7 @@ export default function Category() {
             testId={`glance-${slug}`}
             figures={[
               { value: list.length > 0 ? String(list.length) : "—", unit: list.length === 1 ? "compound" : "compounds", caption: "in this goal, each with dose and format stated" },
-              { value: String(PANEL_TOTAL_MARKERS), unit: "markers", caption: "drawn at baseline, monitored throughout" },
+              { value: String(PANEL_TOTAL_MARKERS), unit: "markers", caption: "drawn at week 12, included" },
               { value: "1", unit: "physician", caption: "prescribes every protocol, and can decline" },
               { value: "90", unit: "days", caption: "between every retest, every cycle" },
             ]}

@@ -129,13 +129,13 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     { Icon: FlaskConical, t: "503A pharmacy compounding" },
     { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
     { Icon: LayoutDashboard, t: "Marker dashboard" },
-    { Icon: RefreshCw, t: "90-day retest & dose review" },
+    { Icon: RefreshCw, t: "Week-12 panel & dose review" },
   ];
 
   const WHY: { Icon: typeof Stethoscope; t: string; d: string }[] = [
     { Icon: Stethoscope, t: "Prescribed", d: "A licensed U.S. physician authorizes it against your intake and your panel, and signs for it." },
-    { Icon: Microscope, t: `${solo.panel} panel, gated`, d: "Baseline bloodwork is required before the first dose, and read by your physician." },
-    { Icon: RefreshCw, t: "Retested at 90 days", d: "The same markers are re-drawn and the dose is held, adjusted, or tapered from data." },
+    { Icon: Microscope, t: "Full panel at week 12", d: "A full blood panel, included, drawn at week 12 and read by your physician." },
+    { Icon: RefreshCw, t: "Dose reviewed at week 12", d: "Your physician holds, adjusts or tapers your dose from what the panel shows." },
   ];
 
   const tiers: BuyTier[] | undefined = solo.pricing
@@ -217,7 +217,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   rows={[
                     { label: "Dose", value: solo.dose },
                     { label: "Format", value: solo.spec },
-                    { label: "Monitoring", value: "Panel at baseline · retest every 90 days" },
+                    { label: "Monitoring", value: "Full panel at week 12 · included" },
                   ]}
                   testId={`spec-plate-${solo.slug}`}
                 />

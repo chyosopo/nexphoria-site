@@ -71,23 +71,23 @@ const monoCaption: React.CSSProperties = {
 const PROOF_STATS: { value: string; label: string; Icon: LucideIcon }[] = [
   { value: String(PANEL_TOTAL_MARKERS), label: "Biomarkers per panel", Icon: Activity },
   { value: "503A", label: "state-licensed pharmacy", Icon: ShieldCheck },
-  { value: "90 days", label: "Recalibration cadence", Icon: RefreshCw },
+  { value: "Week 12", label: "Full panel, included", Icon: RefreshCw },
   { value: "100%", label: "Physician-reviewed", Icon: Stethoscope },
 ];
 
 // The fixed clinical order — rendered as a drawn process timeline.
 const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
   { t: "Structured intake", d: "History, goals, medications, and contraindications — read by the physician who signs the prescription.", Icon: ClipboardList },
-  { t: "Laboratory bloodwork", d: "A baseline panel at a CLIA-certified partner lab across every system a protocol can touch.", Icon: Microscope },
+  { t: "Laboratory bloodwork", d: "A full panel at a CLIA-certified partner lab at week 12, across every system a plan can touch.", Icon: Microscope },
   { t: "Physician review", d: "A licensed U.S. physician reads your labs against your intake and writes — or declines — the prescription.", Icon: Stethoscope },
   { t: "503A compounding", d: "Sterile-prepared under USP <797>, batch-documented, third-party verified.", Icon: FlaskConical },
   { t: "Cold-chain delivery", d: "Temperature-controlled to your door in discreet, unbranded packaging.", Icon: Snowflake },
-  { t: "Dashboard & 90-day retest", d: "Markers, trends, and messaging in one place — then the panel is re-drawn and the dose reviewed.", Icon: LayoutDashboard },
+  { t: "Dashboard & week-12 panel", d: "Markers and trends in one place. Then the panel is drawn at week 12 and the dose reviewed.", Icon: LayoutDashboard },
 ];
 
 // The three tenets of the manifesto, as visual principle cards.
 const PRINCIPLES: { t: string; d: string; Icon: LucideIcon }[] = [
-  { t: "Labs before guesswork", d: "Every protocol begins with a baseline panel, and every dose change follows the measured data.", Icon: Ruler },
+  { t: "Measured, then adjusted", d: "Every plan gets a full blood panel at week 12, and every dose change follows the measured data.", Icon: Ruler },
   { t: "Physicians before protocols", d: "A board-certified U.S. physician owns every prescription, and the liability that comes with signing it.", Icon: Stethoscope },
   { t: "Mechanism before marketing", d: "We publish what is in the vial, who made it, and how it works — before we make a single claim.", Icon: Target },
 ];
@@ -106,7 +106,7 @@ const PILLARS = [
   {
     num: "03",
     title: "Measured",
-    desc: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Labs rerun every 90 days. Your dose is set from measured data, and the panel sits inside the monthly figure.",
+    desc: "A full blood panel is drawn at a CLIA-certified partner laboratory at week 12 of every plan, inside the monthly figure. Your dose is adjusted from measured data.",
   },
 ];
 
@@ -175,7 +175,7 @@ const ABOUT_FAQ_ITEMS = [
   },
   {
     q: "What makes Nexphoria different from other peptide companies?",
-    a: "Nexphoria is a physician-supervised telehealth platform. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with CLIA-certified partner-laboratory panels every 90 days. That chain — clinician, licensed pharmacy, documented batch, measured markers — is what you are buying.",
+    a: "Nexphoria is a physician-supervised telehealth platform. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with a CLIA-certified partner-laboratory panel at week 12. That chain, clinician, licensed pharmacy, documented batch, measured markers, is what you are buying.",
   },
   {
     q: "Is Nexphoria affiliated with Bask Health?",
@@ -811,7 +811,7 @@ export default function About() {
               eyebrow="Physicians"
               icon={<HeartPulse size={18} strokeWidth={1.5} />}
               headline="US board-certified physicians. Every case."
-              sub="No forms. No AI triage. A licensed physician reads your intake and labs before we compound anything."
+              sub="A licensed physician reads your questionnaire before we compound anything, and your full blood panel at week 12."
               testId="about-tile-physicians"
             />
             <BenefitTile
@@ -826,7 +826,7 @@ export default function About() {
               tone="cream"
               eyebrow="Bloodwork"
               icon={<Microscope size={18} strokeWidth={1.5} />}
-              headline="Partner-laboratory panels every 90 days."
+              headline="A full blood panel at week 12."
               sub="Every plan includes full biomarker panels. Dose changes follow labs, not vibes."
               testId="about-tile-bloodwork"
             />

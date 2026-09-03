@@ -18,7 +18,7 @@ export const TRUST_BADGES: { Icon: LucideIcon; label: string }[] = [
   { Icon: Stethoscope, label: "U.S.-licensed physicians" },
   { Icon: FlaskConical, label: "State-licensed 503A pharmacy" },
   { Icon: ClipboardCheck, label: "Prescription required" },
-  { Icon: Activity, label: "Lab-monitored every 90 days" },
+  { Icon: Activity, label: "Full blood panel at week 12" },
 ];
 
 /** Calm quiet credential row — drop under any hero. TRUE claims only. */

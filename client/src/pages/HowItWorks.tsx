@@ -43,61 +43,61 @@ const STEPS: Step[] = [
     objection: "“Is this just a form that rubber-stamps a sale?” It exists to rule out people for whom a protocol is wrong, before a physician spends time on the file, and it can end there.",
   },
   {
-    n: "02", t: "Bloodwork at the lab", Icon: TestTube,
-    img: stepBloodwork, imgAlt: "Vacutainer tubes on a ceramic tray, prepared for a draw",
-    d: "A single draw at a partner laboratory near you. A comprehensive panel across the systems a protocol can touch: cardiac, hormonal, metabolic, hepatic, renal, establishing your baseline.",
-    detail: "Three panel tiers, Basic, Full and Elite, matched to what a protocol actually requires. A GH-axis peptide mandates IGF-1; a metabolic protocol pulls insulin, HOMA-IR, and ApoB. You are billed for the markers your protocol reads.",
-    objection: "“Why can’t I skip the labs?” Because without a baseline there is nothing to compare the retest against, and the retest is the entire point.",
-  },
-  {
-    n: "03", t: "Physician review", Icon: Stethoscope,
+    n: "02", t: "Physician review", Icon: Stethoscope,
     img: stepPhysician, imgAlt: "Two physicians review a patient chart together",
     d: "A licensed U.S. physician reads your intake against your markers. If a protocol is appropriate, it is prescribed. If it is not, you are told so plainly.",
     detail: "A physician is the only party who can authorize a prescription here, and that authority sits with them alone. Some intakes end at this step with “not a candidate.” The refund policy sets out what is refunded.",
     objection: "“Is there really a doctor, or a checkbox?” A named, state-licensed physician owns the decision and the liability for it.",
   },
   {
-    n: "04", t: "503A compounding", Icon: FlaskConical,
+    n: "03", t: "503A compounding", Icon: FlaskConical,
     img: stepCompounding, imgAlt: "A sterile compounding room in a licensed pharmacy",
     d: "Prescriptions are compounded for you in a state-licensed 503A pharmacy, batch documented and prescription only.",
     detail: "503A pharmacies compound to an individual prescription under state board oversight. Every batch is documented. This is the same regulatory class that prepares countless everyday prescriptions.",
     objection: "“Where does the actual medication come from?” A licensed U.S. compounding pharmacy, preparing your vial against your specific prescription, batch by documented batch.",
   },
   {
-    n: "05", t: "Cold-chain delivery", Icon: Snowflake,
+    n: "04", t: "Cold-chain delivery", Icon: Snowflake,
     img: stepDelivery, imgAlt: "An unbranded package at a front door",
     d: "Temperature-controlled from pharmacy to your door, in discreet, unbranded packaging.",
     detail: "Peptides are temperature-sensitive; a broken cold chain is a dead protocol. Shipments are packed to hold temperature in transit and arrive without anything on the box that announces what’s inside.",
     objection: "“Will it be obvious what this is?” No. The packaging is deliberately anonymous.",
   },
   {
-    n: "06", t: "Your dashboard", Icon: LayoutDashboard,
+    n: "05", t: "Your dashboard", Icon: LayoutDashboard,
     dashboardMock: true,
     d: "Markers, reference ranges, trends and your active protocol, in one place.",
     detail: "Every number sits next to its range and its trend line, so you read direction, not just a snapshot.",
     objection: "“Do I just get a vial and silence?” You get the data, the trend, and the doctor who owns the decision.",
   },
   {
-    n: "07", t: "The 90-day retest", Icon: RefreshCw,
+    n: "06", t: "The week-12 panel", Icon: TestTube,
+    img: stepBloodwork, imgAlt: "Vacutainer tubes on a ceramic tray, prepared for a draw",
+    d: "Twelve weeks in, a single draw at a partner laboratory near you. A full panel across the systems a plan can touch: sugar and insulin, cholesterol and heart, liver and kidneys, hormones, blood and nutrients.",
+    detail: "One full panel for every plan, included. Your doctor reads the markers that matter for your peptide first: IGF-1 for tesamorelin, sugar and insulin for a GLP-1, hormones for context.",
+    objection: "“Why test at all?” Because how you feel and what changed are two different things, and your doctor adjusts your dose from the second one.",
+  },
+  {
+    n: "07", t: "Your dose, adjusted", Icon: RefreshCw,
     img: stepRetest, imgAlt: "A physician reads a printed lab panel at a light table",
-    d: "Your panel is drawn again. The trend is placed next to the protocol, and a physician decides what changes.",
-    detail: "This is the step the rest of the market skips. The same markers are re-drawn, the movement is read against your protocol, and the physician holds, adjusts, or tapers accordingly. The loop is the product, not the vial.",
-    objection: "“What am I actually paying for?” Ongoing physician oversight, anchored to your own labs and re-read every 90 days.",
+    d: "Your week-12 panel is placed next to your plan, and a physician decides what changes.",
+    detail: "This is the step most of the market skips. The markers are read against your plan, and the physician holds, adjusts, or tapers accordingly. The loop is the product, and the vial is part of it.",
+    objection: "“What am I actually paying for?” Ongoing physician oversight, anchored to your own blood at week 12.",
   },
 ];
 
 const STATS: { value: string; label: string }[] = [
   { value: "7", label: "Steps · fixed order" },
   { value: "503A", label: "State-licensed pharmacy" },
-  { value: "90 days", label: "Retest cadence" },
+  { value: "Week 12", label: "Full panel, included" },
   { value: "$0", label: "Until you’re prescribed" },
 ];
 
 const COMPARE: { row: string; them: string; us: string }[] = [
   { row: "Who authorizes it", them: "A checkout button", us: "A licensed U.S. physician" },
-  { row: "Baseline bloodwork", them: "Rarely, if ever", us: "Required before the first dose" },
+  { row: "Blood panel", them: "Rarely, if ever", us: "A full panel at week 12, included" },
   { row: "Where it’s made", them: "Often unnamed", us: "State-licensed 503A pharmacy" },
-  { row: "After you buy", them: "Silence", us: "90-day retest and physician review" },
+  { row: "After you buy", them: "Silence", us: "A week-12 panel and a physician review" },
   { row: "What you’re buying", them: "A vial", us: "The measured loop around it" },
 ];
 
@@ -109,14 +109,14 @@ export default function HowItWorks() {
   const heroImg = OUTCOME_HERO[world === "women" ? "women" : "men"];
   useSeo({
     title: "How It Works | Nexphoria",
-    description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, and 90-day retesting, in a fixed order.",
+    description: "Your plan and questionnaire, physician review, 503A compounding, cold-chain delivery, one dashboard, a full blood panel at week 12 and a dose review, in a fixed order.",
     path: "/how-it-works",
     jsonLd: [
-      webPageJsonLd({ name: "How It Works", description: "Intake, bloodwork, physician review, 503A compounding, cold-chain delivery, one dashboard, 90-day retesting.", path: "/how-it-works", type: "MedicalWebPage" }),
+      webPageJsonLd({ name: "How It Works", description: "Plan and questionnaire, physician review, 503A compounding, cold-chain delivery, one dashboard, a week-12 blood panel, a dose review.", path: "/how-it-works", type: "MedicalWebPage" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "How It Works", path: "/how-it-works" }]),
       howToJsonLd({
         name: "How Nexphoria peptide therapy works",
-        description: "The fixed order of a Nexphoria protocol: structured intake, laboratory bloodwork, physician review, 503A compounding, cold-chain delivery, a monitoring dashboard, and a 90-day retest.",
+        description: "The fixed order of a Nexphoria plan: your plan and questionnaire, physician review, 503A compounding, cold-chain delivery, a monitoring dashboard, a full blood panel at week 12, and a dose review.",
         steps: STEPS.map((s) => ({ name: s.t, text: s.d })),
       }),
     ],
@@ -220,7 +220,7 @@ export default function HowItWorks() {
                           <div className="nx-mini-bar hi" style={{ height: "88%" }} />
                         </div>
                         <div className="nx-mini-row">
-                          <span>Baseline → 90 → 180 days</span>
+                          <span>Start → week 12 → week 24</span>
                         </div>
                         <div className="nx-mini-row">
                           <span className="nx-mini-cap">Illustrative, not a patient record</span>
@@ -250,7 +250,7 @@ export default function HowItWorks() {
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "clamp(1.8rem,3.5vw,2.6rem)", maxWidth: 760 }}>
               {[
-                { k: "Draw", v: "The same baseline markers, re-run at day 90." },
+                { k: "Draw", v: "A full panel at week 12, read against your start." },
                 { k: "Read", v: "Movement placed beside the active protocol." },
                 { k: "Decide", v: "A physician holds, adjusts, or tapers the dose." },
               ].map((x) => (

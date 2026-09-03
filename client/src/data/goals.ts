@@ -47,7 +47,7 @@ export const GOALS: Goal[] = [
   {
     slug: "weight",
     label: "Weight & metabolic",
-    lede: "Appetite, visceral fat, and the markers underneath them — read before anything is prescribed.",
+    lede: "Appetite, visceral fat, and the markers underneath them — read at week 12.",
     ledeWomen: "Appetite and metabolism, addressed at the markers rather than by willpower.",
     // GLP-1s lead (what visitors come for); tesamorelin follows as the
     // visceral-fat route for those a physician steers there.

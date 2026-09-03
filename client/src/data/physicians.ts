@@ -43,7 +43,7 @@ export type PhysicianReview = {
 export const physicianReview: PhysicianReview = {
   stats: [
     { k: "100%", v: "Protocols physician-reviewed" },
-    { k: String(PANEL_TOTAL_MARKERS), v: "Biomarkers reviewed first" },
+    { k: String(PANEL_TOTAL_MARKERS), v: "Markers in your week-12 panel" },
     { k: "50", v: "States covered" },
     { k: "0", v: "Algorithmic approvals" },
   ],
@@ -54,8 +54,8 @@ export const physicianReview: PhysicianReview = {
       detail: "Every prescribing physician holds active board certification. We treat that as the floor to practice here, and start from it.",
     },
     {
-      label: "Laboratory review mandatory before any Rx",
-      detail: "A CLIA-certified partner-laboratory panel must be on file. No prescription precedes labs.",
+      label: "Your week-12 panel, read by your doctor",
+      detail: "A full blood panel at week 12, included in every plan, drawn at a CLIA-certified partner laboratory and read by your physician, who continues, adjusts or stops.",
     },
     {
       label: "Licensed in your state of residence",
@@ -74,18 +74,18 @@ export const physicianReview: PhysicianReview = {
   steps: [
     {
       n: "01",
-      label: "Labs First",
-      body: "A 99-biomarker panel drawn at a CLIA-certified partner laboratory is required before any prescription. Your physician will not prescribe based on symptoms alone. The panel covers hormones, metabolic markers, inflammation, cardiovascular markers, and organ function.",
+      label: "Your questionnaire",
+      body: "A medical questionnaire covering your history, your goals, your medications and the screens that matter for your peptide. A licensed physician reads all of it before anything is prescribed.",
     },
     {
       n: "02",
       label: "Physician Review",
-      body: "A board-certified physician reads your full panel and intake themselves. They look for absolute contraindications, relative cautions, and protocol optimization against your own baseline. You are notified when review is complete.",
+      body: "A board-certified physician reads your questionnaire themselves. They look for contraindications and cautions, then set your starting dose. You are notified when review is complete.",
     },
     {
       n: "03",
       label: "Telehealth Consult",
-      body: "Your consult is scheduled through our licensed telehealth partner. Your physician finalizes your protocol, sets dose parameters, and answers clinical questions. Ongoing secure portal messaging is available between consult cycles.",
+      body: "Your consult is scheduled through our licensed telehealth partner. Your physician finalizes your plan, sets dose parameters, and answers clinical questions. At week 12 a full blood panel, included, shows what changed, and your dose follows it.",
     },
   ],
 
