@@ -276,10 +276,10 @@ function Hero() {
             src="img/img_6d36ae1989c8.mp4"
             poster="img/img_b9ec00db43d6.webp"
             className="w-full h-auto block" style={{ aspectRatio: "16 / 7", objectFit: "cover" }}
-            aria-label="Partner-laboratory lab work at week 12" />
+            aria-label="Laboratory work at week 12" />
           <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 62%, rgba(21, 24, 28,0.30))" }} />
           <p className="absolute left-6 bottom-4 md:left-8 md:bottom-5" style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-bg)", textShadow: "0 2px 16px rgba(21, 24, 28,0.45)", margin: 0 }}>
-            Your numbers, at week 12.
+            Drawn and read at week 12.
           </p>
         </div>
       </div>

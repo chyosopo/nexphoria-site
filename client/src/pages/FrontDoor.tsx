@@ -78,15 +78,15 @@ function priceLine(s: SoloPeptide) {
 
 export default function FrontDoor() {
   useSeo({
-    title: "Nexphoria: your body, your numbers, your plan",
+    title: "Nexphoria: prescription peptides, compounded in the United States",
     description:
-      `Prescription peptides, made for you: a U.S. doctor writes your plan from your questionnaire, a licensed U.S. pharmacy makes it, it ships cold, and at week 12 a full blood panel of ${PANEL_TOTAL_MARKERS} markers shows what changed.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
+      `Semaglutide, tirzepatide, tesamorelin and PT-141, prescribed by licensed U.S. physicians, compounded in a licensed 503A pharmacy, shipped cold, and followed by a full blood panel of ${PANEL_TOTAL_MARKERS} markers at week 12.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
     path: "/",
     jsonLd: [
       orgJsonLd(),
       websiteJsonLd(),
       medicalBusinessJsonLd(),
-      webPageJsonLd({ name: "Nexphoria", description: "Your body. Your numbers. Your plan. Prescription peptides built around your blood test.", path: "/" }),
+      webPageJsonLd({ name: "Nexphoria", description: "Four prescription peptides, compounded in the United States and followed by a full blood panel at week 12.", path: "/" }),
       faqJsonLd(FAQ),
     ],
   });
