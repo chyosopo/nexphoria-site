@@ -103,7 +103,7 @@ export default function Physicians() {
                 >
                   Peptide medicine is precision pharmacology. A physician on the network does not
                   prescribe from a questionnaire — your dose is calibrated against your measured
-                  IGF-1, metabolic, and hormonal markers, then monitored and adjusted every 90 days.
+                  IGF-1, metabolic, and hormonal markers, then read at week 12 and adjusted.
                 </p>
               </div>
             </Reveal>

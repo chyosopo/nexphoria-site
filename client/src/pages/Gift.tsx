@@ -20,7 +20,7 @@ import { F, S } from "@/lib/typography";
 const GIFT_FAQ = [
   {
     q: "Can I really gift a prescription protocol?",
-    a: "You gift the coverage, not the prescription. Your gift pays for the protocol term or panel; the recipient completes their own intake, and a licensed physician reviews their bloodwork and history before anything is prescribed. Medicine is never dispensed on a gift alone.",
+    a: "You gift the coverage, not the prescription. Your gift pays for the protocol term or panel; the recipient completes their own intake, and a licensed physician reviews their questionnaire before anything is prescribed. Medicine is never dispensed on a gift alone.",
   },
   {
     q: "What if their physician doesn't prescribe it?",

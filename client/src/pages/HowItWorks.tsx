@@ -90,7 +90,7 @@ const STATS: { value: string; label: string }[] = [
   { value: "7", label: "Steps · fixed order" },
   { value: "503A", label: "State-licensed pharmacy" },
   { value: "Week 12", label: "Full panel, included" },
-  { value: "$0", label: "Until you’re prescribed" },
+  { value: "50", label: "States shipped to" },
 ];
 
 const COMPARE: { row: string; them: string; us: string }[] = [
