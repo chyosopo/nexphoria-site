@@ -79,21 +79,20 @@ const included = [
   "Overnight cold-chain shipping",
   "Your doctor's read of your week-12 panel",
   "Your dose adjusted from what your blood shows",
-  "Itemized receipts for FSA/HSA submission",
 ];
 
 const tiers = [
   {
     key: "solo",
     name: "Solo Peptide",
-    tagline: "One targeted compound, one goal.",
+    tagline: "One medication for one goal.",
     priceFrom: SOLO_FROM_PRICE as number | null,
     recommended: false,
     features: [
       "One peptide, chosen with your doctor",
       "Your doctor's review",
       "503A US-compounded vial",
-      "Cold-chain overnight shipping",
+      "Cold shipping, plain packaging",
       "Your doctor's read of your week-12 panel",
     ],
     cta: "Browse peptides",
@@ -102,16 +101,15 @@ const tiers = [
   {
     key: "stack",
     name: "Curated Stack",
-    tagline: "Physician-built combinations that work in concert.",
+    tagline: "Two or three medications that work together.",
     priceFrom: STACK_FROM_12MO as number | null,
     recommended: true,
     features: [
-      "2\u20134 synergistic peptides",
+      "Two or three medications, one plan",
       "Everything in Solo",
       "Full blood panel at week 12",
       "Your doctor's read of your week-12 panel",
-      "Protocol tuned to your biomarkers",
-      "FSA/HSA itemized receipts",
+      "Dose adjustments from your week-12 panel",
     ],
     cta: "Browse stacks",
     href: "/stacks",
@@ -119,16 +117,15 @@ const tiers = [
   {
     key: "custom",
     name: "Custom Protocol",
-    tagline: "A protocol designed around your labs and physiology.",
+    tagline: "A plan built for you by your physician.",
     priceFrom: null as number | null,
     recommended: false,
     features: [
-      "Fully bespoke compound selection",
+      "Medications chosen for you",
       "Everything in Stack",
-      "Extended biomarker + epigenetic panels",
+      "Everything in Protocol",
       "One doctor who owns your case",
       "Dose review at week 12",
-      "Priority telehealth response",
     ],
     cta: "Get started",
     href: null,
@@ -141,7 +138,6 @@ const comparison = [
   { feature: "503A US compounding pharmacy only", nexphoria: true, others: false },
   { feature: "Week-12 blood panel included", nexphoria: true, others: false },
   { feature: "No long-term contracts", nexphoria: true, others: false },
-  { feature: "FSA/HSA receipts provided", nexphoria: true, others: false },
   { feature: "Your doctor can decline", nexphoria: true, others: "rarely" },
 ];
 
@@ -181,7 +177,7 @@ function PricingTiers() {
               marginBottom: "0.75rem",
             }}
           >
-            One peptide or a full protocol. Physician and labs included either way.
+            One medication or a full protocol. Everything included either way.
           </h2>
           <p
             style={{
@@ -193,7 +189,7 @@ function PricingTiers() {
               marginBottom: "3rem",
             }}
           >
-            Every path includes physician review, US-compounded medication, and one complete monthly figure.
+            Every plan includes physician review, your medication, cold shipping and your week-12 blood panel, in one monthly price.
           </p>
         </Reveal>
 
@@ -402,14 +398,14 @@ function PricingTiers() {
               src: artPricingSingle,
               alt: "A single Nexphoria-labeled peptide vial with a silver crimp cap on a marble counter",
               name: "Solo Peptide, as dispensed",
-              line: "One compound in a single 503A-compounded vial, shipped cold-chain overnight.",
+              line: "One medication, made for you in a licensed U.S. pharmacy and shipped cold.",
             },
             {
               key: "stack",
               src: artPricingBundle,
               alt: "An open navy Nexphoria presentation case holding four compounded peptide vials",
               name: "Curated Stack, as dispensed",
-              line: "Two to four synergistic compounds, cased together as one protocol.",
+              line: "Two or three medications that work together, shipped as one plan.",
             },
           ].map((item, i) => (
             <Reveal key={item.key} delay={i * 60}>
@@ -475,10 +471,6 @@ const PRICING_FAQ_ITEMS = [
   {
     q: "Are labs included?",
     a: `A full blood panel of ${PANEL_TOTAL_MARKERS} markers is drawn at week 12 and included in your plan. Your physician reads it and adjusts your dose from it.`,
-  },
-  {
-    q: "Can I use FSA or HSA funds?",
-    a: "Yes. Compounded prescription medications and physician consultations are generally FSA/HSA-eligible. We provide itemized receipts at checkout. Confirm eligibility with your plan administrator.",
   },
   {
     q: "What if the physician declines my protocol?",
@@ -601,7 +593,7 @@ export default function Pricing() {
                     }}
                     data-testid="pricing-hero-stacks-link"
                   >
-                    Compare bundled stacks
+                    Compare protocols
                   </Link>
                 </div>
               </div>
@@ -661,7 +653,7 @@ export default function Pricing() {
                 marginBottom: "3rem",
               }}
             >
-              Six things every Nexphoria plan already carries. The figure is complete.
+              Five things every plan already includes.
             </p>
           </Reveal>
 
@@ -670,7 +662,7 @@ export default function Pricing() {
               tone="cream"
               eyebrow="Physician"
               icon={<Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />}
-              headline="Board-certified US physician on every case."
+              headline="A licensed U.S. physician on every case."
               sub="A licensed physician reads your questionnaire before anything ships, and your full blood panel at week 12. A clinician's judgment, start to finish."
               testId="pricing-tile-physician"
             />
@@ -687,32 +679,24 @@ export default function Pricing() {
               eyebrow="Pharmacy"
               icon={<ShieldCheck size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="503A US-licensed compounding pharmacy only."
-              sub="Every vial compounded in a US facility we vet. Domestic, documented, every batch."
+              sub="Every medication is made for you in a licensed U.S. pharmacy, batch documented."
               testId="pricing-tile-pharmacy"
             />
             <BenefitTile
               tone="cream"
               eyebrow="Shipping"
               icon={<Truck size={18} strokeWidth={1.5} aria-hidden="true" />}
-              headline="Cold-chain overnight, discreet."
-              sub="Temperature-controlled overnight shipping in plain packaging. Signature confirmed."
+              headline="Cold shipping, plain packaging."
+              sub="Temperature-controlled shipping in plain packaging, to all 50 states."
               testId="pricing-tile-shipping"
             />
             <BenefitTile
               tone="cream"
               eyebrow="Adjustments"
               icon={<ChevronsDownUp size={18} strokeWidth={1.5} aria-hidden="true" />}
-              headline="Physician re-titrates each cycle."
+              headline="Dose adjustments, included."
               sub="At week 12, your physician reads your panel and adjusts your dose. The review is included."
               testId="pricing-tile-titration"
-            />
-            <BenefitTile
-              tone="cream"
-              eyebrow="Receipts"
-              icon={<Receipt size={18} strokeWidth={1.5} aria-hidden="true" />}
-              headline="FSA/HSA itemized receipts, every month."
-              sub="Pre-tax dollars for medical care. Itemized receipts arrive automatically, every month."
-              testId="pricing-tile-fsahsa"
             />
           </BenefitTileGrid>
         </div>
@@ -1345,11 +1329,10 @@ const PLAN_COMPARISON_ROWS = [
   { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: STACK_FROM_12MO === null ? "Quoted at consult" : `From ${formatUSD(STACK_FROM_12MO)}/mo`, custom: "Quoted at consult" },
   { feature: "Your doctor's review", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
   { feature: "Your week-12 panel and dose review", solo: "Included", stack: "Included", custom: "Included (priority)" },
-  { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
+  { feature: "Medications", solo: "One", stack: "Two or three", custom: "Chosen for you" },
   { feature: `Full blood panel (${PANEL_TOTAL_MARKERS} markers)`, solo: "Week 12, included", stack: "Week 12, included", custom: "Extended panels, included" },
-  { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },
+  { feature: "Cold shipping, plain packaging", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
-  { feature: "FSA/HSA itemized receipts", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Verdict", solo: "Best for single-goal starters", stack: "Best value for most patients", custom: "Best for complex protocols" },
 ];
 
@@ -1372,7 +1355,7 @@ export function PricingPlanTable() {
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "var(--nx-t-sm)" }}>
               <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                Nexphoria plan comparison: Solo Peptide vs. Curated Stack vs. Custom Protocol. Save {SAVE_3MO}% (quarterly) or {SAVE_12MO}% (annual) with prepay.
+                Plan comparison: one medication, a protocol, or a custom plan. Save {SAVE_3MO}% (quarterly) or {SAVE_12MO}% (annual) with prepay.
               </caption>
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>

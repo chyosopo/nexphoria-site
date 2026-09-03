@@ -7,13 +7,13 @@
 3. Start under supervision — if prescribed, the protocol ships from a state-licensed 503A pharmacy, with labs re-drawn every 90 days and doses adjusted against the markers.
 
 ## Physician-curated protocols (stacks)
-- [Wolverine](https://nexphoria.com/stacks/wolverine): Recovery, measured. Composition: BPC-157 + TB-500. from-priced on page; dispensed only if prescribed.
-- [Glow](https://nexphoria.com/stacks/glow): Skin, at the cellular layer. Composition: GHK-Cu + Epitalon. from-priced on page; dispensed only if prescribed.
-- [Ascend](https://nexphoria.com/stacks/ascend): Lean strength, measured. Composition: CJC-1295 (no-DAC) + Ipamorelin. from-priced on page; dispensed only if prescribed.
-- [Lucidity](https://nexphoria.com/stacks/lucidity): Signal over noise. Composition: Selank + Semax. from-priced on page; dispensed only if prescribed.
-- [Meridian](https://nexphoria.com/stacks/meridian): Longevity, on three hallmarks. Composition: NAD+ + Epitalon + MOTS-c. from-priced on page; dispensed only if prescribed.
-- [Ignite](https://nexphoria.com/stacks/ignite): The metabolic reset. Composition: Tirzepatide. from-priced on page; dispensed only if prescribed.
-- [Threshold](https://nexphoria.com/stacks/threshold): Sleep, restored to architecture. Composition: DSIP + Epitalon. from-priced on page; dispensed only if prescribed.
+- [Wolverine](https://nexphoria.com/stacks/wolverine): The recovery pair. Repair signal plus repair cells. Composition: BPC-157 + TB-500. from-priced on page; dispensed only if prescribed.
+- [Glow](https://nexphoria.com/stacks/glow): Skin support from within, plus a healthy-ageing course. Composition: GHK-Cu + Epitalon. from-priced on page; dispensed only if prescribed.
+- [Ascend](https://nexphoria.com/stacks/ascend): Growth hormone, more often and more. Once a night. Composition: CJC-1295 (no-DAC) + Ipamorelin. from-priced on page; dispensed only if prescribed.
+- [Lucidity](https://nexphoria.com/stacks/lucidity): Focus in the morning, calm through the day. Two nasal sprays. Composition: Selank + Semax. from-priced on page; dispensed only if prescribed.
+- [Meridian](https://nexphoria.com/stacks/meridian): Energy, metabolism and healthy ageing, in one plan. Composition: NAD+ + Epitalon + MOTS-c. from-priced on page; dispensed only if prescribed.
+- [Ignite](https://nexphoria.com/stacks/ignite): Two appetite hormones, one weekly dose. Composition: Tirzepatide. from-priced on page; dispensed only if prescribed.
+- [Threshold](https://nexphoria.com/stacks/threshold): Deeper sleep, and a steadier sleep-wake rhythm. Composition: DSIP + Epitalon. from-priced on page; dispensed only if prescribed.
 
 ## Single peptides (formulary)
 - [Sermorelin](https://nexphoria.com/peptides/sermorelin): More of your own growth hormone, gently. Once a night.

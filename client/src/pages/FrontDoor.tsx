@@ -14,6 +14,8 @@ import { SectionLine } from "@/components/SectionLine";
 import { GoalPicker } from "@/components/GoalPicker";
 import { liveConcerns, concernSkus } from "@/data/concerns";
 import { SKU_PHOTO as SKU_PHOTO_ALL } from "@/components/SkuPhoto";
+import { GoodForChips } from "@/components/BenefitStrip";
+import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { CATEGORY_LABELS, LIVE_CATEGORIES } from "@/data/peptides";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import coldBox from "@/assets/life/cold-box.webp";
@@ -198,14 +200,15 @@ export default function FrontDoor() {
                 {items.map((s, i) => (
                   <Reveal key={s.slug} delay={i * 50} className="nx-reveal-lift">
                     <Link href={`/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`frontdoor-sku-${s.slug}`}>
-                      {SKU_PHOTO_ALL[s.slug] && (
-                        <div className="nx-sku-photo">
-                          <img src={SKU_PHOTO_ALL[s.slug]} alt={`${s.name} vial`} width={1024} height={1024} loading="lazy" decoding="async" />
-                        </div>
-                      )}
+                      <div className="nx-sku-photo">
+                        {SKU_PHOTO_ALL[s.slug]
+                          ? <img src={SKU_PHOTO_ALL[s.slug]} alt={`${s.name} vial`} width={1024} height={1024} loading="lazy" decoding="async" />
+                          : <VialPanel name={s.name} dose={labelSpec(s.spec)} size="84%" ratio="1 / 1" fill={0.58} />}
+                      </div>
                       <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
                       <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name}</p>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.25rem 0 0" }}>{s.dose}</p>
+                      <div style={{ marginTop: "0.6rem" }}><GoodForChips slug={s.slug} /></div>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.6rem 0 0" }}>{s.dose}</p>
                       <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
                     </Link>
                   </Reveal>

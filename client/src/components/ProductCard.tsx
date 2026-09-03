@@ -16,6 +16,7 @@ import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
+import { GoodForChips } from "@/components/BenefitStrip";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
@@ -72,7 +73,7 @@ export function ProductCard({
           <p className="nx-card-reveal__body">{sku.mechanism}</p>
           <dl className="nx-card-reveal__facts">
             <div><dt>Dose</dt><dd>{sku.dose}</dd></div>
-            <div><dt>Week 12</dt><dd>{sku.panel} panel</dd></div>
+            <div><dt>Week 12</dt><dd>Blood panel included</dd></div>
           </dl>
         </div>
       </div>
@@ -103,6 +104,7 @@ export function ProductCard({
         >
           {sku.outcome}
         </p>
+        <div style={{ marginTop: "0.6rem" }}><GoodForChips slug={sku.slug} /></div>
         <div
           style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -122,7 +124,7 @@ export function ProductCard({
             color: "var(--nx-fg-muted)", marginTop: "0.55rem",
           }}
         >
-          Prescription only · dispensed if prescribed
+          Prescription only · if prescribed
         </p>
       </div>
     </Link>

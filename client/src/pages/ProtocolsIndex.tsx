@@ -80,10 +80,10 @@ export default function ProtocolsIndex() {
             <div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
               <h1 id="protocols-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
-                Protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured against you.</em>
+                Protocols. <em style={{ color: "var(--nx-cobalt)" }}>Two or three medications, one plan.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                A protocol is a combination your doctor curates: chosen to work together, run on a twelve-week timeline, and measured with one full blood panel at week 12. A plan, with a date on every step.
+                A protocol combines two or three medications that work together, on one twelve-week plan, with one full blood panel at week 12 included. Prescribed online by licensed U.S. physicians.
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
@@ -110,9 +110,9 @@ export default function ProtocolsIndex() {
       <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Why a protocol">
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
-            { h: "Chosen to combine", d: "Each peptide is picked for how it works alongside the others in the stack. Your doctor plans the synergy in advance." },
-            { h: "One panel, one timeline", d: "Every component runs on the same twelve-week arc, with one full blood panel at week 12." },
-            { h: "Priced as a plan", d: "Cadence pricing applies to the protocol as a whole: one month, three months at 15% off, twelve months at 30% with the panel included." },
+            { h: "Chosen to work together", d: "Each medication in a protocol is picked for how it works alongside the others." },
+            { h: "One plan, one blood panel", d: "Everything runs on the same twelve weeks, with one full blood panel at week 12 included." },
+            { h: "One monthly price", d: "The protocol is priced as one plan: monthly, 15% off at three months, 30% off at twelve." },
           ].map((b) => (
             <div key={b.h} className="nx-glass-tile" style={{ display: "block" }}>
               <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{b.h}</h2>
@@ -232,10 +232,10 @@ export default function ProtocolsIndex() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
           <h2 id="protocols-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            Your questionnaire decides, <em style={{ color: "var(--nx-acid)" }}>and your doctor signs.</em>
+            Not sure which one? <em style={{ color: "var(--nx-acid)" }}>Start with a few health questions.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            You don’t have to pick correctly from a grid. Share your history; your doctor matches you to the right protocol, or tells you none is appropriate.
+            Answer a few health questions and a licensed physician will point you to the right protocol, or to a single medication if that fits better.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
             Get started

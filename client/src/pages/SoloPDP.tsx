@@ -26,6 +26,7 @@ import { EvidenceStrip } from "@/components/EvidenceStrip";
 import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
+import { BenefitStrip } from "@/components/BenefitStrip";
 import { monitoringFor, RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import type { PeptideCategory } from "@/data/peptides";
@@ -212,6 +213,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
                 <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong>. {solo.mechanism}
               </p>
+              <div style={{ marginTop: "1.2rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} testId={`benefit-${solo.slug}`} /></div>
               {/* Seed-grammar spec plate (SEED-STUDY S1): the compound as a
                   specimen label — taxonomy line + ruled LABEL→value rows in
                   tabular numerals. Replaces the two loose stat cards. */}

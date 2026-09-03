@@ -18,6 +18,10 @@ import { ArrowRight } from "lucide-react";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { SkuPhoto } from "@/components/SkuPhoto";
+import { VialPanel, labelSpec } from "@/components/VialMockup";
+import { BenefitStrip } from "@/components/BenefitStrip";
+import { BodyMap } from "@/components/BodyMap";
+import { benefitFor, REGION_LABEL } from "@/data/benefits";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { peptides, LIVE_CATEGORIES, type PeptideCategory } from "@/data/peptides";
@@ -435,6 +439,15 @@ export default function Category() {
           <Reveal delay={60}>
             <div style={{ display: "grid", gap: "1rem" }}>
               {cfg.what.body.map((p) => <p key={p} style={body}>{p}</p>)}
+              {(() => { const b = benefitFor(skus[0]?.slug ?? ""); if (!b) return null; return (
+                <div className="nx-goal-how" data-testid="cat-bodymap">
+                  <BodyMap region={b.region} size={64} />
+                  <div>
+                    <p style={{ ...label, color: "var(--nx-cobalt)" }}>{REGION_LABEL[b.region]}</p>
+                    <p style={{ ...small, marginTop: "0.3rem" }}>Good for {b.goodFor.join(", ").toLowerCase()}.</p>
+                  </div>
+                </div>
+              ); })()}
               <p style={small}>
                 Want the full picture?{" "}
                 <Link href="/peptides-101" className="nx-text-link" style={{ fontWeight: 600 }}>Read Peptides 101</Link>
@@ -456,10 +469,10 @@ export default function Category() {
           {skus.map((s, i) => (
             <Reveal key={s.slug} delay={i * 70} className="nx-reveal-lift">
               <Link href={`/${world}/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`cat-item-${s.slug}`} aria-label={`${s.name}: ${s.outcome}`}>
-                <div className="nx-sku-photo"><SkuPhoto slug={s.slug} name={s.name} /></div>
+                <div className="nx-sku-photo"><SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="84%" ratio="1 / 1" fill={0.58} />} /></div>
                 <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
                 <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name}</p>
-                <p style={{ ...small, margin: "0.25rem 0 0" }}>{howTaken(s)}</p>
+                <div style={{ marginTop: "0.7rem" }}><BenefitStrip slug={s.slug} compact /></div>
                 <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
               </Link>
             </Reveal>

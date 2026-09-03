@@ -919,3 +919,21 @@ one-line revert. Fifteen of the nineteen products have no FDA-approved
 active and render the no-approved-active disclosure; the copy says
 "studied for" and never promises a result. Real vial photographs exist
 for four products; the other fifteen use the drawn vial.
+
+## The visual benefit layer (2026-09-03, night)
+
+Chiya: visually bring out the benefits, the results and what each is good
+for, so a visitor understands without reading. Built as data
+(`client/src/data/benefits.ts`, one entry per product) drawn by one
+component (`BenefitStrip`): "Good for" chips (what it is used for), three
+"What it does" rows with a direction arrow (more, less, steadier), "How
+you take it" with a route pictogram and rhythm, and a body map with the
+region lit (brain, appetite and digestion, abdominal fat, muscle, tendons
+and joints, skin, cells, the sleep cycle, desire). Full strip on every
+product page; chips on home tiles, catalog cards and goal option cards;
+the body map with the region beside every goal page's "How it works".
+Nothing in it is an outcome: each line is what the medicine does or is
+used for. The protocols, stack pages and pricing page were rewritten to
+match, and the claims Chiya has not confirmed (FSA/HSA receipts, overnight
+shipping, signature confirmation, epigenetic panels, priority telehealth,
+marker dashboard) came off the pricing and stack pages.

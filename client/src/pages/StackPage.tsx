@@ -109,12 +109,12 @@ export default function StackPage({ slug }: { slug: string }) {
       }));
 
   const INCLUDED: { Icon: typeof Pill; t: string }[] = [
-    { Icon: Stethoscope, t: "Doctor review & prescription" },
-    { Icon: Microscope, t: `${stack.panel} bloodwork panel` },
-    { Icon: FlaskConical, t: "503A pharmacy compounding" },
-    { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
-    { Icon: LayoutDashboard, t: "Marker dashboard" },
-    { Icon: RefreshCw, t: "Week-12 panel & dose review" },
+    { Icon: Stethoscope, t: "Physician review and prescription" },
+    { Icon: Microscope, t: "Blood panel at week 12" },
+    { Icon: FlaskConical, t: "Made in a licensed U.S. pharmacy" },
+    { Icon: Snowflake, t: "Cold shipping, plain packaging" },
+    { Icon: LayoutDashboard, t: "Your results, explained" },
+    { Icon: RefreshCw, t: "Dose adjustments" },
   ];
 
   return (
@@ -188,7 +188,7 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── VIAL LINEUP — the protocol, rendered as its vials ── */}
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="stack-vials-title">
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
-          <h2 id="stack-vials-title" className="nx-eyebrow" style={{ textAlign: "center" }}>The vials in this protocol</h2>
+          <h2 id="stack-vials-title" className="nx-eyebrow" style={{ textAlign: "center" }}>What is in it</h2>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end", gap: "clamp(1.5rem,5vw,3.5rem)", marginTop: "1.4rem" }}>
             {stack.peptides.map((p, i) => {
               return (
@@ -216,7 +216,7 @@ export default function StackPage({ slug }: { slug: string }) {
           {/* — LEFT: the story — */}
           <div>
             {/* Protocol — peptide chips (icon + name), then the details table */}
-            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What is in the protocol</h2>
+            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose and format</h2>
             {/* Seed-grammar spec plates (SEED-STUDY S1): each compound as a
                 specimen label — ruled DOSE/FORMAT rows in tabular numerals. */}
             <div className="grid sm:grid-cols-2" style={{ gap: 12, marginTop: "0.9rem" }}>
@@ -239,7 +239,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* What every protocol includes */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              What is included, every month
+              Included in your monthly price
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
               {INCLUDED.map((x, i) => (
@@ -254,7 +254,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* Timeline — drawn spine */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              What the weeks look like
+              What to expect
             </h2>
             <div className="nx-timeline" style={{ marginTop: "1.4rem" }}>
               {stack.timeline.map((t, i) => (
@@ -272,7 +272,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* Required panel */}
             <div className="nx-glass-tile" style={{ display: "block", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your week-12 bloodwork</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your blood panel</p>
               <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.4rem" }}>
                 {stack.panel} panel
               </h3>
@@ -280,7 +280,7 @@ export default function StackPage({ slug }: { slug: string }) {
                 {stack.panelNote ?? panel?.summary}
               </p>
               <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
-                See the {stack.panel} panel in detail →
+                See what is measured
               </Link>
             </div>
 
@@ -333,9 +333,9 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── ONE NIGHT BAND — contraindications, stated plainly ── */}
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0", overflow: "hidden" }} aria-labelledby="stack-contra-title">
         <div className="nx-container">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Before you begin</p>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Safety first</p>
           <h2 id="stack-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "var(--nx-ls-snug)" }}>
-            This protocol is not for everyone.
+            Is it right for you?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {stack.contraindications.map((c) => (
