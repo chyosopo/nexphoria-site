@@ -2661,3 +2661,8 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-vial-lineup.nx-vial-lineup { background: linear-gradient(180deg, var(--nx-bg) 0%, var(--nx-bg-cream) 100%); border: 1px solid var(--nx-border); }
 .nx-vial-lineup .nx-vial-cell { overflow: hidden; border-radius: var(--nx-r-md); }
 .nx-vial-lineup .nx-vial-cell .nx-sku-img--lineup { transform: scale(1.7); transform-origin: 50% 58%; border-radius: 0; background: transparent; }
+
+/* ═══ PEPTIDES 101 ═══ */
+.nx-p101-card { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: clamp(1rem, 2.4vw, 2rem); align-items: start; padding: clamp(1.2rem, 2.4vw, 1.8rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
+.nx-p101-photo { aspect-ratio: 1; border-radius: var(--nx-r-md); overflow: hidden; background: var(--nx-bg); }
+@media (max-width: 720px) { .nx-p101-card { grid-template-columns: 1fr; } .nx-p101-photo { max-width: 200px; } }

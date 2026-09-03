@@ -21,7 +21,7 @@ import { F, FONT } from "@/lib/typography";
 import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
 import { FLAGSHIP_STACKS, PANELS, usd } from "@/data/stacksCatalog";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
-import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 
 /* ── Catalog-derived pricing — single source of truth is the pricing engine
@@ -495,80 +495,20 @@ const PRICING_FAQ_ITEMS = [
    Price / free-with / retest bind to PANELS (single source of truth); the
    marker-group rows summarize each tier's cumulative `adds`. */
 function PanelTierComparison() {
-  const basic = PANELS.find((p) => p.tier === "Basic")!;
-  const full = PANELS.find((p) => p.tier === "Full")!;
-  const elite = PANELS.find((p) => p.tier === "Elite")!;
   return (
     <ComparisonMatrix
       testid="pricing-panel-tiers"
       background="var(--nx-bg-cream)"
-      eyebrow="Labs, by tier"
-      title="How deep the bloodwork goes."
-      lead="Every plan includes physician-reviewed labs. Which tier you draw depends on your protocol. The deeper the therapy reaches, the deeper your doctor reads. The tier your protocol requires is carried within the figure."
-      columns={[
-        { label: "Basic panel", sub: basic.summary },
-        { label: "Full panel", sub: full.summary, highlight: true, badge: "Most protocols" },
-        { label: "Elite panel", sub: elite.summary },
-      ]}
+      eyebrow="Your blood panel"
+      title="One full panel. Week 12. Included."
+      lead={`Every plan includes the same full panel, ${PANEL_TOTAL_MARKERS} markers in ${PANEL_CATEGORY_COUNT} groups, drawn twelve weeks in and read by your doctor. It is inside the figure.`}
+      columns={[{ label: "The full panel", sub: "Every plan, every peptide", highlight: true, badge: "Included" }]}
       rows={[
-        {
-          label: "Standalone price",
-          cells: [
-            { text: usd(basic.price), tone: "plain" },
-            { text: usd(full.price), tone: "plain" },
-            { text: usd(elite.price), tone: "plain" },
-          ],
-        },
-        {
-          label: "Bundled with",
-          cells: [
-            { text: basic.freeWith ?? "—", tone: "plain" },
-            { text: full.freeWith ?? "—", tone: "plain" },
-            { text: elite.freeWith ?? "—", tone: "plain" },
-          ],
-        },
-        {
-          label: "Safety screen: CBC, metabolic, lipids, HbA1c, hs-CRP, TSH",
-          cells: [
-            { text: "Included", tone: "pos" },
-            { text: "Included", tone: "pos" },
-            { text: "Included", tone: "pos" },
-          ],
-        },
-        {
-          label: "Hormonal + GH axis: testosterone, LH/FSH, IGF-1, full thyroid",
-          cells: [
-            { text: "Not in Basic", tone: "neg" },
-            { text: "Included", tone: "pos" },
-            { text: "Included", tone: "pos" },
-          ],
-        },
-        {
-          label: "Advanced cardiometabolic: ApoB, Lp(a), LDL-P, HOMA-IR, IL-6/TNF-α",
-          cells: [
-            { text: "Not in Basic", tone: "neg" },
-            { text: "Not in Full", tone: "neg" },
-            { text: "Included", tone: "pos" },
-          ],
-        },
-        {
-          label: "Epigenetic age testing",
-          cells: [
-            { text: "Not included", tone: "neg" },
-            { text: "Not included", tone: "neg" },
-            { text: "Optional", tone: "pos" },
-          ],
-        },
-        {
-          label: "Retest schedule",
-          cells: [
-            { text: basic.retest, tone: "plain" },
-            { text: full.retest, tone: "plain" },
-            { text: elite.retest, tone: "plain" },
-          ],
-        },
+        ...BIOMARKER_PANEL.map((g) => ({ label: `${g.name}: ${g.markers.map((m) => m.name).join(", ")}`, cells: [{ text: "Included", tone: "pos" as const }] })),
+        { label: "Drawn at", cells: [{ text: "Week 12 of your plan", tone: "plain" as const }] },
+        { label: "Read by", cells: [{ text: "Your physician, who adjusts your dose from it", tone: "plain" as const }] },
       ]}
-      footnote="Prices shown are standalone rates. On 3- and 12-month plans the panel your protocol requires is bundled in. The lab work is inside the figure."
+      footnote="The typical week-12 panel. Your physician sets yours and may add markers for your medication or your history."
     />
   );
 }

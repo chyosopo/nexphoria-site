@@ -58,6 +58,7 @@ async function main() {
     ["/bloodwork",       "/src/pages/Bloodwork.tsx", {}],
     ["/blood-work",      "/src/pages/Bloodwork.tsx", {}],
     ["/how-it-works",    "/src/pages/HowItWorks.tsx", {}],
+    ["/peptides-101",    "/src/pages/Peptides101.tsx", {}],
     ["/assessment",      "/src/pages/Assessment.tsx", {}],
     ["/cart",            "/src/pages/Cart.tsx", {}],
     ["/checkout",        "/src/pages/Checkout.tsx", {}],

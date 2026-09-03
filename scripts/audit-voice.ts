@@ -35,7 +35,7 @@ if (!existsSync(DIST)) {
    limits of liability and scope of practice, and those are written in the
    negative because the law requires them to be. */
 const ROUTES = [
-  "/", "/about", "/how-it-works", "/plan", "/peptides", "/stacks",
+  "/", "/about", "/how-it-works", "/peptides-101", "/peptides", "/stacks",
   "/faq", "/physicians", "/contact", "/assessment",
   "/peptides/tesamorelin", "/peptides/semaglutide",
   "/peptides/tirzepatide", "/peptides/pt-141",

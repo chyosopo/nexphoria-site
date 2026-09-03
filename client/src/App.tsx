@@ -23,6 +23,7 @@ import NotFound from "@/pages/not-found";
 const Category = lazy(() => import("@/pages/Category"));
 const Booking = lazy(() => import("@/pages/Booking"));
 const FrontDoor = lazy(() => import("@/pages/FrontDoor"));
+const Peptides101 = lazy(() => import("@/pages/Peptides101"));
 const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
@@ -121,6 +122,7 @@ function AppRouter() {
 
         {/* Shared informational */}
         <Route path="/how-it-works" component={HowItWorks} />
+        <Route path="/peptides-101" component={Peptides101} />
         {/* SCIENCE — DELETED 2026-08-13 (Chiya: "I think we can kill the
             science page, it doesn't make sense"). 1,376 lines carrying 20
             citations for a 20-SKU catalog, of which 4 SKUs remain. Education

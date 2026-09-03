@@ -921,187 +921,45 @@ function HowItWorks() {
   );
 }
 
-/* ══ WHICH PANEL DO I NEED? — the Maximus-style on-page tool (study §4):
-   two questions, a true answer. The gate is DERIVED: a goal's required
-   tier is the highest tier any of its routes (flagship stack + solos)
-   actually gates on in the catalog data — no marketing logic. ══ */
-const TIER_RANK: Record<PanelTier, number> = { Basic: 0, Full: 1, Elite: 2 };
-
-function requiredTierFor(goal: PeptideCategory): PanelTier {
-  const tiers: PanelTier[] = [
-    ...FLAGSHIP_STACKS.filter((s) => GOAL_OF_STACK[s.slug] === goal).map((s) => s.panel),
-    ...peptides
-      .filter((p) => p.category === goal)
-      .map((p) => SOLO_CATALOG.find((s) => s.slug === p.slug)?.panel)
-      .filter((t): t is PanelTier => Boolean(t)),
-  ];
-  return tiers.sort((a, b) => TIER_RANK[b] - TIER_RANK[a])[0] ?? "Basic";
-}
-
-type Depth = "required" | "hormonal" | "deepest";
-const DEPTH_OPTIONS: { key: Depth; label: string }[] = [
-  { key: "required", label: "Just what my protocol requires" },
-  { key: "hormonal", label: "Add the full hormonal picture" },
-  { key: "deepest", label: "The deepest read available" },
-];
-
-function recommendTier(goal: PeptideCategory, depth: Depth): PanelTier {
-  const base = requiredTierFor(goal);
-  if (depth === "deepest") return "Elite";
-  if (depth === "hormonal") return TIER_RANK[base] > TIER_RANK.Full ? base : "Full";
-  return base;
-}
-
-/* ══ PANEL TIERS — Basic / Full / Elite pricing + stack→panel mapping (merged from BloodPanels) ══ */
-function PanelTiers() {
-  // which tier do most protocols gate on?
-  const demand: Record<string, number> = {};
-  FLAGSHIP_STACKS.forEach((st) => { demand[st.panel] = (demand[st.panel] ?? 0) + 1; });
-  const mostRequired = Object.entries(demand).sort((a, b) => b[1] - a[1])[0]?.[0];
-
-  /* the picker: goal + depth → recommended tier, highlighted below */
-  const [pickGoal, setPickGoal] = useState<PeptideCategory | null>(null);
-  const [pickDepth, setPickDepth] = useState<Depth | null>(null);
-  const rec = pickGoal && pickDepth ? recommendTier(pickGoal, pickDepth) : null;
-  const pickerGoals = (Object.keys(CATEGORY_LABELS) as PeptideCategory[]).filter(
-    (g) => peptides.some((p) => p.category === g),
-  );
-
+/* ══ THE FULL PANEL — one panel for everyone, drawn at week 12, included.
+   Groups, counts and the reason for every marker come from data/monitoring.ts
+   through BIOMARKER_PANEL; nothing here is typed by hand. ══ */
+function FullPanelSection() {
   return (
     <section id="tiers" aria-labelledby="bw-tiers-title" className="nx-section" style={{ background: "var(--nx-bg-cream)" }}>
       <div className="nx-container">
-        <p className="nx-eyebrow">Panel tiers</p>
+        <p className="nx-eyebrow">The full panel</p>
         <h2 id="bw-tiers-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.08, color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.7rem" }}>
-          Nothing is prescribed <em style={{ fontStyle: "italic", color: "var(--nx-cobalt)" }}>before it's measured.</em>
+          One panel. Every plan. Week 12, included.
         </h2>
         <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
-          Every protocol is gated on the right panel — drawn at baseline, then retested on a fixed schedule so a physician can read the trend, not a snapshot.
+          {PANEL_TOTAL_MARKERS} markers in {PANEL_CATEGORY_COUNT} groups, drawn in one visit at a partner laboratory near you twelve weeks into your plan. Your doctor reads it and adjusts your dose from what changed. Every marker below says why it is there.
         </p>
-
-        {/* ── the two-question picker — answers from the catalog, not a quiz
-            script; the recommended tier lights up in the grid below ── */}
-        <div className="nx-glass-tile" data-testid="panel-picker" style={{ display: "block", marginTop: "1.8rem", padding: "1.4rem 1.5rem" }}>
-          <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>
-            Which panel do you need?
-          </p>
-          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "1rem" }}>
-            1 · What are you here to change?
-          </p>
-          <div role="group" aria-label="Your goal" style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.6rem" }}>
-            {pickerGoals.map((g) => (
-              <button
-                key={g}
-                onClick={() => { setPickGoal(g); if (pickDepth) track("panel_pick", { goal: g, depth: pickDepth, rec: recommendTier(g, pickDepth) }); }}
-                aria-pressed={pickGoal === g}
-                className="nx-filter-chip"
-                data-testid={`panel-pick-goal-${g}`}
-                style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
-              >
-                {CATEGORY_LABELS[g]}
-              </button>
-            ))}
-          </div>
-          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "1.1rem" }}>
-            2 · How deep do you want the read?
-          </p>
-          <div role="group" aria-label="Panel depth" style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.6rem" }}>
-            {DEPTH_OPTIONS.map((d) => (
-              <button
-                key={d.key}
-                onClick={() => { setPickDepth(d.key); if (pickGoal) track("panel_pick", { goal: pickGoal, depth: d.key, rec: recommendTier(pickGoal, d.key) }); }}
-                aria-pressed={pickDepth === d.key}
-                className="nx-filter-chip"
-                data-testid={`panel-pick-depth-${d.key}`}
-                style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
-              >
-                {d.label}
-              </button>
-            ))}
-          </div>
-          <p aria-live="polite" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: rec ? "var(--nx-fg)" : "var(--nx-fg-muted)", marginTop: "1.1rem", borderTop: "1px solid var(--nx-border)", paddingTop: "1rem" }} data-testid="panel-pick-result">
-            {rec && pickGoal ? (
-              <>
-                <strong style={{ fontWeight: 700, color: "var(--nx-cobalt)" }}>The {rec} panel</strong>
-                {": "}
-                {CATEGORY_LABELS[pickGoal]} routes gate on the {requiredTierFor(pickGoal)} panel
-                {TIER_RANK[rec] > TIER_RANK[requiredTierFor(pickGoal)] ? "; your depth choice steps it up" : ""}.
-                {" "}It is highlighted below. Your physician confirms the tier at intake.
-              </>
-            ) : (
-              "Answer both and the right tier lights up below. A physician confirms it at intake. The panel is the gate the protocol passes through."
-            )}
-          </p>
-        </div>
-
-        <div className="mt-9 grid grid-cols-1 md:grid-cols-3" style={{ gap: 14, alignItems: "stretch" }}>
-          {PANELS.map((p, i) => {
-            const hot = rec ? p.tier === rec : p.tier === mostRequired;
-            const depth = PANELS.slice(0, i + 1).reduce((n, q) => n + q.adds.length, 0);
-            const maxDepth = PANELS.reduce((n, q) => n + q.adds.length, 0);
-            return (
-            <Reveal key={p.tier} delay={i * 70}>
-              <div className="nx-glass-tile" style={{ height: "100%", display: "flex", flexDirection: "column", position: "relative", border: hot ? "1.5px solid var(--nx-cobalt)" : undefined }}>
-                {hot && (
-                  <p style={{ position: "absolute", top: 14, right: 16, fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)" }} data-testid="panel-most-required">
-                    {rec ? "Recommended for you" : "Most protocols gate here"}
-                  </p>
-                )}
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{p.tier}</p>
-                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1 }}>{usd(p.price)}</p>
-                {p.freeWith && <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt)", fontWeight: 600, marginTop: 4 }}>{p.freeWith}</p>}
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.7rem" }}>{p.summary}</p>
-                <div style={{ marginTop: "1rem", flex: 1 }}>
-                  {i > 0 && (
-                    <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: 8 }}>
-                      Everything in {PANELS[i - 1].tier}, plus:
-                    </p>
-                  )}
-                  {p.adds.map((a) => (
-                    <div key={a} style={{ display: "flex", gap: 8, alignItems: "flex-start", marginBottom: 7 }}>
-                      <Check size={15} strokeWidth={2.4} style={{ color: "var(--nx-cobalt)", marginTop: 3, flexShrink: 0 }} />
-                      <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.45, color: "var(--nx-fg-graphite)" }}>{a}</p>
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: 14, marginTop: "1.8rem" }} data-testid="full-panel-groups">
+          {BIOMARKER_PANEL.map((g, i) => (
+            <Reveal key={g.id} delay={i * 60}>
+              <div style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "1.3rem 1.4rem", height: "100%" }} data-testid={`full-panel-${g.id}`}>
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{g.count} markers</p>
+                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.3rem", lineHeight: 1.1 }}>{g.name}</p>
+                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.6rem" }}>{g.blurb}</p>
+                <ul style={{ listStyle: "none", margin: "0.9rem 0 0", padding: 0, display: "grid", gap: 6 }}>
+                  {g.markers.map((m) => (
+                    <li key={m.name} style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", lineHeight: 1.45, color: "var(--nx-fg-graphite)" }}>
+                      <span style={{ fontWeight: 600, color: "var(--nx-fg)" }}>{m.name}.</span> {m.note}
+                    </li>
                   ))}
-                </div>
-                <div style={{ marginTop: "1rem" }} aria-hidden>
-                  <div style={{ height: 4, borderRadius: "var(--nx-r-pill)", background: "var(--nx-border)", overflow: "hidden" }}>
-                    <div style={{ height: "100%", width: `${Math.round((depth / maxDepth) * 100)}%`, background: "var(--nx-cobalt)", borderRadius: "var(--nx-r-pill)" }} />
-                  </div>
-                  <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: 5 }}>Cumulative depth · {depth} marker groups</p>
-                </div>
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.8rem", borderTop: "1px solid var(--nx-border)", paddingTop: "0.8rem" }}>
-                  Retest: {p.retest}
-                </p>
+                </ul>
               </div>
             </Reveal>
-          );})}
+          ))}
         </div>
-
-        {/* stack → panel mapping */}
-        <div className="mt-12">
-          <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Which protocol needs which panel</h3>
-          <div style={{ borderTop: "1px solid var(--nx-border)", marginTop: "1rem" }}>
-            {FLAGSHIP_STACKS.map((s) => (
-              <Link key={s.slug} href={`/stacks/${s.slug}`} className="grid grid-cols-[1fr_auto] gap-4 py-3.5" style={{ borderBottom: "1px solid var(--nx-border)", textDecoration: "none", alignItems: "center" }}>
-                <div>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{s.name}</p>
-                  <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)" }}>{s.category}</p>
-                </div>
-                <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>{s.panel} panel{s.panelNote && s.panelNote.includes("plus") ? " + add-ons" : ""}</p>
-              </Link>
-            ))}
-          </div>
-          <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1.4rem", maxWidth: "60ch" }}>
-            Draw at {SITE_STATS.labSites.display} partner laboratory locations or with the at-home collection kit. Your results populate one dashboard and are read by your physician at week 12 before anything is adjusted.
-          </p>
-          {/* THE offer's local next step (fleet audit S2: a desktop buyer at
-              peak price-consideration had no in-flow CTA for ~10,000px) */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "0.7rem", marginTop: "1.6rem" }}>
-            <Link href="/assessment" className="nx-cta-cobalt" data-testid="bloodwork-tiers-cta" style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 26px" }}>
-              Start your assessment
-            </Link>
-            <PrescribedPromise testid="bloodwork-tiers-promise" />
-          </div>
+        <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-muted)", marginTop: "1.2rem", maxWidth: "60ch" }}>
+          The panel above is the typical week-12 panel. Your physician sets yours and may add markers for your medication or your history.
+        </p>
+        <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", marginTop: "1.6rem" }}>
+          <Link href="/assessment" className="nx-cta-cobalt" data-testid="bloodwork-tiers-cta" style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 26px" }}>
+            Start your assessment
+          </Link>
         </div>
       </div>
     </section>
@@ -1148,7 +1006,7 @@ export default function Bloodwork() {
         <Hero />
         <TrustRow />
         <GlowingBody world={world} />
-        <PanelTiers />
+        <FullPanelSection />
         <div id="explore" />
         <PanelExplorer />
         <PanelComparison />
