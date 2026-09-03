@@ -61,10 +61,10 @@ export default function Peptides101() {
         <Reveal>
           <p style={kicker}>Peptides 101</p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1, letterSpacing: "var(--nx-ls-display)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "14ch", textWrap: "balance" }}>
-            Peptides, explained from the beginning.
+            New to peptides? Start here.
           </h1>
           <p style={{ ...body, fontSize: "var(--nx-t-lg)", maxWidth: "52ch", marginTop: "1.2rem" }}>
-            The body makes thousands of peptides as chemical signals. A prescription peptide is a precise version of one of them, compounded for you by a licensed pharmacy on a physician's prescription. This page explains what they are, what the four we prescribe do, and what to expect in the first twelve weeks.
+            Your body already makes thousands of peptides. They are the signals that tell cells what to do. A prescription peptide is a precise version of one of them, made for you in a licensed pharmacy. Here is what they are, what the four we prescribe do, and what your first twelve weeks look like.
           </p>
         </Reveal>
       </section>
@@ -187,7 +187,7 @@ export default function Peptides101() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="p101-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "18ch", margin: "0 auto", textWrap: "balance" }}>
-              Choose the medicine for your goal.
+              Ready when you are.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="p101-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               Start your assessment

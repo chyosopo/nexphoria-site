@@ -128,7 +128,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "tesamorelin", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tesamorelin", category: "Growth",
-    outcome: "Raises your own growth hormone. Used for abdominal fat and lean mass.",
+    outcome: "More of your own growth hormone. Once a day.",
     dose: "2 mg daily SC", spec: "5 mg/mL · 3 mL vial",
     mechanism: "A stabilized GHRH analog studied for visceral-fat reduction, acting on the GH/IGF-1 axis.",
     timeline: [{ wk: "Wk 2", effect: "Early metabolic response." }, { wk: "Wk 8", effect: "Visceral markers move." }, { wk: "Wk 12", effect: "Composition reassessed." }],
@@ -256,7 +256,7 @@ const ALL_SOLO: SoloPeptide[] = [
   /* ── METABOLIC / GLP-1 (GATED) ── */
   {
     slug: "semaglutide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Semaglutide", category: "Metabolic",
-    outcome: "Reduces appetite and slows digestion. Used for weight management.",
+    outcome: "Less appetite, steadier blood sugar. Once a week.",
     dose: "0.25 → 2.4 mg weekly SC (titrated)", spec: "physician-directed · with glycine + B12",
     mechanism: "A GLP-1 receptor agonist, titrated slowly under physician supervision with metabolic bloodwork gating each increase.",
     timeline: [{ wk: "Wk 1", effect: "Appetite signaling changes." }, { wk: "Wk 4", effect: "Physician reviews response." }, { wk: "Wk 12", effect: "Reassessed against bloodwork." }],
@@ -267,7 +267,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "tirzepatide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tirzepatide", category: "Metabolic",
-    outcome: "Acts on two appetite hormones at once. Used for weight management.",
+    outcome: "Two appetite hormones, one weekly dose.",
     dose: "2.5 → 15 mg weekly SC (titrated)", spec: "physician-directed · with glycine + B12",
     mechanism: "A dual GLP-1 / GIP agonist, titrated under physician supervision with metabolic bloodwork gating each dose step.",
     timeline: [{ wk: "Wk 1", effect: "Appetite signaling changes." }, { wk: "Wk 4", effect: "Physician reviews response." }, { wk: "Wk 12", effect: "Reassessed against bloodwork." }],
@@ -290,7 +290,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "pt-141", route: "subcutaneous", regulatory: "compounded-approved-active", name: "PT-141", category: "Sexual Health",
-    outcome: "Acts on sexual desire through the brain. Taken as needed.",
+    outcome: "Works on desire itself. Taken as needed.",
     dose: "1.75 mg as-needed SC", spec: "10 mg/mL · 3 mL vial",
     mechanism: "A melanocortin agonist studied for sexual arousal, acting centrally rather than vascularly.",
     timeline: [{ wk: "As needed", effect: "Onset 1 to 3 hours." }, { wk: "Ongoing", effect: "Your response reviewed." }, { wk: "Wk 12", effect: "Your panel read, dose adjusted." }],

@@ -539,10 +539,10 @@ export default function Pricing() {
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One monthly price.</span><br /><span>Everything included.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Simple monthly pricing.</span><br /><span>Everything included.</span>
               </>
             }
-            subtitle="Physician review, the medication, cold shipping and the week-12 blood panel are all inside the monthly figure. The physician sets the dose; the price does not change with it."
+            subtitle="Your medication, physician review, cold shipping and your week-12 blood panel, all in one monthly price. Your dose can change; your price stays the same."
           />
 
           {/* Editorial hero — the pricing promise as a photograph, not a diagram */}

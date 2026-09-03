@@ -2470,7 +2470,7 @@ html, body { overflow-x: hidden; overflow-x: clip; }
 @keyframes nx-phero-breathe { from { transform: scale(1); } to { transform: scale(1.05); } }
 .nx-phero-copy { position: relative; padding-top: clamp(4rem, 10vh, 7rem); padding-bottom: clamp(3.5rem, 9vh, 6rem); max-width: 1280px; }
 .nx-phero-kicker { font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
-.nx-phero-h1 { margin: 1rem 0 0; font-weight: 500; font-size: var(--nx-t-giant); line-height: 0.98; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); }
+.nx-phero-h1 { margin: 1rem 0 0; max-width: 12ch; font-weight: 500; font-size: var(--nx-t-display); line-height: 0.98; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); }
 .nx-phero-line { display: block; }
 .nx-phero-line em { font-style: italic; color: var(--nx-cobalt); }
 .nx-phero-sub { margin: 1.4rem 0 0; font-size: var(--nx-t-lg); line-height: 1.5; color: var(--nx-fg-graphite); max-width: 42ch; }

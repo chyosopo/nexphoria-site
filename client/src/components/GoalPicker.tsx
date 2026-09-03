@@ -23,9 +23,9 @@ export interface GoalCard {
 }
 
 export const GOAL_CARDS: Omit<GoalCard, "count">[] = [
-  { slug: "metabolic", title: "Weight", line: "Semaglutide or tirzepatide. For appetite and weight.", img: goalMetabolic, img500: goalMetabolic500 },
-  { slug: "growth", title: "Strength", line: "Tesamorelin. For lean mass and abdominal fat.", img: goalGrowth, img500: goalGrowth500 },
-  { slug: "sexual-health", title: "Desire", line: "PT-141. For sexual desire.", img: goalDesire, img500: goalDesire500 },
+  { slug: "metabolic", title: "Weight loss", line: "GLP-1 medication. Less appetite, steadier blood sugar.", img: goalMetabolic, img500: goalMetabolic500 },
+  { slug: "growth", title: "Body composition", line: "Tesamorelin. More of your own growth hormone.", img: goalGrowth, img500: goalGrowth500 },
+  { slug: "sexual-health", title: "Sexual desire", line: "PT-141. Works on desire itself, as needed.", img: goalDesire, img500: goalDesire500 },
 ];
 
 export function GoalPicker({ counts }: { counts: Record<string, number> }) {
@@ -55,14 +55,14 @@ export function GoalPicker({ counts }: { counts: Record<string, number> }) {
               <span className="nx-goal-card-title" style={{ fontFamily: S }}>{g.title}</span>
               <span className="nx-goal-card-line" style={{ fontFamily: S }}>{g.line}</span>
               <span className="nx-goal-card-meta" style={{ fontFamily: F }}>
-                {counts[g.slug] ?? 0} {counts[g.slug] === 1 ? "medicine" : "medicines"} · Read more
+                {counts[g.slug] ?? 0} {counts[g.slug] === 1 ? "treatment" : "treatments"} · Learn more
               </span>
             </span>
           </Link>
         ))}
       </div>
       <div className="nx-goal-chips" role="list" aria-label="Start the assessment with a goal">
-        <span className="nx-goal-chips-label" style={{ fontFamily: F }}>Or begin the questionnaire for</span>
+        <span className="nx-goal-chips-label" style={{ fontFamily: F }}>Or start now with</span>
         {GOAL_CARDS.map((g) => (
           <Link key={g.slug} href={`/assessment?goal=${g.slug}`} className="nx-chip" role="listitem" style={{ fontFamily: F }} data-testid={`frontdoor-chip-${g.slug}`}>
             {g.title}

@@ -798,3 +798,78 @@ licensed 503A pharmacy · Shipped cold to all 50 states".
   branded version approved for hypoactive sexual desire disorder in
   premenopausal women; used off-label in men; raises blood pressure
   transiently.
+
+---
+
+# Copy system v4: the brand voice (Chiya, 2026-09-03, evening)
+
+v3 read as "staged, generic, AI". Chiya's brief: look at how the big
+consumer-health brands write, what they communicate, how it sounds, and
+match it. Studied on 2026-09-03: Ro (weight loss), Henry Meds, Eden,
+Healthspan, Mochi Health, plus Hims and Function from memory.
+
+## What the big brands actually do
+
+- The headline is the plain promise of the service, in the words a person
+  would use: "Get access to prescription weight loss medication online"
+  (Ro), "Look, feel and perform your best every day" (Eden), "Personalized
+  care. Ongoing support. Real progress." (Mochi). Nobody explains the
+  company in the headline.
+- Right under it: "What can we help you with?" with the treatments, each
+  with its medicine and a price. The price appears early, per treatment,
+  as "from $X/mo" or "$Y first month".
+- "How it works" is three to five numbered steps with plain verbs: pick,
+  answer, get.
+- Doctors are framed as care and availability ("doctors who listen",
+  "24/7 support"), never as credentials paragraphs. Pharmacy is one line:
+  "shipped to your door".
+- The benefit of the medicine is sensory and plain: "feel full faster,
+  longer", "food noise". Mechanism is one sentence, not a paragraph.
+- Proof is numbers and members. We cannot fabricate those, so our proof is
+  the real specifics: four medicines, 24 markers, 50 states, named provider
+  and pharmacy.
+- Sentences are short. "You" is everywhere but inside normal sentences.
+  Tone is confident, warm, unhurried.
+
+## What made v3 read as staged
+
+The same regulatory chain ("prescribed by a licensed U.S. physician,
+compounded in a licensed 503A pharmacy, shipped cold, followed by a full
+blood panel at week 12") repeated in every subline; abstract headline
+("One standard"); mechanism paragraphs where a brand would use one
+sentence; no plain human promise anywhere.
+
+## Master lines (LIVE)
+
+Home: kicker "Weight · Strength · Desire"; headline "Prescription
+peptides, delivered."; subline "Semaglutide, tirzepatide, tesamorelin and
+PT-141, prescribed online by licensed U.S. physicians and made in a
+licensed U.S. pharmacy. One monthly price, with a full blood panel at week
+12 included."; button "Get started"; micro "Online visit. Ships cold to
+all 50 states."
+Home sections: "What can we help you with?" (cards: Weight loss / Body
+composition / Sexual desire, each with its medicine and a plain benefit)
+/ "Everything is included in one monthly price." / "Four prescription
+peptides, and what each one does." / "Delivered cold, in plain
+packaging." / "Getting started is simple." (Pick your treatment, Answer a
+few health questions, Get your medication) / "Your first twelve weeks." /
+"Simple monthly pricing." / "Questions? We have answers." / "Ready when
+you are."
+Goal headlines: "GLP-1 weight loss medication, prescribed online." /
+"Tesamorelin for body composition, prescribed online." / "PT-141 for
+sexual desire, prescribed online." Sections: How it works / Your options
+(Which one is right for you?) / What to expect / Your week-12 blood panel
+("See how your body is responding.") / Safety first ("Is it right for
+you?") / Questions / Ready when you are.
+Catalog lines: "Less appetite, steadier blood sugar. Once a week." / "Two
+appetite hormones, one weekly dose." / "More of your own growth hormone.
+Once a day." / "Works on desire itself. Taken as needed."
+Bloodwork hero: "Your blood panel is included." How it works: "Getting
+started is simple." Pricing: "Simple monthly pricing. Everything
+included." Peptides 101: "New to peptides? Start here."
+
+## Lines we will not borrow
+
+Outcome statistics ("16% average weight loss"), member counts,
+testimonials, "24/7 messaging", HSA/FSA eligibility: the brands use them
+because they can prove them. Ours stay off until Chiya can.

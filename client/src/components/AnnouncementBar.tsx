@@ -15,7 +15,7 @@ interface AnnouncementBarProps {
 }
 
 export function AnnouncementBar({
-  message = "Prescribed by licensed U.S. physicians \u00B7 Compounded in a licensed 503A pharmacy \u00B7 Shipped cold to all 50 states",
+  message = "Prescribed online by licensed U.S. physicians \u00B7 Made in a licensed U.S. pharmacy \u00B7 Delivered cold to all 50 states",
   tag = "Peptides",
 }: AnnouncementBarProps) {
   const [dismissed, setDismissed] = useState(false);

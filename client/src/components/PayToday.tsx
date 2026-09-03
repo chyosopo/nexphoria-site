@@ -11,10 +11,10 @@ import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { RETEST_WEEK } from "@/data/monitoring";
 
 const STEPS: [string, string][] = [
-  ["Check out at the monthly price.", "The figure above, once a month."],
-  ["Complete the medical questionnaire.", "About two minutes: your history, your medications, your goal."],
-  ["A licensed physician reviews and prescribes.", "If the medicine is appropriate, it is compounded for you and shipped cold."],
-  ["If it is declined.", "The physician explains why, and the refund policy sets out what is refunded."],
+  ["Check out.", "The monthly price above. That is the whole figure."],
+  ["Answer a few health questions.", "About two minutes: your history, your medications, your goal."],
+  ["Your physician reviews.", "If it is right for you, your medication is made in a licensed U.S. pharmacy and shipped cold."],
+  ["If it is not right for you.", "Your physician explains why, and the refund policy covers what is refunded."],
 ];
 
 export function PayToday({
@@ -41,7 +41,7 @@ export function PayToday({
         <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-graphite)", marginLeft: 6 }}>a month</span>
       </p>
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
-        Included: physician review, the medication, cold shipping, and the full blood panel of {PANEL_TOTAL_MARKERS} markers at week {RETEST_WEEK}.
+        Includes your medication, physician review, cold shipping, and your {PANEL_TOTAL_MARKERS}-marker blood panel at week {RETEST_WEEK}.
       </p>
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", margin: "1.1rem 0 0" }}>
         What happens next
@@ -58,7 +58,7 @@ export function PayToday({
         ))}
       </ol>
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-muted)", margin: "0.9rem 0 0" }}>
-        Prescription only. The physician can decline.{" "}
+        Prescription only, if a licensed physician determines it is appropriate.{" "}
         <Link href="/legal/refund-policy" className="nx-text-link" style={{ fontWeight: 600 }}>Refund policy</Link>
       </p>
     </section>

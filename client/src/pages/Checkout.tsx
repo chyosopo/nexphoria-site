@@ -265,7 +265,7 @@ export default function Checkout() {
               Checkout.
             </h1>
             <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
-              Complete checkout, then the medical questionnaire. A licensed physician reviews and prescribes; the pharmacy compounds the medication and ships it cold.
+              Check out, then answer a few health questions. A licensed U.S. physician reviews them, and if it is right for you, your medication ships cold to your door.
             </p>
             <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.6rem" }} />
             <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />

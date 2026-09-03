@@ -100,9 +100,9 @@ function Hero() {
                   marginBottom: "1.5rem",
                 }}
               >
-                One full blood panel
+                Your blood panel
               <br />
-              <span style={{ color: "var(--nx-acid)" }}>at week 12, included.</span>
+              <span style={{ color: "var(--nx-acid)" }}>is included.</span>
               </h1>
               <p
                 style={{
@@ -114,7 +114,7 @@ function Hero() {
                   marginBottom: "2rem",
                 }}
               >
-                {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} groups, drawn twelve weeks into treatment and read by the prescribing physician. It shows what the medicine changed, and the dose is set from it. The panel is included in the monthly price.
+                At week 12, a full panel of {PANEL_TOTAL_MARKERS} markers shows your physician how your body is responding to your medication. Your dose is adjusted from it. The panel is part of your monthly price.
               </p>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
                 <StartIntakeButton
