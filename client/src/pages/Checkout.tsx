@@ -262,10 +262,10 @@ export default function Checkout() {
               className="text-4xl md:text-5xl mb-3"
               style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
             >
-              Your plan, then your doctor.
+              Checkout.
             </h1>
             <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
-              Check out, answer the questionnaire, and a U.S. licensed doctor decides. If it is a yes, your medicine is made for you and ships cold.
+              Complete checkout, then the medical questionnaire. A licensed physician reviews and prescribes; the pharmacy compounds the medication and ships it cold.
             </p>
             <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.6rem" }} />
             <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />

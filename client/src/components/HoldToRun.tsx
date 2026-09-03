@@ -12,7 +12,7 @@
 import { useEffect, useRef, useState } from "react";
 import { F, S } from "@/lib/typography";
 
-const LINES = ["You start.", "Week 12: panel drawn.", "Dose adjusted."];
+const LINES = ["Treatment starts.", "Week 12: blood panel drawn.", "Dose set from the result."];
 const HOLD_MS = 2200;
 
 export function HoldToRun() {
@@ -139,7 +139,7 @@ export function HoldToRun() {
         style={{ fontFamily: F }}
         data-testid="hold-to-run-button"
       >
-        {done ? "Twelve weeks, run." : "Hold to run your 12 weeks"}
+        {done ? "Twelve weeks, run." : "Hold to run twelve weeks"}
       </button>
       <p id="hold-help" className="nx-hold-help" style={{ fontFamily: F }}>
         {done

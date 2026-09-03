@@ -539,10 +539,10 @@ export default function Pricing() {
             badge={<PillBadge tone="acid">Pricing</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One number a month.</span><br /><span>Everything within it.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>One monthly price.</span><br /><span>Everything included.</span>
               </>
             }
-            subtitle="Your doctor, your medication, shipping and your week-12 blood panel are all inside the figure. Your doctor sets the dose. The price does not change with it."
+            subtitle="Physician review, the medication, cold shipping and the week-12 blood panel are all inside the monthly figure. The physician sets the dose; the price does not change with it."
           />
 
           {/* Editorial hero — the pricing promise as a photograph, not a diagram */}
@@ -580,7 +580,7 @@ export default function Pricing() {
                     textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
                   }}
                 >
-                  One number a month. Your doctor, your blood panel, your medicine and cold shipping, all within it.
+                  One monthly price, with physician review, the medication, cold shipping and the week-12 blood panel included.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
                   <StartIntakeButton source="pricing-hero" size="lg">
@@ -649,7 +649,7 @@ export default function Pricing() {
                 marginBottom: "0.75rem",
               }}
             >
-              One figure. Everything within it.
+              One monthly figure. Everything included.
             </h2>
             <p
               style={{

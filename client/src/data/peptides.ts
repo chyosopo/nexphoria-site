@@ -87,14 +87,14 @@ export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
    consistently on goal tiles, category heroes, catalog shelves, and the
    assessment. Warm, bank-calm, and inside the claims the catalog supports. */
 export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
-  recovery: "Train like it never happened.",
-  skin: "Meet your skin again.",
-  cognition: "Clear head, steady mood.",
-  sleep: "Wake up actually rested.",
-  growth: "Strength, with receipts.",
-  longevity: "Age on your terms.",
-  metabolic: "Appetite, finally quiet.",
-  "sexual-health": "Desire, addressed directly.",
+  recovery: "Tissue repair and recovery.",
+  skin: "Skin and collagen.",
+  cognition: "Focus and mood.",
+  sleep: "Sleep and overnight recovery.",
+  growth: "Lean mass and abdominal fat.",
+  longevity: "Cellular energy and healthspan.",
+  metabolic: "Appetite and weight.",
+  "sexual-health": "Sexual desire.",
 };
 
 /* Her world speaks its own register (Chiya 2026-07-06: the worlds must be
@@ -102,13 +102,13 @@ export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
    CATEGORY_FEELING lines lean masculine-athletic; women's world overrides
    them wherever it renders world-cast surfaces. */
 export const CATEGORY_FEELING_WOMEN: Partial<Record<PeptideCategory, string>> = {
-  recovery: "Strength that feels like you.",
-  growth: "Lean strength, quietly built.",
-  metabolic: "Peace with your appetite.",
-  longevity: "Radiance, year after year.",
-  cognition: "Calm mind, bright focus.",
-  sleep: "Sleep like it's sacred.",
-  "sexual-health": "Desire, on your schedule.",
+  recovery: "Tissue repair and recovery.",
+  growth: "Lean mass and abdominal fat.",
+  metabolic: "Appetite and weight.",
+  longevity: "Cellular energy and healthspan.",
+  cognition: "Focus and mood.",
+  sleep: "Sleep and overnight recovery.",
+  "sexual-health": "Sexual desire.",
 };
 
 /** The feeling line, cast to a world. Men = base register; women override. */

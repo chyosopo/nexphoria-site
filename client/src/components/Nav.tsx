@@ -49,9 +49,9 @@ const showcaseLinks: NavLink[] = [
    liveCategories() so the nav can never link a goal page with nothing on it
    (2026-09-03: four of six links here led to empty goal pages). */
 const MEGA_BLURB: Partial<Record<PeptideCategory, string>> = {
-  metabolic: "Hunger, turned down. Weekly.",
-  growth: "Your own growth hormone, nightly.",
-  "sexual-health": "Desire, on the day you choose.",
+  metabolic: "Semaglutide, tirzepatide",
+  growth: "Tesamorelin",
+  "sexual-health": "PT-141",
   recovery: "Tissue repair, injury, training load",
   skin: "Collagen, tone, aesthetic outcomes",
   longevity: "Cellular energy, immune, healthspan",

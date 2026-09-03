@@ -100,9 +100,9 @@ function Hero() {
                   marginBottom: "1.5rem",
                 }}
               >
-                You start. Then your blood
+                One full blood panel
               <br />
-              <span style={{ color: "var(--nx-acid)" }}>tells your doctor what changed.</span>
+              <span style={{ color: "var(--nx-acid)" }}>at week 12, included.</span>
               </h1>
               <p
                 style={{
@@ -114,8 +114,7 @@ function Hero() {
                   marginBottom: "2rem",
                 }}
               >
-                Tired, stuck, slow to recover? Your numbers usually say why.
-              {" "}A full panel of {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} groups, drawn at week 12 of your plan and included, so your doctor adjusts your dose from what actually changed.
+                {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} groups, drawn twelve weeks into treatment and read by the prescribing physician. It shows what the medicine changed, and the dose is set from it. The panel is included in the monthly price.
               </p>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
                 <StartIntakeButton

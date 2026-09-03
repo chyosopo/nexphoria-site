@@ -379,24 +379,24 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="solo-blood-title" data-testid="solo-blood">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr]" style={{ gap: "clamp(1.4rem,3vw,2.6rem)", background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,2.2rem)" }}>
               <div>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Why your blood is part of it</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The week-{RETEST_WEEK} blood panel</p>
                 <h2 id="solo-blood-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.12, maxWidth: "20ch" }}>
-                  You start first. At week {RETEST_WEEK}, your blood tells your doctor what {solo.name} changed.
+                  What the panel measures for {solo.name}.
                 </h2>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "0.9rem", maxWidth: "50ch" }}>{m.why}</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "50ch" }}>
-                  A full panel of {PANEL_TOTAL_MARKERS} markers is included in your plan.{" "}
+                  A full panel of {PANEL_TOTAL_MARKERS} markers is included in the price.{" "}
                   <Link href="/bloodwork" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker and why it is there</Link>
                 </p>
               </div>
               <div style={{ display: "grid", gap: 10 }}>
                 <div style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1rem 1.15rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Your doctor reads first</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Read first for this medicine</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{m.watch.join(" · ")}</p>
-                  {m.doseMarker && <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>Your dose is set against {m.doseMarker}.</p>}
+                  {m.doseMarker && <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>The dose is set against {m.doseMarker}.</p>}
                 </div>
                 <div style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1rem 1.15rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What your doctor asks before you start</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Screened for before prescribing</p>
                   <ul style={{ margin: "0.4rem 0 0", padding: "0 0 0 1.1rem", display: "grid", gap: 3 }}>
                     {m.intakeScreens.map((q) => <li key={q} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>{q}</li>)}
                   </ul>

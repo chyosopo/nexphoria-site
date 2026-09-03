@@ -61,17 +61,17 @@ export default function Peptides101() {
         <Reveal>
           <p style={kicker}>Peptides 101</p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1, letterSpacing: "var(--nx-ls-display)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "14ch", textWrap: "balance" }}>
-            Peptides, explained the way a friend would.
+            Peptides, explained from the beginning.
           </h1>
           <p style={{ ...body, fontSize: "var(--nx-t-lg)", maxWidth: "52ch", marginTop: "1.2rem" }}>
-            Your body already makes them. A prescription peptide is a precise version of one of your own signals, made for you by a licensed pharmacy, on a plan a real doctor wrote. Here is the whole idea in five minutes.
+            The body makes thousands of peptides as chemical signals. A prescription peptide is a precise version of one of them, compounded for you by a licensed pharmacy on a physician's prescription. This page explains what they are, what the four we prescribe do, and what to expect in the first twelve weeks.
           </p>
         </Reveal>
       </section>
 
       {/* what a peptide is */}
       <section className="nx-container" aria-labelledby="p101-what">
-        <Reveal><p style={kicker}>Start here</p><h2 id="p101-what" style={{ ...h2, maxWidth: "18ch" }}>What a peptide actually is.</h2></Reveal>
+        <Reveal><p style={kicker}>Start here</p><h2 id="p101-what" style={{ ...h2, maxWidth: "18ch" }}>What a peptide is.</h2></Reveal>
         <ol className="nx-check-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} data-testid="p101-what">
           {WHAT.map(([t, b], i) => (
             <Reveal key={t} delay={i * 80}>
@@ -89,7 +89,7 @@ export default function Peptides101() {
 
       {/* the four */}
       <section className="nx-container" aria-labelledby="p101-four">
-        <Reveal><p style={kicker}>The four we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>What each one is for, and what your blood shows at week {RETEST_WEEK}.</h2></Reveal>
+        <Reveal><p style={kicker}>The four we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>What each one is for, and what the week-{RETEST_WEEK} panel measures.</h2></Reveal>
         <div style={{ display: "grid", gap: "clamp(1rem, 2vw, 1.4rem)", marginTop: "clamp(1.6rem, 3vw, 2.4rem)" }} data-testid="p101-four">
           {SOLO_CATALOG.map((s, i) => {
             const m = monitoringFor(s.slug);
@@ -122,7 +122,7 @@ export default function Peptides101() {
       {/* the first twelve weeks */}
       <section className="nx-steps-band" aria-labelledby="p101-twelve">
         <div className="nx-container">
-          <Reveal><p style={kicker}>The first {RETEST_WEEK} weeks</p><h2 id="p101-twelve" style={{ ...h2, maxWidth: "20ch" }}>What actually happens, week by week.</h2></Reveal>
+          <Reveal><p style={kicker}>The first {RETEST_WEEK} weeks</p><h2 id="p101-twelve" style={{ ...h2, maxWidth: "20ch" }}>What happens, week by week.</h2></Reveal>
           <ol className="nx-steps" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} data-testid="p101-twelve">
             {TWELVE.map(([when, t, b], i) => (
               <Reveal key={t} delay={i * 80}>
@@ -141,7 +141,7 @@ export default function Peptides101() {
       <section className="nx-container" aria-labelledby="p101-honest" style={{ paddingTop: "var(--nx-sp-sec)" }}>
         <Reveal>
           <p style={kicker}>The honest part</p>
-          <h2 id="p101-honest" style={{ ...h2, maxWidth: "20ch" }}>Who it is for, and what your doctor asks first.</h2>
+          <h2 id="p101-honest" style={{ ...h2, maxWidth: "20ch" }}>Who it is for, and what is screened for.</h2>
           <p style={{ ...body, maxWidth: "60ch", marginTop: "1rem" }}>
             Peptides are for adults with a goal a doctor can help with. Because you start before any blood is drawn, your questionnaire carries the questions a doctor needs answered first. Answer them straight; some plans end there, and that is the system working.
           </p>
@@ -170,7 +170,7 @@ export default function Peptides101() {
       <SectionLine />
 
       <section className="nx-container nx-faq-section" aria-labelledby="p101-faq">
-        <Reveal><p style={kicker}>Asked by people new to this</p><h2 id="p101-faq" style={{ ...h2, maxWidth: "18ch" }}>The questions everyone asks first.</h2></Reveal>
+        <Reveal><p style={kicker}>Asked by people new to this</p><h2 id="p101-faq" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2></Reveal>
         <div className="nx-faq-list" data-testid="p101-faq">
           {FAQ.map((it, i) => (
             <Reveal key={it.q} delay={i * 50}>
@@ -187,7 +187,7 @@ export default function Peptides101() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="p101-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "18ch", margin: "0 auto", textWrap: "balance" }}>
-              Now you know what it is. See if it is for you.
+              Choose the medicine for your goal.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="p101-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               Start your assessment

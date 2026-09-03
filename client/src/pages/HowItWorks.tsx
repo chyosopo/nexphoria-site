@@ -133,10 +133,10 @@ export default function HowItWorks() {
                 <ShieldCheck size={14} strokeWidth={2.2} aria-hidden="true" /> How it works
               </p>
               <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
-                Seven steps. <em style={{ color: "var(--nx-cobalt)" }}>Your doctor in every one.</em>
+                How a prescription is issued, <em style={{ color: "var(--nx-cobalt)" }}>filled and monitored.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1.1rem" }}>
-                You should not have to take our word for what happens to your body. Here is the whole path, from checkout to your first cold shipment, in the order it always runs, and why each step is there.
+                The whole path, from checkout to the first cold shipment to the week-12 blood panel, in the order it always runs, and why each step is there.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Start your assessment</Link>

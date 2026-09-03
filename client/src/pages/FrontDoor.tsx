@@ -42,25 +42,25 @@ const PRICED = SOLO_CATALOG.filter((s) => s.pricing);
 const FLOOR = PRICED.length ? Math.min(...PRICED.map((s) => s.pricing!.m12)) : NaN;
 
 const CHECKLIST = [
-  ["Your own doctor.", "A named, state-licensed physician reads your file and signs your prescription."],
-  ["Your own batch.", "Made for you in a licensed U.S. 503A pharmacy, batch documented, shipped cold."],
-  ["Your blood, read at week 12.", `A full panel of ${PANEL_TOTAL_MARKERS} markers, included, drawn at week 12 and read by your doctor.`],
-  ["Your dose, adjusted from it.", "Your doctor continues, adjusts or stops from what your blood shows. Every change has a number behind it."],
+  ["A physician's review.", "A licensed, state-registered physician reads your medical questionnaire and signs the prescription."],
+  ["Medication compounded for you.", "Prepared to order in a licensed U.S. 503A pharmacy, batch documented, and shipped cold."],
+  ["A full blood panel at week 12.", `${PANEL_TOTAL_MARKERS} markers, included in the price, drawn twelve weeks into treatment.`],
+  ["A dose set from the result.", "The prescribing physician reads the panel against the treatment and continues, adjusts or stops it."],
 ] as const;
 
 const STEPS = [
-  ["Choose your plan.", "Pick the peptide and the plan length, and check out. Two minutes."],
-  ["Answer the questionnaire.", "Your health, your history, your goal, and the screens that matter for your peptide. All of it goes to a U.S. licensed doctor."],
-  ["Your doctor decides. Then it ships.", "If it fits you, your prescription goes to a licensed 503A pharmacy, is made for you, and ships cold. At week 12 a full blood panel, included, shows your doctor what changed, and your dose follows it."],
+  ["Choose the medicine and the plan length.", "Checkout takes about two minutes."],
+  ["Complete the medical questionnaire.", "Your history, your medications and the conditions that matter for this medicine. It goes to a licensed U.S. physician."],
+  ["The physician prescribes. The pharmacy compounds and ships.", "If the medicine is appropriate for you, it is prepared in a licensed 503A pharmacy and shipped cold. At week 12 a full blood panel, included, is read and the dose is set from it."],
 ] as const;
 
 const FAQ = [
-  { q: "Is this legit?", a: "Yes. A named, U.S. licensed doctor reviews your questionnaire and signs every prescription. Your medication is made for you in a licensed 503A pharmacy and shipped cold. At week 12 your blood is drawn and read." },
-  { q: "Do I actually talk to a doctor?", a: `Yes. A doctor reads your full intake and your ${PANEL_TOTAL_MARKERS}-marker panel and makes the call. Your dose is reviewed at every retest.` },
-  { q: "Do I need bloodwork?", a: "Yes, at week 12. You start first. Then a full panel, drawn at a lab near you and included in your plan, shows your doctor what changed, so your dose follows your numbers." },
-  { q: "What if the doctor says no?", a: "Then nothing is made. Some questionnaires end there, and the refund policy sets out what is refunded." },
+  { q: "Is this legitimate?", a: "Yes. Every prescription is written by a licensed U.S. physician from a medical questionnaire. The medication is compounded for you in a licensed 503A pharmacy and shipped cold. The provider and the pharmacy are named on the FAQ page." },
+  { q: "Who prescribes it?", a: `A licensed U.S. physician, who reads your full questionnaire and decides. At week 12 the same physician reads your ${PANEL_TOTAL_MARKERS}-marker blood panel and sets the dose from it.` },
+  { q: "Is bloodwork required?", a: "One full blood panel at week 12, included in the price. Treatment starts first. The panel shows what the medicine changed, and the dose is adjusted from it." },
+  { q: "What if the physician declines?", a: "Some questionnaires end there. The physician explains why, and the refund policy sets out what is refunded." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
-  { q: "How is it shipped?", a: "Cold, in a plain package, to your door in all 50 states." },
+  { q: "How is it shipped?", a: "Cold, in a plain package, to all 50 states. Semaglutide and tirzepatide are excluded in a few states by law." },
 ];
 
 const kicker: React.CSSProperties = {
@@ -103,8 +103,8 @@ export default function FrontDoor() {
       {/* ══ 2 · START WITH YOUR GOAL — three photographed doors into the assessment ══ */}
       <section className="nx-container" aria-labelledby="fd-goals" style={{ paddingTop: "var(--nx-sp-sec)" }}>
         <Reveal>
-          <p style={kicker}>Start with your goal</p>
-          <h2 id="fd-goals" style={{ ...h2, maxWidth: "20ch" }}>What do you want help with?</h2>
+          <p style={kicker}>The medicines, by goal</p>
+          <h2 id="fd-goals" style={{ ...h2, maxWidth: "22ch" }}>Choose the medicine for what you want to change.</h2>
         </Reveal>
         <GoalPicker counts={{ metabolic: countFor("metabolic"), growth: countFor("growth"), "sexual-health": countFor("sexual-health") }} />
       </section>
@@ -115,7 +115,7 @@ export default function FrontDoor() {
       <section className="nx-container" aria-labelledby="fd-checklist">
         <Reveal>
           <p style={kicker}>What you get</p>
-          <h2 id="fd-checklist" style={{ ...h2, maxWidth: "22ch" }}>Four things to expect from a real clinic. You get all four.</h2>
+          <h2 id="fd-checklist" style={{ ...h2, maxWidth: "22ch" }}>What comes with every prescription.</h2>
         </Reveal>
         <ol className="nx-check-grid" data-testid="frontdoor-checklist">
           {CHECKLIST.map(([t, b], i) => (
@@ -150,8 +150,8 @@ export default function FrontDoor() {
       <section className="nx-container" aria-labelledby="fd-formulary">
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
           <Reveal>
-            <p style={kicker}>Your options</p>
-            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "24ch" }}>What each one does for you, and when you will know.</h2>
+            <p style={kicker}>The formulary</p>
+            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "24ch" }}>The four medicines, and what each one does.</h2>
           </Reveal>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             The complete catalog <ArrowRight size={14} aria-hidden style={{ display: "inline", verticalAlign: "-2px" }} />
@@ -212,7 +212,7 @@ export default function FrontDoor() {
         <div className="nx-container">
           <Reveal>
             <p style={kicker}>How it works</p>
-            <h2 id="fd-steps" style={{ ...h2, maxWidth: "22ch" }}>Three steps. Your doctor is in every one.</h2>
+            <h2 id="fd-steps" style={{ ...h2, maxWidth: "22ch" }}>How a prescription is issued.</h2>
           </Reveal>
           <ol className="nx-steps" data-testid="frontdoor-steps">
             {STEPS.map(([t, b], i) => (
@@ -240,10 +240,10 @@ export default function FrontDoor() {
       <section className="nx-container nx-hold-section" aria-labelledby="fd-hold">
         <div className="nx-hold-copy">
           <Reveal>
-            <p style={kicker}>Try it</p>
-            <h2 id="fd-hold" style={{ ...h2, maxWidth: "14ch" }}>Hold to run your 12 weeks.</h2>
+            <p style={kicker}>The first twelve weeks</p>
+            <h2 id="fd-hold" style={{ ...h2, maxWidth: "16ch" }}>Twelve weeks, in ten seconds.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "40ch" }}>
-              You start. At week 12 your blood is drawn and your doctor reads it. Your dose follows your numbers. Run it yourself.
+              Treatment starts first. At week 12 a full blood panel is drawn and the prescribing physician reads it. The dose is set from the result. Hold the button to run it.
             </p>
           </Reveal>
         </div>
@@ -258,7 +258,7 @@ export default function FrontDoor() {
       <section className="nx-container" aria-labelledby="fd-pricing">
         <Reveal>
           <p style={kicker}>Your price</p>
-          <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>One number a month. Everything within it.</h2>
+          <h2 id="fd-pricing" style={{ ...h2, maxWidth: "22ch" }}>One monthly price. Physician review, medication, shipping and the week-12 panel included.</h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "58ch" }}>
             Your doctor, your medication, shipping and your week-12 blood panel are all inside the figure. Your doctor sets the dose. The price does not change with it.
           </p>
@@ -295,7 +295,7 @@ export default function FrontDoor() {
       <section className="nx-container nx-faq-section" aria-labelledby="fd-faq">
         <Reveal>
           <p style={kicker}>Your questions</p>
-          <h2 id="fd-faq" style={{ ...h2, maxWidth: "18ch" }}>What people ask before they start.</h2>
+          <h2 id="fd-faq" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
         </Reveal>
         <div className="nx-faq-list" data-testid="frontdoor-faq">
           {FAQ.map((it, i) => (
@@ -317,13 +317,13 @@ export default function FrontDoor() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="fd-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "20ch", margin: "0 auto", textWrap: "balance" }}>
-              Your numbers decide. Your doctor signs. Your plan.
+              Four prescription peptides, made to one standard.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               Start your assessment
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 78%, transparent)", marginTop: "0.9rem" }}>
-              Two minutes to start.
+              Choose the medicine, complete the questionnaire, and a licensed physician decides.
             </p>
           </Reveal>
         </div>

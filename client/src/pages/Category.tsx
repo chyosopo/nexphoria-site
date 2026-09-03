@@ -47,6 +47,8 @@ type Beat = { when: string; what: string };
 type GoalCopy = {
   /** the one-word door the reader came through */
   short: string;
+  /** the medicine-led headline */
+  headline: string;
   sub: string;
   photo: string;
   photo500: string;
@@ -61,79 +63,82 @@ type GoalCopy = {
 const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
   metabolic: {
     short: "Weight",
-    sub: "Semaglutide and tirzepatide turn the hunger signal down. A U.S. doctor picks one for you from your questionnaire. A licensed U.S. pharmacy makes it. At week 12 your blood shows what changed.",
+    headline: "Semaglutide and tirzepatide, for weight management.",
+    sub: "Two GLP-1 medicines that reduce appetite and steady blood sugar. One is prescribed for you by a licensed U.S. physician from your medical questionnaire, compounded in a licensed 503A pharmacy, and followed by a full blood panel at week 12.",
     photo: goalMetabolic, photo500: goalMetabolic500,
     photoAlt: "A person at a kitchen counter in morning light, calm, a glass of water in hand",
     what: {
-      title: "One shot a week that turns hunger down.",
+      title: "A once-weekly injection that reduces appetite.",
       body: [
-        "After you eat, your gut releases a hormone that tells your brain you are full. Semaglutide and tirzepatide copy that hormone and keep the signal on longer. You feel full sooner, stay full longer, and your body handles sugar more steadily.",
-        "You take a small dose once a week, under the skin, with a short thin needle. Your doctor starts you low on purpose and raises the dose in steps, so your body has time to settle at each one.",
+        "After a meal, the gut releases a hormone, GLP-1, that signals fullness to the brain and slows the emptying of the stomach. Semaglutide and tirzepatide are longer-acting versions of that signal. Appetite falls, meals satisfy sooner, and blood sugar is handled more steadily. Tirzepatide acts on a second hormone, GIP, as well.",
+        "The dose is a small injection under the skin once a week. Treatment begins at a low dose and is raised in steps over the first weeks, which is how the common side effects, nausea and a smaller appetite, are kept manageable.",
       ],
     },
     choose: {
-      title: "Which one?",
-      body: "Semaglutide works on one hunger signal. Tirzepatide works on two. Your doctor chooses from your history, your goal and what is available in your state. You can name a preference in the questionnaire, and your doctor has the final word.",
+      title: "Semaglutide or tirzepatide",
+      body: "Semaglutide acts on one hormone signal, tirzepatide on two. The prescribing physician chooses from your history, your goal and what is permitted in your state. You can state a preference in the questionnaire; the prescription is the physician's decision.",
     },
     weeks: [
-      { when: "Week 1", what: "Your first dose, a low one on purpose, so your body can settle." },
-      { when: "Weeks 2 to 8", what: "Your dose steps up on your doctor's schedule. Each step waits until the last one feels settled." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your blood is drawn. The full panel, included in your plan." },
-      { when: "After", what: "Your doctor reads it and sets your dose for the next stretch. Up, the same, or down." },
+      { when: "Week 1", what: "The first dose, at the lowest step." },
+      { when: "Weeks 2 to 8", what: "The dose is raised in steps on the physician's schedule, each step after the last has settled." },
+      { when: `Week ${RETEST_WEEK}`, what: "A full blood panel is drawn, included in the price." },
+      { when: "After", what: "The physician reads the panel and sets the dose for the next period: higher, the same, or lower." },
     ],
     faqs: [
-      { q: "Do I have to inject myself?", a: "Yes, once a week, under the skin of your stomach or thigh. The needle is short and thin, it takes a few seconds, and your first box comes with plain instructions." },
+      { q: "How is it taken?", a: "As a small injection under the skin of the abdomen or thigh, once a week. The needle is short and thin, the dose takes a few seconds, and instructions ship with the first box." },
       { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
-      { q: "What if my doctor says no?", a: "Then it is a no, and they tell you why. Your doctor decides from your questionnaire, and the answer can be that this medicine is wrong for you right now." },
-      { q: "Is it available in my state?", a: "In most states, yes. A few states exclude these medicines by law, and the questionnaire asks where you live before anything else." },
+      { q: "What if the physician declines?", a: "The physician explains why. The decision is made from the questionnaire, and for some people the answer is that this medicine is not appropriate right now. The refund policy sets out what is refunded." },
+      { q: "Is it available in my state?", a: "In most states. A few states exclude compounded GLP-1 medicines by law, and the questionnaire asks where you live first." },
     ],
   },
   growth: {
     short: "Strength",
-    sub: "Tesamorelin asks your body to release more of its own growth hormone. A U.S. doctor prescribes it from your questionnaire, a licensed U.S. pharmacy makes it, and at week 12 your blood shows the number your dose is set against.",
+    headline: "Tesamorelin, for abdominal fat and lean mass.",
+    sub: "A daily peptide that prompts the body to release more of its own growth hormone. Prescribed by a licensed U.S. physician from your medical questionnaire, compounded in a licensed 503A pharmacy, and dosed against IGF-1 in a full blood panel at week 12.",
     photo: goalGrowth, photo500: goalGrowth500,
     photoAlt: "A man in a bright home gym holding a dumbbell mid-curl, a bench and window behind him",
     what: {
-      title: "A nightly dose that asks your body for its own growth hormone.",
+      title: "A daily injection that raises your own growth hormone.",
       body: [
-        "Growth hormone is what your body uses to build and repair. Your brain releases it in pulses, mostly at night. Tesamorelin copies the signal that starts those pulses, so your body releases more of its own hormone on its own rhythm. It is studied most for visceral fat, the kind that sits deep around the organs.",
-        "You take one small dose every day, under the skin, usually at night. The dose stays the same. What changes is a number in your blood, IGF-1, and that is what your doctor reads at week 12.",
+        "Growth hormone is released by the pituitary in pulses, mostly at night, and is the signal the body uses to build and repair tissue. Tesamorelin is a synthetic version of the hormone that triggers those pulses, so the body releases more of its own growth hormone on its own rhythm. It is best studied for visceral fat, the fat that sits deep around the organs, and it supports lean mass.",
+        "The dose is a small injection under the skin once a day, usually in the evening, and stays the same throughout. The number that changes is IGF-1 in the blood, which is the marker the physician reads at week 12 to confirm the dose.",
       ],
     },
     weeks: [
-      { when: "Week 1", what: "Your first dose, at night, under the skin." },
-      { when: "Weeks 2 to 8", what: "The same dose, every night. Consistency is the whole job." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your blood is drawn. IGF-1 is the number your doctor reads first." },
-      { when: "After", what: "Your dose is set against it. Tesamorelin is capped by that number, so the reading matters." },
+      { when: "Week 1", what: "The first dose, in the evening, under the skin." },
+      { when: "Weeks 2 to 8", what: "The same dose every day. The effect builds gradually." },
+      { when: `Week ${RETEST_WEEK}`, what: "A full blood panel is drawn. IGF-1 is read first." },
+      { when: "After", what: "The dose is confirmed or adjusted against IGF-1, which caps how high it can go." },
     ],
     faqs: [
-      { q: "Is this the same as taking growth hormone?", a: "It is different. Growth hormone injections put the hormone in from outside. Tesamorelin asks your body to release its own, in its own pulses, which is why your doctor sets the dose against IGF-1." },
-      { q: "Why IGF-1?", a: "Growth hormone itself comes and goes in pulses, so a single blood test misses it. IGF-1 is the steady signal downstream, and it tells your doctor how much your body responded." },
-      { q: "What does the doctor screen for?", a: "Active cancer or a history of it, pituitary conditions, and pregnancy. Those questions are in the questionnaire, and your doctor reads every answer." },
+      { q: "Is this the same as taking growth hormone?", a: "It is different. Growth hormone injections supply the hormone from outside. Tesamorelin prompts the body to release its own, in its own pulses, which is why the dose is set against IGF-1 rather than fixed in advance." },
+      { q: "Why IGF-1?", a: "Growth hormone itself rises and falls in pulses, so a single test misses it. IGF-1 is the steady downstream marker, and it shows how much the body has responded." },
+      { q: "What is screened for before prescribing?", a: "Active cancer or a history of it, pituitary conditions, and pregnancy. These are asked in the questionnaire and read by the prescribing physician." },
     ],
   },
   "sexual-health": {
     short: "Desire",
-    sub: "PT-141 works on desire through the brain, on the day you choose. A U.S. doctor prescribes it from your questionnaire, a licensed U.S. pharmacy makes it, and it ships cold to your door.",
+    headline: "PT-141, for sexual desire.",
+    sub: "An as-needed peptide that acts on desire through the brain, in men and women. Prescribed by a licensed U.S. physician from your medical questionnaire, compounded in a licensed 503A pharmacy, and shipped cold.",
     photo: goalDesire, photo500: goalDesire500,
     photoAlt: "Two people at ease together in warm evening light",
     what: {
-      title: "A dose you take when you want it, that works through the brain.",
+      title: "An as-needed dose that acts on desire itself.",
       body: [
-        "Most medicines in this area work on blood flow. PT-141 works upstream, on the part of the brain that starts desire, in men and women both. That is why it is used for desire itself, and why you take it on the day rather than every day.",
-        "You take a small dose under the skin about an hour before. It stays active for several hours. Because it raises blood pressure for a short while, your doctor checks your heart and your pressure in the questionnaire first.",
+        "Most medicines for sexual function act on blood flow. PT-141, also called bremelanotide, acts upstream, on melanocortin receptors in the brain that are involved in sexual desire, and it works in men and women. That is why it is used for desire itself, and why it is taken on the day rather than every day.",
+        "The dose is a small injection under the skin about an hour beforehand and stays active for several hours. It raises blood pressure briefly, so blood pressure and heart history are checked in the questionnaire before it is prescribed.",
       ],
     },
     weeks: [
-      { when: "Dose 1", what: "About an hour before. Under the skin, with a short thin needle. You learn how your body times it." },
-      { when: "The first weeks", what: "Use it on the days you choose. Your doctor sets a monthly limit, and you stay inside it." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your blood is drawn. The full panel, included, with your hormones read for context." },
-      { when: "After", what: "Your doctor reviews how it has gone and adjusts the dose, or the plan." },
+      { when: "Dose 1", what: "About an hour beforehand, under the skin. Timing becomes familiar after the first few doses." },
+      { when: "The first weeks", what: "Used on the days you choose, within the monthly limit the physician sets." },
+      { when: `Week ${RETEST_WEEK}`, what: "A full blood panel is drawn, included, with hormones read for context." },
+      { when: "After", what: "The physician reviews the response and adjusts the dose or the plan." },
     ],
     faqs: [
-      { q: "Is this like the pills for erections?", a: "A different route. Those work on blood flow in the body. PT-141 works on desire in the brain, so it is for wanting, in men and women, and a doctor looks at your heart and blood pressure before prescribing it." },
-      { q: "How fast does it work?", a: "Onset is usually one to three hours, and it stays active for several hours. You find your own timing over the first few doses." },
-      { q: "Why does the doctor ask about blood pressure?", a: "A dose raises blood pressure for a few hours. If yours is already high, or your heart has a history, your doctor needs to know before saying yes." },
+      { q: "Is this like the pills for erections?", a: "A different mechanism. Those act on blood flow. PT-141 acts on desire in the brain, in men and women, and is prescribed after blood pressure and heart history are reviewed." },
+      { q: "How fast does it work?", a: "Onset is usually one to three hours, and it stays active for several hours. Most people settle on their timing within the first few doses." },
+      { q: "Why is blood pressure checked?", a: "A dose raises blood pressure for a few hours. Uncontrolled high blood pressure or heart disease can rule the medicine out, so both are asked about before prescribing." },
     ],
   },
 };
@@ -209,12 +214,12 @@ export default function Category() {
   const live = Boolean(copy) && skus.length > 0;
 
   useSeo({
-    title: live ? `${copy!.short}: ${feeling} Prescribed by U.S. doctors` : "Choose a goal",
+    title: live ? copy!.headline : "Choose a goal",
     description: live ? copy!.sub : "Prescription peptides for weight, strength and desire, prescribed by U.S. licensed doctors.",
     path: `/goals/${slug}`,
     jsonLd: live
       ? [
-          webPageJsonLd({ name: `${copy!.short}: ${feeling}`, description: copy!.sub, path: `/goals/${slug}`, type: "MedicalWebPage" }),
+          webPageJsonLd({ name: copy!.headline, description: copy!.sub, path: `/goals/${slug}`, type: "MedicalWebPage" }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: copy!.short, path: `/goals/${slug}` }]),
           faqJsonLd(copy!.faqs),
           itemListJsonLd({
@@ -234,14 +239,14 @@ export default function Category() {
       <SiteLayout navVariant={world} footerVariant={world}>
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="category-notfound-title">
           <p style={kicker}>Choose a goal</p>
-          <h1 id="category-notfound-title" style={{ ...h2, fontSize: "var(--nx-t-h1)", maxWidth: "16ch" }}>This area opens later. Start with one of these.</h1>
+          <h1 id="category-notfound-title" style={{ ...h2, fontSize: "var(--nx-t-h1)", maxWidth: "18ch" }}>This area is not yet available. The current medicines are below.</h1>
           <div className="mt-8 flex flex-wrap gap-2" role="list">
             {doors.map((d) => (
               <Link key={d.c} href={`/goals/${d.c}`} className="nx-chip" role="listitem" style={{ fontFamily: F }} data-testid={`cat-door-${d.c}`}>
                 {d.copy!.short} <ArrowRight size={15} aria-hidden style={{ marginLeft: 6 }} />
               </Link>
             ))}
-            <Link href="/peptides-101" className="nx-chip nx-chip-ghost" role="listitem" style={{ fontFamily: F }}>New to peptides? Start here</Link>
+            <Link href="/peptides-101" className="nx-chip nx-chip-ghost" role="listitem" style={{ fontFamily: F }}>Peptides 101</Link>
           </div>
         </section>
       </SiteLayout>
@@ -257,20 +262,20 @@ export default function Category() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-hero-title">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
           <div>
-            <p style={kicker} data-testid="cat-eyebrow">{cfg.short} · Prescribed by U.S. licensed doctors</p>
-            <h1 id="category-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.04, letterSpacing: "var(--nx-ls-display)", color: "var(--nx-fg)", maxWidth: "14ch", marginTop: "0.9rem", textWrap: "balance" }} data-testid="cat-h1">
-              {feeling}
+            <p style={kicker} data-testid="cat-eyebrow">{cfg.short} · {feeling}</p>
+            <h1 id="category-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.06, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.9rem", textWrap: "balance" }} data-testid="cat-h1">
+              {cfg.headline}
             </h1>
             <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }} data-testid="cat-sub">{cfg.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
-                Start your assessment <ArrowRight size={17} strokeWidth={2} />
+                Start the questionnaire <ArrowRight size={17} strokeWidth={2} />
               </Link>
               <Link href="/peptides-101" className="nx-cta-ghost inline-flex items-center gap-2" data-testid="cat-cta-101">
-                New to peptides? Start here
+                New to peptides? Read this first
               </Link>
             </div>
-            <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>Two minutes to start. Your doctor decides from your answers.</p>
+            <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>Prescription only. A licensed physician reviews every questionnaire.</p>
           </div>
           <Reveal delay={80} className="nx-reveal-lift">
             <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}>
@@ -291,8 +296,8 @@ export default function Category() {
             <div style={{ display: "grid", gap: "1rem" }}>
               {cfg.what.body.map((p) => <p key={p} style={body}>{p}</p>)}
               <p style={small}>
-                Want the longer version?{" "}
-                <Link href="/peptides-101" className="nx-text-link" style={{ fontWeight: 600 }}>Peptides 101 explains it from the start</Link>
+                For the longer explanation,{" "}
+                <Link href="/peptides-101" className="nx-text-link" style={{ fontWeight: 600 }}>Peptides 101 starts from the beginning</Link>
               </p>
             </div>
           </Reveal>
@@ -302,9 +307,9 @@ export default function Category() {
       {/* ── 3. Choose ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-options-title">
         <Reveal>
-          <p style={kicker}>Your options</p>
-          <h2 id="category-options-title" style={{ ...h2, maxWidth: "18ch" }}>
-            {skus.length === 1 ? "One medicine, made for you." : `${skus.length === 2 ? "Two" : String(skus.length)} medicines. Your doctor picks one.`}
+          <p style={kicker}>The medicines</p>
+          <h2 id="category-options-title" style={{ ...h2, maxWidth: "20ch" }}>
+            {skus.length === 1 ? "One medicine for this goal." : `${skus.length === 2 ? "Two" : String(skus.length)} medicines for this goal. The physician prescribes one.`}
           </h2>
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-2" style={{ marginTop: "clamp(1.4rem,3vw,2.2rem)", maxWidth: 820 }}>
@@ -328,16 +333,16 @@ export default function Category() {
             </div>
           </Reveal>
         )}
-        <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>Prescription only. Your doctor decides, and can decline. Availability varies by state.</p>
+        <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>Prescription only. The physician can decline. Availability varies by state.</p>
       </section>
 
       {/* ── 4. Your first twelve weeks ── */}
       <section style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-weeks-title">
         <div className="nx-container grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }}>
           <Reveal>
-            <p style={kicker}>Your first {RETEST_WEEK} weeks</p>
-            <h2 id="category-weeks-title" style={{ ...h2, maxWidth: "14ch" }}>What actually happens, week by week.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>You start first. Your doctor prescribes from your questionnaire, and your blood is read at week {RETEST_WEEK}, when there is something to read.</p>
+            <p style={kicker}>The first {RETEST_WEEK} weeks</p>
+            <h2 id="category-weeks-title" style={{ ...h2, maxWidth: "16ch" }}>What happens, week by week.</h2>
+            <p style={{ ...body, marginTop: "1rem" }}>Treatment starts first. The prescription is written from the questionnaire, and the blood panel is drawn at week {RETEST_WEEK}, once there is a response to measure.</p>
           </Reveal>
           <Reveal delay={60}>
             <ol className="nx-timeline" data-testid="cat-weeks">
@@ -363,13 +368,13 @@ export default function Category() {
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-blood-title" data-testid="cat-blood">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]" style={{ gap: "clamp(1.4rem,3vw,2.6rem)" }}>
             <Reveal>
-              <p style={kicker}>Why your blood is part of it</p>
-              <h2 id="category-blood-title" style={{ ...h2, maxWidth: "16ch" }}>At week {RETEST_WEEK}, your blood tells your doctor what changed.</h2>
+              <p style={kicker}>The week-{RETEST_WEEK} blood panel</p>
+              <h2 id="category-blood-title" style={{ ...h2, maxWidth: "18ch" }}>What the panel measures for this medicine.</h2>
               <p style={{ ...body, marginTop: "1rem" }}>
-                A full panel of {PANEL_TOTAL_MARKERS} markers is drawn, included in your plan. These are the ones your doctor reads first for this goal, and why.
+                A full panel of {PANEL_TOTAL_MARKERS} markers is drawn at week {RETEST_WEEK}, included in the price. These are the markers read first for this goal, and why each is there.
               </p>
               {doseMarkers.map((d) => (
-                <p key={d.peptide} style={{ ...small, marginTop: "0.8rem" }}>{d.peptide}'s dose is set against {d.marker}.</p>
+                <p key={d.peptide} style={{ ...small, marginTop: "0.8rem" }}>The {d.peptide} dose is set against {d.marker}.</p>
               ))}
               <p style={{ ...small, marginTop: "0.8rem" }}>
                 <Link href="/bloodwork" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker in the panel and why it is there</Link>
@@ -393,10 +398,10 @@ export default function Category() {
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0" }} aria-labelledby="category-honest-title">
         <div className="nx-container grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16">
           <Reveal>
-            <p style={{ ...kicker, color: "var(--nx-acid)" }}>The honest part</p>
-            <h2 id="category-honest-title" style={{ ...h2, color: "var(--nx-ceramic)", maxWidth: "16ch" }}>Your doctor decides. Here is what they ask first.</h2>
+            <p style={{ ...kicker, color: "var(--nx-acid)" }}>Before it is prescribed</p>
+            <h2 id="category-honest-title" style={{ ...h2, color: "var(--nx-ceramic)", maxWidth: "18ch" }}>What the questionnaire screens for.</h2>
             <p style={{ ...body, color: "var(--nx-ceramic)", opacity: 0.85, marginTop: "1rem" }}>
-              These questions are in the questionnaire because your doctor prescribes from it, before any blood is drawn. Answer them straight. A no from your doctor is them doing their job.
+              The prescription is written from the questionnaire, before any blood is drawn, so these conditions are asked about directly. Complete answers are what make the review safe.
             </p>
           </Reveal>
           <Reveal delay={60}>
@@ -416,7 +421,7 @@ export default function Category() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)", maxWidth: 860 }} aria-labelledby="category-faq-title">
         <Reveal>
           <p style={kicker}>Your questions</p>
-          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>What people ask before they start.</h2>
+          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
           <div className="mt-6">
             {cfg.faqs.map((f, i) => (
               <details key={f.q} className="nx-faq-item" open={i === 0}>
@@ -440,7 +445,7 @@ export default function Category() {
         return (
           <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="cat-reading-title">
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-              <h2 id="cat-reading-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Read more, if you like.</h2>
+              <h2 id="cat-reading-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Further reading.</h2>
               <Link href="/journal" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                 The journal <ArrowRight size={15} aria-hidden />
               </Link>
@@ -463,10 +468,10 @@ export default function Category() {
       {/* ── Start ── */}
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="category-cta-title">
         <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)", textAlign: "center" }}>
-          <h2 id="category-cta-title" style={{ ...h2, marginTop: 0 }}>Your questionnaire. Your doctor. Your plan.</h2>
-          <p style={{ ...body, margin: "0.7rem auto 0" }}>Two minutes of honest answers. A U.S. licensed doctor reads them and decides. If it is a yes, your medicine is made for you and ships cold.</p>
+          <h2 id="category-cta-title" style={{ ...h2, marginTop: 0 }}>Begin with the questionnaire.</h2>
+          <p style={{ ...body, margin: "0.7rem auto 0" }}>It takes about two minutes. A licensed U.S. physician reads it and decides. If the medicine is appropriate, it is compounded for you and shipped cold.</p>
           <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2 mt-6" data-testid="cat-cta-end">
-            Start your assessment <ArrowRight size={17} strokeWidth={2} />
+            Start the questionnaire <ArrowRight size={17} strokeWidth={2} />
           </Link>
           <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>{FDA} Availability varies by state.</p>
         </div>

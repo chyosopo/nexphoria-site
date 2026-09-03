@@ -717,3 +717,84 @@ panel data and pricing. Retired from the old FAQ, with the reason:
 - Protocols page sample "Biomarker index" dashboard (61/76 markers, minus
   3.4 years biological age): fabricated-looking figures.
 - Bloodwork comparison "your own start": there is no baseline draw.
+
+---
+
+# Copy system v3: the formulary (Chiya, 2026-09-03)
+
+Chiya's verdict on v2: "sounds cheesy and not like a real company". The
+triplet slogans ("Your body. Your numbers. Your plan."), the clever
+feeling lines ("Appetite, finally quiet.") and the coaching tone
+("Answer them straight") read as a startup ad. Her instruction: people want
+to know a physician is involved, but they care about the peptide, what it
+does for them, the benefits and the education. Stop dwelling on the doctor.
+
+## Position: the formulary
+
+Nexphoria offers four prescription peptides. Every page leads with the
+medicine and answers, in this order: what it is, what it does in the body,
+what it is used for, how it is taken, what to expect in the first twelve
+weeks, what the week-12 panel measures, what is screened for, what it
+costs. Physician involvement is stated once per page, as a fact, and the
+week-12 panel is described as monitoring, never as a feature.
+
+## Register: institutional but warm
+
+- Complete sentences. No fragments, no triplets, no italic stubs.
+- Specifics carry the weight: drug names, mechanism, dose form, week
+  counts, licence types. Adjectives are cut.
+- "You" where it is natural ("the dose is a small injection you take once
+  a week"), never as a rhetorical device.
+- One plain human sentence per section is allowed. One.
+- "Physician" in statements about the service. "Doctor" only where the
+  reader's own doctor is meant. Neither word is discussed; it is just used.
+- Benefits are what the medicine does (reduces appetite, raises your own
+  growth hormone, acts on desire) and what it is used for. Never a promised
+  result, never a percentage.
+
+## Master lines (LIVE)
+
+Home kicker: "Prescription peptides, compounded in the United States".
+Home headline: "Four medicines. One standard." (Chiya's pick, option C.)
+Home subline: "Semaglutide, tirzepatide, tesamorelin and PT-141. Each is
+prescribed by a licensed U.S. physician, compounded to order in a licensed
+503A pharmacy, shipped cold, and followed by a full blood panel at week
+12." Micro: "Prescription only. Ships to all 50 states."
+Goal cards: "Semaglutide or tirzepatide. For appetite and weight." /
+"Tesamorelin. For lean mass and abdominal fat." / "PT-141. For sexual
+desire."
+Home sections: "Choose the medicine for what you want to change." / "What
+comes with every prescription." / "The four medicines, and what each one
+does." / "A plain box, cold, at your door." / "How a prescription is
+issued." / "Twelve weeks, in ten seconds." / "One monthly price. Physician
+review, medication, shipping and the week-12 panel included." / "Common
+questions." / Closer: "Four prescription peptides, made to one standard."
+Goal headlines: "Semaglutide and tirzepatide, for weight management." /
+"Tesamorelin, for abdominal fat and lean mass." / "PT-141, for sexual
+desire." Sections: What it is / The medicines / The first 12 weeks / The
+week-12 blood panel / Before it is prescribed / Common questions / Begin
+with the questionnaire.
+Catalog outcome lines (tiles and PDP headline): "Reduces appetite and slows
+digestion. Used for weight management." / "Acts on two appetite hormones at
+once. Used for weight management." / "Raises your own growth hormone. Used
+for abdominal fat and lean mass." / "Acts on sexual desire through the
+brain. Taken as needed."
+Bloodwork hero: "One full blood panel at week 12, included."
+How it works hero: "How a prescription is issued, filled and monitored."
+Pricing hero: "One monthly price. Everything included."
+Announcement bar: "Prescribed by licensed U.S. physicians · Compounded in a
+licensed 503A pharmacy · Shipped cold to all 50 states".
+
+## Facts behind the benefit lines
+
+- Semaglutide, tirzepatide: GLP-1 receptor agonists (tirzepatide also GIP);
+  reduce appetite, slow gastric emptying, steady blood sugar; branded
+  versions approved for chronic weight management. Compounded versions are
+  not FDA-approved (stated verbatim on every page that compares).
+- Tesamorelin: GHRH analog; raises endogenous growth hormone and IGF-1;
+  branded version approved for excess abdominal fat in HIV lipodystrophy;
+  prescribed off-label here, dosed against IGF-1.
+- PT-141 (bremelanotide): melanocortin receptor agonist acting centrally;
+  branded version approved for hypoactive sexual desire disorder in
+  premenopausal women; used off-label in men; raises blood pressure
+  transiently.
