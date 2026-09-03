@@ -2666,3 +2666,8 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-p101-card { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: clamp(1rem, 2.4vw, 2rem); align-items: start; padding: clamp(1.2rem, 2.4vw, 1.8rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
 .nx-p101-photo { aspect-ratio: 1; border-radius: var(--nx-r-md); overflow: hidden; background: var(--nx-bg); }
 @media (max-width: 720px) { .nx-p101-card { grid-template-columns: 1fr; } .nx-p101-photo { max-width: 200px; } }
+
+/* ── Find your treatment: concern cards (copy system v4) ── */
+.nx-concern-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.nx-concern-card { display: block; height: 100%; padding: clamp(1rem, 2vw, 1.4rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); text-decoration: none; transition: transform var(--nx-dur-3) var(--nx-reveal-ease), box-shadow var(--nx-dur-3) var(--nx-ease), border-color var(--nx-dur-3) var(--nx-ease); }
+.nx-concern-card:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); border-color: var(--nx-ice-edge); }

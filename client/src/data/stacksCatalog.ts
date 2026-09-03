@@ -80,7 +80,8 @@ const cad = (
    compositions are intact and a stack returns by adding its slug back once its
    molecules are sellable again. Goals (data/goals.ts) are the merchandising
    unit now; stacks are no longer load-bearing for conversion. */
-export const LAUNCH_STACK_SLUGS = new Set(["ignite"]);
+/* 2026-09-03 (Chiya): full menu; every flagship protocol is on. */
+export const LAUNCH_STACK_SLUGS = new Set(["wolverine", "glow", "ascend", "lucidity", "meridian", "ignite", "threshold"]);
 
 const ALL_STACKS: FlagshipStack[] = [
   {
@@ -100,7 +101,7 @@ const ALL_STACKS: FlagshipStack[] = [
       { wk: "Wk 8", effect: "Measurable strength return." },
       { wk: "Wk 12", effect: "Full recovery cycle assessed." },
     ],
-    panel: "Basic",
+    panel: "Full",
     panelNote: "Basic panel plus IL-6 and hs-CRP to confirm inflammatory resolution.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
     cadences: cad(269, 686, 2260, 296, "Basic"),
@@ -122,7 +123,7 @@ const ALL_STACKS: FlagshipStack[] = [
       { wk: "Wk 6", effect: "Firmness improves." },
       { wk: "Wk 12", effect: "Longevity biomarkers reassessed." },
     ],
-    panel: "Basic",
+    panel: "Full",
     contraindications: ["Active malignancy", "Copper allergy (GHK-Cu)"],
     cadences: cad(229, 584, 1923, 252, "Basic"),
     worldLean: "her",
@@ -165,7 +166,7 @@ const ALL_STACKS: FlagshipStack[] = [
       { wk: "Wk 2", effect: "Mood floor steadies." },
       { wk: "Wk 8", effect: "Executive-function baseline set." },
     ],
-    panel: "Basic",
+    panel: "Full",
     panelNote: "Basic panel plus TSH.",
     contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review required)"],
     cadences: cad(259, 660, 2176, 285, "Basic"),
@@ -188,7 +189,7 @@ const ALL_STACKS: FlagshipStack[] = [
       { wk: "Wk 8", effect: "Metabolic markers move." },
       { wk: "Wk 12", effect: "Mitochondrial and telomere markers reassessed." },
     ],
-    panel: "Elite",
+    panel: "Full",
     panelNote: "Elite panel, with optional epigenetic-age testing.",
     contraindications: ["Active malignancy", "Pregnancy"],
     cadences: cad(449, 1145, 3772, 494, "Elite"),
@@ -245,7 +246,7 @@ const ALL_STACKS: FlagshipStack[] = [
       { wk: "Wk 2", effect: "Deep-sleep percentage rises." },
       { wk: "Wk 8", effect: "HRV baseline shifts." },
     ],
-    panel: "Basic",
+    panel: "Full",
     contraindications: ["Pregnancy", "Concurrent SSRI/SNRI (flagged for physician review)"],
     cadences: cad(199, 507, 1672, 219, "Basic"),
     worldLean: "both",

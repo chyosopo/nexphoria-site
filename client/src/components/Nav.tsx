@@ -50,15 +50,15 @@ const showcaseLinks: NavLink[] = [
    (2026-09-03: four of six links here led to empty goal pages). */
 const MEGA_BLURB: Partial<Record<PeptideCategory, string>> = {
   metabolic: "GLP-1 weight loss medication",
-  growth: "Tesamorelin for body composition",
+  growth: "Tesamorelin and growth hormone peptides",
   "sexual-health": "PT-141 for sexual desire",
-  recovery: "Tissue repair, injury, training load",
-  skin: "Collagen, tone, aesthetic outcomes",
-  longevity: "Cellular energy, immune, healthspan",
-  cognition: "Focus, mood, neuroprotection",
-  sleep: "Sleep depth and recovery",
+  recovery: "BPC-157 and TB-500 for recovery",
+  skin: "GHK-Cu and epitalon for skin",
+  longevity: "NAD+, MOTS-c and epitalon",
+  cognition: "Semax and Selank for focus and mood",
+  sleep: "DSIP for deeper sleep",
 };
-const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = liveCategories(["metabolic", "growth", "sexual-health"])
+const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = liveCategories(["metabolic", "growth", "recovery", "longevity", "cognition", "sleep", "skin", "sexual-health"])
   .map((key) => ({ key, blurb: MEGA_BLURB[key] ?? "" }));
 
 /* "Featured peptides": what the catalog actually sells, in catalog order,

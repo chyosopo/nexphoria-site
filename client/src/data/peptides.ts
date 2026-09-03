@@ -73,14 +73,14 @@ export interface Peptide {
 }
 
 export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
-  recovery: "Recovery & Repair",
-  skin: "Skin & Aesthetics",
-  cognition: "Cognition & Mood",
-  sleep: "Sleep & Restoration",
-  growth: "Growth & Hormone",
-  longevity: "Longevity & Cellular",
-  metabolic: "Metabolic & Weight",
-  "sexual-health": "Sexual Health",
+  recovery: "Recovery",
+  skin: "Skin and ageing",
+  cognition: "Focus and mood",
+  sleep: "Sleep",
+  growth: "Body composition",
+  longevity: "Energy and healthy ageing",
+  metabolic: "Weight loss",
+  "sexual-health": "Sexual desire",
 };
 
 /* The feeling line of each goal (ROADMAP 4.2) — the emotional register, used

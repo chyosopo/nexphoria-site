@@ -12,6 +12,9 @@ import { PhotoHero } from "@/components/PhotoHero";
 import { HoldToRun } from "@/components/HoldToRun";
 import { SectionLine } from "@/components/SectionLine";
 import { GoalPicker } from "@/components/GoalPicker";
+import { liveConcerns, concernSkus } from "@/data/concerns";
+import { SKU_PHOTO as SKU_PHOTO_ALL } from "@/components/SkuPhoto";
+import { CATEGORY_LABELS, LIVE_CATEGORIES } from "@/data/peptides";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import coldBox from "@/assets/life/cold-box.webp";
 import coldBox800 from "@/assets/life/cold-box-800.webp";
@@ -106,7 +109,32 @@ export default function FrontDoor() {
           <p style={kicker}>Treatments</p>
           <h2 id="fd-goals" style={{ ...h2, maxWidth: "20ch" }}>What can we help you with?</h2>
         </Reveal>
-        <GoalPicker counts={{ metabolic: countFor("metabolic"), growth: countFor("growth"), "sexual-health": countFor("sexual-health") }} />
+        <GoalPicker counts={Object.fromEntries(LIVE_CATEGORIES.map((c) => [c, countFor(c)]))} />
+      </section>
+
+      {/* ══ 2.5 · FIND YOUR TREATMENT — the concern, in the customer's words, and the medicine ══ */}
+      <section className="nx-container" aria-labelledby="fd-concerns" style={{ paddingTop: "var(--nx-sp-band)" }}>
+        <Reveal>
+          <p style={kicker}>Find your treatment</p>
+          <h2 id="fd-concerns" style={{ ...h2, maxWidth: "20ch" }}>Tell us what is going on. We will tell you what helps.</h2>
+        </Reveal>
+        <div className="nx-concern-grid" data-testid="frontdoor-concerns">
+          {liveConcerns().map((c, i) => {
+            const skus = concernSkus(c);
+            return (
+              <Reveal key={c.concern} delay={i * 40}>
+                <Link href={`/goals/${c.goal}`} className="nx-concern-card" data-testid={`frontdoor-concern-${c.goal}-${i}`}>
+                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.2, color: "var(--nx-fg)", margin: 0 }}>{c.concern}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>{c.line}</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-cobalt)", margin: "0.8rem 0 0" }}>
+                    {skus.map((x) => x.name).join(" · ")}
+                    {skus.some((x) => x.pricing) && <span style={{ fontWeight: 500, color: "var(--nx-fg-muted)" }}> · from {usd(Math.min(...skus.filter((x) => x.pricing).map((x) => x.pricing!.m12)))}/mo</span>}
+                  </p>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
       </section>
 
       <SectionLine />
@@ -126,7 +154,7 @@ export default function FrontDoor() {
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
                   {i === 2 ? (
                     <>
-                      A full panel of <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, included, drawn at week 12 and read by your doctor.
+                      A full panel of <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, included. It shows how your body is responding.
                     </>
                   ) : b}
                 </p>
@@ -136,7 +164,7 @@ export default function FrontDoor() {
         </ol>
         <Reveal>
           <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "clamp(1.6rem,3vw,2.4rem)", maxWidth: "48ch" }}>
-            That is the whole model. It is also how you tell a real clinic from a website.
+            Your medication, your physician, and the blood panel behind it. One monthly price.
           </p>
           <Link href="/peptides-101" className="nx-text-link" data-testid="frontdoor-p101-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-block" }}>
             New to peptides? Start with Peptides 101
@@ -151,31 +179,41 @@ export default function FrontDoor() {
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
           <Reveal>
             <p style={kicker}>The medications</p>
-            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "22ch" }}>Four prescription peptides, and what each one does.</h2>
+            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "22ch" }}>The full menu, and what each one does.</h2>
           </Reveal>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             The complete catalog <ArrowRight size={14} aria-hidden style={{ display: "inline", verticalAlign: "-2px" }} />
           </Link>
         </div>
-        <div className="nx-sku-grid" data-testid="frontdoor-formulary">
-          {SOLO_CATALOG.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 70} className="nx-reveal-lift">
-              <Link href={`/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`frontdoor-sku-${s.slug}`}>
-                {SKU_PHOTO[s.slug] && (
-                  <div className="nx-sku-photo">
-                    <img src={SKU_PHOTO[s.slug]} alt={`${s.name} vial`} width={1024} height={1024} loading="lazy" decoding="async" />
-                  </div>
-                )}
-                <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
-                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name}</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.25rem 0 0" }}>
-                  <span className="nx-sku-mono">{s.timeline[0].wk}</span> {s.timeline[0].effect}
-                </p>
-                <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        {LIVE_CATEGORIES.map((cat) => {
+          const items = peptides.filter((p) => p.category === cat).map((p) => SOLO_CATALOG.find((x) => x.slug === p.slug)).filter((x): x is SoloPeptide => Boolean(x));
+          if (items.length === 0) return null;
+          return (
+            <div key={cat} data-testid={`frontdoor-formulary-${cat}`} style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", margin: 0 }}>{CATEGORY_LABELS[cat]}</h3>
+                <Link href={`/goals/${cat}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>Learn more</Link>
+              </div>
+              <div className="nx-sku-grid" style={{ marginTop: "1rem" }}>
+                {items.map((s, i) => (
+                  <Reveal key={s.slug} delay={i * 50} className="nx-reveal-lift">
+                    <Link href={`/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`frontdoor-sku-${s.slug}`}>
+                      {SKU_PHOTO_ALL[s.slug] && (
+                        <div className="nx-sku-photo">
+                          <img src={SKU_PHOTO_ALL[s.slug]} alt={`${s.name} vial`} width={1024} height={1024} loading="lazy" decoding="async" />
+                        </div>
+                      )}
+                      <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
+                      <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name}</p>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.25rem 0 0" }}>{s.dose}</p>
+                      <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </section>
 
       {/* ══ 6.25 · WHAT ARRIVES — the plain cold box ══ */}

@@ -898,3 +898,24 @@ FAQ page: "Questions? We have answers." with six groups (Getting started,
 The medications, Pricing, Safety, Shipping, Legal), every answer in the
 brand voice, provider and pharmacy verbatim from compliance data.
 Sitewide: every "Start your assessment" button is now "Get started".
+
+## The full menu (Chiya, 2026-09-03, night)
+
+Chiya: "I want a full menu." Every molecule from the MDI handoff is now on
+the site with its price: 19 products in eight goals, plus all seven
+flagship protocols. Each product carries a v4 benefit line, a plain
+mechanism sentence, a dose in plain words, a three-beat timeline, and a
+monitoring entry (what the week-12 panel checks and what the physician
+screens for). Five new goal pages (Recovery, Skin and ageing, Focus and
+mood, Sleep, Energy and healthy ageing). The home page gains "Find your
+treatment": ten concerns in the customer's words, each answered with the
+medicine and a from-price (data/concerns.ts), and the menu grouped by
+goal. Goal names sitewide are the brand names (Weight loss, Body
+composition, Recovery, Skin and ageing, Focus and mood, Sleep, Energy and
+healthy ageing, Sexual desire).
+
+The four-SKU LegitScript launch set is kept in `LEGITSCRIPT_FOUR` for a
+one-line revert. Fifteen of the nineteen products have no FDA-approved
+active and render the no-approved-active disclosure; the copy says
+"studied for" and never promises a result. Real vial photographs exist
+for four products; the other fifteen use the drawn vial.

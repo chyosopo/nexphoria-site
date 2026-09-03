@@ -262,7 +262,7 @@ function Hero() {
                   lineHeight: 1.5,
                 }}
               >
-                Sample readout, illustrative values · read by your doctor at week 12
+                Sample readout, illustrative values · reviewed by your physician at week 12
               </div>
             </div>
           </Reveal>
@@ -661,7 +661,7 @@ function PanelComparison() {
       testid="bloodwork-comparison"
       eyebrow="Why this panel"
       title="Not all bloodwork is the same."
-      lead="A yearly physical and a mail-order kit both stop at a number. Your panel exists to change a prescription: read by your doctor, at week 12, against the plan you are on."
+      lead="A yearly physical and a mail-order kit both stop at a number. Your panel exists to guide your prescription: reviewed by your physician at week 12, against the plan you are on."
       columns={[
         { label: "The Nexphoria panel", sub: "Included with every protocol", highlight: true, badge: "Nexphoria" },
         { label: "A standard annual physical", sub: "Once-a-year checkup" },
@@ -679,7 +679,7 @@ function PanelComparison() {
         {
           label: "Read against",
           cells: [
-            { text: "Optimal ranges, read by your doctor", tone: "pos" },
+            { text: "Optimal ranges, reviewed by your physician", tone: "pos" },
             { text: "Standard reference ranges", tone: "neg" },
             { text: "Reference ranges, or none", tone: "neg" },
           ],

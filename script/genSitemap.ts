@@ -56,7 +56,8 @@ async function slugsFrom(path: string, scopeName?: string): Promise<string[]> {
    SoloCategory -> PeptideCategory, and that mapping already lives in SoloPDP;
    duplicating it here would be a second source of truth for the same fact.
    Update this alongside LAUNCH_SLUGS — audit:data's census is the check. */
-const GOAL_CATEGORIES = ["growth", "metabolic", "sexual-health"];
+/* 2026-09-03: full menu on (Chiya). All eight goals have live molecules. */
+const GOAL_CATEGORIES = ["growth", "metabolic", "sexual-health", "recovery", "skin", "cognition", "sleep", "longevity"];
 
 /* journal.ts also declares JournalCategory slugs (foundations, protocols, …)
    with the same `slug:` shape as articles. These are NOT article routes —

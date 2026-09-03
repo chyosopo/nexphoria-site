@@ -500,7 +500,7 @@ function PanelTierComparison() {
       background="var(--nx-bg-cream)"
       eyebrow="Your blood panel"
       title="One full panel. Week 12. Included."
-      lead={`Every plan includes the same full panel, ${PANEL_TOTAL_MARKERS} markers in ${PANEL_CATEGORY_COUNT} groups, drawn twelve weeks in and read by your doctor. It is inside the figure.`}
+      lead={`Every plan includes the same full panel, ${PANEL_TOTAL_MARKERS} markers in ${PANEL_CATEGORY_COUNT} groups, drawn twelve weeks in and reviewed by your physician. It is inside the figure.`}
       columns={[{ label: "The full panel", sub: "Every plan, every peptide", highlight: true, badge: "Included" }]}
       rows={[
         ...BIOMARKER_PANEL.map((g) => ({ label: `${g.name}: ${g.markers.map((m) => m.name).join(", ")}`, cells: [{ text: "Included", tone: "pos" as const }] })),
@@ -1332,7 +1332,7 @@ export default function Pricing() {
 
       <FinalCTAStrip
         title="Begin with your questionnaire."
-        sub="Your questionnaire, read by your doctor. A prescription comes before anything is made."
+        sub="Answer a few health questions. A licensed physician reviews them and, if it is right for you, writes your prescription."
       />
     </SiteLayout>
   );

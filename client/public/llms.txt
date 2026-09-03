@@ -7,12 +7,34 @@
 3. Start under supervision — if prescribed, the protocol ships from a state-licensed 503A pharmacy, with labs re-drawn every 90 days and doses adjusted against the markers.
 
 ## Physician-curated protocols (stacks)
+- [Wolverine](https://nexphoria.com/stacks/wolverine): Recovery, measured. Composition: BPC-157 + TB-500. from-priced on page; dispensed only if prescribed.
+- [Glow](https://nexphoria.com/stacks/glow): Skin, at the cellular layer. Composition: GHK-Cu + Epitalon. from-priced on page; dispensed only if prescribed.
+- [Ascend](https://nexphoria.com/stacks/ascend): Lean strength, measured. Composition: CJC-1295 (no-DAC) + Ipamorelin. from-priced on page; dispensed only if prescribed.
+- [Lucidity](https://nexphoria.com/stacks/lucidity): Signal over noise. Composition: Selank + Semax. from-priced on page; dispensed only if prescribed.
+- [Meridian](https://nexphoria.com/stacks/meridian): Longevity, on three hallmarks. Composition: NAD+ + Epitalon + MOTS-c. from-priced on page; dispensed only if prescribed.
 - [Ignite](https://nexphoria.com/stacks/ignite): The metabolic reset. Composition: Tirzepatide. from-priced on page; dispensed only if prescribed.
+- [Threshold](https://nexphoria.com/stacks/threshold): Sleep, restored to architecture. Composition: DSIP + Epitalon. from-priced on page; dispensed only if prescribed.
 
 ## Single peptides (formulary)
+- [Sermorelin](https://nexphoria.com/peptides/sermorelin): More of your own growth hormone, gently. Once a night.
+- [Ipamorelin](https://nexphoria.com/peptides/ipamorelin): A cleaner growth hormone pulse. Once a night.
+- [CJC-1295 (no-DAC)](https://nexphoria.com/peptides/cjc-1295): Bigger growth hormone pulses. Once a night.
+- [Ipamorelin / CJC-1295 Blend](https://nexphoria.com/peptides/ipa-cjc): Two growth hormone signals in one vial. Once a night.
 - [Tesamorelin](https://nexphoria.com/peptides/tesamorelin): More of your own growth hormone. Once a day.
+- [Selank](https://nexphoria.com/peptides/selank): A steadier mood, without sedation. A nasal spray.
+- [Semax](https://nexphoria.com/peptides/semax): Sharper focus. A nasal spray, once a day.
+- [Cerebrolysin](https://nexphoria.com/peptides/cerebrolysin): A short course for brain support.
+- [Methylene Blue](https://nexphoria.com/peptides/methylene-blue): Cellular energy for the brain. One capsule a day.
+- [BPC-157](https://nexphoria.com/peptides/bpc-157): Support for healing, head to toe. Once a day.
+- [TB-500](https://nexphoria.com/peptides/tb-500): Repair, where your body needs it. Twice a week.
+- [BPC-157 + TB-500](https://nexphoria.com/peptides/bpc-tb-combo): The recovery pair. Together in one plan.
+- [GHK-Cu](https://nexphoria.com/peptides/ghk-cu): Firmer skin from within. Once a day.
+- [Epitalon](https://nexphoria.com/peptides/epitalon): A 20-day course for healthy ageing.
+- [NAD+](https://nexphoria.com/peptides/nad-plus): More cellular energy. Three times a week.
+- [MOTS-c](https://nexphoria.com/peptides/mots-c): Exercise signalling, in a vial. Twice a week.
 - [Semaglutide](https://nexphoria.com/peptides/semaglutide): Less appetite, steadier blood sugar. Once a week.
 - [Tirzepatide](https://nexphoria.com/peptides/tirzepatide): Two appetite hormones, one weekly dose.
+- [DSIP](https://nexphoria.com/peptides/dsip): Deeper sleep. Once a night.
 - [PT-141](https://nexphoria.com/peptides/pt-141): Works on desire itself. Taken as needed.
 
 ## Key pages

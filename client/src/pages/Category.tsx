@@ -116,6 +116,147 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
       { q: "Is it safe for me?", a: "Your physician checks for active cancer or a history of it, pituitary conditions, and pregnancy before prescribing. Those questions are part of your health questions." },
     ],
   },
+  recovery: {
+    short: "Recovery",
+    headline: "Recovery peptides for injuries and training, prescribed online.",
+    sub: "BPC-157 and TB-500 support the way your body repairs tendons, muscle, joints and the gut lining. Answer a few health questions, and a licensed U.S. physician will prescribe the plan that fits. Made in a licensed U.S. pharmacy and delivered cold to your door.",
+    photo: "img/img_fad0fee022a9.webp", photo500: "img/img_fad0fee022a9.webp",
+    photoAlt: "A climber chalking up at the crag in morning light",
+    what: {
+      title: "Help your body do what it already does, faster.",
+      body: [
+        "When tissue is injured, your body sends repair signals and moves repair cells to the site. BPC-157 is studied for the signal: it supports blood vessel growth and the repair of tendons, ligaments, muscle and the gut lining. TB-500, a fragment of a protein called thymosin beta-4, is studied for the second half: moving repair cells to where they are needed.",
+        "BPC-157 is one small injection a day. TB-500 is two a week. Many people take both, which is why the pair is offered as one plan.",
+      ],
+    },
+    choose: {
+      title: "Which one is right for you?",
+      body: "BPC-157 on its own suits a specific injury or gut complaint. TB-500 suits whole-body recovery from training. The pair covers both, and it is the most common choice. Your physician confirms the fit from your health questions.",
+    },
+    weeks: [
+      { when: "Week 1", what: "Your first doses. Your medication arrives cold, with instructions." },
+      { when: "Weeks 2 to 8", what: "Daily or twice weekly, through your recovery." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with inflammation markers checked." },
+      { when: "After", what: "Your physician reviews your results and decides whether to continue." },
+    ],
+    faqs: [
+      { q: "Where do I inject it?", a: "Under the skin, usually the abdomen. For a specific injury, near the site. Instructions come with your first shipment." },
+      { q: "Can I keep training?", a: "Most people do, at a level their body tolerates. Your physician can advise from your health questions." },
+      { q: "Is it right for me?", a: "Your physician checks for active cancer or a history of it, and pregnancy or breastfeeding, before prescribing. Those questions are part of your health questions." },
+    ],
+  },
+  skin: {
+    short: "Skin and ageing",
+    headline: "GHK-Cu and epitalon for skin and healthy ageing, prescribed online.",
+    sub: "GHK-Cu is a copper peptide studied for collagen and skin repair. Epitalon is a short course studied for telomere maintenance and the sleep-wake cycle. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
+    photo: "img/img_3678caab4727.webp", photo500: "img/img_3678caab4727.webp",
+    photoAlt: "A woman in a cream robe in golden light, skin catching the sun",
+    what: {
+      title: "Support your skin from the inside.",
+      body: [
+        "GHK-Cu is a copper-binding peptide your body makes less of with age. It is studied for prompting collagen production, elasticity and wound healing, which is why it is used for skin quality. One small injection a day.",
+        "Epitalon is a four-amino-acid peptide studied for supporting telomere maintenance and regulating the sleep-wake cycle. It is taken as a 20-day course, a few times a year.",
+      ],
+    },
+    choose: {
+      title: "Which one is right for you?",
+      body: "GHK-Cu is the choice for skin. Epitalon is the choice for healthy ageing more broadly, and the two are often combined. Your physician confirms the fit from your health questions.",
+    },
+    weeks: [
+      { when: "Week 1", what: "Your first dose. Your medication arrives cold, with instructions." },
+      { when: "Weeks 2 to 8", what: "Daily for GHK-Cu. Epitalon runs as a 20-day course." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with inflammation and blood count checked." },
+      { when: "After", what: "Your physician reviews your results and decides whether to continue." },
+    ],
+    faqs: [
+      { q: "How long until skin changes?", a: "Skin renews on roughly a six-week cycle, so most people give it at least that long. Everyone responds differently." },
+      { q: "Is GHK-Cu the same as the copper peptide in skincare?", a: "Same peptide, different route. Topical creams work at the surface. The prescribed version is injected, so it works from inside." },
+      { q: "Is it right for me?", a: "Your physician checks for copper allergy, active cancer or a history of it, and pregnancy before prescribing." },
+    ],
+  },
+  cognition: {
+    short: "Focus and mood",
+    headline: "Peptides for focus and mood, prescribed online.",
+    sub: "Semax for focus and mental stamina. Selank for a steadier mood under stress. Both are nasal sprays. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered to your door.",
+    photo: "img/img_916e52b67436.webp", photo500: "img/img_916e52b67436.webp",
+    photoAlt: "A man at a chessboard, thinking three moves ahead",
+    what: {
+      title: "A nasal spray, and a clearer head.",
+      body: [
+        "Semax supports BDNF, a protein your brain uses to build and maintain connections. It is studied for focus, memory and mental stamina. One spray a day, in the morning.",
+        "Selank works on the brain's stress response. It is studied for a steadier mood and clearer thinking under pressure, without sedation. Two sprays a day.",
+      ],
+    },
+    choose: {
+      title: "Which one is right for you?",
+      body: "Semax for focus. Selank for stress and mood. Many people take both, one in the morning and one through the day. Your physician confirms the fit from your health questions.",
+    },
+    weeks: [
+      { when: "Day 1", what: "Your first spray. Many people notice something within the hour." },
+      { when: "Weeks 1 to 8", what: "Taken daily, the effect evens out." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with thyroid and cortisol checked for context." },
+      { when: "After", what: "Your physician reviews your results and decides whether to continue." },
+    ],
+    faqs: [
+      { q: "Is a nasal spray really a peptide?", a: "Yes. The nose is a fast route to the brain, which is why these two peptides are given this way." },
+      { q: "Can I take these with antidepressants?", a: "Tell your physician everything you take. Some psychiatric medications need a closer look before prescribing." },
+      { q: "Is it right for me?", a: "Your physician checks your current medications and asks about pregnancy before prescribing." },
+    ],
+  },
+  sleep: {
+    short: "Sleep",
+    headline: "DSIP for deeper sleep, prescribed online.",
+    sub: "Delta sleep-inducing peptide is studied for falling asleep faster and getting more deep sleep. One small dose at bedtime. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
+    photo: "img/img_928775d1e9c1.webp", photo500: "img/img_928775d1e9c1.webp",
+    photoAlt: "A man waking before the alarm in soft morning light",
+    what: {
+      title: "More of the deep sleep that actually restores you.",
+      body: [
+        "Deep sleep is where your body does most of its repair. DSIP is a naturally occurring peptide studied for helping you fall asleep sooner and spend more of the night in deep sleep, without the grogginess of a sedative.",
+        "One small injection under the skin at bedtime. The effect builds over the first couple of weeks.",
+      ],
+    },
+    weeks: [
+      { when: "Night 1", what: "Your first dose, at bedtime." },
+      { when: "Weeks 1 to 8", what: "Taken nightly, sleep settles into a rhythm." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with cortisol and thyroid checked." },
+      { when: "After", what: "Your physician reviews your results and decides whether to continue." },
+    ],
+    faqs: [
+      { q: "Is it a sedative?", a: "No. It works on the sleep cycle itself rather than knocking you out, which is why people wake without grogginess." },
+      { q: "Can I take it with other sleep aids?", a: "Tell your physician everything you take. Some medications need a closer look before prescribing." },
+      { q: "Is it right for me?", a: "Your physician checks your current medications and asks about pregnancy before prescribing." },
+    ],
+  },
+  longevity: {
+    short: "Energy and healthy ageing",
+    headline: "NAD+, MOTS-c and epitalon for energy and healthy ageing, prescribed online.",
+    sub: "NAD+ for cellular energy. MOTS-c for metabolism and endurance. Epitalon as a short course for healthy ageing. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
+    photo: "img/img_cf1396d09b4a.webp", photo500: "img/img_cf1396d09b4a.webp",
+    photoAlt: "A man running ahead of the group at a picnic",
+    what: {
+      title: "More energy at the cellular level.",
+      body: [
+        "NAD+ is the coenzyme every cell uses to turn food into energy, and your levels fall with age. Replacing it is studied for energy, recovery and healthy ageing. Three small injections a week.",
+        "MOTS-c is a peptide your mitochondria make that signals the same pathways exercise does. It is studied for metabolism and endurance. Two small injections a week. Epitalon, taken as a 20-day course, is studied for telomere maintenance.",
+      ],
+    },
+    choose: {
+      title: "Which one is right for you?",
+      body: "NAD+ is the place most people start. MOTS-c suits training and metabolism. Epitalon adds a short course a few times a year. Your physician confirms the fit from your health questions.",
+    },
+    weeks: [
+      { when: "Week 1", what: "Your first doses. Your medication arrives cold, with instructions." },
+      { when: "Weeks 2 to 8", what: "On schedule, the levels build." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with metabolic and inflammation markers checked." },
+      { when: "After", what: "Your physician reviews your results and decides whether to continue." },
+    ],
+    faqs: [
+      { q: "Is NAD+ by injection different from the supplements?", a: "Yes. Oral NAD+ precursors are broken down in digestion. The injected form reaches your cells directly." },
+      { q: "Do I need to exercise for MOTS-c to work?", a: "It signals the same pathways exercise does, and it works best alongside training." },
+      { q: "Is it right for me?", a: "Your physician checks for active cancer or a history of it, and pregnancy, before prescribing." },
+    ],
+  },
   "sexual-health": {
     short: "Sexual desire",
     headline: "PT-141 for sexual desire, prescribed online.",
@@ -278,7 +419,7 @@ export default function Category() {
           </div>
           <Reveal delay={80} className="nx-reveal-lift">
             <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}>
-              <img src={cfg.photo} srcSet={`${cfg.photo500} 500w, ${cfg.photo} 1000w`} sizes="(max-width: 1024px) 100vw, 45vw" alt={cfg.photoAlt} width={1000} height={1250} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" decoding="async" />
+              <img src={cfg.photo} srcSet={cfg.photo500 !== cfg.photo ? `${cfg.photo500} 500w, ${cfg.photo} 1000w` : undefined} sizes="(max-width: 1024px) 100vw, 45vw" alt={cfg.photoAlt} width={1000} height={1250} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} loading="eager" decoding="async" />
             </div>
           </Reveal>
         </div>

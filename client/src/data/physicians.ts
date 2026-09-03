@@ -54,7 +54,7 @@ export const physicianReview: PhysicianReview = {
       detail: "Every prescribing physician holds active board certification. We treat that as the floor to practice here, and start from it.",
     },
     {
-      label: "Your week-12 panel, read by your doctor",
+      label: "Your week-12 blood panel, reviewed by your physician",
       detail: "A full blood panel at week 12, included in every plan, drawn at a CLIA-certified partner laboratory and read by your physician, who continues, adjusts or stops.",
     },
     {

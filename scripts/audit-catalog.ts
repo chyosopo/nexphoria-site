@@ -163,9 +163,12 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
   }
 
   // Retired entries must stay retained, not deleted — the dial depends on it.
-  RETIRED_SOLO.length > 0
-    ? ok(`${RETIRED_SOLO.length} retired SKUs retained (restorable via LAUNCH_SLUGS)`)
-    : bad("RETIRED_SOLO is empty — retired entries were deleted rather than filtered");
+  // 2026-09-03: the full menu is on, so an empty retired set is the expected
+  // state. The check now guards the DIAL, not the count: LAUNCH_SLUGS must
+  // still be the filter, and every catalog slug must pass through it.
+  ALL_SLUGS.size === SOLO_CATALOG.length + RETIRED_SOLO.length
+    ? ok(`${SOLO_CATALOG.length} live SKUs, ${RETIRED_SOLO.length} retired (LAUNCH_SLUGS is the dial)`)
+    : bad("catalog slugs are not partitioned by LAUNCH_SLUGS");
 }
 
 console.log("\n═ RENDERED ARTIFACT ═");

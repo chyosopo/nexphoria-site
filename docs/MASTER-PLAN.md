@@ -233,6 +233,14 @@ answered in docs/LAB-PARTNER.md and the site describes the draw without
 naming a network. Still open: step 5 (Chiya's prices), the seven emails,
 journal article bodies, and the OPEN claims list in docs/COPY-DECK.md.
 
+**2026-09-03, later.** Copy system v4 (the brand voice, after a study of
+Ro, Henry, Eden, Healthspan and Mochi) is live on nexphoria.com. The full
+19-product menu and all seven protocols are on the preview, with five
+new goal pages and a "find your treatment" grid; see COPY-DECK.md, "The
+full menu". Whether the full menu goes to the .com is Chiya's call: the
+four-SKU set was chosen on 2026-08-12 for the LegitScript application,
+and fifteen of the nineteen have no FDA-approved active.
+
 
 1. **Decisions 1 to 3 from Chiya, and the physicians' sign-off on the
    panels.** Meanwhile: the panel model is written as data

@@ -40,7 +40,7 @@ export const WHY_WE_ASK: Record<number, string> = {
 
 const SIDEBAR_TILES = [
   { icon: Stethoscope, title: "Your doctor reads it", desc: "A board-certified doctor reads your file and makes the decision." },
-  { icon: FlaskConical, title: "Blood at week 12", desc: "A full panel, included, read by your doctor. Your dose follows it." },
+  { icon: FlaskConical, title: "Blood at week 12", desc: "A full panel, included. It shows how your body is responding, and your physician adjusts your dose." },
   { icon: ClipboardCheck, title: "Made for you", desc: "Compounded in a licensed 503A pharmacy and shipped cold after your doctor says yes." },
 ];
 

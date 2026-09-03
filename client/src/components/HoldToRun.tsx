@@ -143,7 +143,7 @@ export function HoldToRun() {
       </button>
       <p id="hold-help" className="nx-hold-help" style={{ fontFamily: F }}>
         {done
-          ? "That is the whole model: you start, your blood is read at week 12, and your dose follows it."
+          ? "You start your medication. At week 12, your blood panel shows how you are responding, and your physician adjusts your dose."
           : "Press and hold. Let go early and the days ease back."}
       </p>
     </div>

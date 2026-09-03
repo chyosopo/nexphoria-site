@@ -26,6 +26,11 @@ export const GOAL_CARDS: Omit<GoalCard, "count">[] = [
   { slug: "metabolic", title: "Weight loss", line: "GLP-1 medication. Less appetite, steadier blood sugar.", img: goalMetabolic, img500: goalMetabolic500 },
   { slug: "growth", title: "Body composition", line: "Tesamorelin. More of your own growth hormone.", img: goalGrowth, img500: goalGrowth500 },
   { slug: "sexual-health", title: "Sexual desire", line: "PT-141. Works on desire itself, as needed.", img: goalDesire, img500: goalDesire500 },
+  { slug: "recovery", title: "Recovery", line: "BPC-157 and TB-500. Support for healing.", img: "img/img_fad0fee022a9.webp", img500: "img/img_fad0fee022a9.webp" },
+  { slug: "cognition", title: "Focus and mood", line: "Semax and Selank. Nasal sprays for a clearer head.", img: "img/img_916e52b67436.webp", img500: "img/img_916e52b67436.webp" },
+  { slug: "sleep", title: "Sleep", line: "DSIP. Deeper sleep, once a night.", img: "img/img_928775d1e9c1.webp", img500: "img/img_928775d1e9c1.webp" },
+  { slug: "longevity", title: "Energy and healthy ageing", line: "NAD+, MOTS-c and epitalon.", img: "img/img_cf1396d09b4a.webp", img500: "img/img_cf1396d09b4a.webp" },
+  { slug: "skin", title: "Skin and ageing", line: "GHK-Cu and epitalon. Skin support from within.", img: "img/img_3678caab4727.webp", img500: "img/img_3678caab4727.webp" },
 ];
 
 export function GoalPicker({ counts }: { counts: Record<string, number> }) {
