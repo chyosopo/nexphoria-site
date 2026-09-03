@@ -105,7 +105,7 @@ export function CadenceCalculator() {
         <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg)", marginTop: "1.2rem" }} data-testid="cadence-saved">
           On {stack.name}, the annual plan runs{" "}
           <strong style={{ fontWeight: 700, color: "var(--nx-cobalt)" }}>{formatUSD(yearSaved)} less over a year</strong>{" "}
-          than paying month-to-month — with the bloodwork panel included. If prescribed.
+          than paying month-to-month, with the week-12 blood panel included. If prescribed.
         </p>
       )}
 

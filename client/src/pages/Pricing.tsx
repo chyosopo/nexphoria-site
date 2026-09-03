@@ -6,7 +6,6 @@ import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { CadenceCalculator } from "@/components/CadenceCalculator";
-import { TrustStatsStrip } from "@/components/TrustStatsStrip";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -74,12 +73,12 @@ const SAVINGS_EXAMPLE = (() => {
 })();
 
 const included = [
-  "Board-certified physician consultation (initial + follow-up)",
+  "Your doctor's review of your questionnaire",
   "Compounded peptides from a 503A-licensed US pharmacy",
   "Full blood panel at week 12",
   "Overnight cold-chain shipping",
-  "Physician re-evaluation at each lab cycle",
-  "Physician review at every retest between visits",
+  "Your doctor's read of your week-12 panel",
+  "Your dose adjusted from what your blood shows",
   "Itemized receipts for FSA/HSA submission",
 ];
 
@@ -91,11 +90,11 @@ const tiers = [
     priceFrom: SOLO_FROM_PRICE as number | null,
     recommended: false,
     features: [
-      "Single physician-selected peptide",
-      "Board-certified physician review",
+      "One peptide, chosen with your doctor",
+      "Your doctor's review",
       "503A US-compounded vial",
       "Cold-chain overnight shipping",
-      "Physician review at every retest",
+      "Your doctor's read of your week-12 panel",
     ],
     cta: "Browse peptides",
     href: "/peptides",
@@ -110,7 +109,7 @@ const tiers = [
       "2\u20134 synergistic peptides",
       "Everything in Solo",
       "Full blood panel at week 12",
-      "Physician re-evaluation each lab cycle",
+      "Your doctor's read of your week-12 panel",
       "Protocol tuned to your biomarkers",
       "FSA/HSA itemized receipts",
     ],
@@ -127,7 +126,7 @@ const tiers = [
       "Fully bespoke compound selection",
       "Everything in Stack",
       "Extended biomarker + epigenetic panels",
-      "Dedicated physician case ownership",
+      "One doctor who owns your case",
       "Dose review at week 12",
       "Priority telehealth response",
     ],
@@ -138,12 +137,12 @@ const tiers = [
 
 const comparison = [
   { feature: "Partner-laboratory labs included", nexphoria: true, others: false },
-  { feature: "Board-certified US physician on every case", nexphoria: true, others: "varies" },
+  { feature: "A board-certified U.S. doctor on every case", nexphoria: true, others: "varies" },
   { feature: "503A US compounding pharmacy only", nexphoria: true, others: false },
   { feature: "Week-12 blood panel included", nexphoria: true, others: false },
   { feature: "No long-term contracts", nexphoria: true, others: false },
   { feature: "FSA/HSA receipts provided", nexphoria: true, others: false },
-  { feature: "Physician declines if inappropriate", nexphoria: true, others: "rarely" },
+  { feature: "Your doctor can decline", nexphoria: true, others: "rarely" },
 ];
 
 function PricingTiers() {
@@ -483,7 +482,7 @@ const PRICING_FAQ_ITEMS = [
   },
   {
     q: "What if the physician declines my protocol?",
-    a: "If a physician determines your requested protocol is clinically inappropriate, no prescription is issued and you are not charged for pharmacy compounding. The physician may propose a modified alternative.",
+    a: "Then it is a no, and your doctor tells you why. They may suggest a different plan. The refund policy sets out what is refunded.",
   },
   {
     q: "Is there a cancellation fee?",
@@ -506,7 +505,7 @@ function PanelTierComparison() {
       rows={[
         ...BIOMARKER_PANEL.map((g) => ({ label: `${g.name}: ${g.markers.map((m) => m.name).join(", ")}`, cells: [{ text: "Included", tone: "pos" as const }] })),
         { label: "Drawn at", cells: [{ text: "Week 12 of your plan", tone: "plain" as const }] },
-        { label: "Read by", cells: [{ text: "Your physician, who adjusts your dose from it", tone: "plain" as const }] },
+        { label: "Read by", cells: [{ text: "Your doctor, who adjusts your dose from it", tone: "plain" as const }] },
       ]}
       footnote="The typical week-12 panel. Your physician sets yours and may add markers for your medication or your history."
     />
@@ -581,7 +580,7 @@ export default function Pricing() {
                     textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
                   }}
                 >
-                  One number a month. Physician, labs, medication, and shipping — all of it inside.
+                  One number a month. Your doctor, your blood panel, your medicine and cold shipping, all within it.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
                   <StartIntakeButton source="pricing-hero" size="lg">
@@ -974,7 +973,7 @@ export default function Pricing() {
                 }}
               >
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
-                  12-MONTH PLAN — SAVE {SAVE_12MO}% vs. MONTH-TO-MONTH
+                  12-MONTH PLAN · SAVE {SAVE_12MO}% VS. MONTH-TO-MONTH
                 </p>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(255,255,255,0.55)", letterSpacing: "var(--nx-ls-caps)" }}>
                   E.g. {SAVINGS_EXAMPLE.name}: {formatUSD(SAVINGS_EXAMPLE.annual)}/yr vs {formatUSD(SAVINGS_EXAMPLE.monthlyYear)}/yr monthly
@@ -1283,19 +1282,13 @@ export default function Pricing() {
                 Compounded medications that have been dispensed cannot be returned under federal
                 compounding pharmacy regulations. Physician consultation fees are non-refundable
                 after the consultation has been completed. If a physician declines your protocol
-                request and no prescription is issued, you are not charged for pharmacy
-                compounding. Subscription fees for upcoming billing cycles may be cancelled
+                request, the refund policy sets out what is refunded. Subscription fees for upcoming billing cycles may be cancelled
                 at any time from your member portal with no cancellation fee.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
-
-      <TrustStatsStrip
-        eyebrow="The composition of the price"
-        heading="Everything within the figure."
-      />
 
       {/* ── Pricing FAQ ── */}
       <section
@@ -1327,7 +1320,7 @@ export default function Pricing() {
                 Your protocol, built on your labs.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
-                Start with a structured assessment. Your physician will review your intake and design a protocol around your labs, your goals, and your physiology — not a template.
+                Start with the questionnaire. Your doctor reads it and writes a plan around your goal and your history, then reads your blood at week 12.
               </p>
               <StartIntakeButton source="pricing-page" size="lg">
                 Start your assessment
@@ -1339,7 +1332,7 @@ export default function Pricing() {
 
       <FinalCTAStrip
         title="Begin with your questionnaire."
-        sub="Your intake, read by a physician. Nothing is made without a prescription."
+        sub="Your questionnaire, read by your doctor. A prescription comes before anything is made."
       />
     </SiteLayout>
   );
@@ -1350,8 +1343,8 @@ const PLAN_COMPARISON_ROWS = [
   // Stacks have no sellable price under the launch scope (see STACK_FROM_12MO)
   // — say so plainly rather than printing a figure that does not exist.
   { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: STACK_FROM_12MO === null ? "Quoted at consult" : `From ${formatUSD(STACK_FROM_12MO)}/mo`, custom: "Quoted at consult" },
-  { feature: "Physician consultation (initial)", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
-  { feature: "Physician follow-up visits", solo: "Included", stack: "Included", custom: "Included (priority)" },
+  { feature: "Your doctor's review", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
+  { feature: "Your week-12 panel and dose review", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "503A compounded peptides", solo: "1 compound", stack: "2–4 compounds", custom: "Fully bespoke" },
   { feature: `Full blood panel (${PANEL_TOTAL_MARKERS} markers)`, solo: "Week 12, included", stack: "Week 12, included", custom: "Extended panels, included" },
   { feature: "Cold-chain overnight shipping", solo: "Included", stack: "Included", custom: "Included" },

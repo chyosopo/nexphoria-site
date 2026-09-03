@@ -13,9 +13,9 @@ import { F, S } from "@/lib/typography";
 
 export default function Booking() {
   useSeo({
-    title: "Book a consultation — Nexphoria",
+    title: "Book a consultation | Nexphoria",
     description:
-      "Schedule a consultation to discuss your goals and bloodwork with the medical team. Physician review decides every protocol.",
+      "Schedule a consultation to discuss your goals with the medical team. Your doctor's review decides every protocol.",
     path: "/booking",
     jsonLd: [
       webPageJsonLd({ name: "Book a consultation", description: "Schedule a Nexphoria consultation.", path: "/booking" }),
@@ -34,9 +34,8 @@ export default function Booking() {
               Schedule a consultation.
             </h1>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1rem" }}>
-              A conversation about your goals, your history, and your bloodwork — with the
-              medical team that reads them. A consultation informs your protocol; a licensed
-              physician decides it.
+              A conversation about your goals and your history with the medical team that
+              reads them. A consultation informs your protocol. A licensed physician decides it.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.8rem" }}>
               <a
@@ -59,8 +58,8 @@ export default function Booking() {
               </Link>
             </div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.6, color: "var(--nx-fg-muted)", marginTop: "1.2rem", maxWidth: "56ch" }}>
-              Consultations do not guarantee a prescription. Physician review of your intake
-              and baseline bloodwork decides whether a protocol is appropriate.
+              A consultation informs the decision. Your doctor's review of your questionnaire
+              decides whether a protocol is appropriate.
             </p>
           </Reveal>
         </div>

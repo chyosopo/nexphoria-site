@@ -219,6 +219,20 @@ docs/COPY-DECK.md. The nav links only live goals. Next: step 5, bundles
 and the pricing page, which waits on Chiya's numbers; meanwhile step 6's
 pre-checkout block and step 7's page decks can start.
 
+**2026-09-03, night pass.** Step 6's pre-checkout block is live on /cart
+and /checkout (`PayToday`), /what-happens-next is rewritten, and every
+billing line that contradicted the truth ("never charged before approval",
+"no card collected today", "Total if prescribed") is gone. Step 7's voice
+pass ran across FAQ (rewritten from data), About, Physicians, How it
+works, Pricing, Assessment, Cart, Checkout, Contact, Community, Booking,
+Gift, Protocols and the shared components: zero em dashes rendered on any
+marketing route, "doctor" in prose, no defensive negation, no
+fabricated-looking figures (TrustStatsStrip placeholders, the "one patient
+trajectory", the sample biomarker index). The lab partner question is
+answered in docs/LAB-PARTNER.md and the site describes the draw without
+naming a network. Still open: step 5 (Chiya's prices), the seven emails,
+journal article bodies, and the OPEN claims list in docs/COPY-DECK.md.
+
 
 1. **Decisions 1 to 3 from Chiya, and the physicians' sign-off on the
    panels.** Meanwhile: the panel model is written as data

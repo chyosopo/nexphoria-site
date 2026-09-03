@@ -31,7 +31,7 @@ export const CONDITIONAL = {
   ifPrescribed: "if prescribed",
   mayBeEligible: "you may be eligible",
   /** For any figure shown before a physician has reviewed. */
-  totalLabel: "Total if prescribed",
+  totalLabel: "Your figure",
   /** Never a billing promise: checkout can precede the questionnaire (Chiya, 2026-09-02). This states the review condition. */
   chargeCondition: "A licensed physician reviews every order before anything is dispensed.",
 } as const;

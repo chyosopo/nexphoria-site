@@ -42,10 +42,10 @@ export type PhysicianReview = {
 
 export const physicianReview: PhysicianReview = {
   stats: [
-    { k: "100%", v: "Protocols physician-reviewed" },
+    { k: "100%", v: "Plans read by a doctor" },
     { k: String(PANEL_TOTAL_MARKERS), v: "Markers in your week-12 panel" },
     { k: "50", v: "States covered" },
-    { k: "0", v: "Algorithmic approvals" },
+    { k: "1", v: "Doctor signs your prescription" },
   ],
 
   standards: [

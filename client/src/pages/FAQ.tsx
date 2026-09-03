@@ -9,99 +9,101 @@ import heroFaq from "@/assets/brand/hero-faq.webp";
 import { PillBadge } from "@/components/PillBadge";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { F } from "@/lib/typography";
-import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
-import { SITE_STATS } from "@/data/siteStats";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
+import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { RETEST_WEEK } from "@/data/monitoring";
 
 interface FAQItem {
   q: string;
   a: string;
 }
 
-/* Pricing facts derived from the catalog — never hardcoded (truth law).
-   FROM = lowest per-month across non-gated flagship cadences (12-month tier);
-   TOP = highest month-to-month flagship price. */
-const NON_GATED = FLAGSHIP_STACKS.filter((s) => !s.gated);
-const PROTOCOL_FROM = Math.min(
-  ...NON_GATED.flatMap((s) => s.cadences.map((c) => c.perMonth ?? c.total)),
-);
-const PROTOCOL_TOP = Math.max(
-  ...NON_GATED.flatMap((s) => s.cadences.filter((c) => c.key === "1mo").map((c) => c.perMonth ?? c.total)),
-);
+/* Every fact below is derived from the catalog and the compliance data,
+   never typed (truth law). */
+const PEPTIDE_NAMES = SOLO_CATALOG.map((p) => p.name).join(", ");
+const GLP1_EXCLUDED = Array.from(
+  new Set(SOLO_CATALOG.filter((p) => p.gated).flatMap((p) => p.stateExclusions ?? [])),
+).sort().join(", ");
 
 const categories: { label: string; items: FAQItem[] }[] = [
   {
-    label: "Products",
+    label: "Peptides",
     items: [
       {
         q: "What is a peptide?",
-        a: "Peptides are short chains of amino acids — the same building blocks as proteins — that act as precise biological messengers. They signal cells to perform specific functions: repair tissue, stimulate hormone release, reduce inflammation, or regulate metabolism. Unlike hormone replacement, most peptides instruct your body to produce or optimize what it already makes.",
+        a: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as messengers. The ones prescribed here copy a signal your body already uses, so a cell does more of what it does anyway: release a hormone, handle sugar, start desire.",
       },
       {
-        q: "How is this different from buying research peptides online?",
-        a: "Unregulated peptides sold online carry no sterility testing, no dosing oversight, and no physician involvement. Nexphoria protocols are prescribed by a board-certified physician, compounded in a licensed 503A US pharmacy under sterile conditions, batch-tested for potency and purity, and shipped cold-chain. The compound you administer is the compound you were prescribed.",
+        q: "Which peptides do you offer?",
+        a: `${PEPTIDE_NAMES}. A U.S. licensed doctor picks yours from your questionnaire, and each one has its own page that explains what it does and how you take it.`,
       },
       {
-        q: "What compounds do you offer?",
-        a: "Our formulary includes GLP-1 agonists (semaglutide, tirzepatide), growth hormone secretagogues (CJC-1295, Ipamorelin, Sermorelin, Tesamorelin), tissue repair peptides (BPC-157, TB-500, GHK-Cu), cognitive peptides (Selank, Semax), HPG-axis modulators (Enclomiphene, Kisspeptin), and longevity protocols (NAD+, Epitalon, MOTS-c). Final compound selection is made by your physician after reviewing your labs.",
+        q: "How is this different from buying peptides online?",
+        a: "Every medicine here is prescribed by a U.S. licensed doctor and made for you in a licensed 503A pharmacy in the United States, then shipped cold. You know what is in the vial, who made it, and who prescribed it.",
       },
       {
-        q: "What does a 503A-licensed pharmacy mean?",
-        a: "503A pharmacies compound medications for individual patients under a valid physician prescription. This allows dosage and formulation customization that mass-manufactured products cannot provide. Every Nexphoria compound is sterile-prepared in an ISO-compliant cleanroom, batch-tested for potency and purity, and ships with a certificate of analysis.",
+        q: "What does a 503A pharmacy mean?",
+        a: "A pharmacy licensed to compound a medicine for one named patient, from a doctor's prescription. That is how your dose and formulation can be set for you rather than mass-produced.",
       },
       {
         q: "Who provides the clinical care?",
-        a: "Arora Health & Aesthetics, LLC provides the clinical care for this program. Our licensed providers serve patients in all 50 U.S. states in accordance with applicable state licensure requirements and telehealth regulations. For provider-related questions, contact medicalcompliance@arorahealthgroup.com. Arora Health's office is located at 300 Lenora Street, Seattle, WA 98121. Learn more at www.arora-health.com.",
+        a: PROVIDER_INFO.body,
       },
       {
         q: "Which pharmacy fills the prescriptions?",
-        a: "Our partner pharmacy is VialsRX, 6220 Westpark Dr, Houston, TX 77057 — phone (713) 497-5590, vials.ai. Services are available in all 50 US states through affiliated medical providers and pharmacy partners operating in accordance with applicable state licensure requirements. Please note that certain medications, formulations, or fulfillment options may vary depending on state-specific pharmacy regulations and dispensing restrictions.",
+        a: PHARMACY_INFO.body.replace(/\n+/g, " "),
       },
     ],
   },
   {
-    label: "Process",
+    label: "Your doctor",
     items: [
       {
-        q: "How does the process work start to finish?",
-        a: `Complete a structured medical intake. A partner-laboratory requisition is generated in your member portal, and you can draw at any of ${SITE_STATS.labSites.display} partner laboratory locations nationwide. A board-certified physician reviews your labs and intake, your telehealth consult is scheduled through Bask Health, and the protocol is prescribed, compounded, and shipped cold-chain.`,
+        q: "How does it work, start to finish?",
+        a: `You choose a plan and check out. You answer the questionnaire, which takes about two minutes. A U.S. licensed doctor reads every answer and decides. If it is a yes, your medicine is made for you in a licensed 503A pharmacy and ships cold. At week ${RETEST_WEEK} a full blood panel, included in your plan, shows your doctor what changed, and your dose follows it.`,
       },
       {
-        q: "What if the physician declines my protocol?",
-        a: "If your physician determines a requested protocol is clinically inappropriate, the prescription is not issued. The physician may propose a modified protocol or a different compound. You are not charged for pharmacy compounding if no prescription is issued. Declinations are documented in your file with clinical rationale.",
+        q: "Do I actually talk to a doctor?",
+        a: "A real one reads your full questionnaire and signs your prescription. The decision is theirs alone. If your doctor needs more from you before deciding, they ask.",
       },
       {
-        q: "What labs do I need?",
-        a: "A full blood panel is drawn at week 12 of your plan, included. Your requisition is issued as week 12 approaches. If you have recent CLIA-certified results, your physician may read those too.",
+        q: "What if my doctor says no?",
+        a: "Then it is a no, and your doctor tells you why. They may suggest a different plan. The refund policy sets out what is refunded.",
       },
       {
-        q: "Who reviews my bloodwork?",
-        a: "Your assigned board-certified physician reviews your partner-laboratory results promptly after receipt. Results are not reviewed by algorithms, nurses, or non-physician staff. Your physician responds via secure portal message with either a prescription, a question, or a request for additional information.",
+        q: "What bloodwork do I need?",
+        a: `One full panel of ${PANEL_TOTAL_MARKERS} markers at week ${RETEST_WEEK}, included in your plan. You start first. We send you what you need for the draw as week ${RETEST_WEEK} approaches. If you have recent results from a CLIA-certified lab, your doctor may read those too.`,
       },
       {
-        q: "How quickly will I see results?",
-        a: "Onset depends on compound and individual response. GLP-1 protocols show measurable weight change within 4–8 weeks. GHS protocols show IGF-1 elevation at 6–8 weeks; lean mass changes at 12–16 weeks. Tissue repair protocols (BPC-157) vary by indication. Your physician sets realistic outcome expectations at consultation.",
+        q: "Who reads my bloodwork?",
+        a: "Your doctor. They read every marker against the plan you are on and come back with a decision: continue, adjust, or stop, and why.",
+      },
+      {
+        q: "What if I have a health condition?",
+        a: "Tell your doctor in the questionnaire. Some conditions rule a medicine out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what your doctor watches. Every answer is read by the doctor who decides.",
       },
     ],
   },
   {
-    label: "Pricing",
+    label: "Price",
     items: [
       {
-        q: "What does a Nexphoria protocol cost?",
-        a: `Single peptides start from ${SOLO_FROM_LABEL}/month. Flagship protocols run from ${usd(PROTOCOL_FROM)}/month on a 12-month plan to ${usd(PROTOCOL_TOP)}/month for the deepest longevity stack month-to-month. 3-month plans save 15%; 12-month plans save 30% and include your blood panel. Your physician consult, lab interpretation, and cold-chain shipping are included — the figure is complete.`,
+        q: "What does it cost?",
+        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. Three-month plans save 15% a month and twelve-month plans save 30%. The figure is complete: your doctor's review, your medicine, cold shipping and the week-${RETEST_WEEK} blood panel are within it.`,
       },
       {
-        q: "Can I cancel after the first month?",
-        a: "Yes. No long-term contracts or early termination fees. Cancel from your member portal; cancellation takes effect at end of your current cycle. Dispensed medications cannot be returned under pharmacy regulations.",
+        q: "What do I pay today?",
+        a: "The monthly figure shown at checkout. What happens next is on the same page: questionnaire, doctor, then your medicine is made and shipped. If your doctor declines, the refund policy sets out what is refunded.",
       },
       {
-        q: "Can I use insurance or FSA/HSA?",
-        a: "Nexphoria is self-pay. Insurance reimbursement for compounded off-label peptides is not available. Many compounded prescriptions qualify as FSA/HSA-eligible medical expenses. We provide itemized receipts meeting FSA/HSA documentation requirements. Confirm eligibility with your plan administrator.",
+        q: "Can I cancel?",
+        a: "Yes. Cancellation takes effect at the end of your current cycle. Medicine that has already been dispensed cannot be returned under pharmacy regulations. The refund policy has the detail.",
       },
       {
-        q: "Is the physician consult included?",
-        a: "Yes. Initial physician consultation and all follow-up consultations within your subscription cycle are included. There is no separate consult fee charged to your card.",
+        q: "Can I use insurance?",
+        a: "Nexphoria is self-pay. Insurance does not cover compounded peptides.",
       },
     ],
   },
@@ -109,20 +111,20 @@ const categories: { label: string; items: FAQItem[] }[] = [
     label: "Safety",
     items: [
       {
-        q: "What if I have a pre-existing condition?",
-        a: "Pre-existing conditions are assessed by your physician after reviewing your full intake and lab results. Active cancer, uncontrolled cardiovascular disease, and pregnancy are absolute contraindications for specific protocols. Others require modified dosing or additional monitoring. Your physician uses this information to protect you, not to exclude you.",
+        q: "What are the common side effects?",
+        a: "They depend on the medicine. GLP-1 medicines such as semaglutide and tirzepatide can cause nausea and a smaller appetite while the dose steps up. Tesamorelin can cause redness where you inject and some water retention. PT-141 can cause nausea and flushing, and raises blood pressure for a few hours. Your doctor reads your history for the risks that matter to you before prescribing.",
       },
       {
-        q: "What are common side effects?",
-        a: "Side effects vary by compound. GLP-1 agonists commonly cause mild nausea and reduced appetite during dose titration — typically resolving within 2–4 weeks. GH secretagogues may cause transient water retention. BPC-157 is generally well tolerated. Your physician reviews your history to identify compound-specific risk factors before prescribing.",
+        q: "What do I do if something feels wrong?",
+        a: "For chest pain, trouble breathing or a severe allergic reaction, call emergency services first. For anything else, stop and contact your doctor before your next dose.",
       },
       {
-        q: "What should I do if I have an adverse reaction?",
-        a: "For non-urgent symptoms, contact your physician via secure portal message. For urgent symptoms — chest pain, difficulty breathing, severe allergic reaction — seek emergency care immediately. Do not wait for portal response in an emergency. Contact your physician afterward to document the event for protocol review.",
+        q: "How do I store it?",
+        a: "In the fridge, in its box, following the instructions that ship with it. Your box arrives cold with a temperature indicator. If the indicator shows the cold chain broke, do not use it, and email hello@nexphoria.com.",
       },
       {
-        q: "How do I store my peptides?",
-        a: "Most compounded peptides require refrigeration at 2–8°C (36–46°F). Lyophilized formulations are stable at room temperature until reconstituted. Your shipping kit includes temperature indicators. If the indicator shows breach during transit, do not use the medication. Your prescription instructions specify handling requirements.",
+        q: "What if I miss a dose?",
+        a: "Follow the instructions in your box for your medicine. Never double a dose to catch up. If you are unsure, ask your doctor before the next one.",
       },
     ],
   },
@@ -130,71 +132,37 @@ const categories: { label: string; items: FAQItem[] }[] = [
     label: "Shipping",
     items: [
       {
-        q: "How are peptides shipped?",
-        a: "All orders ship cold-chain overnight with temperature-monitored packaging and temperature indicator cards. We ship to all 50 US states; GLP-1 protocols are not available in AK, AR, IN, MI, MN, or SC. Each shipment includes your prescription label, a certificate of analysis, and administration instructions from your physician.",
+        q: "How is it shipped?",
+        a: `Cold, in a plain box with a temperature indicator, to your door. We ship to all 50 states. Semaglutide and tirzepatide are excluded by law in ${GLP1_EXCLUDED}.`,
       },
       {
-        q: "How long does it take to receive my order?",
-        a: "After physician approval and pharmacy compounding (typically 3–5 business days), your order ships overnight. Total time from approval to delivery is typically 4–7 business days. Expedited compounding is available on select protocols — ask your physician.",
+        q: "When does it arrive?",
+        a: "After your doctor says yes, the pharmacy makes your medicine and ships it cold. You get a confirmation by email when it is on its way.",
       },
       {
-        q: "Can I travel with my peptides?",
-        a: "Yes, domestically, with a copy of your prescription. For air travel, TSA permits medically necessary liquids above 3.4 oz with physician documentation. International travel is subject to destination country import laws — Nexphoria does not advise on international regulatory compliance.",
-      },
-    ],
-  },
-  {
-    label: "Refills",
-    items: [
-      {
-        q: "How do refills work?",
-        a: "Active subscribers receive automatic refill shipments based on their protocol cadence. Your physician reviews your file, and your week-12 panel once drawn, before each refill cycle and may adjust dosing. You can pause or reschedule refills from your member portal with at least 5 business days' notice.",
-      },
-      {
-        q: "What if I want to change my protocol?",
-        a: "Request a protocol modification through your member portal. Your physician reviews the request and your most recent panel before approving any change.",
-      },
-      {
-        q: "What if I miss a dose?",
-        a: "For most protocols, a single missed dose does not require correction — resume your regular schedule at the next scheduled time. Do not double-dose. GLP-1 protocols administered weekly: if fewer than 5 days have passed since the missed dose, administer as soon as you remember. If more than 5 days have passed, skip that dose and resume at your next scheduled date.",
-      },
-    ],
-  },
-  {
-    label: "Legality",
-    items: [
-      {
-        q: "Are peptides legal?",
-        a: "Compounded peptides prescribed by a licensed US physician and prepared by a 503A-licensed US compounding pharmacy are legal to obtain and possess in the United States. Tirzepatide and semaglutide have FDA approval for specific indications and may also be compounded off-label. BPC-157, TB-500, CJC-1295, and Ipamorelin are compounded off-label without FDA approval for any indication. Nexphoria operates within US federal and state pharmacy law.",
-      },
-      {
-        q: "Is this FDA-approved?",
-        a: "Tirzepatide and semaglutide are available as FDA-approved branded drugs; the compounded formulations we prepare are not themselves FDA-approved or evaluated. Most other peptides in our formulary are prescribed off-label — not FDA-approved for any specific indication. Off-label prescribing is a legal, routine component of clinical practice in the United States. Compounding under a physician's prescription is regulated by state pharmacy boards and the FDA.",
+        q: "Can I travel with it?",
+        a: "Within the United States, yes, with your prescription label on the box. Keep it cold. Other countries have their own import rules and we ship inside the United States only.",
       },
       {
         q: "Do you ship internationally?",
-        a: "No. Nexphoria ships within the United States only to states where our physicians hold active licensure. International shipping of compounded medications is prohibited under US export law and the laws of most destination countries.",
+        a: "No. We ship within the United States, to states where our doctors hold a licence.",
       },
     ],
   },
   {
-    label: "Nexphoria vs. Alternatives",
+    label: "Legal",
     items: [
       {
+        q: "Are peptides legal?",
+        a: "Prescribed by a U.S. licensed physician and compounded by a licensed 503A pharmacy, yes. Semaglutide and tirzepatide are also available as FDA-approved branded drugs. Tesamorelin and PT-141 exist as FDA-approved branded drugs too; the compounded versions here are prescribed off-label, which is a routine part of medical practice in the United States.",
+      },
+      {
+        q: "Is this FDA-approved?",
+        a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared for you by a state-licensed 503A compounding pharmacy under a physician's prescription. Where a branded, FDA-approved version of a molecule exists, ours is the compounded version, made for you, and is not the branded product.",
+      },
+      {
         q: "Is Nexphoria legit?",
-        a: "Nexphoria is a physician-supervised peptide provider that routes every prescription through a board-certified clinician via the Bask Health telehealth platform. Compounds are prepared in a U.S. 503A-licensed compounding pharmacy under sterile ISO conditions, batch-tested with a Certificate of Analysis on file, and shipped cold-chain. No prescription is dispensed without physician sign-off.",
-      },
-      {
-        q: "What makes Nexphoria different for peptide therapy?",
-        a: "Nexphoria combines 16+ physician-prescribed peptides, a full blood panel at week 12 at CLIA-certified labs, sterile formulations from state-licensed 503A compounding pharmacies, and COA documentation — all in a single subscription, with every protocol reviewed against your own labs.",
-      },
-      {
-        q: "What is the difference between Nexphoria and buying peptides from a research chemical site?",
-        a: "Unregulated online peptides carry no sterility certification and no dosing guidance or physician oversight. Nexphoria peptides are prescribed by a board-certified clinician, compounded in a 503A-licensed sterile facility, batch-tested for potency and purity, and shipped cold-chain with full chain-of-custody documentation. The compound you inject is the compound you were prescribed.",
-      },
-      {
-        q: "What is the difference between GLP-1 (Ozempic/Wegovy) and Retatrutide from Nexphoria?",
-        a: "Semaglutide (Ozempic, Wegovy) is a GLP-1 receptor agonist producing ~15% body-weight reduction. Tirzepatide adds dual GIP/GLP-1 agonism, producing 18–28% reduction in trials. Retatrutide is a triple GIP/GLP-1/glucagon agonist showing 24–28% weight reduction in Phase 2 trials — with additional metabolic and NASH benefits. Nexphoria physicians prescribe based on your labs and clinical profile, not one-size-fits-all dosing.",
+        a: "Every prescription here is written by a U.S. licensed physician through the Bask Health telehealth platform. Your medicine is compounded in a licensed 503A pharmacy in the United States and shipped cold. The provider and the pharmacy are named on this page, with their addresses.",
       },
     ],
   },
@@ -205,8 +173,8 @@ export default function FAQPage() {
   const allFaqItems = categories.flatMap((c) => c.items);
 
   useSeo({
-    title: "Peptide therapy FAQ — safety, legality, pricing, process",
-    description: "Answers to the most common questions about physician-prescribed peptide therapy: 503A compounding, side effects, pricing, how bloodwork works, and what to expect.",
+    title: "Your questions, answered: safety, legality, price, process",
+    description: "Plain answers about doctor-prescribed peptides: what they are, who prescribes them, what they cost, side effects, shipping, and the week-12 blood panel.",
     path: "/faq",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria FAQ", description: "Frequently asked questions about physician-prescribed peptide therapy at Nexphoria.", path: "/faq", type: "MedicalWebPage" }),
@@ -307,7 +275,7 @@ export default function FAQPage() {
                   textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
                 }}
               >
-                Dosing, safety, shipping, insurance — answered plainly, and your physician is a message away.
+                Dosing, safety, shipping, price. Answered plainly, by the people who built it.
               </p>
             </figcaption>
           </figure>
@@ -459,7 +427,7 @@ export default function FAQPage() {
 
       <FinalCTAStrip
         title="Still have questions?"
-        sub="Your assigned physician answers clinical questions via secure portal message after review."
+        sub="Email hello@nexphoria.com and a person answers. Clinical questions go to your doctor."
       />
     </SiteLayout>
   );

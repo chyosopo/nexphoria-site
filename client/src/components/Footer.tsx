@@ -209,7 +209,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                   "Enter a valid email address to subscribe."
                 ) : (
                   <>
-                    We couldn't add you just now — email{" "}
+                    We couldn't add you just now. Email{" "}
                     <a href="mailto:hello@nexphoria.com?subject=Waitlist" style={{ color: "rgba(255,255,255,0.9)", textDecoration: "underline" }}>
                       hello@nexphoria.com
                     </a>{" "}

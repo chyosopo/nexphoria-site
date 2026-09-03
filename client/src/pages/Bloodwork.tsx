@@ -15,7 +15,6 @@ import {
   PANEL_TOTAL_MARKERS,
   PANEL_CATEGORY_COUNT,
 } from "@/data/biomarkerPanel";
-import { SITE_STATS } from "@/data/siteStats";
 import { PANELS, FLAGSHIP_STACKS, usd, type PanelTier } from "@/data/stacksCatalog";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { peptides, CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
@@ -264,8 +263,7 @@ function Hero() {
                   lineHeight: 1.5,
                 }}
               >
-                Illustrative 90-day trajectory · partner laboratory · reviewed by a Nexphoria
-                physician
+                Sample readout, illustrative values · read by your doctor at week 12
               </div>
             </div>
           </Reveal>
@@ -410,9 +408,9 @@ function PanelExplorer() {
                 color: "var(--nx-fg-graphite)",
               }}
             >
-              Annual physicals measure a handful of basic markers. Our panel goes further — from
-              cardiovascular risk to hormone balance to a 21-factor biological-age composite — so
-              your protocol is calibrated to your chemistry, not a population average.
+              A yearly physical measures a handful of basic markers. Your panel goes further, from
+              heart risk to hormones to the nutrients that drive energy, so your doctor adjusts your
+              plan from your own chemistry.
             </p>
           </div>
         </Reveal>
@@ -664,7 +662,7 @@ function PanelComparison() {
       testid="bloodwork-comparison"
       eyebrow="Why this panel"
       title="Not all bloodwork is the same."
-      lead="A once-a-year physical and a mail-order kit both stop at a number. This panel exists to change a prescription: read against optimal ranges, by a physician, and retested until the trend proves it."
+      lead="A yearly physical and a mail-order kit both stop at a number. Your panel exists to change a prescription: read by your doctor, at week 12, against the plan you are on."
       columns={[
         { label: "The Nexphoria panel", sub: "Included with every protocol", highlight: true, badge: "Nexphoria" },
         { label: "A standard annual physical", sub: "Once-a-year checkup" },
@@ -682,7 +680,7 @@ function PanelComparison() {
         {
           label: "Read against",
           cells: [
-            { text: "Optimal ranges, not just “normal”", tone: "pos" },
+            { text: "Optimal ranges, read by your doctor", tone: "pos" },
             { text: "Standard reference ranges", tone: "neg" },
             { text: "Reference ranges, or none", tone: "neg" },
           ],
@@ -690,7 +688,7 @@ function PanelComparison() {
         {
           label: "Who reviews it",
           cells: [
-            { text: "A board-certified physician", tone: "pos" },
+            { text: "Your doctor, board-certified", tone: "pos" },
             { text: "Your provider, at the visit", tone: "plain" },
             { text: "An algorithm, or no one", tone: "neg" },
           ],
@@ -698,7 +696,7 @@ function PanelComparison() {
         {
           label: "Retested",
           cells: [
-            { text: "At week 12, read against your start", tone: "pos" },
+            { text: "At week 12, against the plan you are on", tone: "pos" },
             { text: "Once a year", tone: "neg" },
             { text: "One-time snapshot", tone: "neg" },
           ],
@@ -706,7 +704,7 @@ function PanelComparison() {
         {
           label: "What happens next",
           cells: [
-            { text: "Your dose is calibrated to the results", tone: "pos" },
+            { text: "Your dose is adjusted from the results", tone: "pos" },
             { text: "General advice", tone: "neg" },
             { text: "No treatment path", tone: "neg" },
           ],
@@ -714,7 +712,7 @@ function PanelComparison() {
         {
           label: "Where you draw",
           cells: [
-            { text: `${SITE_STATS.labSites.display} partner labs or an at-home kit`, tone: "pos" },
+            { text: "We send you what you need as week 12 approaches", tone: "pos" },
             { text: "A clinic appointment", tone: "plain" },
             { text: "At-home finger-prick", tone: "plain" },
           ],
@@ -722,13 +720,13 @@ function PanelComparison() {
         {
           label: "Cost",
           cells: [
-            { text: "Included in your protocol", tone: "pos" },
+            { text: "Included in your plan", tone: "pos" },
             { text: "Copay + visit", tone: "plain" },
             { text: "$50–200 per kit", tone: "plain" },
           ],
         },
       ]}
-      footnote="A standard physical and a home kit both have their place. The difference is what happens after the draw: here, every marker feeds a physician's prescribing decision and is retested until the trend confirms the protocol is working."
+      footnote="A yearly physical and a home kit both have their place. The difference is what happens after the draw: here, every marker goes to the doctor who wrote your plan, and your dose follows it."
     />
   );
 }
@@ -736,7 +734,8 @@ function PanelComparison() {
 /* ══════════════════════════════════════════════════════════════
    LIVE TRAJECTORY — the real BiomarkerCard set
    ══════════════════════════════════════════════════════════════ */
-function LiveTrajectory() {
+// Retired 2026-09-03: the "one Nexphoria patient" trajectory read as a patient record.
+export function LiveTrajectory() {
   return (
     <section
       data-testid="bloodwork-live"
@@ -823,7 +822,7 @@ function HowItWorks() {
       n: "02",
       Icon: Stethoscope,
       title: "Week 12: the full panel",
-      body: `A ${PANEL_TOTAL_MARKERS}-marker panel through a CLIA-certified partner laboratory, included. Walk into any of ${SITE_STATS.labSites.display} centers or use the at-home collection kit.`,
+      body: `A full panel of ${PANEL_TOTAL_MARKERS} markers at a CLIA-certified laboratory, included. We send you what you need for the draw as week 12 approaches.`,
     },
     {
       n: "03",
@@ -933,7 +932,7 @@ function FullPanelSection() {
           One panel. Every plan. Week 12, included.
         </h2>
         <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
-          {PANEL_TOTAL_MARKERS} markers in {PANEL_CATEGORY_COUNT} groups, drawn in one visit at a partner laboratory near you twelve weeks into your plan. Your doctor reads it and adjusts your dose from what changed. Every marker below says why it is there.
+          {PANEL_TOTAL_MARKERS} markers in {PANEL_CATEGORY_COUNT} groups, drawn twelve weeks into your plan. We send you what you need for the draw as week 12 approaches. Your doctor reads it and adjusts your dose from what changed. Every marker below says why it is there.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: 14, marginTop: "1.8rem" }} data-testid="full-panel-groups">
           {BIOMARKER_PANEL.map((g, i) => (
@@ -1010,7 +1009,6 @@ export default function Bloodwork() {
         <div id="explore" />
         <PanelExplorer />
         <PanelComparison />
-        <LiveTrajectory />
         <HowItWorks />
         {/* The FAQ the JSON-LD promises — visible objection-handling at the
             close (invisible FAQPage markup risks a rich-result penalty) */}
@@ -1058,7 +1056,7 @@ function GlowingBody({ world }: { world: "men" | "women" }) {
           ))}
         </div>
         <div className="mt-12 grid gap-3 sm:grid-cols-3">
-          {[["One draw", `5-minute booking, ${SITE_STATS.labSites.display} locations`], [`${PANEL_TOTAL_MARKERS} markers`, "sugar to hormones"], ["Week 12", "included in your plan"]].map(([t, s]) => (
+          {[["One draw", "at week 12, and we send you what you need"], [`${PANEL_TOTAL_MARKERS} markers`, "sugar to hormones"], ["Week 12", "included in your plan"]].map(([t, s]) => (
             <div key={t} style={{ background: "rgba(243, 245, 247,0.94)", borderRadius: "var(--nx-r-md)", padding: "1.1rem 1.2rem" }}>
               <div style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-hover)" }}>{t}</div>
               <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 4 }}>{s}</p>

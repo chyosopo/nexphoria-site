@@ -11,8 +11,8 @@ import { ShieldCheck, Stethoscope, FlaskConical, Package, Star } from "lucide-re
 const items = [
   { icon: Stethoscope, label: "Board-certified physicians" },
   { icon: FlaskConical, label: "US-compounded via 503A partners" },
-  { icon: ShieldCheck, label: "HIPAA-compliant" },
-  { icon: Package, label: "Discreet 3–5 day shipping" },
+  { icon: ShieldCheck, label: "Prescription only" },
+  { icon: Package, label: "Ships cold, in a plain box" },
   { icon: Star, label: "Full blood panel at week 12" },
 ];
 

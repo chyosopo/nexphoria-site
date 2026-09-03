@@ -376,13 +376,13 @@ function StepNav({
 
 export default function Assessment() {
   useSeo({
-    title: "Start your peptide protocol — structured intake, physician-reviewed",
-    description: "Tell us about your goals, your history and your medications. A board-certified U.S. physician reviews your bloodwork and your answers, then writes your plan.",
+    title: "Start your assessment: two minutes, read by a U.S. doctor",
+    description: "Tell us your goal, your history and your medications. A board-certified U.S. doctor reads every answer and writes your plan. At week 12 a full blood panel, included, shows what changed.",
     path: "/assessment",
     jsonLd: [
       webPageJsonLd({
         name: "Nexphoria Medical Intake Assessment",
-        description: "structured intake for physician-prescribed peptide therapy. Board-certified physician review of every intake.",
+        description: "The questionnaire for doctor-prescribed peptides. A board-certified physician reads every answer.",
         path: "/assessment",
         type: "MedicalWebPage",
       }),
@@ -735,7 +735,7 @@ export default function Assessment() {
                     textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
                   }}
                 >
-                  Four minutes of questions. A physician, a lab panel, and a protocol on the other side.
+                  A few minutes of questions. Your doctor, your plan, and your week-12 panel on the other side.
                 </p>
               </figcaption>
             </figure>
@@ -773,7 +773,7 @@ export default function Assessment() {
             >
               <img
                 src={assessmentTrustHero}
-                alt="A full blood panel and physician dashboard used to adjust your plan"
+                alt="A full blood panel and a doctor's dashboard used to adjust your plan"
                 loading="eager"
                 decoding="async"
                 data-testid="assessment-landing-image"
@@ -809,7 +809,7 @@ export default function Assessment() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Every answer maps to a biomarker your physician will calibrate against.
+                Every answer is read by the doctor who writes your plan.
               </h2>
               <p
                 style={{
@@ -819,10 +819,9 @@ export default function Assessment() {
                   lineHeight: 1.7,
                 }}
               >
-                The intake takes about four minutes. It feeds a 99-biomarker lab panel, a
-                physician review, and a compounded protocol dosed to your measured{" "}
-                <span style={{ whiteSpace: "nowrap" }}>IGF-1</span>, metabolic, and hormonal
-                numbers. No questionnaire-only prescribing.
+                The questionnaire takes a few minutes. Your answers go to a U.S. licensed
+                doctor, who decides and writes your plan. At week 12 a full blood panel,
+                included, shows your doctor what changed, and your dose follows it.
               </p>
             </div>
           </div>
@@ -1065,7 +1064,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Your goal</p>
                       <h2 id="q-goal" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your primary clinical goal?</h2>
                       <p style={subCopy}>
-                        This sets the direction of your protocol; secondary goals are covered later with your physician.
+                        This sets the direction of your plan. Your doctor covers the rest with you.
                       </p>
                       <div
                         className="assessment-goal-grid"
@@ -1172,7 +1171,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Age</p>
                       <h2 id="q-age" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>What is your age range?</h2>
                       <p style={subCopy}>
-                        A decade-level range is precise enough for your physician to calibrate dosing.
+                        A decade-level range is enough for your doctor to set a safe dose.
                       </p>
                       <div
                         role="radiogroup"
@@ -1255,7 +1254,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Medical history</p>
                       <h2 id="q-history" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Do any of the following apply to your medical history?</h2>
                       <p style={subCopy}>
-                        Select all that apply — some conditions call for closer physician review before a protocol is designed.
+                        Select all that apply. Some conditions change what your doctor prescribes, or whether they do.
                       </p>
                       <div role="group" aria-labelledby="q-history" aria-describedby="assessment-why-text-4" style={{ display: "flex", flexDirection: "column", gap: "0.875rem", marginBottom: "0.5rem" }}>
                         {MEDICAL_HISTORY_OPTIONS.map(({ id, label }) => (
@@ -1308,9 +1307,9 @@ export default function Assessment() {
                   {step === 6 && (
                     <motion.div key="step-6" {...motionProps} data-testid="assessment-step-6">
                       <p style={eyebrow}>Contact</p>
-                      <h2 id="q-contact" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Where should your physician reach you?</h2>
+                      <h2 id="q-contact" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Where should your doctor reach you?</h2>
                       <p style={subCopy}>
-                        A licensed physician follows up personally once your intake is complete.
+                        A licensed doctor follows up personally once your questionnaire is in.
                       </p>
 
                       {/* Field group tied to the contact question + rationale so
@@ -1371,7 +1370,7 @@ export default function Assessment() {
                             }}
                           >
                             {showEmailHint
-                              ? "Enter a complete address, e.g. name@domain.com — this is where your physician follows up."
+                              ? "Enter a complete address, e.g. name@domain.com. This is where your doctor follows up."
                               : "We use this only to reach you about your intake."}
                           </p>
                         </div>
@@ -1402,7 +1401,7 @@ export default function Assessment() {
                               lineHeight: 1.5,
                             }}
                           >
-                            Optional. Used only if your physician needs to reach you by phone.
+                            Optional. Used if your doctor needs to reach you by phone.
                           </p>
                         </div>
 
@@ -1459,7 +1458,7 @@ export default function Assessment() {
                       <p style={eyebrow}>Review</p>
                       <h2 id="q-review" ref={setHeadingRef} tabIndex={-1} style={{ ...question, outline: "none" }}>Review your intake before submitting.</h2>
                       <p style={subCopy}>
-                        Your physician will receive these details. Select any answer to change it.
+                        Your doctor will receive these details. Select any answer to change it.
                       </p>
 
                       {/* Screener disclaimer */}
@@ -1498,7 +1497,7 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          This is a marketing screener. Formal medical eligibility is determined during physician review after your partner-laboratory labs are on file. No prescription is issued based on these answers alone.
+                          This is a screener. Formal medical eligibility is determined by a licensed physician during review. A prescription follows that review, never these answers alone.
                         </p>
                       </div>
 
@@ -1653,7 +1652,7 @@ export default function Assessment() {
                             margin: 0,
                           }}
                         >
-                          A licensed physician reviews every answer before any protocol is prescribed.
+                          A licensed doctor reads every answer before any plan is prescribed.
                         </p>
                         <PrescribedPromise testid="assessment-review-promise" />
                       </div>
@@ -1737,8 +1736,8 @@ export default function Assessment() {
                           }}
                         >
                           {recStack
-                            ? "A licensed physician still reviews everything before anything ships. This is the plan your answers point to."
-                            : "A licensed physician reviews your intake and emails you the next step."}
+                            ? "A licensed doctor still reads everything before anything ships. This is the plan your answers point to."
+                            : "A licensed doctor reads your questionnaire and emails you the next step."}
                         </p>
                       </div>
 
@@ -1804,7 +1803,7 @@ export default function Assessment() {
                                         </span>
                                       </>
                                     ) : recStack ? (
-                                      "Physician-priced after your eligibility review"
+                                      "Priced at consultation"
                                     ) : (
                                       <>
                                         {cfg.monthlyRange}
@@ -1828,7 +1827,7 @@ export default function Assessment() {
                               {/* Physician gate + THE promise (ROADMAP 5.2) at this price display */}
                               <div style={{ margin: "1.25rem 0 0 0", paddingTop: "1.25rem", borderTop: "1px solid var(--nx-border)" }}>
                                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.55, margin: "0 0 0.6rem 0" }}>
-                                  A licensed physician reviews your answers and prescribes only if it is clinically appropriate, after lab review.
+                                  A licensed doctor reads your answers and prescribes if it is clinically appropriate. Your blood is read at week 12.
                                 </p>
                                 <PrescribedPromise testid="recommendation-promise" />
                               </div>
@@ -1865,10 +1864,10 @@ export default function Assessment() {
                             sequence; the visible 01–04 counters are decorative. */}
                         <ol aria-labelledby="assessment-next-steps-label" style={{ listStyle: "none", margin: 0, padding: 0 }}>
                           {[
-                            { n: "01", t: "A licensed physician reviews your intake" },
-                            { n: "02", t: "Partner-laboratory requisition generated in your member portal"},
-                            { n: "03", t: "Telehealth consult via Bask Health to finalize your protocol" },
-                            { n: "04", t: "Protocol approved, compounded, and shipped cold-chain" },
+                            { n: "01", t: "A licensed doctor reads your questionnaire" },
+                            { n: "02", t: "If it is a yes, your medicine is made for you in a licensed 503A pharmacy" },
+                            { n: "03", t: "It ships cold to your door" },
+                            { n: "04", t: "At week 12 your full blood panel, included, is read and your dose follows it" },
                           ].map(({ n, t }) => (
                             <li key={n} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "0.625rem" }}>
                               <span aria-hidden="true" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, color: "var(--nx-cobalt)", flexShrink: 0, marginTop: "2px" }}>{n}</span>
@@ -1889,7 +1888,7 @@ export default function Assessment() {
                           textAlign: "center",
                         }}
                       >
-                        A board-certified physician will review your answers, request your blood panel, and schedule a telehealth consult via Bask Health. No prescription is issued before that review is complete.
+                        A board-certified doctor reads your answers and decides, through the Bask Health telehealth platform. If they need more from you, they reach you by email. Your prescription follows that review.
                       </p>
                     </motion.div>
                   )}

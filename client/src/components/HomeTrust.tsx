@@ -15,7 +15,7 @@ const STEPS = [
     n: "01",
     Icon: ClipboardList,
     title: "Share your history.",
-    body: "A private, structured intake covering your goals, training, and medical history — the same questions a physician would ask in the room.",
+    body: "A private, structured intake covering your goals, training, and medical history: the same questions your doctor would ask in the room.",
   },
   {
     n: "02",
@@ -42,13 +42,13 @@ export function HomeTrust() {
           <div className="nx-glass-card grid grid-cols-1 md:grid-cols-[1.3fr_0.7fr] overflow-hidden" style={{ padding: 0 }}>
             <div style={{ padding: "var(--nx-sp-tight)" }}>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                Physician oversight
+                Doctor oversight
               </p>
               <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.14 }}>
                 Every protocol is decided by a licensed physician.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1rem" }}>
-                Your intake and bloodwork are reviewed by board-certified, U.S.-licensed physicians of Arora Health & Aesthetics, LLC. They determine whether a prescription is appropriate — and decline when it is not.
+                Your intake and bloodwork are reviewed by board-certified, U.S.-licensed physicians of Arora Health & Aesthetics, LLC. They determine whether a prescription is appropriate, and decline when it is not.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: "1.6rem" }}>
                 {CREDENTIALS.map((c) => (

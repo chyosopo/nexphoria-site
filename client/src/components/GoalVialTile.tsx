@@ -442,7 +442,7 @@ export const GOAL_TILE_CONFIG: Record<
   "Hormonal optimization": {
     displayName: "Hormonal optimization",
     feeling: "Your own axis, restarted.",
-    oneLiner: "HPG-axis restart — endogenous testosterone preservation.",
+    oneLiner: "HPG-axis restart: endogenous testosterone preservation.",
     category: "growth",
     protocol: "HPG-Axis Protocol (Enclomiphene)",
     peptides: "Enclomiphene · Kisspeptin",
@@ -452,10 +452,10 @@ export const GOAL_TILE_CONFIG: Record<
   "Other / not sure yet": {
     displayName: "Not sure yet",
     feeling: "Start where you are.",
-    oneLiner: "A physician will help you triage after labs return.",
+    oneLiner: "Your doctor helps you choose from your questionnaire.",
     category: "cognition",
-    protocol: "Physician-Guided Match",
-    peptides: "Determined after lab review",
+    protocol: "Doctor-Guided Match",
+    peptides: "Determined at doctor review",
     monthlyRange: "Varies by protocol",
     glyph: "drop",
   },

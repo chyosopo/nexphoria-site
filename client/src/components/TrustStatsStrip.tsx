@@ -1,6 +1,5 @@
 import { motion, useInView, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { SITE_STATS } from "@/data/siteStats";
 
 /* ─────────────────────────────────────────────────────────────
    TrustStatsStrip — reference-grade proof-strip with animated
@@ -27,14 +26,10 @@ export interface TrustStatsStripProps {
   variant?: "light" | "dark";
 }
 
-// {PLACEHOLDER} Default stats are illustrative until verified operating
-// metrics are supplied — replace before launch.
-const DEFAULT_STATS: TrustStat[] = [
-  { number: 50000, suffix: "+", label: "Patients served", caption: "Across all 50 states" },
-  { number: 7, label: "Peer-reviewed publications", caption: "By our medical team" },
-  { number: 3, label: "Formulation patents", caption: "Filed in the United States" },
-  { number: SITE_STATS.labSites.value, suffix: "+", label: "Lab testing sites", caption: "Nationwide partnership network" },
-];
+// Retired 2026-09-03: the placeholder figures (patients served, publications,
+// patents, lab sites) were unverified and rendered on /pricing. The strip now
+// renders nothing unless real, Chiya-confirmed stats are passed in.
+const DEFAULT_STATS: TrustStat[] = [];
 
 export function TrustStatsStrip({
   eyebrow = "Track record",
@@ -42,6 +37,7 @@ export function TrustStatsStrip({
   stats = DEFAULT_STATS,
   variant = "light",
 }: TrustStatsStripProps) {
+  if (stats.length === 0) return null;
   const isDark = variant === "dark";
 
   return (

@@ -43,9 +43,9 @@ const STEPS: Step[] = [
     objection: "“Is this just a form that rubber-stamps a sale?” It exists to rule out people for whom a protocol is wrong, before a physician spends time on the file, and it can end there.",
   },
   {
-    n: "02", t: "Physician review", Icon: Stethoscope,
+    n: "02", t: "Your doctor decides", Icon: Stethoscope,
     img: stepPhysician, imgAlt: "Two physicians review a patient chart together",
-    d: "A licensed U.S. physician reads your intake against your markers. If a protocol is appropriate, it is prescribed. If it is not, you are told so plainly.",
+    d: "A licensed U.S. doctor reads your questionnaire. If a plan is appropriate, it is prescribed. If it is not, you are told so plainly.",
     detail: "A physician is the only party who can authorize a prescription here, and that authority sits with them alone. Some intakes end at this step with “not a candidate.” The refund policy sets out what is refunded.",
     objection: "“Is there really a doctor, or a checkbox?” A named, state-licensed physician owns the decision and the liability for it.",
   },
@@ -80,9 +80,9 @@ const STEPS: Step[] = [
   {
     n: "07", t: "Your dose, adjusted", Icon: RefreshCw,
     img: stepRetest, imgAlt: "A physician reads a printed lab panel at a light table",
-    d: "Your week-12 panel is placed next to your plan, and a physician decides what changes.",
-    detail: "This is the step most of the market skips. The markers are read against your plan, and the physician holds, adjusts, or tapers accordingly. The loop is the product, and the vial is part of it.",
-    objection: "“What am I actually paying for?” Ongoing physician oversight, anchored to your own blood at week 12.",
+    d: "Your week-12 panel is placed next to your plan, and your doctor decides what changes.",
+    detail: "This is the step most of the market skips. The markers are read against your plan, and your doctor continues, adjusts, or stops accordingly. The loop is the product, and the vial is part of it.",
+    objection: "“What am I actually paying for?” A doctor who stays with you, anchored to your own blood at week 12.",
   },
 ];
 
@@ -94,10 +94,10 @@ const STATS: { value: string; label: string }[] = [
 ];
 
 const COMPARE: { row: string; them: string; us: string }[] = [
-  { row: "Who authorizes it", them: "A checkout button", us: "A licensed U.S. physician" },
+  { row: "Who authorizes it", them: "A checkout button", us: "A licensed U.S. doctor" },
   { row: "Blood panel", them: "Rarely, if ever", us: "A full panel at week 12, included" },
   { row: "Where it’s made", them: "Often unnamed", us: "State-licensed 503A pharmacy" },
-  { row: "After you buy", them: "Silence", us: "A week-12 panel and a physician review" },
+  { row: "After you buy", them: "Silence", us: "A week-12 panel and your doctor's read of it" },
   { row: "What you’re buying", them: "A vial", us: "The measured loop around it" },
 ];
 
@@ -246,13 +246,13 @@ export default function HowItWorks() {
               A prescription is a hypothesis. <em style={{ color: "var(--nx-acid)" }}>The retest is the evidence.</em>
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.65, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "58ch", marginTop: "1.3rem" }}>
-              Most of this market sells vials and disappears. Here, every ninety days the same markers are drawn again, the trend is placed next to the protocol, and a physician decides what changes. Nothing is assumed. Everything is measured.
+              Most of this market sells vials and disappears. Here, your blood is drawn at week 12, placed next to your plan, and your doctor decides what changes. Everything is measured.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "clamp(1.8rem,3.5vw,2.6rem)", maxWidth: 760 }}>
               {[
                 { k: "Draw", v: "A full panel at week 12, read against your start." },
                 { k: "Read", v: "Movement placed beside the active protocol." },
-                { k: "Decide", v: "A physician holds, adjusts, or tapers the dose." },
+                { k: "Decide", v: "Your doctor continues, adjusts, or stops the dose." },
               ].map((x) => (
                 <div key={x.k} className="nx-stat-card on-dark" style={{ gap: 8 }}>
                   <span style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-ceramic)" }}>{x.k}</span>
@@ -317,7 +317,7 @@ export default function HowItWorks() {
           Licensed physicians · State-licensed 503A pharmacies · Prescription required · One dashboard
         </p>
         <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "1.4rem auto 0", lineHeight: 1.1 }}>
-          Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Nothing is made without a prescription.</em>
+          Your doctor decides first. <em style={{ color: "var(--nx-cobalt)" }}>Then your medicine is made for you.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.7rem" }} data-testid="hiw-cta">
           Start your assessment

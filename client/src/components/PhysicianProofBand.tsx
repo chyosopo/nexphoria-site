@@ -20,7 +20,7 @@ export function PhysicianGate({ testid = "physician-gate", style }: { testid?: s
       />
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.45, color: "var(--nx-fg-graphite)", margin: 0, textAlign: "left" }}>
         <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Reviewed by a board-certified U.S. physician</strong>
-        {" "}— licensed in your state, and free to decline.
+        , licensed in your state, and free to decline.
       </p>
     </div>
   );
@@ -59,7 +59,7 @@ export function PhysicianProofBand({ name }: { name: string }) {
         </div>
         <div>
           <p className="nx-proof-quote" style={{ fontSize: "var(--nx-t-xl)" }}>
-            Every {name} prescription is written by a U.S. licensed physician who has read your bloodwork. Some files end there.
+            Every {name} prescription is written by a U.S. licensed physician who has read your questionnaire. Some files end there.
           </p>
           <p className="nx-proof-attr" style={{ marginTop: 10 }}>The Nexphoria clinical standard</p>
         </div>

@@ -23,7 +23,7 @@ import type { SoloPeptide } from "@/data/soloCatalog";
  *  gated products state the posture, priced products lead with the lowest real
  *  cadence, and anything else is honest about being set at consultation. */
 export function priceLineFor(s: SoloPeptide): string {
-  if (s.gated) return "Physician-assessed";
+  if (s.gated) return "Doctor-assessed";
   if (s.pricing) return `From ${usd(s.pricing.m12)}/mo`;
   const p = getPrice(s.slug);
   return p ? `From ${usd(p.monthlyPrice)}/mo` : "Priced at consultation";
@@ -72,7 +72,7 @@ export function ProductCard({
           <p className="nx-card-reveal__body">{sku.mechanism}</p>
           <dl className="nx-card-reveal__facts">
             <div><dt>Dose</dt><dd>{sku.dose}</dd></div>
-            <div><dt>Gated on</dt><dd>{sku.panel} panel</dd></div>
+            <div><dt>Week 12</dt><dd>{sku.panel} panel</dd></div>
           </dl>
         </div>
       </div>

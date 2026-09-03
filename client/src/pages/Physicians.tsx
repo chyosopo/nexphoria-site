@@ -101,9 +101,9 @@ export default function Physicians() {
                     lineHeight: 1.7,
                   }}
                 >
-                  Peptide medicine is precision pharmacology. A physician on the network does not
-                  prescribe from a questionnaire — your dose is calibrated against your measured
-                  IGF-1, metabolic, and hormonal markers, then read at week 12 and adjusted.
+                  Peptide medicine is precision pharmacology. Your doctor prescribes from your
+                  questionnaire, then reads your full blood panel at week 12, IGF-1, metabolic and
+                  hormonal markers included, and adjusts your dose from what changed.
                 </p>
               </div>
             </Reveal>
@@ -169,8 +169,8 @@ export default function Physicians() {
                 >
                   Every prescribing physician is U.S.-licensed, board-certified and
                   DEA-registered, and holds a current licence in the state where you live.
-                  Each one reviews actual laboratory results before issuing a prescription;
-                  an intake questionnaire on its own is never enough to prescribe against.
+                  Each one reads your full questionnaire before issuing a prescription, and your
+                  full blood panel at week 12 before adjusting it.
                 </p>
                 <ul
                   style={{
@@ -261,9 +261,8 @@ export default function Physicians() {
                       marginBottom: "2rem",
                     }}
                   >
-                    "Peptide medicine is precision pharmacology — labs, dosing, monitoring,
-                    and a physician who understands your individual baseline. Without all four,
-                    it is guesswork with a syringe."
+                    "Peptide medicine is precision pharmacology: a careful start, a dose, and a
+                    doctor who reads your blood at week 12 and adjusts. All three, every time."
                   </p>
                   <div>
                     <p
@@ -287,7 +286,7 @@ export default function Physicians() {
                         color: "var(--nx-cobalt)",
                       }}
                     >
-                      Board-certified <span aria-hidden="true">·</span> Lab-gated <span aria-hidden="true">·</span> Physician-reviewed
+                      Board-certified <span aria-hidden="true">·</span> U.S. licensed <span aria-hidden="true">·</span> Reads your blood at week 12
                     </p>
                   </div>
                 </div>
@@ -484,14 +483,15 @@ function PhysiciansHeroDark() {
                 marginBottom: "2rem",
               }}
             >
-              Every plan is reviewed by a board-certified, U.S. licensed doctor against your
-              bloodwork, and signed by a doctor licensed in your state. A person decides, every time.
+              Every plan is read by a board-certified, U.S. licensed doctor from your
+              questionnaire, and signed by a doctor licensed in your state. At week 12 they read
+              your blood. A person decides, every time.
             </p>
             <div role="list" style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginBottom: "2.5rem" }}>
               {[
-                "Reads your file first",
-                "Signs every refill",
-                "Direct portal messaging",
+                "Reads every answer",
+                "Signs your prescription",
+                "Reads your blood at week 12",
                 "Licensed in your state",
               ].map((chip) => (
                 <span

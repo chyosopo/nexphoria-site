@@ -72,14 +72,14 @@ const PROOF_STATS: { value: string; label: string; Icon: LucideIcon }[] = [
   { value: String(PANEL_TOTAL_MARKERS), label: "Biomarkers per panel", Icon: Activity },
   { value: "503A", label: "state-licensed pharmacy", Icon: ShieldCheck },
   { value: "Week 12", label: "Full panel, included", Icon: RefreshCw },
-  { value: "100%", label: "Physician-reviewed", Icon: Stethoscope },
+  { value: "100%", label: "Doctor-reviewed", Icon: Stethoscope },
 ];
 
 // The fixed clinical order — rendered as a drawn process timeline.
 const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
-  { t: "Structured intake", d: "History, goals, medications, and contraindications — read by the physician who signs the prescription.", Icon: ClipboardList },
+  { t: "Structured intake", d: "History, goals, medications, and contraindications, read by the doctor who signs the prescription.", Icon: ClipboardList },
   { t: "Laboratory bloodwork", d: "A full panel at a CLIA-certified partner lab at week 12, across every system a plan can touch.", Icon: Microscope },
-  { t: "Physician review", d: "A licensed U.S. physician reads your labs against your intake and writes — or declines — the prescription.", Icon: Stethoscope },
+  { t: "Doctor review", d: "A licensed U.S. physician reads your questionnaire and writes, or declines, the prescription.", Icon: Stethoscope },
   { t: "503A compounding", d: "Sterile-prepared under USP <797>, batch-documented, third-party verified.", Icon: FlaskConical },
   { t: "Cold-chain delivery", d: "Temperature-controlled to your door in discreet, unbranded packaging.", Icon: Snowflake },
   { t: "Dashboard & week-12 panel", d: "Markers and trends in one place. Then the panel is drawn at week 12 and the dose reviewed.", Icon: LayoutDashboard },
@@ -88,15 +88,15 @@ const PROCESS: { t: string; d: string; Icon: LucideIcon }[] = [
 // The three tenets of the manifesto, as visual principle cards.
 const PRINCIPLES: { t: string; d: string; Icon: LucideIcon }[] = [
   { t: "Measured, then adjusted", d: "Every plan gets a full blood panel at week 12, and every dose change follows the measured data.", Icon: Ruler },
-  { t: "Physicians before protocols", d: "A board-certified U.S. physician owns every prescription, and the liability that comes with signing it.", Icon: Stethoscope },
-  { t: "Mechanism before marketing", d: "We publish what is in the vial, who made it, and how it works — before we make a single claim.", Icon: Target },
+  { t: "Doctors before protocols", d: "A board-certified U.S. physician owns every prescription, and the liability that comes with signing it.", Icon: Stethoscope },
+  { t: "Mechanism before marketing", d: "We publish what is in the vial, who made it, and how it works before we make a single claim.", Icon: Target },
 ];
 
 const PILLARS = [
   {
     num: "01",
-    title: "Physician-guided",
-    desc: "Board-certified US physicians review your labs and write every prescription. You arrive as a patient and are treated as one. Every protocol is designed by an MD reading your bloodwork.",
+    title: "Doctor-guided",
+    desc: "Board-certified US physicians review your questionnaire and write every prescription. You arrive as a patient and are treated as one. At week 12, your doctor reads your full blood panel and adjusts your dose from it.",
   },
   {
     num: "02",
@@ -116,11 +116,11 @@ const PILLARS = [
 const ROLES = [
   {
     title: "Medical leadership",
-    desc: "Board-certified U.S. physicians own the clinical standard that gates every prescription — physician oversight first, always.",
+    desc: "Board-certified U.S. physicians own the clinical standard behind every prescription. Doctor oversight first, always.",
   },
   {
-    title: "Physician review",
-    desc: "A licensed physician reads your labs and your intake, and writes every prescription. A clinician decides, and signs.",
+    title: "Doctor review",
+    desc: "A licensed physician reads your questionnaire and writes every prescription. A clinician decides, and signs.",
   },
   {
     title: "Pharmacy operations",
@@ -144,8 +144,8 @@ const ADVISORY_SPECIALTIES = [
 const STANDARDS = [
   {
     num: "01",
-    title: "HIPAA-compliant",
-    detail: "PHI encrypted in transit and at rest. Business Associate Agreements with every partner touching your data.",
+    title: "Your privacy",
+    detail: "Your health answers go to your doctor and the pharmacy that fills your prescription, encrypted in transit.",
   },
   {
     num: "02",
@@ -159,8 +159,8 @@ const STANDARDS = [
   },
   {
     num: "04",
-    title: "Laboratory-gated prescribing",
-    detail: "No labs, no protocol. CLIA-certified partner-laboratory panels required before and throughout therapy.",
+    title: "Laboratory-measured therapy",
+    detail: "One full panel at a CLIA-certified partner laboratory at week 12 of every plan. Your doctor adjusts your dose from it.",
   },
 ];
 
@@ -171,15 +171,15 @@ const STANDARDS = [
 const ABOUT_FAQ_ITEMS = [
   {
     q: "Who founded Nexphoria?",
-    a: "Nexphoria was founded by a team of physicians, pharmacists, and health-technology operators who saw firsthand the risks of unregulated peptide self-administration. The platform was built to provide the same level of clinical rigor patients expect from a specialist office — prescription review, pharmacy-grade compounding, and lab monitoring — through an accessible telehealth interface.",
+    a: "Nexphoria was founded by a team of doctors, pharmacists, and health-technology operators who saw firsthand the risks of unregulated peptide self-administration. The platform was built to provide the same level of clinical rigor patients expect from a specialist office, prescription review, pharmacy-grade compounding, and lab monitoring, through an accessible telehealth interface.",
   },
   {
     q: "What makes Nexphoria different from other peptide companies?",
-    a: "Nexphoria is a physician-supervised telehealth platform. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with a CLIA-certified partner-laboratory panel at week 12. That chain, clinician, licensed pharmacy, documented batch, measured markers, is what you are buying.",
+    a: "Nexphoria is a doctor-supervised telehealth platform. Every compound is prescribed by a board-certified clinician, compounded in a 503A-licensed U.S. pharmacy, batch-tested with a Certificate of Analysis, and monitored with a CLIA-certified partner-laboratory panel at week 12. That chain, clinician, licensed pharmacy, documented batch, measured markers, is what you are buying.",
   },
   {
     q: "Is Nexphoria affiliated with Bask Health?",
-    a: "Nexphoria uses Bask Health as its telehealth infrastructure partner. Bask Health is a licensed telehealth platform that connects patients with board-certified physicians. The prescribing physicians you interact with through Nexphoria are independent licensed clinicians — Nexphoria does not employ physicians or influence clinical decision-making.",
+    a: "Nexphoria uses Bask Health as its telehealth infrastructure partner. Bask Health is a licensed telehealth platform that connects patients with board-certified physicians. The prescribing physicians you interact with through Nexphoria are independent licensed clinicians. Nexphoria does not employ physicians or influence clinical decision-making.",
   },
   {
     q: "Is Nexphoria accredited or regulated?",
@@ -189,14 +189,14 @@ const ABOUT_FAQ_ITEMS = [
 
 export default function About() {
   useSeo({
-    title: "About Nexphoria — physician-founded, pharmacy-grade peptide care",
+    title: "About Nexphoria: doctor-founded, pharmacy-grade peptide care",
     description:
-      "Nexphoria is a physician-guided peptide platform with 503A compounding, board-certified physician oversight, and CLIA-certified partner-laboratory monitoring.",
+      "Nexphoria is a doctor-guided peptide platform with 503A compounding, board-certified physician oversight, and CLIA-certified partner-laboratory monitoring.",
     path: "/about",
     jsonLd: [
       webPageJsonLd({
         name: "About Nexphoria",
-        description: "Physician-guided peptide therapy platform with 503A compounding, board-certified physicians, and CLIA-certified partner-laboratory monitoring.",
+        description: "Doctor-guided peptide therapy platform with 503A compounding, board-certified physicians, and CLIA-certified partner-laboratory monitoring.",
         path: "/about",
       }),
       orgJsonLd(),
@@ -228,7 +228,7 @@ export default function About() {
                 maxWidth: 680,
               }}
             >
-              Nexphoria is a U.S.-based physician-supervised peptide therapy platform that delivers prescription compounded peptides through licensed telehealth, with every batch third-party tested and 90-day biomarker follow-up included in every subscription.
+              Nexphoria is a U.S.-based doctor-supervised peptide therapy platform that delivers prescription compounded peptides through licensed telehealth, with every batch third-party tested and a full blood panel at week 12 included in every plan.
             </p>
             <h1
               id="about-h1"
@@ -257,9 +257,9 @@ export default function About() {
                 marginTop: 26,
               }}
             >
-              We build physician-supervised peptide protocols for performance, longevity, and
-              recovery. Designed by clinicians. Compounded in US 503A pharmacies. Gated on your
-              own bloodwork.
+              We build doctor-supervised peptide protocols for performance, longevity, and
+              recovery. Designed by clinicians. Compounded in US 503A pharmacies. Measured
+              against your own bloodwork at week 12.
             </p>
           </Reveal>
         </div>
@@ -300,7 +300,7 @@ export default function About() {
                     display: "inline-block",
                   }}
                 >
-                  Real medicine. A physician on every case.
+                  Real medicine. A doctor on every case.
                 </p>
               </figcaption>
             </figure>
@@ -373,10 +373,10 @@ export default function About() {
             <Reveal>
               <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                 <p style={bodyCopy}>
-                  For years, the peptide market operated in an unregulated gray zone — powders of
-                  unknown provenance, unstated concentrations, no physician involvement, and no
+                  For years, the peptide market operated in an unregulated gray zone: powders of
+                  unknown provenance, unstated concentrations, no doctor involvement, and no
                   laboratory accountability. Consumers were left to source, reconstitute, and
-                  self-administer compounds with no pharmacist or physician in the chain. The
+                  self-administer compounds with no pharmacist or doctor in the chain. The
                   primary distribution channel was influencer testimonial, not clinical evidence.
                 </p>
                 <p style={bodyCopy}>
@@ -386,9 +386,9 @@ export default function About() {
                   the accountabilities we wanted behind every vial we ship.
                 </p>
                 <p style={bodyCopy}>
-                  So we built the company in the order a clinic would: physician oversight first,
-                  503A compounding under USP &lt;797&gt; second, laboratory accountability gating
-                  everything. Labs before guesswork. Physicians before protocols. Mechanism before
+                  So we built the company in the order a clinic would: doctor oversight first,
+                  503A compounding under USP &lt;797&gt; second, a full blood panel at week 12 of
+                  every plan. Measured, then adjusted. Doctors before protocols. Mechanism before
                   marketing claim.
                 </p>
               </div>
@@ -425,7 +425,7 @@ export default function About() {
           <Reveal>
             <p style={eyebrow}>{eyebrowRule}Our approach</p>
             <h2 style={{ ...sectionHeading, maxWidth: "680px", marginBottom: "3rem" }}>
-              Physician-guided. Compounded. Measured.
+              Doctor-guided. Compounded. Measured.
             </h2>
           </Reveal>
           <Reveal>
@@ -485,7 +485,7 @@ export default function About() {
               Built in the order a clinic would.
             </h2>
             <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
-              Six steps, one fixed order. No step is optional, and none of them bends to speed a sale.
+              Six steps, one fixed order. Every step is required, every time.
             </p>
           </Reveal>
           <div className="nx-timeline" style={{ maxWidth: 780 }}>
@@ -551,8 +551,8 @@ export default function About() {
               The functions accountable for your care.
             </h2>
             <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
-              Nexphoria is founder-led and physician-guided. Prescribing is performed by
-              independent, U.S.-licensed physicians through our telehealth partner — Nexphoria
+              Nexphoria is founder-led and doctor-guided. Prescribing is performed by
+              independent, U.S.-licensed physicians through our telehealth partner. Nexphoria
               coordinates the platform and does not direct clinical decision-making.
             </p>
           </Reveal>
@@ -603,7 +603,7 @@ export default function About() {
               </p>
               <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "1.5rem" }}>
                 Protocols are reviewed by board-certified physicians across the fields that peptide
-                therapy touches. Physicians are matched to your state of residence.
+                therapy touches. Your doctor is matched to your state of residence.
               </p>
             </Reveal>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
@@ -644,7 +644,7 @@ export default function About() {
               Four standards we hold on every order.
             </h2>
             <p style={{ ...bodyCopy, maxWidth: "620px", marginBottom: "3rem" }}>
-              No exceptions, no add-on tiers.
+              The same four on every order, at every tier.
             </p>
           </Reveal>
           <Reveal>
@@ -801,14 +801,14 @@ export default function About() {
                 marginBottom: "3rem",
               }}
             >
-              Every choice we made — pharmacy, physicians, labs, price — answers to one question: would we hand this to our own family?
+              Every choice we made, pharmacy, doctors, labs, price, answers to one question: would we hand this to our own family?
             </p>
           </Reveal>
 
           <BenefitTileGrid cols={3}>
             <BenefitTile
               tone="cream"
-              eyebrow="Physicians"
+              eyebrow="Doctors"
               icon={<HeartPulse size={18} strokeWidth={1.5} />}
               headline="US board-certified physicians. Every case."
               sub="A licensed physician reads your questionnaire before we compound anything, and your full blood panel at week 12."
@@ -819,7 +819,7 @@ export default function About() {
               eyebrow="Compounding"
               icon={<ShieldCheck size={18} strokeWidth={1.5} />}
               headline="503A US pharmacies only."
-              sub="Every vial compounded in a US 503A facility we audit — domestic, batch-documented, every time."
+              sub="Every vial compounded in a US 503A facility we audit. Domestic, batch-documented, every time."
               testId="about-tile-compounding"
             />
             <BenefitTile
@@ -827,7 +827,7 @@ export default function About() {
               eyebrow="Bloodwork"
               icon={<Microscope size={18} strokeWidth={1.5} />}
               headline="A full blood panel at week 12."
-              sub="Every plan includes full biomarker panels. Dose changes follow labs, not vibes."
+              sub="Every plan includes one full blood panel at week 12. Dose changes follow what it shows."
               testId="about-tile-bloodwork"
             />
             <BenefitTile
@@ -850,8 +850,8 @@ export default function About() {
               tone="cream"
               eyebrow="Care"
               icon={<MessageSquare size={18} strokeWidth={1.5} />}
-              headline="Physician messaging between visits."
-              sub="Side effect? Question about a dose? Message your care team — a physician-guided team replies."
+              headline="Doctor messaging between visits."
+              sub="Side effect? Question about a dose? Message your care team. A doctor-guided team replies."
               testId="about-tile-care"
             />
           </BenefitTileGrid>
@@ -877,7 +877,7 @@ export default function About() {
               }}
             >
               "Precision medicine is a commitment to treating every patient as a unique biological
-              system. Labs before guesswork. Physicians before protocols. Mechanism before claim.
+              system. Measured, then adjusted. Doctors before protocols. Mechanism before claim.
               That is Nexphoria."
             </p>
             <p
@@ -914,8 +914,8 @@ export default function About() {
       </section>
 
       <FinalCTAStrip
-        title="Your protocol, built on your bloodwork."
-        sub="Start your intake and receive a physician-reviewed protocol built for your physiology. CLIA-certified partner-laboratory panel included."
+        title="Your protocol, measured against your bloodwork."
+        sub="Start your intake and receive a doctor-reviewed protocol built for your physiology. CLIA-certified partner-laboratory panel at week 12, included."
       />
 
       <style>{`

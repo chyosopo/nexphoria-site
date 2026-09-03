@@ -59,7 +59,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
   useSeo({
     title: solo ? `${solo.name}: ${solo.category} | Nexphoria` : "Peptide | Nexphoria",
-    description: solo ? `${solo.name}: ${solo.dose}. Physician-prescribed, ${solo.panel}-panel gated, retested. Educational content, not medical advice.` : "",
+    description: solo ? `${solo.name}: ${solo.dose}. Doctor-prescribed, with a full blood panel at week 12. Educational content, not medical advice.` : "",
     // Canonicalize all three variants (/peptides, /men/peptides, /women/peptides)
     // to the neutral PDP so Google consolidates them instead of collapsing every
     // PDP onto the homepage (the old omitted-path bug deindexed the whole catalog).
@@ -82,7 +82,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         <div style={{ maxWidth: 640, margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
           <h1 style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: 12 }}>Peptide not found</h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", marginBottom: 28 }}>
-            That entry isn’t in the current formulary. Browse the full catalog or start an assessment.
+            That entry is outside the current formulary. Browse the full catalog or start an assessment.
           </p>
           <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
             ← All peptides
@@ -126,7 +126,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const parentStackArt = parentStack ? stackArt(parentStack.slug, imgWorld) : undefined;
 
   const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
-    { Icon: Stethoscope, t: "Physician review & prescription" },
+    { Icon: Stethoscope, t: "Doctor review & prescription" },
     { Icon: Microscope, t: `${solo.panel} bloodwork panel` },
     { Icon: FlaskConical, t: "503A pharmacy compounding" },
     { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
@@ -135,9 +135,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   ];
 
   const WHY: { Icon: typeof Stethoscope; t: string; d: string }[] = [
-    { Icon: Stethoscope, t: "Prescribed", d: "A licensed U.S. physician authorizes it against your intake and your panel, and signs for it." },
-    { Icon: Microscope, t: "Full panel at week 12", d: "A full blood panel, included, drawn at week 12 and read by your physician." },
-    { Icon: RefreshCw, t: "Dose reviewed at week 12", d: "Your physician holds, adjusts or tapers your dose from what the panel shows." },
+    { Icon: Stethoscope, t: "Prescribed", d: "A licensed U.S. physician authorizes it from your questionnaire, and signs for it." },
+    { Icon: Microscope, t: "Full panel at week 12", d: "A full blood panel, included, drawn at week 12 and read by your doctor." },
+    { Icon: RefreshCw, t: "Dose reviewed at week 12", d: "Your doctor holds, adjusts or tapers your dose from what the panel shows." },
   ];
 
   const tiers: BuyTier[] | undefined = solo.pricing
@@ -160,7 +160,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         ? `From ${usd(getPrice(solo.slug)!.monthlyPrice)}/mo`
         : "Set at consultation";
   const heroPriceSub = solo.gated
-    ? "Priced once a physician has reviewed your intake"
+    ? "Priced once your doctor has reviewed your questionnaire"
     : solo.pricing
       ? "on the 12-month cadence · panel included"
       : undefined;
@@ -194,7 +194,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 }}
                 data-testid={`solo-posture-${solo.slug}`}
               >
-                {solo.gated ? "Physician-assessed" : "Prescription only"}
+                {solo.gated ? "Doctor-assessed" : "Prescription only"}
               </span>
             </div>
 
@@ -215,7 +215,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ maxWidth: 460, marginTop: "1.4rem" }}>
                 <SpecPlate
                   name={solo.name}
-                  nomenclature={`${solo.category.toLowerCase()} · physician-prescribed`}
+                  nomenclature={`${solo.category.toLowerCase()} · doctor-prescribed`}
                   rows={[
                     { label: "Dose", value: solo.dose },
                     { label: "Format", value: solo.spec },
@@ -254,7 +254,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 </a>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.55, color: "var(--nx-fg-muted)", marginTop: "0.8rem", maxWidth: "44ch" }}>
-                Your doctor decides. Nothing is made without a prescription.
+                Your doctor decides. Every vial is made on a prescription.
               </p>
             </div>
           </div>
@@ -319,18 +319,18 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="nx-icon-circle" aria-hidden><Microscope size={19} strokeWidth={1.9} /></span>
                 <div>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your week-12 bloodwork</p>
                   <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)" }}>{solo.panel} panel</h3>
                 </div>
               </div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "56ch" }}>{solo.panelNote ?? "Reviewed by your physician before and during the protocol."}</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "56ch" }}>{solo.panelNote ?? "Drawn at week 12 and read by your doctor."}</p>
               <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See the panels →</Link>
             </div>
 
             {solo.gated && (
               <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(1.8rem,3.5vw,2.4rem)" }}>
                 <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", maxWidth: "26ch" }}>GLP-1 therapy is prescribed after your doctor reviews you.</h3>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your physician prescribes and titrates it against your bloodwork.</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.7rem" }}>Eligibility depends on your medical history and your state. Begin with a structured intake; if appropriate, your doctor prescribes it from your questionnaire and adjusts it from your week-12 panel.</p>
               </div>
             )}
 
@@ -479,7 +479,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   {parentFrom ? (
                     <>From {parentFrom}/mo<span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span></>
                   ) : (
-                    "Physician-assessed"
+                    "Doctor-assessed"
                   )}
                 </span>
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", display: "inline-flex", alignItems: "center", gap: 6 }}>
@@ -498,7 +498,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             Often prescribed on the same axis
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
-            Compounds your physician may consider alongside {solo.name} — same intake, same panel, one prescription decision.
+            Compounds your doctor may consider alongside {solo.name}: same intake, same panel, one prescription decision.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
             {related.map((r, i) => (
@@ -509,7 +509,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{r.name}</h3>
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.mechanism}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
-                      {r.pricing ? `From $${r.pricing.m12}/mo` : "Physician-priced"}
+                      {r.pricing ? `From $${r.pricing.m12}/mo` : "Doctor-priced"}
                       <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
                     </p>
                   </div>
@@ -521,7 +521,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       )}
 
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Nothing is made without a prescription.</em></h2>
+        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Every vial is made on a prescription.</em></h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Start your assessment</Link>
       </section>
     </SiteLayout>

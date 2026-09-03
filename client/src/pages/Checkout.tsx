@@ -19,6 +19,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
+import { PayToday } from "@/components/PayToday";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 
 /* Local form schema — server validates on submit via insertCheckoutSchema.
@@ -112,7 +113,7 @@ export default function Checkout() {
       track("checkout_capture_unavailable", {});
       toast({
         title: "We could not submit your intake",
-        description: "Nothing was sent and no card was charged. Please try again, or email hello@nexphoria.com and our team will complete it with you.",
+        description: "Your answers stayed on this page. Please try again, or email hello@nexphoria.com and a person will finish it with you.",
         variant: "destructive",
       });
     },
@@ -178,7 +179,7 @@ export default function Checkout() {
                   {[
                     "Physician reviews intake and cart",
                     "You receive a secure approval link by email",
-                    "Bloodwork ordered to your nearest partner laboratory",
+                    "Your medicine is made for you in a licensed 503A pharmacy",
                     "Compounded shipment sent in cold-chain packaging",
                   ].map((t, i) => (
                     <li key={i} className="flex gap-2.5 items-start">
@@ -188,7 +189,7 @@ export default function Checkout() {
                   ))}
                 </ul>
                 <Link href="/what-happens-next" className="nx-text-link" data-testid="checkout-timeline-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-flex" }}>
-                  See the full timeline →
+                  See the full timeline
                 </Link>
               </div>
               <Link asChild href="/">
@@ -261,10 +262,10 @@ export default function Checkout() {
               className="text-4xl md:text-5xl mb-3"
               style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
             >
-              Submit for physician review
+              Your plan, then your doctor.
             </h1>
             <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
-              Every order is reviewed by a licensed physician before it ships.
+              Check out, answer the questionnaire, and a U.S. licensed doctor decides. If it is a yes, your medicine is made for you and ships cold.
             </p>
             <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.6rem" }} />
             <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />
@@ -315,7 +316,7 @@ export default function Checkout() {
                 <>
                   <Section title="Where should we ship?" eyebrow="Step 01 · Address">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Cold-chain shipped after physician approval to all 50 states. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
+                      Shipped cold to all 50 states once your doctor says yes. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
                     </p>
                     <Row>
                       <Field label="Full name" error={errors.name?.message}>
@@ -369,7 +370,7 @@ export default function Checkout() {
                   </Section>
 
                   <StepNav>
-                    <PrimaryBtn onClick={goNext} testId="button-step-payment">Continue to payment →</PrimaryBtn>
+                    <PrimaryBtn onClick={goNext} testId="button-step-payment">Continue to payment</PrimaryBtn>
                   </StepNav>
                 </>
               )}
@@ -386,12 +387,12 @@ export default function Checkout() {
                       <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                       <div>
                         <p className="text-sm font-semibold mb-1" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
-                          Physician review comes first — no card is collected today.
+                          Your doctor decides before anything is made.
                         </p>
                         <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                          When you submit, your intake and cart go to a US-licensed physician. If your protocol is
-                          approved, you'll receive a secure payment link from Bask Health, our telehealth billing
-                          partner, to complete checkout. You are never charged before a physician approves.
+                          Billing runs through Bask Health, our telehealth billing partner. The figure is complete:
+                          one number a month, with your doctor's review, your medicine, cold shipping and the week-12
+                          blood panel within it. If your doctor declines, the refund policy sets out what is refunded.
                         </p>
                       </div>
                     </div>
@@ -401,10 +402,10 @@ export default function Checkout() {
                     </p>
                     <ol className="list-none p-0 space-y-3">
                       {[
-                        "Submit your intake and cart for physician review.",
-                        "A US-licensed physician reviews your protocol after you submit.",
-                        "On approval, a secure payment link is emailed to you.",
-                        "You complete payment through our PCI-compliant billing partner; your order then ships cold-chain.",
+                        "Check out at the figure shown. One number a month.",
+                        "Answer the questionnaire. Two minutes.",
+                        "A U.S. licensed doctor reads every answer and decides.",
+                        "If it is a yes, your medicine is made for you and ships cold. If it is a no, the refund policy applies.",
                       ].map((t, i) => (
                         <li
                           key={i}
@@ -434,14 +435,14 @@ export default function Checkout() {
                         Send them the figure — one payment on their side, and your results stay yours.
                       </p>
                       <Link href="/gift?mode=request" className="nx-text-link" data-testid="checkout-gift-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                        Create the link →
+                        Create the link
                       </Link>
                     </div>
                   </Section>
 
                   <StepNav>
                     <GhostBtn onClick={() => setStep(0)} testId="button-step-back-address">← Back</GhostBtn>
-                    <PrimaryBtn onClick={() => setStep(2)} testId="button-step-review">Continue to review →</PrimaryBtn>
+                    <PrimaryBtn onClick={() => setStep(2)} testId="button-step-review">Continue to review</PrimaryBtn>
                   </StepNav>
                 </>
               )}
@@ -451,7 +452,7 @@ export default function Checkout() {
                 <>
                   <Section title="Health screening" eyebrow="Step 03 · Review">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Answer honestly — this informs physician approval and is covered by HIPAA-aligned data handling.
+                      Answer honestly. Your doctor reads every word, and your answers are encrypted in transit.
                     </p>
                     <div className="space-y-3">
                       <YesNoField
@@ -513,11 +514,11 @@ export default function Checkout() {
                         className="nx-cta-cobalt disabled:opacity-60"
                         data-testid="button-submit-checkout"
                       >
-                        {mutation.isPending ? "Submitting…" : "Submit for physician approval →"}
+                        {mutation.isPending ? "Submitting…" : "Submit to your doctor"}
                       </button>
                     </div>
                     <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                      By submitting, you consent to physician review and HIPAA-aligned data handling. No payment is collected today — final invoice is sent after approval.
+                      By submitting, you consent to review by a licensed physician. Billing runs through Bask Health, and the refund policy sets out what is refunded if your doctor declines.
                     </p>
                     {(() => {
                       const errored = Object.keys(errors);
@@ -603,7 +604,7 @@ export default function Checkout() {
 
               {totalSavings > 0 ? (
                 <div className="flex items-baseline justify-between py-1.5">
-                  <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Stack savings</span>
+                  <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Plan savings</span>
                   <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>−{formatUSD(totalSavings)}</span>
                 </div>
               ) : null}
@@ -615,17 +616,19 @@ export default function Checkout() {
                 </span>
               </div>
 
+              <PayToday amount={formatUSD(subtotal)} testid="checkout-pay-today" style={{ marginTop: "1rem" }} />
+
               {/* Trust marks */}
               <div className="mt-6 pt-6 space-y-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <TrustRow icon={<Stethoscope size={14} />} text="US-licensed physician review on every order" />
-                <TrustRow icon={<Shield size={14} />} text="HIPAA-aligned data handling · encrypted in transit" />
+                <TrustRow icon={<Stethoscope size={14} />} text="A U.S. licensed doctor reviews every order" />
+                <TrustRow icon={<Shield size={14} />} text="Encrypted in transit" />
                 <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
                 <TrustRow icon={<Check size={14} />} text={CONDITIONAL.chargeCondition} />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>
 
               <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                <p>No payment collected today. Final pricing confirmed after physician approval; our billing partner handles all payment processing.</p>
+                <p>Billing is handled by Bask Health, our telehealth billing partner. Prescription only. Your doctor decides, and can decline.</p>
               </div>
               </Reveal>
             </aside>

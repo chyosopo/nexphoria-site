@@ -82,19 +82,19 @@ export const SURFACE_PILLS: { t: string; x: string; y: string; hot?: boolean }[]
    page that says 99 everywhere — the count now derives from the panel data. */
 export const BLOODWORK_FAQ_ITEMS = [
   {
-    q: "What bloodwork does Nexphoria require before prescribing?",
-    a: `A full blood panel of ${PANEL_TOTAL_MARKERS} markers is drawn at week 12 of your plan, included: sugar and insulin, cholesterol and heart, liver and kidneys, hormones, and blood and nutrients. You start first; your requisition is issued as week 12 approaches.`,
+    q: "What bloodwork is part of my plan?",
+    a: `A full blood panel of ${PANEL_TOTAL_MARKERS} markers is drawn at week 12 of your plan, included: sugar and insulin, cholesterol and heart, liver and kidneys, hormones, and blood and nutrients. You start first. We send you what you need for the draw as week 12 approaches.`,
   },
   {
-    q: "How often are labs required during a Nexphoria subscription?",
-    a: "A full panel is drawn at week 12 of your plan and read by your physician, who may adjust your dose or your plan from what it shows. The panel is included in your plan.",
+    q: "How often is blood drawn?",
+    a: "Once, at week 12 of your plan, and it is included. Your doctor reads it and may adjust your dose or your plan from what it shows.",
   },
   {
-    q: "Who reviews my bloodwork at Nexphoria?",
-    a: "Your assigned board-certified physician reviews all partner-laboratory results promptly after receipt. Results are never reviewed by algorithms, nurses, or non-physician staff without physician oversight. Your physician responds via secure portal message with a prescription decision, a follow-up question, or a request for additional information.",
+    q: "Who reads my bloodwork?",
+    a: "Your doctor, a board-certified U.S. licensed physician. They read every marker against the plan you are on and come back with a decision: continue, adjust, or a question for you.",
   },
   {
     q: "Can I use bloodwork I already have?",
-    a: "Your physician may accept CLIA-certified lab results from within the past 30 days in lieu of a new partner-laboratory draw, subject to physician discretion. Results must be from an accredited laboratory and include all required panel markers. Bring documentation to your intake assessment for physician review.",
+    a: "Often, yes. If you have recent results from a CLIA-certified lab that cover the markers in the panel, your doctor may read those. Bring them to your questionnaire. Your doctor decides.",
   },
 ];

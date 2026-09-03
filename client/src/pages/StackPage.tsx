@@ -54,8 +54,8 @@ export default function StackPage({ slug }: { slug: string }) {
     : [];
 
   useSeo({
-    title: stack ? `${stack.name} — ${stack.category} | Nexphoria` : "Stack — Nexphoria",
-    description: stack ? `${stack.name}: ${stack.bestFor} Physician-prescribed, bloodwork-gated, retested.` : "",
+    title: stack ? `${stack.name} · ${stack.category} | Nexphoria` : "Stack | Nexphoria",
+    description: stack ? `${stack.name}: ${stack.bestFor} Doctor-prescribed, with a full blood panel at week 12.` : "",
     // Self-referential canonical/og:url. Without this the page defaulted to the
     // bare homepage URL, collapsing every flagship protocol PDP onto "/" for
     // canonicalization — the same catalog-deindexing trap SoloPDP guards against.
@@ -109,7 +109,7 @@ export default function StackPage({ slug }: { slug: string }) {
       }));
 
   const INCLUDED: { Icon: typeof Pill; t: string }[] = [
-    { Icon: Stethoscope, t: "Physician review & prescription" },
+    { Icon: Stethoscope, t: "Doctor review & prescription" },
     { Icon: Microscope, t: `${stack.panel} bloodwork panel` },
     { Icon: FlaskConical, t: "503A pharmacy compounding" },
     { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
@@ -157,7 +157,7 @@ export default function StackPage({ slug }: { slug: string }) {
                 </Link>
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)" }}>
                   {stack.gated
-                    ? "Physician-assessed only"
+                    ? "Doctor-assessed only"
                     : tiers?.length
                       ? `From ${usd(Math.min(...tiers.map((t) => t.amount)))}/mo · if prescribed`
                       : "Priced at consultation"}
@@ -272,7 +272,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* Required panel */}
             <div className="nx-glass-tile" style={{ display: "block", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Required bloodwork</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your week-12 bloodwork</p>
               <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.4rem" }}>
                 {stack.panel} panel
               </h3>
@@ -288,13 +288,13 @@ export default function StackPage({ slug }: { slug: string }) {
             {stack.gated && (
               <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                  <Lock size={15} aria-hidden="true" /> Physician-assessed only
+                  <Lock size={15} aria-hidden="true" /> Doctor-assessed only
                 </div>
                 <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "24ch" }}>
-                  GLP-1 therapy is prescribed after review — not bought from a shelf.
+                  GLP-1 therapy is prescribed after your doctor reviews you.
                 </h3>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.8rem" }}>
-                  Metabolic therapy is dosed by a licensed physician against your bloodwork and titrated over time. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your physician will prescribe it.
+                  Metabolic therapy is dosed by a licensed physician from your questionnaire, then adjusted from your week-12 panel. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your doctor will prescribe it.
                 </p>
                 {stack.stateExclusions && (
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
@@ -393,7 +393,7 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── CLOSE ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }} aria-labelledby="stack-close-title">
         <h2 id="stack-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
-          Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Nothing is made without a prescription.</em>
+          Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Every vial is made on a prescription.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
           Start your assessment

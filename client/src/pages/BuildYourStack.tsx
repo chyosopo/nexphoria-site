@@ -56,7 +56,7 @@ const GOALS: Goal[] = [
   {
     id: "recovery",
     title: "Repair & recover",
-    blurb: "Tendon, joint, and soft-tissue recovery — studied for training resilience.",
+    blurb: "Tendon, joint, and soft-tissue recovery, studied for training resilience.",
     categories: ["recovery", "growth"],
     recommended: ["bpc-157", "tb-500", "ghk-cu"],
     curatorNote: "Local repair signal + systemic cell migration + collagen synthesis. The classic injury-rehab triad.",
@@ -64,7 +64,7 @@ const GOALS: Goal[] = [
   {
     id: "skin",
     title: "Skin & aesthetics",
-    blurb: "Collagen, tone, dermal density — supported from the inside.",
+    blurb: "Collagen, tone, dermal density, supported from the inside.",
     categories: ["skin", "recovery"],
     recommended: ["ghk-cu", "bpc-157"],
     curatorNote: "Copper-binding tripeptide for dermal renewal, BPC-157 for systemic repair support.",
@@ -72,7 +72,7 @@ const GOALS: Goal[] = [
   {
     id: "weight",
     title: "Weight & metabolic",
-    blurb: "Sustainable fat loss with muscle preservation, monitored monthly.",
+    blurb: "Sustainable fat loss with muscle preservation, under your doctor's review.",
     categories: ["metabolic", "growth"],
     recommended: ["tirzepatide", "ipamorelin", "aod-9604"],
     curatorNote: "GLP-1 for satiety + GH secretagogue to preserve lean mass + adipose-selective lipolysis.",
@@ -162,12 +162,12 @@ type Step = 1 | 2 | 3;
 
 export default function BuildYourStack() {
   useSeo({
-    title: "Build your own peptide stack — custom, physician-reviewed",
-    description: "Pick your goal, choose 2–5 compatible peptides — the bundle rate applies on its own. Every custom stack is reviewed by a US-licensed physician and compounded in a U.S. 503A pharmacy before dispensing.",
+    title: "Build your own peptide stack: custom, doctor-reviewed",
+    description: "Pick your goal, choose 2–5 compatible peptides, and the bundle rate applies on its own. Every custom stack is reviewed by a US-licensed physician and compounded in a U.S. 503A pharmacy before dispensing.",
     path: "/stacks/build",
     jsonLd: [webPageJsonLd({
       name: "Build Your Peptide Stack",
-      description: "Custom physician-reviewed peptide stack builder. Choose your goal, select compounds, get physician review.",
+      description: "Custom doctor-reviewed peptide stack builder. Choose your goal, select compounds, get doctor review.",
       path: "/stacks/build",
     }),
     breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }, { name: "Build Your Stack", path: "/stacks/build" }]),
@@ -513,7 +513,7 @@ export default function BuildYourStack() {
                 }}
                 data-testid="button-skip-goal"
               >
-                Skip — I know exactly what I want
+                Skip. I know exactly what I want
               </button>
             </div>
           </section>
@@ -571,7 +571,7 @@ export default function BuildYourStack() {
                       <div className="min-w-0">
                         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-wide)", color: "var(--nx-acid)", textTransform: "uppercase", marginBottom: 8 }}>
                           <ShieldCheck size={11} aria-hidden="true" className="inline-block mr-1.5 -mt-0.5" />
-                          Physician-curated match
+                          Doctor-curated match
                         </p>
                         <div className="flex items-baseline gap-3 flex-wrap">
                           <h3 style={{ fontFamily: F, fontSize: "var(--nx-t-xl)", fontWeight: 500, letterSpacing: "var(--nx-ls-normal)", color: "var(--nx-ceramic)", lineHeight: 1.1 }} data-testid="text-matched-stack-name">
@@ -742,7 +742,7 @@ export default function BuildYourStack() {
                             {pr?.vialSpec.split("·")[0]?.trim() ?? p.administration}
                           </span>
                           <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600 }}>
-                            {monthly ? `${formatUSD(monthly)}/mo` : "—"}
+                            {monthly ? `${formatUSD(monthly)}/mo` : "Set at consultation"}
                           </span>
                         </div>
                       </button>
@@ -953,14 +953,14 @@ export default function BuildYourStack() {
                     Representative 12-week timeline
                   </p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginBottom: 14, lineHeight: 1.5 }}>
-                    Actual phases and duration are set by your physician for your protocol.
+                    Actual phases and duration are set by your doctor for your protocol.
                   </p>
                   <div className="space-y-0">
                     {[
-                      { weeks: "Wk 1–2", phase: "Titration", note: "Start at lowest dose. Physician confirms tolerance." },
+                      { weeks: "Wk 1–2", phase: "Titration", note: "Start at lowest dose. Your doctor confirms tolerance." },
                       { weeks: "Wk 3–6", phase: "Loading", note: "Full therapeutic dose. First measurable markers." },
-                      { weeks: "Wk 7–10", phase: "Working", note: "Peak biological response. Lab draw at week 8." },
-                      { weeks: "Wk 11–12", phase: "Consolidation", note: "Taper to maintenance or end cycle. Final labs." },
+                      { weeks: "Wk 7–10", phase: "Working", note: "Peak biological response." },
+                      { weeks: "Wk 11–12", phase: "Consolidation", note: "Full blood panel at week 12. Your doctor reviews the dose from it." },
                     ].map((row, i, arr) => (
                       <div key={i} className="flex gap-4 items-start">
                         <div className="flex flex-col items-center" style={{ width: 24 }}>
@@ -986,9 +986,9 @@ export default function BuildYourStack() {
                   <ol className="space-y-3 list-none">
                     {[
                       "Add the stack to your cart and complete a 4-minute medical intake.",
-                      "A US-licensed physician reviews your intake and labs (or orders new ones if needed) — you are notified when review is complete.",
+                      "A US-licensed physician reviews your questionnaire. You are notified when review is complete.",
                       "Once cleared, the protocol is compounded in a 503A pharmacy and shipped cold-chain to your door.",
-                      "You message your physician any time through the member portal — protocols can be adjusted at every reassessment.",
+                      "You message your doctor any time through the member portal. Protocols can be adjusted at every reassessment.",
                     ].map((line, i) => (
                       <li key={i} className="flex gap-3" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg)" }}>
                         <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-fg)", minWidth: 22 }}>0{i + 1}</span>
@@ -1078,7 +1078,7 @@ export default function BuildYourStack() {
                       )}
                     </button>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", letterSpacing: "var(--nx-ls-caps)", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", marginTop: 12, textAlign: "center" }}>
-                      Physician review required before shipping
+                      Doctor review before shipping
                     </p>
                   </div>
                 </div>
@@ -1086,7 +1086,7 @@ export default function BuildYourStack() {
                 <div className="mt-4 p-5 flex items-start gap-3" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-rock)", borderRadius: "var(--nx-r-2xs)" }}>
                   <FlaskConical size={16} aria-hidden="true" style={{ color: "var(--nx-fg)", flexShrink: 0, marginTop: 2 }} />
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
-                    Want a physician to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "var(--nx-fg)" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your labs and goals.
+                    Want a doctor to design this for you from scratch? <Link href="/assessment" className="underline" style={{ color: "var(--nx-fg)" }} data-testid="link-take-assessment">Take the 4-minute assessment</Link> and we'll build a protocol from your questionnaire and goals.
                   </p>
                 </div>
               </aside>

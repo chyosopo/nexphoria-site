@@ -15,12 +15,12 @@ const programFeatures = [
   {
     num: "01",
     title: "Monthly clinical roundtables",
-    detail: "Physician-led webinars on a single protocol category. 60 minutes. Q&A included. Recorded for members who cannot attend live. Topics rotate through metabolic, hormonal, tissue repair, longevity, and cognitive protocols.",
+    detail: "Doctor-led webinars on a single protocol category. 60 minutes. Q&A included. Recorded for members who cannot attend live. Topics rotate through metabolic, hormonal, tissue repair, longevity, and cognitive protocols.",
   },
   {
     num: "02",
     title: "Patient-reported outcomes tracking",
-    detail: "Structured PRO surveys at 30, 90, and 180 days. Aggregate anonymized data is shared back with the membership — you will be able to see how people with similar baselines responded to the same protocol.",
+    detail: "Structured PRO surveys at 30, 90, and 180 days. Aggregate anonymized data is shared back with the membership, so you will be able to see how people with similar baselines responded to the same protocol.",
   },
   {
     num: "03",
@@ -29,19 +29,19 @@ const programFeatures = [
   },
   {
     num: "04",
-    title: "Physician office hours",
-    detail: "Monthly open-format Q&A with a rotating physician from our panel. Questions submitted in advance. Responses published to the knowledge base for all members.",
+    title: "Doctor office hours",
+    detail: "Monthly open-format Q&A with a rotating doctor from our panel. Questions submitted in advance. Responses published to the knowledge base for all members.",
   },
 ];
 
 export default function Community() {
   useSeo({
-    title: "Nexphoria community — launching soon",
+    title: "Nexphoria community: launching soon",
     description: "The Nexphoria member community is launching soon: monthly clinical roundtables with board-certified physicians, aggregate patient-reported outcomes, and educational webinars on peptide therapy. Join the waitlist.",
     path: "/community",
     jsonLd: [webPageJsonLd({
       name: "Nexphoria Community",
-      description: "Clinical roundtables, patient outcomes, and physician-led education for Nexphoria members — launching soon.",
+      description: "Clinical roundtables, patient outcomes, and doctor-led education for Nexphoria members. Launching soon.",
       path: "/community",
     }),
     breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Community", path: "/community" }]),
@@ -67,11 +67,11 @@ export default function Community() {
             badge={<PillBadge tone="acid">Community · launching soon</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Physician-led.</span><br />
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Doctor-led.</span><br />
                 <span>Outcome-driven. Launching soon.</span>
               </>
             }
-            subtitle="The Nexphoria member community launches alongside your protocol — clinical roundtables, aggregate patient-reported outcomes, and physician-led education. Join the waitlist to be there on day one."
+            subtitle="The Nexphoria member community launches alongside your protocol: clinical roundtables, aggregate patient-reported outcomes, and doctor-led education. Join the waitlist to be there on day one."
           />
 
           <div className="mx-grid">
@@ -80,7 +80,7 @@ export default function Community() {
               tone="rose"
               glyph={TileGlyphs.wave}
               label={<>Clinical journal<br /><span>read now</span></>}
-              caption="Physician case notes &amp; the science"
+              caption="Doctor case notes &amp; the science"
               ctaLabel="Read journal"
             />
             <ColoredHeroTile
@@ -88,7 +88,7 @@ export default function Community() {
               tone="butter"
               glyph={TileGlyphs.leaf}
               label={<>Start your protocol<br /><span>take the assessment</span></>}
-              caption="Physician-guided protocol match"
+              caption="Doctor-guided protocol match"
               ctaLabel="Take the assessment"
             />
           </div>
@@ -136,7 +136,7 @@ export default function Community() {
                   marginBottom: "0.75rem",
                 }}
               >
-                The member community isn't live yet.
+                The member community opens soon.
               </h2>
               <p
                 style={{
@@ -146,10 +146,10 @@ export default function Community() {
                   lineHeight: 1.7,
                 }}
               >
-                We're building the community around real protocols and measured outcomes — not
-                engagement theater. There are no live threads, member counts, or testimonials to
-                show yet, and we won't fabricate them. When it opens, membership includes the
-                programs below. Join the waitlist and we'll notify you the day it launches.
+                We're building the community around real protocols and measured outcomes.
+                Live threads, member counts, and testimonials will appear once there are real ones
+                to show. When it opens, membership includes the programs below. Join the waitlist
+                and we'll notify you the day it launches.
               </p>
             </div>
           </Reveal>
@@ -207,7 +207,7 @@ export default function Community() {
                 marginBottom: "3rem",
               }}
             >
-              Four programs. All physician-led.
+              Four programs. All doctor-led.
             </h2>
           </Reveal>
           <div
@@ -321,8 +321,8 @@ export default function Community() {
                   lineHeight: 1.7,
                 }}
               >
-                One email when the community opens — plus the first clinical roundtable
-                schedule. No promotional content. Unsubscribe anytime.
+                One email when the community opens, plus the first clinical roundtable
+                schedule. Unsubscribe anytime.
               </p>
             </Reveal>
             <Reveal delay={100}>
@@ -426,7 +426,7 @@ export default function Community() {
                       color: "rgba(255,255,255,0.45)",
                     }}
                   >
-                    No promotional email. Unsubscribe at any time.
+                    Launch news only. Unsubscribe at any time.
                   </p>
                 </form>
               )}

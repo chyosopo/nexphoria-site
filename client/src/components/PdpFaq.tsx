@@ -36,14 +36,14 @@ export function buildPdpFaq(opts: {
   if (firstMark) {
     items.push({
       q: "When do people typically notice changes?",
-      a: `The protocol timeline outlines ${firstMark.effect.replace(/\.$/, "").toLowerCase()} around ${firstMark.wk}. Individual response varies — which is exactly why the protocol is monitored with scheduled bloodwork rather than assumed.`,
+      a: `The protocol timeline outlines ${firstMark.effect.replace(/\.$/, "").toLowerCase()} around ${firstMark.wk}. Everyone responds differently, which is why your blood is read at week 12 and your dose follows it.`,
     });
   }
 
   if (gated) {
     items.push({
       q: "Why can't I just add it to a cart?",
-      a: `GLP-1 therapy is dosed and titrated by a physician against your bloodwork and medical history — it isn't bought from a shelf. Begin the eligibility intake; if a protocol is appropriate, your physician prescribes it.${gatedStates?.length ? ` It is not currently available for shipping addresses in ${gatedStates.join(", ")}.` : ""}`,
+      a: `GLP-1 medicines are dosed and stepped up by your doctor from your history, and read against your blood at week 12. Begin the eligibility intake; if a protocol is appropriate, your physician prescribes it.${gatedStates?.length ? ` It is not currently available for shipping addresses in ${gatedStates.join(", ")}.` : ""}`,
     });
   } else if (hasPricing) {
     items.push({

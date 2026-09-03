@@ -19,8 +19,8 @@ export default function GiftClaim() {
   );
 
   useSeo({
-    title: ask ? `Cover ${ask.from ? `${ask.from}'s` : "their"} ${ask.item.name} — Nexphoria` : "Gift link — Nexphoria",
-    description: "A one-time payment covers their protocol or panel. They still qualify with their own physician; unprescribed gifts are refunded.",
+    title: ask ? `Cover ${ask.from ? `${ask.from}'s` : "their"} ${ask.item.name} | Nexphoria` : "Gift link | Nexphoria",
+    description: "A one-time payment covers their protocol or panel. They still qualify with their own doctor; unprescribed gifts are refunded.",
     path: "/gift/claim",
     // Private per-recipient claim link — never index; not in the sitemap.
     noindex: true,
@@ -35,7 +35,7 @@ export default function GiftClaim() {
             This gift link isn't quite right.
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "52ch" }}>
-            It may have been trimmed in transit. Ask the sender to copy it again — or start a gift of your own.
+            It may have been trimmed in transit. Ask the sender to copy it again, or start a gift of your own.
           </p>
           <Link href="/gift" className="nx-cta-cobalt" style={{ marginTop: "1.6rem", display: "inline-flex" }}>
             Go to gifting
@@ -59,8 +59,8 @@ export default function GiftClaim() {
             {from ? <>{from} asked you to cover <em style={{ color: "var(--nx-cobalt)" }}>{item.name}.</em></> : <>You've been asked to cover <em style={{ color: "var(--nx-cobalt)" }}>{item.name}.</em></>}
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "54ch", marginTop: "1rem" }}>
-            {item.tagline} One payment covers {whose} {item.kind === "stack" ? "supply, labs, and physician review" : "panel and physician review"} —
-            and {from ?? "they"} still {from ? "qualifies" : "qualify"} the normal way: their own intake, their own physician, who can decline.
+            {item.tagline} One payment covers {whose} {item.kind === "stack" ? "supply, labs, and doctor review" : "panel and doctor review"},
+            and {from ?? "they"} still {from ? "qualifies" : "qualify"} the normal way: their own intake, their own doctor, who can decline.
           </p>
 
           {/* the ask, priced from the catalog */}
@@ -74,7 +74,7 @@ export default function GiftClaim() {
               <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-muted)" }}> · one-time</span>
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>
-              Refunded — or applied to what the physician does prescribe — if this isn't.
+              If their doctor prescribes something else, the value is applied to it, or refunded.
             </p>
             <div style={{ marginTop: "1.2rem", borderTop: "1px solid var(--nx-border)", paddingTop: "1.1rem" }}>
               {(() => {
@@ -83,7 +83,7 @@ export default function GiftClaim() {
                   <>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
                       One payment, handled by Stripe. {from ? `${from} still completes` : "They still complete"} their own
-                      intake, and a physician can decline — in which case the gift is refunded or applied.
+                      intake, and a doctor can decline, in which case the gift is refunded or applied.
                     </p>
                     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.2rem", marginTop: "1rem" }}>
                       <a
@@ -95,7 +95,7 @@ export default function GiftClaim() {
                         style={{ fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
                         onClick={() => track("gift_claim_started", { item: item.slug, term: ask.termKey, rail: "stripe" })}
                       >
-                        Cover this gift — {usd(total)}
+                        Cover this gift · {usd(total)}
                       </a>
                       <a
                         href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Covering ${whose} gift: ${item.name} (${termLabel})`)}`}
@@ -110,12 +110,12 @@ export default function GiftClaim() {
                 ) : (
                   <>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
-                      Gift checkout is concierge for now — one email and we arrange payment and confirmation
-                      with you directly. Nothing is charged until you confirm with a person.
+                      Gift checkout is concierge for now: one email and we arrange payment and confirmation
+                      with you directly. A person confirms with you before anything is charged.
                     </p>
                     <a
                       href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Covering ${whose} gift: ${item.name} (${termLabel})`)}&body=${encodeURIComponent(
-                        `I'd like to cover ${whose} ${item.name} — ${termLabel}, ${usd(total)} one-time.${from ? `\nRequested by: ${from}` : ""}\n\nMy name:\nBest email or phone to reach me:`,
+                        `I'd like to cover ${whose} ${item.name}, ${termLabel}, ${usd(total)} one-time.${from ? `\nRequested by: ${from}` : ""}\n\nMy name:\nBest email or phone to reach me:`,
                       )}`}
                       className="nx-cta-cobalt"
                       data-testid="giftclaim-cta"
@@ -133,9 +133,9 @@ export default function GiftClaim() {
           {/* the three honest facts */}
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "1.8rem" }}>
             {[
-              { Icon: Stethoscope, t: "Their physician decides", d: "Medicine is prescribed from their labs and history — never from a payment." },
+              { Icon: Stethoscope, t: "Their doctor decides", d: "Medicine is prescribed by their doctor, from their questionnaire and history." },
               { Icon: ShieldCheck, t: "Their results stay theirs", d: "You'll know the gift landed. Their health data never comes to you." },
-              { Icon: RefreshCw, t: "Not prescribed? Returned", d: "The value is applied to what is prescribed, or refunded." },
+              { Icon: RefreshCw, t: "Declined? Returned", d: "The value is applied to what is prescribed, or refunded." },
             ].map(({ Icon, t, d }) => (
               <div key={t} className="nx-glass-card" style={{ padding: "1.2rem 1.1rem" }}>
                 <Icon size={18} strokeWidth={1.9} aria-hidden style={{ color: "var(--nx-cobalt)" }} />

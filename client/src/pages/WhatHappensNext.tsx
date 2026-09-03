@@ -5,7 +5,6 @@
 import { Link } from "wouter";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 
@@ -19,32 +18,32 @@ interface Phase {
 const PHASES: Phase[] = [
   {
     when: "The moment you submit",
-    title: "Your intake reaches a physician",
-    body: "Your history and, where provided, your prior labs are routed to a board-certified, U.S.-licensed physician of Arora Health & Aesthetics, LLC. Not a questionnaire score — a clinician reads it.",
+    title: "Your questionnaire reaches a doctor",
+    body: "Your answers go to a board-certified, U.S. licensed physician of Arora Health & Aesthetics, LLC. A doctor reads every one of them.",
   },
   {
     when: "Within a few business days",
-    title: "The physician makes a decision",
-    body: "They determine whether a protocol is appropriate. If it is, your prescription goes to the pharmacy and you get a confirmation by email. If it is not, they tell you so, and the refund policy sets out what is refunded.",
-    note: "Nothing is made without a prescription.",
+    title: "Your doctor decides",
+    body: "If your plan fits you, your prescription goes to the pharmacy and you get a confirmation by email. If it does not, your doctor tells you why, and the refund policy sets out what is refunded.",
+    note: "A prescription comes before anything is made.",
   },
   {
     when: "If prescribed",
     title: "Made for you, shipped cold",
-    body: "Your protocol is compounded in a state-licensed 503A pharmacy under USP <797> and shipped cold-chain to all 50 states.",
+    body: "Your medicine is compounded for you in a state-licensed 503A pharmacy under USP <797> and shipped cold to all 50 states.",
   },
   {
     when: "Week 12",
-    title: "Your full panel, read",
-    body: "A full blood panel is drawn at week 12, included. Your physician reads it against your protocol and adjusts, holds, or stops. The change is measured."
+    title: "Your blood, read",
+    body: "A full blood panel is drawn at week 12, included in your plan. Your doctor reads it against your plan and continues, adjusts or stops your dose from what it shows."
   },
 ];
 
 export default function WhatHappensNext() {
   useSeo({
     path: "/what-happens-next",
-    title: "What happens after you submit — Nexphoria",
-    description: "The path from checkout to prescription to the week-12 panel. A physician reviews every case and can decline; nothing is made without a prescription.",
+    title: "What happens after you submit",
+    description: "The path from checkout to prescription to the week-12 blood panel. A U.S. licensed doctor reviews every case and can decline.",
     jsonLd: [
       webPageJsonLd({ name: "What happens next", description: "The intake-to-retest timeline.", path: "/what-happens-next" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "What happens next", path: "/what-happens-next" }]),
@@ -63,7 +62,7 @@ export default function WhatHappensNext() {
             What happens after you submit.
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.1rem" }}>
-            No black box. Here is exactly how your intake becomes a protocol — and the point at which a physician can decline. You are never charged before that decision.
+            Here is exactly how your questionnaire becomes a plan, and the point at which your doctor decides. Four steps, in the order they happen.
           </p>
         </div>
       </section>
@@ -72,8 +71,7 @@ export default function WhatHappensNext() {
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-label="Timeline">
         <ol className="nx-timeline">
           {PHASES.map((p, i) => (
-            <Reveal key={p.title} delay={i * 70}>
-              <li className="nx-timeline__row">
+              <li key={p.title} className="nx-timeline__row">
                 <div className="nx-timeline__rail" aria-hidden>
                   <span className="nx-timeline__dot" />
                   <span className="nx-timeline__idx" style={{ fontFamily: F, fontVariantNumeric: "tabular-nums" }}>{String(i + 1).padStart(2, "0")}</span>
@@ -87,7 +85,6 @@ export default function WhatHappensNext() {
                   )}
                 </div>
               </li>
-            </Reveal>
           ))}
         </ol>
       </section>
@@ -96,7 +93,7 @@ export default function WhatHappensNext() {
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}>
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }}>
           <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.12, maxWidth: "20ch", margin: "0 auto" }}>
-            Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Nothing is made without a prescription.</em>
+            Your doctor decides first. <em style={{ color: "var(--nx-cobalt)" }}>Then your medicine is made for you.</em>
           </h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1.2rem", justifyContent: "center", alignItems: "center", marginTop: "1.6rem" }}>
             <Link href="/assessment" className="nx-cta-cobalt" data-testid="whn-cta" style={{ fontSize: "var(--nx-t-base)", padding: "15px 32px" }}>

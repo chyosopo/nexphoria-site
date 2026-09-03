@@ -29,19 +29,19 @@ export const STEP_LABELS = [
 // "Why we ask" clinical rationale shown under each question.
 // Keyed by the funnel step index (0 = sex, 1 = goal, ... 6 = contact).
 export const WHY_WE_ASK: Record<number, string> = {
-  0: "Peptide receptor sensitivity, dosing thresholds, and contraindications differ by physiology. Sex is the first input your physician uses to scope a safe protocol.",
+  0: "Dosing and the conditions your doctor screens for differ by physiology. Sex is the first input your doctor uses to set a safe plan.",
   1: "Your primary goal determines which peptide classes are even candidates. A metabolic goal and a recovery goal point to different compounds and different lab targets.",
-  2: "Hormone reference intervals shift by decade. Age calibrates how your labs are interpreted and where safe dosing windows fall.",
-  3: "Drug interactions are the most common reason a protocol is modified or declined. Your physician screens every medication against the proposed compound before prescribing.",
-  4: "Certain conditions change the risk-benefit calculus entirely. Disclosing them lets your physician flag contraindications before — not after — a prescription is written.",
+  2: "Hormone reference ranges shift by decade. Age tells your doctor how to read your week-12 panel and where a safe dose sits.",
+  3: "Drug interactions are the most common reason a plan is changed or declined. Your doctor screens every medication against the medicine before prescribing.",
+  4: "Certain conditions change the picture entirely. Telling your doctor lets them catch a problem before a prescription is written.",
   5: "At week 12 a full blood panel shows your doctor what changed, so your dose follows measured values instead of an estimate.",
-  6: "Your physician contacts you directly to confirm the protocol and answer questions. State of residence determines which licensed physician reviews your file.",
+  6: "Your doctor reaches you directly to confirm the plan and answer questions. Your state decides which licensed doctor reads your file.",
 };
 
 const SIDEBAR_TILES = [
-  { icon: Stethoscope, title: "Physician review", desc: "A board-certified MD reads your file — no algorithms, no auto-approvals." },
-  { icon: FlaskConical, title: "Bloodwork arranged", desc: "A partner-laboratory draw is arranged once a physician reviews your intake." },
-  { icon: ClipboardCheck, title: "Protocol designed within 5 days", desc: "Compounded and cold-chain shipped after physician sign-off." },
+  { icon: Stethoscope, title: "Your doctor reads it", desc: "A board-certified doctor reads your file and makes the decision." },
+  { icon: FlaskConical, title: "Blood at week 12", desc: "A full panel, included, read by your doctor. Your dose follows it." },
+  { icon: ClipboardCheck, title: "Made for you", desc: "Compounded in a licensed 503A pharmacy and shipped cold after your doctor says yes." },
 ];
 
 // ─── Top progress bar — segmented step indicator ──────────────────────────
@@ -427,7 +427,7 @@ export function TrustStrip() {
       <ShieldCheck size={14} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
       {/* one span per claim so narrow columns wrap BETWEEN claims,
           never mid-claim */}
-      {["HIPAA-compliant", "End-to-end encrypted", "Reviewed by U.S. physicians", "Cancel anytime before dispense"].map((claim, i, arr) => (
+      {["Encrypted in transit", "Read by U.S. licensed doctors", "Prescription only"].map((claim, i, arr) => (
         <span
           key={claim}
           style={{

@@ -613,3 +613,107 @@ Feeling: ready.
 - Nav "Shop by outcome" now lists only goals with a medicine behind them,
   and "Featured peptides" is the live catalog; four of six links led to
   empty pages.
+
+---
+
+# Copy deck: the pre-checkout block, the checkout page, and the FAQ
+
+Written 2026-09-03 (master plan step 6 and part of step 7).
+
+## The pre-checkout block (`client/src/components/PayToday.tsx`, on /cart and /checkout)
+
+**Kicker: "What you pay today"** · LIVE
+Job: name the one fear at the figure: how much, and when.
+Feeling: no surprise coming.
+
+**Figure: "{monthly figure} a month"** · CATALOG
+Job: the number, once, in the largest type on the block.
+Fact: the cart subtotal, which is the catalog's monthly figure for the
+chosen cadence. OPEN: whether anything beyond the first month is charged
+at checkout; until Chiya confirms, the block states the monthly figure and
+never a second number.
+
+**"Everything within it: your doctor's review, your medicine, cold
+shipping, and the full blood panel of {count} markers at week 12."** · LIVE
+Job: assurance stated as completeness (law 3 house phrase).
+Fact: pricing.ts (consult, panel and shipping inside the figure);
+data/monitoring.ts for the count.
+
+**"What happens next" · four beats: Check out / Answer the questionnaire /
+Your doctor decides / If it is a no** · LIVE
+Job: the order Chiya gave on 2026-09-02, checkout before questionnaire,
+told as four short sentences so the reader knows the shape before paying.
+Feeling: calm. "I know what I am walking into."
+Fact: the flow; the refund policy governs a decline (link).
+
+**Footer: "Prescription only. Your doctor decides, and can decline." +
+Refund policy link** · LIVE
+
+## The checkout page (`client/src/pages/Checkout.tsx`)
+
+**H1 "Your plan, then your doctor." / "Check out, answer the questionnaire,
+and a U.S. licensed doctor decides. If it is a yes, your medicine is made
+for you and ships cold."** · LIVE (replaced "Submit for physician review")
+**Billing notice: "Your doctor decides before anything is made." +
+"Billing runs through Bask Health, our telehealth billing partner. The
+figure is complete..."** · LIVE. Retired: "no card is collected today",
+"You are never charged before a physician approves", "No payment collected
+today" (all untrue under the billing truth, and defensive negation).
+**Rail footer: "Billing is handled by Bask Health... Prescription only.
+Your doctor decides, and can decline."** · LIVE
+
+## /what-happens-next
+
+Four phases rewritten in the you voice; "never charged before that
+decision", "No black box" and "Not a questionnaire score" retired.
+Closer: "Your doctor decides first. Then your medicine is made for you."
+
+## The FAQ (`client/src/pages/FAQ.tsx`), rewritten from data
+
+Five groups: Peptides, Your doctor, Price, Safety, Shipping, Legal. Every
+fact derives from the catalog (`SOLO_CATALOG` names, gated-state
+exclusions), the compliance blocks (provider and pharmacy, verbatim), the
+panel data and pricing. Retired from the old FAQ, with the reason:
+- the 16-molecule formulary, retatrutide, enclomiphene, kisspeptin: not
+  in the catalog;
+- "~15% body-weight reduction", "18 to 28% in trials", "results within 4
+  to 8 weeks": outcome claims;
+- "2,000+ partner laboratory locations", "requisition in your member
+  portal", "labs reviewed before prescribing": the old model;
+- "no separate consult fee", "not charged for compounding if declined":
+  billing claims Chiya has not confirmed, and defensive negation;
+- FSA/HSA eligibility, "cancel from your member portal", "certificate of
+  analysis with every shipment", "4 to 7 business days", "expedited
+  compounding": OPEN claims, off until confirmed;
+- portal messaging: OPEN; replaced with hello@nexphoria.com.
+
+## Also retired on 2026-09-03
+
+- TrustStatsStrip placeholder figures on /pricing ("50,000+ patients
+  served", "7 peer-reviewed publications", "3 formulation patents"): never
+  verified, rendered live.
+- Bloodwork "Illustrative trajectory of one Nexphoria patient" section: read
+  as a patient record.
+- Assessment sidebar "HIPAA-compliant", "Cancel anytime before dispense",
+  "Protocol designed within 5 days": OPEN claims.
+
+## Also retired on 2026-09-03, evening pass
+
+- Cart "Recommended add-ons": a lab panel "required before your first
+  prescription" and a BPC-157 stack tile (retired molecule). Replaced with
+  one "Within the figure" note: the week-12 panel, included.
+- Checkout "Total if prescribed", "Stack savings", "Cold-chain shipped after
+  physician approval", every "→" glyph: now "Your figure", "Plan savings",
+  "Shipped cold to all 50 states once your doctor says yes".
+- Trust bar "HIPAA-compliant" and "Discreet 3 to 5 day shipping": OPEN
+  claims, replaced with "Prescription only" and "Ships cold, in a plain
+  box". About's "HIPAA-compliant" standard became "Your privacy" without the
+  BAA claim. Checkout's "HIPAA-aligned" lines became "encrypted in transit".
+- Physicians hero "reviewed against your bloodwork", chips "Signs every
+  refill" and "Direct portal messaging", stat "0 algorithmic approvals":
+  labs-first, OPEN, and negation. Now "reads every answer", "signs your
+  prescription", "reads your blood at week 12", "1 doctor signs your
+  prescription".
+- Protocols page sample "Biomarker index" dashboard (61/76 markers, minus
+  3.4 years biological age): fabricated-looking figures.
+- Bloodwork comparison "your own start": there is no baseline draw.

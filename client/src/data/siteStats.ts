@@ -14,7 +14,7 @@
    ───────────────────────────────────────────────────────────── */
 
 export const SITE_STATS = {
-  /** Partner-laboratory draw locations. Rendered as "2,000+" in prose
-      (Bloodwork, FAQ) and driven as 2000 by the TrustStatsStrip count-up. */
-  labSites: { value: 2000, display: "2,000+" },
+  /* labSites ("2,000+ partner laboratory locations") retired 2026-09-03: the
+     lab partner is undecided (docs/LAB-PARTNER.md) and the figure belonged to
+     a network we may not use. Re-add only with a figure Chiya can confirm. */
 } as const;

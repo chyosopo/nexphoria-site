@@ -10,6 +10,8 @@ import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { CADENCE_DISCOUNTS, pricing, billingNote, type CadenceKey } from "@/data/pricing";
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
+import { PayToday } from "@/components/PayToday";
+import { SkuPhoto, skuPhotoFor } from "@/components/SkuPhoto";
 
 export default function Cart() {
   // Cart is a private transactional page — noindex (centralized in useSeo) to
@@ -49,8 +51,8 @@ export default function Cart() {
               style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}
             >
               {itemCount === 0
-                ? "Your protocol is empty. Add single peptides or a curated stack to begin."
-                : "Confirm your selections, then continue to checkout for physician review and shipping."}
+                ? "Your cart is empty. Start from a goal, or pick a peptide."
+                : "Check your plan, then continue to checkout. Your doctor decides next."}
             </p>
           </div>
 
@@ -91,9 +93,10 @@ export default function Cart() {
                               background: "var(--nx-bg-cream)",
                               border: "1px solid var(--nx-border)",
                               borderRadius: "var(--nx-r-md)",
+                              overflow: "hidden",
                             }}
                           >
-                            <VialGlyph label={line.type === "stack" ? "STACK" : glyphLetter(line.name)} />
+                            {line.type === "peptide" && skuPhotoFor(line.slug) ? <SkuPhoto slug={line.slug} name={line.name} className="nx-sku-img nx-sku-img--card" /> : <VialGlyph label={line.type === "stack" ? "STACK" : glyphLetter(line.name)} />}
                           </div>
 
                           <div className="flex-1 min-w-0">
@@ -130,7 +133,7 @@ export default function Cart() {
 
                             {/* Chips */}
                             <div className="flex flex-wrap items-center gap-2 mt-3">
-                              <Chip icon={<Stethoscope size={11} aria-hidden="true" />}>Physician review included</Chip>
+                              <Chip icon={<Stethoscope size={11} aria-hidden="true" />}>Doctor review included</Chip>
                               {line.savings && line.savings > 0 ? (
                                 <Chip tone="amber">
                                   Save {formatUSD(line.savings)} · {line.cadenceLabel}
@@ -259,7 +262,7 @@ export default function Cart() {
                       style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }}
                       data-testid="link-continue-stacks"
                     >
-                      Browse more stacks
+                      See the protocols
                     </a>
                   </Link>
                   <Link asChild href="/peptides">
@@ -268,41 +271,26 @@ export default function Cart() {
                       style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }}
                       data-testid="link-continue-peptides"
                     >
-                      Add single peptides
+                      Add a peptide
                     </a>
                   </Link>
                 </div>
 
-                {/* Add-on suggestions */}
+                {/* Within the figure: the week-12 panel. The old "add-ons" block
+                    sold a lab panel "required before your first prescription" and a
+                    retired molecule; retired 2026-09-03. */}
                 <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                  <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                    Recommended add-ons
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Lab Testing Add-On</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{PANEL_TOTAL_MARKERS}-Biomarker Partner-Laboratory Panel</p>
-                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Required before your first prescription. Included with most protocols.</p>
-                      </div>
-                      <Link asChild href="/lab-testing">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-labs">
-                          See panel details
-                        </a>
-                      </Link>
+                  <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }} data-testid="cart-panel-note">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-cobalt)" }}>Within the figure</p>
+                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Your full blood panel at week 12, {PANEL_TOTAL_MARKERS} markers</p>
+                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Included in every plan. Your doctor reads it and your dose follows it.</p>
                     </div>
-                    <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Recovery Support</p>
-                        <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>BPC-157 — Tissue Repair Adjunct</p>
-                        <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Commonly paired with performance and metabolic protocols.</p>
-                      </div>
-                      <Link asChild href="/stacks">
-                        <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", whiteSpace: "nowrap" }} data-testid="link-addon-recovery">
-                          View stack
-                        </a>
-                      </Link>
-                    </div>
+                    <Link asChild href="/bloodwork">
+                      <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }} data-testid="link-cart-bloodwork">
+                        See every marker
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </section>
@@ -321,7 +309,7 @@ export default function Cart() {
                   Order summary
                 </div>
 
-                <SummaryRow label="Monthly supply" value={formatUSD(subtotal + totalSavings)} />
+                <SummaryRow label="Month to month" value={formatUSD(subtotal + totalSavings)} />
                 {totalSavings > 0 ? (
                   <SummaryRow label="You save" value={`−${formatUSD(totalSavings)}`} accent />
                 ) : null}
@@ -341,9 +329,7 @@ export default function Cart() {
                     {formatUSD(subtotal)}
                   </span>
                 </div>
-                <p className="text-[11px] mt-2 leading-relaxed" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                  Final pricing confirmed after intake review.
-                </p>
+                <PayToday amount={formatUSD(subtotal)} testid="cart-pay-today" style={{ marginTop: "1rem", marginBottom: "1rem" }} />
                 <PrescribedPromise testid="cart-promise" style={{ marginTop: "0.5rem", marginBottom: "1.25rem" }} />
 
                 {/* Included list */}
@@ -352,13 +338,13 @@ export default function Cart() {
                   style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                 >
                   <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                    Included at no extra cost
+                    Within the figure
                   </p>
                   <div className="space-y-2.5">
                     {[
-                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Physician review + follow-ups" },
+                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Your doctor's review" },
                       { icon: <Truck size={13} aria-hidden="true" />, text: "Cold-chain overnight shipping" },
-                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Week-12 panel and dose review" },
+                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "The week-12 blood panel and dose review" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-2 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
@@ -385,7 +371,7 @@ export default function Cart() {
                 {/* Trust ticker */}
                 <div className="mt-5 pt-5 space-y-2.5" style={{ borderTop: "1px solid var(--nx-border)" }}>
                   {[
-                    { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "HIPAA-compliant data handling" },
+                    { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "Encrypted in transit" },
                     { icon: <ShieldCheck size={13} aria-hidden="true" />, text: "US-compounded · 503A pharmacy" },
                     { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Licensed US physicians on every case" },
                   ].map(({ icon, text }) => (
@@ -423,7 +409,7 @@ export default function Cart() {
               className="nx-cta-cobalt w-full justify-center"
               data-testid="button-checkout-mobile"
             >
-              Checkout — {formatUSD(subtotal)}
+              Checkout · {formatUSD(subtotal)}
             </a>
           </Link>
         </div>

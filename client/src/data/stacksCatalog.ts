@@ -144,7 +144,7 @@ const ALL_STACKS: FlagshipStack[] = [
       { wk: "Wk 12", effect: "Body-composition shift assessed." },
     ],
     panel: "Full",
-    panelNote: "Full panel — IGF-1 is mandatory. A physician holds the protocol if IGF-1 exceeds 300 ng/mL.",
+    panelNote: "The full panel at week 12, included. IGF-1 is the number the dose is set against, and your doctor holds the protocol if it runs high.",
     contraindications: ["Active malignancy", "Pregnancy", "Uncontrolled type 2 diabetes", "Elevated IGF-1 at baseline"],
     cadences: cad(299, 762, 2512, 329, "Elite"),
     worldLean: "him",

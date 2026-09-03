@@ -20,37 +20,37 @@ import { F, S } from "@/lib/typography";
 const GIFT_FAQ = [
   {
     q: "Can I really gift a prescription protocol?",
-    a: "You gift the coverage, not the prescription. Your gift pays for the protocol term or panel; the recipient completes their own intake, and a licensed physician reviews their questionnaire before anything is prescribed. Medicine is never dispensed on a gift alone.",
+    a: "You gift the coverage. Your gift pays for the protocol term or panel; the recipient completes their own intake, and a licensed physician reviews their questionnaire before anything is prescribed. Medicine is dispensed only on their doctor's prescription.",
   },
   {
-    q: "What if their physician doesn't prescribe it?",
-    a: "The same promise that covers every Nexphoria intake covers a gift: no one pays for medicine that isn't prescribed. If the physician declines, or recommends a different protocol, the gift's value is applied to what is actually prescribed — or refunded.",
+    q: "What if their doctor declines?",
+    a: "If their doctor declines, or recommends a different protocol, the gift's value is applied to what is actually prescribed, or refunded.",
   },
   {
     q: "Will I see their results?",
-    a: "No. You'll know your gift was redeemed; their intake, bloodwork, and everything after stays between them and their physician. That privacy is not a setting — it's the law, and ours by design.",
+    a: "No. You'll know your gift was redeemed; their intake, bloodwork, and everything after stays between them and their doctor. That privacy is the law, and ours by design.",
   },
   {
     q: "Can I ask someone to cover my protocol?",
-    a: "Yes — build your plan below and send the link it generates. Whoever opens it sees exactly what they'd be covering and the one-time price, pays once, and you complete your intake as usual.",
+    a: "Yes. Build your plan below and send the link it generates. Whoever opens it sees exactly what they'd be covering and the one-time price, pays once, and you complete your intake as usual.",
   },
 ];
 
 const HOW = [
-  { Icon: GiftIcon, t: "Choose the gift", d: "A protocol term or a bloodwork panel, at its real one-time price — the same numbers on our pricing page." },
-  { Icon: Stethoscope, t: "They qualify on their own", d: "The recipient completes their own intake. A licensed physician reads their labs and history — and can decline." },
-  { Icon: RefreshCw, t: "Covered, or returned", d: "If prescribed, your gift covers it. If not, the value is applied to what is prescribed — or refunded." },
+  { Icon: GiftIcon, t: "Choose the gift", d: "A protocol term or a bloodwork panel, at its real one-time price: the same numbers on our pricing page." },
+  { Icon: Stethoscope, t: "They qualify on their own", d: "The recipient completes their own intake. A licensed physician reads their questionnaire and history, and can decline." },
+  { Icon: RefreshCw, t: "Covered, or returned", d: "If prescribed, your gift covers it. If their doctor declines, the value is applied to what is prescribed, or refunded." },
 ];
 
 type Mode = "give" | "request";
 
 export default function Gift() {
   useSeo({
-    title: "Give a protocol — the Nexphoria gift",
-    description: "Cover someone's peptide protocol or bloodwork panel with a one-time payment — or send a link asking someone to cover yours. They still qualify with their own physician; unprescribed gifts are refunded.",
+    title: "Give a protocol: the Nexphoria gift",
+    description: "Cover someone's peptide protocol or bloodwork panel with a one-time payment, or send a link asking someone to cover yours. They still qualify with their own doctor; unprescribed gifts are refunded.",
     path: "/gift",
     jsonLd: [
-      webPageJsonLd({ name: "The Nexphoria Gift", description: "Gift the coverage of a physician-reviewed protocol or bloodwork panel.", path: "/gift" }),
+      webPageJsonLd({ name: "The Nexphoria Gift", description: "Gift the coverage of a doctor-reviewed protocol or bloodwork panel.", path: "/gift" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Gift", path: "/gift" }]),
       faqJsonLd(GIFT_FAQ),
     ],
@@ -140,9 +140,9 @@ export default function Gift() {
             Health you can <em style={{ color: "var(--nx-cobalt)" }}>actually give.</em>
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.1rem" }}>
-            One payment covers someone's protocol or bloodwork panel — their labs, their physician, their supply.
-            They still qualify on their own: a licensed physician reviews their intake and can decline,
-            and a gift that isn't prescribed is refunded. You cover the cost; medicine keeps its gate.
+            One payment covers someone's protocol or bloodwork panel: their labs, their doctor, their supply.
+            They still qualify on their own. A licensed physician reviews their intake and can decline,
+            and a declined gift is refunded. You cover the cost; medicine keeps its gate.
           </p>
           {/* mode switch */}
           <div role="group" aria-label="Give or request" style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "1.6rem" }}>
@@ -168,7 +168,7 @@ export default function Gift() {
           {mode === "give" ? "1 · Choose what to give" : "1 · Choose what you're asking for"}
         </h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "0.4rem" }}>
-          Real catalog prices — the same numbers as the pricing page. Physician-assessed protocols can't be pre-paid and aren't listed.
+          Real catalog prices, the same numbers as the pricing page. Doctor-assessed protocols are priced after review, so this list shows the fixed-price protocols.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: 12, marginTop: "1.2rem" }}>
           {stacks.map(itemCard)}
@@ -215,7 +215,7 @@ export default function Gift() {
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-muted)" }}> · one-time{sel.kind === "stack" ? ` · ${term?.label.toLowerCase()}` : ""}</span>
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.5rem" }}>
-                Refunded, or applied to what their physician does prescribe, if this protocol isn't.
+                If their doctor prescribes something else, the value is applied to it, or refunded.
               </p>
 
               {mode === "give" ? (
@@ -230,7 +230,7 @@ export default function Gift() {
                     <>
                       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "58ch" }}>
                         One payment, handled by Stripe. The recipient still completes their own intake;
-                        if their physician doesn't prescribe, the gift is refunded or applied.
+                        if their doctor declines, the gift is refunded or applied.
                       </p>
                       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1.2rem", marginTop: "1rem" }}>
                         <a
@@ -242,7 +242,7 @@ export default function Gift() {
                           style={{ fontSize: "var(--nx-t-base)", padding: "13px 26px", display: "inline-flex" }}
                           onClick={() => track("gift_give_started", { item: sel.slug, term: term?.key, rail: "stripe" })}
                         >
-                          Cover it — {term ? usd(term.total) : ""}
+                          Cover it · {term ? usd(term.total) : ""}
                         </a>
                         <a
                           href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Gift: ${sel.name} (${term?.label ?? ""})`)}`}
@@ -258,11 +258,11 @@ export default function Gift() {
                     <>
                       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "58ch" }}>
                         Gift checkout is concierge for now: tell us who it's for and we arrange payment and
-                        delivery by email — nothing is charged until you confirm with a person.
+                        delivery by email. A person confirms with you before anything is charged.
                       </p>
                       <a
                         href={`mailto:hello@nexphoria.com?subject=${encodeURIComponent(`Gift: ${sel.name} (${term?.label ?? ""})`)}&body=${encodeURIComponent(
-                          `I'd like to gift ${sel.name} — ${term?.label ?? ""}, ${term ? usd(term.total) : ""} one-time.\n\nMy name:\nRecipient's first name:\nWhen should it arrive (date or "right away"):\nA note to include (optional):`,
+                          `I'd like to gift ${sel.name}, ${term?.label ?? ""}, ${term ? usd(term.total) : ""} one-time.\n\nMy name:\nRecipient's first name:\nWhen should it arrive (date or "right away"):\nA note to include (optional):`,
                         )}`}
                         className="nx-cta-cobalt"
                         data-testid="gift-give-cta"
@@ -305,7 +305,7 @@ export default function Gift() {
                       {copied ? "Link copied" : "Copy your link"}
                     </button>
                     <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                      Send it however you like — text, email, anything.
+                      Send it however you like: text, email, anything.
                     </span>
                   </div>
                   <p
@@ -315,7 +315,7 @@ export default function Gift() {
                     {shareUrl}
                   </p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem", maxWidth: "58ch" }}>
-                    The link carries only the protocol, the term, and the name above — no health information, ever.
+                    The link carries only the protocol, the term, and the name above.
                   </p>
                 </div>
               )}
@@ -343,7 +343,7 @@ export default function Gift() {
             <ShieldCheck size={19} strokeWidth={1.9} aria-hidden style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 2 }} />
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)" }}>
               <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Their results stay theirs.</strong>{" "}
-              You'll know the gift was redeemed; the recipient's intake, bloodwork, and physician conversations never come to you.
+              You'll know the gift was redeemed; the recipient's intake, bloodwork, and doctor conversations stay with them.
             </p>
           </div>
         </div>

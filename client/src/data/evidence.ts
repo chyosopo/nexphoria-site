@@ -42,7 +42,7 @@ export const EVIDENCE_BY_SLUG: Record<string, Evidence[]> = {
     },
     {
       cite: "Aronne LJ et al. Continued treatment with tirzepatide for maintenance of weight reduction in adults with obesity. JAMA. 2024;331(1):38–48.",
-      finding: "SURMOUNT-4: withdrawal of tirzepatide led to substantial weight regain, while continued treatment maintained and extended weight loss — underscoring that obesity pharmacotherapy is a chronic-disease intervention.",
+      finding: "SURMOUNT-4: withdrawal of tirzepatide led to substantial weight regain, while continued treatment maintained and extended weight loss, underscoring that obesity pharmacotherapy is a chronic-disease intervention.",
     }
   ],
   "semaglutide": [

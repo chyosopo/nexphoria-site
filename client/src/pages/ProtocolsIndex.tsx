@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { DashboardMockup, ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
+import { ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
@@ -46,9 +46,9 @@ export default function ProtocolsIndex() {
   // protocol PDPs it indexes (StackPage) and the sibling goal-protocol index
   // (Category) — both already MedicalWebPage; this flagship index was the
   // lone plain WebPage outlier.
-  const desc = "Seven flagship peptide protocols, each with defined bloodwork, timeline, and physician oversight.";
+  const desc = "Seven flagship peptide protocols, each with a defined timeline, a full blood panel at week 12, and doctor oversight.";
   useSeo({
-    title: "Protocols — Physician-Curated Peptide Stacks | Nexphoria",
+    title: "Protocols: Doctor-Curated Peptide Stacks | Nexphoria",
     description: desc,
     // Neutral canonical. This index renders at four routes (/stacks,
     // /protocols, /men/protocols, /women/protocols); consolidate them onto
@@ -62,7 +62,7 @@ export default function ProtocolsIndex() {
       // ItemList of the flagship protocols — real names/paths only, no prices here.
       itemListJsonLd({
         name: "Nexphoria peptide protocols",
-        description: "Physician-curated peptide stacks in the Nexphoria formulary.",
+        description: "Doctor-curated peptide stacks in the Nexphoria formulary.",
         items: FLAGSHIP_STACKS.map((s) => ({ name: s.name, path: `/stacks/${s.slug}` })),
       }),
     ],
@@ -83,7 +83,7 @@ export default function ProtocolsIndex() {
                 Protocols. <em style={{ color: "var(--nx-cobalt)" }}>Each one measured against you.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                A protocol is a combination your doctor curates: chosen to work together, gated by a defined bloodwork panel, run on a twelve-week timeline, and measured again on a fixed retest. A plan, with a date on every step.
+                A protocol is a combination your doctor curates: chosen to work together, run on a twelve-week timeline, and measured with one full blood panel at week 12. A plan, with a date on every step.
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
@@ -110,9 +110,9 @@ export default function ProtocolsIndex() {
       <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Why a protocol">
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
-            { h: "Chosen to combine", d: "Each peptide is picked for how it works alongside the others in the stack — synergy a physician plans in advance." },
+            { h: "Chosen to combine", d: "Each peptide is picked for how it works alongside the others in the stack. Your doctor plans the synergy in advance." },
             { h: "One panel, one timeline", d: "Every component runs on the same twelve-week arc, with one full blood panel at week 12." },
-            { h: "Priced as a plan", d: "Cadence pricing — one month, three months at 15% off, twelve months at 30% with the panel included — applies to the protocol as a whole." },
+            { h: "Priced as a plan", d: "Cadence pricing applies to the protocol as a whole: one month, three months at 15% off, twelve months at 30% with the panel included." },
           ].map((b) => (
             <div key={b.h} className="nx-glass-tile" style={{ display: "block" }}>
               <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{b.h}</h2>
@@ -177,7 +177,7 @@ export default function ProtocolsIndex() {
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>{s.tagline}</p>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
                       <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
-                        {s.gated ? "Physician-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
+                        {s.gated ? "Doctor-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
                       </span>
                       <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                     </div>
@@ -196,7 +196,7 @@ export default function ProtocolsIndex() {
                 <div className="nx-float-card__body">
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Custom</p>
                   <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>Build your own</h2>
-                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>Start from a goal — a physician reviews it.</p>
+                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>Start from a goal. Your doctor reviews it.</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
                     <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building</span>
                     <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
@@ -208,25 +208,22 @@ export default function ProtocolsIndex() {
         </div>
       </section>
 
-      {/* ── Measured, not assumed — abstract outcome dashboard + clinical standard ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Measured, not assumed">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1.25fr]" style={{ gap: "clamp(2rem,5vw,4rem)", alignItems: "center" }}>
+      {/* Measured, then adjusted. The sample "biomarker index" dashboard was retired 2026-09-03: fabricated-looking figures. */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Measured, then adjusted">
+        <div style={{ maxWidth: 720 }}>
           <div>
             <SectionHead
-              eyebrow="Measured, not assumed"
+              eyebrow="Measured, then adjusted"
               title={<>Every protocol answers to the panel.</>}
-              lead="A protocol earns its next cycle from your bloodwork, not from a schedule. Your physician reads the retest trend — markers moving into range, biological age against chronological — and adjusts, holds, or stops."
+              lead="You start first. At week 12 one full blood panel is drawn, included, and your doctor reads it against your plan. Your dose follows what it shows."
               maxTitle="15ch"
             />
             <ProofStrip
-              quote="No protocol continues without a physician reading the next panel."
+              quote="Your doctor reads the week-12 panel before any protocol continues."
               attr="The Nexphoria clinical standard"
               style={{ marginTop: "clamp(1.8rem,3vw,2.6rem)" }}
             />
           </div>
-          <Reveal>
-            <DashboardMockup />
-          </Reveal>
         </div>
       </section>
 
@@ -235,10 +232,10 @@ export default function ProtocolsIndex() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
           <h2 id="protocols-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            The intake decides — <em style={{ color: "var(--nx-acid)" }}>not the catalog.</em>
+            Your questionnaire decides, <em style={{ color: "var(--nx-acid)" }}>and your doctor signs.</em>
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            You don’t have to pick correctly from a grid. Share your history and bloodwork; a physician matches you to the right protocol, or tells you none is appropriate.
+            You don’t have to pick correctly from a grid. Share your history; your doctor matches you to the right protocol, or tells you none is appropriate.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
             Start your assessment

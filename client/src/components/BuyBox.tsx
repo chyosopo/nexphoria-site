@@ -115,10 +115,10 @@ export function BuyBox(props: BuyBoxProps) {
         {gated ? (
           <>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "0.9rem" }}>
-              <Lock size={14} /> Physician-assessed only
+              <Lock size={14} /> Doctor-assessed only
             </div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.55rem" }}>
-              Prescribed after review — not bought from a shelf. Dosed and titrated by a licensed physician against your bloodwork.
+              Prescribed after your doctor reviews you. Dosed by a licensed physician from your questionnaire, then adjusted from your week-12 panel.
             </p>
             {gatedStates && (
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>
@@ -140,8 +140,8 @@ export function BuyBox(props: BuyBoxProps) {
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>
               {fromPrice
-                ? "Cadence and final price are set by your physician at intake, against your protocol."
-                : "Dosed and priced by your physician at intake, against your protocol."}
+                ? "Cadence and final price are set by your doctor at intake, against your protocol."
+                : "Dosed and priced by your doctor at intake, against your protocol."}
             </p>
             <div style={{ marginTop: "1.1rem" }}>
               <CTA testId={ctaTestId}>Start your assessment</CTA>

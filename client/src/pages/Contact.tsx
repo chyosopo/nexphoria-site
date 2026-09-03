@@ -30,14 +30,14 @@ const contactColumns: {
   },
   {
     eyebrow: "MEDICAL QUESTIONS",
-    title: "Physician portal messaging.",
+    title: "Doctor portal messaging.",
     Icon: Stethoscope,
     items: [
       { label: "CHANNEL", value: "Secure member portal" },
-      { label: "RESPONSE", value: "Reviewed by a physician" },
+      { label: "RESPONSE", value: "Reviewed by a doctor" },
       { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
     ],
-    note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal — not email — for clinical questions.",
+    note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal for clinical questions.",
   },
   {
     eyebrow: "PRESS & PARTNERSHIPS",
@@ -46,7 +46,7 @@ const contactColumns: {
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
       { label: "MAILING ADDRESS", value: `${BUSINESS.entity}\n${BUSINESS_ADDRESS.streetAddress}\n${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}` },
-      { label: "PHARMACY LICENSE", value: "Available on request — verified 503A facility" },
+      { label: "PHARMACY LICENSE", value: "Available on request. Verified 503A facility" },
     ],
     note: "Media inquiries, research collaborations, and pharmacy partnership discussions.",
   },
@@ -65,8 +65,8 @@ const reasons = [
 
 export default function Contact() {
   useSeo({
-    title: "Contact Nexphoria — physician questions, protocol support",
-    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Physician-guided support from a real team.",
+    title: "Contact Nexphoria: doctor questions, protocol support",
+    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Doctor-guided support from a real team.",
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
@@ -139,7 +139,7 @@ export default function Contact() {
                 <span>We're listening.</span>
               </>
             }
-            subtitle="Patient support, physician escalation, partnership inquiries, or press. Pick the right door and we'll route you to the right person."
+            subtitle="Patient support, doctor escalation, partnership inquiries, or press. Pick the right door and we'll route you to the right person."
           />
 
           <div className="mx-grid">
@@ -166,7 +166,7 @@ export default function Contact() {
               tone="cobalt"
               glyph={TileGlyphs.circle}
               label={<>Prefer to talk first?<br /><span>schedule a consultation</span></>}
-              caption="Physician review decides every protocol"
+              caption="Your doctor's review decides every protocol"
               ctaLabel="Book a consultation"
             />
           </div>
@@ -362,7 +362,7 @@ export default function Contact() {
                 {[
                   { label: "States Covered", value: "50" },
                   { label: "Human Review", value: "Every message" },
-                  { label: "Physician Availability", value: "Mon–Fri" },
+                  { label: "Doctor Availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
                   <div key={label} className="nx-stat-card" style={{ justifyContent: "center" }}>
                     <span className="nx-stat-num" style={{ fontSize: "var(--nx-t-h3)" }}>{value}</span>
@@ -494,7 +494,7 @@ export default function Contact() {
                       lineHeight: 1.65,
                     }}
                   >
-                    We've opened a pre-filled message to our team — just press send. We reply on business days
+                    We've opened a pre-filled message to our team. Just press send. We reply on business days
                     (Monday through Friday ET). If your mail app didn't open, email us directly at{" "}
                     <a href="mailto:hello@nexphoria.com" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>hello@nexphoria.com</a>.
                   </p>
