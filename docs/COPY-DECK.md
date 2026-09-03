@@ -873,3 +873,28 @@ included." Peptides 101: "New to peptides? Start here."
 Outcome statistics ("16% average weight loss"), member counts,
 testimonials, "24/7 messaging", HSA/FSA eligibility: the brands use them
 because they can prove them. Ours stay off until Chiya can.
+
+## v4 applied to the product pages and the FAQ (2026-09-03, late)
+
+Product page: kicker "{Medicine} · Weight loss / Body composition / Sexual
+desire"; headline is the catalog benefit line; the lede is a plain
+mechanism sentence from `soloCatalog.mechanism` ("A longer-lasting version
+of GLP-1, the hormone that tells your brain you are full. You feel full
+sooner and stay full longer. One small injection a week, increased step
+by step by your physician."); dose reads "0.25 to 2.4 mg weekly, stepped
+up", format "Weekly injection · with glycine + B12"; "What comes with it"
+(Prescribed online / Blood panel at week 12 / Dose adjustments); "What to
+expect" timeline in plain beats; "Included in your monthly price" list
+without the "Marker dashboard" claim; "Your week-12 blood panel: See how
+your body is responding."; "Safety first: Is it right for you?"; "Other
+treatments" with the catalog benefit lines; closer "Ready when you are.
+Get started in two minutes." Buy box: "Add to cart", "Not sure? Answer a
+few health questions". Cart drawer: "Your cart", "Nothing here yet".
+Product FAQ: FDA answer corrected (the branded version is approved; the
+compounded preparation is not), "Do I need a prescription?", "Do I need
+bloodwork?" (none to start), "What should I expect in the first weeks?",
+"Can I cancel?".
+FAQ page: "Questions? We have answers." with six groups (Getting started,
+The medications, Pricing, Safety, Shipping, Legal), every answer in the
+brand voice, provider and pharmacy verbatim from compliance data.
+Sitewide: every "Start your assessment" button is now "Get started".

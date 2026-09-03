@@ -240,7 +240,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             size="sm"
             className="text-xs"
           >
-            Start assessment
+            Get started
           </StartIntakeButton>
           <CartIconButton />
         </div>
@@ -569,7 +569,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               size="md"
               className="w-full justify-center"
             >
-              Start assessment
+              Get started
             </StartIntakeButton>
           </div>
         </div>,

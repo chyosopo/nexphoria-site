@@ -158,13 +158,13 @@ export function CartDrawer() {
                 className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1"
                 style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 500 }}
               >
-                Your Protocol
+                Your cart
               </div>
               <h2
                 className="text-[1.35rem] leading-tight"
                 style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
               >
-                {itemCount === 0 ? "Cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"} · pending physician review`}
+                {itemCount === 0 ? "Your cart is empty" : `${itemCount} ${itemCount === 1 ? "item" : "items"}`}
               </h2>
             </div>
             <button
@@ -627,13 +627,13 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
         className="text-lg mb-2"
         style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
       >
-        Your protocol is empty
+        Nothing here yet
       </h3>
       <p
         className="text-sm mb-6 max-w-xs"
         style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.55 }}
       >
-        Browse single peptides, doctor-curated stacks, or take the intake to receive a custom protocol.
+        Browse treatments, or answer a few health questions and we will point you to the right one.
       </p>
       <div className="flex flex-col gap-2 w-full max-w-[220px]">
         <Link
@@ -650,7 +650,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           }}
           data-testid="link-browse-stacks"
         >
-          Browse curated stacks
+          Browse treatments
         </Link>
         <Link
           href="/women/peptides"

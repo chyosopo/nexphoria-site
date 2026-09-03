@@ -190,7 +190,7 @@ export default function Peptides101() {
               Ready when you are.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="p101-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              Start your assessment
+              Get started
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 78%, transparent)", marginTop: "0.9rem" }}>
               Two minutes to start.

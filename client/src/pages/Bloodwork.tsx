@@ -122,7 +122,7 @@ function Hero() {
                   variant="primary"
                   size="lg"
                 >
-                  Start your assessment
+                  Get started
                 </StartIntakeButton>
                 <Link
                   href="/peptides"
@@ -956,7 +956,7 @@ function FullPanelSection() {
         </p>
         <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", marginTop: "1.6rem" }}>
           <Link href="/assessment" className="nx-cta-cobalt" data-testid="bloodwork-tiers-cta" style={{ fontFamily: FONT, fontWeight: 600, fontSize: "var(--nx-t-base)", padding: "13px 26px" }}>
-            Start your assessment
+            Get started
           </Link>
         </div>
       </div>

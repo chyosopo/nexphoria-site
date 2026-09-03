@@ -139,7 +139,7 @@ export default function HowItWorks() {
                 From checkout to your first cold shipment to your week-12 blood panel. Here is every step, in order, and why it is there.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
-                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Start your assessment</Link>
+                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Get started</Link>
                 <Link href="/bloodwork" className="nx-cta-ghost">See the panels</Link>
               </div>
             </div>
@@ -320,7 +320,7 @@ export default function HowItWorks() {
           Your doctor decides first. <em style={{ color: "var(--nx-cobalt)" }}>Then your medicine is made for you.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.7rem" }} data-testid="hiw-cta">
-          Start your assessment
+          Get started
         </Link>
       </section>
       {/* Sticky contextual CTA on long pages (ROADMAP 6.2) */}

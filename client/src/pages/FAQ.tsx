@@ -29,23 +29,48 @@ const GLP1_EXCLUDED = Array.from(
 
 const categories: { label: string; items: FAQItem[] }[] = [
   {
-    label: "Peptides",
+    label: "Getting started",
+    items: [
+      {
+        q: "How does it work?",
+        a: `Pick your treatment and check out. Answer a few health questions, which takes about two minutes. A licensed U.S. physician reviews them and, if it is right for you, writes your prescription. Your medication is made in a licensed U.S. pharmacy and shipped cold to your door. At week ${RETEST_WEEK}, a full blood panel is included so your physician can see how your body is responding.`,
+      },
+      {
+        q: "Do I need to see a doctor in person?",
+        a: "No visit needed. Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription, and reads your week-12 blood panel.",
+      },
+      {
+        q: "What if the physician says it is not right for me?",
+        a: "You will hear why, and for some people the answer is to wait or try a different treatment. The refund policy explains what is refunded.",
+      },
+      {
+        q: "Do I need bloodwork to start?",
+        a: `Not to start. At week ${RETEST_WEEK}, a full blood panel of ${PANEL_TOTAL_MARKERS} markers is included in your plan. We send you what you need for the draw as week ${RETEST_WEEK} approaches. If you have recent results from a CLIA-certified lab, your physician may use those too.`,
+      },
+      {
+        q: "What if I have a health condition?",
+        a: "Tell us in the health questions. Some conditions rule a medication out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what your physician keeps an eye on.",
+      },
+    ],
+  },
+  {
+    label: "The medications",
     items: [
       {
         q: "What is a peptide?",
-        a: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as messengers. The ones prescribed here copy a signal your body already uses, so a cell does more of what it does anyway: release a hormone, handle sugar, start desire.",
+        a: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as signals. The ones we prescribe are precise versions of signals your body already uses, so it does more of what it does anyway: feels full, releases growth hormone, or responds to desire.",
       },
       {
         q: "Which peptides do you offer?",
-        a: `${PEPTIDE_NAMES}. A U.S. licensed doctor picks yours from your questionnaire, and each one has its own page that explains what it does and how you take it.`,
+        a: `${PEPTIDE_NAMES}. Each has its own page explaining what it does, how you take it, and what it costs.`,
       },
       {
         q: "How is this different from buying peptides online?",
-        a: "Every medicine here is prescribed by a U.S. licensed doctor and made for you in a licensed 503A pharmacy in the United States, then shipped cold. You know what is in the vial, who made it, and who prescribed it.",
+        a: "Everything here is prescribed by a licensed U.S. physician and made for you in a licensed U.S. pharmacy, then shipped cold. You know exactly what is in the vial, who made it, and who prescribed it.",
       },
       {
         q: "What does a 503A pharmacy mean?",
-        a: "A pharmacy licensed to compound a medicine for one named patient, from a doctor's prescription. That is how your dose and formulation can be set for you rather than mass-produced.",
+        a: "A pharmacy licensed to make a medication for one named patient, from a physician's prescription. That is what lets your dose and formulation be set for you.",
       },
       {
         q: "Who provides the clinical care?",
@@ -58,51 +83,22 @@ const categories: { label: string; items: FAQItem[] }[] = [
     ],
   },
   {
-    label: "Your doctor",
+    label: "Pricing",
     items: [
       {
-        q: "How does it work, start to finish?",
-        a: `You choose a plan and check out. You answer the questionnaire, which takes about two minutes. A U.S. licensed doctor reads every answer and decides. If it is a yes, your medicine is made for you in a licensed 503A pharmacy and ships cold. At week ${RETEST_WEEK} a full blood panel, included in your plan, shows your doctor what changed, and your dose follows it.`,
-      },
-      {
-        q: "Do I actually talk to a doctor?",
-        a: "A real one reads your full questionnaire and signs your prescription. The decision is theirs alone. If your doctor needs more from you before deciding, they ask.",
-      },
-      {
-        q: "What if my doctor says no?",
-        a: "Then it is a no, and your doctor tells you why. They may suggest a different plan. The refund policy sets out what is refunded.",
-      },
-      {
-        q: "What bloodwork do I need?",
-        a: `One full panel of ${PANEL_TOTAL_MARKERS} markers at week ${RETEST_WEEK}, included in your plan. You start first. We send you what you need for the draw as week ${RETEST_WEEK} approaches. If you have recent results from a CLIA-certified lab, your doctor may read those too.`,
-      },
-      {
-        q: "Who reads my bloodwork?",
-        a: "Your doctor. They read every marker against the plan you are on and come back with a decision: continue, adjust, or stop, and why.",
-      },
-      {
-        q: "What if I have a health condition?",
-        a: "Tell your doctor in the questionnaire. Some conditions rule a medicine out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what your doctor watches. Every answer is read by the doctor who decides.",
-      },
-    ],
-  },
-  {
-    label: "Price",
-    items: [
-      {
-        q: "What does it cost?",
-        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. Three-month plans save 15% a month and twelve-month plans save 30%. The figure is complete: your doctor's review, your medicine, cold shipping and the week-${RETEST_WEEK} blood panel are within it.`,
+        q: "How much does it cost?",
+        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. Three-month plans save 15% and twelve-month plans save 30%. Your monthly price includes your medication, physician review, cold shipping, and your week-${RETEST_WEEK} blood panel.`,
       },
       {
         q: "What do I pay today?",
-        a: "The monthly figure shown at checkout. What happens next is on the same page: questionnaire, doctor, then your medicine is made and shipped. If your doctor declines, the refund policy sets out what is refunded.",
+        a: "The monthly price shown at checkout, and that is the whole figure. What happens next is on the same page: health questions, physician review, then your medication ships.",
       },
       {
         q: "Can I cancel?",
-        a: "Yes. Cancellation takes effect at the end of your current cycle. Medicine that has already been dispensed cannot be returned under pharmacy regulations. The refund policy has the detail.",
+        a: "Yes. Cancellation takes effect at the end of your current cycle. Medication that has already shipped cannot be returned under pharmacy regulations. The refund policy has the details.",
       },
       {
-        q: "Can I use insurance?",
+        q: "Do you take insurance?",
         a: "Nexphoria is self-pay. Insurance does not cover compounded peptides.",
       },
     ],
@@ -111,20 +107,20 @@ const categories: { label: string; items: FAQItem[] }[] = [
     label: "Safety",
     items: [
       {
-        q: "What are the common side effects?",
-        a: "They depend on the medicine. GLP-1 medicines such as semaglutide and tirzepatide can cause nausea and a smaller appetite while the dose steps up. Tesamorelin can cause redness where you inject and some water retention. PT-141 can cause nausea and flushing, and raises blood pressure for a few hours. Your doctor reads your history for the risks that matter to you before prescribing.",
+        q: "What are the side effects?",
+        a: "It depends on the medication. GLP-1 medications like semaglutide and tirzepatide can cause nausea and a smaller appetite while your dose steps up. Tesamorelin can cause redness where you inject and some water retention. PT-141 can cause nausea and flushing, and raises blood pressure for a few hours. Your physician reviews your history for the risks that matter to you.",
       },
       {
-        q: "What do I do if something feels wrong?",
-        a: "For chest pain, trouble breathing or a severe allergic reaction, call emergency services first. For anything else, stop and contact your doctor before your next dose.",
+        q: "What if something feels wrong?",
+        a: "For chest pain, trouble breathing, or a severe allergic reaction, call emergency services. For anything else, stop and contact your physician before your next dose.",
       },
       {
         q: "How do I store it?",
-        a: "In the fridge, in its box, following the instructions that ship with it. Your box arrives cold with a temperature indicator. If the indicator shows the cold chain broke, do not use it, and email hello@nexphoria.com.",
+        a: "In the fridge, in its box, following the instructions that come with it. Your shipment arrives cold with a temperature indicator. If the indicator shows the cold chain broke, do not use it, and email hello@nexphoria.com.",
       },
       {
         q: "What if I miss a dose?",
-        a: "Follow the instructions in your box for your medicine. Never double a dose to catch up. If you are unsure, ask your doctor before the next one.",
+        a: "Follow the instructions in your box for your medication. Never double up to catch up. If you are unsure, ask your physician before the next dose.",
       },
     ],
   },
@@ -133,19 +129,19 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How is it shipped?",
-        a: `Cold, in a plain box with a temperature indicator, to your door. We ship to all 50 states. Semaglutide and tirzepatide are excluded by law in ${GLP1_EXCLUDED}.`,
+        a: `Cold, in plain packaging, to your door. We ship to all 50 states. Compounded GLP-1 medication is restricted by law in ${GLP1_EXCLUDED}.`,
       },
       {
         q: "When does it arrive?",
-        a: "After your doctor says yes, the pharmacy makes your medicine and ships it cold. You get a confirmation by email when it is on its way.",
+        a: "Once your physician approves, the pharmacy makes your medication and ships it cold. You get an email with tracking when it is on its way.",
       },
       {
         q: "Can I travel with it?",
-        a: "Within the United States, yes, with your prescription label on the box. Keep it cold. Other countries have their own import rules and we ship inside the United States only.",
+        a: "Within the United States, yes. Keep it cold and keep the prescription label on the box. We ship inside the United States only.",
       },
       {
         q: "Do you ship internationally?",
-        a: "No. We ship within the United States, to states where our doctors hold a licence.",
+        a: "No. We ship within the United States, to states where our physicians are licensed.",
       },
     ],
   },
@@ -154,15 +150,15 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "Are peptides legal?",
-        a: "Prescribed by a U.S. licensed physician and compounded by a licensed 503A pharmacy, yes. Semaglutide and tirzepatide are also available as FDA-approved branded drugs. Tesamorelin and PT-141 exist as FDA-approved branded drugs too; the compounded versions here are prescribed off-label, which is a routine part of medical practice in the United States.",
+        a: "Yes, when prescribed by a licensed U.S. physician and made by a licensed 503A pharmacy. Semaglutide, tirzepatide, tesamorelin and PT-141 each exist as FDA-approved branded drugs. The compounded versions we prescribe are prepared for you, and prescribing them is a routine part of medical practice in the United States.",
       },
       {
         q: "Is this FDA-approved?",
-        a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared for you by a state-licensed 503A compounding pharmacy under a physician's prescription. Where a branded, FDA-approved version of a molecule exists, ours is the compounded version, made for you, and is not the branded product.",
+        a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared for you by a state-licensed 503A compounding pharmacy under a physician's prescription. Where a branded, FDA-approved version of a molecule exists, ours is the compounded version and is not the branded product.",
       },
       {
-        q: "Is Nexphoria legit?",
-        a: "Every prescription here is written by a U.S. licensed physician through the Bask Health telehealth platform. Your medicine is compounded in a licensed 503A pharmacy in the United States and shipped cold. The provider and the pharmacy are named on this page, with their addresses.",
+        q: "Is Nexphoria legitimate?",
+        a: "Yes. Every prescription is written by a licensed U.S. physician through the Bask Health telehealth platform, and your medication is made in a licensed U.S. pharmacy. The provider and the pharmacy are named on this page, with their addresses.",
       },
     ],
   },
@@ -213,14 +209,12 @@ export default function FAQPage() {
   };
 
   const categoryHeadings: Record<string, string> = {
-    Products: "What you're getting.",
-    Process: "Clinical process and monitoring.",
-    Pricing: "Pricing, billing, and cancellation.",
-    Safety: "Safety, storage, and administration.",
-    Shipping: "Cold-chain shipping and delivery.",
-    Refills: "Refills, changes, and protocol adjustments.",
-    Legality: "Legal status and compliance.",
-    "Nexphoria vs. Alternatives": "How Nexphoria compares.",
+    "Getting started": "Getting started.",
+    "The medications": "The medications.",
+    Pricing: "Pricing and plans.",
+    Safety: "Safety and side effects.",
+    Shipping: "Shipping and delivery.",
+    Legal: "Legal and regulatory.",
   };
 
   return (
@@ -234,11 +228,11 @@ export default function FAQPage() {
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Everything you wanted</span><br />
-                <span>to ask your doctor.</span>
+                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Questions?</span><br />
+                <span>We have answers.</span>
               </>
             }
-            subtitle="Plain answers on dosing, safety, side effects, shipping, insurance, and what to expect, before you start."
+            subtitle="How it works, what it costs, safety, and shipping. Plain answers, before you start."
           />
 
           {/* Editorial hero — questions answered, mind settled */}
@@ -275,7 +269,7 @@ export default function FAQPage() {
                   textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
                 }}
               >
-                Dosing, safety, shipping, price. Answered plainly, by the people who built it.
+                Everything you need to know before you get started.
               </p>
             </figcaption>
           </figure>
@@ -427,7 +421,7 @@ export default function FAQPage() {
 
       <FinalCTAStrip
         title="Still have questions?"
-        sub="Email hello@nexphoria.com and a person answers. Clinical questions go to your doctor."
+        sub="Email hello@nexphoria.com and a real person will answer. Clinical questions go to your physician."
       />
     </SiteLayout>
   );

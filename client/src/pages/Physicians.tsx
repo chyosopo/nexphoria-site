@@ -369,7 +369,7 @@ export default function Physicians() {
                 Your physician review is included with every protocol. Take the assessment and our team will match you with a physician licensed in your state.
               </p>
               <StartIntakeButton source="physicians-page" size="lg">
-                Start your assessment
+                Get started
               </StartIntakeButton>
             </div>
           </Reveal>
@@ -515,7 +515,7 @@ function PhysiciansHeroDark() {
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
               <StartIntakeButton variant="primary" source="physicians-hero">
-                Start your assessment
+                Get started
               </StartIntakeButton>
               <a
                 href={anchor("#how-review-works")}

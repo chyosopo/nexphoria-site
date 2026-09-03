@@ -20,9 +20,9 @@ export function SafetyDisclosure({
       </summary>
       <div style={{ paddingBottom: "1rem" }}>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)" }}>
-          {name} is prescription-only and is not appropriate for everyone. A licensed
-          physician reviews your intake and baseline bloodwork before any prescription
-          is issued, and may decline to prescribe. Do not begin if any of the following apply:
+          {name} is prescription-only. A licensed physician reviews your health
+          questions before any prescription is issued, and may decline to prescribe.
+          Tell your physician if any of the following apply:
         </p>
         <ul style={{ margin: "0.6rem 0 0", paddingLeft: "1.1rem", display: "flex", flexDirection: "column", gap: 5 }}>
           {contraindications.map((c) => (
@@ -33,7 +33,7 @@ export function SafetyDisclosure({
         </ul>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.6, color: "var(--nx-fg-muted)", marginTop: "0.7rem" }}>
           Compounded medications are not FDA-approved. Individual results vary. Report
-          side effects to your physician through the secure portal.
+          side effects to your physician.
         </p>
       </div>
     </details>

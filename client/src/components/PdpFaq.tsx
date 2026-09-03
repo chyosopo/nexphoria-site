@@ -20,35 +20,35 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: `Is ${name} FDA-approved?`,
-    a: `No. Like most therapeutic peptides, ${name} is not FDA-approved as a standalone drug. Where a licensed physician determines it appropriate, it is prescribed off-label and compounded for you in a state-licensed 503A pharmacy. Compounded medications are not evaluated by the FDA for safety, effectiveness, or quality.`,
+    a: `Compounded ${name} is prepared for you by a licensed 503A pharmacy under a physician's prescription, and compounded medications are not FDA-approved. Where a branded, FDA-approved version of the active ingredient exists, that approval does not extend to the compounded preparation. Compounded medications are not evaluated by the FDA for safety, effectiveness, or quality.`,
   });
 
   items.push({
     q: "Do I need a prescription?",
-    a: `Yes, always. Your questionnaire goes to a U.S. licensed physician, who reviews it with your blood panel. Nothing ships without a valid prescription.`,
+    a: `Yes. A licensed U.S. physician reviews your health questions and writes the prescription if it is right for you. Everything happens online.`,
   });
 
   items.push({
     q: "What bloodwork is required?",
-    a: `You start first. At week 12 of your plan a full blood panel, included, is drawn and read by your physician, so the dose of ${name} follows what actually changed.`,
+    a: `None to start. At week 12, a full blood panel is included in your plan. It shows your physician how your body is responding to ${name}, and your dose is adjusted from it.`,
   });
 
   if (firstMark) {
     items.push({
-      q: "When do people typically notice changes?",
-      a: `The protocol timeline outlines ${firstMark.effect.replace(/\.$/, "").toLowerCase()} around ${firstMark.wk}. Everyone responds differently, which is why your blood is read at week 12 and your dose follows it.`,
+      q: "What should I expect in the first weeks?",
+      a: `${firstMark.wk}: ${firstMark.effect} Everyone responds differently, which is why your blood panel at week 12 is part of the plan and your dose is adjusted from it.`,
     });
   }
 
   if (gated) {
     items.push({
       q: "Why can't I just add it to a cart?",
-      a: `GLP-1 medicines are dosed and stepped up by your doctor from your history, and read against your blood at week 12. Begin the eligibility intake; if a protocol is appropriate, your physician prescribes it.${gatedStates?.length ? ` It is not currently available for shipping addresses in ${gatedStates.join(", ")}.` : ""}`,
+      a: `GLP-1 medication is dosed and increased step by step by your physician, based on your health history. Answer a few health questions first; if it is right for you, your physician prescribes it.${gatedStates?.length ? ` It is not currently available for shipping addresses in ${gatedStates.join(", ")}.` : ""}`,
     });
   } else if (hasPricing) {
     items.push({
       q: "Can I cancel?",
-      a: "Yes. The 1-month cadence cancels anytime. Longer cadences trade flexibility for price — 15% off at 3 months, 30% off at 12 months with the panel included.",
+      a: "Yes. The monthly plan cancels anytime. Longer plans cost less per month: 15% off at 3 months and 30% off at 12 months, with your blood panel included.",
     });
   }
 

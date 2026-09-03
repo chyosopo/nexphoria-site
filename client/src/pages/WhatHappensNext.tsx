@@ -97,7 +97,7 @@ export default function WhatHappensNext() {
           </h2>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1.2rem", justifyContent: "center", alignItems: "center", marginTop: "1.6rem" }}>
             <Link href="/assessment" className="nx-cta-cobalt" data-testid="whn-cta" style={{ fontSize: "var(--nx-t-base)", padding: "15px 32px" }}>
-              Start your assessment
+              Get started
             </Link>
             <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
               See how it works <ArrowRight size={15} aria-hidden />

@@ -126,7 +126,7 @@ export default function Gate() {
             style={{ color: "rgba(246, 249, 252,0.85)", textDecoration: "underline", textUnderlineOffset: "3px", display: "inline-block", padding: "14px 8px", margin: "-14px -8px" }}
             data-testid="gate-link-assessment"
           >
-            Start assessment
+            Get started
           </Link>
         </p>
       </div>

@@ -129,7 +129,7 @@ export function FinalCTAStrip({
                 padding: "0.875rem 2rem",
               }}
             >
-              Start your assessment
+              Get started
             </StartIntakeButton>
 
             {/* Ghost dark button */}

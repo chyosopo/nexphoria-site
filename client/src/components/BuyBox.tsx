@@ -144,7 +144,7 @@ export function BuyBox(props: BuyBoxProps) {
                 : "Dosed and priced by your doctor at intake, against your protocol."}
             </p>
             <div style={{ marginTop: "1.1rem" }}>
-              <CTA testId={ctaTestId}>Start your assessment</CTA>
+              <CTA testId={ctaTestId}>Get started</CTA>
             </div>
           </>
         ) : (
@@ -225,10 +225,10 @@ export function BuyBox(props: BuyBoxProps) {
                   className="nx-cta-cobalt"
                   style={{ display: "flex", justifyContent: "center", width: "100%", fontSize: "var(--nx-t-base)", padding: "14px 26px", border: "none", cursor: "pointer" }}
                 >
-                  Add to protocol · {active ? usd(active.amount) : ""}{active?.per}
+                  Add to cart · {active ? usd(active.amount) : ""}{active?.per}
                 </button>
               ) : (
-                <CTA testId={ctaTestId}>Start your assessment</CTA>
+                <CTA testId={ctaTestId}>Get started</CTA>
               )}
             </div>
             {cadence && active?.per === "/mo" && (
@@ -239,7 +239,7 @@ export function BuyBox(props: BuyBoxProps) {
             {cadence && (
               <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
                 <Link href="/assessment" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  Not sure? Start your assessment →
+                  Not sure? Answer a few health questions
                 </Link>
               </div>
             )}
@@ -302,7 +302,7 @@ export function BuyBox(props: BuyBoxProps) {
             className="nx-cta-cobalt"
             style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap", border: "none", cursor: "pointer" }}
           >
-            Add to protocol
+            Add to cart
           </button>
         ) : (
           <Link
@@ -311,7 +311,7 @@ export function BuyBox(props: BuyBoxProps) {
             className="nx-cta-cobalt"
             style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}
           >
-            {gated ? "Check eligibility" : "Start your assessment"}
+            {gated ? "Check eligibility" : "Get started"}
           </Link>
         )}
         </div>

@@ -130,7 +130,7 @@ const tiers = [
       "Dose review at week 12",
       "Priority telehealth response",
     ],
-    cta: "Start assessment",
+    cta: "Get started",
     href: null,
   },
 ];
@@ -584,7 +584,7 @@ export default function Pricing() {
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
                   <StartIntakeButton source="pricing-hero" size="lg">
-                    Start your assessment
+                    Get started
                   </StartIntakeButton>
                   <Link
                     href="/stacks"
@@ -1323,7 +1323,7 @@ export default function Pricing() {
                 Start with the questionnaire. Your doctor reads it and writes a plan around your goal and your history, then reads your blood at week 12.
               </p>
               <StartIntakeButton source="pricing-page" size="lg">
-                Start your assessment
+                Get started
               </StartIntakeButton>
             </div>
           </Reveal>

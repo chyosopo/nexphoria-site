@@ -153,7 +153,7 @@ export default function StackPage({ slug }: { slug: string }) {
                   then empty space, with commerce buried a full scroll below */}
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
-                  {stack.gated ? "Check eligibility" : "Start your assessment"}
+                  {stack.gated ? "Check eligibility" : "Get started"}
                 </Link>
                 <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)" }}>
                   {stack.gated
@@ -396,7 +396,7 @@ export default function StackPage({ slug }: { slug: string }) {
           Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Every vial is made on a prescription.</em>
         </h2>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
-          Start your assessment
+          Get started
         </Link>
       </section>
     </SiteLayout>

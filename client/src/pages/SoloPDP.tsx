@@ -41,6 +41,9 @@ const SOLO_OUTCOME: Record<SoloCategory, PeptideCategory> = {
   "Sexual Health": "longevity",
 };
 
+/* the treatment name a reader chose on the home page, for the kicker */
+const GOAL_LABEL: Record<string, string> = { Metabolic: "Weight loss", Growth: "Body composition", "Sexual Health": "Sexual desire" };
+
 export default function SoloPDP({ slug, world }: { slug: string; world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
   // Imagery world: the URL world if present, else the visitor's remembered world
@@ -126,18 +129,18 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const parentStackArt = parentStack ? stackArt(parentStack.slug, imgWorld) : undefined;
 
   const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
-    { Icon: Stethoscope, t: "Doctor review & prescription" },
-    { Icon: Microscope, t: `${solo.panel} bloodwork panel` },
-    { Icon: FlaskConical, t: "503A pharmacy compounding" },
-    { Icon: Snowflake, t: "Cold-chain, unbranded delivery" },
-    { Icon: LayoutDashboard, t: "Marker dashboard" },
-    { Icon: RefreshCw, t: "Week-12 panel & dose review" },
+    { Icon: Stethoscope, t: "Physician review and prescription" },
+    { Icon: Microscope, t: "Blood panel at week 12" },
+    { Icon: FlaskConical, t: "Made in a licensed U.S. pharmacy" },
+    { Icon: Snowflake, t: "Cold shipping, plain packaging" },
+    { Icon: LayoutDashboard, t: "Your results, explained" },
+    { Icon: RefreshCw, t: "Dose adjustments" },
   ];
 
   const WHY: { Icon: typeof Stethoscope; t: string; d: string }[] = [
-    { Icon: Stethoscope, t: "Prescribed", d: "A licensed U.S. physician authorizes it from your questionnaire, and signs for it." },
-    { Icon: Microscope, t: "Full panel at week 12", d: "A full blood panel, included, drawn at week 12 and read by your doctor." },
-    { Icon: RefreshCw, t: "Dose reviewed at week 12", d: "Your doctor holds, adjusts or tapers your dose from what the panel shows." },
+    { Icon: Stethoscope, t: "Prescribed online", d: "A licensed U.S. physician reviews your health questions and writes your prescription." },
+    { Icon: Microscope, t: "Blood panel at week 12", d: "A full panel, included, shows how your body is responding." },
+    { Icon: RefreshCw, t: "Dose adjustments", d: "Your physician adjusts your dose from your results. Your price stays the same." },
   ];
 
   const tiers: BuyTier[] | undefined = solo.pricing
@@ -162,7 +165,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const heroPriceSub = solo.gated
     ? "Priced once your doctor has reviewed your questionnaire"
     : solo.pricing
-      ? "on the 12-month cadence · panel included"
+      ? "on the 12-month plan · blood panel included"
       : undefined;
 
   return (
@@ -203,7 +206,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               {/* Goals before chemistry (ROADMAP 3.2): the OUTCOME is the
                   headline; the molecule identifies, it no longer leads. */}
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                {solo.name} · {solo.category}
+                {solo.name} · {GOAL_LABEL[solo.category] ?? solo.category}
               </p>
               <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.4rem", maxWidth: "18ch" }}>{solo.outcome}</h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
@@ -215,11 +218,11 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ maxWidth: 460, marginTop: "1.4rem" }}>
                 <SpecPlate
                   name={solo.name}
-                  nomenclature={`${solo.category.toLowerCase()} · doctor-prescribed`}
+                  nomenclature={`${(GOAL_LABEL[solo.category] ?? solo.category).toLowerCase()} · prescribed online`}
                   rows={[
                     { label: "Dose", value: solo.dose },
                     { label: "Format", value: solo.spec },
-                    { label: "Monitoring", value: "Full panel at week 12 · included" },
+                    { label: "Included", value: "Blood panel at week 12" },
                   ]}
                   testId={`spec-plate-${solo.slug}`}
                 />
@@ -247,14 +250,14 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   data-testid="solo-hero-cta"
                   style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}
                 >
-                  Start your assessment
+                  Get started
                 </Link>
                 <a href="#buy" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  See every cadence →
+                  See plan options
                 </a>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.55, color: "var(--nx-fg-muted)", marginTop: "0.8rem", maxWidth: "44ch" }}>
-                Your doctor decides. Every vial is made on a prescription.
+                Prescription only. A licensed U.S. physician reviews every request.
               </p>
             </div>
           </div>
@@ -269,7 +272,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div>
             {/* Why this peptide — the three pillars every solo answers to.
                h2 (not p) so the tile h3s below don't skip a heading level; style unchanged. */}
-            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Why this peptide, this way</h2>
+            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What comes with it</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "0.9rem" }}>
               {WHY.map((w, i) => (
                 <Reveal key={w.t} delay={i * 55}>
@@ -301,7 +304,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             {/* What every solo protocol includes — same grid the stacks carry */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               {/* consult-priced pulse protocols aren't monthly subscriptions */}
-              {solo.pricing ? "What is included, every month" : "What is included with your protocol"}
+              {solo.pricing ? "Included in your monthly price" : "Included with your plan"}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
               {INCLUDED.map((x, i) => (
@@ -319,12 +322,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span className="nx-icon-circle" aria-hidden><Microscope size={19} strokeWidth={1.9} /></span>
                 <div>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your week-12 bloodwork</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your blood panel</p>
                   <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)" }}>{solo.panel} panel</h3>
                 </div>
               </div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "56ch" }}>{solo.panelNote ?? "Drawn at week 12 and read by your doctor."}</p>
-              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See the panels →</Link>
+              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.7rem" }}>See what is measured</Link>
             </div>
 
             {solo.gated && (
@@ -379,24 +382,24 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="solo-blood-title" data-testid="solo-blood">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr]" style={{ gap: "clamp(1.4rem,3vw,2.6rem)", background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "clamp(1.4rem,3vw,2.2rem)" }}>
               <div>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The week-{RETEST_WEEK} blood panel</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your week-{RETEST_WEEK} blood panel</p>
                 <h2 id="solo-blood-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.12, maxWidth: "20ch" }}>
-                  What the panel measures for {solo.name}.
+                  See how your body is responding.
                 </h2>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "0.9rem", maxWidth: "50ch" }}>{m.why}</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "50ch" }}>
-                  A full panel of {PANEL_TOTAL_MARKERS} markers is included in the price.{" "}
+                  A full panel of {PANEL_TOTAL_MARKERS} markers is included in your plan.{" "}
                   <Link href="/bloodwork" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker and why it is there</Link>
                 </p>
               </div>
               <div style={{ display: "grid", gap: 10 }}>
                 <div style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1rem 1.15rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Read first for this medicine</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What your physician checks first</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{m.watch.join(" · ")}</p>
-                  {m.doseMarker && <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>The dose is set against {m.doseMarker}.</p>}
+                  {m.doseMarker && <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>Your dose is set against your {m.doseMarker}.</p>}
                 </div>
                 <div style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1rem 1.15rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Screened for before prescribing</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Your physician checks for</p>
                   <ul style={{ margin: "0.4rem 0 0", padding: "0 0 0 1.1rem", display: "grid", gap: 3 }}>
                     {m.intakeScreens.map((q) => <li key={q} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>{q}</li>)}
                   </ul>
@@ -414,9 +417,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, color-mix(in srgb, var(--nx-fg) 62%, transparent) 0%, transparent 60%)" }} />
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
               <div style={{ padding: "var(--nx-sp-band)", maxWidth: 560 }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>The point of the protocol</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>More than the medication</p>
                 <h2 id="solo-point-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.1, marginTop: "0.7rem", maxWidth: "18ch" }}>
-                  You get the measured loop. <em style={{ color: "var(--nx-acid)" }}>The vial is only part of it.</em>
+                  Your medication, your physician, <em style={{ color: "var(--nx-acid)" }}>and the blood panel behind it.</em>
                 </h2>
               </div>
             </div>
@@ -428,9 +431,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0", overflow: "hidden" }} aria-labelledby="solo-contra-title">
         <div className="nx-container">
           <p style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>
-            <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Before you begin
+            <FlaskConical size={14} strokeWidth={2.2} aria-hidden="true" /> Safety first
           </p>
-          <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "var(--nx-ls-snug)" }}>Not for everyone.</h2>
+          <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "var(--nx-ls-snug)" }}>Is it right for you?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
             {solo.contraindications.map((c) => (
               <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
@@ -495,10 +498,10 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {related.length > 0 && (
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="solo-crosssell-title">
           <h2 id="solo-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
-            Often prescribed on the same axis
+            Other treatments
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
-            Compounds your doctor may consider alongside {solo.name}: same intake, same panel, one prescription decision.
+            Everything we prescribe comes with the same physician review, the same blood panel, and one monthly price.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
             {related.map((r, i) => (
@@ -507,9 +510,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   <div className="nx-float-card__body">
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{r.name}</h3>
-                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.mechanism}</p>
+                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.outcome}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
-                      {r.pricing ? `From $${r.pricing.m12}/mo` : "Doctor-priced"}
+                      {r.pricing ? `From $${r.pricing.m12}/mo` : "Priced at consultation"}
                       <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
                     </p>
                   </div>
@@ -521,8 +524,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       )}
 
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Every vial is made on a prescription.</em></h2>
-        <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Start your assessment</Link>
+        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>Ready when you are. <em style={{ color: "var(--nx-cobalt)" }}>Get started in two minutes.</em></h2>
+        <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Get started</Link>
       </section>
     </SiteLayout>
   );

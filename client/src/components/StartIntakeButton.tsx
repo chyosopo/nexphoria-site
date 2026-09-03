@@ -42,7 +42,7 @@ export function StartIntakeButton({
   size = "lg",
   className,
   style,
-  children = "Start your assessment",
+  children = "Get started",
   showArrow = true,
 }: {
   productSlug?: string;

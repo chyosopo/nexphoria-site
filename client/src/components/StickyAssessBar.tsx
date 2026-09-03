@@ -59,7 +59,7 @@ export function StickyAssessBar({
           style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 18px" }}
           data-testid={`${testid}-cta`}
         >
-          Start your assessment
+          Get started
         </Link>
       </div>
     </div>
