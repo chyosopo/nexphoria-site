@@ -1092,7 +1092,7 @@ function PanelTiers() {
             ))}
           </div>
           <p style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1.4rem", maxWidth: "60ch" }}>
-            Draw at {SITE_STATS.labSites.display} partner laboratory locations or with the at-home collection kit. Your results populate one dashboard and are read by your physician before anything is prescribed or adjusted.
+            Draw at {SITE_STATS.labSites.display} partner laboratory locations or with the at-home collection kit. Your results populate one dashboard and are read by your physician at week 12 before anything is adjusted.
           </p>
           {/* THE offer's local next step (fleet audit S2: a desktop buyer at
               peak price-consideration had no in-flow CTA for ~10,000px) */}
