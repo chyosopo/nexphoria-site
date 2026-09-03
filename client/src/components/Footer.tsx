@@ -101,6 +101,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "About", href: "/about" },
         { label: "Physicians", href: "/physicians" },
         { label: "How it works", href: "/how-it-works" },
+        { label: "Peptides 101", href: "/peptides-101" },
         { label: "Journal", href: "/journal" },
       ],
     },

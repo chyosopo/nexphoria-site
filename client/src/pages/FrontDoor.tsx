@@ -138,6 +138,9 @@ export default function FrontDoor() {
           <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "clamp(1.6rem,3vw,2.4rem)", maxWidth: "48ch" }}>
             That is the whole model. It is also how you tell a real clinic from a website.
           </p>
+          <Link href="/peptides-101" className="nx-text-link" data-testid="frontdoor-p101-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-block" }}>
+            New to peptides? Start with Peptides 101
+          </Link>
         </Reveal>
       </section>
 

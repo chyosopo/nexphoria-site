@@ -380,7 +380,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   </span>
                 </Link>
                 <Link
-                  href="/how-it-works"
+                  href="/peptides-101"
                   className="inline-flex items-center gap-1.5 no-underline mb-5"
                   style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}
                   onClick={() => setMegaOpen(false)}
