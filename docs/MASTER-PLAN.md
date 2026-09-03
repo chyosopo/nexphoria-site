@@ -202,6 +202,16 @@ checkout can be designed around it.
 
 ## Part 6. Execution order (one by one, each gated)
 
+Status, 2026-09-02 late: steps 1, 2 and 3 are live on the preview. Step 1:
+the model as data and the number 99 retired sitewide. Step 2: the bloodwork
+page rebuilt around the one full panel with every marker's reason, and
+Peptides 101 published and linked from the nav, the footer and the home
+page. Step 3: every product page carries the per-peptide "why your blood is
+part of it" section. Next: the home page and goal pages around the arrive,
+understand, choose journey (step 4), then bundles and pricing once Chiya's
+numbers are in (step 5).
+
+
 1. **Decisions 1 to 3 from Chiya, and the physicians' sign-off on the
    panels.** Meanwhile: the panel model is written as data
    (`client/src/data/monitoring.ts`) so every page reads it from one place.
