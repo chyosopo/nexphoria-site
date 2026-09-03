@@ -5,7 +5,8 @@ import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { StartIntakeButton } from "./StartIntakeButton";
 import { CartIconButton } from "./CartIconButton";
-import { CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
+import { CATEGORY_LABELS, liveCategories, type PeptideCategory } from "@/data/peptides";
+import { SOLO_CATALOG } from "@/data/soloCatalog";
 
 interface NavProps {
   variant?: "women" | "men" | "gate" | "showcase";
@@ -44,21 +45,27 @@ const showcaseLinks: NavLink[] = [
 /* Six category tiles for the Peptides mega-menu. Order + copy tuned for
    the Hims-style "quiet mega-menu on hover" pattern: six restrained tiles,
    each a benefit line, plus a featured-peptides column on the right. */
-const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = [
-  { key: "recovery", blurb: "Tissue repair, injury, training load" },
-  { key: "skin", blurb: "Collagen, tone, aesthetic outcomes" },
-  { key: "growth", blurb: "GH pulse, lean mass, body composition" },
-  { key: "longevity", blurb: "Cellular energy, immune, healthspan" },
-  { key: "cognition", blurb: "Focus, mood, neuroprotection" },
-  { key: "metabolic", blurb: "Appetite, weight, glucose control" },
-];
+/* "Shop by outcome": only goals with a medicine behind them. Derived through
+   liveCategories() so the nav can never link a goal page with nothing on it
+   (2026-09-03: four of six links here led to empty goal pages). */
+const MEGA_BLURB: Partial<Record<PeptideCategory, string>> = {
+  metabolic: "Hunger, turned down. Weekly.",
+  growth: "Your own growth hormone, nightly.",
+  "sexual-health": "Desire, on the day you choose.",
+  recovery: "Tissue repair, injury, training load",
+  skin: "Collagen, tone, aesthetic outcomes",
+  longevity: "Cellular energy, immune, healthspan",
+  cognition: "Focus, mood, neuroprotection",
+  sleep: "Sleep depth and recovery",
+};
+const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = liveCategories(["metabolic", "growth", "sexual-health"])
+  .map((key) => ({ key, blurb: MEGA_BLURB[key] ?? "" }));
 
-const MEGA_FEATURED: { name: string; slug: string; note: string }[] = [
-  { name: "BPC-157", slug: "bpc-157", note: "The repair signal" },
-  { name: "GHK-Cu", slug: "ghk-cu", note: "The skin reset" },
-  { name: "Tirzepatide", slug: "tirzepatide", note: "The appetite reset" },
-  { name: "NAD+", slug: "nad-plus", note: "The energy currency" },
-];
+/* "Featured peptides": what the catalog actually sells, in catalog order,
+   with each medicine's own outcome line. */
+const MEGA_FEATURED: { name: string; slug: string; note: string }[] = SOLO_CATALOG
+  .slice(0, 4)
+  .map((s) => ({ name: s.name, slug: s.slug, note: s.outcome }));
 
 export function Nav({ variant = "gate" }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);

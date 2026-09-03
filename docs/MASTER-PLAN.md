@@ -211,6 +211,14 @@ part of it" section. Next: the home page and goal pages around the arrive,
 understand, choose journey (step 4), then bundles and pricing once Chiya's
 numbers are in (step 5).
 
+**2026-09-03: step 4 is live on the preview.** The three goal pages
+(/goals/metabolic, /goals/growth, /goals/sexual-health) are rebuilt to the
+arrive, understand, choose structure with the twelve-week timeline, the
+derived marker list and the doctor's screens; every line is in
+docs/COPY-DECK.md. The nav links only live goals. Next: step 5, bundles
+and the pricing page, which waits on Chiya's numbers; meanwhile step 6's
+pre-checkout block and step 7's page decks can start.
+
 
 1. **Decisions 1 to 3 from Chiya, and the physicians' sign-off on the
    panels.** Meanwhile: the panel model is written as data

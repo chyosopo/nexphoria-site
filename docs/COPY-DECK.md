@@ -35,18 +35,19 @@ telehealth partner (data/physicians.ts, data/compliance.ts).
 Job: the promise of the whole site in six words: this is built around you,
 from your own blood test, and it ends in something that is yours.
 Feeling: recognition, then ownership. The reader sees themself in it.
-Fact: a panel is drawn before prescribing and the protocol is set from it
-(data/biomarkerPanel.ts, physicians.ts step 01 and 02).
+Fact: the doctor prescribes from the questionnaire and the plan is adjusted
+from the week-12 panel (data/monitoring.ts; Chiya 2026-09-02, start first).
 
-**Subline: "A U.S. doctor checks 99 markers in your blood, then writes a
-plan that is actually yours. Made for you in a licensed U.S. pharmacy.
-Delivered cold."** · LIVE
-Job: explain the headline in one breath: who, what they check, what you get,
-how it arrives.
+**Subline: "A U.S. doctor writes your plan from your questionnaire. Made
+for you in a licensed U.S. pharmacy, delivered cold. At week 12 a full blood
+panel, included, shows what changed."** · LIVE (replaced the 99-marker line
+on 2026-09-02)
+Job: explain the headline in one breath: who, from what, what you get, how
+it arrives, and what happens at week 12.
 Feeling: clarity. "I understand exactly what happens."
-Fact: 99 markers (PANEL_TOTAL_MARKERS), 503A compounding, cold shipping
-(compliance.ts). "Actually yours" is earned by the panel being the reader's
-own, not a template.
+Fact: prescribing from the questionnaire, 503A compounding, cold shipping
+(compliance.ts); the week-12 panel included (data/monitoring.ts,
+pricing.ts).
 
 **Button: "Start your assessment"** · LIVE
 Job: the one action. "Assessment" rather than "quiz" or "consultation" so it
@@ -62,8 +63,8 @@ actually run in Bask. Chiya has not confirmed it. Until she does the line is
 **"Two minutes to start."** (LIVE), which is true and does the first half of
 the job.
 
-**Trust chips: "U.S. licensed doctors" · "Licensed 503A pharmacy" · "99
-markers read first" · "Ships cold, all 50 states"** · LIVE
+**Trust chips: "U.S. licensed doctors" · "Licensed 503A pharmacy" · "Full
+blood panel at week 12, included" · "Ships cold, all 50 states"** · LIVE
 Job: the four proofs a careful buyer scans for, as scannable pills, so the
 skeptic gets their checklist without reading a paragraph.
 Feeling: "this is a real clinic."
@@ -138,18 +139,23 @@ Fact: 503A compounding per prescription (compliance.ts). "Batch documented"
 describes standard 503A record keeping; if the pharmacy partner's practice
 differs, cut the phrase.
 
-**03 "Your blood, read first." / "99 markers, drawn and reviewed before
-anything is prescribed."** · LIVE (the 99 counts up on screen)
-Job: the third proof and the site's spine: labs before anything.
+**03 "Your blood, read at week 12." / "A full panel of {count} markers,
+included, drawn at week 12 and read by your doctor."** · LIVE (the count is
+derived from data/monitoring.ts and counts up on screen)
+Job: the third proof and the site's spine: the plan is checked against
+your own blood, at the point where there is something to read.
 Feeling: rigor.
-Fact: physicians.ts step 01 ("no prescription precedes labs").
+Fact: one full panel at week 12, included, for everyone (Chiya
+2026-09-02, decisions 2 and 3; data/monitoring.ts).
 
-**04 "Your retest, already booked." / "The same 99 markers again at 90 days.
-Your dose follows what they show."** · LIVE
+**04 "Your dose, adjusted from it." / "Your doctor continues, adjusts or
+stops from what your blood shows. Every change has a number behind it."**
+· LIVE
 Job: the fourth proof: this continues on evidence.
 Feeling: being looked after over time.
-Fact: the 90-day retest cadence (physicians.ts, bloodwork data). "Already
-booked" means it is part of the plan, not that a calendar appointment exists
+Fact: the week-12 read sets the next dose (data/monitoring.ts). "Every
+change has a number behind it" is the doctor's read of the panel, so it
+holds as long as the panel is drawn
 at signup; if that reads as a literal booking to Chiya, change to "on the
 calendar."
 
@@ -225,12 +231,13 @@ Fact: physicians.ts (no algorithmic approvals).
 
 **1 "Choose your plan." / "Pick the peptide and the plan length, and check
 out. Two minutes."** · LIVE
-**2 "Answer the questionnaire." / "Your health, your history and your goal,
-plus 99 markers drawn at a lab near you. All of it goes to a U.S. licensed
-doctor."** · LIVE
+**2 "Answer the questionnaire." / "Your health, your history, your goal,
+and the screens that matter for your peptide. All of it goes to a U.S.
+licensed doctor."** · LIVE
 **3 "Your doctor decides. Then it ships." / "If it fits you, your
 prescription goes to a licensed 503A pharmacy, is made for you, and ships
-cold. At 90 days you test again, and your dose follows your numbers."** · LIVE
+cold. At week 12 a full blood panel, included, shows your doctor what
+changed, and your dose follows it."** · LIVE
 Job: the path in the order it actually happens (Chiya, 2026-09-02: checkout
 first, then the questionnaire, then the doctor), each step ending with the
 doctor.
@@ -291,8 +298,8 @@ Job: answer the real objections found in research, in their words.
 salesperson. Answer restates the four proofs. Feeling: relief.
 **"Do I actually talk to a doctor?"** · LIVE. Answer: yes, and how. Fact:
 portal messaging is OPEN (see What arrives); the answer now reads "A doctor
-reads your full intake and your 99-marker panel and makes the call. Your
-dose is reviewed at every retest."
+reads your full intake and your {count}-marker panel and makes the call.
+Your dose is reviewed at every retest."
 **"Do I need bloodwork?"** · LIVE. Job: turn the objection into the reason.
 Fact: panel inside the monthly figure (pricing.ts); the retest as the point.
 **"What if the doctor says no?"** · LIVE, rewritten: "Then nothing is made.
@@ -446,3 +453,163 @@ about, the FAQ, the trust strip, the cart and the legal consent page. The
 "Basic / Full / Elite" panel tiers still exist in the catalog data and on
 the bloodwork and pricing pages; with one panel for everyone they should
 collapse to one, which is the next step.
+
+
+---
+
+# Copy deck: the goal pages (/goals/metabolic, /goals/growth, /goals/sexual-health)
+
+Written 2026-09-03 for master plan step 4. One template
+(`client/src/pages/Category.tsx`), three live goals. Same rules as above.
+The structure is the journey: arrive, understand, choose, the first twelve
+weeks, why your blood, the honest part, questions, start.
+
+## 1. Arrive
+
+**Kicker: "{Weight | Strength | Desire} · Prescribed by U.S. licensed
+doctors"** · LIVE
+Job: confirm the door the reader came through, and who is behind it.
+Feeling: "right place, real doctor."
+Fact: the goal picker's own word; physicians.ts.
+
+**Headline: the goal's feeling line** ("Appetite, finally quiet." / "Strength,
+with receipts." / "Desire, addressed directly." with the women's world
+variants from data/peptides.ts) · LIVE
+Job: the same words as the tile that brought them here, so the click is
+confirmed in the first fixation.
+Feeling: recognition. OPEN for Chiya: these lines predate the you-voice pass
+and she has not yet approved them.
+Fact: no claim; a feeling line.
+
+**Subline (Weight): "Semaglutide and tirzepatide turn the hunger signal
+down. A U.S. doctor picks one for you from your questionnaire. A licensed
+U.S. pharmacy makes it. At week 12 your blood shows what changed."** · LIVE
+**Subline (Strength): "Tesamorelin asks your body to release more of its own
+growth hormone. A U.S. doctor prescribes it from your questionnaire, a
+licensed U.S. pharmacy makes it, and at week 12 your blood shows the number
+your dose is set against."** · LIVE
+**Subline (Desire): "PT-141 works on desire through the brain, on the day
+you choose. A U.S. doctor prescribes it from your questionnaire, a licensed
+U.S. pharmacy makes it, and it ships cold to your door."** · LIVE
+Job: for someone who has never heard of the medicine: what it is, who
+prescribes it, who makes it, what happens next. One breath.
+Feeling: clarity, and the sense of being told straight.
+Fact: mechanism from data/monitoring.ts and soloCatalog.ts; the week-12
+panel; IGF-1 as tesamorelin's dose marker.
+
+**Buttons: "Start your assessment" / "New to peptides? Start here"** · LIVE
+Job: the one action, and the exit for the reader who needs the longer story
+(Peptides 101) instead of being pushed.
+Feeling: no pressure.
+
+**Microline: "Two minutes to start. Your doctor decides from your
+answers."** · LIVE
+Job: how long, and who decides. Feeling: low stakes, honest.
+Fact: the questionnaire is the intake; the doctor prescribes from it.
+
+## 2. Understand ("What it is")
+
+**Weight: "One shot a week that turns hunger down."** + two paragraphs
+(the gut hormone, the copy of it, what you feel; how and how often you take
+it, why the dose starts low) · LIVE
+**Strength: "A nightly dose that asks your body for its own growth
+hormone."** + two paragraphs (pulses at night, the signal copied, studied
+most for visceral fat; one daily dose, the number that changes is IGF-1) ·
+LIVE
+**Desire: "A dose you take when you want it, that works through the
+brain."** + two paragraphs (upstream of blood flow, men and women; an hour
+before, several hours, the blood-pressure check) · LIVE
+Job: teach the mechanism in plain words so the reader can explain it to
+someone else. No outcome promised; only what the medicine does in the body.
+Feeling: "I get it."
+Fact: GLP-1 and GIP mechanism, GHRH analog and IGF-1, melanocortin pathway
+(data/monitoring.ts, soloCatalog.ts mechanism lines). "Studied most for
+visceral fat" is tesamorelin's approved indication context.
+
+**Link: "Want the longer version? Peptides 101 explains it from the
+start"** · LIVE
+
+## 3. Choose ("Your options")
+
+**Heading: "Two medicines. Your doctor picks one." / "One medicine, made
+for you."** · LIVE, derived from the count.
+**Tiles** · CATALOG: real vial photo, outcome line, name, how you take it
+("Once a week, under the skin" derived from the dose), price line ("from
+$X/mo" from the 12-month figure, or "Priced at consultation").
+**"Which one?" (Weight only): "Semaglutide works on one hunger signal.
+Tirzepatide works on two. Your doctor chooses from your history, your goal
+and what is available in your state. You can name a preference in the
+questionnaire, and your doctor has the final word."** · LIVE
+Job: answer the question everyone has on this page without ranking the two.
+Feeling: informed, and relieved the choice is shared.
+Fact: receptor count; stateExclusions in soloCatalog.ts; the questionnaire
+carries a goal and preference.
+**Footnote: "Prescription only. Your doctor decides, and can decline.
+Availability varies by state."** · LIVE
+
+## 4. Your first twelve weeks
+
+**Heading: "What actually happens, week by week." / "You start first. Your
+doctor prescribes from your questionnaire, and your blood is read at week
+12, when there is something to read."** · LIVE
+Four beats per goal (Week 1, Weeks 2 to 8, Week 12, After; for Desire:
+Dose 1, The first weeks, Week 12, After) · LIVE
+Job: remove the fear of the unknown by showing the shape of the thing.
+Feeling: calm. "I know what is coming."
+Fact: titration for the GLP-1s; a fixed nightly dose for tesamorelin; an
+as-needed pattern with a monthly limit for PT-141; the week-12 panel for
+all (data/monitoring.ts). "Your doctor sets a monthly limit" is standard
+PT-141 practice; if the prescribers' protocol differs, cut it.
+
+## 5. Why your blood is part of it
+
+**"At week 12, your blood tells your doctor what changed." / "A full panel
+of {count} markers is drawn, included in your plan. These are the ones your
+doctor reads first for this goal, and why."** · LIVE
+The marker cards (name + why) are DERIVED from the goal's peptides' watch
+lists and the panel's own reasons (data/monitoring.ts); nothing typed.
+**"{Peptide}'s dose is set against {marker}."** · LIVE where a dose marker
+exists (tesamorelin, IGF-1).
+Job: make the blood test the point of the plan, not a chore.
+Feeling: taken seriously.
+Fact: PROPOSED panel pending the physicians' sign-off (SIGNED_OFF flag).
+
+## 6. The honest part
+
+**"Your doctor decides. Here is what they ask first." / "These questions
+are in the questionnaire because your doctor prescribes from it, before any
+blood is drawn. Answer them straight. A no from your doctor is them doing
+their job."** · LIVE
+The screens listed are DERIVED (intakeScreens per peptide).
+Job: say plainly that a no is possible, and turn it into a reason to trust.
+Feeling: respect. Stated as what the doctor does, never as what we are not.
+Fact: intake screens in data/monitoring.ts; the intake must actually carry
+them (OPEN: confirm against the Bask questionnaire).
+**FDA line, verbatim, plus "Availability varies by state."** · LIVE
+
+## 7. Questions, then start
+
+FAQ per goal (three or four) · LIVE. The Ozempic answer is the home page's.
+"What if my doctor says no?" leaves money out until Chiya confirms the
+refund on decline (OPEN).
+**Closer: "Your questionnaire. Your doctor. Your plan." / "Two minutes of
+honest answers. A U.S. licensed doctor reads them and decides. If it is a
+yes, your medicine is made for you and ships cold."** · LIVE
+Job: the last ask, restating the three nouns the page was built on.
+Feeling: ready.
+
+## Removed from the old goal page, and why
+
+- "90 days between every retest, every cycle" and "tracked against your
+  quarterly labs": untrue under the week-12 model.
+- The illustrated progress bar with a status chip ("Improving"): a
+  fabricated-looking outcome. Nothing on the page may imply a result.
+- The protocol selector's stack routes ("The Ignite protocol", "Full
+  panel" tier badges) and "a physician matches you to the right route
+  against your bloodwork": labs-first language, and tier names that no
+  longer exist.
+- "Physician-directed", "lab-gated", "calibrated to your bloodwork":
+  house-voice pass; "doctor", plain words.
+- Nav "Shop by outcome" now lists only goals with a medicine behind them,
+  and "Featured peptides" is the live catalog; four of six links led to
+  empty pages.
