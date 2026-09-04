@@ -8,6 +8,7 @@ import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
+import { SpineStrip } from "@/components/SpineStrip";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
 import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier, stackReservable, stackPending, stackComponents } from "@/data/stacksCatalog";
 import { StatusPill } from "@/components/StatusPill";
@@ -201,6 +202,7 @@ export default function StackPage({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
+      <SpineStrip stop={3} />
 
       {/* ── VIAL LINEUP — the protocol, rendered as its vials ── */}
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="stack-vials-title">

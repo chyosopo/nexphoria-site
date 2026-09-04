@@ -76,7 +76,7 @@
        "precision instrument" read after colour: 16px cards feel consumer-app,
        10px cards feel like equipment. Scale keeps its seven steps so every
        existing var() reference resolves unchanged. */
-    --nx-r-3xs: 1px; --nx-r-2xs: 2px; --nx-r-xs: 4px; --nx-r-sm: 6px; --nx-r-md: 10px; --nx-r-lg: 14px; --nx-r-pill: 999px;
+    --nx-r-3xs: 1px; --nx-r-2xs: 2px; --nx-r-xs: 4px; --nx-r-sm: 8px; --nx-r-md: 14px; --nx-r-lg: 20px; --nx-r-pill: 999px;
 
     /* ══ D4 MOTION — two speeds, one voice ══ */
     --nx-dur-fast: 160ms;
@@ -103,22 +103,23 @@
        richer navy ink, a precise jewel cobalt accent replacing the muddy
        navy-teal). Same family, polished to a private-bank register. ── */
     /* TYPE — the faces, as tokens */
+    /* ═══ PORCELAIN & NAVY — chosen by Chiya 2026-09-04 from three costed
+       options (docs/SPINE plan, option C), replacing Graphite & Ice. The
+       agency's navy depth with the house discipline: navy ink and bands, one
+       blue accent, no yellow, one sans throughout. ═══ */
     --nx-font-body:    'General Sans', system-ui, sans-serif;
-    --nx-font-display: 'Fraunces', Georgia, serif;
-    /* BACKGROUND — cool porcelain, near-white */
-    --nx-bg:           #F7F8FA;  /* cold white canvas — Graphite & Ice (Chiya 2026-08-13) */
-    --nx-bg-cream:     #ECEFF3;  /* band / alternating section */
-    --nx-bg-dark:      #101317;  /* night bands + footer — true graphite, not navy */
-    --nx-fg:           #17191C;  /* primary ink — graphite, ~16:1 on canvas */
-    --nx-fg-graphite:  #545A63;  /* secondary body copy — 6.2:1 on canvas */
-    --nx-fg-muted:     #6B717A;  /* tertiary / captions — 4.6:1, holds AA */
-    --nx-border:       #DCE1E7;  /* hairlines */
-    /* ACCENT — precise jewel cobalt. The accent IS the typography + photography */
-    --nx-cobalt:       #2B6CB0;  /* ICE BLUE — the one accent. White CTA text 5.4:1 */
-    --nx-cobalt-hover: #235A94;  /* deeper ice on hover */
-    --nx-cobalt-soft:  #E2EBF5;  /* accent-tinted fills */
-    /* AMBER — use SPARINGLY: footnote markers, lab highlights, badges */
-    --nx-amber:        #3A78BC;  /* aligned to the ice family — small accents only */
+    --nx-font-display: 'General Sans', system-ui, sans-serif;
+    --nx-bg:           #F6F7F9;  /* porcelain canvas */
+    --nx-bg-cream:     #EDF0F5;  /* band / alternating section */
+    --nx-bg-dark:      #0B2A5B;  /* navy bands, heroes, footer */
+    --nx-fg:           #0F2140;  /* navy ink, ~14:1 on canvas */
+    --nx-fg-graphite:  #4B5568;  /* secondary body copy, 7:1 */
+    --nx-fg-muted:     #697386;  /* captions, 4.9:1, holds AA */
+    --nx-border:       #DEE3EA;  /* hairlines */
+    --nx-cobalt:       #2F6FD6;  /* THE accent. White CTA text 4.6:1 */
+    --nx-cobalt-hover: #2558AD;
+    --nx-cobalt-soft:  #E7EEF8;  /* accent-tinted fills */
+    --nx-amber:        #2F6FD6;  /* aligned to the accent; small accents only */
     --nx-success:      #2E7788;
     --nx-warning:      #3A78BC;
 
@@ -137,11 +138,11 @@
 
     /* ── V3 tokens — locked minimal palette (locked palette) ── */
     /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #FDFDFE;  /* elevated surface — lifts above the cold canvas */
-    --nx-rock:         #DDE2E8;
-    --nx-acid:         #9FBBDA;
+    --nx-ceramic:      #FFFFFF;  /* elevated surface */
+    --nx-rock:         #E7EEF8;
+    --nx-acid:         #BFD6F5;  /* the light accent on navy bands: pale ice, never yellow */
     --nx-danger:       #A4453C;  /* form error — muted brick */
-    --nx-accent:       #2B6CB0;  /* mirrors --nx-cobalt */
+    --nx-accent:       #2F6FD6;  /* mirrors --nx-cobalt */
 
     /* ══ COMPONENT VARIANT PALETTES ══
        Bespoke per-tone tile/vial colors lifted verbatim out of components so no
@@ -2855,44 +2856,14 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-included li svg { color: var(--nx-cobalt); flex-shrink: 0; margin-top: 2px; }
 .nx-included li em { font-style: normal; margin-left: auto; padding-left: 8px; font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; font-size: var(--nx-t-2xs); color: var(--nx-fg); white-space: nowrap; }
 
-/* ═══ SHEET: AGENCY R3 (preview only, 2026-09-04) ═══
-   The branding agency's "Names + Interior Review" round (Figma, R3, 090326),
-   mapped onto the token system so the whole site can be judged in their
-   direction WITHOUT repainting anything: reached by ?sheet=agency on the
-   preview, remembered for the session. Values are sampled from their page
-   renders (a View seat cannot read their variables yet) and are marked
-   approximate in docs/AGENCY-R3-STUDY.md. Graphite & Ice stays the default
-   until Chiya decides (CLAUDE.md law 1). */
-html[data-sheet="agency"], html[data-sheet="agency"] [data-world="men"], html[data-sheet="agency"] [data-world="women"] {
-  --nx-font-display: 'General Sans', system-ui, sans-serif;
-  --nx-bg:           #F8F8F8;
-  --nx-bg-cream:     #EFF0F2;
-  --nx-bg-dark:      #083573;
-  --nx-fg:           #0E1626;
-  --nx-fg-graphite:  #4A5566;
-  --nx-fg-muted:     #6A7484;
-  --nx-border:       #E2E6EC;
-  --nx-cobalt:       #0F6AE6;
-  --nx-cobalt-hover: #0B57BF;
-  --nx-cobalt-soft:  #E5EFF9;
-  --nx-amber:        #0F6AE6;
-  --nx-accent:       #0F6AE6;
-  --nx-ceramic:      #FFFFFF;
-  --nx-rock:         #E5EFF9;
-  --nx-acid:         #EEF0A6;
-  --nx-ice:          #E5EFF9;
-  --nx-ice-edge:     #C7D8EE;
-  --nx-r-sm: 8px; --nx-r-md: 14px; --nx-r-lg: 20px;
-  --nx-ls-display: -0.02em; --nx-ls-tight: -0.015em;
-}
-html[data-sheet="agency"] .nx-cta-cobalt { border-radius: var(--nx-r-pill); }
+/* (the agency preview sheet was folded into :root as Porcelain & Navy, 2026-09-04) */
 
 /* ═══ R3 GRAMMAR (the agency's layout language, on tokens) ═══ */
 .nx-glass { background: color-mix(in srgb, var(--nx-ceramic) 14%, transparent); border: 1px solid color-mix(in srgb, var(--nx-ceramic) 28%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: var(--nx-r-lg); color: var(--nx-ceramic); }
-.nx-cta-acid { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: var(--nx-r-pill); background: var(--nx-acid); color: var(--nx-fg); font-weight: 600; font-size: var(--nx-t-base); text-decoration: none; transition: filter var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-cta-acid { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: var(--nx-r-pill); background: #FFFFFF; color: var(--nx-bg-dark); font-weight: 600; font-size: var(--nx-t-base); text-decoration: none; transition: filter var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
 .nx-cta-acid:hover { filter: brightness(.96); transform: translateY(-1px); }
 .nx-cta--sm { padding: 10px 18px; font-size: var(--nx-t-sm); }
-.nx-chip-acid { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--nx-r-pill); background: var(--nx-acid); color: var(--nx-fg); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; }
+.nx-chip-acid { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-bg-dark); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; }
 
 .nx-r3-hero { position: relative; overflow: hidden; background: var(--nx-bg-dark); min-height: min(92vh, 900px); display: flex; align-items: center; }
 .nx-r3-hero__art { position: absolute; inset: 0; }
@@ -2992,7 +2963,7 @@ html[data-sheet="agency"] .nx-cta-cobalt { border-radius: var(--nx-r-pill); }
 .nx-hero-r3 { position: relative; background: var(--nx-bg-dark); color: #FFFFFF;
   --nx-fg: #FFFFFF; --nx-fg-graphite: color-mix(in srgb, #FFFFFF 80%, transparent); --nx-fg-muted: color-mix(in srgb, #FFFFFF 66%, transparent);
   --nx-border: color-mix(in srgb, #FFFFFF 26%, transparent); --nx-bg: color-mix(in srgb, #FFFFFF 8%, transparent); --nx-cobalt-soft: color-mix(in srgb, #FFFFFF 12%, transparent); --nx-cobalt: #9CC4FF; --nx-cobalt-hover: #B9D6FF; }
-.nx-hero-r3 .nx-cta-cobalt { background: var(--nx-acid); color: #0E1626; }
+.nx-hero-r3 .nx-cta-cobalt { background: #FFFFFF; color: #0F2140; }
 .nx-hero-r3 .nx-cta-ghost { border-color: color-mix(in srgb, #FFFFFF 40%, transparent); color: #FFFFFF; }
 .nx-hero-r3 .nx-sku-img--pdp, .nx-hero-r3 .nx-labs-art { border-radius: var(--nx-r-lg); overflow: hidden; }
 .nx-hero-r3 .nx-labs-art { background: color-mix(in srgb, #FFFFFF 10%, transparent); border-color: color-mix(in srgb, #FFFFFF 22%, transparent); }
@@ -3007,7 +2978,7 @@ html[data-sheet="agency"] .nx-cta-cobalt { border-radius: var(--nx-r-pill); }
 /* inside the navy hero, "ceramic" surfaces become glass so every white card
    (benefit strip, expectation card, spec plate, chips) reads light on dark */
 .nx-hero-r3 { --nx-ceramic: color-mix(in srgb, #FFFFFF 11%, transparent); }
-.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-ceramic { color: #0E1626; background: var(--nx-acid); }
+.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-ceramic { color: #0F2140; background: #FFFFFF; }
 .nx-hero-r3 .nx-benefit__map, .nx-hero-r3 .nx-expect, .nx-hero-r3 .nx-benefit { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .nx-hero-r3 .nx-goodfor__chip { background: color-mix(in srgb, #FFFFFF 16%, transparent); color: #FFFFFF; }
 .nx-hero-r3 .nx-evidence i { background: color-mix(in srgb, #FFFFFF 25%, transparent); }
@@ -3049,4 +3020,25 @@ html[data-sheet="agency"] .nx-cta-cobalt { border-radius: var(--nx-r-pill); }
 .nx-road__n { font-family: var(--nx-font-display); font-size: var(--nx-t-h2); font-weight: 500; letter-spacing: var(--nx-ls-tight); line-height: 1; }
 .nx-sku-tile { border-radius: var(--nx-r-lg); }
 .nx-sku-photo { border-radius: var(--nx-r-md); background: linear-gradient(160deg, var(--nx-cobalt-soft), color-mix(in srgb, var(--nx-cobalt) 22%, var(--nx-ceramic))); }
-.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-cobalt * { color: #0E1626 !important; }
+.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-cobalt * { color: #0F2140 !important; }
+
+/* ═══ THE SPINE: where you are, under every hero ═══ */
+.nx-spine { border-bottom: 1px solid var(--nx-border); background: var(--nx-bg); }
+.nx-spine__list { list-style: none; margin: 0; padding-top: .6rem; padding-bottom: .6rem; display: flex; gap: 6px 18px; flex-wrap: wrap; }
+.nx-spine__list li { display: inline-flex; align-items: center; gap: 7px; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-spine__n { display: inline-flex; width: 18px; height: 18px; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--nx-border); font-size: 10px; }
+.nx-spine__list li.is-now { color: var(--nx-cobalt); }
+.nx-spine__list li.is-now .nx-spine__n { background: var(--nx-cobalt); border-color: var(--nx-cobalt); color: #FFFFFF; }
+.nx-spine__list li.is-done { color: var(--nx-fg); }
+.nx-spine__list li.is-done .nx-spine__n { background: var(--nx-fg); border-color: var(--nx-fg); color: var(--nx-bg); }
+.nx-cta-cobalt { border-radius: var(--nx-r-pill); }
+.nx-blood { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(1.6rem, 4vw, 3.5rem); align-items: center; }
+.nx-blood__lines { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .8rem; }
+.nx-blood__lines li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; font-size: var(--nx-t-base); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-blood__lines strong { color: var(--nx-fg); font-weight: 600; }
+.nx-blood__lines i { display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; border-radius: 50%; background: var(--nx-cobalt-soft); color: var(--nx-cobalt); }
+@media (max-width: 860px) { .nx-blood { grid-template-columns: 1fr; } }
+.nx-frost__media--photo { padding: 0; aspect-ratio: 4 / 3; }
+.nx-frost__media--photo img { width: 100%; height: 100%; object-fit: cover; max-height: none; }
+.nx-cta-ghost--light { border-color: color-mix(in srgb, #FFFFFF 45%, transparent); color: #FFFFFF; }
+.nx-terms .nx-chip-acid { background: #FFFFFF; color: var(--nx-bg-dark); }

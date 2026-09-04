@@ -291,3 +291,17 @@ reservations) in the house look. Preview carries the agency's R3 grammar as the
 default sheet (home hero, rails, promo, navy heroes) with all ten gates passing.
 Pending: Chiya's call on the R3 look for the .com · exact agency tokens (Figma
 View-seat limit) · pricing and protocols-index heroes · vial photos · lab partner.
+
+### 2026-09-04 · night · The Spine, Phase 0 and Phase 1
+Plan: https://claude.ai/code/artifact/aa8240e8-7c6b-4d00-94fe-9c51a33f29a6 (six stops,
+page map, design and copy standard, seven gated phases). Chiya chose palette C,
+Porcelain & Navy, and approved Phase 1.
+Verified: one sheet in :root (the agency toggle and Graphite & Ice retired, CLAUDE.md
+law 1 updated); the spine strip under every hero (home, goals, catalog, protocols,
+product, protocol, pricing, labs); home rebuilt to the six stops plus the closer
+(claim, choose, the menu with protocols as a tab, the road, blood work, the figure,
+questions); duplicates cut (concerns grid, promo doors, trust row, checklist, cold box,
+steps, hold). Copy to the standard: "Peptide therapy, done properly."
+Pending: Phase 2 (one product card; goal, product and protocol pages to one layout),
+Phase 3 (pricing to one engine; cart and checkout), Phase 4 (labs absorbs bloodwork),
+Phase 5 (imagery, once a generator allows it), Phase 6 (trust pages). Failed: none.

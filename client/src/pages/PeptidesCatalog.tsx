@@ -16,6 +16,7 @@ import { getPrice } from "@/data/pricing";
 import { ProductCard } from "@/components/ProductCard";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto, skuPhotoFor } from "@/components/SkuPhoto";
+import { SpineStrip } from "@/components/SpineStrip";
 
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
@@ -178,6 +179,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           </div>
         </div>
       </section>
+      <SpineStrip stop={2} />
 
 
       {/* ── Biomarker chip strip — every shelf item is lab-monitored (TRUE) ── */}

@@ -7,13 +7,13 @@ import heroKitchen from "@/assets/life/hero-kitchen.webp";
 import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
 
 export const HERO = {
-  kicker: "Weight · Strength · Desire",
-  lines: ["Prescription peptides,", "delivered."],
+  kicker: "Prescription peptide therapy",
+  lines: ["Peptide therapy,", "done properly."],
   subline:
-    "Semaglutide, tirzepatide, testosterone, PT-141 and the full peptide menu, prescribed online by licensed U.S. physicians and made in a licensed U.S. pharmacy. One price, paid up front, with a free baseline blood kit on your first order.",
-  cta: "Get started",
+    "A licensed physician sets your dose against your own blood work. One figure covers all of it: the medicine, the physician, and the blood work on both sides.",
+  cta: "Choose a goal",
   /* billing claim OFF until Chiya confirms how billing runs (docs/COPY-DECK.md) */
-  micro: "Online visit. Ships cold to all 50 states.",
+  micro: "Prescribed online. Made in a licensed U.S. pharmacy. Ships cold to all 50 states.",
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,

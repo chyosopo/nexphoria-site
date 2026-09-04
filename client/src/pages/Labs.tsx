@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Check, FlaskConical, Home, Mail, Plus, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { LabKitBox } from "@/components/LabKitBox";
 import { useCart } from "@/contexts/CartProvider";
@@ -119,6 +120,7 @@ export default function Labs() {
           ))}
         </ul>
       </div></section>
+      <SpineStrip stop={6} />
 
       {/* ── 2. Three steps ── */}
       <section className="nx-labs-band" aria-labelledby="labs-steps">

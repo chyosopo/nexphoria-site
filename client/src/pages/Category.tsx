@@ -16,6 +16,7 @@
 import { Link, useRoute, useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
@@ -474,6 +475,7 @@ export default function Category() {
           </Reveal>
         </div>
       </div></section>
+      <SpineStrip stop={2} />
 
       {/* ── 2. Understand ── */}
       <section style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-what-title">

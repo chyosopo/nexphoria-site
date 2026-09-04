@@ -1020,3 +1020,23 @@ house says "renewing is your choice").
   of Semaglutide. The monthly figure is $195. Renewing at the end is your
   choice."). Cart names and "you save" now read the catalog, never the legacy
   price table.
+
+## The Spine, Phase 1 (2026-09-04, night) · the copy standard
+One claim per section, facts beneath it, the promise said once in the place it
+belongs. The FDA line, the physician line and the state line are the only
+sentences that repeat, verbatim.
+- Hero: "Peptide therapy, done properly." · "A licensed physician sets your
+  dose against your own blood work. One figure covers all of it: the medicine,
+  the physician, and the blood work on both sides." · CTA "Choose a goal".
+- Choose: "What can we help you with?" · "Start with the goal. Each one names
+  the medicines a physician can prescribe for it, what they do, and what to expect."
+- The road: "Five steps, in order. Then it repeats." · Choose · Check out ·
+  A physician decides · Test, then start · Retest at week 12.
+- Blood work: "You test before you start." · kit with the first order · dosed
+  against your numbers · the same panel again at week 12.
+- The figure: "One figure. Everything within it." · "Your dose can change; the
+  figure does not."
+- Closer: "Start with the goal."
+Retired from the home page: "Two ways in. One road after." · "Everything is
+included in one price." · "Delivered cold, in plain packaging." · "Getting
+started is simple." · "Your first twelve weeks." · "Tell us what is going on."

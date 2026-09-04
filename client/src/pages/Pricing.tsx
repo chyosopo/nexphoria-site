@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { StartIntakeButton } from "@/components/StartIntakeButton";
 import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
@@ -589,6 +590,7 @@ export default function Pricing() {
           </div>
         </div>
       </section>
+      <SpineStrip stop={4} />
 
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
       <PricingTiers />

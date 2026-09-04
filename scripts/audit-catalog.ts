@@ -140,11 +140,17 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
         someone to weaken it instead. What must hold is that the home renders
         the LIVE CATALOG, whatever the block is called. */
   {
-    const src = await readFile("client/src/pages/FrontDoor.tsx", "utf-8");
-    // Either a shelf component fed the live catalog, or the page maps the
-    // live catalog itself (the 2026-09 front door renders its own tiles).
-    if (!/<Product\w+\s+skus=\{SOLO_CATALOG\}|SOLO_CATALOG\.map\(/.test(src)) {
-      bad("home page no longer renders the live catalog (no <Product… skus={SOLO_CATALOG}> block and no SOLO_CATALOG.map)");
+    // 2026-09-04 (the Spine): the assertion moves from the SOURCE to the
+    // RENDERED home. Whatever component draws the menu (a shelf, tiles, the
+    // rail), the prerendered index.html must carry a tile for EVERY live SKU.
+    // A source regex can be satisfied by a block that renders nothing; the
+    // artifact cannot.
+    const home = await readFile(`${DIST}/index.html`, "utf-8").catch(() => "");
+    const missing = SOLO_CATALOG.filter((s) => !home.includes(`frontdoor-sku-${s.slug}`)).map((s) => s.slug);
+    if (!home) {
+      bad("home page not prerendered (dist/public/index.html missing): build first");
+    } else if (missing.length) {
+      bad(`home page no longer renders the live catalog: ${missing.length} of ${SOLO_CATALOG.length} live SKUs have no tile (${missing.join(", ")})`);
     } else if (SOLO_CATALOG.length === 0) {
       bad("home formulary shelf would render zero cards");
     } else {

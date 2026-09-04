@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
@@ -107,6 +108,7 @@ export default function ProtocolsIndex() {
           </div>
         </div>
       </section>
+      <SpineStrip stop={2} />
 
       {/* why a protocol vs à la carte */}
       <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Why a protocol">

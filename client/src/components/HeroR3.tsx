@@ -24,8 +24,8 @@ export function HeroR3() {
           <h1 className="nx-r3-hero__h1" style={{ fontFamily: S }}>{HERO.lines.join(" ")}</h1>
           <p className="nx-r3-hero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
           <div className="nx-r3-hero__cta">
-            <Link href="/peptides" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-shop" })}>Shop the menu</Link>
-            <Link href="/assessment" className="nx-cta-acid" data-testid="frontdoor-hero-cta-assess" onClick={() => track("intake_cta", { source: "hero-assess" })}>Get a recommendation</Link>
+            <a href="#fd-goals" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-choose" })}>{HERO.cta}</a>
+            <Link href="/how-it-works" className="nx-cta-ghost nx-cta-ghost--light" data-testid="frontdoor-hero-cta-assess">How it works</Link>
           </div>
           <p className="nx-r3-hero__micro" style={{ fontFamily: F }}>{HERO.micro}</p>
         </div>

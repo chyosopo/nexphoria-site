@@ -27,6 +27,7 @@ import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { BenefitStrip } from "@/components/BenefitStrip";
+import { SpineStrip } from "@/components/SpineStrip";
 import { ExpectCard } from "@/components/ExpectCard";
 import { AddonsFor } from "@/components/AddonsFor";
 import { ExpectTimeline } from "@/components/ExpectTimeline";
@@ -270,6 +271,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           </div>
         </div>
       </section>
+      <SpineStrip stop={3} />
 
       {/* ══ BODY — content rail + sticky buy-box ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Peptide details">

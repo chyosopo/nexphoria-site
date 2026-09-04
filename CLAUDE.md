@@ -19,7 +19,13 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: GRAPHITE & ICE** (chosen by Chiya
+1. **Design tokens only — current sheet: PORCELAIN & NAVY** (chosen by Chiya
+   2026-09-04 from three costed options in the Spine plan, option C, replacing
+   Graphite & Ice: navy ink #0F2140 on porcelain #F6F7F9, navy bands #0B2A5B,
+   one accent #2F6FD6, pale-ice #BFD6F5 on dark bands, one sans face, no
+   yellow, no serif). The paragraph below is the previous sheet, kept as
+   history; the reason to ask before repainting still stands.
+   PREVIOUS: GRAPHITE & ICE (chosen by Chiya
    2026-08-13 from three costed options, replacing Porcelain & Navy).
    Cold-white canvas #F7F8FA, graphite ink #17191C, true-graphite night
    #101317, ice-blue accent #2B6CB0. Women's world runs the SAME graphite
