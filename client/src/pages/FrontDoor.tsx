@@ -99,15 +99,15 @@ export default function FrontDoor() {
             You choose. A physician decides. You test before you start, and again at week 12, so every dose answers to a number.
           </p>
         </Reveal>
-        <ol className="nx-road" aria-label="The road" data-testid="frontdoor-road" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
+        <Reveal><ol className="nx-road" aria-label="The road" data-testid="frontdoor-road" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
           {ROAD.map((r, i) => (
-            <li key={r.t} className="nx-road__step">
+            <li key={r.t} className="nx-road__step nx-stagger-item" style={{ ["--i" as string]: i }}>
               <span className="nx-road__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <p className="nx-road__t" style={{ fontFamily: S }}>{r.t}</p>
               <p className="nx-road__b" style={{ fontFamily: F }}>{r.b}</p>
             </li>
           ))}
-        </ol>
+        </ol></Reveal>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
           If the physician says no, nothing is made, and the refund policy sets out what is refunded.{" "}
           <Link href="/how-it-works" className="nx-text-link" style={{ fontWeight: 600 }}>The whole road, step by step</Link>

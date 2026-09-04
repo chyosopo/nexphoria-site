@@ -143,6 +143,16 @@ export default function Labs() {
         </div>
       </section>
 
+      {/* ── 2.4. Inside the laboratory: the film ── */}
+      <section className="nx-container" aria-label="Inside the laboratory" style={{ paddingTop: "var(--nx-sp-band)" }}>
+        <Reveal className="nx-reveal-scale">
+          <div className="nx-film" data-testid="labs-film">
+            <video autoPlay muted loop playsInline preload="metadata" src="img/img_6d36ae1989c8.mp4" poster="img/img_b9ec00db43d6.webp" aria-label="Laboratory work on a panel" />
+            <p style={{ fontFamily: S }}>Analysed in a CLIA-certified laboratory. Read by your physician.</p>
+          </div>
+        </Reveal>
+      </section>
+
       {/* ── 2.5. The systems, at a glance (R3 band) ── */}
       <section className="nx-band" aria-label="The five systems" data-testid="labs-systems">
         <div className="nx-container nx-band__body">
@@ -152,16 +162,16 @@ export default function Labs() {
               <h2 className="nx-band__h2" style={{ fontFamily: S }}>{LAB_KIT.markers} markers. {LAB_KIT.systems} systems. One clear picture.</h2>
             </div>
           </div>
-          <ul className="nx-systems">
+          <Reveal><ul className="nx-systems">
             {LAB_KIT.groups.map((g, i) => (
-              <li key={g.name} className="nx-glass nx-systems__card">
+              <li key={g.name} className="nx-glass nx-systems__card nx-stagger-item" style={{ ["--i" as string]: i }}>
                 <span className="nx-systems__n" style={{ fontFamily: F }}>{String(i + 1).padStart(2, "0")}</span>
                 <span className="nx-systems__name" style={{ fontFamily: S }}>{g.name}</span>
                 <span className="nx-systems__count" style={{ fontFamily: F }}>{g.markers.length} markers</span>
                 <span className="nx-systems__line" style={{ fontFamily: F }}>{g.markers.map((m) => m.name).join(" · ")}</span>
               </li>
             ))}
-          </ul>
+          </ul></Reveal>
         </div>
       </section>
 

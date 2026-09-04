@@ -5,6 +5,7 @@
    visitor is one tap from the intake. Cards breathe slowly while on screen;
    reduced motion shows them still. */
 import { Link } from "wouter";
+import { Reveal } from "@/components/Reveal";
 import { F, S } from "@/lib/typography";
 import goalMetabolic from "@/assets/life/goal-metabolic.webp";
 import goalMetabolic500 from "@/assets/life/goal-metabolic-500.webp";
@@ -36,12 +37,12 @@ export const GOAL_CARDS: Omit<GoalCard, "count">[] = [
 export function GoalPicker({ counts }: { counts: Record<string, number> }) {
   return (
     <div className="nx-goals" data-testid="frontdoor-goals">
-      <div className="nx-goal-cards">
+      <Reveal><div className="nx-goal-cards">
         {GOAL_CARDS.map((g, i) => (
           <Link
             key={g.slug}
             href={`/goals/${g.slug}`}
-            className="nx-goal-card"
+            className="nx-goal-card nx-stagger-item"
             style={{ ["--i" as string]: i }}
             data-testid={`frontdoor-goal-${g.slug}`}
           >
@@ -65,7 +66,7 @@ export function GoalPicker({ counts }: { counts: Record<string, number> }) {
             </span>
           </Link>
         ))}
-      </div>
+      </div></Reveal>
       <div className="nx-goal-chips" role="list" aria-label="Start the assessment with a goal">
         <span className="nx-goal-chips-label" style={{ fontFamily: F }}>Or start now with</span>
         {GOAL_CARDS.map((g) => (

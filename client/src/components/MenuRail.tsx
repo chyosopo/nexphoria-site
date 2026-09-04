@@ -4,6 +4,7 @@
    the name, the plain line, and one button. Every tile links to the PDP;
    pending medicines carry the reserve badge. */
 import { useRef, useState } from "react";
+import { Reveal } from "@/components/Reveal";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -45,12 +46,12 @@ export function MenuRail({ photo }: { photo: string }) {
             <button key={c} role="tab" aria-selected={cat === c} className="nx-tab" onClick={() => setCat(c)} style={{ fontFamily: F }} data-testid={`menu-tab-${c}`}>{CATEGORY_LABELS[c]}</button>
           ))}
         </div>
-        <div className="nx-rail" ref={rail} data-testid="frontdoor-rail">
-          {cat === "protocols" && FLAGSHIP_STACKS.map((st) => {
+        <Reveal><div className="nx-rail" ref={rail} data-testid="frontdoor-rail">
+          {cat === "protocols" && FLAGSHIP_STACKS.map((st, i) => {
             const art = stackArt(st.slug);
             const from = st.cadences.length ? Math.min(...st.cadences.map((c) => c.perMonth ?? c.total)) : undefined;
             return (
-              <Link key={st.slug} href={`/stacks/${st.slug}`} className="nx-frost" data-testid={`frontdoor-protocol-${st.slug}`}>
+              <Link key={st.slug} href={`/stacks/${st.slug}`} className="nx-frost nx-stagger-item" style={{ ["--i" as string]: i }} data-testid={`frontdoor-protocol-${st.slug}`}>
                 <div className="nx-frost__media nx-frost__media--photo">{art && <img src={art} alt="" aria-hidden="true" loading="lazy" decoding="async" width={1632} height={2048} />}</div>
                 <div className="nx-frost__body">
                   <span className="nx-frost__tag" style={{ fontFamily: F }}>{st.category}</span>
@@ -63,10 +64,10 @@ export function MenuRail({ photo }: { photo: string }) {
               </Link>
             );
           })}
-          {cat !== "protocols" && items.map((s) => {
+          {cat !== "protocols" && items.map((s, i) => {
             const g = goalOf(s);
             return (
-              <Link key={s.slug} href={`/peptides/${s.slug}`} className="nx-frost" data-testid={`frontdoor-sku-${s.slug}`}>
+              <Link key={s.slug} href={`/peptides/${s.slug}`} className="nx-frost nx-stagger-item" style={{ ["--i" as string]: Math.min(i, 8) }} data-testid={`frontdoor-sku-${s.slug}`}>
                 <div className="nx-frost__media" data-goal={g}>
                   <SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="78%" ratio="1 / 1" fill={0.58} />} />
                 </div>
@@ -81,7 +82,7 @@ export function MenuRail({ photo }: { photo: string }) {
               </Link>
             );
           })}
-        </div>
+        </div></Reveal>
         <div className="nx-rail__nav">
           <button type="button" aria-label="Scroll back" onClick={() => scroll(-1)}><ArrowLeft size={16} /></button>
           <button type="button" aria-label="Scroll forward" onClick={() => scroll(1)}><ArrowRight size={16} /></button>

@@ -2,6 +2,7 @@
    A full-bleed photograph under a navy tint, one glass card in the middle
    with the claim and the two doors, and a row of four goal chips beneath
    it. Copy is the house copy (data/hero); the grammar is theirs. */
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -13,6 +14,11 @@ import { track } from "@/lib/analytics";
 const QUICK: PeptideCategory[] = liveCategories(["metabolic", "growth", "sexual-health", "hormone", "recovery", "cognition"]).slice(0, 4);
 
 export function HeroR3() {
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!mq.matches) document.documentElement.classList.add("nx-motion");
+    return () => document.documentElement.classList.remove("nx-motion");
+  }, []);
   return (
     <section className="nx-r3-hero" aria-label="Nexphoria" data-testid="photo-hero">
       <div className="nx-r3-hero__art" aria-hidden="true">
@@ -30,10 +36,10 @@ export function HeroR3() {
           <p className="nx-r3-hero__micro" style={{ fontFamily: F }}>{HERO.micro}</p>
         </div>
         <ul className="nx-r3-quick" aria-label="Start with a goal">
-          {QUICK.map((c) => {
+          {QUICK.map((c, i) => {
             const img = OUTCOME_CATEGORY.men[c] ?? OUTCOME_CATEGORY.women[c];
             return (
-              <li key={c}>
+              <li key={c} style={{ ["--i" as string]: i }}>
                 <Link href={`/goals/${c}`} className="nx-glass nx-r3-quick__chip" data-testid={`hero-quick-${c}`}>
                   {img && <img src={img} alt="" aria-hidden="true" loading="lazy" decoding="async" width={80} height={80} />}
                   <span style={{ fontFamily: F }}>{CATEGORY_LABELS[c]}</span>

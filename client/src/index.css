@@ -3042,3 +3042,27 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-frost__media--photo img { width: 100%; height: 100%; object-fit: cover; max-height: none; }
 .nx-cta-ghost--light { border-color: color-mix(in srgb, #FFFFFF 45%, transparent); color: #FFFFFF; }
 .nx-terms .nx-chip-acid { background: #FFFFFF; color: var(--nx-bg-dark); }
+
+/* ═══ MOTION (the Spine, Phase 5 pulled forward): one entrance per page, one
+   stagger per band, one hover per card. Everything rests when motion is
+   reduced, and the prerendered page is always settled. ═══ */
+.nx-r3-hero__art img { animation: nx-phero-breathe 26s var(--nx-ease) infinite alternate; transform-origin: 60% 40%; }
+html.nx-motion .nx-r3-hero__card { animation: nx-rise .9s var(--nx-reveal-ease) both; }
+html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) both; animation-delay: calc(.35s + var(--i, 0) * 90ms); }
+@keyframes nx-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.nx-reveal.nx-armed .nx-stagger-item { opacity: 0; transform: translateY(14px); }
+.nx-reveal.visible .nx-stagger-item, .nx-reveal:not(.nx-armed) .nx-stagger-item { opacity: 1; transform: none; transition: opacity .6s var(--nx-ease) calc(var(--i, 0) * 60ms), transform .7s var(--nx-reveal-ease) calc(var(--i, 0) * 60ms); }
+.nx-spine__list li.is-now .nx-spine__n { animation: nx-ping 1.6s var(--nx-ease) 1; }
+@keyframes nx-ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--nx-cobalt) 55%, transparent); } 100% { box-shadow: 0 0 0 12px transparent; } }
+.nx-kit__box { animation: nx-float 7s var(--nx-ease) infinite alternate; }
+@keyframes nx-float { from { transform: translateY(-3px) rotate(-.3deg); } to { transform: translateY(4px) rotate(.3deg); } }
+.nx-frost:hover .nx-frost__media img, .nx-frost:hover .nx-frost__media > * { transform: scale(1.04); }
+.nx-frost__media img, .nx-frost__media > * { transition: transform var(--nx-dur-4) var(--nx-reveal-ease); }
+.nx-film { position: relative; border-radius: var(--nx-r-lg); overflow: hidden; background: var(--nx-bg-dark); box-shadow: var(--nx-e-4); aspect-ratio: 16 / 7; }
+.nx-film video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-film::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--nx-bg-dark) 70%, transparent)); pointer-events: none; }
+.nx-film p { position: absolute; left: clamp(1rem, 3vw, 2rem); bottom: clamp(.8rem, 2vw, 1.4rem); margin: 0; z-index: 1; font-size: var(--nx-t-xl); font-weight: 500; color: #FFFFFF; max-width: 30ch; text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) {
+  .nx-r3-hero__art img, .nx-kit__box, .nx-spine__list li.is-now .nx-spine__n, html.nx-motion .nx-r3-hero__card, html.nx-motion .nx-r3-quick li { animation: none; }
+  .nx-reveal.nx-armed .nx-stagger-item { opacity: 1; transform: none; }
+}
