@@ -234,7 +234,7 @@ export function GoalVialTile({
           <div style={{ minWidth: 0 }}>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "var(--nx-font-body)",
                 fontSize: "var(--nx-t-2xs)",
                 fontWeight: 700,
                 letterSpacing: "var(--nx-ls-caps)",
@@ -248,7 +248,7 @@ export function GoalVialTile({
             </p>
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "var(--nx-font-body)",
                 fontSize: "var(--nx-t-body)",
                 fontWeight: 600,
                 lineHeight: 1.2,
@@ -260,7 +260,7 @@ export function GoalVialTile({
             </p>
             <p
               style={{
-                fontFamily: feeling ? "'Fraunces', Georgia, serif" : "'General Sans', system-ui, sans-serif",
+                fontFamily: feeling ? "var(--nx-font-display)" : "var(--nx-font-body)",
                 fontStyle: feeling ? "italic" : undefined,
                 fontSize: feeling ? "13.5px" : "12.5px",
                 lineHeight: 1.4,
@@ -286,7 +286,7 @@ export function GoalVialTile({
         >
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "var(--nx-font-body)",
               fontSize: "8.5px",
               fontWeight: 700,
               letterSpacing: "var(--nx-ls-caps)",
@@ -300,7 +300,7 @@ export function GoalVialTile({
           </p>
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "var(--nx-font-body)",
               fontSize: "var(--nx-t-sm)",
               fontWeight: 600,
               lineHeight: 1.25,
@@ -318,7 +318,7 @@ export function GoalVialTile({
 
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "var(--nx-font-body)",
               fontSize: "var(--nx-t-2xs)",
               fontWeight: 700,
               letterSpacing: "var(--nx-ls-caps)",
@@ -343,7 +343,7 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
     <div style={{ display: "flex", justifyContent: "space-between", gap: "0.5rem", alignItems: "baseline" }}>
       <span
         style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
+          fontFamily: "var(--nx-font-body)",
           fontSize: "var(--nx-t-2xs)",
           fontWeight: 700,
           letterSpacing: "var(--nx-ls-caps)",
@@ -357,7 +357,7 @@ function Row({ label, value, ink }: { label: string; value: string; ink: string 
       </span>
       <span
         style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
+          fontFamily: "var(--nx-font-body)",
           fontSize: "var(--nx-t-xs)",
           fontWeight: 500,
           color: ink,

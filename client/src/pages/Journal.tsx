@@ -144,7 +144,7 @@ export default function Journal() {
             style={{
               // Fraunces — the site's one display voice (this masthead was the
               // last General Sans holdout among page headlines)
-              fontFamily: "'Fraunces', Georgia, serif",
+              fontFamily: "var(--nx-font-display)",
               fontWeight: 500,
               fontSize: "var(--nx-t-display)",
               lineHeight: 1.02,

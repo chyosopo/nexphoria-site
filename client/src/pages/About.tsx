@@ -41,7 +41,7 @@ const eyebrowRule = (
 
 const sectionHeading: React.CSSProperties = {
   // Fraunces — About was the last page speaking General Sans at display size
-  fontFamily: "'Fraunces', Georgia, serif",
+  fontFamily: "var(--nx-font-display)",
   fontWeight: 500,
   fontSize: "var(--nx-t-h1)",
   letterSpacing: "var(--nx-ls-snug)",
@@ -233,7 +233,7 @@ export default function About() {
             <h1
               id="about-h1"
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "var(--nx-font-display)",
                 fontWeight: 500,
                 fontSize: "var(--nx-t-display)",
                 lineHeight: 1.02,

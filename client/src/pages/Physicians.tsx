@@ -83,7 +83,7 @@ export default function Physicians() {
                 </p>
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "var(--nx-font-display)",
                     fontWeight: 500,
                     fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
@@ -148,7 +148,7 @@ export default function Physicians() {
                     screen readers and the document outline */}
                 <h2
                   style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "var(--nx-font-display)",
                     fontWeight: 500,
                     fontSize: "var(--nx-t-h2)",
                     color: "var(--nx-fg)",
@@ -310,7 +310,7 @@ export default function Physicians() {
               <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
               How review works
             </p>
-            <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
+            <h2 style={{ fontFamily: "var(--nx-font-display)", fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.1, marginBottom: "3rem" }}>
               Three steps.<br />Zero algorithmic shortcuts.
             </h2>
           </Reveal>
@@ -461,7 +461,7 @@ function PhysiciansHeroDark() {
             </p>
             <h1
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "var(--nx-font-display)",
                 fontWeight: 500,
                 fontSize: "var(--nx-t-display)",
                 lineHeight: 1.02,
@@ -696,7 +696,7 @@ function PhysicianCredentials() {
           </p>
           <h2
             style={{
-              fontFamily: "'Fraunces', Georgia, serif",
+              fontFamily: "var(--nx-font-display)",
               fontWeight: 500,
               fontSize: "var(--nx-t-h2)",
               color: "var(--nx-fg)",

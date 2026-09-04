@@ -114,7 +114,7 @@ export default function JournalArticle() {
         <section style={{ padding: "120px 0", textAlign: "center" }}>
           <p
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "var(--nx-font-body)",
               fontSize: "var(--nx-t-lg)",
               color: "var(--nx-fg-muted)",
               marginBottom: 16,
@@ -126,7 +126,7 @@ export default function JournalArticle() {
             data-testid="button-back-to-journal"
             onClick={() => navigate("/journal")}
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "var(--nx-font-body)",
               fontSize: "var(--nx-t-xs)",
               padding: "10px 20px",
               border: "1px solid var(--nx-cobalt)",
@@ -243,7 +243,7 @@ export default function JournalArticle() {
             <p
               id="toc-heading"
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "var(--nx-font-body)",
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "var(--nx-ls-wide)",
@@ -269,7 +269,7 @@ export default function JournalArticle() {
                     }}
                     style={{
                       display: "block",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: "var(--nx-font-body)",
                       fontSize: "var(--nx-t-sm)",
                       lineHeight: 1.45,
                       color: activeSection === `sec-${s.id}` ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
@@ -298,7 +298,7 @@ export default function JournalArticle() {
                   style={{
                     // Fraunces display voice — the 400-weight cobalt sans read
                     // LIGHTER than the 17px body it was meant to head
-                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontFamily: "var(--nx-font-display)",
                     fontWeight: 500,
                     fontSize: "var(--nx-t-h2)",
                     lineHeight: 1.15,
@@ -313,7 +313,7 @@ export default function JournalArticle() {
                   <p
                     key={i}
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: "var(--nx-font-body)",
                       fontSize: "var(--nx-t-body)",
                       lineHeight: 1.75,
                       color: "var(--nx-fg-graphite)",
@@ -335,7 +335,7 @@ export default function JournalArticle() {
                   >
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: "var(--nx-font-body)",
 
                         fontWeight: 400,
                         fontSize: "var(--nx-t-xl)",
@@ -372,7 +372,7 @@ export default function JournalArticle() {
                       >
                         <span
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontFamily: "var(--nx-font-body)",
                             fontSize: "var(--nx-t-sm)",
                             fontWeight: 500,
                             color: "var(--nx-rust)",
@@ -383,7 +383,7 @@ export default function JournalArticle() {
                         </span>
                         <span
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontFamily: "var(--nx-font-body)",
                             fontSize: "var(--nx-t-body)",
                             lineHeight: 1.6,
                             color: "var(--nx-fg-graphite)",
@@ -401,7 +401,7 @@ export default function JournalArticle() {
                       style={{
                         width: "100%",
                         borderCollapse: "collapse",
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: "var(--nx-font-body)",
                         fontSize: "var(--nx-t-sm)",
                       }}
                     >
@@ -413,7 +413,7 @@ export default function JournalArticle() {
                               style={{
                                 textAlign: "left",
                                 padding: "12px 16px 12px 0",
-                                fontFamily: "'General Sans', system-ui, sans-serif",
+                                fontFamily: "var(--nx-font-body)",
                                 fontSize: "var(--nx-t-xs)",
                                 fontWeight: 500,
                                 letterSpacing: "var(--nx-ls-caps)",
@@ -467,7 +467,7 @@ export default function JournalArticle() {
             >
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "var(--nx-ls-wide)",
@@ -489,7 +489,7 @@ export default function JournalArticle() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6,
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "var(--nx-ls-caps)",
@@ -514,7 +514,7 @@ export default function JournalArticle() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: 6,
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "var(--nx-ls-caps)",
@@ -543,7 +543,7 @@ export default function JournalArticle() {
               <p
                 id="references-heading"
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "var(--nx-ls-wide)",
@@ -562,7 +562,7 @@ export default function JournalArticle() {
                       display: "grid",
                       gridTemplateColumns: "32px 1fr",
                       gap: 12,
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: "var(--nx-font-body)",
                       fontSize: "var(--nx-t-sm)",
                       lineHeight: 1.55,
                       color: "var(--nx-fg-muted)",
@@ -570,7 +570,7 @@ export default function JournalArticle() {
                   >
                     <span
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: "var(--nx-font-body)",
                         fontSize: "var(--nx-t-xs)",
                         color: "var(--nx-rust)",
                       }}
@@ -613,7 +613,7 @@ export default function JournalArticle() {
           <div className="nx-container">
             <p
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "var(--nx-font-body)",
                 fontSize: "var(--nx-t-xs)",
                 fontWeight: 500,
                 letterSpacing: "var(--nx-ls-wide)",
@@ -626,7 +626,7 @@ export default function JournalArticle() {
             </p>
             <h2
               style={{
-                fontFamily: "'Fraunces', Georgia, serif",
+                fontFamily: "var(--nx-font-display)",
                 fontWeight: 500,
                 fontSize: "var(--nx-t-h2)",
                 lineHeight: 1.1,
@@ -663,7 +663,7 @@ export default function JournalArticle() {
                   >
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: "var(--nx-font-body)",
                         fontSize: "var(--nx-t-xs)",
                         fontWeight: 500,
                         letterSpacing: "var(--nx-ls-wide)",
@@ -676,7 +676,7 @@ export default function JournalArticle() {
                     </p>
                     <h3
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: "var(--nx-font-body)",
                         
                         fontWeight: 400,
                         fontSize: "var(--nx-t-lg)",
@@ -689,7 +689,7 @@ export default function JournalArticle() {
                     </h3>
                     <p
                       style={{
-                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontFamily: "var(--nx-font-body)",
                         fontSize: "var(--nx-t-sm)",
                         lineHeight: 1.55,
                         color: "var(--nx-fg-muted)",
@@ -733,7 +733,7 @@ export default function JournalArticle() {
             <div>
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "var(--nx-ls-wide)",
@@ -746,7 +746,7 @@ export default function JournalArticle() {
               </p>
               <h2
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontWeight: 500,
                   fontSize: "var(--nx-t-h2)",
                   color: "var(--nx-fg)",
@@ -758,7 +758,7 @@ export default function JournalArticle() {
               </h2>
               <p
                 style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-body)",
                   lineHeight: 1.6,
                   color: "rgba(21, 24, 28,0.7)",
@@ -778,7 +778,7 @@ export default function JournalArticle() {
                   gap: 8,
                   backgroundColor: "var(--nx-bg-dark)",
                   color: "var(--nx-acid)",
-                  fontFamily: "'General Sans', system-ui, sans-serif",
+                  fontFamily: "var(--nx-font-body)",
                   fontSize: "var(--nx-t-xs)",
                   fontWeight: 500,
                   letterSpacing: "var(--nx-ls-caps)",

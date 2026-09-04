@@ -15,7 +15,7 @@ import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { getPrice } from "@/data/pricing";
 import { ProductCard } from "@/components/ProductCard";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
-import { SkuPhoto } from "@/components/SkuPhoto";
+import { SkuPhoto, skuPhotoFor } from "@/components/SkuPhoto";
 
 
 /* Markers every protocol on this shelf is monitored against — reinforces the
@@ -130,7 +130,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
        /peptides → redirects to /men/peptides, silently ejecting her from
        her world. Worlded catalog keeps her in it. */
     <SiteLayout navVariant={world ?? "showcase"} footerVariant={world ?? "shared"}>
-      <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
+      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
@@ -156,7 +156,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 vial carries its own molecule. */}
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed nx-vial-lineup" style={{ position: "relative", aspectRatio: "5 / 4" }}>
               <div className="nx-vial-lineup__row">
-                {SOLO_CATALOG.map((s) => (
+                {SOLO_CATALOG.filter((s) => skuPhotoFor(s.slug)).slice(0, 6).map((s) => (
                   <div key={s.slug} className="nx-vial-cell">
                     <SkuPhoto slug={s.slug} name={s.name} eager className="nx-sku-img nx-sku-img--lineup" fallback={<VialMockup name={s.name} dose={labelSpec(s.spec)} size="clamp(150px, 78%, 340px)" fill={0.6} onDark label={false} />} />
                   </div>
@@ -165,7 +165,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               <div
                 style={{
                   position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
-                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  background: "color-mix(in srgb, var(--nx-bg-dark) 60%, transparent)",
                   backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
                   borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
                 }}

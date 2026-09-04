@@ -76,7 +76,7 @@ export default function ProtocolsIndex() {
 
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
-      <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
+      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
@@ -94,7 +94,7 @@ export default function ProtocolsIndex() {
               <div
                 style={{
                   position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
-                  background: "color-mix(in srgb, var(--nx-fg) 55%, transparent)",
+                  background: "color-mix(in srgb, var(--nx-bg-dark) 60%, transparent)",
                   backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
                   borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
                 }}

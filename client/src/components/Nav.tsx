@@ -209,7 +209,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   href={link.href}
                   className="inline-flex items-center gap-1 py-2 text-sm font-medium no-underline transition-colors"
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: "var(--nx-font-body)",
                     color: megaOpen && isMega ? "var(--nx-fg)" : "var(--nx-fg-graphite)",
                   }}
                   data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
@@ -287,7 +287,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <p
                   className="mb-4 text-[11px] uppercase"
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: "var(--nx-font-body)",
                     letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-fg-muted)",
                     fontWeight: 500,
@@ -314,7 +314,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                       <span
                         className="flex items-center justify-between"
                         style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontFamily: "var(--nx-font-body)",
                           fontSize: "var(--nx-t-base)",
                           fontWeight: 600,
                           color: "var(--nx-fg)",
@@ -331,7 +331,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                       <span
                         className="mt-1 block"
                         style={{
-                          fontFamily: "'General Sans', system-ui, sans-serif",
+                          fontFamily: "var(--nx-font-body)",
                           fontSize: "var(--nx-t-xs)",
                           color: "var(--nx-fg-graphite)",
                           lineHeight: 1.45,
@@ -346,7 +346,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   href={pharmacyBase}
                   className="mt-4 inline-flex items-center gap-1.5 no-underline"
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: "var(--nx-font-body)",
                     fontSize: "var(--nx-t-sm)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
@@ -377,10 +377,10 @@ export function Nav({ variant = "gate" }: NavProps) {
                   </span>
                   <span className="mt-3 flex items-center justify-between">
                     <span>
-                      <span className="block" style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
+                      <span className="block" style={{ fontFamily: "var(--nx-font-display)", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
                         The Recovery Protocol
                       </span>
-                      <span className="block mt-0.5" style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
+                      <span className="block mt-0.5" style={{ fontFamily: "var(--nx-font-body)", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
                         Physician-directed · if prescribed
                       </span>
                     </span>
@@ -390,7 +390,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <Link
                   href="/peptides-101"
                   className="inline-flex items-center gap-1.5 no-underline mb-5"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}
+                  style={{ fontFamily: "var(--nx-font-body)", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}
                   onClick={() => setMegaOpen(false)}
                   data-testid="mega-education-link"
                 >
@@ -400,7 +400,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <p
                   className="mb-4 text-[11px] uppercase"
                   style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: "var(--nx-font-body)",
                     letterSpacing: "var(--nx-ls-caps)",
                     color: "var(--nx-fg-muted)",
                     fontWeight: 500,
@@ -420,7 +420,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                       >
                         <span
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontFamily: "var(--nx-font-body)",
                             fontSize: "var(--nx-t-sm)",
                             fontWeight: 600,
                             color: "var(--nx-fg)",
@@ -430,7 +430,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         </span>
                         <span
                           style={{
-                            fontFamily: "'General Sans', system-ui, sans-serif",
+                            fontFamily: "var(--nx-font-body)",
                             fontSize: "var(--nx-t-xs)",
                             color: "var(--nx-fg-graphite)",
                           }}
@@ -456,7 +456,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   <span
                     className="block"
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: "var(--nx-font-body)",
                       fontSize: "var(--nx-t-sm)",
                       fontWeight: 600,
                       color: "var(--nx-fg)",
@@ -467,7 +467,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                   <span
                     className="mt-0.5 inline-flex items-center gap-1.5"
                     style={{
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: "var(--nx-font-body)",
                       fontSize: "var(--nx-t-xs)",
                       color: "var(--nx-fg-graphite)",
                     }}
@@ -508,7 +508,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     className="flex items-center justify-between py-4 no-underline"
                     style={{
                       color: "var(--nx-fg)",
-                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontFamily: "var(--nx-font-body)",
                       fontSize: "var(--nx-t-lg)",
                       fontWeight: 600,
                     }}
@@ -526,7 +526,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             <p
               className="mt-8 mb-3 text-[11px] uppercase"
               style={{
-                fontFamily: "'General Sans', system-ui, sans-serif",
+                fontFamily: "var(--nx-font-body)",
                 letterSpacing: "var(--nx-ls-caps)",
                 color: "var(--nx-fg-muted)",
                 fontWeight: 500,
@@ -545,7 +545,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                     borderRadius: "var(--nx-r-md)",
                     padding: "0.75rem 0.85rem",
                     background: "var(--nx-bg)",
-                    fontFamily: "'General Sans', system-ui, sans-serif",
+                    fontFamily: "var(--nx-font-body)",
                     fontSize: "var(--nx-t-sm)",
                     fontWeight: 600,
                     color: "var(--nx-fg)",
