@@ -29,6 +29,7 @@ import { SkuPhoto } from "@/components/SkuPhoto";
 import { BenefitStrip } from "@/components/BenefitStrip";
 import { SpineStrip } from "@/components/SpineStrip";
 import { ExpectCard } from "@/components/ExpectCard";
+import { ProductTile } from "@/components/ProductTile";
 import { AddonsFor } from "@/components/AddonsFor";
 import { ExpectTimeline } from "@/components/ExpectTimeline";
 import { StatusPill } from "@/components/StatusPill";
@@ -513,25 +514,11 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             Other treatments
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
-            Everything we prescribe comes with the same physician review, the same blood panel, and one monthly price.
+            Every medicine on the menu comes with the same physician review, the same blood work, and one figure.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
-            {related.map((r, i) => (
-              <Reveal key={r.slug} delay={i * 60}>
-                <Link href={`${base}/peptides/${r.slug}`} className="nx-float-card" data-testid={`solo-related-${r.slug}`}>
-                  <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{r.category}</p>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{r.name}</h3>
-                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{r.outcome}</p>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
-                      {r.pricing ? `From $${r.pricing.m12}/mo` : "Priced at consultation"}
-                      <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
-                    </p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal><div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
+            {related.map((r, i) => <ProductTile key={r.slug} sku={r} index={i} base={base} testId={`solo-related-${r.slug}`} />)}
+          </div></Reveal>
         </section>
       )}
 

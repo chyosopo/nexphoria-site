@@ -9,12 +9,9 @@ import { Link } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { peptides, CATEGORY_LABELS, LIVE_CATEGORIES, liveCategories, type PeptideCategory } from "@/data/peptides";
-import { SOLO_CATALOG, statusOf, type SoloPeptide } from "@/data/soloCatalog";
-import { SkuPhoto } from "@/components/SkuPhoto";
-import { VialPanel, labelSpec } from "@/components/VialMockup";
-import { StatusPill } from "@/components/StatusPill";
-import { usd, FLAGSHIP_STACKS, stackReservable } from "@/data/stacksCatalog";
-import { stackArt } from "@/data/outcomeImagery";
+import { SOLO_CATALOG, type SoloPeptide } from "@/data/soloCatalog";
+import { ProductTile, ProtocolTile } from "@/components/ProductTile";
+import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
 
 const ORDER = liveCategories(["metabolic", "growth", "hormone", "recovery", "longevity", "cognition", "sleep", "skin", "sexual-health"]);
 
@@ -26,7 +23,6 @@ export function MenuRail({ photo }: { photo: string }) {
     .map((p) => SOLO_CATALOG.find((s) => s.slug === p.slug))
     .filter((s): s is SoloPeptide => Boolean(s));
   const scroll = (dir: 1 | -1) => rail.current?.scrollBy({ left: dir * Math.round(rail.current.clientWidth * 0.8), behavior: "smooth" });
-  const goalOf = (s: SoloPeptide) => peptides.find((p) => p.slug === s.slug)?.category;
 
   return (
     <section className="nx-band" aria-labelledby="fd-formulary" data-testid="frontdoor-menu">
@@ -47,41 +43,8 @@ export function MenuRail({ photo }: { photo: string }) {
           ))}
         </div>
         <Reveal><div className="nx-rail" ref={rail} data-testid="frontdoor-rail">
-          {cat === "protocols" && FLAGSHIP_STACKS.map((st, i) => {
-            const art = stackArt(st.slug);
-            const from = st.cadences.length ? Math.min(...st.cadences.map((c) => c.perMonth ?? c.total)) : undefined;
-            return (
-              <Link key={st.slug} href={`/stacks/${st.slug}`} className="nx-frost nx-stagger-item" style={{ ["--i" as string]: i }} data-testid={`frontdoor-protocol-${st.slug}`}>
-                <div className="nx-frost__media nx-frost__media--photo">{art && <img src={art} alt="" aria-hidden="true" loading="lazy" decoding="async" width={1632} height={2048} />}</div>
-                <div className="nx-frost__body">
-                  <span className="nx-frost__tag" style={{ fontFamily: F }}>{st.category}</span>
-                  <span className="nx-frost__name" style={{ fontFamily: S }}>{st.name}</span>
-                  <span className="nx-frost__line" style={{ fontFamily: F }}>{st.peptides.map((p) => p.name).join(" + ")}</span>
-                  {stackReservable(st) && <StatusPill status="reserve" short style={{ marginTop: 6 }} />}
-                  <span className="nx-frost__price" style={{ fontFamily: F }}>{st.gated ? "Priced at consultation" : from ? `From ${usd(from)}/mo` : ""}</span>
-                  <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Learn more</span>
-                </div>
-              </Link>
-            );
-          })}
-          {cat !== "protocols" && items.map((s, i) => {
-            const g = goalOf(s);
-            return (
-              <Link key={s.slug} href={`/peptides/${s.slug}`} className="nx-frost nx-stagger-item" style={{ ["--i" as string]: Math.min(i, 8) }} data-testid={`frontdoor-sku-${s.slug}`}>
-                <div className="nx-frost__media" data-goal={g}>
-                  <SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="78%" ratio="1 / 1" fill={0.58} />} />
-                </div>
-                <div className="nx-frost__body">
-                  <span className="nx-frost__tag" style={{ fontFamily: F }}>{g ? CATEGORY_LABELS[g] : s.category}</span>
-                  <span className="nx-frost__name" style={{ fontFamily: S }}>{s.name}</span>
-                  <span className="nx-frost__line" style={{ fontFamily: F }}>{s.outcome}</span>
-                  <StatusPill status={statusOf(s)} short style={{ marginTop: 6 }} />
-                  <span className="nx-frost__price" style={{ fontFamily: F }}>{s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "Priced at consultation"}</span>
-                  <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Learn more</span>
-                </div>
-              </Link>
-            );
-          })}
+          {cat === "protocols" && FLAGSHIP_STACKS.map((st, i) => <ProtocolTile key={st.slug} stack={st} index={i} testId={`frontdoor-protocol-${st.slug}`} />)}
+          {cat !== "protocols" && items.map((s, i) => <ProductTile key={s.slug} sku={s} index={i} testId={`frontdoor-sku-${s.slug}`} />)}
         </div></Reveal>
         <div className="nx-rail__nav">
           <button type="button" aria-label="Scroll back" onClick={() => scroll(-1)}><ArrowLeft size={16} /></button>

@@ -274,7 +274,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   not a second implementation of it. The price line lives in
                   ProductCard so a shelf card can never disagree with the PDP
                   it links to. */}
-              <ProductCard sku={s} />
+              <ProductCard sku={s} index={i} />
             </Reveal>
             );
           };

@@ -20,7 +20,7 @@ import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
-import { BenefitStrip } from "@/components/BenefitStrip";
+import { ProductTile } from "@/components/ProductTile";
 import { BodyMap } from "@/components/BodyMap";
 import { benefitFor, REGION_LABEL } from "@/data/benefits";
 import { useSeo, webPageJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
@@ -513,21 +513,11 @@ export default function Category() {
             {skus.length === 1 ? "Your treatment option." : "Your treatment options."}
           </h2>
         </Reveal>
-        <div className="grid gap-4 sm:grid-cols-2" style={{ marginTop: "clamp(1.4rem,3vw,2.2rem)", maxWidth: 820 }}>
+        <Reveal><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ marginTop: "clamp(1.4rem,3vw,2.2rem)" }}>
           {skus.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 70} className="nx-reveal-lift">
-              <Link href={`/${world}/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`cat-item-${s.slug}`} aria-label={`${s.name}: ${s.outcome}`}>
-                <div className="nx-sku-photo"><SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="84%" ratio="1 / 1" fill={0.58} />} /></div>
-                <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
-                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name} <StatusPill status={statusOf(s)} style={{ marginLeft: 6 }} /></p>
-                <div style={{ marginTop: "0.7rem" }}><BenefitStrip slug={s.slug} compact /></div>
-                <div style={{ marginTop: "0.8rem" }}><ExpectTimeline slug={s.slug} compact /></div>
-                {s.feelBy && <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: "0.5rem 0 0" }}>Feel it by {s.feelBy.toLowerCase()} · full effect {s.fullEffect}</p>}
-                <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
-              </Link>
-            </Reveal>
+            <ProductTile key={s.slug} sku={s} index={i} detail base={`/${world}`} testId={`cat-item-${s.slug}`} />
           ))}
-        </div>
+        </div></Reveal>
         {cfg.choose && (
           <Reveal>
             <div style={{ ...card, background: "var(--nx-ceramic)", marginTop: "1.2rem", maxWidth: 820, padding: "1.2rem 1.4rem" }} data-testid="cat-choose">
@@ -593,39 +583,25 @@ export default function Category() {
                   </li>
                 ))}
               </ul>
+              {screens.length > 0 && (
+                <div style={{ ...card, background: "var(--nx-ceramic)", marginTop: 10 }} data-testid="cat-screens">
+                  <p style={label}>Checked before prescribing</p>
+                  <ul style={{ margin: "0.5rem 0 0", padding: "0 0 0 1.1rem", display: "grid", gap: 4 }}>
+                    {screens.map((q) => <li key={q} style={{ ...small, color: "var(--nx-fg-graphite)" }}>{q}</li>)}
+                  </ul>
+                  <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>{FDA} Availability varies by state.</p>
+                </div>
+              )}
             </Reveal>
           </div>
         </section>
       )}
 
-      {/* ── 6. The honest part ── */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0" }} aria-labelledby="category-honest-title">
-        <div className="nx-container grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16">
-          <Reveal>
-            <p style={{ ...kicker, color: "var(--nx-acid)" }}>Safety first</p>
-            <h2 id="category-honest-title" style={{ ...h2, color: "var(--nx-ceramic)", maxWidth: "18ch" }}>Is it right for you?</h2>
-            <p style={{ ...body, color: "var(--nx-ceramic)", opacity: 0.85, marginTop: "1rem" }}>
-              Your physician checks for these before prescribing. They are part of your health questions, and honest answers are what keep you safe.
-            </p>
-          </Reveal>
-          <Reveal delay={60}>
-            <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 10 }} data-testid="cat-screens">
-              {screens.map((q) => (
-                <li key={q} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-ceramic)", margin: 0 }}>{q}</p>
-                </li>
-              ))}
-            </ul>
-            <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-ceramic)", opacity: 0.7, marginTop: "1.2rem" }}>{FDA} Availability varies by state.</p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ── 7. Questions ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)", maxWidth: 860 }} aria-labelledby="category-faq-title">
         <Reveal>
-          <p style={kicker}>Your questions</p>
-          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Questions? We have answers.</h2>
+          <p style={kicker}>Questions</p>
+          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Asked plainly, answered plainly.</h2>
           <div className="mt-6">
             {cfg.faqs.map((f, i) => (
               <details key={f.q} className="nx-faq-item" open={i === 0}>

@@ -305,3 +305,13 @@ steps, hold). Copy to the standard: "Peptide therapy, done properly."
 Pending: Phase 2 (one product card; goal, product and protocol pages to one layout),
 Phase 3 (pricing to one engine; cart and checkout), Phase 4 (labs absorbs bloodwork),
 Phase 5 (imagery, once a generator allows it), Phase 6 (trust pages). Failed: none.
+
+### 2026-09-04 · late · Phase 2, one product tile
+Verified: ProductTile (and ProtocolTile) is the one card on every shelf: the home
+menu band, the catalog, a goal page's options (with the benefit strip and the
+horizon), a product page's "other treatments". ProductCard now renders it. Goal
+pages: the dark "Safety first" band folds into the blood section as "Checked before
+prescribing"; questions heading to the standard. Motion pass shipped earlier tonight.
+Pending: Phase 3 (pricing to one engine; cart and checkout in the grammar), Phase 4
+(labs absorbs bloodwork; what-happens-next), Phase 5 (imagery once a generator
+allows it), Phase 6 (trust pages). Failed: none.

@@ -3066,3 +3066,5 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
   .nx-r3-hero__art img, .nx-kit__box, .nx-spine__list li.is-now .nx-spine__n, html.nx-motion .nx-r3-hero__card, html.nx-motion .nx-r3-quick li { animation: none; }
   .nx-reveal.nx-armed .nx-stagger-item { opacity: 1; transform: none; }
 }
+.nx-frost__feel { display: block; margin-top: .5rem; font-size: var(--nx-t-xs); color: var(--nx-fg-muted); }
+.nx-frost .nx-benefit--compact .nx-goodfor { margin: 0; }
