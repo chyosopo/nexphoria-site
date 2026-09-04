@@ -133,13 +133,13 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 04 · DECIDE — the figure ══ */}
+      {/* ══ 04 · WHAT IT COSTS — stated once, as a fact; the ladder lives on each product page ══ */}
       <section className="nx-container" aria-labelledby="fd-pricing" style={{ paddingTop: "var(--nx-sp-sec)" }}>
         <Reveal>
-          <p style={kicker}>The figure</p>
-          <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>One figure. Everything within it.</h2>
+          <p style={kicker}>Price</p>
+          <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>What it costs.</h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "58ch" }}>
-            The medicine, the physician, cold shipping, the baseline kit and the week-{RETEST_WEEK} panel. Paid once for the term you choose. Your dose can change; the figure does not.
+            One monthly figure, paid up front for a term of one, three, six or twelve months. It covers the medicine, the physician, cold shipping, the baseline kit and the week-{RETEST_WEEK} panel. Your dose can change; the figure does not.
           </p>
         </Reveal>
         <Reveal>
@@ -158,7 +158,7 @@ export default function FrontDoor() {
                   <>
                     <span role="cell" className="nx-price-fig">{usd(s.pricing.m1)}<i>/mo</i></span>
                     <span role="cell" className="nx-price-fig">{usd(s.pricing.m3)}<i>/mo</i></span>
-                    <span role="cell" className="nx-price-fig nx-price-best">{usd(s.pricing.m6)}<i>/mo</i></span>
+                    <span role="cell" className="nx-price-fig">{usd(s.pricing.m6)}<i>/mo</i></span>
                     <span role="cell" className="nx-price-fig">{usd(s.pricing.m12)}<i>/mo</i></span>
                   </>
                 ) : (
@@ -168,8 +168,8 @@ export default function FrontDoor() {
             ))}
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center", marginTop: "1rem" }}>
-            <Link href="/pricing" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }} data-testid="frontdoor-pricing-all">Every medicine and protocol, priced</Link>
-            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>Monthly figures, paid up front for the term. Six months is the best value.</span>
+            <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }} data-testid="frontdoor-pricing-all">Every medicine, with its figure</Link>
+            <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>Monthly figures. Longer terms cost less per month and include more blood work.</span>
           </div>
         </Reveal>
       </section>

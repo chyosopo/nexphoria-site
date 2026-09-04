@@ -32,7 +32,7 @@ export default function Cart() {
 
   return (
     <SiteLayout variant="gate">
-      <SpineStrip stop={5} />
+      <SpineStrip stop={4} />
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         {/* trimmed top padding — the nav offset + section padding stacked
             ~210px of empty porcelain above "Review your cart" */}
@@ -319,9 +319,6 @@ export default function Cart() {
 
                 <SummaryRow label="Monthly figure" value={`${formatUSD(subtotal)} / mo`} />
                 <SummaryRow label="Month to month would be" value={formatUSD(subtotal + totalSavings)} />
-                {totalSavings > 0 ? (
-                  <SummaryRow label="You save" value={`−${formatUSD(totalSavings)}`} accent />
-                ) : null}
 
                 <div
                   className="flex items-baseline justify-between mt-5 pt-5"

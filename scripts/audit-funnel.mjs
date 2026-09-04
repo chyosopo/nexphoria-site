@@ -41,7 +41,12 @@ const PATHS = [
     '[data-testid^="frontdoor-goal-"]',
     'a[href*="/peptides/"]',
   ]},
-  { name: "front door → nav pricing", entry: "/", clicks: ['nav >> text=Pricing'] },
+  /* The Pricing nav item and /pricing page were retired 2026-09-04 (Chiya:
+     price is a fact on the product page, never a page of its own). The path
+     that replaces it: the home price table's rows link to a PDP, and the
+     nav's Peptides item reaches every medicine with its figure. */
+  { name: "front door → price table row → PDP", entry: "/", clicks: ['[data-testid^="frontdoor-price-"]'] },
+  { name: "front door → every medicine → PDP", entry: "/", clicks: ['[data-testid="frontdoor-pricing-all"]', '[data-testid^="peptide-"]'] },
   /* The two per-world home paths are retired with the men/women split
      (2026-08-13). /men and /women now REDIRECT to the single home, so their
      goal-tile selectors no longer exist — which is what this gate correctly

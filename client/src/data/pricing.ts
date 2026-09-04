@@ -67,12 +67,15 @@ export const pricing: Record<string, PeptidePricing> = {
     never contradict the product page. The percentage math below is only the
     fallback for slugs not yet migrated. */
 /* Terms (the playbook, 2026-09-04): you buy a block of time, paid up front.
-   Longer terms cost less per month and include more labs. */
+   Longer terms cost less per month and include more labs. Stated as facts:
+   no badge, no "best value", no "save" (Chiya 2026-09-04: the site informs,
+   it does not persuade). `badge` stays in the type for the legacy fallback
+   only; nothing sets it. */
 export const CADENCE_DISCOUNTS: Record<CadenceKey, { pct: number; label: string; sublabel: string; badge?: CadencePrice["badge"]; savePct: number; months: number; labs: string }> = {
-  "1mo":  { pct: 0,    months: 1,  label: "One month",   sublabel: "Try it · paid up front",           badge: "Try it",        savePct: 0,  labs: "Baseline blood kit, complimentary" },
-  "3mo":  { pct: 0.10, months: 3,  label: "3 months",    sublabel: "Paid up front · save 10%",        savePct: 10, labs: "Baseline kit and your week-12 retest, included" },
-  "6mo":  { pct: 0.15, months: 6,  label: "6 months",    sublabel: "Paid up front · save 15%",        badge: "Best value",    savePct: 15, labs: "Baseline, week-12 retest and a six-month panel, included" },
-  "12mo": { pct: 0.20, months: 12, label: "12 months",   sublabel: "Paid up front · save 20%",        savePct: 20, labs: "Baseline, then a panel every quarter, included" },
+  "1mo":  { pct: 0,    months: 1,  label: "One month",   sublabel: "Paid up front",                    savePct: 0,  labs: "Baseline blood kit, complimentary" },
+  "3mo":  { pct: 0.10, months: 3,  label: "3 months",    sublabel: "Paid up front · 10% less per month", savePct: 10, labs: "Baseline kit and your week-12 retest, included" },
+  "6mo":  { pct: 0.15, months: 6,  label: "6 months",    sublabel: "Paid up front · 15% less per month", savePct: 15, labs: "Baseline, week-12 retest and a six-month panel, included" },
+  "12mo": { pct: 0.20, months: 12, label: "12 months",   sublabel: "Paid up front · 20% less per month", savePct: 20, labs: "Baseline, then a panel every quarter, included" },
 };
 
 const CADENCE_TO_TIER: Record<CadenceKey, "m1" | "m3" | "m6" | "m12"> = { "1mo": "m1", "3mo": "m3", "6mo": "m6", "12mo": "m12" };

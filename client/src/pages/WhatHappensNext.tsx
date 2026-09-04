@@ -58,7 +58,7 @@ export default function WhatHappensNext() {
 
   return (
     <SiteLayout navVariant="showcase">
-      <SpineStrip stop={6} />
+      <SpineStrip stop={5} />
       {/* Hero */}
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="whn-title">
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 820 }}>

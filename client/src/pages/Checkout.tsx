@@ -56,7 +56,7 @@ export default function Checkout() {
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }, { name: "Checkout", path: "/checkout" }])],
   });
-  const { lines, subtotal, totalSavings, itemCount, clear, dueToday } = useCart();
+  const { lines, subtotal, itemCount, clear, dueToday } = useCart();
 
   /* ─── GLP-1 state gate (defense-in-depth: PDPs already gate; this enforces at checkout) ─── */
   const cartHasGLP1 = lines.some((l) => getSolo(l.slug)?.gated || getStack(l.slug)?.gated);
@@ -241,7 +241,7 @@ export default function Checkout() {
 
   return (
     <SiteLayout variant="gate">
-      <SpineStrip stop={5} />
+      <SpineStrip stop={4} />
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         <div className="nx-container nx-section-y">
           {/* Breadcrumb */}
@@ -302,12 +302,6 @@ export default function Checkout() {
                     <span style={{ color: "var(--nx-fg)" }}>{formatUSD(line.lineTotal)}</span>
                   </div>
                 ))}
-                {totalSavings > 0 ? (
-                  <div className="flex items-baseline justify-between gap-3 pt-1.5 text-xs" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
-                    <span>You save</span>
-                    <span>−{formatUSD(totalSavings)}</span>
-                  </div>
-                ) : null}
               </div>
             </details>
 
@@ -604,12 +598,6 @@ export default function Checkout() {
                 })}
               </ul>
 
-              {totalSavings > 0 ? (
-                <div className="flex items-baseline justify-between py-1.5">
-                  <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Plan savings</span>
-                  <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>−{formatUSD(totalSavings)}</span>
-                </div>
-              ) : null}
 
               <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
                 <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{CONDITIONAL.totalLabel} · per month</span>

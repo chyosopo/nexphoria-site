@@ -1040,3 +1040,33 @@ sentences that repeat, verbatim.
 Retired from the home page: "Two ways in. One road after." · "Everything is
 included in one price." · "Delivered cold, in plain packaging." · "Getting
 started is simple." · "Your first twelve weeks." · "Tell us what is going on."
+
+## Inform, never persuade (2026-09-04, Chiya)
+"I've never seen a pricing page. Why would you even do that? … this language
+sounds desperate and cheesy and sells. We present an amazing product, we give
+you the information, we teach you what it is good for, what it can treat and
+where it helps. We are not trying to sell you or change your mind."
+- /pricing retired; it redirects to /peptides. Price lives on the product and
+  protocol pages, in the buy box, as a ladder of facts. The home "Price"
+  section: "What it costs." with the first eight medicines by term and a link
+  to every medicine.
+- Terms: "One month · Paid up front" / "3 months · Paid up front · 10% less per
+  month" / 15% / 20%. No badge on any term. Labs per term unchanged.
+- Cart drawer: "Your plan" (never "Added to your plan"), "Included in the
+  figure", the term toggle says "−15% a month". Retired: "Stacks well with",
+  the add-on-tests shelf, "You save", the legacy "Most popular" chip.
+  Cart and checkout pages: the "You save" and "Plan savings" rows retired;
+  "Month to month would be" stays, as a fact.
+- Pending medicines: "Not yet available" / "Under review"; the form button is
+  "Tell me when it is available"; note "One email when it is available. A
+  physician reviews every order before anything ships." Retired: "Reserve
+  your price", "locked at today's figure", "Reserve at $X".
+- Goal cards: "Read about it" (was "Discover more"). Add-on tests: "Relevant
+  with …" (was "Recommended with …"). Labs: "The tests that go with a plan."
+- Closers on goal and product pages: "The next step is a physician." with the
+  fact of what happens; button "Begin the health questions". Retired: "Ready
+  when you are. Get started in two minutes."
+- Footer newsletter: "New medicines as they become available, and the research
+  behind them. Nothing else." (was "member-only pricing").
+- The spine is five stops: Land · Choose · Understand · Buy · After. "Decide"
+  is gone with the page that carried it.

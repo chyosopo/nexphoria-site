@@ -1,11 +1,9 @@
-import { getSolo, soloByName, isSellable } from "@/data/soloCatalog";
-import { getStack, stackComponents, PAIRS_WELL } from "@/data/stacksCatalog";
-import { addonsFor, labSlugFor, LAB_KIT } from "@/data/labs";
+import { LAB_KIT } from "@/data/labs";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { RoadStrip } from "@/components/RoadStrip";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { X, Trash2, Plus, Minus, ShoppingBag, Stethoscope, Truck, Shield, Beaker, Plus as PlusIcon, Check, FlaskConical } from "lucide-react";
+import { X, Trash2, Plus, Minus, ShoppingBag, Stethoscope, Truck, Shield, Check, FlaskConical } from "lucide-react";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
 import type { CadenceKey } from "@/data/pricing";
 import { CADENCE_DISCOUNTS, pricing, billingNote } from "@/data/pricing";
@@ -19,20 +17,6 @@ import { resolveWorld } from "@/components/SiteLayout";
 
 const MONO = "ui-monospace, SFMono-Regular, monospace";
 
-/* Suggested pairings for cross-sell — surfaced when a matching seed peptide is in the cart */
-const PAIRINGS: Record<string, { slug: string; reason: string }[]> = {
-  "bpc-157": [{ slug: "tb-500", reason: "Stacks for connective tissue + systemic repair" }],
-  "tb-500": [{ slug: "bpc-157", reason: "Cellular repair + tissue healing synergy" }],
-  "ipamorelin": [{ slug: "cjc-1295", reason: "Pulsatile + sustained GH release protocol" }],
-  "cjc-1295": [{ slug: "ipamorelin", reason: "Pulsatile release completes the GH stack" }],
-  "tirzepatide": [{ slug: "aod-9604", reason: "Fat oxidation while preserving lean mass" }],
-  "retatrutide": [{ slug: "aod-9604", reason: "Amplifies lipolysis on the same schedule" }],
-  "ghk-cu": [{ slug: "bpc-157", reason: "Skin renewal + underlying tissue repair" }],
-  "nad-plus": [{ slug: "epitalon", reason: "Cellular energy + telomere maintenance" }],
-  "epitalon": [{ slug: "nad-plus", reason: "Telomere protocol + mitochondrial fuel" }],
-  "semax": [{ slug: "selank", reason: "Cognitive drive + calm focus balance" }],
-  "selank": [{ slug: "semax", reason: "Anxiolytic + drive combination" }],
-};
 
 const PEPTIDE_LABELS: Record<string, string> = {
   "bpc-157": "BPC-157",
@@ -59,13 +43,10 @@ export function CartDrawer() {
     close,
     lines,
     subtotal,
-    totalSavings,
     itemCount,
     updateQty,
     updateCadence,
     removeItem,
-    addPeptide,
-    addLab,
     items,
     dueToday,
     lastAdded,
@@ -103,34 +84,7 @@ export function CartDrawer() {
     }
   }, [isOpen]);
 
-  /* Suggestions come from the catalog's own "stacks well with" lists and the
-     PAIRS_WELL notes, never from a hand-kept table: a retired or pending
-     medicine can never be cross-sold, and the reason is the one the PDP gives. */
-  const suggestions = useMemo(() => {
-    const inCart = new Set(items.filter((i) => i.type === "peptide").map((i) => i.slug));
-    const stackNames = new Set(items.filter((i) => i.type === "stack").flatMap((i) => getStack(i.slug)?.peptides.map((p) => p.name) ?? []));
-    const seen = new Set<string>();
-    const out: { slug: string; reason: string }[] = [];
-    for (const item of items) {
-      const src = item.type === "peptide" ? getSolo(item.slug) : undefined;
-      const combos = src?.combine ?? [];
-      for (const name of combos) {
-        const s = soloByName(name);
-        if (!s || !isSellable(s) || s.gated || inCart.has(s.slug) || stackNames.has(s.name) || seen.has(s.slug)) continue;
-        const pair = PAIRS_WELL.find((p) => p.pair.includes(name) && src && p.pair.includes(src.name));
-        seen.add(s.slug);
-        out.push({ slug: s.slug, reason: pair?.note ?? `Stacks well with ${src?.name}. Different jobs, one plan.` });
-        if (out.length >= 2) return out;
-      }
-    }
-    return out;
-  }, [items]);
   const hasMedicine = items.some((i) => i.type === "peptide" || i.type === "stack");
-  const labAddons = useMemo(() => {
-    const keys = items.flatMap((i) => (i.type === "peptide" ? [i.slug] : i.type === "stack" ? [i.slug, ...(getStack(i.slug) ? stackComponents(getStack(i.slug)!).map((c) => c.slug) : [])] : []));
-    const seen = new Set<string>();
-    return keys.flatMap((k) => addonsFor(k)).filter((a) => (seen.has(a.slug) ? false : (seen.add(a.slug), true))).filter((a) => !items.some((i) => i.type === "lab" && i.slug === labSlugFor(a))).slice(0, 2);
-  }, [items]);
   const justAdded = lastAdded && isOpen && Date.now() - lastAdded.at < 8000 ? lines.find((l) => l.slug === lastAdded.slug && l.type === lastAdded.type) : undefined;
 
   return (
@@ -174,7 +128,7 @@ export function CartDrawer() {
                 className="text-[1.35rem] leading-tight"
                 style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
               >
-                {itemCount === 0 ? "Your cart is empty" : justAdded ? "Added to your plan" : "Your plan"}
+                {itemCount === 0 ? "Your cart is empty" : "Your plan"}
               </h2>
               <div style={{ marginTop: 8 }}><RoadStrip current={itemCount === 0 ? 0 : 1} testId="cart-road" /></div>
             </div>
@@ -215,7 +169,7 @@ export function CartDrawer() {
                 )}
                 {hasMedicine && (
                   <div className="nx-included" data-testid="cart-included">
-                    <p className="nx-included__h" style={{ fontFamily: FONT }}>Inside the figure</p>
+                    <p className="nx-included__h" style={{ fontFamily: FONT }}>Included in the figure</p>
                     <ul>
                       <li style={{ fontFamily: FONT }}><FlaskConical size={13} aria-hidden="true" /> {LAB_KIT.name}, {LAB_KIT.markers} markers, at home before your first dose <em>Complimentary</em></li>
                       <li style={{ fontFamily: FONT }}><Stethoscope size={13} aria-hidden="true" /> A licensed physician reviews your order and sets your dose <em>Included</em></li>
@@ -254,23 +208,8 @@ export function CartDrawer() {
                                   borderRadius: "var(--nx-r-2xs)",
                                 }}
                               >
-                                {line.type === "stack" ? "Curated Stack" : line.type === "lab" ? "Blood test" : "Single Peptide"}
+                                {line.type === "stack" ? "Protocol" : line.type === "lab" ? "Blood test" : "Medicine"}
                               </span>
-                              {spec?.badge ? (
-                                <span
-                                  className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] px-1.5 py-0.5"
-                                  style={{
-                                    fontFamily: FONT,
-                                    background: "transparent",
-                                    color: "var(--nx-amber)",
-                                    border: "1px solid #C4D4E8",
-                                    fontWeight: 600,
-                                    borderRadius: "var(--nx-r-2xs)",
-                                  }}
-                                >
-                                  {spec.badge}
-                                </span>
-                              ) : null}
                             </div>
                             <div
                               className="text-base leading-tight mb-1"
@@ -369,7 +308,7 @@ export function CartDrawer() {
                                       className="block text-[11px] mt-0.5"
                                       style={{ color: active ? "#A8CBF5" : "var(--nx-amber)", opacity: 1, fontWeight: 600 }}
                                     >
-                                      SAVE {meta.savePct}%
+                                      −{meta.savePct}% a month
                                     </span>
                                   ) : (
                                     <span
@@ -434,103 +373,6 @@ export function CartDrawer() {
                   })}
                 </ul>
 
-                {/* Cross-sell / add-on shelf */}
-                {suggestions.length > 0 ? (
-                  <div
-                    className="mt-6 p-4"
-                    style={{
-                      background: "var(--nx-bg-cream)",
-                      border: "1px dashed #8FAED4",
-                      borderRadius: "var(--nx-r-md)",
-                    }}
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <Beaker size={13} style={{ color: "var(--nx-amber)" }} />
-                      <span
-                        className="text-[11px] uppercase tracking-[var(--nx-ls-wide)]"
-                        style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 600 }}
-                      >
-                        Stacks well with
-                      </span>
-                    </div>
-                    <ul className="space-y-2 list-none p-0">
-                      {suggestions.map((s) => {
-                        const p = getSolo(s.slug)?.pricing;
-                        if (!p) return null;
-                        return (
-                          <li
-                            key={s.slug}
-                            className="flex items-start justify-between gap-3 p-3"
-                            style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)" }}
-                            data-testid={`suggestion-${s.slug}`}
-                          >
-                            <div className="flex-1 min-w-0">
-                              <div
-                                className="text-sm leading-tight mb-0.5"
-                                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}
-                              >
-                                {PEPTIDE_LABELS[s.slug] || s.slug}
-                              </div>
-                              <div
-                                className="text-[11px] leading-snug"
-                                style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
-                              >
-                                {s.reason}
-                              </div>
-                              <div
-                                className="text-[11px] mt-1"
-                                style={{ fontFamily: MONO, color: "var(--nx-amber)", letterSpacing: "0.02em", fontWeight: 600 }}
-                              >
-                                from {formatUSD(p.m12)}/mo
-                              </div>
-                            </div>
-                            <button
-                              type="button"
-                              onClick={() => addPeptide(s.slug, { qty: 1, cadence: "6mo" })}
-                              className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-all hover:opacity-90"
-                              style={{
-                                fontFamily: FONT,
-                                background: "var(--nx-fg)",
-                                color: "var(--nx-bg)",
-                                fontWeight: 600,
-                                borderRadius: "var(--nx-r-sm)",
-                              }}
-                              data-testid={`button-add-suggestion-${s.slug}`}
-                            >
-                              <PlusIcon size={11} strokeWidth={2.5} /> Add
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                ) : null}
-
-                {/* Go deeper on the panel: add-on tests that belong with what is in the cart */}
-                {hasMedicine && labAddons.length > 0 ? (
-                  <div className="mt-4 p-4" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }} data-testid="cart-lab-shelf">
-                    <div className="flex items-center gap-2 mb-3">
-                      <FlaskConical size={13} style={{ color: "var(--nx-cobalt)" }} />
-                      <span className="text-[11px] uppercase tracking-[var(--nx-ls-wide)]" style={{ fontFamily: FONT, color: "var(--nx-cobalt)", fontWeight: 600 }}>
-                        Go deeper on your panel
-                      </span>
-                    </div>
-                    <ul className="space-y-2 list-none p-0">
-                      {labAddons.map((a) => (
-                        <li key={a.slug} className="flex items-start justify-between gap-3 p-3" style={{ background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)" }} data-testid={`cart-lab-${a.slug}`}>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm leading-tight mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>{a.name} <span style={{ color: "var(--nx-fg-muted)", fontWeight: 500 }}>· {formatUSD(a.price)}</span></div>
-                            <div className="text-[11px] leading-snug" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>{a.recommendedLine ?? a.line}</div>
-                          </div>
-                          <button type="button" onClick={() => addLab(labSlugFor(a))} className="flex-shrink-0 inline-flex items-center gap-1 px-3 py-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-all hover:opacity-90" style={{ fontFamily: FONT, background: "var(--nx-fg)", color: "var(--nx-bg)", fontWeight: 600, borderRadius: "var(--nx-r-sm)" }} data-testid={`button-add-lab-${a.slug}`}>
-                            <PlusIcon size={11} strokeWidth={2.5} /> Add
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link href="/labs" onClick={close} className="block mt-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] hover:underline" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", fontWeight: 600 }}>See the whole panel</Link>
-                  </div>
-                ) : null}
               </>
             )}
           </div>
@@ -541,22 +383,6 @@ export function CartDrawer() {
               className="px-6 pt-5 pb-6"
               style={{ borderTop: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}
             >
-              {totalSavings > 0 ? (
-                <div className="flex items-center justify-between mb-1.5">
-                  <span
-                    className="text-[11px] uppercase tracking-[var(--nx-ls-caps)]"
-                    style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 600 }}
-                  >
-                    You save
-                  </span>
-                  <span
-                    className="text-sm"
-                    style={{ fontFamily: FONT, color: "var(--nx-amber)", fontWeight: 600 }}
-                  >
-                    −{formatUSD(totalSavings)}
-                  </span>
-                </div>
-              ) : null}
               <div className="flex items-baseline justify-between mb-4">
                 <div>
                   <div

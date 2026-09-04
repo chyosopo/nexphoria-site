@@ -7,7 +7,7 @@ import { F } from "@/lib/typography";
 
 export function StatusPill({ status, testId, style, short = false }: { status: SoloStatus | "reserve"; testId?: string; style?: React.CSSProperties; short?: boolean }) {
   if (status === "live") return null;
-  const label = short ? (status === "watch" ? "Under review" : "Reserve") : status === "reserve" ? "Reserve your price" : STATUS_LABEL[status];
+  const label = short ? (status === "watch" ? "Under review" : "Pending") : status === "reserve" ? "Not yet available" : STATUS_LABEL[status];
   return (
     <span className={`nx-status nx-status--${status}`} style={{ fontFamily: F, ...style }} data-testid={testId}>
       {label}

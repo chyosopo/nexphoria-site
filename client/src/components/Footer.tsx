@@ -92,7 +92,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
         { label: "Why we test", href: "/bloodwork" },
         { label: "Custom protocol", href: assessmentBase },
         { label: "Give as a gift", href: "/gift" },
-        { label: "Pricing", href: "/pricing" },
       ],
     },
     {
@@ -151,7 +150,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
                 maxWidth: "34ch",
               }}
             >
-              Early access to new protocols, published research, and member-only pricing.
+              New medicines as they become available, and the research behind them. Nothing else.
             </p>
             {state === "done" ? (
               <p

@@ -169,7 +169,7 @@ export default function ProtocolsIndex() {
                       <span className="nx-float-badge"><Lock size={10} aria-hidden="true" /> Assessed</span>
                     )}
                     {reservable && (
-                      <span className="nx-float-badge">Reserve</span>
+                      <span className="nx-float-badge">Pending</span>
                     )}
                     {/* the lean badge makes a cross-world flagship read as
                         intentional, not a leak */}

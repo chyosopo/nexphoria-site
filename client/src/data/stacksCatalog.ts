@@ -62,10 +62,10 @@ export interface FlagshipStack {
    months paid up front. Longer terms cost less per month and include more
    labs. Totals are the whole figure for the term. */
 const cad = (base: number): StackCadence[] => [
-  { key: "1mo", label: "One month", sublabel: "Try it · paid up front", total: base, perMonth: base, badge: "Try it", labs: "Baseline blood kit, complimentary" },
-  { key: "3mo", label: "3 months", sublabel: "Paid up front · save 10%", total: Math.round(base * 0.9) * 3, perMonth: Math.round(base * 0.9), labs: "Baseline kit and your week-12 retest, included" },
-  { key: "6mo", label: "6 months", sublabel: "Paid up front · save 15%", total: Math.round(base * 0.85) * 6, perMonth: Math.round(base * 0.85), badge: "Best value", includesPanel: "Full", labs: "Baseline, week-12 retest and a six-month panel, included" },
-  { key: "12mo", label: "12 months", sublabel: "Paid up front · save 20%", total: Math.round(base * 0.8) * 12, perMonth: Math.round(base * 0.8), includesPanel: "Full", labs: "Baseline, then a panel every quarter, included" },
+  { key: "1mo", label: "One month", sublabel: "Paid up front", total: base, perMonth: base, labs: "Baseline blood kit, complimentary" },
+  { key: "3mo", label: "3 months", sublabel: "Paid up front · 10% less per month", total: Math.round(base * 0.9) * 3, perMonth: Math.round(base * 0.9), labs: "Baseline kit and your week-12 retest, included" },
+  { key: "6mo", label: "6 months", sublabel: "Paid up front · 15% less per month", total: Math.round(base * 0.85) * 6, perMonth: Math.round(base * 0.85), includesPanel: "Full", labs: "Baseline, week-12 retest and a six-month panel, included" },
+  { key: "12mo", label: "12 months", sublabel: "Paid up front · 20% less per month", total: Math.round(base * 0.8) * 12, perMonth: Math.round(base * 0.8), includesPanel: "Full", labs: "Baseline, then a panel every quarter, included" },
 ];
 
 /* ── LAUNCH SCOPE (2026-08-12) ─────────────────────────────────

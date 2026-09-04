@@ -1,9 +1,12 @@
 /* ═══ The spine (docs/SPINE, Chiya 2026-09-04) ═══
-   Six stops. Every page is one stop, says which, and offers one next
-   action. The road is the customer's version of the same six, in order,
-   as it happens after they choose. Copy standard: one claim, facts beneath. */
-export const STOPS = ["Land", "Choose", "Understand", "Decide", "Buy", "After"] as const;
-export type Stop = 1 | 2 | 3 | 4 | 5 | 6;
+   Five stops. Every page is one stop, says which, and offers one next
+   action. The road is the customer's version of the same five, in order,
+   as it happens after they choose. Copy standard: one claim, facts beneath.
+   There is no "Decide" stop and no pricing page (Chiya, 2026-09-04): the
+   price is a fact on the product page, stated once, beside the medicine.
+   The site informs; it does not persuade. */
+export const STOPS = ["Land", "Choose", "Understand", "Buy", "After"] as const;
+export type Stop = 1 | 2 | 3 | 4 | 5;
 
 export const ROAD: { t: string; b: string }[] = [
   { t: "Choose", b: "A medicine or a protocol, for one month or for three, six or twelve." },

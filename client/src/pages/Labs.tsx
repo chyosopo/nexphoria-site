@@ -120,7 +120,7 @@ export default function Labs() {
           ))}
         </ul>
       </div></section>
-      <SpineStrip stop={6} />
+      <SpineStrip stop={5} />
 
       {/* ── 2. Three steps ── */}
       <section className="nx-labs-band" aria-labelledby="labs-steps">
@@ -216,7 +216,7 @@ export default function Labs() {
         <div className="nx-container">
           <Reveal>
             <p style={kicker}>Go deeper</p>
-            <h2 id="labs-addons" style={{ ...h2, maxWidth: "18ch" }}>Add the tests your plan calls for.</h2>
+            <h2 id="labs-addons" style={{ ...h2, maxWidth: "18ch" }}>The tests that go with a plan.</h2>
             <p style={{ ...body, marginTop: "1rem" }}>Each add-on is drawn from the same kit and read in the same note. Your physician may recommend one from your results; you can add any of them now.</p>
           </Reveal>
           <ul className="nx-addon-grid" data-testid="labs-addons">

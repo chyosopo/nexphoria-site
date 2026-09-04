@@ -648,10 +648,10 @@ export default function Category() {
       {/* ── Start ── */}
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="category-cta-title">
         <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)", textAlign: "center" }}>
-          <h2 id="category-cta-title" style={{ ...h2, marginTop: 0 }}>Ready when you are.</h2>
-          <p style={{ ...body, margin: "0.7rem auto 0" }}>Answer a few health questions. A licensed U.S. physician reviews them, and if it is right for you, your medication is made and shipped cold to your door.</p>
+          <h2 id="category-cta-title" style={{ ...h2, marginTop: 0 }}>The next step is a physician.</h2>
+          <p style={{ ...body, margin: "0.7rem auto 0" }}>A few health questions. A licensed U.S. physician reads them and decides whether this is right for you. If it is, your medication is made and shipped cold to your door.</p>
           <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2 mt-6" data-testid="cat-cta-end">
-            Get started <ArrowRight size={17} strokeWidth={2} />
+            Begin the health questions <ArrowRight size={17} strokeWidth={2} />
           </Link>
           <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>{FDA} Availability varies by state.</p>
         </div>

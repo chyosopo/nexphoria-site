@@ -59,6 +59,16 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
    number a month. Everything within it." / "The figure is complete." /
    "complimentary" and "included," never "free" or "no fee." Legal and
    safety disclaimers (FDA, "if prescribed") are exempt and untouched.
+   **Inform, never persuade** (Chiya 2026-09-04: "we present an amazing
+   product, we give you the information, we teach you what it is good for,
+   what it can treat and where it helps; we are not trying to sell you or
+   change your mind"). So: no pricing page (price is a fact on the product
+   page, stated once, beside the medicine); no "best value", "save N%",
+   "try it", "most popular", "recommended", "you save" badges or rows; no
+   cross-sell shelves in the cart; no "reserve your price" or locked-price
+   language (a pending medicine offers one email when it is available); no
+   "ready when you are" closers. Term differences are stated as facts
+   ("10% less per month"). The reader decides.
 4. **Crimson is reserved for blood imagery only.** Never decorative, never a UI accent.
 5. **PHI never in the repo.** (See above.)
 6. **Never declare work "done."** Work produces a *shrinking punch list*: verified / pending / failed.

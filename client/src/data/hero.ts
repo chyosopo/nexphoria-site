@@ -17,5 +17,5 @@ export const HERO = {
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,
-  chips: ["Licensed U.S. physicians", "Made in a licensed U.S. pharmacy", "Free baseline blood kit with your first order", "Ships cold to all 50 states"],
+  chips: ["Licensed U.S. physicians", "Made in a licensed U.S. pharmacy", "Baseline blood kit with your first order, complimentary", "Ships cold to all 50 states"],
 };

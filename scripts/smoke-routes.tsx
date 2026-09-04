@@ -64,7 +64,7 @@ async function main() {
     ["/cart",            "/src/pages/Cart.tsx", {}],
     ["/checkout",        "/src/pages/Checkout.tsx", {}],
     ["/what-happens-next", "/src/pages/WhatHappensNext.tsx", {}],
-    ["/pricing",         "/src/pages/Pricing.tsx", {}],
+    ["/pricing",         "/src/pages/PeptidesCatalog.tsx", { world: "men" }], // retired 2026-09-04 → /peptides
     ["/gift",            "/src/pages/Gift.tsx", {}],
     ["/gift/claim",      "/src/pages/GiftClaim.tsx", {}],
     ["/physicians",      "/src/pages/Physicians.tsx", {}],

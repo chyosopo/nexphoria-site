@@ -325,3 +325,15 @@ Custom tiers, the Basic/Full/Elite panel ladder, the legacy plan table, the stat
 band. The spine strip reaches cart, checkout and what-happens-next.
 Pending: cart and checkout visual pass in the grammar (they already read on the new
 tokens), Phase 4 (labs absorbs bloodwork), Phase 5 imagery, Phase 6 trust pages.
+
+### 2026-09-04 · night · The register: inform, never persuade
+Verified: /pricing retired (redirects to /peptides; Nav, footer, sitemap, llms,
+assessment fallback updated; Pricing.tsx and CadenceCalculator deleted). Terms are
+facts, no badges. Cart drawer without cross-sell shelves, savings rows or "Added
+to your plan". Pending medicines offer one email, no reservation and no locked
+price. Closers, goal-card pill, add-on lines and the footer newsletter line
+rewritten to the informational register. Spine reduced to five stops. Law 3
+extended in CLAUDE.md. See docs/COPY-DECK.md "Inform, never persuade".
+Pending: Phase 4 (labs absorbs bloodwork; what-happens-next day by day), Phase 5
+imagery, Phase 6 trust pages; a full read of every remaining page for the
+register (About, HowItWorks, FAQ, Physicians, legal) is still to do. Failed: none.

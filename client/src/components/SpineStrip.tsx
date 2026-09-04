@@ -1,4 +1,4 @@
-/* Where you are, on every page: the six stops, the current one lit.
+/* Where you are, on every page: the five stops, the current one lit.
    The reader always knows what came before and what is next. */
 import { STOPS, type Stop } from "@/data/spine";
 import { F } from "@/lib/typography";

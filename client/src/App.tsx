@@ -38,7 +38,6 @@ const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
 const Journal = lazy(() => import("@/pages/Journal"));
 const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
 const Physicians = lazy(() => import("@/pages/Physicians"));
-const Pricing = lazy(() => import("@/pages/Pricing"));
 const About = lazy(() => import("@/pages/About"));
 const Community = lazy(() => import("@/pages/Community"));
 const Contact = lazy(() => import("@/pages/Contact"));
@@ -145,7 +144,8 @@ function AppRouter() {
         {/* /blood-work consolidated → canonical /bloodwork (BloodPanels retired) */}
         <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
         <Route path="/catalog">{() => <R to="/peptides" />}</Route>
-        <Route path="/pricing" component={Pricing} />
+        {/* /pricing retired 2026-09-04 (Chiya): price is a fact on each product page, never a page of its own */}
+        <Route path="/pricing">{() => <R to="/peptides" />}</Route>
         <Route path="/gift" component={Gift} />
         <Route path="/gift/claim" component={GiftClaim} />
         <Route path="/faq" component={FAQPage} />

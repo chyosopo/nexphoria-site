@@ -238,10 +238,10 @@ export function BuyBox(props: BuyBoxProps) {
               <div style={{ marginTop: "1rem" }} id="reserve">
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }} data-testid="buybox-reserve-note">
                   {pending && pending.length > 0
-                    ? `${pending.join(" and ")} ${pending.length > 1 ? "are" : "is"} pending final FDA rulemaking for compounding. Reserve this protocol at the figure above and we email you the moment it ships.`
-                    : `${name} is pending final FDA rulemaking for compounding. Reserve it at the figure above and we email you the moment it ships.`}
+                    ? `${pending.join(" and ")} ${pending.length > 1 ? "are" : "is"} pending final FDA rulemaking for compounding. The figure above is what it will cost. Leave an email and we tell you when it is available.`
+                    : `${name} is pending final FDA rulemaking for compounding. The figure above is what it will cost. Leave an email and we tell you when it is available.`}
                 </p>
-                <ReserveForm slug={slug} kind={addType} price={active ? `${usd(active.amount)}${active.per}` : undefined} testId={`${ctaTestId}-reserve`} />
+                <ReserveForm slug={slug} kind={addType} testId={`${ctaTestId}-reserve`} />
               </div>
             )}
             <div style={{ marginTop: "1rem" }} hidden={reserving}>
@@ -324,7 +324,7 @@ export function BuyBox(props: BuyBoxProps) {
         </div>
         {reserving && cadence && !gated && !consultPriced ? (
           <a href="#reserve" data-testid={`${ctaTestId}-bar`} className="nx-cta-cobalt" style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}>
-            Reserve
+            Pending
           </a>
         ) : cadence && !gated && !consultPriced ? (
           <button

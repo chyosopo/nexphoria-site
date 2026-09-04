@@ -61,7 +61,7 @@ export function GoalPicker({ counts }: { counts: Record<string, number> }) {
               <span className="nx-goal-card-title" style={{ fontFamily: S }}>{g.title}</span>
               <span className="nx-goal-card-line" style={{ fontFamily: S }}>{g.line}</span>
               <span className="nx-goal-card-pill nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>
-                Discover more
+                Read about it
               </span>
             </span>
           </Link>

@@ -120,7 +120,7 @@ export async function generateLlms(): Promise<{ stacks: number; solos: number }>
   }
   lines.push("");
   lines.push("## Key pages");
-  lines.push(`- [Pricing](${BASE}/pricing): one complete monthly figure — physician, labs, medication, shipping included; cadence pricing at 1/3/12 months.`);
+  lines.push(`- [Every medicine](${BASE}/peptides): each one priced on its own page, one monthly figure by term (1, 3, 6 or 12 months, paid up front); the physician, the blood work and cold shipping are within it.`);
   lines.push(`- [Bloodwork](${BASE}/bloodwork): the 99-marker panel, three tiers (Basic/Full/Elite), re-drawn every 90 days.`);
   lines.push(`- [How it works](${BASE}/how-it-works): intake, physician evaluation, supervised protocol.`);
   lines.push(`- [The science](${BASE}/science): mechanisms, evidence status, and typical protocols per compound class.`);

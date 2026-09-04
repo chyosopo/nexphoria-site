@@ -85,8 +85,8 @@ export function isSellable(s: SoloPeptide): boolean {
 
 export const STATUS_LABEL: Record<SoloStatus, string> = {
   live: "Available now",
-  coming: "Coming · reserve your price",
-  watch: "Under review · reserve your price",
+  coming: "Not yet available",
+  watch: "Under review",
 };
 export const EVIDENCE_LABEL: Record<1 | 2 | 3, string> = { 1: "Emerging", 2: "Moderate", 3: "Strong" };
 export const EVIDENCE_NOTE: Record<1 | 2 | 3, string> = {
