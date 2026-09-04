@@ -9,7 +9,6 @@ import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
@@ -50,7 +49,7 @@ export default function Checkout() {
   // Checkout is a private transactional page — noindex (centralized in useSeo).
   // Breadcrumb (Home → Cart → Checkout) records the real navigational trail.
   useSeo({
-    title: "Secure intake — Nexphoria",
+    title: "Checkout",
     description: "Submit your information for physician review. A licensed physician reviews every order before anything is dispensed.",
     path: "/checkout",
     noindex: true,
@@ -241,7 +240,6 @@ export default function Checkout() {
 
   return (
     <SiteLayout variant="gate">
-      <SpineStrip stop={4} />
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         <div className="nx-container nx-section-y">
           {/* Breadcrumb */}
@@ -386,9 +384,9 @@ export default function Checkout() {
                           Your doctor decides before anything is made.
                         </p>
                         <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                          Billing runs through Bask Health, our telehealth billing partner. The figure is complete:
+                          Billing runs through Bask Health, our telehealth billing partner. The price is complete:
                           one number a month, with your doctor's review, your medicine, cold shipping and the week-12
-                          blood panel within it. If your doctor declines, the refund policy sets out what is refunded.
+                          blood test within it. If your doctor declines, the refund policy sets out what is refunded.
                         </p>
                       </div>
                     </div>
@@ -398,7 +396,7 @@ export default function Checkout() {
                     </p>
                     <ol className="list-none p-0 space-y-3">
                       {[
-                        "Check out at the figure shown. One number a month.",
+                        "Check out at the price shown. One number a month.",
                         "Answer the questionnaire. Two minutes.",
                         "A U.S. licensed doctor reads every answer and decides.",
                         "If it is a yes, your medicine is made for you and ships cold. If it is a no, the refund policy applies.",
@@ -428,7 +426,7 @@ export default function Checkout() {
                     >
                       <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6, margin: 0, maxWidth: "48ch" }}>
                         <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Someone else covering this?</strong>{" "}
-                        Send them the figure — one payment on their side, and your results stay yours.
+                        Send them the price. One payment on their side, and your results stay yours.
                       </p>
                       <Link href="/gift?mode=request" className="nx-text-link" data-testid="checkout-gift-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                         Create the link
@@ -471,7 +469,7 @@ export default function Checkout() {
                       />
                     </div>
                     <div className="mt-5">
-                      <Field label="Known allergies" helper="Optional — preservatives, latex, peptide-class reactions, or N/A" error={errors.allergies?.message}>
+                      <Field label="Known allergies" helper="Optional: preservatives, latex, peptide-class reactions, or N/A" error={errors.allergies?.message}>
                         <input {...form.register("allergies")} type="text" placeholder="None known" className="nx-input" data-testid="input-allergies" />
                       </Field>
                     </div>
@@ -570,7 +568,7 @@ export default function Checkout() {
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
                           <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
-                            {line.type === "stack" ? "Stack" : line.type === "lab" ? "Blood test" : "Single"} · qty {line.qty} · {line.cadenceLabel}
+                            {line.type === "stack" ? "Protocol" : line.type === "lab" ? "Blood test" : "Medicine"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
                           <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
                             {line.name}
@@ -612,7 +610,7 @@ export default function Checkout() {
               <div className="mt-6 pt-6 space-y-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
                 <TrustRow icon={<Stethoscope size={14} />} text="A U.S. licensed doctor reviews every order" />
                 <TrustRow icon={<Shield size={14} />} text="Encrypted in transit" />
-                <TrustRow icon={<Truck size={14} />} text="Cold-chain shipping · third-party COA on every batch" />
+                <TrustRow icon={<Truck size={14} />} text="Cold shipping, plain packaging" />
                 <TrustRow icon={<Check size={14} />} text={CONDITIONAL.chargeCondition} />
                 <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
               </div>

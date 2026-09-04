@@ -16,7 +16,6 @@
 import { Link, useRoute, useLocation } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
-import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
@@ -78,21 +77,21 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: goalMetabolic, photo500: goalMetabolic500,
     photoAlt: "A person at a kitchen counter in morning light, calm, a glass of water in hand",
     what: {
-      title: "One dose a week. Less appetite, all week.",
+      title: "How GLP-1 medicines work.",
       body: [
         "GLP-1 is a hormone your body releases after you eat. It tells your brain you are full and slows down digestion. Semaglutide and tirzepatide are longer-lasting versions of that signal, so you feel full sooner, think about food less, and your blood sugar stays steadier. Tirzepatide works on a second hormone, GIP, as well.",
         "You take a small injection under the skin once a week. Your physician starts you on a low dose and increases it step by step over the first few weeks, which keeps side effects like nausea manageable.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
+      title: "Which one is prescribed?",
       body: "Semaglutide works on one hormone, tirzepatide on two. Your physician chooses based on your health history, your goal and what is available in your state. You can tell us your preference in the health questions.",
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Draw at home; your physician sets your dose from the results." },
       { when: "Week 1", what: "Your first dose, at the lowest step. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "Your dose increases step by step on your physician's schedule." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included in your plan." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included in your plan." },
       { when: "After", what: "Your physician reviews your results and adjusts your dose for the next stretch." },
     ],
     faqs: [
@@ -109,17 +108,17 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: goalGrowth, photo500: goalGrowth500,
     photoAlt: "A man in a bright home gym holding a dumbbell mid-curl, a bench and window behind him",
     what: {
-      title: "More of your own growth hormone, on your body's own rhythm.",
+      title: "How tesamorelin works.",
       body: [
         "Growth hormone is what your body uses to build and repair. It is released in pulses, mostly while you sleep. Tesamorelin copies the signal that triggers those pulses, so your body makes more of its own growth hormone rather than getting it from outside. It is best studied for visceral fat, the deep fat around your organs, and it supports lean muscle.",
         "You take a small injection under the skin once a day, usually in the evening. The dose stays the same. What changes is IGF-1 in your blood, which is the number your physician checks at week 12.",
       ],
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Draw at home; your physician sets your dose from the results." },
       { when: "Week 1", what: "Your first dose, in the evening. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "The same dose every day. The effect builds gradually." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included. IGF-1 is the number your physician checks first." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. IGF-1 is read first." },
       { when: "After", what: "Your physician confirms or adjusts your dose against your IGF-1." },
     ],
     faqs: [
@@ -135,21 +134,21 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: "img/img_fad0fee022a9.webp", photo500: "img/img_fad0fee022a9.webp",
     photoAlt: "A climber chalking up at the crag in morning light",
     what: {
-      title: "Help your body do what it already does, faster.",
+      title: "How BPC-157 and TB-500 work.",
       body: [
         "When tissue is injured, your body sends repair signals and moves repair cells to the site. BPC-157 is studied for the signal: it supports blood vessel growth and the repair of tendons, ligaments, muscle and the gut lining. TB-500, a fragment of a protein called thymosin beta-4, is studied for the second half: moving repair cells to where they are needed.",
         "BPC-157 is one small injection a day. TB-500 is two a week. Many people take both, which is why the pair is offered as one plan.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
-      body: "BPC-157 on its own suits a specific injury or gut complaint. TB-500 suits whole-body recovery from training. The pair covers both, and it is the most common choice. Your physician confirms the fit from your health questions.",
+      title: "Which one is prescribed?",
+      body: "BPC-157 on its own suits a specific injury or gut complaint. TB-500 suits whole-body recovery from training. The pair covers both. Your physician confirms the fit from your health questions.",
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Draw at home; your physician sets your dose from the results." },
       { when: "Week 1", what: "Your first doses. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "Daily or twice weekly, through your recovery." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with inflammation markers checked." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Inflammation markers are read first." },
       { when: "After", what: "Your physician reviews your results and decides whether to continue." },
     ],
     faqs: [
@@ -165,21 +164,21 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: "img/img_3678caab4727.webp", photo500: "img/img_3678caab4727.webp",
     photoAlt: "A woman in a cream robe in golden light, skin catching the sun",
     what: {
-      title: "Support your skin from the inside.",
+      title: "How GHK-Cu and epitalon work.",
       body: [
         "GHK-Cu is a copper-binding peptide your body makes less of with age. It is studied for prompting collagen production, elasticity and wound healing, which is why it is used for skin quality. One small injection a day.",
         "Epitalon is a four-amino-acid peptide studied for supporting telomere maintenance and regulating the sleep-wake cycle. It is taken as a 20-day course, a few times a year.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
+      title: "Which one is prescribed?",
       body: "GHK-Cu is the choice for skin. Epitalon is the choice for healthy ageing more broadly, and the two are often combined. Your physician confirms the fit from your health questions.",
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Draw at home; your physician sets your dose from the results." },
       { when: "Week 1", what: "Your first dose. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "Daily for GHK-Cu. Epitalon runs as a 20-day course." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with inflammation and blood count checked." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Inflammation and blood count are read first." },
       { when: "After", what: "Your physician reviews your results and decides whether to continue." },
     ],
     faqs: [
@@ -195,20 +194,20 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: "img/img_916e52b67436.webp", photo500: "img/img_916e52b67436.webp",
     photoAlt: "A man at a chessboard, thinking three moves ahead",
     what: {
-      title: "A nasal spray, and a clearer head.",
+      title: "How Semax and Selank work.",
       body: [
         "Semax supports BDNF, a protein your brain uses to build and maintain connections. It is studied for focus, memory and mental stamina. One spray a day, in the morning.",
         "Selank works on the brain's stress response. It is studied for a steadier mood and clearer thinking under pressure, without sedation. Two sprays a day.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
-      body: "Semax for focus. Selank for stress and mood. Many people take both, one in the morning and one through the day. Your physician confirms the fit from your health questions.",
+      title: "Which one is prescribed?",
+      body: "Semax for focus. Selank for stress and mood. Many patients are prescribed both, one in the morning and one through the day. Your physician confirms the fit from your health questions.",
     },
     weeks: [
       { when: "Day 1", what: "Your first spray. Many people notice something within the hour." },
       { when: "Weeks 1 to 8", what: "Taken daily, the effect evens out." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with thyroid and cortisol checked for context." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Thyroid and cortisol are read for context." },
       { when: "After", what: "Your physician reviews your results and decides whether to continue." },
     ],
     faqs: [
@@ -224,7 +223,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: "img/img_928775d1e9c1.webp", photo500: "img/img_928775d1e9c1.webp",
     photoAlt: "A man waking before the alarm in soft morning light",
     what: {
-      title: "More of the deep sleep that actually restores you.",
+      title: "How DSIP works.",
       body: [
         "Deep sleep is where your body does most of its repair. DSIP is a naturally occurring peptide studied for helping you fall asleep sooner and spend more of the night in deep sleep, without the grogginess of a sedative.",
         "One small injection under the skin at bedtime. The effect builds over the first couple of weeks.",
@@ -233,7 +232,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     weeks: [
       { when: "Night 1", what: "Your first dose, at bedtime." },
       { when: "Weeks 1 to 8", what: "Taken nightly, sleep settles into a rhythm." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with cortisol and thyroid checked." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Cortisol and thyroid are read first." },
       { when: "After", what: "Your physician reviews your results and decides whether to continue." },
     ],
     faqs: [
@@ -249,21 +248,21 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: "img/img_cf1396d09b4a.webp", photo500: "img/img_cf1396d09b4a.webp",
     photoAlt: "A man running ahead of the group at a picnic",
     what: {
-      title: "More energy at the cellular level.",
+      title: "How NAD+, MOTS-c and epitalon work.",
       body: [
         "NAD+ is the coenzyme every cell uses to turn food into energy, and your levels fall with age. Replacing it is studied for energy, recovery and healthy ageing. Three small injections a week.",
         "MOTS-c is a peptide your mitochondria make that signals the same pathways exercise does. It is studied for metabolism and endurance. Two small injections a week. Epitalon, taken as a 20-day course, is studied for telomere maintenance.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
-      body: "NAD+ is the place most people start. MOTS-c suits training and metabolism. Epitalon adds a short course a few times a year. Your physician confirms the fit from your health questions.",
+      title: "Which one is prescribed?",
+      body: "NAD+ is for cellular energy. MOTS-c suits training and metabolism. Epitalon adds a short course a few times a year. Your physician confirms the fit from your health questions.",
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Draw at home; your physician sets your dose from the results." },
       { when: "Week 1", what: "Your first doses. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "On schedule, the levels build." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with metabolic and inflammation markers checked." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Metabolic and inflammation markers are read first." },
       { when: "After", what: "Your physician reviews your results and decides whether to continue." },
     ],
     faqs: [
@@ -273,27 +272,27 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     ],
   },
   "sexual-health": {
-    short: "Sexual desire",
+    short: "Sexual health",
     headline: "Desire, performance and closeness, prescribed online.",
     sub: "PT-141 for desire, a fast tadalafil nasal spray for performance, and oxytocin for closeness. Each taken on the day you choose, for men and women. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
     photo: goalDesire, photo500: goalDesire500,
     photoAlt: "Two people at ease together in warm evening light",
     what: {
-      title: "Three mechanisms, one evening.",
+      title: "How PT-141, tadalafil and oxytocin work.",
       body: [
         "Most medications for sexual function work on blood flow. PT-141, also called bremelanotide, works upstream, on the part of the brain involved in sexual desire, for men and women. Tadalafil works on the blood flow itself, as a nasal spray that is absorbed in twenty to thirty minutes. Oxytocin, the bonding hormone, works on closeness.",
         "Each is taken on the day you want it rather than every day, and they are often prescribed together. PT-141 raises blood pressure briefly, so your physician checks your blood pressure and heart history before prescribing it.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
-      body: "If desire is the missing piece, PT-141. If the body needs help on the night, tadalafil. If closeness is the goal, oxytocin. Your physician chooses from your health questions, and many people are prescribed the pair.",
+      title: "Which one is prescribed?",
+      body: "If desire is the missing piece, PT-141. If the body needs help on the night, tadalafil. If closeness is the goal, oxytocin. Your physician chooses from your health questions. Many patients are prescribed both.",
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Draw at home; your physician sets your dose from the results." },
       { when: "Dose 1", what: "About an hour ahead, under the skin. Most people find their timing within the first few doses." },
       { when: "The first weeks", what: "Use it on the days you choose, within the monthly limit your physician sets." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with your hormones checked for context." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Your hormones are read for context." },
       { when: "After", what: "Your physician reviews how it is going and adjusts your dose or your plan." },
     ],
     faqs: [
@@ -309,25 +308,25 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
     photo: goalGrowth, photo500: goalGrowth500,
     photoAlt: "A man at a bright home gym, tape on the bench",
     what: {
-      title: "Dosed against a number, so your number matters.",
+      title: "How testosterone therapy works, and why blood work comes first.",
       body: [
-        "Testosterone is the one medicine on this menu where blood work is the whole point. Your free baseline kit shows your physician your total and free testosterone, estradiol and red blood cell count before a dose is set. A weekly dose then keeps your level steady, and the week-12 retest shows whether the dose is right.",
+        "Testosterone is the one medicine on this menu where blood work is the whole point. Your baseline kit shows your physician your total and free testosterone, estradiol and red blood cell count before a dose is set. A weekly dose then keeps your level steady, and the week-12 retest shows whether the dose is right.",
         "Testosterone replacement quiets your own production. Kisspeptin works one step above your hormones, telling the pituitary to keep signalling, which is why the two are prescribed together in the Foundation protocol.",
       ],
     },
     choose: {
-      title: "Which one is right for you?",
+      title: "Which one is prescribed?",
       body: "If your baseline shows low testosterone, replacement is the base layer. Kisspeptin supports the axis alongside it, and is the gentler lever on its own for fertility-minded plans. Your physician chooses from your numbers.",
     },
     weeks: [
-      { when: BASELINE.when, what: "Your free baseline kit arrives with your first order. Total and free testosterone, estradiol and blood count set your starting dose." },
+      { when: BASELINE.when, what: "Your baseline blood kit arrives with your first order, included. Total and free testosterone, estradiol and blood count set your starting dose." },
       { when: "Weeks 1 to 2", what: "Your first weekly doses. Levels begin to settle." },
       { when: "Weeks 3 to 6", what: "Energy, mood and drive are usually the first things to move." },
-      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with testosterone, estradiol, blood count and PSA checked first." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your blood test, included. Testosterone, estradiol, blood count and PSA are read first." },
       { when: "After", what: "Your physician adjusts your dose from what changed, and body composition builds over months three to six." },
     ],
     faqs: [
-      { q: "Do I need blood work first?", a: "Yes. Testosterone is dosed against your own numbers, so your free baseline kit is drawn before your first dose. Your physician sets your dose from it and adjusts from your week-12 retest." },
+      { q: "Do I need blood work first?", a: "Yes. Testosterone is dosed against your own numbers, so your baseline kit is drawn before your first dose. Your physician sets your dose from it and adjusts from your week-12 retest." },
       { q: "What does your physician watch?", a: "Testosterone, estradiol, red blood cell count and PSA, at baseline and at week 12. High red blood cell count or an untreated sleep apnea can rule it out, so both are checked first." },
       { q: "Will it affect fertility?", a: "Testosterone replacement can lower sperm production. Tell your physician if you are planning to conceive; kisspeptin exists on this menu for exactly that conversation." },
       { q: "Is compounded testosterone FDA-approved?", a: "Testosterone cypionate is an FDA-approved medication. The compounded preparation made for you by a licensed 503A pharmacy is not itself FDA-approved, and compounded medications are not evaluated by the FDA for safety, effectiveness, or quality." },
@@ -460,13 +459,12 @@ export default function Category() {
             <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }} data-testid="cat-sub">{cfg.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
-                Get started <ArrowRight size={17} strokeWidth={2} />
+                Begin the health questions <ArrowRight size={17} strokeWidth={2} />
               </Link>
               <Link href="/peptides-101" className="nx-cta-ghost inline-flex items-center gap-2" data-testid="cat-cta-101">
-                New to peptides? Start here
+                Peptides 101
               </Link>
             </div>
-            <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>Online visit. A licensed U.S. physician reviews every request.</p>
           </div>
           <Reveal delay={80} className="nx-reveal-lift">
             <div style={{ borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-3)", aspectRatio: "4 / 5", border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}>
@@ -475,7 +473,6 @@ export default function Category() {
           </Reveal>
         </div>
       </div></section>
-      <SpineStrip stop={2} />
 
       {/* ── 2. Understand ── */}
       <section style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-what-title">
@@ -497,7 +494,7 @@ export default function Category() {
                 </div>
               ); })()}
               <p style={small}>
-                Want the full picture?{" "}
+                More on how peptides work:{" "}
                 <Link href="/peptides-101" className="nx-text-link" style={{ fontWeight: 600 }}>Read Peptides 101</Link>
               </p>
             </div>
@@ -508,9 +505,9 @@ export default function Category() {
       {/* ── 3. Choose ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-options-title">
         <Reveal>
-          <p style={kicker}>Your options</p>
+          <p style={kicker}>Medicines</p>
           <h2 id="category-options-title" style={{ ...h2, maxWidth: "20ch" }}>
-            {skus.length === 1 ? "Your treatment option." : "Your treatment options."}
+            {skus.length === 1 ? "The medicine for this goal." : "The medicines for this goal."}
           </h2>
         </Reveal>
         <Reveal><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ marginTop: "clamp(1.4rem,3vw,2.2rem)" }}>
@@ -535,7 +532,7 @@ export default function Category() {
           <Reveal>
             <p style={kicker}>What to expect</p>
             <h2 id="category-weeks-title" style={{ ...h2, maxWidth: "16ch" }}>Your first {RETEST_WEEK} weeks.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>{BASELINE.line}</p>
+            <p style={{ ...body, marginTop: "1rem" }}>The blood kit ships with your first order and you draw at home before your first dose. Your physician sets your dose from the results, and the same {PANEL_TOTAL_MARKERS} markers are tested again at week {RETEST_WEEK}.</p>
           </Reveal>
           <Reveal delay={60}>
             <ol className="nx-timeline" data-testid="cat-weeks">
@@ -562,15 +559,15 @@ export default function Category() {
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]" style={{ gap: "clamp(1.4rem,3vw,2.6rem)" }}>
             <Reveal>
               <p style={kicker}>Your week-{RETEST_WEEK} blood panel</p>
-              <h2 id="category-blood-title" style={{ ...h2, maxWidth: "18ch" }}>See how your body is responding.</h2>
+              <h2 id="category-blood-title" style={{ ...h2, maxWidth: "18ch" }}>What your physician reads first.</h2>
               <p style={{ ...body, marginTop: "1rem" }}>
-                A full panel of {PANEL_TOTAL_MARKERS} markers is included in your plan. These are the ones your physician looks at first for this treatment, and why.
+                The {PANEL_TOTAL_MARKERS}-marker blood test is included in your plan. These are the markers your physician reads first for this treatment, and why.
               </p>
               {doseMarkers.map((d) => (
                 <p key={d.peptide} style={{ ...small, marginTop: "0.8rem" }}>Your {d.peptide} dose is set against your {d.marker}.</p>
               ))}
               <p style={{ ...small, marginTop: "0.8rem" }}>
-                <Link href="/labs" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker in the panel and why it is there</Link>
+                <Link href="/labs" className="nx-text-link" style={{ fontWeight: 600 }}>Every marker, and the additional tests</Link>
               </p>
               <AddonsFor keys={[slug, ...slugs]} testId="cat-addons" />
             </Reveal>
@@ -601,7 +598,7 @@ export default function Category() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)", maxWidth: 860 }} aria-labelledby="category-faq-title">
         <Reveal>
           <p style={kicker}>Questions</p>
-          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Asked plainly, answered plainly.</h2>
+          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
           <div className="mt-6">
             {cfg.faqs.map((f, i) => (
               <details key={f.q} className="nx-faq-item" open={i === 0}>
@@ -625,7 +622,7 @@ export default function Category() {
         return (
           <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="cat-reading-title">
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
-              <h2 id="cat-reading-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Learn more.</h2>
+              <h2 id="cat-reading-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Further reading.</h2>
               <Link href="/journal" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                 The journal <ArrowRight size={15} aria-hidden />
               </Link>

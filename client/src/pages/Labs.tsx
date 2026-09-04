@@ -10,7 +10,6 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Check, FlaskConical, Home, Mail, Plus, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { LabKitBox } from "@/components/LabKitBox";
 import { useCart } from "@/contexts/CartProvider";
@@ -30,7 +29,16 @@ const small: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-sm)", 
 const STEPS: { Icon: typeof Home; t: string; b: string }[] = [
   { Icon: Home, t: "Test at home.", b: LAB_KIT.collection },
   { Icon: Mail, t: "Mail it back.", b: "Seal the prepaid box and drop it in the post. The laboratory is CLIA-certified." },
-  { Icon: Stethoscope, t: "Read, then dosed.", b: "Your results land in your account with your physician's note. Your dose is set against your numbers." },
+  { Icon: Stethoscope, t: "Read by your physician.", b: "Your results land in your account with your physician's note. Your dose is set against your numbers." },
+];
+
+/* One worked example for the results layout. Illustrative values inside the
+   printed ranges; not a patient record and not derived from any patient. */
+const EXAMPLE_ROWS: { marker: string; baseline: string; week12: string; range: string }[] = [
+  { marker: "Fasting insulin", baseline: "11.2 \u00b5IU/mL", week12: "7.4 \u00b5IU/mL", range: "2.6 to 24.9 \u00b5IU/mL" },
+  { marker: "IGF-1", baseline: "121 ng/mL", week12: "178 ng/mL", range: "83 to 233 ng/mL" },
+  { marker: "Total testosterone", baseline: "388 ng/dL", week12: "612 ng/dL", range: "264 to 916 ng/dL" },
+  { marker: "hs-CRP", baseline: "2.6 mg/L", week12: "1.1 mg/L", range: "under 3.0 mg/L" },
 ];
 
 const FAQ = [
@@ -77,7 +85,7 @@ export default function Labs() {
           <div>
             <p style={kicker}>Blood testing</p>
             <h1 id="labs-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "16ch", textWrap: "balance" }} data-testid="labs-h1">
-              Know your numbers before your first dose.
+              A blood test before your first dose.
             </h1>
             <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }} data-testid="labs-sub">
               {LAB_KIT.name}: {LAB_KIT.markers} markers across {LAB_KIT.systems} systems, drawn at home and read by a licensed physician. Complimentary with any medication order. {usd(LAB_KIT.price)} on its own.
@@ -120,7 +128,6 @@ export default function Labs() {
           ))}
         </ul>
       </div></section>
-      <SpineStrip stop={5} />
 
       {/* ── 2. Three steps ── */}
       <section className="nx-labs-band" aria-labelledby="labs-steps">
@@ -159,7 +166,7 @@ export default function Labs() {
           <div className="nx-band__head">
             <div>
               <p className="nx-band__kicker" style={{ fontFamily: F }}>What we measure</p>
-              <h2 className="nx-band__h2" style={{ fontFamily: S }}>{LAB_KIT.markers} markers. {LAB_KIT.systems} systems. One clear picture.</h2>
+              <h2 className="nx-band__h2" style={{ fontFamily: S }}>{LAB_KIT.markers} markers across {LAB_KIT.systems} systems.</h2>
             </div>
           </div>
           <Reveal><ul className="nx-systems">
@@ -215,7 +222,7 @@ export default function Labs() {
       <section className="nx-labs-band" aria-labelledby="labs-addons">
         <div className="nx-container">
           <Reveal>
-            <p style={kicker}>Go deeper</p>
+            <p style={kicker}>Additional tests</p>
             <h2 id="labs-addons" style={{ ...h2, maxWidth: "18ch" }}>The tests that go with a plan.</h2>
             <p style={{ ...body, marginTop: "1rem" }}>Each add-on is drawn from the same kit and read in the same note. Your physician may recommend one from your results; you can add any of them now.</p>
           </Reveal>
@@ -284,15 +291,16 @@ export default function Labs() {
             <p style={{ ...body, marginTop: "1rem" }}>Every marker sits beside its range and, from week {RETEST_WEEK} on, beside your baseline. Your physician's note says what is in range, what moved, and what changes in your plan because of it.</p>
           </Reveal>
           <Reveal delay={60}>
-            <div className="nx-report" aria-label="How a result is laid out" data-testid="labs-report">
+            <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }} data-testid="labs-report-label">Example, not a patient record.</p>
+            <div className="nx-report" aria-label="An example of how a result is laid out. Example, not a patient record." data-testid="labs-report">
               <div className="nx-report__head" style={{ fontFamily: F }}><span>Marker</span><span>Your baseline</span><span>Week {RETEST_WEEK}</span><span>Range</span></div>
-              {["Fasting insulin", "IGF-1", "Total testosterone", "hs-CRP"].map((m) => (
-                <div key={m} className="nx-report__row" style={{ fontFamily: F }}>
-                  <span style={{ fontWeight: 600, color: "var(--nx-fg)" }}>{m}</span><span className="nx-report__blank" /><span className="nx-report__blank" /><span className="nx-report__blank nx-report__blank--wide" />
+              {EXAMPLE_ROWS.map((r) => (
+                <div key={r.marker} className="nx-report__row" style={{ fontFamily: F }}>
+                  <span style={{ fontWeight: 600, color: "var(--nx-fg)" }}>{r.marker}</span><span>{r.baseline}</span><span>{r.week12}</span><span>{r.range}</span>
                 </div>
               ))}
               <div className="nx-report__note" style={{ fontFamily: F }}>
-                <Stethoscope size={14} strokeWidth={2} aria-hidden="true" /> Your physician's note goes here: what moved, and what changes.
+                <Stethoscope size={14} strokeWidth={2} aria-hidden="true" /> Example note: fasting insulin and hs-CRP moved toward the middle of their ranges, IGF-1 rose with the dose, and testosterone is within range. Continue at the current dose.
               </div>
             </div>
           </Reveal>
@@ -303,7 +311,7 @@ export default function Labs() {
       <section className="nx-container nx-faq-section" aria-labelledby="labs-faq">
         <Reveal>
           <p style={kicker}>Questions</p>
-          <h2 id="labs-faq" style={{ ...h2, maxWidth: "18ch" }}>Asked plainly, answered plainly.</h2>
+          <h2 id="labs-faq" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
         </Reveal>
         <div className="nx-faq-list" data-testid="labs-faq">
           {FAQ.map((f, i) => (
@@ -320,7 +328,7 @@ export default function Labs() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="labs-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "18ch", margin: "0 auto", textWrap: "balance" }}>
-              Test first. Then start, with your numbers in hand.
+              A blood test first. Then your first dose.
             </h2>
             <div style={{ display: "flex", justifyContent: "center", gap: "0.9rem", flexWrap: "wrap", marginTop: "2rem" }}>
               <Link href="/peptides" className="nx-cta-ceramic" data-testid="labs-closer-shop" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}>

@@ -23,8 +23,9 @@ export function resolveWorld(path: string): World {
 }
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
-import { AnnouncementBar } from "./AnnouncementBar";
-import { TrustBar } from "./TrustBar";
+/* The announcement bar and the trust bar are removed sitewide (the plain
+   deck, 2026-09-04, rule 3: every fact once per page). The hide* props are
+   still accepted so callers compile; they no longer do anything. */
 // Lazy — pulls framer-motion; keep it off the first-paint critical path.
 const ExitIntentModal = lazy(() =>
   import("./ExitIntentModal").then((m) => ({ default: m.ExitIntentModal })),
@@ -46,8 +47,6 @@ export function SiteLayout({
   navVariant,
   footerVariant = "shared",
   hideFooter = false,
-  hideAnnouncementBar = false,
-  hideTrustBar = false,
   variant,
 }: SiteLayoutProps) {
   const [__loc] = useLocation();
@@ -68,9 +67,7 @@ export function SiteLayout({
       >
         Skip to main content
       </a>
-      {!hideAnnouncementBar && <AnnouncementBar />}
       <Nav variant={resolvedNavVariant} />
-      {!hideTrustBar && <TrustBar />}
       <main id="main-content" className="flex-1">{children}</main>
       {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
       <Suspense fallback={null}>

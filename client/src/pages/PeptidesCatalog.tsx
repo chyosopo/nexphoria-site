@@ -1,13 +1,11 @@
 /* JOB: browse by goal, reach a PDP in one click; nothing else. */
-/* ═══ PEPTIDES CATALOG — P5 wave 2 · the 19-solo shelf ═══ */
+/* ═══ PEPTIDES CATALOG — the twenty-two, to docs/COPY-DECK-PLAIN.md ═══ */
 import { useRef, useState } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
-import { SOLO_CATALOG, SOLO_CATEGORIES } from "@/data/soloCatalog";
-import { feelingFor, type PeptideCategory } from "@/data/peptides";
-import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { SOLO_CATALOG, SOLO_CATEGORIES, type SoloCategory } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -16,27 +14,35 @@ import { getPrice } from "@/data/pricing";
 import { ProductCard } from "@/components/ProductCard";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto, skuPhotoFor } from "@/components/SkuPhoto";
-import { SpineStrip } from "@/components/SpineStrip";
 
 
-/* Markers every protocol on this shelf is monitored against — reinforces the
-   lab-monitored law (TRUE: bloodwork every 90 days). Echoes the Science page. */
-/* Lab chips lead with the markers each world actually cares about — her panel
-   shouldn't open on "Total testosterone" (all are on the same 99-marker panel). */
-const CATALOG_BIOMARKERS_MEN = ["IGF-1", "HbA1c", "Fasting insulin", "hs-CRP", "Total testosterone", "Lipid panel"];
-const CATALOG_BIOMARKERS_WOMEN = ["Estradiol", "Free T3 / T4", "Ferritin", "HbA1c", "hs-CRP", "Vitamin D"];
-
-/* Shelf name → goal key, so the feeling line can be cast per world
-   (feelingFor applies the women's register on her catalog). */
-const SHELF_CAT: Record<string, PeptideCategory> = {
-  Growth: "growth",
-  Cognitive: "cognition",
-  Recovery: "recovery",
-  "Skin & Longevity": "skin",
-  Metabolic: "metabolic",
-  Sleep: "sleep",
-  "Sexual Health": "sexual-health",
+/* Category key → the name the reader sees (the deck's category vocabulary,
+   the same words as the goal tiles). Keys stay as they are in soloCatalog;
+   only the display changes here. "Skin & Longevity" holds both the skin
+   medicines and the energy and healthy ageing ones, so it shows as the
+   first of those two names and its group line names both. */
+const CAT_LABEL: Record<SoloCategory, string> = {
+  Growth: "Body composition",
+  Cognitive: "Focus and mood",
+  Recovery: "Recovery",
+  "Skin & Longevity": "Skin, energy and ageing",
+  Metabolic: "Weight loss",
+  Sleep: "Sleep",
+  "Sexual Health": "Sexual health",
+  Hormone: "Hormones",
 };
+/* One plain phrase per group, shown as the group heading. */
+const CAT_LINE: Record<SoloCategory, string> = {
+  Growth: "Body composition: your own growth hormone, lean mass and fat.",
+  Cognitive: "Focus and mood: focus by day and a steadier mood under stress.",
+  Recovery: "Recovery: injury and recovery from training.",
+  "Skin & Longevity": "Skin, energy and ageing: skin firmness, cellular energy and healthy ageing.",
+  Metabolic: "Weight loss: appetite and weight.",
+  Sleep: "Sleep: deep sleep.",
+  "Sexual Health": "Sexual health: desire, closeness and erectile function.",
+  Hormone: "Hormones: low testosterone.",
+};
+const labelFor = (c: string) => (c === "All" ? "All" : CAT_LABEL[c as SoloCategory] ?? c);
 
 export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
@@ -54,11 +60,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     // homepage-canonical duplicates (the old omitted-path bug).
     path: `${base}/peptides`,
     title: world === "women"
-      ? "Peptides for Women: The Full Catalog | Nexphoria"
+      ? "Prescription peptides for women | Nexphoria"
       : world === "men"
-      ? "Peptides for Men: The Full Catalog | Nexphoria"
-      : "Peptides: The Full Catalog | Nexphoria",
-    description: `${SOLO_CATALOG.length} doctor-prescribed peptides${world === "women" ? " for women" : world === "men" ? " for men" : ""}, each with dosing, mechanism, timeline, and week-12 bloodwork stated plainly.`,
+      ? "Prescription peptides for men | Nexphoria"
+      : "Twenty-two prescription peptides | Nexphoria",
+    description: "Twenty-two prescription peptides, each with what it is for, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.",
     jsonLd: [
       // World-aware path so the WebPage node's url matches this page's own
       // canonical/og:url + breadcrumb + itemList (all `${base}/peptides`) on
@@ -73,7 +79,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       // ItemList of every catalog entry — real names/paths only, no prices/ratings here.
       itemListJsonLd({
         name: "Nexphoria peptide catalog",
-        description: "Doctor-prescribed peptides in the Nexphoria formulary.",
+        description: "Prescription peptides in the Nexphoria catalog.",
         items: SOLO_CATALOG.map((s) => ({ name: s.name, path: `${base}/peptides/${s.slug}` })),
       }),
     ],
@@ -87,6 +93,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       (!needle ||
         s.name.toLowerCase().includes(needle) ||
         s.category.toLowerCase().includes(needle) ||
+        labelFor(s.category).toLowerCase().includes(needle) ||
         s.outcome.toLowerCase().includes(needle) ||
         s.mechanism.toLowerCase().includes(needle)),
   );
@@ -120,10 +127,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   // count match exactly what the grid shows).
   const noun = shown.length === 1 ? "peptide" : "peptides";
   const resultStatus = needle
-    ? `Showing ${shown.length} ${noun} matching “${q.trim()}”${filter !== "All" ? ` in ${filter}` : ""}.`
+    ? `Showing ${shown.length} ${noun} matching “${q.trim()}”${filter !== "All" ? ` in ${labelFor(filter)}` : ""}.`
     : filter === "All"
     ? `Showing all ${shown.length} ${noun}.`
-    : `Showing ${shown.length} ${noun} in ${filter}.`;
+    : `Showing ${shown.length} ${noun} in ${labelFor(filter)}.`;
 
   return (
     /* Carry the visitor's world into the chrome — otherwise a woman on
@@ -135,14 +142,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
             <div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The catalog</p>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The medicines</p>
               <h1 id="peptides-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
-                {SOLO_CATALOG.length} prescription peptides. <em style={{ color: "var(--nx-cobalt)" }}>What each one is good for.</em>
+                Twenty-two prescription peptides.
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                {world === "women"
-                  ? "Every medication with what it is good for, how it works, how you take it, and its price. Prescribed online by licensed U.S. physicians, with a blood panel at week 12 included."
-                  : "Every medication with what it is good for, how it works, how you take it, and its price. Prescribed online by licensed U.S. physicians."}
+                Each with what it is for, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
               </p>
             </div>
             {/* THE FORMULARY, RENDERED — replaces vial-lineup-hero.webp.
@@ -163,38 +168,9 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   </div>
                 ))}
               </div>
-              <div
-                style={{
-                  position: "absolute", top: 14, right: 14, display: "inline-flex", alignItems: "center", gap: 8,
-                  background: "color-mix(in srgb, var(--nx-bg-dark) 60%, transparent)",
-                  backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-                  borderRadius: "var(--nx-r-pill)", padding: "8px 14px",
-                }}
-              >
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-ceramic)" }}>
-                  {SOLO_CATALOG.length} medications · prescribed online
-                </span>
-              </div>
             </div>
           </div>
         </div>
-      </section>
-      <SpineStrip stop={2} />
-
-
-      {/* ── Biomarker chip strip — every shelf item is lab-monitored (TRUE) ── */}
-      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }} aria-label="Lab-monitored biomarkers">
-        <Reveal>
-          <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Every plan includes a blood panel at week 12</p>
-          <div className="nx-biochip-grid" data-testid="catalog-biochips">
-            {(world === "women" ? CATALOG_BIOMARKERS_WOMEN : CATALOG_BIOMARKERS_MEN).map((name) => (
-              <Link key={name} href="/bloodwork" className="nx-biochip" data-testid={`catalog-biochip-${name}`}>
-                {name}
-              </Link>
-            ))}
-            <span className="nx-biochip muted">+ {PANEL_TOTAL_MARKERS - 6} more on the full panel</span>
-          </div>
-        </Reveal>
       </section>
 
       <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Search and filter the catalog">
@@ -230,7 +206,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 className="nx-filter-chip focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
                 style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
               >
-                {c}
+                {labelFor(c)}
                 <span style={{ opacity: 0.65, marginLeft: 6, fontWeight: 500 }}>{n}</span>
               </button>
             );
@@ -247,12 +223,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           {resultStatus}
         </p>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
-          {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${filter}` : ""}
+          {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${labelFor(filter)}` : ""}
         </p>
         {shown.length === 0 && (
           <div className="nx-glass-tile" style={{ display: "block", textAlign: "center", padding: "3rem 1.5rem" }} data-testid="filter-empty">
-            <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>{needle ? `No matches for “${q.trim()}”.` : `No matches in ${filter}.`}</p>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>The formulary is curated. Some shelves are short by design.</p>
+            <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>{needle ? `No matches for “${q.trim()}”.` : `No matches in ${labelFor(filter)}.`}</p>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>Clear the search, or choose another category.</p>
             <button onClick={() => { setFilter("All"); setQ(""); }} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
               Clear filters
             </button>
@@ -301,12 +277,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             return (
               <div key={cat} style={{ marginBottom: "clamp(2.4rem,4.5vw,3.6rem)" }}>
                 <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginBottom: "1.1rem", paddingBottom: "0.7rem", borderBottom: "1px solid var(--nx-border)", display: "flex", alignItems: "baseline", gap: "0.75rem", flexWrap: "wrap" }}>
-                  {cat}
-                  {SHELF_CAT[cat] && (
-                    <em style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-cobalt)" }}>
-                      {feelingFor(SHELF_CAT[cat], world)}
-                    </em>
-                  )}
+                  {CAT_LINE[cat] ?? labelFor(cat)}
                   <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginLeft: "auto" }}>
                     {items.length} {items.length === 1 ? "peptide" : "peptides"}
                   </span>
@@ -320,18 +291,17 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         })()}
       </section>
 
-      {/* not sure which — route to the assessment */}
+      {/* the closer: the next step is a physician */}
       <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-band) 0" }} aria-labelledby="peptides-assess-title">
         <div className="nx-container" style={{ textAlign: "center" }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Not sure which fits?</p>
           <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            Your doctor decides, <em style={{ color: "var(--nx-acid)" }}>from your questionnaire.</em>
+            The next step is a physician.
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            You don’t have to pick correctly from a grid. Share your history; your doctor matches you to the right compound, or tells you none is appropriate.
+            A few health questions, read by a licensed U.S. physician, who prescribes the medicine that fits or explains why not.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
-            Get started
+            Begin the health questions
           </Link>
         </div>
       </section>

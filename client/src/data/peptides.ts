@@ -81,7 +81,7 @@ export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
   growth: "Body composition",
   longevity: "Energy and healthy ageing",
   metabolic: "Weight loss",
-  "sexual-health": "Sexual desire",
+  "sexual-health": "Sexual health",
   hormone: "Hormones",
 };
 
@@ -122,17 +122,6 @@ export function feelingFor(cat: PeptideCategory, world?: "men" | "women"): strin
 /* Each goal's word-triad (ROADMAP 8.3) — three single-word beats shown as
    quiet chips on stack pages and goal heroes. Same register as the feeling
    lines; claims stay inside what the catalog supports. */
-export const CATEGORY_TRIAD: Record<PeptideCategory, [string, string, string]> = {
-  recovery: ["Repair", "Rebound", "Return"],
-  skin: ["Renew", "Firm", "Radiate"],
-  cognition: ["Clear", "Focus", "Steady"],
-  sleep: ["Descend", "Restore", "Rise"],
-  growth: ["Build", "Recover", "Measure"],
-  longevity: ["Restore", "Protect", "Extend"],
-  metabolic: ["Quiet", "Steady", "Recompose"],
-  "sexual-health": ["Signal", "Respond", "Connect"],
-  hormone: ["Restore", "Support", "Monitor"],
-};
 
 const RAW_PEPTIDES: Peptide[] = [
   {

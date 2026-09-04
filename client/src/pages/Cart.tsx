@@ -2,7 +2,6 @@
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
@@ -22,8 +21,8 @@ export default function Cart() {
   // keep crawl budget on content pages. A breadcrumb gives the trail navigational
   // context even though the page itself stays out of the index.
   useSeo({
-    title: "Your cart — Nexphoria",
-    description: "Review your selected protocols before physician intake.",
+    title: "Your cart",
+    description: "Review your selection before the health questions and the physician's decision.",
     path: "/cart",
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }])],
@@ -32,7 +31,6 @@ export default function Cart() {
 
   return (
     <SiteLayout variant="gate">
-      <SpineStrip stop={4} />
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         {/* trimmed top padding — the nav offset + section padding stacked
             ~210px of empty porcelain above "Review your cart" */}
@@ -110,7 +108,7 @@ export default function Cart() {
                               className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                               style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}
                             >
-                              {line.type === "stack" ? "Curated Stack" : line.type === "lab" ? "Blood test · one time" : "Single Peptide"}
+                              {line.type === "stack" ? "Protocol" : line.type === "lab" ? "Blood test" : "Medicine"}
                             </div>
                             <h3
                               className="text-lg md:text-xl mb-1"
@@ -290,13 +288,13 @@ export default function Cart() {
                 <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--nx-border)" }}>
                   <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }} data-testid="cart-panel-note">
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-cobalt)" }}>Within the figure</p>
-                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before your first dose, complimentary</p>
-                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Your physician sets your dose against it. The same panel again at week {RETEST_WEEK} on plans of three months and longer. Add-on tests from $19.</p>
+                      <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-cobalt)" }}>Included in the price</p>
+                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before your first dose, included</p>
+                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Your physician sets your dose from it. The same blood test again at week {RETEST_WEEK} on plans of three months and longer. Additional tests from $19.</p>
                     </div>
                     <Link asChild href="/labs">
                       <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }} data-testid="link-cart-bloodwork">
-                        See the panel
+                        Every marker
                       </a>
                     </Link>
                   </div>
@@ -317,7 +315,7 @@ export default function Cart() {
                   Order summary
                 </div>
 
-                <SummaryRow label="Monthly figure" value={`${formatUSD(subtotal)} / mo`} />
+                <SummaryRow label="Monthly price" value={`${formatUSD(subtotal)} / mo`} />
                 <SummaryRow label="Month to month would be" value={formatUSD(subtotal + totalSavings)} />
 
                 <div
@@ -344,13 +342,13 @@ export default function Cart() {
                   style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
                 >
                   <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                    Within the figure
+                    Included in the price
                   </p>
                   <div className="space-y-2.5">
                     {[
-                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Your doctor's review" },
+                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Your physician's review" },
                       { icon: <Truck size={13} aria-hidden="true" />, text: "Cold shipping, plain packaging" },
-                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Baseline kit, the week-12 panel and dose review" },
+                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Blood kit, the week-12 blood test and dose review" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-2 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>

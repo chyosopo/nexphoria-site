@@ -1,54 +1,98 @@
-/* ═══ PDP FAQ — C24 · honest answers, generated from the data ═══
-   Every question is answered from the catalog itself: the panel it
-   gates on, its cadence terms, its timeline, its gated status. No
-   marketing claims the data can't back. buildPdpFaq() feeds both the
-   rendered accordion and FAQPage JSON-LD (via faqJsonLd in seo.ts). */
+/* ═══ PDP FAQ: the common questions, answered from the data ═══
+   Every question is answered from the catalog itself: the regulatory
+   standing of the active, its onset and full effect, its terms. No claim
+   the data cannot back. buildPdpFaq() feeds both the rendered accordion and
+   FAQPage JSON-LD (via faqJsonLd in seo.ts). The strings are the plain
+   deck's (docs/COPY-DECK-PLAIN.md, "PdpFaq"). */
 import { S } from "@/lib/typography";
+import type { SoloRegulatory } from "@/data/soloCatalog";
 
 export interface FaqItem { q: string; a: string }
 
+/** A medicine inside a protocol, as the FDA answer needs it. */
+export interface FaqComponent { name: string; regulatory?: SoloRegulatory }
+
+const NOT_EVALUATED = "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality.";
+
+function fdaAnswer(name: string, regulatory: SoloRegulatory): string {
+  if (regulatory === "compounded-approved-active") {
+    return `${name} is an FDA-approved active ingredient. The compounded preparation made for you by a licensed 503A pharmacy is not itself FDA-approved, and compounded medications are not evaluated by the FDA for safety, effectiveness, or quality.`;
+  }
+  return `No. There is no FDA-approved product containing ${name}. Compounded ${name} is prepared by a licensed 503A pharmacy under a physician's prescription. ${NOT_EVALUATED}`;
+}
+
+function fdaAnswerForProtocol(components: FaqComponent[]): string {
+  const parts = components.map((c) =>
+    (c.regulatory ?? "compounded-no-approved-active") === "compounded-approved-active"
+      ? `${c.name} is an FDA-approved active ingredient.`
+      : `There is no FDA-approved product containing ${c.name}.`,
+  );
+  return `${parts.join(" ")} Each is prepared for you by a licensed 503A pharmacy under a physician's prescription; the compounded preparation is not itself FDA-approved. ${NOT_EVALUATED}`;
+}
+
 export function buildPdpFaq(opts: {
   name: string;
-  panel: string;
+  /** accepted for existing callers; the bloodwork answer no longer names a tier */
+  panel?: string;
   gated?: boolean;
+  /** accepted for existing callers; state availability is stated once, in the buy box */
   gatedStates?: string[];
   hasPricing: boolean;
+  /** fallback for the first-weeks answer when feelBy / fullEffect are not passed */
   firstMark?: { wk: string; effect: string };
+  /** regulatory standing of the active (a single medicine); defaults to the conservative reading */
+  regulatory?: SoloRegulatory;
+  /** the medicines in a protocol; when present the FDA answer is written per component */
+  components?: FaqComponent[];
+  feelBy?: string;
+  fullEffect?: string;
 }): FaqItem[] {
-  const { name, panel, gated, gatedStates, hasPricing, firstMark } = opts;
+  const { name, hasPricing, firstMark, regulatory, components, feelBy, fullEffect } = opts;
   const items: FaqItem[] = [];
 
-  items.push({
-    q: `Is ${name} FDA-approved?`,
-    a: `Compounded ${name} is prepared for you by a licensed 503A pharmacy under a physician's prescription, and compounded medications are not FDA-approved. Where a branded, FDA-approved version of the active ingredient exists, that approval does not extend to the compounded preparation. Compounded medications are not evaluated by the FDA for safety, effectiveness, or quality.`,
-  });
+  if (components && components.length > 0) {
+    items.push({
+      q: "Are the medicines in this protocol FDA-approved?",
+      a: fdaAnswerForProtocol(components),
+    });
+  } else {
+    items.push({
+      q: `Is ${name} FDA-approved?`,
+      a: fdaAnswer(name, regulatory ?? "compounded-no-approved-active"),
+    });
+  }
 
   items.push({
     q: "Do I need a prescription?",
-    a: `Yes. A licensed U.S. physician reviews your health questions and writes the prescription if it is right for you. Everything happens online.`,
+    a: "Yes. A licensed U.S. physician reviews your health questions and writes the prescription if it is right for you. Everything happens online.",
   });
 
   items.push({
     q: "What bloodwork is required?",
-    a: `A free at-home blood kit ships with your first order, so your physician sets your ${name} dose against your numbers. At week 12, the same full panel is drawn again, included, and your dose is adjusted from what changed.`,
+    a: "An at-home blood kit of 24 markers ships with your first order, included. You draw before your first dose and your physician sets the dose from the results. At week 12 the same test is drawn again and compared.",
   });
 
-  if (firstMark) {
+  if (feelBy && fullEffect) {
     items.push({
       q: "What should I expect in the first weeks?",
-      a: `${firstMark.wk}: ${firstMark.effect} Everyone responds differently, which is why your blood panel at week 12 is part of the plan and your dose is adjusted from it.`,
+      a: `Typical onset is ${feelBy.charAt(0).toLowerCase() + feelBy.slice(1)}, with the full effect by ${fullEffect}. Everyone responds differently, which is why the week-12 blood test and a dose review are part of the plan.`,
+    });
+  } else if (firstMark) {
+    items.push({
+      q: "What should I expect in the first weeks?",
+      a: `${firstMark.effect.replace(/\.$/, "")}, in ${firstMark.wk.replace(/^Wk /, "week ")}. Everyone responds differently, which is why the week-12 blood test and a dose review are part of the plan.`,
     });
   }
 
-  if (gated) {
-    items.push({
-      q: "Why can't I just add it to a cart?",
-      a: `GLP-1 medication is dosed and increased step by step by your physician, based on your health history. Answer a few health questions first; if it is right for you, your physician prescribes it.${gatedStates?.length ? ` It is not currently available for shipping addresses in ${gatedStates.join(", ")}.` : ""}`,
-    });
-  } else if (hasPricing) {
+  items.push({
+    q: "Do I pay before the physician decides?",
+    a: "Yes. You check out first, then answer the health questions. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
+  });
+
+  if (hasPricing) {
     items.push({
       q: "How is it billed?",
-      a: "You buy a block of time, paid up front: one month to try it, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood work. When your term ends, renewing is your choice.",
+      a: "You pay for a term up front: one month, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood testing. At the end of the term, renewing is your choice.",
     });
   }
 
@@ -59,7 +103,7 @@ export function PdpFaq({ items }: { items: FaqItem[] }) {
   return (
     <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} data-testid="pdp-faq">
       <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
-        Asked plainly, answered plainly
+        Common questions.
       </h2>
       <div style={{ marginTop: "clamp(1.2rem,2vw,1.6rem)" }}>
         {items.map((it, i) => (

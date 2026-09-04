@@ -42,7 +42,7 @@ export function StartIntakeButton({
   size = "lg",
   className,
   style,
-  children = "Get started",
+  children = "Begin the health questions",
   showArrow = true,
 }: {
   productSlug?: string;

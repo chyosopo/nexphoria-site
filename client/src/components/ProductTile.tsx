@@ -31,9 +31,9 @@ export function ProductTile({ sku, index = 0, detail = false, base = "", testId 
         <StatusPill status={statusOf(sku)} short style={{ marginTop: 6 }} />
         {detail && <div style={{ marginTop: ".7rem" }}><BenefitStrip slug={sku.slug} compact /></div>}
         {detail && <div style={{ marginTop: ".8rem" }}><ExpectTimeline slug={sku.slug} compact /></div>}
-        {sku.feelBy && <span className="nx-frost__feel" style={{ fontFamily: F }}>Feel it by {sku.feelBy.charAt(0).toLowerCase() + sku.feelBy.slice(1)}</span>}
+        {sku.feelBy && <span className="nx-frost__feel" style={{ fontFamily: F }}>Typical onset: {sku.feelBy.charAt(0).toLowerCase() + sku.feelBy.slice(1)}</span>}
         <span className="nx-frost__price" style={{ fontFamily: F }}>{sku.gated ? "Priced after review" : sku.pricing ? `From ${usd(sku.pricing.m12)}/mo` : "Priced at consultation"}</span>
-        <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Learn more</span>
+        <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Read more</span>
       </div>
     </Link>
   );
@@ -51,7 +51,7 @@ export function ProtocolTile({ stack, index = 0, testId }: { stack: FlagshipStac
         <span className="nx-frost__line" style={{ fontFamily: F }}>{stack.peptides.map((p) => p.name).join(" + ")}</span>
         {stackReservable(stack) && <StatusPill status="reserve" short style={{ marginTop: 6 }} />}
         <span className="nx-frost__price" style={{ fontFamily: F }}>{stack.gated ? "Priced at consultation" : from ? `From ${usd(from)}/mo` : ""}</span>
-        <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Learn more</span>
+        <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Read more</span>
       </div>
     </Link>
   );

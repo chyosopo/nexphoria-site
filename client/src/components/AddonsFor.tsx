@@ -12,7 +12,7 @@ export function AddonsFor({ keys, testId }: { keys: string[]; testId?: string })
   if (list.length === 0) return null;
   return (
     <div className="nx-addons-for" data-testid={testId}>
-      <p style={{ fontFamily: F }} className="nx-addons-for__h">Go deeper, if you want to</p>
+      <p style={{ fontFamily: F }} className="nx-addons-for__h">Additional tests</p>
       <ul>
         {list.map((a) => (
           <li key={a.slug}>

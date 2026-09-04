@@ -1,9 +1,9 @@
-/* The road, in one line: where the reader is in the five beats. Used in the
-   cart drawer, the cart page and checkout so every commerce surface tells
-   the same story the home page told. */
+/* The five steps, in one line: where the reader is. Used in the cart drawer,
+   the cart page and checkout. The words are the deck's five step words
+   (docs/COPY-DECK-PLAIN.md) and match the home page's step list. */
 import { F } from "@/lib/typography";
 
-export const ROAD_STEPS = ["Choose", "Check out", "Physician review", "Test, then start", "Retest"] as const;
+export const ROAD_STEPS = ["Choose", "Health questions", "Physician decision", "Blood kit and first dose", "Week 12"] as const;
 
 export function RoadStrip({ current, testId }: { current: number; testId?: string }) {
   return (

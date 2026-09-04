@@ -6,16 +6,20 @@
 import heroKitchen from "@/assets/life/hero-kitchen.webp";
 import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
 
+/* The plain deck (docs/COPY-DECK-PLAIN.md, Chiya 2026-09-04): every string
+   here is the deck's Home hero string. The micro line is the only place on
+   the home page where the physician, the pharmacy and cold shipping appear. */
 export const HERO = {
   kicker: "Prescription peptide therapy",
-  lines: ["Peptide therapy,", "done properly."],
+  lines: ["Prescription peptide therapy,", "with a physician and your blood work."],
   subline:
-    "A licensed physician sets your dose against your own blood work. One figure covers all of it: the medicine, the physician, and the blood work on both sides.",
+    "Twenty-two compounded peptide medicines for weight, body composition, recovery, sleep, focus, hormones and sexual health. A licensed U.S. physician reviews your health history, prescribes if it is appropriate, and adjusts your dose from a blood test at week 12. One monthly price covers the medicine, the physician and the blood work.",
   cta: "Choose a goal",
-  /* billing claim OFF until Chiya confirms how billing runs (docs/COPY-DECK.md) */
-  micro: "Prescribed online. Made in a licensed U.S. pharmacy. Ships cold to all 50 states.",
+  ctaSecondary: "How it works",
+  micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,
-  chips: ["Licensed U.S. physicians", "Made in a licensed U.S. pharmacy", "Baseline blood kit with your first order, complimentary", "Ships cold to all 50 states"],
+  /* the four goal chips under the hero */
+  chips: ["Weight loss", "Body composition", "Sexual health", "Hormones"],
 };

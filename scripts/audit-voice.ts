@@ -40,6 +40,7 @@ const ROUTES = [
   "/faq", "/physicians", "/contact", "/assessment",
   "/peptides/tesamorelin", "/peptides/semaglutide",
   "/peptides/tirzepatide", "/peptides/pt-141",
+  "/protocols", "/stacks/recover", "/what-happens-next", "/peptides-101",
 ];
 
 /* Defensive constructions, each with the positive move that replaces it.
@@ -60,6 +61,18 @@ const PATTERNS: { re: RegExp; why: string }[] = [
     why: "house words are 'complimentary' and 'included'." },
   { re: /\bunlike (?:other|most|typical)\b/gi,
     why: "comparison against unnamed competitors reads as defensiveness, and LegitScript reads it as a claim." },
+  /* The plain register (Chiya 2026-09-04, docs/COPY-DECK-PLAIN.md): inform,
+     never persuade. Each of these is a phrase the full-site read retired. */
+  { re: /\b(?:the rest of the market|most of this market|most platforms|other peptide companies)\b/gi,
+    why: "nothing about the market. We state what we are; we do not rank ourselves." },
+  { re: /\bAsked plainly, answered plainly\b/g,
+    why: "the mannered questions heading. The heading is 'Common questions.'" },
+  { re: /\b(?:one figure|the figure|your figure|whole figure)\b/gi,
+    why: "house jargon. The word is 'price'." },
+  { re: /\bfree (?:at-home|baseline|blood)\b/gi,
+    why: "'free' is banned; the word is 'included'." },
+  { re: /\b(?:Best value|Most popular|Try it ·|Reserve your price|Discover more|Ready when you are|clinical standard|answers to (?:a number|the panel)|one recovery engine|Dialed in, not wired)\b/g,
+    why: "a badge, a nudge, a slogan or self-praise. The plain deck retired it." },
 ];
 
 /* Literal exemptions. Each is quoted exactly as it renders, and each is here

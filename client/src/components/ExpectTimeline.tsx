@@ -43,21 +43,21 @@ export function ExpectTimeline({ slug, compact = false, testId }: { slug: string
   const fullEnd = hz.full === "ongoing" ? max : Math.min(max, Math.max(hz.full[1], fullStart + 1));
   return (
     <div className={`nx-horizon${compact ? " nx-horizon--compact" : ""}`} data-testid={testId ?? `horizon-${slug}`}>
-      {!compact && <p className="nx-horizon__h" style={{ fontFamily: F }}>Your first {max} weeks, on a calendar</p>}
-      <div className="nx-horizon__bar" role="img" aria-label={`Feel it by ${hz.feelLabel.toLowerCase()}; full effect ${hz.fullLabel.toLowerCase()}. Baseline kit at week 0, retest at week ${max}.`}>
+      {!compact && <p className="nx-horizon__h" style={{ fontFamily: F }}>Your first {max} weeks</p>}
+      <div className="nx-horizon__bar" role="img" aria-label={`Typical onset ${hz.feelLabel.toLowerCase()}; full effect ${hz.fullLabel.toLowerCase()}. Blood kit at week 0, blood test at week ${max}.`}>
         <span className="nx-horizon__band nx-horizon__band--feel" style={{ left: pct(hz.feel[0], max), width: `calc(${pct(hz.feel[1] - hz.feel[0], max)} + 10px)` }} />
         <span className={`nx-horizon__band nx-horizon__band--full${fullBeyond ? " is-beyond" : ""}`} style={{ left: pct(fullStart, max), width: pct(fullEnd - fullStart, max) }} />
         <i className="nx-horizon__tick nx-horizon__tick--lab" style={{ left: "0%" }} /><i className="nx-horizon__tick nx-horizon__tick--lab" style={{ left: "100%" }} />
       </div>
       <div className="nx-horizon__axis" style={{ fontFamily: F }}>
-        <span>Week 0 · baseline kit</span>
-        <span>Week {max} · retest{fullBeyond ? " · and on" : ""}</span>
+        <span>Week 0: blood kit</span>
+        <span>Week {max}: blood test{fullBeyond ? ", and on" : ""}</span>
       </div>
       {!compact && (
         <ul className="nx-horizon__legend">
-          <li><i className="nx-horizon__dot nx-horizon__dot--feel" /><span style={{ fontFamily: F }}><strong style={{ fontFamily: S }}>Feel it by</strong> {hz.feelLabel}</span></li>
+          <li><i className="nx-horizon__dot nx-horizon__dot--feel" /><span style={{ fontFamily: F }}><strong style={{ fontFamily: S }}>Typical onset</strong> {hz.feelLabel}</span></li>
           <li><i className="nx-horizon__dot nx-horizon__dot--full" /><span style={{ fontFamily: F }}><strong style={{ fontFamily: S }}>Full effect</strong> {hz.fullLabel}</span></li>
-          {watch && <li><i className="nx-horizon__dot nx-horizon__dot--lab" /><span style={{ fontFamily: F }}><strong style={{ fontFamily: S }}>On paper at week {max}</strong> {watch}</span></li>}
+          {watch && <li><i className="nx-horizon__dot nx-horizon__dot--lab" /><span style={{ fontFamily: F }}><strong style={{ fontFamily: S }}>Read at week {max}</strong> {watch}</span></li>}
         </ul>
       )}
     </div>

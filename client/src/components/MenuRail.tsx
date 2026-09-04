@@ -30,10 +30,10 @@ export function MenuRail({ photo }: { photo: string }) {
       <div className="nx-container nx-band__body">
         <div className="nx-band__head">
           <div>
-            <p className="nx-band__kicker" style={{ fontFamily: F }}>The medications</p>
-            <h2 id="fd-formulary" className="nx-band__h2" style={{ fontFamily: S }}>The full menu, and what each one does.</h2>
+            <p className="nx-band__kicker" style={{ fontFamily: F }}>The medicines</p>
+            <h2 id="fd-formulary" className="nx-band__h2" style={{ fontFamily: S }}>All twenty-two, with what each is for and its price.</h2>
           </div>
-          <Link href="/peptides" className="nx-cta-ceramic nx-cta--sm" data-testid="frontdoor-menu-all">The complete catalog <ArrowRight size={14} aria-hidden="true" /></Link>
+          <Link href="/peptides" className="nx-cta-ceramic nx-cta--sm" data-testid="frontdoor-menu-all">The complete list <ArrowRight size={14} aria-hidden="true" /></Link>
         </div>
         <div className="nx-tabs" role="tablist" aria-label="Filter by goal">
           <button role="tab" aria-selected={cat === "all"} className="nx-tab" onClick={() => setCat("all")} style={{ fontFamily: F }} data-testid="menu-tab-all">All medicines</button>

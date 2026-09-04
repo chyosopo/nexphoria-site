@@ -1,51 +1,31 @@
-/* JOB: sell ONE protocol — outcome, contents, real price, physician gate, one action. */
-/* ═══ FLAGSHIP STACK PAGE — P5 data · D12 layout ═══
-   Hero: outcome frame beside the claim. Body: content rail + sticky
-   buy-box (lg+); mobile gets an in-flow card + persistent price bar.
-   Ignite (GLP-1) renders the physician wall in both rails. */
+/* JOB: present ONE protocol: what is in it, what it is for, what it costs, who prescribes it. */
+/* ═══ PROTOCOL PAGE, the plain deck (docs/COPY-DECK-PLAIN.md, 2026-09-04) ═══
+   One structure shared with SoloPDP: hero · buy box · what to expect ·
+   blood testing · who should not take it · regulatory status · who
+   prescribes it · common questions · other protocols · closer. Every fact
+   once per page. Ignite (GLP-1) renders the physician wall in the buy box. */
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
-import { SpineStrip } from "@/components/SpineStrip";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
-import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier, stackReservable, stackPending, stackComponents } from "@/data/stacksCatalog";
+import { getStack, FLAGSHIP_STACKS, usd, stackReservable, stackPending, stackComponents } from "@/data/stacksCatalog";
+import { regulatoryOf, type SoloRegulatory } from "@/data/soloCatalog";
 import { StatusPill } from "@/components/StatusPill";
 import { AddonsFor } from "@/components/AddonsFor";
-import { CATEGORY_TRIAD, type PeptideCategory } from "@/data/peptides";
-
-/* Flagship → the goal vocabulary it speaks (ROADMAP 8.3 triads). */
-const STACK_GOAL: Record<string, PeptideCategory> = {
-  recover: "recovery",
-  ascend: "longevity",
-  lucidity: "cognition",
-  ignite: "metabolic",
-  vitality: "sexual-health",
-  foundation: "hormone",
-  wolverine: "recovery",
-  glow: "skin",
-  meridian: "longevity",
-  threshold: "sleep",
-};
-import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { SpecPlate } from "@/components/DataPlate";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
-
-/* on-brand tone cycle so a multi-vial lineup reads varied, not uniform */
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
-import { SafetyDisclosure } from "@/components/SafetyDisclosure";
-import { PhysicianProofBand } from "@/components/PhysicianProofBand";
+import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
+import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
+import { monitoringFor } from "@/data/monitoring";
 import { faqJsonLd } from "@/lib/seo";
-
-function panelFor(tier: PanelTier) {
-  return PANELS.find((p) => p.tier === tier);
-}
-
 import { analytics } from "@/lib/analytics";
 
 export default function StackPage({ slug }: { slug: string }) {
@@ -56,24 +36,29 @@ export default function StackPage({ slug }: { slug: string }) {
     if (stack) analytics.productViewed({ kind: "stack", slug: stack.slug, category: stack.category, gated: !!stack.gated });
   }, [stack]);
   const faq = stack
-    ? buildPdpFaq({ name: stack.name, panel: stack.panel, gated: stack.gated, gatedStates: stack.stateExclusions, hasPricing: !stack.gated, firstMark: stack.timeline[0] })
+    ? buildPdpFaq({
+        name: stack.name,
+        gated: stack.gated,
+        hasPricing: !stack.gated,
+        firstMark: stack.timeline[0],
+        components: stackComponents(stack).map((c) => ({ name: c.name, regulatory: regulatoryOf(c) })),
+      })
     : [];
 
   useSeo({
     title: stack ? `${stack.name} · ${stack.category} | Nexphoria` : "Stack | Nexphoria",
-    description: stack ? `${stack.name}: ${stack.bestFor} Doctor-prescribed, with a full blood panel at week 12.` : "",
+    description: stack ? `${stack.name}: ${stack.bestFor} Prescribed by a licensed U.S. physician, with a blood test before the first dose and again at week 12.` : "",
     // Self-referential canonical/og:url. Without this the page defaulted to the
     // bare homepage URL, collapsing every flagship protocol PDP onto "/" for
-    // canonicalization — the same catalog-deindexing trap SoloPDP guards against.
+    // canonicalization, the same catalog-deindexing trap SoloPDP guards against.
     path: stack ? `/stacks/${stack.slug}` : "/stacks",
     jsonLd: stack
       ? [
-          // Prescription protocol PDP — MedicalWebPage for clinical E-E-A-T,
-          // parity with SoloPDP (which already types itself MedicalWebPage).
+          // Prescription protocol PDP: MedicalWebPage for clinical E-E-A-T, parity with SoloPDP.
           webPageJsonLd({ name: stack.name, description: stack.tagline, path: `/stacks/${stack.slug}`, type: "MedicalWebPage" }),
           breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Protocols", path: "/stacks" }, { name: stack.name, path: `/stacks/${stack.slug}` }]),
           faqJsonLd(faq),
-          // Prescription protocol: name/brand/category enrichment only — no offers/price (pharma rich-result policy).
+          // Prescription protocol: name/brand/category enrichment only, no offers/price (pharma rich-result policy).
           productJsonLd({ name: stack.name, description: stack.bestFor, path: `/stacks/${stack.slug}`, category: stack.category }),
         ]
       : [],
@@ -90,11 +75,8 @@ export default function StackPage({ slug }: { slug: string }) {
     );
   }
 
-  const panel = panelFor(stack.panel);
-
-  /* Cross-sell: same-category first, then the rest — but never surface the
-     opposite world's protocols (a shirtless-male Ascend card inside her
-     orchid Glow experience broke the two-worlds law). "both" always shows. */
+  /* The other protocols: same-category first, then the rest, never the
+     opposite world's. "both" always shows. */
   const world = resolveWorld(loc);
   const oppositeLean = world === "women" ? "him" : "her";
   const otherStacks = FLAGSHIP_STACKS
@@ -118,18 +100,20 @@ export default function StackPage({ slug }: { slug: string }) {
   const pending = stackPending(stack);
   const components = stackComponents(stack);
 
-  const INCLUDED: { Icon: typeof Pill; t: string }[] = [
-    { Icon: Stethoscope, t: "Physician review and prescription" },
-    { Icon: Microscope, t: "Baseline kit, and the week-12 panel" },
-    { Icon: FlaskConical, t: "Made in a licensed U.S. pharmacy" },
-    { Icon: Snowflake, t: "Cold shipping, plain packaging" },
-    { Icon: LayoutDashboard, t: "Your results, explained" },
-    { Icon: RefreshCw, t: "Dose adjustments" },
-  ];
+  /* The regulatory standing of the protocol is the conservative reading of
+     its components: only when every active is FDA-approved does the approved
+     branch of the verbatim block apply. */
+  const stackRegulatory: SoloRegulatory =
+    components.length > 0 && components.every((c) => regulatoryOf(c) === "compounded-approved-active")
+      ? "compounded-approved-active"
+      : "compounded-no-approved-active";
+
+  /* The markers the physician reads first, across the medicines in the protocol. */
+  const watch = Array.from(new Set(components.flatMap((c) => monitoringFor(c.slug)?.watch ?? [])));
 
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
-      {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
+      {/* ── 1 · HERO: the protocol beside what it is for ── */}
       <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
@@ -146,38 +130,19 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)", marginTop: "0.4rem" }}>
                 {stack.tagline}
               </p>
-              {/* The goal's word-triad (ROADMAP 8.3) — three quiet beats */}
-              {STACK_GOAL[stack.slug] && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "0.9rem" }} data-testid="stack-triad">
-                  {CATEGORY_TRIAD[STACK_GOAL[stack.slug]].map((w) => (
-                    <span key={w} style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-graphite)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)", padding: "6px 13px", background: "var(--nx-ceramic)" }}>
-                      {w}
-                    </span>
-                  ))}
-                </div>
-              )}
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
                 {stack.bestFor}
               </p>
-              {/* Price anchor + CTA — the hero was a dead end: name, tagline,
-                  then empty space, with commerce buried a full scroll below */}
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
-                  {stack.gated ? "Check eligibility" : "Get started"}
+                  Begin the health questions
                 </Link>
-                <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg-graphite)" }}>
-                  {stack.gated
-                    ? "Doctor-assessed only"
-                    : tiers?.length
-                      ? `From ${usd(Math.min(...tiers.map((t) => t.amount)))}/mo · if prescribed`
-                      : "Priced at consultation"}
-                </span>
                 {reservable && <StatusPill status="reserve" testId="stack-status" />}
               </div>
               {components.some((c) => c.feelBy) && (
-                <ul className="nx-feelby" data-testid="stack-feelby" aria-label="When you feel each medicine">
+                <ul className="nx-feelby" data-testid="stack-feelby" aria-label="Typical onset of each medicine">
                   {components.filter((c) => c.feelBy).map((c) => (
-                    <li key={c.slug} style={{ fontFamily: F }}><strong>{c.name}</strong> · feel it by {c.feelBy!.charAt(0).toLowerCase() + c.feelBy!.slice(1)}</li>
+                    <li key={c.slug} style={{ fontFamily: F }}><strong>{c.name}</strong>. Typical onset: {c.feelBy!.charAt(0).toLowerCase() + c.feelBy!.slice(1)}</li>
                   ))}
                 </ul>
               )}
@@ -202,9 +167,8 @@ export default function StackPage({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
-      <SpineStrip stop={3} />
 
-      {/* ── VIAL LINEUP — the protocol, rendered as its vials ── */}
+      {/* ── What is in it: the protocol, rendered as its vials ── */}
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="stack-vials-title">
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
           <h2 id="stack-vials-title" className="nx-eyebrow" style={{ textAlign: "center" }}>What is in it</h2>
@@ -213,10 +177,7 @@ export default function StackPage({ slug }: { slug: string }) {
               return (
                 <Reveal key={p.name} delay={i * 70}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
-                    {/* Same object the PDP, the shelf and the catalog hero
-                        render. This section was still on the old flat VialArt,
-                        so "the vials in this protocol" showed a different
-                        drawing of a vial from every other vial on the site. */}
+                    {/* Same object the PDP, the shelf and the catalog hero render. */}
                     <SkuPhoto name={p.name} className="nx-sku-img nx-sku-img--stack" fallback={<VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />} />
                     <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
@@ -228,16 +189,14 @@ export default function StackPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* ── BODY — content rail + sticky buy-box ── */}
+      {/* ── BODY: content rail + sticky buy box ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Protocol details">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
 
-          {/* — LEFT: the story — */}
+          {/* LEFT */}
           <div>
-            {/* Protocol — peptide chips (icon + name), then the details table */}
+            {/* Dose and format: each compound as a specimen label, then how they fit together */}
             <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose and format</h2>
-            {/* Seed-grammar spec plates (SEED-STUDY S1): each compound as a
-                specimen label — ruled DOSE/FORMAT rows in tabular numerals. */}
             <div className="grid sm:grid-cols-2" style={{ gap: 12, marginTop: "0.9rem" }}>
               {stack.peptides.map((p, i) => (
                 <Reveal key={p.name} delay={i * 40}>
@@ -256,22 +215,7 @@ export default function StackPage({ slug }: { slug: string }) {
               {stack.synergy}
             </p>
 
-            {/* What every protocol includes */}
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              Included in your monthly price
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "1.2rem" }}>
-              {INCLUDED.map((x, i) => (
-                <Reveal key={x.t} delay={i * 45}>
-                  <div className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span className="nx-icon-circle" aria-hidden><x.Icon size={19} strokeWidth={1.9} /></span>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-fg)", lineHeight: 1.3 }}>{x.t}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Timeline — drawn spine */}
+            {/* ── 3 · What to expect ── */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               What to expect
             </h2>
@@ -289,47 +233,63 @@ export default function StackPage({ slug }: { slug: string }) {
               ))}
             </div>
 
-            {/* Required panel */}
-            <div className="nx-glass-tile" style={{ display: "block", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Your blood panel</p>
-              <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.4rem" }}>
-                {stack.panel} panel
-              </h3>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
-                {stack.panelNote ?? panel?.summary}
+            {/* ── 4 · Blood testing for this protocol ── */}
+            <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-blood-title" data-testid="stack-blood">
+              <h2 id="stack-blood-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+                Blood testing for this protocol
+              </h2>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.9rem" }}>
+                A blood test before your first dose, and the same test at week 12.
               </p>
+              {watch.length > 0 && (
+                <div className="nx-glass-tile" style={{ display: "block", marginTop: "1rem" }}>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What your physician reads first</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{watch.join(" · ")}</p>
+                </div>
+              )}
               <AddonsFor keys={[stack.slug, ...components.map((c) => c.slug)]} testId="stack-addons" />
               <Link href="/labs" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
-                See what is measured
+                Every marker, and the additional tests
               </Link>
+            </section>
+
+            {/* ── 5 · Who should not take it ── */}
+            <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-contra-title">
+              <h2 id="stack-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Who should not take it</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
+                {stack.contraindications.map((c) => (
+                  <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>{c}</p>
+                  </div>
+                ))}
+              </div>
+              <div style={{ marginTop: "1rem" }}><Disclaimer /></div>
+            </section>
+
+            {/* ── 6 · Regulatory status (verbatim block; the parties are named once, in 7) ── */}
+            <div style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              <RegulatoryDisclosure regulatory={stackRegulatory} showParties={false} testid="stack-regulatory" />
             </div>
 
-            {/* GLP-1 narrative — the why of the wall, in flow */}
-            {stack.gated && (
-              <div style={{ borderRadius: "var(--nx-r-lg)", padding: "clamp(1.6rem,3vw,2.2rem)", background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
-                  <Lock size={15} aria-hidden="true" /> Doctor-assessed only
-                </div>
-                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "24ch" }}>
-                  GLP-1 therapy is prescribed after your doctor reviews you.
-                </h3>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.8rem" }}>
-                  Metabolic therapy is dosed by a licensed physician from your questionnaire and your baseline blood work, then adjusted from your week-12 panel. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your doctor will prescribe it.
-                </p>
-                {stack.stateExclusions && (
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
-                    Not currently available for shipping addresses in: {stack.stateExclusions.join(", ")}.
-                  </p>
-                )}
+            {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
+            <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-parties-title" data-testid="stack-parties">
+              <h2 id="stack-parties-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Who prescribes it, and who makes it</h2>
+              <div style={{ marginTop: "1rem" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Clinical care</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{PROVIDER_INFO.body}</p>
               </div>
-            )}
+              <div style={{ marginTop: "1rem" }}>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dispensing pharmacy</p>
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{PHARMACY_INFO.body.replace(/\n+/g, " ")}</p>
+              </div>
+            </section>
 
-            <PhysicianProofBand name={stack.name} />
-
+            {/* ── 8 · Common questions ── */}
             <PdpFaq items={faq} />
           </div>
 
-          {/* — RIGHT: the commerce rail — */}
+          {/* ── 2 · RIGHT · the buy box ── */}
           <aside style={{ alignSelf: "stretch" }}>
             <div className="nx-buyrail">
             <BuyBox
@@ -346,37 +306,20 @@ export default function StackPage({ slug }: { slug: string }) {
               pending={pending}
               ctaTestId={stack.gated ? "ignite-intake" : "stack-cta"}
             />
-            <SafetyDisclosure name={stack.name} contraindications={stack.contraindications} />
             </div>
           </aside>
         </div>
       </section>
 
-      {/* ── ONE NIGHT BAND — contraindications, stated plainly ── */}
-      <section className="nx-gradient-hero-dark" style={{ padding: "var(--nx-sp-band) 0", overflow: "hidden" }} aria-labelledby="stack-contra-title">
-        <div className="nx-container">
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-acid)" }}>Safety first</p>
-          <h2 id="stack-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", maxWidth: "20ch", marginTop: "0.8rem", lineHeight: 1.06, letterSpacing: "var(--nx-ls-snug)" }}>
-            Is it right for you?
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1.4rem", maxWidth: 760 }}>
-            {stack.contraindications.map((c) => (
-              <div key={c} className="nx-stat-card on-dark" style={{ flexDirection: "row", alignItems: "flex-start", gap: 11 }}>
-                <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-acid)", marginTop: 2, flexShrink: 0 }} />
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-acid)", opacity: 0.92 }}>{c}</p>
-              </div>
-            ))}
-          </div>
-          <div style={{ marginTop: "1.4rem" }}><Disclaimer variant="night" /></div>
-        </div>
-      </section>
-
-      {/* ── CROSS-SELL — the other flagship protocols ── */}
+      {/* ── 9 · The other protocols ── */}
       {otherStacks.length > 0 && (
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="stack-crosssell-title">
           <h2 id="stack-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
-            Explore the other protocols
+            The other protocols
           </h2>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
+            Each comes with the same physician review and the same blood testing.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
             {otherStacks.map((s, i) => (
               <Reveal key={s.slug} delay={i * 60}>
@@ -411,13 +354,14 @@ export default function StackPage({ slug }: { slug: string }) {
         </section>
       )}
 
-      {/* ── CLOSE ── */}
+      {/* ── 10 · Closer ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }} aria-labelledby="stack-close-title">
         <h2 id="stack-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
-          Your doctor reviews first. <em style={{ color: "var(--nx-cobalt)" }}>Every vial is made on a prescription.</em>
+          The next step is a physician.
         </h2>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this protocol is right for you.</p>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
-          Get started
+          Begin the health questions
         </Link>
       </section>
     </SiteLayout>

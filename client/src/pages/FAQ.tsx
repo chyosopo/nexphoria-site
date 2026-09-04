@@ -33,11 +33,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does it work?",
-        a: `Pick your treatment and check out. Answer a few health questions, which takes about two minutes. A licensed U.S. physician reviews them and, if it is right for you, writes your prescription. Your medication is made in a licensed U.S. pharmacy and shipped cold to your door with a free at-home blood kit. You draw first, your physician doses against your numbers, and at week ${RETEST_WEEK} the same panel is drawn again, included.`,
+        a: `Five steps. You choose a medicine or a protocol, and a term of one, three, six or twelve months. You answer health questions about your health history, current medicines and goals, at checkout, which takes a few minutes. A licensed U.S. physician reviews your answers and writes the prescription, or explains why not; if not, nothing is made and the refund policy applies. Your medicine ships cold with an at-home blood kit, included; you draw before your first dose, and your physician sets the dose from your results. At week ${RETEST_WEEK} the same blood test is drawn again, and your physician compares the two and continues, adjusts or stops the dose.`,
       },
       {
         q: "Do I need to see a doctor in person?",
-        a: "No visit needed. Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription, and reads your baseline and your week-12 blood panel.",
+        a: "No visit needed. Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription, and reads your blood test before your first dose and again at week 12.",
       },
       {
         q: "What if the physician says it is not right for me?",
@@ -45,7 +45,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Do I need bloodwork to start?",
-        a: `Yes, and it is included. A free at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, so your physician doses against your numbers rather than a guess. At week ${RETEST_WEEK} the same panel is drawn again, included. If you have recent results from a CLIA-certified lab, your physician may use those for your baseline.`,
+        a: `Yes. An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, included, and your physician sets your dose from the results. At week ${RETEST_WEEK} the same test is drawn again and compared. If you have recent results from a CLIA-certified laboratory, your physician may use those for your baseline.`,
       },
       {
         q: "What if I have a health condition?",
@@ -65,8 +65,8 @@ const categories: { label: string; items: FAQItem[] }[] = [
         a: `${PEPTIDE_NAMES}. Each has its own page explaining what it does, how you take it, and what it costs.`,
       },
       {
-        q: "How is this different from buying peptides online?",
-        a: "Everything here is prescribed by a licensed U.S. physician and made for you in a licensed U.S. pharmacy, then shipped cold. You know exactly what is in the vial, who made it, and who prescribed it.",
+        q: "What is in the vial, and who made it?",
+        a: "The medicine named on your prescription, compounded for you by VialsRX, a state-licensed 503A pharmacy, and shipped cold. The prescription is written by a licensed U.S. physician. Both are listed on this page with their addresses.",
       },
       {
         q: "What does a 503A pharmacy mean?",
@@ -87,11 +87,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How much does it cost?",
-        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. Terms are paid up front: three months saves 10%, six months 15%, twelve months 20%. Your price includes your medication, physician review, cold shipping, your baseline blood kit, and your week-${RETEST_WEEK} blood panel.`,
+        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six months 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping.`,
       },
       {
         q: "What do I pay today?",
-        a: "The monthly price shown at checkout, and that is the whole figure. What happens next is on the same page: health questions, physician review, then your medication ships.",
+        a: "The whole term, up front: the monthly price times the months in the term. The health questions follow, then the physician's decision, then your medicine ships.",
       },
       {
         q: "Can I cancel?",
@@ -157,8 +157,8 @@ const categories: { label: string; items: FAQItem[] }[] = [
         a: "Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality. They are prepared for you by a state-licensed 503A compounding pharmacy under a physician's prescription. Where a branded, FDA-approved version of a molecule exists, ours is the compounded version and is not the branded product.",
       },
       {
-        q: "Is Nexphoria legitimate?",
-        a: "Yes. Every prescription is written by a licensed U.S. physician through the Bask Health telehealth platform, and your medication is made in a licensed U.S. pharmacy. The provider and the pharmacy are named on this page, with their addresses.",
+        q: "Who is behind Nexphoria?",
+        a: "Nexphoria operates the service and does not make clinical decisions. Prescriptions are written by independent, U.S.-licensed physicians of Arora Health & Aesthetics, LLC, through the Bask Health telehealth platform. Medicines are compounded by VialsRX, a state-licensed 503A compounding pharmacy in Houston, Texas, and blood work is analysed by a CLIA-certified laboratory. The physicians and the pharmacy are listed on this page with their addresses.",
       },
     ],
   },
@@ -169,7 +169,7 @@ export default function FAQPage() {
   const allFaqItems = categories.flatMap((c) => c.items);
 
   useSeo({
-    title: "Your questions, answered: safety, legality, price, process",
+    title: "Common questions: how it works, cost, safety, shipping",
     description: "Plain answers about doctor-prescribed peptides: what they are, who prescribes them, what they cost, side effects, shipping, and the week-12 blood panel.",
     path: "/faq",
     jsonLd: [
@@ -228,11 +228,10 @@ export default function FAQPage() {
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Questions?</span><br />
-                <span>We have answers.</span>
+                <span>Common questions.</span>
               </>
             }
-            subtitle="How it works, what it costs, safety, and shipping. Plain answers, before you start."
+            subtitle="How it works, what it costs, safety, shipping, and who is involved."
           />
 
           {/* Editorial hero — questions answered, mind settled */}
@@ -269,7 +268,6 @@ export default function FAQPage() {
                   textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
                 }}
               >
-                Everything you need to know before you get started.
               </p>
             </figcaption>
           </figure>
@@ -421,7 +419,7 @@ export default function FAQPage() {
 
       <FinalCTAStrip
         title="Still have questions?"
-        sub="Email hello@nexphoria.com and a real person will answer. Clinical questions go to your physician."
+        sub="Email hello@nexphoria.com. Clinical questions go to your physician."
       />
     </SiteLayout>
   );

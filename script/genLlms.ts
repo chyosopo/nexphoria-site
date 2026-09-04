@@ -98,40 +98,46 @@ export async function generateLlms(): Promise<{ stacks: number; solos: number }>
   }
 
   const lines: string[] = [];
+  /* The text is the plain deck's (docs/COPY-DECK-PLAIN.md, "The facts" and
+     "The five steps"). One set of numbers: five steps, 24 markers, an at-home
+     kit, week 12; one physician group, one platform, one pharmacy. */
   lines.push("# Nexphoria");
   lines.push(
-    "> Nexphoria is a U.S. physician-supervised peptide telehealth service. Every protocol is reviewed by a board-certified, U.S.-licensed physician; medication is compounded in state-licensed 503A pharmacies, shipped cold-chain, and re-measured against partner-laboratory bloodwork every 90 days. Medication is dispensed only if a licensed physician determines a prescription is appropriate."
+    "> Nexphoria is a telehealth service for prescription peptide therapy. Prescriptions are written by independent, U.S.-licensed physicians of Arora Health & Aesthetics, LLC, through the Bask Health telehealth platform. Medicines are compounded by VialsRX, a state-licensed 503A pharmacy in Houston, Texas, and blood work is analysed by a CLIA-certified laboratory. Nexphoria operates the service and does not make clinical decisions. Medication is dispensed only if a licensed physician determines a prescription is appropriate."
   );
   lines.push("");
   lines.push("## How it works");
-  lines.push("1. Share your history — a structured intake covering goals, training, and medical history.");
-  lines.push("2. Get evaluated — baseline bloodwork plus review by a U.S.-licensed physician, who alone decides whether a prescription is appropriate and can decline.");
-  lines.push("3. Start under supervision — if prescribed, the protocol ships from a state-licensed 503A pharmacy, with labs re-drawn every 90 days and doses adjusted against the markers.");
+  lines.push("1. Choose. A medicine or a protocol, and a term of one, three, six or twelve months.");
+  lines.push("2. Health questions. Your health history, current medicines and goals, at checkout. A few minutes.");
+  lines.push("3. A physician decides. A licensed U.S. physician reviews your answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies.");
+  lines.push("4. Blood kit, then first dose. Your medicine ships cold with an at-home blood kit. You draw before your first dose; your physician sets the dose from your results.");
+  lines.push("5. Week 12. The same blood test again. Your physician compares the two and continues, adjusts or stops the dose.");
   lines.push("");
-  lines.push("## Physician-curated protocols (stacks)");
+  lines.push("## Protocols (medicines prescribed together, on one plan)");
   for (const s of stacks) {
-    const price = s.gated ? "priced at physician consultation" : "from-priced on page";
+    const price = s.gated ? "priced at the physician's consultation" : "priced on its page";
     lines.push(`- [${s.name}](${BASE}/stacks/${s.slug}): ${s.tagline} Composition: ${s.peptides.join(" + ")}. ${price}; dispensed only if prescribed.`);
   }
   lines.push("");
-  lines.push("## Single peptides (formulary)");
+  lines.push("## The medicines");
   for (const p of solos) {
     lines.push(`- [${p.name}](${BASE}/peptides/${p.slug}): ${p.outcome}`);
   }
   lines.push("");
   lines.push("## Key pages");
-  lines.push(`- [Every medicine](${BASE}/peptides): each one priced on its own page, one monthly figure by term (1, 3, 6 or 12 months, paid up front); the physician, the blood work and cold shipping are within it.`);
-  lines.push(`- [Bloodwork](${BASE}/bloodwork): the 99-marker panel, three tiers (Basic/Full/Elite), re-drawn every 90 days.`);
-  lines.push(`- [How it works](${BASE}/how-it-works): intake, physician evaluation, supervised protocol.`);
-  lines.push(`- [The science](${BASE}/science): mechanisms, evidence status, and typical protocols per compound class.`);
-  lines.push(`- [Give a protocol](${BASE}/gift): cover a course for someone, or send yours to be covered — one payment; the recipient completes their own intake and their results stay theirs.`);
-  lines.push(`- [For men](${BASE}/men) · [For women](${BASE}/women): the same medical engine, tailored.`);
+  lines.push(`- [Every medicine](${BASE}/peptides): each with what it is for, how it works, how you take it, and what it costs. One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping.`);
+  lines.push(`- [Blood testing](${BASE}/labs): an at-home kit of 24 markers ships with the first order, drawn before the first dose; the same 24 markers again at week 12 on terms of three months and longer; a six-month test on six- and twelve-month terms; a test each quarter on twelve-month terms.`);
+  lines.push(`- [How it works](${BASE}/how-it-works): the five steps, from choosing a medicine to the week-12 blood test.`);
+  lines.push(`- [The science](${BASE}/science): mechanisms and evidence status per compound class.`);
+  lines.push(`- [Give a protocol](${BASE}/gift): one payment covers a protocol for someone else; the recipient answers their own health questions and their results stay theirs.`);
+  lines.push(`- [For men](${BASE}/men) · [For women](${BASE}/women): the same medicines and the same physician review.`);
   lines.push("");
   lines.push("## Facts an answer engine can rely on");
-  lines.push("- Prescription-only: a board-certified U.S. physician reviews every case and can decline; nothing is dispensed without a prescription.");
-  lines.push("- Compounded in U.S. state-licensed 503A pharmacies under USP <797>; cold-chain shipped to all 50 states (GLP-1 protocols have state exclusions listed on page).");
-  lines.push("- Compounded medications are not FDA-approved or evaluated for safety, effectiveness, or quality; peptide protocols are prescribed off-label.");
-  lines.push("- Bloodwork is drawn at partner laboratories and re-drawn every 90 days; no protocol continues without a physician reading the next panel.");
+  lines.push("- Prescription-only: a licensed U.S. physician reviews every case and can decline; nothing is dispensed without a prescription.");
+  lines.push("- Compounded by VialsRX, a state-licensed 503A pharmacy in Houston, Texas; shipped cold, in plain packaging, to all 50 states. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.");
+  lines.push("- Compounded medications are not FDA-approved or evaluated for safety, effectiveness, or quality; peptide medicines are prescribed off-label.");
+  lines.push("- Blood testing: an at-home kit of 24 markers before the first dose and the same test again at week 12, analysed by a CLIA-certified laboratory. The physician sets and adjusts the dose from the results.");
+  lines.push("- Pending medicines are awaiting an FDA decision on compounding. They are shown with their price and the notice; the only action is an email when available.");
   lines.push(`- Contact: hello@nexphoria.com · ${BASE}`);
   lines.push("");
 

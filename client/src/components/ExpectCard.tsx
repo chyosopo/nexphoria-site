@@ -33,7 +33,7 @@ export function ExpectCard({ sku, base = "", testId }: { sku: SoloPeptide; base?
       <div className="nx-expect__grid">
         {sku.feelBy && (
           <div className="nx-expect__cell">
-            <p className="nx-expect__label" style={{ fontFamily: F }}><Clock size={13} strokeWidth={2} aria-hidden="true" /> Feel it by</p>
+            <p className="nx-expect__label" style={{ fontFamily: F }}><Clock size={13} strokeWidth={2} aria-hidden="true" /> Typical onset</p>
             <p className="nx-expect__value" style={{ fontFamily: S }}>{sku.feelBy}</p>
           </div>
         )}
@@ -58,7 +58,7 @@ export function ExpectCard({ sku, base = "", testId }: { sku: SoloPeptide; base?
         <div className="nx-expect__rules">
           {sku.combine && sku.combine.length > 0 && (
             <p style={{ fontFamily: F }}>
-              <span className="nx-expect__rule"><Layers size={13} strokeWidth={2} aria-hidden="true" /> Stacks well with</span>{" "}
+              <span className="nx-expect__rule"><Layers size={13} strokeWidth={2} aria-hidden="true" /> Often prescribed with</span>{" "}
               <NameList names={sku.combine} base={base} />
             </p>
           )}

@@ -337,3 +337,19 @@ extended in CLAUDE.md. See docs/COPY-DECK.md "Inform, never persuade".
 Pending: Phase 4 (labs absorbs bloodwork; what-happens-next day by day), Phase 5
 imagery, Phase 6 trust pages; a full read of every remaining page for the
 register (About, HowItWorks, FAQ, Physicians, legal) is still to do. Failed: none.
+
+### 2026-09-04 · night · The plain deck, every page rebuilt
+Verified: docs/COPY-DECK-PLAIN.md is the copy of record; all twelve spine pages
+rebuilt to it (home, catalog, goal pages, product and protocol templates on one
+ten-section structure, protocols index, blood testing, how it works, about, what
+happens next, FAQ, cart and checkout). Announcement bar and trust bar removed;
+SpineStrip removed from every page; protocols renamed by what they treat; one
+five-step list sitewide; categories in one vocabulary; every "free", "figure",
+slogan, market comparison and unverified claim (dashboard, audit, certificates,
+messaging, founders, specialties) removed. audit:voice now bans the retired
+phrases and scans 25 routes. Full-site read with captures and the rewrite sample:
+https://claude.ai/code/artifact/096b70af-5685-4744-bd2e-7c2a187fc709
+Pending: Chiya's read of the rebuilt preview; the facts only she can confirm (a
+patient portal, physician messaging, batch certificates); Phase 4 (labs absorbs
+bloodwork), Phase 5 imagery, Phase 6 trust pages (physicians, legal, journal in
+the same register). Failed: none.

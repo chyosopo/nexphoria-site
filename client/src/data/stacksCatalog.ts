@@ -60,12 +60,12 @@ export interface FlagshipStack {
 
 /* Term builder (the playbook, 2026-09-04): one month to try, or 3, 6 or 12
    months paid up front. Longer terms cost less per month and include more
-   labs. Totals are the whole figure for the term. */
+   labs. Totals are the whole price for the term. */
 const cad = (base: number): StackCadence[] => [
-  { key: "1mo", label: "One month", sublabel: "Paid up front", total: base, perMonth: base, labs: "Baseline blood kit, complimentary" },
-  { key: "3mo", label: "3 months", sublabel: "Paid up front · 10% less per month", total: Math.round(base * 0.9) * 3, perMonth: Math.round(base * 0.9), labs: "Baseline kit and your week-12 retest, included" },
-  { key: "6mo", label: "6 months", sublabel: "Paid up front · 15% less per month", total: Math.round(base * 0.85) * 6, perMonth: Math.round(base * 0.85), includesPanel: "Full", labs: "Baseline, week-12 retest and a six-month panel, included" },
-  { key: "12mo", label: "12 months", sublabel: "Paid up front · 20% less per month", total: Math.round(base * 0.8) * 12, perMonth: Math.round(base * 0.8), includesPanel: "Full", labs: "Baseline, then a panel every quarter, included" },
+  { key: "1mo", label: "One month", sublabel: "Paid up front", total: base, perMonth: base, labs: "Blood kit before your first dose, included" },
+  { key: "3mo", label: "3 months", sublabel: "Paid up front · 10% less per month", total: Math.round(base * 0.9) * 3, perMonth: Math.round(base * 0.9), labs: "Blood kit, and the same test at week 12, included" },
+  { key: "6mo", label: "6 months", sublabel: "Paid up front · 15% less per month", total: Math.round(base * 0.85) * 6, perMonth: Math.round(base * 0.85), includesPanel: "Full", labs: "Blood kit, the week-12 test and a six-month test, included" },
+  { key: "12mo", label: "12 months", sublabel: "Paid up front · 20% less per month", total: Math.round(base * 0.8) * 12, perMonth: Math.round(base * 0.8), includesPanel: "Full", labs: "Blood kit, then a test each quarter, included" },
 ];
 
 /* ── LAUNCH SCOPE (2026-08-12) ─────────────────────────────────
@@ -90,32 +90,32 @@ export const LAUNCH_STACK_SLUGS = new Set(["recover", "ascend", "lucidity", "ign
 const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "recover",
-    name: "Recover",
-    tagline: "The growth hormone pulse plus local and systemic repair. One recovery engine.",
-    category: "Recovery & Performance",
+    name: "Recovery protocol",
+    tagline: "Ipamorelin / CJC-1295, BPC-157 and TB-500. For injury and recovery from training.",
+    category: "Recovery",
     bestFor: "Injuries, hard training and recovery that has slowed with age.",
     peptides: [
       { name: "Ipamorelin / CJC-1295 Blend", dose: "300 mcg nightly, under the skin", spec: "5 mg/mL · 5 mL vial" },
       { name: "BPC-157", dose: "500 mcg daily, under the skin", spec: "5 mg/mL · 5 mL vial" },
       { name: "TB-500", dose: "2.5 mg twice a week, under the skin", spec: "10 mg/mL · 5 mL vial" },
     ],
-    synergy: "The growth hormone pulse for overnight repair, BPC-157 for the repair signal at the site, TB-500 for moving repair cells through the whole body. Different jobs, one recovery engine.",
+    synergy: "The growth hormone peptide for overnight repair, BPC-157 for the repair signal at the site, TB-500 for moving repair cells through the whole body. Each does a different job.",
     timeline: [
-      { wk: "Wk 1", effect: "Your first doses. Sleep is usually the first thing to change." },
+      { wk: "Wk 1", effect: "Your first doses." },
       { wk: "Wk 4", effect: "Nightly and daily, through your recovery." },
-      { wk: "Wk 12", effect: "Your blood panel. IGF-1 and inflammation checked first." },
+      { wk: "Wk 12", effect: "Your blood test. IGF-1 and inflammation markers are read first." },
     ],
     panel: "Full",
-    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    panelNote: "A blood test before your first dose, and the same test at week 12.",
     contraindications: ["Active malignancy", "Pregnancy or breastfeeding", "Elevated IGF-1 at baseline"],
     cadences: cad(349),
     worldLean: "both",
   },
   {
     slug: "ascend",
-    name: "Ascend",
-    tagline: "Four ageing pathways at once: mitochondria, cellular energy, telomeres and skin.",
-    category: "Longevity & Cellular",
+    name: "Longevity protocol",
+    tagline: "MOTS-c, NAD+, GHK-Cu and epitalon. For energy, metabolism and skin with age.",
+    category: "Energy and healthy ageing",
     bestFor: "Energy, healthy ageing and skin, in one plan.",
     peptides: [
       { name: "MOTS-c", dose: "5 mg twice a week, under the skin", spec: "10 mg/mL · 2 mL vial" },
@@ -123,47 +123,47 @@ const ALL_STACKS: FlagshipStack[] = [
       { name: "GHK-Cu", dose: "2 mg daily, under the skin", spec: "50 mg/mL · 3 mL vial" },
       { name: "Epitalon", dose: "10 mg daily for 20 days, under the skin", spec: "100 mg/mL · 2 mL vial" },
     ],
-    synergy: "NAD+ for cellular energy, MOTS-c for the pathways exercise switches on, GHK-Cu for collagen and skin, epitalon as a course for telomere maintenance. Four pathways no single peptide covers.",
+    synergy: "NAD+ for cellular energy, MOTS-c for the pathways exercise switches on, GHK-Cu for collagen and skin, epitalon as a course for telomere maintenance. Each does a different job.",
     timeline: [
-      { wk: "Wk 1", effect: "Your first doses. Energy is usually the first thing to change." },
-      { wk: "Wk 6", effect: "On schedule, the levels build. Skin renews on its own cycle." },
-      { wk: "Wk 12", effect: "Your blood panel, with metabolic and inflammation markers checked." },
+      { wk: "Wk 1", effect: "Your first doses." },
+      { wk: "Wk 6", effect: "Taken on schedule. Skin renews on its own cycle." },
+      { wk: "Wk 12", effect: "Your blood test. Metabolic and inflammation markers are read." },
     ],
     panel: "Full",
-    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    panelNote: "A blood test before your first dose, and the same test at week 12.",
     contraindications: ["Active malignancy", "Pregnancy", "Copper allergy"],
     cadences: cad(379),
     worldLean: "both",
   },
   {
     slug: "lucidity",
-    name: "Lucidity",
-    tagline: "Semax for focus, Selank for calm, DSIP for sleep. Dialed in, not wired.",
-    category: "Cognition & Mood",
+    name: "Focus and sleep protocol",
+    tagline: "Semax, Selank and DSIP. For focus by day, a steadier mood under stress, and deep sleep.",
+    category: "Focus and mood",
     bestFor: "Focus and mental stamina by day, a steadier mood, deeper sleep at night.",
     peptides: [
       { name: "Semax", dose: "600 mcg once a day, nasal spray", spec: "10 mg/mL · 3 mL nasal spray" },
       { name: "Selank", dose: "300 mcg twice a day, nasal spray", spec: "5 mg/mL · 3 mL nasal spray" },
       { name: "DSIP", dose: "100 mcg nightly, under the skin", spec: "2 mg/mL · 3 mL vial" },
     ],
-    synergy: "Semax drives focus in the morning, Selank takes the anxious edge off through the day, DSIP deepens sleep at night. Together: dialed in, not wired.",
+    synergy: "Semax for focus in the morning, Selank for a steadier mood through the day, DSIP for deeper sleep at night. Each does a different job.",
     timeline: [
-      { wk: "Day 1", effect: "Your first sprays. Many people notice something within the hour." },
-      { wk: "Wk 2", effect: "Taken daily, the effect evens out." },
-      { wk: "Wk 12", effect: "Your blood panel, with thyroid and cortisol checked for context." },
+      { wk: "Day 1", effect: "Your first sprays." },
+      { wk: "Wk 2", effect: "Taken daily." },
+      { wk: "Wk 12", effect: "Your blood test. Thyroid and cortisol are read for context." },
     ],
     panel: "Full",
-    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    panelNote: "A blood test before your first dose, and the same test at week 12.",
     contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review)"],
     cadences: cad(349),
     worldLean: "both",
   },
   {
     slug: "ignite",
-    name: "Ignite",
-    tagline: "A GLP-1 for the weight, a low-dose growth hormone peptide to protect the muscle.",
-    category: "Metabolic & Weight",
-    bestFor: "Weight loss with the muscle-aware formula, after a physician's review.",
+    name: "Weight protocol",
+    tagline: "Tirzepatide with Ipamorelin / CJC-1295. For weight loss while keeping muscle.",
+    category: "Weight loss",
+    bestFor: "Weight loss while keeping muscle.",
     peptides: [
       { name: "Tirzepatide", dose: "2.5 to 15 mg weekly, stepped up", spec: "Weekly injection · with glycine + B12" },
       { name: "Ipamorelin / CJC-1295 Blend", dose: "300 mcg nightly, under the skin", spec: "5 mg/mL · 5 mL vial" },
@@ -172,10 +172,10 @@ const ALL_STACKS: FlagshipStack[] = [
     timeline: [
       { wk: "Wk 1", effect: "Your first dose, at the lowest step." },
       { wk: "Wk 4", effect: "Your dose steps up." },
-      { wk: "Wk 12", effect: "Your blood panel and a dose review." },
+      { wk: "Wk 12", effect: "Your blood test and a dose review." },
     ],
     panel: "Full",
-    panelNote: "Baseline panel with your first order, optimization panel at 90 days, with fasting insulin and lipase checked first.",
+    panelNote: "A blood test before your first dose, and the same test at week 12. Fasting insulin and lipase are read first.",
     contraindications: ["Personal/family history of medullary thyroid carcinoma", "MEN 2", "Pregnancy", "Pancreatitis history"],
     cadences: cad(399),
     stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
@@ -183,23 +183,23 @@ const ALL_STACKS: FlagshipStack[] = [
   },
   {
     slug: "vitality",
-    name: "Vitality",
-    tagline: "Desire from the brain, blood flow and closeness. Three mechanisms that complement each other.",
-    category: "Sexual Health",
+    name: "Sexual health protocol",
+    tagline: "PT-141, oxytocin and tadalafil. For desire, closeness and erectile function, taken as needed.",
+    category: "Sexual health",
     bestFor: "Desire and performance, for men and women.",
     peptides: [
       { name: "PT-141", dose: "1.75 mg as needed, under the skin", spec: "10 mg/mL · 3 mL vial" },
       { name: "Oxytocin Nasal", dose: "As needed, nasal spray", spec: "Nasal spray" },
       { name: "Tadalafil Nasal", dose: "As needed, nasal spray", spec: "Nasal spray" },
     ],
-    synergy: "PT-141 works on desire in the brain, tadalafil on blood flow, oxytocin on closeness. Complementary mechanisms, taken on the day you choose.",
+    synergy: "PT-141 works on desire in the brain, tadalafil on blood flow, oxytocin on closeness. Each does a different job, taken on the day you choose.",
     timeline: [
-      { wk: "Dose 1", effect: "About an hour ahead. Works the same day." },
-      { wk: "Ongoing", effect: "On the days you choose, within your monthly limit." },
-      { wk: "Wk 12", effect: "Your blood panel, with hormones and heart markers checked for context." },
+      { wk: "Dose 1", effect: "Taken about an hour ahead. Works the same day." },
+      { wk: "Ongoing", effect: "On the days you choose, within the monthly limit." },
+      { wk: "Wk 12", effect: "Your blood test. Hormones and heart markers are read for context." },
     ],
     panel: "Full",
-    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    panelNote: "A blood test before your first dose, and the same test at week 12.",
     contraindications: ["Uncontrolled hypertension", "Cardiovascular disease (physician review)", "Nitrate medications", "Pregnancy"],
     cadences: [],
     gated: true,
@@ -207,22 +207,22 @@ const ALL_STACKS: FlagshipStack[] = [
   },
   {
     slug: "foundation",
-    name: "Foundation",
-    tagline: "Monitored testosterone with a natural-axis support peptide. The base layer.",
-    category: "Hormone & Foundational",
-    bestFor: "Men with low testosterone who want the base right before building on it.",
+    name: "Testosterone protocol",
+    tagline: "Testosterone cypionate with kisspeptin. For low testosterone, keeping your own production working.",
+    category: "Hormones",
+    bestFor: "Men with low testosterone.",
     peptides: [
       { name: "Testosterone Cypionate", dose: "Weekly, under the skin or into muscle", spec: "200 mg/mL · 10 mL vial" },
       { name: "Kisspeptin", dose: "On your physician's schedule, under the skin", spec: "Vial" },
     ],
-    synergy: "Testosterone replaces what is low; kisspeptin supports the body's own axis so it keeps working underneath. Monitored with blood work throughout.",
+    synergy: "Testosterone replaces what is low; kisspeptin supports your own production so it keeps working. Monitored with blood work throughout.",
     timeline: [
       { wk: "Wk 1", effect: "Your first dose." },
-      { wk: "Wk 6", effect: "Levels settle. Energy and drive are usually the first things to move." },
-      { wk: "Wk 12", effect: "Your blood panel, with testosterone, estradiol and blood count checked first." },
+      { wk: "Wk 6", effect: "Levels settle." },
+      { wk: "Wk 12", effect: "Your blood test. Testosterone, estradiol and blood count are read first." },
     ],
     panel: "Full",
-    panelNote: "Baseline panel with your first order, optimization panel at 90 days, hormones checked first.",
+    panelNote: "A blood test before your first dose, and the same test at week 12. Hormones are read first.",
     contraindications: ["Prostate or breast cancer", "Untreated sleep apnea", "Planning to conceive (physician review)"],
     cadences: [],
     gated: true,
@@ -257,13 +257,15 @@ export function stackPending(stack: FlagshipStack): string[] {
   return stack.peptides.filter((p) => { const s = soloByName(p.name); return !s || !isSellable(s); }).map((p) => p.name);
 }
 
-/* ── The Full Stack (the playbook): the four core protocols, one plan ── */
+/* ── Retired (the plain deck, 2026-09-04): the Full Stack band is removed from
+   the index. The export stays only until pages/ProtocolsIndex.tsx drops its
+   import; nothing new should read it. ── */
 export const FULL_STACK = {
   slug: "full-stack",
   name: "The Full Stack",
   base: 1199,
   protocols: ["recover", "ascend", "lucidity", "ignite"],
-  line: "Recover, Ascend, Lucidity and Ignite, prescribed as one plan and monitored on one panel.",
+  line: "The Recovery, Longevity, Focus and sleep, and Weight protocols, prescribed as one plan with one blood test.",
 } as const;
 
 /* ── Synergy rules (the playbook): what to combine, what to pick one of ── */
@@ -273,10 +275,10 @@ export const SAME_JOB: SameJobGroup[] = [
   { name: "GLP-1 medications", members: ["Semaglutide", "Tirzepatide"], note: "One at a time. Tirzepatide works on a second hormone; your physician picks." },
 ];
 export const PAIRS_WELL = [
-  { pair: ["BPC-157", "TB-500"], note: "Different jobs. BPC-157 sends the repair signal at the site; TB-500 moves repair cells through the whole body. Together they are the pair." },
+  { pair: ["BPC-157", "TB-500"], note: "Different jobs. BPC-157 sends the repair signal at the site; TB-500 moves repair cells through the whole body." },
   { pair: ["Tirzepatide", "Ipamorelin / CJC-1295 Blend"], note: "The GLP-1 takes the weight off; the nightly growth hormone peptide protects the muscle underneath it." },
-  { pair: ["PT-141", "Tadalafil Nasal"], note: "Desire from the brain and blood flow from the vessels. Two mechanisms, one evening." },
-  { pair: ["Testosterone Cypionate", "Kisspeptin"], note: "Testosterone replaces what is low; kisspeptin keeps your own axis working underneath it." },
+  { pair: ["PT-141", "Tadalafil Nasal"], note: "Desire from the brain and blood flow from the vessels. Two mechanisms, taken the same day." },
+  { pair: ["Testosterone Cypionate", "Kisspeptin"], note: "Testosterone replaces what is low; kisspeptin keeps your own production working." },
 ];
 
 /* ── Blood-panel tiers (doc's real markers) ── */

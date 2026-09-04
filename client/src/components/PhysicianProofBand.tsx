@@ -61,7 +61,6 @@ export function PhysicianProofBand({ name }: { name: string }) {
           <p className="nx-proof-quote" style={{ fontSize: "var(--nx-t-xl)" }}>
             Every {name} prescription is written by a licensed U.S. physician who has reviewed your health questions.
           </p>
-          <p className="nx-proof-attr" style={{ marginTop: 10 }}>The Nexphoria clinical standard</p>
         </div>
       </div>
     </section>

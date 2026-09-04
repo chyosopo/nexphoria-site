@@ -240,8 +240,7 @@ export const orgJsonLd = (): Record<string, unknown> => ({
   url: BASE_URL,
   logo: `${BASE_URL}/favicon/favicon-512.png`,
   description:
-    "Physician-guided peptide therapy. Science you can feel. Results you can measure.",
-  slogan: "Science you can feel. Results you can measure.",
+    "Prescription peptide therapy, with a physician and your blood work. Twenty-two compounded peptide medicines, prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.",
   // Real, in-use inboxes — hello@ (Contact.tsx / Footer.tsx) and press@
   // (Contact.tsx press desk). No phone number is published anywhere on the
   // site, so none is emitted.
@@ -296,8 +295,9 @@ export const medicalBusinessJsonLd = (): Record<string, unknown> => ({
   name: "Nexphoria",
   url: BASE_URL,
   description:
-    "Telehealth peptide therapy prescribed by board-certified physicians, partnered with U.S. state-licensed 503A compounding pharmacies.",
-  medicalSpecialty: ["Endocrinology", "SportsMedicine", "InternalMedicine"],
+    "A telehealth service for prescription peptide therapy. Prescriptions are written by independent, U.S.-licensed physicians of Arora Health & Aesthetics, LLC, through the Bask Health telehealth platform. Medicines are compounded by VialsRX, a state-licensed 503A pharmacy in Houston, Texas.",
+  /* medicalSpecialty is intentionally absent: the plain deck (rule 6) states no
+     specialties until Chiya confirms them. */
   areaServed: "US",
   /* Address and telephone were absent while they were placeholders — emitting
      a bracketed non-value into structured data would have published it to

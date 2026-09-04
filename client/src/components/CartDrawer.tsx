@@ -169,12 +169,12 @@ export function CartDrawer() {
                 )}
                 {hasMedicine && (
                   <div className="nx-included" data-testid="cart-included">
-                    <p className="nx-included__h" style={{ fontFamily: FONT }}>Included in the figure</p>
+                    <p className="nx-included__h" style={{ fontFamily: FONT }}>Included in the price</p>
                     <ul>
                       <li style={{ fontFamily: FONT }}><FlaskConical size={13} aria-hidden="true" /> {LAB_KIT.name}, {LAB_KIT.markers} markers, at home before your first dose <em>Complimentary</em></li>
                       <li style={{ fontFamily: FONT }}><Stethoscope size={13} aria-hidden="true" /> A licensed physician reviews your order and sets your dose <em>Included</em></li>
                       <li style={{ fontFamily: FONT }}><Truck size={13} aria-hidden="true" /> Cold shipping, plain packaging <em>Included</em></li>
-                      <li style={{ fontFamily: FONT }}><Check size={13} aria-hidden="true" /> The same panel again at week {RETEST_WEEK}, on plans of three months and longer <em>Included</em></li>
+                      <li style={{ fontFamily: FONT }}><Check size={13} aria-hidden="true" /> The same blood test again at week {RETEST_WEEK}, on plans of three months and longer <em>Included</em></li>
                     </ul>
                   </div>
                 )}

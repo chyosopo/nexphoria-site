@@ -274,7 +274,7 @@ export default function Physicians() {
                         marginBottom: "2px",
                       }}
                     >
-                      Nexphoria clinical standard
+                      Physician review on every order
                     </p>
                     <p
                       style={{

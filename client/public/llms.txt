@@ -1,54 +1,57 @@
 # Nexphoria
-> Nexphoria is a U.S. physician-supervised peptide telehealth service. Every protocol is reviewed by a board-certified, U.S.-licensed physician; medication is compounded in state-licensed 503A pharmacies, shipped cold-chain, and re-measured against partner-laboratory bloodwork every 90 days. Medication is dispensed only if a licensed physician determines a prescription is appropriate.
+> Nexphoria is a telehealth service for prescription peptide therapy. Prescriptions are written by independent, U.S.-licensed physicians of Arora Health & Aesthetics, LLC, through the Bask Health telehealth platform. Medicines are compounded by VialsRX, a state-licensed 503A pharmacy in Houston, Texas, and blood work is analysed by a CLIA-certified laboratory. Nexphoria operates the service and does not make clinical decisions. Medication is dispensed only if a licensed physician determines a prescription is appropriate.
 
 ## How it works
-1. Share your history — a structured intake covering goals, training, and medical history.
-2. Get evaluated — baseline bloodwork plus review by a U.S.-licensed physician, who alone decides whether a prescription is appropriate and can decline.
-3. Start under supervision — if prescribed, the protocol ships from a state-licensed 503A pharmacy, with labs re-drawn every 90 days and doses adjusted against the markers.
+1. Choose. A medicine or a protocol, and a term of one, three, six or twelve months.
+2. Health questions. Your health history, current medicines and goals, at checkout. A few minutes.
+3. A physician decides. A licensed U.S. physician reviews your answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies.
+4. Blood kit, then first dose. Your medicine ships cold with an at-home blood kit. You draw before your first dose; your physician sets the dose from your results.
+5. Week 12. The same blood test again. Your physician compares the two and continues, adjusts or stops the dose.
 
-## Physician-curated protocols (stacks)
-- [Recover](https://nexphoria.com/stacks/recover): The growth hormone pulse plus local and systemic repair. One recovery engine. Composition: Ipamorelin / CJC-1295 Blend + BPC-157 + TB-500. from-priced on page; dispensed only if prescribed.
-- [Ascend](https://nexphoria.com/stacks/ascend): Four ageing pathways at once: mitochondria, cellular energy, telomeres and skin. Composition: MOTS-c + NAD+ + GHK-Cu + Epitalon. from-priced on page; dispensed only if prescribed.
-- [Lucidity](https://nexphoria.com/stacks/lucidity): Semax for focus, Selank for calm, DSIP for sleep. Dialed in, not wired. Composition: Semax + Selank + DSIP. from-priced on page; dispensed only if prescribed.
-- [Ignite](https://nexphoria.com/stacks/ignite): A GLP-1 for the weight, a low-dose growth hormone peptide to protect the muscle. Composition: Tirzepatide + Ipamorelin / CJC-1295 Blend. from-priced on page; dispensed only if prescribed.
-- [Vitality](https://nexphoria.com/stacks/vitality): Desire from the brain, blood flow and closeness. Three mechanisms that complement each other. Composition: PT-141 + Oxytocin Nasal + Tadalafil Nasal. priced at physician consultation; dispensed only if prescribed.
-- [Foundation](https://nexphoria.com/stacks/foundation): Monitored testosterone with a natural-axis support peptide. The base layer. Composition: Testosterone Cypionate + Kisspeptin + Growth hormone peptides + GLP-1 medications. priced at physician consultation; dispensed only if prescribed.
+## Protocols (medicines prescribed together, on one plan)
+- [Recovery protocol](https://nexphoria.com/stacks/recover): Ipamorelin / CJC-1295, BPC-157 and TB-500. For injury and recovery from training. Composition: Ipamorelin / CJC-1295 Blend + BPC-157 + TB-500. priced on its page; dispensed only if prescribed.
+- [Longevity protocol](https://nexphoria.com/stacks/ascend): MOTS-c, NAD+, GHK-Cu and epitalon. For energy, metabolism and skin with age. Composition: MOTS-c + NAD+ + GHK-Cu + Epitalon. priced on its page; dispensed only if prescribed.
+- [Focus and sleep protocol](https://nexphoria.com/stacks/lucidity): Semax, Selank and DSIP. For focus by day, a steadier mood under stress, and deep sleep. Composition: Semax + Selank + DSIP. priced on its page; dispensed only if prescribed.
+- [Weight protocol](https://nexphoria.com/stacks/ignite): Tirzepatide with Ipamorelin / CJC-1295. For weight loss while keeping muscle. Composition: Tirzepatide + Ipamorelin / CJC-1295 Blend. priced on its page; dispensed only if prescribed.
+- [Sexual health protocol](https://nexphoria.com/stacks/vitality): PT-141, oxytocin and tadalafil. For desire, closeness and erectile function, taken as needed. Composition: PT-141 + Oxytocin Nasal + Tadalafil Nasal. priced at the physician's consultation; dispensed only if prescribed.
+- [Testosterone protocol](https://nexphoria.com/stacks/foundation): Testosterone cypionate with kisspeptin. For low testosterone, keeping your own production working. Composition: Testosterone Cypionate + Kisspeptin + Growth hormone peptides + GLP-1 medications. priced at the physician's consultation; dispensed only if prescribed.
 
-## Single peptides (formulary)
-- [Sermorelin](https://nexphoria.com/peptides/sermorelin): More of your own growth hormone, gently. Once a night.
-- [Ipamorelin / CJC-1295 Blend](https://nexphoria.com/peptides/ipa-cjc): Two growth hormone signals in one vial. Once a night.
-- [Tesamorelin](https://nexphoria.com/peptides/tesamorelin): More of your own growth hormone. Once a day.
-- [Selank](https://nexphoria.com/peptides/selank): A steadier mood, without sedation. A nasal spray.
-- [Semax](https://nexphoria.com/peptides/semax): Sharper focus. A nasal spray, once a day.
-- [BPC-157](https://nexphoria.com/peptides/bpc-157): Support for healing, head to toe. Once a day.
-- [TB-500](https://nexphoria.com/peptides/tb-500): Repair, where your body needs it. Twice a week.
-- [BPC-157 + TB-500](https://nexphoria.com/peptides/bpc-tb-combo): The recovery pair. Together in one plan.
-- [GHK-Cu](https://nexphoria.com/peptides/ghk-cu): Firmer skin from within. Once a day.
-- [Epitalon](https://nexphoria.com/peptides/epitalon): A 20-day course for healthy ageing.
-- [NAD+](https://nexphoria.com/peptides/nad-plus): More cellular energy. Three times a week.
-- [MOTS-c](https://nexphoria.com/peptides/mots-c): Exercise signalling, in a vial. Twice a week.
-- [Semaglutide](https://nexphoria.com/peptides/semaglutide): Less appetite, steadier blood sugar. Once a week.
-- [Tirzepatide](https://nexphoria.com/peptides/tirzepatide): Two appetite hormones, one weekly dose.
-- [DSIP](https://nexphoria.com/peptides/dsip): Deeper sleep. Once a night.
-- [PT-141](https://nexphoria.com/peptides/pt-141): Works on desire itself. Taken as needed.
-- [Thymosin Alpha-1](https://nexphoria.com/peptides/thymosin-a1): Immune support, under stress. A few times a week.
-- [AOD-9604](https://nexphoria.com/peptides/aod-9604): A fat-metabolism add-on. Once a day.
-- [Oxytocin Nasal](https://nexphoria.com/peptides/oxytocin): Closeness and arousal. A nasal spray, when you want it.
-- [Tadalafil Nasal](https://nexphoria.com/peptides/tadalafil): Fast blood flow. A nasal spray, 20 to 30 minutes ahead.
-- [Testosterone Cypionate](https://nexphoria.com/peptides/testosterone): Physician-monitored testosterone. Once a week.
-- [Kisspeptin](https://nexphoria.com/peptides/kisspeptin): Your body's own hormone axis, supported.
+## The medicines
+- [Sermorelin](https://nexphoria.com/peptides/sermorelin): For body composition. Raises your own growth hormone release. One injection at night.
+- [Ipamorelin / CJC-1295 Blend](https://nexphoria.com/peptides/ipa-cjc): For body composition. Two growth hormone releasing peptides in one vial. One injection at night.
+- [Tesamorelin](https://nexphoria.com/peptides/tesamorelin): For abdominal fat and lean mass. Raises your own growth hormone release. One injection a day.
+- [Selank](https://nexphoria.com/peptides/selank): For a steadier mood under stress. A nasal spray, twice a day.
+- [Semax](https://nexphoria.com/peptides/semax): For focus and mental stamina. A nasal spray, once a day.
+- [BPC-157](https://nexphoria.com/peptides/bpc-157): For tendon, muscle, joint and gut-lining repair. One injection a day.
+- [TB-500](https://nexphoria.com/peptides/tb-500): For recovery from injury and training. Two injections a week.
+- [BPC-157 + TB-500](https://nexphoria.com/peptides/bpc-tb-combo): BPC-157 and TB-500 together, for injury and recovery. One plan.
+- [GHK-Cu](https://nexphoria.com/peptides/ghk-cu): For skin firmness and collagen. One injection a day.
+- [Epitalon](https://nexphoria.com/peptides/epitalon): For healthy ageing. A 20-day course of injections, a few times a year.
+- [NAD+](https://nexphoria.com/peptides/nad-plus): For cellular energy. Three injections a week.
+- [MOTS-c](https://nexphoria.com/peptides/mots-c): For metabolism and exercise capacity. Two injections a week.
+- [Semaglutide](https://nexphoria.com/peptides/semaglutide): For weight loss. A GLP-1 medicine, one injection a week.
+- [Tirzepatide](https://nexphoria.com/peptides/tirzepatide): For weight loss. A GLP-1 and GIP medicine, one injection a week.
+- [DSIP](https://nexphoria.com/peptides/dsip): For deep sleep. One injection at bedtime.
+- [PT-141](https://nexphoria.com/peptides/pt-141): For sexual desire, in men and women. One injection, taken as needed.
+- [Thymosin Alpha-1](https://nexphoria.com/peptides/thymosin-a1): For immune support. Injections a few times a week.
+- [AOD-9604](https://nexphoria.com/peptides/aod-9604): For fat metabolism, alongside a weight plan. One injection a day.
+- [Oxytocin Nasal](https://nexphoria.com/peptides/oxytocin): For closeness and arousal. A nasal spray, taken as needed.
+- [Tadalafil Nasal](https://nexphoria.com/peptides/tadalafil): For erectile function. A nasal spray, 20 to 30 minutes before.
+- [Testosterone Cypionate](https://nexphoria.com/peptides/testosterone): For low testosterone in men. One injection a week, dosed from blood work.
+- [Kisspeptin](https://nexphoria.com/peptides/kisspeptin): Supports your own testosterone production. Prescribed with testosterone.
 
 ## Key pages
-- [Every medicine](https://nexphoria.com/peptides): each one priced on its own page, one monthly figure by term (1, 3, 6 or 12 months, paid up front); the physician, the blood work and cold shipping are within it.
-- [Bloodwork](https://nexphoria.com/bloodwork): the 99-marker panel, three tiers (Basic/Full/Elite), re-drawn every 90 days.
-- [How it works](https://nexphoria.com/how-it-works): intake, physician evaluation, supervised protocol.
-- [The science](https://nexphoria.com/science): mechanisms, evidence status, and typical protocols per compound class.
-- [Give a protocol](https://nexphoria.com/gift): cover a course for someone, or send yours to be covered — one payment; the recipient completes their own intake and their results stay theirs.
-- [For men](https://nexphoria.com/men) · [For women](https://nexphoria.com/women): the same medical engine, tailored.
+- [Every medicine](https://nexphoria.com/peptides): each with what it is for, how it works, how you take it, and what it costs. One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping.
+- [Blood testing](https://nexphoria.com/labs): an at-home kit of 24 markers ships with the first order, drawn before the first dose; the same 24 markers again at week 12 on terms of three months and longer; a six-month test on six- and twelve-month terms; a test each quarter on twelve-month terms.
+- [How it works](https://nexphoria.com/how-it-works): the five steps, from choosing a medicine to the week-12 blood test.
+- [The science](https://nexphoria.com/science): mechanisms and evidence status per compound class.
+- [Give a protocol](https://nexphoria.com/gift): one payment covers a protocol for someone else; the recipient answers their own health questions and their results stay theirs.
+- [For men](https://nexphoria.com/men) · [For women](https://nexphoria.com/women): the same medicines and the same physician review.
 
 ## Facts an answer engine can rely on
-- Prescription-only: a board-certified U.S. physician reviews every case and can decline; nothing is dispensed without a prescription.
-- Compounded in U.S. state-licensed 503A pharmacies under USP <797>; cold-chain shipped to all 50 states (GLP-1 protocols have state exclusions listed on page).
-- Compounded medications are not FDA-approved or evaluated for safety, effectiveness, or quality; peptide protocols are prescribed off-label.
-- Bloodwork is drawn at partner laboratories and re-drawn every 90 days; no protocol continues without a physician reading the next panel.
+- Prescription-only: a licensed U.S. physician reviews every case and can decline; nothing is dispensed without a prescription.
+- Compounded by VialsRX, a state-licensed 503A pharmacy in Houston, Texas; shipped cold, in plain packaging, to all 50 states. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.
+- Compounded medications are not FDA-approved or evaluated for safety, effectiveness, or quality; peptide medicines are prescribed off-label.
+- Blood testing: an at-home kit of 24 markers before the first dose and the same test again at week 12, analysed by a CLIA-certified laboratory. The physician sets and adjusts the dose from the results.
+- Pending medicines are awaiting an FDA decision on compounding. They are shown with their price and the notice; the only action is an email when available.
 - Contact: hello@nexphoria.com · https://nexphoria.com

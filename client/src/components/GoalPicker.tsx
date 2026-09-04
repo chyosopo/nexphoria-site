@@ -24,14 +24,14 @@ export interface GoalCard {
 }
 
 export const GOAL_CARDS: Omit<GoalCard, "count">[] = [
-  { slug: "metabolic", title: "Weight loss", line: "GLP-1 medication. Less appetite, steadier blood sugar.", img: goalMetabolic, img500: goalMetabolic500 },
-  { slug: "growth", title: "Body composition", line: "Tesamorelin. More of your own growth hormone.", img: goalGrowth, img500: goalGrowth500 },
-  { slug: "sexual-health", title: "Sexual desire", line: "PT-141. Works on desire itself, as needed.", img: goalDesire, img500: goalDesire500 },
-  { slug: "recovery", title: "Recovery", line: "BPC-157 and TB-500. Support for healing.", img: "img/img_fad0fee022a9.webp", img500: "img/img_fad0fee022a9.webp" },
-  { slug: "cognition", title: "Focus and mood", line: "Semax and Selank. Nasal sprays for a clearer head.", img: "img/img_916e52b67436.webp", img500: "img/img_916e52b67436.webp" },
-  { slug: "sleep", title: "Sleep", line: "DSIP. Deeper sleep, once a night.", img: "img/img_928775d1e9c1.webp", img500: "img/img_928775d1e9c1.webp" },
-  { slug: "longevity", title: "Energy and healthy ageing", line: "NAD+, MOTS-c and epitalon.", img: "img/img_cf1396d09b4a.webp", img500: "img/img_cf1396d09b4a.webp" },
-  { slug: "skin", title: "Skin and ageing", line: "GHK-Cu and epitalon. Skin support from within.", img: "img/img_3678caab4727.webp", img500: "img/img_3678caab4727.webp" },
+  { slug: "metabolic", title: "Weight loss", line: "Semaglutide and tirzepatide. GLP-1 medicines, one injection a week.", img: goalMetabolic, img500: goalMetabolic500 },
+  { slug: "growth", title: "Body composition", line: "Tesamorelin and the growth hormone releasing peptides.", img: goalGrowth, img500: goalGrowth500 },
+  { slug: "sexual-health", title: "Sexual health", line: "PT-141, tadalafil and oxytocin. Taken as needed.", img: goalDesire, img500: goalDesire500 },
+  { slug: "recovery", title: "Recovery", line: "BPC-157 and TB-500. For injury and recovery from training.", img: "img/img_fad0fee022a9.webp", img500: "img/img_fad0fee022a9.webp" },
+  { slug: "cognition", title: "Focus and mood", line: "Semax and Selank. Nasal sprays for focus and mood.", img: "img/img_916e52b67436.webp", img500: "img/img_916e52b67436.webp" },
+  { slug: "sleep", title: "Sleep", line: "DSIP. For deep sleep, one injection at bedtime.", img: "img/img_928775d1e9c1.webp", img500: "img/img_928775d1e9c1.webp" },
+  { slug: "longevity", title: "Energy and healthy ageing", line: "NAD+, MOTS-c and epitalon. For cellular energy and metabolism.", img: "img/img_cf1396d09b4a.webp", img500: "img/img_cf1396d09b4a.webp" },
+  { slug: "skin", title: "Skin and ageing", line: "GHK-Cu and epitalon. For skin firmness and collagen.", img: "img/img_3678caab4727.webp", img500: "img/img_3678caab4727.webp" },
 ];
 
 export function GoalPicker({ counts }: { counts: Record<string, number> }) {
@@ -61,14 +61,14 @@ export function GoalPicker({ counts }: { counts: Record<string, number> }) {
               <span className="nx-goal-card-title" style={{ fontFamily: S }}>{g.title}</span>
               <span className="nx-goal-card-line" style={{ fontFamily: S }}>{g.line}</span>
               <span className="nx-goal-card-pill nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>
-                Read about it
+                Read more
               </span>
             </span>
           </Link>
         ))}
       </div></Reveal>
-      <div className="nx-goal-chips" role="list" aria-label="Start the assessment with a goal">
-        <span className="nx-goal-chips-label" style={{ fontFamily: F }}>Or start now with</span>
+      <div className="nx-goal-chips" role="list" aria-label="Begin the health questions with a goal">
+        <span className="nx-goal-chips-label" style={{ fontFamily: F }}>Or begin the health questions with</span>
         {GOAL_CARDS.map((g) => (
           <Link key={g.slug} href={`/assessment?goal=${g.slug}`} className="nx-chip" role="listitem" style={{ fontFamily: F }} data-testid={`frontdoor-chip-${g.slug}`}>
             {g.title}

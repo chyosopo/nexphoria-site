@@ -9,7 +9,6 @@ import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { track } from "@/lib/analytics";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
-import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { useCart } from "@/contexts/CartProvider";
 import { billingNote, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
 import { ReserveForm } from "@/components/ReserveForm";
@@ -132,7 +131,7 @@ export function BuyBox(props: BuyBoxProps) {
               <Lock size={14} /> Doctor-assessed only
             </div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.55rem" }}>
-              Prescribed after your physician reviews you. Dosed and priced at your consultation against your baseline blood work, then adjusted from your week-12 panel.
+              Prescribed after your physician reviews you. Dosed and priced at your consultation against your baseline blood work, then adjusted from your week-12 blood test.
             </p>
             {gatedStates && (
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>
@@ -231,15 +230,15 @@ export function BuyBox(props: BuyBoxProps) {
               </p>
             ) : active?.includesPanel ? (
               <p style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-cobalt)", marginTop: "0.7rem" }}>
-                <Check size={13} strokeWidth={2.6} /> Includes {active.includesPanel} panel
+                <Check size={13} strokeWidth={2.6} /> Blood test at week 12 included
               </p>
             ) : null}
             {reserving && (
               <div style={{ marginTop: "1rem" }} id="reserve">
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }} data-testid="buybox-reserve-note">
                   {pending && pending.length > 0
-                    ? `${pending.join(" and ")} ${pending.length > 1 ? "are" : "is"} pending final FDA rulemaking for compounding. The figure above is what it will cost. Leave an email and we tell you when it is available.`
-                    : `${name} is pending final FDA rulemaking for compounding. The figure above is what it will cost. Leave an email and we tell you when it is available.`}
+                    ? `${pending.join(" and ")} ${pending.length > 1 ? "are" : "is"} pending final FDA rulemaking for compounding. The price above is what it will cost. Leave an email and we tell you when it is available.`
+                    : `${name} is pending final FDA rulemaking for compounding. The price above is what it will cost. Leave an email and we tell you when it is available.`}
                 </p>
                 <ReserveForm slug={slug} kind={addType} testId={`${ctaTestId}-reserve`} />
               </div>
@@ -271,15 +270,11 @@ export function BuyBox(props: BuyBoxProps) {
                 </Link>
               </div>
             )}
-            {/* the gift doors (stacks only): give this protocol, or send a
-                link asking someone else to cover it */}
+            {/* the gift link (stacks only) */}
             {addType === "stack" && (
               <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: "0.5rem", fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600 }}>
                 <Link href={`/gift?item=stack:${slug}`} data-testid={`${ctaTestId}-gift`} onClick={() => track("gift_entry", { source: "buybox", slug })} style={{ color: "var(--nx-fg-muted)", textDecoration: "underline", textUnderlineOffset: 3 }}>
-                  Gift this protocol
-                </Link>
-                <Link href={`/gift?item=stack:${slug}&mode=request`} data-testid={`${ctaTestId}-gift-ask`} onClick={() => track("gift_entry", { source: "buybox-ask", slug })} style={{ color: "var(--nx-fg-muted)", textDecoration: "underline", textUnderlineOffset: 3 }}>
-                  Ask someone to cover it
+                  Give this protocol as a gift
                 </Link>
               </div>
             )}
@@ -287,7 +282,6 @@ export function BuyBox(props: BuyBoxProps) {
         )}
         <PrescribedPromise centered testid="buybox-promise" style={{ marginTop: "0.75rem", justifyContent: "center" }} />
         <div style={{ display: "flex", justifyContent: "center", marginTop: "0.75rem", paddingTop: "0.75rem", borderTop: "1px solid var(--nx-border)" }}>
-          <PhysicianGate testid="buybox-physician-gate" />
         </div>
       </div>
 

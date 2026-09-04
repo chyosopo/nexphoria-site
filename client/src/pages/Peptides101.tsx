@@ -1,10 +1,10 @@
 /* ═══ PEPTIDES 101 — the teaching page (docs/MASTER-PLAN.md, Part 3)
 
    For someone who has never heard of a peptide. The excited expert, in the
-   "you" voice: what a peptide is, the four we prescribe and what each is
-   for, what the first twelve weeks look like, who it is for, and the honest
-   part. Every fact comes from the catalog and data/monitoring.ts; the FDA
-   line is verbatim. Funnels to one action. */
+   "you" voice: what a peptide is, the medicines we prescribe and what each
+   is for, what the first twelve weeks look like, who it is for, and the
+   honest part. Every fact comes from the catalog and data/monitoring.ts; the
+   FDA line is verbatim. Passed for the plain deck (docs/COPY-DECK-PLAIN.md). */
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -21,16 +21,16 @@ const h2: React.CSSProperties = { fontFamily: S, fontWeight: 500, fontSize: "var
 const body: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)" };
 
 const WHAT = [
-  ["Made of the same stuff as protein.", "A peptide is a short chain of amino acids. Protein is a long one. Your body builds thousands of peptides every day to carry messages between organs."],
-  ["A message, in your body's own language.", "Insulin is a peptide. So is the signal that tells you that you are full, and the one that tells your body to release growth hormone. A prescription peptide is a precise copy of one of those messages."],
-  ["Prescribed, made for you, monitored.", "A licensed U.S. doctor decides whether one fits you, a licensed U.S. pharmacy makes it for you, and at week twelve your blood shows your doctor what it changed."],
+  ["A peptide is made of amino acids.", "A peptide is a short chain of amino acids. Protein is a long one. Your body builds thousands of peptides every day to carry messages between organs."],
+  ["A peptide is a message your body already sends.", "Insulin is a peptide. So is the signal that tells you that you are full, and the one that tells your body to release growth hormone. A prescription peptide is a precise copy of one of those messages."],
+  ["A prescription peptide is prescribed, made for you and monitored.", "A licensed U.S. doctor decides whether one fits you, a licensed U.S. pharmacy makes it for you, and at week twelve your blood shows your doctor what it changed."],
 ] as const;
 
 const TWELVE = [
-  ["Day 1", "You start.", "Your doctor's plan arrives cold, with your dose and your schedule in writing. Most peptides are a small injection under the skin with a tiny needle. PT-141 is taken as needed."],
-  ["Weeks 1 to 4", "Your body learns the signal.", "GLP-1 doses start low and step up, so your stomach settles. Tesamorelin builds over weeks. Your doctor is reachable if anything feels off."],
-  ["Week 4", "A check-in.", "How is it going, what to watch, what to eat. A questionnaire and a message. Your doctor stays reachable."],
-  [`Week ${RETEST_WEEK}`, "Your blood tells the story.", `A full panel of ${PANEL_TOTAL_MARKERS} markers, included. Your doctor reads it next to your plan and continues, adjusts or stops.`],
+  ["Before day 1", "Your blood kit.", `Your medicine ships cold with an at-home blood kit of ${PANEL_TOTAL_MARKERS} markers, included. You draw before your first dose and your doctor sets the dose from the results.`],
+  ["Day 1", "You start.", "Your dose and your schedule arrive in writing. Most peptides are a small injection under the skin with a tiny needle. PT-141 is taken as needed."],
+  ["Weeks 1 to 4", "The first weeks.", "GLP-1 doses start low and step up, so your stomach settles. Tesamorelin builds over weeks."],
+  [`Week ${RETEST_WEEK}`, "Your blood test.", `The same ${PANEL_TOTAL_MARKERS} markers again. Your doctor compares the two and continues, adjusts or stops the dose.`],
 ] as const;
 
 const FAQ = [
@@ -38,13 +38,13 @@ const FAQ = [
   { q: "Is this legal?", a: "Yes. Every peptide here is prescription only. A licensed U.S. physician writes the prescription, and a licensed 503A pharmacy compounds it for you. Compounded medications are made for an individual patient under a prescription. They are not FDA-approved drugs, and they are not the branded products." },
   { q: "Will I feel it?", a: "It depends on the peptide. Appetite changes on a GLP-1 are often felt in the first weeks. Tesamorelin works on a slower clock, which is why the week 12 panel matters: some of what changes shows up in your blood before you feel it." },
   { q: "Do I have to inject it?", a: "Most peptides are a small injection under the skin with a very fine needle, the kind people use every day for insulin. Your box comes with everything and plain instructions. PT-141 is used as needed." },
-  { q: "What if it is not for me?", a: "Your doctor can say no from your questionnaire, and some do. If it fits, your medication and a free baseline blood kit ship, and you start. At week 12 your blood and your doctor decide what happens next." },
+  { q: "What if it is not for me?", a: "Your doctor can say no from your questionnaire, and some do. If it fits, your medication ships with an at-home blood kit, included, and you start. At week 12 your blood and your doctor decide what happens next." },
 ];
 
 export default function Peptides101() {
   useSeo({
     title: "Peptides 101: what they are and what ours do",
-    description: `What a peptide is, in plain words. The four we prescribe, what each one is for, what the first ${RETEST_WEEK} weeks look like, and the honest part.`,
+    description: `What a peptide is, in plain words. The medicines we prescribe, what each one is for, what the first ${RETEST_WEEK} weeks look like, and the honest part.`,
     path: "/peptides-101",
     jsonLd: [
       webPageJsonLd({ name: "Peptides 101", description: "What a peptide is and what ours do, explained for someone new to it.", path: "/peptides-101", type: "MedicalWebPage" }),
@@ -61,10 +61,10 @@ export default function Peptides101() {
         <Reveal>
           <p style={kicker}>Peptides 101</p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1, letterSpacing: "var(--nx-ls-display)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "14ch", textWrap: "balance" }}>
-            New to peptides? Start here.
+            What peptides are, and what ours do.
           </h1>
           <p style={{ ...body, fontSize: "var(--nx-t-lg)", maxWidth: "52ch", marginTop: "1.2rem" }}>
-            Your body already makes thousands of peptides. They are the signals that tell cells what to do. A prescription peptide is a precise version of one of them, made for you in a licensed pharmacy. Here is what they are, what the four we prescribe do, and what your first twelve weeks look like.
+            Your body already makes thousands of peptides. They are the signals that tell cells what to do. A prescription peptide is a precise version of one of them, made for you in a licensed pharmacy. Here is what they are, what the medicines we prescribe do, and what your first twelve weeks look like.
           </p>
         </Reveal>
       </section>
@@ -89,7 +89,7 @@ export default function Peptides101() {
 
       {/* the four */}
       <section className="nx-container" aria-labelledby="p101-four">
-        <Reveal><p style={kicker}>The four we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>What each one is for, and what the week-{RETEST_WEEK} panel measures.</h2></Reveal>
+        <Reveal><p style={kicker}>The medicines we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>What each one is for, and what the week-{RETEST_WEEK} panel measures.</h2></Reveal>
         <div style={{ display: "grid", gap: "clamp(1rem, 2vw, 1.4rem)", marginTop: "clamp(1.6rem, 3vw, 2.4rem)" }} data-testid="p101-four">
           {SOLO_CATALOG.map((s, i) => {
             const m = monitoringFor(s.slug);
@@ -143,7 +143,7 @@ export default function Peptides101() {
           <p style={kicker}>The honest part</p>
           <h2 id="p101-honest" style={{ ...h2, maxWidth: "20ch" }}>Who it is for, and what is screened for.</h2>
           <p style={{ ...body, maxWidth: "60ch", marginTop: "1rem" }}>
-            Peptides are for adults with a goal a doctor can help with. Because you start before any blood is drawn, your questionnaire carries the questions a doctor needs answered first. Answer them straight; some plans end there, and that is the system working.
+            Peptides are for adults with a goal a doctor can help with. Because you start before any blood is drawn, your questionnaire carries the questions a doctor needs answered first. Some plans end there.
           </p>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 14, marginTop: "1.6rem" }} data-testid="p101-screens">
