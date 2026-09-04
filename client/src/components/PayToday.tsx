@@ -19,11 +19,17 @@ const STEPS: [string, string][] = [
 
 export function PayToday({
   amount,
+  dueToday,
+  terms,
   testid = "pay-today",
   style,
 }: {
   /** the monthly figure, already formatted */
   amount: string;
+  /** the whole figure, paid up front for the term, already formatted */
+  dueToday?: string;
+  /** "3 months of Semaglutide · The Panel, complimentary" */
+  terms?: string;
   testid?: string;
   style?: React.CSSProperties;
 }) {
@@ -37,9 +43,14 @@ export function PayToday({
         What you pay today
       </p>
       <p id={`${testid}-title`} style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", lineHeight: 1.05, color: "var(--nx-fg)", margin: "0.5rem 0 0" }}>
-        {amount}
-        <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-graphite)", marginLeft: 6 }}>a month</span>
+        {dueToday ?? amount}
+        <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 500, color: "var(--nx-fg-graphite)", marginLeft: 6 }}>{dueToday ? "today, for the whole term" : "a month"}</span>
       </p>
+      {dueToday && (
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.35rem 0 0" }} data-testid={`${testid}-terms`}>
+          {terms ? `${terms}. ` : ""}The monthly figure is {amount}. Renewing at the end is your choice.
+        </p>
+      )}
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
         Includes your medication, physician review, cold shipping, a free baseline blood kit, and the same {PANEL_TOTAL_MARKERS}-marker panel again at week {RETEST_WEEK}.
       </p>

@@ -77,7 +77,8 @@ export function ProductCard({
           <p className="nx-card-reveal__body">{sku.mechanism}</p>
           <dl className="nx-card-reveal__facts">
             <div><dt>Dose</dt><dd>{sku.dose}</dd></div>
-            <div><dt>Week 12</dt><dd>Blood panel included</dd></div>
+            {sku.feelBy && <div><dt>Feel it by</dt><dd>{sku.feelBy}</dd></div>}
+            <div><dt>Blood work</dt><dd>Baseline kit, then week 12</dd></div>
           </dl>
         </div>
       </div>
@@ -109,6 +110,9 @@ export function ProductCard({
           {sku.outcome}
         </p>
         <div style={{ marginTop: "0.6rem" }}><GoodForChips slug={sku.slug} /></div>
+        {sku.feelBy && (
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.5rem" }}>Feel it by {sku.feelBy.charAt(0).toLowerCase() + sku.feelBy.slice(1)}</p>
+        )}
         <div
           style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",

@@ -2810,3 +2810,44 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-addons-for__chip { display: inline-flex; align-items: center; gap: 5px; padding: .4rem .7rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-pill); background: var(--nx-bg); color: var(--nx-fg); font-size: var(--nx-t-xs); font-weight: 600; text-decoration: none; transition: border-color var(--nx-dur-2) var(--nx-ease); }
 .nx-addons-for__chip:hover { border-color: var(--nx-cobalt); }
 .nx-addons-for__chip span { color: var(--nx-fg-muted); font-weight: 500; }
+
+/* ═══ The polish pass (2026-09-04): the horizon, the road strip, the added moment ═══ */
+.nx-horizon { padding: 1rem 1.1rem 1rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
+.nx-horizon--compact { padding: 0; border: 0; background: transparent; }
+.nx-horizon__h { margin: 0 0 .8rem; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-horizon__bar { position: relative; height: 14px; border-radius: var(--nx-r-pill); background: var(--nx-bg); border: 1px solid var(--nx-border); overflow: visible; }
+.nx-horizon--compact .nx-horizon__bar { height: 10px; }
+.nx-horizon__band { position: absolute; top: 2px; bottom: 2px; border-radius: var(--nx-r-pill); }
+.nx-horizon__band--feel { background: var(--nx-cobalt); opacity: .55; z-index: 2; }
+.nx-horizon__band--full { background: var(--nx-cobalt); z-index: 1; }
+.nx-horizon__band--full.is-beyond { border-top-right-radius: 0; border-bottom-right-radius: 0; background: linear-gradient(90deg, var(--nx-cobalt) 60%, color-mix(in srgb, var(--nx-cobalt) 35%, transparent)); }
+.nx-horizon__tick { position: absolute; top: -5px; bottom: -5px; width: 2px; margin-left: -1px; background: var(--nx-fg); z-index: 3; }
+.nx-horizon__tick--lab::after { content: ""; position: absolute; left: -4px; top: -4px; width: 10px; height: 10px; border-radius: 50%; background: var(--nx-fg); }
+.nx-horizon__axis { display: flex; justify-content: space-between; gap: 8px; margin-top: .55rem; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-horizon--compact .nx-horizon__axis { margin-top: .4rem; letter-spacing: 0; text-transform: none; font-weight: 500; }
+.nx-horizon__legend { list-style: none; margin: .8rem 0 0; padding: 0; display: grid; gap: 6px; }
+.nx-horizon__legend li { display: flex; align-items: flex-start; gap: 8px; font-size: var(--nx-t-sm); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-horizon__legend strong { font-weight: 500; color: var(--nx-fg); margin-right: 4px; }
+.nx-horizon__dot { display: inline-block; width: 18px; height: 8px; border-radius: var(--nx-r-pill); flex-shrink: 0; margin-top: 6px; }
+.nx-horizon__dot--feel { background: var(--nx-cobalt); opacity: .55; }
+.nx-horizon__dot--full { background: var(--nx-cobalt); }
+.nx-horizon__dot--lab { width: 8px; height: 8px; border-radius: 50%; background: var(--nx-fg); margin-left: 5px; margin-right: 5px; }
+
+.nx-roadstrip { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.nx-roadstrip li { display: inline-flex; align-items: center; gap: 5px; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-roadstrip__n { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--nx-border); font-size: 9px; }
+.nx-roadstrip li.is-now { color: var(--nx-cobalt); }
+.nx-roadstrip li.is-now .nx-roadstrip__n { background: var(--nx-cobalt); border-color: var(--nx-cobalt); color: var(--nx-ceramic); }
+.nx-roadstrip li.is-done { color: var(--nx-fg); }
+.nx-roadstrip li.is-done .nx-roadstrip__n { background: var(--nx-fg); border-color: var(--nx-fg); color: var(--nx-bg); }
+
+.nx-added { display: flex; align-items: flex-start; gap: 10px; padding: .85rem 1rem; margin-bottom: 1rem; border-radius: var(--nx-r-md); background: var(--nx-cobalt-soft); border: 1px solid var(--nx-cobalt); }
+.nx-added svg { color: var(--nx-cobalt); flex-shrink: 0; margin-top: 2px; }
+.nx-added p { margin: 0; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg); }
+.nx-added strong { font-weight: 600; }
+.nx-included { margin-bottom: 1rem; padding: .9rem 1rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: var(--nx-ceramic); }
+.nx-included__h { margin: 0 0 .5rem; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt); }
+.nx-included ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.nx-included li { display: flex; align-items: flex-start; gap: 8px; font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-included li svg { color: var(--nx-cobalt); flex-shrink: 0; margin-top: 2px; }
+.nx-included li em { font-style: normal; margin-left: auto; padding-left: 8px; font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; font-size: var(--nx-t-2xs); color: var(--nx-fg); white-space: nowrap; }

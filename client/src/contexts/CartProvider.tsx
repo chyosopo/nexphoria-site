@@ -3,6 +3,7 @@ import { pricing, priceAtCadence, CADENCE_DISCOUNTS, bundleDiscount, formatUSD, 
 import { stacks, computeStackPrice } from "@/data/stacks";
 import { getStack as getFlagship } from "@/data/stacksCatalog";
 import { labItem, LAB_KIT } from "@/data/labs";
+import { getSolo } from "@/data/soloCatalog";
 
 /* ──────────────────────────────────────────────────────────────
    Nexphoria Cart — React Context + guarded sessionStorage.
@@ -38,6 +39,10 @@ export interface CartLine extends CartItem {
   oneTime?: boolean;
   /** the panel, complimentary because a medicine is in the cart */
   complimentary?: boolean;
+  /** months in the term (1 for one-time lines) */
+  months: number;
+  /** what this line costs for the whole term, paid up front */
+  termTotal: number;
 }
 
 interface CartContextValue {
@@ -47,6 +52,10 @@ interface CartContextValue {
   totalSavings: number;
   /** multi-peptide bundle discount (2=10%, 3=12%, 4+=15%) already netted out of subtotal */
   bundleSavings: number;
+  /** the whole figure, paid up front: every term total plus one-time lines */
+  dueToday: number;
+  /** the last line added, for the drawer's confirmation moment */
+  lastAdded: { slug: string; type: CartItemType; at: number } | null;
   itemCount: number;
   addPeptide: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
   addStack: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
@@ -97,6 +106,7 @@ function writeStoredCart(items: CartItem[]) {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItemsRaw] = useState<CartItem[]>(readStoredCart);
   const [isOpen, setIsOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState<{ slug: string; type: CartItemType; at: number } | null>(null);
 
   const setItems = useCallback((update: CartItem[] | ((prev: CartItem[]) => CartItem[])) => {
     setItemsRaw((prev) => {
@@ -116,6 +126,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { slug, type: "peptide", qty, cadence }];
     });
+    setLastAdded({ slug, type: "peptide", at: Date.now() });
     setIsOpen(true);
   }, []);
 
@@ -129,12 +140,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { slug, type: "stack", qty, cadence }];
     });
+    setLastAdded({ slug, type: "stack", at: Date.now() });
     setIsOpen(true);
   }, []);
 
   const addLab = useCallback((slug: string) => {
     if (!labItem(slug)) return;
     setItems((prev) => (prev.some((i) => i.slug === slug && i.type === "lab") ? prev : [...prev, { slug, type: "lab", qty: 1, cadence: "1mo" }]));
+    setLastAdded({ slug, type: "lab", at: Date.now() });
     setIsOpen(true);
   }, []);
 
@@ -161,7 +174,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const toggle = useCallback(() => setIsOpen((v) => !v), []);
 
   /** Derive line items + totals from items + data */
-  const { lines, subtotal, totalSavings, bundleSavings } = useMemo(() => {
+  const { lines, subtotal, totalSavings, bundleSavings, dueToday } = useMemo(() => {
     const hasMedicine = items.some((i) => i.type === "peptide" || i.type === "stack");
     const lines: CartLine[] = items.map((item) => {
       const cadenceLabel = CADENCE_DISCOUNTS[item.cadence]?.label || "Monthly";
@@ -172,14 +185,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return {
           ...item, qty: 1, name: lab?.name ?? item.slug, unitPrice, lineTotal: unitPrice,
           savings: complimentary ? LAB_KIT.price : undefined, cadenceLabel: "One time", oneTime: true, complimentary,
+          months: 1, termTotal: unitPrice,
         };
       }
       if (item.type === "peptide") {
-        const p = pricing[item.slug];
-        const baseMonthly = p?.monthlyPrice || 0;
+        // The one-month figure from the same engine the cadence price comes
+        // from, so "you save" can never quote the legacy price table.
+        const baseMonthly = priceAtCadence(item.slug, "1mo") || pricing[item.slug]?.monthlyPrice || 0;
         const unitPrice = priceAtCadence(item.slug, item.cadence);
-        const name = humanizePeptide(item.slug);
+        const name = getSolo(item.slug)?.name ?? humanizePeptide(item.slug);
         const cadenceSavings = (baseMonthly - unitPrice) * item.qty;
+        const months = CADENCE_DISCOUNTS[item.cadence]?.months ?? 1;
         return {
           ...item,
           name,
@@ -187,6 +203,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           lineTotal: unitPrice * item.qty,
           savings: cadenceSavings > 0 ? cadenceSavings : undefined,
           cadenceLabel,
+          months, termTotal: unitPrice * item.qty * months,
         };
       }
       // stack — priced straight from the flagship catalog (single source of truth)
@@ -195,6 +212,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const unitPrice = priceAtCadence(item.slug, item.cadence);
         const base = priceAtCadence(item.slug, "1mo");
         const cadenceSavings = (base - unitPrice) * item.qty;
+        const months = CADENCE_DISCOUNTS[item.cadence]?.months ?? 1;
         return {
           ...item,
           name: `${flagship.name} Protocol`,
@@ -202,12 +220,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
           lineTotal: unitPrice * item.qty,
           savings: cadenceSavings > 0 ? cadenceSavings : undefined,
           cadenceLabel,
+          months, termTotal: unitPrice * item.qty * months,
         };
       }
       // legacy fallback (unrouted paths only)
       const stack = stacks.find((s) => s.slug === item.slug);
       if (!stack) {
-        return { ...item, name: item.slug, unitPrice: 0, lineTotal: 0, cadenceLabel };
+        return { ...item, name: item.slug, unitPrice: 0, lineTotal: 0, cadenceLabel, months: 1, termTotal: 0 };
       }
       const { bundle, savings: bundleSavings } = computeStackPrice(stack, pricing);
       const disc = CADENCE_DISCOUNTS[item.cadence].pct;
@@ -221,6 +240,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         lineTotal: unitPrice * item.qty,
         savings: totalSavings > 0 ? totalSavings : undefined,
         cadenceLabel,
+        months: CADENCE_DISCOUNTS[item.cadence]?.months ?? 1, termTotal: unitPrice * item.qty * (CADENCE_DISCOUNTS[item.cadence]?.months ?? 1),
       };
     });
     const rawSubtotal = lines.reduce((acc, l) => acc + l.lineTotal, 0);
@@ -232,7 +252,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const bundleSavings = Math.round(peptideSubtotal * bundleDiscount(distinctPeptides));
     const subtotal = rawSubtotal - bundleSavings;
     const totalSavings = lines.reduce((acc, l) => acc + (l.savings || 0), 0) + bundleSavings;
-    return { lines, subtotal, totalSavings, bundleSavings };
+    // The whole figure: every term paid up front, one-time lines once, the
+    // bundle discount applied across the term the same way it is monthly.
+    const rawDue = lines.reduce((acc, l) => acc + l.termTotal, 0);
+    const peptideDue = lines.filter((l) => l.type === "peptide").reduce((acc, l) => acc + l.termTotal, 0);
+    const dueToday = rawDue - Math.round(peptideDue * bundleDiscount(distinctPeptides));
+    return { lines, subtotal, totalSavings, bundleSavings, dueToday };
   }, [items]);
 
   const itemCount = items.reduce((acc, i) => acc + i.qty, 0);
@@ -243,6 +268,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     subtotal,
     totalSavings,
     bundleSavings,
+    dueToday,
+    lastAdded,
     itemCount,
     addPeptide,
     addStack,

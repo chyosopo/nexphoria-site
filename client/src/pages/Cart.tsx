@@ -11,6 +11,9 @@ import { CADENCE_DISCOUNTS, pricing, billingNote, type CadenceKey } from "@/data
 import { FONT } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PayToday } from "@/components/PayToday";
+import { RoadStrip } from "@/components/RoadStrip";
+import { RETEST_WEEK } from "@/data/monitoring";
+import { LAB_KIT } from "@/data/labs";
 import { SkuPhoto, skuPhotoFor } from "@/components/SkuPhoto";
 
 export default function Cart() {
@@ -24,7 +27,7 @@ export default function Cart() {
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }])],
   });
-  const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem } = useCart();
+  const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem, dueToday } = useCart();
 
   return (
     <SiteLayout variant="gate">
@@ -69,6 +72,7 @@ export default function Cart() {
                 >
                   Items · {itemCount}
                 </div>
+                <div className="mb-5"><RoadStrip current={1} testId="cart-page-road" /></div>
                 <ul className="list-none p-0 space-y-4">
                   {lines.map((line) => {
                     const spec = getSpec(line.slug, line.type);
@@ -285,12 +289,12 @@ export default function Cart() {
                   <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }} data-testid="cart-panel-note">
                     <div className="flex-1 min-w-0">
                       <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-cobalt)" }}>Within the figure</p>
-                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>Your full blood panel at week 12, {PANEL_TOTAL_MARKERS} markers</p>
-                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Included in every plan. Your doctor reads it and your dose follows it.</p>
+                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before your first dose, complimentary</p>
+                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Your physician sets your dose against it. The same panel again at week {RETEST_WEEK} on plans of three months and longer. Add-on tests from $19.</p>
                     </div>
-                    <Link asChild href="/bloodwork">
+                    <Link asChild href="/labs">
                       <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }} data-testid="link-cart-bloodwork">
-                        See every marker
+                        See the panel
                       </a>
                     </Link>
                   </div>
@@ -311,7 +315,8 @@ export default function Cart() {
                   Order summary
                 </div>
 
-                <SummaryRow label="Month to month" value={formatUSD(subtotal + totalSavings)} />
+                <SummaryRow label="Monthly figure" value={`${formatUSD(subtotal)} / mo`} />
+                <SummaryRow label="Month to month would be" value={formatUSD(subtotal + totalSavings)} />
                 {totalSavings > 0 ? (
                   <SummaryRow label="You save" value={`−${formatUSD(totalSavings)}`} accent />
                 ) : null}
@@ -321,17 +326,17 @@ export default function Cart() {
                   style={{ borderTop: "1px solid var(--nx-border)" }}
                 >
                   <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
-                    Subtotal
+                    Today
                   </span>
                   <span
                     className="text-3xl"
                     style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}
                     data-testid="text-cart-page-subtotal"
                   >
-                    {formatUSD(subtotal)}
+                    {formatUSD(dueToday)}
                   </span>
                 </div>
-                <PayToday amount={formatUSD(subtotal)} testid="cart-pay-today" style={{ marginTop: "1rem", marginBottom: "1rem" }} />
+                <PayToday amount={formatUSD(subtotal)} dueToday={formatUSD(dueToday)} terms={lines.filter((l) => !l.oneTime).map((l) => `${l.months} ${l.months === 1 ? "month" : "months"} of ${l.name}`).join(" · ")} testid="cart-pay-today" style={{ marginTop: "1rem", marginBottom: "1rem" }} />
                 <PrescribedPromise testid="cart-promise" style={{ marginTop: "0.5rem", marginBottom: "1.25rem" }} />
 
                 {/* Included list */}
@@ -345,8 +350,8 @@ export default function Cart() {
                   <div className="space-y-2.5">
                     {[
                       { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Your doctor's review" },
-                      { icon: <Truck size={13} aria-hidden="true" />, text: "Cold-chain overnight shipping" },
-                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "The week-12 blood panel and dose review" },
+                      { icon: <Truck size={13} aria-hidden="true" />, text: "Cold shipping, plain packaging" },
+                      { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Baseline kit, the week-12 panel and dose review" },
                     ].map(({ icon, text }) => (
                       <div key={text} className="flex items-center justify-between gap-2">
                         <span className="flex items-center gap-2 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
@@ -411,7 +416,7 @@ export default function Cart() {
               className="nx-cta-cobalt w-full justify-center"
               data-testid="button-checkout-mobile"
             >
-              Checkout · {formatUSD(subtotal)}
+              Checkout · {formatUSD(dueToday)} today
             </a>
           </Link>
         </div>

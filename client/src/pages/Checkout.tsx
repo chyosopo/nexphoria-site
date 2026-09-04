@@ -55,7 +55,7 @@ export default function Checkout() {
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }, { name: "Checkout", path: "/checkout" }])],
   });
-  const { lines, subtotal, totalSavings, itemCount, clear } = useCart();
+  const { lines, subtotal, totalSavings, itemCount, clear, dueToday } = useCart();
 
   /* ─── GLP-1 state gate (defense-in-depth: PDPs already gate; this enforces at checkout) ─── */
   const cartHasGLP1 = lines.some((l) => getSolo(l.slug)?.gated || getStack(l.slug)?.gated);
@@ -291,7 +291,7 @@ export default function Checkout() {
                 <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ color: "var(--nx-fg-graphite)" }}>
                   Order summary · {itemCount} {itemCount === 1 ? "item" : "items"}
                 </span>
-                <span className="text-lg" style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}<span className="text-xs font-normal" style={{ color: "var(--nx-fg-muted)" }}>/mo</span></span>
+                <span className="text-lg" style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(dueToday)}<span className="text-xs font-normal" style={{ color: "var(--nx-fg-muted)" }}> today</span></span>
               </summary>
               <div className="px-4 pb-4">
                 {lines.map((line) => (
@@ -616,7 +616,7 @@ export default function Checkout() {
                 </span>
               </div>
 
-              <PayToday amount={formatUSD(subtotal)} testid="checkout-pay-today" style={{ marginTop: "1rem" }} />
+              <PayToday amount={formatUSD(subtotal)} dueToday={formatUSD(dueToday)} terms={lines.filter((l) => !l.oneTime).map((l) => `${l.months} ${l.months === 1 ? "month" : "months"} of ${l.name}`).join(" · ")} testid="checkout-pay-today" style={{ marginTop: "1rem" }} />
 
               {/* Trust marks */}
               <div className="mt-6 pt-6 space-y-3" style={{ borderTop: "1px solid var(--nx-border)" }}>

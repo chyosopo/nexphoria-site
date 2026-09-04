@@ -39,6 +39,7 @@ import goalDesire500 from "@/assets/life/goal-desire-500.webp";
 import { BASELINE } from "@/data/monitoring";
 import { StatusPill } from "@/components/StatusPill";
 import { AddonsFor } from "@/components/AddonsFor";
+import { ExpectTimeline } from "@/components/ExpectTimeline";
 import { statusOf } from "@/data/soloCatalog";
 
 /* Goal → the journal pieces that actually answer it. Every slug exists in
@@ -517,8 +518,9 @@ export default function Category() {
                 <div className="nx-sku-photo"><SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="84%" ratio="1 / 1" fill={0.58} />} /></div>
                 <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
                 <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name} <StatusPill status={statusOf(s)} style={{ marginLeft: 6 }} /></p>
-                {s.feelBy && <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: "0.3rem 0 0" }}>Feel it by {s.feelBy.toLowerCase()}</p>}
                 <div style={{ marginTop: "0.7rem" }}><BenefitStrip slug={s.slug} compact /></div>
+                <div style={{ marginTop: "0.8rem" }}><ExpectTimeline slug={s.slug} compact /></div>
+                {s.feelBy && <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: "0.5rem 0 0" }}>Feel it by {s.feelBy.toLowerCase()} · full effect {s.fullEffect}</p>}
                 <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
               </Link>
             </Reveal>

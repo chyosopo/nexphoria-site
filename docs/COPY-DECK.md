@@ -1004,3 +1004,19 @@ reason per marker, three steps), SiPhox and MyLabsDirect white-label kits.
 "LegitScript-certified, licensed in 35 states" · "COA-tested every batch" ·
 "ships in 48 hours" · trial percentages · "no auto-charges" as a phrase (the
 house says "renewing is your choice").
+
+### The polish pass (2026-09-04, evening): the horizon and the add-to-cart moment
+- `data/horizon.ts` + `ExpectTimeline`: every product's first twelve weeks drawn
+  as a bar (baseline kit at week 0, "feel it by" and "full effect" bands, retest
+  at week 12, "On paper at week 12" naming the markers the physician reads);
+  on-the-day medicines draw 24 hours with onset and active window. PDP full,
+  goal option cards compact, shelf cards a "Feel it by" line.
+- Cart drawer: "Added to your plan" + the road strip (Choose · Check out ·
+  Physician review · Test, then start · Retest) + "Inside the figure" block;
+  "Stacks well with" suggestions from the catalog's own `combine` lists, an
+  add-on-tests shelf from `addonsFor`; totals show "Today, for the whole term"
+  beside the monthly figure. Klarna / HSA-FSA badges removed (unconfirmed).
+- `PayToday` shows the whole figure ("$1,170 today, for the whole term. 6 months
+  of Semaglutide. The monthly figure is $195. Renewing at the end is your
+  choice."). Cart names and "you save" now read the catalog, never the legacy
+  price table.

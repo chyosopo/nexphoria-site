@@ -29,6 +29,7 @@ import { SkuPhoto } from "@/components/SkuPhoto";
 import { BenefitStrip } from "@/components/BenefitStrip";
 import { ExpectCard } from "@/components/ExpectCard";
 import { AddonsFor } from "@/components/AddonsFor";
+import { ExpectTimeline } from "@/components/ExpectTimeline";
 import { StatusPill } from "@/components/StatusPill";
 import { soloTiers } from "@/lib/tiers";
 import { statusOf } from "@/data/soloCatalog";
@@ -293,6 +294,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* What to expect — drawn timeline */}
             <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>What to expect</h2>
+            <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
             <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
               {solo.timeline.map((t, i) => (
                 <Reveal key={i} delay={i * 55}>
