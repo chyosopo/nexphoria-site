@@ -9,11 +9,9 @@ import { CadenceCalculator } from "@/components/CadenceCalculator";
 import { FaqAccordion } from "@/components/EnterprisePatterns";
 import { Check, X } from "lucide-react";
 import { useSeo, webPageJsonLd, faqJsonLd, orgJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { MxHeader } from "@/components/SignatureTile";
 import heroPricing from "@/assets/brand/hero-pricing.webp";
 import artPricingSingle from "@/assets/brand/nx-art-pricing-single.webp";
 import artPricingBundle from "@/assets/brand/nx-art-pricing-bundle.webp";
-import { PillBadge } from "@/components/PillBadge";
 import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 import { F, FONT } from "@/lib/typography";
@@ -558,83 +556,39 @@ export default function Pricing() {
       {/* SiteLayout renders the sole <main id="main-content"> landmark; this is a
           styled section wrapper only (a second <main>/duplicate id is invalid
           HTML5 and breaks skip-link + SR landmark nav — cf. FAQ c785c4b, Journal 213a890). */}
-      <div style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">Pricing</PillBadge>}
-            headline={
-              <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Simple monthly pricing.</span><br /><span>Everything included.</span>
-              </>
-            }
-            subtitle="Your medication, physician review, cold shipping, a baseline blood kit and the week-12 panel, all in one figure paid up front for the term. Your dose can change; your price stays the same."
-          />
-
-          {/* Editorial hero — the pricing promise as a photograph, not a diagram */}
-          <figure
-            className="relative overflow-hidden"
-            style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
-            data-testid="pricing-hero-editorial"
-          >
-            <img
-              src={heroPricing}
-              alt="A man reviews a single clear pricing sheet at his kitchen table in warm morning light"
-              className="w-full object-cover"
-              style={{ aspectRatio: "21 / 9", minHeight: "320px" }}
-              loading="eager"
-              decoding="async"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to top, color-mix(in srgb, var(--nx-fg) 58%, transparent) 0%, color-mix(in srgb, var(--nx-fg) 14%, transparent) 38%, transparent 60%)",
-              }}
-            />
-            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
-              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
-                <p
-                  style={{
-                    fontFamily: F,
-                    fontSize: "var(--nx-t-xl)",
-                    fontWeight: 500,
-                    lineHeight: 1.35,
-                    color: "var(--nx-ceramic)",
-                    maxWidth: "34ch",
-                    textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
-                  }}
-                >
-                  One figure, paid up front: physician review, the medication, cold shipping, the baseline kit and the week-12 panel included.
-                </p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <StartIntakeButton source="pricing-hero" size="lg">
-                    Get started
-                  </StartIntakeButton>
-                  <Link
-                    href="/stacks"
-                    className="inline-flex items-center justify-center transition-colors"
-                    style={{
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-base)",
-                      fontWeight: 500,
-                      color: "var(--nx-ceramic)",
-                      border: "1px solid color-mix(in srgb, var(--nx-ceramic) 55%, transparent)",
-                      borderRadius: "var(--nx-r-pill)",
-                      padding: "0.875rem 1.5rem",
-                      minHeight: "44px",
-                    }}
-                    data-testid="pricing-hero-stacks-link"
-                  >
-                    Compare protocols
-                  </Link>
-                </div>
+      {/* ══ HERO (R3): one figure, the four terms as glass tiles, the photograph ══ */}
+      <section className="nx-hero-r3" aria-labelledby="pricing-h1" data-testid="pricing-hero">
+        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]" style={{ gap: "clamp(1.6rem,4vw,3.5rem)", alignItems: "center" }}>
+            <div>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Pricing</p>
+              <h1 id="pricing-h1" style={{ fontFamily: "var(--nx-font-display)", fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem", textWrap: "balance" }}>
+                One figure. Everything within it.
+              </h1>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-lg)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", maxWidth: "48ch", marginTop: "1.1rem" }}>
+                Your medication, physician review, cold shipping, a baseline blood kit and the week-12 panel, in one figure paid up front for the term you choose. Your dose can change; your price stays the same.
+              </p>
+              <ul className="nx-terms" aria-label="The four terms" data-testid="pricing-terms">
+                {CADENCE_ORDER.map((k) => (
+                  <li key={k} className={k === "6mo" ? "is-best" : undefined}>
+                    <span className="nx-terms__label" style={{ fontFamily: F }}>{CADENCE_DISCOUNTS[k].label}</span>
+                    <span className="nx-terms__save" style={{ fontFamily: "var(--nx-font-display)" }}>{CADENCE_DISCOUNTS[k].savePct > 0 ? `Save ${CADENCE_DISCOUNTS[k].savePct}%` : "Try it"}</span>
+                    <span className="nx-terms__labs" style={{ fontFamily: F }}>{CADENCE_DISCOUNTS[k].labs}</span>
+                    {k === "6mo" && <span className="nx-chip-acid" style={{ fontFamily: F }}>Best value</span>}
+                  </li>
+                ))}
+              </ul>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: "1.4rem" }}>
+                <StartIntakeButton source="pricing-hero" size="lg">Get started</StartIntakeButton>
+                <Link href="/peptides" className="nx-cta-ghost" data-testid="pricing-hero-stacks-link">See the menu</Link>
               </div>
-            </figcaption>
-          </figure>
+            </div>
+            <figure className="nx-hero-r3__art" data-testid="pricing-hero-editorial">
+              <img src={heroPricing} alt="A man reviews a single clear pricing sheet at his kitchen table in morning light" loading="eager" decoding="async" />
+            </figure>
+          </div>
         </div>
-      </div>
-
+      </section>
 
       {/* ── Tier comparison: Solo / Stack / Custom ── */}
       <PricingTiers />

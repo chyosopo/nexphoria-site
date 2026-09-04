@@ -3024,3 +3024,29 @@ html[data-sheet="agency"] .nx-cta-cobalt { border-radius: var(--nx-r-pill); }
 .nx-faq-plus { width: 26px; height: 26px; border-radius: 50%; background: var(--nx-cobalt-soft); }
 .nx-faq-plus::before { top: 12px; left: 7px; right: 7px; }
 .nx-faq-plus::after { left: 12px; top: 7px; bottom: 7px; }
+
+/* R3 pass 3: the pricing terms, the systems band, big numerals on steps and checklist, frost tiles */
+.nx-hero-r3__art { margin: 0; border-radius: var(--nx-r-lg); overflow: hidden; aspect-ratio: 4 / 5; max-height: 560px; }
+.nx-hero-r3__art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-terms { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.nx-terms li { position: relative; display: flex; flex-direction: column; gap: 4px; padding: .85rem .9rem; border-radius: var(--nx-r-md); background: color-mix(in srgb, #FFFFFF 10%, transparent); border: 1px solid color-mix(in srgb, #FFFFFF 22%, transparent); }
+.nx-terms li.is-best { background: color-mix(in srgb, #FFFFFF 18%, transparent); border-color: var(--nx-acid); }
+.nx-terms__label { font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: color-mix(in srgb, #FFFFFF 70%, transparent); }
+.nx-terms__save { font-size: var(--nx-t-lg); font-weight: 500; color: #FFFFFF; line-height: 1.1; }
+.nx-terms__labs { font-size: var(--nx-t-2xs); line-height: 1.4; color: color-mix(in srgb, #FFFFFF 78%, transparent); }
+.nx-terms .nx-chip-acid { position: absolute; top: -10px; right: 10px; }
+@media (max-width: 760px) { .nx-terms { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nx-systems { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.nx-systems__card { display: flex; flex-direction: column; gap: 4px; padding: 1rem 1.05rem; }
+.nx-systems__n { font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); color: var(--nx-acid); }
+.nx-systems__name { font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.15; color: #FFFFFF; }
+.nx-systems__count { font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: color-mix(in srgb, #FFFFFF 70%, transparent); }
+.nx-systems__line { margin-top: .3rem; font-size: var(--nx-t-2xs); line-height: 1.45; color: color-mix(in srgb, #FFFFFF 78%, transparent); }
+@media (max-width: 1000px) { .nx-systems { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nx-check-n { font-family: var(--nx-font-display); font-size: var(--nx-t-h1); font-weight: 500; letter-spacing: var(--nx-ls-tight); line-height: 1; margin-bottom: .9rem; }
+.nx-step-n { font-family: var(--nx-font-display); font-size: var(--nx-t-h1); font-weight: 500; letter-spacing: var(--nx-ls-tight); line-height: 1; margin-bottom: .7rem; }
+.nx-step { padding: clamp(1.2rem, 2.5vw, 1.6rem); background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+.nx-road__n { font-family: var(--nx-font-display); font-size: var(--nx-t-h2); font-weight: 500; letter-spacing: var(--nx-ls-tight); line-height: 1; }
+.nx-sku-tile { border-radius: var(--nx-r-lg); }
+.nx-sku-photo { border-radius: var(--nx-r-md); background: linear-gradient(160deg, var(--nx-cobalt-soft), color-mix(in srgb, var(--nx-cobalt) 22%, var(--nx-ceramic))); }
+.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-cobalt * { color: #0E1626 !important; }

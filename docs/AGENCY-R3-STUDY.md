@@ -105,3 +105,19 @@ the site now carries their grammar on our content and tokens:
   the footer newsletter line, FAQ arrow rows, the goal photo tiles' pill.
 - Not carried, on purpose: before/after, star reviews, the trajectory
   card, "PepTalk", lorem ipsum.
+
+## Third pass (2026-09-04, night)
+Chiya: "use the Pricing R3 first section and the Homepage R3 second section,
+mix and match the rest, make it ten times better, apply it everywhere, high-res
+lifestyle imagery." Node 1334-5832 and the Pricing R3 hero remain unread
+(Figma View-seat limit); the pricing hero below is composed in their grammar
+from what was read.
+- Pricing: navy hero with the four terms as glass tiles (label, saving, the
+  labs that term includes, "Best value" on six months) beside the photograph.
+- Labs: a navy "What we measure" band with the five systems as glass cards.
+- About and How-it-works heroes in navy; step and checklist numerals as big
+  display figures (their 01 to 04 tiles); goal option tiles on tinted panels.
+- Imagery: both generators refused (Higgsfield grace-period daily limit despite
+  2,451 credits; Bloom 0 credits). Twelve R3-toned lifestyle prompts are ready
+  to run the moment either account allows it; until then the 58 localized
+  frames carry the site.

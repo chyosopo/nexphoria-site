@@ -209,10 +209,9 @@ export default function About() {
     <SiteLayout navVariant="showcase">
       {/* ════════════════ EDITORIAL HERO + PROOF STATS ════════════════ */}
       <section
-        className="nx-gradient-hero"
+        className="nx-hero-r3"
         data-testid="about-hero"
         aria-labelledby="about-h1"
-        style={{ backgroundColor: "var(--nx-bg)", borderBottom: "1px solid var(--nx-border)" }}
       >
         <div className="nx-container" style={{ paddingTop: 76, paddingBottom: 0 }}>
           <Reveal>
@@ -228,7 +227,7 @@ export default function About() {
                 maxWidth: 680,
               }}
             >
-              Nexphoria is a U.S.-based doctor-supervised peptide therapy platform that delivers prescription compounded peptides through licensed telehealth, with every batch third-party tested and a full blood panel at week 12 included in every plan.
+              Nexphoria is a U.S.-based physician-supervised peptide therapy platform that delivers prescription compounded peptides through licensed telehealth, with a baseline blood kit on the first order and the same full panel again at week 12, included in every plan.
             </p>
             <h1
               id="about-h1"

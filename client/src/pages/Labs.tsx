@@ -141,6 +141,28 @@ export default function Labs() {
         </div>
       </section>
 
+      {/* ── 2.5. The systems, at a glance (R3 band) ── */}
+      <section className="nx-band" aria-label="The five systems" data-testid="labs-systems">
+        <div className="nx-container nx-band__body">
+          <div className="nx-band__head">
+            <div>
+              <p className="nx-band__kicker" style={{ fontFamily: F }}>What we measure</p>
+              <h2 className="nx-band__h2" style={{ fontFamily: S }}>{LAB_KIT.markers} markers. {LAB_KIT.systems} systems. One clear picture.</h2>
+            </div>
+          </div>
+          <ul className="nx-systems">
+            {LAB_KIT.groups.map((g, i) => (
+              <li key={g.name} className="nx-glass nx-systems__card">
+                <span className="nx-systems__n" style={{ fontFamily: F }}>{String(i + 1).padStart(2, "0")}</span>
+                <span className="nx-systems__name" style={{ fontFamily: S }}>{g.name}</span>
+                <span className="nx-systems__count" style={{ fontFamily: F }}>{g.markers.length} markers</span>
+                <span className="nx-systems__line" style={{ fontFamily: F }}>{g.markers.map((m) => m.name).join(" · ")}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ── 3. What we test ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="labs-panel">
         <div className="grid lg:grid-cols-[0.8fr_1.2fr]" style={{ gap: "clamp(1.6rem,4vw,3.5rem)" }}>
