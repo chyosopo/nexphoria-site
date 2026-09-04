@@ -102,6 +102,9 @@
        → chose Refined Porcelain & Navy: calmer near-white canvas, deeper
        richer navy ink, a precise jewel cobalt accent replacing the muddy
        navy-teal). Same family, polished to a private-bank register. ── */
+    /* TYPE — the faces, as tokens */
+    --nx-font-body:    'General Sans', system-ui, sans-serif;
+    --nx-font-display: 'Fraunces', Georgia, serif;
     /* BACKGROUND — cool porcelain, near-white */
     --nx-bg:           #F7F8FA;  /* cold white canvas — Graphite & Ice (Chiya 2026-08-13) */
     --nx-bg-cream:     #ECEFF3;  /* band / alternating section */
@@ -2851,3 +2854,35 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-included li { display: flex; align-items: flex-start; gap: 8px; font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite); }
 .nx-included li svg { color: var(--nx-cobalt); flex-shrink: 0; margin-top: 2px; }
 .nx-included li em { font-style: normal; margin-left: auto; padding-left: 8px; font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; font-size: var(--nx-t-2xs); color: var(--nx-fg); white-space: nowrap; }
+
+/* ═══ SHEET: AGENCY R3 (preview only, 2026-09-04) ═══
+   The branding agency's "Names + Interior Review" round (Figma, R3, 090326),
+   mapped onto the token system so the whole site can be judged in their
+   direction WITHOUT repainting anything: reached by ?sheet=agency on the
+   preview, remembered for the session. Values are sampled from their page
+   renders (a View seat cannot read their variables yet) and are marked
+   approximate in docs/AGENCY-R3-STUDY.md. Graphite & Ice stays the default
+   until Chiya decides (CLAUDE.md law 1). */
+html[data-sheet="agency"], html[data-sheet="agency"] [data-world="men"], html[data-sheet="agency"] [data-world="women"] {
+  --nx-font-display: 'General Sans', system-ui, sans-serif;
+  --nx-bg:           #F8F8F8;
+  --nx-bg-cream:     #EFF0F2;
+  --nx-bg-dark:      #083573;
+  --nx-fg:           #0E1626;
+  --nx-fg-graphite:  #4A5566;
+  --nx-fg-muted:     #6A7484;
+  --nx-border:       #E2E6EC;
+  --nx-cobalt:       #0F6AE6;
+  --nx-cobalt-hover: #0B57BF;
+  --nx-cobalt-soft:  #E5EFF9;
+  --nx-amber:        #0F6AE6;
+  --nx-accent:       #0F6AE6;
+  --nx-ceramic:      #FFFFFF;
+  --nx-rock:         #E5EFF9;
+  --nx-acid:         #EEF0A6;
+  --nx-ice:          #E5EFF9;
+  --nx-ice-edge:     #C7D8EE;
+  --nx-r-sm: 8px; --nx-r-md: 14px; --nx-r-lg: 20px;
+  --nx-ls-display: -0.02em; --nx-ls-tight: -0.015em;
+}
+html[data-sheet="agency"] .nx-cta-cobalt { border-radius: var(--nx-r-pill); }
