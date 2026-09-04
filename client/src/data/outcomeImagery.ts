@@ -20,6 +20,10 @@ export const OUTCOME_STACK: Record<string, string> = {
   meridian: "img/img_56a29d462771.webp", // couple on the pass — years handed back
   ignite: "img/img_f8d241785924.webp", // lacing shoes, physician letter — clinical hope
   threshold: "img/img_72c3a0233fe1.webp", // empty track, first light — the edge, found again
+  /* the playbook's six (2026-09-04): the frames above, re-keyed */
+  recover: "img/img_ebd08f5a334f.webp", // dawn doorway, trail shoes — capability restored
+  vitality: "img/img_ba067fd9f405.webp", // golden-hour ease
+  foundation: "img/img_ca6ddc167d62.webp", // bright home gym, tape on the bench (M)
 };
 
 /* Cast fixes for shared protocol shelves (Chiya 2026-07-13: everything
@@ -31,6 +35,8 @@ export const OUTCOME_STACK: Record<string, string> = {
 const STACK_ART_OVERRIDES: Record<"men" | "women", Record<string, string>> = {
   women: {
     wolverine: "img/img_1217733ee45f.webp", // her recovery — chalked grip at the wall (W)
+    recover: "img/img_1217733ee45f.webp",
+    foundation: "img/img_5072e4db8390.webp", // navy set, quiet power (W)
     threshold: "img/img_3eae89cb98a0.webp", // her sleep — waking before the alarm (W)
     ignite: "img/img_4f2bd889825e.webp", // her metabolic — jeans button easily (W)
   },
@@ -56,6 +62,8 @@ export const OUTCOME_CATEGORY: Record<
     longevity: "img/img_cf1396d09b4a.webp", // fastest one at the picnic
     cognition: "img/img_916e52b67436.webp", // three moves ahead
     sleep: "img/img_928775d1e9c1.webp", // waking before the alarm (M)
+    "sexual-health": "img/img_d489ea4e9dbc.webp", // dawn window after the workout
+    hormone: "img/img_ca6ddc167d62.webp", // bright home gym (M)
   },
   women: {
     skin: "img/img_3678caab4727.webp", // golden profile, cream robe — skin that holds the light
@@ -66,6 +74,7 @@ export const OUTCOME_CATEGORY: Record<
     cognition: "img/img_6d55c7017047.webp", // three moves ahead (W)
     sleep: "img/img_3eae89cb98a0.webp", // waking before the alarm (W)
     "sexual-health": "img/img_ba067fd9f405.webp", // golden-hour ease — desire, on her schedule (W)
+    hormone: "img/img_5072e4db8390.webp", // navy set, quiet power (W)
   },
 };
 

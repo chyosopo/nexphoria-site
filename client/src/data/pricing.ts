@@ -12,7 +12,7 @@
 import { getSolo, SOLO_CATALOG } from "@/data/soloCatalog";
 import { getStack } from "@/data/stacksCatalog";
 
-export type CadenceKey = "1mo" | "3mo" | "12mo";
+export type CadenceKey = "1mo" | "3mo" | "6mo" | "12mo";
 
 export interface CadencePrice {
   /** monthly equivalent price after the cadence discount */
@@ -22,7 +22,7 @@ export interface CadencePrice {
   /** copy under the label */
   sublabel: string;
   /** badge for the cadence card */
-  badge?: "Flexible" | "Most popular" | "Best value";
+  badge?: "Flexible" | "Most popular" | "Best value" | "Try it";
   /** percent saved vs 1-month */
   savePct: number;
 }
@@ -66,13 +66,16 @@ export const pricing: Record<string, PeptidePricing> = {
     priceAtCadence returns that catalog's EXACT tier price so the cart can
     never contradict the product page. The percentage math below is only the
     fallback for slugs not yet migrated. */
-export const CADENCE_DISCOUNTS: Record<CadenceKey, { pct: number; label: string; sublabel: string; badge?: CadencePrice["badge"]; savePct: number; months: number }> = {
-  "1mo":  { pct: 0,    months: 1,  label: "Monthly",     sublabel: "Cancel anytime",                  badge: "Flexible",      savePct: 0 },
-  "3mo":  { pct: 0.15, months: 3,  label: "Quarterly",   sublabel: "Billed quarterly · save 15%",      badge: "Most popular",  savePct: 15 },
-  "12mo": { pct: 0.30, months: 12, label: "Annual",      sublabel: "Billed monthly · save 30%",        badge: "Best value",    savePct: 30 },
+/* Terms (the playbook, 2026-09-04): you buy a block of time, paid up front.
+   Longer terms cost less per month and include more labs. */
+export const CADENCE_DISCOUNTS: Record<CadenceKey, { pct: number; label: string; sublabel: string; badge?: CadencePrice["badge"]; savePct: number; months: number; labs: string }> = {
+  "1mo":  { pct: 0,    months: 1,  label: "One month",   sublabel: "Try it · paid up front",           badge: "Try it",        savePct: 0,  labs: "Baseline blood kit, complimentary" },
+  "3mo":  { pct: 0.10, months: 3,  label: "3 months",    sublabel: "Paid up front · save 10%",        savePct: 10, labs: "Baseline kit and your week-12 retest, included" },
+  "6mo":  { pct: 0.15, months: 6,  label: "6 months",    sublabel: "Paid up front · save 15%",        badge: "Best value",    savePct: 15, labs: "Baseline, week-12 retest and a six-month panel, included" },
+  "12mo": { pct: 0.20, months: 12, label: "12 months",   sublabel: "Paid up front · save 20%",        savePct: 20, labs: "Baseline, then a panel every quarter, included" },
 };
 
-const CADENCE_TO_TIER: Record<CadenceKey, "m1" | "m3" | "m12"> = { "1mo": "m1", "3mo": "m3", "12mo": "m12" };
+const CADENCE_TO_TIER: Record<CadenceKey, "m1" | "m3" | "m6" | "m12"> = { "1mo": "m1", "3mo": "m3", "6mo": "m6", "12mo": "m12" };
 
 /** Multi-peptide bundle discount — 2 = 10%, 3 = 12%, 4+ = 15%.
     Single source of truth: the builder ADVERTISES it and the cart engine
@@ -100,9 +103,9 @@ export function priceAtCadence(slug: string, cadence: CadenceKey): number {
   return Math.round(p.monthlyPrice * (1 - disc));
 }
 
-/** Build all three cadence cards for a peptide */
+/** Build the four term cards for a peptide */
 export function cadenceCardsFor(slug: string): { cadence: CadenceKey; pricePerMonth: number; label: string; sublabel: string; badge?: CadencePrice["badge"]; savePct: number }[] {
-  const cadences: CadenceKey[] = ["1mo", "3mo", "12mo"];
+  const cadences: CadenceKey[] = ["1mo", "3mo", "6mo", "12mo"];
   return cadences.map((c) => ({
     cadence: c,
     pricePerMonth: priceAtCadence(slug, c),
@@ -127,9 +130,8 @@ export function formatUSD(amount: number): string {
    without the actual amount and cadence the customer is committing to. */
 export function billingNote(cadence: CadenceKey, perMonth: number): string {
   const months = CADENCE_DISCOUNTS[cadence].months;
-  if (cadence === "3mo") return `Billed quarterly: ${formatUSD(perMonth * months)} every 3 months`;
-  if (cadence === "12mo") return `Billed monthly · 12-month term: ${formatUSD(perMonth * months)}/year`;
-  return "Billed monthly · cancel anytime";
+  if (months > 1) return `${formatUSD(perMonth * months)} paid up front for ${months} months`;
+  return "One month, paid up front";
 }
 
 /* Lowest shelf-priced single-peptide monthly (1-mo cadence). Single source for

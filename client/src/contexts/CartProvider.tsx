@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useCallback, useMemo, ReactNode } 
 import { pricing, priceAtCadence, CADENCE_DISCOUNTS, bundleDiscount, formatUSD, type CadenceKey } from "@/data/pricing";
 import { stacks, computeStackPrice } from "@/data/stacks";
 import { getStack as getFlagship } from "@/data/stacksCatalog";
+import { labItem, LAB_KIT } from "@/data/labs";
 
 /* ──────────────────────────────────────────────────────────────
    Nexphoria Cart — React Context + guarded sessionStorage.
@@ -13,7 +14,9 @@ import { getStack as getFlagship } from "@/data/stacksCatalog";
    controls the per-month price the user actually pays.
    ────────────────────────────────────────────────────────────── */
 
-export type CartItemType = "peptide" | "stack";
+/* "lab": the blood panel or an add-on test (data/labs). One-time, no term;
+   the panel itself is complimentary whenever a medicine is in the cart. */
+export type CartItemType = "peptide" | "stack" | "lab";
 
 export interface CartItem {
   /** unique id: peptide slug OR stack slug */
@@ -31,6 +34,10 @@ export interface CartLine extends CartItem {
   /** how much you save vs 1mo cadence (for stacks: includes bundle savings) */
   savings?: number;
   cadenceLabel: string;
+  /** a one-time line (lab kit or add-on): no term, no cadence control */
+  oneTime?: boolean;
+  /** the panel, complimentary because a medicine is in the cart */
+  complimentary?: boolean;
 }
 
 interface CartContextValue {
@@ -43,6 +50,8 @@ interface CartContextValue {
   itemCount: number;
   addPeptide: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
   addStack: (slug: string, opts?: { qty?: number; cadence?: CadenceKey }) => void;
+  /** the panel ("panel") or an add-on ("addon:<slug>"); one per cart */
+  addLab: (slug: string) => void;
   updateQty: (slug: string, type: CartItemType, qty: number) => void;
   updateCadence: (slug: string, type: CartItemType, cadence: CadenceKey) => void;
   removeItem: (slug: string, type: CartItemType) => void;
@@ -69,7 +78,7 @@ function readStoredCart(): CartItem[] {
     return parsed.filter(
       (i): i is CartItem =>
         i && typeof i.slug === "string" &&
-        (i.type === "peptide" || i.type === "stack") &&
+        (i.type === "peptide" || i.type === "stack" || i.type === "lab") &&
         typeof i.qty === "number" && i.qty > 0,
     );
   } catch {
@@ -123,6 +132,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setIsOpen(true);
   }, []);
 
+  const addLab = useCallback((slug: string) => {
+    if (!labItem(slug)) return;
+    setItems((prev) => (prev.some((i) => i.slug === slug && i.type === "lab") ? prev : [...prev, { slug, type: "lab", qty: 1, cadence: "1mo" }]));
+    setIsOpen(true);
+  }, []);
+
   const updateQty = useCallback((slug: string, type: CartItemType, qty: number) => {
     if (qty <= 0) {
       setItems((prev) => prev.filter((i) => !(i.slug === slug && i.type === type)));
@@ -147,8 +162,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   /** Derive line items + totals from items + data */
   const { lines, subtotal, totalSavings, bundleSavings } = useMemo(() => {
+    const hasMedicine = items.some((i) => i.type === "peptide" || i.type === "stack");
     const lines: CartLine[] = items.map((item) => {
       const cadenceLabel = CADENCE_DISCOUNTS[item.cadence]?.label || "Monthly";
+      if (item.type === "lab") {
+        const lab = labItem(item.slug);
+        const complimentary = lab?.kind === "panel" && hasMedicine;
+        const unitPrice = complimentary ? 0 : (lab?.price ?? 0);
+        return {
+          ...item, qty: 1, name: lab?.name ?? item.slug, unitPrice, lineTotal: unitPrice,
+          savings: complimentary ? LAB_KIT.price : undefined, cadenceLabel: "One time", oneTime: true, complimentary,
+        };
+      }
       if (item.type === "peptide") {
         const p = pricing[item.slug];
         const baseMonthly = p?.monthlyPrice || 0;
@@ -221,6 +246,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     itemCount,
     addPeptide,
     addStack,
+    addLab,
     updateQty,
     updateCadence,
     removeItem,

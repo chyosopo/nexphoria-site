@@ -21,12 +21,15 @@ export const CONCERNS: Concern[] = [
   { concern: "Stubborn belly fat", line: "Tesamorelin, studied for the deep fat around the organs.", goal: "growth", slugs: ["tesamorelin"] },
   { concern: "Slow recovery, nagging injuries", line: "BPC-157 and TB-500, studied for tendon, muscle and joint repair.", goal: "recovery", slugs: ["bpc-tb-combo", "bpc-157", "tb-500"] },
   { concern: "Low energy", line: "NAD+ and MOTS-c, for energy at the cellular level.", goal: "longevity", slugs: ["nad-plus", "mots-c"] },
-  { concern: "Brain fog", line: "Semax, a nasal spray studied for focus and mental stamina.", goal: "cognition", slugs: ["semax", "methylene-blue"] },
+  { concern: "Brain fog", line: "Semax, a nasal spray studied for focus and mental stamina.", goal: "cognition", slugs: ["semax"] },
   { concern: "Stress and low mood", line: "Selank, a nasal spray for a steadier mood under pressure.", goal: "cognition", slugs: ["selank"] },
   { concern: "Poor sleep", line: "DSIP, studied for falling asleep faster and sleeping deeper.", goal: "sleep", slugs: ["dsip"] },
   { concern: "Skin that is losing its bounce", line: "GHK-Cu, a copper peptide studied for collagen and elasticity.", goal: "skin", slugs: ["ghk-cu", "epitalon"] },
-  { concern: "Lean mass and recovery as I age", line: "Growth hormone peptides that raise your own supply.", goal: "growth", slugs: ["ipa-cjc", "sermorelin", "ipamorelin", "cjc-1295"] },
-  { concern: "Low sexual desire", line: "PT-141, which works on desire itself, as needed.", goal: "sexual-health", slugs: ["pt-141"] },
+  { concern: "Lean mass and recovery as I age", line: "Growth hormone peptides that raise your own supply.", goal: "growth", slugs: ["ipa-cjc", "sermorelin"] },
+  { concern: "Low sexual desire", line: "PT-141, which works on desire itself, as needed, with oxytocin for closeness.", goal: "sexual-health", slugs: ["pt-141", "oxytocin"] },
+  { concern: "Performance, on the day", line: "Tadalafil as a fast nasal spray, and PT-141 for the desire behind it.", goal: "sexual-health", slugs: ["tadalafil", "pt-141"] },
+  { concern: "Low testosterone", line: "Monitored testosterone, with kisspeptin to keep your own production working.", goal: "hormone", slugs: ["testosterone", "kisspeptin"] },
+  { concern: "Getting sick often", line: "Thymosin alpha-1, a peptide your thymus makes, for immune resilience.", goal: "longevity", slugs: ["thymosin-a1"] },
 ];
 
 /** Live medicines for a concern, in the order listed. */

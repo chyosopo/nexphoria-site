@@ -11,11 +11,16 @@
 
 export type SoloCategory =
   | "Growth" | "Cognitive" | "Recovery" | "Skin & Longevity"
-  | "Metabolic" | "Sleep" | "Sexual Health";
+  | "Metabolic" | "Sleep" | "Sexual Health" | "Hormone";
+
+/* Availability (the playbook, 2026-09-04). "coming": an FDA Category 2
+   peptide pending final rulemaking, shown and reservable at the founding
+   price, never sold. "watch": status unresolved (DSIP), shown with caution. */
+export type SoloStatus = "live" | "coming" | "watch";
 
 export interface SoloPricing {
   /** monthly-equivalent at 1-mo / 3-mo / 12-mo cadence */
-  m1: number; m3: number; m12: number;
+  m1: number; m3: number; m6: number; m12: number;
 }
 
 /* Route of administration is a first-class compliance field, not a detail.
@@ -58,7 +63,37 @@ export interface SoloPeptide {
   route?: SoloRoute;
   /** Defaults to the conservative reading: no approved active. */
   regulatory?: SoloRegulatory;
+  /** Defaults to "live". */
+  status?: SoloStatus;
+  /** the playbook's honest expectation lines */
+  feelBy?: string;
+  fullEffect?: string;
+  /** 1 emerging · 2 moderate · 3 strong */
+  evidence?: 1 | 2 | 3;
+  /** stacks well with (product names) */
+  combine?: string[];
+  /** does the same job; pick one (product names) */
+  avoid?: string[];
 }
+
+export function statusOf(s: SoloPeptide): SoloStatus {
+  return s.status ?? "live";
+}
+export function isSellable(s: SoloPeptide): boolean {
+  return statusOf(s) === "live" && Boolean(s.pricing);
+}
+
+export const STATUS_LABEL: Record<SoloStatus, string> = {
+  live: "Available now",
+  coming: "Coming · reserve your price",
+  watch: "Under review · reserve your price",
+};
+export const EVIDENCE_LABEL: Record<1 | 2 | 3, string> = { 1: "Emerging", 2: "Moderate", 3: "Strong" };
+export const EVIDENCE_NOTE: Record<1 | 2 | 3, string> = {
+  1: "Animal studies and early human reports. Offered with that said plainly.",
+  2: "Small human trials and consistent clinical use.",
+  3: "Large human trials, or an FDA-approved active.",
+};
 
 export function routeOf(s: SoloPeptide): SoloRoute {
   return s.route ?? "subcutaneous";
@@ -88,7 +123,9 @@ export const LEGITSCRIPT_FOUR = new Set([
   "semaglutide", "tirzepatide", "tesamorelin", "pt-141",
 ]);
 export const LAUNCH_SLUGS = new Set([
-  "sermorelin", "ipamorelin", "cjc-1295", "ipa-cjc", "tesamorelin", "selank", "semax", "cerebrolysin", "methylene-blue", "bpc-157", "tb-500", "bpc-tb-combo", "ghk-cu", "epitalon", "nad-plus", "mots-c", "semaglutide", "tirzepatide", "dsip", "pt-141",
+  "sermorelin", "ipa-cjc", "tesamorelin", "ghk-cu", "thymosin-a1", "nad-plus", "mots-c", "epitalon",
+  "semax", "selank", "dsip", "tirzepatide", "semaglutide", "aod-9604", "pt-141", "oxytocin", "tadalafil",
+  "testosterone", "kisspeptin", "bpc-157", "tb-500", "bpc-tb-combo",
 ]);
 
 const ALL_SOLO: SoloPeptide[] = [
@@ -101,7 +138,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose, at bedtime." }, { wk: "Wk 4", effect: "The nightly rhythm settles in." }, { wk: "Wk 12", effect: "Your blood panel. IGF-1 checked first." }],
     panel: "Full", panelNote: "Full panel — IGF-1 monitored.",
     contraindications: ["Active malignancy", "Elevated IGF-1 at baseline"],
-    pricing: { m1: 189, m3: 159, m12: 129 },
+    pricing: { m1: 129, m3: 116, m6: 110, m12: 103 },
+    status: "live", feelBy: "2 to 4 weeks, sleep first", fullEffect: "8 to 12 weeks", evidence: 2,
+    combine: ["BPC-157"], avoid: ["Ipamorelin / CJC-1295 Blend", "Tesamorelin"],
   },
   {
     slug: "ipamorelin", name: "Ipamorelin", category: "Growth",
@@ -111,7 +150,7 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose, at bedtime." }, { wk: "Wk 4", effect: "The nightly rhythm settles in." }, { wk: "Wk 12", effect: "Your blood panel. IGF-1 checked first." }],
     panel: "Full", panelNote: "Full panel — IGF-1 mandatory.",
     contraindications: ["Active malignancy", "Elevated IGF-1 at baseline"],
-    pricing: { m1: 189, m3: 159, m12: 129 },
+    pricing: { m1: 189, m3: 159, m6: 161, m12: 129 },
   },
   {
     slug: "cjc-1295", name: "CJC-1295 (no-DAC)", category: "Growth",
@@ -121,7 +160,7 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose, at bedtime." }, { wk: "Wk 4", effect: "The nightly rhythm settles in." }, { wk: "Wk 12", effect: "Your blood panel. IGF-1 checked first." }],
     panel: "Full", panelNote: "Full panel — IGF-1 monitored.",
     contraindications: ["Active malignancy", "Elevated IGF-1 at baseline"],
-    pricing: { m1: 239, m3: 209, m12: 179 },
+    pricing: { m1: 239, m3: 209, m6: 203, m12: 179 },
   },
   {
     slug: "ipa-cjc", name: "Ipamorelin / CJC-1295 Blend", category: "Growth",
@@ -131,7 +170,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose, at bedtime." }, { wk: "Wk 4", effect: "The nightly rhythm settles in." }, { wk: "Wk 12", effect: "Your blood panel. IGF-1 checked first." }],
     panel: "Full", panelNote: "Full panel — IGF-1 mandatory.",
     contraindications: ["Active malignancy", "Elevated IGF-1 at baseline"],
-    pricing: { m1: 249, m3: 219, m12: 179 },
+    pricing: { m1: 199, m3: 179, m6: 169, m12: 159 },
+    status: "live", feelBy: "Sleep in a week, body in 8 to 12 weeks", fullEffect: "12 weeks", evidence: 2,
+    combine: ["BPC-157", "TB-500", "Tirzepatide"], avoid: ["Sermorelin", "Tesamorelin"],
   },
   {
     slug: "tesamorelin", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tesamorelin", category: "Growth",
@@ -141,7 +182,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose, in the evening." }, { wk: "Wk 8", effect: "The same dose daily. The effect builds." }, { wk: "Wk 12", effect: "Your blood panel. IGF-1 checked first." }],
     panel: "Full", panelNote: "The full panel at week 12, included. IGF-1 is the number your dose is set against.",
     contraindications: ["Active malignancy", "Pregnancy", "Elevated IGF-1 at baseline"],
-    pricing: { m1: 349, m3: 299, m12: 249 },
+    pricing: { m1: 299, m3: 269, m6: 254, m12: 239 },
+    status: "live", feelBy: "4 to 8 weeks", fullEffect: "12 weeks and beyond", evidence: 3,
+    combine: ["BPC-157"], avoid: ["Ipamorelin / CJC-1295 Blend", "Sermorelin"],
   },
 
   /* ── COGNITIVE ── */
@@ -153,7 +196,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Day 1", effect: "Your first spray. Most people feel it within the hour." }, { wk: "Wk 2", effect: "Taken twice a day, the effect evens out." }, { wk: "Wk 12", effect: "Your blood panel, with thyroid and cortisol checked for context." }],
     panel: "Full", panelNote: "Basic panel plus TSH.",
     contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review)"],
-    pricing: { m1: 159, m3: 139, m12: 119 },
+    pricing: { m1: 189, m3: 170, m6: 161, m12: 151 },
+    status: "coming", feelBy: "Same day to 1 week", fullEffect: "2 to 4 weeks", evidence: 2,
+    combine: ["Semax"], avoid: [],
   },
   {
     slug: "semax", name: "Semax", category: "Cognitive",
@@ -163,7 +208,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Day 1", effect: "Your first spray, in the morning." }, { wk: "Wk 2", effect: "Taken daily, the effect evens out." }, { wk: "Wk 12", effect: "Your blood panel, with thyroid and cortisol checked for context." }],
     panel: "Full",
     contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review)"],
-    pricing: { m1: 179, m3: 149, m12: 129 },
+    pricing: { m1: 189, m3: 170, m6: 161, m12: 151 },
+    status: "coming", feelBy: "Same day to 1 week", fullEffect: "2 to 4 weeks", evidence: 2,
+    combine: ["Selank"], avoid: [],
   },
   {
     slug: "cerebrolysin", name: "Cerebrolysin", category: "Cognitive",
@@ -173,7 +220,7 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Day 1", effect: "Your course begins." }, { wk: "Day 10", effect: "Your course ends." }, { wk: "Wk 12", effect: "Your blood panel, with kidney and liver markers checked." }],
     panel: "Full",
     contraindications: ["Pregnancy", "Severe renal impairment", "Epilepsy (physician review)"],
-    pricing: { m1: 299, m3: 259, m12: 229 },
+    pricing: { m1: 299, m3: 259, m6: 254, m12: 229 },
   },
   {
     slug: "methylene-blue", name: "Methylene Blue", category: "Cognitive",
@@ -193,9 +240,11 @@ const ALL_SOLO: SoloPeptide[] = [
     dose: "500 mcg daily, under the skin", spec: "5 mg/mL · 5 mL vial",
     mechanism: "A peptide studied for helping tendons, muscle, joints and the gut lining repair. One small injection a day.",
     timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 4", effect: "Taken daily through your recovery." }, { wk: "Wk 12", effect: "Your blood panel, with inflammation markers checked." }],
-    panel: "Full", panelNote: "Basic panel plus hs-CRP.",
+    panel: "Full", panelNote: "The full panel at week 12, included, with inflammation markers checked first.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
-    pricing: { m1: 149, m3: 129, m12: 99 },
+    pricing: { m1: 179, m3: 161, m6: 152, m12: 143 },
+    status: "coming", feelBy: "Gut in days, tissue in 1 to 2 weeks", fullEffect: "4 to 8 weeks", evidence: 2,
+    combine: ["TB-500", "Ipamorelin / CJC-1295 Blend"], avoid: [],
   },
   {
     slug: "tb-500", name: "TB-500", category: "Recovery",
@@ -205,7 +254,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 4", effect: "Twice a week through your recovery." }, { wk: "Wk 12", effect: "Your blood panel, with inflammation markers checked." }],
     panel: "Full", panelNote: "Basic panel plus IL-6 / hs-CRP.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
-    pricing: { m1: 189, m3: 159, m12: 129 },
+    pricing: { m1: 259, m3: 233, m6: 220, m12: 207 },
+    status: "coming", feelBy: "2 to 3 weeks", fullEffect: "6 to 8 weeks", evidence: 1,
+    combine: ["BPC-157"], avoid: [],
   },
   {
     slug: "bpc-tb-combo", name: "BPC-157 + TB-500", category: "Recovery",
@@ -215,7 +266,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first doses." }, { wk: "Wk 4", effect: "Both peptides through your recovery." }, { wk: "Wk 12", effect: "Your blood panel, with inflammation markers checked." }],
     panel: "Full", panelNote: "Basic panel plus IL-6 / hs-CRP.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
-    pricing: { m1: 269, m3: 229, m12: 189 },
+    pricing: { m1: 399, m3: 359, m6: 339, m12: 319 },
+    status: "coming", feelBy: "Gut in days, tissue in 1 to 3 weeks", fullEffect: "6 to 8 weeks", evidence: 2,
+    combine: ["Ipamorelin / CJC-1295 Blend"], avoid: [],
   },
 
   /* ── SKIN & LONGEVITY ── */
@@ -227,7 +280,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 6", effect: "Taken daily. Skin renews on its own cycle." }, { wk: "Wk 12", effect: "Your blood panel, with inflammation and blood count checked." }],
     panel: "Full",
     contraindications: ["Active malignancy", "Copper allergy"],
-    // pricing TBD
+    pricing: { m1: 129, m3: 116, m6: 110, m12: 103 },
+    status: "coming", feelBy: "Skin in 3 to 4 weeks", fullEffect: "8 to 12 weeks", evidence: 2,
+    combine: ["NAD+", "MOTS-c", "Epitalon"], avoid: [],
   },
   {
     slug: "epitalon", name: "Epitalon", category: "Skin & Longevity",
@@ -237,7 +292,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Day 1", effect: "Your course begins." }, { wk: "Day 20", effect: "Your course ends." }, { wk: "Wk 12", effect: "Your blood panel, with metabolic and inflammation markers checked." }],
     panel: "Full",
     contraindications: ["Active malignancy", "Pregnancy"],
-    // pricing TBD
+    pricing: { m1: 199, m3: 179, m6: 169, m12: 159 },
+    status: "coming", feelBy: "Sleep in 1 to 2 weeks", fullEffect: "per course", evidence: 1,
+    combine: ["NAD+", "MOTS-c", "GHK-Cu"], avoid: [],
   },
   {
     slug: "nad-plus", name: "NAD+", category: "Skin & Longevity",
@@ -247,7 +304,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first doses." }, { wk: "Wk 4", effect: "Three times a week, the level builds." }, { wk: "Wk 12", effect: "Your blood panel, with metabolic and inflammation markers checked." }],
     panel: "Full",
     contraindications: ["Active malignancy", "Pregnancy"],
-    pricing: { m1: 199, m3: 169, m12: 139 },
+    pricing: { m1: 149, m3: 134, m6: 127, m12: 119 },
+    status: "live", feelBy: "Energy in days to 2 weeks", fullEffect: "ongoing", evidence: 2,
+    combine: ["MOTS-c", "Epitalon", "GHK-Cu"], avoid: [],
   },
   {
     slug: "mots-c", name: "MOTS-c", category: "Skin & Longevity",
@@ -257,7 +316,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 4", effect: "Twice a week, alongside training." }, { wk: "Wk 12", effect: "Your blood panel, with metabolic markers checked." }],
     panel: "Full",
     contraindications: ["Active malignancy", "Pregnancy"],
-    // pricing TBD
+    pricing: { m1: 169, m3: 152, m6: 144, m12: 135 },
+    status: "coming", feelBy: "2 to 4 weeks", fullEffect: "8 to 12 weeks", evidence: 2,
+    combine: ["NAD+", "Epitalon", "Tirzepatide"], avoid: [],
   },
 
   /* ── METABOLIC / GLP-1 (GATED) ── */
@@ -270,7 +331,9 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full", panelNote: "The full panel at week 12, included, with fasting insulin and lipase read first.",
     contraindications: ["Personal/family history of medullary thyroid carcinoma", "MEN 2", "Pregnancy", "Pancreatitis history"],
     stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
-    pricing: { m1: 299, m3: 254, m12: 209 },
+    pricing: { m1: 229, m3: 206, m6: 195, m12: 183 },
+    status: "live", feelBy: "Appetite in week 1, weight in 4 to 12 weeks", fullEffect: "6 to 12 months", evidence: 3,
+    combine: ["Ipamorelin / CJC-1295 Blend"], avoid: ["Tirzepatide"],
   },
   {
     slug: "tirzepatide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tirzepatide", category: "Metabolic",
@@ -281,7 +344,9 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full", panelNote: "The full panel at week 12, included, with fasting insulin and lipase read first.",
     contraindications: ["Personal/family history of medullary thyroid carcinoma", "MEN 2", "Pregnancy", "Pancreatitis history"],
     stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
-    pricing: { m1: 399, m3: 339, m12: 279 },
+    pricing: { m1: 399, m3: 359, m6: 339, m12: 319 },
+    status: "live", feelBy: "Appetite in week 1, weight in 4 to 12 weeks", fullEffect: "6 to 12 months", evidence: 3,
+    combine: ["Ipamorelin / CJC-1295 Blend", "MOTS-c"], avoid: ["Semaglutide"],
   },
 
   /* ── SLEEP + SEXUAL HEALTH ── */
@@ -293,7 +358,9 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Night 1", effect: "Your first dose, at bedtime." }, { wk: "Wk 2", effect: "Taken nightly, sleep settles into a rhythm." }, { wk: "Wk 12", effect: "Your blood panel, with cortisol and thyroid checked." }],
     panel: "Full",
     contraindications: ["Pregnancy", "Concurrent SSRI/SNRI (physician review)"],
-    // pricing TBD
+    pricing: { m1: 129, m3: 116, m6: 110, m12: 103 },
+    status: "watch", feelBy: "The first nights", fullEffect: "ongoing", evidence: 1,
+    combine: ["Epitalon"], avoid: [],
   },
   {
     slug: "pt-141", route: "subcutaneous", regulatory: "compounded-approved-active", name: "PT-141", category: "Sexual Health",
@@ -303,7 +370,77 @@ const ALL_SOLO: SoloPeptide[] = [
     timeline: [{ wk: "Dose 1", effect: "About an hour ahead. Works within 1 to 3 hours." }, { wk: "Ongoing", effect: "On the days you choose, within your monthly limit." }, { wk: "Wk 12", effect: "Your blood panel and a dose review." }],
     panel: "Full", panelNote: "The full panel at week 12, included, with your hormones read for context.",
     contraindications: ["Uncontrolled hypertension", "Cardiovascular disease (physician review)", "Pregnancy"],
-    // pricing TBD
+    pricing: { m1: 99, m3: 89, m6: 84, m12: 79 },
+    status: "live", feelBy: "Same day, about 45 minutes", fullEffect: "as needed", evidence: 3,
+    combine: ["Oxytocin Nasal", "Tadalafil Nasal"], avoid: [],
+  },
+
+  /* ── ADDED FROM THE PLAYBOOK (2026-09-04) ── */
+  {
+    slug: "thymosin-a1", route: "subcutaneous", name: "Thymosin Alpha-1", category: "Skin & Longevity",
+    outcome: "Immune support, under stress. A few times a week.",
+    dose: "1.6 mg twice a week, under the skin", spec: "10 mg/mL · 3 mL vial",
+    mechanism: "A peptide your thymus makes that helps regulate and strengthen the immune system. Used for immune resilience and recovery, and for staying well under stress.",
+    timeline: [{ wk: "Wk 1", effect: "Your first doses." }, { wk: "Wk 4", effect: "Taken through the season, the effect builds." }, { wk: "Wk 12", effect: "Your blood panel, with blood count and inflammation checked." }],
+    panel: "Full", panelNote: "The full panel at week 12, included, with blood count and inflammation markers checked first.",
+    contraindications: ["Active malignancy (physician review)", "Organ transplant or immunosuppressant medication", "Pregnancy"],
+    pricing: { m1: 159, m3: 143, m6: 135, m12: 127 },
+    status: "live", feelBy: "2 to 4 weeks", fullEffect: "ongoing", evidence: 2, combine: ["BPC-157"], avoid: [],
+  },
+  {
+    slug: "aod-9604", route: "subcutaneous", name: "AOD-9604", category: "Metabolic",
+    outcome: "A fat-metabolism add-on. Once a day.",
+    dose: "300 mcg daily, under the skin", spec: "5 mg/mL · 3 mL vial",
+    mechanism: "A fragment of growth hormone studied for fat metabolism. The human evidence is limited, so it is offered as an add-on to a broader plan rather than on its own.",
+    timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 6", effect: "Taken daily alongside your main plan." }, { wk: "Wk 12", effect: "Your blood panel, with metabolic markers checked." }],
+    panel: "Full", panelNote: "The full panel at week 12, included, with metabolic markers checked first.",
+    contraindications: ["Pregnancy", "Active malignancy"],
+    pricing: { m1: 199, m3: 179, m6: 169, m12: 159 },
+    status: "live", feelBy: "Weeks", fullEffect: "12 weeks", evidence: 1, combine: ["Ipamorelin / CJC-1295 Blend"], avoid: [],
+  },
+  {
+    slug: "oxytocin", route: "nasal", regulatory: "compounded-approved-active", name: "Oxytocin Nasal", category: "Sexual Health",
+    outcome: "Closeness and arousal. A nasal spray, when you want it.",
+    dose: "As needed, nasal spray", spec: "Nasal spray",
+    mechanism: "The bonding hormone as a nasal spray, used for closeness, arousal and mood in intimate settings. Often taken alongside PT-141.",
+    timeline: [{ wk: "Dose 1", effect: "Taken shortly before. Works the same day." }, { wk: "Ongoing", effect: "On the days you choose." }, { wk: "Wk 12", effect: "Your blood panel, with hormones checked for context." }],
+    panel: "Full", panelNote: "The full panel at week 12, included, with hormones checked for context.",
+    contraindications: ["Pregnancy", "Uncontrolled hypertension (physician review)"],
+    pricing: { m1: 99, m3: 89, m6: 84, m12: 79 },
+    status: "live", feelBy: "Same day", fullEffect: "as needed", evidence: 1, combine: ["PT-141"], avoid: [],
+  },
+  {
+    slug: "tadalafil", route: "nasal", regulatory: "compounded-approved-active", name: "Tadalafil Nasal", category: "Sexual Health",
+    outcome: "Fast blood flow. A nasal spray, 20 to 30 minutes ahead.",
+    dose: "As needed, nasal spray", spec: "Nasal spray",
+    mechanism: "A fast-onset nasal form of a well-known blood-flow medication for erections. Works on performance; PT-141 works on desire, and the two are often paired.",
+    timeline: [{ wk: "Dose 1", effect: "About 20 to 30 minutes ahead." }, { wk: "Ongoing", effect: "On the days you choose." }, { wk: "Wk 12", effect: "Your blood panel, with heart markers checked for context." }],
+    panel: "Full", panelNote: "The full panel at week 12, included.",
+    contraindications: ["Nitrate medications", "Recent heart attack or stroke", "Severe liver or kidney disease"],
+    pricing: { m1: 89, m3: 80, m6: 76, m12: 71 },
+    status: "live", feelBy: "20 to 30 minutes", fullEffect: "as needed", evidence: 3, combine: ["PT-141"], avoid: [],
+  },
+  {
+    slug: "testosterone", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Testosterone Cypionate", category: "Hormone",
+    outcome: "Physician-monitored testosterone. Once a week.",
+    dose: "Weekly, under the skin or into muscle", spec: "200 mg/mL · 10 mL vial",
+    mechanism: "Classic testosterone replacement for men with low testosterone, monitored with regular blood work. Used for energy, drive, muscle and mood, and the base many men build the rest of a plan on.",
+    timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 6", effect: "Levels settle. Energy and drive are usually the first things to move." }, { wk: "Wk 12", effect: "Your blood panel, with testosterone, estradiol and blood count checked first." }],
+    panel: "Full", panelNote: "The full panel at week 12, included, with testosterone, estradiol and blood count checked first.",
+    contraindications: ["Prostate or breast cancer", "Untreated sleep apnea", "Planning to conceive (physician review)", "High red blood cell count"],
+    pricing: { m1: 149, m3: 134, m6: 127, m12: 119 },
+    status: "live", feelBy: "2 to 6 weeks", fullEffect: "3 to 6 months", evidence: 3, combine: ["Ipamorelin / CJC-1295 Blend", "Kisspeptin"], avoid: [],
+  },
+  {
+    slug: "kisspeptin", route: "subcutaneous", name: "Kisspeptin", category: "Hormone",
+    outcome: "Your body's own hormone axis, supported.",
+    dose: "Under the skin, on your physician's schedule", spec: "Vial",
+    mechanism: "A signalling peptide upstream of your natural sex-hormone production. A gentler lever than direct hormones, used to support the body's own axis and in fertility-minded plans.",
+    timeline: [{ wk: "Wk 1", effect: "Your first dose." }, { wk: "Wk 6", effect: "Taken on schedule, the axis responds." }, { wk: "Wk 12", effect: "Your blood panel, with testosterone, estradiol and SHBG checked first." }],
+    panel: "Full", panelNote: "The full panel at week 12, included, with hormones checked first.",
+    contraindications: ["Pregnancy", "Hormone-sensitive cancer"],
+    pricing: { m1: 169, m3: 152, m6: 144, m12: 135 },
+    status: "live", feelBy: "Weeks", fullEffect: "ongoing", evidence: 2, combine: ["Testosterone Cypionate"], avoid: [],
   },
 ];
 
@@ -320,6 +457,13 @@ export function getSolo(slug: string): SoloPeptide | undefined {
   return SOLO_CATALOG.find((s) => s.slug === slug);
 }
 
+/** A live SKU by its display name, for stack component lines and the
+    "stacks well with" lists, which are written as names. */
+export function soloByName(name: string): SoloPeptide | undefined {
+  const k = name.trim().toLowerCase();
+  return SOLO_CATALOG.find((s) => s.name.toLowerCase() === k);
+}
+
 export const SOLO_CATEGORIES: SoloCategory[] = [
-  "Growth", "Cognitive", "Recovery", "Skin & Longevity", "Metabolic", "Sleep", "Sexual Health",
+  "Growth", "Cognitive", "Recovery", "Skin & Longevity", "Metabolic", "Sleep", "Sexual Health", "Hormone",
 ];

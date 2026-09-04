@@ -33,6 +33,11 @@ const PHASES: Phase[] = [
     body: "Your medicine is compounded for you in a state-licensed 503A pharmacy under USP <797> and shipped cold to all 50 states.",
   },
   {
+    when: "Before your first dose",
+    title: "Your baseline, drawn at home",
+    body: "A free at-home blood kit arrives with your medication. You draw first, and your doctor sets your dose against your numbers.",
+  },
+  {
     when: "Week 12",
     title: "Your blood, read",
     body: "A full blood panel is drawn at week 12, included in your plan. Your doctor reads it against your plan and continues, adjusts or stops your dose from what it shows."

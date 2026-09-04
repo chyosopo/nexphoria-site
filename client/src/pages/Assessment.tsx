@@ -74,10 +74,10 @@ const GOAL_PARAM_TO_GOAL: Record<string, string> = {
 // pricing path.
 const GOAL_STACK_SLUG: Record<string, string> = {
   "Metabolic health & body composition": "ignite",
-  "Strength & performance": "ascend",
-  "Longevity & healthy aging": "meridian",
+  "Strength & performance": "recover",
+  "Longevity & healthy aging": "ascend",
   "Cognitive function": "lucidity",
-  "Skin & recovery": "wolverine",
+  "Skin & recovery": "recover",
 };
 
 const AGE_RANGES = ["18–29", "30–39", "40–49", "50–59", "60+"];

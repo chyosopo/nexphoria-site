@@ -25,7 +25,7 @@ interface NavLink {
 const showcaseLinks: NavLink[] = [
   { label: "Peptides", href: "/peptides", mega: true },
   { label: "Protocols", href: "/stacks" },
-  { label: "Bloodwork", href: "/bloodwork" },
+  { label: "Blood testing", href: "/labs" },
   { label: "Pricing", href: "/pricing" },
 ];
 
@@ -51,14 +51,15 @@ const showcaseLinks: NavLink[] = [
 const MEGA_BLURB: Partial<Record<PeptideCategory, string>> = {
   metabolic: "GLP-1 weight loss medication",
   growth: "Tesamorelin and growth hormone peptides",
-  "sexual-health": "PT-141 for sexual desire",
+  "sexual-health": "PT-141, oxytocin and tadalafil",
+  hormone: "Testosterone, monitored",
   recovery: "BPC-157 and TB-500 for recovery",
   skin: "GHK-Cu and epitalon for skin",
   longevity: "NAD+, MOTS-c and epitalon",
   cognition: "Semax and Selank for focus and mood",
   sleep: "DSIP for deeper sleep",
 };
-const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = liveCategories(["metabolic", "growth", "recovery", "longevity", "cognition", "sleep", "skin", "sexual-health"])
+const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = liveCategories(["metabolic", "growth", "hormone", "recovery", "longevity", "cognition", "sleep", "skin", "sexual-health"])
   .map((key) => ({ key, blurb: MEGA_BLURB[key] ?? "" }));
 
 /* "Featured peptides": what the catalog actually sells, in catalog order,
@@ -361,7 +362,7 @@ export function Nav({ variant = "gate" }: NavProps) {
               {/* Featured peptides */}
               <div style={{ borderLeft: "1px solid var(--nx-border)", paddingLeft: "2.5rem" }}>
                 <Link
-                  href="/stacks/wolverine"
+                  href="/stacks/recover"
                   className="group block no-underline mb-5"
                   onClick={() => setMegaOpen(false)}
                   data-testid="mega-featured-card"

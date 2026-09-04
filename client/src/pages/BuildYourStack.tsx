@@ -124,13 +124,13 @@ const GOALS: Goal[] = [
    3 peptides, 8-week course) that the canonical PDP one click away
    contradicts (2 peptides, 12 weeks). */
 const GOAL_TO_STACK: Record<string, string> = {
-  recovery: "wolverine",
-  skin: "glow",
+  recovery: "recover",
+  skin: "ascend",
   weight: "ignite",
-  sleep: "threshold",
+  sleep: "lucidity",
   cognitive: "lucidity",
-  longevity: "meridian",
-  performance: "ascend",
+  longevity: "ascend",
+  performance: "recover",
 };
 
 /* Canonical peptide display name → soloCatalog slug ("CJC-1295 (no-DAC)" →

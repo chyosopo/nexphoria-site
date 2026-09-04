@@ -44,7 +44,7 @@ async function main() {
     // (2026-08-13). They resolve via App.tsx's <R> and have no page module;
     // audit:funnel asserts they still reach price + buy.
     ["/stacks",          "/src/pages/ProtocolsIndex.tsx", {}],
-    ["/stacks/wolverine","/src/pages/StackPage.tsx", { slug: "wolverine" }],
+    ["/stacks/recover", "/src/pages/StackPage.tsx", { slug: "recover" }],
     ["/stacks/ignite",   "/src/pages/StackPage.tsx", { slug: "ignite" }],
     ["/peptides/tirzepatide","/src/pages/SoloPDP.tsx", { slug: "tirzepatide" }],
     ["/peptides/semaglutide","/src/pages/SoloPDP.tsx", { slug: "semaglutide" }],
@@ -56,6 +56,7 @@ async function main() {
     ["/peptides",        "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
     ["/catalog",         "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
     ["/bloodwork",       "/src/pages/Bloodwork.tsx", {}],
+    ["/labs",            "/src/pages/Labs.tsx", {}],
     ["/blood-work",      "/src/pages/Bloodwork.tsx", {}],
     ["/how-it-works",    "/src/pages/HowItWorks.tsx", {}],
     ["/peptides-101",    "/src/pages/Peptides101.tsx", {}],

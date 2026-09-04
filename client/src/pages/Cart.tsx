@@ -104,7 +104,7 @@ export default function Cart() {
                               className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                               style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}
                             >
-                              {line.type === "stack" ? "Curated Stack" : "Single Peptide"}
+                              {line.type === "stack" ? "Curated Stack" : line.type === "lab" ? "Blood test · one time" : "Single Peptide"}
                             </div>
                             <h3
                               className="text-lg md:text-xl mb-1"
@@ -124,12 +124,14 @@ export default function Cart() {
                             ) : null}
 
                             <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                              <span style={{ color: "var(--nx-fg)", fontWeight: 500 }}>{formatUSD(line.unitPrice)}</span>
-                              <span className="text-xs" style={{ color: "var(--nx-fg-graphite)" }}> / month supply</span>
+                              <span style={{ color: "var(--nx-fg)", fontWeight: 500 }}>{line.complimentary ? "Complimentary" : formatUSD(line.unitPrice)}</span>
+                              <span className="text-xs" style={{ color: "var(--nx-fg-graphite)" }}>{line.oneTime ? (line.complimentary ? " with your medication order" : " · one time") : " / month supply"}</span>
                             </p>
-                            <p className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
-                              {billingNote(line.cadence, line.unitPrice)}
-                            </p>
+                            {!line.oneTime && (
+                              <p className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
+                                {billingNote(line.cadence, line.unitPrice)}
+                              </p>
+                            )}
 
                             {/* Chips */}
                             <div className="flex flex-wrap items-center gap-2 mt-3">
@@ -141,8 +143,8 @@ export default function Cart() {
                               ) : null}
                             </div>
 
-                            {/* Cadence picker */}
-                            <div className="mt-4">
+                            {/* Cadence picker (medicines only) */}
+                            {!line.oneTime && <div className="mt-4">
                               <div
                                 className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                                 style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
@@ -188,7 +190,7 @@ export default function Cart() {
                                   );
                                 })}
                               </div>
-                            </div>
+                            </div>}
                           </div>
 
                           {/* Price + qty + remove: inline row under the content on

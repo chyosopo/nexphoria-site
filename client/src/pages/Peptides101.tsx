@@ -38,7 +38,7 @@ const FAQ = [
   { q: "Is this legal?", a: "Yes. Every peptide here is prescription only. A licensed U.S. physician writes the prescription, and a licensed 503A pharmacy compounds it for you. Compounded medications are made for an individual patient under a prescription. They are not FDA-approved drugs, and they are not the branded products." },
   { q: "Will I feel it?", a: "It depends on the peptide. Appetite changes on a GLP-1 are often felt in the first weeks. Tesamorelin works on a slower clock, which is why the week 12 panel matters: some of what changes shows up in your blood before you feel it." },
   { q: "Do I have to inject it?", a: "Most peptides are a small injection under the skin with a very fine needle, the kind people use every day for insulin. Your box comes with everything and plain instructions. PT-141 is used as needed." },
-  { q: "What if it is not for me?", a: "Your doctor can say no from your questionnaire, and some do. If it fits, you start. At week 12 your blood and your doctor decide what happens next." },
+  { q: "What if it is not for me?", a: "Your doctor can say no from your questionnaire, and some do. If it fits, your medication and a free baseline blood kit ship, and you start. At week 12 your blood and your doctor decide what happens next." },
 ];
 
 export default function Peptides101() {

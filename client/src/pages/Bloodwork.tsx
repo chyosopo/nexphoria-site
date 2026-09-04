@@ -114,7 +114,7 @@ function Hero() {
                   marginBottom: "2rem",
                 }}
               >
-                At week 12, a full panel of {PANEL_TOTAL_MARKERS} markers shows your physician how your body is responding to your medication. Your dose is adjusted from it. The panel is part of your monthly price.
+                A full panel of {PANEL_TOTAL_MARKERS} markers, drawn at home before your first dose and again at week 12, shows your physician how your body is responding. Your dose is set from the first and adjusted from the second. Both are inside your price.
               </p>
               <div style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap" }}>
                 <StartIntakeButton
@@ -125,7 +125,7 @@ function Hero() {
                   Get started
                 </StartIntakeButton>
                 <Link
-                  href="/peptides"
+                  href="/labs"
                   data-testid="bloodwork-hero-cta-science"
                   style={{
                     fontFamily: FONT,
@@ -141,7 +141,7 @@ function Hero() {
                     gap: "0.5rem",
                   }}
                 >
-                  See the science <ArrowRight size={14} strokeWidth={1.75} />
+                  See the panel and order it <ArrowRight size={14} strokeWidth={1.75} />
                 </Link>
               </div>
 
@@ -814,14 +814,14 @@ function HowItWorks() {
     {
       n: "01",
       Icon: Droplet,
-      title: "You start",
-      body: "Your doctor prescribes from your questionnaire. Your plan is made for you and ships cold, and you begin.",
+      title: "Your baseline, at home",
+      body: `A free at-home kit ships with your first order: the same ${PANEL_TOTAL_MARKERS}-marker panel, drawn before your first dose so your doctor sets your dose against your numbers.`,
     },
     {
       n: "02",
       Icon: Stethoscope,
-      title: "Week 12: the full panel",
-      body: `A full panel of ${PANEL_TOTAL_MARKERS} markers at a CLIA-certified laboratory, included. We send you what you need for the draw as week 12 approaches.`,
+      title: "Week 12: the same panel again",
+      body: `The full panel of ${PANEL_TOTAL_MARKERS} markers, analysed at a CLIA-certified laboratory, included. Baseline beside retest: what changed, marker by marker.`,
     },
     {
       n: "03",

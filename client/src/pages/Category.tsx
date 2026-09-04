@@ -36,6 +36,10 @@ import goalGrowth from "@/assets/life/goal-growth.webp";
 import goalGrowth500 from "@/assets/life/goal-growth-500.webp";
 import goalDesire from "@/assets/life/goal-desire.webp";
 import goalDesire500 from "@/assets/life/goal-desire-500.webp";
+import { BASELINE } from "@/data/monitoring";
+import { StatusPill } from "@/components/StatusPill";
+import { AddonsFor } from "@/components/AddonsFor";
+import { statusOf } from "@/data/soloCatalog";
 
 /* Goal → the journal pieces that actually answer it. Every slug exists in
    journal.ts; a missing one is skipped, never rendered empty. */
@@ -83,6 +87,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
       body: "Semaglutide works on one hormone, tirzepatide on two. Your physician chooses based on your health history, your goal and what is available in your state. You can tell us your preference in the health questions.",
     },
     weeks: [
+      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
       { when: "Week 1", what: "Your first dose, at the lowest step. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "Your dose increases step by step on your physician's schedule." },
       { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included in your plan." },
@@ -109,6 +114,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
       ],
     },
     weeks: [
+      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
       { when: "Week 1", what: "Your first dose, in the evening. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "The same dose every day. The effect builds gradually." },
       { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included. IGF-1 is the number your physician checks first." },
@@ -138,6 +144,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
       body: "BPC-157 on its own suits a specific injury or gut complaint. TB-500 suits whole-body recovery from training. The pair covers both, and it is the most common choice. Your physician confirms the fit from your health questions.",
     },
     weeks: [
+      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
       { when: "Week 1", what: "Your first doses. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "Daily or twice weekly, through your recovery." },
       { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with inflammation markers checked." },
@@ -167,6 +174,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
       body: "GHK-Cu is the choice for skin. Epitalon is the choice for healthy ageing more broadly, and the two are often combined. Your physician confirms the fit from your health questions.",
     },
     weeks: [
+      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
       { when: "Week 1", what: "Your first dose. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "Daily for GHK-Cu. Epitalon runs as a 20-day course." },
       { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with inflammation and blood count checked." },
@@ -250,6 +258,7 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
       body: "NAD+ is the place most people start. MOTS-c suits training and metabolism. Epitalon adds a short course a few times a year. Your physician confirms the fit from your health questions.",
     },
     weeks: [
+      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
       { when: "Week 1", what: "Your first doses. Your medication arrives cold, with instructions." },
       { when: "Weeks 2 to 8", what: "On schedule, the levels build." },
       { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with metabolic and inflammation markers checked." },
@@ -263,27 +272,63 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
   },
   "sexual-health": {
     short: "Sexual desire",
-    headline: "PT-141 for sexual desire, prescribed online.",
-    sub: "A peptide you take when you want it, that works on desire itself rather than blood flow, for men and women. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
+    headline: "Desire, performance and closeness, prescribed online.",
+    sub: "PT-141 for desire, a fast tadalafil nasal spray for performance, and oxytocin for closeness. Each taken on the day you choose, for men and women. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
     photo: goalDesire, photo500: goalDesire500,
     photoAlt: "Two people at ease together in warm evening light",
     what: {
-      title: "Works on desire itself, for men and women.",
+      title: "Three mechanisms, one evening.",
       body: [
-        "Most medications for sexual function work on blood flow. PT-141, also called bremelanotide, works upstream, on the part of the brain involved in sexual desire, and it works for men and women. That is why you take it on the day you want it rather than every day.",
-        "You take a small injection under the skin about an hour ahead, and it stays active for several hours. It raises blood pressure briefly, so your physician checks your blood pressure and heart history before prescribing it.",
+        "Most medications for sexual function work on blood flow. PT-141, also called bremelanotide, works upstream, on the part of the brain involved in sexual desire, for men and women. Tadalafil works on the blood flow itself, as a nasal spray that is absorbed in twenty to thirty minutes. Oxytocin, the bonding hormone, works on closeness.",
+        "Each is taken on the day you want it rather than every day, and they are often prescribed together. PT-141 raises blood pressure briefly, so your physician checks your blood pressure and heart history before prescribing it.",
       ],
     },
+    choose: {
+      title: "Which one is right for you?",
+      body: "If desire is the missing piece, PT-141. If the body needs help on the night, tadalafil. If closeness is the goal, oxytocin. Your physician chooses from your health questions, and many people are prescribed the pair.",
+    },
     weeks: [
+      { when: BASELINE.when, what: "Your free baseline blood kit arrives with your first order. Draw at home; your physician sets your dose against your numbers." },
       { when: "Dose 1", what: "About an hour ahead, under the skin. Most people find their timing within the first few doses." },
       { when: "The first weeks", what: "Use it on the days you choose, within the monthly limit your physician sets." },
       { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with your hormones checked for context." },
       { when: "After", what: "Your physician reviews how it is going and adjusts your dose or your plan." },
     ],
     faqs: [
-      { q: "Is this like the pills for erections?", a: "It works differently. Those act on blood flow. PT-141 acts on desire in the brain, for men and women, and your physician reviews your blood pressure and heart history before prescribing it." },
+      { q: "Is this like the pills for erections?", a: "Tadalafil is that medication, as a fast nasal spray. PT-141 works differently: on desire in the brain, for men and women. Your physician reviews your blood pressure and heart history before prescribing either." },
       { q: "How fast does it work?", a: "Usually within one to three hours, and it stays active for several hours. Most people find their timing within the first few doses." },
       { q: "Why does my physician check blood pressure?", a: "A dose raises blood pressure for a few hours. Uncontrolled high blood pressure or heart disease can rule it out, so both are checked first." },
+    ],
+  },
+  hormone: {
+    short: "Hormones",
+    headline: "Testosterone, monitored, prescribed online.",
+    sub: "For men whose testosterone is low: replacement that is dosed against your own blood work, with kisspeptin to keep your body's own production working underneath it. Prescribed by a licensed U.S. physician, made in a licensed U.S. pharmacy, and delivered cold to your door.",
+    photo: goalGrowth, photo500: goalGrowth500,
+    photoAlt: "A man at a bright home gym, tape on the bench",
+    what: {
+      title: "Dosed against a number, so your number matters.",
+      body: [
+        "Testosterone is the one medicine on this menu where blood work is the whole point. Your free baseline kit shows your physician your total and free testosterone, estradiol and red blood cell count before a dose is set. A weekly dose then keeps your level steady, and the week-12 retest shows whether the dose is right.",
+        "Testosterone replacement quiets your own production. Kisspeptin works one step above your hormones, telling the pituitary to keep signalling, which is why the two are prescribed together in the Foundation protocol.",
+      ],
+    },
+    choose: {
+      title: "Which one is right for you?",
+      body: "If your baseline shows low testosterone, replacement is the base layer. Kisspeptin supports the axis alongside it, and is the gentler lever on its own for fertility-minded plans. Your physician chooses from your numbers.",
+    },
+    weeks: [
+      { when: BASELINE.when, what: "Your free baseline kit arrives with your first order. Total and free testosterone, estradiol and blood count set your starting dose." },
+      { when: "Weeks 1 to 2", what: "Your first weekly doses. Levels begin to settle." },
+      { when: "Weeks 3 to 6", what: "Energy, mood and drive are usually the first things to move." },
+      { when: `Week ${RETEST_WEEK}`, what: "Your full blood panel, included, with testosterone, estradiol, blood count and PSA checked first." },
+      { when: "After", what: "Your physician adjusts your dose from what changed, and body composition builds over months three to six." },
+    ],
+    faqs: [
+      { q: "Do I need blood work first?", a: "Yes. Testosterone is dosed against your own numbers, so your free baseline kit is drawn before your first dose. Your physician sets your dose from it and adjusts from your week-12 retest." },
+      { q: "What does your physician watch?", a: "Testosterone, estradiol, red blood cell count and PSA, at baseline and at week 12. High red blood cell count or an untreated sleep apnea can rule it out, so both are checked first." },
+      { q: "Will it affect fertility?", a: "Testosterone replacement can lower sperm production. Tell your physician if you are planning to conceive; kisspeptin exists on this menu for exactly that conversation." },
+      { q: "Is compounded testosterone FDA-approved?", a: "Testosterone cypionate is an FDA-approved medication. The compounded preparation made for you by a licensed 503A pharmacy is not itself FDA-approved, and compounded medications are not evaluated by the FDA for safety, effectiveness, or quality." },
     ],
   },
 };
@@ -471,7 +516,8 @@ export default function Category() {
               <Link href={`/${world}/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`cat-item-${s.slug}`} aria-label={`${s.name}: ${s.outcome}`}>
                 <div className="nx-sku-photo"><SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="84%" ratio="1 / 1" fill={0.58} />} /></div>
                 <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
-                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name}</p>
+                <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name} <StatusPill status={statusOf(s)} style={{ marginLeft: 6 }} /></p>
+                {s.feelBy && <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", margin: "0.3rem 0 0" }}>Feel it by {s.feelBy.toLowerCase()}</p>}
                 <div style={{ marginTop: "0.7rem" }}><BenefitStrip slug={s.slug} compact /></div>
                 <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
               </Link>
@@ -495,7 +541,7 @@ export default function Category() {
           <Reveal>
             <p style={kicker}>What to expect</p>
             <h2 id="category-weeks-title" style={{ ...h2, maxWidth: "16ch" }}>Your first {RETEST_WEEK} weeks.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>You start your medication right away. At week {RETEST_WEEK}, a full blood panel shows your physician how your body is responding.</p>
+            <p style={{ ...body, marginTop: "1rem" }}>{BASELINE.line}</p>
           </Reveal>
           <Reveal delay={60}>
             <ol className="nx-timeline" data-testid="cat-weeks">
@@ -530,8 +576,9 @@ export default function Category() {
                 <p key={d.peptide} style={{ ...small, marginTop: "0.8rem" }}>Your {d.peptide} dose is set against your {d.marker}.</p>
               ))}
               <p style={{ ...small, marginTop: "0.8rem" }}>
-                <Link href="/bloodwork" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker in the panel and why it is there</Link>
+                <Link href="/labs" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker in the panel and why it is there</Link>
               </p>
+              <AddonsFor keys={[slug, ...slugs]} testId="cat-addons" />
             </Reveal>
             <Reveal delay={60}>
               <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gap: 10 }}>

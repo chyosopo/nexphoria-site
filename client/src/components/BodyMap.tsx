@@ -14,6 +14,9 @@ const SPOT: Record<Region, { cx: number; cy: number; r: number }[]> = {
   joints: [{ cx: 27, cy: 40, r: 6 }, { cx: 73, cy: 40, r: 6 }, { cx: 42, cy: 130, r: 6 }, { cx: 58, cy: 130, r: 6 }],
   skin: [],
   cells: [{ cx: 50, cy: 40, r: 7 }, { cx: 38, cy: 78, r: 6 }, { cx: 62, cy: 92, r: 6 }, { cx: 45, cy: 140, r: 5 }],
+  immune: [{ cx: 50, cy: 42, r: 9 }, { cx: 30, cy: 34, r: 4 }, { cx: 70, cy: 34, r: 4 }],
+  flow: [{ cx: 50, cy: 48, r: 8 }, { cx: 50, cy: 90, r: 7 }],
+  hormone: [{ cx: 50, cy: 16, r: 8 }, { cx: 50, cy: 86, r: 9 }],
 };
 
 export function BodyMap({ region, size = 88, className }: { region: Region; size?: number; className?: string }) {

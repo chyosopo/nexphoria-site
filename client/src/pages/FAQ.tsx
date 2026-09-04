@@ -33,11 +33,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does it work?",
-        a: `Pick your treatment and check out. Answer a few health questions, which takes about two minutes. A licensed U.S. physician reviews them and, if it is right for you, writes your prescription. Your medication is made in a licensed U.S. pharmacy and shipped cold to your door. At week ${RETEST_WEEK}, a full blood panel is included so your physician can see how your body is responding.`,
+        a: `Pick your treatment and check out. Answer a few health questions, which takes about two minutes. A licensed U.S. physician reviews them and, if it is right for you, writes your prescription. Your medication is made in a licensed U.S. pharmacy and shipped cold to your door with a free at-home blood kit. You draw first, your physician doses against your numbers, and at week ${RETEST_WEEK} the same panel is drawn again, included.`,
       },
       {
         q: "Do I need to see a doctor in person?",
-        a: "No visit needed. Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription, and reads your week-12 blood panel.",
+        a: "No visit needed. Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription, and reads your baseline and your week-12 blood panel.",
       },
       {
         q: "What if the physician says it is not right for me?",
@@ -45,7 +45,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Do I need bloodwork to start?",
-        a: `Not to start. At week ${RETEST_WEEK}, a full blood panel of ${PANEL_TOTAL_MARKERS} markers is included in your plan. We send you what you need for the draw as week ${RETEST_WEEK} approaches. If you have recent results from a CLIA-certified lab, your physician may use those too.`,
+        a: `Yes, and it is included. A free at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, so your physician doses against your numbers rather than a guess. At week ${RETEST_WEEK} the same panel is drawn again, included. If you have recent results from a CLIA-certified lab, your physician may use those for your baseline.`,
       },
       {
         q: "What if I have a health condition?",
@@ -87,7 +87,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How much does it cost?",
-        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. Three-month plans save 15% and twelve-month plans save 30%. Your monthly price includes your medication, physician review, cold shipping, and your week-${RETEST_WEEK} blood panel.`,
+        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. Terms are paid up front: three months saves 10%, six months 15%, twelve months 20%. Your price includes your medication, physician review, cold shipping, your baseline blood kit, and your week-${RETEST_WEEK} blood panel.`,
       },
       {
         q: "What do I pay today?",

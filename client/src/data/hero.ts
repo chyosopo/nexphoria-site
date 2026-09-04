@@ -10,12 +10,12 @@ export const HERO = {
   kicker: "Weight · Strength · Desire",
   lines: ["Prescription peptides,", "delivered."],
   subline:
-    "Semaglutide, tirzepatide, tesamorelin and PT-141, prescribed online by licensed U.S. physicians and made in a licensed U.S. pharmacy. One monthly price, with a full blood panel at week 12 included.",
+    "Semaglutide, tirzepatide, testosterone, PT-141 and the full peptide menu, prescribed online by licensed U.S. physicians and made in a licensed U.S. pharmacy. One price, paid up front, with a free baseline blood kit on your first order.",
   cta: "Get started",
   /* billing claim OFF until Chiya confirms how billing runs (docs/COPY-DECK.md) */
   micro: "Online visit. Ships cold to all 50 states.",
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,
-  chips: ["Licensed U.S. physicians", "Made in a licensed U.S. pharmacy", "Blood panel at week 12 included", "Ships to all 50 states"],
+  chips: ["Licensed U.S. physicians", "Made in a licensed U.S. pharmacy", "Free baseline blood kit with your first order", "Ships cold to all 50 states"],
 };

@@ -15,7 +15,8 @@ export type PeptideCategory =
   | "growth"
   | "longevity"
   | "metabolic"
-  | "sexual-health";
+  | "sexual-health"
+  | "hormone";
 
 export interface PeptideStudy {
   title: string;
@@ -81,6 +82,7 @@ export const CATEGORY_LABELS: Record<PeptideCategory, string> = {
   longevity: "Energy and healthy ageing",
   metabolic: "Weight loss",
   "sexual-health": "Sexual desire",
+  hormone: "Hormones",
 };
 
 /* The feeling line of each goal (ROADMAP 4.2) — the emotional register, used
@@ -95,6 +97,7 @@ export const CATEGORY_FEELING: Record<PeptideCategory, string> = {
   longevity: "Cellular energy and healthspan.",
   metabolic: "Appetite and weight.",
   "sexual-health": "Sexual desire.",
+  hormone: "Low testosterone and hormone balance.",
 };
 
 /* Her world speaks its own register (Chiya 2026-07-06: the worlds must be
@@ -128,6 +131,7 @@ export const CATEGORY_TRIAD: Record<PeptideCategory, [string, string, string]> =
   longevity: ["Restore", "Protect", "Extend"],
   metabolic: ["Quiet", "Steady", "Recompose"],
   "sexual-health": ["Signal", "Respond", "Connect"],
+  hormone: ["Restore", "Support", "Monitor"],
 };
 
 const RAW_PEPTIDES: Peptide[] = [
@@ -968,6 +972,119 @@ const RAW_PEPTIDES: Peptide[] = [
     },
     contraindications:
       "NOT FOR: uncontrolled hypertension - known cardiovascular disease - pregnancy - known hypersensitivity - <18 yrs",
+  },
+  {
+    slug: "oxytocin",
+    name: "Oxytocin Nasal",
+    fullName: "Oxytocin, nasal spray",
+    tagline: "Closeness, as a spray.",
+    category: "sexual-health",
+    glyph: "ring",
+    summary:
+      "The bonding hormone, given as a nasal spray. Used for closeness, arousal and mood in intimate settings, and often paired with PT-141 so that desire and connection are covered together.",
+    mechanism:
+      "Oxytocin acts on receptors in the brain involved in bonding, trust and arousal. As a nasal spray it reaches the brain quickly and wears off within hours, so it is taken on the day rather than every day. Its injectable form is FDA-approved for obstetric use; the nasal spray is compounded and prescribed off-label.",
+    halfLife: "Minutes to a few hours",
+    typicalDose: "As needed, physician-individualized",
+    cycleLength: "As-needed, per physician guidance",
+    administration: "Nasal spray, shortly before",
+    timeline: [
+      { week: "On-demand", effect: "Taken shortly before. Works the same day." },
+      { week: "Ongoing", effect: "Used on the days you choose, reviewed by your physician." },
+    ],
+    studies: [
+      { title: "Intranasal oxytocin and human social behaviour: a review", year: "2011", source: "Psychoneuroendocrinology", url: "https://pubmed.ncbi.nlm.nih.gov/21497684/" },
+      { title: "Oxytocin and sexual function in men and women", year: "2016", source: "J Sex Med", url: "https://pubmed.ncbi.nlm.nih.gov/27090203/" },
+    ],
+    pairsWith: ["pt-141", "tadalafil"],
+    inStacks: ["vitality"],
+    evidenceTier: { grade: "C+", description: "Approved active (injectable, obstetric use) · small human trials for intimacy and mood", studyCount: 20, fdaStatus: "Injectable oxytocin is FDA-approved for obstetric use; the nasal spray is compounded, prescribed off-label, and not FDA-approved" },
+    contraindications: "NOT FOR: pregnancy - uncontrolled hypertension (physician review) - <18 yrs",
+  },
+  {
+    slug: "tadalafil",
+    name: "Tadalafil Nasal",
+    fullName: "Tadalafil, nasal spray",
+    tagline: "Blood flow, in twenty minutes.",
+    category: "sexual-health",
+    glyph: "ring",
+    summary:
+      "A fast nasal form of one of the best-studied medications for erectile function. It works on blood flow; PT-141 works on desire, and the two are often prescribed together.",
+    mechanism:
+      "Tadalafil blocks the PDE5 enzyme, which lets the blood vessels of the penis stay relaxed and full in response to arousal. Taken as a nasal spray it is absorbed faster than a tablet. The tablet is FDA-approved; the nasal spray is a compounded preparation.",
+    halfLife: "~17.5 hours",
+    typicalDose: "As needed, physician-individualized",
+    cycleLength: "As-needed, per physician guidance",
+    administration: "Nasal spray, 20 to 30 minutes ahead",
+    timeline: [
+      { week: "On-demand", effect: "About twenty to thirty minutes ahead." },
+      { week: "Ongoing", effect: "On the days you choose. Heart history reviewed by your physician." },
+    ],
+    studies: [
+      { title: "Tadalafil for erectile dysfunction: integrated analysis of trials", year: "2002", source: "Urology", url: "https://pubmed.ncbi.nlm.nih.gov/12429301/" },
+      { title: "Cialis (tadalafil) FDA label", year: "2003", source: "US FDA", url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2011/021368s20s21lbl.pdf" },
+    ],
+    pairsWith: ["pt-141", "oxytocin"],
+    inStacks: ["vitality"],
+    evidenceTier: { grade: "A", description: "Tablet FDA-approved · large Phase 3 trials", studyCount: 100, fdaStatus: "Tadalafil tablets are FDA-approved; the compounded nasal spray is not FDA-approved" },
+    contraindications: "NOT FOR: nitrate medications - recent heart attack or stroke - severe liver or kidney disease - <18 yrs",
+  },
+  {
+    slug: "testosterone",
+    name: "Testosterone Cypionate",
+    fullName: "Testosterone cypionate",
+    tagline: "The base layer, monitored.",
+    category: "hormone",
+    glyph: "helix",
+    summary:
+      "Classic testosterone replacement for men whose levels are low, prescribed after blood work and monitored with blood work. Used for energy, drive, muscle and mood, and the base many men build the rest of a plan on.",
+    mechanism:
+      "Testosterone cypionate replaces the hormone your body is under-producing. A weekly dose keeps levels steady; your physician sets the dose against your baseline blood work and adjusts it against your retest, watching estradiol and red blood cell count alongside testosterone itself.",
+    halfLife: "~8 days",
+    typicalDose: "Weekly, physician-individualized against blood work",
+    cycleLength: "Ongoing, with blood work every 90 days at first",
+    administration: "Weekly injection, under the skin or into muscle",
+    timeline: [
+      { week: "Weeks 1 to 2", effect: "Your first doses. Levels begin to settle." },
+      { week: "Weeks 3 to 6", effect: "Energy, mood and drive are usually the first things to move." },
+      { week: "Months 3 to 6", effect: "Body composition changes build. Retest and dose review." },
+    ],
+    studies: [
+      { title: "Testosterone Trials: effects of testosterone treatment in older men", year: "2016", source: "N Engl J Med", url: "https://pubmed.ncbi.nlm.nih.gov/26886521/" },
+      { title: "Cardiovascular safety of testosterone-replacement therapy (TRAVERSE)", year: "2023", source: "N Engl J Med", url: "https://pubmed.ncbi.nlm.nih.gov/37326322/" },
+    ],
+    pairsWith: ["kisspeptin", "ipa-cjc"],
+    inStacks: ["foundation"],
+    evidenceTier: { grade: "A", description: "FDA-approved active · large randomized trials", studyCount: 100, fdaStatus: "Testosterone cypionate is FDA-approved for testosterone deficiency; compounded preparations are not FDA-approved" },
+    contraindications: "NOT FOR: prostate or breast cancer - untreated sleep apnea - high red blood cell count - planning to conceive (physician review) - <18 yrs",
+  },
+  {
+    slug: "kisspeptin",
+    name: "Kisspeptin",
+    fullName: "Kisspeptin-10",
+    tagline: "The signal above the hormones.",
+    category: "hormone",
+    glyph: "chain",
+    summary:
+      "A signalling peptide that sits upstream of your natural sex-hormone production. A gentler lever than direct hormones, used to support the body's own axis, alongside testosterone, and in fertility-minded plans.",
+    mechanism:
+      "Kisspeptin tells the hypothalamus to release GnRH, which tells the pituitary to release LH and FSH, which tell the testes or ovaries to make their own hormones. Supporting that chain is why it is paired with testosterone replacement, which otherwise quiets it.",
+    halfLife: "~30 minutes",
+    typicalDose: "Physician-individualized",
+    cycleLength: "On your physician's schedule",
+    administration: "Subcutaneous injection",
+    timeline: [
+      { week: "Weeks 1 to 4", effect: "Your first doses, on schedule." },
+      { week: "Weeks 6 to 12", effect: "The axis responds. Retest shows LH, FSH and testosterone." },
+    ],
+    studies: [
+      { title: "Kisspeptin-10 stimulates LH and testosterone in men", year: "2011", source: "J Clin Endocrinol Metab", url: "https://pubmed.ncbi.nlm.nih.gov/21430022/" },
+      { title: "Kisspeptin and reproductive function: a review", year: "2014", source: "Endocr Rev", url: "https://pubmed.ncbi.nlm.nih.gov/24960050/" },
+    ],
+    pairsWith: ["testosterone"],
+    inStacks: ["foundation"],
+    evidenceTier: { grade: "B-", description: "Human physiology studies · no approved indication", studyCount: 30, fdaStatus: "No FDA-approved kisspeptin product; compounded, off-label" },
+    contraindications: "NOT FOR: pregnancy - hormone-sensitive cancer - <18 yrs",
   },
 ];
 

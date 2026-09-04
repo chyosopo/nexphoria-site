@@ -8,7 +8,9 @@ import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { ProofStrip, SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
-import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
+import { FLAGSHIP_STACKS, usd, stackReservable, stackComponents, SAME_JOB, PAIRS_WELL, FULL_STACK } from "@/data/stacksCatalog";
+import { soloByName } from "@/data/soloCatalog";
+import { RETEST_WEEK } from "@/data/monitoring";
 import { ArrowRight, Lock } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
@@ -80,10 +82,10 @@ export default function ProtocolsIndex() {
             <div>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
               <h1 id="protocols-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
-                Protocols. <em style={{ color: "var(--nx-cobalt)" }}>Two or three medications, one plan.</em>
+                Protocols. <em style={{ color: "var(--nx-cobalt)" }}>Medications that work together, one plan.</em>
               </h1>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
-                A protocol combines two or three medications that work together, on one twelve-week plan, with one full blood panel at week 12 included. Prescribed online by licensed U.S. physicians.
+                A protocol combines two to four medications that work together, on one plan, with a free baseline blood kit on your first order and the same panel again at week 12. Prescribed online by licensed U.S. physicians.
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
@@ -111,8 +113,8 @@ export default function ProtocolsIndex() {
         <div className="grid grid-cols-1 md:grid-cols-3" style={{ gap: 12 }}>
           {[
             { h: "Chosen to work together", d: "Each medication in a protocol is picked for how it works alongside the others." },
-            { h: "One plan, one blood panel", d: "Everything runs on the same twelve weeks, with one full blood panel at week 12 included." },
-            { h: "One monthly price", d: "The protocol is priced as one plan: monthly, 15% off at three months, 30% off at twelve." },
+            { h: "Test, start, retest", d: `A free baseline blood kit with your first order, and the same panel again at week ${RETEST_WEEK}, included.` },
+            { h: "One figure, paid up front", d: "One month to try it, or 10, 15 or 20% less per month at three, six and twelve months. The figure is complete." },
           ].map((b) => (
             <div key={b.h} className="nx-glass-tile" style={{ display: "block" }}>
               <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{b.h}</h2>
@@ -147,7 +149,8 @@ export default function ProtocolsIndex() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Protocols">
         <div className="nx-float-grid">
           {shown.map((s, i) => {
-            const rec = s.cadences.find((c) => c.key === "3mo");
+            const rec = s.cadences.length ? Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)) : undefined;
+            const reservable = stackReservable(s);
             return (
               <Reveal key={s.slug} delay={i * 45}>
                 <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-float-card">
@@ -163,6 +166,9 @@ export default function ProtocolsIndex() {
                     {s.gated && (
                       <span className="nx-float-badge"><Lock size={10} aria-hidden="true" /> Assessed</span>
                     )}
+                    {reservable && (
+                      <span className="nx-float-badge">Reserve</span>
+                    )}
                     {/* the lean badge makes a cross-world flagship read as
                         intentional, not a leak */}
                     {s.worldLean && s.worldLean !== "both" && (
@@ -177,7 +183,7 @@ export default function ProtocolsIndex() {
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>{s.tagline}</p>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
                       <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
-                        {s.gated ? "Doctor-assessed" : rec ? `From ${usd(rec.perMonth ?? rec.total)}/mo` : ""}
+                        {s.gated ? "Priced at consultation" : rec ? `From ${usd(rec)}/mo` : ""}
                       </span>
                       <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
                     </div>
@@ -208,6 +214,52 @@ export default function ProtocolsIndex() {
         </div>
       </section>
 
+      {/* ── How they fit together: what to combine, what to pick one of (the playbook) ── */}
+      <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="protocols-synergy-title" data-testid="protocols-synergy">
+        <SectionHead
+          eyebrow="How they fit together"
+          title={<>What to combine, and what to pick one of.</>}
+          lead="Every protocol is built on one rule: each medicine does a different job. Here is the same rule, so you can build your own with confidence."
+          maxTitle="18ch"
+        />
+        <div className="nx-synergy" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
+          <div className="nx-synergy__col">
+            <p className="nx-synergy__h" style={{ fontFamily: F }}>Pairs well</p>
+            <ul className="nx-synergy__list">
+              {PAIRS_WELL.map((p) => (
+                <li key={p.pair.join("+")} className="nx-synergy__item">
+                  <p style={{ fontFamily: S }} className="nx-synergy__pair">
+                    {p.pair.map((n, i) => { const s = soloByName(n); return (
+                      <span key={n}>{i > 0 && <span aria-hidden> + </span>}{s ? <Link href={`/peptides/${s.slug}`}>{n}</Link> : n}</span>
+                    ); })}
+                  </p>
+                  <p style={{ fontFamily: F }} className="nx-synergy__note">{p.note}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="nx-synergy__col nx-synergy__col--one">
+            <p className="nx-synergy__h" style={{ fontFamily: F }}>One at a time</p>
+            <ul className="nx-synergy__list">
+              {SAME_JOB.map((g) => (
+                <li key={g.name} className="nx-synergy__item">
+                  <p style={{ fontFamily: S }} className="nx-synergy__pair">{g.name}</p>
+                  <p style={{ fontFamily: F }} className="nx-synergy__members">
+                    {g.members.map((n, i) => { const s = soloByName(n); return (
+                      <span key={n}>{i > 0 && <span aria-hidden> · </span>}{s ? <Link href={`/peptides/${s.slug}`}>{n}</Link> : n}</span>
+                    ); })}
+                  </p>
+                  <p style={{ fontFamily: F }} className="nx-synergy__note">{g.note}</p>
+                </li>
+              ))}
+            </ul>
+            <p style={{ fontFamily: F }} className="nx-synergy__foot">
+              {FULL_STACK.name}: {FULL_STACK.line} From {usd(FULL_STACK.base)}/mo, if prescribed.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Measured, then adjusted. The sample "biomarker index" dashboard was retired 2026-09-03: fabricated-looking figures. */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Measured, then adjusted">
         <div style={{ maxWidth: 720 }}>
@@ -215,11 +267,11 @@ export default function ProtocolsIndex() {
             <SectionHead
               eyebrow="Measured, then adjusted"
               title={<>Every protocol answers to the panel.</>}
-              lead="You start first. At week 12 one full blood panel is drawn, included, and your doctor reads it against your plan. Your dose follows what it shows."
+              lead={`A free baseline blood kit ships with your first order, so your physician doses against your numbers. At week ${RETEST_WEEK} the same panel is drawn again, included, and your dose follows what changed.`}
               maxTitle="15ch"
             />
             <ProofStrip
-              quote="Your doctor reads the week-12 panel before any protocol continues."
+              quote="Your physician reads your baseline before your dose is set, and your week-12 panel before any protocol continues."
               attr="The Nexphoria clinical standard"
               style={{ marginTop: "clamp(1.8rem,3vw,2.6rem)" }}
             />

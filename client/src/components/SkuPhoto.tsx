@@ -41,6 +41,11 @@ const NAME_TO_SLUG: Record<string, string> = {
   "methylene blue": "methylene-blue",
   "tb-500": "tb-500",
   "bpc-157 + tb-500": "bpc-tb-combo",
+  "ipamorelin / cjc-1295 blend": "ipa-cjc",
+  "oxytocin nasal": "oxytocin",
+  "tadalafil nasal": "tadalafil",
+  "testosterone cypionate": "testosterone",
+  "thymosin alpha-1": "thymosin-a1",
 };
 
 export function skuPhotoFor(slugOrName: string): string | undefined {

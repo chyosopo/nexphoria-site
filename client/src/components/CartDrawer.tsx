@@ -224,7 +224,7 @@ export function CartDrawer() {
                                   borderRadius: "var(--nx-r-2xs)",
                                 }}
                               >
-                                {line.type === "stack" ? "Curated Stack" : "Single Peptide"}
+                                {line.type === "stack" ? "Curated Stack" : line.type === "lab" ? "Blood test" : "Single Peptide"}
                               </span>
                               {spec?.badge ? (
                                 <span
@@ -269,14 +269,16 @@ export function CartDrawer() {
                               className="text-[11px] mt-1"
                               style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}
                             >
-                              {formatUSD(line.unitPrice)}/mo
+                              {line.oneTime ? (line.complimentary ? "Complimentary" : "One time") : `${formatUSD(line.unitPrice)}/mo`}
                             </div>
-                            <div
-                              className="text-[11px] mt-0.5"
-                              style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", letterSpacing: "0.02em" }}
-                            >
-                              {billingNote(line.cadence, line.unitPrice)}
-                            </div>
+                            {!line.oneTime && (
+                              <div
+                                className="text-[11px] mt-0.5"
+                                style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", letterSpacing: "0.02em" }}
+                              >
+                                {billingNote(line.cadence, line.unitPrice)}
+                              </div>
+                            )}
                           </div>
                         </div>
 
@@ -294,12 +296,12 @@ export function CartDrawer() {
                               fontWeight: 500,
                             }}
                           >
-                            <Check size={10} strokeWidth={2.5} /> Saving {formatUSD(line.savings)} on this cadence
+                            <Check size={10} strokeWidth={2.5} /> {line.complimentary ? `Complimentary with your order (${formatUSD(line.savings)})` : `Saving ${formatUSD(line.savings)} on this term`}
                           </div>
                         ) : null}
 
-                        {/* Cadence segmented control */}
-                        <div className="mt-3">
+                        {/* Cadence segmented control (medicines only; a lab kit is one time) */}
+                        {!line.oneTime && <div className="mt-3">
                           <div
                             className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1.5"
                             style={{ fontFamily: FONT, color: "var(--nx-fg-muted)", fontWeight: 600 }}
@@ -307,7 +309,7 @@ export function CartDrawer() {
                             Billing cadence
                           </div>
                           <div
-                            className="grid grid-cols-3 w-full overflow-hidden"
+                            className="grid grid-cols-4 w-full overflow-hidden"
                             style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-sm)" }}
                             role="radiogroup"
                             aria-label="Billing cadence"
@@ -351,7 +353,7 @@ export function CartDrawer() {
                               );
                             })}
                           </div>
-                        </div>
+                        </div>}
 
                         {/* Bottom row: qty stepper + delete */}
                         <div className="flex items-center justify-between mt-3">

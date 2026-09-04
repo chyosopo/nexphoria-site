@@ -76,3 +76,14 @@ Until the partner is chosen, every page describes the draw without naming
 a network or a kit: "We send you what you need for the draw as week 12
 approaches." The "2,000+ partner laboratory locations" figure came off the
 site on 2026-09-03 because it belonged to a network we may not use.
+
+## 2026-09-04 · the product the partner must fulfil
+/labs now sells the panel as a box (see docs/COPY-DECK.md). What the partner
+contract must cover, in order: the 24-marker base panel from one at-home
+collection (or a venous draw where capillary cannot read a marker: CBC,
+some hormones); the eight add-on groups as orderable extras on the same kit;
+a prepaid return box; results by API into the physician's review; a
+turnaround we can state. Rythm's retail pattern (one panel, monthly, $79) is
+the consumer benchmark for price and presentation; our panel is the physician's
+instrument, so it rides inside the medication figure and is sold on its own
+at $149 (PROPOSED).

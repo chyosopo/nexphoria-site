@@ -71,10 +71,10 @@ const STEPS: Step[] = [
     objection: "“Do I just get a vial and silence?” You get the data, the trend, and the doctor who owns the decision.",
   },
   {
-    n: "06", t: "The week-12 panel", Icon: TestTube,
+    n: "06", t: "Your blood, twice", Icon: TestTube,
     img: stepBloodwork, imgAlt: "Vacutainer tubes on a ceramic tray, prepared for a draw",
-    d: "Twelve weeks in, a single draw at a partner laboratory near you. A full panel across the systems a plan can touch: sugar and insulin, cholesterol and heart, liver and kidneys, hormones, blood and nutrients.",
-    detail: "One full panel for every plan, included. Your doctor reads the markers that matter for your peptide first: IGF-1 for tesamorelin, sugar and insulin for a GLP-1, hormones for context.",
+    d: "A free at-home kit with your first order, and the same panel again at week 12. A full panel across the systems a plan can touch: sugar and insulin, cholesterol and heart, liver and kidneys, hormones, blood and nutrients.",
+    detail: "The baseline sets your dose; the retest shows what changed. Your doctor reads the markers that matter for your peptide first: IGF-1 for tesamorelin, sugar and insulin for a GLP-1, testosterone and estradiol for hormones.",
     objection: "“Why test at all?” Because how you feel and what changed are two different things, and your doctor adjusts your dose from the second one.",
   },
   {

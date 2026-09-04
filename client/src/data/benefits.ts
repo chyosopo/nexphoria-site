@@ -7,7 +7,7 @@
    catalog slug so a retired molecule never renders. */
 
 export type EffectDir = "down" | "up" | "steady";
-export type Region = "brain" | "gut" | "abdomen" | "muscle" | "joints" | "skin" | "cells" | "sleep" | "desire";
+export type Region = "brain" | "gut" | "abdomen" | "muscle" | "joints" | "skin" | "cells" | "sleep" | "desire" | "immune" | "flow" | "hormone";
 export type Route = "injection" | "spray" | "capsule";
 
 export interface Benefit {
@@ -27,6 +27,9 @@ export const REGION_LABEL: Record<Region, string> = {
   cells: "Works at the cellular level",
   sleep: "Works on the sleep cycle",
   desire: "Works on desire, in the brain",
+  immune: "Works on the immune system",
+  flow: "Works on blood flow",
+  hormone: "Works on the hormone axis",
 };
 
 export const ROUTE_LABEL: Record<Route, string> = {
@@ -155,6 +158,42 @@ export const BENEFITS: Record<string, Benefit> = {
     effects: [{ dir: "down", text: "Time to fall asleep" }, { dir: "up", text: "Deep sleep" }, { dir: "steady", text: "Waking without grogginess" }],
     region: "sleep",
     how: { route: "injection", rhythm: "Once a night, at bedtime" },
+  },
+  "thymosin-a1": {
+    goodFor: ["Immune resilience", "Recovery from illness", "Staying well under stress"],
+    effects: [{ dir: "up", text: "Immune cell activity" }, { dir: "steady", text: "The immune response, regulated" }, { dir: "up", text: "Recovery after illness" }],
+    region: "immune",
+    how: { route: "injection", rhythm: "Twice a week" },
+  },
+  "aod-9604": {
+    goodFor: ["Fat metabolism", "An add-on to a weight plan", "Body composition"],
+    effects: [{ dir: "up", text: "Fat breakdown signalling" }, { dir: "steady", text: "Blood sugar, unlike growth hormone" }, { dir: "steady", text: "Taken alongside a main plan" }],
+    region: "abdomen",
+    how: { route: "injection", rhythm: "Once a day" },
+  },
+  oxytocin: {
+    goodFor: ["Closeness", "Arousal", "Mood, in the moment"],
+    effects: [{ dir: "up", text: "Bonding and closeness" }, { dir: "up", text: "Arousal" }, { dir: "steady", text: "Works within the hour, gone by morning" }],
+    region: "desire",
+    how: { route: "spray", rhythm: "As needed, shortly before" },
+  },
+  tadalafil: {
+    goodFor: ["Erections", "Performance", "On the day you choose"],
+    effects: [{ dir: "up", text: "Blood flow, in response to arousal" }, { dir: "steady", text: "Works in 20 to 30 minutes" }, { dir: "steady", text: "Active for more than a day" }],
+    region: "flow",
+    how: { route: "spray", rhythm: "As needed, 20 to 30 minutes ahead" },
+  },
+  testosterone: {
+    goodFor: ["Low testosterone", "Energy and drive", "Muscle and mood"],
+    effects: [{ dir: "up", text: "Testosterone, to a level your physician sets" }, { dir: "up", text: "Energy, drive and mood" }, { dir: "up", text: "Lean mass, over months" }],
+    region: "hormone",
+    how: { route: "injection", rhythm: "Once a week" },
+  },
+  kisspeptin: {
+    goodFor: ["Hormone balance", "Your own production", "Fertility-minded plans"],
+    effects: [{ dir: "up", text: "LH and FSH, your own signals" }, { dir: "up", text: "Your own testosterone" }, { dir: "steady", text: "The axis, kept working" }],
+    region: "hormone",
+    how: { route: "injection", rhythm: "On your physician's schedule" },
   },
 };
 

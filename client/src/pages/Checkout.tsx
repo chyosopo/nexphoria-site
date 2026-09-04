@@ -574,13 +574,13 @@ export default function Checkout() {
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
                           <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
-                            {line.type === "stack" ? "Stack" : "Single"} · qty {line.qty} · {line.cadenceLabel}
+                            {line.type === "stack" ? "Stack" : line.type === "lab" ? "Blood test" : "Single"} · qty {line.qty} · {line.cadenceLabel}
                           </div>
                           <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
                             {line.name}
                           </div>
                           <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
-                            {billingNote(line.cadence, line.unitPrice)}
+                            {line.oneTime ? (line.complimentary ? "Complimentary with your medication order" : "Paid once") : billingNote(line.cadence, line.unitPrice)}
                           </div>
                           {stack ? (
                             <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>

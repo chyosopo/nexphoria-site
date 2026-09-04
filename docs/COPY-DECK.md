@@ -937,3 +937,70 @@ used for. The protocols, stack pages and pricing page were rewritten to
 match, and the claims Chiya has not confirmed (FSA/HSA receipts, overnight
 shipping, signature confirmation, epigenetic panels, priority telehealth,
 marker dashboard) came off the pricing and stack pages.
+
+## The playbook (Chiya, 2026-09-04) and blood testing as a product
+
+Source: the Nexphoria Playbook artifact Chiya built with Claude (2026-09-04),
+implemented in one pass, previewed, NOT on the apex until she says so.
+
+### The offer, as data
+- **Terms**, paid up front (`data/pricing CADENCE_DISCOUNTS`, `stacksCatalog cad()`):
+  one month "Try it" · 3 months 10% · 6 months 15% "Best value" · 12 months 20%.
+  Labs per term: 1mo "Baseline blood kit, complimentary" · 3mo "Baseline kit and
+  your week-12 retest, included" · 6mo "Baseline, week-12 retest and a six-month
+  panel, included" · 12mo "Baseline, then a panel every quarter, included".
+- **The blood model changed** (supersedes 2026-09-02 "start first"): a free
+  at-home baseline kit ships with the first order; you test before you start;
+  the same panel again at week 12 on plans of three months and longer.
+  `data/monitoring BASELINE` carries the line every page reads.
+- **Menu**: 22 live slugs (`LAUNCH_SLUGS`), the playbook's 21 plus BPC-157 + TB-500.
+  New: Thymosin Alpha-1 159, AOD-9604 199, Oxytocin nasal 99, Tadalafil nasal 89,
+  Testosterone cypionate 149, Kisspeptin 169. Retired again: cerebrolysin,
+  methylene blue, ipamorelin alone, CJC-1295 alone. New goal `/goals/hormone`.
+- **Availability** (`SoloStatus`): `coming` = FDA Category 2, pending rulemaking,
+  shown with its ladder and RESERVED by email at the shown price (BPC-157,
+  TB-500, the pair, GHK-Cu, Epitalon, MOTS-c, Semax, Selank); `watch` = DSIP.
+  A protocol with a pending medicine is reservable, never sold (`stackReservable`).
+- **Protocols**: Recover 349 · Ascend 379 · Lucidity 349 · Ignite 399 ·
+  Vitality and Foundation priced at consultation · The Full Stack 1,199.
+- **Per product** (`feelBy`, `fullEffect`, `evidence` 1–3, `combine`, `avoid`):
+  rendered by `ExpectCard` on every PDP. Same-job groups (`SAME_JOB`) and pairs
+  (`PAIRS_WELL`) on /stacks under "What to combine, and what to pick one of."
+
+### Lines (LIVE)
+- Hero chips: "Free baseline blood kit with your first order".
+- Home: "Two ways in. One road after." · doors "Choose for yourself." /
+  "Let a physician choose." · road: Choose · Check out · Physician review ·
+  Test, then start · Retest at week 12.
+- Checklist: "Baseline blood kit, complimentary" · "One figure, paid up front".
+- Billing FAQ: "You buy a block of time, paid up front … When your term ends,
+  renewing is your choice."
+- Reserve: "Your price is locked at today's figure. One email when it ships; a
+  physician still reviews every order." / "Reserved. We will email you the
+  moment it is available, at the price you saw today."
+- Pricing: value stack "What is inside the figure" (elsewhere $150 to $300 /
+  $150 to $260 / $40 a shipment · Included) and "What the figure buys, next to
+  the gray market."
+
+### Blood testing as a product (/labs)
+Chiya: "like a box, like a product added to the cart that they pay or maybe get
+for free … test completely everything … add different types of tests."
+Pattern study: Rythm (one comprehensive panel, categories that expand to a
+reason per marker, three steps), SiPhox and MyLabsDirect white-label kits.
+- `data/labs.ts`: **The Nexphoria Panel** (24 markers, derived from FULL_PANEL),
+  $149 on its own, complimentary with any medication order (the cart prices the
+  panel at 0 whenever a medicine is in it), $99 further panel for anyone on a plan.
+- Eight add-ons ($19 to $59), every marker absent from the base panel:
+  Hormones in depth · Prostate · Thyroid complete · Heart advanced · Metabolism
+  in depth · Inflammation and immune · Nutrients · Liver and kidneys extended.
+  Each names the medicines it is recommended with; `AddonsFor` shows them on
+  PDPs, protocol and goal pages.
+- Cart line type `lab` (one time, no term). Nav "Blood testing" → /labs;
+  /bloodwork stays as "Why we test".
+- OPEN (Chiya): the lab partner; every price above; collection method (finger
+  prick vs venous for CBC and hormones); turnaround; kit design and photo.
+
+### Claims NOT adopted from the playbook
+"LegitScript-certified, licensed in 35 states" · "COA-tested every batch" ·
+"ships in 48 hours" · trial percentages · "no auto-charges" as a phrase (the
+house says "renewing is your choice").

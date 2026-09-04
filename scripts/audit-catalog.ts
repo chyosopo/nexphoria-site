@@ -57,7 +57,7 @@ const money = (n: unknown): boolean => typeof n === "number" && Number.isFinite(
 console.log("\n═ DERIVED FIGURES ═");
 {
   // Solo pricing: every tier of every priced SKU.
-  const badSolos = SOLO_CATALOG.filter((s) => s.pricing && !(money(s.pricing.m1) && money(s.pricing.m3) && money(s.pricing.m12)));
+  const badSolos = SOLO_CATALOG.filter((s) => s.pricing && !(money(s.pricing.m1) && money(s.pricing.m3) && money(s.pricing.m6) && money(s.pricing.m12)));
   badSolos.length === 0
     ? ok(`all ${SOLO_CATALOG.filter((s) => s.pricing).length} priced solos have finite tiers`)
     : bad(`non-finite solo pricing: ${badSolos.map((s) => s.slug).join(", ")}`);

@@ -32,13 +32,13 @@ async function main() {
   let sd = 0;
   for (const ns of FLAGSHIP_STACKS) {
     if (ns.gated) { console.log(`  ${ns.slug}: gated — intentionally unpriced/unsellable ✓`); continue; }
-    for (const key of ['1mo', '3mo', '12mo'] as const) {
+    for (const key of ['1mo', '3mo', '6mo', '12mo'] as const) {
       const pdp = ns.cadences.find((c: any) => c.key === key)?.perMonth;
       const cart = priceAtCadence(ns.slug, key);
       if (cart !== pdp) { console.log(`  DRIFT  ${ns.slug}@${key}: PDP $${pdp} vs cart $${cart}`); sd++; }
     }
   }
-  if (!sd) console.log('  none — all 7 stacks × 3 cadences agree');
+  if (!sd) console.log(`  none — all ${FLAGSHIP_STACKS.length} stacks × 4 terms agree`);
 
   console.log('\n═ GLP-1 / ORPHAN LEAK CHECK (the builder\'s real sellable predicate) ═');
   const sellable = peptides.filter((p: any) => {

@@ -7,6 +7,8 @@
    global discount engine. Ignite (GLP-1) is sold as of 2026-08-12.
    ══════════════════════════════════════════════════════════════ */
 
+import { soloByName, isSellable, type SoloPeptide } from "@/data/soloCatalog";
+
 export type PanelTier = "Basic" | "Full" | "Elite";
 
 export interface StackPeptideLine {
@@ -16,16 +18,18 @@ export interface StackPeptideLine {
 }
 
 export interface StackCadence {
-  key: "1mo" | "3mo" | "12mo" | "fixed";
+  key: "1mo" | "3mo" | "6mo" | "12mo" | "fixed";
   label: string;
   sublabel: string;
   /** total charged for the period */
   total: number;
   /** monthly-equivalent for display, when useful */
   perMonth?: number;
-  badge?: "Recommended" | "Best value" | "Doctor-defined";
+  badge?: "Recommended" | "Best value" | "Doctor-defined" | "Try it";
   /** 12-mo tier surfaces an included panel */
   includesPanel?: PanelTier;
+  /** the labs included at this term (the playbook) */
+  labs?: string;
 }
 
 export interface StackTimelineMark {
@@ -54,14 +58,14 @@ export interface FlagshipStack {
   worldLean?: "him" | "her" | "both";
 }
 
-/* Cadence builder — doc model: 3-mo default-recommended, 12-mo best value. */
-const cad = (
-  one: number, three: number, twelve: number, fixed: number, panel: PanelTier,
-): StackCadence[] => [
-  { key: "1mo", label: "1-Month", sublabel: "Try it · cancel anytime", total: one, perMonth: one },
-  { key: "3mo", label: "3-Month", sublabel: "Billed quarterly · save 15%", total: three, perMonth: Math.round(three / 3), badge: "Recommended" },
-  { key: "12mo", label: "12-Month", sublabel: "Billed monthly · save 30%", total: twelve, perMonth: Math.round(twelve / 12), badge: "Best value", includesPanel: panel },
-  { key: "fixed", label: "Fixed 8–12 wk Cycle", sublabel: "Physician-defined protocol", total: fixed, perMonth: fixed, badge: "Doctor-defined" },
+/* Term builder (the playbook, 2026-09-04): one month to try, or 3, 6 or 12
+   months paid up front. Longer terms cost less per month and include more
+   labs. Totals are the whole figure for the term. */
+const cad = (base: number): StackCadence[] => [
+  { key: "1mo", label: "One month", sublabel: "Try it · paid up front", total: base, perMonth: base, badge: "Try it", labs: "Baseline blood kit, complimentary" },
+  { key: "3mo", label: "3 months", sublabel: "Paid up front · save 10%", total: Math.round(base * 0.9) * 3, perMonth: Math.round(base * 0.9), labs: "Baseline kit and your week-12 retest, included" },
+  { key: "6mo", label: "6 months", sublabel: "Paid up front · save 15%", total: Math.round(base * 0.85) * 6, perMonth: Math.round(base * 0.85), badge: "Best value", includesPanel: "Full", labs: "Baseline, week-12 retest and a six-month panel, included" },
+  { key: "12mo", label: "12 months", sublabel: "Paid up front · save 20%", total: Math.round(base * 0.8) * 12, perMonth: Math.round(base * 0.8), includesPanel: "Full", labs: "Baseline, then a panel every quarter, included" },
 ];
 
 /* ── LAUNCH SCOPE (2026-08-12) ─────────────────────────────────
@@ -81,180 +85,151 @@ const cad = (
    molecules are sellable again. Goals (data/goals.ts) are the merchandising
    unit now; stacks are no longer load-bearing for conversion. */
 /* 2026-09-03 (Chiya): full menu; every flagship protocol is on. */
-export const LAUNCH_STACK_SLUGS = new Set(["wolverine", "glow", "ascend", "lucidity", "meridian", "ignite", "threshold"]);
+export const LAUNCH_STACK_SLUGS = new Set(["recover", "ascend", "lucidity", "ignite", "vitality", "foundation"]);
 
 const ALL_STACKS: FlagshipStack[] = [
   {
-    slug: "wolverine",
-    name: "Wolverine",
-    tagline: "The recovery pair. Repair signal plus repair cells.",
-    category: "Recovery & Injury",
-    bestFor: "Injuries, post-surgery recovery and hard training.",
+    slug: "recover",
+    name: "Recover",
+    tagline: "The growth hormone pulse plus local and systemic repair. One recovery engine.",
+    category: "Recovery & Performance",
+    bestFor: "Injuries, hard training and recovery that has slowed with age.",
     peptides: [
-      { name: "BPC-157", dose: "500 mcg daily SC", spec: "5 mg/mL · 5 mL vial" },
-      { name: "TB-500", dose: "2.5 mg 2×/week SC", spec: "10 mg/mL · 5 mL vial" },
+      { name: "Ipamorelin / CJC-1295 Blend", dose: "300 mcg nightly, under the skin", spec: "5 mg/mL · 5 mL vial" },
+      { name: "BPC-157", dose: "500 mcg daily, under the skin", spec: "5 mg/mL · 5 mL vial" },
+      { name: "TB-500", dose: "2.5 mg twice a week, under the skin", spec: "10 mg/mL · 5 mL vial" },
     ],
-    synergy: "BPC-157 sends the repair signal; TB-500 moves repair cells to where they are needed. Together they cover tendon, ligament, muscle and the gut lining.",
+    synergy: "The growth hormone pulse for overnight repair, BPC-157 for the repair signal at the site, TB-500 for moving repair cells through the whole body. Different jobs, one recovery engine.",
     timeline: [
-      { wk: "Wk 1", effect: "Your first doses. Medication arrives cold, with instructions." },
-      { wk: "Wk 4", effect: "BPC-157 daily and TB-500 twice a week, through your recovery." },
-      { wk: "Wk 12", effect: "Your blood panel, with inflammation markers checked." },
+      { wk: "Wk 1", effect: "Your first doses. Sleep is usually the first thing to change." },
+      { wk: "Wk 4", effect: "Nightly and daily, through your recovery." },
+      { wk: "Wk 12", effect: "Your blood panel. IGF-1 and inflammation checked first." },
     ],
     panel: "Full",
-    panelNote: "The full panel at week 12, included, with inflammation markers checked first.",
-    contraindications: ["Active malignancy", "Pregnancy or lactation"],
-    cadences: cad(269, 686, 2260, 296, "Basic"),
+    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    contraindications: ["Active malignancy", "Pregnancy or breastfeeding", "Elevated IGF-1 at baseline"],
+    cadences: cad(349),
     worldLean: "both",
-  },
-  {
-    slug: "glow",
-    name: "Glow",
-    tagline: "Skin support from within, plus a healthy-ageing course.",
-    category: "Skin & Longevity",
-    bestFor: "Skin quality, elasticity and healthy ageing.",
-    peptides: [
-      { name: "GHK-Cu", dose: "2 mg daily SC", spec: "50 mg/mL · 3 mL vial" },
-      { name: "Epitalon", dose: "10 mg daily · 20-day pulse Q3mo SC", spec: "100 mg/mL · 2 mL vial" },
-    ],
-    synergy: "GHK-Cu supports collagen and skin repair every day; epitalon runs as a 20-day course for telomere maintenance and the sleep-wake cycle.",
-    timeline: [
-      { wk: "Wk 1", effect: "Your first doses." },
-      { wk: "Wk 6", effect: "GHK-Cu daily. Skin renews on its own cycle." },
-      { wk: "Wk 12", effect: "Your blood panel, with inflammation and blood count checked." },
-    ],
-    panel: "Full",
-    panelNote: "The full panel at week 12, included.",
-    contraindications: ["Active malignancy", "Copper allergy (GHK-Cu)"],
-    cadences: cad(229, 584, 1923, 252, "Basic"),
-    worldLean: "her",
   },
   {
     slug: "ascend",
     name: "Ascend",
-    tagline: "Growth hormone, more often and more. Once a night.",
-    category: "GH Axis & Body Composition",
-    bestFor: "Lean mass, recovery and body composition.",
+    tagline: "Four ageing pathways at once: mitochondria, cellular energy, telomeres and skin.",
+    category: "Longevity & Cellular",
+    bestFor: "Energy, healthy ageing and skin, in one plan.",
     peptides: [
-      { name: "CJC-1295 (no-DAC)", dose: "100 mcg nightly SC", spec: "5 mg/mL · 5 mL blend vial" },
-      { name: "Ipamorelin", dose: "200 mcg nightly SC", spec: "combined blend vial" },
+      { name: "MOTS-c", dose: "5 mg twice a week, under the skin", spec: "10 mg/mL · 2 mL vial" },
+      { name: "NAD+", dose: "100 mg three times a week, under the skin", spec: "200 mg/mL · 5 mL vial" },
+      { name: "GHK-Cu", dose: "2 mg daily, under the skin", spec: "50 mg/mL · 3 mL vial" },
+      { name: "Epitalon", dose: "10 mg daily for 20 days, under the skin", spec: "100 mg/mL · 2 mL vial" },
     ],
-    synergy: "CJC-1295 raises how much growth hormone each pulse releases; ipamorelin raises how often, without a cortisol spike. One nightly injection covers both.",
+    synergy: "NAD+ for cellular energy, MOTS-c for the pathways exercise switches on, GHK-Cu for collagen and skin, epitalon as a course for telomere maintenance. Four pathways no single peptide covers.",
     timeline: [
-      { wk: "Wk 1", effect: "Your first dose, at bedtime." },
-      { wk: "Wk 4", effect: "The nightly rhythm settles in." },
-      { wk: "Wk 12", effect: "Your blood panel. IGF-1 checked first." },
+      { wk: "Wk 1", effect: "Your first doses. Energy is usually the first thing to change." },
+      { wk: "Wk 6", effect: "On schedule, the levels build. Skin renews on its own cycle." },
+      { wk: "Wk 12", effect: "Your blood panel, with metabolic and inflammation markers checked." },
     ],
     panel: "Full",
-    panelNote: "The full panel at week 12, included. IGF-1 is the number the dose is set against.",
-    contraindications: ["Active malignancy", "Pregnancy", "Uncontrolled type 2 diabetes", "Elevated IGF-1 at baseline"],
-    cadences: cad(299, 762, 2512, 329, "Elite"),
-    worldLean: "him",
+    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    contraindications: ["Active malignancy", "Pregnancy", "Copper allergy"],
+    cadences: cad(379),
+    worldLean: "both",
   },
   {
     slug: "lucidity",
     name: "Lucidity",
-    tagline: "Focus in the morning, calm through the day. Two nasal sprays.",
-    category: "Cognitive & Focus",
-    bestFor: "Focus, mental stamina and a steadier mood under stress.",
+    tagline: "Semax for focus, Selank for calm, DSIP for sleep. Dialed in, not wired.",
+    category: "Cognition & Mood",
+    bestFor: "Focus and mental stamina by day, a steadier mood, deeper sleep at night.",
     peptides: [
-      { name: "Selank", dose: "300 mcg 2×/day intranasal", spec: "5 mg/mL · 3 mL nasal spray" },
-      { name: "Semax", dose: "600 mcg 1×/day intranasal", spec: "10 mg/mL · 3 mL nasal spray" },
+      { name: "Semax", dose: "600 mcg once a day, nasal spray", spec: "10 mg/mL · 3 mL nasal spray" },
+      { name: "Selank", dose: "300 mcg twice a day, nasal spray", spec: "5 mg/mL · 3 mL nasal spray" },
+      { name: "DSIP", dose: "100 mcg nightly, under the skin", spec: "2 mg/mL · 3 mL vial" },
     ],
-    synergy: "Semax in the morning for focus and mental stamina; Selank through the day for a steadier mood under pressure. Both are nasal sprays.",
+    synergy: "Semax drives focus in the morning, Selank takes the anxious edge off through the day, DSIP deepens sleep at night. Together: dialed in, not wired.",
     timeline: [
       { wk: "Day 1", effect: "Your first sprays. Many people notice something within the hour." },
       { wk: "Wk 2", effect: "Taken daily, the effect evens out." },
       { wk: "Wk 12", effect: "Your blood panel, with thyroid and cortisol checked for context." },
     ],
     panel: "Full",
-    panelNote: "The full panel at week 12, included, with thyroid and cortisol checked for context.",
-    contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review required)"],
-    cadences: cad(259, 660, 2176, 285, "Basic"),
-    worldLean: "both",
-  },
-  {
-    slug: "meridian",
-    name: "Meridian",
-    tagline: "Energy, metabolism and healthy ageing, in one plan.",
-    category: "Longevity & Mitochondrial",
-    bestFor: "Energy, endurance and healthy ageing.",
-    peptides: [
-      { name: "NAD+", dose: "100 mg 3×/week SC", spec: "200 mg/mL · 5 mL vial" },
-      { name: "Epitalon", dose: "10 mg daily pulse", spec: "100 mg/mL · 2 mL vial" },
-      { name: "MOTS-c", dose: "5 mg 2×/week SC", spec: "10 mg/mL · 2 mL vial" },
-    ],
-    synergy: "NAD+ for cellular energy, MOTS-c for the pathways exercise switches on, and epitalon as a 20-day course for telomere maintenance.",
-    timeline: [
-      { wk: "Wk 1", effect: "Your first doses." },
-      { wk: "Wk 4", effect: "On schedule, the levels build." },
-      { wk: "Wk 12", effect: "Your blood panel, with metabolic and inflammation markers checked." },
-    ],
-    panel: "Full",
-    panelNote: "The full panel at week 12, included, with metabolic and inflammation markers checked first.",
-    contraindications: ["Active malignancy", "Pregnancy"],
-    cadences: cad(449, 1145, 3772, 494, "Elite"),
+    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review)"],
+    cadences: cad(349),
     worldLean: "both",
   },
   {
     slug: "ignite",
     name: "Ignite",
-    tagline: "Two appetite hormones, one weekly dose.",
-    category: "Metabolic (GLP-1)",
-    bestFor: "Weight loss, after a physician's review.",
+    tagline: "A GLP-1 for the weight, a low-dose growth hormone peptide to protect the muscle.",
+    category: "Metabolic & Weight",
+    bestFor: "Weight loss with the muscle-aware formula, after a physician's review.",
     peptides: [
       { name: "Tirzepatide", dose: "2.5 to 15 mg weekly, stepped up", spec: "Weekly injection · with glycine + B12" },
+      { name: "Ipamorelin / CJC-1295 Blend", dose: "300 mcg nightly, under the skin", spec: "5 mg/mL · 5 mL vial" },
     ],
-    synergy: "Tirzepatide works on GLP-1 and GIP at once. You feel full sooner, think about food less, and your blood sugar stays steadier. Your physician increases the dose step by step.",
+    synergy: "Tirzepatide quiets appetite on two hormones at once. The nightly growth hormone peptide protects the lean muscle you would otherwise lose while the weight comes off.",
     timeline: [
       { wk: "Wk 1", effect: "Your first dose, at the lowest step." },
       { wk: "Wk 4", effect: "Your dose steps up." },
       { wk: "Wk 12", effect: "Your blood panel and a dose review." },
     ],
     panel: "Full",
-    panelNote: "The full panel at week 12, included, with fasting insulin and lipase checked first.",
-    contraindications: [
-      "Personal or family history of medullary thyroid carcinoma",
-      "MEN 2 syndrome",
-      "Pregnancy",
-      "History of pancreatitis",
-    ],
-    /* Ignite is the tirzepatide protocol, and tirzepatide became directly
-       purchasable on 2026-08-12. Leaving the protocol gated and unpriced while
-       selling the same molecule on its PDP was incoherent, and it left /stacks
-       unable to reach a price at all — audit:funnel's third broken path.
-       Cadences are the solo's OWN tiers (399 / 339 / 279 per month), not new
-       numbers: the solo already includes the panel, physician review and
-       retest, so the protocol is the same offer with the method made explicit.
-       State exclusions stay — those are legal, not a gate. */
-    cadences: cad(399, 1017, 3348, 439, "Full"),
+    panelNote: "Baseline panel with your first order, optimization panel at 90 days, with fasting insulin and lipase checked first.",
+    contraindications: ["Personal/family history of medullary thyroid carcinoma", "MEN 2", "Pregnancy", "Pancreatitis history"],
+    cadences: cad(399),
     stateExclusions: ["AK", "AR", "IN", "MI", "MN", "SC"],
     worldLean: "both",
   },
   {
-    slug: "threshold",
-    name: "Threshold",
-    tagline: "Deeper sleep, and a steadier sleep-wake rhythm.",
-    category: "Sleep & HRV",
-    bestFor: "Falling asleep, deep sleep and waking rested.",
+    slug: "vitality",
+    name: "Vitality",
+    tagline: "Desire from the brain, blood flow and closeness. Three mechanisms that complement each other.",
+    category: "Sexual Health",
+    bestFor: "Desire and performance, for men and women.",
     peptides: [
-      { name: "DSIP", dose: "100 mcg nightly SC", spec: "2 mg/mL · 3 mL vial" },
-      { name: "Epitalon", dose: "10 mg nightly SC", spec: "100 mg/mL · 2 mL vial" },
+      { name: "PT-141", dose: "1.75 mg as needed, under the skin", spec: "10 mg/mL · 3 mL vial" },
+      { name: "Oxytocin Nasal", dose: "As needed, nasal spray", spec: "Nasal spray" },
+      { name: "Tadalafil Nasal", dose: "As needed, nasal spray", spec: "Nasal spray" },
     ],
-    synergy: "DSIP for falling asleep faster and getting more deep sleep; epitalon for the sleep-wake rhythm. Both at bedtime.",
+    synergy: "PT-141 works on desire in the brain, tadalafil on blood flow, oxytocin on closeness. Complementary mechanisms, taken on the day you choose.",
     timeline: [
-      { wk: "Night 1", effect: "Your first dose, at bedtime." },
-      { wk: "Wk 2", effect: "Taken nightly, sleep settles into a rhythm." },
-      { wk: "Wk 12", effect: "Your blood panel, with cortisol and thyroid checked." },
+      { wk: "Dose 1", effect: "About an hour ahead. Works the same day." },
+      { wk: "Ongoing", effect: "On the days you choose, within your monthly limit." },
+      { wk: "Wk 12", effect: "Your blood panel, with hormones and heart markers checked for context." },
     ],
     panel: "Full",
-    panelNote: "The full panel at week 12, included, with cortisol and thyroid checked first.",
-    contraindications: ["Pregnancy", "Concurrent SSRI/SNRI (flagged for physician review)"],
-    cadences: cad(199, 507, 1672, 219, "Basic"),
+    panelNote: "Baseline panel with your first order, optimization panel at 90 days.",
+    contraindications: ["Uncontrolled hypertension", "Cardiovascular disease (physician review)", "Nitrate medications", "Pregnancy"],
+    cadences: [],
+    gated: true,
     worldLean: "both",
+  },
+  {
+    slug: "foundation",
+    name: "Foundation",
+    tagline: "Monitored testosterone with a natural-axis support peptide. The base layer.",
+    category: "Hormone & Foundational",
+    bestFor: "Men with low testosterone who want the base right before building on it.",
+    peptides: [
+      { name: "Testosterone Cypionate", dose: "Weekly, under the skin or into muscle", spec: "200 mg/mL · 10 mL vial" },
+      { name: "Kisspeptin", dose: "On your physician's schedule, under the skin", spec: "Vial" },
+    ],
+    synergy: "Testosterone replaces what is low; kisspeptin supports the body's own axis so it keeps working underneath. Monitored with blood work throughout.",
+    timeline: [
+      { wk: "Wk 1", effect: "Your first dose." },
+      { wk: "Wk 6", effect: "Levels settle. Energy and drive are usually the first things to move." },
+      { wk: "Wk 12", effect: "Your blood panel, with testosterone, estradiol and blood count checked first." },
+    ],
+    panel: "Full",
+    panelNote: "Baseline panel with your first order, optimization panel at 90 days, hormones checked first.",
+    contraindications: ["Prostate or breast cancer", "Untreated sleep apnea", "Planning to conceive (physician review)"],
+    cadences: [],
+    gated: true,
+    worldLean: "him",
   },
 ];
 
-/** Stacks the site shows and sells. Every consumer reads this. */
 export const FLAGSHIP_STACKS: FlagshipStack[] = ALL_STACKS.filter((s) => LAUNCH_STACK_SLUGS.has(s.slug));
 
 /** Held off the shelf until their molecules return. Retained deliberately. */
@@ -263,6 +238,46 @@ export const RETIRED_STACKS: FlagshipStack[] = ALL_STACKS.filter((s) => !LAUNCH_
 export function getStack(slug: string): FlagshipStack | undefined {
   return FLAGSHIP_STACKS.find((s) => s.slug === slug);
 }
+
+/** The live SKUs inside a protocol, resolved by name. */
+export function stackComponents(stack: FlagshipStack): SoloPeptide[] {
+  return stack.peptides.map((p) => soloByName(p.name)).filter((s): s is SoloPeptide => Boolean(s));
+}
+
+/** A protocol is reservable, rather than sold, while any of its medicines
+    is still pending (the playbook's Category 2 set). The price ladder shows
+    so the reader can lock it; the action is a reservation. */
+export function stackReservable(stack: FlagshipStack): boolean {
+  if (stack.gated || stack.cadences.length === 0) return false;
+  return stack.peptides.some((p) => { const s = soloByName(p.name); return !s || !isSellable(s); });
+}
+
+/** The medicines in a protocol still pending, by name. */
+export function stackPending(stack: FlagshipStack): string[] {
+  return stack.peptides.filter((p) => { const s = soloByName(p.name); return !s || !isSellable(s); }).map((p) => p.name);
+}
+
+/* ── The Full Stack (the playbook): the four core protocols, one plan ── */
+export const FULL_STACK = {
+  slug: "full-stack",
+  name: "The Full Stack",
+  base: 1199,
+  protocols: ["recover", "ascend", "lucidity", "ignite"],
+  line: "Recover, Ascend, Lucidity and Ignite, prescribed as one plan and monitored on one panel.",
+} as const;
+
+/* ── Synergy rules (the playbook): what to combine, what to pick one of ── */
+export interface SameJobGroup { name: string; members: string[]; note: string }
+export const SAME_JOB: SameJobGroup[] = [
+  { name: "Growth hormone peptides", members: ["Sermorelin", "Ipamorelin / CJC-1295 Blend", "Tesamorelin"], note: "All three raise your own growth hormone. Pick one; your physician chooses by goal." },
+  { name: "GLP-1 medications", members: ["Semaglutide", "Tirzepatide"], note: "One at a time. Tirzepatide works on a second hormone; your physician picks." },
+];
+export const PAIRS_WELL = [
+  { pair: ["BPC-157", "TB-500"], note: "Different jobs. BPC-157 sends the repair signal at the site; TB-500 moves repair cells through the whole body. Together they are the pair." },
+  { pair: ["Tirzepatide", "Ipamorelin / CJC-1295 Blend"], note: "The GLP-1 takes the weight off; the nightly growth hormone peptide protects the muscle underneath it." },
+  { pair: ["PT-141", "Tadalafil Nasal"], note: "Desire from the brain and blood flow from the vessels. Two mechanisms, one evening." },
+  { pair: ["Testosterone Cypionate", "Kisspeptin"], note: "Testosterone replaces what is low; kisspeptin keeps your own axis working underneath it." },
+];
 
 /* ── Blood-panel tiers (doc's real markers) ── */
 export interface PanelDef {
@@ -278,15 +293,15 @@ export const PANELS: PanelDef[] = [
   {
     tier: "Basic",
     price: 99,
-    freeWith: "Included with any 12-month plan",
-    summary: "The full panel, the floor under any protocol.",
+    freeWith: "Included with every first order, as your baseline",
+    summary: "The full panel, drawn at home before your first dose.",
     adds: ["CBC with differential", "Comprehensive metabolic panel", "Lipid panel", "HbA1c", "Fasting glucose + insulin", "hs-CRP", "TSH"],
     retest: "Week 12",
   },
   {
     tier: "Full",
     price: 199,
-    freeWith: "Bundled in 3- and 12-month stacks",
+    freeWith: "Included at six and twelve months, as your optimization panel",
     summary: "Everything in Basic, plus the hormonal and GH-axis panel.",
     adds: ["Total T · Free T · SHBG · Estradiol (sensitive)", "LH · FSH · Prolactin", "Free T3 · Free T4 · Reverse T3", "IGF-1 (mandatory for any GH-axis peptide)", "DHEA-S · AM Cortisol", "Vit D · B12 · Ferritin · Homocysteine", "ALT/AST/GGT", "Uric acid"],
     retest: "Week 12 · Month 6",
@@ -294,7 +309,7 @@ export const PANELS: PanelDef[] = [
   {
     tier: "Elite",
     price: 399,
-    freeWith: "Bundled in Meridian and 12-month Ignite / Ascend",
+    freeWith: "Included on the twelve-month term, quarterly",
     summary: "Everything in Full, plus advanced cardiometabolic and inflammatory depth.",
     adds: ["Apolipoprotein B · Lp(a) · LDL particle count", "Fasting insulin · HOMA-IR · C-peptide", "Adiponectin · Leptin", "IL-6 · TNF-α", "Full iron panel", "HRV wearable integration (baseline)", "Optional: epigenetic age testing"],
     retest: "Week 12 · Month 6 · Month 12",

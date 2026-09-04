@@ -36,7 +36,7 @@ if (!existsSync(DIST)) {
    negative because the law requires them to be. */
 const ROUTES = [
   "/", "/about", "/how-it-works", "/peptides-101", "/peptides", "/stacks",
-  "/goals/metabolic", "/goals/growth", "/goals/sexual-health",
+  "/goals/metabolic", "/goals/growth", "/goals/sexual-health", "/goals/hormone", "/labs", "/stacks/recover", "/peptides/testosterone",
   "/faq", "/physicians", "/contact", "/assessment",
   "/peptides/tesamorelin", "/peptides/semaglutide",
   "/peptides/tirzepatide", "/peptides/pt-141",

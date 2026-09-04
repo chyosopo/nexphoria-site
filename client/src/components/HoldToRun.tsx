@@ -12,7 +12,7 @@
 import { useEffect, useRef, useState } from "react";
 import { F, S } from "@/lib/typography";
 
-const LINES = ["You start your medication.", "Week 12: your blood panel.", "Your dose, adjusted."];
+const LINES = ["Your baseline kit, drawn at home.", "You start. Week 12: the same panel again.", "Your dose, adjusted from what changed."];
 const HOLD_MS = 2200;
 
 export function HoldToRun() {

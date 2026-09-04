@@ -1,9 +1,12 @@
-/* ═══ Monitoring model: one full panel, at week 12, for everyone ═══
+/* ═══ Monitoring model: a baseline kit with the first order, the same
+   full panel again at week 12 ═══
 
    The site's source of truth for bloodwork (docs/MASTER-PLAN.md, Part 1).
-   Chiya's decisions, 2026-09-02: start first (the doctor prescribes from the
-   questionnaire, no draw before the first dose); one full panel at week 12,
-   included in every plan; the same panel for everyone. Every marker carries
+   The playbook (Chiya, 2026-09-04) supersedes the 2026-09-02 "start first"
+   model: a baseline blood-work kit ships free with the first order, so the
+   reader tests before they start and the physician doses against a number;
+   the same full panel is drawn again at week 12 (the 90-day retest) and, on
+   the twelve-month term, quarterly. The same panel for everyone. Every marker carries
    the reason it is drawn, in the reader's words, so a page prints the "why"
    next to the "what". Counts are DERIVED from this list, never typed.
 
@@ -17,6 +20,13 @@ export type PanelGroup = { name: string; markers: Marker[] };
 
 export const SIGNED_OFF = false;
 export const RETEST_WEEK = 12;
+/** The baseline kit: the same full panel, drawn at home before the first
+    dose. Free with the first order on every term (the playbook). */
+export const BASELINE = {
+  when: "Before your first dose",
+  line: "A free at-home blood-work kit ships with your first order. Your physician doses against your numbers, and the same panel is drawn again at week 12 so you can see what changed.",
+  short: "Free baseline blood panel with your first order",
+} as const;
 
 /* The full panel: what a doctor wants to see twelve weeks into a peptide
    plan. Grouped the way the results page will group them. */
@@ -77,7 +87,7 @@ export const FULL_PANEL_MARKERS: Marker[] = FULL_PANEL.flatMap((g) => g.markers)
 export const FULL_PANEL_COUNT = FULL_PANEL_MARKERS.length;
 
 /* What each peptide's doctor is looking for in that panel, and the screens
-   that happen in the questionnaire because there is no draw before the
+   that happen in the questionnaire, before the baseline kit is read, so a
    first dose. */
 export interface PeptideMonitoring {
   slug: string;
@@ -266,6 +276,55 @@ export const PEPTIDE_MONITORING: PeptideMonitoring[] = [
     why: "This peptide works on sleep. Your week-12 panel checks cortisol and thyroid, which shape sleep on their own.",
     watch: ["Cortisol", "TSH"],
     intakeScreens: ["SSRI or SNRI antidepressants", "Pregnancy, or planning one"],
+  },
+  {
+    slug: "thymosin-a1",
+    peptide: "Thymosin Alpha-1",
+    drugClass: "Immune-modulating peptide",
+    why: "Thymosin alpha-1 works on the immune system. Your baseline shows your physician your blood count and inflammation before you start, and the week-12 panel shows how they have moved.",
+    watch: ["Complete blood count", "hs-CRP", "ALT and AST"],
+    intakeScreens: ["Active cancer or a history of cancer", "Organ transplant or immunosuppressant medication", "Pregnancy, or planning one"],
+  },
+  {
+    slug: "aod-9604",
+    peptide: "AOD-9604",
+    drugClass: "Growth hormone fragment",
+    why: "AOD-9604 is studied for fat metabolism. Your physician reads your metabolic markers at baseline and at week 12 to see whether it is earning its place in your plan.",
+    watch: ["Fasting glucose", "Fasting insulin", "Triglycerides", "HbA1c"],
+    intakeScreens: ["Pregnancy, or planning one", "Active cancer"],
+  },
+  {
+    slug: "oxytocin",
+    peptide: "Oxytocin Nasal",
+    drugClass: "Neuropeptide hormone",
+    why: "Oxytocin works on closeness and arousal through the brain. Your physician checks your blood pressure first and reads your hormones at baseline and week 12 for context.",
+    watch: ["Total testosterone", "Estradiol", "Prolactin"],
+    intakeScreens: ["Blood pressure, measured", "Pregnancy, or planning one"],
+  },
+  {
+    slug: "tadalafil",
+    peptide: "Tadalafil Nasal",
+    drugClass: "PDE5 inhibitor",
+    why: "Tadalafil works on blood flow. Your physician checks your heart history and any nitrate medication first, and reads your heart markers at baseline and week 12.",
+    watch: ["Lipid panel", "Fasting glucose", "ALT and AST", "Creatinine"],
+    intakeScreens: ["Nitrate medications", "Recent heart attack or stroke", "Liver or kidney disease"],
+  },
+  {
+    slug: "testosterone",
+    peptide: "Testosterone Cypionate",
+    drugClass: "Androgen replacement",
+    why: "Testosterone is dosed against a number, so your baseline panel matters most here. Your physician sets your dose from your total and free testosterone, then reads testosterone, estradiol and red blood cell count at week 12 to adjust it.",
+    watch: ["Total testosterone", "Free testosterone", "Estradiol", "Hematocrit", "PSA", "LH and FSH"],
+    doseMarker: "Total testosterone",
+    intakeScreens: ["Prostate or breast cancer", "Untreated sleep apnea", "Plans to conceive", "High red blood cell count"],
+  },
+  {
+    slug: "kisspeptin",
+    peptide: "Kisspeptin",
+    drugClass: "GnRH secretagogue",
+    why: "Kisspeptin works one step above your own hormones. Your physician reads LH, FSH and testosterone at baseline and week 12 to see the axis responding.",
+    watch: ["LH and FSH", "Total testosterone", "Estradiol", "SHBG"],
+    intakeScreens: ["Pregnancy, or planning one", "Hormone-sensitive cancer"],
   },
 ];
 

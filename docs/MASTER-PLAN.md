@@ -273,3 +273,14 @@ Each step ends with a preview link and a shrinking punch list.
 The physicians' sign-off is the one thing that cannot be worked around:
 until it lands, the site describes the panels as typical and says the
 doctor sets yours.
+
+### 2026-09-04 · the playbook, and blood testing as a product
+Verified (all ten gates, build 124 routes): four terms 1/3/6/12 paid up front ·
+baseline kit with the first order, the same panel at week 12 · 22-product menu
+with hormone goal · reserve flow for Category 2 medicines and the protocols that
+contain them · ExpectCard (feel it by, full effect, evidence, combine, pick one)
+· synergy section on /stacks · pricing ladder with labs per term, Full Stack,
+value stack, gray-market comparison · home "Two ways in" · /labs product with
+add-ons and a `lab` cart line. Pending: apex deploy (Chiya's call) · lab
+partner and prices · vial photos for the new six · physicians' sign-off on the
+panel and the add-on lists. Failed: none.

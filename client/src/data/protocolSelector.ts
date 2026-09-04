@@ -12,12 +12,16 @@ import { getPrice } from "@/data/pricing";
 
 /** Flagship → the goal it answers (mirrors StackPage's STACK_GOAL). */
 export const GOAL_OF_STACK: Record<string, PeptideCategory> = {
+  recover: "recovery",
+  ascend: "longevity",
+  lucidity: "cognition",
+  ignite: "metabolic",
+  vitality: "sexual-health",
+  foundation: "hormone",
+  /* retired */
   wolverine: "recovery",
   glow: "skin",
-  ascend: "growth",
-  lucidity: "cognition",
   meridian: "longevity",
-  ignite: "metabolic",
   threshold: "sleep",
 };
 

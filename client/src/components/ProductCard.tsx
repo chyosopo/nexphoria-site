@@ -18,7 +18,8 @@ import { getPrice } from "@/data/pricing";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { GoodForChips } from "@/components/BenefitStrip";
 import { SkuPhoto } from "@/components/SkuPhoto";
-import type { SoloPeptide } from "@/data/soloCatalog";
+import { statusOf, type SoloPeptide } from "@/data/soloCatalog";
+import { StatusPill } from "@/components/StatusPill";
 
 /** The price line for a SKU, in one place. Mirrors the PDP's own logic:
  *  gated products state the posture, priced products lead with the lowest real
@@ -55,6 +56,9 @@ export function ProductCard({
         <SkuPhoto slug={sku.slug} name={sku.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="84%" ratio="4 / 3" fill={0.58} />} />
         {sku.gated && (
           <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
+        )}
+        {statusOf(sku) !== "live" && (
+          <span className="nx-float-badge">Reserve</span>
         )}
 
         {/* HOW IT WORKS — rises over the product on hover or keyboard focus.

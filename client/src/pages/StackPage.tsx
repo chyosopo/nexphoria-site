@@ -9,17 +9,22 @@ import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
-import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier } from "@/data/stacksCatalog";
+import { getStack, FLAGSHIP_STACKS, usd, PANELS, PanelTier, stackReservable, stackPending, stackComponents } from "@/data/stacksCatalog";
+import { StatusPill } from "@/components/StatusPill";
+import { AddonsFor } from "@/components/AddonsFor";
 import { CATEGORY_TRIAD, type PeptideCategory } from "@/data/peptides";
 
 /* Flagship → the goal vocabulary it speaks (ROADMAP 8.3 triads). */
 const STACK_GOAL: Record<string, PeptideCategory> = {
+  recover: "recovery",
+  ascend: "longevity",
+  lucidity: "cognition",
+  ignite: "metabolic",
+  vitality: "sexual-health",
+  foundation: "hormone",
   wolverine: "recovery",
   glow: "skin",
-  ascend: "growth",
-  lucidity: "cognition",
   meridian: "longevity",
-  ignite: "metabolic",
   threshold: "sleep",
 };
 import { ArrowLeft, Check, X, Lock, Pill, Stethoscope, Microscope, FlaskConical, Snowflake, LayoutDashboard, RefreshCw } from "lucide-react";
@@ -106,11 +111,15 @@ export default function StackPage({ slug }: { slug: string }) {
         amount: c.perMonth ?? c.total,
         per: c.key === "fixed" ? "/cycle" : "/mo",
         includesPanel: c.includesPanel,
+        labs: c.labs,
       }));
+  const reservable = stackReservable(stack);
+  const pending = stackPending(stack);
+  const components = stackComponents(stack);
 
   const INCLUDED: { Icon: typeof Pill; t: string }[] = [
     { Icon: Stethoscope, t: "Physician review and prescription" },
-    { Icon: Microscope, t: "Blood panel at week 12" },
+    { Icon: Microscope, t: "Baseline kit, and the week-12 panel" },
     { Icon: FlaskConical, t: "Made in a licensed U.S. pharmacy" },
     { Icon: Snowflake, t: "Cold shipping, plain packaging" },
     { Icon: LayoutDashboard, t: "Your results, explained" },
@@ -162,7 +171,15 @@ export default function StackPage({ slug }: { slug: string }) {
                       ? `From ${usd(Math.min(...tiers.map((t) => t.amount)))}/mo · if prescribed`
                       : "Priced at consultation"}
                 </span>
+                {reservable && <StatusPill status="reserve" testId="stack-status" />}
               </div>
+              {components.some((c) => c.feelBy) && (
+                <ul className="nx-feelby" data-testid="stack-feelby" aria-label="When you feel each medicine">
+                  {components.filter((c) => c.feelBy).map((c) => (
+                    <li key={c.slug} style={{ fontFamily: F }}><strong>{c.name}</strong> · feel it by {c.feelBy!.charAt(0).toLowerCase() + c.feelBy!.slice(1)}</li>
+                  ))}
+                </ul>
+              )}
             </div>
             {stackArt(stack.slug, world) && (
               <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
@@ -279,7 +296,8 @@ export default function StackPage({ slug }: { slug: string }) {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
                 {stack.panelNote ?? panel?.summary}
               </p>
-              <Link href="/bloodwork" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
+              <AddonsFor keys={[stack.slug, ...components.map((c) => c.slug)]} testId="stack-addons" />
+              <Link href="/labs" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
                 See what is measured
               </Link>
             </div>
@@ -294,7 +312,7 @@ export default function StackPage({ slug }: { slug: string }) {
                   GLP-1 therapy is prescribed after your doctor reviews you.
                 </h3>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "60ch", marginTop: "0.8rem" }}>
-                  Metabolic therapy is dosed by a licensed physician from your questionnaire, then adjusted from your week-12 panel. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your doctor will prescribe it.
+                  Metabolic therapy is dosed by a licensed physician from your questionnaire and your baseline blood work, then adjusted from your week-12 panel. Eligibility depends on your medical history and your state. Begin with a structured intake; if a protocol is appropriate, your doctor will prescribe it.
                 </p>
                 {stack.stateExclusions && (
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
@@ -322,6 +340,8 @@ export default function StackPage({ slug }: { slug: string }) {
               onSelect={setSelected}
               gated={stack.gated}
               gatedStates={stack.stateExclusions}
+              availability={reservable ? "reserve" : "live"}
+              pending={pending}
               ctaTestId={stack.gated ? "ignite-intake" : "stack-cta"}
             />
             <SafetyDisclosure name={stack.name} contraindications={stack.contraindications} />
@@ -379,8 +399,7 @@ export default function StackPage({ slug }: { slug: string }) {
                     <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{s.name}</h3>
                     <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{s.tagline}</p>
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
-                      From {usd(s.cadences[2]?.perMonth ?? s.cadences[0]?.perMonth ?? s.cadences[0]?.total ?? 0)}/mo
-                      <span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span>
+                      {s.cadences.length ? <>From {usd(Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)))}/mo<span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span></> : "Priced at consultation"}
                     </p>
                   </div>
                 </Link>

@@ -13,7 +13,7 @@ import { track } from "@/lib/analytics";
 import { F, S } from "@/lib/typography";
 
 const OPTIONS = FLAGSHIP_STACKS.filter((s) => !s.gated && s.cadences.length > 0);
-const CADENCES = ["1mo", "3mo", "12mo"] as const;
+const CADENCES = ["1mo", "3mo", "6mo", "12mo"] as const;
 
 export function CadenceCalculator() {
   const [slug, setSlug] = useState(OPTIONS[0]?.slug ?? "");
@@ -23,6 +23,7 @@ export function CadenceCalculator() {
   const perMonth = {
     "1mo": priceAtCadence(stack.slug, "1mo"),
     "3mo": priceAtCadence(stack.slug, "3mo"),
+    "6mo": priceAtCadence(stack.slug, "6mo"),
     "12mo": priceAtCadence(stack.slug, "12mo"),
   };
   // Real annual comparison: paying month-to-month for a year vs the annual plan.
@@ -60,10 +61,10 @@ export function CadenceCalculator() {
         ))}
       </div>
 
-      {/* the three cadences, side by side */}
-      <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 12, marginTop: "1.3rem" }}>
+      {/* the four terms, side by side */}
+      <div className="grid grid-cols-2 sm:grid-cols-4" style={{ gap: 12, marginTop: "1.3rem" }}>
         {CADENCES.map((k) => {
-          const best = k === "12mo";
+          const best = k === "6mo";
           const save = CADENCE_DISCOUNTS[k].savePct;
           return (
             <div

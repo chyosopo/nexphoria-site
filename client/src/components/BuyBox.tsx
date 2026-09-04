@@ -4,7 +4,7 @@
    content. Mobile: the card sits in flow AND a fixed bottom bar keeps
    price + CTA persistent. Tokens only; both worlds theme it for free. */
 import { Link } from "wouter";
-import { Lock, Check } from "lucide-react";
+import { Lock, Check, FlaskConical } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { usd } from "@/data/stacksCatalog";
 import { track } from "@/lib/analytics";
@@ -12,6 +12,9 @@ import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
 import { useCart } from "@/contexts/CartProvider";
 import { billingNote, CADENCE_DISCOUNTS, type CadenceKey } from "@/data/pricing";
+import { ReserveForm } from "@/components/ReserveForm";
+import { StatusPill } from "@/components/StatusPill";
+import type { SoloStatus } from "@/data/soloCatalog";
 
 export interface BuyTier {
   key: string;
@@ -22,6 +25,8 @@ export interface BuyTier {
   amount: number;
   per: "/mo" | "/cycle";
   includesPanel?: string;
+  /** the labs included at this term (the playbook) */
+  labs?: string;
 }
 
 /* Tier keys → cart cadence. Stacks use 1mo/3mo/12mo (+fixed), solos m1/m3/m12.
@@ -29,6 +34,7 @@ export interface BuyTier {
 const TIER_TO_CADENCE: Record<string, CadenceKey | undefined> = {
   "1mo": "1mo", m1: "1mo",
   "3mo": "3mo", m3: "3mo",
+  "6mo": "6mo", m6: "6mo",
   "12mo": "12mo", m12: "12mo",
 };
 
@@ -50,6 +56,12 @@ export interface BuyBoxProps {
       so the PDP never contradicts the shelf card that said "From $X/mo" */
   fromPrice?: number;
   ctaTestId: string;
+  /** "live" sells. "coming" / "watch" (a pending solo) and "reserve" (a
+      protocol with a pending medicine) show the ladder and take a
+      reservation at the shown price instead of a cart add. */
+  availability?: SoloStatus | "reserve";
+  /** what is pending, for the reservation note (protocols) */
+  pending?: string[];
 }
 
 const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }) => (
@@ -65,10 +77,11 @@ const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }
 );
 
 export function BuyBox(props: BuyBoxProps) {
-  const { name, category, slug, addType, tiers, selected, onSelect, gated, gatedStates, consultPriced, fromPrice, ctaTestId } = props;
+  const { name, category, slug, addType, tiers, selected, onSelect, gated, gatedStates, consultPriced, fromPrice, ctaTestId, availability = "live", pending } = props;
   const active = tiers?.find((t) => t.key === selected) ?? tiers?.[0];
   const { addStack, addPeptide } = useCart();
   const cadence = active ? TIER_TO_CADENCE[active.key] : undefined;
+  const reserving = availability !== "live";
 
   // The bug this fixes: the cadence selector chose a price the visitor could
   // never act on — the only button routed to the assessment. Sellable tiers
@@ -98,6 +111,7 @@ export function BuyBox(props: BuyBoxProps) {
         <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", marginTop: 4, lineHeight: 1.1 }}>
           {name}
         </p>
+        <StatusPill status={availability} testId="buybox-status" style={{ marginTop: "0.6rem" }} />
 
         {/* State exclusions are a LEGAL constraint, not a property of gating.
             They previously rendered only inside the gated branch, so ungating a
@@ -118,7 +132,7 @@ export function BuyBox(props: BuyBoxProps) {
               <Lock size={14} /> Doctor-assessed only
             </div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.55rem" }}>
-              Prescribed after your doctor reviews you. Dosed by a licensed physician from your questionnaire, then adjusted from your week-12 panel.
+              Prescribed after your physician reviews you. Dosed and priced at your consultation against your baseline blood work, then adjusted from your week-12 panel.
             </p>
             {gatedStates && (
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>
@@ -211,12 +225,26 @@ export function BuyBox(props: BuyBoxProps) {
                 );
               })}
             </div>
-            {active?.includesPanel && (
+            {active?.labs ? (
+              <p style={{ display: "flex", alignItems: "flex-start", gap: 6, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-cobalt)", marginTop: "0.7rem", lineHeight: 1.45 }} data-testid="buybox-labs">
+                <FlaskConical size={13} strokeWidth={2.4} style={{ flexShrink: 0, marginTop: 2 }} aria-hidden="true" /> <span>{active.labs}</span>
+              </p>
+            ) : active?.includesPanel ? (
               <p style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-cobalt)", marginTop: "0.7rem" }}>
                 <Check size={13} strokeWidth={2.6} /> Includes {active.includesPanel} panel
               </p>
+            ) : null}
+            {reserving && (
+              <div style={{ marginTop: "1rem" }} id="reserve">
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }} data-testid="buybox-reserve-note">
+                  {pending && pending.length > 0
+                    ? `${pending.join(" and ")} ${pending.length > 1 ? "are" : "is"} pending final FDA rulemaking for compounding. Reserve this protocol at the figure above and we email you the moment it ships.`
+                    : `${name} is pending final FDA rulemaking for compounding. Reserve it at the figure above and we email you the moment it ships.`}
+                </p>
+                <ReserveForm slug={slug} kind={addType} price={active ? `${usd(active.amount)}${active.per}` : undefined} testId={`${ctaTestId}-reserve`} />
+              </div>
             )}
-            <div style={{ marginTop: "1rem" }}>
+            <div style={{ marginTop: "1rem" }} hidden={reserving}>
               {cadence ? (
                 <button
                   type="button"
@@ -236,7 +264,7 @@ export function BuyBox(props: BuyBoxProps) {
                 {billingNote(cadence, active.amount)}
               </div>
             )}
-            {cadence && (
+            {cadence && !reserving && (
               <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
                 <Link href="/assessment" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                   Not sure? Answer a few health questions
@@ -294,7 +322,11 @@ export function BuyBox(props: BuyBoxProps) {
             )}
           </p>
         </div>
-        {cadence && !gated && !consultPriced ? (
+        {reserving && cadence && !gated && !consultPriced ? (
+          <a href="#reserve" data-testid={`${ctaTestId}-bar`} className="nx-cta-cobalt" style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}>
+            Reserve
+          </a>
+        ) : cadence && !gated && !consultPriced ? (
           <button
             type="button"
             onClick={handleAdd}

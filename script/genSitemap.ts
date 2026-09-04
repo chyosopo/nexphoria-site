@@ -57,7 +57,7 @@ async function slugsFrom(path: string, scopeName?: string): Promise<string[]> {
    duplicating it here would be a second source of truth for the same fact.
    Update this alongside LAUNCH_SLUGS — audit:data's census is the check. */
 /* 2026-09-03: full menu on (Chiya). All eight goals have live molecules. */
-const GOAL_CATEGORIES = ["growth", "metabolic", "sexual-health", "recovery", "skin", "cognition", "sleep", "longevity"];
+const GOAL_CATEGORIES = ["growth", "metabolic", "sexual-health", "recovery", "skin", "cognition", "sleep", "longevity", "hormone"];
 
 /* journal.ts also declares JournalCategory slugs (foundations, protocols, …)
    with the same `slug:` shape as articles. These are NOT article routes —
@@ -71,7 +71,7 @@ const JOURNAL_CATEGORY_SLUGS = new Set([
    checkout/cart/gate routes are intentionally excluded from the sitemap. */
 const STATIC_ROUTES = [
   "/", "/men", "/women",
-  "/about", "/physicians", "/pricing", "/bloodwork",
+  "/about", "/physicians", "/pricing", "/bloodwork", "/labs",
   "/how-it-works", "/peptides-101", "/faq", "/contact", "/community", "/booking", "/assessment",
   "/what-happens-next",
   "/protocols", "/stacks", "/stacks/build", "/peptides", "/gift",

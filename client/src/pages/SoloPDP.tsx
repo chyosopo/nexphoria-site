@@ -27,6 +27,11 @@ import { OUTCOME_CATEGORY, OUTCOME_HERO, stackArt, outcomeSrcSet } from "@/data/
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { BenefitStrip } from "@/components/BenefitStrip";
+import { ExpectCard } from "@/components/ExpectCard";
+import { AddonsFor } from "@/components/AddonsFor";
+import { StatusPill } from "@/components/StatusPill";
+import { soloTiers } from "@/lib/tiers";
+import { statusOf } from "@/data/soloCatalog";
 import { monitoringFor, RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import type { PeptideCategory } from "@/data/peptides";
@@ -39,11 +44,12 @@ const SOLO_OUTCOME: Record<SoloCategory, PeptideCategory> = {
   "Skin & Longevity": "longevity",
   Metabolic: "metabolic",
   Sleep: "sleep",
-  "Sexual Health": "longevity",
+  "Sexual Health": "sexual-health",
+  Hormone: "hormone",
 };
 
 /* the treatment name a reader chose on the home page, for the kicker */
-const GOAL_LABEL: Record<string, string> = { Metabolic: "Weight loss", Growth: "Body composition", "Sexual Health": "Sexual desire" };
+const GOAL_LABEL: Record<string, string> = { Metabolic: "Weight loss", Growth: "Body composition", "Sexual Health": "Sexual desire", Hormone: "Hormones" };
 
 export default function SoloPDP({ slug, world }: { slug: string; world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
@@ -53,7 +59,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const [loc] = useLocation();
   const imgWorld = world ?? resolveWorld(loc);
   const solo = getSolo(slug);
-  const [tier, setTier] = useState<string>("m3");
+  const [tier, setTier] = useState<string>("m6");
   useEffect(() => {
     if (solo) analytics.productViewed({ kind: "solo", slug: solo.slug, category: solo.category, gated: !!solo.gated, world: imgWorld });
   }, [solo, imgWorld]);
@@ -131,7 +137,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
   const INCLUDED: { Icon: typeof Stethoscope; t: string }[] = [
     { Icon: Stethoscope, t: "Physician review and prescription" },
-    { Icon: Microscope, t: "Blood panel at week 12" },
+    { Icon: Microscope, t: "Baseline kit, and the week-12 panel" },
     { Icon: FlaskConical, t: "Made in a licensed U.S. pharmacy" },
     { Icon: Snowflake, t: "Cold shipping, plain packaging" },
     { Icon: LayoutDashboard, t: "Your results, explained" },
@@ -140,16 +146,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
   const WHY: { Icon: typeof Stethoscope; t: string; d: string }[] = [
     { Icon: Stethoscope, t: "Prescribed online", d: "A licensed U.S. physician reviews your health questions and writes your prescription." },
-    { Icon: Microscope, t: "Blood panel at week 12", d: "A full panel, included, shows how your body is responding." },
+    { Icon: Microscope, t: "Blood work, both sides", d: "A free baseline kit before your first dose, and the same panel again at week 12, included." },
     { Icon: RefreshCw, t: "Dose adjustments", d: "Your physician adjusts your dose from your results. Your price stays the same." },
   ];
 
   const tiers: BuyTier[] | undefined = solo.pricing
-    ? [
-        { key: "m1", label: "1-Month", sub: "Cancel anytime", amount: solo.pricing.m1, per: "/mo" },
-        { key: "m3", label: "3-Month", sub: "Save 15%", badge: "Recommended", amount: solo.pricing.m3, per: "/mo" },
-        { key: "m12", label: "12-Month", sub: "Save 30% · panel included", badge: "Best value", amount: solo.pricing.m12, per: "/mo" },
-      ]
+    ? soloTiers(solo.pricing)
     : undefined;
 
   /* The hero figure, off the same three sources the buy box reads and in the
@@ -200,6 +202,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               >
                 {solo.gated ? "Doctor-assessed" : "Prescription only"}
               </span>
+              <StatusPill status={statusOf(solo)} testId={`solo-status-${solo.slug}`} style={{ marginLeft: 8 }} />
             </div>
 
             {/* — RIGHT · the claim, the number, the one action — */}
@@ -214,6 +217,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <strong style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{solo.name}</strong>. {solo.mechanism}
               </p>
               <div style={{ marginTop: "1.2rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} testId={`benefit-${solo.slug}`} /></div>
+              <div style={{ marginTop: "1rem", maxWidth: 560 }}><ExpectCard sku={solo} base={base} /></div>
               {/* Seed-grammar spec plate (SEED-STUDY S1): the compound as a
                   specimen label — taxonomy line + ruled LABEL→value rows in
                   tabular numerals. Replaces the two loose stat cards. */}
@@ -224,7 +228,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   rows={[
                     { label: "Dose", value: solo.dose },
                     { label: "Format", value: solo.spec },
-                    { label: "Included", value: "Blood panel at week 12" },
+                    { label: "Included", value: "Baseline blood kit · panel at week 12" },
                   ]}
                   testId={`spec-plate-${solo.slug}`}
                 />
@@ -359,6 +363,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               onSelect={setTier}
               gated={solo.gated}
               gatedStates={solo.stateExclusions}
+              availability={statusOf(solo)}
               consultPriced={!solo.gated && !solo.pricing}
               fromPrice={!solo.gated && !solo.pricing ? getPrice(solo.slug)?.monthlyPrice : undefined}
               ctaTestId="solo-cta"
@@ -391,7 +396,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "0.9rem", maxWidth: "50ch" }}>{m.why}</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "50ch" }}>
                   A full panel of {PANEL_TOTAL_MARKERS} markers is included in your plan.{" "}
-                  <Link href="/bloodwork" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker and why it is there</Link>
+                  <Link href="/labs" className="nx-text-link" style={{ fontWeight: 600 }}>See every marker and why it is there</Link>
+                  <AddonsFor keys={[solo.slug]} testId={`addons-${solo.slug}`} />
                 </p>
               </div>
               <div style={{ display: "grid", gap: 10 }}>

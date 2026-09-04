@@ -30,7 +30,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "What bloodwork is required?",
-    a: `None to start. At week 12, a full blood panel is included in your plan. It shows your physician how your body is responding to ${name}, and your dose is adjusted from it.`,
+    a: `A free at-home blood kit ships with your first order, so your physician sets your ${name} dose against your numbers. At week 12, the same full panel is drawn again, included, and your dose is adjusted from what changed.`,
   });
 
   if (firstMark) {
@@ -47,8 +47,8 @@ export function buildPdpFaq(opts: {
     });
   } else if (hasPricing) {
     items.push({
-      q: "Can I cancel?",
-      a: "Yes. The monthly plan cancels anytime. Longer plans cost less per month: 15% off at 3 months and 30% off at 12 months, with your blood panel included.",
+      q: "How is it billed?",
+      a: "You buy a block of time, paid up front: one month to try it, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood work. When your term ends, renewing is your choice.",
     });
   }
 

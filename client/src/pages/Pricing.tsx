@@ -18,7 +18,8 @@ import { BenefitTile, BenefitTileGrid } from "@/components/BenefitTile";
 import { FlaskConical, Stethoscope, Truck, Receipt, ShieldCheck, ChevronsDownUp } from "lucide-react";
 import { F, FONT } from "@/lib/typography";
 import { SOLO_FROM_LABEL, SOLO_FROM_PRICE, priceAtCadence, formatUSD, CADENCE_DISCOUNTS } from "@/data/pricing";
-import { FLAGSHIP_STACKS, PANELS, usd } from "@/data/stacksCatalog";
+import { FLAGSHIP_STACKS, PANELS, usd, FULL_STACK } from "@/data/stacksCatalog";
+import { RETEST_WEEK } from "@/data/monitoring";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 import { ComparisonMatrix } from "@/components/ComparisonMatrix";
@@ -26,8 +27,9 @@ import { ComparisonMatrix } from "@/components/ComparisonMatrix";
 /* ── Catalog-derived pricing — single source of truth is the pricing engine
    (CADENCE_DISCOUNTS / priceAtCadence) + the solo & stack catalogs. No dollar
    amount or percent on this page is hand-written; every figure resolves here. ── */
-const CADENCE_ORDER = ["1mo", "3mo", "12mo"] as const;
+const CADENCE_ORDER = ["1mo", "3mo", "6mo", "12mo"] as const;
 const SAVE_3MO = CADENCE_DISCOUNTS["3mo"].savePct;
+const SAVE_6MO = CADENCE_DISCOUNTS["6mo"].savePct;
 const SAVE_12MO = CADENCE_DISCOUNTS["12mo"].savePct;
 
 /* The shelf stacks that are actually sold (gated GLP-1 excluded).
@@ -42,21 +44,48 @@ const STACK_FROM_12MO: number | null = NON_GATED_STACKS.length
   : null;
 
 /* Protocol rows = the shelf stacks, each priced straight from the catalog. */
-const protocols = NON_GATED_STACKS.map((s) => ({
-  name: s.name,
-  description: `${s.peptides.map((p) => p.name).join(" + ")}. ${s.bestFor}`,
-  slug: s.slug,
-  m1: priceAtCadence(s.slug, "1mo"),
-  m3: priceAtCadence(s.slug, "3mo"),
-  m12: priceAtCadence(s.slug, "12mo"),
+const protocols = [
+  ...NON_GATED_STACKS.map((s) => ({
+    name: s.name,
+    description: `${s.peptides.map((p) => p.name).join(" + ")}. ${s.bestFor}`,
+    slug: s.slug,
+    m1: priceAtCadence(s.slug, "1mo"),
+    m3: priceAtCadence(s.slug, "3mo"),
+    m6: priceAtCadence(s.slug, "6mo"),
+    m12: priceAtCadence(s.slug, "12mo"),
+  })),
+  /* the Full Stack (the playbook): the four core protocols as one plan, on
+     the same four terms as everything else */
+  {
+    name: FULL_STACK.name,
+    description: FULL_STACK.line,
+    slug: FULL_STACK.slug,
+    m1: FULL_STACK.base,
+    m3: Math.round(FULL_STACK.base * (1 - CADENCE_DISCOUNTS["3mo"].pct)),
+    m6: Math.round(FULL_STACK.base * (1 - CADENCE_DISCOUNTS["6mo"].pct)),
+    m12: Math.round(FULL_STACK.base * (1 - CADENCE_DISCOUNTS["12mo"].pct)),
+  },
+];
+
+/* Column headers derive from the cadence engine: the four terms. */
+const billingTerms = CADENCE_ORDER.map((k) => ({
+  key: k,
+  label: CADENCE_DISCOUNTS[k].label,
+  discount: CADENCE_DISCOUNTS[k].savePct > 0 ? `Save ${CADENCE_DISCOUNTS[k].savePct}%` : "Try it",
+  badge: k === "6mo" ? "Best value" : null,
+  labs: CADENCE_DISCOUNTS[k].labs,
 }));
 
-/* Column headers derive from the cadence engine — three cadences only, no 6-month. */
-const billingTerms = CADENCE_ORDER.map((k) => ({
-  label: CADENCE_DISCOUNTS[k].label,
-  discount: CADENCE_DISCOUNTS[k].savePct > 0 ? `Save ${CADENCE_DISCOUNTS[k].savePct}%` : null,
-  badge: k === "12mo" ? "Best value" : null,
-}));
+/* What is inside the price (the playbook's value stack): what each piece
+   costs on its own elsewhere, stated as a range, and that here it is
+   included. Figures are typical U.S. retail ranges, not a claim about any
+   named competitor. */
+const VALUE_STACK: { item: string; elsewhere: string }[] = [
+  { item: "Physician consultation and a personalised protocol", elsewhere: "$150 to $300" },
+  { item: `Baseline blood panel, at home, and the same panel again at week ${RETEST_WEEK}`, elsewhere: "$150 to $260" },
+  { item: "Cold-chain shipping, every shipment", elsewhere: "$40 a shipment" },
+  { item: "Dose review and adjustment from your results", elsewhere: "A second visit" },
+];
 
 /* Worked annual example for the savings callout — real catalog figures.
    This used to read getStack("meridian")!, which crashed /pricing outright once
@@ -73,12 +102,12 @@ const SAVINGS_EXAMPLE = (() => {
 })();
 
 const included = [
-  "Your doctor's review of your questionnaire",
-  "Compounded peptides from a 503A-licensed US pharmacy",
-  "Full blood panel at week 12",
-  "Overnight cold-chain shipping",
-  "Your doctor's read of your week-12 panel",
-  "Your dose adjusted from what your blood shows",
+  "Your physician's review of your questionnaire",
+  "Compounded medication from a 503A-licensed U.S. pharmacy",
+  "A free at-home baseline blood kit with your first order",
+  `The same full blood panel again at week ${RETEST_WEEK}`,
+  "Cold-chain shipping, plain packaging",
+  "Your physician's read of both panels, and your dose adjusted from what changed",
 ];
 
 const tiers = [
@@ -93,7 +122,7 @@ const tiers = [
       "Your doctor's review",
       "503A US-compounded vial",
       "Cold shipping, plain packaging",
-      "Your doctor's read of your week-12 panel",
+      "Baseline blood kit, and the week-12 panel",
     ],
     cta: "Browse peptides",
     href: "/peptides",
@@ -101,15 +130,15 @@ const tiers = [
   {
     key: "stack",
     name: "Curated Stack",
-    tagline: "Two or three medications that work together.",
+    tagline: "Medications that work together, one plan.",
     priceFrom: STACK_FROM_12MO as number | null,
     recommended: true,
     features: [
-      "Two or three medications, one plan",
+      "Two to four medications, chosen to do different jobs",
       "Everything in Solo",
-      "Full blood panel at week 12",
-      "Your doctor's read of your week-12 panel",
-      "Dose adjustments from your week-12 panel",
+      "Baseline blood kit, and the week-12 panel",
+      "Optimization panel at six months and beyond",
+      "Dose adjustments from what changed",
     ],
     cta: "Browse stacks",
     href: "/stacks",
@@ -132,13 +161,17 @@ const tiers = [
   },
 ];
 
+/* Nexphoria next to the gray market (the playbook): the unregulated
+   "research use" vial a reader can buy online without a prescription. Each
+   row is a fact about what is inside our figure; the right-hand column is
+   what that route offers by definition, never a claim about a named seller. */
 const comparison = [
-  { feature: "Partner-laboratory labs included", nexphoria: true, others: false },
-  { feature: "A board-certified U.S. doctor on every case", nexphoria: true, others: "varies" },
-  { feature: "503A US compounding pharmacy only", nexphoria: true, others: false },
-  { feature: "Week-12 blood panel included", nexphoria: true, others: false },
-  { feature: "No long-term contracts", nexphoria: true, others: false },
-  { feature: "Your doctor can decline", nexphoria: true, others: "rarely" },
+  { feature: "A licensed U.S. physician prescribes, and can decline", nexphoria: true, others: false },
+  { feature: "Made for you in a licensed 503A U.S. pharmacy", nexphoria: true, others: false },
+  { feature: "Blood work before you start, and again at week 12", nexphoria: true, others: false },
+  { feature: "Your dose set against your own numbers", nexphoria: true, others: false },
+  { feature: "Cold chain from pharmacy to door", nexphoria: true, others: "varies" },
+  { feature: "Someone to call, and a refund policy", nexphoria: true, others: "rarely" },
 ];
 
 function PricingTiers() {
@@ -189,7 +222,7 @@ function PricingTiers() {
               marginBottom: "3rem",
             }}
           >
-            Every plan includes physician review, your medication, cold shipping and your week-12 blood panel, in one monthly price.
+            Every plan includes physician review, your medication, cold shipping, a baseline blood kit and the week-12 panel, in one figure paid up front for the term.
           </p>
         </Reveal>
 
@@ -470,15 +503,15 @@ const PRICING_FAQ_ITEMS = [
   },
   {
     q: "Are labs included?",
-    a: `A full blood panel of ${PANEL_TOTAL_MARKERS} markers is drawn at week 12 and included in your plan. Your physician reads it and adjusts your dose from it.`,
+    a: `Yes, on both sides. A free at-home baseline kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, and the same panel is drawn again at week ${RETEST_WEEK}, included. Six-month terms add the optimization panel; twelve-month terms retest quarterly.`,
   },
   {
     q: "What if the physician declines my protocol?",
     a: "Then it is a no, and your doctor tells you why. They may suggest a different plan. The refund policy sets out what is refunded.",
   },
   {
-    q: "Is there a cancellation fee?",
-    a: "No. Cancel anytime from your member portal with no penalty. Cancellation takes effect at the end of your current billing cycle. Compounded medications that have shipped cannot be returned.",
+    q: "How is it billed?",
+    a: "You buy a block of time, paid up front: one month to try it, or three, six or twelve months at 10, 15 or 20% less per month. When your term ends, renewing is your choice. Compounded medications that have shipped cannot be returned; the refund policy sets out what is refunded if your physician declines.",
   },
 ];
 
@@ -663,15 +696,15 @@ export default function Pricing() {
               eyebrow="Physician"
               icon={<Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="A licensed U.S. physician on every case."
-              sub="A licensed physician reads your questionnaire before anything ships, and your full blood panel at week 12. A clinician's judgment, start to finish."
+              sub="A licensed physician reads your questionnaire and your baseline before your dose is set, and your full panel at week 12. A clinician's judgment, start to finish."
               testId="pricing-tile-physician"
             />
             <BenefitTile
               tone="cream"
               eyebrow="Labs"
               icon={<FlaskConical size={18} strokeWidth={1.5} aria-hidden="true" />}
-              headline="A full blood panel at week 12, included."
-              sub="Full biomarker panels included in every plan. The lab work lives inside the figure."
+              headline="Blood work on both sides, included."
+              sub="A free at-home baseline kit with your first order, and the same full panel again at week 12. The lab work lives inside the figure."
               testId="pricing-tile-labs"
             />
             <BenefitTile
@@ -695,7 +728,7 @@ export default function Pricing() {
               eyebrow="Adjustments"
               icon={<ChevronsDownUp size={18} strokeWidth={1.5} aria-hidden="true" />}
               headline="Dose adjustments, included."
-              sub="At week 12, your physician reads your panel and adjusts your dose. The review is included."
+              sub="Your baseline sets your dose. At week 12, your physician reads what changed and adjusts it. Both reviews are included."
               testId="pricing-tile-titration"
             />
           </BenefitTileGrid>
@@ -766,7 +799,7 @@ export default function Pricing() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                  gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr",
                   backgroundColor: "var(--nx-cobalt)",
                   padding: "0.875rem 1.5rem",
                   gap: "1rem",
@@ -833,13 +866,23 @@ export default function Pricing() {
                 ))}
               </div>
 
+              {/* The labs each term includes (the playbook) */}
+              <div
+                style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr", padding: "0.7rem 1.5rem", gap: "1rem", backgroundColor: "var(--nx-cobalt-soft)", borderTop: "1px solid var(--nx-border)" }}
+                data-testid="pricing-term-labs"
+              >
+                <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-fg)" }}>Blood work included</p>
+                {billingTerms.map((t) => (
+                  <p key={t.key} style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-2xs)", lineHeight: 1.4, color: "var(--nx-fg-graphite)", textAlign: "center" }}>{t.labs}</p>
+                ))}
+              </div>
               {/* Protocol rows */}
               {protocols.map((protocol, i) => (
                 <div
                   key={protocol.name}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "2fr 1fr 1fr 1fr",
+                    gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr",
                     padding: "1.25rem 1.5rem",
                     backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)",
                     borderTop: "1px solid var(--nx-border)",
@@ -917,13 +960,36 @@ export default function Pricing() {
                       /mo
                     </span>
                   </p>
-                  {/* Annual (12-month) */}
+                  {/* Six months: best value */}
                   <p
                     style={{
                       fontFamily: "'General Sans', system-ui, sans-serif",
                       fontSize: "var(--nx-t-lg)",
                       fontWeight: 500,
                       color: "var(--nx-cobalt)",
+                      textAlign: "center",
+                    }}
+                  >
+                    {formatUSD(protocol.m6)}
+                    <span
+                      style={{
+                        fontFamily: "'General Sans', system-ui, sans-serif",
+                        fontSize: "var(--nx-t-xs)",
+                        color: "var(--nx-fg-muted)",
+                        display: "block",
+                        fontWeight: 500,
+                      }}
+                    >
+                      /mo
+                    </span>
+                  </p>
+                  {/* Twelve months */}
+                  <p
+                    style={{
+                      fontFamily: "'General Sans', system-ui, sans-serif",
+                      fontSize: "var(--nx-t-lg)",
+                      fontWeight: 500,
+                      color: "var(--nx-fg)",
                       textAlign: "center",
                     }}
                   >
@@ -957,7 +1023,7 @@ export default function Pricing() {
                 }}
               >
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-bg-cream)" }}>
-                  12-MONTH PLAN · SAVE {SAVE_12MO}% VS. MONTH-TO-MONTH
+                  SIX MONTHS · SAVE {SAVE_6MO}% · TWELVE · SAVE {SAVE_12MO}%
                 </p>
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "rgba(255,255,255,0.55)", letterSpacing: "var(--nx-ls-caps)" }}>
                   E.g. {SAVINGS_EXAMPLE.name}: {formatUSD(SAVINGS_EXAMPLE.annual)}/yr vs {formatUSD(SAVINGS_EXAMPLE.monthlyYear)}/yr monthly
@@ -969,8 +1035,8 @@ export default function Pricing() {
                 style={{ padding: "1rem 1.5rem", borderTop: "1px solid var(--nx-border)", backgroundColor: "var(--nx-bg-cream)" }}
               >
                 <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", lineHeight: 1.5 }}>
-                  Starting prices. Final protocol cost determined at physician consultation based on compound selection and dosing.
-                  Multi-compound protocols priced individually. All prices are monthly equivalent.
+                  Monthly figures, paid up front for the term. Vitality and Foundation are priced at your consultation.
+                  Protocols that include a medicine pending FDA rulemaking are reservable at the figure shown.
                 </p>
               </div>
             </div>
@@ -1072,6 +1138,25 @@ export default function Pricing() {
               ))}
             </div>
           </Reveal>
+          <Reveal delay={60}>
+            <div style={{ marginTop: "2.5rem", maxWidth: "600px" }} data-testid="pricing-value-stack">
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.75rem" }}>
+                What is inside the figure
+              </p>
+              <div style={{ border: "1.5px solid var(--nx-border)", borderRadius: "var(--nx-r-xs)", overflow: "hidden" }}>
+                {VALUE_STACK.map((v, i) => (
+                  <div key={v.item} style={{ display: "grid", gridTemplateColumns: "1fr auto auto", gap: "1rem", alignItems: "center", padding: "0.9rem 1.5rem", backgroundColor: i % 2 === 0 ? "var(--nx-ceramic)" : "var(--nx-bg-cream)", borderTop: i > 0 ? "1px solid var(--nx-border)" : "none" }}>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-sm)", color: "var(--nx-fg)", lineHeight: 1.45 }}>{v.item}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", whiteSpace: "nowrap" }}>Elsewhere {v.elsewhere}</p>
+                    <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Included</p>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", lineHeight: 1.5, marginTop: "0.75rem" }}>
+                Typical U.S. retail ranges for each piece bought on its own. Here, each is inside the figure.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -1110,7 +1195,7 @@ export default function Pricing() {
                 marginBottom: "3rem",
               }}
             >
-              The clinical standard most providers skip.
+              What the figure buys, next to the gray market.
             </h2>
           </Reveal>
 
@@ -1168,7 +1253,7 @@ export default function Pricing() {
                     textAlign: "center",
                   }}
                 >
-                  OTHER CLINICS
+                  GRAY MARKET
                 </p>
               </div>
 
@@ -1304,7 +1389,7 @@ export default function Pricing() {
                 Your protocol, built on your labs.
               </p>
               <p style={{ fontFamily: "'General Sans', system-ui, sans-serif", fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", lineHeight: 1.7, maxWidth: "520px", marginBottom: "1.75rem" }}>
-                Start with the questionnaire. Your doctor reads it and writes a plan around your goal and your history, then reads your blood at week 12.
+                Start with the questionnaire. Your doctor reads it and your baseline, writes a plan around your goal and your numbers, then reads your blood again at week 12.
               </p>
               <StartIntakeButton source="pricing-page" size="lg">
                 Get started
@@ -1328,9 +1413,9 @@ const PLAN_COMPARISON_ROWS = [
   // — say so plainly rather than printing a figure that does not exist.
   { feature: "Monthly cost (per peptide)", solo: `From ${SOLO_FROM_LABEL}/mo`, stack: STACK_FROM_12MO === null ? "Quoted at consult" : `From ${formatUSD(STACK_FROM_12MO)}/mo`, custom: "Quoted at consult" },
   { feature: "Your doctor's review", solo: "Included", stack: "Included", custom: "Included (dedicated)" },
-  { feature: "Your week-12 panel and dose review", solo: "Included", stack: "Included", custom: "Included (priority)" },
+  { feature: "Baseline kit, week-12 panel and dose review", solo: "Included", stack: "Included", custom: "Included (priority)" },
   { feature: "Medications", solo: "One", stack: "Two or three", custom: "Chosen for you" },
-  { feature: `Full blood panel (${PANEL_TOTAL_MARKERS} markers)`, solo: "Week 12, included", stack: "Week 12, included", custom: "Extended panels, included" },
+  { feature: `Full blood panel (${PANEL_TOTAL_MARKERS} markers)`, solo: "Baseline and week 12, included", stack: "Baseline and week 12, included", custom: "Extended panels, included" },
   { feature: "Cold shipping, plain packaging", solo: "Included", stack: "Included", custom: "Included" },
   { feature: "Telehealth secure messaging", solo: "Included", stack: "Included", custom: "Priority response" },
   { feature: "Verdict", solo: "Best for single-goal starters", stack: "Best value for most patients", custom: "Best for complex protocols" },
@@ -1355,7 +1440,7 @@ export function PricingPlanTable() {
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: FONT, fontSize: "var(--nx-t-sm)" }}>
               <caption style={{ captionSide: "bottom", textAlign: "left", paddingTop: "0.75rem", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                Plan comparison: one medication, a protocol, or a custom plan. Save {SAVE_3MO}% (quarterly) or {SAVE_12MO}% (annual) with prepay.
+                Plan comparison: one medication, a protocol, or a custom plan. Paid up front: save {SAVE_3MO}% at three months, {SAVE_6MO}% at six, {SAVE_12MO}% at twelve.
               </caption>
               <thead>
                 <tr style={{ backgroundColor: "var(--nx-cobalt)" }}>

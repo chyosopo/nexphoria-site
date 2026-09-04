@@ -1,0 +1,16 @@
+/* Availability, said once, the same way everywhere (the playbook, 2026-09-04).
+   Live products render nothing: availability is the default and needs no
+   badge. Pending products carry a quiet pill so a card, a goal page and a
+   PDP can never disagree about what can be bought today. */
+import { STATUS_LABEL, type SoloStatus } from "@/data/soloCatalog";
+import { F } from "@/lib/typography";
+
+export function StatusPill({ status, testId, style }: { status: SoloStatus | "reserve"; testId?: string; style?: React.CSSProperties }) {
+  if (status === "live") return null;
+  const label = status === "reserve" ? "Reserve your price" : STATUS_LABEL[status];
+  return (
+    <span className={`nx-status nx-status--${status}`} style={{ fontFamily: F, ...style }} data-testid={testId}>
+      {label}
+    </span>
+  );
+}

@@ -16,7 +16,7 @@ export interface PipelineStage {
 /** The canonical five stages — the medical engine, in order. */
 export const PROTOCOL_STAGES: PipelineStage[] = [
   { index: "01", title: "Intake", body: "A structured history — goals, training, medications, prior labs. Read by a person, not scored by a form." },
-  { index: "02", title: "Start", body: "Your doctor prescribes from your questionnaire, and you start." },
+  { index: "02", title: "Baseline", body: "A free at-home blood kit ships with your first order. Your doctor sets your dose against your numbers, and you start." },
   { index: "03", title: "Physician", body: "A board-certified, U.S.-licensed physician reviews both, prescribes only what the numbers justify — and can decline." },
   { index: "04", title: "Compounding", body: "If prescribed, a state-licensed 503A pharmacy prepares it under USP <797> and ships it cold-chain." },
   { index: "05", title: "Week 12", body: "A full blood panel is drawn. The physician reads it and adjusts, holds, or stops." },

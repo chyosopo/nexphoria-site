@@ -10,6 +10,8 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { PhotoHero } from "@/components/PhotoHero";
 import { HoldToRun } from "@/components/HoldToRun";
+import { WaysIn } from "@/components/WaysIn";
+import { RETEST_WEEK, BASELINE } from "@/data/monitoring";
 import { SectionLine } from "@/components/SectionLine";
 import { GoalPicker } from "@/components/GoalPicker";
 import { liveConcerns, concernSkus } from "@/data/concerns";
@@ -49,23 +51,26 @@ const FLOOR = PRICED.length ? Math.min(...PRICED.map((s) => s.pricing!.m12)) : N
 const CHECKLIST = [
   ["Physician review", "A licensed U.S. physician reviews your health questions and writes your prescription."],
   ["Your medication", "Made for you in a licensed U.S. pharmacy and shipped cold, in plain packaging."],
-  ["Blood panel at week 12", `${PANEL_TOTAL_MARKERS} markers, included. It shows how your body is responding.`],
+  ["Baseline blood kit, complimentary", "An at-home kit ships with your first order. You draw first, so your physician doses against your numbers."],
+  [`Blood panel at week ${RETEST_WEEK}`, `${PANEL_TOTAL_MARKERS} markers, included. The same panel again, so you see what changed.`],
   ["Dose adjustments", "Your physician adjusts your dose from your results. The price stays the same."],
+  ["One figure, paid up front", "One month to try it, or three, six or twelve months at a lower monthly figure. The figure is complete."],
 ] as const;
 
 const STEPS = [
-  ["Pick your treatment.", "Choose the medicine and plan that fit your goal. Checkout takes two minutes."],
+  ["Pick your treatment.", "Choose the medicine and plan that fit your goal, or answer a few questions and let a physician choose. Checkout takes two minutes."],
   ["Answer a few health questions.", "Your history, your medications and your goal. A licensed U.S. physician reviews every answer."],
-  ["Get your medication.", "If it is right for you, it is made in a licensed U.S. pharmacy and shipped cold to your door. At week 12, a blood panel checks your progress."],
+  ["Test, then start.", `If it is right for you, your medication ships cold with a free baseline blood kit. Draw at home, start on your physician's dose, and retest at week ${RETEST_WEEK}.`],
 ] as const;
 
 const FAQ = [
   { q: "Is this legitimate?", a: "Yes. Every prescription is written by a licensed U.S. physician, and your medication is made in a licensed U.S. pharmacy. Both are named on our FAQ page, with their addresses." },
-  { q: "Do I need to see a doctor?", a: "Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription if it is right for you, and reads your week-12 blood panel." },
-  { q: "Is bloodwork required?", a: `Not to start. At week 12, a full blood panel of ${PANEL_TOTAL_MARKERS} markers is included in your plan. It shows how your body is responding, and your physician adjusts your dose from it.` },
+  { q: "Do I need to see a doctor?", a: "Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription if it is right for you, and reads your baseline and your week-12 blood panel." },
+  { q: "Is bloodwork required?", a: `Yes, and it is included. A free at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, so your physician doses against your numbers. At week ${RETEST_WEEK} the same panel is drawn again, included, and your dose is adjusted from what changed.` },
   { q: "What if the physician says it is not right for me?", a: "Then you will hear why, and the refund policy explains what is refunded." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
   { q: "How is it shipped?", a: "Cold, in plain packaging, to all 50 states. A few states restrict compounded GLP-1 medication by law; the health questions check this first." },
+  { q: "How is it billed?", a: "You buy a block of time, paid up front: one month to try it, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood work. When your term ends, renewing is your choice." },
 ];
 
 const kicker: React.CSSProperties = {
@@ -85,7 +90,7 @@ export default function FrontDoor() {
   useSeo({
     title: "Nexphoria: prescription peptides, delivered to your door",
     description:
-      `Semaglutide, tirzepatide, tesamorelin and PT-141, prescribed online by licensed U.S. physicians and made in a licensed U.S. pharmacy. One monthly price with a ${PANEL_TOTAL_MARKERS}-marker blood panel at week 12 included.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
+      `Semaglutide, tirzepatide, tesamorelin and PT-141, prescribed online by licensed U.S. physicians and made in a licensed U.S. pharmacy. One price, paid up front, with a free ${PANEL_TOTAL_MARKERS}-marker baseline blood kit on your first order and the same panel again at week ${RETEST_WEEK}.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
     path: "/",
     jsonLd: [
       orgJsonLd(),
@@ -139,13 +144,25 @@ export default function FrontDoor() {
         </div>
       </section>
 
+      {/* ══ 2.75 · TWO WAYS IN, THEN THE ROAD — the playbook's journey ══ */}
+      <section className="nx-container" aria-labelledby="fd-ways" style={{ paddingTop: "var(--nx-sp-band)" }}>
+        <Reveal>
+          <p style={kicker}>How you buy</p>
+          <h2 id="fd-ways" style={{ ...h2, maxWidth: "20ch" }}>Two ways in. One road after.</h2>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "58ch" }}>
+            Choose for yourself, or let a physician choose for you. Either way you test before you start, and the same panel at week {RETEST_WEEK} shows what changed.
+          </p>
+        </Reveal>
+        <Reveal delay={60}><WaysIn /></Reveal>
+      </section>
+
       <SectionLine />
 
       {/* ══ 6.1 · THE CHECKLIST — proof, in buyers' own words ══ */}
       <section className="nx-container" aria-labelledby="fd-checklist">
         <Reveal>
           <p style={kicker}>What you get</p>
-          <h2 id="fd-checklist" style={{ ...h2, maxWidth: "20ch" }}>Everything is included in one monthly price.</h2>
+          <h2 id="fd-checklist" style={{ ...h2, maxWidth: "20ch" }}>Everything is included in one price.</h2>
         </Reveal>
         <ol className="nx-check-grid" data-testid="frontdoor-checklist">
           {CHECKLIST.map(([t, b], i) => (
@@ -154,9 +171,9 @@ export default function FrontDoor() {
                 <span className="nx-check-n" aria-hidden="true" style={{ fontFamily: F }}>0{i + 1}</span>
                 <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", lineHeight: 1.2, color: "var(--nx-fg)", margin: 0 }}>{t}</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
-                  {i === 2 ? (
+                  {i === 3 ? (
                     <>
-                      A full panel of <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, included. It shows how your body is responding.
+                      A full panel of <AnimatedCounter value={PANEL_TOTAL_MARKERS} duration={1.4} className="nx-count" /> markers, included. The same panel again, so you see what changed.
                     </>
                   ) : b}
                 </p>
@@ -166,7 +183,7 @@ export default function FrontDoor() {
         </ol>
         <Reveal>
           <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "clamp(1.6rem,3vw,2.4rem)", maxWidth: "48ch" }}>
-            Your medication, your physician, and the blood panel behind it. One monthly price.
+            Your medication, your physician, and the blood work on both sides of it. One figure.
           </p>
           <Link href="/peptides-101" className="nx-text-link" data-testid="frontdoor-p101-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-block" }}>
             New to peptides? Start with Peptides 101
@@ -271,7 +288,7 @@ export default function FrontDoor() {
               If your doctor says no, nothing is made. The refund policy sets out what is refunded.
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: 0 }}>
-              Prices are per month. Twelve-month plans include your blood panel.
+              Prices are the monthly figure, paid up front for the term. Every first order includes a free baseline blood kit; six and twelve months add the optimization panel.
             </p>
           </div>
         </div>
@@ -284,7 +301,7 @@ export default function FrontDoor() {
             <p style={kicker}>What to expect</p>
             <h2 id="fd-hold" style={{ ...h2, maxWidth: "16ch" }}>Your first twelve weeks.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "40ch" }}>
-              You start your medication right away. At week 12, a full blood panel shows how your body is responding, and your physician adjusts your dose. Hold the button to see it play out.
+              {BASELINE.line} Hold the button to see it play out.
             </p>
           </Reveal>
         </div>
@@ -301,7 +318,7 @@ export default function FrontDoor() {
           <p style={kicker}>Your price</p>
           <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>Simple monthly pricing.</h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "1rem", maxWidth: "58ch" }}>
-            Your doctor, your medication, shipping and your week-12 blood panel are all inside the figure. Your doctor sets the dose. The price does not change with it.
+            Your physician, your medication, shipping, your baseline blood kit and your week-12 panel are all inside the figure. Your physician sets the dose. The price stays the same.
           </p>
         </Reveal>
         <Reveal>
@@ -310,6 +327,7 @@ export default function FrontDoor() {
               <span role="columnheader" style={{ fontFamily: F }}>Peptide</span>
               <span role="columnheader" style={{ fontFamily: F }}>1 month</span>
               <span role="columnheader" style={{ fontFamily: F }}>3 months</span>
+              <span role="columnheader" style={{ fontFamily: F }}>6 months</span>
               <span role="columnheader" style={{ fontFamily: F }}>12 months</span>
             </div>
             {SOLO_CATALOG.map((s) => (
@@ -319,7 +337,8 @@ export default function FrontDoor() {
                   <>
                     <span role="cell" className="nx-price-fig">{usd(s.pricing.m1)}<i>/mo</i></span>
                     <span role="cell" className="nx-price-fig">{usd(s.pricing.m3)}<i>/mo</i></span>
-                    <span role="cell" className="nx-price-fig nx-price-best">{usd(s.pricing.m12)}<i>/mo</i></span>
+                    <span role="cell" className="nx-price-fig nx-price-best">{usd(s.pricing.m6)}<i>/mo</i></span>
+                    <span role="cell" className="nx-price-fig">{usd(s.pricing.m12)}<i>/mo</i></span>
                   </>
                 ) : (
                   <span role="cell" className="nx-price-fig nx-price-span" style={{ fontFamily: F }}>Priced at consultation</span>

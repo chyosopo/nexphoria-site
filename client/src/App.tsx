@@ -44,6 +44,7 @@ const Community = lazy(() => import("@/pages/Community"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const FAQPage = lazy(() => import("@/pages/FAQ"));
 const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
+const Labs = lazy(() => import("@/pages/Labs"));
 const Gift = lazy(() => import("@/pages/Gift"));
 const GiftClaim = lazy(() => import("@/pages/GiftClaim"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
@@ -114,6 +115,9 @@ function AppRouter() {
         <Route path="/stacks/:slug">
           {(params) => <StackPage slug={(params as { slug: string }).slug} />}
         </Route>
+
+        {/* Blood testing as a product (2026-09-04) */}
+        <Route path="/labs" component={Labs} />
 
         {/* Cart + Checkout (pharmacy flow) */}
         <Route path="/cart" component={Cart} />
