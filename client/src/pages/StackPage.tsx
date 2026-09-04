@@ -129,7 +129,7 @@ export default function StackPage({ slug }: { slug: string }) {
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── HERO — the outcome frame beside the claim, over a gradient field ── */}
-      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
+      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>

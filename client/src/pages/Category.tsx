@@ -449,7 +449,7 @@ export default function Category() {
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── 1. Arrive ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-hero-title">
+      <section className="nx-hero-r3" aria-labelledby="category-hero-title"><div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
           <div>
             <p style={kicker} data-testid="cat-eyebrow">{cfg.short}</p>
@@ -473,7 +473,7 @@ export default function Category() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </div></section>
 
       {/* ── 2. Understand ── */}
       <section style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-what-title">

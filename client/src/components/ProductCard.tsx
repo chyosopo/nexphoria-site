@@ -58,7 +58,7 @@ export function ProductCard({
           <span className="nx-float-badge"><Lock size={10} aria-hidden /> Assessed</span>
         )}
         {statusOf(sku) !== "live" && (
-          <span className="nx-float-badge">Reserve</span>
+          <span className="nx-float-badge">{statusOf(sku) === "watch" ? "Under review" : "Reserve"}</span>
         )}
 
         {/* HOW IT WORKS — rises over the product on hover or keyboard focus.

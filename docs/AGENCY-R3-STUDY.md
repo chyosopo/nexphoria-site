@@ -83,3 +83,25 @@ The R3 pages were built on the site as it stood in July and August:
    July site: four terms, the baseline kit, the 22-product menu, /labs.
 3. To drop before/after, star reviews and the trajectory card, or move
    them to a "pending real data" layer.
+
+## Built on the preview (2026-09-04, evening)
+Chiya: "build out the site with their design system, don't touch their
+files, just build on what we are continuing." Their Figma is untouched;
+the site now carries their grammar on our content and tokens:
+- The agency sheet is the DEFAULT on this build (`?sheet=house` returns to
+  Graphite & Ice for comparison). nexphoria.com is on the previous commit
+  (house look) until Chiya says push.
+- Home: full-bleed navy-tinted photograph with one glass card (claim, two
+  doors: Shop the menu / Get a recommendation) and four goal chips;
+  three-fact trust row; the full menu as a navy rail with goal tabs and
+  frosted vial tiles; the protocols rail (photo left, plan right, triad
+  chips, "Inside the plan"); the two-up promo (Build your own / Which
+  treatment is right for you); then the house sections (goals, concerns,
+  two ways in, checklist, cold box, hold, price table, FAQ, closer).
+- Navy heroes (`.nx-hero-r3`) on product, protocol, goal and blood-testing
+  pages: tokens re-scoped inside the hero so every existing card reads as
+  glass on navy; the primary CTA is the pale-yellow pill.
+- Still to carry into their grammar: pricing hero, protocols index hero,
+  the footer newsletter line, FAQ arrow rows, the goal photo tiles' pill.
+- Not carried, on purpose: before/after, star reviews, the trajectory
+  card, "PepTalk", lorem ipsum.

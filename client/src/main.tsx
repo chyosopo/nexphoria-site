@@ -11,7 +11,7 @@ initAnalytics(); // no-op unless VITE_GA4_ID is configured at build time
 try {
   const q = new URLSearchParams(window.location.search).get("sheet");
   if (q === "agency" || q === "house") window.sessionStorage.setItem("nx-sheet", q);
-  const sheet = window.sessionStorage.getItem("nx-sheet");
+  const sheet = window.sessionStorage.getItem("nx-sheet") ?? "agency";
   if (sheet === "agency") document.documentElement.dataset.sheet = "agency";
 } catch { /* storage unavailable: the default sheet renders */ }
 createRoot(document.getElementById("root")!).render(<App />);

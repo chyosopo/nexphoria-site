@@ -8,16 +8,17 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { PhotoHero } from "@/components/PhotoHero";
+import { HeroR3 } from "@/components/HeroR3";
+import { MenuRail } from "@/components/MenuRail";
+import { ProtocolRail } from "@/components/ProtocolRail";
+import { Stethoscope, FlaskConical, Microscope } from "lucide-react";
+import vialLineup from "@/assets/brand/vial-lineup-master.webp";
 import { HoldToRun } from "@/components/HoldToRun";
 import { WaysIn } from "@/components/WaysIn";
 import { RETEST_WEEK, BASELINE } from "@/data/monitoring";
 import { SectionLine } from "@/components/SectionLine";
 import { GoalPicker } from "@/components/GoalPicker";
 import { liveConcerns, concernSkus } from "@/data/concerns";
-import { SKU_PHOTO as SKU_PHOTO_ALL } from "@/components/SkuPhoto";
-import { GoodForChips } from "@/components/BenefitStrip";
-import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { CATEGORY_LABELS, LIVE_CATEGORIES } from "@/data/peptides";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import coldBox from "@/assets/life/cold-box.webp";
@@ -107,13 +108,54 @@ export default function FrontDoor() {
     <SiteLayout navVariant="showcase" hideTrustBar hideAnnouncementBar>
       <div className="nx-env" aria-hidden="true" />
 
-      {/* ══ 1 · THE HERO — the morning photograph, the you voice ══ */}
-      <PhotoHero />
+      {/* ══ 1 · THE HERO — R3 grammar: photograph, glass card, four doors ══ */}
+      <HeroR3 />
+
+      {/* ══ 1.5 · THE TRUST ROW — three facts, one sentence ══ */}
+      <section className="nx-container nx-trustrow" aria-label="What stands behind every order" data-testid="frontdoor-trustrow">
+        <ul>
+          {[
+            [Stethoscope, "Licensed U.S. physicians"],
+            [FlaskConical, "Made in a licensed U.S. pharmacy"],
+            [Microscope, "Blood work before and after"],
+          ].map(([Icon, t]) => {
+            const I = Icon as typeof Stethoscope;
+            return <li key={t as string} style={{ fontFamily: F }}><span className="nx-trustrow__i" aria-hidden="true"><I size={13} strokeWidth={2.2} /></span>{t as string}</li>;
+          })}
+        </ul>
+        <p style={{ fontFamily: F }}>Prescription peptides, chosen with a physician and dosed against your own blood work. Every order is reviewed before anything is made, and the price is one figure, paid up front for the term you choose.</p>
+      </section>
+
+      {/* ══ 1.6 · THE MENU RAIL — every medicine, filtered by goal ══ */}
+      <MenuRail photo="img/img_d489ea4e9dbc.webp" />
+
+      {/* ══ 1.7 · THE PROTOCOL RAIL ══ */}
+      <ProtocolRail />
+
+      {/* ══ 1.8 · TWO DOORS — build your own, or let a physician choose ══ */}
+      <section className="nx-container nx-promo" aria-label="Two ways in" data-testid="frontdoor-promo">
+        <Link href="/stacks/build" className="nx-promo__card nx-promo__card--dark" data-testid="frontdoor-promo-build">
+          <img src={skuTesamorelin} alt="" aria-hidden="true" loading="lazy" decoding="async" width={1024} height={1024} />
+          <div className="nx-promo__copy">
+            <h2 style={{ fontFamily: S }}>Build your own plan.</h2>
+            <p style={{ fontFamily: F }}>Choose the medicines, pick your term, check out. A licensed physician reviews it before anything is made.</p>
+            <span className="nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Start building <ArrowRight size={14} aria-hidden="true" /></span>
+          </div>
+        </Link>
+        <Link href="/assessment" className="nx-promo__card nx-promo__card--light" data-testid="frontdoor-promo-assess">
+          <img src={vialLineup} alt="" aria-hidden="true" loading="lazy" decoding="async" width={1600} height={2000} />
+          <div className="nx-promo__copy">
+            <h2 style={{ fontFamily: S }}>Which treatment is right for you?</h2>
+            <p style={{ fontFamily: F }}>Answer a few health questions. A licensed physician recommends a medicine or a protocol, and you decide.</p>
+            <span className="nx-cta-acid nx-cta--sm" style={{ fontFamily: F }}>Get a recommendation <ArrowRight size={14} aria-hidden="true" /></span>
+          </div>
+        </Link>
+      </section>
 
       {/* ══ 2 · START WITH YOUR GOAL — three photographed doors into the assessment ══ */}
       <section className="nx-container" aria-labelledby="fd-goals" style={{ paddingTop: "var(--nx-sp-sec)" }}>
         <Reveal>
-          <p style={kicker}>Treatments</p>
+          <p style={kicker}>Your everyday support</p>
           <h2 id="fd-goals" style={{ ...h2, maxWidth: "20ch" }}>What can we help you with?</h2>
         </Reveal>
         <GoalPicker counts={Object.fromEntries(LIVE_CATEGORIES.map((c) => [c, countFor(c)]))} />
@@ -192,49 +234,6 @@ export default function FrontDoor() {
       </section>
 
       <SectionLine />
-
-      {/* ══ 6.2 · THE FORMULARY — the four, with their real photographs ══ */}
-      <section className="nx-container" aria-labelledby="fd-formulary">
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-          <Reveal>
-            <p style={kicker}>The medications</p>
-            <h2 id="fd-formulary" style={{ ...h2, maxWidth: "22ch" }}>The full menu, and what each one does.</h2>
-          </Reveal>
-          <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-            The complete catalog <ArrowRight size={14} aria-hidden style={{ display: "inline", verticalAlign: "-2px" }} />
-          </Link>
-        </div>
-        {LIVE_CATEGORIES.map((cat) => {
-          const items = peptides.filter((p) => p.category === cat).map((p) => SOLO_CATALOG.find((x) => x.slug === p.slug)).filter((x): x is SoloPeptide => Boolean(x));
-          if (items.length === 0) return null;
-          return (
-            <div key={cat} data-testid={`frontdoor-formulary-${cat}`} style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
-                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", margin: 0 }}>{CATEGORY_LABELS[cat]}</h3>
-                <Link href={`/goals/${cat}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>Learn more</Link>
-              </div>
-              <div className="nx-sku-grid" style={{ marginTop: "1rem" }}>
-                {items.map((s, i) => (
-                  <Reveal key={s.slug} delay={i * 50} className="nx-reveal-lift">
-                    <Link href={`/peptides/${s.slug}`} className="nx-sku-tile" data-testid={`frontdoor-sku-${s.slug}`}>
-                      <div className="nx-sku-photo">
-                        {SKU_PHOTO_ALL[s.slug]
-                          ? <img src={SKU_PHOTO_ALL[s.slug]} alt={`${s.name} vial`} width={1024} height={1024} loading="lazy" decoding="async" />
-                          : <VialPanel name={s.name} dose={labelSpec(s.spec)} size="84%" ratio="1 / 1" fill={0.58} />}
-                      </div>
-                      <p style={{ fontFamily: S, fontStyle: "italic", fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", margin: 0 }}>{s.outcome}</p>
-                      <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: "0.6rem 0 0" }}>{s.name}</p>
-                      <div style={{ marginTop: "0.6rem" }}><GoodForChips slug={s.slug} /></div>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.6rem 0 0" }}>{s.dose}</p>
-                      <p className="nx-sku-price" style={{ fontFamily: F }}>{priceLine(s)}</p>
-                    </Link>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          );
-        })}
-      </section>
 
       {/* ══ 6.25 · WHAT ARRIVES — the plain cold box ══ */}
       <section className="nx-arrives" aria-labelledby="fd-arrives">

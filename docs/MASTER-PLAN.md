@@ -284,3 +284,10 @@ value stack, gray-market comparison · home "Two ways in" · /labs product with
 add-ons and a `lab` cart line. Pending: apex deploy (Chiya's call) · lab
 partner and prices · vial photos for the new six · physicians' sign-off on the
 panel and the add-on lists. Failed: none.
+
+### 2026-09-04 · evening · nexphoria.com on the playbook; the R3 grammar on the preview
+Verified: apex serves the playbook build (`/labs`, `/goals/hormone`, four terms,
+reservations) in the house look. Preview carries the agency's R3 grammar as the
+default sheet (home hero, rails, promo, navy heroes) with all ten gates passing.
+Pending: Chiya's call on the R3 look for the .com · exact agency tokens (Figma
+View-seat limit) · pricing and protocols-index heroes · vial photos · lab partner.

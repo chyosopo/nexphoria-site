@@ -175,7 +175,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   return (
     <SiteLayout>
       {/* ══ HERO — claim beside an outcome frame, over a gradient field ══ */}
-      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }} aria-labelledby="solo-hero-title">
+      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="solo-hero-title">
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides

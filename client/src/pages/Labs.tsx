@@ -71,7 +71,7 @@ export default function Labs() {
   return (
     <SiteLayout navVariant="showcase">
       {/* ── 1. The box ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="labs-title">
+      <section className="nx-hero-r3" aria-labelledby="labs-title"><div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
         <div className="nx-labs-hero">
           <div>
             <p style={kicker}>Blood testing</p>
@@ -113,7 +113,12 @@ export default function Labs() {
             <div className="nx-labs-art"><LabKitBox markers={LAB_KIT.markers} name={LAB_KIT.short} /></div>
           </Reveal>
         </div>
-      </section>
+        <ul className="nx-stats" aria-label="The panel in numbers" data-testid="labs-stats">
+          {[[String(LAB_KIT.markers), "markers measured"], [String(LAB_KIT.systems), "systems read"], [`Wk ${RETEST_WEEK}`, "the same panel again"], ["CLIA", "certified laboratory"]].map(([n, l]) => (
+            <li key={l}><strong style={{ fontFamily: S }}>{n}</strong><span style={{ fontFamily: F }}>{l}</span></li>
+          ))}
+        </ul>
+      </div></section>
 
       {/* ── 2. Three steps ── */}
       <section className="nx-labs-band" aria-labelledby="labs-steps">
