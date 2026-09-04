@@ -3068,3 +3068,19 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 }
 .nx-frost__feel { display: block; margin-top: .5rem; font-size: var(--nx-t-xs); color: var(--nx-fg-muted); }
 .nx-frost .nx-benefit--compact .nx-goodfor { margin: 0; }
+/* pricing, Phase 3: inside the figure, the value stack, the comparison */
+.nx-inside { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.nx-inside li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--nx-t-base); line-height: 1.5; color: color-mix(in srgb, #FFFFFF 88%, transparent); }
+.nx-inside li svg { flex-shrink: 0; margin-top: 4px; color: var(--nx-acid); }
+.nx-value { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 8px; }
+.nx-value li { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: .8rem 1rem; font-size: var(--nx-t-sm); line-height: 1.45; color: #FFFFFF; }
+.nx-value__else { font-size: var(--nx-t-xs); color: color-mix(in srgb, #FFFFFF 70%, transparent); white-space: nowrap; }
+.nx-value__inc { font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-acid); }
+@media (max-width: 560px) { .nx-value li { grid-template-columns: 1fr; gap: 4px; } }
+.nx-compare { margin-top: clamp(1.4rem, 3vw, 2rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); overflow: hidden; background: var(--nx-ceramic); max-width: 760px; }
+.nx-compare__row { display: grid; grid-template-columns: 1fr 120px 120px; align-items: center; gap: 10px; padding: .9rem 1.1rem; border-top: 1px solid var(--nx-border); font-size: var(--nx-t-sm); color: var(--nx-fg); }
+.nx-compare__head { border-top: 0; background: var(--nx-bg-dark); color: #FFFFFF; font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; }
+.nx-compare__head span:not(:first-child), .nx-compare__yes, .nx-compare__no { text-align: center; justify-self: center; }
+.nx-compare__yes { color: var(--nx-cobalt); display: inline-flex; }
+.nx-compare__no { color: var(--nx-fg-muted); font-size: var(--nx-t-xs); display: inline-flex; }
+@media (max-width: 520px) { .nx-compare__row { grid-template-columns: 1fr 64px 64px; } }

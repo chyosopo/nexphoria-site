@@ -5,6 +5,7 @@
 import { Link } from "wouter";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 
@@ -57,6 +58,7 @@ export default function WhatHappensNext() {
 
   return (
     <SiteLayout navVariant="showcase">
+      <SpineStrip stop={6} />
       {/* Hero */}
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="whn-title">
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 820 }}>

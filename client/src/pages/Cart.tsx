@@ -2,6 +2,7 @@
 import { Link } from "wouter";
 import { ArrowRight, Plus, Minus, Trash2, ShoppingBag, ShieldCheck, Stethoscope, Truck, RefreshCw } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
@@ -31,6 +32,7 @@ export default function Cart() {
 
   return (
     <SiteLayout variant="gate">
+      <SpineStrip stop={5} />
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         {/* trimmed top padding — the nav offset + section padding stacked
             ~210px of empty porcelain above "Review your cart" */}

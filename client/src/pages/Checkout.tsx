@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { SpineStrip } from "@/components/SpineStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
@@ -240,6 +241,7 @@ export default function Checkout() {
 
   return (
     <SiteLayout variant="gate">
+      <SpineStrip stop={5} />
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
         <div className="nx-container nx-section-y">
           {/* Breadcrumb */}

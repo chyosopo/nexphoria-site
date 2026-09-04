@@ -315,3 +315,13 @@ prescribing"; questions heading to the standard. Motion pass shipped earlier ton
 Pending: Phase 3 (pricing to one engine; cart and checkout in the grammar), Phase 4
 (labs absorbs bloodwork; what-happens-next), Phase 5 (imagery once a generator
 allows it), Phase 6 (trust pages). Failed: none.
+
+### 2026-09-04 · late · Phase 3, Decide and Buy
+Verified: /pricing rebuilt on one engine: the four terms, every medicine at every
+term, every protocol at every term (the Full Stack row, Vitality and Foundation at
+consultation), the labs each term includes, "Inside the figure" with the value
+stack, the figure next to the gray market, questions. Retired: the Solo/Stack/
+Custom tiers, the Basic/Full/Elite panel ladder, the legacy plan table, the stats
+band. The spine strip reaches cart, checkout and what-happens-next.
+Pending: cart and checkout visual pass in the grammar (they already read on the new
+tokens), Phase 4 (labs absorbs bloodwork), Phase 5 imagery, Phase 6 trust pages.
