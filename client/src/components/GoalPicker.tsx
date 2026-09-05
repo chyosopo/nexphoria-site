@@ -67,7 +67,7 @@ export function GoalPicker({ counts }: { counts: Record<string, number> }) {
           </Link>
         ))}
       </div></Reveal>
-      <div className="nx-goal-chips" role="list" aria-label="Begin the health questions with a goal">
+      <div className="nx-goal-chips" role="list" aria-label="See if I'm eligible with a goal">
         <span className="nx-goal-chips-label" style={{ fontFamily: F }}>Or begin the health questions with</span>
         {GOAL_CARDS.map((g) => (
           <Link key={g.slug} href={`/assessment?goal=${g.slug}`} className="nx-chip" role="listitem" style={{ fontFamily: F }} data-testid={`frontdoor-chip-${g.slug}`}>

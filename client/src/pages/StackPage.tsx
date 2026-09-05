@@ -135,7 +135,7 @@ export default function StackPage({ slug }: { slug: string }) {
               </p>
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
                 <Link href="/assessment" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
-                  Begin the health questions
+                  See if I'm eligible
                 </Link>
                 {reservable && <StatusPill status="reserve" testId="stack-status" />}
               </div>
@@ -361,7 +361,7 @@ export default function StackPage({ slug }: { slug: string }) {
         </h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this protocol is right for you.</p>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
-          Begin the health questions
+          See if I'm eligible
         </Link>
       </section>
     </SiteLayout>

@@ -258,7 +258,7 @@ export default function ProtocolsIndex() {
             The health questions ask what you are treating. A licensed physician chooses the protocol, or a single medicine if that fits better.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
-            Begin the health questions
+            See if I'm eligible
           </Link>
         </div>
       </section>

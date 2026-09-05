@@ -266,3 +266,11 @@ Already in the voice. Align the step words to the five steps; nothing else.
 - ExpectTimeline: "Week 0 · baseline kit" / "Week 12 · retest" → "Week 0: blood kit" / "Week 12: blood test".
 - Peptides101: pass for the rules (no slogans, no "free", no market).
 - genLlms.ts and seo.ts titles: no "Doctor-Curated", no "99-marker", no "three tiers (Basic/Full/Elite)"; the facts above.
+
+## Addendum, 2026-09-05
+- The health-questions button reads "See if I'm eligible" wherever the health
+  questions are the next step (product, protocol, goal, quiz, closers). The
+  nav button stays "Get started". After alyverx.com; it names what the step
+  decides.
+- The menu is Treatments · Protocols · Blood testing · How it works · Find
+  your medicine. The panels carry the medicines with their pictures and prices.

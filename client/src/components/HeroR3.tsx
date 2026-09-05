@@ -4,7 +4,7 @@
    it. Copy is the house copy (data/hero); the grammar is theirs. */
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Stethoscope, FlaskConical, Droplets, MonitorSmartphone, Snowflake, Wallet } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { HERO } from "@/data/hero";
 import { CATEGORY_LABELS, liveCategories, type PeptideCategory } from "@/data/peptides";
@@ -47,7 +47,12 @@ export function HeroR3() {
             <Link href={HERO.ctaHref} className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-quiz" })}>{HERO.cta}</Link>
             <Link href="/how-it-works" className="nx-cta-ghost nx-cta-ghost--light" data-testid="frontdoor-hero-cta-assess">How it works</Link>
           </div>
-          <p className="nx-r3-hero__micro" style={{ fontFamily: F }}>{HERO.micro}</p>
+          <ul className="nx-r3-hero__facts" aria-label="The facts" data-testid="hero-facts">
+            {HERO.facts.map((f, i) => {
+              const Icon = [Stethoscope, FlaskConical, Droplets, MonitorSmartphone, Snowflake, Wallet][i] ?? Stethoscope;
+              return <li key={f} style={{ fontFamily: F }}><Icon size={13} strokeWidth={2.2} aria-hidden="true" />{f}</li>;
+            })}
+          </ul>
         </div>
         <ul className="nx-r3-quick" aria-label="Start with a goal">
           {QUICK.map((c, i) => {

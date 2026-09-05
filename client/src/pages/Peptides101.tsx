@@ -190,7 +190,7 @@ export default function Peptides101() {
               The next step is a physician.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="p101-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              Begin the health questions
+              See if I'm eligible
             </Link>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-acid) 78%, transparent)", marginTop: "0.9rem" }}>
               A few health questions, read by a licensed U.S. physician.

@@ -1,3 +1,15 @@
+/* ═══ The menu (2026-09-05, after alyverx.com) ═══
+   Chiya: "even the menu bar, how it opens every component, it is so
+   amazing." The grammar taken: each top item opens its own full-width
+   panel; the panel has a rail on the left (the whole list, the quiz, the
+   protocols, blood testing) and the products themselves on the right, each
+   with its picture, its name and its price, grouped by goal. On a phone the
+   same panels stack as an accordion in a full-screen drawer with the one
+   button at the bottom. Copy is the plain deck; nothing here persuades.
+
+   Nav law (ROADMAP 1.3) still holds: ONE button, at most five links, the
+   cart icon. Treatments · Protocols · Blood testing · How it works · Find
+   your medicine. */
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
@@ -5,76 +17,147 @@ import { Menu, X, ChevronDown, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { StartIntakeButton } from "./StartIntakeButton";
 import { CartIconButton } from "./CartIconButton";
-import { CATEGORY_LABELS, liveCategories, type PeptideCategory } from "@/data/peptides";
-import { SOLO_CATALOG } from "@/data/soloCatalog";
+import { SkuPhoto } from "./SkuPhoto";
+import { VialPanel, labelSpec } from "./VialMockup";
+import { peptides, CATEGORY_LABELS, liveCategories, type PeptideCategory } from "@/data/peptides";
+import { SOLO_CATALOG, statusOf, type SoloPeptide } from "@/data/soloCatalog";
+import { FLAGSHIP_STACKS, usd, type FlagshipStack } from "@/data/stacksCatalog";
+import { stackArt } from "@/data/outcomeImagery";
+import { F, S } from "@/lib/typography";
 
 interface NavProps {
   variant?: "women" | "men" | "gate" | "showcase";
 }
 
-interface NavLink {
+type PanelKey = "treatments" | "protocols";
+
+interface NavItem {
   label: string;
   href: string;
-  /** When true, this item opens the Peptides mega-menu on hover (desktop). */
-  mega?: boolean;
+  panel?: PanelKey;
 }
 
-/* Nav law (ROADMAP 1.3): ONE button, ≤5 links, cart icon. Journal,
-   How-It-Works, Custom Protocol, Booking et al. live in the footer —
-   a first-time visitor gets goals, protocols, proof, and price. */
-const showcaseLinks: NavLink[] = [
-  { label: "Peptides", href: "/peptides", mega: true },
-  { label: "Protocols", href: "/stacks" },
+const ITEMS: NavItem[] = [
+  { label: "Treatments", href: "/peptides", panel: "treatments" },
+  { label: "Protocols", href: "/stacks", panel: "protocols" },
   { label: "Blood testing", href: "/labs" },
+  { label: "How it works", href: "/how-it-works" },
   { label: "Find your medicine", href: "/quiz" },
 ];
 
-/* ONE link set, every variant. There used to be four: showcase, women, men,
-   and a "gate" set whose first two entries were "For Women" / "For Men".
-   gateLinks was the DEFAULT fallthrough, so after the two-worlds split was
-   deleted (2026-08-13) every page that did not explicitly ask for the
-   showcase nav still offered a choice between two worlds that no longer
-   exist — on the legal pages, the catalog, the PDP, everywhere. The world
-   variants only differed by pointing Peptides at /women/peptides or
-   /men/peptides, aliases of the neutral route they now all use.
+/* The goals, in four columns. Only goals with a medicine behind them render
+   (liveCategories), so the menu can never open on an empty page. */
+const GROUPS: { key: string; label: string; goals: PeptideCategory[] }[] = [
+  { key: "weight", label: "Weight and body", goals: ["metabolic", "growth"] },
+  { key: "recovery", label: "Recovery and ageing", goals: ["recovery", "skin", "longevity"] },
+  { key: "mind", label: "Mind and sleep", goals: ["cognition", "sleep"] },
+  { key: "sexual", label: "Sexual health and hormones", goals: ["sexual-health", "hormone"] },
+].map((g) => ({ ...g, goals: liveCategories(g.goals as PeptideCategory[]).filter((c) => (g.goals as PeptideCategory[]).includes(c)) }));
 
-   `variant` survives because it still drives the PALETTE (the women's world
-   keeps its rose accent on the shared graphite system) and the analytics
-   source below. It no longer changes what the nav offers. */
+function skusFor(goal: PeptideCategory): SoloPeptide[] {
+  return peptides.filter((p) => p.category === goal).map((p) => SOLO_CATALOG.find((s) => s.slug === p.slug)).filter((s): s is SoloPeptide => Boolean(s));
+}
 
-/* Six category tiles for the Peptides mega-menu. Order + copy tuned for
-   the Hims-style "quiet mega-menu on hover" pattern: six restrained tiles,
-   each a benefit line, plus a featured-peptides column on the right. */
-/* "Shop by outcome": only goals with a medicine behind them. Derived through
-   liveCategories() so the nav can never link a goal page with nothing on it
-   (2026-09-03: four of six links here led to empty goal pages). */
-const MEGA_BLURB: Partial<Record<PeptideCategory, string>> = {
-  metabolic: "GLP-1 weight loss medication",
-  growth: "Tesamorelin and growth hormone peptides",
-  "sexual-health": "PT-141, oxytocin and tadalafil",
-  hormone: "Testosterone, monitored",
-  recovery: "BPC-157 and TB-500 for recovery",
-  skin: "GHK-Cu and epitalon for skin",
-  longevity: "NAD+, MOTS-c and epitalon",
-  cognition: "Semax and Selank for focus and mood",
-  sleep: "DSIP for deeper sleep",
-};
-const MEGA_CATEGORIES: { key: PeptideCategory; blurb: string }[] = liveCategories(["metabolic", "growth", "hormone", "recovery", "longevity", "cognition", "sleep", "skin", "sexual-health"])
-  .map((key) => ({ key, blurb: MEGA_BLURB[key] ?? "" }));
+function priceLine(s: SoloPeptide): string {
+  if (statusOf(s) !== "live") return "Not yet available";
+  if (s.gated) return "Priced after review";
+  return s.pricing ? `From ${usd(s.pricing.m12)}/mo` : "Priced at consultation";
+}
 
-/* "Featured peptides": what the catalog actually sells, in catalog order,
-   with each medicine's own outcome line. */
-const MEGA_FEATURED: { name: string; slug: string; note: string }[] = SOLO_CATALOG
-  .slice(0, 4)
-  .map((s) => ({ name: s.name, slug: s.slug, note: s.outcome }));
+function stackPrice(st: FlagshipStack): string {
+  if (st.gated) return "Priced at consultation";
+  const from = st.cadences.length ? Math.min(...st.cadences.map((c) => c.perMonth ?? c.total)) : undefined;
+  return from ? `From ${usd(from)}/mo` : "";
+}
+
+/* One product row in a panel: the vial, the name, the price. */
+function MenuSku({ s, onPick }: { s: SoloPeptide; onPick: () => void }) {
+  return (
+    <Link href={`/peptides/${s.slug}`} className="nx-mega__item" onClick={onPick} data-testid={`mega-sku-${s.slug}`}>
+      <span className="nx-mega__thumb" aria-hidden="true">
+        <SkuPhoto slug={s.slug} name={s.name} className="nx-mega__img" fallback={<VialPanel name={s.name} dose={labelSpec(s.spec)} size="70%" ratio="1 / 1" fill={0.58} />} />
+      </span>
+      <span className="nx-mega__text">
+        <span className="nx-mega__name" style={{ fontFamily: F }}>{s.name}</span>
+        <span className="nx-mega__price" style={{ fontFamily: F }}>{priceLine(s)}</span>
+      </span>
+    </Link>
+  );
+}
+
+function TreatmentsPanel({ onPick }: { onPick: () => void }) {
+  return (
+    <div className="nx-mega__grid" data-testid="nav-mega-pharmacy">
+      <aside className="nx-mega__rail" aria-label="Treatments">
+        <Link href="/peptides" className="nx-mega__all" onClick={onPick} data-testid="mega-view-all">
+          <span className="nx-mega__all-art" aria-hidden="true"><img src="img/img_b02fe34b47f7.webp" alt="" loading="lazy" decoding="async" /></span>
+          <span className="nx-mega__all-title" style={{ fontFamily: S }}>All twenty-two medicines</span>
+          <span className="nx-mega__all-line" style={{ fontFamily: F }}>What each is for, and its price. <ArrowRight size={13} aria-hidden="true" /></span>
+        </Link>
+        <Link href="/quiz" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-quiz-link" style={{ fontFamily: F }}>Find your medicine <ArrowUpRight size={14} aria-hidden="true" /></Link>
+        <Link href="/labs" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-labs-link" style={{ fontFamily: F }}>Blood testing <ArrowUpRight size={14} aria-hidden="true" /></Link>
+        <Link href="/how-it-works" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-how-link" style={{ fontFamily: F }}>How it works <ArrowUpRight size={14} aria-hidden="true" /></Link>
+      </aside>
+      <div className="nx-mega__cols">
+        {GROUPS.filter((g) => g.goals.length).map((g) => (
+          <section key={g.key} className="nx-mega__col" aria-label={g.label}>
+            <p className="nx-mega__group" style={{ fontFamily: F }}>{g.label}</p>
+            {g.goals.map((goal) => (
+              <div key={goal} className="nx-mega__goal">
+                <Link href={`/goals/${goal}`} className="nx-mega__goal-link" onClick={onPick} data-testid={`mega-category-${goal}`} style={{ fontFamily: F }}>
+                  {CATEGORY_LABELS[goal]} <ArrowRight size={13} aria-hidden="true" />
+                </Link>
+                <ul className="nx-mega__list">
+                  {skusFor(goal).map((s) => <li key={s.slug}><MenuSku s={s} onPick={onPick} /></li>)}
+                </ul>
+              </div>
+            ))}
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProtocolsPanel({ onPick }: { onPick: () => void }) {
+  return (
+    <div className="nx-mega__grid nx-mega__grid--protocols" data-testid="nav-mega-protocols">
+      <aside className="nx-mega__rail" aria-label="Protocols">
+        <Link href="/stacks" className="nx-mega__all" onClick={onPick} data-testid="mega-view-all-protocols">
+          <span className="nx-mega__all-title" style={{ fontFamily: S }}>Medicines prescribed together</span>
+          <span className="nx-mega__all-line" style={{ fontFamily: F }}>Two to four medicines on one plan, with one blood test before and one at week 12. <ArrowRight size={13} aria-hidden="true" /></span>
+        </Link>
+        <Link href="/stacks/build" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-build-link" style={{ fontFamily: F }}>Build your own <ArrowUpRight size={14} aria-hidden="true" /></Link>
+      </aside>
+      <ul className="nx-mega__stacks">
+        {FLAGSHIP_STACKS.map((st) => {
+          const art = stackArt(st.slug);
+          return (
+            <li key={st.slug}>
+              <Link href={`/stacks/${st.slug}`} className="nx-mega__stack" onClick={onPick} data-testid={`mega-stack-${st.slug}`}>
+                <span className="nx-mega__stack-art" aria-hidden="true">{art && <img src={art} alt="" loading="lazy" decoding="async" />}</span>
+                <span className="nx-mega__text">
+                  <span className="nx-mega__name" style={{ fontFamily: F }}>{st.name}</span>
+                  <span className="nx-mega__line" style={{ fontFamily: F }}>{st.peptides.map((p) => p.name).join(" + ")}</span>
+                  <span className="nx-mega__price" style={{ fontFamily: F }}>{stackPrice(st)}</span>
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
 
 export function Nav({ variant = "gate" }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [open, setOpen] = useState<PanelKey | null>(null);
+  const [mobileOpen, setMobileOpen] = useState<PanelKey | null>("treatments");
   const [scrolled, setScrolled] = useState(false);
   const [, location] = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const megaRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -82,86 +165,42 @@ export function Nav({ variant = "gate" }: NavProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-    setMegaOpen(false);
-  }, [location]);
+  useEffect(() => { setMenuOpen(false); setOpen(null); }, [location]);
 
-  // Lock body scroll while the mobile full-screen drawer is open.
   useEffect(() => {
     if (menuOpen) {
       const prev = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = prev;
-      };
+      return () => { document.body.style.overflow = prev; };
     }
   }, [menuOpen]);
 
-  // Close mega-menu / drawer on Escape.
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMegaOpen(false);
-        setMenuOpen(false);
-      }
-    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpen(null); setMenuOpen(false); } };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const links = showcaseLinks;
+  const navSource = variant === "showcase" ? "showcase-nav" : variant === "women" ? "women-nav" : variant === "men" ? "men-nav" : "gate-nav";
+  const intakeSlug = variant === "women" ? "women-assessment" : variant === "men" ? "men-assessment" : "assessment";
 
-  const navSource =
-    variant === "showcase" ? "showcase-nav" :
-    variant === "women" ? "women-nav" :
-    variant === "men" ? "men-nav" :
-    "gate-nav";
-  const intakeSlug =
-    variant === "women" ? "women-assessment" :
-    variant === "men" ? "men-assessment" :
-    "assessment";
+  const openPanel = (k: PanelKey) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpen(k); };
+  const scheduleClose = () => { if (closeTimer.current) clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setOpen(null), 160); };
+  const pick = () => setOpen(null);
 
-  // Peptides base path drives every mega-menu link so women/men stay scoped.
-  const pharmacyBase =
-    variant === "women" ? "/women/peptides" :
-    variant === "men" ? "/men/peptides" :
-    "/peptides";
-
-  const openMega = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setMegaOpen(true);
-  };
-  const scheduleCloseMega = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setMegaOpen(false), 140);
-  };
-
-  // Roving arrow-key navigation between mega-menu links. Tab still works
-  // natively; arrows (and Home/End) let keyboard users move item-to-item.
-  const onMegaKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const nodes = megaRef.current?.querySelectorAll<HTMLElement>("a[href]");
+  /* Arrow keys move between the links inside an open panel. */
+  const onPanelKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const nodes = panelRef.current?.querySelectorAll<HTMLElement>("a[href]");
     if (!nodes || nodes.length === 0) return;
     const items = Array.from(nodes);
     const current = items.indexOf(document.activeElement as HTMLElement);
     let next = -1;
     switch (e.key) {
-      case "ArrowDown":
-      case "ArrowRight":
-        next = current < 0 ? 0 : (current + 1) % items.length;
-        break;
-      case "ArrowUp":
-      case "ArrowLeft":
-        next = current <= 0 ? items.length - 1 : current - 1;
-        break;
-      case "Home":
-        next = 0;
-        break;
-      case "End":
-        next = items.length - 1;
-        break;
-      default:
-        return;
+      case "ArrowDown": case "ArrowRight": next = current < 0 ? 0 : (current + 1) % items.length; break;
+      case "ArrowUp": case "ArrowLeft": next = current <= 0 ? items.length - 1 : current - 1; break;
+      case "Home": next = 0; break;
+      case "End": next = items.length - 1; break;
+      default: return;
     }
     e.preventDefault();
     items[next]?.focus();
@@ -169,409 +208,121 @@ export function Nav({ variant = "gate" }: NavProps) {
 
   return (
     <header
-      className={`sticky top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${
-        scrolled || megaOpen
-          ? "bg-white/95 md:backdrop-blur-md shadow-sm"
-          : "bg-white"
-      }`}
-      // translateZ(0) isolates the sticky bar on its own GPU layer so scrolling
-      // the page underneath doesn't repaint it every frame. Transition is scoped
-      // to background-color + box-shadow (paint-only) — we no longer animate the
-      // backdrop-filter blur radius on scroll, which was the costly part.
-      // backdrop-blur is now gated to md+ AND the scrolled state only: at the top
-      // the bar is fully opaque white (blur invisible, pure GPU waste), and on
-      // mobile the scrolled bg is 95% opaque so the blur reads near-identical while
-      // backdrop-filter is the single biggest per-frame scroll-jank cost on phones.
+      className={`sticky top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ${scrolled || open ? "bg-white/95 md:backdrop-blur-md shadow-sm" : "bg-white"}`}
       style={{ borderBottom: "1px solid var(--nx-border)", transform: "translateZ(0)" }}
       data-testid="site-nav"
     >
-      <nav
-        className="nx-container h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4"
-        aria-label="Primary"
-      >
-        {/* Left: Logo */}
-        <div className="flex items-center">
-          <Logo variant="dark" />
-        </div>
+      <nav className="nx-container h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4" aria-label="Primary">
+        <div className="flex items-center"><Logo variant="dark" /></div>
 
-        {/* Center: links — desktop */}
-        <ul className="hidden md:flex items-center justify-center gap-7 list-none m-0">
-          {links.map((link) => {
-            const isMega = !!link.mega;
+        <ul className="hidden md:flex items-center justify-center gap-6 list-none m-0">
+          {ITEMS.map((item) => {
+            const isPanel = !!item.panel;
+            const isOpen = isPanel && open === item.panel;
             return (
-              <li
-                key={link.label}
-                className="relative"
-                onMouseEnter={isMega ? openMega : undefined}
-                onMouseLeave={isMega ? scheduleCloseMega : undefined}
-              >
+              <li key={item.label} className="relative" onMouseEnter={isPanel ? () => openPanel(item.panel!) : undefined} onMouseLeave={isPanel ? scheduleClose : undefined}>
                 <Link
-                  href={link.href}
+                  href={item.href}
                   className="inline-flex items-center gap-1 py-2 text-sm font-medium no-underline transition-colors"
-                  style={{
-                    fontFamily: "var(--nx-font-body)",
-                    color: megaOpen && isMega ? "var(--nx-fg)" : "var(--nx-fg-graphite)",
-                  }}
-                  data-testid={`nav-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
-                  aria-haspopup={isMega ? "true" : undefined}
-                  aria-expanded={isMega ? megaOpen : undefined}
-                  onFocus={isMega ? openMega : undefined}
+                  style={{ fontFamily: F, color: isOpen ? "var(--nx-fg)" : "var(--nx-fg-graphite)" }}
+                  data-testid={`nav-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
+                  aria-haspopup={isPanel ? "true" : undefined}
+                  aria-expanded={isPanel ? isOpen : undefined}
+                  onFocus={isPanel ? () => openPanel(item.panel!) : undefined}
                 >
-                  {link.label}
-                  {isMega && (
-                    <ChevronDown
-                      size={14}
-                      strokeWidth={2}
-                      className="transition-transform duration-200"
-                      style={{ transform: megaOpen ? "rotate(180deg)" : "none" }}
-                      aria-hidden="true"
-                    />
-                  )}
+                  {item.label}
+                  {isPanel && <ChevronDown size={14} strokeWidth={2} className="transition-transform duration-200" style={{ transform: isOpen ? "rotate(180deg)" : "none" }} aria-hidden="true" />}
                 </Link>
               </li>
             );
           })}
         </ul>
 
-        {/* Right: CTAs — desktop */}
         <div className="hidden md:flex items-center gap-3 justify-end">
-          <StartIntakeButton
-            productSlug={intakeSlug}
-            source={navSource}
-            size="sm"
-            className="text-xs"
-          >
-            Get started
-          </StartIntakeButton>
+          <StartIntakeButton productSlug={intakeSlug} source={navSource} size="sm" className="text-xs">Get started</StartIntakeButton>
           <CartIconButton />
         </div>
 
-        {/* Mobile right: cart + hamburger */}
         <div className="md:hidden flex items-center gap-1 justify-end col-start-3">
           <CartIconButton />
-          <button
-            className="p-2 -mr-2"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            data-testid="button-mobile-menu"
-            style={{ color: "var(--nx-fg)" }}
-          >
+          <button className="p-2 -mr-2" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} data-testid="button-mobile-menu" style={{ color: "var(--nx-fg)" }}>
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      {/* ── Desktop Peptides mega-menu ── */}
-      {megaOpen && (
-        <div
-          ref={megaRef}
-          className="hidden md:block absolute left-0 right-0 top-full"
-          onMouseEnter={openMega}
-          onMouseLeave={scheduleCloseMega}
-          onKeyDown={onMegaKeyDown}
-          data-testid="nav-mega-pharmacy"
-        >
-          <div
-            className="shadow-lg"
-            style={{
-              background: "var(--nx-ceramic)",
-              borderTop: "1px solid var(--nx-border)",
-              borderBottom: "1px solid var(--nx-border)",
-              boxShadow: "0 24px 48px -24px rgba(21, 24, 28,0.14)",
-            }}
-          >
-            <div className="nx-container py-8 grid grid-cols-[1.6fr_1fr] gap-10">
-              {/* Category tiles */}
-              <div>
-                <p
-                  className="mb-4 text-[11px] uppercase"
-                  style={{
-                    fontFamily: "var(--nx-font-body)",
-                    letterSpacing: "var(--nx-ls-caps)",
-                    color: "var(--nx-fg-muted)",
-                    fontWeight: 500,
-                  }}
-                  data-testid="mega-heading-categories"
-                >
-                  Shop by outcome
-                </p>
-                <div className="grid grid-cols-3 gap-2">
-                  {MEGA_CATEGORIES.map((c) => (
-                    <Link
-                      key={c.key}
-                      href={`/goals/${c.key}`}
-                      className="group block no-underline transition-colors"
-                      style={{
-                        border: "1px solid var(--nx-border)",
-                        borderRadius: "var(--nx-r-md)",
-                        padding: "1rem 1.05rem",
-                        background: "var(--nx-bg)",
-                      }}
-                      data-testid={`mega-category-${c.key}`}
-                      onClick={() => setMegaOpen(false)}
-                    >
-                      <span
-                        className="flex items-center justify-between"
-                        style={{
-                          fontFamily: "var(--nx-font-body)",
-                          fontSize: "var(--nx-t-base)",
-                          fontWeight: 600,
-                          color: "var(--nx-fg)",
-                        }}
-                      >
-                        {CATEGORY_LABELS[c.key]}
-                        <ArrowUpRight
-                          size={15}
-                          strokeWidth={2}
-                          className="opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
-                          aria-hidden="true"
-                        />
-                      </span>
-                      <span
-                        className="mt-1 block"
-                        style={{
-                          fontFamily: "var(--nx-font-body)",
-                          fontSize: "var(--nx-t-xs)",
-                          color: "var(--nx-fg-graphite)",
-                          lineHeight: 1.45,
-                        }}
-                      >
-                        {c.blurb}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-                <Link
-                  href={pharmacyBase}
-                  className="mt-4 inline-flex items-center gap-1.5 no-underline"
-                  style={{
-                    fontFamily: "var(--nx-font-body)",
-                    fontSize: "var(--nx-t-sm)",
-                    fontWeight: 600,
-                    color: "var(--nx-fg)",
-                  }}
-                  data-testid="mega-view-all"
-                  onClick={() => setMegaOpen(false)}
-                >
-                  View all peptides
-                  <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
-                </Link>
-              </div>
-
-              {/* Featured peptides */}
-              <div style={{ borderLeft: "1px solid var(--nx-border)", paddingLeft: "2.5rem" }}>
-                <Link
-                  href="/stacks/recover"
-                  className="group block no-underline mb-5"
-                  onClick={() => setMegaOpen(false)}
-                  data-testid="mega-featured-card"
-                >
-                  <span className="block overflow-hidden" style={{ borderRadius: "var(--nx-r-md)", aspectRatio: "16 / 9", background: "var(--nx-rock)" }}>
-                    <img
-                      src="img/img_b02fe34b47f7.webp"
-                      alt="Nexphoria compounded peptide vial"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      loading="lazy"
-                    />
-                  </span>
-                  <span className="mt-3 flex items-center justify-between">
-                    <span>
-                      <span className="block" style={{ fontFamily: "var(--nx-font-display)", fontWeight: 500, fontSize: "var(--nx-t-body)", color: "var(--nx-fg)" }}>
-                        The Recovery Protocol
-                      </span>
-                      <span className="block mt-0.5" style={{ fontFamily: "var(--nx-font-body)", fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
-                        Physician-directed · if prescribed
-                      </span>
-                    </span>
-                    <ArrowRight size={16} strokeWidth={2} style={{ color: "var(--nx-cobalt)" }} aria-hidden="true" />
-                  </span>
-                </Link>
-                <Link
-                  href="/peptides-101"
-                  className="inline-flex items-center gap-1.5 no-underline mb-5"
-                  style={{ fontFamily: "var(--nx-font-body)", fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}
-                  onClick={() => setMegaOpen(false)}
-                  data-testid="mega-education-link"
-                >
-                  New to peptides? Start here
-                  <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
-                </Link>
-                <p
-                  className="mb-4 text-[11px] uppercase"
-                  style={{
-                    fontFamily: "var(--nx-font-body)",
-                    letterSpacing: "var(--nx-ls-caps)",
-                    color: "var(--nx-fg-muted)",
-                    fontWeight: 500,
-                  }}
-                  data-testid="mega-heading-featured"
-                >
-                  Featured peptides
-                </p>
-                <ul className="flex flex-col gap-1 list-none m-0">
-                  {MEGA_FEATURED.map((p) => (
-                    <li key={p.slug}>
-                      <Link
-                        href={`${pharmacyBase}/${p.slug}`}
-                        className="group flex items-baseline justify-between no-underline py-1.5"
-                        data-testid={`mega-featured-${p.slug}`}
-                        onClick={() => setMegaOpen(false)}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "var(--nx-font-body)",
-                            fontSize: "var(--nx-t-sm)",
-                            fontWeight: 600,
-                            color: "var(--nx-fg)",
-                          }}
-                        >
-                          {p.name}
-                        </span>
-                        <span
-                          style={{
-                            fontFamily: "var(--nx-font-body)",
-                            fontSize: "var(--nx-t-xs)",
-                            color: "var(--nx-fg-graphite)",
-                          }}
-                        >
-                          {p.note}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/stacks"
-                  className="mt-5 block no-underline"
-                  style={{
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "var(--nx-r-md)",
-                    padding: "0.9rem 1rem",
-                    background: "var(--nx-bg)",
-                  }}
-                  data-testid="mega-stacks-promo"
-                  onClick={() => setMegaOpen(false)}
-                >
-                  <span
-                    className="block"
-                    style={{
-                      fontFamily: "var(--nx-font-body)",
-                      fontSize: "var(--nx-t-sm)",
-                      fontWeight: 600,
-                      color: "var(--nx-fg)",
-                    }}
-                  >
-                    Not sure where to start?
-                  </span>
-                  <span
-                    className="mt-0.5 inline-flex items-center gap-1.5"
-                    style={{
-                      fontFamily: "var(--nx-font-body)",
-                      fontSize: "var(--nx-t-xs)",
-                      color: "var(--nx-fg-graphite)",
-                    }}
-                  >
-                    Explore doctor-built stacks
-                    <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
-                  </span>
-                </Link>
-              </div>
+      {/* ── Desktop panels ── */}
+      {open && (
+        <div ref={panelRef} className="nx-mega hidden md:block absolute left-0 right-0 top-full" onMouseEnter={() => openPanel(open)} onMouseLeave={scheduleClose} onKeyDown={onPanelKeyDown} data-testid={`nav-panel-${open}`}>
+          <div className="nx-mega__sheet">
+            <div className="nx-container nx-mega__body">
+              {open === "treatments" ? <TreatmentsPanel onPick={pick} /> : <ProtocolsPanel onPick={pick} />}
             </div>
           </div>
         </div>
       )}
 
-      {/* ── Mobile full-screen drawer — PORTALED to <body>. The sticky header
-          carries a translateZ(0) transform (scroll-perf isolation), and a
-          transformed ancestor becomes the containing block for position:fixed:
-          the drawer was resolving against the page, landing thousands of
-          pixels off-screen whenever the user had scrolled before opening it. */}
+      {/* ── Mobile full-screen drawer, portaled to body (the sticky header's
+          transform would otherwise become the containing block) ── */}
       {menuOpen && createPortal(
-        <div
-          className="md:hidden fixed left-0 right-0 bg-white z-[60] flex flex-col"
-          style={{ top: "64px", height: "calc(100dvh - 64px)", borderTop: "1px solid var(--nx-border)" }}
-          data-testid="nav-mobile-drawer"
-        >
-          <div
-            className="nx-container flex-1 overflow-y-auto py-6"
-            style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
-          >
-            <ul className="flex flex-col list-none m-0">
-              {links.map((link) => (
-                <li
-                  key={link.label}
-                  style={{ borderBottom: "1px solid var(--nx-border)" }}
-                >
-                  <Link
-                    href={link.href}
-                    className="flex items-center justify-between py-4 no-underline"
-                    style={{
-                      color: "var(--nx-fg)",
-                      fontFamily: "var(--nx-font-body)",
-                      fontSize: "var(--nx-t-lg)",
-                      fontWeight: 600,
-                    }}
-                    data-testid={`nav-mobile-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.label}
-                    <ArrowUpRight size={18} strokeWidth={2} style={{ color: "var(--nx-fg-muted)" }} aria-hidden="true" />
-                  </Link>
+        <div className="md:hidden fixed left-0 right-0 bg-white z-[60] flex flex-col" style={{ top: "64px", height: "calc(100dvh - 64px)", borderTop: "1px solid var(--nx-border)" }} data-testid="nav-mobile-drawer">
+          <div className="nx-container flex-1 overflow-y-auto py-4" style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}>
+            <ul className="nx-mega-m" role="list">
+              {ITEMS.map((item) => (
+                <li key={item.label} className="nx-mega-m__item">
+                  {item.panel ? (
+                    <>
+                      <button type="button" className="nx-mega-m__head" aria-expanded={mobileOpen === item.panel} onClick={() => setMobileOpen(mobileOpen === item.panel ? null : item.panel!)} data-testid={`nav-mobile-${item.panel}`} style={{ fontFamily: F }}>
+                        {item.label} <ChevronDown size={18} strokeWidth={2} style={{ transform: mobileOpen === item.panel ? "rotate(180deg)" : "none" }} aria-hidden="true" />
+                      </button>
+                      {mobileOpen === item.panel && (
+                        <div className="nx-mega-m__panel">
+                          {item.panel === "treatments" ? (
+                            <>
+                              <Link href="/peptides" className="nx-mega-m__link" onClick={() => setMenuOpen(false)} style={{ fontFamily: F }}>All twenty-two medicines <ArrowRight size={14} aria-hidden="true" /></Link>
+                              {GROUPS.filter((g) => g.goals.length).map((g) => (
+                                <div key={g.key} className="nx-mega-m__group">
+                                  <p className="nx-mega__group" style={{ fontFamily: F }}>{g.label}</p>
+                                  {g.goals.map((goal) => (
+                                    <div key={goal} className="nx-mega__goal">
+                                      <Link href={`/goals/${goal}`} className="nx-mega__goal-link" onClick={() => setMenuOpen(false)} data-testid={`nav-mobile-category-${goal}`} style={{ fontFamily: F }}>{CATEGORY_LABELS[goal]} <ArrowRight size={13} aria-hidden="true" /></Link>
+                                      <ul className="nx-mega__list">
+                                        {skusFor(goal).map((s) => <li key={s.slug}><MenuSku s={s} onPick={() => setMenuOpen(false)} /></li>)}
+                                      </ul>
+                                    </div>
+                                  ))}
+                                </div>
+                              ))}
+                            </>
+                          ) : (
+                            <ul className="nx-mega__stacks nx-mega__stacks--m">
+                              {FLAGSHIP_STACKS.map((st) => (
+                                <li key={st.slug}>
+                                  <Link href={`/stacks/${st.slug}`} className="nx-mega__stack" onClick={() => setMenuOpen(false)}>
+                                    <span className="nx-mega__stack-art" aria-hidden="true">{stackArt(st.slug) && <img src={stackArt(st.slug)} alt="" loading="lazy" decoding="async" />}</span>
+                                    <span className="nx-mega__text">
+                                      <span className="nx-mega__name" style={{ fontFamily: F }}>{st.name}</span>
+                                      <span className="nx-mega__price" style={{ fontFamily: F }}>{stackPrice(st)}</span>
+                                    </span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link href={item.href} className="nx-mega-m__head" onClick={() => setMenuOpen(false)} data-testid={`nav-mobile-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`} style={{ fontFamily: F }}>
+                      {item.label} <ArrowUpRight size={18} strokeWidth={2} style={{ color: "var(--nx-fg-muted)" }} aria-hidden="true" />
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
-
-            {/* Category quick-links inside the drawer */}
-            <p
-              className="mt-8 mb-3 text-[11px] uppercase"
-              style={{
-                fontFamily: "var(--nx-font-body)",
-                letterSpacing: "var(--nx-ls-caps)",
-                color: "var(--nx-fg-muted)",
-                fontWeight: 500,
-              }}
-            >
-              Shop by outcome
-            </p>
-            <div className="grid grid-cols-2 gap-2">
-              {MEGA_CATEGORIES.map((c) => (
-                <Link
-                  key={c.key}
-                  href={`/goals/${c.key}`}
-                  className="no-underline"
-                  style={{
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "var(--nx-r-md)",
-                    padding: "0.75rem 0.85rem",
-                    background: "var(--nx-bg)",
-                    fontFamily: "var(--nx-font-body)",
-                    fontSize: "var(--nx-t-sm)",
-                    fontWeight: 600,
-                    color: "var(--nx-fg)",
-                  }}
-                  data-testid={`nav-mobile-category-${c.key}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {CATEGORY_LABELS[c.key]}
-                </Link>
-              ))}
-            </div>
           </div>
-
-          {/* Sticky CTA footer of the drawer */}
-          <div
-            className="nx-container py-5"
-            style={{ borderTop: "1px solid var(--nx-border)", background: "white" }}
-          >
-            <StartIntakeButton
-              productSlug={intakeSlug}
-              source={`${navSource}-mobile`}
-              size="md"
-              className="w-full justify-center"
-            >
-              Get started
-            </StartIntakeButton>
+          <div className="nx-container py-4" style={{ borderTop: "1px solid var(--nx-border)", background: "white" }}>
+            <StartIntakeButton productSlug={intakeSlug} source={`${navSource}-mobile`} size="md" className="w-full justify-center">Get started</StartIntakeButton>
           </div>
         </div>,
         document.body,

@@ -189,7 +189,7 @@ export default function About() {
               The next step is a physician.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="about-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              Begin the health questions
+              See if I'm eligible
             </Link>
           </Reveal>
         </div>

@@ -301,7 +301,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             A few health questions, read by a licensed U.S. physician, who prescribes the medicine that fits or explains why not.
           </p>
           <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
-            Begin the health questions
+            See if I'm eligible
           </Link>
         </div>
       </section>

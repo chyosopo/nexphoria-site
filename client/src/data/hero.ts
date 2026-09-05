@@ -24,6 +24,9 @@ export const HERO = {
   ctaHref: "/quiz",
   ctaSecondary: "How it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
+  /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):
+     six facts, an icon each, the only place these appear on the home. */
+  facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "100% online", "Ships cold to all 50 states", "Self-pay, one monthly price"],
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,

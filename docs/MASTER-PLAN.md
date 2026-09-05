@@ -364,3 +364,12 @@ docs/ALYVE-STUDY.md with what was taken and what was not.
 Pending: an "example plans" band on the home (three goals, the medicines and
 the blood markers read for each, labelled as examples), the same warmth pass
 on product FAQ answers, Chiya's read.
+
+### 2026-09-05 · The menu, the fact strip and the filters (after alyverx.com)
+Verified: Treatments and Protocols open full-width panels with a rail and the
+products with pictures and prices, grouped by goal; the phone drawer is the
+same as an accordion; the hero carries six fact chips; the home grid filters by
+how you take it; the health-questions button reads "See if I'm eligible"
+sitewide. Study in docs/ALYVERX-STUDY.md. Pending: Chiya's palette and type
+decision (Porcelain & Navy and one sans, or an ivory, green and serif world like
+alyverx), an example-plans band, product-page fact strip with icons.

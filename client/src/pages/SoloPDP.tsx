@@ -181,7 +181,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   data-testid="solo-hero-cta"
                   style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}
                 >
-                  Begin the health questions
+                  See if I'm eligible
                 </Link>
                 <a href="#buy" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                   See plan options
@@ -326,7 +326,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
         <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The next step is a physician.</h2>
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this medicine is right for you.</p>
-        <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>Begin the health questions</Link>
+        <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See if I'm eligible</Link>
       </section>
     </SiteLayout>
   );

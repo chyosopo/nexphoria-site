@@ -196,7 +196,7 @@ export default function Quiz() {
                 <li>Your medicine ships cold with an at-home blood kit. You draw before your first dose.</li>
               </ol>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "0.8rem", alignItems: "center", marginTop: "1.2rem" }}>
-                <Link href={`/assessment?goal=${goal}`} className="nx-cta-cobalt" data-testid="quiz-cta">Begin the health questions <ArrowRight size={16} aria-hidden="true" /></Link>
+                <Link href={`/assessment?goal=${goal}`} className="nx-cta-cobalt" data-testid="quiz-cta">See if I'm eligible <ArrowRight size={16} aria-hidden="true" /></Link>
                 <Link href={`/goals/${goal}`} className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-goal-link">Read about {CATEGORY_LABELS[goal].toLowerCase()}</Link>
               </div>
               <button type="button" className="nx-text-link nx-quiz__back" onClick={() => { setRoute(null); setOnset(null); setShape(null); next(0); }} style={{ fontFamily: F }}><ArrowLeft size={14} aria-hidden="true" /> Start again</button>

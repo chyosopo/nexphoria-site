@@ -104,7 +104,7 @@ export default function HowItWorks() {
                 Five steps, from choosing a medicine to your week-{RETEST_WEEK} blood test.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
-                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Begin the health questions</Link>
+                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See if I'm eligible</Link>
                 <Link href="/peptides" className="nx-cta-ghost">The medicines</Link>
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function HowItWorks() {
               The next step is a physician.
             </h2>
             <Link href="/assessment" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              Begin the health questions
+              See if I'm eligible
             </Link>
           </Reveal>
         </div>

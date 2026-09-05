@@ -459,7 +459,7 @@ export default function Category() {
             <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }} data-testid="cat-sub">{cfg.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2" data-testid="cat-cta-start">
-                Begin the health questions <ArrowRight size={17} strokeWidth={2} />
+                See if I'm eligible <ArrowRight size={17} strokeWidth={2} />
               </Link>
               <Link href="/peptides-101" className="nx-cta-ghost inline-flex items-center gap-2" data-testid="cat-cta-101">
                 Peptides 101
@@ -648,7 +648,7 @@ export default function Category() {
           <h2 id="category-cta-title" style={{ ...h2, marginTop: 0 }}>The next step is a physician.</h2>
           <p style={{ ...body, margin: "0.7rem auto 0" }}>A few health questions. A licensed U.S. physician reads them and decides whether this is right for you. If it is, your medication is made and shipped cold to your door.</p>
           <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2 mt-6" data-testid="cat-cta-end">
-            Begin the health questions <ArrowRight size={17} strokeWidth={2} />
+            See if I'm eligible <ArrowRight size={17} strokeWidth={2} />
           </Link>
           <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.4rem" }}>{FDA} Availability varies by state.</p>
         </div>
