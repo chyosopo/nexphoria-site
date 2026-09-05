@@ -77,7 +77,7 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 03 · THE MEDICINES — the one place to browse (id="treatments") ══ */}
-      <MenuRail photo="img/img_d489ea4e9dbc.webp" />
+      <MenuRail photo="img/img_band_porcelain.webp" />
 
       {/* ══ 04 · HOW IT WORKS — the five steps, once ══ */}
       <section className="nx-container nx-sec" aria-labelledby="fd-road">

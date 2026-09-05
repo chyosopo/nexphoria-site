@@ -80,8 +80,8 @@ export const OUTCOME_CATEGORY: Record<
 
 /** World-home hero frames (3:2, 2048×1360; left third clear for the headline). */
 export const OUTCOME_HERO: Record<"men" | "women", string> = {
-  men: "img/img_d489ea4e9dbc.webp", // dawn window after the workout
-  women: "img/img_08691e05b412.webp", // golden stretch, time to spare
+  men: "img/img_d489ea4e9dbc.webp", // the blood kit on the table, morning window (Higgsfield, 2026-09-05)
+  women: "img/img_d489ea4e9dbc.webp", // one cast now: same frame as men
 };
 
 /**

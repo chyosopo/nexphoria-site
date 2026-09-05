@@ -26,7 +26,7 @@ export const HERO = {
   /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):
      six facts, an icon each, the only place these appear on the home. */
   facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "100% online", "Ships cold to all 50 states", "Self-pay, one monthly price"],
-  /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */
+  /* The woman at the kitchen window, cool morning light (Higgsfield soul_2, 2026-09-05; 2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,
   /* the four goal chips under the hero */
