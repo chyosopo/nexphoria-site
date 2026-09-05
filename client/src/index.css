@@ -3208,3 +3208,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-band .nx-eyebrow, .nx-hero-r3 .nx-eyebrow { color: var(--nx-cobalt); }
 .nx-band .nx-dsh1, .nx-band .nx-dsh2, .nx-band .nx-dsh3 { color: var(--nx-ceramic); }
 .nx-band .nx-lede, .nx-band .nx-prose { color: color-mix(in srgb, var(--nx-ceramic) 74%, transparent); }
+
+/* Timeline step cards hold one short line each — tighter than the default
+   glass tile so the "what to expect" steps read as intentional, not sparse. */
+.nx-timeline .nx-glass-tile { padding: 1rem 1.25rem; }
