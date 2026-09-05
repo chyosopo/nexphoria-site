@@ -33,7 +33,7 @@ export const MILESTONES: Record<string, Milestone[]> = {
     { when: "Week 1", head: "Your first dose, in the evening.", body: "Nothing to feel yet. The medicine is working on your growth-hormone rhythm from the first dose." },
     { when: "Weeks 4 to 8", head: "The first change.", body: "Deep abdominal fat is usually the first thing to shift, often before the scale moves." },
     { when: "Week 12", head: "Your blood test.", body: "Your physician reads your IGF-1 first, looking for a rise within the healthy range, then HbA1c and fasting glucose, since the medicine can nudge blood sugar." },
-    { when: "Beyond", head: "The full effect.", body: "In the pivotal trial the reduction in deep abdominal fat continued through six months. Your physician sets the term with you." },
+    { when: "Beyond", head: "The full effect.", body: "In the pivotal trial, deep abdominal fat fell and lipid profiles improved. Your physician sets the term with you." },
   ],
   selank: [
     { when: "Day 1", head: "Your first spray.", body: "Some people notice a calmer edge the same day; for others it takes a week." },

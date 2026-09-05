@@ -28,6 +28,9 @@ export interface Evidence {
   cite: string;
   /** What the study actually found — plain, no spin, no outcome promise. */
   finding: string;
+  /** The key result in one plain line, with the number when the sourced
+      finding states one. Derived from `finding` only — never from memory. */
+  key?: string;
 }
 
 export const EVIDENCE_BY_SLUG: Record<string, Evidence[]> = {
@@ -35,34 +38,41 @@ export const EVIDENCE_BY_SLUG: Record<string, Evidence[]> = {
     {
       cite: "Jastreboff AM et al. Tirzepatide once weekly for the treatment of obesity. N Engl J Med. 2022;387(3):205–216.",
       finding: "SURMOUNT-1: in 2,539 adults with obesity, tirzepatide produced mean weight reductions of 15–21% over 72 weeks, substantially exceeding placebo and establishing dual GIP/GLP-1 agonism as a leading pharmacotherapy for chronic weight management.",
+      key: "Mean weight reductions of 15 to 21% over 72 weeks, against placebo, in 2,539 adults with obesity.",
     },
     {
       cite: "Frías JP et al. Tirzepatide versus semaglutide once weekly in patients with type 2 diabetes (SURPASS-2). N Engl J Med. 2021;385(6):503–515.",
       finding: "Head-to-head RCT in which tirzepatide produced greater reductions in HbA1c and body weight than semaglutide 1 mg, with a comparable gastrointestinal tolerability profile.",
+      key: "Head to head, tirzepatide lowered HbA1c and body weight more than semaglutide 1 mg, with comparable tolerability.",
     },
     {
       cite: "Aronne LJ et al. Continued treatment with tirzepatide for maintenance of weight reduction in adults with obesity. JAMA. 2024;331(1):38–48.",
       finding: "SURMOUNT-4: withdrawal of tirzepatide led to substantial weight regain, while continued treatment maintained and extended weight loss, underscoring that obesity pharmacotherapy is a chronic-disease intervention.",
+      key: "Stopping brought substantial weight regain; continuing held and extended the loss.",
     }
   ],
   "semaglutide": [
     {
       cite: "Wilding JPH et al. Once-weekly semaglutide in adults with overweight or obesity. N Engl J Med. 2021;384(11):989–1002.",
       finding: "STEP-1: semaglutide 2.4 mg weekly achieved a mean 14.9% body-weight reduction versus 2.4% with placebo across 68 weeks, with improvements in cardiometabolic risk factors and physical functioning.",
+      key: "A mean 14.9% body-weight reduction over 68 weeks, against 2.4% with placebo.",
     },
     {
       cite: "Garvey WT et al. Two-year effects of semaglutide in adults with overweight or obesity (STEP-5). Nat Med. 2022;28(10):2083–2091.",
       finding: "Long-term RCT showing semaglutide maintained a mean 15.2% weight reduction at 104 weeks, confirming durability of effect with continued treatment.",
+      key: "A mean 15.2% weight reduction held at 104 weeks with continued treatment.",
     },
     {
       cite: "Frías JP et al. Tirzepatide versus semaglutide once weekly in patients with type 2 diabetes (SURPASS-2). N Engl J Med. 2021;385(6):503–515.",
       finding: "Head-to-head RCT in which tirzepatide produced greater reductions in HbA1c and body weight than semaglutide 1 mg, with a comparable gastrointestinal tolerability profile.",
+      key: "Head to head, tirzepatide lowered HbA1c and body weight more than semaglutide 1 mg, with comparable tolerability.",
     }
   ],
   "tesamorelin": [
     {
       cite: "Falutz J et al. Effects of tesamorelin on visceral adipose tissue. N Engl J Med. 2007;357(23):2359–2370.",
       finding: "Pivotal trial showing tesamorelin reduced visceral adipose tissue and improved lipid profiles in patients with HIV-associated lipodystrophy, supporting its FDA approval.",
+      key: "Reduced deep abdominal (visceral) fat and improved lipid profiles in the pivotal trial.",
     }
   ],
   "pt-141": [],

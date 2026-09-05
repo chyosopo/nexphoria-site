@@ -31,11 +31,8 @@ export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
       aria-labelledby={`evidence-title-${slug}`}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "0.7rem", flexWrap: "wrap" }}>
-        <h2
-          id={`evidence-title-${slug}`}
-          style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}
-        >
-          The evidence
+        <h2 id={`evidence-title-${slug}`} className="nx-dsh3">
+          What the studies found
         </h2>
         <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
           {items.length} peer-reviewed {items.length === 1 ? "study" : "studies"} on {name}
@@ -80,8 +77,15 @@ export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
                 >
                   {i + 1}
                 </span>
-                <span style={{ fontFamily: S, fontSize: "var(--nx-t-base)", lineHeight: 1.45, color: "var(--nx-fg)", flex: 1 }}>
-                  {e.cite}
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  {e.key && (
+                    <span style={{ display: "block", fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)" }}>
+                      {e.key}
+                    </span>
+                  )}
+                  <span style={{ display: "block", fontFamily: F, fontSize: e.key ? "var(--nx-t-xs)" : "var(--nx-t-base)", lineHeight: 1.45, color: e.key ? "var(--nx-fg-muted)" : "var(--nx-fg)", marginTop: e.key ? "0.35rem" : 0 }}>
+                    {e.cite}
+                  </span>
                 </span>
                 <span className="nx-evidence-chev" aria-hidden style={{ color: "var(--nx-fg-muted)", flexShrink: 0, marginTop: 3 }}>+</span>
               </button>

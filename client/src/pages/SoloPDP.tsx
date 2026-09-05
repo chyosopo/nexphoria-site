@@ -38,6 +38,7 @@ import { WhatArrives } from "@/components/WhatArrives";
 import { CareCards } from "@/components/CareCards";
 import { Pathway } from "@/components/Pathway";
 import { Milestones } from "@/components/Milestones";
+import { ForWhom } from "@/components/ForWhom";
 
 /* SoloCategory → the category vocabulary (the deck: filters, tiles and goal
    pages all use the same words). */
@@ -221,6 +222,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div>
             {/* ── 2 · What you get, exactly: inside the vial · the ritual · what arrives.
                 (Happy Head study, 2026-09-05: explain it in detail and visualize it.) ── */}
+            <div style={{ marginBottom: "clamp(2rem,4vw,2.8rem)" }}><ForWhom slug={solo.slug} /></div>
+
             <section aria-labelledby="solo-get-title" data-testid="solo-get">
               <h2 id="solo-get-title" className="nx-dsh3">What you get, exactly</h2>
               <div style={{ display: "grid", gap: 14, marginTop: "1rem" }}>
@@ -268,7 +271,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* ── 5 · Who should not take it ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-contra-title">
-              <h2 id="solo-contra-title" className="nx-dsh3">Who should not take it</h2>
+              <h2 id="solo-contra-title" className="nx-dsh3" style={{ scrollMarginTop: "96px" }}>Who should not take it</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {solo.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
