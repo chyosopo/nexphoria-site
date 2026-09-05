@@ -108,7 +108,16 @@ export function HeroTiles() {
             <li style={{ fontFamily: F }}><FlaskConical size={13} strokeWidth={2.2} aria-hidden="true" />{HERO.facts[1]}</li>
             <li style={{ fontFamily: F }}><Droplets size={13} strokeWidth={2.2} aria-hidden="true" />{HERO.facts[2]}</li>
           </ul>
-          <h1 className="nx-tilehero__h1" style={{ fontFamily: S }}>{HERO.shout}</h1>
+          {/* The headline is two sentences, and the register IS the break
+              between them ("Stronger, sharper, better rested." / "Prescribed
+              to your blood."). Rendered as one string it wrapped mid-sentence
+              on a phone and the two beats read as one run-on. Each beat gets
+              its own line. */}
+          <h1 className="nx-tilehero__h1" style={{ fontFamily: S }}>
+            {HERO.shout.split(/(?<=\.)\s+/).map((beat) => (
+              <span key={beat} className="nx-tilehero__beat">{beat}</span>
+            ))}
+          </h1>
           <p className="nx-tilehero__line" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</p>
           <p className="nx-tilehero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
         </m.div>

@@ -97,3 +97,18 @@
   .nx-tabs--scroll .nx-tab { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; min-height: 36px; }
   .nx-rail--menu { grid-auto-columns: min(240px, 72vw); }
 }
+
+/* Each sentence of the hero headline on its own line: the power register's
+   two beats are the structure, so a wrap that lands mid-sentence reads as a
+   run-on (2026-09-05). */
+.nx-tilehero__beat { display: block; text-wrap: balance; }
+/* The second beat is the qualifier, not the claim, so it reads a step back:
+   graphite, and set at h2 so it holds one line inside the h1's 16ch measure
+   instead of breaking after "Prescribed to". */
+.nx-tilehero__beat + .nx-tilehero__beat {
+  color: var(--nx-fg-graphite);
+  font-size: var(--nx-t-h2);
+  line-height: 1.06;
+  margin-top: .18em;
+  max-width: none;
+}
