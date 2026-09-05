@@ -91,7 +91,7 @@ const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "recover",
     name: "Recovery protocol",
-    tagline: "Ipamorelin / CJC-1295, BPC-157 and TB-500, prescribed together for injury and recovery from training.",
+    tagline: "Repair the injury. Recover from the training. Ipamorelin / CJC-1295, BPC-157 and TB-500, prescribed together.",
     category: "Recovery",
     bestFor: "For the injury that is slow to heal, the training that leaves you sore for days, and the recovery that has slowed with age.",
     peptides: [
@@ -114,7 +114,7 @@ const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "ascend",
     name: "Longevity protocol",
-    tagline: "MOTS-c, NAD+, GHK-Cu and epitalon, prescribed together for energy, metabolism and skin as the years add up.",
+    tagline: "Energy, metabolism and skin, as the years add up. MOTS-c, NAD+, GHK-Cu and epitalon, prescribed together.",
     category: "Energy and healthy ageing",
     bestFor: "For the energy, the recovery and the skin that have slipped with age, addressed in one plan.",
     peptides: [
@@ -138,7 +138,7 @@ const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "lucidity",
     name: "Focus and sleep protocol",
-    tagline: "Semax, Selank and DSIP, prescribed together for focus by day, a steadier mood under stress and deep sleep at night.",
+    tagline: "Focus by day. A steadier mood under stress. Deep sleep at night. Semax, Selank and DSIP, prescribed together.",
     category: "Focus and mood",
     bestFor: "For focus and mental stamina by day, a steadier mood under pressure, and deeper sleep at night.",
     peptides: [
@@ -161,7 +161,7 @@ const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "ignite",
     name: "Weight protocol",
-    tagline: "Tirzepatide with Ipamorelin / CJC-1295, prescribed together for weight loss that keeps your muscle.",
+    tagline: "Lose the weight. Keep the muscle. Tirzepatide with Ipamorelin / CJC-1295, prescribed together.",
     category: "Weight loss",
     bestFor: "For weight loss while keeping the muscle you trained for.",
     peptides: [
@@ -184,7 +184,7 @@ const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "vitality",
     name: "Sexual health protocol",
-    tagline: "PT-141, oxytocin and tadalafil, prescribed together for desire, closeness and erectile function, taken as needed.",
+    tagline: "Desire, closeness and erectile function, on the days you choose. PT-141, oxytocin and tadalafil, taken as needed.",
     category: "Sexual health",
     bestFor: "For desire and performance, for men and women, on the days you choose.",
     peptides: [
@@ -208,7 +208,7 @@ const ALL_STACKS: FlagshipStack[] = [
   {
     slug: "foundation",
     name: "Testosterone protocol",
-    tagline: "Testosterone cypionate with kisspeptin, prescribed together for low testosterone while your own production keeps working.",
+    tagline: "Lift low testosterone, and keep your own production working. Testosterone cypionate with kisspeptin, prescribed together.",
     category: "Hormones",
     bestFor: "For men whose blood work shows low testosterone, and who want their own production kept working alongside it.",
     peptides: [
