@@ -6,32 +6,39 @@
 import heroKitchen from "@/assets/life/hero-kitchen.webp";
 import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
 
-/* The plain deck (docs/COPY-DECK-PLAIN.md, Chiya 2026-09-04): every string
-   here is the deck's Home hero string. The micro line is the only place on
-   the home page where the physician, the pharmacy and cold shipping appear.
-   Copy v4 (2026-09-05 evening): every line is one flowing sentence to the
-   reader; the fragments joined with full stops are gone. */
+/* VOICE v5 — the power register (docs/VOICE-V5.md, Chiya 2026-09-05 night:
+   "rewrite everything from scratch … I like using power words").
+   Written from copy pulled off the live competitor sites the same evening.
+   The v4 rule was "one flowing sentence"; it produced lines whose power word
+   was buried behind a comma and a subordinate clause:
+
+     v4  "Stronger, sharper and better rested, with the dose set from your blood."
+     v5  "Stronger, sharper, better rested. Prescribed to your blood."
+
+   The period is the tool. The power word leads. The hedge gets its own
+   sentence instead of hanging off a promise. Change the words here, nowhere
+   else. */
 export const HERO = {
   kicker: "Prescription peptide therapy",
-  lines: ["Prescription peptide therapy,", "with the dose set from your blood."],
-  /* The rotating word (Chiya 2026-09-05, after alyvewellness.com): the H1 is
-     "Peptide therapy, prescribed for your [sleep]" and the word cycles. The
-     first word renders statically, so the prerendered page and a reader with
-     reduced motion see a complete sentence. */
-  /* The headline (docs/VOICE.md v3, Chiya 2026-09-05 afternoon): one
-     flowing sentence in second person about the reader's goal, then the
-     line with the rotating goal word. The staccato shout was rejected. */
-  shout: "Stronger, sharper and better rested, with the dose set from your blood.",
-  lead: "Prescribed for your",
-  rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
+  lines: ["Stronger, sharper, better rested.", "Prescribed to your blood."],
+  /* The headline: the triad the reader wants, then the fact nobody else on
+     the shelf can state. Two sentences, nine words. */
+  shout: "Stronger, sharper, better rested. Prescribed to your blood.",
+  /* The rotating word keeps the second line personal. The first word renders
+     statically, so the prerendered page and a reader with reduced motion see
+     a complete sentence. */
+  lead: "Dosed for your",
+  rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "drive"],
+  /* Compound qualifiers, the way the field writes them: one hyphenated word
+     doing the work of a clause. Twelve words where v4 spent twenty-one. */
   subline:
-    "A licensed U.S. physician reads your answers, prescribes if it is appropriate, and a licensed U.S. pharmacy compounds it to order.",
+    "Physician-prescribed peptides, compounded to order in licensed U.S. pharmacies. Dosed from your own blood panel, and read again at week 12.",
   cta: "Shop the medicines",
   ctaSecondary: "See how it works",
-  micro: "A licensed U.S. physician prescribes it, a licensed U.S. pharmacy compounds it, and it ships cold to all 50 states.",
-  /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):
-     six facts, an icon each, the only place these appear on the home. */
-  facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "100% online", "Ships cold to all 50 states", "Self-pay, one monthly price"],
+  micro: "Prescribed by a licensed U.S. physician, if appropriate. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
+  /* The fact strip under the hero buttons: six facts, an icon each, the only
+     place these appear on the home. Each is a fact, not a claim. */
+  facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "Entirely online", "Ships cold to all 50 states", "One price a month"],
   /* The woman at the kitchen window, cool morning light (Higgsfield soul_2, 2026-09-05; 2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,

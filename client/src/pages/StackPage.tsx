@@ -231,7 +231,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <div className="nx-pdp-sub" data-testid="stack-blood">
                 <p id="stack-blood-title" className="nx-eyebrow">Blood testing for this protocol</p>
                 <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
-                  You draw the panel at home before the first dose and again at week 12, and the physician compares the two and adjusts your dose from what changed.
+                  You draw the panel at home before the first dose, and again at week 12. The physician compares the two and adjusts your dose from what changed.
                 </p>
                 {watch.length > 0 && (
                   <div className="nx-glass-tile" style={{ display: "block", marginTop: "0.8rem" }}>

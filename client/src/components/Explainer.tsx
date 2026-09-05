@@ -19,12 +19,12 @@ export function Explainer() {
     {
       art: <PeptideChain />,
       t: "You already make the signal.",
-      b: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as messages: release growth hormone tonight, you have eaten enough, repair this tendon.",
+      b: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them, as messages. Release growth hormone tonight. You have eaten enough. Repair this tendon.",
     },
     {
       art: <div className="nx-explain__media"><img src={SKU_PHOTO.sermorelin} alt="A Nexphoria vial of sermorelin" loading="lazy" decoding="async" width={1600} height={1600} /></div>,
-      t: "A physician prescribes the one that fits your goal.",
-      b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reads your online visit and prescribes the one that fits your goal, compounded to order.",
+      t: "A physician prescribes the one that fits.",
+      b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reads your online visit and prescribes the one that fits your goal. It is compounded to order.",
     },
     {
       art: <MarkerChart />,

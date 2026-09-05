@@ -75,7 +75,7 @@ export function GoalGallery() {
         <div className="nx-sec-head">
           <p className="nx-eyebrow">By goal</p>
           <h2 id="fd-goals" className="nx-dsh2" style={{ maxWidth: "22ch" }}>Start with what you want to change.</h2>
-          <p className="nx-lede">Each goal names what it feels like and the medicines a physician can prescribe for it, with the price on each one.</p>
+          <p className="nx-lede">Each goal names what it feels like. Under it, the medicines a physician can prescribe for it, with the price on each.</p>
         </div>
       </Reveal>
       <div className="nx-goals" ref={rail} role="list" aria-label="The goals">

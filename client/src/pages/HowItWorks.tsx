@@ -33,7 +33,7 @@ const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
   {
     t: "Choose a medicine or a protocol, and a term.",
     d: "You choose a medicine or a protocol, and a term of one, three, six or twelve months.",
-    detail: "Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price. A pending medicine is shown with its price and a notice, and the only action is an email when it is available.",
+    detail: "Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price. A pending medicine shows its price and a notice. The only action is an email when it is available.",
     img: { src: monthBox, srcSet: `${monthBox1200} 1200w, ${monthBox} 1600w`, alt: "The month box, drawn in the house studio: the medicine, the blood kit, the first-dose card and the cold pack", render: true },
   },
   {
@@ -43,21 +43,21 @@ const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
     img: { src: "img/img_329e054306f2.webp", srcSet: "img/img_329e054306f2-800w.webp 800w, img/img_329e054306f2.webp 1600w", alt: "A woman answering the online visit on a tablet at a bright desk" },
   },
   {
-    t: "A licensed physician reads them and decides.",
-    d: "A licensed U.S. physician reviews the answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies.",
+    t: "A physician reads them and decides.",
+    d: "A licensed U.S. physician reviews your answers. They write the prescription, or explain why not. If not, nothing is made and the refund policy applies.",
     detail: "The physician reads the answers against the conditions that rule each medicine out and against the other medicines taken. A decision comes within a few business days.",
     img: { src: "img/img_334cb24acfa5.webp", srcSet: "img/img_334cb24acfa5-800w.webp 800w, img/img_334cb24acfa5.webp 1600w", alt: "A physician in a white coat with a stethoscope" },
   },
   {
     t: "Draw your blood at home, then take the first dose.",
     d: "The medicine ships cold with an at-home blood kit. The draw comes before the first dose; the physician sets the dose from the results.",
-    detail: `The kit contains what is needed to draw a small sample at home and a prepaid box to return it to the laboratory. It covers ${PANEL_TOTAL_MARKERS} markers across five systems, and the physician reads the results before setting the first dose.`,
+    detail: `The kit holds what you need to draw a small sample at home, and a prepaid box to send it back. It covers ${PANEL_TOTAL_MARKERS} markers across five systems. The physician reads the results before setting the first dose.`,
     img: { src: "img/img_d489ea4e9dbc.webp", srcSet: "img/img_d489ea4e9dbc-800w.webp 800w, img/img_d489ea4e9dbc.webp 1600w", alt: "The at-home blood kit box on a kitchen counter, by the window" },
   },
   {
     t: `At week ${RETEST_WEEK}, the same panel is drawn again.`,
     d: "The same panel again. The physician compares the two and continues, adjusts or stops the dose.",
-    detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home and compared with the first, marker by marker. The physician reads what changed and decides whether the dose continues, changes or stops.`,
+    detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home, and compared with the first marker by marker. The physician reads what changed. The dose continues, changes or stops.`,
     img: { src: bloodTube, alt: "A blood sample tube held up to the light in a laboratory" },
   },
 ];
@@ -104,8 +104,8 @@ export default function HowItWorks() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">How it works</p>
-            <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Answer a few questions, and a licensed physician decides the rest.</h1>
-            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps take you from choosing a medicine to the week-{RETEST_WEEK} blood panel, and each one is set out below in the order it happens.</p>
+            <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Answer a few questions. A licensed physician decides the rest.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps, from choosing a medicine to the week-{RETEST_WEEK} blood panel. Each one is set out below, in the order it happens.</p>
             <div className="nx-tilehero__foot">
               <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Shop the medicines</Link>
             </div>

@@ -180,7 +180,7 @@ export default function ProtocolsIndex() {
       {/* ── How they fit together: what to combine, what to pick one of (the playbook) ── */}
       <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="protocols-synergy-title" data-testid="protocols-synergy">
         <SectionHead
-          title={<>Here is what pairs well, and where you pick one.</>}
+          title={<>What pairs well, and where you pick one.</>}
           lead="Each medicine in a protocol does a different job, and the same rule applies if you build your own."
           maxTitle="18ch"
         />
@@ -232,7 +232,7 @@ export default function ProtocolsIndex() {
               Which protocol fits you is the physician's call.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>
-              Your online visit says what is being treated, and a licensed physician chooses the protocol, or a single medicine if that fits better.
+              Your online visit says what is being treated. A licensed physician chooses the protocol, or a single medicine if that fits better.
             </p>
             <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }} data-testid="proto-assess-cta">
               See how it works
