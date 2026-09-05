@@ -11,13 +11,13 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { HeroR3 } from "@/components/HeroR3";
+import { HeroTiles } from "@/components/HeroTiles";
+import { HowTiles } from "@/components/HowTiles";
 import { MenuRail } from "@/components/MenuRail";
 import { Explainer } from "@/components/Explainer";
 import { GoalGallery } from "@/components/GoalGallery";
 import { WhatArrives } from "@/components/WhatArrives";
 import { Check, ArrowRight } from "lucide-react";
-import { ROAD } from "@/data/spine";
 import { LabKitBox } from "@/components/LabKitBox";
 import { LAB_KIT } from "@/data/labs";
 import { RETEST_WEEK } from "@/data/monitoring";
@@ -62,7 +62,10 @@ export default function FrontDoor() {
       <div className="nx-env" aria-hidden="true" />
 
       {/* ══ 01 · HERO — the claim, one action, the fact strip ══ */}
-      <HeroR3 />
+      <HeroTiles />
+
+      {/* ══ 01b · HOW IT WORKS — three tall tiles ══ */}
+      <HowTiles />
 
       {/* ══ 02 · WHAT A PEPTIDE DOES — three frames, the teaching before the shop ══ */}
       <Explainer />
@@ -75,29 +78,6 @@ export default function FrontDoor() {
 
       {/* ══ 03c · WHAT ARRIVES — the box, and what a month includes ══ */}
       <WhatArrives />
-
-      {/* ══ 04 · HOW IT WORKS — the five steps, once ══ */}
-      <section className="nx-container nx-sec" aria-labelledby="fd-road">
-        <Reveal>
-          <div className="nx-sec-head">
-            <p className="nx-eyebrow">How it works</p>
-            <h2 id="fd-road" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Five steps, from choosing to the first dose.</h2>
-          </div>
-        </Reveal>
-        <Reveal><ol className="nx-road" aria-label="The five steps" data-testid="frontdoor-road" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
-          {ROAD.map((r, i) => (
-            <li key={r.t} className="nx-road__step nx-stagger-item" style={{ ["--i" as string]: i }}>
-              <span className="nx-road__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-              <p className="nx-road__t" style={{ fontFamily: S }}>{r.t}</p>
-              <p className="nx-road__b" style={{ fontFamily: F }}>{r.b}</p>
-            </li>
-          ))}
-        </ol></Reveal>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
-          If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.{" "}
-          <Link href="/how-it-works" className="nx-text-link" style={{ fontWeight: 600 }}>Every step in detail</Link>
-        </p>
-      </section>
 
       {/* ══ 05 · BLOOD TESTING — why we measure ══ */}
       <section className="nx-container nx-sec" aria-labelledby="fd-blood">
@@ -155,21 +135,23 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 08 · THE CLOSER — the same one action as the hero ══ */}
-      <section className="nx-gradient-hero-dark nx-closer" aria-labelledby="fd-closer">
-        <div className="nx-container" style={{ textAlign: "center" }}>
-          <Reveal>
-            <h2 id="fd-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "20ch", margin: "0 auto", textWrap: "balance" }}>
-              Prescribed, if appropriate.
-            </h2>
-            <a href="#treatments" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              See the treatments
-            </a>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "color-mix(in srgb, var(--nx-ceramic) 70%, transparent)", marginTop: "0.9rem" }}>
-              Prescription only, if a licensed physician determines it is appropriate for you.
-            </p>
-          </Reveal>
-        </div>
+      {/* ══ 08 · THE CLOSER — one tile, the same one action as the hero ══ */}
+      <section className="nx-container nx-sec" aria-labelledby="fd-closer" style={{ paddingBottom: "var(--nx-sp-sec)" }}>
+        <Reveal>
+          <div className="nx-closer-tile">
+            <div>
+              <h2 id="fd-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>
+                Prescribed, if appropriate.
+              </h2>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", marginTop: ".8rem", maxWidth: "44ch" }}>
+                A licensed U.S. physician reads the health questions and prescribes the medicine that fits, or explains why not.
+              </p>
+              <a href="#treatments" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>
+                See the treatments
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </section>
     </SiteLayout>
   );

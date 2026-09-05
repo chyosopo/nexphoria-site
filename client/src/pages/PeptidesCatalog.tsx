@@ -46,7 +46,14 @@ const labelFor = (c: string) => (c === "All" ? "All" : CAT_LABEL[c as SoloCatego
 
 export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) {
   const base = world ? `/${world}` : "";
-  const [filter, setFilter] = useState<string>("All");
+  /* A hero tile arrives with ?goal=<peptide category>; the shelf opens on
+     that goal. Read once, on the client only (the prerender sees "All"). */
+  const [filter, setFilter] = useState<string>(() => {
+    if (typeof window === "undefined") return "All";
+    const g = new URLSearchParams(window.location.search).get("goal");
+    const map: Record<string, SoloCategory> = { metabolic: "Metabolic", growth: "Growth", recovery: "Recovery", longevity: "Skin & Longevity", skin: "Skin & Longevity", cognition: "Cognitive", sleep: "Sleep", "sexual-health": "Sexual Health", hormone: "Hormone" };
+    return (g && map[g]) || "All";
+  });
   const [q, setQ] = useState("");
   // Roving tabindex for the category filter toolbar (same idiom as Journal's
   // filter row): exactly one chip is Tab-reachable; Arrow/Home/End move focus

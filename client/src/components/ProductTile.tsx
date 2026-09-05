@@ -19,20 +19,23 @@ import { ExpectTimeline } from "@/components/ExpectTimeline";
 
 export function ProductTile({ sku, index = 0, detail = false, base = "", testId }: { sku: SoloPeptide; index?: number; detail?: boolean; base?: string; testId?: string }) {
   const goal = peptides.find((p) => p.slug === sku.slug)?.category;
+  const price = sku.gated ? "Priced after review" : sku.pricing ? `From ${usd(sku.pricing.m12)}/mo` : "Priced at consultation";
   return (
     <Link href={`${base}/peptides/${sku.slug}`} className="nx-frost nx-stagger-item" style={{ ["--i" as string]: Math.min(index, 8) }} data-testid={testId ?? `tile-${sku.slug}`} aria-label={`${sku.name}: ${sku.outcome}`}>
+      <div className="nx-frost__head">
+        <span className="nx-frost__tag" style={{ fontFamily: F }}>{goal ? CATEGORY_LABELS[goal] : sku.category}</span>
+        <span className="nx-frost__name" style={{ fontFamily: S }}>{sku.name}</span>
+        <span className="nx-frost__price" style={{ fontFamily: F }}>{price}</span>
+      </div>
       <div className="nx-frost__media" data-goal={goal}>
         <SkuPhoto slug={sku.slug} name={sku.name} className="nx-sku-img nx-sku-img--card" fallback={<VialPanel name={sku.name} dose={labelSpec(sku.spec)} size="78%" ratio="1 / 1" fill={0.58} />} />
       </div>
       <div className="nx-frost__body">
-        <span className="nx-frost__tag" style={{ fontFamily: F }}>{goal ? CATEGORY_LABELS[goal] : sku.category}</span>
-        <span className="nx-frost__name" style={{ fontFamily: S }}>{sku.name}</span>
         <span className="nx-frost__line" style={{ fontFamily: F }}>{sku.outcome}</span>
         <StatusPill status={statusOf(sku)} short style={{ marginTop: 6 }} />
         {detail && <div style={{ marginTop: ".7rem" }}><BenefitStrip slug={sku.slug} compact /></div>}
         {detail && <div style={{ marginTop: ".8rem" }}><ExpectTimeline slug={sku.slug} compact /></div>}
         {sku.feelBy && <span className="nx-frost__feel" style={{ fontFamily: F }}>Typical onset: {sku.feelBy.charAt(0).toLowerCase() + sku.feelBy.slice(1)}</span>}
-        <span className="nx-frost__price" style={{ fontFamily: F }}>{sku.gated ? "Priced after review" : sku.pricing ? `From ${usd(sku.pricing.m12)}/mo` : "Priced at consultation"}</span>
         <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Read more</span>
       </div>
     </Link>
