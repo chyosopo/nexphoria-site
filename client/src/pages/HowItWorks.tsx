@@ -12,7 +12,7 @@ import { Reveal } from "@/components/Reveal";
 import { OUTCOME_HERO, outcomeSrcSet } from "@/data/outcomeImagery";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
 import { RETEST_WEEK } from "@/data/monitoring";
-import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
+import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 
 const kicker: React.CSSProperties = {
   fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
@@ -100,7 +100,7 @@ export default function HowItWorks() {
                 Five steps, from choosing a medicine to your week-{RETEST_WEEK} blood test.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
-                <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See if I'm eligible</Link>
+                <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See the treatments</Link>
                 <Link href="/peptides" className="nx-cta-ghost">The medicines</Link>
               </div>
             </div>
@@ -140,12 +140,20 @@ export default function HowItWorks() {
             <p className="nx-eyebrow">Blood testing</p>
             <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>A blood test before you start, and again at week {RETEST_WEEK}.</h2>
             <p className="nx-lede">
-              Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
+              The kit reads {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} systems, drawn at home. Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
             </p>
           </div>
-          <p style={{ ...small, marginTop: "0.9rem" }}>
-            <Link href="/how-it-works" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-labs-link">Every marker, and the additional tests</Link>
-          </p>
+          <ul style={{ listStyle: "none", margin: "clamp(1.4rem,3vw,2rem) 0 0", padding: 0, display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", maxWidth: 900 }} data-testid="hiw-panel">
+            {BIOMARKER_PANEL.map((c) => (
+              <li key={c.name} style={card}>
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
+                  <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: 0 }}>{c.name}</p>
+                  <span style={{ ...kicker, color: "var(--nx-fg-muted)" }}>{c.count} marker{c.count === 1 ? "" : "s"}</span>
+                </div>
+                {c.blurb ? <p style={{ ...small, marginTop: "0.35rem" }}>{c.blurb}</p> : null}
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </section>
 
@@ -207,7 +215,7 @@ export default function HowItWorks() {
               The next step is a physician.
             </h2>
             <Link href="/peptides" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              See if I'm eligible
+              See the treatments
             </Link>
           </Reveal>
         </div>
