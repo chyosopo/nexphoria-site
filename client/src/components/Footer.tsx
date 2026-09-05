@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { BUSINESS } from "@/data/compliance";
 import { ArrowUpRight } from "lucide-react";
@@ -45,35 +45,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
 
   // Newsletter capture → /api/waitlist (same lead sink as ExitIntentModal).
   // Degrades gracefully on static hosts where the API isn't running.
-  const [email, setEmail] = useState("");
-  // "invalid" (their email is malformed) and "err" (OUR endpoint failed) are
-  // different failures and must say different things — a valid email against
-  // a down API was being told "enter a valid email address".
-  const [state, setState] = useState<"idle" | "sending" | "done" | "invalid" | "err">("idle");
-
-  const submitNewsletter = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const val = email.trim();
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRe.test(val)) {
-      setState("invalid");
-      return;
-    }
-    setState("sending");
-    try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: val, source: "footer-newsletter" }),
-      });
-      if (!res.ok) throw new Error(String(res.status));
-      setState("done");
-      setEmail("");
-    } catch {
-      setState("err");
-    }
-  };
-
   // Editorial footer — Explore / Legal / Contact. Trimmed to the spine
   // (Chiya 2026-09-05): the shelf, the protocols tier, the one teaching page,
   // and the FAQ. Blood testing and who-prescribes now live inside How it works.
@@ -138,72 +109,9 @@ export function Footer({ variant = "shared" }: FooterProps) {
             >
               New medicines as they become available, and the research behind them. Nothing else.
             </p>
-            {state === "done" ? (
-              <p
-                className="mt-5 text-sm max-w-sm"
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  color: "var(--nx-acid)",
-                  lineHeight: 1.6,
-                }}
-                data-testid="footer-newsletter-success"
-              >
-                You're on the list. Look for the next issue in your inbox.
-              </p>
-            ) : (
-              <form
-                className="mt-5 flex gap-2 max-w-sm"
-                onSubmit={submitNewsletter}
-                data-testid="footer-newsletter-form"
-              >
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  aria-label="Email address for the newsletter"
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value); if (state === "err" || state === "invalid") setState("idle"); }}
-                  className="flex-1 px-4 py-2.5 rounded-full text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:border-white/50 transition-colors"
-                  style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}
-                  data-testid="footer-email-input"
-                />
-                <button
-                  type="submit"
-                  disabled={state === "sending"}
-                  className="px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5 disabled:opacity-60"
-                  style={{
-                    fontFamily: "'General Sans', system-ui, sans-serif",
-                    backgroundColor: "var(--nx-acid)",
-                    color: "var(--nx-fg)",
-                    letterSpacing: "0.04em",
-                  }}
-                  data-testid="footer-email-submit"
-                >
-                  {state === "sending" ? "Joining…" : "Join"}
-                </button>
-              </form>
-            )}
-            {(state === "err" || state === "invalid") && (
-              <p
-                className="mt-2 text-xs max-w-sm"
-                style={{
-                  fontFamily: "'General Sans', system-ui, sans-serif",
-                  color: "rgba(255,255,255,0.7)",
-                }}
-                data-testid="footer-newsletter-error"
-              >
-                {state === "invalid" ? (
-                  "Enter a valid email address to subscribe."
-                ) : (
-                  <>
-                    We couldn't add you just now. Email{" "}
-                    <a href="mailto:hello@nexphoria.com?subject=Waitlist" style={{ color: "rgba(255,255,255,0.9)", textDecoration: "underline" }}>
-                      hello@nexphoria.com
-                    </a>{" "}
-                    and we'll do it by hand.
-                  </>
-                )}
-              </p>
-            )}
+            <p className="mt-5 text-sm" style={{ fontFamily: "'General Sans', system-ui, sans-serif", color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "34ch" }}>
+              Questions: <a href="mailto:hello@nexphoria.com" style={{ color: "var(--nx-ceramic)", fontWeight: 600 }}>hello@nexphoria.com</a>
+            </p>
           </div>
 
           {/* 4 nav columns */}

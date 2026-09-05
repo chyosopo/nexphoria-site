@@ -102,8 +102,8 @@ export function buildPdpFaq(opts: {
 export function PdpFaq({ items }: { items: FaqItem[] }) {
   return (
     <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} data-testid="pdp-faq">
-      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
-        Common questions.
+      <h2 className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+        Questions.
       </h2>
       <div style={{ marginTop: "clamp(1.2rem,2vw,1.6rem)" }}>
         {items.map((it, i) => (

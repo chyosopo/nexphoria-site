@@ -228,7 +228,7 @@ export default function FAQPage() {
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
             headline={
               <>
-                <span>Common questions.</span>
+                <span className="nx-shout">Questions.</span>
               </>
             }
             subtitle="How it works, what it costs, safety, shipping, and who is involved."

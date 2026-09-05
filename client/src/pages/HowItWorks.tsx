@@ -88,23 +88,14 @@ export default function HowItWorks() {
   return (
     <SiteLayout>
       {/* ── Hero ── */}
-      <section className="nx-hero-r3" aria-labelledby="hiw-title">
-        <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
-            <div>
-              <p className="nx-eyebrow">How it works</p>
-              <h1 id="hiw-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
-                How it works.
-              </h1>
-              <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }}>
-                Five steps, from choosing a medicine to the week-{RETEST_WEEK} panel.
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
-                <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See the treatments</Link>
-              </div>
-            </div>
-            <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "3 / 2" }}>
-              <img src={heroImg} srcSet={outcomeSrcSet(heroImg)} sizes="(max-width: 1024px) 100vw, 45vw" alt="" aria-hidden fetchPriority="high" width={2048} height={1360} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      <section className="nx-tilehero" aria-labelledby="hiw-title">
+        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
+          <div className="nx-tilehero__head nx-hero-seq">
+            <p className="nx-eyebrow">How it works</p>
+            <h1 id="hiw-title" className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>Questions. Physician. First dose.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps, from choosing a medicine to the week-{RETEST_WEEK} panel.</p>
+            <div className="nx-tilehero__foot">
+              <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Shop the medicines</Link>
             </div>
           </div>
         </div>
@@ -115,7 +106,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">The steps</p>
-            <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Five steps.</h2>
+            <h2 id="hiw-steps" className="nx-dsh2 nx-shout" style={{ maxWidth: "18ch" }}>Five steps.</h2>
           </div>
         </Reveal>
         <ol style={{ listStyle: "none", margin: "clamp(1.6rem,3vw,2.4rem) 0 0", padding: 0, display: "grid", gap: 14, maxWidth: 820 }} data-testid="hiw-steps">
@@ -137,7 +128,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Blood testing</p>
-            <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>A panel before the first dose, and again at week {RETEST_WEEK}.</h2>
+            <h2 id="hiw-blood" className="nx-dsh2 nx-shout" style={{ maxWidth: "20ch" }}>The panel, twice.</h2>
             <p className="nx-lede">
               The kit reads {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} systems, drawn at home. Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
             </p>
@@ -161,7 +152,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Who is involved</p>
-            <h2 id="hiw-who" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Who is involved.</h2>
+            <h2 id="hiw-who" className="nx-dsh2 nx-shout" style={{ maxWidth: "18ch" }}>Who is involved.</h2>
           </div>
         </Reveal>
         <ul style={{ listStyle: "none", margin: "1.4rem 0 0", padding: 0, display: "grid", gap: 10, maxWidth: 820 }} data-testid="hiw-parties">
@@ -179,7 +170,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">The decision</p>
-            <h2 id="hiw-decline" className="nx-dsh2" style={{ maxWidth: "20ch" }}>If the physician does not prescribe.</h2>
+            <h2 id="hiw-decline" className="nx-dsh2 nx-shout" style={{ maxWidth: "20ch" }}>If not prescribed.</h2>
             <p className="nx-lede">
               The physician explains why not. Nothing is compounded and nothing ships, and the refund policy sets out what is refunded.
             </p>
@@ -195,7 +186,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Price</p>
-            <h2 id="hiw-price" className="nx-dsh2" style={{ maxWidth: "18ch" }}>What it costs.</h2>
+            <h2 id="hiw-price" className="nx-dsh2 nx-shout" style={{ maxWidth: "18ch" }}>One number a month.</h2>
             <p className="nx-lede">
               One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
             </p>

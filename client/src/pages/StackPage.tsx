@@ -20,6 +20,7 @@ import { SpecPlate } from "@/components/DataPlate";
 import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
+import { PROTO_TILE } from "@/lib/studioTiles";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
@@ -116,16 +117,14 @@ export default function StackPage({ slug }: { slug: string }) {
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── 1 · HERO: the protocol beside what it is for ── */}
-      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
-        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
+      <section className="nx-tilehero" aria-labelledby="stack-hero-title">
+        <div className="nx-container" style={{ paddingTop: "1.4rem", paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
               <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
                 <ArrowLeft size={15} aria-hidden="true" /> All protocols
               </Link>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "1.2rem" }}>
-                {stack.category}
-              </p>
+              <p className="nx-shout nx-pdp-shout" style={{ fontFamily: S, marginTop: "1.2rem" }}>Prescribed together.</p>
               <h1 id="stack-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
                 {stack.name}
               </h1>
@@ -137,7 +136,7 @@ export default function StackPage({ slug }: { slug: string }) {
               </p>
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
                 <a href="#buy" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
-                  See the plan and price
+                  Choose a plan
                 </a>
                 {reservable && <StatusPill status="reserve" testId="stack-status" />}
               </div>
@@ -149,23 +148,12 @@ export default function StackPage({ slug }: { slug: string }) {
                 </ul>
               )}
             </div>
-            {stackArt(stack.slug, world) && (
-              <div className="nx-hero-frame" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "1 / 1", width: "100%" }}>
-                <img
-                  src={stackArt(stack.slug, world)}
-                  srcSet={outcomeSrcSet(stackArt(stack.slug, world)!)}
-                  sizes="(max-width: 1024px) 100vw, 45vw"
-                  alt=""
-                  aria-hidden
-                  fetchPriority="high"
-                  width={1632}
-                  height={2048}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  data-testid={`stack-outcome-${stack.slug}`}
-                />
-                <div aria-hidden style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--nx-fg) 34%, transparent) 100%)" }} />
-              </div>
-            )}
+            <div className="nx-tile nx-tile--pdp nx-tile--dark" style={{ aspectRatio: "4 / 3" }}>
+              {PROTO_TILE[stack.slug]
+                ? <img src={PROTO_TILE[stack.slug].src} srcSet={`${PROTO_TILE[stack.slug].src600} 600w, ${PROTO_TILE[stack.slug].src} 1200w`} sizes="(max-width: 1024px) 100vw, 45vw" alt={`The medicines of the ${stack.name.toLowerCase()}`} fetchPriority="high" width={1200} height={900} data-testid={`stack-outcome-${stack.slug}`} />
+                : null}
+              <span className="nx-chips nx-chips--tile" aria-hidden="true"><span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>Protocol</span><span className="nx-chip" style={{ fontFamily: F }}>{stack.category}</span></span>
+            </div>
           </div>
         </div>
       </section>

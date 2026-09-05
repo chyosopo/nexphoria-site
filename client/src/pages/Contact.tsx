@@ -135,8 +135,7 @@ export default function Contact() {
             badge={<PillBadge tone="acid">Get in touch</PillBadge>}
             headline={
               <>
-                <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Questions?</span><br />
-                <span>Talk to us.</span>
+                <span className="nx-shout">Talk to us.</span>
               </>
             }
             subtitle="Patient support, medical questions, partnerships, or press. Every message reaches the right person."

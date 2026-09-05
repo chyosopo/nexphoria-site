@@ -39,10 +39,10 @@ export default function Cart() {
           <div className="mb-10">
             <p className="nx-eyebrow mb-3">Your cart</p>
             <h1
-              className="text-4xl md:text-5xl"
-              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
+              className="text-4xl md:text-5xl nx-shout"
+              style={{ fontFamily: FONT, color: "var(--nx-fg)" }}
             >
-              Review your cart
+              Your cart.
             </h1>
             <p
               className="mt-3 text-base max-w-xl"

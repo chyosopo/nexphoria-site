@@ -3446,3 +3446,7 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 .nx-tile__foot--proto { gap: .45rem; }
 .nx-tile__foot--proto .nx-tile__t { font-size: var(--nx-t-h3); }
 @media (max-width: 900px) { .nx-tile--proto { aspect-ratio: 4 / 3.4; } }
+
+/* ═══ Audit 2026-09-05: tap targets ≥ 36 px on every list link ═══ */
+.nx-tile__list a { min-height: 36px; align-items: center; }
+.nx-footer a { min-height: 36px; display: inline-flex; align-items: center; }

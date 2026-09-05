@@ -259,9 +259,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             if (items.length === 0) return null;
             return (
               <div key={cat} style={{ marginBottom: "clamp(2.4rem,4.5vw,3.6rem)" }}>
-                <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginBottom: "1.1rem", paddingBottom: "0.7rem", borderBottom: "1px solid var(--nx-border)", display: "flex", alignItems: "baseline", gap: "0.75rem", flexWrap: "wrap" }}>
-                  {CAT_LINE[cat] ?? labelFor(cat)}
-                </h2>
+                <div style={{ marginBottom: "1.1rem", paddingBottom: "0.8rem", borderBottom: "1px solid var(--nx-border)" }}>
+                  <h2 className="nx-dsh3 nx-shout" style={{ fontFamily: S }}>{labelFor(cat)}.</h2>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: ".35rem" }}>{(CAT_LINE[cat] ?? "").replace(/^[^:]+:\s*/, "")}</p>
+                </div>
                 <div className="nx-float-grid">
                   {items.map((s, i) => card(s, i, i))}
                 </div>

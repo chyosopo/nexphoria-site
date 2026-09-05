@@ -214,8 +214,8 @@ export default function Checkout() {
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-20 max-w-md text-center">
-            <h1 className="text-3xl mb-4" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>
-              Your cart is empty
+            <h1 className="text-3xl mb-4 nx-shout" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
+              Your cart is empty.
             </h1>
             <p className="text-base mb-6" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
               Add a medicine or a protocol before checkout.
@@ -259,8 +259,8 @@ export default function Checkout() {
               Checkout
             </div>
             <h1
-              className="text-4xl md:text-5xl mb-3"
-              style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
+              className="text-4xl md:text-5xl mb-3 nx-shout"
+              style={{ fontFamily: FONT, color: "var(--nx-fg)" }}
             >
               Checkout.
             </h1>
