@@ -23,7 +23,9 @@ import { SkuPhoto } from "@/components/SkuPhoto";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
-import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
+import { CareCards } from "@/components/CareCards";
+import { InsideTheVial } from "@/components/InsideTheVial";
+import { soloByName } from "@/data/soloCatalog";
 import { monitoringFor } from "@/data/monitoring";
 import { faqJsonLd } from "@/lib/seo";
 import { analytics } from "@/lib/analytics";
@@ -215,6 +217,26 @@ export default function StackPage({ slug }: { slug: string }) {
               {stack.synergy}
             </p>
 
+            {/* ── 2b · What you get, exactly: each medicine's vial, resolved through the catalog ── */}
+            {(() => {
+              const members = stack.peptides.map((p) => soloByName(p.name)).filter((m): m is NonNullable<typeof m> => Boolean(m));
+              if (members.length === 0) return null;
+              return (
+                <section aria-labelledby="stack-get-title" data-testid="stack-get">
+                  <h2 id="stack-get-title" className="nx-dsh3">What you get, exactly</h2>
+                  <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each medicine in its own vial, with its own dose. The figures are worked out from the stated dose and vial; your prescription states the exact volumes.</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 12, marginTop: "1rem" }}>
+                    {members.map((m) => (
+                      <div key={m.slug} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        <InsideTheVial sku={m} compact testId={`stack-vial-${m.slug}`} />
+                        <Link href={`/peptides/${m.slug}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, alignSelf: "flex-start" }} data-testid={`stack-member-link-${m.slug}`}>How {m.name} works, and what to expect</Link>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              );
+            })()}
+
             {/* ── 3 · What to expect ── */}
             <h2 className="nx-dsh3" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               What to expect
@@ -275,14 +297,7 @@ export default function StackPage({ slug }: { slug: string }) {
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-parties-title" data-testid="stack-parties">
               <h2 id="stack-parties-title" className="nx-dsh3">Who prescribes it, and who makes it</h2>
-              <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Clinical care</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{PROVIDER_INFO.body}</p>
-              </div>
-              <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dispensing pharmacy</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{PHARMACY_INFO.body.replace(/\n+/g, " ")}</p>
-              </div>
+              <CareCards slug={stack.slug} name={stack.name} />
             </section>
 
             {/* ── 8 · Common questions ── */}

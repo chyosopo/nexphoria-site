@@ -17,7 +17,7 @@ export function WhatArrives({ sku, testId }: { sku: SoloPeptide; testId?: string
       : v.form === "weekly-pen" ? `${sku.name}, for weekly injection`
       : v.form === "nasal-spray" ? `${sku.name}, as a nasal spray`
       : v.form === "capsule" ? `${sku.name}, in capsules`
-      : v.form === "protocol" ? "Both medicines, each in its own vial"
+      : v.form === "protocol" ? "Each medicine, in its own vial"
       : sku.name;
   const items = [
     { Icon: FlaskConical, t: medicine, b: "Compounded to order in a licensed U.S. pharmacy." },

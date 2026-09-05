@@ -52,7 +52,7 @@ export function BigFigure({
               rather than on a prop means no call site has to know, and a figure
               can never animate to a number it does not actually contain. */}
           {/^\d+(\.\d+)?$/.test(value.trim())
-            ? <CountUp to={parseFloat(value)} decimals={value.includes(".") ? 1 : 0} />
+            ? <CountUp to={parseFloat(value)} decimals={Math.min(3, (value.trim().split(".")[1] ?? "").length)} />
             : value}
         </span>
         {unit && (

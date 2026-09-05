@@ -6,7 +6,7 @@ import { BigFigureRow } from "@/components/DataPlate";
 import { vialFacts, doseLabel } from "@/lib/vial";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
-export function InsideTheVial({ sku, testId }: { sku: SoloPeptide; testId?: string }) {
+export function InsideTheVial({ sku, testId, compact = false }: { sku: SoloPeptide; testId?: string; compact?: boolean }) {
   const v = vialFacts(sku);
   const dose = doseLabel(sku);
 
@@ -36,9 +36,9 @@ export function InsideTheVial({ sku, testId }: { sku: SoloPeptide; testId?: stri
   if (v.vialsPerMonth) figures.push({ value: String(v.vialsPerMonth), unit: v.vialsPerMonth === 1 ? "vial" : "vials", caption: v.course ? `for the course, ${v.course.replace("for ", "")}` : "for a month" });
 
   return (
-    <div className="nx-card" data-testid={testId ?? `vial-${sku.slug}`}>
-      <p className="nx-eyebrow">Inside the vial</p>
-      <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.25, color: "var(--nx-fg)", marginTop: "0.5rem", maxWidth: "40ch" }}>{lede}</p>
+    <div className="nx-card" data-testid={testId ?? `vial-${sku.slug}`} style={compact ? { padding: "1rem 1.1rem" } : undefined}>
+      <p className="nx-eyebrow">{compact ? sku.name : "Inside the vial"}</p>
+      <p style={{ fontFamily: S, fontWeight: 500, fontSize: compact ? "var(--nx-t-base)" : "var(--nx-t-lg)", lineHeight: 1.3, color: "var(--nx-fg)", marginTop: "0.5rem", maxWidth: "40ch" }}>{lede}</p>
       {figures.length > 0 && (
         <div style={{ marginTop: "1.1rem" }}>
           <BigFigureRow figures={figures} testId={`vial-figures-${sku.slug}`} />
