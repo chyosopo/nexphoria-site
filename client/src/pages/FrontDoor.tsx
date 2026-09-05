@@ -183,7 +183,7 @@ export default function FrontDoor() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="fd-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "20ch", margin: "0 auto", textWrap: "balance" }}>
-              See what a physician can prescribe for you.
+              Prescribed, if appropriate.
             </h2>
             <a href="#treatments" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               See the treatments

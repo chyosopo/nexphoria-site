@@ -6,16 +6,16 @@ import { F, S } from "@/lib/typography";
 import { Compass, Search, MapPin, ArrowRight, Layers, FlaskConical, Stethoscope, Mail } from "lucide-react";
 
 const DESTINATIONS: { href: string; label: string; note: string; Icon: typeof Layers; testid: string }[] = [
-  { href: "/stacks", label: "Protocols", note: "Seven physician-curated stacks", Icon: Layers, testid: "not-found-protocols-link" },
-  { href: "/peptides", label: "Peptides", note: "The full nineteen-item formulary", Icon: FlaskConical, testid: "not-found-peptides-link" },
-  { href: "/how-it-works", label: "How it works", note: "Intake, bloodwork, retest", Icon: Stethoscope, testid: "not-found-hiw-link" },
-  { href: "/contact", label: "Contact", note: "Reach a coordinator", Icon: Mail, testid: "not-found-contact-link" },
+  { href: "/stacks", label: "Protocols", note: "Medicines prescribed together", Icon: Layers, testid: "not-found-protocols-link" },
+  { href: "/peptides", label: "Peptides", note: "Every medicine, by what it treats", Icon: FlaskConical, testid: "not-found-peptides-link" },
+  { href: "/how-it-works", label: "How it works", note: "The five steps, and the panel", Icon: Stethoscope, testid: "not-found-hiw-link" },
+  { href: "/contact", label: "Contact", note: "Support and press", Icon: Mail, testid: "not-found-contact-link" },
 ];
 
 export default function NotFound() {
   useSeo({
     title: "Page not found",
-    description: "This page doesn’t exist or has moved. Browse physician-prescribed peptide protocols at Nexphoria.",
+    description: "This page does not exist or has moved. The medicines, the protocols and how it works are a click away.",
     path: "/404",
   });
 
@@ -53,7 +53,7 @@ export default function NotFound() {
 
           <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Error 404</p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", lineHeight: 1.05, maxWidth: "16ch" }}>
-            This page isn’t on the shelf.
+            That page does not exist.
           </h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", maxWidth: "44ch", lineHeight: 1.6, marginTop: "1rem" }}>
             The address you followed doesn’t exist or has moved. Here are the routes most people are looking for.

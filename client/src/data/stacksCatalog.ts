@@ -171,7 +171,7 @@ const ALL_STACKS: FlagshipStack[] = [
     synergy: "Tirzepatide quiets appetite on two hormones at once. The nightly growth hormone peptide protects the lean muscle you would otherwise lose while the weight comes off.",
     timeline: [
       { wk: "Wk 1", effect: "The first dose, at the lowest step." },
-      { wk: "Wk 4", effect: "Your dose steps up." },
+      { wk: "Wk 4", effect: "The dose steps up." },
       { wk: "Wk 12", effect: "The panel and a dose review." },
     ],
     panel: "Full",

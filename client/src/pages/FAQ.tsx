@@ -313,9 +313,7 @@ export default function FAQPage() {
                   CATEGORIES
                 </p>
                 <ul
-                  role="tablist"
                   aria-labelledby="faq-categories-heading"
-                  aria-orientation="vertical"
                   onKeyDown={onTabsKeyDown}
                   style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}
                 >
@@ -324,11 +322,9 @@ export default function FAQPage() {
                       <button
                         ref={(el) => { tabRefs.current[i] = el; }}
                         id={`faq-tab-${i}`}
-                        role="tab"
-                        aria-selected={activeCategory === i}
-                        aria-controls={`faq-panel-${i}`}
+                        aria-current={activeCategory === i ? "true" : undefined}
                         tabIndex={activeCategory === i ? 0 : -1}
-                        onClick={() => setActiveCategory(i)}
+                        onClick={() => { setActiveCategory(i); document.getElementById(`faq-panel-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
                         className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
                         style={{
                           background: "none",
@@ -357,15 +353,6 @@ export default function FAQPage() {
                           />
                         )}
                         {cat.label}
-                        <span
-                          style={{
-                            fontFamily: F,
-                            fontSize: "var(--nx-t-xs)",
-                            color: "var(--nx-fg-muted)",
-                          }}
-                        >
-                          {cat.items.length}
-                        </span>
                       </button>
                     </li>
                   ))}
@@ -377,24 +364,24 @@ export default function FAQPage() {
                 has one <main id="main-content"> landmark above (house pattern,
                 cf. Pricing.tsx). Two <main> elements is invalid HTML5.
                 Doubles as the tabpanel for the category tablist. */}
-            <div
-              id={`faq-panel-${activeCategory}`}
-              role="tabpanel"
-              aria-labelledby={`faq-tab-${activeCategory}`}
-              tabIndex={0}
-            >
-              <Reveal>
-                <div className="nx-sec-head" style={{ marginBottom: "2rem" }}>
-                  <p className="nx-eyebrow">
-                    {categories[activeCategory].label}
-                  </p>
-                  <h2 className="nx-dsh2">
-                    {categoryHeadings[categories[activeCategory].label] ?? `${categories[activeCategory].label} questions.`}
-                  </h2>
-                </div>
-
-                <FaqAccordion key={activeCategory} items={categories[activeCategory].items} openFirst={false} />
-              </Reveal>
+            <div>
+              {categories.map((cat, i) => (
+                <section
+                  key={cat.label}
+                  id={`faq-panel-${i}`}
+                  aria-labelledby={`faq-tab-${i}`}
+                  style={{ scrollMarginTop: "96px", marginBottom: i < categories.length - 1 ? "clamp(2.4rem,5vw,3.6rem)" : 0 }}
+                  data-testid={`faq-section-${i}`}
+                >
+                  <Reveal>
+                    <div className="nx-sec-head" style={{ marginBottom: "1.4rem" }}>
+                      <p className="nx-eyebrow">{cat.label}</p>
+                      <h2 className="nx-dsh2">{categoryHeadings[cat.label] ?? `${cat.label} questions.`}</h2>
+                    </div>
+                    <FaqAccordion items={cat.items} openFirst={false} />
+                  </Reveal>
+                </section>
+              ))}
             </div>
           </div>
         </div>

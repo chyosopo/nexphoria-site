@@ -64,7 +64,7 @@ export function ExpectCard({ sku, base = "", testId }: { sku: SoloPeptide; base?
           )}
           {sku.avoid && sku.avoid.length > 0 && (
             <p style={{ fontFamily: F }}>
-              <span className="nx-expect__rule"><Scale size={13} strokeWidth={2} aria-hidden="true" /> Does the same job, pick one</span>{" "}
+              <span className="nx-expect__rule"><Scale size={13} strokeWidth={2} aria-hidden="true" /> Does the same job; one at a time</span>{" "}
               <NameList names={sku.avoid} base={base} />
             </p>
           )}

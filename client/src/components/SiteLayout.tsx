@@ -1,4 +1,3 @@
-import { Suspense, lazy } from "react";
 import { anchor } from "@/lib/anchors";
 import { useLocation } from "wouter";
 
@@ -26,10 +25,9 @@ import { Footer } from "./Footer";
 /* The announcement bar and the trust bar are removed sitewide (the plain
    deck, 2026-09-04, rule 3: every fact once per page). The hide* props are
    still accepted so callers compile; they no longer do anything. */
-// Lazy — pulls framer-motion; keep it off the first-paint critical path.
-const ExitIntentModal = lazy(() =>
-  import("./ExitIntentModal").then((m) => ({ default: m.ExitIntentModal })),
-);
+/* The exit-intent capture is removed (law 3, inform never persuade: a
+   "before you go" interruption is urgency theater, and its endpoint does not
+   run on the static host). */
 
 interface SiteLayoutProps {
   children: React.ReactNode;
@@ -70,9 +68,6 @@ export function SiteLayout({
       <Nav variant={resolvedNavVariant} />
       <main id="main-content" className="flex-1">{children}</main>
       {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
-      <Suspense fallback={null}>
-        <ExitIntentModal />
-      </Suspense>
     </div>
   );
 }

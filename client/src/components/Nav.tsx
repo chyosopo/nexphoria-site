@@ -122,7 +122,7 @@ function ProtocolsPanel({ onPick }: { onPick: () => void }) {
       <aside className="nx-mega__rail" aria-label="Protocols">
         <Link href="/stacks" className="nx-mega__all" onClick={onPick} data-testid="mega-view-all-protocols">
           <span className="nx-mega__all-title" style={{ fontFamily: S }}>Medicines prescribed together</span>
-          <span className="nx-mega__all-line" style={{ fontFamily: F }}>Two to four medicines on one plan, with one blood test before and one at week 12. <ArrowRight size={13} aria-hidden="true" /></span>
+          <span className="nx-mega__all-line" style={{ fontFamily: F }}>Two to four medicines on one plan, with one panel before the first dose and one at week 12. <ArrowRight size={13} aria-hidden="true" /></span>
         </Link>
       </aside>
       <ul className="nx-mega__stacks">

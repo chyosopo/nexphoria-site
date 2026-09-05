@@ -110,7 +110,7 @@ contains no `functions/` directory — the Function only enters the picture
 when wrangler reads the repo-root `wrangler.toml`, which CI does.
 
 So `functions/api/waitlist.ts` has never run in production, and the three
-surfaces that POST to it — the footer newsletter, the exit-intent modal and
+surfaces that POST to it — the footer newsletter (the exit-intent modal was removed 2026-09-05) and
 the assessment — have been failing since they were written. Not silently, at
 least on the footer: it throws on a non-OK response and shows an error
 state, so visitors were told it failed rather than shown a false success.

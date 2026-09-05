@@ -192,8 +192,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           style={{ display: "flex", flexWrap: "wrap", gap: 8 }}
         >
           {cats.map((c, i) => {
-            const n = c === "All" ? SOLO_CATALOG.length : SOLO_CATALOG.filter((s) => s.category === c).length;
-            const active = filter === c;
+                        const active = filter === c;
             return (
               <button
                 key={c}
@@ -207,7 +206,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
               >
                 {labelFor(c)}
-                <span style={{ opacity: 0.65, marginLeft: 6, fontWeight: 500 }}>{n}</span>
+                
               </button>
             );
           })}
@@ -221,9 +220,6 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             doubled announcement). */}
         <p className="sr-only" aria-live="polite" aria-atomic="true" data-testid="catalog-sr-status">
           {resultStatus}
-        </p>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginBottom: "0.9rem" }}>
-          {shown.length} {shown.length === 1 ? "peptide" : "peptides"}{filter !== "All" ? ` · ${labelFor(filter)}` : ""}
         </p>
         {shown.length === 0 && (
           <div className="nx-glass-tile" style={{ display: "block", textAlign: "center", padding: "3rem 1.5rem" }} data-testid="filter-empty">

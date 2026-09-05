@@ -7,7 +7,7 @@ import type { PeptideCategory } from "@/data/peptides";
 
 export const GOAL_TEACHING: Record<PeptideCategory, string> = {
   metabolic: "Appetite that is hard to argue with, and weight that will not move. GLP-1 medicines make you feel full sooner and stay full longer; a physician steps the dose up as your body settles.",
-  growth: "Deep abdominal fat that diet and training have not shifted, and lean mass you want to keep. These medicines raise your own growth hormone on its natural rhythm, and IGF-1 in your blood shows it working.",
+  growth: "Deep abdominal fat that diet and training have not shifted, and lean mass you want to keep. These medicines raise your own growth hormone on its natural rhythm, and IGF-1 in the panel shows it working.",
   recovery: "A tendon, muscle, joint or gut lining that is slow to repair. These peptides send the repair signal and move repair cells to where they are needed.",
   longevity: "Energy and recovery that have slipped with age. These medicines top up what your cells run on, or switch on the same pathways exercise does.",
   cognition: "Focus and mood that fray under sustained stress. Nasal-spray peptides that work on the brain's stress circuits and the protein it uses to build connections.",

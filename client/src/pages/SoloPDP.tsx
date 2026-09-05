@@ -16,7 +16,6 @@ import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
 import { ArrowLeft, X, Stethoscope, Droplets, FlaskConical, Snowflake } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { SpecPlate } from "@/components/DataPlate";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
@@ -170,16 +169,6 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </p>
               <div style={{ marginTop: "1.2rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} testId={`benefit-${solo.slug}`} /></div>
               <div style={{ marginTop: "1rem", maxWidth: 560 }}><ExpectCard sku={solo} base={base} /></div>
-              <div style={{ maxWidth: 460, marginTop: "1.4rem" }}>
-                <SpecPlate
-                  name={solo.name}
-                  rows={[
-                    { label: "Dose", value: solo.dose },
-                    { label: "Format", value: solo.spec },
-                  ]}
-                  testId={`spec-plate-${solo.slug}`}
-                />
-              </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
                 <a

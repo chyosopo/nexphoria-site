@@ -114,19 +114,18 @@ export default function ProtocolsIndex() {
       <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Filter protocols">
         <div role="group" aria-label="Filter protocols by category" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
           {CATEGORIES.map((c) => {
-            const n = c === "All" ? FLAGSHIP_STACKS.length : FLAGSHIP_STACKS.filter((s) => matchCat(s.category, c)).length;
             const active = filter === c;
             return (
               <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`protofilter-${c.toLowerCase()}`} className="nx-filter-chip" style={{
                 fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600,
               }}>
-                {c}<span style={{ opacity: 0.6, marginLeft: 6, fontWeight: 500 }}>{n}</span>
+                {c}
               </button>
             );
           })}
         </div>
-        <p aria-live="polite" style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginTop: "0.9rem" }}>
-          {shown.length} {shown.length === 1 ? "protocol" : "protocols"}{filter !== "All" ? ` · ${filter}` : ""}
+        <p className="sr-only" aria-live="polite" aria-atomic="true">
+          {filter === "All" ? "Showing all protocols." : `Showing ${shown.length} ${shown.length === 1 ? "protocol" : "protocols"} in ${filter}.`}
         </p>
       </section>
 
@@ -170,25 +169,6 @@ export default function ProtocolsIndex() {
               </Reveal>
             );
           })}
-          {/* Build-your-own — same floating silhouette, vial imagery */}
-          {filter === "All" && (
-            <Reveal delay={shown.length * 45}>
-              <Link href="/stacks" data-testid="protocol-build" className="nx-float-card">
-                <div className="nx-float-card__media">
-                  <img src={vialLineupMaster} alt="" aria-hidden loading="lazy" width={1600} height={2000} />
-                </div>
-                <div className="nx-float-card__body">
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Custom</p>
-                  <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>Build your own</h2>
-                  <p className="nx-line-1" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>Choose the medicines. A physician reviews them.</p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
-                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>Start building</span>
-                    <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          )}
         </div>
       </section>
 

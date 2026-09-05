@@ -63,9 +63,9 @@ export interface BuyBoxProps {
   pending?: string[];
 }
 
-const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }) => (
+const CTA = ({ testId, children, href = "/peptides" }: { testId: string; children: React.ReactNode; href?: string }) => (
   <Link
-    href="/peptides"
+    href={href}
     data-testid={testId}
     onClick={() => track("intake_cta", { source: "buybox", testId })}
     className="nx-cta-cobalt"
@@ -139,7 +139,7 @@ export function BuyBox(props: BuyBoxProps) {
               </p>
             )}
             <div style={{ marginTop: "1.1rem" }}>
-              <CTA testId={ctaTestId}>Check eligibility</CTA>
+              <CTA testId={ctaTestId} href="/contact">Request a consultation</CTA>
             </div>
           </>
         ) : consultPriced || !tiers?.length ? (
@@ -273,9 +273,6 @@ export function BuyBox(props: BuyBoxProps) {
             {/* the gift link (stacks only) */}
             {addType === "stack" && (
               <div style={{ display: "flex", justifyContent: "center", gap: 14, marginTop: "0.5rem", fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600 }}>
-                <Link href={`/gift?item=stack:${slug}`} data-testid={`${ctaTestId}-gift`} onClick={() => track("gift_entry", { source: "buybox", slug })} style={{ color: "var(--nx-fg-muted)", textDecoration: "underline", textUnderlineOffset: 3 }}>
-                  Give this protocol as a gift
-                </Link>
               </div>
             )}
           </>
@@ -332,12 +329,12 @@ export function BuyBox(props: BuyBoxProps) {
           </button>
         ) : (
           <Link
-            href="/peptides"
+            href={gated ? "/contact" : "/peptides"}
             data-testid={`${ctaTestId}-bar`}
             className="nx-cta-cobalt"
             style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}
           >
-            {gated ? "Check eligibility" : "Get started"}
+            {gated ? "Request a consultation" : "Get started"}
           </Link>
         )}
         </div>

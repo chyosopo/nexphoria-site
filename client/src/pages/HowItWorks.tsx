@@ -101,7 +101,6 @@ export default function HowItWorks() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
                 <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See the treatments</Link>
-                <Link href="/peptides" className="nx-cta-ghost">The medicines</Link>
               </div>
             </div>
             <div className="nx-hero-frame nx-hero-bleed" style={{ position: "relative", borderRadius: "var(--nx-r-lg)", overflow: "hidden", boxShadow: "var(--nx-e-4)", aspectRatio: "3 / 2" }}>
