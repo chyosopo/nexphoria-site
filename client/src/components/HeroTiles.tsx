@@ -54,7 +54,7 @@ export function HeroTiles() {
             <li style={{ fontFamily: F }}><FlaskConical size={13} strokeWidth={2.2} aria-hidden="true" />{HERO.facts[1]}</li>
             <li style={{ fontFamily: F }}><Droplets size={13} strokeWidth={2.2} aria-hidden="true" />{HERO.facts[2]}</li>
           </ul>
-          <h1 className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>{HERO.shout}</h1>
+          <h1 className="nx-tilehero__h1" style={{ fontFamily: S }}>{HERO.shout}</h1>
           <p className="nx-tilehero__line" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</p>
           <p className="nx-tilehero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
         </div>
@@ -63,7 +63,7 @@ export function HeroTiles() {
             <Link key={t.goal} href={t.href} className={`nx-tile${t.dark ? " nx-tile--dark" : ""}`} style={{ ["--i" as string]: i }} data-testid={`hero-tile-${t.goal}`} aria-label={`${CATEGORY_LABELS[t.goal]}: ${t.cta}`}>
               <img src={t.img} srcSet={`${t.img800} 800w, ${t.img} 1200w`} sizes="(max-width: 900px) 100vw, 33vw" alt="" width={1200} height={900} fetchPriority={i === 0 ? "high" : undefined} decoding="async" />
               <span className="nx-chips nx-chips--tile" aria-hidden="true"><span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{CATEGORY_LABELS[t.goal]}</span><span className="nx-chip" style={{ fontFamily: F }}>Rx</span></span>
-              <span className="nx-tile__title nx-tile__title--low nx-shout" style={{ fontFamily: S }}>{GOAL_SHOUT[t.goal]}</span>
+              <span className="nx-tile__title nx-tile__title--low" style={{ fontFamily: S }}>{GOAL_SHOUT[t.goal]}</span>
               <span className="nx-tile__btn" style={{ fontFamily: F }}>{t.cta}</span>
               <span className="nx-tile__arrow" aria-hidden="true"><ArrowRight size={18} /></span>
             </Link>

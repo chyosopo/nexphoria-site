@@ -3,21 +3,27 @@
    One structure shared with SoloPDP: hero · buy box · what to expect ·
    blood testing · who should not take it · regulatory status · who
    prescribes it · common questions · other protocols · closer. Every fact
-   once per page. Ignite (GLP-1) renders the physician wall in the buy box. */
+   once per page. Ignite (GLP-1) renders the physician wall in the buy box.
+
+   Tightened 2026-09-05 (Chiya: "huge scroll and scroll and scroll"), the
+   mirror of SoloPDP: the medicines are one row of photograph + dose plate
+   (three renderings of the same three vials became one); the blood is a
+   sub-block of What arrives; regulatory status and the two care cards are
+   one row of three tiles; the FAQ is five; the "other protocols" shelf went
+   (the index is one click up, and the reader decides). */
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, productJsonLd } from "@/lib/seo";
-import { getStack, FLAGSHIP_STACKS, usd, stackReservable, stackPending, stackComponents } from "@/data/stacksCatalog";
+import { getStack, stackReservable, stackPending, stackComponents } from "@/data/stacksCatalog";
 import { regulatoryOf, type SoloRegulatory } from "@/data/soloCatalog";
 import { StatusPill } from "@/components/StatusPill";
 import { AddonsFor } from "@/components/AddonsFor";
 import { ArrowLeft, X } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { SpecPlate } from "@/components/DataPlate";
-import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { PROTO_TILE } from "@/lib/studioTiles";
@@ -31,6 +37,12 @@ import { monitoringFor } from "@/data/monitoring";
 import { faqJsonLd } from "@/lib/seo";
 import { analytics } from "@/lib/analytics";
 
+/* Five questions on the page. The "first weeks" one is the section above it
+   (what to expect), so it is the one that goes. */
+const FAQ_CAP = 5;
+const capFaq = <T extends { q: string }>(items: T[]) =>
+  items.filter((f) => !/^What should I expect/.test(f.q)).slice(0, FAQ_CAP);
+
 export default function StackPage({ slug }: { slug: string }) {
   const stack = getStack(slug);
   const [loc] = useLocation();
@@ -39,13 +51,13 @@ export default function StackPage({ slug }: { slug: string }) {
     if (stack) analytics.productViewed({ kind: "stack", slug: stack.slug, category: stack.category, gated: !!stack.gated });
   }, [stack]);
   const faq = stack
-    ? buildPdpFaq({
+    ? capFaq(buildPdpFaq({
         name: stack.name,
         gated: stack.gated,
         hasPricing: !stack.gated,
         firstMark: stack.timeline[0],
         components: stackComponents(stack).map((c) => ({ name: c.name, regulatory: regulatoryOf(c) })),
-      })
+      }))
     : [];
 
   useSeo({
@@ -78,14 +90,7 @@ export default function StackPage({ slug }: { slug: string }) {
     );
   }
 
-  /* The other protocols: same-category first, then the rest, never the
-     opposite world's. "both" always shows. */
   const world = resolveWorld(loc);
-  const oppositeLean = world === "women" ? "him" : "her";
-  const otherStacks = FLAGSHIP_STACKS
-    .filter((s) => s.slug !== stack.slug && s.worldLean !== oppositeLean)
-    .sort((a, b) => Number(b.category === stack.category) - Number(a.category === stack.category))
-    .slice(0, 3);
 
   const tiers: BuyTier[] | undefined = stack.gated
     ? undefined
@@ -114,8 +119,12 @@ export default function StackPage({ slug }: { slug: string }) {
   /* The markers the physician reads first, across the medicines in the protocol. */
   const watch = Array.from(new Set(components.flatMap((c) => monitoringFor(c.slug)?.watch ?? [])));
 
+  /* Each medicine's vial, resolved through the catalog. */
+  const members = stack.peptides.map((p) => soloByName(p.name)).filter((m): m is NonNullable<typeof m> => Boolean(m));
+
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
+      <div className="nx-tight">
       {/* ── 1 · HERO: the protocol beside what it is for ── */}
       <section className="nx-tilehero" aria-labelledby="stack-hero-title">
         <div className="nx-container" style={{ paddingTop: "1.4rem", paddingBottom: "var(--nx-sp-tight)" }}>
@@ -124,7 +133,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
                 <ArrowLeft size={15} aria-hidden="true" /> All protocols
               </Link>
-              <p className="nx-shout nx-pdp-shout" style={{ fontFamily: S, marginTop: "1.2rem" }}>Prescribed together.</p>
+              <p className="nx-pdp-shout" style={{ fontFamily: S, marginTop: "1.2rem" }}>Prescribed together, so each medicine does its own job.</p>
               <h1 id="stack-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
                 {stack.name}
               </h1>
@@ -158,38 +167,16 @@ export default function StackPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* ── What is in it: the protocol, rendered as its vials ── */}
+      {/* ── 2 · What is in it: each medicine as its photograph over its dose plate, then how they fit ── */}
       <section style={{ background: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="stack-vials-title">
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }}>
           <h2 id="stack-vials-title" className="nx-eyebrow" style={{ textAlign: "center" }}>What is in it</h2>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end", gap: "clamp(1.5rem,5vw,3.5rem)", marginTop: "1.4rem" }}>
-            {stack.peptides.map((p, i) => {
-              return (
-                <Reveal key={p.name} delay={i * 70}>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.6rem" }}>
-                    {/* Same object the PDP, the shelf and the catalog hero render. */}
-                    <SkuPhoto name={p.name} className="nx-sku-img nx-sku-img--stack" fallback={<VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />} />
-                    <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1, textAlign: "center" }}>{p.name}</p>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", textAlign: "center" }}>{p.spec}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── BODY: content rail + sticky buy box ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Protocol details">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
-
-          {/* LEFT */}
-          <div>
-            {/* Dose and format: each compound as a specimen label, then how they fit together */}
-            <h2 style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dose and format</h2>
-            <div className="grid sm:grid-cols-2" style={{ gap: 12, marginTop: "0.9rem" }}>
-              {stack.peptides.map((p, i) => (
-                <Reveal key={p.name} delay={i * 40}>
+          <div className="nx-stack-lineup">
+            {stack.peptides.map((p, i) => (
+              <Reveal key={p.name} delay={i * 70}>
+                <div className="nx-stack-lineup__cell">
+                  {/* Same object the PDP, the shelf and the catalog hero render. */}
+                  <SkuPhoto name={p.name} className="nx-sku-img nx-sku-img--stack" fallback={<VialMockup name={p.name} dose={labelSpec(p.spec)} size="clamp(190px, 22vw, 260px)" fill={0.62} />} />
                   <SpecPlate
                     name={p.name}
                     rows={[
@@ -198,21 +185,28 @@ export default function StackPage({ slug }: { slug: string }) {
                     ]}
                     testId={`stack-spec-${i}`}
                   />
-                </Reveal>
-              ))}
-            </div>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "62ch", marginTop: "1.4rem" }}>
-              {stack.synergy}
-            </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-fg-graphite)", maxWidth: "62ch", margin: "1.4rem auto 0", textAlign: "center" }}>
+            {stack.synergy}
+          </p>
+        </div>
+      </section>
 
-            {/* ── 2b · What you get, exactly: each medicine's vial, resolved through the catalog ── */}
-            {(() => {
-              const members = stack.peptides.map((p) => soloByName(p.name)).filter((m): m is NonNullable<typeof m> => Boolean(m));
-              if (members.length === 0) return null;
-              return (
-                <section aria-labelledby="stack-get-title" data-testid="stack-get">
-                  <h2 id="stack-get-title" className="nx-dsh3 nx-shout">What arrives.</h2>
-                  <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each is dispensed in its own vial, at its own dose. The figures follow from the stated dose and vial; the prescription states the exact volumes.</p>
+      {/* ── BODY: content rail + sticky buy box ── */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Protocol details">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
+
+          {/* LEFT */}
+          <div>
+            {/* ── 3 · What arrives: each medicine's vial, and the blood that sets its dose ── */}
+            <section aria-labelledby="stack-get-title" data-testid="stack-get">
+              <h2 id="stack-get-title" className="nx-dsh3">Here is what arrives, and at what dose.</h2>
+              {members.length > 0 && (
+                <>
+                  <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each medicine is dispensed in its own vial, at its own dose. The amounts follow from the stated dose and vial, and the prescription states the exact volumes.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 12, marginTop: "1rem" }}>
                     {members.map((m) => (
                       <div key={m.slug} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
@@ -221,51 +215,49 @@ export default function StackPage({ slug }: { slug: string }) {
                       </div>
                     ))}
                   </div>
-                </section>
-              );
-            })()}
-
-            {/* ── 3 · What to expect ── */}
-            <h2 className="nx-dsh3 nx-shout" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              What to expect
-            </h2>
-            <div className="nx-timeline" style={{ marginTop: "1.4rem" }}>
-              {stack.timeline.map((t, i) => (
-                <Reveal key={t.wk} delay={i * 55}>
-                  <div className="nx-timeline-step" style={{ paddingBottom: i < stack.timeline.length - 1 ? "1.1rem" : 0 }}>
-                    <span className="nx-timeline-node" aria-hidden>{i + 1}</span>
-                    <div className="nx-glass-tile" style={{ display: "block" }}>
-                      <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* ── 4 · Blood testing for this protocol ── */}
-            <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-blood-title" data-testid="stack-blood">
-              <h2 id="stack-blood-title" className="nx-dsh3 nx-shout">
-                Blood testing for this protocol
-              </h2>
-              <p className="nx-lede" style={{ marginTop: "0.9rem" }}>
-                A panel before the first dose, and the same panel at week 12.
-              </p>
-              {watch.length > 0 && (
-                <div className="nx-glass-tile" style={{ display: "block", marginTop: "1rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Read first at week 12</p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{watch.join(" · ")}</p>
-                </div>
+                </>
               )}
-              <AddonsFor keys={[stack.slug, ...components.map((c) => c.slug)]} testId="stack-addons" />
-              <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
-                Every marker, and the additional tests
-              </Link>
+              <div className="nx-pdp-sub" aria-labelledby="stack-blood-title" data-testid="stack-blood">
+                <p id="stack-blood-title" className="nx-eyebrow">Blood testing for this protocol</p>
+                <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
+                  The physician compares the two panels and adjusts the dose from what changed.
+                </p>
+                {watch.length > 0 && (
+                  <div className="nx-glass-tile" style={{ display: "block", marginTop: "0.8rem" }}>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Read first at week 12</p>
+                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{watch.join(" · ")}</p>
+                  </div>
+                )}
+                <AddonsFor keys={[stack.slug, ...components.map((c) => c.slug)]} testId="stack-addons" />
+                <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
+                  See every marker and the additional tests
+                </Link>
+              </div>
+            </section>
+
+            {/* ── 4 · What to expect ── */}
+            <section className="nx-pdp-sec" aria-labelledby="stack-expect-title">
+              <h2 id="stack-expect-title" className="nx-dsh3">
+                Here is what to expect, week by week.
+              </h2>
+              <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
+                {stack.timeline.map((t, i) => (
+                  <Reveal key={t.wk} delay={i * 55}>
+                    <div className="nx-timeline-step" style={{ paddingBottom: i < stack.timeline.length - 1 ? "1.1rem" : 0 }}>
+                      <span className="nx-timeline-node" aria-hidden>{i + 1}</span>
+                      <div className="nx-glass-tile" style={{ display: "block" }}>
+                        <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
+                        <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
             </section>
 
             {/* ── 5 · Who should not take it ── */}
-            <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-contra-title">
-              <h2 id="stack-contra-title" className="nx-dsh3 nx-shout">Who should not take it.</h2>
+            <section className="nx-pdp-sec" aria-labelledby="stack-contra-title">
+              <h2 id="stack-contra-title" className="nx-dsh3">Some people should not take it.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {stack.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -277,22 +269,22 @@ export default function StackPage({ slug }: { slug: string }) {
               <div style={{ marginTop: "1rem" }}><Disclaimer /></div>
             </section>
 
-            {/* ── 6 · Regulatory status (verbatim block; the parties are named once, in 7) ── */}
-            <div style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              <RegulatoryDisclosure regulatory={stackRegulatory} showParties={false} testid="stack-regulatory" />
-            </div>
-
-            {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
-            <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-parties-title" data-testid="stack-parties">
-              <h2 id="stack-parties-title" className="nx-dsh3 nx-shout">Who prescribes. Who makes it.</h2>
-              <CareCards slug={stack.slug} />
+            {/* ── 6 · Who prescribes, who makes it, and the regulatory status: one row of three
+                tiles. The regulatory block is verbatim (compliance.ts); the parties are
+                named once, in the care cards. ── */}
+            <section className="nx-pdp-sec" aria-labelledby="stack-parties-title" data-testid="stack-parties">
+              <h2 id="stack-parties-title" className="nx-dsh3">A licensed physician prescribes it, and a licensed pharmacy makes it.</h2>
+              <div className="nx-parties-row">
+                <RegulatoryDisclosure regulatory={stackRegulatory} showParties={false} testid="stack-regulatory" />
+                <div className="nx-parties-row__care"><CareCards slug={stack.slug} /></div>
+              </div>
             </section>
 
-            {/* ── 8 · Common questions ── */}
+            {/* ── 7 · Common questions, five ── */}
             <PdpFaq items={faq} />
           </div>
 
-          {/* ── 2 · RIGHT · the buy box ── */}
+          {/* ── RIGHT · the buy box ── */}
           <aside id="buy" style={{ alignSelf: "stretch", scrollMarginTop: "96px" }}>
             <div className="nx-buyrail">
             <BuyBox
@@ -314,59 +306,17 @@ export default function StackPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {/* ── 9 · The other protocols ── */}
-      {otherStacks.length > 0 && (
-        <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="stack-crosssell-title">
-          <h2 id="stack-crosssell-title" className="nx-dsh3 nx-shout">
-            The other protocols
-          </h2>
-          <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
-            Each comes with the same physician review and the same blood testing.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
-            {otherStacks.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 60}>
-                <Link href={`/stacks/${s.slug}`} className="nx-float-card" data-testid={`stack-related-${s.slug}`}>
-                  {stackArt(s.slug, world) && (
-                    <div className="nx-float-card__media">
-                      <img
-                        src={stackArt(s.slug, world)}
-                        srcSet={outcomeSrcSet(stackArt(s.slug, world)!)}
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        alt=""
-                        aria-hidden
-                        loading="lazy"
-                        width={1632}
-                        height={1020}
-                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                      />
-                    </div>
-                  )}
-                  <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>{s.category}</p>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", marginTop: "0.5rem", lineHeight: 1.1 }}>{s.name}</h3>
-                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{s.tagline}</p>
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-fg)", marginTop: "auto", paddingTop: "0.95rem" }}>
-                      {s.cadences.length ? <>From {usd(Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)))}/mo<span style={{ fontWeight: 400, color: "var(--nx-fg-muted)" }}> · if prescribed</span></> : "Priced at consultation"}
-                    </p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ── 10 · Closer, as one tile ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="stack-close-title">
+      {/* ── 8 · Closer, as one tile ── */}
+      <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="stack-close-title">
         <div className="nx-closer-tile">
           <div>
-            <h2 id="stack-close-title" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>Prescribed, if appropriate.</h2>
-            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>The order is placed, the health questions answered, and a licensed physician decides. If not prescribed, nothing is made.</p>
-            <a href="#buy" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>See the plan and price</a>
+            <h2 id="stack-close-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>A physician decides, and prescribes if it is appropriate.</h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>You place the order, a licensed physician reviews it, and if not prescribed, nothing is made.</p>
+            <a href="#buy" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>See the plan and price</a>
           </div>
         </div>
       </section>
+      </div>
     </SiteLayout>
   );
 }

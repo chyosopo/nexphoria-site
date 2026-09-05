@@ -148,13 +148,14 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
        /peptides → redirects to /men/peptides, silently ejecting her from
        her world. Worlded catalog keeps her in it. */
     <SiteLayout navVariant={world ?? "showcase"} footerVariant={world ?? "shared"}>
+      <div className="nx-tight">
       <section className="nx-tilehero" aria-labelledby="peptides-hero-title">
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">The medicines</p>
-            <h1 id="peptides-hero-title" className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>Know what you're after?</h1>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Start with what you want to change.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
-              Choose a goal. Every page states what the medicine treats, how it works, how it is taken, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+              Choose a goal, and every page tells you what the medicine treats, how it works, how you take it and what it costs. A licensed U.S. physician prescribes it, and a licensed U.S. pharmacy compounds it.
             </p>
           </div>
           {/* The goal tiles ARE the filter: one tile per category, the studio
@@ -200,7 +201,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </section>
 
-      <section id="catalog-results" className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Peptide catalog">
+      <section id="catalog-results" className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Peptide catalog">
         {/* Screen-reader-only live region: announces the new filtered count on
             every filter/search change without the whole grid being re-read. The
             visible count below is a styled label, not the live region (avoids a
@@ -213,7 +214,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>{needle ? `No matches for “${q.trim()}”.` : `No matches in ${labelFor(filter)}.`}</p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>Clear the search, or choose another category.</p>
             <button onClick={() => { setFilter("All"); setQ(""); }} className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", background: "none", border: "none", cursor: "pointer", marginTop: "1rem", textDecoration: "underline" }}>
-              Clear filters
+              Clear the filters
             </button>
           </div>
         )}
@@ -258,9 +259,9 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             const items = shown.filter((s) => s.category === cat);
             if (items.length === 0) return null;
             return (
-              <div key={cat} style={{ marginBottom: "clamp(2.4rem,4.5vw,3.6rem)" }}>
-                <div style={{ marginBottom: "1.1rem", paddingBottom: "0.8rem", borderBottom: "1px solid var(--nx-border)" }}>
-                  <h2 className="nx-dsh3 nx-shout" style={{ fontFamily: S }}>{labelFor(cat)}.</h2>
+              <div key={cat} className="nx-catgroup">
+                <div className="nx-catgroup__head">
+                  <h2 className="nx-dsh3" style={{ fontFamily: S }}>{labelFor(cat)}.</h2>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", marginTop: ".35rem" }}>{(CAT_LINE[cat] ?? "").replace(/^[^:]+:\s*/, "")}</p>
                 </div>
                 <div className="nx-float-grid">
@@ -273,21 +274,22 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       </section>
 
       {/* the closer: the next step is a physician, as one tile */}
-      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="peptides-assess-title">
+      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="peptides-assess-title">
         <div className="nx-closer-tile">
           <div>
-            <h2 id="peptides-assess-title" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0 }}>
-              The next step is a physician.
+            <h2 id="peptides-assess-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0 }}>
+              From here, a licensed physician reads your answers and decides.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>
-              A few health questions, read by a licensed U.S. physician, who prescribes the medicine that fits or explains why not.
+              You complete a quick online visit at checkout, and the physician prescribes the medicine that fits or explains why not.
             </p>
-            <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
+            <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }} data-testid="catalog-assess-cta">
               How it works
             </Link>
           </div>
         </div>
       </section>
+      </div>
     </SiteLayout>
   );
 }

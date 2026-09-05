@@ -266,7 +266,7 @@ export function BuyBox(props: BuyBoxProps) {
             {cadence && !reserving && (
               <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
                 <Link href="/peptides" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  The health questions come after the order
+                  A quick online visit comes after the order
                 </Link>
               </div>
             )}

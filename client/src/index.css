@@ -3450,3 +3450,174 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 /* ═══ Audit 2026-09-05: tap targets ≥ 36 px on every list link ═══ */
 .nx-tile__list a { min-height: 36px; align-items: center; }
 .nx-footer a { min-height: 36px; display: inline-flex; align-items: center; }
+
+/* ═══ The cart and the checkout, in the card grammar (2026-09-05) ═══
+   Each line is a card: the SKU render on the tinted panel, the name, the
+   term, the monthly price and the term total, a plain quantity stepper and
+   Remove. The summary is one tile with the figure once. The checkout steps
+   are tiles with the numbered pill of the how-it-works tiles. Headings are
+   sentence-case sentences — the caps labels were rejected 2026-09-05. */
+.nx-cartpage__h1 { margin: 0; font-family: var(--nx-font-display); font-size: var(--nx-t-h1); font-weight: 500; line-height: 1.02; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); text-wrap: balance; max-width: 16ch; }
+.nx-cartpage__lede { margin: .8rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); max-width: 56ch; }
+.nx-cartgrid { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: clamp(1.4rem, 3vw, 2.6rem); align-items: start; margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.nx-cartlines { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(.8rem, 1.4vw, 1.2rem); }
+.nx-cartline { display: grid; grid-template-columns: 132px minmax(0, 1fr) auto; grid-template-areas: "media body controls" "media term controls"; gap: 0 1.2rem; padding: 1.1rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+.nx-cartline__media { grid-area: media; align-self: start; aspect-ratio: 1; border-radius: var(--nx-r-md); overflow: hidden; background: linear-gradient(160deg, var(--nx-ceramic), var(--nx-cobalt-soft)); display: flex; align-items: center; justify-content: center; color: var(--nx-cobalt); }
+.nx-cartline__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-cartline__media > .nx-vial-panel { padding: 8%; }
+.nx-cartline__body { grid-area: body; min-width: 0; display: flex; flex-direction: column; }
+.nx-cartline__term { grid-area: term; min-width: 0; }
+.nx-cartline__tag { align-self: flex-start; font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt); background: var(--nx-cobalt-soft); padding: 3px 8px; border-radius: var(--nx-r-xs); }
+.nx-cartline__name { margin: .45rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.15; color: var(--nx-fg); }
+.nx-cartline__spec { margin: .25rem 0 0; font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-cartline__label { display: block; margin: .9rem 0 .4rem; font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-fg-graphite); }
+.nx-term { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.nx-term__opt { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-height: 40px; padding: 5px 13px; border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: transparent; color: var(--nx-fg); font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 600; line-height: 1.15; cursor: pointer; transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease); }
+.nx-term__opt:hover { background: var(--nx-cobalt-soft); }
+.nx-term__opt[aria-checked="true"] { background: var(--nx-fg); border-color: var(--nx-fg); color: var(--nx-bg); }
+.nx-term__opt small { font-size: var(--nx-t-2xs); font-weight: 500; color: var(--nx-fg-muted); }
+.nx-term__opt[aria-checked="true"] small { color: var(--nx-acid); }
+.nx-cartline__price { margin-top: .9rem; }
+.nx-cartline__monthly { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-lg); font-weight: 600; line-height: 1.2; color: var(--nx-fg); }
+.nx-cartline__monthly small { font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); margin-left: 4px; }
+.nx-cartline__termtotal { margin: .2rem 0 0; font-size: var(--nx-t-sm); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-cartline__controls { grid-area: controls; display: flex; flex-direction: column; align-items: flex-end; gap: .5rem; }
+.nx-qty { display: inline-flex; align-items: center; border: 1px solid var(--nx-border); border-radius: var(--nx-r-pill); overflow: hidden; background: var(--nx-bg); }
+.nx-qty button { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: transparent; border: 0; color: var(--nx-fg); cursor: pointer; transition: background var(--nx-dur-2) var(--nx-ease); }
+.nx-qty button:hover:not(:disabled) { background: var(--nx-cobalt-soft); }
+.nx-qty button:disabled { opacity: .4; cursor: not-allowed; }
+.nx-qty span { min-width: 28px; text-align: center; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg); }
+.nx-cartline__remove { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 .7rem; background: transparent; border: 0; border-radius: var(--nx-r-pill); font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg-graphite); cursor: pointer; transition: color var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease); }
+.nx-cartline__remove:hover { color: var(--nx-fg); background: var(--nx-cobalt-soft); }
+.nx-cartline--drawer { grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: "media body" "term term" "controls controls"; gap: 0 .9rem; padding: .9rem; border-radius: var(--nx-r-md); }
+.nx-cartline--drawer .nx-cartline__controls { flex-direction: row; align-items: center; justify-content: space-between; margin-top: .9rem; padding-top: .9rem; border-top: 1px solid var(--nx-border); }
+.nx-cartline--drawer .nx-cartline__name { font-size: var(--nx-t-base); }
+.nx-cartline--drawer .nx-cartline__monthly { font-size: var(--nx-t-base); }
+
+/* the summary: one tile, the figure once */
+.nx-summary { position: sticky; top: 92px; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.2rem, 2.2vw, 1.6rem); display: grid; gap: 1rem; }
+.nx-summary__h { margin: 0; font-family: var(--nx-font-display); font-size: var(--nx-t-xl); font-weight: 500; line-height: 1.1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-summary__rule { height: 1px; background: var(--nx-border); }
+.nx-summary__rows { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.nx-summary__rows li { display: flex; align-items: flex-start; gap: 8px; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-summary__rows svg { color: var(--nx-cobalt); flex-shrink: 0; margin-top: 2px; }
+.nx-summary__lines { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.nx-summary__line { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: .7rem; align-items: center; font-family: var(--nx-font-body); }
+.nx-summary__thumb { width: 44px; height: 44px; border-radius: var(--nx-r-sm); overflow: hidden; background: linear-gradient(160deg, var(--nx-ceramic), var(--nx-cobalt-soft)); display: flex; align-items: center; justify-content: center; color: var(--nx-cobalt); }
+.nx-summary__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-summary__line strong { display: block; font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg); line-height: 1.25; }
+.nx-summary__line small { display: block; font-size: var(--nx-t-2xs); color: var(--nx-fg-graphite); margin-top: 2px; }
+.nx-summary__line em { font-style: normal; font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg); white-space: nowrap; }
+.nx-summary__fine { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-summary .nx-cta-cobalt { justify-content: center; width: 100%; }
+
+/* the checkout steps as tiles, with the numbered pill */
+.nx-steps-col { display: grid; gap: clamp(.9rem, 1.6vw, 1.2rem); }
+.nx-steptile { position: relative; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.2rem, 2.4vw, 1.7rem); }
+.nx-steptile__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); }
+.nx-steptile__t { margin: .8rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-steptile__b { margin: .5rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 58ch; }
+.nx-steptile__body { margin-top: 1.1rem; display: grid; gap: 1rem; }
+.nx-field { display: block; }
+.nx-field__l { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-fg); margin-bottom: .35rem; }
+.nx-field__h { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); color: var(--nx-fg-graphite); margin-bottom: .45rem; }
+.nx-field__e { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-danger); margin-top: .35rem; }
+.nx-fields-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.nx-fields-addr { display: grid; grid-template-columns: minmax(0, 1fr) 110px 140px; gap: 1rem; }
+.nx-yesno { display: flex; gap: .8rem; align-items: flex-start; padding: .9rem 1rem; background: var(--nx-bg); border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); cursor: pointer; transition: border-color var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease); }
+.nx-yesno:hover { border-color: color-mix(in srgb, var(--nx-cobalt) 40%, var(--nx-border)); }
+.nx-yesno:has(input:checked) { border-color: var(--nx-cobalt); background: var(--nx-cobalt-soft); }
+.nx-yesno input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--nx-cobalt); flex-shrink: 0; }
+.nx-yesno strong { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg); line-height: 1.35; }
+.nx-yesno span { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); color: var(--nx-fg-graphite); line-height: 1.5; margin-top: 3px; }
+.nx-note { padding: .9rem 1rem; background: var(--nx-bg); border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-note strong { font-weight: 600; color: var(--nx-fg); }
+.nx-note p { margin: 0; }
+.nx-note--row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1rem; }
+.nx-beats { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.nx-beats li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-beats i { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-style: normal; font-size: var(--nx-t-2xs); font-weight: 700; }
+.nx-stepbar { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.nx-stepbar button { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 6px; border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: transparent; color: var(--nx-fg-muted); font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 600; cursor: default; }
+.nx-stepbar button.is-now { border-color: var(--nx-fg); color: var(--nx-fg); }
+.nx-stepbar button.is-done { color: var(--nx-fg); }
+.nx-stepbar button.is-link { cursor: pointer; }
+.nx-stepbar i { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-style: normal; font-size: var(--nx-t-2xs); font-weight: 700; background: color-mix(in srgb, var(--nx-fg) 8%, transparent); color: var(--nx-fg-muted); }
+.nx-stepbar .is-now i { background: var(--nx-fg); color: var(--nx-bg); }
+.nx-stepbar .is-done i { background: var(--nx-cobalt); color: var(--nx-ceramic); }
+.nx-stepnav { display: flex; flex-wrap: wrap; gap: .6rem; }
+.nx-cart-empty { text-align: center; max-width: 30rem; margin: clamp(1.4rem, 3vw, 2.2rem) auto 0; padding: clamp(2rem, 4vw, 3rem) 1.5rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+.nx-cart-empty p { margin: 0 0 1.2rem; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.6; color: var(--nx-fg-graphite); }
+.nx-cart-empty .nx-stepnav { justify-content: center; }
+.nx-cartbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--nx-z-bar); padding: .8rem 1rem; background: var(--nx-bg); border-top: 1px solid var(--nx-border); }
+.nx-cartbar .nx-cta-cobalt { justify-content: center; width: 100%; }
+.nx-mobilesummary { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+.nx-mobilesummary summary { display: flex; align-items: center; justify-content: space-between; gap: .8rem; min-height: 52px; padding: 0 1rem; cursor: pointer; list-style: none; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg); }
+.nx-mobilesummary summary::-webkit-details-marker { display: none; }
+.nx-mobilesummary summary small { font-size: var(--nx-t-xs); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-mobilesummary > div { padding: 0 1rem 1rem; }
+.nx-drawer { box-shadow: var(--nx-e-4); }
+.nx-drawer__scrim { background: color-mix(in srgb, var(--nx-bg-dark) 55%, transparent); backdrop-filter: blur(3px); }
+.nx-drawer__h { margin: 0; font-family: var(--nx-font-display); font-size: var(--nx-t-xl); font-weight: 500; line-height: 1.1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-drawer__figure { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.nx-drawer__figure strong { font-family: var(--nx-font-display); font-size: var(--nx-t-h3); font-weight: 500; line-height: 1; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); }
+.nx-drawer__figure span { font-family: var(--nx-font-body); font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-drawer__figure span b { display: block; font-weight: 600; color: var(--nx-fg); }
+@media (max-width: 1023px) { .nx-cartgrid { grid-template-columns: 1fr; } .nx-summary { position: static; } }
+@media (max-width: 640px) {
+  .nx-cartline { grid-template-columns: 88px minmax(0, 1fr); grid-template-areas: "media body" "term term" "controls controls"; gap: 0 .9rem; padding: .9rem; }
+  .nx-cartline__controls { flex-direction: row; align-items: center; justify-content: space-between; margin-top: .9rem; padding-top: .9rem; border-top: 1px solid var(--nx-border); }
+  .nx-fields-2 { grid-template-columns: 1fr; }
+  .nx-fields-addr { grid-template-columns: 1fr 1fr; }
+  .nx-fields-addr > :first-child { grid-column: 1 / -1; }
+}
+
+/* ═══ Tightened pages (2026-09-05, Chiya: "huge scroll and scroll and scroll,
+   nothing is tightened up"). Scoped to .nx-tight so a page opts in: one idea
+   per section, band-sized air between sections instead of section-sized, the
+   goal tiles no taller than their copy, the closer no taller than its shout.
+   Spacing only; no colour, type or radius changes. ═══ */
+.nx-tight .nx-sec { padding-top: var(--nx-sp-band); }
+.nx-tight .nx-band { margin-top: var(--nx-sp-band); }
+.nx-tight .nx-band__body { padding-top: clamp(1.6rem, 3.6vw, 2.4rem); padding-bottom: clamp(1.2rem, 3vw, 2rem); }
+.nx-tight .nx-tiles { margin-top: clamp(1rem, 2.2vw, 1.6rem); }
+.nx-tight .nx-tile--fade { min-height: 16rem; }
+.nx-tight .nx-tile__fadecopy { padding: 1.2rem 1.3rem 1.3rem; gap: .45rem; }
+.nx-tight .nx-closer-tile { min-height: 14rem; padding: clamp(1.8rem, 4vw, 3rem); }
+.nx-tight .nx-faq-list { margin-top: clamp(1rem, 2vw, 1.4rem); }
+.nx-tight .nx-sec-head { gap: .5rem; }
+.nx-tight .nx-explain, .nx-tight .nx-goalgal { margin-top: clamp(1.2rem, 2.4vw, 1.8rem); }
+.nx-tight .nx-road { margin-top: clamp(1rem, 2.2vw, 1.5rem); }
+.nx-tight .nx-tilehero__foot { margin-top: 1rem; }
+@media (max-width: 900px) {
+  .nx-tight .nx-tile--fade img { height: 38%; }
+  .nx-tight .nx-tile--fade::after { background: linear-gradient(180deg, transparent 0%, transparent 16%, var(--nx-bg-dark) 38%, var(--nx-bg-dark) 100%); }
+  .nx-tight .nx-tile__fadecopy { padding-top: 32%; }
+  .nx-tight .nx-tile--wide { min-height: 20rem; }
+}
+
+/* The product and protocol pages: the sub-sections of the body rail share
+   one gap, and the parties (regulatory status, the physician, the pharmacy)
+   sit in one row of three tiles rather than a block over two cards. The
+   CareCards grid is dissolved into the row with display: contents, so the
+   component keeps its own markup. */
+.nx-pdp-sec { margin-top: clamp(1.6rem, 3vw, 2.2rem); }
+.nx-pdp-sub { margin-top: clamp(1.2rem, 2.4vw, 1.6rem); }
+.nx-parties-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: stretch; margin-top: 1rem; }
+.nx-parties-row > .nx-parties-row__care, .nx-parties-row > .nx-parties-row__care > .grid { display: contents; }
+.nx-parties-row .nx-card { margin-top: 0; }
+@media (max-width: 1180px) { .nx-parties-row { grid-template-columns: 1fr; } }
+
+/* The catalog: the group head on one line (the goal, then its line), the
+   groups closer together, five cards across on a wide screen. */
+.nx-catgroup { margin-bottom: clamp(1.4rem, 2.6vw, 2.2rem); }
+.nx-catgroup__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1rem; margin-bottom: .8rem; padding-bottom: .5rem; border-bottom: 1px solid var(--nx-border); }
+.nx-catgroup__head p { margin: 0; }
+.nx-tight .nx-float-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+@media (max-width: 700px) { .nx-tight .nx-float-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
+/* The protocol page: the medicines as one row of photo + plate. */
+.nx-stack-lineup { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: clamp(1rem, 2.4vw, 1.8rem); margin-top: 1.2rem; }
+.nx-stack-lineup__cell { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+.nx-stack-lineup__cell > :last-child { width: 100%; }
+.nx-parties-row .nx-card { overflow-wrap: anywhere; }

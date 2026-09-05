@@ -12,7 +12,7 @@ import { RETEST_WEEK } from "@/data/monitoring";
 
 const STEPS: [string, string][] = [
   ["Check out.", "The figure above, paid up front for your term. That is the whole figure."],
-  ["The health questions.", "About two minutes: history, current medicines, the goal."],
+  ["A quick online visit.", "About two minutes: your history, your medicines, your goal."],
   ["The physician reviews.", "If appropriate, the medication is made in a licensed U.S. pharmacy and shipped cold, with the baseline blood kit, included."],
   ["Test, then start.", "The draw at home, the dose set against the results, and the first dose. If not prescribed, the physician explains why, and the refund policy covers what is refunded."],
 ];

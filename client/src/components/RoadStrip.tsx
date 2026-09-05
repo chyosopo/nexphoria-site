@@ -3,7 +3,7 @@
    (docs/COPY-DECK-PLAIN.md) and match the home page's step list. */
 import { F } from "@/lib/typography";
 
-export const ROAD_STEPS = ["Choose", "Health questions", "Physician decision", "Blood kit and first dose", "Week 12"] as const;
+export const ROAD_STEPS = ["Choose", "Online visit", "Physician's decision", "Blood kit and first dose", "Week 12"] as const;
 
 export function RoadStrip({ current, testId }: { current: number; testId?: string }) {
   return (

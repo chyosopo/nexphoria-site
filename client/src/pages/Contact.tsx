@@ -18,7 +18,7 @@ const contactColumns: {
 }[] = [
   {
     eyebrow: "PATIENT SUPPORT",
-    title: "Clinical and order questions.",
+    title: "Ask about your order, billing or the portal.",
     Icon: MessageSquare,
     items: [
       { label: "EMAIL", value: "hello@nexphoria.com" },
@@ -30,7 +30,7 @@ const contactColumns: {
   },
   {
     eyebrow: "MEDICAL QUESTIONS",
-    title: "Physician portal messaging.",
+    title: "Message your physician through the secure portal.",
     Icon: Stethoscope,
     items: [
       { label: "CHANNEL", value: "Secure member portal" },
@@ -41,7 +41,7 @@ const contactColumns: {
   },
   {
     eyebrow: "PRESS & PARTNERSHIPS",
-    title: "Media and business inquiries.",
+    title: "Reach us for press and partnerships.",
     Icon: Newspaper,
     items: [
       { label: "EMAIL", value: "press@nexphoria.com" },
@@ -135,10 +135,10 @@ export default function Contact() {
             badge={<PillBadge tone="acid">Get in touch</PillBadge>}
             headline={
               <>
-                <span className="nx-shout">Talk to us.</span>
+                <span>Tell us what you need, and the right person answers.</span>
               </>
             }
-            subtitle="Patient support, medical questions, partnerships, or press. Every message reaches the right person."
+            subtitle="Patient support, medical questions, partnerships or press: every message reaches the right person on a business day."
           />
 
           <div className="mx-grid">

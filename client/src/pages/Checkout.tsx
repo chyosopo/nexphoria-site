@@ -1,4 +1,7 @@
-/* JOB: capture the order for physician review; zero distractions. */
+/* JOB: capture the order for physician review; zero distractions.
+   The card grammar (2026-09-05): every step is a tile with the numbered
+   pill of the how-it-works tiles; the summary is one tile with the figure
+   once. Headings are sentences, not caps labels. */
 import { track } from "@/lib/analytics";
 import { CONDITIONAL } from "@/components/RegulatoryDisclosure";
 import { useState } from "react";
@@ -7,20 +10,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
-import { ArrowLeft, Check, Shield, Stethoscope, Truck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Shield, Stethoscope, Truck } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, breadcrumbJsonLd } from "@/lib/seo";
 import { useCart, formatUSD } from "@/contexts/CartProvider";
-import { billingNote } from "@/data/pricing";
 import { isGLP1Excluded, getStack, GLP1_STATE_EXCLUSIONS } from "@/data/stacksCatalog";
 import { getSolo } from "@/data/soloCatalog";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { FONT } from "@/lib/typography";
+import { F, S } from "@/lib/typography";
 import { PrescribedPromise } from "@/components/PrescribedPromise";
 import { PayToday } from "@/components/PayToday";
 import { PhysicianGate } from "@/components/PhysicianProofBand";
+import { LineArt, lineTermLine, lineTypeLabel } from "@/components/CartLineCard";
 
 /* Local form schema — server validates on submit via insertCheckoutSchema.
    DO NOT change these fields — checkout schema is locked. */
@@ -43,7 +46,11 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 
-const STEPS = ["Address", "Billing", "Review"] as const;
+const STEPS = ["Contact and shipping", "Billing", "Medical details"] as const;
+
+/* PayToday is the house block for the figure; inside the summary tile it
+   sits flush so the tile stays one card. */
+const FLUSH: React.CSSProperties = { background: "transparent", border: 0, padding: 0 };
 
 export default function Checkout() {
   // Checkout is a private transactional page — noindex (centralized in useSeo).
@@ -62,7 +69,7 @@ export default function Checkout() {
 
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);
-  const [step, setStep] = useState(0); // 0 Address, 1 Payment, 2 Review
+  const [step, setStep] = useState(0); // 0 contact + shipping, 1 billing, 2 health questions + confirm
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -136,6 +143,8 @@ export default function Checkout() {
     if (ok) setStep((s) => { const n = Math.min(s + 1, 2); track("checkout_step", { step: n }); return n; });
   };
 
+  const terms = lines.filter((l) => !l.oneTime).map((l) => `${l.months} ${l.months === 1 ? "month" : "months"} of ${l.name}`).join(" · ");
+
   /* ─── Success screen (intake-complete confirmation) ─── */
   if (submittedId !== null) {
     return (
@@ -143,63 +152,44 @@ export default function Checkout() {
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-[var(--nx-sp-sec)] max-w-2xl">
             <div className="text-center">
-              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-bg-cream)", color: "var(--nx-success)" }} aria-hidden="true">
+              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-cobalt-soft)", color: "var(--nx-success)" }} aria-hidden="true">
                 <Check size={32} strokeWidth={1.5} />
               </div>
-              <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, color: "var(--nx-fg-graphite)", margin: "0 0 .8rem" }}>
                 Submission #{submittedId.toString().padStart(5, "0")}
-              </div>
-              <h1
-                className="text-4xl md:text-5xl mb-5"
-                style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
-              >
-                Intake complete
+              </p>
+              <h1 className="nx-cartpage__h1" style={{ fontFamily: S, margin: "0 auto" }}>
+                Your intake is complete.
               </h1>
-              <p
-                className="text-base mb-8 max-w-lg mx-auto"
-                style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}
-              >
+              <p className="nx-cartpage__lede" style={{ fontFamily: F, margin: "1rem auto 0" }}>
                 The order and the health answers are now with the physician team. An email follows from a licensed
                 physician with either an approval and final payment link or a request for additional information.
               </p>
 
               {/* Progress: complete */}
-              <div className="max-w-md mx-auto mb-8">
+              <div className="max-w-md mx-auto mt-8 mb-8">
                 <StepBar current={3} labels={[...STEPS, "Physician"]} />
               </div>
 
-              <div
-                className="text-left p-6 mb-8 max-w-md mx-auto"
-                style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-              >
-                <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
-                  What happens next
-                </div>
-                <ul className="space-y-2.5 text-sm list-none p-0" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+              <div className="nx-steptile text-left max-w-md mx-auto mb-8">
+                <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">Next</span>
+                <h2 className="nx-steptile__t" style={{ fontFamily: S }}>What happens next.</h2>
+                <ol className="nx-beats" style={{ marginTop: "1rem" }}>
                   {[
-                    "Physician reviews intake and cart",
+                    "A physician reviews the intake and the order",
                     "You receive a secure approval link by email",
                     "The medicine is made to order in a licensed 503A pharmacy",
-                    "Compounded shipment sent in cold-chain packaging",
+                    "The compounded shipment is sent in cold-chain packaging",
                   ].map((t, i) => (
-                    <li key={i} className="flex gap-2.5 items-start">
-                      <span style={{ color: "var(--nx-amber)", fontWeight: 600, fontSize: "var(--nx-t-2xs)", marginTop: 2 }}>{String(i + 1).padStart(2, "0")}</span>
-                      <span>{t}</span>
-                    </li>
+                    <li key={i}><i>{i + 1}</i><span>{t}</span></li>
                   ))}
-                </ul>
-                <Link href="/how-it-works" className="nx-text-link" data-testid="checkout-timeline-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-flex" }}>
+                </ol>
+                <Link href="/how-it-works" className="nx-text-link" data-testid="checkout-timeline-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem" }}>
                   See the full timeline
                 </Link>
               </div>
-              <Link asChild href="/">
-                <a
-                  className="inline-flex items-center gap-2 px-6 py-3 transition-colors hover:bg-black/5"
-                  style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-                  data-testid="link-back-home"
-                >
-                  <ArrowLeft size={14} aria-hidden="true" /> Back to Nexphoria
-                </a>
+              <Link href="/" className="nx-cta-ghost" style={{ fontFamily: F }} data-testid="link-back-home">
+                <ArrowLeft size={14} aria-hidden="true" /> Back to Nexphoria
               </Link>
             </div>
           </div>
@@ -214,20 +204,14 @@ export default function Checkout() {
       <SiteLayout variant="gate">
         <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
           <div className="nx-container py-20 max-w-md text-center">
-            <h1 className="text-3xl mb-4 nx-shout" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
+            <h1 className="nx-cartpage__h1" style={{ fontFamily: S, margin: "0 auto" }}>
               Your cart is empty.
             </h1>
-            <p className="text-base mb-6" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+            <p className="nx-cartpage__lede" style={{ fontFamily: F, margin: "1rem auto 1.4rem" }}>
               Add a medicine or a protocol before checkout.
             </p>
-            <Link asChild href="/peptides">
-              <a
-                className="inline-block px-6 py-3"
-                style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", borderRadius: "var(--nx-r-md)" }}
-                data-testid="link-empty-checkout-stacks"
-              >
-                Browse medicines
-              </a>
+            <Link href="/peptides" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="link-empty-checkout-stacks">
+              Shop the medicines
             </Link>
           </div>
         </div>
@@ -240,92 +224,73 @@ export default function Checkout() {
 
   return (
     <SiteLayout variant="gate">
-      <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
-        <div className="nx-container nx-section-y" style={{ paddingTop: "1.25rem" }}>
-          {/* Breadcrumb */}
-          <Link asChild href="/cart">
-            <a
-              className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[var(--nx-ls-caps)] mb-6 hover:underline"
-              style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}
-              data-testid="link-back-to-cart"
-            >
-              <ArrowLeft size={12} aria-hidden="true" /> Back to cart
-            </a>
+      <div style={{ background: "var(--nx-bg)", minHeight: "100vh" }}>
+        {/* the header is sticky and in flow: the page starts one breath below it */}
+        <div className="nx-container nx-section-y" style={{ paddingTop: "clamp(2rem, 4vw, 3rem)" }}>
+          {/* Back to the cart */}
+          <Link href="/cart" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginBottom: "1.2rem" }} data-testid="link-back-to-cart">
+            <ArrowLeft size={14} aria-hidden="true" /> Back to the cart
           </Link>
 
           {/* Header + progress indicator */}
-          <div className="mb-8 max-w-2xl">
-            <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
-              Checkout
+          <Reveal>
+            <div style={{ marginTop: "1.2rem", maxWidth: "42rem" }}>
+              <h1 className="nx-cartpage__h1" style={{ fontFamily: S }} data-testid="checkout-title">
+                Almost there.
+              </h1>
+              <p className="nx-cartpage__lede" style={{ fontFamily: F }}>
+                Where it ships and how you pay. A licensed U.S. physician reviews the order, and if appropriate, the medicine ships cold.
+              </p>
+              <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.8rem" }} />
+              <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />
             </div>
-            <h1
-              className="text-4xl md:text-5xl mb-3 nx-shout"
-              style={{ fontFamily: FONT, color: "var(--nx-fg)" }}
-            >
-              Checkout.
-            </h1>
-            <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
-              The order is placed, then a few health questions are answered. A licensed U.S. physician reviews them, and if appropriate, the medication ships cold.
-            </p>
-            <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.6rem" }} />
-            <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />
-          </div>
+          </Reveal>
 
-          <div className="mb-10 max-w-xl">
+          <div style={{ margin: "1.6rem 0 0", maxWidth: "42rem" }}>
             <StepBar current={step} labels={[...STEPS]} onStep={(i) => i < step && setStep(i)} />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 lg:gap-16 items-start">
+          <div className="nx-cartgrid">
             {/* Mobile-only compact order summary — the full rail stacks BELOW
                 the form on phones, so shoppers reached Continue without ever
                 seeing what they were submitting. Native <details>, collapsed. */}
-            <details
-              className="lg:hidden -mb-4"
-              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-              data-testid="checkout-mobile-summary"
-            >
-              <summary
-                className="flex items-center justify-between gap-3 cursor-pointer list-none px-4"
-                style={{ fontFamily: FONT, minHeight: 52 }}
-              >
-                <span className="text-xs uppercase tracking-[var(--nx-ls-caps)]" style={{ color: "var(--nx-fg-graphite)" }}>
-                  Order summary · {itemCount} {itemCount === 1 ? "item" : "items"}
-                </span>
-                <span className="text-lg" style={{ color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(dueToday)}<span className="text-xs font-normal" style={{ color: "var(--nx-fg-muted)" }}> today</span></span>
+            <details className="lg:hidden nx-mobilesummary" data-testid="checkout-mobile-summary">
+              <summary style={{ fontFamily: F }}>
+                <span>Your order · {itemCount} {itemCount === 1 ? "item" : "items"}</span>
+                <span>{formatUSD(dueToday)} <small>today</small></span>
               </summary>
-              <div className="px-4 pb-4">
-                {lines.map((line) => (
-                  <div key={`m-${line.type}-${line.slug}`} className="flex items-baseline justify-between gap-3 py-1.5 text-sm" style={{ fontFamily: FONT }}>
-                    <span style={{ color: "var(--nx-fg-graphite)" }}>{line.name} · qty {line.qty}</span>
-                    <span style={{ color: "var(--nx-fg)" }}>{formatUSD(line.lineTotal)}</span>
-                  </div>
-                ))}
+              <div>
+                <ul className="nx-summary__lines">
+                  {lines.map((line) => <SummaryLine key={`m-${line.type}-${line.slug}`} line={line} />)}
+                </ul>
               </div>
             </details>
 
             {/* Form */}
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
-              {/* STEP 1 — ADDRESS + about you */}
+            <form onSubmit={form.handleSubmit(onSubmit)} className="nx-steps-col">
+              {/* STAGE 1 — contact, then shipping */}
               {step === 0 && (
                 <>
-                  <Section title="Where should we ship?" eyebrow="Step 01 · Address">
-                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Shipped cold to all 50 states once a physician approves the order. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
-                    </p>
-                    <Row>
+                  <StepTile n="01" title="Who this is for." lead="The name on the order, the email the physician writes to, and your age.">
+                    <div className="nx-fields-2">
                       <Field label="Full name" error={errors.name?.message}>
                         <input {...form.register("name")} type="text" className="nx-input" data-testid="input-name" autoComplete="name" />
                       </Field>
                       <Field label="Email" error={errors.email?.message}>
                         <input {...form.register("email")} type="email" className="nx-input" data-testid="input-email" autoComplete="email" />
                       </Field>
-                    </Row>
+                    </div>
+                    <Field label="Age" error={errors.age?.message}>
+                      <input {...form.register("age", { valueAsNumber: true })} type="number" min={18} max={110} className="nx-input max-w-[120px]" data-testid="input-age" />
+                    </Field>
+                  </StepTile>
+
+                  <StepTile n="02" title="Where it ships." lead={`Shipped cold to all 50 states once a physician approves the order. GLP-1 protocols are not available in ${GLP1_STATE_EXCLUSIONS.join(", ")}.`}>
                     <Field label="Street address" error={errors.shippingAddress?.message}>
                       <input {...form.register("shippingAddress")} type="text" className="nx-input" data-testid="input-address" autoComplete="street-address" />
                     </Field>
-                    {/* City spans the row on phones so State+ZIP pair up —
-                        the 2-col grid orphaned ZIP alone at half width */}
-                    <div className="grid grid-cols-2 md:grid-cols-[1fr_120px_140px] gap-4 mt-4 [&>*:first-child]:col-span-2 md:[&>*:first-child]:col-span-1">
+                    {/* City spans the row on phones so State and ZIP pair up */}
+                    <div className="nx-fields-addr">
                       <Field label="City" error={errors.city?.message}>
                         <input {...form.register("city")} type="text" className="nx-input" data-testid="input-city" autoComplete="address-level2" />
                       </Field>
@@ -337,16 +302,9 @@ export default function Checkout() {
                       </Field>
                     </div>
                     {glp1Blocked && (
-                      <div
-                        role="alert"
-                        data-testid="notice-glp1-state"
-                        className="mt-4 p-4 rounded-lg"
-                        style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", fontFamily: FONT }}
-                      >
-                        <div className="text-sm font-semibold mb-1" style={{ color: "var(--nx-fg)" }}>
-                          Not available in {enteredState.toUpperCase()}
-                        </div>
-                        <p className="text-sm" style={{ color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
+                      <div role="alert" data-testid="notice-glp1-state" className="nx-note">
+                        <p><strong>Not available in {enteredState.toUpperCase()}.</strong></p>
+                        <p style={{ marginTop: ".3rem" }}>
                           One or more items in the order involve GLP-1 therapy, which we do not currently
                           offer in your state. Remove those items to continue, or{" "}
                           <Link href="/contact" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
@@ -356,99 +314,65 @@ export default function Checkout() {
                         </p>
                       </div>
                     )}
-                    <div className="mt-4">
-                      <Field label="Age" error={errors.age?.message}>
-                        <input {...form.register("age", { valueAsNumber: true })} type="number" min={18} max={110} className="nx-input max-w-[120px]" data-testid="input-age" />
-                      </Field>
-                    </div>
-                  </Section>
+                  </StepTile>
 
-                  <StepNav>
-                    <PrimaryBtn onClick={goNext} testId="button-step-payment">Continue to payment</PrimaryBtn>
-                  </StepNav>
+                  <div className="nx-stepnav">
+                    <PrimaryBtn onClick={goNext} testId="button-step-payment">Continue to billing <ArrowRight size={14} aria-hidden="true" /></PrimaryBtn>
+                  </div>
                 </>
               )}
 
-              {/* STEP 2 — BILLING (deferred: no card is collected until a physician approves) */}
+              {/* STAGE 2 — billing (deferred: no card is collected until a physician approves) */}
               {step === 1 && (
                 <>
-                  <Section title="Billing" eyebrow="Step 02 · Billing">
-                    <div
-                      className="flex items-start gap-3 p-4 mb-6"
-                      style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-                      data-testid="notice-deferred-billing"
-                    >
-                      <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+                  <StepTile n="03" title="How billing works." lead="Billing runs through Bask Health, our telehealth billing partner. The card details are entered there.">
+                    <div className="nx-note" style={{ display: "flex", gap: ".8rem", alignItems: "flex-start" }} data-testid="notice-deferred-billing">
+                      <Stethoscope size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                       <div>
-                        <p className="text-sm font-semibold mb-1" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
-                          A physician decides before anything is made.
-                        </p>
-                        <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                          Billing runs through Bask Health, our telehealth billing partner. The price is complete:
-                          one number a month, with the physician's review, the medicine, cold shipping and the week-12
+                        <p><strong>A physician decides before anything is made.</strong></p>
+                        <p style={{ marginTop: ".3rem" }}>
+                          The price is complete: one number a month, with the physician's review, the medicine, cold shipping and the week-12
                           blood test within it. If the physician declines, the refund policy sets out what is refunded.
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
-                      How billing works
-                    </p>
-                    <ol className="list-none p-0 space-y-3">
+                    <ol className="nx-beats" aria-label="How billing works">
                       {[
                         "Check out at the price shown. One number a month.",
                         "Answer the questionnaire. Two minutes.",
                         "A U.S. licensed doctor reads every answer and decides.",
                         "If prescribed, the medicine is made to order and ships cold. If not, the refund policy applies.",
                       ].map((t, i) => (
-                        <li
-                          key={i}
-                          className="flex gap-3 items-start text-sm"
-                          style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}
-                        >
-                          <span
-                            className="inline-flex items-center justify-center flex-shrink-0"
-                            style={{ width: 22, height: 22, borderRadius: "var(--nx-r-pill)", background: "var(--nx-fg)", color: "var(--nx-bg)", fontSize: "var(--nx-t-2xs)", fontWeight: 600, marginTop: 1 }}
-                          >
-                            {i + 1}
-                          </span>
-                          <span>{t}</span>
-                        </li>
+                        <li key={i}><i>{i + 1}</i><span>{t}</span></li>
                       ))}
                     </ol>
 
                     {/* The gift door, where it matters most: the person at the
-                        figure who won't be the one paying it. Quiet, one line. */}
-                    <div
-                      className="mt-6 p-4 flex flex-wrap items-center justify-between gap-3"
-                      style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-                      data-testid="checkout-gift-door"
-                    >
-                      <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6, margin: 0, maxWidth: "48ch" }}>
-                        <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Someone else covering this?</strong>{" "}
+                        price who won't be the one paying it. Quiet, one line. */}
+                    <div className="nx-note nx-note--row" data-testid="checkout-gift-door">
+                      <p style={{ maxWidth: "48ch" }}>
+                        <strong>Someone else covering this?</strong>{" "}
                         One payment on their side; their results stay theirs.
                       </p>
-                      <Link href="/gift?mode=request" className="nx-text-link" data-testid="checkout-gift-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                      <Link href="/gift?mode=request" className="nx-text-link" data-testid="checkout-gift-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                         Create the link
                       </Link>
                     </div>
-                  </Section>
+                  </StepTile>
 
-                  <StepNav>
-                    <GhostBtn onClick={() => setStep(0)} testId="button-step-back-address">← Back</GhostBtn>
-                    <PrimaryBtn onClick={() => setStep(2)} testId="button-step-review">Continue to review</PrimaryBtn>
-                  </StepNav>
+                  <div className="nx-stepnav">
+                    <GhostBtn onClick={() => setStep(0)} testId="button-step-back-address"><ArrowLeft size={14} aria-hidden="true" /> Back</GhostBtn>
+                    <PrimaryBtn onClick={() => setStep(2)} testId="button-step-review">Continue to the medical details <ArrowRight size={14} aria-hidden="true" /></PrimaryBtn>
+                  </div>
                 </>
               )}
 
-              {/* STEP 3 — REVIEW (health screening + confirm) */}
+              {/* STAGE 3 — the medical details, then confirm */}
               {step === 2 && (
                 <>
-                  <Section title="Health screening" eyebrow="Step 03 · Review">
-                    <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Answer plainly. A physician reads every answer, and the answers are encrypted in transit.
-                    </p>
-                    <div className="space-y-3">
+                  <StepTile n="04" title="A few medical details." lead="Answer plainly. A physician reads every answer, and the answers are encrypted in transit.">
+                    <div style={{ display: "grid", gap: ".6rem" }}>
                       <YesNoField
                         label="History of cardiac events, stroke, or untreated hypertension"
                         helper="Includes prior MI, stent, arrhythmia under treatment, or BP > 160/100 untreated."
@@ -468,153 +392,82 @@ export default function Checkout() {
                         testId="checkbox-hormonal"
                       />
                     </div>
-                    <div className="mt-5">
-                      <Field label="Known allergies" helper="Optional: preservatives, latex, peptide-class reactions, or N/A" error={errors.allergies?.message}>
-                        <input {...form.register("allergies")} type="text" placeholder="None known" className="nx-input" data-testid="input-allergies" />
-                      </Field>
-                    </div>
-                  </Section>
+                    <Field label="Known allergies" helper="Optional: preservatives, latex, peptide-class reactions, or N/A" error={errors.allergies?.message}>
+                      <input {...form.register("allergies")} type="text" placeholder="None known" className="nx-input" data-testid="input-allergies" />
+                    </Field>
+                  </StepTile>
 
-                  {/* Order recap */}
-                  <div className="pt-2">
-                    <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm the order</p>
-                    <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}>
-                      {lines.map((line) => (
-                        <div
-                          key={`${line.type}-${line.slug}`}
-                          className="flex items-center justify-between px-4 py-3"
-                          style={{ borderBottom: "1px solid var(--nx-border)", background: "var(--nx-ceramic)" }}
-                        >
-                          <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
-                            {line.name} <span style={{ color: "var(--nx-fg-muted)" }}>· {line.cadenceLabel} · qty {line.qty}</span>
-                          </span>
-                          <span className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>{formatUSD(line.lineTotal)}</span>
-                        </div>
-                      ))}
-                      <div className="flex items-center justify-between px-4 py-3" style={{ background: "var(--nx-bg-cream)" }}>
-                        <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{CONDITIONAL.totalLabel} · per month</span>
-                        <span className="text-lg" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>{formatUSD(subtotal)}</span>
-                      </div>
+                  <StepTile n="05" title="Confirm the order." lead="What goes to the physician with the answers.">
+                    <ul className="nx-summary__lines" data-testid="checkout-confirm-lines">
+                      {lines.map((line) => <SummaryLine key={`c-${line.type}-${line.slug}`} line={line} />)}
+                    </ul>
+                    <div className="nx-drawer__figure" style={{ paddingTop: "1rem", borderTop: "1px solid var(--nx-border)" }}>
+                      <span style={{ fontFamily: F }}><b>Today, for the whole term</b>{formatUSD(subtotal)} a month</span>
+                      <strong style={{ fontFamily: S }}>{formatUSD(dueToday)}</strong>
                     </div>
-                  </div>
 
-                  {/* Submit */}
-                  <div className="pt-2">
-                    <div className="flex flex-wrap gap-3">
-                      <GhostBtn onClick={() => setStep(1)} testId="button-step-back-payment">← Back</GhostBtn>
+                    <div className="nx-stepnav">
+                      <GhostBtn onClick={() => setStep(1)} testId="button-step-back-payment"><ArrowLeft size={14} aria-hidden="true" /> Back</GhostBtn>
                       <button
                         type="submit"
                         disabled={mutation.isPending}
                         className="nx-cta-cobalt disabled:opacity-60"
+                        style={{ fontFamily: F }}
                         data-testid="button-submit-checkout"
                       >
                         {mutation.isPending ? "Submitting…" : "Submit for physician review"}
                       </button>
                     </div>
-                    <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
+                    <p className="nx-summary__fine" style={{ fontFamily: F, maxWidth: "52ch" }}>
                       By submitting, you consent to review by a licensed physician. Billing runs through Bask Health, and the refund policy sets out what is refunded if the physician declines.
                     </p>
                     {(() => {
                       const errored = Object.keys(errors);
                       if (errored.length === 0) return null;
-                      // Route the fix-it banner to the step that actually has
-                      // the error — not a hardcoded "Step 01 address".
+                      // Route the fix-it note to the stage that actually has the error.
                       const FIELD_STEP: Record<string, number> = {
                         name: 0, email: 0, shippingAddress: 0, city: 0, state: 0, zip: 0,
-                        age: 2, cardiacHistory: 2, diabetic: 2, hormonalRx: 2, allergies: 2,
+                        age: 0, cardiacHistory: 2, diabetic: 2, hormonalRx: 2, allergies: 2,
                       };
                       const badStep = Math.min(...errored.map((f) => FIELD_STEP[f] ?? 0));
-                      const stepLabel = `Step 0${badStep + 1} · ${STEPS[badStep]}`;
                       const count = errored.length;
                       return (
                         <button
                           type="button"
                           onClick={() => setStep(badStep)}
-                          className="mt-4 block w-full text-left p-3 text-sm"
-                          style={{ background: "var(--nx-cobalt-soft)", border: "1px solid var(--nx-border)", color: "var(--nx-cobalt-hover)", fontFamily: FONT, borderRadius: "var(--nx-r-md)" }}
+                          className="nx-note"
+                          style={{ display: "block", width: "100%", textAlign: "left", cursor: "pointer", background: "var(--nx-cobalt-soft)", color: "var(--nx-cobalt-hover)" }}
                           data-testid="text-form-errors"
                         >
-                          {count === 1 ? "One field needs" : `${count} fields need`} attention in {stepLabel}. Tap to review.
+                          {count === 1 ? "One field needs" : `${count} fields need`} attention in {STEPS[badStep]}. Tap to review.
                         </button>
                       );
                     })()}
-                  </div>
+                  </StepTile>
                 </>
               )}
             </form>
 
-            {/* Order summary — sticky right rail */}
-            <aside
-              className="lg:sticky lg:top-24 p-7"
-              style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)" }}
-            >
-              <Reveal delay={80}>
-              <div
-                className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-4 pb-3"
-                style={{ fontFamily: FONT, color: "var(--nx-amber)", borderBottom: "1px solid var(--nx-border)" }}
-              >
-                Your order · {itemCount}
-              </div>
-
-              <ul className="list-none p-0 space-y-3 mb-4">
-                {lines.map((line) => {
-                  // Source the peptide count from the canonical catalog (getStack),
-                  // not the legacy `stacks` module — the two drifted (legacy Wolverine
-                  // lists 3, the real stack page shows 2), so checkout was contradicting
-                  // the page the buyer just came from.
-                  const stack = line.type === "stack" ? getStack(line.slug) : null;
-                  return (
-                    <li key={`${line.type}-${line.slug}`} className="pb-3" style={{ borderBottom: "1px solid var(--nx-border)" }}>
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="flex-1 min-w-0">
-                          <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-0.5" style={{ fontFamily: FONT, color: line.type === "stack" ? "var(--nx-amber)" : "var(--nx-fg-graphite)" }}>
-                            {line.type === "stack" ? "Protocol" : line.type === "lab" ? "Blood test" : "Medicine"} · qty {line.qty} · {line.cadenceLabel}
-                          </div>
-                          <div className="text-sm leading-tight" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
-                            {line.name}
-                          </div>
-                          <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
-                            {line.oneTime ? (line.complimentary ? "Complimentary with the medication order" : "Paid once") : billingNote(line.cadence, line.unitPrice)}
-                          </div>
-                          {stack ? (
-                            <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
-                              {stack.peptides.length} peptides
-                            </div>
-                          ) : null}
-                        </div>
-                        <div className="text-sm flex-shrink-0" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
-                          {formatUSD(line.lineTotal)}
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-
-
-              <div className="flex items-baseline justify-between mt-3 pt-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <span className="text-sm uppercase tracking-[var(--nx-ls-caps)]" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{CONDITIONAL.totalLabel} · per month</span>
-                <span className="text-2xl" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }} data-testid="text-checkout-total">
-                  {formatUSD(subtotal)}
-                </span>
-              </div>
-
-              <PayToday amount={formatUSD(subtotal)} dueToday={formatUSD(dueToday)} terms={lines.filter((l) => !l.oneTime).map((l) => `${l.months} ${l.months === 1 ? "month" : "months"} of ${l.name}`).join(" · ")} testid="checkout-pay-today" style={{ marginTop: "1rem" }} />
-
-              {/* Trust marks */}
-              <div className="mt-6 pt-6 space-y-3" style={{ borderTop: "1px solid var(--nx-border)" }}>
-                <TrustRow icon={<Stethoscope size={14} />} text="A U.S. licensed doctor reviews every order" />
-                <TrustRow icon={<Shield size={14} />} text="Encrypted in transit" />
-                <TrustRow icon={<Truck size={14} />} text="Cold shipping, plain packaging" />
-                <TrustRow icon={<Check size={14} />} text={CONDITIONAL.chargeCondition} />
-                <TrustRow icon={<Shield size={14} />} text="503A-licensed US compounding pharmacy" />
-              </div>
-
-              <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                <p>Billing is handled by Bask Health, our telehealth billing partner. Prescription only. A licensed physician decides, and can decline.</p>
-              </div>
-              </Reveal>
-            </aside>
+            {/* The summary: one tile, the figure once (PayToday states it). */}
+            <Reveal delay={80}>
+              <aside className="nx-summary" aria-label="Your order" data-testid="checkout-summary">
+                <h2 className="nx-summary__h" style={{ fontFamily: S }}>Your order.</h2>
+                <ul className="nx-summary__lines">
+                  {lines.map((line) => <SummaryLine key={`${line.type}-${line.slug}`} line={line} />)}
+                </ul>
+                <div className="nx-summary__rule" />
+                <PayToday amount={formatUSD(subtotal)} dueToday={formatUSD(dueToday)} terms={terms} testid="checkout-pay-today" style={FLUSH} />
+                <div className="nx-summary__rule" />
+                <ul className="nx-summary__rows" aria-label="The facts">
+                  <li style={{ fontFamily: F }}><Stethoscope size={13} aria-hidden="true" /> A U.S. licensed doctor reviews every order</li>
+                  <li style={{ fontFamily: F }}><Shield size={13} aria-hidden="true" /> Encrypted in transit</li>
+                  <li style={{ fontFamily: F }}><Truck size={13} aria-hidden="true" /> Cold shipping, plain packaging</li>
+                  <li style={{ fontFamily: F }}><Check size={13} aria-hidden="true" /> {CONDITIONAL.chargeCondition}</li>
+                  <li style={{ fontFamily: F }}><Shield size={13} aria-hidden="true" /> 503A-licensed US compounding pharmacy</li>
+                </ul>
+                <p className="nx-summary__fine" style={{ fontFamily: F }}>Billing is handled by Bask Health, our telehealth billing partner. Prescription only. A licensed physician decides, and can decline.</p>
+              </aside>
+            </Reveal>
           </div>
         </div>
       </div>
@@ -624,71 +477,51 @@ export default function Checkout() {
 
 /* ─── UI helpers ─── */
 
+/** One line of the order, as it reads in the summaries: the thumb, the
+    name, the plan in words, the monthly price. */
+function SummaryLine({ line }: { line: ReturnType<typeof useCart>["lines"][number] }) {
+  return (
+    <li className="nx-summary__line" data-testid={`checkout-line-${line.type}-${line.slug}`}>
+      <div className="nx-summary__thumb" aria-hidden="true"><LineArt line={line} /></div>
+      <div style={{ minWidth: 0 }}>
+        <strong style={{ fontFamily: F }}>{line.name}</strong>
+        <small style={{ fontFamily: F }}>{lineTypeLabel(line.type)} · qty {line.qty} · {lineTermLine(line)}</small>
+      </div>
+      <em style={{ fontFamily: F }}>{line.complimentary ? "Included" : `${formatUSD(line.lineTotal)}${line.oneTime ? "" : "/mo"}`}</em>
+    </li>
+  );
+}
+
 function StepBar({ current, labels, onStep }: { current: number; labels: readonly string[]; onStep?: (i: number) => void }) {
   return (
-    <div className="flex items-center">
+    <ol className="nx-stepbar" aria-label="The steps">
       {labels.map((label, i) => {
         const done = i < current;
         const active = i === current;
         const clickable = !!onStep && done;
         return (
-          <div key={label} className="flex items-center" style={{ flex: i === labels.length - 1 ? "0 0 auto" : "1 1 auto" }}>
+          <li key={label}>
             <button
               type="button"
               onClick={() => clickable && onStep?.(i)}
-              className="flex items-center gap-2"
-              style={{ cursor: clickable ? "pointer" : "default", background: "none", border: "none", padding: 0 }}
+              className={active ? "is-now" : done ? (clickable ? "is-done is-link" : "is-done") : undefined}
+              style={{ fontFamily: F }}
               data-testid={`button-step-indicator-${i}`}
               aria-current={active ? "step" : undefined}
             >
-              <span
-                className="inline-flex items-center justify-center text-[11px]"
-                style={{
-                  width: 26,
-                  height: 26,
-                  borderRadius: "var(--nx-r-pill)",
-                  fontFamily: FONT,
-                  fontWeight: 600,
-                  background: done ? "var(--nx-amber)" : active ? "var(--nx-fg)" : "transparent",
-                  color: done || active ? "var(--nx-bg)" : "var(--nx-fg-muted)",
-                  border: done || active ? "none" : "1px solid var(--nx-border)",
-                  flexShrink: 0,
-                }}
-              >
-                {done ? <Check size={13} /> : i + 1}
-              </span>
-              <span
-                className="text-[11px] uppercase tracking-[var(--nx-ls-caps)] hidden sm:inline"
-                style={{ fontFamily: FONT, color: active ? "var(--nx-fg)" : done ? "var(--nx-fg-graphite)" : "var(--nx-fg-muted)", fontWeight: active ? 600 : 500 }}
-              >
-                {label}
-              </span>
+              <i aria-hidden="true">{done ? <Check size={13} /> : i + 1}</i>
+              <span>{label}</span>
             </button>
-            {i < labels.length - 1 && (
-              <span
-                className="mx-3"
-                style={{ flex: 1, height: 1, minWidth: 20, background: done ? "var(--nx-amber)" : "var(--nx-border)" }}
-              />
-            )}
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ol>
   );
-}
-
-function StepNav({ children }: { children: React.ReactNode }) {
-  return <div className="flex flex-wrap gap-3 pt-2">{children}</div>;
 }
 
 function PrimaryBtn({ children, onClick, testId }: { children: React.ReactNode; onClick: () => void; testId: string }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="nx-cta-cobalt"
-      data-testid={testId}
-    >
+    <button type="button" onClick={onClick} className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid={testId}>
       {children}
     </button>
   );
@@ -696,55 +529,33 @@ function PrimaryBtn({ children, onClick, testId }: { children: React.ReactNode; 
 
 function GhostBtn({ children, onClick, testId }: { children: React.ReactNode; onClick: () => void; testId: string }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="px-6 py-4 transition-colors hover:bg-black/5"
-      style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-base)", fontWeight: 500, border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-      data-testid={testId}
-    >
+    <button type="button" onClick={onClick} className="nx-cta-ghost" style={{ fontFamily: F }} data-testid={testId}>
       {children}
     </button>
   );
 }
 
-function Section({ title, eyebrow, children }: { title: string; eyebrow: string; children: React.ReactNode }) {
+/** A step, as a tile: the numbered pill, the sentence, one line, the fields. */
+function StepTile({ n, title, lead, children }: { n: string; title: string; lead?: string; children: React.ReactNode }) {
   return (
     <Reveal>
-      <section>
-        <div className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-1" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>
-          {eyebrow}
-        </div>
-        <h2 className="text-2xl mb-5" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}>
-          {title}
-        </h2>
-        {children}
+      <section className="nx-steptile" aria-label={title} data-testid={`checkout-step-${n}`}>
+        <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">{n}</span>
+        <h2 className="nx-steptile__t" style={{ fontFamily: S }}>{title}</h2>
+        {lead ? <p className="nx-steptile__b" style={{ fontFamily: F }}>{lead}</p> : null}
+        <div className="nx-steptile__body">{children}</div>
       </section>
     </Reveal>
   );
 }
 
-function Row({ children }: { children: React.ReactNode }) {
-  return <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-4">{children}</div>;
-}
-
 function Field({ label, helper, error, children }: { label: string; helper?: string; error?: string; children: React.ReactNode }) {
   return (
-    <label className={error ? "block nx-field-error" : "block"}>
-      <span className="block text-[11px] uppercase tracking-[var(--nx-ls-caps)] mb-1.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-        {label}
-      </span>
-      {helper ? (
-        <span className="block text-xs mb-2" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-          {helper}
-        </span>
-      ) : null}
+    <label className={error ? "nx-field nx-field-error" : "nx-field"}>
+      <span className="nx-field__l" style={{ fontFamily: F }}>{label}</span>
+      {helper ? <span className="nx-field__h" style={{ fontFamily: F }}>{helper}</span> : null}
       {children}
-      {error ? (
-        <span role="alert" className="block text-xs mt-1.5" style={{ fontFamily: FONT, color: "var(--nx-danger)", fontWeight: 600 }}>
-          {error}
-        </span>
-      ) : null}
+      {error ? <span role="alert" className="nx-field__e" style={{ fontFamily: F }}>{error}</span> : null}
     </label>
   );
 }
@@ -761,29 +572,12 @@ const YesNoField = ({
   testId: string;
 } & React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
-    <label className="block p-4 cursor-pointer transition-colors hover:bg-black/5" style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}>
-      <div className="flex items-start gap-3">
-        <input type="checkbox" className="mt-1 accent-[var(--nx-fg)]" data-testid={testId} {...rest} />
-        <div className="flex-1">
-          <div className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 500 }}>
-            {label}
-          </div>
-          {helper ? (
-            <div className="text-xs mt-1" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
-              {helper}
-            </div>
-          ) : null}
-        </div>
+    <label className="nx-yesno">
+      <input type="checkbox" data-testid={testId} {...rest} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <strong style={{ fontFamily: F }}>{label}</strong>
+        {helper ? <span style={{ fontFamily: F }}>{helper}</span> : null}
       </div>
     </label>
   );
 };
-
-function TrustRow({ icon, text }: { icon: React.ReactNode; text: string }) {
-  return (
-    <div className="flex items-start gap-2.5 text-xs" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.5 }}>
-      <span style={{ color: "var(--nx-amber)", marginTop: 1 }} aria-hidden="true">{icon}</span>
-      <span>{text}</span>
-    </div>
-  );
-}

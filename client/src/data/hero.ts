@@ -16,15 +16,16 @@ export const HERO = {
      "Peptide therapy, prescribed for your [sleep]" and the word cycles. The
      first word renders statically, so the prerendered page and a reader with
      reduced motion see a complete sentence. */
-  /* The shout (Chiya 2026-09-05, after enhanced.com; docs/VOICE.md): the
-     goal in three words, then the fact with the rotating goal word. */
-  shout: "Stronger. Sharper. Rested.",
+  /* The headline (docs/VOICE.md v3, Chiya 2026-09-05 afternoon): one
+     flowing sentence in second person about the reader's goal, then the
+     line with the rotating goal word. The staccato shout was rejected. */
+  shout: "Stronger, sharper and better rested, with the dose set from your blood.",
   lead: "Prescribed for your",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
   subline:
-    "Prescription peptides. A licensed U.S. physician. The dose set from your blood work.",
+    "A licensed U.S. physician reads your answers, prescribes if it is appropriate, and a licensed U.S. pharmacy compounds it to order.",
   cta: "Shop the medicines",
-  ctaSecondary: "How it works",
+  ctaSecondary: "See how it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):
      six facts, an icon each, the only place these appear on the home. */

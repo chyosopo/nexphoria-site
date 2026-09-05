@@ -20,18 +20,20 @@ export const GOAL_TEACHING: Record<PeptideCategory, string> = {
 /** The order the band reads in: the goals most people arrive with first. */
 export const GOAL_ORDER: PeptideCategory[] = ["metabolic", "growth", "recovery", "longevity", "cognition", "sleep", "sexual-health", "hormone", "skin"];
 
-/* The shout per goal (enhanced register, docs/VOICE.md): the goal in the
-   reader's own words, two to five of them, stopped. A goal, not a promise. */
+/* The headline per goal (docs/VOICE.md v3): one flowing sentence in the
+   reader's own words, second person, about what they are after. A goal,
+   never a promised result. Renders on the hero tiles, the goal gallery
+   and the product page. */
 export const GOAL_SHOUT: Record<PeptideCategory, string> = {
-  metabolic: "Lose the weight. Keep the muscle.",
-  growth: "Build lean mass.",
-  recovery: "Repair. Recover. Go again.",
-  longevity: "Don't slow down.",
-  cognition: "Sharper. Steadier.",
-  sleep: "Sleep deep.",
-  "sexual-health": "Blood flow. Desire. Drive.",
-  hormone: "Built around your baseline.",
-  skin: "Firmer skin.",
+  metabolic: "Lose the weight and keep the muscle you trained for.",
+  growth: "Build lean mass and lose the deep fat that diet alone has not shifted.",
+  recovery: "Repair the tendon, the joint or the gut, and get back to training.",
+  longevity: "Keep your energy and your recovery as the years add up.",
+  cognition: "Stay sharper and steadier when the pressure does not let up.",
+  sleep: "Fall asleep sooner, sleep deeper and wake up rested.",
+  "sexual-health": "Bring back the desire, the blood flow and the drive, on the days you choose.",
+  hormone: "Support your testosterone from your own baseline, read from your blood.",
+  skin: "Firm the skin and speed the healing that has slowed with age.",
 };
 
 /* The catalog's SoloCategory, mapped to the goal key the shouts and tiles use. */

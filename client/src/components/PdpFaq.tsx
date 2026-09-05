@@ -64,7 +64,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "Do I need a prescription?",
-    a: "Yes. A licensed U.S. physician reviews the health questions and writes the prescription if it is appropriate. Everything happens online.",
+    a: "Yes. A licensed U.S. physician reviews your online visit and writes the prescription if it is appropriate. Everything happens online.",
   });
 
   items.push({
@@ -86,7 +86,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "Do I pay before the physician decides?",
-    a: "Yes. The order is placed first, then the health questions are answered. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
+    a: "Yes. The order is placed first, then a quick online visit follows. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
   });
 
   if (hasPricing) {
@@ -102,8 +102,8 @@ export function buildPdpFaq(opts: {
 export function PdpFaq({ items }: { items: FaqItem[] }) {
   return (
     <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} data-testid="pdp-faq">
-      <h2 className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
-        Questions.
+      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+        Here is what people ask about it.
       </h2>
       <div style={{ marginTop: "clamp(1.2rem,2vw,1.6rem)" }}>
         {items.map((it, i) => (

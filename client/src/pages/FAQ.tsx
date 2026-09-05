@@ -33,11 +33,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does it work?",
-        a: `Five steps. A medicine or a protocol is chosen, and a term of one, three, six or twelve months. The health questions, on history, current medicines and the goal, are answered at checkout in a few minutes. A licensed U.S. physician reviews the answers and writes the prescription, or explains why not; if not, nothing is made and the refund policy applies. The medicine ships cold with an at-home blood kit, included; the draw comes before the first dose, and the physician sets the dose from the results. At week ${RETEST_WEEK} the same blood test is drawn again, and the physician compares the two and continues, adjusts or stops the dose.`,
+        a: `Five steps. A medicine or a protocol is chosen, and a term of one, three, six or twelve months. A quick online visit, on history, current medicines and the goal, are answered at checkout in a few minutes. A licensed U.S. physician reviews the answers and writes the prescription, or explains why not; if not, nothing is made and the refund policy applies. The medicine ships cold with an at-home blood kit, included; the draw comes before the first dose, and the physician sets the dose from the results. At week ${RETEST_WEEK} the same blood test is drawn again, and the physician compares the two and continues, adjusts or stops the dose.`,
       },
       {
         q: "Do I need to see a doctor in person?",
-        a: "No visit is needed. Everything happens online. A licensed U.S. physician reviews the health questions, writes the prescription, and reads the panel before the first dose and again at week 12.",
+        a: "No visit is needed. Everything happens online. A licensed U.S. physician reviews your online visit, writes the prescription, and reads the panel before the first dose and again at week 12.",
       },
       {
         q: "What if the physician says it is not right for me?",
@@ -49,7 +49,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What if I have a health condition?",
-        a: "It is stated in the health questions. Some conditions rule a medication out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what the physician watches.",
+        a: "It is asked in the online visit. Some conditions rule a medication out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what the physician watches.",
       },
     ],
   },
@@ -91,7 +91,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What do I pay today?",
-        a: "The whole term, up front: the monthly price times the months in the term. The health questions follow, then the physician's decision, then the medicine ships.",
+        a: "The whole term, up front: the monthly price times the months in the term. The online visit follows, then the physician's decision, then the medicine ships.",
       },
       {
         q: "Can I cancel?",
@@ -209,12 +209,12 @@ export default function FAQPage() {
   };
 
   const categoryHeadings: Record<string, string> = {
-    "Getting started": "Getting started.",
-    "The medications": "The medications.",
-    Pricing: "Pricing and plans.",
-    Safety: "Safety and side effects.",
-    Shipping: "Shipping and delivery.",
-    Legal: "Legal and regulatory.",
+    "Getting started": "How you start.",
+    "The medications": "What the medicines are.",
+    Pricing: "What it costs.",
+    Safety: "What to know about safety and side effects.",
+    Shipping: "How it ships.",
+    Legal: "Where it stands legally.",
   };
 
   return (
@@ -228,7 +228,7 @@ export default function FAQPage() {
             badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
             headline={
               <>
-                <span className="nx-shout">Questions.</span>
+                <span>Here are the questions people ask before they start.</span>
               </>
             }
             subtitle="How it works, what it costs, safety, shipping, and who is involved."
@@ -388,7 +388,7 @@ export default function FAQPage() {
       </section>
 
       <FinalCTAStrip
-        title="Still have questions?"
+        title="Ask us anything this page left open."
         sub="Email hello@nexphoria.com. Clinical questions go to the physician."
       />
     </SiteLayout>

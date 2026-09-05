@@ -31,7 +31,7 @@ export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
       aria-labelledby={`evidence-title-${slug}`}
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "0.7rem", flexWrap: "wrap" }}>
-        <h2 id={`evidence-title-${slug}`} className="nx-dsh3 nx-shout">
+        <h2 id={`evidence-title-${slug}`} className="nx-dsh3">
           The evidence.
         </h2>
         <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>

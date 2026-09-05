@@ -12,7 +12,6 @@ import { PROTO_TILE } from "@/lib/studioTiles";
 import { FLAGSHIP_STACKS, usd, stackReservable, SAME_JOB, PAIRS_WELL } from "@/data/stacksCatalog";
 import { soloByName } from "@/data/soloCatalog";
 import { RETEST_WEEK } from "@/data/monitoring";
-import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
 
@@ -89,13 +88,14 @@ export default function ProtocolsIndex() {
 
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
+      <div className="nx-tight">
       <section className="nx-tilehero" aria-labelledby="protocols-hero-title">
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Protocols</p>
-            <h1 id="protocols-hero-title" className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>Prescribed together.</h1>
+            <h1 id="protocols-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Two to four medicines, prescribed together as one plan.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
-              A protocol is two to four medicines a physician prescribes together, with one panel before the first dose and the same panel at week {RETEST_WEEK}. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+              Each medicine in a protocol does a different job, and a licensed U.S. physician prescribes them together, with one blood panel before the first dose and the same panel at week {RETEST_WEEK}.
             </p>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* the protocols, as tiles: the medicines of each rendered together on its goal-toned panel */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Protocols">
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Protocols">
         <div className="nx-tiles nx-tiles--2" style={{ marginTop: 0 }}>
           {shown.map((s, i) => {
             const rec = s.cadences.length ? Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)) : undefined;
@@ -135,7 +135,7 @@ export default function ProtocolsIndex() {
                     <span className="nx-chip" style={{ fontFamily: F }}>{s.gated ? "Assessed" : reservable ? "Pending" : "Rx"}</span>
                   </span>
                   <span className="nx-tile__foot nx-tile__foot--proto">
-                    <span className="nx-tile__t nx-shout" style={{ fontFamily: S }}>{s.name}</span>
+                    <span className="nx-tile__t" style={{ fontFamily: S }}>{s.name}</span>
                     <span className="nx-tile__b" style={{ fontFamily: F }}>{s.tagline}</span>
                     <span className="nx-tile__btn nx-tile__btn--static" style={{ fontFamily: F }}>{s.gated ? "Priced at consultation" : rec ? `Shop the protocol · from ${usd(rec)}/mo` : "Shop the protocol"}</span>
                   </span>
@@ -147,10 +147,10 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* ── How they fit together: what to combine, what to pick one of (the playbook) ── */}
-      <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="protocols-synergy-title" data-testid="protocols-synergy">
+      <section className="nx-container" style={{ paddingTop: "0", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="protocols-synergy-title" data-testid="protocols-synergy">
         <SectionHead
-          title={<>How they fit together.</>}
-          lead="Each medicine in a protocol does a different job. The same rule applies if you build your own."
+          title={<>Here is what pairs well, and where you pick one.</>}
+          lead="Each medicine in a protocol does a different job, and the same rule applies if you build your own."
           maxTitle="18ch"
         />
         <div className="nx-synergy" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
@@ -188,36 +188,28 @@ export default function ProtocolsIndex() {
         </div>
       </section>
 
-      {/* Blood testing. The sample "biomarker index" dashboard was retired 2026-09-03: fabricated-looking figures. */}
-      <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-label="Blood testing">
-        <div style={{ maxWidth: 720 }}>
-          <div>
-            <SectionHead
-              eyebrow="Blood testing"
-              title={<>A panel before the first dose, and again at week {RETEST_WEEK}.</>}
-              lead={`The kit ships with the first order and is drawn at home before the first dose. At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are tested again and the physician adjusts from what changed.`}
-              maxTitle="18ch"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Blood testing (2026-09-03 the sample "biomarker index" dashboard was retired:
+          fabricated-looking figures; 2026-09-05 the section itself folded into the
+          hero line above, which already states the panel before the first dose and
+          the same panel at week 12). */}
 
       {/* the closer, as one tile */}
-      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="protocols-assess-title">
+      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="protocols-assess-title">
         <div className="nx-closer-tile">
           <div>
-            <h2 id="protocols-assess-title" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0 }}>
-              Which one is the physician's call.
+            <h2 id="protocols-assess-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0 }}>
+              Which protocol fits you is the physician's call.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>
-              The health questions state what is being treated. A licensed physician chooses the protocol, or a single medicine if that fits better.
+              Your online visit says what is being treated, and a licensed physician chooses the protocol, or a single medicine if that fits better.
             </p>
-            <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
+            <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }} data-testid="proto-assess-cta">
               How it works
             </Link>
           </div>
         </div>
       </section>
+      </div>
     </SiteLayout>
   );
 }

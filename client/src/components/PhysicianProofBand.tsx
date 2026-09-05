@@ -59,7 +59,7 @@ export function PhysicianProofBand({ name }: { name: string }) {
         </div>
         <div>
           <p className="nx-proof-quote" style={{ fontSize: "var(--nx-t-xl)" }}>
-            Every {name} prescription is written by a licensed U.S. physician who has reviewed your health questions.
+            Every {name} prescription is written by a licensed U.S. physician who has reviewed your online visit.
           </p>
         </div>
       </div>
