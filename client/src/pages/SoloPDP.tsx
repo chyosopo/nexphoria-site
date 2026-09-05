@@ -20,7 +20,6 @@ import { SpecPlate } from "@/components/DataPlate";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
-import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
 import { BenefitStrip } from "@/components/BenefitStrip";
@@ -33,6 +32,10 @@ import { StatusPill } from "@/components/StatusPill";
 import { soloTiers } from "@/lib/tiers";
 import { statusOf, regulatoryOf } from "@/data/soloCatalog";
 import { monitoringFor } from "@/data/monitoring";
+import { InsideTheVial } from "@/components/InsideTheVial";
+import { Ritual } from "@/components/Ritual";
+import { WhatArrives } from "@/components/WhatArrives";
+import { CareCards } from "@/components/CareCards";
 
 /* SoloCategory → the category vocabulary (the deck: filters, tiles and goal
    pages all use the same words). */
@@ -214,8 +217,19 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
           {/* LEFT */}
           <div>
+            {/* ── 2 · What you get, exactly: inside the vial · the ritual · what arrives.
+                (Happy Head study, 2026-09-05: explain it in detail and visualize it.) ── */}
+            <section aria-labelledby="solo-get-title" data-testid="solo-get">
+              <h2 id="solo-get-title" className="nx-dsh3">What you get, exactly</h2>
+              <div style={{ display: "grid", gap: 14, marginTop: "1rem" }}>
+                <InsideTheVial sku={solo} />
+                <Ritual sku={solo} />
+                <WhatArrives sku={solo} />
+              </div>
+            </section>
+
             {/* ── 3 · What to expect ── */}
-            <h2 className="nx-dsh3">What to expect</h2>
+            <h2 className="nx-dsh3" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>What to expect</h2>
             <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
             <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
               {solo.timeline.map((t, i) => (
@@ -278,14 +292,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-parties-title" data-testid="solo-parties">
               <h2 id="solo-parties-title" className="nx-dsh3">Who prescribes it, and who makes it</h2>
-              <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Clinical care</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{PROVIDER_INFO.body}</p>
-              </div>
-              <div style={{ marginTop: "1rem" }}>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Dispensing pharmacy</p>
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{PHARMACY_INFO.body.replace(/\n+/g, " ")}</p>
-              </div>
+              <CareCards slug={solo.slug} name={solo.name} />
             </section>
 
             {/* ── 8 · Common questions ── */}

@@ -3212,3 +3212,10 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 /* Timeline step cards hold one short line each — tighter than the default
    glass tile so the "what to expect" steps read as intentional, not sparse. */
 .nx-timeline .nx-glass-tile { padding: 1rem 1.25rem; }
+
+/* The ritual (How you take it, step by step): the same step grammar as the
+   home's five steps, but two by two — a four-step ritual in five columns left
+   a blank cell, and the steps read better with room to breathe. */
+@media (min-width: 768px) {
+  .nx-road--ritual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
