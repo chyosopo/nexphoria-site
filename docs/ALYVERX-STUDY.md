@@ -59,6 +59,5 @@ coach built it and told me to take as much inspiration from it as I can."
   happen": persuasion.
 - "No insurance required", "Injection-free": defensive negation; we say
   "self-pay, one monthly price" and "nasal spray".
-- The palette and the serif: Chiya chose Porcelain & Navy and one sans face
-  on 2026-09-04. A move to an ivory, green and serif world is her decision,
-  asked as options, not made by inference (CLAUDE.md law 1).
+- The palette and the serif: asked as three options on 2026-09-05; Chiya
+  chose "Keep Porcelain & Navy." The look stands; the structure was taken.

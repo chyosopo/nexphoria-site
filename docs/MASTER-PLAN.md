@@ -373,3 +373,10 @@ how you take it; the health-questions button reads "See if I'm eligible"
 sitewide. Study in docs/ALYVERX-STUDY.md. Pending: Chiya's palette and type
 decision (Porcelain & Navy and one sans, or an ivory, green and serif world like
 alyverx), an example-plans band, product-page fact strip with icons.
+
+### 2026-09-05 · Decision: the look stays Porcelain & Navy
+Chiya, asked with three options after the alyverx.com read: "Keep Porcelain &
+Navy." The palette and the one sans face stand (CLAUDE.md law 1); from alyverx
+we keep the structure only: the menu panels, the fact strip, the route filters,
+the eligibility wording. Pending: an example-plans band on the home; a fact
+strip with icons on the product page hero; Chiya's read of the menu on her phone.
