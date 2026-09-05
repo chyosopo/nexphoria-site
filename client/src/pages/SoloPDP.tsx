@@ -21,6 +21,7 @@ import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
+import { PDP_TILE } from "@/lib/studioTiles";
 import { BenefitStrip } from "@/components/BenefitStrip";
 import { ExpectCard } from "@/components/ExpectCard";
 import { ProductTile } from "@/components/ProductTile";
@@ -130,29 +131,21 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   return (
     <SiteLayout>
       {/* ══ 1 · HERO: the product beside what it is, what it is for and how it works ══ */}
-      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="solo-hero-title">
-        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
+      <section className="nx-tilehero" aria-labelledby="solo-hero-title">
+        <div className="nx-container" style={{ paddingTop: "1.4rem", paddingBottom: "var(--nx-sp-tight)" }}>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center", marginTop: "1rem" }}>
-            {/* LEFT: the product */}
-            <div style={{ position: "relative", order: 0 }}>
-              <SkuPhoto slug={solo.slug} name={solo.name} eager className="nx-sku-img nx-sku-img--pdp" testId={`solo-vial-${solo.slug}`} fallback={<VialPanel name={solo.name} dose={labelSpec(solo.spec)} size="80%" testId={`solo-vial-${solo.slug}`} />} />
-              <span
-                style={{
-                  position: "absolute", top: 14, left: 14,
-                  fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
-                  letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase",
-                  color: "var(--nx-fg-muted)", background: "var(--nx-ceramic)",
-                  border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)",
-                  padding: "6px 12px",
-                }}
-                data-testid={`solo-posture-${solo.slug}`}
-              >
+            {/* LEFT: the product, on its goal-toned panel */}
+            <div className="nx-tile nx-tile--pdp" style={{ order: 0 }}>
+              {PDP_TILE[solo.slug]
+                ? <img src={PDP_TILE[solo.slug].src} srcSet={`${PDP_TILE[solo.slug].src600} 600w, ${PDP_TILE[solo.slug].src} 1200w`} sizes="(max-width: 1024px) 100vw, 42vw" alt={`${solo.name}, as dispensed`} width={1200} height={1500} fetchPriority="high" decoding="async" data-testid={`solo-vial-${solo.slug}`} />
+                : <SkuPhoto slug={solo.slug} name={solo.name} eager className="nx-sku-img nx-sku-img--pdp" testId={`solo-vial-${solo.slug}`} fallback={<VialPanel name={solo.name} dose={labelSpec(solo.spec)} size="80%" testId={`solo-vial-${solo.slug}`} />} />}
+              <span className="nx-tile__pill" style={{ fontFamily: F }} data-testid={`solo-posture-${solo.slug}`}>
                 {solo.gated ? "Physician-assessed" : "Prescription only"}
               </span>
-              <StatusPill status={statusOf(solo)} testId={`solo-status-${solo.slug}`} style={{ marginLeft: 8 }} />
+              <span className="nx-tile__pill nx-tile__pill--right"><StatusPill status={statusOf(solo)} testId={`solo-status-${solo.slug}`} /></span>
             </div>
 
             {/* RIGHT: name, category, tile line, mechanism, the benefit layer, the expectations */}
@@ -323,11 +316,15 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         </section>
       )}
 
-      {/* ══ 10 · Closer ══ */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>Prescribed, if appropriate.</h2>
-        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>The order is placed, the health questions answered, and a licensed physician decides. If not prescribed, nothing is made.</p>
-        <a href="#buy" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See the plan and price</a>
+      {/* ══ 10 · Closer, as one tile ══ */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="solo-close-title">
+        <div className="nx-closer-tile">
+          <div>
+            <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>Prescribed, if appropriate.</h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>The order is placed, the health questions answered, and a licensed physician decides. If not prescribed, nothing is made.</p>
+            <a href="#buy" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>See the plan and price</a>
+          </div>
+        </div>
       </section>
     </SiteLayout>
   );

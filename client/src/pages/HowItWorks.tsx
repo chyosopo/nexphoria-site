@@ -206,17 +206,14 @@ export default function HowItWorks() {
         </Reveal>
       </section>
 
-      {/* ── Closer ── */}
-      <section className="nx-gradient-hero-dark nx-closer" aria-labelledby="hiw-closer">
-        <div className="nx-container" style={{ textAlign: "center" }}>
-          <Reveal>
-            <h2 id="hiw-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "18ch", margin: "0 auto", textWrap: "balance" }}>
-              Prescribed, if appropriate.
-            </h2>
-            <Link href="/peptides" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
-              See the treatments
-            </Link>
-          </Reveal>
+      {/* ── Closer, as one tile ── */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="hiw-closer">
+        <div className="nx-closer-tile">
+          <div>
+            <h2 id="hiw-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>Prescribed, if appropriate.</h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>A licensed U.S. physician reads the health questions and prescribes the medicine that fits, or explains why not.</p>
+            <Link href="/peptides" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>See the treatments</Link>
+          </div>
         </div>
       </section>
     </SiteLayout>

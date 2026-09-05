@@ -13,7 +13,10 @@ import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { getPrice } from "@/data/pricing";
 import { ProductCard } from "@/components/ProductCard";
 import { VialMockup, labelSpec } from "@/components/VialMockup";
-import { SkuPhoto, skuPhotoFor } from "@/components/SkuPhoto";
+import { SkuPhoto } from "@/components/SkuPhoto";
+import { CATEGORY_TILE, TILE_DARK } from "@/lib/studioTiles";
+import heroStill from "@/assets/studio/hero-still.webp";
+import heroStill1200 from "@/assets/studio/hero-still-1200.webp";
 
 
 /* Category key → the name the reader sees (the deck's category vocabulary,
@@ -145,78 +148,55 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
        /peptides → redirects to /men/peptides, silently ejecting her from
        her world. Worlded catalog keeps her in it. */
     <SiteLayout navVariant={world ?? "showcase"} footerVariant={world ?? "shared"}>
-      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
-        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
-          <div className="nx-hero-split nx-hero-seq">
-            <div className="nx-sec-head">
-              <p className="nx-eyebrow">The medicines</p>
-              <h1 id="peptides-hero-title" className="nx-dsh1" style={{ maxWidth: "16ch" }}>
-                Every medicine, by what it treats.
-              </h1>
-              <p className="nx-lede" style={{ maxWidth: "50ch" }}>
-                By what each is for. Every page states what it treats, how it works, how it is taken, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
-              </p>
-            </div>
-            {/* THE FORMULARY, RENDERED — replaces vial-lineup-hero.webp.
-
-                That photograph was shot under the previous palette: its caps
-                are NAVY, which is off-sheet under Graphite & Ice, and it shows
-                five vials on a shelf that stocks four. Regenerating it was not
-                available (no image credits), and a photo cannot stay in sync
-                with the catalog anyway — a cut or an addition silently makes
-                it a lie. Drawn from SOLO_CATALOG instead: it repaints with the
-                palette, always shows exactly what is on the shelf, and each
-                vial carries its own molecule. */}
-            <div className="nx-hero-media nx-hero-frame nx-hero-bleed nx-vial-lineup" style={{ position: "relative", aspectRatio: "5 / 4" }}>
-              <div className="nx-vial-lineup__row">
-                {SOLO_CATALOG.filter((s) => skuPhotoFor(s.slug)).slice(0, 6).map((s) => (
-                  <div key={s.slug} className="nx-vial-cell">
-                    <SkuPhoto slug={s.slug} name={s.name} eager className="nx-sku-img nx-sku-img--lineup" fallback={<VialMockup name={s.name} dose={labelSpec(s.spec)} size="clamp(150px, 78%, 340px)" fill={0.6} onDark label={false} />} />
-                  </div>
-                ))}
-              </div>
-            </div>
+      <section className="nx-tilehero" aria-labelledby="peptides-hero-title">
+        <div className="nx-container">
+          <div className="nx-tilehero__head nx-hero-seq">
+            <p className="nx-eyebrow">The medicines</p>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Every medicine, by what it treats.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
+              Choose a goal. Every page states what the medicine treats, how it works, how it is taken, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Search and filter the catalog">
-        <input
-          type="search"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Find a peptide by name, goal, or mechanism"
-          aria-label="Search the catalog"
-          className="nx-input"
-          data-testid="catalog-search"
-          style={{ maxWidth: 420, marginBottom: 14 }}
-        />
-        <div
-          role="toolbar"
-          aria-orientation="horizontal"
-          aria-label="Filter the catalog by category"
-          onKeyDown={onFilterKeyDown}
-          style={{ display: "flex", flexWrap: "wrap", gap: 8 }}
-        >
-          {cats.map((c, i) => {
-                        const active = filter === c;
-            return (
-              <button
-                key={c}
-                ref={(el) => { chipRefs.current[i] = el; }}
-                onClick={() => { setFilter(c); setFocusIdx(i); }}
-                aria-pressed={active}
-                aria-controls="catalog-results"
-                tabIndex={i === focusIdx ? 0 : -1}
-                data-testid={`filter-${c.toLowerCase()}`}
-                className="nx-filter-chip focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
-                style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}
-              >
-                {labelFor(c)}
-                
-              </button>
-            );
-          })}
+          {/* The goal tiles ARE the filter: one tile per category, the studio
+              render on its goal-toned panel, pressed state on the chosen one. */}
+          <div role="toolbar" aria-orientation="horizontal" aria-label="Filter the catalog by goal" aria-controls="catalog-results" onKeyDown={onFilterKeyDown} className="nx-tiles nx-tiles--goals" data-testid="catalog-goal-tiles">
+            {cats.map((c, i) => {
+              const active = filter === c;
+              const tile = c === "All" ? null : CATEGORY_TILE[c as SoloCategory];
+              const dark = c === "All" ? false : TILE_DARK[c as SoloCategory];
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  ref={(el) => { chipRefs.current[i] = el; }}
+                  onClick={() => { setFilter(c); setFocusIdx(i); }}
+                  aria-pressed={active}
+                  tabIndex={i === focusIdx ? 0 : -1}
+                  data-testid={`filter-${c.toLowerCase()}`}
+                  className={`nx-tile nx-tile--goal${dark ? " nx-tile--dark" : ""}${active ? " is-active" : ""}`}
+                  style={{ ["--i" as string]: i }}
+                >
+                  {tile
+                    ? <img src={tile.src} srcSet={`${tile.src600} 600w, ${tile.src} 1200w`} sizes="(max-width: 700px) 50vw, 20vw" alt="" width={1200} height={900} loading={i < 5 ? "eager" : "lazy"} decoding="async" />
+                    : <img src={heroStill} srcSet={`${heroStill1200} 1200w, ${heroStill} 1800w`} sizes="(max-width: 700px) 50vw, 20vw" alt="" width={1800} height={1400} fetchPriority="high" decoding="async" />}
+                  <span className="nx-tile__title" style={{ fontFamily: S }}>{c === "All" ? "All medicines" : labelFor(c)}</span>
+                  <span className="nx-tile__check" aria-hidden="true">{active ? "Showing" : "Show"}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="nx-tilehero__foot">
+            <input
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Find a medicine by name, goal, or mechanism"
+              aria-label="Search the catalog"
+              className="nx-input"
+              data-testid="catalog-search"
+              style={{ maxWidth: 420 }}
+            />
+          </div>
         </div>
       </section>
 
@@ -281,9 +261,6 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               <div key={cat} style={{ marginBottom: "clamp(2.4rem,4.5vw,3.6rem)" }}>
                 <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginBottom: "1.1rem", paddingBottom: "0.7rem", borderBottom: "1px solid var(--nx-border)", display: "flex", alignItems: "baseline", gap: "0.75rem", flexWrap: "wrap" }}>
                   {CAT_LINE[cat] ?? labelFor(cat)}
-                  <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", marginLeft: "auto" }}>
-                    {items.length} {items.length === 1 ? "peptide" : "peptides"}
-                  </span>
                 </h2>
                 <div className="nx-float-grid">
                   {items.map((s, i) => card(s, i, i))}
@@ -294,18 +271,20 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         })()}
       </section>
 
-      {/* the closer: the next step is a physician */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-band) 0" }} aria-labelledby="peptides-assess-title">
-        <div className="nx-container" style={{ textAlign: "center" }}>
-          <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            The next step is a physician.
-          </h2>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            A few health questions, read by a licensed U.S. physician, who prescribes the medicine that fits or explains why not.
-          </p>
-          <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
-            How it works
-          </Link>
+      {/* the closer: the next step is a physician, as one tile */}
+      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="peptides-assess-title">
+        <div className="nx-closer-tile">
+          <div>
+            <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0, lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)" }}>
+              The next step is a physician.
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>
+              A few health questions, read by a licensed U.S. physician, who prescribes the medicine that fits or explains why not.
+            </p>
+            <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
+              How it works
+            </Link>
+          </div>
         </div>
       </section>
     </SiteLayout>
