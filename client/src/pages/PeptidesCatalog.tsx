@@ -50,8 +50,15 @@ const CAT_LINE: Record<SoloCategory, string> = {
 const labelFor = (c: string) => (c === "All" ? "All" : CAT_LABEL[c as SoloCategory] ?? c);
 /* The sticky header is 64px tall (Nav: h-16); the chip row pins under it. */
 const HEADER_PX = 64;
-/* The chip row's height on the phone (catalog.css .nx-goalchips__bar). */
-const CHIPS_PX = 54;
+/* The chip row's height on the phone (catalog.css --nx-chips-h). The
+   results section reserves this much room, so the row is shown as soon as
+   the reader is within it of the header. */
+const CHIPS_PX = 53;
+/* Park the results a little ABOVE the header line on the phone: the chip
+   row's sticky then engages, so it pins to the header rather than floating
+   at its natural position, and the results line above it goes fully under
+   the header instead of being cut in half. */
+const PHONE_ENGAGE = -16;
 const PHONE = "(max-width: 760px)";
 const GOAL_MAP: Record<string, SoloCategory> = { metabolic: "Metabolic", growth: "Growth", recovery: "Recovery", longevity: "Skin & Longevity", skin: "Skin & Longevity", cognition: "Cognitive", sleep: "Sleep", "sexual-health": "Sexual Health", hormone: "Hormone" };
 function goalFromSearch(search: string): string {
@@ -92,7 +99,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     if (hasGoal) setFilter(g);
     if (!hasGoal || g === "All") return;
     const phone = window.matchMedia(PHONE).matches;
-    const t = window.setTimeout(() => scrollToResults("catalog-results", { always: phone, extra: phone ? CHIPS_PX : 0 }), arrivedRef.current ? 60 : 380);
+    const t = window.setTimeout(() => scrollToResults("catalog-results", { always: phone, extra: phone ? PHONE_ENGAGE : 0 }), arrivedRef.current ? 60 : 380);
     arrivedRef.current = true;
     return () => window.clearTimeout(t);
   }, [search]);
@@ -113,9 +120,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [focusIdx, setFocusIdx] = useState(0);
-  /* The chip row shows only once the tiles have scrolled up under the
-     header. A sentinel just below the search field tells us: when it has
-     left through the top of the viewport, the tiles are gone. */
+  /* The chip row shows once the tiles have scrolled up under the header. A
+     sentinel just below the search field tells us: when it has reached the
+     line the results are parked on, the tiles are gone and the row takes
+     over as the way to change goal. */
   const [chipsShown, setChipsShown] = useState(false);
   useEffect(() => {
     const s = sentinelRef.current;
@@ -189,7 +197,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     /* The answer comes to the reader: under the header and the chip row on
        the phone, and on the desktop only if the list had scrolled away. */
     const phone = window.matchMedia(PHONE).matches;
-    window.requestAnimationFrame(() => scrollToResults("catalog-results", { always: phone, extra: phone ? CHIPS_PX : 0 }));
+    window.requestAnimationFrame(() => scrollToResults("catalog-results", { always: phone, extra: phone ? PHONE_ENGAGE : 0 }));
   };
   const sheen = useSheen();
 
@@ -336,7 +344,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </div>
 
-      <section id="catalog-results" className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Peptide catalog" data-testid="catalog-results">
+      <section id="catalog-results" className="nx-container nx-catalog-results" aria-label="Peptide catalog" data-testid="catalog-results">
         {/* Screen-reader-only live region: announces the new filtered count on
             every filter/search change without the whole grid being re-read. The
             visible results line above is a styled label, not the live region

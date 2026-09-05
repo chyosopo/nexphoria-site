@@ -57,7 +57,12 @@
 }
 
 /* ── 2. The sticky chip row (phone) ────────────────────────────────────── */
-.nx-goalchips { display: none; }
+/* The bar's own height (8 + 36 + 8 + the hairline). It is drawn in a
+   zero-height sticky container, so it OVERLAYS whatever follows: the
+   results section reserves exactly this much room below its own padding
+   (rule 4 below), and the reserve is constant, so the bar appearing never
+   shifts the page. */
+.nx-goalchips { --nx-chips-h: 53px; display: none; }
 @media (max-width: 760px) {
   .nx-goalchips { --nx-rail-bleed: 1.5rem; display: block; position: sticky; top: 64px; z-index: var(--nx-z-sticky); height: 0; }
   .nx-goalchips__bar {
@@ -85,6 +90,14 @@
   .nx-goalchip:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { .nx-goalchips__bar { transition: none; } }
+
+/* ── 2b. The results section ───────────────────────────────────────────
+   On the phone the room for the chip bar is reserved here, so a card is
+   never read through the bar (the bar overlays: see above). */
+.nx-catalog-results { padding-top: var(--nx-sp-tight); padding-bottom: var(--nx-sp-tight); }
+@media (max-width: 760px) {
+  .nx-catalog-results { padding-top: calc(var(--nx-sp-tight) + 53px); }
+}
 
 /* ── 3. The product card ───────────────────────────────────────────────── */
 .nx-frost { position: relative; border: 1px solid var(--nx-border); }
