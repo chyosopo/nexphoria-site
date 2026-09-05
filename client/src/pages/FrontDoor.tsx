@@ -13,8 +13,10 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { HeroR3 } from "@/components/HeroR3";
 import { MenuRail } from "@/components/MenuRail";
-import { ByGoal } from "@/components/ByGoal";
-import { Check, ArrowRight, FlaskConical, Droplets, Stethoscope, RefreshCw, Snowflake } from "lucide-react";
+import { Explainer } from "@/components/Explainer";
+import { GoalGallery } from "@/components/GoalGallery";
+import { WhatArrives } from "@/components/WhatArrives";
+import { Check, ArrowRight } from "lucide-react";
 import { ROAD } from "@/data/spine";
 import { LabKitBox } from "@/components/LabKitBox";
 import { LAB_KIT } from "@/data/labs";
@@ -62,26 +64,17 @@ export default function FrontDoor() {
       {/* ══ 01 · HERO — the claim, one action, the fact strip ══ */}
       <HeroR3 />
 
-      {/* ══ 02 · WHAT THIS IS — one sentence of reasoning, before the shop ══ */}
-      <section className="nx-container nx-sec" aria-labelledby="fd-what">
-        <Reveal>
-          <div className="nx-premise">
-            <p className="nx-premise__k" style={{ fontFamily: F }}>New to peptides</p>
-            <p id="fd-what" className="nx-premise__t" style={{ fontFamily: S }}>
-              A peptide is a signal the body already makes. A licensed physician prescribes the right one for the goal, and sets the dose against your own blood work.
-            </p>
-            <Link href="/how-it-works" className="nx-text-link nx-premise__link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="frontdoor-learn">
-              How peptides work <ArrowRight size={14} aria-hidden="true" />
-            </Link>
-          </div>
-        </Reveal>
-      </section>
+      {/* ══ 02 · WHAT A PEPTIDE DOES — three frames, the teaching before the shop ══ */}
+      <Explainer />
 
       {/* ══ 03 · THE MEDICINES — the one place to browse (id="treatments") ══ */}
       <MenuRail photo="img/img_band_porcelain.webp" />
 
-      {/* ══ 03b · BY GOAL — the teaching layer for the shelf's tabs (Happy Head study, 2026-09-05) ══ */}
-      <ByGoal />
+      {/* ══ 03b · BY GOAL — one photograph per goal, the medicines under it ══ */}
+      <GoalGallery />
+
+      {/* ══ 03c · WHAT ARRIVES — the box, and what a month includes ══ */}
+      <WhatArrives />
 
       {/* ══ 04 · HOW IT WORKS — the five steps, once ══ */}
       <section className="nx-container nx-sec" aria-labelledby="fd-road">
@@ -133,24 +126,8 @@ export default function FrontDoor() {
             <h2 id="fd-pricing" className="nx-dsh2" style={{ maxWidth: "18ch" }}>One monthly price. Everything within it.</h2>
           </div>
           <p className="nx-prose" style={{ marginTop: "1rem", maxWidth: "58ch" }}>
-            Paid up front for a term of one, three, six or twelve months. Longer terms cost less per month. Each medicine shows its own price on its page.
+            Paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. Each medicine shows its own price on its page, and the box above is what the price includes.
           </p>
-          {/* What a month includes, as a list a reader can picture (the same facts the price statement carried). */}
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5" style={{ listStyle: "none", margin: "1.4rem 0 0", padding: 0, gap: 10, maxWidth: 980 }} data-testid="frontdoor-includes" aria-label="What a month includes">
-            {[
-              { Icon: FlaskConical, t: "The medicine", b: "Compounded to order in a licensed U.S. pharmacy." },
-              { Icon: Stethoscope, t: "The physician's review", b: "Of the health answers, and of the results." },
-              { Icon: Droplets, t: `The ${PANEL_TOTAL_MARKERS}-marker blood kit`, b: "Drawn at home before the first dose." },
-              { Icon: RefreshCw, t: `The week-${RETEST_WEEK} test`, b: "On terms of three months and longer." },
-              { Icon: Snowflake, t: "Cold shipping", b: "Plain packaging, to all 50 states." },
-            ].map(({ Icon, t, b }) => (
-              <li key={t} className="nx-card" style={{ padding: "1rem 1.05rem" }}>
-                <span style={{ color: "var(--nx-cobalt)", display: "block" }}><Icon size={18} strokeWidth={2.1} aria-hidden="true" /></span>
-                <span style={{ display: "block", fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", lineHeight: 1.25, marginTop: "0.6rem" }}>{t}</span>
-                <span style={{ display: "block", fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", lineHeight: 1.45, marginTop: "0.3rem" }}>{b}</span>
-              </li>
-            ))}
-          </ul>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem", display: "inline-block" }} data-testid="frontdoor-pricing-all">Every medicine, with its price <ArrowRight size={14} aria-hidden="true" /></Link>
         </Reveal>
       </section>
