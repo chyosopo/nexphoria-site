@@ -86,7 +86,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
         <div style={{ maxWidth: 640, margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
           <h1 style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: 12 }}>Peptide not found</h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", marginBottom: 28 }}>
-            That entry is outside the current formulary. Browse the full catalog or start an assessment.
+            That entry is outside the current formulary. Browse the full catalog to find the right medicine.
           </p>
           <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
             ← All peptides
@@ -175,17 +175,17 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
-                <Link
-                  href="/peptides"
+                <a
+                  href="#buy"
                   className="nx-cta-cobalt"
                   data-testid="solo-hero-cta"
                   style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}
                 >
-                  See if I'm eligible
-                </Link>
-                <a href="#buy" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  See plan options
+                  See the plan and price
                 </a>
+                <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                  Every medicine
+                </Link>
               </div>
               {/* The fact strip (2026-09-05, after alyverx.com): the four facts
                   that are true of every medicine, once, with an icon each. */}
@@ -334,7 +334,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
         <h2 id="solo-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>The next step is a physician.</h2>
         <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this medicine is right for you.</p>
-        <Link href="/peptides" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See if I'm eligible</Link>
+        <a href="#buy" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See the plan and price</a>
       </section>
     </SiteLayout>
   );

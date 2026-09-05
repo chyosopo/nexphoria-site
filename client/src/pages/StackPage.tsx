@@ -134,9 +134,9 @@ export default function StackPage({ slug }: { slug: string }) {
                 {stack.bestFor}
               </p>
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
-                <Link href="/peptides" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
-                  See if I'm eligible
-                </Link>
+                <a href="#buy" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
+                  See the plan and price
+                </a>
                 {reservable && <StatusPill status="reserve" testId="stack-status" />}
               </div>
               {components.some((c) => c.feelBy) && (
@@ -290,7 +290,7 @@ export default function StackPage({ slug }: { slug: string }) {
           </div>
 
           {/* ── 2 · RIGHT · the buy box ── */}
-          <aside style={{ alignSelf: "stretch" }}>
+          <aside id="buy" style={{ alignSelf: "stretch", scrollMarginTop: "96px" }}>
             <div className="nx-buyrail">
             <BuyBox
               name={stack.name}
@@ -360,9 +360,9 @@ export default function StackPage({ slug }: { slug: string }) {
           The next step is a physician.
         </h2>
         <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this protocol is right for you.</p>
-        <Link href="/peptides" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
-          See if I'm eligible
-        </Link>
+        <a href="#buy" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
+          See the plan and price
+        </a>
       </section>
     </SiteLayout>
   );

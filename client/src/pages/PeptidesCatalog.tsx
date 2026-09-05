@@ -300,8 +300,8 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
             A few health questions, read by a licensed U.S. physician, who prescribes the medicine that fits or explains why not.
           </p>
-          <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
-            See if I'm eligible
+          <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="catalog-assess-cta">
+            How it works
           </Link>
         </div>
       </section>

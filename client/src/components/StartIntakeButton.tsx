@@ -43,7 +43,7 @@ export function StartIntakeButton({
   size = "lg",
   className,
   style,
-  children = "See if I'm eligible",
+  children = "Get started",
   showArrow = true,
 }: {
   productSlug?: string;
