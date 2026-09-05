@@ -14,7 +14,7 @@ import { getSolo, SOLO_CATALOG, SoloCategory } from "@/data/soloCatalog";
 import { analytics } from "@/lib/analytics";
 import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, X, Stethoscope, Droplets, FlaskConical, Snowflake } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { SpecPlate } from "@/components/DataPlate";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
@@ -187,6 +187,14 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   See plan options
                 </a>
               </div>
+              {/* The fact strip (2026-09-05, after alyverx.com): the four facts
+                  that are true of every medicine, once, with an icon each. */}
+              <ul className="nx-pdp-facts" aria-label="What every order includes" data-testid={`solo-facts-${solo.slug}`}>
+                <li style={{ fontFamily: F }}><Stethoscope size={15} strokeWidth={2.1} aria-hidden="true" />Prescribed by a licensed U.S. physician</li>
+                <li style={{ fontFamily: F }}><Droplets size={15} strokeWidth={2.1} aria-hidden="true" />An at-home blood test, included</li>
+                <li style={{ fontFamily: F }}><FlaskConical size={15} strokeWidth={2.1} aria-hidden="true" />Compounded in a licensed U.S. pharmacy</li>
+                <li style={{ fontFamily: F }}><Snowflake size={15} strokeWidth={2.1} aria-hidden="true" />Shipped cold, in plain packaging</li>
+              </ul>
               {parentStack && (
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.8rem", maxWidth: "44ch" }}>
                   Also prescribed in the{" "}

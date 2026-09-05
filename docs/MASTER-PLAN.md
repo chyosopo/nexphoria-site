@@ -380,3 +380,13 @@ Navy." The palette and the one sans face stand (CLAUDE.md law 1); from alyverx
 we keep the structure only: the menu panels, the fact strip, the route filters,
 the eligibility wording. Pending: an example-plans band on the home; a fact
 strip with icons on the product page hero; Chiya's read of the menu on her phone.
+
+### 2026-09-05 · Example plans band and product fact strip
+Verified: the home carries an "Example plans" band after the medicines rail:
+three goals (weight loss, body composition, hormones) with the live medicine for
+each, its tile line, the blood markers a physician reads first at week 12 (from
+monitoring data), and its price, all derived from the catalog and labelled an
+example, not a patient record. Each product hero carries a four-fact strip with
+an icon each (physician, blood test included, U.S. pharmacy, cold shipping).
+Both in Porcelain & Navy on tokens; audit:design unchanged (fontSize 3 radius 0
+shadow 5). Pending: Chiya's read.

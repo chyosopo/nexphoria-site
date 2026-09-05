@@ -10,6 +10,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { HeroR3 } from "@/components/HeroR3";
 import { MenuRail } from "@/components/MenuRail";
+import { ExamplePlans } from "@/components/ExamplePlans";
 import { Check } from "lucide-react";
 import { ROAD } from "@/data/spine";
 import { LabKitBox } from "@/components/LabKitBox";
@@ -85,6 +86,9 @@ export default function FrontDoor() {
 
       {/* ══ 03 · THE MEDICINES — every medicine and protocol, in one band ══ */}
       <MenuRail photo="img/img_d489ea4e9dbc.webp" />
+
+      {/* ══ 03b · EXAMPLE PLANS — how a plan comes together, from real data ══ */}
+      <ExamplePlans />
 
       {/* ══ 04 · HOW IT WORKS — the five steps, once ══ */}
       <section className="nx-container" aria-labelledby="fd-road" style={{ paddingTop: "var(--nx-sp-sec)" }}>
