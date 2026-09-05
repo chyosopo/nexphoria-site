@@ -128,7 +128,7 @@ export function BuyBox(props: BuyBoxProps) {
         {gated ? (
           <>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", color: "var(--nx-cobalt)", marginTop: "0.9rem" }}>
-              <Lock size={14} /> Doctor-assessed only
+              <Lock size={14} /> Physician-assessed only
             </div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.55rem" }}>
               Prescribed after your physician reviews you. Dosed and priced at your consultation against your baseline blood work, then adjusted from your week-12 blood test.

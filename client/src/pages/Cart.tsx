@@ -164,7 +164,7 @@ export default function Cart() {
                                       role="radio"
                                       aria-checked={active}
                                       onClick={() => updateCadence(line.slug, line.type, c)}
-                                      className="flex-1 inline-flex items-center justify-center px-2 text-[11px] uppercase tracking-[var(--nx-ls-caps)] transition-colors"
+                                      className="flex-1 inline-flex flex-col items-center justify-center px-1 text-[11px] leading-tight text-center uppercase tracking-[var(--nx-ls-caps)] transition-colors"
                                       style={{
                                         fontFamily: FONT,
                                         minHeight: 44,
@@ -177,7 +177,7 @@ export default function Cart() {
                                       <span>{meta.label}</span>
                                       {meta.savePct > 0 ? (
                                         <span
-                                          className="ml-1.5 text-[11px]"
+                                          className="text-[10px] mt-0.5"
                                           style={{ color: active ? "var(--nx-bg)" : "var(--nx-fg-muted)", opacity: active ? 0.85 : 1 }}
                                         >
                                           {meta.savePct}% less

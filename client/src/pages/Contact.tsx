@@ -30,11 +30,11 @@ const contactColumns: {
   },
   {
     eyebrow: "MEDICAL QUESTIONS",
-    title: "Doctor portal messaging.",
+    title: "Physician portal messaging.",
     Icon: Stethoscope,
     items: [
       { label: "CHANNEL", value: "Secure member portal" },
-      { label: "RESPONSE", value: "Reviewed by a doctor" },
+      { label: "RESPONSE", value: "Reviewed by a physician" },
       { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
     ],
     note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal for clinical questions.",
@@ -65,8 +65,8 @@ const reasons = [
 
 export default function Contact() {
   useSeo({
-    title: "Contact Nexphoria: doctor questions, protocol support",
-    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Doctor-guided support from a real team.",
+    title: "Contact Nexphoria: physician questions, protocol support",
+    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Physician-guided support from a real team.",
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
@@ -136,7 +136,7 @@ export default function Contact() {
             headline={
               <>
                 <span style={{ color: "color-mix(in oklab, var(--nx-fg) 62%, transparent)" }}>Questions?</span><br />
-                <span>We're listening.</span>
+                <span>Talk to us.</span>
               </>
             }
             subtitle="Patient support, medical questions, partnerships, or press. Your message reaches the right person."
@@ -352,7 +352,7 @@ export default function Contact() {
                 {[
                   { label: "States Covered", value: "50" },
                   { label: "Human Review", value: "Every message" },
-                  { label: "Doctor Availability", value: "Mon–Fri" },
+                  { label: "Physician availability", value: "Mon–Fri" },
                 ].map(({ label, value }) => (
                   <div key={label} className="nx-stat-card" style={{ justifyContent: "center" }}>
                     <span className="nx-stat-num" style={{ fontSize: "var(--nx-t-h3)" }}>{value}</span>

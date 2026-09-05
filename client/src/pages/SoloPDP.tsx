@@ -144,7 +144,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 }}
                 data-testid={`solo-posture-${solo.slug}`}
               >
-                {solo.gated ? "Doctor-assessed" : "Prescription only"}
+                {solo.gated ? "Physician-assessed" : "Prescription only"}
               </span>
               <StatusPill status={statusOf(solo)} testId={`solo-status-${solo.slug}`} style={{ marginLeft: 8 }} />
             </div>

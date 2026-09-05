@@ -170,7 +170,7 @@ export default function FAQPage() {
 
   useSeo({
     title: "Common questions: how it works, cost, safety, shipping",
-    description: "Plain answers about doctor-prescribed peptides: what they are, who prescribes them, what they cost, side effects, shipping, and the week-12 blood panel.",
+    description: "Plain answers about physician-prescribed peptides: what they are, who prescribes them, what they cost, side effects, shipping, and the week-12 blood panel.",
     path: "/faq",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria FAQ", description: "Frequently asked questions about physician-prescribed peptide therapy at Nexphoria.", path: "/faq", type: "MedicalWebPage" }),
