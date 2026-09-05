@@ -4,7 +4,6 @@
    the data cannot back. buildPdpFaq() feeds both the rendered accordion and
    FAQPage JSON-LD (via faqJsonLd in seo.ts). The strings are the plain
    deck's (docs/COPY-DECK-PLAIN.md, "PdpFaq"). */
-import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import type { SoloRegulatory } from "@/data/soloCatalog";
 
 export interface FaqItem { q: string; a: string }
@@ -67,11 +66,6 @@ export function buildPdpFaq(opts: {
     a: "Yes. A licensed U.S. physician reviews your online visit and writes the prescription if it is appropriate. Everything happens online.",
   });
 
-  items.push({
-    q: "What bloodwork is required?",
-    a: `An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, included. You draw it before the first dose, and the physician sets your dose from the results. At week 12 the same test is drawn again and compared.`,
-  });
-
   if (feelBy && fullEffect) {
     items.push({
       q: "What should I expect in the first weeks?",
@@ -83,11 +77,6 @@ export function buildPdpFaq(opts: {
       a: `${firstMark.effect.replace(/\.$/, "")}, in ${firstMark.wk.replace(/^Wk /, "week ")}. Response varies, which is why the week-12 panel and a dose review are part of the plan.`,
     });
   }
-
-  items.push({
-    q: "Do I pay before the physician decides?",
-    a: "Yes. You place the order first, then a quick online visit follows. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
-  });
 
   if (hasPricing) {
     items.push({
@@ -102,7 +91,7 @@ export function buildPdpFaq(opts: {
 export function PdpFaq({ items }: { items: FaqItem[] }) {
   return (
     <section className="nx-pdp-sec nx-pdp-faq" data-testid="pdp-faq">
-      <h2 className="nx-dsh3">Here is what people ask about it.</h2>
+      <h2 className="nx-dsh3">Common questions.</h2>
       <div className="nx-faq-list" style={{ marginTop: "1rem" }}>
         {items.map((it, i) => (
           <details key={it.q} className="nx-faq-item" data-testid={`faq-${i}`} open={i === 0}>

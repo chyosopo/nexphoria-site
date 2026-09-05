@@ -84,3 +84,33 @@
 
 /* ── The questions: the home's FAQ tiles, in this frame ── */
 .nx-pdp-faq .nx-faq-item { border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+
+/* ── The foldable reference section (2026-09-05) ────────────────────────
+   One pattern for the material a reader consults rather than reads: the
+   citations and the prescriber/pharmacy disclosures. Closed, it is a row
+   the height of its heading plus one line; open, it is the section it
+   always was. The contents stay in the DOM either way, so the prerendered
+   HTML the compliance gates and crawlers read is unchanged. */
+.nx-fold { border-top: 1px solid var(--nx-border); }
+.nx-fold__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem 0; cursor: pointer; list-style: none;
+}
+.nx-fold__head::-webkit-details-marker { display: none; }
+.nx-fold__text { display: flex; flex-direction: column; gap: .25rem; min-width: 0; }
+.nx-fold__title { margin: 0; }
+.nx-fold__sub { font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-muted); }
+.nx-fold__chev {
+  flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--nx-border); background: var(--nx-ceramic); color: var(--nx-fg);
+  transition: transform var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease);
+}
+.nx-fold[open] .nx-fold__chev { transform: rotate(180deg); }
+.nx-fold__head:hover .nx-fold__chev { background: var(--nx-bg-cream); }
+.nx-fold__body { padding-bottom: 1.4rem; }
+/* A section nested in a fold must not draw its own top rule under the
+   summary that already introduced it. (Its heading is dropped in the
+   component: see EvidenceStrip's `bare`.) */
+.nx-fold__body > .nx-pdp-sec { margin-top: 0; padding-top: 0; border-top: 0; }
+@media (prefers-reduced-motion: reduce) { .nx-fold__chev { transition: none; } }

@@ -23,7 +23,6 @@ import { getPrice } from "@/data/pricing";
 import { ArrowLeft, X, Stethoscope, Droplets, FlaskConical, Snowflake } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
-import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
@@ -32,8 +31,9 @@ import { GOAL_SHOUT, CATEGORY_TO_GOAL } from "@/data/goalTeaching";
 import { FeaturedProtocol } from "@/components/FeaturedProtocol";
 import { BenefitStrip } from "@/components/BenefitStrip";
 import { AddonsFor } from "@/components/AddonsFor";
-import { ExpectTimeline } from "@/components/ExpectTimeline";
 import { EvidenceStrip } from "@/components/EvidenceStrip";
+import { evidenceFor } from "@/data/evidence";
+import { FoldSection } from "@/components/FoldSection";
 import { StatusPill } from "@/components/StatusPill";
 import { soloTiers } from "@/lib/tiers";
 import { statusOf, regulatoryOf } from "@/data/soloCatalog";
@@ -47,6 +47,10 @@ import { forWhom } from "@/data/forWhom";
 
 /* SoloCategory → the category vocabulary (the deck: filters, tiles and goal
    pages all use the same words). */
+/* Small counts read as words in the house voice ("Three peer-reviewed
+   findings"), figures only past ten. */
+const NUM: Record<number, string> = { 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten" };
+
 const GOAL_LABEL: Record<SoloCategory, string> = {
   Growth: "Body composition",
   Cognitive: "Focus and mood",
@@ -79,7 +83,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     : [];
 
   useSeo({
-    title: solo ? `${solo.name}: ${GOAL_LABEL[solo.category]} | Nexphoria` : "Peptide | Nexphoria",
+    title: solo ? `${solo.name}: ${GOAL_LABEL[solo.category]} | Nexphoria` : "Medicine | Nexphoria",
     description: solo ? `${solo.name}: ${solo.outcome} Prescribed by a licensed U.S. physician, with a blood test before the first dose and again at week 12.` : "",
     // Canonicalize all three variants (/peptides, /men/peptides, /women/peptides)
     // to the neutral PDP so Google consolidates them instead of collapsing every
@@ -88,7 +92,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     jsonLd: solo
       ? [
           webPageJsonLd({ name: solo.name, description: solo.mechanism.slice(0, 120), path: `/peptides/${solo.slug}`, type: "MedicalWebPage" }),
-          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Peptides", path: "/peptides" }, { name: solo.name, path: `/peptides/${solo.slug}` }]),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Medicines", path: "/peptides" }, { name: solo.name, path: `/peptides/${solo.slug}` }]),
           faqJsonLd(faq),
           drugJsonLd({ name: solo.name, description: solo.mechanism.slice(0, 200), path: `/peptides/${solo.slug}` }),
           // Prescription item: name/brand/category enrichment only, no offers/price (pharma rich-result policy).
@@ -101,12 +105,12 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     return (
       <SiteLayout variant={imgWorld}>
         <div style={{ maxWidth: 640, margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
-          <h1 style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: 12 }}>Peptide not found</h1>
+          <h1 style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", marginBottom: 12 }}>Medicine not found</h1>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", marginBottom: 28 }}>
             That entry is outside the current formulary. Browse the full catalog to find the right medicine.
           </p>
           <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
-            ← All peptides
+            ← All medicines
           </Link>
         </div>
       </SiteLayout>
@@ -131,6 +135,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     : undefined;
 
   const monitoring = monitoringFor(solo.slug);
+  const evidenceCount = evidenceFor(solo.slug).length;
   /* marker names mid-sentence: lower-case the plain words, keep acronyms (HbA1c, IGF-1, hs-CRP). */
   const lc = (m: string) => (/^[A-Z][a-z]/.test(m) ? m.charAt(0).toLowerCase() + m.slice(1) : m);
 
@@ -141,7 +146,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-tilehero" aria-labelledby="solo-hero-title">
         <div className="nx-container" style={{ paddingTop: "1.4rem", paddingBottom: "var(--nx-sp-tight)" }}>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-            <ArrowLeft size={15} aria-hidden="true" /> All peptides
+            <ArrowLeft size={15} aria-hidden="true" /> All medicines
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center", marginTop: "1rem" }}>
             {/* LEFT: the product, on its goal-toned panel */}
@@ -160,9 +165,6 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.5rem", maxWidth: "18ch" }}>{solo.name}</h1>
               <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)", marginTop: "0.6rem", maxWidth: "40ch" }}>
                 {solo.outcome}
-              </p>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
-                {solo.mechanism}
               </p>
               <div style={{ marginTop: "1rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} /></div>
 
@@ -201,14 +203,14 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       </section>
 
       {/* ══ BODY: content rail + sticky buy box ══ */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Peptide details">
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-tight)" }} aria-label="Medicine details">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px]" style={{ gap: "clamp(1.8rem,4vw,3.2rem)", alignItems: "start" }}>
 
           {/* LEFT */}
           <div>
             {/* ── 2 · What it does: what it is for, who it suits, how it works, the measure ── */}
             <section aria-labelledby="solo-about-title" data-testid="solo-about">
-              <h2 id="solo-about-title" className="nx-dsh3">Here is what it does, and who it suits.</h2>
+              <h2 id="solo-about-title" className="nx-dsh3">How it works.</h2>
               {forWhom(solo.slug) && (
                 <p className="nx-lede" style={{ marginTop: "0.8rem" }}>
                   {solo.name} suits {forWhom(solo.slug)!.charAt(0).toLowerCase()}{forWhom(solo.slug)!.slice(1)}{" "}
@@ -221,7 +223,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             {/* ── 3 · What arrives: the medicine as dispensed, how it is taken, and the blood
                 that sets its dose (the monitoring folded in here, 2026-09-05) ── */}
             <section aria-labelledby="solo-get-title" data-testid="solo-get" className="nx-pdp-sec">
-              <h2 id="solo-get-title" className="nx-dsh3">Here is what arrives, and how you take it.</h2>
+              <h2 id="solo-get-title" className="nx-dsh3">What arrives, and how you take it.</h2>
               <div style={{ marginTop: "1rem" }}><InsideTheVial sku={solo} /></div>
               <Ritual sku={solo} />
               <div className="nx-pdp-sub" aria-labelledby="solo-blood-title" data-testid="solo-blood">
@@ -241,17 +243,26 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* ── 4 · The first twelve weeks ── */}
             <section aria-labelledby="solo-expect-title" className="nx-pdp-sec">
-              <h2 id="solo-expect-title" className="nx-dsh3">Here is what the first twelve weeks look like.</h2>
-              <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
+              <h2 id="solo-expect-title" className="nx-dsh3">The first twelve weeks.</h2>
               <Milestones sku={solo} />
             </section>
 
-            {/* ── The evidence ── */}
-            <EvidenceStrip slug={solo.slug} name={solo.name} />
+            {/* ── The evidence, folded: a reader weighing the medicine opens it;
+                a reader who wants the shape of the page is not made to scroll
+                three citations to reach the price. ── */}
+            {evidenceCount > 0 && (
+              <FoldSection
+                title="What the studies found."
+                summary={`${evidenceCount === 1 ? "One peer-reviewed finding" : `${NUM[evidenceCount] ?? evidenceCount} peer-reviewed findings`} on ${solo.name}, each with its source.`}
+                testid="fold-evidence"
+              >
+                <EvidenceStrip slug={solo.slug} name={solo.name} bare />
+              </FoldSection>
+            )}
 
             {/* ── 5 · Who should not take it ── */}
-            <section className="nx-pdp-sec" aria-labelledby="solo-contra-title">
-              <h2 id="solo-contra-title" className="nx-dsh3" style={{ scrollMarginTop: "96px" }}>Some people should not take it.</h2>
+            <section className="nx-pdp-sec" aria-labelledby="solo-contra-title" data-testid="solo-parties">
+              <h2 id="solo-contra-title" className="nx-dsh3" style={{ scrollMarginTop: "96px" }}>Who it is not for.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {solo.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -260,19 +271,17 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   </div>
                 ))}
               </div>
-              <div style={{ marginTop: "1rem" }}><Disclaimer /></div>
             </section>
-
-            {/* ── 6 · Who prescribes, who makes it, and the regulatory status: one row of three
-                tiles. The regulatory block is verbatim (compliance.ts); the parties are
-                named once, in the care cards. ── */}
-            <section className="nx-pdp-sec" aria-labelledby="solo-parties-title" data-testid="solo-parties">
-              <h2 id="solo-parties-title" className="nx-dsh3">A licensed physician prescribes it, and a licensed pharmacy makes it.</h2>
+            <FoldSection
+              title="Who prescribes it, and who makes it."
+              summary="The physician group, the pharmacy, and the regulatory status of a compounded preparation."
+              testid="fold-parties"
+            >
               <div className="nx-parties-row">
                 <RegulatoryDisclosure sku={solo} showParties={false} testid="solo-regulatory" />
                 <div className="nx-parties-row__care"><CareCards slug={solo.slug} /></div>
               </div>
-            </section>
+            </FoldSection>
 
             {/* ── 7 · Common questions, five ── */}
             <PdpFaq items={faq} />

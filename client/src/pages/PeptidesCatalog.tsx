@@ -246,7 +246,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">The medicines</p>
-            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Start with what you want to change.</h1>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Every medicine a physician can prescribe, by what it treats.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
               Choose a goal, and every page tells you what the medicine treats, how it works, how you take it and what it costs. A licensed U.S. physician prescribes it, and a licensed U.S. pharmacy compounds it.
             </p>
@@ -344,7 +344,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         </div>
       </div>
 
-      <section id="catalog-results" className="nx-container nx-catalog-results" aria-label="Peptide catalog" data-testid="catalog-results">
+      <section id="catalog-results" className="nx-container nx-catalog-results" aria-label="The medicines" data-testid="catalog-results">
         {/* Screen-reader-only live region: announces the new filtered count on
             every filter/search change without the whole grid being re-read. The
             visible results line above is a styled label, not the live region

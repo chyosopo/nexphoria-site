@@ -27,8 +27,8 @@ import { ProductTile } from "@/components/ProductTile";
 import "@/styles/protocols.css";
 import { PROTO_TILE } from "@/lib/studioTiles";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
-import { Disclaimer } from "@/components/Disclaimer";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
+import { FoldSection } from "@/components/FoldSection";
 import { CareCards } from "@/components/CareCards";
 import { InsideTheVial } from "@/components/InsideTheVial";
 import { soloByName } from "@/data/soloCatalog";
@@ -204,22 +204,31 @@ export default function StackPage({ slug }: { slug: string }) {
           {/* LEFT */}
           <div>
             {/* ── 3 · What arrives: each medicine's vial, and the blood that sets its dose ── */}
-            <section aria-labelledby="stack-get-title" data-testid="stack-get" className="nx-proto-block">
-              <h2 id="stack-get-title" className="nx-dsh3">Here is what arrives, and at what dose.</h2>
-              {members.length > 0 && (
-                <>
-                  <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each medicine is dispensed in its own vial, at its own dose. The amounts follow from the stated dose and vial, and the prescription states the exact volumes.</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 12, marginTop: "1rem" }}>
-                    {members.map((m) => (
-                      <div key={m.slug} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                        <InsideTheVial sku={m} compact testId={`stack-vial-${m.slug}`} />
-                        <Link href={`/peptides/${m.slug}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, alignSelf: "flex-start" }} data-testid={`stack-member-link-${m.slug}`}>About {m.name}</Link>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
-              <div className="nx-pdp-sub" aria-labelledby="stack-blood-title" data-testid="stack-blood">
+            {/* ── 3 · The volumes fold. "What is in it" above already names each
+                medicine, its dose and its vial format; this block restated the
+                concentration and added the syringe arithmetic — real detail, but
+                not the third time a reader is told what is in the protocol. It
+                measured 1,617px on a phone against the 2,099px lineup above it. ── */}
+            {members.length > 0 && (
+              <FoldSection
+                id="stack-get-title"
+                title="What arrives, and at what dose."
+                summary="The volume to draw, the units on the syringe, and how long each vial lasts."
+                testid="stack-get"
+              >
+                <p className="nx-lede">Each medicine is dispensed in its own vial, at its own dose. The amounts follow from the stated dose and vial, and the prescription states the exact volumes.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 12, marginTop: "1rem" }}>
+                  {members.map((m) => (
+                    <div key={m.slug} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                      <InsideTheVial sku={m} compact testId={`stack-vial-${m.slug}`} />
+                      <Link href={`/peptides/${m.slug}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, alignSelf: "flex-start" }} data-testid={`stack-member-link-${m.slug}`}>About {m.name}</Link>
+                    </div>
+                  ))}
+                </div>
+              </FoldSection>
+            )}
+            <section className="nx-proto-block" aria-labelledby="stack-blood-title">
+              <div className="nx-pdp-sub" data-testid="stack-blood">
                 <p id="stack-blood-title" className="nx-eyebrow">Blood testing for this protocol</p>
                 <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
                   You draw the panel at home before the first dose and again at week 12, and the physician compares the two and adjusts your dose from what changed.
@@ -239,9 +248,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 4 · What to expect ── */}
             <section className="nx-pdp-sec nx-proto-block" aria-labelledby="stack-expect-title">
-              <h2 id="stack-expect-title" className="nx-dsh3">
-                Here is what to expect, week by week.
-              </h2>
+              <h2 id="stack-expect-title" className="nx-dsh3">The first twelve weeks.</h2>
               <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
                 {stack.timeline.map((t, i) => (
                   <Reveal key={t.wk} delay={i * 55}>
@@ -259,7 +266,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 5 · Who should not take it ── */}
             <section className="nx-pdp-sec nx-proto-block" aria-labelledby="stack-contra-title">
-              <h2 id="stack-contra-title" className="nx-dsh3">Some people should not take it.</h2>
+              <h2 id="stack-contra-title" className="nx-dsh3">Who it is not for.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {stack.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -268,19 +275,22 @@ export default function StackPage({ slug }: { slug: string }) {
                   </div>
                 ))}
               </div>
-              <div style={{ marginTop: "1rem" }}><Disclaimer /></div>
             </section>
 
             {/* ── 6 · Who prescribes, who makes it, and the regulatory status: one row of three
                 tiles. The regulatory block is verbatim (compliance.ts); the parties are
                 named once, in the care cards. ── */}
-            <section className="nx-pdp-sec nx-proto-block" aria-labelledby="stack-parties-title" data-testid="stack-parties">
-              <h2 id="stack-parties-title" className="nx-dsh3">A licensed physician prescribes it, and a licensed pharmacy makes it.</h2>
+            <FoldSection
+              id="stack-parties-title"
+              title="Who prescribes it, and who makes it."
+              summary="The physician group, the pharmacy, and the regulatory status of a compounded preparation."
+              testid="stack-parties"
+            >
               <div className="nx-parties-row">
                 <RegulatoryDisclosure regulatory={stackRegulatory} showParties={false} testid="stack-regulatory" />
                 <div className="nx-parties-row__care"><CareCards slug={stack.slug} /></div>
               </div>
-            </section>
+            </FoldSection>
 
             {/* ── 7 · Common questions, five ── */}
             <div className="nx-proto-block nx-pdp-sec"><PdpFaq items={faq} /></div>

@@ -40,7 +40,7 @@ interface NavItem {
 }
 
 const ITEMS: NavItem[] = [
-  { label: "Treatments", href: "/peptides", panel: "treatments" },
+  { label: "Medicines", href: "/peptides", panel: "treatments" },
   { label: "Protocols", href: "/stacks", panel: "protocols" },
   { label: "How it works", href: "/how-it-works" },
 ];
@@ -331,7 +331,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             </button>
           </div>
           <div className={`${CONTAINER} nx-sheet__body`}>
-            <p className="nx-sheet__label" id="nav-sheet-goals">Treatments, by goal</p>
+            <p className="nx-sheet__label" id="nav-sheet-goals">Medicines, by goal</p>
             <m.ul className="nx-mtiles nx-sheet__goals" role="list" aria-labelledby="nav-sheet-goals" variants={stagger(0.04, 0.08)} initial="hidden" animate="show">
               {GOALS.map((g) => (
                 <m.li key={g} variants={rise}><GoalTile goal={g} onPick={pick} sizes="50vw" testid={`nav-mobile-category-${g}`} /></m.li>

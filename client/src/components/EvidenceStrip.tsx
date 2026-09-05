@@ -17,7 +17,7 @@
 import { F, S } from "@/lib/typography";
 import { evidenceFor } from "@/data/evidence";
 
-export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
+export function EvidenceStrip({ slug, name, bare = false }: { slug: string; name: string; /** Nested in a FoldSection, whose summary already states the heading and the count. */ bare?: boolean }) {
   const items = evidenceFor(slug);
   if (items.length === 0) return null;
 
@@ -25,10 +25,13 @@ export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
     <section
       className="nx-pdp-sec"
       data-testid={`evidence-${slug}`}
-      aria-labelledby={`evidence-title-${slug}`}
+      aria-labelledby={bare ? undefined : `evidence-title-${slug}`}
+      aria-label={bare ? `What the studies found about ${name}` : undefined}
     >
-      <h2 id={`evidence-title-${slug}`} className="nx-dsh3">Here is what the studies found.</h2>
-      <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Peer-reviewed findings on {name}, each with its source.</p>
+      {!bare && <>
+        <h2 id={`evidence-title-${slug}`} className="nx-dsh3">What the studies found.</h2>
+        <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Peer-reviewed findings on {name}, each with its source.</p>
+      </>}
 
       <div className="nx-pt" style={{ marginTop: "1rem" }}>
         <ol className="nx-pt-rows">

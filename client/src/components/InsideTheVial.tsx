@@ -15,7 +15,9 @@ export function vialLede(sku: SoloPeptide): string {
   if (v.form === "vial" && v.concMgPerMl && v.volumeMl) {
     return `${sku.name} is compounded to order at ${v.concMgPerMl} mg per millilitre and dispensed in ${v.volumeMl} mL vials${v.totalMg ? `, ${v.totalMg} mg in each` : ""}.`;
   }
-  if (v.form === "weekly-pen") return `${sku.name} is dispensed for weekly injection. The physician begins at the lowest step and raises the dose every few weeks as the body settles, within ${sku.dose.replace(/, stepped up$/, "")}.`;
+  // The stepping sentence lives in Ritual's second step, which follows this
+  // line on the page; stating it twice was the page repeating itself.
+  if (v.form === "weekly-pen") return `${sku.name} is dispensed for weekly injection, within ${sku.dose.replace(/, stepped up$/, "")}.`;
   if (v.form === "nasal-spray") return v.concMgPerMl && v.volumeMl ? `${sku.name} is dispensed as a ${v.volumeMl} mL nasal spray at ${v.concMgPerMl} mg per millilitre, ${dose} per dose, ${v.when ?? "as prescribed"}.` : `${sku.name} is dispensed as a nasal spray, ${sku.dose.toLowerCase()}.`;
   if (v.form === "capsule") return `${sku.name} is dispensed in capsules, ${sku.spec.toLowerCase()}. ${sku.dose}.`;
   if (v.form === "ampoule") return `${sku.name}: ${sku.spec}. ${sku.dose}.`;
