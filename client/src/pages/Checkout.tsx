@@ -218,15 +218,15 @@ export default function Checkout() {
               Your cart is empty
             </h1>
             <p className="text-base mb-6" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-              Add a peptide or curated stack before checkout.
+              Add a medicine or a protocol before checkout.
             </p>
-            <Link asChild href="/stacks">
+            <Link asChild href="/peptides">
               <a
                 className="inline-block px-6 py-3"
                 style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", borderRadius: "var(--nx-r-md)" }}
                 data-testid="link-empty-checkout-stacks"
               >
-                Browse stacks
+                Browse medicines
               </a>
             </Link>
           </div>
@@ -310,7 +310,7 @@ export default function Checkout() {
                 <>
                   <Section title="Where should we ship?" eyebrow="Step 01 · Address">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Shipped cold to all 50 states once your doctor says yes. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
+                      Shipped cold to all 50 states once a physician approves your order. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
                     </p>
                     <Row>
                       <Field label="Full name" error={errors.name?.message}>
@@ -381,12 +381,12 @@ export default function Checkout() {
                       <Stethoscope size={16} style={{ color: "var(--nx-success)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                       <div>
                         <p className="text-sm font-semibold mb-1" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>
-                          Your doctor decides before anything is made.
+                          A physician decides before anything is made.
                         </p>
                         <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                           Billing runs through Bask Health, our telehealth billing partner. The price is complete:
-                          one number a month, with your doctor's review, your medicine, cold shipping and the week-12
-                          blood test within it. If your doctor declines, the refund policy sets out what is refunded.
+                          one number a month, with the physician's review, your medicine, cold shipping and the week-12
+                          blood test within it. If the physician declines, the refund policy sets out what is refunded.
                         </p>
                       </div>
                     </div>
@@ -446,7 +446,7 @@ export default function Checkout() {
                 <>
                   <Section title="Health screening" eyebrow="Step 03 · Review">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Answer honestly. Your doctor reads every word, and your answers are encrypted in transit.
+                      Answer honestly. A physician reads every answer, and your answers are encrypted in transit.
                     </p>
                     <div className="space-y-3">
                       <YesNoField
@@ -508,11 +508,11 @@ export default function Checkout() {
                         className="nx-cta-cobalt disabled:opacity-60"
                         data-testid="button-submit-checkout"
                       >
-                        {mutation.isPending ? "Submitting…" : "Submit to your doctor"}
+                        {mutation.isPending ? "Submitting…" : "Submit for physician review"}
                       </button>
                     </div>
                     <p className="text-xs mt-3 max-w-md" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
-                      By submitting, you consent to review by a licensed physician. Billing runs through Bask Health, and the refund policy sets out what is refunded if your doctor declines.
+                      By submitting, you consent to review by a licensed physician. Billing runs through Bask Health, and the refund policy sets out what is refunded if the physician declines.
                     </p>
                     {(() => {
                       const errored = Object.keys(errors);
@@ -616,7 +616,7 @@ export default function Checkout() {
               </div>
 
               <div className="mt-5 pt-5 text-[11px]" style={{ borderTop: "1px solid var(--nx-border)", fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                <p>Billing is handled by Bask Health, our telehealth billing partner. Prescription only. Your doctor decides, and can decline.</p>
+                <p>Billing is handled by Bask Health, our telehealth billing partner. Prescription only. A licensed physician decides, and can decline.</p>
               </div>
               </Reveal>
             </aside>

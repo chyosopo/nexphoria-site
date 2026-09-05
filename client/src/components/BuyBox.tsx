@@ -153,8 +153,8 @@ export function BuyBox(props: BuyBoxProps) {
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>
               {fromPrice
-                ? "Cadence and final price are set by your doctor at intake, against your protocol."
-                : "Dosed and priced by your doctor at intake, against your protocol."}
+                ? "Cadence and final price are set by a physician at intake, against your protocol."
+                : "Dosed and priced by a physician at intake, against your protocol."}
             </p>
             <div style={{ marginTop: "1.1rem" }}>
               <CTA testId={ctaTestId}>Get started</CTA>

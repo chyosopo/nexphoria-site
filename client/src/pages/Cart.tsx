@@ -27,7 +27,7 @@ export default function Cart() {
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }])],
   });
-  const { lines, subtotal, totalSavings, itemCount, updateQty, updateCadence, removeItem, dueToday } = useCart();
+  const { lines, subtotal, itemCount, updateQty, updateCadence, removeItem, dueToday } = useCart();
 
   return (
     <SiteLayout variant="gate">
@@ -37,12 +37,7 @@ export default function Cart() {
         <div className="nx-container nx-section-y" style={{ paddingTop: "1.25rem" }}>
           {/* Header */}
           <div className="mb-10">
-            <div
-              className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3"
-              style={{ fontFamily: FONT, color: "var(--nx-amber)" }}
-            >
-              Your Protocol
-            </div>
+            <p className="nx-eyebrow mb-3">Your cart</p>
             <h1
               className="text-4xl md:text-5xl"
               style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-tight)" }}
@@ -54,8 +49,8 @@ export default function Cart() {
               style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}
             >
               {itemCount === 0
-                ? "Your cart is empty. Start from a goal, or pick a peptide."
-                : "Check your plan, then continue to checkout. Your doctor decides next."}
+                ? "Your cart is empty. Browse the medicines by what they treat."
+                : "Review your plan, then continue to checkout. A licensed physician reviews your order before anything is dispensed."}
             </p>
           </div>
 
@@ -137,14 +132,12 @@ export default function Cart() {
                               </p>
                             )}
 
-                            {/* Chips */}
+                            {/* Chips — the physician's review is a fact of the plan.
+                                The old "Save $X" chip was a you-save badge (law 3);
+                                the term difference is stated on the cadence control
+                                below as a plain per-month fact instead. */}
                             <div className="flex flex-wrap items-center gap-2 mt-3">
-                              <Chip icon={<Stethoscope size={11} aria-hidden="true" />}>Doctor review included</Chip>
-                              {line.savings && line.savings > 0 ? (
-                                <Chip tone="amber">
-                                  Save {formatUSD(line.savings)} · {line.cadenceLabel}
-                                </Chip>
-                              ) : null}
+                              <Chip icon={<Stethoscope size={11} aria-hidden="true" />}>Physician's review included</Chip>
                             </div>
 
                             {/* Cadence picker (medicines only) */}
@@ -185,9 +178,9 @@ export default function Cart() {
                                       {meta.savePct > 0 ? (
                                         <span
                                           className="ml-1.5 text-[11px]"
-                                          style={{ color: active ? "var(--nx-bg)" : "var(--nx-amber)", opacity: active ? 0.85 : 1 }}
+                                          style={{ color: active ? "var(--nx-bg)" : "var(--nx-fg-muted)", opacity: active ? 0.85 : 1 }}
                                         >
-                                          −{meta.savePct}%
+                                          {meta.savePct}% less
                                         </span>
                                       ) : null}
                                     </button>
@@ -316,7 +309,6 @@ export default function Cart() {
                 </div>
 
                 <SummaryRow label="Monthly price" value={`${formatUSD(subtotal)} / mo`} />
-                <SummaryRow label="Month to month would be" value={formatUSD(subtotal + totalSavings)} />
 
                 <div
                   className="flex items-baseline justify-between mt-5 pt-5"
@@ -515,37 +507,28 @@ function EmptyCart() {
         <ShoppingBag size={32} strokeWidth={1.25} aria-hidden="true" />
       </div>
       <h2 className="text-2xl mb-3" style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600 }}>
-        Your protocol is empty
+        Your cart is empty
       </h2>
       <p className="text-sm mb-6 px-6" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-        Start with a curated stack, browse single peptides, or take the assessment for a custom physician-built protocol.
+        Every medicine shows what it treats and what it costs, grouped by goal.
       </p>
       <div className="flex flex-col gap-2 max-w-[240px] mx-auto">
-        <Link asChild href="/stacks">
+        <Link asChild href="/peptides">
           <a
             className="block w-full px-5 py-3 transition-all text-center"
             style={{ background: "var(--nx-fg)", color: "var(--nx-bg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 500, borderRadius: "var(--nx-r-md)" }}
-            data-testid="link-empty-browse-stacks"
+            data-testid="link-empty-browse-peptides"
           >
-            Browse curated stacks
+            Browse medicines
           </a>
         </Link>
-        <Link asChild href="/peptides">
+        <Link asChild href="/stacks">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
             style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-            data-testid="link-empty-take-assessment"
+            data-testid="link-empty-browse-stacks"
           >
-            Take the assessment
-          </a>
-        </Link>
-        <Link asChild href="/peptides">
-          <a
-            className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
-            style={{ color: "var(--nx-fg-graphite)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}
-            data-testid="link-empty-browse-peptides"
-          >
-            Browse single peptides
+            See protocols
           </a>
         </Link>
       </div>
