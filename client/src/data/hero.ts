@@ -16,11 +16,14 @@ export const HERO = {
      "Peptide therapy, prescribed for your [sleep]" and the word cycles. The
      first word renders statically, so the prerendered page and a reader with
      reduced motion see a complete sentence. */
-  lead: "Peptide therapy, prescribed for your",
+  /* The shout (Chiya 2026-09-05, after enhanced.com; docs/VOICE.md): the
+     goal in three words, then the fact with the rotating goal word. */
+  shout: "Stronger. Sharper. Rested.",
+  lead: "Prescribed for your",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
   subline:
-    "Prescription peptides, matched to your goal: weight, recovery, sleep, focus, hormones or skin. A licensed U.S. physician chooses the one that fits and sets the dose against your own blood work.",
-  cta: "See the treatments",
+    "Prescription peptides. A licensed U.S. physician. The dose set from your blood work.",
+  cta: "Shop the medicines",
   ctaSecondary: "How it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):

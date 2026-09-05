@@ -91,7 +91,7 @@ export default function FrontDoor() {
           </Reveal>
           <Reveal delay={60}>
             <p className="nx-eyebrow">Why we test</p>
-            <h2 id="fd-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>The dose is set from blood work.</h2>
+            <h2 id="fd-blood" className="nx-dsh2 nx-shout" style={{ maxWidth: "20ch" }}>The dose is set from blood.</h2>
             <ul className="nx-blood__lines">
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>A blood kit ships with the first order.</strong> {LAB_KIT.markers} markers, drawn at home, included.</span></li>
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>The physician sets the dose from the results,</strong> before the first dose.</span></li>
@@ -107,7 +107,7 @@ export default function FrontDoor() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Price</p>
-            <h2 id="fd-pricing" className="nx-dsh2" style={{ maxWidth: "18ch" }}>One monthly price. Everything within it.</h2>
+            <h2 id="fd-pricing" className="nx-dsh2 nx-shout" style={{ maxWidth: "18ch" }}>One number a month.</h2>
           </div>
           <p className="nx-prose" style={{ marginTop: "1rem", maxWidth: "58ch" }}>
             Paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. Each medicine shows its own price on its page, and the box above is what the price includes.
@@ -121,7 +121,7 @@ export default function FrontDoor() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Questions</p>
-            <h2 id="fd-faq" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Common questions.</h2>
+            <h2 id="fd-faq" className="nx-dsh2 nx-shout" style={{ maxWidth: "18ch" }}>Questions.</h2>
           </div>
         </Reveal>
         <div className="nx-faq-list" data-testid="frontdoor-faq">
@@ -144,15 +144,15 @@ export default function FrontDoor() {
         <Reveal>
           <div className="nx-closer-tile">
             <div>
-              <h2 id="fd-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>
-                Prescribed, if appropriate.
+              <h2 id="fd-closer" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>
+                Know what you're after?
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", marginTop: ".8rem", maxWidth: "44ch" }}>
-                A licensed U.S. physician reads the health questions and prescribes the medicine that fits, or explains why not.
+                Every medicine, by what it treats. Prescribed by a licensed U.S. physician, if appropriate.
               </p>
-              <a href="#treatments" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>
-                See the treatments
-              </a>
+              <Link href="/peptides" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>
+                Shop all medicines
+              </Link>
             </div>
           </div>
         </Reveal>

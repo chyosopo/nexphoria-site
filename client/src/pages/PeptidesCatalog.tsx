@@ -152,7 +152,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">The medicines</p>
-            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Every medicine, by what it treats.</h1>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>Know what you're after?</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
               Choose a goal. Every page states what the medicine treats, how it works, how it is taken, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
             </p>
@@ -275,7 +275,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="peptides-assess-title">
         <div className="nx-closer-tile">
           <div>
-            <h2 id="peptides-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0, lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)" }}>
+            <h2 id="peptides-assess-title" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0 }}>
               The next step is a physician.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>

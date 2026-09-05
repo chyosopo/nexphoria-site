@@ -29,7 +29,7 @@ export function WhatArrives() {
         <Reveal delay={80}>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">What arrives</p>
-            <h2 id="fd-arrives" className="nx-dsh2" style={{ maxWidth: "16ch" }}>What a month includes.</h2>
+            <h2 id="fd-arrives" className="nx-dsh2 nx-shout" style={{ maxWidth: "16ch" }}>One box. Everything in it.</h2>
             <p className="nx-lede">The medicine ships cold, once a month. The blood kit comes with the first order.</p>
           </div>
           <ul className="nx-arrives__list" aria-label="What a month includes" data-testid="frontdoor-includes">

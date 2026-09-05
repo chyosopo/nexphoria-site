@@ -52,7 +52,16 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
    separate on ACCENT plus canvas temperature — men ice-blue on cold white,
    women rose on barely-warm — rather than the previous azure/steel vs
    orchid/rose-quartz split palettes.
-3. **Institutional bank voice.** Calm, precise, authoritative. No hype, no exclamation marks, no urgency theater, no discount-brand energy.
+3. **The voice — AMENDED 2026-09-05 (Chiya, after enhanced.com): the
+   enhanced register for DISPLAY copy.** Headlines, tile titles, closers
+   and buttons are short, declarative, second person, set in caps: "LOSE
+   THE WEIGHT. KEEP THE MUSCLE." / "BUILT AROUND YOUR BASELINE." / "KNOW
+   WHAT YOU'RE AFTER?" Performance words (stronger, sharper, leaner,
+   rested, harder) name the goal. Body copy stays plain and factual. The
+   guardrails below still hold: a goal is not a guarantee, "if
+   appropriate" and the FDA clauses stay, no urgency, no discounts, no
+   counts, no "free", no comparison. docs/VOICE.md is the deck.
+   PREVIOUS (kept as history): **Institutional bank voice.** Calm, precise, authoritative. No hype, no exclamation marks, no urgency theater, no discount-brand energy.
    **Never defensive negation** (Chiya 2026-07-14: "Transparent pricing.
    No hidden fees" killed sitewide): a premium house does not deny
    trickery — assurance is stated as completeness. House phrases: "One

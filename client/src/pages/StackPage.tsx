@@ -373,7 +373,7 @@ export default function StackPage({ slug }: { slug: string }) {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="stack-close-title">
         <div className="nx-closer-tile">
           <div>
-            <h2 id="stack-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>Prescribed, if appropriate.</h2>
+            <h2 id="stack-close-title" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0, textWrap: "balance" }}>Prescribed, if appropriate.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>The order is placed, the health questions answered, and a licensed physician decides. If not prescribed, nothing is made.</p>
             <a href="#buy" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>See the plan and price</a>
           </div>

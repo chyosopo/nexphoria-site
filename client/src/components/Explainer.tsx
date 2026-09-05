@@ -16,17 +16,17 @@ export function Explainer() {
   const frames = [
     {
       art: <PeptideChain />,
-      t: "A signal the body already makes.",
+      t: "A signal you already make.",
       b: "A peptide is a short chain of amino acids, the same building blocks as protein. The body makes thousands of them as messages: release growth hormone tonight, you have eaten enough, repair this tendon.",
     },
     {
       art: <div className="nx-explain__media"><img src={SKU_PHOTO.sermorelin} alt="A Nexphoria vial of sermorelin" loading="lazy" decoding="async" width={1600} height={1600} /></div>,
-      t: "The physician prescribes the exact one.",
+      t: "The exact one, prescribed.",
       b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reads the health questions and prescribes the one that fits the goal, at a starting dose, compounded to order.",
     },
     {
       art: <MarkerChart />,
-      t: "The blood shows it working.",
+      t: "The blood shows it.",
       b: `A ${PANEL_TOTAL_MARKERS}-marker panel is drawn at home before the first dose and again at week ${RETEST_WEEK}. The physician sets the dose from what changed.`,
     },
   ];
@@ -35,8 +35,8 @@ export function Explainer() {
       <Reveal>
         <div className="nx-sec-head">
           <p className="nx-eyebrow">What a peptide does</p>
-          <h2 id="fd-explain" className="nx-dsh2" style={{ maxWidth: "20ch" }}>The body's own signals, prescribed one at a time.</h2>
-          <p className="nx-lede">The whole idea in three frames.</p>
+          <h2 id="fd-explain" className="nx-dsh2 nx-shout" style={{ maxWidth: "20ch" }}>The body's own signals. Prescribed.</h2>
+          <p className="nx-lede">The whole idea, in three frames.</p>
         </div>
       </Reveal>
       <ol className="nx-explain" aria-label="How it works, in three frames">
@@ -47,7 +47,7 @@ export function Explainer() {
                 {f.art}
                 <span className="nx-explain__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               </div>
-              <p className="nx-explain__t" style={{ fontFamily: S }}>{f.t}</p>
+              <p className="nx-explain__t nx-shout" style={{ fontFamily: S }}>{f.t}</p>
               <p className="nx-explain__b" style={{ fontFamily: F }}>{f.b}</p>
             </li>
           </Reveal>

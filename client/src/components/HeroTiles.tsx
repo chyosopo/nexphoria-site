@@ -11,6 +11,7 @@ import { ArrowRight, Stethoscope, FlaskConical, Droplets } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { HERO } from "@/data/hero";
 import { CATEGORY_LABELS } from "@/data/peptides";
+import { GOAL_SHOUT } from "@/data/goalTeaching";
 import tileMetabolic from "@/assets/studio/tile-metabolic.webp";
 import tileMetabolic800 from "@/assets/studio/tile-metabolic-800.webp";
 import tileGrowth from "@/assets/studio/tile-growth.webp";
@@ -33,9 +34,9 @@ function RotatingWord({ words }: { words: string[] }) {
 }
 
 const TILES = [
-  { goal: "metabolic" as const, img: tileMetabolic, img800: tileMetabolic800, href: "/peptides?goal=metabolic", cta: "See the medicines", dark: false, line: "Appetite and weight." },
-  { goal: "growth" as const, img: tileGrowth, img800: tileGrowth800, href: "/peptides?goal=growth", cta: "See the medicines", dark: true, line: "Abdominal fat and lean mass." },
-  { goal: "sexual-health" as const, img: tileSexual, img800: tileSexual800, href: "/peptides?goal=sexual-health", cta: "See the medicines", dark: true, line: "Desire, closeness and performance." },
+  { goal: "metabolic" as const, img: tileMetabolic, img800: tileMetabolic800, href: "/peptides?goal=metabolic", cta: "Shop weight loss", dark: false },
+  { goal: "growth" as const, img: tileGrowth, img800: tileGrowth800, href: "/peptides?goal=growth", cta: "Shop body composition", dark: true },
+  { goal: "sexual-health" as const, img: tileSexual, img800: tileSexual800, href: "/peptides?goal=sexual-health", cta: "Shop sexual health", dark: true },
 ];
 
 export function HeroTiles() {
@@ -53,7 +54,8 @@ export function HeroTiles() {
             <li style={{ fontFamily: F }}><FlaskConical size={13} strokeWidth={2.2} aria-hidden="true" />{HERO.facts[1]}</li>
             <li style={{ fontFamily: F }}><Droplets size={13} strokeWidth={2.2} aria-hidden="true" />{HERO.facts[2]}</li>
           </ul>
-          <h1 className="nx-tilehero__h1" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</h1>
+          <h1 className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>{HERO.shout}</h1>
+          <p className="nx-tilehero__line" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</p>
           <p className="nx-tilehero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
         </div>
         <div className="nx-tiles nx-tiles--3" data-testid="hero-tiles">
@@ -61,7 +63,7 @@ export function HeroTiles() {
             <Link key={t.goal} href={t.href} className={`nx-tile${t.dark ? " nx-tile--dark" : ""}`} style={{ ["--i" as string]: i }} data-testid={`hero-tile-${t.goal}`} aria-label={`${CATEGORY_LABELS[t.goal]}: ${t.cta}`}>
               <img src={t.img} srcSet={`${t.img800} 800w, ${t.img} 1200w`} sizes="(max-width: 900px) 100vw, 33vw" alt="" width={1200} height={900} fetchPriority={i === 0 ? "high" : undefined} decoding="async" />
               <span className="nx-chips nx-chips--tile" aria-hidden="true"><span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{CATEGORY_LABELS[t.goal]}</span><span className="nx-chip" style={{ fontFamily: F }}>Rx</span></span>
-              <span className="nx-tile__title nx-tile__title--low" style={{ fontFamily: S }}>{t.line}</span>
+              <span className="nx-tile__title nx-tile__title--low nx-shout" style={{ fontFamily: S }}>{GOAL_SHOUT[t.goal]}</span>
               <span className="nx-tile__btn" style={{ fontFamily: F }}>{t.cta}</span>
               <span className="nx-tile__arrow" aria-hidden="true"><ArrowRight size={18} /></span>
             </Link>
@@ -69,7 +71,7 @@ export function HeroTiles() {
         </div>
         <div className="nx-tilehero__foot">
           <a href="#treatments" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta">{HERO.cta}</a>
-          <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)" }}>Every medicine, by what it treats</Link>
+          <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)" }}>How it works</Link>
         </div>
       </div>
     </section>
