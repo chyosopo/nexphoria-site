@@ -125,7 +125,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     <SiteLayout>
       {/* ══ 1 · HERO: the product beside what it is, what it is for and how it works ══ */}
       <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="solo-hero-title">
-        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
             <ArrowLeft size={15} aria-hidden="true" /> All peptides
           </Link>

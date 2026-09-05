@@ -115,7 +115,7 @@ export default function StackPage({ slug }: { slug: string }) {
     <SiteLayout navVariant={world} footerVariant={world}>
       {/* ── 1 · HERO: the protocol beside what it is for ── */}
       <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="stack-hero-title">
-        <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
+        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
               <Link href="/stacks" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
