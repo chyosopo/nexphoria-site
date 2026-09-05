@@ -114,7 +114,7 @@ if (!entityOk) failures.push(`Legal entity "${BUSINESS.entity}" not found. Brand
    present. Checked across CONTENT routes, not just the legal ones, because
    that is where the invented pair was living. */
 const LEGAL_ROUTES = ["/legal/terms", "/legal/privacy", "/legal/messaging", "/legal/refund-policy", "/legal/telehealth-consent"];
-const IDENTITY_ROUTES = [...LEGAL_ROUTES, "/contact", "/about", "/"];
+const IDENTITY_ROUTES = [...LEGAL_ROUTES, "/contact", "/"];
 const FORBIDDEN_IDENTITY = [
   "Nexphoria, Inc.", "Nexphoria Inc.", "Nexphoria Health, LLC", "Nexphoria Health LLC",
   "800 Third Ave",

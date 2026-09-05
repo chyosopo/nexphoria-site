@@ -43,39 +43,18 @@ async function slugsFrom(path: string, scopeName?: string): Promise<string[]> {
   return scope ? all.filter((s) => scope.has(s)) : all;
 }
 
-/* Goal categories that still have a sellable molecule behind them.
-
-   The full PeptideCategory union is eight; under the launch scope only three
-   are answerable — metabolic (semaglutide, tirzepatide), growth (tesamorelin)
-   and sexual-health (PT-141). Listing the other five put /goals/recovery,
-   /goals/skin, /goals/cognition, /goals/sleep and /goals/longevity in the
-   sitemap and prerendered them, i.e. asked search engines to index pages that
-   answer a goal we cannot currently serve.
-
-   Kept as an explicit list rather than derived: deriving means mapping
-   SoloCategory -> PeptideCategory, and that mapping already lives in SoloPDP;
-   duplicating it here would be a second source of truth for the same fact.
-   Update this alongside LAUNCH_SLUGS — audit:data's census is the check. */
-/* 2026-09-03: full menu on (Chiya). All eight goals have live molecules. */
-const GOAL_CATEGORIES = ["growth", "metabolic", "sexual-health", "recovery", "skin", "cognition", "sleep", "longevity", "hormone"];
-
-/* journal.ts also declares JournalCategory slugs (foundations, protocols, …)
-   with the same `slug:` shape as articles. These are NOT article routes —
-   /journal/foundations would 404 — so exclude them. */
-const JOURNAL_CATEGORY_SLUGS = new Set([
-  "foundations", "protocols", "research", "metabolic",
-  "longevity", "performance", "hormones", "safety",
-]);
-
 /* Static routes that always exist (App.tsx). Alias/redirect and
-   checkout/cart/gate routes are intentionally excluded from the sitemap. */
+   checkout/cart/gate routes are intentionally excluded from the sitemap.
+
+   CUT TO THE SPINE (Chiya 2026-09-05): the indexable surface is now Home, the
+   Medicines shelf, the Protocols tier, the one How-it-works teaching page, the
+   FAQ (which carries the physician/pharmacy address disclosure) and Contact —
+   plus the compliance legal set. Everything else (the worlds, the second blood
+   page, both quizzes, the blog, the brand pages) now REDIRECTS in App.tsx, so
+   it is neither prerendered nor listed here. */
 const STATIC_ROUTES = [
-  "/", "/men", "/women",
-  "/about", "/physicians", "/bloodwork", "/labs", "/quiz",
-  "/how-it-works", "/peptides-101", "/faq", "/contact", "/community", "/booking", "/assessment",
-  "/what-happens-next",
-  "/protocols", "/stacks", "/stacks/build", "/peptides", "/gift",
-  "/men/peptides", "/women/peptides", "/journal",
+  "/", "/peptides", "/stacks",
+  "/how-it-works", "/faq", "/contact",
   "/legal", "/legal/hipaa-notice", "/legal/prescribing-policy",
   "/legal/privacy", "/legal/refund-policy", "/legal/state-availability",
   "/legal/telehealth-consent", "/legal/terms", "/legal/messaging",
@@ -93,26 +72,15 @@ export async function collectRoutes(): Promise<string[]> {
   const root = process.cwd();
   const solos = await slugsFrom(`${root}/client/src/data/soloCatalog.ts`, "LAUNCH_SLUGS");
   const stacks = await slugsFrom(`${root}/client/src/data/stacksCatalog.ts`, "LAUNCH_STACK_SLUGS");
-  const articles = (await slugsFrom(`${root}/client/src/data/journal.ts`))
-    .filter((s) => !JOURNAL_CATEGORY_SLUGS.has(s));
 
   const paths = new Set<string>(STATIC_ROUTES);
 
-  // goal decision pages
-  GOAL_CATEGORIES.forEach((c) => paths.add(`/goals/${c}`));
+  // every solo peptide — the world variants are redirects now, so only the
+  // neutral canonical is a real, indexable, prerendered route.
+  solos.forEach((s) => paths.add(`/peptides/${s}`));
 
-  // every solo peptide, unworlded + both worlds (all three are real routes)
-  solos.forEach((s) => {
-    paths.add(`/peptides/${s}`);
-    paths.add(`/men/peptides/${s}`);
-    paths.add(`/women/peptides/${s}`);
-  });
-
-  // flagship protocols ('build' is already a static route)
+  // flagship protocols (the 'build' page is retired)
   stacks.filter((s) => s !== "build").forEach((s) => paths.add(`/stacks/${s}`));
-
-  // journal articles
-  articles.forEach((a) => paths.add(`/journal/${a}`));
 
   return [...paths].sort();
 }

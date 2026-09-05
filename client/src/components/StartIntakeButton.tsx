@@ -1,13 +1,14 @@
 /**
  * StartIntakeButton — the single intake ADAPTER for the site.
  *
- * Current behavior: Every CTA routes to the in-house Nexphoria assessment
- * (`/#/assessment`). The route preserves `?source=` and `?stack=` so analytics +
- * the results screen can personalize. Click is also POSTed to /api/intake-click.
+ * Current behavior: every CTA leads to the medicines shelf (`/peptides`). The
+ * guided quiz/assessment funnel was retired in the 2026-09-05 cut to the spine
+ * (pure browse), so "Get started" opens the shelf. The route still preserves
+ * `?source=` and `?stack=` for analytics, and the click is POSTed to
+ * /api/intake-click.
  *
- * When a real Rx/telehealth partner is wired up later, swap this single file
- * to either deep-link into the partner OR keep `/assessment` as the gating funnel
- * and hand off after the quiz.
+ * When a real Rx/telehealth partner is wired up later, swap this single file to
+ * deep-link into the partner's intake.
  */
 
 import { useLocation } from "wouter";
@@ -15,7 +16,7 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
 
-const INTAKE_ROUTE = "/assessment";
+const INTAKE_ROUTE = "/peptides";
 
 type Variant = "primary" | "outline-light" | "outline-dark" | "ghost" | "ghost-dark";
 type Size = "sm" | "md" | "lg" | "xl";

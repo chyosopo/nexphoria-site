@@ -518,11 +518,11 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
         className="text-sm mb-6 max-w-xs"
         style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.55 }}
       >
-        Browse treatments, or answer a few health questions and we will point you to the right one.
+        Every medicine shows what it treats and what it costs, grouped by goal.
       </p>
       <div className="flex flex-col gap-2 w-full max-w-[220px]">
         <Link
-          href="/stacks"
+          href="/peptides"
           onClick={onClose}
           className="block w-full text-center px-4 py-3 transition-all no-underline"
           style={{
@@ -535,10 +535,10 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           }}
           data-testid="link-browse-stacks"
         >
-          Browse treatments
+          Browse medicines
         </Link>
         <Link
-          href="/women/peptides"
+          href="/stacks"
           onClick={onClose}
           className="block w-full text-center px-4 py-3 transition-colors hover:bg-black/5 no-underline"
           style={{
@@ -551,7 +551,7 @@ function EmptyCart({ onClose }: { onClose: () => void }) {
           }}
           data-testid="link-browse-peptides"
         >
-          Single peptides
+          See protocols
         </Link>
       </div>
     </div>

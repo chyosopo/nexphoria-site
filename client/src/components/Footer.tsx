@@ -43,12 +43,6 @@ export function Footer({ variant = "shared" }: FooterProps) {
     return () => io.disconnect();
   }, []);
 
-  const pharmacyBase =
-    variant === "men" ? "/men/peptides" :
-    variant === "women" ? "/women/peptides" :
-    "/peptides";
-  const assessmentBase = "/assessment";
-
   // Newsletter capture → /api/waitlist (same lead sink as ExitIntentModal).
   // Degrades gracefully on static hosts where the API isn't running.
   const [email, setEmail] = useState("");
@@ -80,28 +74,18 @@ export function Footer({ variant = "shared" }: FooterProps) {
     }
   };
 
-  // 4-column editorial footer — Product / Company / Legal / Contact.
+  // Editorial footer — Explore / Legal / Contact. Trimmed to the spine
+  // (Chiya 2026-09-05): the shelf, the protocols tier, the one teaching page,
+  // and the FAQ. Blood testing and who-prescribes now live inside How it works.
   const columns: FooterColumn[] = [
     {
-      heading: "Product",
+      heading: "Explore",
       testid: "footer-col-product",
       links: [
-        { label: "All peptides", href: pharmacyBase },
+        { label: "All medicines", href: "/peptides" },
         { label: "Protocols", href: "/stacks" },
-        { label: "Blood testing", href: "/labs" },
-        { label: "Custom protocol", href: assessmentBase },
-        { label: "Give as a gift", href: "/gift" },
-      ],
-    },
-    {
-      heading: "Company",
-      testid: "footer-col-company",
-      links: [
-        { label: "About", href: "/about" },
-        { label: "Physicians", href: "/physicians" },
         { label: "How it works", href: "/how-it-works" },
-        { label: "Peptides 101", href: "/peptides-101" },
-        { label: "Journal", href: "/journal" },
+        { label: "FAQ", href: "/faq" },
       ],
     },
     {
@@ -123,10 +107,8 @@ export function Footer({ variant = "shared" }: FooterProps) {
       testid: "footer-col-contact",
       links: [
         { label: "Support center", href: "/contact" },
-        { label: "FAQ", href: "/faq" },
         { label: "hello@nexphoria.com", href: "mailto:hello@nexphoria.com" },
         { label: BUSINESS.phone, href: `tel:${BUSINESS.phoneE164}` },
-        { label: "Book a consultation", href: "/booking" },
       ],
     },
   ];

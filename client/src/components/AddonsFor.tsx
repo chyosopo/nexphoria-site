@@ -16,7 +16,7 @@ export function AddonsFor({ keys, testId }: { keys: string[]; testId?: string })
       <ul>
         {list.map((a) => (
           <li key={a.slug}>
-            <Link href="/labs" className="nx-addons-for__chip" style={{ fontFamily: F }}>
+            <Link href="/how-it-works" className="nx-addons-for__chip" style={{ fontFamily: F }}>
               <Plus size={12} strokeWidth={2.6} aria-hidden="true" /> {a.name} <span>{usd(a.price)}</span>
             </Link>
           </li>

@@ -188,7 +188,7 @@ export default function Checkout() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/what-happens-next" className="nx-text-link" data-testid="checkout-timeline-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-flex" }}>
+                <Link href="/how-it-works" className="nx-text-link" data-testid="checkout-timeline-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1rem", display: "inline-flex" }}>
                   See the full timeline
                 </Link>
               </div>

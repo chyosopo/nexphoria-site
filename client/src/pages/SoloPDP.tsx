@@ -176,7 +176,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", flexWrap: "wrap", marginTop: "1.5rem" }}>
                 <Link
-                  href="/assessment"
+                  href="/peptides"
                   className="nx-cta-cobalt"
                   data-testid="solo-hero-cta"
                   style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}
@@ -251,7 +251,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 </div>
               )}
               <AddonsFor keys={[solo.slug]} testId={`addons-${solo.slug}`} />
-              <Link href="/labs" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
+              <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
                 Every marker, and the additional tests
               </Link>
             </section>
@@ -334,7 +334,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
         <h2 id="solo-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>The next step is a physician.</h2>
         <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this medicine is right for you.</p>
-        <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See if I'm eligible</Link>
+        <Link href="/peptides" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See if I'm eligible</Link>
       </section>
     </SiteLayout>
   );

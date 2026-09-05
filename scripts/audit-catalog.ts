@@ -29,7 +29,6 @@ import { existsSync } from "node:fs";
 import { SOLO_CATALOG, RETIRED_SOLO } from "../client/src/data/soloCatalog";
 import { FLAGSHIP_STACKS } from "../client/src/data/stacksCatalog";
 import { LIVE_CATEGORIES } from "../client/src/data/peptides";
-import { selectorRoutes } from "../client/src/data/protocolSelector";
 import { allGiftItems } from "../client/src/data/gift";
 import { GOALS, goalSkus } from "../client/src/data/goals";
 import { liveFeatured } from "../client/src/data/peptides";
@@ -43,14 +42,6 @@ const bad = (m: string) => { console.log(`  ✗ ${m}`); failed++; };
 /** Finite, positive, not NaN — what every money figure must be. */
 /** Every slug the catalog knows, live or retired — the declared universe. */
 const ALL_SLUGS = new Set([...SOLO_CATALOG, ...RETIRED_SOLO].map((s) => s.slug));
-
-/** The /goals/<cat> pages genSitemap actually publishes, read from source so
- *  the gate compares against what ships rather than what we assume ships. */
-async function publishedGoalCategories(): Promise<string[]> {
-  const src = await readFile("script/genSitemap.ts", "utf-8");
-  const m = /GOAL_CATEGORIES\s*=\s*\[([^\]]*)\]/s.exec(src);
-  return m ? [...m[1].matchAll(/"([a-z-]+)"/g)].map((x) => x[1]) : [];
-}
 
 const money = (n: unknown): boolean => typeof n === "number" && Number.isFinite(n) && n > 0;
 
@@ -94,26 +85,10 @@ console.log("\n═ SURFACE COVERAGE — does every live surface still offer some
      Drift lives between what is DECLARED and what RESOLVES, so that is what is
      compared now. */
 
-  // 1. Every category the sitemap publishes a /goals/<cat> page for must have
-  //    routes. GOAL_CATEGORIES in genSitemap is hand-maintained; if it drifts
-  //    from the catalog we prerender and index pages with nothing on them.
-  const published = await publishedGoalCategories();
-  for (const cat of published) {
-    const men = selectorRoutes(cat as never, "men").length;
-    const women = selectorRoutes(cat as never, "women").length;
-    const n = Math.min(men, women);
-    n > 0
-      ? ok(`/goals/${cat} (published) offers ${n}+ route(s) in both worlds`)
-      : bad(`/goals/${cat} is published in the sitemap but offers NO routes — dead goal page`);
-  }
-  const orphanPublished = published.filter((c) => !LIVE_CATEGORIES.includes(c as never));
-  orphanPublished.length === 0
-    ? ok("sitemap goal categories all have live molecules")
-    : bad(`sitemap publishes goals with no live molecule: ${orphanPublished.join(", ")}`);
-  const unpublishedLive = LIVE_CATEGORIES.filter((c) => !published.includes(c));
-  unpublishedLive.length === 0
-    ? ok("every live category is published")
-    : bad(`live categories missing from the sitemap: ${unpublishedLive.join(", ")}`);
+  // 1. The standalone /goals/<cat> pages were retired in the cut to the spine
+  //    (Chiya 2026-09-05): the Medicines shelf groups by goal instead, and the
+  //    menu's goal headings link to /peptides. So there are no goal ROUTES to
+  //    validate — only the goal DATA that still drives that grouping (below).
 
   // 2. Every slug DECLARED by a goal must exist in the catalog. A declared slug
   //    that silently resolves to nothing is how a goal card loses its content.

@@ -69,7 +69,7 @@ export default function FrontDoor() {
             <p id="fd-what" className="nx-premise__t" style={{ fontFamily: S }}>
               A peptide is a signal your body already makes. A licensed physician prescribes the right one for your goal, and doses it against your own blood work.
             </p>
-            <Link href="/peptides-101" className="nx-text-link nx-premise__link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="frontdoor-learn">
+            <Link href="/how-it-works" className="nx-text-link nx-premise__link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="frontdoor-learn">
               How peptides work <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
@@ -116,7 +116,7 @@ export default function FrontDoor() {
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>Your physician sets your dose from the results,</strong> before your first dose.</span></li>
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>At week {RETEST_WEEK} the same {LAB_KIT.markers} markers are tested again</strong> and compared, so the dose follows what changed.</span></li>
             </ul>
-            <Link href="/labs" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem", display: "inline-block" }} data-testid="frontdoor-labs-link">Every marker, and the additional tests</Link>
+            <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem", display: "inline-block" }} data-testid="frontdoor-labs-link">Every marker, and the additional tests</Link>
           </Reveal>
         </div>
       </section>

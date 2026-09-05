@@ -8,8 +8,9 @@
    button at the bottom. Copy is the plain deck; nothing here persuades.
 
    Nav law (ROADMAP 1.3) still holds: ONE button, at most five links, the
-   cart icon. Treatments · Protocols · Blood testing · How it works · Find
-   your medicine. */
+   cart icon. Cut to the spine (Chiya 2026-09-05): Treatments · Protocols ·
+   How it works. Blood testing and the guided quiz are gone — testing folds
+   into How it works, and the shelf is pure browse. */
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
@@ -40,9 +41,7 @@ interface NavItem {
 const ITEMS: NavItem[] = [
   { label: "Treatments", href: "/peptides", panel: "treatments" },
   { label: "Protocols", href: "/stacks", panel: "protocols" },
-  { label: "Blood testing", href: "/labs" },
   { label: "How it works", href: "/how-it-works" },
-  { label: "Find your medicine", href: "/quiz" },
 ];
 
 /* The goals, in four columns. Only goals with a medicine behind them render
@@ -94,8 +93,6 @@ function TreatmentsPanel({ onPick }: { onPick: () => void }) {
           <span className="nx-mega__all-title" style={{ fontFamily: S }}>All medicines</span>
           <span className="nx-mega__all-line" style={{ fontFamily: F }}>What each is for, and its price. <ArrowRight size={13} aria-hidden="true" /></span>
         </Link>
-        <Link href="/quiz" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-quiz-link" style={{ fontFamily: F }}>Find your medicine <ArrowUpRight size={14} aria-hidden="true" /></Link>
-        <Link href="/labs" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-labs-link" style={{ fontFamily: F }}>Blood testing <ArrowUpRight size={14} aria-hidden="true" /></Link>
         <Link href="/how-it-works" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-how-link" style={{ fontFamily: F }}>How it works <ArrowUpRight size={14} aria-hidden="true" /></Link>
       </aside>
       <div className="nx-mega__cols">
@@ -104,7 +101,7 @@ function TreatmentsPanel({ onPick }: { onPick: () => void }) {
             <p className="nx-mega__group" style={{ fontFamily: F }}>{g.label}</p>
             {g.goals.map((goal) => (
               <div key={goal} className="nx-mega__goal">
-                <Link href={`/goals/${goal}`} className="nx-mega__goal-link" onClick={onPick} data-testid={`mega-category-${goal}`} style={{ fontFamily: F }}>
+                <Link href="/peptides" className="nx-mega__goal-link" onClick={onPick} data-testid={`mega-category-${goal}`} style={{ fontFamily: F }}>
                   {CATEGORY_LABELS[goal]} <ArrowRight size={13} aria-hidden="true" />
                 </Link>
                 <ul className="nx-mega__list">
@@ -127,7 +124,6 @@ function ProtocolsPanel({ onPick }: { onPick: () => void }) {
           <span className="nx-mega__all-title" style={{ fontFamily: S }}>Medicines prescribed together</span>
           <span className="nx-mega__all-line" style={{ fontFamily: F }}>Two to four medicines on one plan, with one blood test before and one at week 12. <ArrowRight size={13} aria-hidden="true" /></span>
         </Link>
-        <Link href="/stacks/build" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-build-link" style={{ fontFamily: F }}>Build your own <ArrowUpRight size={14} aria-hidden="true" /></Link>
       </aside>
       <ul className="nx-mega__stacks">
         {FLAGSHIP_STACKS.map((st) => {
@@ -285,7 +281,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                                   <p className="nx-mega__group" style={{ fontFamily: F }}>{g.label}</p>
                                   {g.goals.map((goal) => (
                                     <div key={goal} className="nx-mega__goal">
-                                      <Link href={`/goals/${goal}`} className="nx-mega__goal-link" onClick={() => setMenuOpen(false)} data-testid={`nav-mobile-category-${goal}`} style={{ fontFamily: F }}>{CATEGORY_LABELS[goal]} <ArrowRight size={13} aria-hidden="true" /></Link>
+                                      <Link href="/peptides" className="nx-mega__goal-link" onClick={() => setMenuOpen(false)} data-testid={`nav-mobile-category-${goal}`} style={{ fontFamily: F }}>{CATEGORY_LABELS[goal]} <ArrowRight size={13} aria-hidden="true" /></Link>
                                       <ul className="nx-mega__list">
                                         {skusFor(goal).map((s) => <li key={s.slug}><MenuSku s={s} onPick={() => setMenuOpen(false)} /></li>)}
                                       </ul>

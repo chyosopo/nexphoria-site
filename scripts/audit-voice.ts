@@ -34,13 +34,16 @@ if (!existsSync(DIST)) {
 /* The marketing surface. /legal/* is deliberately absent: policy pages state
    limits of liability and scope of practice, and those are written in the
    negative because the law requires them to be. */
+/* The surviving marketing surface after the 2026-09-05 cut to the spine. The
+   deleted pages (about, peptides-101, goals, labs, physicians, assessment,
+   what-happens-next, quiz, the blog) are redirects now — not prerendered, so
+   there is nothing to check. Their voice moved into /how-it-works and the PDPs. */
 const ROUTES = [
-  "/", "/about", "/how-it-works", "/peptides-101", "/peptides", "/stacks",
-  "/goals/metabolic", "/goals/growth", "/goals/sexual-health", "/goals/hormone", "/labs", "/stacks/recover", "/peptides/testosterone",
-  "/faq", "/physicians", "/contact", "/assessment",
+  "/", "/how-it-works", "/peptides", "/stacks",
+  "/faq", "/contact",
+  "/stacks/recover",
   "/peptides/tesamorelin", "/peptides/semaglutide",
   "/peptides/tirzepatide", "/peptides/pt-141",
-  "/protocols", "/stacks/recover", "/what-happens-next", "/peptides-101", "/quiz",
 ];
 
 /* Defensive constructions, each with the positive move that replaces it.

@@ -74,7 +74,7 @@ export function GoalPicker({ counts }: { counts: Record<string, number> }) {
             {g.title}
           </Link>
         ))}
-        <Link href="/assessment" className="nx-chip nx-chip-ghost" role="listitem" style={{ fontFamily: F }} data-testid="frontdoor-chip-unsure">
+        <Link href="/peptides" className="nx-chip nx-chip-ghost" role="listitem" style={{ fontFamily: F }} data-testid="frontdoor-chip-unsure">
           Not sure yet
         </Link>
       </div>

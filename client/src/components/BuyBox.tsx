@@ -65,7 +65,7 @@ export interface BuyBoxProps {
 
 const CTA = ({ testId, children }: { testId: string; children: React.ReactNode }) => (
   <Link
-    href="/assessment"
+    href="/peptides"
     data-testid={testId}
     onClick={() => track("intake_cta", { source: "buybox", testId })}
     className="nx-cta-cobalt"
@@ -265,7 +265,7 @@ export function BuyBox(props: BuyBoxProps) {
             )}
             {cadence && !reserving && (
               <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
-                <Link href="/assessment" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
+                <Link href="/peptides" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                   Not sure? Answer a few health questions
                 </Link>
               </div>
@@ -332,7 +332,7 @@ export function BuyBox(props: BuyBoxProps) {
           </button>
         ) : (
           <Link
-            href="/assessment"
+            href="/peptides"
             data-testid={`${ctaTestId}-bar`}
             className="nx-cta-cobalt"
             style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 20px", whiteSpace: "nowrap" }}

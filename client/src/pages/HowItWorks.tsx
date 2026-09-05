@@ -100,7 +100,7 @@ export default function HowItWorks() {
                 Five steps, from choosing a medicine to your week-{RETEST_WEEK} blood test.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
-                <Link href="/assessment" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See if I'm eligible</Link>
+                <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See if I'm eligible</Link>
                 <Link href="/peptides" className="nx-cta-ghost">The medicines</Link>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function HowItWorks() {
             </p>
           </div>
           <p style={{ ...small, marginTop: "0.9rem" }}>
-            <Link href="/labs" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-labs-link">Every marker, and the additional tests</Link>
+            <Link href="/how-it-works" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-labs-link">Every marker, and the additional tests</Link>
           </p>
         </Reveal>
       </section>
@@ -206,7 +206,7 @@ export default function HowItWorks() {
             <h2 id="hiw-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "18ch", margin: "0 auto", textWrap: "balance" }}>
               The next step is a physician.
             </h2>
-            <Link href="/assessment" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
+            <Link href="/peptides" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               See if I'm eligible
             </Link>
           </Reveal>

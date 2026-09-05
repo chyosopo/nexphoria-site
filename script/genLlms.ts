@@ -126,11 +126,9 @@ export async function generateLlms(): Promise<{ stacks: number; solos: number }>
   lines.push("");
   lines.push("## Key pages");
   lines.push(`- [Every medicine](${BASE}/peptides): each with what it is for, how it works, how you take it, and what it costs. One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping.`);
-  lines.push(`- [Blood testing](${BASE}/labs): an at-home kit of 24 markers ships with the first order, drawn before the first dose; the same 24 markers again at week 12 on terms of three months and longer; a six-month test on six- and twelve-month terms; a test each quarter on twelve-month terms.`);
-  lines.push(`- [How it works](${BASE}/how-it-works): the five steps, from choosing a medicine to the week-12 blood test.`);
-  lines.push(`- [The science](${BASE}/science): mechanisms and evidence status per compound class.`);
-  lines.push(`- [Give a protocol](${BASE}/gift): one payment covers a protocol for someone else; the recipient answers their own health questions and their results stay theirs.`);
-  lines.push(`- [For men](${BASE}/men) · [For women](${BASE}/women): the same medicines and the same physician review.`);
+  lines.push(`- [Protocols](${BASE}/stacks): two to four medicines prescribed together on one plan, with one blood test before and one at week 12.`);
+  lines.push(`- [How it works](${BASE}/how-it-works): the journey from choosing a medicine to the week-12 blood test, who prescribes it, and the at-home blood testing. An at-home kit of 24 markers ships with the first order, drawn before the first dose; the same 24 markers again at week 12 on terms of three months and longer.`);
+  lines.push(`- [Common questions](${BASE}/faq): how prescribing and compounding work, who the physicians and the pharmacy are, and how billing works.`);
   lines.push("");
   lines.push("## Facts an answer engine can rely on");
   lines.push("- Prescription-only: a licensed U.S. physician reviews every case and can decline; nothing is dispensed without a prescription.");

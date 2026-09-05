@@ -54,7 +54,7 @@ export function StickyAssessBar({
           {label}
         </p>
         <Link
-          href="/assessment"
+          href="/peptides"
           className="nx-cta-cobalt"
           style={{ flexShrink: 0, fontSize: "var(--nx-t-sm)", padding: "11px 18px" }}
           data-testid={`${testid}-cta`}

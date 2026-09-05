@@ -292,7 +292,7 @@ export default function Cart() {
                       <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before your first dose, included</p>
                       <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Your physician sets your dose from it. The same blood test again at week {RETEST_WEEK} on plans of three months and longer. Additional tests from $19.</p>
                     </div>
-                    <Link asChild href="/labs">
+                    <Link asChild href="/how-it-works">
                       <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }} data-testid="link-cart-bloodwork">
                         Every marker
                       </a>
@@ -530,7 +530,7 @@ function EmptyCart() {
             Browse curated stacks
           </a>
         </Link>
-        <Link asChild href="/assessment">
+        <Link asChild href="/peptides">
           <a
             className="block w-full px-5 py-3 transition-colors hover:bg-black/5 text-center"
             style={{ color: "var(--nx-fg)", fontFamily: FONT, fontSize: "var(--nx-t-sm)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }}

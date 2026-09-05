@@ -173,7 +173,7 @@ export default function ProtocolsIndex() {
           {/* Build-your-own — same floating silhouette, vial imagery */}
           {filter === "All" && (
             <Reveal delay={shown.length * 45}>
-              <Link href="/stacks/build" data-testid="protocol-build" className="nx-float-card">
+              <Link href="/stacks" data-testid="protocol-build" className="nx-float-card">
                 <div className="nx-float-card__media">
                   <img src={vialLineupMaster} alt="" aria-hidden loading="lazy" width={1600} height={2000} />
                 </div>
@@ -257,7 +257,7 @@ export default function ProtocolsIndex() {
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
             The health questions ask what you are treating. A licensed physician chooses the protocol, or a single medicine if that fits better.
           </p>
-          <Link href="/assessment" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
+          <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
             See if I'm eligible
           </Link>
         </div>

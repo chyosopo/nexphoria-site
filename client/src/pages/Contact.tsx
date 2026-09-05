@@ -139,7 +139,7 @@ export default function Contact() {
                 <span>We're listening.</span>
               </>
             }
-            subtitle="Patient support, doctor escalation, partnership inquiries, or press. Pick the right door and we'll route you to the right person."
+            subtitle="Patient support, medical questions, partnerships, or press. Your message reaches the right person."
           />
 
           <div className="mx-grid">
@@ -155,19 +155,9 @@ export default function Contact() {
               href="mailto:press@nexphoria.com"
               tone="sage"
               glyph={TileGlyphs.wave}
-              label={<>Press & partners<br /><span>media kit</span></>}
+              label={<>Press &amp; partners<br /><span>media kit</span></>}
               caption="Replies on business days"
               ctaLabel="Message us"
-            />
-            {/* Booking's side-door entrance (ROADMAP 2.3): reachable from
-                contact + footer only — never from the primary nav. */}
-            <ColoredHeroTile
-              href="/booking"
-              tone="cobalt"
-              glyph={TileGlyphs.circle}
-              label={<>Prefer to talk first?<br /><span>schedule a consultation</span></>}
-              caption="Your doctor's review decides every protocol"
-              ctaLabel="Book a consultation"
             />
           </div>
         </div>

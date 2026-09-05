@@ -48,7 +48,7 @@ export function PhotoHero() {
         </h1>
         <p className="nx-phero-sub" style={{ fontFamily: F }}>{HERO.subline}</p>
         <div className="nx-phero-cta">
-          <Link href="/assessment" className="nx-cta-cobalt nx-phero-btn" data-testid="frontdoor-hero-cta">
+          <Link href="/peptides" className="nx-cta-cobalt nx-phero-btn" data-testid="frontdoor-hero-cta">
             {HERO.cta}
           </Link>
           <span className="nx-phero-micro" style={{ fontFamily: F }}>{HERO.micro}</span>

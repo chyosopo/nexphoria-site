@@ -63,7 +63,8 @@ const PATHS = [
   ]},
   { name: "catalog → PDP", entry: "/peptides", clicks: ['[data-testid^="peptide-"]'] },
   { name: "protocols index → stack page", entry: "/stacks", clicks: ['a[href*="/stacks/"]:not([href$="/stacks"]):not([href*="build"])'] },
-  { name: "bloodwork (priced on entry)", entry: "/bloodwork", clicks: [] },
+  // /bloodwork was retired in the cut to the spine (2026-09-05) — blood testing
+  // now folds into /how-it-works, which is educational, not a priced entry.
 ];
 
 const browser = await chromium.launch({ executablePath: EXEC });

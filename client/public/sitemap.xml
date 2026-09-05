@@ -4,36 +4,9 @@
      8 goal categories, and the static route list. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nexphoria.com/</loc></url>
-  <url><loc>https://nexphoria.com/about</loc></url>
-  <url><loc>https://nexphoria.com/assessment</loc></url>
-  <url><loc>https://nexphoria.com/bloodwork</loc></url>
-  <url><loc>https://nexphoria.com/booking</loc></url>
-  <url><loc>https://nexphoria.com/community</loc></url>
   <url><loc>https://nexphoria.com/contact</loc></url>
   <url><loc>https://nexphoria.com/faq</loc></url>
-  <url><loc>https://nexphoria.com/gift</loc></url>
-  <url><loc>https://nexphoria.com/goals/cognition</loc></url>
-  <url><loc>https://nexphoria.com/goals/growth</loc></url>
-  <url><loc>https://nexphoria.com/goals/hormone</loc></url>
-  <url><loc>https://nexphoria.com/goals/longevity</loc></url>
-  <url><loc>https://nexphoria.com/goals/metabolic</loc></url>
-  <url><loc>https://nexphoria.com/goals/recovery</loc></url>
-  <url><loc>https://nexphoria.com/goals/sexual-health</loc></url>
-  <url><loc>https://nexphoria.com/goals/skin</loc></url>
-  <url><loc>https://nexphoria.com/goals/sleep</loc></url>
   <url><loc>https://nexphoria.com/how-it-works</loc></url>
-  <url><loc>https://nexphoria.com/journal</loc></url>
-  <url><loc>https://nexphoria.com/journal/bpc-157-tissue-repair-evidence</loc></url>
-  <url><loc>https://nexphoria.com/journal/gh-secretagogues-complete-guide</loc></url>
-  <url><loc>https://nexphoria.com/journal/legal-landscape-compounded-peptides-2026</loc></url>
-  <url><loc>https://nexphoria.com/journal/longevity-nad-mots-c</loc></url>
-  <url><loc>https://nexphoria.com/journal/oral-vs-injectable-peptides</loc></url>
-  <url><loc>https://nexphoria.com/journal/reading-your-bloodwork</loc></url>
-  <url><loc>https://nexphoria.com/journal/semaglutide-vs-tirzepatide</loc></url>
-  <url><loc>https://nexphoria.com/journal/side-effects-and-contraindications</loc></url>
-  <url><loc>https://nexphoria.com/journal/subq-injection-technique</loc></url>
-  <url><loc>https://nexphoria.com/journal/what-is-a-peptide</loc></url>
-  <url><loc>https://nexphoria.com/labs</loc></url>
   <url><loc>https://nexphoria.com/legal</loc></url>
   <url><loc>https://nexphoria.com/legal/hipaa-notice</loc></url>
   <url><loc>https://nexphoria.com/legal/messaging</loc></url>
@@ -43,10 +16,7 @@
   <url><loc>https://nexphoria.com/legal/state-availability</loc></url>
   <url><loc>https://nexphoria.com/legal/telehealth-consent</loc></url>
   <url><loc>https://nexphoria.com/legal/terms</loc></url>
-  <url><loc>https://nexphoria.com/men</loc></url>
-  <url><loc>https://nexphoria.com/men/peptides</loc></url>
   <url><loc>https://nexphoria.com/peptides</loc></url>
-  <url><loc>https://nexphoria.com/peptides-101</loc></url>
   <url><loc>https://nexphoria.com/peptides/aod-9604</loc></url>
   <url><loc>https://nexphoria.com/peptides/bpc-157</loc></url>
   <url><loc>https://nexphoria.com/peptides/bpc-tb-combo</loc></url>
@@ -69,18 +39,11 @@
   <url><loc>https://nexphoria.com/peptides/testosterone</loc></url>
   <url><loc>https://nexphoria.com/peptides/thymosin-a1</loc></url>
   <url><loc>https://nexphoria.com/peptides/tirzepatide</loc></url>
-  <url><loc>https://nexphoria.com/physicians</loc></url>
-  <url><loc>https://nexphoria.com/protocols</loc></url>
-  <url><loc>https://nexphoria.com/quiz</loc></url>
   <url><loc>https://nexphoria.com/stacks</loc></url>
   <url><loc>https://nexphoria.com/stacks/ascend</loc></url>
-  <url><loc>https://nexphoria.com/stacks/build</loc></url>
   <url><loc>https://nexphoria.com/stacks/foundation</loc></url>
   <url><loc>https://nexphoria.com/stacks/ignite</loc></url>
   <url><loc>https://nexphoria.com/stacks/lucidity</loc></url>
   <url><loc>https://nexphoria.com/stacks/recover</loc></url>
   <url><loc>https://nexphoria.com/stacks/vitality</loc></url>
-  <url><loc>https://nexphoria.com/what-happens-next</loc></url>
-  <url><loc>https://nexphoria.com/women</loc></url>
-  <url><loc>https://nexphoria.com/women/peptides</loc></url>
 </urlset>

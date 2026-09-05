@@ -20,33 +20,24 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import NotFound from "@/pages/not-found";
 
 // Pages — lazy loaded (code-split)
-const Category = lazy(() => import("@/pages/Category"));
-const Booking = lazy(() => import("@/pages/Booking"));
+// ─── CUT TO THE SPINE (Chiya 2026-09-05) ───────────────────────────────────
+// The site had grown to ~30 rendered pages: two blood pages, two quiz pages,
+// three overlapping education pages, a blog, and a scatter of brand pages.
+// Chiya: "lean tight and loving amazing Peptides site … why does it need 5000
+// different pages." The spine is now Home · Medicines · Product · How-it-works
+// · Cart · Checkout, with protocols shown as a tier and compliance pages in the
+// footer. Everything cut REDIRECTS (URLs are in the wild / sitemap history), and
+// its real content folds into How-it-works.
 const FrontDoor = lazy(() => import("@/pages/FrontDoor"));
-const Peptides101 = lazy(() => import("@/pages/Peptides101"));
-const Assessment = lazy(() => import("@/pages/Assessment"));
 const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
 const SoloPDP = lazy(() => import("@/pages/SoloPDP"));
 const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
-const BuildYourStack = lazy(() => import("@/pages/BuildYourStack"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
-const WhatHappensNext = lazy(() => import("@/pages/WhatHappensNext"));
-const Gate = lazy(() => import("@/pages/Gate"));
 const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
-const Journal = lazy(() => import("@/pages/Journal"));
-const JournalArticle = lazy(() => import("@/pages/JournalArticle"));
-const Physicians = lazy(() => import("@/pages/Physicians"));
-const About = lazy(() => import("@/pages/About"));
-const Community = lazy(() => import("@/pages/Community"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const FAQPage = lazy(() => import("@/pages/FAQ"));
-const Quiz = lazy(() => import("@/pages/Quiz"));
-const Bloodwork = lazy(() => import("@/pages/Bloodwork"));
-const Labs = lazy(() => import("@/pages/Labs"));
-const Gift = lazy(() => import("@/pages/Gift"));
-const GiftClaim = lazy(() => import("@/pages/GiftClaim"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
 const Terms = lazy(() => import("@/pages/legal/Terms"));
 const Privacy = lazy(() => import("@/pages/legal/Privacy"));
@@ -67,35 +58,37 @@ function AppRouter() {
     <RouteErrorBoundary>
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
-        {/* Front door (ROADMAP 1.2) — value prop in 5 seconds; the old
-            her/him photo gate lives on at /gate for returning users */}
+        {/* ══ THE SPINE ══ Home · Medicines · Product · How-it-works · Cart · Checkout */}
         <Route path="/" component={FrontDoor} />
-        <Route path="/gate" component={Gate} />
 
-        {/* Gender-neutral pharmacy shelf — render the world-neutral catalog
-            DIRECTLY (no redirect). A prior `<R to="/men/peptides">` bounced this
-            route into the men world, so the prerendered /peptides/index.html
-            snapshotted the men catalog and self-canonicalized to /men/peptides.
-            But /peptides is its OWN canonical route in sitemap.xml (STATIC_ROUTES),
-            so the snapshot's canonical+og:url=/men/peptides was a sitemap↔canonical
-            contradiction — Search Console drops it as "Duplicate, submitted URL not
-            selected as canonical". Rendering PeptidesCatalog with no world makes it
-            self-canonicalize to /peptides; the /men|/women variants are unchanged. */}
+        {/* Medicines — the one shelf. Renders world-neutral so it self-canonicalizes to /peptides. */}
         <Route path="/peptides">{() => <PeptidesCatalog />}</Route>
         <Route path="/peptides/:slug">{(p) => <SoloPDP slug={(p as {slug:string}).slug} />}</Route>
-        <Route path="/goals/:slug" component={Category} />
 
-        {/* ── TWO WORLDS RETIRED (Chiya 2026-08-13) ──────────────────
-            The men/women split doubled every surface — two homes, two
-            catalogs, two PDP variants, two imagery casts — to differentiate a
-            four-SKU formulary that is identical for both. It also forced every
-            component to thread a `world` prop and every goal tile to have two
-            photographs. One site now.
+        {/* Protocols — a tier of the shelf (multi-peptide bundles), surfaced inside Medicines */}
+        <Route path="/stacks" component={ProtocolsIndex} />
+        <Route path="/stacks/:slug">
+          {(params) => <StackPage slug={(params as { slug: string }).slug} />}
+        </Route>
 
-            The old URLs REDIRECT rather than 404: they are in the wild, in the
-            sitemap history, and possibly indexed. /men and /women land on the
-            home page; the per-slug PDPs land on their neutral canonical, which
-            is the URL they already declared via <link rel="canonical"> anyway. */}
+        {/* How it works — the one page that teaches (journey · blood testing · who prescribes) */}
+        <Route path="/how-it-works" component={HowItWorks} />
+
+        {/* Cart + Checkout (pharmacy flow) */}
+        <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
+
+        {/* Kept surfaces: FAQ carries the physician/pharmacy address disclosure LegitScript
+            checks for; Contact is the support channel A2P/LegitScript require. */}
+        <Route path="/faq" component={FAQPage} />
+        <Route path="/contact" component={Contact} />
+
+        {/* ── REDIRECTS ── every cut page keeps its URL alive (in the wild / sitemap
+            history / possibly indexed) and lands on its nearest surviving surface.
+            Cut 2026-09-05 (spine): the two worlds, the second blood page, both
+            quiz pages, the blog, and the scattered brand/education pages. */}
+        <Route path="/gate"><R to="/" /></Route>
+        <Route path="/goals/:slug"><R to="/peptides" /></Route>
         <Route path="/men"><R to="/" /></Route>
         <Route path="/women"><R to="/" /></Route>
         <Route path="/men/peptides"><R to="/peptides" /></Route>
@@ -108,53 +101,31 @@ function AppRouter() {
         </Route>
         <Route path="/men/protocols"><R to="/stacks" /></Route>
         <Route path="/women/protocols"><R to="/stacks" /></Route>
-
-        {/* Stacks (pharmacy tier 2) */}
-        <Route path="/stacks" component={ProtocolsIndex} />
-        <Route path="/stacks/build" component={BuildYourStack} />
-        <Route path="/stacks/:slug">
-          {(params) => <StackPage slug={(params as { slug: string }).slug} />}
-        </Route>
-
-        {/* Blood testing as a product (2026-09-04) */}
-        <Route path="/labs" component={Labs} />
-
-        {/* Cart + Checkout (pharmacy flow) */}
-        <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/what-happens-next" component={WhatHappensNext} />
-
-        {/* Shared informational */}
-        <Route path="/how-it-works" component={HowItWorks} />
-        <Route path="/peptides-101" component={Peptides101} />
-        {/* SCIENCE — DELETED 2026-08-13 (Chiya: "I think we can kill the
-            science page, it doesn't make sense"). 1,376 lines carrying 20
-            citations for a 20-SKU catalog, of which 4 SKUs remain. Education
-            as a DESTINATION loses: nobody weighing tirzepatide detours to a
-            library. The citations were not lost — they are re-keyed by
-            molecule in data/evidence.ts and render on the PDP of the molecule
-            they support, between the mechanism and the price. Redirects rather
-            than 404s: the URL is in the sitemap history and possibly indexed. */}
+        <Route path="/protocols"><R to="/stacks" /></Route>
+        <Route path="/stacks/build"><R to="/stacks" /></Route>
+        {/* Education folds into /how-it-works */}
+        <Route path="/what-happens-next"><R to="/how-it-works" /></Route>
+        <Route path="/peptides-101"><R to="/how-it-works" /></Route>
         <Route path="/science"><R to="/peptides" /></Route>
-        <Route path="/journal" component={Journal} />
-        <Route path="/journal/:slug" component={JournalArticle} />
-        <Route path="/physicians" component={Physicians} />
-        <Route path="/lab-testing">{() => <R to="/bloodwork" />}</Route>
-        <Route path="/bloodwork" component={Bloodwork} />
-        <Route path="/protocols" component={ProtocolsIndex} />
-        {/* /blood-work consolidated → canonical /bloodwork (BloodPanels retired) */}
-        <Route path="/blood-work">{() => <R to="/bloodwork" />}</Route>
-        <Route path="/catalog">{() => <R to="/peptides" />}</Route>
-        {/* /pricing retired 2026-09-04 (Chiya): price is a fact on each product page, never a page of its own */}
-        <Route path="/pricing">{() => <R to="/peptides" />}</Route>
-        <Route path="/gift" component={Gift} />
-        <Route path="/gift/claim" component={GiftClaim} />
-        <Route path="/faq" component={FAQPage} />
-        <Route path="/quiz" component={Quiz} />
-        <Route path="/about" component={About} />
-        <Route path="/community" component={Community} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/assessment" component={Assessment} />
+        <Route path="/physicians"><R to="/how-it-works" /></Route>
+        <Route path="/about"><R to="/how-it-works" /></Route>
+        {/* Blood testing folds into /how-it-works */}
+        <Route path="/labs"><R to="/how-it-works" /></Route>
+        <Route path="/lab-testing"><R to="/how-it-works" /></Route>
+        <Route path="/bloodwork"><R to="/how-it-works" /></Route>
+        <Route path="/blood-work"><R to="/how-it-works" /></Route>
+        {/* Guided quizzes retired — pure browse */}
+        <Route path="/quiz"><R to="/peptides" /></Route>
+        <Route path="/assessment"><R to="/peptides" /></Route>
+        {/* Blog retired — education lives on each medicine's page */}
+        <Route path="/journal"><R to="/" /></Route>
+        <Route path="/journal/:slug"><R to="/" /></Route>
+        <Route path="/catalog"><R to="/peptides" /></Route>
+        <Route path="/pricing"><R to="/peptides" /></Route>
+        <Route path="/community"><R to="/" /></Route>
+        <Route path="/gift"><R to="/" /></Route>
+        <Route path="/gift/claim"><R to="/" /></Route>
+        <Route path="/booking"><R to="/" /></Route>
 
         {/* Legal */}
         <Route path="/legal" component={LegalIndex} />
@@ -170,7 +141,6 @@ function AppRouter() {
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
 
-        <Route path="/booking" component={Booking} />
         {/* 404 */}
         <Route component={NotFound} />
       </Switch>

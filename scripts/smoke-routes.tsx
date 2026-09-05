@@ -38,53 +38,24 @@ async function main() {
   const { CartProvider } = (await load("/src/contexts/CartProvider.tsx")) as any;
 
   // route → [module, props, path]
+  // CUT TO THE SPINE (Chiya 2026-09-05): every deleted page is gone from here;
+  // its URL is now a redirect (no page module to smoke). Only surviving page
+  // components are rendered. Blood testing and who-prescribes fold into
+  // HowItWorks; quizzes and the blog are retired.
   const routes: [string, string, Record<string, any>][] = [
     ["/",                "/src/pages/FrontDoor.tsx", {}],
-    // /men and /women are REDIRECTS since the two-worlds split was deleted
-    // (2026-08-13). They resolve via App.tsx's <R> and have no page module;
-    // audit:funnel asserts they still reach price + buy.
     ["/stacks",          "/src/pages/ProtocolsIndex.tsx", {}],
     ["/stacks/recover", "/src/pages/StackPage.tsx", { slug: "recover" }],
     ["/stacks/ignite",   "/src/pages/StackPage.tsx", { slug: "ignite" }],
     ["/peptides/tirzepatide","/src/pages/SoloPDP.tsx", { slug: "tirzepatide" }],
     ["/peptides/semaglutide","/src/pages/SoloPDP.tsx", { slug: "semaglutide" }],
     ["/peptides/nope",   "/src/pages/SoloPDP.tsx", { slug: "does-not-exist" }],
-    ["/men/peptides",    "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
-    ["/women/peptides",  "/src/pages/PeptidesCatalog.tsx", { world: "women" }],
-    ["/women/peptides/pt-141", "/src/pages/SoloPDP.tsx", { slug: "pt-141", world: "women" }],
-    ["/men/peptides/tesamorelin", "/src/pages/SoloPDP.tsx", { slug: "tesamorelin", world: "men" }],
-    ["/peptides",        "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
-    ["/catalog",         "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
-    ["/bloodwork",       "/src/pages/Bloodwork.tsx", {}],
-    ["/labs",            "/src/pages/Labs.tsx", {}],
-    ["/quiz",            "/src/pages/Quiz.tsx", {}],
-    ["/blood-work",      "/src/pages/Bloodwork.tsx", {}],
+    ["/peptides",        "/src/pages/PeptidesCatalog.tsx", {}],
     ["/how-it-works",    "/src/pages/HowItWorks.tsx", {}],
-    ["/peptides-101",    "/src/pages/Peptides101.tsx", {}],
-    ["/assessment",      "/src/pages/Assessment.tsx", {}],
     ["/cart",            "/src/pages/Cart.tsx", {}],
     ["/checkout",        "/src/pages/Checkout.tsx", {}],
-    ["/what-happens-next", "/src/pages/WhatHappensNext.tsx", {}],
-    ["/pricing",         "/src/pages/PeptidesCatalog.tsx", { world: "men" }], // retired 2026-09-04 → /peptides
-    ["/gift",            "/src/pages/Gift.tsx", {}],
-    ["/gift/claim",      "/src/pages/GiftClaim.tsx", {}],
-    ["/physicians",      "/src/pages/Physicians.tsx", {}],
-    ["/lab-testing",     "/src/pages/Bloodwork.tsx", {}], // alias → /bloodwork (LabTesting.tsx deleted — dead page, no route rendered it)
-    ["/journal",         "/src/pages/Journal.tsx", {}],
-    ["/journal/what-is-a-peptide", "/src/pages/JournalArticle.tsx", {}],
-    ["/about",           "/src/pages/About.tsx", {}],
     ["/faq",             "/src/pages/FAQ.tsx", {}],
     ["/contact",         "/src/pages/Contact.tsx", {}],
-    ["/community",       "/src/pages/Community.tsx", {}],
-    ["/booking",         "/src/pages/Booking.tsx", {}],
-
-    ["/stacks/build",    "/src/pages/BuildYourStack.tsx", {}],
-    ["/gate",            "/src/pages/Gate.tsx", {}],
-    ["/goals/recovery",  "/src/pages/Category.tsx", { slug: "recovery" }],
-    ["/goals/sleep",     "/src/pages/Category.tsx", { slug: "sleep" }],
-    ["/women/protocols", "/src/pages/ProtocolsIndex.tsx", {}],
-    ["/men/protocols",   "/src/pages/ProtocolsIndex.tsx", {}],
-    ["/protocols",       "/src/pages/ProtocolsIndex.tsx", {}],
     ["/legal",           "/src/pages/legal/LegalIndex.tsx", {}],
     ["/legal/terms",     "/src/pages/legal/Terms.tsx", {}],
     ["/legal/privacy",   "/src/pages/legal/Privacy.tsx", {}],
