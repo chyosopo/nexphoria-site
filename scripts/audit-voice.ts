@@ -40,7 +40,7 @@ const ROUTES = [
   "/faq", "/physicians", "/contact", "/assessment",
   "/peptides/tesamorelin", "/peptides/semaglutide",
   "/peptides/tirzepatide", "/peptides/pt-141",
-  "/protocols", "/stacks/recover", "/what-happens-next", "/peptides-101",
+  "/protocols", "/stacks/recover", "/what-happens-next", "/peptides-101", "/quiz",
 ];
 
 /* Defensive constructions, each with the positive move that replaces it.

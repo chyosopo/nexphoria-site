@@ -353,3 +353,14 @@ Pending: Chiya's read of the rebuilt preview; the facts only she can confirm (a
 patient portal, physician messaging, batch certificates); Phase 4 (labs absorbs
 bloodwork), Phase 5 imagery, Phase 6 trust pages (physicians, legal, journal in
 the same register). Failed: none.
+
+### 2026-09-05 · The quiz and the rotating word (after alyvewellness.com)
+Verified: hero reads "Peptide therapy, prescribed for your [sleep / focus /
+recovery / weight / energy / skin / desire]" with the word rotating; hero CTA
+"Find your medicine" opens /quiz, four preference questions ending at the
+medicines a physician can prescribe for the goal, then the health questions;
+nav carries "Find your medicine"; the five steps are verb-first. Study in
+docs/ALYVE-STUDY.md with what was taken and what was not.
+Pending: an "example plans" band on the home (three goals, the medicines and
+the blood markers read for each, labelled as examples), the same warmth pass
+on product FAQ answers, Chiya's read.

@@ -57,6 +57,7 @@ async function main() {
     ["/catalog",         "/src/pages/PeptidesCatalog.tsx", { world: "men" }],
     ["/bloodwork",       "/src/pages/Bloodwork.tsx", {}],
     ["/labs",            "/src/pages/Labs.tsx", {}],
+    ["/quiz",            "/src/pages/Quiz.tsx", {}],
     ["/blood-work",      "/src/pages/Bloodwork.tsx", {}],
     ["/how-it-works",    "/src/pages/HowItWorks.tsx", {}],
     ["/peptides-101",    "/src/pages/Peptides101.tsx", {}],

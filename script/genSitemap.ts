@@ -71,7 +71,7 @@ const JOURNAL_CATEGORY_SLUGS = new Set([
    checkout/cart/gate routes are intentionally excluded from the sitemap. */
 const STATIC_ROUTES = [
   "/", "/men", "/women",
-  "/about", "/physicians", "/bloodwork", "/labs",
+  "/about", "/physicians", "/bloodwork", "/labs", "/quiz",
   "/how-it-works", "/peptides-101", "/faq", "/contact", "/community", "/booking", "/assessment",
   "/what-happens-next",
   "/protocols", "/stacks", "/stacks/build", "/peptides", "/gift",

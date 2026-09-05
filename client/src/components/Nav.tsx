@@ -26,6 +26,7 @@ const showcaseLinks: NavLink[] = [
   { label: "Peptides", href: "/peptides", mega: true },
   { label: "Protocols", href: "/stacks" },
   { label: "Blood testing", href: "/labs" },
+  { label: "Find your medicine", href: "/quiz" },
 ];
 
 /* ONE link set, every variant. There used to be four: showcase, women, men,

@@ -12,9 +12,16 @@ import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
 export const HERO = {
   kicker: "Prescription peptide therapy",
   lines: ["Prescription peptide therapy,", "with a physician and your blood work."],
+  /* The rotating word (Chiya 2026-09-05, after alyvewellness.com): the H1 is
+     "Peptide therapy, prescribed for your [sleep]" and the word cycles. The
+     first word renders statically, so the prerendered page and a reader with
+     reduced motion see a complete sentence. */
+  lead: "Peptide therapy, prescribed for your",
+  rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
   subline:
     "Twenty-two compounded peptide medicines for weight, body composition, recovery, sleep, focus, hormones and sexual health. A licensed U.S. physician reviews your health history, prescribes if it is appropriate, and adjusts your dose from a blood test at week 12. One monthly price covers the medicine, the physician and the blood work.",
-  cta: "Choose a goal",
+  cta: "Find your medicine",
+  ctaHref: "/quiz",
   ctaSecondary: "How it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* 7am at the kitchen window: the morning photograph (2400w, 1200w) */

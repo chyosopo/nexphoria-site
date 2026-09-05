@@ -2,7 +2,7 @@
    A full-bleed photograph under a navy tint, one glass card in the middle
    with the claim and the two doors, and a row of four goal chips beneath
    it. Copy is the house copy (data/hero); the grammar is theirs. */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
@@ -12,6 +12,20 @@ import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { track } from "@/lib/analytics";
 
 const QUICK: PeptideCategory[] = liveCategories(["metabolic", "growth", "sexual-health", "hormone", "recovery", "cognition"]).slice(0, 4);
+
+function RotatingWord({ words }: { words: string[] }) {
+  const [i, setI] = useState(0);
+  const [changing, setChanging] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => {
+      setChanging(true);
+      window.setTimeout(() => { setI((n) => (n + 1) % words.length); setChanging(false); }, 220);
+    }, 2200);
+    return () => window.clearInterval(id);
+  }, [words.length]);
+  return <span className={`nx-rotate${changing ? " is-changing" : ""}`} aria-live="off" data-testid="hero-rotating">{words[i]}</span>;
+}
 
 export function HeroR3() {
   useEffect(() => {
@@ -27,10 +41,10 @@ export function HeroR3() {
       <div className="nx-container nx-r3-hero__body">
         <div className="nx-glass nx-r3-hero__card">
           <p className="nx-r3-hero__kicker" style={{ fontFamily: F }}>{HERO.kicker}</p>
-          <h1 className="nx-r3-hero__h1" style={{ fontFamily: S }}>{HERO.lines.join(" ")}</h1>
+          <h1 className="nx-r3-hero__h1" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</h1>
           <p className="nx-r3-hero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
           <div className="nx-r3-hero__cta">
-            <a href="#fd-goals" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-choose" })}>{HERO.cta}</a>
+            <Link href={HERO.ctaHref} className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-quiz" })}>{HERO.cta}</Link>
             <Link href="/how-it-works" className="nx-cta-ghost nx-cta-ghost--light" data-testid="frontdoor-hero-cta-assess">How it works</Link>
           </div>
           <p className="nx-r3-hero__micro" style={{ fontFamily: F }}>{HERO.micro}</p>
