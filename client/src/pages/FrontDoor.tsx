@@ -138,8 +138,8 @@ export default function FrontDoor() {
           {/* What a month includes, as a list a reader can picture (the same facts the price statement carried). */}
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5" style={{ listStyle: "none", margin: "1.4rem 0 0", padding: 0, gap: 10, maxWidth: 980 }} data-testid="frontdoor-includes" aria-label="What a month includes">
             {[
-              { Icon: FlaskConical, t: "Your medicine", b: "Compounded to order in a licensed U.S. pharmacy." },
-              { Icon: Stethoscope, t: "A physician's review", b: "Of your answers, and of your results." },
+              { Icon: FlaskConical, t: "The medicine", b: "Compounded to order in a licensed U.S. pharmacy." },
+              { Icon: Stethoscope, t: "The physician's review", b: "Of the health answers, and of the results." },
               { Icon: Droplets, t: `The ${PANEL_TOTAL_MARKERS}-marker blood kit`, b: "Drawn at home before your first dose." },
               { Icon: RefreshCw, t: `The week-${RETEST_WEEK} test`, b: "On terms of three months and longer." },
               { Icon: Snowflake, t: "Cold shipping", b: "Plain packaging, to all 50 states." },

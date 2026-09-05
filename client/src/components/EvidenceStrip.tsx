@@ -32,7 +32,7 @@ export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
     >
       <div style={{ display: "flex", alignItems: "baseline", gap: "0.7rem", flexWrap: "wrap" }}>
         <h2 id={`evidence-title-${slug}`} className="nx-dsh3">
-          What the studies found
+          The evidence
         </h2>
         <span style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)" }}>
           {items.length} peer-reviewed {items.length === 1 ? "study" : "studies"} on {name}
@@ -106,8 +106,8 @@ export function EvidenceStrip({ slug, name }: { slug: string; name: string }) {
 
       {/* The line that keeps a study list from reading as an outcome promise. */}
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", lineHeight: 1.55, color: "var(--nx-fg-muted)", marginTop: "0.8rem", maxWidth: "72ch" }}>
-        Published findings for the molecule, not predictions for you. Study populations, doses,
-        and durations differ from any individual protocol. Your physician decides what applies.
+        Published findings for the molecule, not predictions for any individual. Populations, doses
+        and durations differ from any protocol; the physician decides what applies.
       </p>
     </section>
   );

@@ -223,13 +223,13 @@ export default function StackPage({ slug }: { slug: string }) {
               if (members.length === 0) return null;
               return (
                 <section aria-labelledby="stack-get-title" data-testid="stack-get">
-                  <h2 id="stack-get-title" className="nx-dsh3">What you get, exactly</h2>
-                  <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each medicine in its own vial, with its own dose. The figures are worked out from the stated dose and vial; your prescription states the exact volumes.</p>
+                  <h2 id="stack-get-title" className="nx-dsh3">The medicines</h2>
+                  <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each is dispensed in its own vial, at its own dose. The figures follow from the stated dose and vial; the prescription states the exact volumes.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 12, marginTop: "1rem" }}>
                     {members.map((m) => (
                       <div key={m.slug} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                         <InsideTheVial sku={m} compact testId={`stack-vial-${m.slug}`} />
-                        <Link href={`/peptides/${m.slug}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, alignSelf: "flex-start" }} data-testid={`stack-member-link-${m.slug}`}>How {m.name} works, and what to expect</Link>
+                        <Link href={`/peptides/${m.slug}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, alignSelf: "flex-start" }} data-testid={`stack-member-link-${m.slug}`}>About {m.name}</Link>
                       </div>
                     ))}
                   </div>
@@ -296,8 +296,8 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-parties-title" data-testid="stack-parties">
-              <h2 id="stack-parties-title" className="nx-dsh3">Who prescribes it, and who makes it</h2>
-              <CareCards slug={stack.slug} name={stack.name} />
+              <h2 id="stack-parties-title" className="nx-dsh3">Prescribing and dispensing</h2>
+              <CareCards slug={stack.slug} />
             </section>
 
             {/* ── 8 · Common questions ── */}
@@ -372,9 +372,9 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── 10 · Closer ── */}
       <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }} aria-labelledby="stack-close-title">
         <h2 id="stack-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>
-          The next step is a physician.
+          Prescribed, if appropriate.
         </h2>
-        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this protocol is right for you.</p>
+        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>The order is placed, the health questions answered, and a licensed physician decides. If not prescribed, nothing is made.</p>
         <a href="#buy" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
           See the plan and price
         </a>

@@ -1,9 +1,8 @@
-/* Who prescribes it and who makes it, as two people you can picture — the
-   verbatim compliance wording (data/compliance) stays word for word beneath. */
+/* Prescribing and dispensing, as two plain cards; the verbatim compliance
+   wording (data/compliance) stays word for word beneath. */
 import { F, S } from "@/lib/typography";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
-import { monitoringFor } from "@/data/monitoring";
-import { RETEST_WEEK } from "@/data/monitoring";
+import { monitoringFor, RETEST_WEEK } from "@/data/monitoring";
 
 function Card({ eyebrow, title, facts, body, testId }: { eyebrow: string; title: string; facts: string[]; body: string; testId: string }) {
   return (
@@ -22,27 +21,27 @@ function Card({ eyebrow, title, facts, body, testId }: { eyebrow: string; title:
   );
 }
 
-export function CareCards({ slug, name }: { slug: string; name: string }) {
+export function CareCards({ slug }: { slug: string; name?: string }) {
   const m = monitoringFor(slug);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 14, marginTop: "1rem" }}>
       <Card
-        eyebrow="Your physician"
-        title="A licensed U.S. physician reads your file and sets your dose."
+        eyebrow="Prescribing"
+        title={`Prescribed by ${PROVIDER_INFO.name.replace(/, LLC$/, "")}.`}
         facts={[
-          `${PROVIDER_INFO.name}, licensed in all 50 states.`,
-          "Reviews your health answers before anything is made, and can decline.",
-          m?.doseMarker ? `Sets your ${name} dose from your ${m.doseMarker}, and reads it again at week ${RETEST_WEEK}.` : `Sets your ${name} dose from your blood work, and reads it again at week ${RETEST_WEEK}.`,
+          "Licensed in all 50 states.",
+          "Every order is reviewed before anything is made, and can be declined.",
+          m?.doseMarker ? `The dose is set from ${m.doseMarker} and reviewed at week ${RETEST_WEEK}.` : `The dose is set from the panel and reviewed at week ${RETEST_WEEK}.`,
         ]}
         body={PROVIDER_INFO.body}
         testId={`care-physician-${slug}`}
       />
       <Card
-        eyebrow="Your pharmacy"
-        title="Compounded to order in Houston, Texas."
+        eyebrow="Dispensing"
+        title={`Compounded by ${PHARMACY_INFO.name}, Houston.`}
         facts={[
-          `${PHARMACY_INFO.name}, a state-licensed 503A compounding pharmacy.`,
-          "Compounded under USP <797>, made when your prescription is written.",
+          "A state-licensed 503A compounding pharmacy.",
+          "Compounded under USP <797> when the prescription is written.",
           "Shipped cold, in plain packaging, to all 50 states.",
         ]}
         body={PHARMACY_INFO.body.replace(/\n+/g, " ")}

@@ -64,35 +64,35 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "Do I need a prescription?",
-    a: "Yes. A licensed U.S. physician reviews your health questions and writes the prescription if it is right for you. Everything happens online.",
+    a: "Yes. A licensed U.S. physician reviews the health questions and writes the prescription if it is appropriate. Everything happens online.",
   });
 
   items.push({
     q: "What bloodwork is required?",
-    a: "An at-home blood kit of 24 markers ships with your first order, included. You draw before your first dose and your physician sets the dose from the results. At week 12 the same test is drawn again and compared.",
+    a: "An at-home blood kit of 24 markers ships with the first order, included. The draw is before the first dose, and the physician sets the dose from the results. At week 12 the same test is drawn again and compared.",
   });
 
   if (feelBy && fullEffect) {
     items.push({
       q: "What should I expect in the first weeks?",
-      a: `Typical onset is ${feelBy.charAt(0).toLowerCase() + feelBy.slice(1)}, with the full effect by ${fullEffect}. Everyone responds differently, which is why the week-12 blood test and a dose review are part of the plan.`,
+      a: `Typical onset is ${feelBy.charAt(0).toLowerCase() + feelBy.slice(1)}, with the full effect by ${fullEffect}. Response varies, which is why the week-12 panel and a dose review are part of the plan.`,
     });
   } else if (firstMark) {
     items.push({
       q: "What should I expect in the first weeks?",
-      a: `${firstMark.effect.replace(/\.$/, "")}, in ${firstMark.wk.replace(/^Wk /, "week ")}. Everyone responds differently, which is why the week-12 blood test and a dose review are part of the plan.`,
+      a: `${firstMark.effect.replace(/\.$/, "")}, in ${firstMark.wk.replace(/^Wk /, "week ")}. Response varies, which is why the week-12 panel and a dose review are part of the plan.`,
     });
   }
 
   items.push({
     q: "Do I pay before the physician decides?",
-    a: "Yes. You check out first, then answer the health questions. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
+    a: "Yes. The order is placed first, then the health questions are answered. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
   });
 
   if (hasPricing) {
     items.push({
       q: "How is it billed?",
-      a: "You pay for a term up front: one month, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood testing. At the end of the term, renewing is your choice.",
+      a: "A term is paid up front: one month, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood testing. At the end of the term, renewing is a choice.",
     });
   }
 

@@ -20,7 +20,7 @@ export function ExpectTimeline({ slug, compact = false, testId }: { slug: string
     const beyond = hz.active[1] >= max;
     return (
       <div className={`nx-horizon${compact ? " nx-horizon--compact" : ""}`} data-testid={testId ?? `horizon-${slug}`}>
-        {!compact && <p className="nx-horizon__h" style={{ fontFamily: F }}>On the day you choose</p>}
+        {!compact && <p className="nx-horizon__h" style={{ fontFamily: F }}>On the day it is taken</p>}
         <div className="nx-horizon__bar" role="img" aria-label={`Works ${hz.onsetLabel.toLowerCase()}; ${hz.activeLabel.toLowerCase()}.`}>
           <span className="nx-horizon__band nx-horizon__band--feel" style={{ left: pct(hz.onset[0], max), width: `calc(${pct(hz.onset[1] - hz.onset[0], max)} + 10px)` }} />
           <span className={`nx-horizon__band nx-horizon__band--full${beyond ? " is-beyond" : ""}`} style={{ left: pct(hz.active[0], max), width: pct(hz.active[1] - hz.active[0], max) }} />

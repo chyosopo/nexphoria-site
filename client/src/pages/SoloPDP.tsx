@@ -31,14 +31,13 @@ import { EvidenceStrip } from "@/components/EvidenceStrip";
 import { StatusPill } from "@/components/StatusPill";
 import { soloTiers } from "@/lib/tiers";
 import { statusOf, regulatoryOf } from "@/data/soloCatalog";
-import { monitoringFor } from "@/data/monitoring";
+import { monitoringFor, RETEST_WEEK } from "@/data/monitoring";
 import { InsideTheVial } from "@/components/InsideTheVial";
 import { Ritual } from "@/components/Ritual";
-import { WhatArrives } from "@/components/WhatArrives";
 import { CareCards } from "@/components/CareCards";
 import { Pathway } from "@/components/Pathway";
 import { Milestones } from "@/components/Milestones";
-import { ForWhom } from "@/components/ForWhom";
+import { forWhom } from "@/data/forWhom";
 
 /* SoloCategory → the category vocabulary (the deck: filters, tiles and goal
    pages all use the same words). */
@@ -126,6 +125,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
     : undefined;
 
   const monitoring = monitoringFor(solo.slug);
+  /* marker names mid-sentence: lower-case the plain words, keep acronyms (HbA1c, IGF-1, hs-CRP). */
+  const lc = (m: string) => (/^[A-Z][a-z]/.test(m) ? m.charAt(0).toLowerCase() + m.slice(1) : m);
 
   return (
     <SiteLayout>
@@ -222,47 +223,44 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div>
             {/* ── 2 · What you get, exactly: inside the vial · the ritual · what arrives.
                 (Happy Head study, 2026-09-05: explain it in detail and visualize it.) ── */}
-            <div style={{ marginBottom: "clamp(2rem,4vw,2.8rem)" }}><ForWhom slug={solo.slug} /></div>
-
-            <section aria-labelledby="solo-get-title" data-testid="solo-get">
-              <h2 id="solo-get-title" className="nx-dsh3">What you get, exactly</h2>
-              <div style={{ display: "grid", gap: 14, marginTop: "1rem" }}>
-                <InsideTheVial sku={solo} />
-                <Ritual sku={solo} />
-                <WhatArrives sku={solo} />
-              </div>
-            </section>
-
-            {/* ── 2b · How it works in your body: signal → where it acts → what changes ── */}
-            <section aria-labelledby="solo-how-title" data-testid="solo-how" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
-              <h2 id="solo-how-title" className="nx-dsh3">How it works in your body</h2>
+            {/* ── About: what it is for, who it suits, how it works, the measure ── */}
+            <section aria-labelledby="solo-about-title" data-testid="solo-about">
+              <h2 id="solo-about-title" className="nx-dsh3">About {solo.name}</h2>
+              {forWhom(solo.slug) && (
+                <p className="nx-lede" style={{ marginTop: "0.8rem" }}>
+                  {solo.name} suits {forWhom(solo.slug)!.charAt(0).toLowerCase()}{forWhom(solo.slug)!.slice(1)}{" "}
+                  <a href="#solo-contra-title" className="nx-text-link" style={{ fontWeight: 600, whiteSpace: "nowrap" }}>Who should not take it</a>
+                </p>
+              )}
               <Pathway slug={solo.slug} />
             </section>
 
-            {/* ── 3 · What to expect: the horizon bar, then the milestones ── */}
-            <h2 className="nx-dsh3" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>What to expect</h2>
-            <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
-            <Milestones sku={solo} />
+            {/* ── The medicine: as dispensed, and how it is taken ── */}
+            <section aria-labelledby="solo-get-title" data-testid="solo-get" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              <h2 id="solo-get-title" className="nx-dsh3">The medicine</h2>
+              <div style={{ marginTop: "1rem" }}><InsideTheVial sku={solo} /></div>
+              <Ritual sku={solo} />
+            </section>
 
-            {/* The evidence: what the studies found, stated as results, kept
-                because it teaches (Chiya 2026-09-04: we teach what it is good for). */}
+            {/* ── The first twelve weeks ── */}
+            <section aria-labelledby="solo-expect-title" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              <h2 id="solo-expect-title" className="nx-dsh3">The first twelve weeks</h2>
+              <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
+              <Milestones sku={solo} />
+            </section>
+
+            {/* ── The evidence ── */}
             <EvidenceStrip slug={solo.slug} name={solo.name} />
 
-            {/* ── 4 · Blood testing for this medicine, from data/monitoring.ts ── */}
+            {/* ── Monitoring: the panel, and what is read for this medicine ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-blood-title" data-testid="solo-blood">
-              <h2 id="solo-blood-title" className="nx-dsh3">
-                Blood testing for this medicine
-              </h2>
-              {monitoring && (
-                <p className="nx-lede" style={{ marginTop: "0.9rem" }}>{monitoring.why}</p>
-              )}
-              {monitoring && (
-                <div className="nx-glass-tile" style={{ display: "block", marginTop: "1rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What your physician reads first</p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{monitoring.watch.join(" · ")}</p>
-                  {monitoring.doseMarker && <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>Your dose is set against your {monitoring.doseMarker}.</p>}
-                </div>
-              )}
+              <h2 id="solo-blood-title" className="nx-dsh3">Monitoring</h2>
+              <p className="nx-lede" style={{ marginTop: "0.8rem" }}>
+                The panel is drawn at home before the first dose and repeated at week {RETEST_WEEK}.
+                {monitoring && (monitoring.doseMarker
+                  ? ` For ${solo.name}, ${monitoring.doseMarker} sets the dose${monitoring.watch.filter((w) => w !== monitoring.doseMarker).length ? `; ${monitoring.watch.filter((w) => w !== monitoring.doseMarker).map(lc).join(", ")} are read alongside it` : ""}.`
+                  : ` For ${solo.name}, ${monitoring.watch.map(lc).join(", ")} are read.`)}
+              </p>
               <AddonsFor keys={[solo.slug]} testId={`addons-${solo.slug}`} />
               <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem" }}>
                 Every marker, and the additional tests
@@ -290,8 +288,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-parties-title" data-testid="solo-parties">
-              <h2 id="solo-parties-title" className="nx-dsh3">Who prescribes it, and who makes it</h2>
-              <CareCards slug={solo.slug} name={solo.name} />
+              <h2 id="solo-parties-title" className="nx-dsh3">Prescribing and dispensing</h2>
+              <CareCards slug={solo.slug} />
             </section>
 
             {/* ── 8 · Common questions ── */}
@@ -338,8 +336,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ 10 · Closer ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>The next step is a physician.</h2>
-        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this medicine is right for you.</p>
+        <h2 id="solo-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>Prescribed, if appropriate.</h2>
+        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>The order is placed, the health questions answered, and a licensed physician decides. If not prescribed, nothing is made.</p>
         <a href="#buy" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See the plan and price</a>
       </section>
     </SiteLayout>

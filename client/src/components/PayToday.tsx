@@ -48,7 +48,7 @@ export function PayToday({
       </p>
       {dueToday && (
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", margin: "0.35rem 0 0" }} data-testid={`${testid}-terms`}>
-          {terms ? `${terms}. ` : ""}The monthly figure is {amount}. Renewing at the end is your choice.
+          {terms ? `${terms}. ` : ""}The monthly figure is {amount}. Renewing at the end is a choice.
         </p>
       )}
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>

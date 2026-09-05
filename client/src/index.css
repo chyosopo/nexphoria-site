@@ -3217,7 +3217,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
    home's five steps, but two by two — a four-step ritual in five columns left
    a blank cell, and the steps read better with room to breathe. */
 @media (min-width: 768px) {
-  .nx-road--ritual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nx-road--ritual { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* How it works in your body: three tiles with arrows between, stacking on

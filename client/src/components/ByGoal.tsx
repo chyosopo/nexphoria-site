@@ -29,7 +29,7 @@ export function ByGoal() {
         <div className="nx-sec-head">
           <p className="nx-eyebrow">By goal</p>
           <h2 id="fd-goals" className="nx-dsh2" style={{ maxWidth: "22ch" }}>What each goal means, and what treats it.</h2>
-          <p className="nx-lede">The same medicines as the shelf above, explained by what you want to change.</p>
+          <p className="nx-lede">The same medicines, by what they are for.</p>
         </div>
       </Reveal>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3" style={{ gap: 14, marginTop: "clamp(1.4rem,3vw,2rem)" }}>
