@@ -11,7 +11,7 @@ import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
    the home page where the physician, the pharmacy and cold shipping appear. */
 export const HERO = {
   kicker: "Prescription peptide therapy",
-  lines: ["Prescription peptide therapy,", "with a physician and your blood work."],
+  lines: ["Prescription peptide therapy,", "prescribed against blood work."],
   /* The rotating word (Chiya 2026-09-05, after alyvewellness.com): the H1 is
      "Peptide therapy, prescribed for your [sleep]" and the word cycles. The
      first word renders statically, so the prerendered page and a reader with
@@ -19,7 +19,7 @@ export const HERO = {
   lead: "Peptide therapy, prescribed for your",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
   subline:
-    "Prescription peptides, matched to your goal: weight, recovery, sleep, focus, hormones or skin. A licensed U.S. physician chooses the one that fits you and doses it against your own blood work.",
+    "Prescription peptides, matched to your goal: weight, recovery, sleep, focus, hormones or skin. A licensed U.S. physician chooses the one that fits and sets the dose against your own blood work.",
   cta: "See the treatments",
   ctaSecondary: "How it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",

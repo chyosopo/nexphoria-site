@@ -19,9 +19,9 @@ export const LAB_KIT = {
   markers: FULL_PANEL_COUNT,
   systems: FULL_PANEL.length,
   groups: FULL_PANEL,
-  line: "Every marker a peptide plan can move, drawn at home and read by your physician.",
+  line: "Every marker a peptide plan can move, drawn at home and read by the physician.",
   collection: "At home. The kit holds everything, with a prepaid return box. If a marker needs a full draw, we arrange one at a partner site near you.",
-  turnaround: "Results land in your account within days of the laboratory receiving your sample, with your physician's note.",
+  turnaround: "Results arrive within days of the laboratory receiving the sample, with the physician's note.",
   fasting: "Draw in the morning before you eat, so sugar, insulin and cholesterol read true. The kit says so on the lid.",
 } as const;
 
@@ -117,9 +117,9 @@ export function labItem(slug: string): { name: string; price: number; kind: "pan
 
 /* When you test, on every term (the playbook's ladder, in the reader's words). */
 export const LAB_SCHEDULE: { when: string; what: string; included: string }[] = [
-  { when: "Before your first dose", what: "Your baseline. The kit ships with your first order; you draw at home before you start.", included: "Complimentary with every first order" },
-  { when: `Week ${RETEST_WEEK}`, what: "The same panel again, beside your baseline, so your physician doses from what changed.", included: "Included on plans of three months and longer" },
+  { when: "Before the first dose", what: "The baseline. The kit ships with the first order and is drawn at home before the first dose.", included: "Complimentary with every first order" },
+  { when: `Week ${RETEST_WEEK}`, what: "The same panel again, beside the baseline, so the physician doses from what changed.", included: "Included on plans of three months and longer" },
   { when: "Month 6", what: "Your optimization panel, once the plan has had time to work.", included: "Included on six- and twelve-month terms" },
   { when: "Every quarter", what: "A panel each quarter, for the length of the plan.", included: "Included on the twelve-month term" },
-  { when: "Any time", what: "A further panel, whenever you or your physician want one.", included: `$${LAB_KIT.retestPrice} for anyone on a plan` },
+  { when: "Any time", what: "A further panel, whenever wanted.", included: `$${LAB_KIT.retestPrice} for anyone on a plan` },
 ];

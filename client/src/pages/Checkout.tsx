@@ -113,7 +113,7 @@ export default function Checkout() {
       track("checkout_capture_unavailable", {});
       toast({
         title: "We could not submit your intake",
-        description: "Your answers stayed on this page. Please try again, or email hello@nexphoria.com and a person will finish it with you.",
+        description: "The answers stayed on this page. Try again, or email hello@nexphoria.com and a person will finish it.",
         variant: "destructive",
       });
     },
@@ -159,7 +159,7 @@ export default function Checkout() {
                 className="text-base mb-8 max-w-lg mx-auto"
                 style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.7 }}
               >
-                Your cart and intake are now with our physician team. You will receive an email from a licensed
+                The order and the health answers are now with the physician team. An email follows from a licensed
                 physician with either an approval and final payment link or a request for additional information.
               </p>
 
@@ -179,7 +179,7 @@ export default function Checkout() {
                   {[
                     "Physician reviews intake and cart",
                     "You receive a secure approval link by email",
-                    "Your medicine is made for you in a licensed 503A pharmacy",
+                    "The medicine is made to order in a licensed 503A pharmacy",
                     "Compounded shipment sent in cold-chain packaging",
                   ].map((t, i) => (
                     <li key={i} className="flex gap-2.5 items-start">
@@ -241,7 +241,7 @@ export default function Checkout() {
   return (
     <SiteLayout variant="gate">
       <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
-        <div className="nx-container nx-section-y">
+        <div className="nx-container nx-section-y" style={{ paddingTop: "1.25rem" }}>
           {/* Breadcrumb */}
           <Link asChild href="/cart">
             <a
@@ -265,7 +265,7 @@ export default function Checkout() {
               Checkout.
             </h1>
             <p className="text-base" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.65 }}>
-              Check out, then answer a few health questions. A licensed U.S. physician reviews them, and if it is right for you, your medication ships cold to your door.
+              The order is placed, then a few health questions are answered. A licensed U.S. physician reviews them, and if appropriate, the medication ships cold.
             </p>
             <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.6rem" }} />
             <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />
@@ -310,7 +310,7 @@ export default function Checkout() {
                 <>
                   <Section title="Where should we ship?" eyebrow="Step 01 · Address">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Shipped cold to all 50 states once a physician approves your order. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
+                      Shipped cold to all 50 states once a physician approves the order. GLP-1 protocols are not available in {GLP1_STATE_EXCLUSIONS.join(", ")}.
                     </p>
                     <Row>
                       <Field label="Full name" error={errors.name?.message}>
@@ -347,7 +347,7 @@ export default function Checkout() {
                           Not available in {enteredState.toUpperCase()}
                         </div>
                         <p className="text-sm" style={{ color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                          One or more items in your order involve GLP-1 therapy, which we do not currently
+                          One or more items in the order involve GLP-1 therapy, which we do not currently
                           offer in your state. Remove those items to continue, or{" "}
                           <Link href="/contact" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
                             contact our clinical team
@@ -385,7 +385,7 @@ export default function Checkout() {
                         </p>
                         <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
                           Billing runs through Bask Health, our telehealth billing partner. The price is complete:
-                          one number a month, with the physician's review, your medicine, cold shipping and the week-12
+                          one number a month, with the physician's review, the medicine, cold shipping and the week-12
                           blood test within it. If the physician declines, the refund policy sets out what is refunded.
                         </p>
                       </div>
@@ -399,7 +399,7 @@ export default function Checkout() {
                         "Check out at the price shown. One number a month.",
                         "Answer the questionnaire. Two minutes.",
                         "A U.S. licensed doctor reads every answer and decides.",
-                        "If it is a yes, your medicine is made for you and ships cold. If it is a no, the refund policy applies.",
+                        "If prescribed, the medicine is made to order and ships cold. If not, the refund policy applies.",
                       ].map((t, i) => (
                         <li
                           key={i}
@@ -426,7 +426,7 @@ export default function Checkout() {
                     >
                       <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6, margin: 0, maxWidth: "48ch" }}>
                         <strong style={{ fontWeight: 600, color: "var(--nx-fg)" }}>Someone else covering this?</strong>{" "}
-                        Send them the price. One payment on their side, and your results stay yours.
+                        One payment on their side; their results stay theirs.
                       </p>
                       <Link href="/gift?mode=request" className="nx-text-link" data-testid="checkout-gift-link" style={{ fontFamily: FONT, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
                         Create the link
@@ -446,7 +446,7 @@ export default function Checkout() {
                 <>
                   <Section title="Health screening" eyebrow="Step 03 · Review">
                     <p className="text-sm mb-5 max-w-xl" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", lineHeight: 1.6 }}>
-                      Answer honestly. A physician reads every answer, and your answers are encrypted in transit.
+                      Answer plainly. A physician reads every answer, and the answers are encrypted in transit.
                     </p>
                     <div className="space-y-3">
                       <YesNoField
@@ -477,7 +477,7 @@ export default function Checkout() {
 
                   {/* Order recap */}
                   <div className="pt-2">
-                    <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm your order</p>
+                    <p className="text-[11px] uppercase tracking-[var(--nx-ls-wide)] mb-3" style={{ fontFamily: FONT, color: "var(--nx-amber)" }}>Confirm the order</p>
                     <div style={{ border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", overflow: "hidden" }}>
                       {lines.map((line) => (
                         <div
@@ -574,16 +574,11 @@ export default function Checkout() {
                             {line.name}
                           </div>
                           <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
-                            {line.oneTime ? (line.complimentary ? "Complimentary with your medication order" : "Paid once") : billingNote(line.cadence, line.unitPrice)}
+                            {line.oneTime ? (line.complimentary ? "Complimentary with the medication order" : "Paid once") : billingNote(line.cadence, line.unitPrice)}
                           </div>
                           {stack ? (
                             <div className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)", letterSpacing: "0.05em" }}>
                               {stack.peptides.length} peptides
-                            </div>
-                          ) : null}
-                          {line.savings && line.savings > 0 ? (
-                            <div className="text-[11px] mt-1" style={{ fontFamily: FONT, color: "var(--nx-amber)", letterSpacing: "0.05em" }}>
-                              −{formatUSD(line.savings)} saved
                             </div>
                           ) : null}
                         </div>

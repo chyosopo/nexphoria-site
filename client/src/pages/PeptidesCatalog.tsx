@@ -147,7 +147,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 Every medicine, by what it treats.
               </h1>
               <p className="nx-lede" style={{ maxWidth: "50ch" }}>
-                Choose by your goal. Each one shows what it treats, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+                By what each is for. Every page states what it treats, how it works, how it is taken, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
               </p>
             </div>
             {/* THE FORMULARY, RENDERED — replaces vial-lineup-hero.webp.

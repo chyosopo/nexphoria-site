@@ -100,7 +100,7 @@ export const stacks: Stack[] = [
     tagline: "The metabolic stack.",
     purpose: "Sustainable weight loss with muscle preservation and metabolic monitoring.",
     curator: "Board-certified physician — Endocrinology",
-    description: "Tirzepatide titrated by your physician, paired with MOTS-c for mitochondrial support and Ipamorelin to preserve lean mass during the deficit. Full metabolic panel monitored monthly.",
+    description: "Tirzepatide titrated by the physician, paired with MOTS-c for mitochondrial support and Ipamorelin to preserve lean mass during the deficit. Full metabolic panel monitored monthly.",
     peptides: ["tirzepatide", "mots-c", "ipamorelin"],
     labMarkers: ["HbA1c", "Fasting Insulin", "Lipid Panel", "ALT/AST", "IGF-1"],
     duration: "16-week initial course, ongoing maintenance",

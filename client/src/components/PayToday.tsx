@@ -12,9 +12,9 @@ import { RETEST_WEEK } from "@/data/monitoring";
 
 const STEPS: [string, string][] = [
   ["Check out.", "The figure above, paid up front for your term. That is the whole figure."],
-  ["Answer a few health questions.", "About two minutes: your history, your medications, your goal."],
-  ["Your physician reviews.", "If it is right for you, your medication is made in a licensed U.S. pharmacy and shipped cold, with your baseline blood kit, included."],
-  ["Test, then start.", "Draw at home, your physician sets your dose against your numbers, and you begin. If it is not right for you, your physician explains why, and the refund policy covers what is refunded."],
+  ["The health questions.", "About two minutes: history, current medicines, the goal."],
+  ["The physician reviews.", "If appropriate, the medication is made in a licensed U.S. pharmacy and shipped cold, with the baseline blood kit, included."],
+  ["Test, then start.", "The draw at home, the dose set against the results, and the first dose. If not prescribed, the physician explains why, and the refund policy covers what is refunded."],
 ];
 
 export function PayToday({
@@ -52,7 +52,7 @@ export function PayToday({
         </p>
       )}
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", margin: "0.5rem 0 0" }}>
-        Includes your medication, physician review, cold shipping, the baseline blood kit, included, and the same {PANEL_TOTAL_MARKERS}-marker panel again at week {RETEST_WEEK}.
+        Includes the medication, the physician's review, cold shipping, the baseline blood kit, and the same {PANEL_TOTAL_MARKERS}-marker panel again at week {RETEST_WEEK}.
       </p>
       <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)", margin: "1.1rem 0 0" }}>
         What happens next

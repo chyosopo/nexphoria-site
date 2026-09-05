@@ -33,23 +33,23 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does it work?",
-        a: `Five steps. You choose a medicine or a protocol, and a term of one, three, six or twelve months. You answer health questions about your health history, current medicines and goals, at checkout, which takes a few minutes. A licensed U.S. physician reviews your answers and writes the prescription, or explains why not; if not, nothing is made and the refund policy applies. Your medicine ships cold with an at-home blood kit, included; you draw before your first dose, and your physician sets the dose from your results. At week ${RETEST_WEEK} the same blood test is drawn again, and your physician compares the two and continues, adjusts or stops the dose.`,
+        a: `Five steps. A medicine or a protocol is chosen, and a term of one, three, six or twelve months. The health questions, on history, current medicines and the goal, are answered at checkout in a few minutes. A licensed U.S. physician reviews the answers and writes the prescription, or explains why not; if not, nothing is made and the refund policy applies. The medicine ships cold with an at-home blood kit, included; the draw comes before the first dose, and the physician sets the dose from the results. At week ${RETEST_WEEK} the same blood test is drawn again, and the physician compares the two and continues, adjusts or stops the dose.`,
       },
       {
         q: "Do I need to see a doctor in person?",
-        a: "No visit needed. Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription, and reads your blood test before your first dose and again at week 12.",
+        a: "No visit is needed. Everything happens online. A licensed U.S. physician reviews the health questions, writes the prescription, and reads the panel before the first dose and again at week 12.",
       },
       {
         q: "What if the physician says it is not right for me?",
-        a: "You will hear why, and for some people the answer is to wait or try a different treatment. The refund policy explains what is refunded.",
+        a: "The physician explains why, and for some people the answer is to wait or to try a different treatment. The refund policy explains what is refunded.",
       },
       {
         q: "Do I need bloodwork to start?",
-        a: `Yes. An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, included, and your physician sets your dose from the results. At week ${RETEST_WEEK} the same test is drawn again and compared. If you have recent results from a CLIA-certified laboratory, your physician may use those for your baseline.`,
+        a: `Yes. An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with the first order, included, and the physician sets the dose from the results. At week ${RETEST_WEEK} the same test is drawn again and compared. Recent results from a CLIA-certified laboratory may serve as the baseline, at the physician's discretion.`,
       },
       {
         q: "What if I have a health condition?",
-        a: "Tell us in the health questions. Some conditions rule a medication out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what your physician keeps an eye on.",
+        a: "It is stated in the health questions. Some conditions rule a medication out, such as certain cancers, pregnancy, or uncontrolled heart disease. Others change the dose or what the physician watches.",
       },
     ],
   },
@@ -66,11 +66,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What is in the vial, and who made it?",
-        a: "The medicine named on your prescription, compounded for you by VialsRX, a state-licensed 503A pharmacy, and shipped cold. The prescription is written by a licensed U.S. physician. Both are listed on this page with their addresses.",
+        a: "The medicine named on the prescription, compounded to order by VialsRX, a state-licensed 503A pharmacy, and shipped cold. The prescription is written by a licensed U.S. physician. Both are listed on this page with their addresses.",
       },
       {
         q: "What does a 503A pharmacy mean?",
-        a: "A pharmacy licensed to make a medication for one named patient, from a physician's prescription. That is what lets your dose and formulation be set for you.",
+        a: "A pharmacy licensed to make a medication for one named patient, from a physician's prescription. That is what lets the dose and formulation be set for one person.",
       },
       {
         q: "Who provides the clinical care?",
@@ -91,7 +91,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What do I pay today?",
-        a: "The whole term, up front: the monthly price times the months in the term. The health questions follow, then the physician's decision, then your medicine ships.",
+        a: "The whole term, up front: the monthly price times the months in the term. The health questions follow, then the physician's decision, then the medicine ships.",
       },
       {
         q: "Can I cancel?",
@@ -108,11 +108,11 @@ const categories: { label: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "What are the side effects?",
-        a: "It depends on the medication. GLP-1 medications like semaglutide and tirzepatide can cause nausea and a smaller appetite while your dose steps up. Tesamorelin can cause redness where you inject and some water retention. PT-141 can cause nausea and flushing, and raises blood pressure for a few hours. Your physician reviews your history for the risks that matter to you.",
+        a: "It depends on the medication. GLP-1 medications like semaglutide and tirzepatide can cause nausea and a smaller appetite while the dose steps up. Tesamorelin can cause redness where you inject and some water retention. PT-141 can cause nausea and flushing, and raises blood pressure for a few hours. The physician reviews your history for the risks that matter to you.",
       },
       {
         q: "What if something feels wrong?",
-        a: "For chest pain, trouble breathing, or a severe allergic reaction, call emergency services. For anything else, stop and contact your physician before your next dose.",
+        a: "For chest pain, trouble breathing, or a severe allergic reaction, call emergency services. For anything else, stop and contact the physician before the next dose.",
       },
       {
         q: "How do I store it?",
@@ -120,7 +120,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "What if I miss a dose?",
-        a: "Follow the instructions in your box for your medication. Never double up to catch up. If you are unsure, ask your physician before the next dose.",
+        a: "Follow the instructions that come with the medication. Do not double a dose to catch up. If unsure, ask the physician before the next dose.",
       },
     ],
   },
@@ -133,7 +133,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "When does it arrive?",
-        a: "Once your physician approves, the pharmacy makes your medication and ships it cold. You get an email with tracking when it is on its way.",
+        a: "Once the physician approves, the pharmacy makes the medication and ships it cold. An email with tracking follows when it is on its way.",
       },
       {
         q: "Can I travel with it?",
@@ -402,7 +402,7 @@ export default function FAQPage() {
 
       <FinalCTAStrip
         title="Still have questions?"
-        sub="Email hello@nexphoria.com. Clinical questions go to your physician."
+        sub="Email hello@nexphoria.com. Clinical questions go to the physician."
       />
     </SiteLayout>
   );

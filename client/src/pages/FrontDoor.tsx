@@ -32,8 +32,8 @@ const FLOOR = PRICED.length ? Math.min(...PRICED.map((s) => s.pricing!.m12)) : N
 const FAQ = [
   { q: "What is a peptide?", a: "A peptide is a short chain of amino acids, the same building blocks as protein. Your body already makes thousands of them as signals. The ones a physician prescribes here are precise versions of those signals, so your body does more of what it already does: releases growth hormone, feels full, or repairs tissue." },
   { q: "Who prescribes it, and who makes it?", a: "Prescriptions are written by independent, U.S.-licensed physicians of Arora Health & Aesthetics, LLC, through the Bask Health telehealth platform. Medicines are compounded by VialsRX, a state-licensed 503A pharmacy in Houston, Texas. Both are listed with their addresses on the FAQ page." },
-  { q: "Do I need to see a doctor?", a: `Everything happens online. A licensed U.S. physician reviews your health questions, writes your prescription if it is appropriate, and reads your blood test before your first dose and again at week ${RETEST_WEEK}.` },
-  { q: "Is bloodwork required?", a: `Yes. An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, included.` },
+  { q: "Do I need to see a doctor?", a: `Everything happens online. A licensed U.S. physician reviews the health questions, writes the prescription if it is appropriate, and reads the panel before the first dose and again at week ${RETEST_WEEK}.` },
+  { q: "Is bloodwork required?", a: `Yes. An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with the first order, included.` },
   { q: "What if the physician says it is not right for me?", a: "Then you will hear why, and the refund policy explains what is refunded." },
   { q: "How is compounded semaglutide different from Ozempic?", a: "Semaglutide is the same active ingredient. Compounded semaglutide is prepared for you by a licensed 503A pharmacy under a physician's prescription. It is not an FDA-approved drug, and it is not the branded product." },
   { q: "How is it billed?", a: "One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping." },
@@ -42,15 +42,15 @@ const FAQ = [
 
 export default function FrontDoor() {
   useSeo({
-    title: "Nexphoria: prescription peptide therapy, with a physician and your blood work",
+    title: "Nexphoria: prescription peptide therapy, prescribed against blood work",
     description:
-      `Prescription peptide therapy for weight, body composition, recovery, sleep, focus, hormones and sexual health. A licensed U.S. physician reviews your health history, prescribes if it is appropriate, and adjusts your dose from a blood test at week ${RETEST_WEEK}. One monthly price covers the medicine, the physician and the blood work.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
+      `Prescription peptide therapy for weight, body composition, recovery, sleep, focus, hormones and sexual health. A licensed U.S. physician reviews the health history, prescribes if it is appropriate, and adjusts the dose from a blood test at week ${RETEST_WEEK}. One monthly price covers the medicine, the physician and the blood work.${Number.isFinite(FLOOR) ? ` From ${usd(FLOOR)}/mo.` : ""}`,
     path: "/",
     jsonLd: [
       orgJsonLd(),
       websiteJsonLd(),
       medicalBusinessJsonLd(),
-      webPageJsonLd({ name: "Nexphoria", description: "Prescription peptide therapy, with a physician and your blood work.", path: "/" }),
+      webPageJsonLd({ name: "Nexphoria", description: "Prescription peptide therapy, prescribed against blood work.", path: "/" }),
       faqJsonLd(FAQ),
     ],
   });
@@ -68,7 +68,7 @@ export default function FrontDoor() {
           <div className="nx-premise">
             <p className="nx-premise__k" style={{ fontFamily: F }}>New to peptides</p>
             <p id="fd-what" className="nx-premise__t" style={{ fontFamily: S }}>
-              A peptide is a signal your body already makes. A licensed physician prescribes the right one for your goal, and doses it against your own blood work.
+              A peptide is a signal the body already makes. A licensed physician prescribes the right one for the goal, and sets the dose against your own blood work.
             </p>
             <Link href="/how-it-works" className="nx-text-link nx-premise__link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="frontdoor-learn">
               How peptides work <ArrowRight size={14} aria-hidden="true" />
@@ -88,7 +88,7 @@ export default function FrontDoor() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">How it works</p>
-            <h2 id="fd-road" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Five steps, from choosing to your first dose.</h2>
+            <h2 id="fd-road" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Five steps, from choosing to the first dose.</h2>
           </div>
         </Reveal>
         <Reveal><ol className="nx-road" aria-label="The five steps" data-testid="frontdoor-road" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
@@ -114,10 +114,10 @@ export default function FrontDoor() {
           </Reveal>
           <Reveal delay={60}>
             <p className="nx-eyebrow">Why we test</p>
-            <h2 id="fd-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>Your dose is set from your own blood work.</h2>
+            <h2 id="fd-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>The dose is set from blood work.</h2>
             <ul className="nx-blood__lines">
-              <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>A blood kit ships with your first order.</strong> {LAB_KIT.markers} markers, drawn at home, included.</span></li>
-              <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>Your physician sets your dose from the results,</strong> before your first dose.</span></li>
+              <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>A blood kit ships with the first order.</strong> {LAB_KIT.markers} markers, drawn at home, included.</span></li>
+              <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>The physician sets the dose from the results,</strong> before the first dose.</span></li>
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>At week {RETEST_WEEK} the same {LAB_KIT.markers} markers are tested again</strong> and compared, so the dose follows what changed.</span></li>
             </ul>
             <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem", display: "inline-block" }} data-testid="frontdoor-labs-link">Every marker, and the additional tests</Link>
@@ -140,7 +140,7 @@ export default function FrontDoor() {
             {[
               { Icon: FlaskConical, t: "The medicine", b: "Compounded to order in a licensed U.S. pharmacy." },
               { Icon: Stethoscope, t: "The physician's review", b: "Of the health answers, and of the results." },
-              { Icon: Droplets, t: `The ${PANEL_TOTAL_MARKERS}-marker blood kit`, b: "Drawn at home before your first dose." },
+              { Icon: Droplets, t: `The ${PANEL_TOTAL_MARKERS}-marker blood kit`, b: "Drawn at home before the first dose." },
               { Icon: RefreshCw, t: `The week-${RETEST_WEEK} test`, b: "On terms of three months and longer." },
               { Icon: Snowflake, t: "Cold shipping", b: "Plain packaging, to all 50 states." },
             ].map(({ Icon, t, b }) => (

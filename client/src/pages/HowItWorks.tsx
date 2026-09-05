@@ -34,27 +34,27 @@ const STEPS: { t: string; d: string; detail: string }[] = [
   {
     t: "Choose.",
     d: "A medicine or a protocol, and a term of one, three, six or twelve months.",
-    detail: "Every medicine and protocol page states what it is for, how it works, how you take it, what to expect, and its price. A pending medicine is shown with its price and a notice, and the only action is an email when it is available.",
+    detail: "Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price. A pending medicine is shown with its price and a notice, and the only action is an email when it is available.",
   },
   {
     t: "Health questions.",
-    d: "Your health history, current medicines and goals, at checkout. A few minutes.",
-    detail: "You check out first, then answer the questions. They cover the conditions that rule each medicine out and the medicines you already take. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.",
+    d: "Health history, current medicines and the goal, answered at checkout. A few minutes.",
+    detail: "The order is placed first, then the questions are answered. They cover the conditions that rule each medicine out and the medicines already taken. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.",
   },
   {
     t: "A physician decides.",
-    d: "A licensed U.S. physician reviews your answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies.",
-    detail: "The physician reads your answers against the conditions that rule each medicine out and against the other medicines you take. A decision comes within a few business days.",
+    d: "A licensed U.S. physician reviews the answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies.",
+    detail: "The physician reads the answers against the conditions that rule each medicine out and against the other medicines taken. A decision comes within a few business days.",
   },
   {
     t: "Blood kit, then first dose.",
-    d: "Your medicine ships cold with an at-home blood kit. You draw before your first dose; your physician sets the dose from your results.",
-    detail: `The kit contains what you need to draw a small sample at home and a prepaid box to return it to the laboratory. It covers ${PANEL_TOTAL_MARKERS} markers across five systems, and your physician reads the results before setting your first dose.`,
+    d: "The medicine ships cold with an at-home blood kit. The draw comes before the first dose; the physician sets the dose from the results.",
+    detail: `The kit contains what is needed to draw a small sample at home and a prepaid box to return it to the laboratory. It covers ${PANEL_TOTAL_MARKERS} markers across five systems, and the physician reads the results before setting the first dose.`,
   },
   {
     t: `Week ${RETEST_WEEK}.`,
-    d: "The same blood test again. Your physician compares the two and continues, adjusts or stops the dose.",
-    detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home and compared with your first test, marker by marker. Your physician reads what changed and decides whether the dose continues, changes or stops.`,
+    d: "The same panel again. The physician compares the two and continues, adjusts or stops the dose.",
+    detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home and compared with the first, marker by marker. The physician reads what changed and decides whether the dose continues, changes or stops.`,
   },
 ];
 
@@ -72,14 +72,14 @@ export default function HowItWorks() {
   const heroImg = OUTCOME_HERO[world === "women" ? "women" : "men"];
   useSeo({
     title: "How it works | Nexphoria",
-    description: `Five steps, from choosing a medicine to your week-${RETEST_WEEK} blood test. Health questions, a physician's decision, a blood kit before the first dose, and the same test again at week ${RETEST_WEEK}.`,
+    description: `Five steps, from choosing a medicine to the week-${RETEST_WEEK} panel. Health questions, a physician's decision, a blood kit before the first dose, and the same test again at week ${RETEST_WEEK}.`,
     path: "/how-it-works",
     jsonLd: [
-      webPageJsonLd({ name: "How it works", description: `Five steps, from choosing a medicine to your week-${RETEST_WEEK} blood test.`, path: "/how-it-works", type: "MedicalWebPage" }),
+      webPageJsonLd({ name: "How it works", description: `Five steps, from choosing a medicine to the week-${RETEST_WEEK} panel.`, path: "/how-it-works", type: "MedicalWebPage" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "How it works", path: "/how-it-works" }]),
       howToJsonLd({
         name: "How Nexphoria peptide therapy works",
-        description: `Five steps, from choosing a medicine to your week-${RETEST_WEEK} blood test.`,
+        description: `Five steps, from choosing a medicine to the week-${RETEST_WEEK} panel.`,
         steps: STEPS.map((s) => ({ name: s.t, text: s.d })),
       }),
     ],
@@ -97,7 +97,7 @@ export default function HowItWorks() {
                 How it works.
               </h1>
               <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }}>
-                Five steps, from choosing a medicine to your week-{RETEST_WEEK} blood test.
+                Five steps, from choosing a medicine to the week-{RETEST_WEEK} panel.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "1.6rem" }}>
                 <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">See the treatments</Link>
@@ -138,7 +138,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Blood testing</p>
-            <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>A blood test before you start, and again at week {RETEST_WEEK}.</h2>
+            <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>A panel before the first dose, and again at week {RETEST_WEEK}.</h2>
             <p className="nx-lede">
               The kit reads {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} systems, drawn at home. Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
             </p>
@@ -212,7 +212,7 @@ export default function HowItWorks() {
         <div className="nx-container" style={{ textAlign: "center" }}>
           <Reveal>
             <h2 id="hiw-closer" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", color: "var(--nx-ceramic)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-display)", maxWidth: "18ch", margin: "0 auto", textWrap: "balance" }}>
-              The next step is a physician.
+              Prescribed, if appropriate.
             </h2>
             <Link href="/peptides" className="nx-cta-ceramic" data-testid="hiw-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "2rem" }}>
               See the treatments

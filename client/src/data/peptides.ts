@@ -841,7 +841,7 @@ const RAW_PEPTIDES: Peptide[] = [
     administration: "Oral (pharmaceutical grade)",
     timeline: [
       { week: "Acute", effect: "Some report same-day changes in mental clarity." },
-      { week: "Ongoing", effect: "Response and tolerance assessed by your physician." },
+      { week: "Ongoing", effect: "Response and tolerance assessed by the physician." },
     ],
     studies: [
       { title: "Low-dose methylene blue and functional MRI of memory encoding/retrieval", year: "2016", source: "Radiology", url: "https://pubmed.ncbi.nlm.nih.gov/27351678/" },
@@ -945,7 +945,7 @@ const RAW_PEPTIDES: Peptide[] = [
     administration: "Subcutaneous injection, ahead of anticipated activity",
     timeline: [
       { week: "On-demand", effect: "Taken ahead of anticipated activity." },
-      { week: "Ongoing", effect: "Response and blood-pressure effect reviewed by your physician." },
+      { week: "Ongoing", effect: "Response and blood-pressure effect reviewed by the physician." },
     ],
     studies: [
       { title: "Bremelanotide for hypoactive sexual desire disorder (RECONNECT trials)", year: "2019", source: "Obstet Gynecol", url: "https://pubmed.ncbi.nlm.nih.gov/31599832/" },
@@ -979,7 +979,7 @@ const RAW_PEPTIDES: Peptide[] = [
     administration: "Nasal spray, shortly before",
     timeline: [
       { week: "On-demand", effect: "Taken shortly before. Works the same day." },
-      { week: "Ongoing", effect: "Used on the days you choose, reviewed by your physician." },
+      { week: "Ongoing", effect: "Used on the days chosen, reviewed by the physician." },
     ],
     studies: [
       { title: "Intranasal oxytocin and human social behaviour: a review", year: "2011", source: "Psychoneuroendocrinology", url: "https://pubmed.ncbi.nlm.nih.gov/21497684/" },
@@ -1007,7 +1007,7 @@ const RAW_PEPTIDES: Peptide[] = [
     administration: "Nasal spray, 20 to 30 minutes ahead",
     timeline: [
       { week: "On-demand", effect: "About twenty to thirty minutes ahead." },
-      { week: "Ongoing", effect: "On the days you choose. Heart history reviewed by your physician." },
+      { week: "Ongoing", effect: "On the days chosen. Heart history reviewed by the physician." },
     ],
     studies: [
       { title: "Tadalafil for erectile dysfunction: integrated analysis of trials", year: "2002", source: "Urology", url: "https://pubmed.ncbi.nlm.nih.gov/12429301/" },
@@ -1028,13 +1028,13 @@ const RAW_PEPTIDES: Peptide[] = [
     summary:
       "Classic testosterone replacement for men whose levels are low, prescribed after blood work and monitored with blood work. Used for energy, drive, muscle and mood, and the base many men build the rest of a plan on.",
     mechanism:
-      "Testosterone cypionate replaces the hormone your body is under-producing. A weekly dose keeps levels steady; your physician sets the dose against your baseline blood work and adjusts it against your retest, watching estradiol and red blood cell count alongside testosterone itself.",
+      "Testosterone cypionate replaces the hormone your body is under-producing. A weekly dose keeps levels steady; the physician sets the dose against your baseline blood work and adjusts it against your retest, watching estradiol and red blood cell count alongside testosterone itself.",
     halfLife: "~8 days",
     typicalDose: "Weekly, physician-individualized against blood work",
     cycleLength: "Ongoing, with blood work every 90 days at first",
     administration: "Weekly injection, under the skin or into muscle",
     timeline: [
-      { week: "Weeks 1 to 2", effect: "Your first doses. Levels begin to settle." },
+      { week: "Weeks 1 to 2", effect: "The first doses. Levels begin to settle." },
       { week: "Weeks 3 to 6", effect: "Energy, mood and drive are usually the first things to move." },
       { week: "Months 3 to 6", effect: "Body composition changes build. Retest and dose review." },
     ],
@@ -1060,10 +1060,10 @@ const RAW_PEPTIDES: Peptide[] = [
       "Kisspeptin tells the hypothalamus to release GnRH, which tells the pituitary to release LH and FSH, which tell the testes or ovaries to make their own hormones. Supporting that chain is why it is paired with testosterone replacement, which otherwise quiets it.",
     halfLife: "~30 minutes",
     typicalDose: "Physician-individualized",
-    cycleLength: "On your physician's schedule",
+    cycleLength: "On the physician's schedule",
     administration: "Subcutaneous injection",
     timeline: [
-      { week: "Weeks 1 to 4", effect: "Your first doses, on schedule." },
+      { week: "Weeks 1 to 4", effect: "The first doses, on schedule." },
       { week: "Weeks 6 to 12", effect: "The axis responds. Retest shows LH, FSH and testosterone." },
     ],
     studies: [

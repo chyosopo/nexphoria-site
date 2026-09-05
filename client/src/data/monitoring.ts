@@ -23,9 +23,9 @@ export const RETEST_WEEK = 12;
 /** The baseline kit: the same full panel, drawn at home before the first
     dose. Included with the first order on every term (the playbook). */
 export const BASELINE = {
-  when: "Before your first dose",
-  line: "An at-home blood kit ships with your first order, included. Your physician sets your dose from the results, and the same test is drawn again at week 12 and compared.",
-  short: "Baseline blood test with your first order, included",
+  when: "Before the first dose",
+  line: "An at-home blood kit ships with the first order, included. The physician sets the dose from the results, and the same panel is drawn again at week 12 and compared.",
+  short: "Baseline panel with the first order, included",
 } as const;
 
 /* The full panel: what a doctor wants to see twelve weeks into a peptide
@@ -42,7 +42,7 @@ export const FULL_PANEL: PanelGroup[] = [
   {
     name: "Cholesterol and heart",
     markers: [
-      { name: "Total cholesterol", why: "The headline number your doctor tracks over time." },
+      { name: "Total cholesterol", why: "The headline number a physician tracks over time." },
       { name: "LDL cholesterol", why: "The fraction most linked to heart risk." },
       { name: "HDL cholesterol", why: "The protective fraction." },
       { name: "Triglycerides", why: "Blood fats. Tesamorelin and weight change move this." },
@@ -53,9 +53,9 @@ export const FULL_PANEL: PanelGroup[] = [
   {
     name: "Liver, kidneys and pancreas",
     markers: [
-      { name: "ALT and AST", why: "Liver enzymes. The liver processes your medication." },
+      { name: "ALT and AST", why: "Liver enzymes. The liver processes the medication." },
       { name: "Creatinine and eGFR", why: "Kidney function." },
-      { name: "Lipase", why: "A pancreas marker. GLP-1 medicines can strain the pancreas, so your doctor watches it." },
+      { name: "Lipase", why: "A pancreas marker. GLP-1 medicines can strain the pancreas, so the physician watches it." },
     ],
   },
   {

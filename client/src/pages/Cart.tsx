@@ -50,7 +50,7 @@ export default function Cart() {
             >
               {itemCount === 0
                 ? "Your cart is empty. Browse the medicines by what they treat."
-                : "Review your plan, then continue to checkout. A licensed physician reviews your order before anything is dispensed."}
+                : "Review the plan, then continue to checkout. Every order is reviewed by a licensed physician before anything is dispensed."}
             </p>
           </div>
 
@@ -124,7 +124,7 @@ export default function Cart() {
 
                             <p className="text-sm" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>
                               <span style={{ color: "var(--nx-fg)", fontWeight: 500 }}>{line.complimentary ? "Complimentary" : formatUSD(line.unitPrice)}</span>
-                              <span className="text-xs" style={{ color: "var(--nx-fg-graphite)" }}>{line.oneTime ? (line.complimentary ? " with your medication order" : " · one time") : " / month supply"}</span>
+                              <span className="text-xs" style={{ color: "var(--nx-fg-graphite)" }}>{line.oneTime ? (line.complimentary ? " with the medication order" : " · one time") : " / month supply"}</span>
                             </p>
                             {!line.oneTime && (
                               <p className="text-[11px] mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-muted)" }}>
@@ -282,8 +282,8 @@ export default function Cart() {
                   <div className="flex items-start justify-between p-4 gap-4" style={{ background: "var(--nx-bg-cream)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)" }} data-testid="cart-panel-note">
                     <div className="flex-1 min-w-0">
                       <p className="text-xs uppercase tracking-[var(--nx-ls-caps)] mb-0.5" style={{ fontFamily: FONT, color: "var(--nx-cobalt)" }}>Included in the price</p>
-                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before your first dose, included</p>
-                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>Your physician sets your dose from it. The same blood test again at week {RETEST_WEEK} on plans of three months and longer. Additional tests from $19.</p>
+                      <p className="text-sm font-medium" style={{ fontFamily: FONT, color: "var(--nx-fg)" }}>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before the first dose, included</p>
+                      <p className="text-xs mt-0.5" style={{ fontFamily: FONT, color: "var(--nx-fg-graphite)" }}>The physician sets the dose from it. The same panel again at week {RETEST_WEEK} on plans of three months and longer. Additional tests from $19.</p>
                     </div>
                     <Link asChild href="/how-it-works">
                       <a className="text-xs px-3 py-1.5 flex-shrink-0 hover:bg-black/5 transition-colors" style={{ fontFamily: FONT, color: "var(--nx-fg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-pill)" }} data-testid="link-cart-bloodwork">
@@ -338,7 +338,7 @@ export default function Cart() {
                   </p>
                   <div className="space-y-2.5">
                     {[
-                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "Your physician's review" },
+                      { icon: <Stethoscope size={13} aria-hidden="true" />, text: "The physician's review" },
                       { icon: <Truck size={13} aria-hidden="true" />, text: "Cold shipping, plain packaging" },
                       { icon: <RefreshCw size={13} aria-hidden="true" />, text: "Blood kit, the week-12 blood test and dose review" },
                     ].map(({ icon, text }) => (

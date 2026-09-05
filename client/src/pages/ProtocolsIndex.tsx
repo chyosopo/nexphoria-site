@@ -63,7 +63,7 @@ export default function ProtocolsIndex() {
   // protocol PDPs it indexes (StackPage) and the sibling goal-protocol index
   // (Category) — both already MedicalWebPage; this flagship index was the
   // lone plain WebPage outlier.
-  const desc = `Medicines prescribed together, on one plan. A protocol is two to four medicines a physician prescribes together, with one blood test before you start and the same test at week ${RETEST_WEEK}.`;
+  const desc = `Medicines prescribed together, on one plan. A protocol is two to four medicines a physician prescribes together, with one panel before the first dose and the same panel at week ${RETEST_WEEK}.`;
   useSeo({
     title: "Protocols: medicines prescribed together | Nexphoria",
     description: desc,
@@ -100,7 +100,7 @@ export default function ProtocolsIndex() {
                 Protocols. Medicines prescribed together, on one plan.
               </h1>
               <p className="nx-lede" style={{ maxWidth: "50ch" }}>
-                A protocol is two to four medicines a physician prescribes together, with one blood test before you start and the same test at week {RETEST_WEEK}. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+                A protocol is two to four medicines a physician prescribes together, with one panel before the first dose and the same panel at week {RETEST_WEEK}. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
               </p>
             </div>
             <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
@@ -240,8 +240,8 @@ export default function ProtocolsIndex() {
           <div>
             <SectionHead
               eyebrow="Blood testing"
-              title={<>A blood test before you start, and again at week {RETEST_WEEK}.</>}
-              lead={`The kit ships with your first order and you draw at home before the first dose. At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are tested again and your physician adjusts from what changed.`}
+              title={<>A panel before the first dose, and again at week {RETEST_WEEK}.</>}
+              lead={`The kit ships with the first order and is drawn at home before the first dose. At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are tested again and the physician adjusts from what changed.`}
               maxTitle="18ch"
             />
           </div>
@@ -252,10 +252,10 @@ export default function ProtocolsIndex() {
       <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-band) 0" }} aria-labelledby="protocols-assess-title">
         <div className="nx-container" style={{ textAlign: "center" }}>
           <h2 id="protocols-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            Not sure which one?
+            Which one, is the physician's call.
           </h2>
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            The health questions ask what you are treating. A licensed physician chooses the protocol, or a single medicine if that fits better.
+            The health questions state what is being treated. A licensed physician chooses the protocol, or a single medicine if that fits better.
           </p>
           <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
             How it works

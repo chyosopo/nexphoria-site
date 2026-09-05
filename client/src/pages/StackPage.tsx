@@ -261,11 +261,11 @@ export default function StackPage({ slug }: { slug: string }) {
                 Blood testing for this protocol
               </h2>
               <p className="nx-lede" style={{ marginTop: "0.9rem" }}>
-                A blood test before your first dose, and the same test at week 12.
+                A panel before the first dose, and the same panel at week 12.
               </p>
               {watch.length > 0 && (
                 <div className="nx-glass-tile" style={{ display: "block", marginTop: "1rem" }}>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>What your physician reads first</p>
+                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Read first at week 12</p>
                   <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg)", marginTop: "0.4rem" }}>{watch.join(" · ")}</p>
                 </div>
               )}

@@ -72,7 +72,7 @@ export const pricing: Record<string, PeptidePricing> = {
    it does not persuade). `badge` stays in the type for the legacy fallback
    only; nothing sets it. */
 export const CADENCE_DISCOUNTS: Record<CadenceKey, { pct: number; label: string; sublabel: string; badge?: CadencePrice["badge"]; savePct: number; months: number; labs: string }> = {
-  "1mo":  { pct: 0,    months: 1,  label: "One month",   sublabel: "Paid up front",                    savePct: 0,  labs: "Blood kit before your first dose, included" },
+  "1mo":  { pct: 0,    months: 1,  label: "One month",   sublabel: "Paid up front",                    savePct: 0,  labs: "Blood kit before the first dose, included" },
   "3mo":  { pct: 0.10, months: 3,  label: "3 months",    sublabel: "Paid up front · 10% less per month", savePct: 10, labs: "Blood kit, and the same test at week 12, included" },
   "6mo":  { pct: 0.15, months: 6,  label: "6 months",    sublabel: "Paid up front · 15% less per month", savePct: 15, labs: "Blood kit, the week-12 test and a six-month test, included" },
   "12mo": { pct: 0.20, months: 12, label: "12 months",   sublabel: "Paid up front · 20% less per month", savePct: 20, labs: "Blood kit, then a test each quarter, included" },

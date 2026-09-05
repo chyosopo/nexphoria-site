@@ -24,7 +24,7 @@ export function FinalCTAStrip({
 
   const defaultTitle =
     gender === "men"
-      ? "Your protocol. Your physician. Your results."
+      ? "Your protocol. The physician. The results."
       : "Physician-guided. Clinically precise. Personally yours.";
 
   const headline = title || defaultTitle;

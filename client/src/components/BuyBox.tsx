@@ -131,7 +131,7 @@ export function BuyBox(props: BuyBoxProps) {
               <Lock size={14} /> Physician-assessed only
             </div>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.55rem" }}>
-              Prescribed after your physician reviews you. Dosed and priced at your consultation against your baseline blood work, then adjusted from your week-12 blood test.
+              Prescribed after a physician's review. Dosed and priced at consultation against the baseline panel, then adjusted from the week-12 panel.
             </p>
             {gatedStates && (
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.6rem" }}>
@@ -153,8 +153,8 @@ export function BuyBox(props: BuyBoxProps) {
             </p>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.5rem" }}>
               {fromPrice
-                ? "Cadence and final price are set by a physician at intake, against your protocol."
-                : "Dosed and priced by a physician at intake, against your protocol."}
+                ? "Cadence and final price are set by a physician at intake, against the protocol."
+                : "Dosed and priced by a physician at intake, against the protocol."}
             </p>
             <div style={{ marginTop: "1.1rem" }}>
               <CTA testId={ctaTestId}>Get started</CTA>
@@ -266,7 +266,7 @@ export function BuyBox(props: BuyBoxProps) {
             {cadence && !reserving && (
               <div style={{ display: "flex", justifyContent: "center", marginTop: "0.6rem" }}>
                 <Link href="/peptides" className="nx-text-link" data-testid={`${ctaTestId}-assess`} onClick={() => track("intake_cta", { source: "buybox-secondary" })} style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  Not sure? Answer a few health questions
+                  The health questions come after the order
                 </Link>
               </div>
             )}

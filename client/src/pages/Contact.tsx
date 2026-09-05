@@ -37,7 +37,7 @@ const contactColumns: {
       { label: "RESPONSE", value: "Reviewed by a physician" },
       { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
     ],
-    note: "For questions about your labs, prescription, or protocol adjustments. Use the secure portal for clinical questions.",
+    note: "For questions about results, a prescription, or protocol adjustments. Clinical questions go through the secure portal.",
   },
   {
     eyebrow: "PRESS & PARTNERSHIPS",
@@ -66,7 +66,7 @@ const reasons = [
 export default function Contact() {
   useSeo({
     title: "Contact Nexphoria: physician questions, protocol support",
-    description: "Questions about peptide therapy, your protocol, or how to get started? We answer every message promptly, Monday to Friday. Physician-guided support from a real team.",
+    description: "Questions about peptide therapy, a protocol, or how to begin. Every message is answered on business days, Monday to Friday, by a real team.",
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
@@ -139,7 +139,7 @@ export default function Contact() {
                 <span>Talk to us.</span>
               </>
             }
-            subtitle="Patient support, medical questions, partnerships, or press. Your message reaches the right person."
+            subtitle="Patient support, medical questions, partnerships, or press. Every message reaches the right person."
           />
 
           <div className="mx-grid">
@@ -415,7 +415,7 @@ export default function Contact() {
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.75rem 0 0", display: "flex", flexDirection: "column", gap: "0.9rem" }}>
                   {[
                     { Icon: Lock, t: "Encrypted in transit and at rest" },
-                    { Icon: ShieldCheck, t: "HIPAA-aware handling of your details" },
+                    { Icon: ShieldCheck, t: "HIPAA-aware handling of details" },
                     { Icon: Clock, t: "Replies on business days, Mon–Fri ET" },
                   ].map(({ Icon, t }) => (
                     <li key={t} style={{ display: "flex", alignItems: "center", gap: 11 }}>

@@ -128,7 +128,7 @@ export function CartDrawer() {
                 className="text-[1.35rem] leading-tight"
                 style={{ fontFamily: FONT, color: "var(--nx-fg)", fontWeight: 600, letterSpacing: "var(--nx-ls-normal)" }}
               >
-                {itemCount === 0 ? "Your cart is empty" : "Your plan"}
+                {itemCount === 0 ? "Your cart is empty" : "The plan"}
               </h2>
               <div style={{ marginTop: 8 }}><RoadStrip current={itemCount === 0 ? 0 : 1} testId="cart-road" /></div>
             </div>
@@ -163,7 +163,7 @@ export function CartDrawer() {
                   <div className="nx-added" role="status" data-testid="cart-added">
                     <Check size={15} strokeWidth={2.6} aria-hidden="true" />
                     <p style={{ fontFamily: FONT }}>
-                      <strong>{justAdded.name}</strong> is in your plan{justAdded.oneTime ? "" : ` for ${justAdded.months} ${justAdded.months === 1 ? "month" : "months"}`}. {hasMedicine ? "Your baseline blood kit ships with it, complimentary." : ""}
+                      <strong>{justAdded.name}</strong> is in the plan{justAdded.oneTime ? "" : ` for ${justAdded.months} ${justAdded.months === 1 ? "month" : "months"}`}. {hasMedicine ? "Your baseline blood kit ships with it, complimentary." : ""}
                     </p>
                   </div>
                 )}
@@ -171,8 +171,8 @@ export function CartDrawer() {
                   <div className="nx-included" data-testid="cart-included">
                     <p className="nx-included__h" style={{ fontFamily: FONT }}>Included in the price</p>
                     <ul>
-                      <li style={{ fontFamily: FONT }}><FlaskConical size={13} aria-hidden="true" /> {LAB_KIT.name}, {LAB_KIT.markers} markers, at home before your first dose <em>Complimentary</em></li>
-                      <li style={{ fontFamily: FONT }}><Stethoscope size={13} aria-hidden="true" /> A licensed physician reviews your order and sets your dose <em>Included</em></li>
+                      <li style={{ fontFamily: FONT }}><FlaskConical size={13} aria-hidden="true" /> {LAB_KIT.name}, {LAB_KIT.markers} markers, at home before the first dose <em>Complimentary</em></li>
+                      <li style={{ fontFamily: FONT }}><Stethoscope size={13} aria-hidden="true" /> A licensed physician reviews the order and sets the dose <em>Included</em></li>
                       <li style={{ fontFamily: FONT }}><Truck size={13} aria-hidden="true" /> Cold shipping, plain packaging <em>Included</em></li>
                       <li style={{ fontFamily: FONT }}><Check size={13} aria-hidden="true" /> The same blood test again at week {RETEST_WEEK}, on plans of three months and longer <em>Included</em></li>
                     </ul>
@@ -250,24 +250,6 @@ export function CartDrawer() {
                             )}
                           </div>
                         </div>
-
-                        {/* Savings line */}
-                        {line.savings && line.savings > 0 ? (
-                          <div
-                            className="text-[11px] mb-3 inline-flex items-center gap-1 px-2 py-0.5"
-                            style={{
-                              fontFamily: FONT,
-                              color: "var(--nx-amber)",
-                              background: "var(--nx-bg-cream)",
-                              border: "1px solid #C4D4E8",
-                              borderRadius: "var(--nx-r-2xs)",
-                              letterSpacing: "0.04em",
-                              fontWeight: 500,
-                            }}
-                          >
-                            <Check size={10} strokeWidth={2.5} /> {line.complimentary ? `Complimentary with your order (${formatUSD(line.savings)})` : `Saving ${formatUSD(line.savings)} on this term`}
-                          </div>
-                        ) : null}
 
                         {/* Cadence segmented control (medicines only; a lab kit is one time) */}
                         {!line.oneTime && <div className="mt-3">

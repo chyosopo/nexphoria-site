@@ -185,7 +185,7 @@ export const BENEFITS: Record<string, Benefit> = {
   },
   testosterone: {
     goodFor: ["Low testosterone", "Energy and drive", "Muscle and mood"],
-    effects: [{ dir: "up", text: "Testosterone, to a level your physician sets" }, { dir: "up", text: "Energy, drive and mood" }, { dir: "up", text: "Lean mass, over months" }],
+    effects: [{ dir: "up", text: "Testosterone, to a level the physician sets" }, { dir: "up", text: "Energy, drive and mood" }, { dir: "up", text: "Lean mass, over months" }],
     region: "hormone",
     how: { route: "injection", rhythm: "Once a week" },
   },
@@ -193,7 +193,7 @@ export const BENEFITS: Record<string, Benefit> = {
     goodFor: ["Hormone balance", "Your own production", "Fertility-minded plans"],
     effects: [{ dir: "up", text: "LH and FSH, your own signals" }, { dir: "up", text: "Your own testosterone" }, { dir: "steady", text: "The axis, kept working" }],
     region: "hormone",
-    how: { route: "injection", rhythm: "On your physician's schedule" },
+    how: { route: "injection", rhythm: "On the physician's schedule" },
   },
 };
 

@@ -9,9 +9,9 @@ export const STOPS = ["Land", "Choose", "Understand", "Buy", "After"] as const;
 export type Stop = 1 | 2 | 3 | 4 | 5;
 
 export const ROAD: { t: string; b: string }[] = [
-  { t: "Choose your medicine", b: "A medicine or a protocol, and a term of one, three, six or twelve months." },
-  { t: "Answer the health questions", b: "Your health history, current medicines and goals, at checkout. A few minutes." },
-  { t: "A physician decides", b: "A licensed U.S. physician reviews your answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies." },
-  { t: "Draw your blood kit, then start", b: "Your medicine ships cold with an at-home blood kit. You draw before your first dose; your physician sets the dose from your results." },
-  { t: "Retest at week 12", b: "The same blood test again. Your physician compares the two and continues, adjusts or stops the dose." },
+  { t: "Choose", b: "A medicine or a protocol, and a term of one, three, six or twelve months." },
+  { t: "The health questions", b: "Health history, current medicines and the goal, answered at checkout. A few minutes." },
+  { t: "A physician decides", b: "A licensed U.S. physician reviews the answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies." },
+  { t: "The blood kit, then the first dose", b: "The medicine ships cold with an at-home blood kit. The draw comes before the first dose; the physician sets the dose from the results." },
+  { t: "Week 12", b: "The same panel again. The physician compares the two and continues, adjusts or stops the dose." },
 ];
