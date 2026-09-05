@@ -1,4 +1,4 @@
-/* How it is taken, in three plain steps by route (lib/vial). House voice;
+/* How it is taken, in three numbered tiles by route (lib/vial). House voice;
    the prescription and the physician's instructions govern. */
 import { F, S } from "@/lib/typography";
 import { vialFacts, ml, doseLabel } from "@/lib/vial";
@@ -38,16 +38,16 @@ export function Ritual({ sku, testId }: { sku: SoloPeptide; testId?: string }) {
   const list = steps(sku);
   return (
     <div data-testid={testId ?? `ritual-${sku.slug}`}>
-      <ol className="nx-road nx-road--ritual" style={{ marginTop: "1rem" }} aria-label="How it is taken">
+      <ol className="nx-pt-grid nx-pt-grid--fit" aria-label="How it is taken">
         {list.map((s, i) => (
-          <li key={s.t} className="nx-road__step">
-            <span className="nx-road__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-            <p className="nx-road__t" style={{ fontFamily: S }}>{s.t}</p>
-            <p className="nx-road__b" style={{ fontFamily: F }}>{s.b}</p>
+          <li key={s.t} className="nx-pt">
+            <span className="nx-pt__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+            <p className="nx-pt__t" style={{ fontFamily: S }}>{s.t}</p>
+            <p className="nx-pt__b" style={{ fontFamily: F }}>{s.b}</p>
           </li>
         ))}
       </ol>
-      <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.8rem", maxWidth: "58ch" }}>
+      <p className="nx-pt-note" style={{ fontFamily: F }}>
         The prescription and the physician's instructions govern. It ships cold, in plain packaging, with the blood kit.
       </p>
     </div>

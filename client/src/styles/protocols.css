@@ -1,0 +1,82 @@
+/* ═══ PROTOCOLS (the index, the protocol page, the featured band) ═══
+   Owned by the protocols area (2026-09-05 polish pass). Tokens only. The
+   tile text shadow is written out on its rule (two navy color-mixes) because
+   audit:design reads token definitions from index.css alone; the lead may
+   promote it to a --nx-ts-tile token there. Imported from
+   FeaturedProtocol, ProtocolsIndex and StackPage, so every route that
+   shows a protocol carries it. */
+
+/* ── The index tiles: the medicines read, the copy still does ──
+   The navy fade starts at 45% (it started at 30%) and reaches full navy
+   only in the last tenth; a left band carries the copy where the vials
+   sit to the right. The copy gets a shadow so it holds over the vials. */
+a.nx-tile--proto::after {
+  background:
+    linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--nx-bg-dark) 58%, transparent) 74%, color-mix(in srgb, var(--nx-bg-dark) 90%, transparent) 100%),
+    linear-gradient(90deg, color-mix(in srgb, var(--nx-bg-dark) 42%, transparent) 0%, transparent 52%);
+}
+.nx-tile--proto .nx-tile__t, .nx-tile--proto .nx-tile__b { text-shadow: 0 1px 2px color-mix(in srgb, var(--nx-bg-dark) 70%, transparent), 0 2px 14px color-mix(in srgb, var(--nx-bg-dark) 45%, transparent); }
+.nx-tile--proto .nx-tile__b { color: color-mix(in srgb, var(--nx-ceramic) 90%, transparent); }
+.nx-tile--proto .nx-chips--tile .nx-chip:not(.nx-chip--accent) { background: color-mix(in srgb, var(--nx-bg-dark) 55%, transparent); }
+
+/* ── The filter row ── */
+.nx-protofilters { display: flex; flex-wrap: wrap; gap: .5rem; }
+.nx-protofilters .nx-filter-chip { min-height: 44px; }
+
+/* ── Pairs well / one at a time: the medicines as tiles, a pair per row ──
+   Each row is the medicines of the pair as two tile columns with the
+   joiner between them, and the note under the row. The "one at a time"
+   groups run the same way with as many columns as members. */
+.nx-pairs { display: grid; gap: clamp(.8rem, 2vw, 1.2rem); margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.nx-pairs__group { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.1rem, 2.4vw, 1.6rem); }
+.nx-pairs__group--one { background: var(--nx-bg); }
+.nx-pairs__h { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt); }
+.nx-pairs__list { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: 1rem; }
+.nx-pairs__row { padding-top: 1rem; border-top: 1px solid var(--nx-border); }
+.nx-pairs__row:first-child { padding-top: 0; border-top: 0; }
+.nx-pairs__tiles { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: .6rem; align-items: center; }
+.nx-pairs__tiles--3 { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); }
+/* the "one at a time" groups sit in the narrower column: one tile per line, the "or" between */
+.nx-pairs__group--one .nx-pairs__tiles { grid-template-columns: 1fr; gap: .4rem; }
+.nx-pairs__group--one .nx-pairs__join { width: auto; height: 1.6rem; justify-self: start; padding: 0 .6rem; font-size: var(--nx-t-sm); }
+.nx-pairs__join { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-size: var(--nx-t-lg); font-weight: 600; line-height: 1; }
+.nx-pair-tile { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding: .55rem .8rem .55rem .55rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: var(--nx-ceramic); color: var(--nx-fg); text-decoration: none; transition: border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-pair-tile:hover { border-color: color-mix(in srgb, var(--nx-cobalt) 40%, var(--nx-border)); transform: translateY(-2px); }
+.nx-pair-tile__media { flex: 0 0 auto; width: 4.2rem; height: 4.2rem; border-radius: var(--nx-r-sm); overflow: hidden; background: linear-gradient(160deg, var(--nx-ceramic), var(--nx-cobalt-soft)); display: flex; align-items: center; justify-content: center; }
+.nx-pair-tile__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; display: block; }
+.nx-pair-tile__name { min-width: 0; font-size: var(--nx-t-base); font-weight: 500; line-height: 1.2; color: var(--nx-fg); }
+.nx-pair-tile__name small { display: block; margin-top: .15rem; font-size: var(--nx-t-xs); font-weight: 400; color: var(--nx-fg-graphite); }
+.nx-pairs__note { margin: .7rem 0 0; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); max-width: 70ch; }
+@media (min-width: 900px) { .nx-pairs { grid-template-columns: 1.15fr .85fr; } }
+@media (max-width: 560px) {
+  .nx-pairs__tiles, .nx-pairs__tiles--3 { grid-template-columns: 1fr; gap: .4rem; }
+  .nx-pairs__join { width: auto; height: 1.6rem; justify-self: start; padding: 0 .6rem; font-size: var(--nx-t-sm); }
+}
+
+/* ── The protocol page ── */
+.nx-proto-back { display: inline-flex; align-items: center; gap: .4rem; min-height: 36px; text-decoration: none; }
+
+/* the medicines as product cards, the dose under each */
+.nx-proto-members { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); margin-top: clamp(1rem, 2vw, 1.4rem); }
+.nx-proto-member { display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+.nx-proto-member > .nx-frost { border: 1px solid var(--nx-border); }
+.nx-proto-dose { margin: 0; padding: .8rem 1rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: var(--nx-ceramic); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .3rem .8rem; align-items: baseline; }
+.nx-proto-dose dt { font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-proto-dose dd { margin: 0; font-size: var(--nx-t-sm); font-weight: 600; line-height: 1.4; color: var(--nx-fg); }
+.nx-proto-synergy { margin: clamp(1.2rem, 2.4vw, 1.6rem) auto 0; max-width: 62ch; text-align: center; font-size: var(--nx-t-base); line-height: 1.7; color: var(--nx-fg-graphite); }
+@media (max-width: 700px) { .nx-proto-members { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; } .nx-proto-dose { padding: .6rem .7rem; grid-template-columns: 1fr; gap: .1rem; } }
+@media (max-width: 420px) { .nx-proto-members { grid-template-columns: 1fr; } }
+
+/* ── The body blocks in the tile frame (the .nx-card surface) ──
+   What arrives, what to expect, who should not, who prescribes, the
+   questions: each is one ceramic tile so the page reads as a stack of
+   tiles beside the buy tile, the way the product page frames its blocks. */
+.nx-proto-block { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.2rem, 2.4vw, 1.75rem); }
+.nx-proto-block + .nx-proto-block, .nx-proto-block + .nx-pdp-sec { margin-top: clamp(.8rem, 1.6vw, 1.2rem); }
+.nx-proto-block.nx-pdp-sec { margin-top: clamp(.8rem, 1.6vw, 1.2rem); }
+.nx-proto-block .nx-glass-tile { background: var(--nx-bg); }
+.nx-proto-block .nx-faq-item, .nx-proto-block .nx-faq-item:first-child { background: var(--nx-bg); }
+.nx-proto-block .nx-card { background: var(--nx-bg); }
+.nx-proto-block .nx-pdp-sub { padding-top: clamp(1rem, 2vw, 1.4rem); border-top: 1px solid var(--nx-border); }
+.nx-proto-block .nx-dsh3 { text-wrap: balance; }
+.nx-proto-block > [data-testid="pdp-faq"] { margin-top: 0; }

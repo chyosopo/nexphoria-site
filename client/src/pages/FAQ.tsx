@@ -1,19 +1,23 @@
-/* JOB: remove the last objection; hand off to support or the assessment. */
-import { useRef, useState } from "react";
+/* JOB: remove the last objection; hand off to support or the medicines. */
+/* ═══ FAQ — the tile grammar (2026-09-05)
+   The categories as a left rail on desktop and a sticky pill row on the
+   phone; the questions as the FAQ tiles; sentence-case headings in the v3
+   register. The physician and pharmacy answers are the compliance blocks
+   verbatim (data/compliance.ts), which audit:legitscript asserts on /faq.
+   Every fact is derived from the catalog and the compliance data, never
+   typed. The page's own classes live in client/src/styles/support.css. */
+import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
-import { FinalCTAStrip } from "@/components/FinalCTAStrip";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { MxHeader } from "@/components/SignatureTile";
-import heroFaq from "@/assets/brand/hero-faq.webp";
-import { PillBadge } from "@/components/PillBadge";
-import { FaqAccordion } from "@/components/EnterprisePatterns";
-import { F } from "@/lib/typography";
+import { F, S } from "@/lib/typography";
 import { SOLO_FROM_LABEL } from "@/data/pricing";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { RETEST_WEEK } from "@/data/monitoring";
+import "@/styles/support.css";
 
 interface FAQItem {
   q: string;
@@ -27,9 +31,10 @@ const GLP1_EXCLUDED = Array.from(
   new Set(SOLO_CATALOG.filter((p) => p.gated).flatMap((p) => p.stateExclusions ?? [])),
 ).sort().join(", ");
 
-const categories: { label: string; items: FAQItem[] }[] = [
+const categories: { label: string; heading: string; items: FAQItem[] }[] = [
   {
     label: "Getting started",
+    heading: "How you start.",
     items: [
       {
         q: "How does it work?",
@@ -37,7 +42,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Do I need to see a doctor in person?",
-        a: "No visit is needed. Everything happens online. A licensed U.S. physician reviews your online visit, writes the prescription, and reads the panel before the first dose and again at week 12.",
+        a: `No visit is needed. Everything happens online. A licensed U.S. physician reviews your online visit, writes the prescription, and reads the panel before the first dose and again at week ${RETEST_WEEK}.`,
       },
       {
         q: "What if the physician says it is not right for me?",
@@ -54,19 +59,20 @@ const categories: { label: string; items: FAQItem[] }[] = [
     ],
   },
   {
-    label: "The medications",
+    label: "The medicines",
+    heading: "What the medicines are.",
     items: [
       {
         q: "What is a peptide?",
-        a: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as signals. The ones we prescribe are precise versions of signals your body already uses, so it does more of what it does anyway: feels full, releases growth hormone, or responds to desire.",
+        a: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as signals. The ones a physician prescribes here are precise versions of signals your body already uses, so it does more of what it does anyway: feels full, releases growth hormone, or responds to desire.",
       },
       {
-        q: "Which peptides do you offer?",
+        q: "Which peptides can be prescribed here?",
         a: `${PEPTIDE_NAMES}. Each has its own page explaining what it does, how you take it, and what it costs.`,
       },
       {
         q: "What is in the vial, and who made it?",
-        a: "The medicine named on the prescription, compounded to order by VialsRX, a state-licensed 503A pharmacy, and shipped cold. The prescription is written by a licensed U.S. physician. Both are listed on this page with their addresses.",
+        a: `The medicine named on the prescription, compounded to order by ${PHARMACY_INFO.name}, a state-licensed 503A pharmacy, and shipped cold. The prescription is written by a licensed U.S. physician. Both are listed on this page with their addresses.`,
       },
       {
         q: "What does a 503A pharmacy mean?",
@@ -78,12 +84,13 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Which pharmacy fills the prescriptions?",
-        a: PHARMACY_INFO.body.replace(/\n+/g, " "),
+        a: PHARMACY_INFO.body,
       },
     ],
   },
   {
-    label: "Pricing",
+    label: "Price",
+    heading: "What it costs.",
     items: [
       {
         q: "How much does it cost?",
@@ -98,13 +105,14 @@ const categories: { label: string; items: FAQItem[] }[] = [
         a: "Yes. Cancellation takes effect at the end of your current cycle. Medication that has already shipped cannot be returned under pharmacy regulations. The refund policy has the details.",
       },
       {
-        q: "Do you take insurance?",
+        q: "Is insurance accepted?",
         a: "Nexphoria is self-pay. Insurance does not cover compounded peptides.",
       },
     ],
   },
   {
     label: "Safety",
+    heading: "What to know about safety and side effects.",
     items: [
       {
         q: "What are the side effects?",
@@ -126,6 +134,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
   },
   {
     label: "Shipping",
+    heading: "How it ships.",
     items: [
       {
         q: "How is it shipped?",
@@ -140,17 +149,18 @@ const categories: { label: string; items: FAQItem[] }[] = [
         a: "Within the United States, yes. Keep it cold and keep the prescription label on the box. We ship inside the United States only.",
       },
       {
-        q: "Do you ship internationally?",
-        a: "No. We ship within the United States, to states where our physicians are licensed.",
+        q: "Is international shipping available?",
+        a: "No. We ship within the United States, to states where the physicians are licensed.",
       },
     ],
   },
   {
     label: "Legal",
+    heading: "Where it stands legally.",
     items: [
       {
         q: "Are peptides legal?",
-        a: "Yes, when prescribed by a licensed U.S. physician and made by a licensed 503A pharmacy. Semaglutide, tirzepatide, tesamorelin and PT-141 each exist as FDA-approved branded drugs. The compounded versions we prescribe are prepared for you, and prescribing them is a routine part of medical practice in the United States.",
+        a: "Yes, when prescribed by a licensed U.S. physician and made by a licensed 503A pharmacy. Semaglutide, tirzepatide, tesamorelin and PT-141 each exist as FDA-approved branded drugs. The compounded versions prescribed here are prepared for you, and prescribing them is a routine part of medical practice in the United States.",
       },
       {
         q: "Is this FDA-approved?",
@@ -158,7 +168,7 @@ const categories: { label: string; items: FAQItem[] }[] = [
       },
       {
         q: "Who is behind Nexphoria?",
-        a: "Nexphoria operates the service and does not make clinical decisions. Prescriptions are written by independent, U.S.-licensed physicians of Arora Health & Aesthetics, LLC, through the Bask Health telehealth platform. Medicines are compounded by VialsRX, a state-licensed 503A compounding pharmacy in Houston, Texas, and blood work is analysed by a CLIA-certified laboratory. The physicians and the pharmacy are listed on this page with their addresses.",
+        a: `Nexphoria operates the service and does not make clinical decisions. Prescriptions are written by independent, U.S.-licensed physicians of ${PROVIDER_INFO.name}, through the Bask Health telehealth platform. Medicines are compounded by ${PHARMACY_INFO.name}, a state-licensed 503A compounding pharmacy in Houston, Texas, and blood work is analysed by a CLIA-certified laboratory. The physicians and the pharmacy are listed on this page with their addresses.`,
       },
     ],
   },
@@ -170,7 +180,7 @@ export default function FAQPage() {
 
   useSeo({
     title: "Common questions: how it works, cost, safety, shipping",
-    description: "Plain answers about physician-prescribed peptides: what they are, who prescribes them, what they cost, side effects, shipping, and the week-12 blood panel.",
+    description: `Plain answers about physician-prescribed peptides: what they are, who prescribes them, what they cost, side effects, shipping, and the week-${RETEST_WEEK} blood panel.`,
     path: "/faq",
     jsonLd: [
       webPageJsonLd({ name: "Nexphoria FAQ", description: "Frequently asked questions about physician-prescribed peptide therapy at Nexphoria.", path: "/faq", type: "MedicalWebPage" }),
@@ -179,9 +189,40 @@ export default function FAQPage() {
     ],
   });
   const [activeCategory, setActiveCategory] = useState(0);
-
-  // Roving-tabindex focus targets for the vertical tablist (WAI-ARIA tabs).
+  const pinned = useRef<number | null>(null);
+  // Roving-tabindex focus targets for the category list (WAI-ARIA tabs).
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  /* Scroll-spy: the active pill follows the group in view, and on the
+     phone the row scrolls so the active pill stays visible. A click pins
+     the choice until the chosen group arrives, so the spy cannot fight the
+     smooth scroll on its way there. */
+  useEffect(() => {
+    const groups = categories.map((_, i) => document.getElementById(`faq-panel-${i}`)).filter((el): el is HTMLElement => !!el);
+    if (!groups.length || typeof IntersectionObserver === "undefined") return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (!hit) return;
+        const i = groups.indexOf(hit.target as HTMLElement);
+        if (pinned.current !== null && pinned.current !== i) return;
+        pinned.current = null;
+        setActiveCategory(i);
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 },
+    );
+    groups.forEach((g) => obs.observe(g));
+    return () => obs.disconnect();
+  }, []);
+  useEffect(() => {
+    tabRefs.current[activeCategory]?.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+  }, [activeCategory]);
+
+  const go = (i: number) => {
+    pinned.current = i;
+    setActiveCategory(i);
+    document.getElementById(`faq-panel-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   const onTabsKeyDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
     const count = categories.length;
     let next = activeCategory;
@@ -208,189 +249,89 @@ export default function FAQPage() {
     tabRefs.current[next]?.focus();
   };
 
-  const categoryHeadings: Record<string, string> = {
-    "Getting started": "How you start.",
-    "The medications": "What the medicines are.",
-    Pricing: "What it costs.",
-    Safety: "What to know about safety and side effects.",
-    Shipping: "How it ships.",
-    Legal: "Where it stands legally.",
-  };
-
   return (
     <SiteLayout navVariant="showcase">
-      {/* NOT a <main id="main-content">: SiteLayout already renders the sole
-          <main id="main-content"> landmark + skip-link target around all
-          children. A second one here duplicated the landmark AND the id. */}
-      <div style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">Frequently asked</PillBadge>}
-            headline={
-              <>
-                <span>Here are the questions people ask before they start.</span>
-              </>
-            }
-            subtitle="How it works, what it costs, safety, shipping, and who is involved."
-          />
-
-          {/* Editorial hero — questions answered, mind settled */}
-          <figure
-            className="relative overflow-hidden"
-            style={{ borderRadius: "var(--nx-r-lg)", border: "1px solid var(--nx-border)" }}
-            data-testid="faq-hero-editorial"
-          >
-            <img
-              src={heroFaq}
-              alt="A woman reads calmly in a sunlit armchair by a tall window, tea on the side table"
-              className="w-full object-cover"
-              style={{ aspectRatio: "21 / 9", minHeight: "300px" }}
-              loading="eager"
-              decoding="async"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to top, color-mix(in srgb, var(--nx-fg) 52%, transparent) 0%, color-mix(in srgb, var(--nx-fg) 10%, transparent) 34%, transparent 55%)",
-              }}
-            />
-            <figcaption className="absolute left-0 right-0 bottom-0 p-6 md:p-10">
-              <p
-                style={{
-                  fontFamily: F,
-                  fontSize: "var(--nx-t-xl)",
-                  fontWeight: 500,
-                  lineHeight: 1.35,
-                  color: "var(--nx-ceramic)",
-                  maxWidth: "40ch",
-                  textShadow: "0 1px 12px color-mix(in srgb, var(--nx-fg) 40%, transparent)",
-                }}
-              >
-              </p>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-
-
-      {/* ── FAQ categories + accordion ── */}
-      <section
-        className="py-[var(--nx-section-y)]"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "3rem",
-            }}
-            className="md:grid-cols-[200px_1fr]"
-          >
-            {/* Category nav */}
-            <aside>
-              <nav
-                style={{
-                  position: "sticky",
-                  top: "7rem",
-                }}
-                aria-label="FAQ categories"
-              >
-                <p
-                  style={{
-                    fontFamily: F,
-                    fontSize: "var(--nx-t-xs)",
-                    fontWeight: 700,
-                    letterSpacing: "var(--nx-ls-caps)",
-                    textTransform: "uppercase",
-                    color: "var(--nx-fg-muted)",
-                    marginBottom: "1rem",
-                  }}
-                  id="faq-categories-heading"
-                >
-                  CATEGORIES
-                </p>
-                <ul
-                  aria-labelledby="faq-categories-heading"
-                  onKeyDown={onTabsKeyDown}
-                  style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}
-                >
-                  {categories.map((cat, i) => (
-                    <li key={cat.label}>
-                      <button
-                        ref={(el) => { tabRefs.current[i] = el; }}
-                        id={`faq-tab-${i}`}
-                        aria-current={activeCategory === i ? "true" : undefined}
-                        tabIndex={activeCategory === i ? 0 : -1}
-                        onClick={() => { setActiveCategory(i); document.getElementById(`faq-panel-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
-                        className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nx-cobalt)] focus-visible:ring-offset-2"
-                        style={{
-                          background: "none",
-                          border: "none",
-                          cursor: "pointer",
-                          padding: "0.5rem 0",
-                          fontFamily: F,
-                          fontSize: "var(--nx-t-sm)",
-                          fontWeight: activeCategory === i ? 600 : 400,
-                          color: activeCategory === i ? "var(--nx-cobalt)" : "var(--nx-fg-muted)",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                          transition: "color var(--nx-dur-2) var(--nx-ease)",
-                        }}
-                      >
-                        {activeCategory === i && (
-                          <span
-                            aria-hidden="true"
-                            style={{
-                              display: "inline-block",
-                              width: "16px",
-                              height: "1px",
-                              backgroundColor: "var(--nx-cobalt)",
-                            }}
-                          />
-                        )}
-                        {cat.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </aside>
-
-            {/* Accordion — plain div, NOT a second <main>: the page already
-                has one <main id="main-content"> landmark above (house pattern,
-                cf. Pricing.tsx). Two <main> elements is invalid HTML5.
-                Doubles as the tabpanel for the category tablist. */}
-            <div>
-              {categories.map((cat, i) => (
-                <section
-                  key={cat.label}
-                  id={`faq-panel-${i}`}
-                  aria-labelledby={`faq-tab-${i}`}
-                  style={{ scrollMarginTop: "96px", marginBottom: i < categories.length - 1 ? "clamp(2.4rem,5vw,3.6rem)" : 0 }}
-                  data-testid={`faq-section-${i}`}
-                >
-                  <Reveal>
-                    <div className="nx-sec-head" style={{ marginBottom: "1.4rem" }}>
-                      <p className="nx-eyebrow">{cat.label}</p>
-                      <h2 className="nx-dsh2">{categoryHeadings[cat.label] ?? `${cat.label} questions.`}</h2>
-                    </div>
-                    <FaqAccordion items={cat.items} openFirst={false} />
-                  </Reveal>
-                </section>
-              ))}
-            </div>
+      {/* ── Hero ── */}
+      <section className="nx-tilehero" aria-labelledby="faq-title">
+        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
+          <div className="nx-tilehero__head nx-hero-seq">
+            <p className="nx-eyebrow">Questions</p>
+            <h1 id="faq-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Here are the questions people ask before they start.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>How it works, what it costs, what to know about safety, how it ships, and who is involved. Anything this page leaves open, you can ask us.</p>
           </div>
         </div>
       </section>
 
-      <FinalCTAStrip
-        title="Ask us anything this page left open."
-        sub="Email hello@nexphoria.com. Clinical questions go to the physician."
-      />
+      {/* ── The categories and the question tiles ── */}
+      <section className="nx-container" aria-label="Questions by category" style={{ paddingTop: "var(--nx-sp-tight)" }}>
+        <div className="sp-faq">
+          {/* Category rail: a left rail on desktop, a sticky pill row on the phone */}
+          <nav className="sp-faq__rail" aria-label="FAQ categories">
+            <p className="sp-faq__rail-title" id="faq-categories-heading">Categories</p>
+            <ul className="sp-faq__tabs" aria-labelledby="faq-categories-heading" onKeyDown={onTabsKeyDown}>
+              {categories.map((cat, i) => (
+                <li key={cat.label}>
+                  <button
+                    ref={(el) => { tabRefs.current[i] = el; }}
+                    id={`faq-tab-${i}`}
+                    type="button"
+                    className={activeCategory === i ? "sp-faq__tab is-active" : "sp-faq__tab"}
+                    aria-current={activeCategory === i ? "true" : undefined}
+                    tabIndex={activeCategory === i ? 0 : -1}
+                    onClick={() => go(i)}
+                    data-testid={`faq-tab-${i}`}
+                  >
+                    {cat.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* The groups. A plain div, never a second <main>: SiteLayout owns
+              the one <main id="main-content"> landmark. */}
+          <div className="sp-faq__groups">
+            {categories.map((cat, i) => (
+              <section
+                key={cat.label}
+                id={`faq-panel-${i}`}
+                className="sp-faq__group"
+                aria-labelledby={`faq-heading-${i}`}
+                data-testid={`faq-section-${i}`}
+              >
+                <Reveal>
+                  <div className="nx-sec-head">
+                    <p className="nx-eyebrow">{cat.label}</p>
+                    <h2 id={`faq-heading-${i}`} className="nx-dsh3">{cat.heading}</h2>
+                  </div>
+                  <div className="nx-faq-list">
+                    {cat.items.map((item, j) => (
+                      <details key={item.q} className="nx-faq-item" data-testid={`faq-${i}-${j}`}>
+                        <summary>
+                          <span>{item.q}</span>
+                          <span className="nx-faq-plus" aria-hidden />
+                        </summary>
+                        <p className="nx-faq-a">{item.a}</p>
+                      </details>
+                    ))}
+                  </div>
+                </Reveal>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Closer, as one tile ── */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="faq-closer">
+        <div className="nx-closer-tile">
+          <div>
+            <h2 id="faq-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>Ask us anything this page left open.</h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>Email hello@nexphoria.com, and a person answers on a business day. Clinical questions go to the physician.</p>
+            <Link href="/contact" className="nx-cta-ceramic" data-testid="faq-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>Ask us</Link>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }

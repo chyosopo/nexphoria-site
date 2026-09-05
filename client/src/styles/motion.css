@@ -1,0 +1,176 @@
+/* ═══ Motion: one grammar for the whole site (2026-09-05) ═══
+   Imported after index.css from main.tsx and kept UNLAYERED, so it wins over
+   the per-component motion that accumulated in index.css (0.62s here, 0.35s
+   there, -6px on one card and -2px on the next). Four rules, every value a
+   token:
+     1. Entrance  — Reveal: 14px rise, 600ms (--nx-dur-4), the house ease.
+                    Children of a multi-child Reveal stagger by --nx-dur-1.
+     2. Lift      — every interactive tile and card rises 3px onto --nx-e-3.
+     3. Press     — the same surfaces, and every button, settle on :active.
+     4. Focus     — a cobalt ring on every interactive element, keyboard only.
+   prefers-reduced-motion: reduce turns all four off (the focus ring stays;
+   it is not motion). Distances live as tokens below so nothing repeats a
+   literal. */
+:root {
+  --nx-m-rise: 14px;    /* entrance travel */
+  --nx-m-lift: -3px;    /* hover lift (brief: 2–4px) */
+  --nx-m-press: 0.985;  /* press scale */
+  --nx-m-stagger: var(--nx-dur-1); /* 80ms between siblings */
+  --nx-m-hover: transform var(--nx-dur-2) var(--nx-ease),
+                box-shadow var(--nx-dur-2) var(--nx-ease),
+                border-color var(--nx-dur-2) var(--nx-ease),
+                background-color var(--nx-dur-2) var(--nx-ease);
+}
+
+/* ── 1. Entrance ─────────────────────────────────────────────────────────
+   Reveal.tsx arms only elements safely below the fold; the prerenderer strips
+   nx-armed so static HTML never hides copy. One distance, one duration, one
+   curve, on every viewport (index.css shortened the phone entrance; one
+   entrance is the point). */
+.nx-reveal {
+  transition: opacity var(--nx-dur-4) var(--nx-ease), transform var(--nx-dur-4) var(--nx-ease);
+}
+.nx-reveal.nx-armed { opacity: 0; transform: translateY(var(--nx-m-rise)); }
+.nx-reveal.nx-armed.visible { opacity: 1; transform: none; }
+.nx-reveal.nx-armed.nx-reveal-lift,
+.nx-reveal.nx-armed.nx-reveal-scale { transform: translateY(var(--nx-m-rise)); }
+.nx-reveal.nx-armed.nx-reveal-lift.visible,
+.nx-reveal.nx-armed.nx-reveal-scale.visible { transform: none; }
+@media (max-width: 640px) {
+  .nx-reveal.nx-armed { transform: translateY(var(--nx-m-rise)); transition-duration: var(--nx-dur-4); }
+  .nx-reveal.nx-armed.nx-reveal-lift { transform: translateY(var(--nx-m-rise)); }
+}
+
+/* Staggered children: a Reveal with more than one direct child (or
+   stagger={true}) keeps itself still and lets the children rise one after
+   another, --nx-m-stagger apart, capped at the eighth. The compositor layer
+   is promoted per child only while its entrance runs. */
+.nx-reveal.nx-stagger.nx-armed { opacity: 1; transform: none; transition: none; }
+.nx-reveal.nx-stagger.nx-armed > * {
+  opacity: 0;
+  transform: translateY(var(--nx-m-rise));
+  transition: opacity var(--nx-dur-4) var(--nx-ease), transform var(--nx-dur-4) var(--nx-ease);
+}
+.nx-reveal.nx-stagger.nx-armed.visible > * { opacity: 1; transform: none; }
+.nx-reveal.nx-stagger.nx-armed.visible:not(.nx-settled) > * { will-change: transform, opacity; }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(2) { transition-delay: var(--nx-m-stagger); }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(3) { transition-delay: calc(var(--nx-m-stagger) * 2); }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(4) { transition-delay: calc(var(--nx-m-stagger) * 3); }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(5) { transition-delay: calc(var(--nx-m-stagger) * 4); }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(6) { transition-delay: calc(var(--nx-m-stagger) * 5); }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(7) { transition-delay: calc(var(--nx-m-stagger) * 6); }
+.nx-reveal.nx-stagger.nx-armed > :nth-child(n + 8) { transition-delay: calc(var(--nx-m-stagger) * 7); }
+
+/* ── 2. Lift ─────────────────────────────────────────────────────────────
+   The interactive surfaces: linked tiles, product/protocol/goal cards, the
+   glass and float cards, and a card that is itself a link or button. A
+   static .nx-card (copy on ceramic) does not move; it is not a control. */
+a.nx-tile, button.nx-tile, .nx-tile--goal,
+.nx-art-tile, .nx-vtile, .nx-protocol-card, .nx-product-card,
+.nx-concern-card, .nx-feature-card, .nx-goal-card, .nx-goal-tile,
+.nx-glass-tile, .nx-glass-card, .nx-float-card,
+a.nx-card, button.nx-card, .nx-card[role="button"], .nx-card[tabindex] {
+  transition: var(--nx-m-hover);
+}
+a.nx-tile:hover, button.nx-tile:hover, .nx-tile--goal:hover,
+.nx-art-tile:hover, .nx-vtile:hover, .nx-protocol-card:hover, .nx-product-card:hover,
+.nx-concern-card:hover, .nx-feature-card:hover, .nx-goal-card:hover, .nx-goal-tile:hover,
+.nx-glass-tile:hover, .nx-glass-card:hover, .nx-float-card:hover,
+a.nx-card:hover, button.nx-card:hover, .nx-card[role="button"]:hover, .nx-card[tabindex]:hover {
+  transform: translateY(var(--nx-m-lift));
+  box-shadow: var(--nx-e-3);
+}
+/* index.css's dropped-in scale hover on the base tile is retired in favour of
+   the lift; the image zoom inside a tile keeps its own slow transition. */
+.nx-tile:hover:not(a):not(button):not(.nx-tile--goal) { transform: none; box-shadow: none; }
+
+/* ── 3. Press ────────────────────────────────────────────────────────────
+   One settle for every control: the lifted surfaces above, and the buttons
+   and pills. Faster than the lift so the hand feels it. */
+a.nx-tile:active, button.nx-tile:active, .nx-tile--goal:active,
+.nx-art-tile:active, .nx-vtile:active, .nx-protocol-card:active, .nx-product-card:active,
+.nx-concern-card:active, .nx-feature-card:active, .nx-goal-card:active, .nx-goal-tile:active,
+.nx-glass-tile:active, .nx-glass-card:active, .nx-float-card:active,
+a.nx-card:active, button.nx-card:active, .nx-card[role="button"]:active, .nx-card[tabindex]:active,
+.nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-navy:active, .nx-cta-acid:active,
+.nx-glass-btn:active, .nx-tile__btn:active, .nx-chip:active,
+button:not(:disabled):active, [role="button"]:active {
+  transform: translateY(0) scale(var(--nx-m-press));
+  transition-duration: var(--nx-dur-1);
+}
+.nx-cta-cobalt, .nx-cta-ghost, .nx-cta-navy, .nx-cta-acid, .nx-glass-btn, button:not(:disabled) {
+  transition: var(--nx-m-hover), color var(--nx-dur-2) var(--nx-ease), opacity var(--nx-dur-2) var(--nx-ease);
+}
+
+/* ── 4. Focus ────────────────────────────────────────────────────────────
+   Keyboard focus is a cobalt ring, 2px, offset 2px, on EVERY interactive
+   element, including <summary> (the FAQ rows) and the goal tiles, which
+   index.css rings at 3px. Mouse focus shows nothing. Inside a navy band the
+   ring reads as pale ice so it stays visible on the dark ground. */
+:where(a[href], button, input, select, textarea, summary, [role="button"], [role="link"], [role="tab"], [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--nx-cobalt);
+  outline-offset: 2px;
+  border-radius: var(--nx-r-xs);
+}
+.nx-tile--goal:focus-visible, a.nx-tile:focus-visible, .nx-vtile:focus-visible {
+  outline: 2px solid var(--nx-cobalt);
+  outline-offset: 2px;
+  border-radius: var(--nx-r-lg);
+}
+:where(.nx-band, .nx-hero-r3, .nx-tile--dark, .nx-closer-tile, [data-testid="footer"]) :where(a[href], button, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline-color: var(--nx-ice, var(--nx-ceramic));
+}
+:where(a, button, input, select, textarea, summary):focus:not(:focus-visible) { outline: none; }
+/* Three controls whose own sheets replace the ring with a background change
+   only (styles/nav.css .nx-hdr__link / .nx-hdr__icon, index.css
+   .nx-mega__item). A tint alone is not a focus indicator on a light ground;
+   the ring is restored here (same specificity, this sheet loads later) and
+   their background stays. Lead: drop this block if the nav lane prefers its
+   own state. */
+.nx-hdr__link:focus-visible, .nx-hdr__icon:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
+.nx-mega__item:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: -2px; }
+/* The shadcn primitives (components/ui: Input, Textarea, Checkbox, Tabs) and
+   StartIntakeButton draw their ring as a Tailwind box-shadow in
+   hsl(var(--ring)) / hsl(var(--primary)); index.css still sets --ring to an
+   amber from the retired sheet and --primary to a near-black. Recoloured
+   here through the token so the ring is cobalt (rose in the women's world);
+   the --ring value itself is the lead's to correct in index.css. */
+.focus-visible\:ring-ring:focus-visible,
+.focus-visible\:ring-primary:focus-visible { --tw-ring-color: var(--nx-cobalt); }
+
+/* ── Off switch ──────────────────────────────────────────────────────────
+   Reveal.tsx already refuses to arm when the OS asks for reduced motion;
+   these rules cover the CSS-only paths: hover lifts, presses, staggers, and
+   anything that reached the armed state before the media query settled. */
+@media (prefers-reduced-motion: reduce) {
+  .nx-reveal, .nx-reveal.nx-armed, .nx-reveal.nx-stagger.nx-armed > * {
+    opacity: 1; transform: none; transition: none; transition-delay: 0s; will-change: auto;
+  }
+  a.nx-tile, button.nx-tile, .nx-tile--goal,
+  .nx-art-tile, .nx-vtile, .nx-protocol-card, .nx-product-card,
+  .nx-concern-card, .nx-feature-card, .nx-goal-card, .nx-goal-tile,
+  .nx-glass-tile, .nx-glass-card, .nx-float-card,
+  a.nx-card, button.nx-card, .nx-card[role="button"], .nx-card[tabindex],
+  .nx-cta-cobalt, .nx-cta-ghost, .nx-cta-navy, .nx-cta-acid, .nx-glass-btn, .nx-tile__btn, .nx-chip,
+  button, [role="button"] {
+    transition: none;
+  }
+  a.nx-tile:hover, button.nx-tile:hover, .nx-tile--goal:hover,
+  .nx-art-tile:hover, .nx-vtile:hover, .nx-protocol-card:hover, .nx-product-card:hover,
+  .nx-concern-card:hover, .nx-feature-card:hover, .nx-goal-card:hover, .nx-goal-tile:hover,
+  .nx-glass-tile:hover, .nx-glass-card:hover, .nx-float-card:hover,
+  a.nx-card:hover, button.nx-card:hover, .nx-card[role="button"]:hover, .nx-card[tabindex]:hover,
+  a.nx-tile:active, button.nx-tile:active, .nx-tile--goal:active,
+  .nx-art-tile:active, .nx-vtile:active, .nx-protocol-card:active, .nx-product-card:active,
+  .nx-concern-card:active, .nx-feature-card:active, .nx-goal-card:active, .nx-goal-tile:active,
+  .nx-glass-tile:active, .nx-glass-card:active, .nx-float-card:active,
+  a.nx-card:active, button.nx-card:active, .nx-card[role="button"]:active, .nx-card[tabindex]:active,
+  .nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-navy:active, .nx-cta-acid:active,
+  .nx-glass-btn:active, .nx-tile__btn:active, .nx-chip:active,
+  button:not(:disabled):active, [role="button"]:active,
+  a.nx-tile:hover img, .nx-tile--goal:hover img, .nx-goal-tile:hover img,
+  .nx-product-card:hover .nx-product-card__media img, .nx-protocol-card:hover img,
+  .nx-float-card:hover .nx-float-card__media img {
+    transform: none;
+  }
+}

@@ -1,23 +1,24 @@
+/* ═══ LEGAL INDEX — the tile grammar (2026-09-05)
+   The documents as a list of tiles, one line each. Visual chrome only:
+   document copy lives in the individual pages and is LOCKED. The page's
+   own classes live in client/src/styles/support.css. */
 import { Link } from "wouter";
+import { ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
-import { ArrowUpRight } from "lucide-react";
-import { FONT } from "@/lib/typography";
-
-/* ─────────────────────────────────────────────────────────────
-   LegalIndex — visual chrome only. Document copy is LOCKED.
-   General Sans, no italics, no serif.
-   ───────────────────────────────────────────────────────────── */
+import { F, S } from "@/lib/typography";
+import "@/styles/support.css";
 
 const legalPages = [
-  { label: "Terms of Service", href: "/legal/terms", desc: "Service agreements, user eligibility, and platform terms." },
-  { label: "Privacy Policy", href: "/legal/privacy", desc: "How we collect, use, and protect your personal and health information." },
+  { label: "Terms of Service", href: "/legal/terms", desc: "The agreement between you and Nexphoria: eligibility, the service, and its terms." },
+  { label: "Privacy Policy", href: "/legal/privacy", desc: "How your personal and health information is collected, used and protected." },
   { label: "HIPAA Notice", href: "/legal/hipaa-notice", desc: "How medical information about you may be used and disclosed, and your rights." },
-  { label: "Telehealth Consent", href: "/legal/telehealth-consent", desc: "Your consent to receive care via telehealth and off-label prescribing." },
-  { label: "Prescribing Policy", href: "/legal/prescribing-policy", desc: "Physician review standards, lab gating, compounding disclosures, and when we decline." },
-  { label: "State Availability", href: "/legal/state-availability", desc: "Where care is available and which protocols carry state restrictions." },
-  { label: "Refund Policy", href: "/legal/refund-policy", desc: "Cancellation, returns, and refund request procedures." },
+  { label: "Telehealth Consent", href: "/legal/telehealth-consent", desc: "Your consent to receive care by telehealth, including off-label prescribing." },
+  { label: "Prescribing Policy", href: "/legal/prescribing-policy", desc: "How the physician reviews, when blood work is required, and when a prescription is declined." },
+  { label: "State Availability", href: "/legal/state-availability", desc: "Where care is available, and which medicines carry state restrictions." },
+  { label: "Refund Policy", href: "/legal/refund-policy", desc: "Cancellation, returns, and what is refunded when the physician does not prescribe." },
+  { label: "Messaging Terms", href: "/legal/messaging", desc: "The text-message program: what is sent, how often, and how to stop." },
 ];
 
 export default function LegalIndex() {
@@ -33,83 +34,35 @@ export default function LegalIndex() {
   });
   return (
     <SiteLayout navVariant="gate">
-      <section
-        style={{
-          backgroundColor: "var(--nx-bg)",
-          borderBottom: "1px solid var(--nx-border)",
-          paddingTop: "4.5rem",
-          paddingBottom: "3rem",
-        }}
-      >
-        {/* Same centered measure as the card column below — a full-width
-            hero next to a max-w-2xl list read as two misaligned pages */}
-        <div className="nx-container max-w-2xl">
-          <Reveal>
-            <div className="nx-sec-head">
-              <p className="nx-eyebrow">Legal</p>
-              <h1 className="nx-dsh1">Legal documents.</h1>
-              <p className="nx-lede">
-                The agreements, policies, and consents that govern your care at Nexphoria.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section style={{ backgroundColor: "var(--nx-bg)", paddingTop: "3.5rem", paddingBottom: "5rem" }}>
-        <div className="nx-container max-w-2xl">
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            {legalPages.map(({ label, href, desc }, i) => (
-              <Reveal key={label} delay={i * 60}>
-                <Link
-                  href={href}
-                  className="no-underline legal-index-card nx-card"
-                  data-testid={`legal-link-${href.split("/").pop()}`}
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    gap: "1rem",
-                  }}
-                >
-                  <div>
-                    <p
-                      style={{
-                        fontFamily: FONT,
-                        fontSize: "var(--nx-t-lg)",
-                        fontWeight: 600,
-                        letterSpacing: "var(--nx-ls-normal)",
-                        color: "var(--nx-fg)",
-                        marginBottom: "0.25rem",
-                      }}
-                    >
-                      {label}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: FONT,
-                        fontSize: "var(--nx-t-sm)",
-                        lineHeight: 1.55,
-                        color: "var(--nx-fg-graphite)",
-                      }}
-                    >
-                      {desc}
-                    </p>
-                  </div>
-                  <span style={{ color: "var(--nx-fg)", marginTop: "2px", flexShrink: 0 }}>
-                    <ArrowUpRight size={18} />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
+      {/* ── Hero ── */}
+      <section className="nx-tilehero" aria-labelledby="legal-title">
+        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
+          <div className="nx-tilehero__head nx-hero-seq">
+            <p className="nx-eyebrow">Legal</p>
+            <h1 id="legal-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>The documents that govern your care, in full.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>The agreements, policies and consents that apply to care at Nexphoria. Each one is written out in full, and the business contact sits at the foot of every page.</p>
           </div>
         </div>
       </section>
 
-      <style>{`
-        .legal-index-card { transition: border-color 0.2s ease; }
-        .legal-index-card:hover { border-color: var(--nx-fg) !important; }
-      `}</style>
+      {/* ── The documents, as tiles ── */}
+      <section className="nx-container" aria-label="Legal documents" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }}>
+        <ul className="sp-legal" data-testid="legal-index">
+          {legalPages.map(({ label, href, desc }, i) => (
+            <Reveal key={label} delay={Math.min(i * 40, 200)}>
+              <li>
+                <Link href={href} className="sp-legal__tile" data-testid={`legal-link-${href.split("/").pop()}`}>
+                  <span>
+                    <span className="sp-legal__t" style={{ display: "block", fontFamily: S }}>{label}</span>
+                    <span className="sp-legal__b" style={{ display: "block", fontFamily: F }}>{desc}</span>
+                  </span>
+                  <span className="sp-legal__arrow" aria-hidden="true"><ArrowUpRight size={18} /></span>
+                </Link>
+              </li>
+            </Reveal>
+          ))}
+        </ul>
+      </section>
     </SiteLayout>
   );
 }

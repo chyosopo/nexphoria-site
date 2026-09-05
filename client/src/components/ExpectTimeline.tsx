@@ -2,7 +2,8 @@
    the baseline kit at the start, the retest at the end, and two bands:
    "feel it by" and "full effect", from data/horizon. On-the-day medicines
    draw a 24-hour bar instead. Nothing here is a result; it is a calendar.
-   Compact mode is the bar alone, for option cards and shelf tiles. */
+   Full mode sits in the product page's shared tile frame (styles/pdp.css);
+   compact mode is the bar alone, for option cards and shelf tiles. */
 import { horizonFor, BAR_WEEKS, BAR_HOURS } from "@/data/horizon";
 import { monitoringFor } from "@/data/monitoring";
 import { F, S } from "@/lib/typography";
@@ -14,12 +15,13 @@ export function ExpectTimeline({ slug, compact = false, testId }: { slug: string
   if (!hz) return null;
   const m = monitoringFor(slug);
   const watch = m?.watch.slice(0, 3).join(", ");
+  const frame = `nx-horizon${compact ? " nx-horizon--compact" : " nx-pt"}`;
 
   if (hz.kind === "hours") {
     const max = BAR_HOURS;
     const beyond = hz.active[1] >= max;
     return (
-      <div className={`nx-horizon${compact ? " nx-horizon--compact" : ""}`} data-testid={testId ?? `horizon-${slug}`}>
+      <div className={frame} data-testid={testId ?? `horizon-${slug}`}>
         {!compact && <p className="nx-horizon__h" style={{ fontFamily: F }}>On the day it is taken</p>}
         <div className="nx-horizon__bar" role="img" aria-label={`Works ${hz.onsetLabel.toLowerCase()}; ${hz.activeLabel.toLowerCase()}.`}>
           <span className="nx-horizon__band nx-horizon__band--feel" style={{ left: pct(hz.onset[0], max), width: `calc(${pct(hz.onset[1] - hz.onset[0], max)} + 10px)` }} />
@@ -42,7 +44,7 @@ export function ExpectTimeline({ slug, compact = false, testId }: { slug: string
   const fullStart = hz.full === "ongoing" ? hz.feel[1] : Math.min(hz.full[0], max * 0.8);
   const fullEnd = hz.full === "ongoing" ? max : Math.min(max, Math.max(hz.full[1], fullStart + 1));
   return (
-    <div className={`nx-horizon${compact ? " nx-horizon--compact" : ""}`} data-testid={testId ?? `horizon-${slug}`}>
+    <div className={frame} data-testid={testId ?? `horizon-${slug}`}>
       {!compact && <p className="nx-horizon__h" style={{ fontFamily: F }}>Weeks 0 to {BAR_WEEKS}</p>}
       <div className="nx-horizon__bar" role="img" aria-label={`Typical onset ${hz.feelLabel.toLowerCase()}; full effect ${hz.fullLabel.toLowerCase()}. Blood kit at week 0, blood test at week ${max}.`}>
         <span className="nx-horizon__band nx-horizon__band--feel" style={{ left: pct(hz.feel[0], max), width: `calc(${pct(hz.feel[1] - hz.feel[0], max)} + 10px)` }} />

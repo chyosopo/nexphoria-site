@@ -4,7 +4,8 @@
    large tiles: a goal each, the product rendered large on a two-token
    gradient, the goal's name top-left and one pill button bottom-left. On a
    phone the tiles stack and the button becomes the arrow. One action per
-   tile; the reader decides. */
+   tile; the reader decides. The sentence sits under the chips in a column
+   no wider than 52% of the tile (client/src/styles/home.css). */
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Stethoscope, FlaskConical, Droplets } from "lucide-react";
@@ -58,7 +59,7 @@ export function HeroTiles() {
           <p className="nx-tilehero__line" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</p>
           <p className="nx-tilehero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
         </div>
-        <div className="nx-tiles nx-tiles--3" data-testid="hero-tiles">
+        <div className="nx-tiles nx-tiles--3 nx-tiles--hero" data-testid="hero-tiles">
           {TILES.map((t, i) => (
             <Link key={t.goal} href={t.href} className={`nx-tile${t.dark ? " nx-tile--dark" : ""}`} style={{ ["--i" as string]: i }} data-testid={`hero-tile-${t.goal}`} aria-label={`${CATEGORY_LABELS[t.goal]}: ${t.cta}`}>
               <img src={t.img} srcSet={`${t.img800} 800w, ${t.img} 1200w`} sizes="(max-width: 900px) 100vw, 33vw" alt="" width={1200} height={900} fetchPriority={i === 0 ? "high" : undefined} decoding="async" />

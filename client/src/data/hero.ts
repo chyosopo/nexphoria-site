@@ -8,10 +8,12 @@ import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
 
 /* The plain deck (docs/COPY-DECK-PLAIN.md, Chiya 2026-09-04): every string
    here is the deck's Home hero string. The micro line is the only place on
-   the home page where the physician, the pharmacy and cold shipping appear. */
+   the home page where the physician, the pharmacy and cold shipping appear.
+   Copy v4 (2026-09-05 evening): every line is one flowing sentence to the
+   reader; the fragments joined with full stops are gone. */
 export const HERO = {
   kicker: "Prescription peptide therapy",
-  lines: ["Prescription peptide therapy,", "prescribed against blood work."],
+  lines: ["Prescription peptide therapy,", "with the dose set from your blood."],
   /* The rotating word (Chiya 2026-09-05, after alyvewellness.com): the H1 is
      "Peptide therapy, prescribed for your [sleep]" and the word cycles. The
      first word renders statically, so the prerendered page and a reader with
@@ -26,7 +28,7 @@ export const HERO = {
     "A licensed U.S. physician reads your answers, prescribes if it is appropriate, and a licensed U.S. pharmacy compounds it to order.",
   cta: "Shop the medicines",
   ctaSecondary: "See how it works",
-  micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
+  micro: "A licensed U.S. physician prescribes it, a licensed U.S. pharmacy compounds it, and it ships cold to all 50 states.",
   /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):
      six facts, an icon each, the only place these appear on the home. */
   facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "100% online", "Ships cold to all 50 states", "Self-pay, one monthly price"],

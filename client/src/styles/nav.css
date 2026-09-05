@@ -1,0 +1,124 @@
+/* ═══ The header, its panels and the phone menu (2026-09-05 polish) ═══
+   Owned by client/src/components/Nav.tsx. Tokens only. The panels are the
+   tile grammar of the home: every goal and every protocol is a tile with
+   its studio render, the name, and one plain line. On a phone the same
+   tiles stack in a full-height sheet with the one pill at the bottom. */
+
+/* ── the bar ── */
+.nx-hdr { position: sticky; top: 0; left: 0; right: 0; z-index: var(--nx-z-nav); background: var(--nx-bg); border-bottom: 1px solid var(--nx-border); font-family: var(--nx-font-body); transition: box-shadow var(--nx-dur-3) var(--nx-ease), background-color var(--nx-dur-3) var(--nx-ease); }
+.nx-hdr.is-raised { box-shadow: var(--nx-e-2); }
+.nx-hdr__bar { height: 64px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; }
+.nx-hdr__logo { display: flex; align-items: center; min-height: 44px; }
+
+/* the three links */
+.nx-hdr__links { display: none; list-style: none; margin: 0; padding: 0; align-items: center; justify-content: center; gap: .25rem; }
+.nx-hdr__link { display: inline-flex; align-items: center; gap: .3rem; min-height: 40px; padding: 0 .85rem; border-radius: var(--nx-r-pill); text-decoration: none; color: var(--nx-fg-graphite); font-size: var(--nx-t-sm); font-weight: 600; line-height: 1; background: transparent; border: 0; cursor: pointer; font-family: inherit; transition: color var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease); }
+.nx-hdr__link:hover, .nx-hdr__link:focus-visible, .nx-hdr__link.is-open { color: var(--nx-fg); background: var(--nx-ceramic); outline: none; }
+.nx-hdr__link:focus-visible { box-shadow: 0 0 0 2px var(--nx-cobalt); }
+.nx-hdr__link.is-current { color: var(--nx-fg); }
+.nx-hdr__chev { transition: transform var(--nx-dur-2) var(--nx-ease); }
+.is-open .nx-hdr__chev { transform: rotate(180deg); }
+
+/* the right side: the pill, the cart, the menu button */
+.nx-hdr__side { display: flex; align-items: center; justify-content: flex-end; gap: .35rem; }
+.nx-hdr__cta.nx-cta-acid { display: none; min-height: 40px; padding: 0 1.1rem; background: var(--nx-fg); color: var(--nx-ceramic); font-size: var(--nx-t-sm); font-weight: 600; border-radius: var(--nx-r-pill); margin-right: .5rem; transition: background-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-hdr__cta.nx-cta-acid:hover { background: var(--nx-bg-dark); color: var(--nx-ceramic); filter: none; transform: translateY(-1px); }
+.nx-hdr__icon { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--nx-r-pill); background: transparent; border: 0; color: var(--nx-fg); cursor: pointer; transition: background-color var(--nx-dur-2) var(--nx-ease); }
+.nx-hdr__icon:hover, .nx-hdr__icon:focus-visible { background: var(--nx-ceramic); outline: none; }
+.nx-hdr__icon:focus-visible { box-shadow: 0 0 0 2px var(--nx-cobalt); }
+.nx-hdr__side .nx-hdr__cart { margin: 0; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: var(--nx-r-pill); padding: 0; }
+.nx-hdr__side .nx-hdr__cart:hover { background: var(--nx-ceramic); }
+.nx-hdr__burger { display: inline-flex; }
+
+/* ── the desktop panels ── */
+.nx-hdr__panel { position: absolute; left: 0; right: 0; top: 100%; background: var(--nx-bg); border-bottom: 1px solid var(--nx-border); box-shadow: var(--nx-e-4); animation: nx-hdr-drop var(--nx-dur-3) var(--nx-ease) both; }
+@keyframes nx-hdr-drop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.nx-hdr__panel-body { padding: 1.1rem 0 1.3rem; }
+.nx-hdr__panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 .9rem; }
+.nx-hdr__panel-title { margin: 0; font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 500; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-hdr__panel-all { display: inline-flex; align-items: center; gap: .3rem; min-height: 36px; text-decoration: none; color: var(--nx-cobalt); font-size: var(--nx-t-sm); font-weight: 600; }
+.nx-hdr__panel-all:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nx-hdr__scrim { position: fixed; inset: 0; z-index: var(--nx-z-bar); background: color-mix(in srgb, var(--nx-bg-dark) 28%, transparent); animation: nx-hdr-fade var(--nx-dur-3) var(--nx-ease) both; }
+@keyframes nx-hdr-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* the tile grid inside a panel */
+.nx-mtiles { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.nx-mtiles--goals { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+/* the vial sits in the lower right of every goal render; a zoom from the
+   top-left corner moves it further out so the copy has the upper left */
+.nx-mtiles--goals .nx-mtile img { transform: scale(1.22); transform-origin: 0 0; }
+.nx-mtiles--goals .nx-mtile:hover img { transform: scale(1.26); }
+.nx-mtiles--protocols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* one tile: the studio render, the name, the line */
+.nx-mtile { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--nx-r-md); background: var(--nx-bg-cream); color: var(--nx-fg); text-decoration: none; isolation: isolate; outline-offset: 3px; transition: transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease); }
+.nx-mtile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-mtile::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit; background: linear-gradient(135deg, color-mix(in srgb, var(--nx-ceramic) 26%, transparent) 0%, transparent 42%); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--nx-ceramic) 55%, transparent); }
+.nx-mtile:hover, .nx-mtile:focus-visible { transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+.nx-mtile:hover img { transform: scale(1.03); }
+.nx-mtile:focus-visible { outline: 3px solid var(--nx-cobalt); }
+.nx-mtile__copy { position: absolute; z-index: 2; top: .85rem; left: .95rem; right: .9rem; display: flex; flex-direction: column; gap: .2rem; }
+.nx-mtile__name { font-family: var(--nx-font-display); font-size: var(--nx-t-base); font-weight: 600; line-height: 1.15; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-mtile__line { font-size: var(--nx-t-xs); line-height: 1.4; color: var(--nx-fg-graphite); max-width: 22ch; }
+.nx-mtile--dark .nx-mtile__name { color: var(--nx-ceramic); }
+.nx-mtile--dark .nx-mtile__line { color: color-mix(in srgb, var(--nx-ceramic) 82%, transparent); }
+.nx-mtile__arrow { position: absolute; z-index: 2; right: .7rem; bottom: .7rem; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--nx-ceramic); color: var(--nx-fg); box-shadow: var(--nx-e-3); opacity: 0; transform: translateY(4px); transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-mtile:hover .nx-mtile__arrow, .nx-mtile:focus-visible .nx-mtile__arrow { opacity: 1; transform: none; }
+
+/* the tenth tile of the treatments panel: every medicine, on navy */
+.nx-mtile--all { background: linear-gradient(135deg, var(--nx-bg-dark) 0%, var(--nx-cobalt) 100%); }
+.nx-mtile--all::after { content: ""; position: absolute; right: -20%; top: -35%; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--nx-ice) 50%, transparent) 0%, transparent 70%); pointer-events: none; }
+.nx-mtile--all .nx-mtile__name { color: var(--nx-ceramic); }
+.nx-mtile--all .nx-mtile__line { color: color-mix(in srgb, var(--nx-ceramic) 80%, transparent); }
+.nx-mtile--all .nx-mtile__arrow { opacity: 1; transform: none; }
+
+/* a protocol tile: the vials sit centred, so the copy sits on a navy foot */
+.nx-mtile--proto { aspect-ratio: 2 / 1; }
+.nx-mtile--proto img { object-position: 50% 38%; }
+.nx-mtile--proto::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, transparent 34%, color-mix(in srgb, var(--nx-bg-dark) 86%, transparent) 74%, var(--nx-bg-dark) 100%); }
+.nx-mtile--proto .nx-mtile__copy { top: auto; bottom: .95rem; left: 1rem; right: 3.2rem; gap: .25rem; }
+.nx-mtile--proto .nx-mtile__name { color: var(--nx-ceramic); font-size: var(--nx-t-lg); }
+.nx-mtile--proto .nx-mtile__line { color: color-mix(in srgb, var(--nx-ceramic) 84%, transparent); max-width: 40ch; }
+
+/* ── the phone sheet ── */
+.nx-sheet { position: fixed; inset: 0; z-index: var(--nx-z-menu); display: flex; flex-direction: column; background: var(--nx-bg); font-family: var(--nx-font-body); animation: nx-sheet-in var(--nx-dur-3) var(--nx-ease) both; }
+@keyframes nx-sheet-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.nx-sheet__bar { flex: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--nx-border); }
+.nx-sheet__body { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 1rem 0 1.25rem; }
+.nx-sheet__label { margin: 0 0 .6rem; font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-fg-muted); }
+.nx-sheet__goals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; }
+.nx-sheet__goals .nx-mtile { border-radius: var(--nx-r-md); }
+.nx-sheet__goals .nx-mtile img { object-position: 78% 50%; transform: none; }
+.nx-sheet__goals .nx-mtile--all .nx-mtile__line { display: block; max-width: 18ch; }
+.nx-sheet__goals .nx-mtile__copy { top: .7rem; left: .8rem; right: .7rem; }
+.nx-sheet__goals .nx-mtile__name { font-size: var(--nx-t-sm); }
+.nx-sheet__goals .nx-mtile__line { display: none; }
+.nx-sheet__rows { list-style: none; margin: 1.1rem 0 0; padding: 0; border-top: 1px solid var(--nx-border); }
+.nx-sheet__row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 56px; padding: .4rem 0; border-bottom: 1px solid var(--nx-border); text-decoration: none; color: var(--nx-fg); font-size: var(--nx-t-lg); font-weight: 500; font-family: var(--nx-font-display); letter-spacing: var(--nx-ls-snug); }
+.nx-sheet__row small { display: block; margin-top: .1rem; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 500; color: var(--nx-fg-muted); letter-spacing: var(--nx-ls-normal); }
+.nx-sheet__row svg { flex: 0 0 auto; color: var(--nx-fg-muted); }
+.nx-sheet__row:active { background: var(--nx-ceramic); }
+.nx-sheet__foot { flex: 0 0 auto; padding: .8rem 0 calc(.8rem + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--nx-border); background: var(--nx-bg); }
+.nx-sheet__foot .nx-sheet__cta.nx-cta-acid { width: 100%; min-height: 52px; background: var(--nx-fg); color: var(--nx-ceramic); font-size: var(--nx-t-base); font-weight: 600; border-radius: var(--nx-r-pill); }
+.nx-sheet__foot .nx-sheet__cta.nx-cta-acid:hover { background: var(--nx-bg-dark); filter: none; }
+.nx-sheet__note { margin: .6rem 0 0; text-align: center; font-size: var(--nx-t-xs); color: var(--nx-fg-muted); }
+
+/* ── breakpoints ── */
+@media (min-width: 768px) {
+  .nx-hdr__links { display: flex; }
+  .nx-hdr__cta.nx-cta-acid { display: inline-flex; }
+  .nx-hdr__burger { display: none; }
+}
+@media (max-width: 1100px) {
+  .nx-mtiles--goals { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .nx-mtile__line { display: none; }
+}
+@media (max-width: 767px) {
+  .nx-hdr__panel, .nx-hdr__scrim { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nx-hdr__panel, .nx-hdr__scrim, .nx-sheet { animation: none; }
+  .nx-mtile, .nx-mtile img, .nx-mtile__arrow, .nx-hdr__chev { transition: none; }
+  .nx-mtile:hover { transform: none; }
+  .nx-mtiles--goals .nx-mtile:hover img { transform: scale(1.22); }
+}

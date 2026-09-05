@@ -1,8 +1,11 @@
 /* The medicine as dispensed: what it is compounded at, how it is dispensed,
-   and the figures that follow from the dose (lib/vial). House voice: the
-   company and the physician act; the reader is not addressed. */
-import { F, S } from "@/lib/typography";
-import { BigFigureRow } from "@/components/DataPlate";
+   and the figures that follow from the dose (lib/vial), as one row of figure
+   tiles. House voice: the company and the physician act; the reader is not
+   addressed. This file also imports the product page's tile sheet, which
+   every block on both product pages shares. */
+import "@/styles/pdp.css";
+import { F } from "@/lib/typography";
+import { CountUp } from "@/components/Motion";
 import { vialFacts, doseLabel } from "@/lib/vial";
 import type { SoloPeptide } from "@/data/soloCatalog";
 
@@ -20,26 +23,69 @@ export function vialLede(sku: SoloPeptide): string {
   return `${sku.name}. ${sku.dose}.`;
 }
 
-export function InsideTheVial({ sku, testId, compact = false }: { sku: SoloPeptide; testId?: string; compact?: boolean }) {
+type Figure = { value: string; unit?: string; caption?: string };
+
+/* One figure: the number counts up on entry when it is purely numeric; the unit
+   sits beside it in sentence case ("mL", "units"), the caption beneath. */
+function FigureBlock({ value, unit, caption }: Figure) {
+  const numeric = /^\d+(\.\d+)?$/.test(value.trim());
+  return (
+    <div className="nx-pt-fig">
+      <div className="nx-pt-fig__row">
+        <span className="nx-pt-fig__v" style={{ fontFamily: F }}>
+          {numeric ? <CountUp to={parseFloat(value)} decimals={Math.min(3, (value.trim().split(".")[1] ?? "").length)} /> : value}
+        </span>
+        {unit && <span className="nx-pt-fig__u" style={{ fontFamily: F }}>{unit}</span>}
+      </div>
+      {caption && <p className="nx-pt-fig__c" style={{ fontFamily: F }}>{caption}</p>}
+    </div>
+  );
+}
+
+function figuresFor(sku: SoloPeptide): Figure[] {
   const v = vialFacts(sku);
   const dose = doseLabel(sku);
-  const figures: { value: string; unit?: string; caption?: string }[] = [];
+  const figures: Figure[] = [];
   if (v.drawMl) figures.push({ value: String(parseFloat(v.drawMl.toFixed(3))), unit: "mL", caption: `a ${dose} dose` });
   if (v.units) figures.push({ value: String(v.units), unit: "units", caption: "on a standard insulin syringe" });
   if (v.dosesPerVial) figures.push({ value: String(v.dosesPerVial), unit: "doses", caption: "in one vial" });
   if (v.vialsPerMonth) figures.push({ value: String(v.vialsPerMonth), unit: v.vialsPerMonth === 1 ? "vial" : "vials", caption: v.course ? `for the course, ${v.course.replace("for ", "")}` : "for a month" });
+  return figures;
+}
 
+export function InsideTheVial({ sku, testId, compact = false }: { sku: SoloPeptide; testId?: string; compact?: boolean }) {
+  const figures = figuresFor(sku);
+
+  /* Compact (a medicine inside a protocol): one tile, the figures ruled inside it. */
+  if (compact) {
+    return (
+      <div className="nx-pt" data-testid={testId ?? `vial-${sku.slug}`}>
+        <p className="nx-pt__k" style={{ fontFamily: F }}>{sku.name}</p>
+        <p className="nx-pt__t" style={{ fontFamily: F, fontSize: "var(--nx-t-base)" }}>{vialLede(sku)}</p>
+        {figures.length > 0 && (
+          <div className="nx-pt-figs--in" data-testid={`vial-figures-${sku.slug}`}>
+            {figures.map((f) => <FigureBlock key={f.value + (f.unit ?? "")} {...f} />)}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  /* Full (the medicine's own page): the lede, then one row of figure tiles. */
   return (
-    <div className="nx-card" data-testid={testId ?? `vial-${sku.slug}`} style={compact ? { padding: "1rem 1.1rem" } : undefined}>
-      {compact && <p className="nx-eyebrow">{sku.name}</p>}
-      <p style={{ fontFamily: S, fontWeight: 500, fontSize: compact ? "var(--nx-t-base)" : "var(--nx-t-lg)", lineHeight: 1.3, color: "var(--nx-fg)", marginTop: compact ? "0.5rem" : 0, maxWidth: "44ch" }}>{vialLede(sku)}</p>
+    <div data-testid={testId ?? `vial-${sku.slug}`}>
+      <p className="nx-lede nx-pt-lede">{vialLede(sku)}</p>
       {figures.length > 0 && (
-        <div style={{ marginTop: "1rem" }}>
-          <BigFigureRow figures={figures} testId={`vial-figures-${sku.slug}`} />
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "0.7rem", maxWidth: "58ch" }}>
+        <>
+          <ul className={`nx-pt-grid nx-pt-grid--${Math.min(4, Math.max(2, figures.length))}`} aria-label="The figures that follow from the dose" data-testid={`vial-figures-${sku.slug}`}>
+            {figures.map((f) => (
+              <li key={f.value + (f.unit ?? "")} className="nx-pt"><FigureBlock {...f} /></li>
+            ))}
+          </ul>
+          <p className="nx-pt-note" style={{ fontFamily: F }}>
             The figures follow from the stated dose and vial. The prescription states the exact volume.
           </p>
-        </div>
+        </>
       )}
     </div>
   );

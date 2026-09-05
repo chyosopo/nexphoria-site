@@ -1,0 +1,119 @@
+/* ═══ Support pages in the tile grammar (2026-09-05) ═══
+   How it works, FAQ, Contact, the legal index and the 404. Tokens only:
+   every colour, radius, shadow, duration and type size is a var(--nx-*).
+   Imported from each page it styles (the pages are lazy chunks, so a
+   sheet imported from one page alone is missing on a deep link to another). */
+
+/* ── The generic ceramic tile ── */
+.sp-tile { position: relative; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.4rem, 2.6vw, 2rem); }
+.sp-tile--calm { background: var(--nx-bg); }
+.sp-tile .nx-sec-head { max-width: 46rem; }
+.sp-tile__link { margin-top: 1.1rem; }
+.sp-tile__eyebrow { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt); margin: 0; }
+.sp-tile__t { margin: .55rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.12; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-wrap: balance; }
+.sp-tile__b { margin: .7rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-base); line-height: 1.6; color: var(--nx-fg-graphite); max-width: 58ch; }
+/* the verbatim compliance text, set small and never editorialised */
+.sp-fine { margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--nx-border); font-family: var(--nx-font-body); font-size: var(--nx-t-xs); line-height: 1.6; color: var(--nx-fg-graphite); white-space: pre-line; }
+
+/* ── Two tiles side by side ── */
+.sp-two { list-style: none; margin: clamp(1.4rem, 3vw, 2rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.8rem, 1.4vw, 1.2rem); }
+.sp-two > * { min-width: 0; }
+.sp-two .sp-tile { height: 100%; }
+
+/* ── How it works: the five step tiles, numbered 01–05, copy beside a photo ── */
+.sp-steps { list-style: none; margin: clamp(1.4rem, 3vw, 2.2rem) 0 0; padding: 0; display: grid; gap: clamp(.8rem, 1.4vw, 1.2rem); }
+.sp-step { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 42%); background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); overflow: hidden; isolation: isolate; }
+.sp-step--flip { grid-template-columns: minmax(0, 42%) minmax(0, 1fr); }
+.sp-step--flip .sp-step__media { order: -1; }
+.sp-step__copy { padding: clamp(1.4rem, 2.6vw, 2.2rem); display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.sp-step__copy > .nx-steptile__n { align-self: flex-start; }
+.sp-step__copy .nx-steptile__t { max-width: 18ch; }
+.sp-step__copy .nx-steptile__b { font-size: var(--nx-t-base); max-width: 52ch; }
+.sp-step__copy .nx-steptile__b + .nx-steptile__b { margin-top: .6rem; }
+.sp-step__media { position: relative; min-height: 18rem; background: var(--nx-bg-cream); }
+.sp-step__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.sp-step__media--render img { object-fit: cover; object-position: 50% 55%; }
+
+/* ── The panel tile: the marker groups in two columns ── */
+.sp-panel__list { list-style: none; margin: clamp(1.2rem, 2.4vw, 1.8rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem 2rem; }
+.sp-panel__item { min-width: 0; padding-top: .9rem; border-top: 1px solid var(--nx-border); }
+.sp-panel__row { display: flex; align-items: baseline; justify-content: space-between; gap: .8rem; }
+.sp-panel__name { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-base); font-weight: 600; color: var(--nx-fg); }
+.sp-panel__count { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-fg-muted); white-space: nowrap; }
+.sp-panel__blurb { margin: .3rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+
+/* ── FAQ: the category rail and the question tiles ── */
+.sp-faq { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(1.6rem, 4vw, 3.5rem); align-items: start; margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.sp-faq__rail { position: sticky; top: 6rem; min-width: 0; }
+.sp-faq__rail-title { margin: 0 0 .7rem; font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-fg-muted); }
+.sp-faq__tabs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .3rem; }
+.sp-faq__tab { display: inline-flex; align-items: center; min-height: 2.5rem; padding: .4rem .95rem; border-radius: var(--nx-r-pill); border: 1px solid transparent; background: transparent; color: var(--nx-fg-graphite); font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 600; line-height: 1.2; text-align: left; cursor: pointer; white-space: nowrap; transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease); }
+.sp-faq__tab:hover { color: var(--nx-fg); border-color: var(--nx-border); }
+.sp-faq__tab.is-active { background: var(--nx-fg); color: var(--nx-ceramic); border-color: var(--nx-fg); }
+.sp-faq__tab:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 2px; }
+.sp-faq__groups { display: grid; gap: clamp(2.2rem, 5vw, 3.4rem); min-width: 0; }
+.sp-faq__group { scroll-margin-top: 6.5rem; }
+.sp-faq__group .nx-sec-head { margin-bottom: 1.1rem; }
+.sp-faq__group .nx-faq-item { border: 1px solid var(--nx-border); }
+.sp-faq__group .nx-faq-item > summary { letter-spacing: var(--nx-ls-snug); }
+.sp-faq__group .nx-faq-a { white-space: pre-line; }
+
+/* ── Contact: the facts tile and the form tile ── */
+.sp-contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: clamp(.8rem, 1.4vw, 1.2rem); align-items: start; margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.sp-facts { margin: 1.2rem 0 0; display: grid; gap: 1rem; }
+.sp-facts > div { padding-top: .9rem; border-top: 1px solid var(--nx-border); }
+.sp-facts dt { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-fg-muted); }
+.sp-facts dd { margin: .25rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-base); line-height: 1.55; color: var(--nx-fg); }
+.sp-facts dd a { display: inline-flex; align-items: center; min-height: 2.25rem; color: var(--nx-cobalt); font-weight: 600; text-decoration: none; }
+.sp-facts dd a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sp-facts dd small { display: block; margin-top: .2rem; font-size: var(--nx-t-sm); color: var(--nx-fg-graphite); }
+.sp-form { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.2rem; }
+.sp-form .nx-input { min-height: 2.75rem; }
+.sp-fields-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.sp-consent { display: flex; gap: .7rem; align-items: flex-start; cursor: pointer; border: 1px solid var(--nx-border); background: var(--nx-bg); border-radius: var(--nx-r-md); padding: .85rem .95rem; }
+.sp-consent input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--nx-cobalt); flex-shrink: 0; }
+.sp-consent span { font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.sp-consent a { display: inline-block; padding: .6rem 0; margin: -.6rem 0; color: var(--nx-cobalt); text-decoration: underline; text-underline-offset: 3px; }
+.sp-form__error { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); color: var(--nx-danger); }
+.sp-form .nx-cta-cobalt { align-self: flex-start; justify-content: center; min-height: 2.75rem; }
+.sp-sent { margin-top: 1.2rem; }
+
+/* ── Legal index: the documents as tiles ── */
+.sp-legal { list-style: none; margin: clamp(1.4rem, 3vw, 2.2rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.8rem, 1.4vw, 1.2rem); }
+.sp-legal > * { min-width: 0; }
+.sp-legal__tile { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; height: 100%; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.2rem, 2.2vw, 1.6rem); text-decoration: none; color: var(--nx-fg); transition: transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease), border-color var(--nx-dur-3) var(--nx-ease); }
+.sp-legal__tile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); border-color: color-mix(in srgb, var(--nx-cobalt) 40%, var(--nx-border)); }
+.sp-legal__tile:focus-visible { outline: 3px solid var(--nx-cobalt); outline-offset: 2px; }
+.sp-legal__t { margin: 0; font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.15; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.sp-legal__b { margin: .4rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.sp-legal__arrow { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: var(--nx-cobalt-soft); color: var(--nx-cobalt); }
+
+/* ── 404: one tile ── */
+.sp-404 { min-height: 78vh; display: flex; align-items: center; justify-content: center; padding-top: var(--nx-sp-sec); padding-bottom: var(--nx-sp-sec); }
+.sp-404__tile { width: 100%; max-width: 40rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.6rem, 4vw, 2.8rem); }
+.sp-404__tile .nx-dsh1 { margin-top: .8rem; max-width: 14ch; }
+.sp-404__tile .nx-lede { margin-top: .9rem; }
+.sp-404__cta { margin-top: 1.5rem; }
+.sp-404__links { list-style: none; margin: 1.6rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid var(--nx-border); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem .8rem; }
+.sp-404__link { display: flex; align-items: center; gap: .7rem; min-height: 2.75rem; padding: .4rem .5rem; margin: 0 -.5rem; border-radius: var(--nx-r-md); text-decoration: none; color: var(--nx-fg); transition: background var(--nx-dur-2) var(--nx-ease); }
+.sp-404__link:hover { background: var(--nx-bg); }
+.sp-404__link strong { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-base); font-weight: 600; line-height: 1.2; }
+.sp-404__link small { display: block; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); color: var(--nx-fg-graphite); margin-top: 2px; }
+.sp-404__link svg { color: var(--nx-cobalt); flex-shrink: 0; }
+
+/* ── Mobile first: one column, the photo above the copy, the pill row sticky ── */
+@media (max-width: 900px) {
+  .sp-two, .sp-panel__list, .sp-contact, .sp-legal, .sp-404__links { grid-template-columns: 1fr; }
+  .sp-step, .sp-step--flip { grid-template-columns: 1fr; }
+  .sp-step__media, .sp-step--flip .sp-step__media { order: -1; min-height: 0; aspect-ratio: 16 / 9; }
+  .sp-step__copy { padding: 1.2rem 1.2rem 1.4rem; }
+  .sp-faq { grid-template-columns: 1fr; gap: 1.2rem; }
+  .sp-faq__rail { position: sticky; top: 4rem; z-index: var(--nx-z-sticky); margin: 0 -1.5rem; padding: .6rem 1.5rem; background: color-mix(in srgb, var(--nx-bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--nx-border); }
+  .sp-faq__rail-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .sp-faq__tabs { flex-direction: row; flex-wrap: nowrap; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+  .sp-faq__tabs::-webkit-scrollbar { display: none; }
+  .sp-faq__tab { flex: none; border-color: var(--nx-border); background: var(--nx-ceramic); }
+  .sp-faq__group { scroll-margin-top: 8rem; }
+  .sp-fields-2 { grid-template-columns: 1fr; }
+  .sp-404 { min-height: 0; }
+}

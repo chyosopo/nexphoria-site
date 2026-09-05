@@ -2,7 +2,9 @@
    Chiya: "I wanna learn on the site and immediately know what it can do for
    me, why I need it." Three frames, one sentence of teaching under each:
    the signal (the chain, drawn), the prescription (the vial, rendered in
-   the house studio), the blood (the marker chart, drawn). Facts only. */
+   the house studio), the blood (the marker chart, drawn). Facts only. The
+   three share one rounded, hairlined frame; the render sits whole on the
+   same ice ground as the diagrams (client/src/styles/home.css). */
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -17,12 +19,12 @@ export function Explainer() {
     {
       art: <PeptideChain />,
       t: "You already make the signal.",
-      b: "A peptide is a short chain of amino acids, the same building blocks as protein. The body makes thousands of them as messages: release growth hormone tonight, you have eaten enough, repair this tendon.",
+      b: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them as messages: release growth hormone tonight, you have eaten enough, repair this tendon.",
     },
     {
       art: <div className="nx-explain__media"><img src={SKU_PHOTO.sermorelin} alt="A Nexphoria vial of sermorelin" loading="lazy" decoding="async" width={1600} height={1600} /></div>,
       t: "A physician prescribes the one that fits your goal.",
-      b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reviews your online visit and prescribes the one that fits the goal, at a starting dose, compounded to order.",
+      b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reads your online visit and prescribes the one that fits your goal, compounded to order.",
     },
     {
       art: <MarkerChart />,
@@ -39,7 +41,7 @@ export function Explainer() {
           <p className="nx-lede">Here is the whole idea, in three frames.</p>
         </div>
       </Reveal>
-      <ol className="nx-explain" aria-label="How it works, in three frames">
+      <ol className="nx-explain nx-explain--home" aria-label="How it works, in three frames">
         {frames.map((f, i) => (
           <Reveal key={f.t} delay={i * 70} className="nx-explain__item">
             <li className="nx-explain__frame">
@@ -53,7 +55,7 @@ export function Explainer() {
           </Reveal>
         ))}
       </ol>
-      <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.4rem", display: "inline-flex", alignItems: "center", gap: 6 }} data-testid="frontdoor-learn">
+      <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.1rem", display: "inline-flex", alignItems: "center", gap: 6 }} data-testid="frontdoor-learn">
         See every step and every marker <ArrowRight size={14} aria-hidden="true" />
       </Link>
     </section>

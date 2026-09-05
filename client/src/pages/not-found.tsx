@@ -1,9 +1,14 @@
+/* ═══ 404 — one tile (2026-09-05)
+   The address that did not resolve, the way home, and the four routes most
+   people are looking for, in one ceramic tile. The page's own classes live
+   in client/src/styles/support.css. */
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
-import { Compass, Search, MapPin, ArrowRight, Layers, FlaskConical, Stethoscope, Mail } from "lucide-react";
+import { ArrowRight, Layers, FlaskConical, Stethoscope, Mail } from "lucide-react";
+import "@/styles/support.css";
 
 const DESTINATIONS: { href: string; label: string; note: string; Icon: typeof Layers; testid: string }[] = [
   { href: "/stacks", label: "Protocols", note: "Medicines prescribed together", Icon: Layers, testid: "not-found-protocols-link" },
@@ -35,49 +40,32 @@ export default function NotFound() {
 
   return (
     <SiteLayout navVariant="gate" hideFooter>
-      <section className="nx-gradient-hero relative" style={{ overflow: "hidden" }}>
-        <div className="nx-container relative" style={{ minHeight: "82vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", zIndex: 1 }} data-testid="not-found-page">
-
-          {/* icon composition — a compass that has lost its bearing */}
-          <div className="nx-hero-frame" aria-hidden style={{ position: "relative", width: 132, height: 132, marginBottom: "1.8rem" }}>
-            <span className="nx-icon-circle" style={{ width: 108, height: 108, position: "absolute", left: 12, top: 12 }}>
-              <Compass size={46} strokeWidth={1.5} />
-            </span>
-            <span className="nx-icon-circle" style={{ width: 42, height: 42, position: "absolute", right: 0, top: 4 }}>
-              <Search size={18} strokeWidth={2} />
-            </span>
-            <span className="nx-icon-circle" style={{ width: 38, height: 38, position: "absolute", left: 0, bottom: 6 }}>
-              <MapPin size={16} strokeWidth={2} />
-            </span>
-          </div>
-
-          <p className="nx-eyebrow" style={{ marginBottom: "0.9rem" }}>Error 404</p>
-          <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", lineHeight: 1.05, maxWidth: "16ch" }}>
-            That page does not exist.
-          </h1>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-graphite)", maxWidth: "44ch", lineHeight: 1.6, marginTop: "1rem" }}>
-            The address you followed doesn’t exist or has moved. Here are the routes most people are looking for.
+      <section className="nx-container sp-404" aria-labelledby="not-found-title" data-testid="not-found-page">
+        <div className="sp-404__tile">
+          <p className="nx-eyebrow">Error 404</p>
+          <h1 id="not-found-title" className="nx-dsh1" style={{ fontFamily: S }}>That page does not exist.</h1>
+          <p className="nx-lede" style={{ fontFamily: F }}>
+            The address you followed does not exist or has moved. Here are the routes most people are looking for.
           </p>
-
-          <div style={{ marginTop: "1.9rem" }}>
-            <Link href="/" className="nx-cta-cobalt" data-testid="not-found-home-link">
-              Return home →
+          <div className="sp-404__cta">
+            <Link href="/" className="nx-cta-cobalt" data-testid="not-found-home-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}>
+              Return home
             </Link>
           </div>
-
-          {/* suggested destinations */}
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 12, marginTop: "2.6rem", width: "100%", maxWidth: 640, textAlign: "left" }}>
+          <ul className="sp-404__links" aria-label="Where most people are going">
             {DESTINATIONS.map((d) => (
-              <Link key={d.href} href={d.href} className="nx-feature-card" data-testid={d.testid} style={{ display: "flex", alignItems: "center", gap: 14, padding: "1rem 1.15rem", textDecoration: "none" }}>
-                <span className="nx-icon-circle" aria-hidden><d.Icon size={19} strokeWidth={1.9} /></span>
-                <span style={{ flex: 1 }}>
-                  <span style={{ display: "block", fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{d.label}</span>
-                  <span style={{ display: "block", fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", marginTop: 2 }}>{d.note}</span>
-                </span>
-                <ArrowRight size={17} style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-              </Link>
+              <li key={d.href}>
+                <Link href={d.href} className="sp-404__link" data-testid={d.testid}>
+                  <d.Icon size={18} strokeWidth={1.9} aria-hidden="true" />
+                  <span style={{ flex: 1, minWidth: 0 }}>
+                    <strong style={{ fontFamily: F }}>{d.label}</strong>
+                    <small style={{ fontFamily: F }}>{d.note}</small>
+                  </span>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
     </SiteLayout>

@@ -1,0 +1,86 @@
+/* ═══ The product page body, as one set of tiles (the polish pass, 2026-09-05) ═══
+   Every block on the medicine page (the vial figures, the ritual, the pathway,
+   the milestones, the horizon bar, the care cards, the evidence, the questions)
+   shares one frame: the porcelain card, one hairline, the house radius, one
+   internal padding, one heading rhythm. Tokens only. Imported once, from
+   components/InsideTheVial.tsx, which both product pages import. */
+
+/* ── The frame ── */
+.nx-pt { position: relative; display: block; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.1rem, 2vw, 1.4rem); }
+
+/* ── The heading rhythm inside a tile ── */
+/* The numbered pill: the how-it-works tiles' pill, in flow on a light tile. */
+.nx-pt__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; min-width: 2.6rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); font-variant-numeric: tabular-nums; }
+/* The kicker: sentence case, cobalt ("Week 1", "Prescribing"). */
+.nx-pt__k { margin: 0; font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-cobalt); line-height: 1.3; }
+.nx-pt__t { margin: 0; font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.25; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-wrap: pretty; }
+.nx-pt__n + .nx-pt__t, .nx-pt__k + .nx-pt__t { margin-top: .55rem; }
+.nx-pt__b { margin: .45rem 0 0; font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 52ch; }
+/* The small print inside a tile (the verbatim provider and pharmacy wording). */
+.nx-pt__legal { margin: .9rem 0 0; padding-top: .8rem; border-top: 1px solid var(--nx-border); font-size: var(--nx-t-xs); line-height: 1.55; color: var(--nx-fg-muted); overflow-wrap: anywhere; }
+/* The one line under a block. */
+.nx-pt-note { margin: .8rem 0 0; font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 62ch; }
+.nx-pt-lede { margin: .8rem 0 0; }
+
+/* ── Tiles in a row ── */
+.nx-pt-grid { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .625rem; }
+.nx-pt-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.nx-pt-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.nx-pt-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* As many columns as there are tiles (a two-step spray, a one-step capsule), never an empty cell. */
+.nx-pt-grid--fit { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+@media (max-width: 900px) {
+  .nx-pt-grid--3, .nx-pt-grid--fit { grid-template-columns: 1fr; grid-auto-flow: row; }
+  .nx-pt-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .nx-pt-grid--2 { grid-template-columns: 1fr; }
+}
+.nx-pt-grid > li, .nx-pt-grid > .nx-pt { min-width: 0; }
+
+/* ── The figure tile (inside the vial): the figure, its unit, one caption ── */
+.nx-pt-fig__row { display: flex; align-items: baseline; gap: .4rem; white-space: nowrap; }
+.nx-pt-fig__v { font-size: var(--nx-t-h2); font-weight: 600; line-height: 1; letter-spacing: var(--nx-ls-display); font-variant-numeric: tabular-nums; color: var(--nx-fg); }
+.nx-pt-fig__u { font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-cobalt); }
+.nx-pt-fig__c { margin: .5rem 0 0; font-size: var(--nx-t-sm); line-height: 1.45; color: var(--nx-fg-muted); max-width: 22ch; }
+/* Compact (a medicine inside a protocol): the figures as one ruled row inside the tile. */
+.nx-pt-figs--in { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr)); gap: .8rem 1rem; margin-top: .9rem; padding-top: .8rem; border-top: 1px solid var(--nx-border); }
+.nx-pt-figs--in .nx-pt-fig__v { font-size: var(--nx-t-h3); }
+.nx-pt-figs--in .nx-pt-fig__c { font-size: var(--nx-t-xs); margin-top: .3rem; }
+
+/* ── The pathway: three tiles, the arrows between them (geometry in index.css) ── */
+.nx-pathway__item > .nx-pt { flex: 1 1 auto; }
+
+/* ── The milestones: a vertical rail, the pill on it, a tile beside each ── */
+.nx-pt-tl { position: relative; list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .625rem; }
+.nx-pt-tl::before { content: ""; position: absolute; left: calc(1.3rem - 1px); top: 1rem; bottom: 1rem; width: 2px; border-radius: var(--nx-r-pill);
+  background: linear-gradient(180deg, var(--nx-cobalt) 0%, color-mix(in srgb, var(--nx-cobalt) 45%, transparent) 60%, color-mix(in srgb, var(--nx-cobalt) 10%, transparent) 100%); }
+.nx-pt-tl__step { position: relative; padding-left: 3.4rem; min-width: 0; }
+.nx-pt-tl__step > .nx-pt__n { position: absolute; left: 0; top: 0; width: 2.6rem; padding: 0; z-index: 1; border: 1px solid var(--nx-border); }
+
+/* ── The horizon bar, in the same frame ── */
+.nx-horizon.nx-pt { padding: clamp(1.1rem, 2vw, 1.4rem); }
+.nx-horizon .nx-horizon__h { margin: 0 0 .9rem; font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: normal; text-transform: none; color: var(--nx-cobalt); }
+.nx-horizon .nx-horizon__bar { height: .875rem; }
+.nx-horizon .nx-horizon__axis { margin-top: .55rem; font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: normal; text-transform: none; color: var(--nx-fg-muted); }
+.nx-horizon .nx-horizon__legend { margin-top: .9rem; gap: .4rem; }
+.nx-horizon .nx-horizon__legend li { display: flex; align-items: flex-start; gap: .5rem; font-size: var(--nx-t-sm); line-height: 1.45; color: var(--nx-fg-graphite); }
+.nx-horizon .nx-horizon__legend strong { font-weight: 500; color: var(--nx-fg); }
+
+/* ── The care tiles: facts as a list with a dot each ── */
+.nx-pt-facts { list-style: none; margin: .8rem 0 0; padding: 0; display: grid; gap: .4rem; }
+.nx-pt-facts li { position: relative; padding-left: 1rem; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-pt-facts li::before { content: ""; position: absolute; left: 0; top: .6em; width: .3rem; height: .3rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt); }
+
+/* ── The evidence: one tile, a row per finding, the key on the left ── */
+.nx-pt-rows { list-style: none; margin: 0; padding: 0; }
+.nx-pt-row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: .3rem 1.4rem; padding: .9rem 0; border-top: 1px solid var(--nx-border); }
+.nx-pt-row:first-child { border-top: 0; padding-top: 0; }
+.nx-pt-row:last-child { padding-bottom: 0; }
+.nx-pt-row__k { margin: 0; font-size: var(--nx-t-base); font-weight: 500; line-height: 1.35; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-wrap: pretty; }
+.nx-pt-row__f { margin: 0; font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-pt-row__c { margin: .35rem 0 0; font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-muted); }
+@media (max-width: 700px) { .nx-pt-row { grid-template-columns: 1fr; } }
+
+/* ── The questions: the home's FAQ tiles, in this frame ── */
+.nx-pdp-faq .nx-faq-item { border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }

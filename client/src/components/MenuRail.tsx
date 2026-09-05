@@ -2,7 +2,9 @@
    A navy band with a photograph behind it, category tabs, and a horizontal
    rail of frosted product tiles: the vial on a tinted panel, the goal tag,
    the name, the plain line, and one button. Every tile links to the PDP;
-   pending medicines carry the reserve badge. */
+   pending medicines carry the reserve badge. Cards are 240 px on the
+   desktop, the arrows 40 px, and the tab row scrolls sideways on the phone
+   instead of wrapping (client/src/styles/home.css). */
 import { useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Link } from "wouter";
@@ -38,18 +40,18 @@ export function MenuRail({ photo }: { photo: string }) {
           </div>
           <Link href="/peptides" className="nx-cta-ceramic nx-cta--sm" data-testid="frontdoor-menu-all">Shop all medicines <ArrowRight size={14} aria-hidden="true" /></Link>
         </div>
-        <div className="nx-tabs" role="tablist" aria-label="Filter by goal">
+        <div className="nx-tabs nx-tabs--scroll" role="tablist" aria-label="Filter by goal">
           <button role="tab" aria-selected={cat === "all"} className="nx-tab" onClick={() => setCat("all")} style={{ fontFamily: F }} data-testid="menu-tab-all">All medicines</button>
           <button role="tab" aria-selected={cat === "protocols"} className="nx-tab" onClick={() => setCat("protocols")} style={{ fontFamily: F }} data-testid="menu-tab-protocols">Protocols</button>
           {ORDER.filter((c) => LIVE_CATEGORIES.includes(c)).map((c) => (
             <button key={c} role="tab" aria-selected={cat === c} className="nx-tab" onClick={() => setCat(c)} style={{ fontFamily: F }} data-testid={`menu-tab-${c}`}>{CATEGORY_LABELS[c]}</button>
           ))}
         </div>
-        <Reveal><div className="nx-rail" ref={rail} data-testid="frontdoor-rail">
+        <Reveal><div className="nx-rail nx-rail--menu" ref={rail} data-testid="frontdoor-rail">
           {cat === "protocols" && FLAGSHIP_STACKS.map((st, i) => <ProtocolTile key={st.slug} stack={st} index={i} testId={`frontdoor-protocol-${st.slug}`} />)}
           {cat !== "protocols" && items.map((s, i) => <ProductTile key={s.slug} sku={s} index={i} testId={`frontdoor-sku-${s.slug}`} />)}
         </div></Reveal>
-        <div className="nx-rail__nav">
+        <div className="nx-rail__nav nx-rail__nav--lg">
           <button type="button" aria-label="Scroll back" onClick={() => scroll(-1)}><ArrowLeft size={16} /></button>
           <button type="button" aria-label="Scroll forward" onClick={() => scroll(1)}><ArrowRight size={16} /></button>
         </div>

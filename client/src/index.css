@@ -183,7 +183,7 @@
     --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
-    --primary: 0 0% 4%;              /* ink #0E2447 */
+    --primary: 218 62% 15%;          /* navy ink #0F2140 (Porcelain & Navy) */
     --primary-foreground: 0 0% 100%;
     --secondary: 60 6% 97%;
     --secondary-foreground: 0 0% 4%;
@@ -195,7 +195,7 @@
     --destructive-foreground: 0 0% 100%;
     --border: 60 5% 89%;
     --input: 60 5% 89%;
-    --ring: 35 66% 40%;
+    --ring: 217 67% 51%;             /* cobalt #2F6FD6 */
     --radius: 0.75rem;
 
     /* ── Fluid type scale ── */
@@ -2633,8 +2633,8 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 @media (max-width: 720px) { .nx-goal-cards { grid-template-columns: 1fr; } .nx-goal-card { aspect-ratio: 4 / 3; } }
 .nx-goal-chips { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin-top: 1.2rem; }
 .nx-goal-chips-label { font-size: var(--nx-t-sm); color: var(--nx-fg-graphite); margin-right: .3rem; }
-.nx-chip { display: inline-flex; align-items: center; min-height: 40px; padding: .5rem 1rem; border-radius: var(--nx-r-pill); background: var(--nx-fg); color: var(--nx-bg); font-size: var(--nx-t-sm); font-weight: 600; text-decoration: none; transition: background-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
-.nx-chip:hover { background: var(--nx-cobalt); transform: translateY(-1px); }
+.nx-goal-chips .nx-chip { display: inline-flex; align-items: center; min-height: 40px; padding: .5rem 1rem; border-radius: var(--nx-r-pill); background: var(--nx-fg); color: var(--nx-bg); font-size: var(--nx-t-sm); font-weight: 600; text-decoration: none; transition: background-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-goal-chips .nx-chip:hover { background: var(--nx-cobalt); transform: translateY(-1px); }
 .nx-chip-ghost { background: transparent; color: var(--nx-fg); border: 1px solid var(--nx-border); }
 .nx-chip-ghost:hover { background: var(--nx-cobalt-soft); color: var(--nx-fg); }
 

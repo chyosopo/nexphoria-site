@@ -1,0 +1,191 @@
+/* ═══ Footer (polish pass 2026-09-05) ═══
+   The wordmark at the width of the page, the brand and three link groups,
+   one line of compliance chips, the copyright line, the fine print.
+   On the phone the groups are details/summary (48 px rows, none open by
+   default); on desktop they are a plain grid and the summary is the label.
+   Every colour is a mix of --nx-ceramic over --nx-bg-dark — the footer
+   carries no literal of its own. */
+
+.nx-footer {
+  --nx-footer-ink:       var(--nx-ceramic);
+  --nx-footer-ink-soft:  color-mix(in srgb, var(--nx-ceramic) 74%, transparent);
+  --nx-footer-ink-muted: color-mix(in srgb, var(--nx-ceramic) 66%, transparent);
+  --nx-footer-line:      color-mix(in srgb, var(--nx-ceramic) 12%, transparent);
+  --nx-footer-chip-bg:   color-mix(in srgb, var(--nx-ceramic) 7%, transparent);
+  --nx-footer-chip-edge: color-mix(in srgb, var(--nx-ceramic) 16%, transparent);
+  --nx-footer-row: 48px;
+  font-family: var(--nx-font-body);
+  color: var(--nx-footer-ink);
+}
+
+/* the wordmark at the top keeps its index.css size; the phone gets a little less air */
+.nx-footer__mark { padding-top: var(--nx-s-4); }
+
+.nx-footer__body { padding-top: var(--nx-s-5); padding-bottom: var(--nx-sp-tight); }
+
+/* ── top: brand beside the groups ── */
+.nx-footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--nx-s-5);
+}
+.nx-footer__brand { display: flex; flex-direction: column; gap: var(--nx-s-3); }
+.nx-footer__lede {
+  margin: 0;
+  max-width: 36ch;
+  font-size: var(--nx-t-sm);
+  line-height: 1.55;
+  color: var(--nx-footer-ink-soft);
+}
+.nx-footer__lede a {
+  color: var(--nx-footer-ink);
+  font-weight: 600;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.nx-footer__lede a:hover { text-decoration: underline; }
+
+/* ── the groups ── */
+.nx-footer__cols { display: grid; grid-template-columns: 1fr; }
+.nx-footer__group { border-top: 1px solid var(--nx-footer-line); }
+.nx-footer__group:last-child { border-bottom: 1px solid var(--nx-footer-line); }
+.nx-footer__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nx-s-3);
+  min-height: var(--nx-footer-row);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: var(--nx-t-base);
+  font-weight: 500;
+  color: var(--nx-footer-ink);
+  -webkit-tap-highlight-color: transparent;
+}
+.nx-footer__summary::-webkit-details-marker { display: none; }
+.nx-footer__summary:focus-visible { outline: 2px solid var(--nx-acid); outline-offset: 2px; }
+.nx-footer__caret {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--nx-footer-ink-muted);
+  transition: transform var(--nx-dur-2) var(--nx-ease);
+}
+.nx-footer__group[open] .nx-footer__caret { transform: rotate(180deg); }
+.nx-footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--nx-s-2);
+}
+.nx-footer .nx-footer__list a {
+  display: flex;
+  align-items: center;
+  min-height: var(--nx-footer-row);
+  font-size: var(--nx-t-base);
+  color: var(--nx-footer-ink-soft);
+  text-decoration: none;
+  transition: color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-footer .nx-footer__list a:hover { color: var(--nx-footer-ink); }
+
+/* ── compliance chips, one line ── */
+.nx-footer__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nx-s-2);
+  list-style: none;
+  margin: 0;
+  padding: var(--nx-s-4) 0;
+  border-bottom: 1px solid var(--nx-footer-line);
+}
+.nx-footer__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 var(--nx-s-3);
+  border-radius: var(--nx-r-pill);
+  border: 1px solid var(--nx-footer-chip-edge);
+  background: var(--nx-footer-chip-bg);
+  font-size: var(--nx-t-xs);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--nx-footer-ink-soft);
+  white-space: nowrap;
+}
+
+/* ── copyright line with the quick legal links ── */
+.nx-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--nx-s-2);
+  padding-top: var(--nx-s-4);
+}
+.nx-footer__copy { display: flex; align-items: center; gap: var(--nx-s-3); }
+.nx-footer__copylogo { display: none; line-height: 0; }
+.nx-footer__copy span { font-size: var(--nx-t-xs); color: var(--nx-footer-ink-muted); }
+.nx-footer__quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nx-s-1) var(--nx-s-5);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nx-footer .nx-footer__quick a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  font-size: var(--nx-t-xs);
+  color: var(--nx-footer-ink-muted);
+  text-decoration: none;
+  transition: color var(--nx-dur-2) var(--nx-ease);
+}
+.nx-footer .nx-footer__quick a:hover { color: var(--nx-footer-ink); }
+
+/* ── fine print, verbatim, set small ── */
+.nx-footer__fine { margin-top: var(--nx-s-4); max-width: 76ch; }
+.nx-footer__fine p {
+  margin: 0;
+  font-size: var(--nx-t-xs);
+  line-height: 1.45;
+  color: var(--nx-footer-ink-muted);
+}
+.nx-footer__fine p + p { margin-top: var(--nx-s-2); }
+
+/* ── desktop: the groups become a grid, the summary the label ── */
+@media (min-width: 1024px) {
+  .nx-footer__mark { padding-top: var(--nx-sp-band); }
+  .nx-footer__body { padding-top: var(--nx-sp-band); padding-bottom: var(--nx-sp-band); }
+  .nx-footer__top {
+    grid-template-columns: 1.3fr 2.7fr;
+    gap: var(--nx-s-12);
+    padding-bottom: var(--nx-s-10);
+    border-bottom: 1px solid var(--nx-footer-line);
+  }
+  .nx-footer__copylogo { display: inline-flex; }
+  .nx-footer__chips { padding: var(--nx-s-5) 0; }
+  .nx-footer__bottom { padding-top: var(--nx-s-5); }
+  .nx-footer__fine { margin-top: var(--nx-s-5); }
+  .nx-footer__cols { grid-template-columns: repeat(3, 1fr); gap: var(--nx-s-8); }
+  .nx-footer__group,
+  .nx-footer__group:last-child { border: 0; }
+  .nx-footer__summary {
+    min-height: 0;
+    margin-bottom: var(--nx-s-2);
+    pointer-events: none;
+    font-size: var(--nx-t-sm);
+    color: var(--nx-footer-ink-muted);
+  }
+  .nx-footer__caret { display: none; }
+  .nx-footer__list { padding-bottom: 0; }
+  .nx-footer .nx-footer__list a { min-height: 36px; font-size: var(--nx-t-sm); }
+  .nx-footer__chips { justify-content: center; gap: var(--nx-s-3); }
+  .nx-footer__bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-footer__caret { transition: none; }
+}

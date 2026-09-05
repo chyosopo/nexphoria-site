@@ -70,15 +70,15 @@
          head and could drift from the data-driven builders. Single source of
          truth = the builders. -->
 
-    <!-- Fonts: General Sans (single family, weights 400/500/600) via Fontshare -->
-    <link rel="preconnect" href="https://api.fontshare.com" />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
-    <!-- Fraunces: display serif — only weight 500 (roman + italic) is ever used.
-         Instrument Serif was removed (referenced nowhere in the codebase). -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap" rel="stylesheet" />
+    <!-- Fonts: General Sans, self-hosted (client/public/fonts; faces declared
+         in client/src/styles/fonts.css). The 500 (display) and 600 (buttons,
+         labels) weights are preloaded so the first paint swaps at once; 400
+         (body) follows from the stylesheet. Fontshare and Google Fonts links
+         removed 2026-09-05: no font request leaves the origin. Fraunces was
+         linked but no rule set it (both --nx-font tokens are General Sans).
+         Relative hrefs: the <base> written above anchors them to the app root. -->
+    <link rel="preload" as="font" type="font/woff2" href="fonts/general-sans-500.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="fonts/general-sans-600.woff2" crossorigin />
   </head>
   <body class="text-nx-fg antialiased">
     <div id="root"></div>

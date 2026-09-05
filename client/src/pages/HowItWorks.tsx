@@ -1,75 +1,87 @@
 /* JOB: the five steps, from choosing a medicine to the week-12 blood test. */
-/* ═══ HOW IT WORKS — the plain deck (docs/COPY-DECK-PLAIN.md, 2026-09-04)
-   Five steps, each with the deck paragraph and one paragraph of detail.
-   Then blood testing, who is involved, what happens if the physician does
-   not prescribe, what it costs, and the closer. State, do not persuade.
-   Tokens only; the R3 hero and the shared closer grammar. */
-import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
-import { Link, useLocation } from "wouter";
+/* ═══ HOW IT WORKS — the tile grammar (2026-09-05)
+   The five steps as five numbered tiles, each with its photograph or
+   render; the blood panel as one tile with the marker groups in two
+   columns; the physicians and the pharmacy as two tiles with the verbatim
+   compliance text set small; the decision and the price as one tile each;
+   the closer as the house closer tile. Copy is the plain deck
+   (docs/COPY-DECK-PLAIN.md) in the v3 register (docs/VOICE.md). State, do
+   not persuade. Tokens only; the page's own classes live in
+   client/src/styles/support.css. */
+import { SiteLayout } from "@/components/SiteLayout";
+import { Link } from "wouter";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { Reveal } from "@/components/Reveal";
-import { OUTCOME_HERO, outcomeSrcSet } from "@/data/outcomeImagery";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
+import monthBox from "@/assets/studio/month-box.webp";
+import monthBox1200 from "@/assets/studio/month-box-1200.webp";
+import bloodTube from "@/assets/brand/editorial-bloodwork.webp";
+import "@/styles/support.css";
 
-const kicker: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
-  letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)",
-};
-const body: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "58ch",
-};
-const small: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)",
-};
-const card: React.CSSProperties = {
-  background: "var(--nx-bg)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-md)", padding: "1rem 1.15rem",
-};
+/* One picture per step. The workflow-localised frames (img/…) resolve
+   against the <base> tag and carry a build-time 800w companion; the
+   bundled renders (the month box, the blood tube) are imported and get the
+   sizes Vite ships. */
+type StepImage = { src: string; srcSet?: string; alt: string; render?: boolean };
 
 /* The five steps (the only step list on the site). `d` is the deck
    paragraph, verbatim; `detail` is the one plain paragraph the deck asks for. */
-const STEPS: { t: string; d: string; detail: string }[] = [
+const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
   {
     t: "Choose a medicine or a protocol, and a term.",
-    d: "A medicine or a protocol, and a term of one, three, six or twelve months.",
+    d: "You choose a medicine or a protocol, and a term of one, three, six or twelve months.",
     detail: "Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price. A pending medicine is shown with its price and a notice, and the only action is an email when it is available.",
+    img: { src: monthBox, srcSet: `${monthBox1200} 1200w, ${monthBox} 1600w`, alt: "The month box, drawn in the house studio: the medicine, the blood kit, the first-dose card and the cold pack", render: true },
   },
   {
     t: "Complete a quick online visit at checkout.",
-    d: "Health history, current medicines and the goal, answered at checkout. A few minutes.",
+    d: "Right after you order, you spend a few minutes on your history, your medicines and your goal.",
     detail: "The order is placed first, then the questions are answered. They cover the conditions that rule each medicine out and the medicines already taken. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.",
+    img: { src: "img/img_329e054306f2.webp", srcSet: "img/img_329e054306f2-800w.webp 800w, img/img_329e054306f2.webp 1600w", alt: "A woman answering the online visit on a tablet at a bright desk" },
   },
   {
     t: "A licensed physician reads them and decides.",
     d: "A licensed U.S. physician reviews the answers and writes the prescription, or explains why not. If not, nothing is made and the refund policy applies.",
     detail: "The physician reads the answers against the conditions that rule each medicine out and against the other medicines taken. A decision comes within a few business days.",
+    img: { src: "img/img_334cb24acfa5.webp", srcSet: "img/img_334cb24acfa5-800w.webp 800w, img/img_334cb24acfa5.webp 1600w", alt: "A physician in a white coat with a stethoscope" },
   },
   {
     t: "Draw your blood at home, then take the first dose.",
     d: "The medicine ships cold with an at-home blood kit. The draw comes before the first dose; the physician sets the dose from the results.",
     detail: `The kit contains what is needed to draw a small sample at home and a prepaid box to return it to the laboratory. It covers ${PANEL_TOTAL_MARKERS} markers across five systems, and the physician reads the results before setting the first dose.`,
+    img: { src: "img/img_d489ea4e9dbc.webp", srcSet: "img/img_d489ea4e9dbc-800w.webp 800w, img/img_d489ea4e9dbc.webp 1600w", alt: "The at-home blood kit box on a kitchen counter, by the window" },
   },
   {
     t: `At week ${RETEST_WEEK}, the same panel is drawn again.`,
     d: "The same panel again. The physician compares the two and continues, adjusts or stops the dose.",
     detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home and compared with the first, marker by marker. The physician reads what changed and decides whether the dose continues, changes or stops.`,
+    img: { src: bloodTube, alt: "A blood sample tube held up to the light in a laboratory" },
   },
 ];
 
-const PARTIES: { name: string; line: string }[] = [
-  { name: "Nexphoria", line: "Nexphoria operates the service and does not make clinical decisions." },
-  { name: "Bask Health", line: "Bask Health is the telehealth platform through which the online visit is completed and the prescription is written." },
-  { name: PROVIDER_INFO.name, line: `Prescriptions are written by independent, U.S.-licensed physicians of ${PROVIDER_INFO.name}.` },
-  { name: PHARMACY_INFO.name, line: `Medicines are compounded by ${PHARMACY_INFO.name}, a state-licensed 503A compounding pharmacy in Houston, Texas.` },
-  { name: "A CLIA-certified laboratory", line: "Blood work is analysed by a CLIA-certified laboratory." },
+/* The two parties a reader can write to, each with the compliance block
+   verbatim from Bask (data/compliance.ts). The lines are the deck's. */
+const PARTIES: { eyebrow: string; name: string; line: string; body: string; testid: string }[] = [
+  {
+    eyebrow: "The physicians",
+    name: PROVIDER_INFO.name,
+    line: `Prescriptions are written by independent, U.S.-licensed physicians of ${PROVIDER_INFO.name}, through the Bask Health telehealth platform.`,
+    body: PROVIDER_INFO.body,
+    testid: "hiw-party-provider",
+  },
+  {
+    eyebrow: "The pharmacy",
+    name: PHARMACY_INFO.name,
+    line: `Medicines are compounded by ${PHARMACY_INFO.name}, a state-licensed 503A compounding pharmacy in Houston, Texas.`,
+    body: PHARMACY_INFO.body,
+    testid: "hiw-party-pharmacy",
+  },
 ];
 
 export default function HowItWorks() {
-  const [loc] = useLocation();
-  const world = resolveWorld(loc);
-  const heroImg = OUTCOME_HERO[world === "women" ? "women" : "men"];
   useSeo({
     title: "How it works | Nexphoria",
     description: `Five steps, from choosing a medicine to the week-${RETEST_WEEK} panel. A quick online visit, a physician's decision, a blood kit before the first dose, and the same test again at week ${RETEST_WEEK}.`,
@@ -93,7 +105,7 @@ export default function HowItWorks() {
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">How it works</p>
             <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Answer a few questions, and a licensed physician decides the rest.</h1>
-            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps take you from choosing a medicine to the week-{RETEST_WEEK} blood panel.</p>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps take you from choosing a medicine to the week-{RETEST_WEEK} blood panel, and each one is set out below in the order it happens.</p>
             <div className="nx-tilehero__foot">
               <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Shop the medicines</Link>
             </div>
@@ -101,7 +113,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* ── The five steps ── */}
+      {/* ── The five steps, as five numbered tiles ── */}
       <section className="nx-container nx-sec" aria-labelledby="hiw-steps">
         <Reveal>
           <div className="nx-sec-head">
@@ -109,91 +121,109 @@ export default function HowItWorks() {
             <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Here are the five steps, in the order they happen.</h2>
           </div>
         </Reveal>
-        <ol style={{ listStyle: "none", margin: "clamp(1.6rem,3vw,2.4rem) 0 0", padding: 0, display: "grid", gap: 14, maxWidth: 820 }} data-testid="hiw-steps">
+        <ol className="sp-steps" data-testid="hiw-steps">
           {STEPS.map((s, i) => (
             <Reveal key={s.t} delay={Math.min(i * 40, 200)}>
-              <li style={{ ...card, padding: "clamp(1.2rem,2.5vw,1.6rem) clamp(1.2rem,3vw,1.8rem)" }} data-testid={`hiw-step-${i + 1}`}>
-                <p style={{ ...kicker, color: "var(--nx-fg-muted)" }}>Step {i + 1}</p>
-                <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.1, marginTop: "0.4rem" }}>{s.t}</h3>
-                <p style={{ ...body, fontSize: "var(--nx-t-base)", marginTop: "0.8rem", maxWidth: "62ch" }}>{s.d}</p>
-                <p style={{ ...body, fontSize: "var(--nx-t-base)", marginTop: "0.6rem", maxWidth: "62ch" }}>{s.detail}</p>
+              <li className={i % 2 === 1 ? "sp-step sp-step--flip" : "sp-step"} data-testid={`hiw-step-${i + 1}`}>
+                <div className="sp-step__copy">
+                  <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="nx-steptile__t" style={{ fontFamily: S }}><span className="sr-only">Step {i + 1}. </span>{s.t}</h3>
+                  <p className="nx-steptile__b" style={{ fontFamily: F }}>{s.d}</p>
+                  <p className="nx-steptile__b" style={{ fontFamily: F }}>{s.detail}</p>
+                </div>
+                <div className={s.img.render ? "sp-step__media sp-step__media--render" : "sp-step__media"}>
+                  <img src={s.img.src} srcSet={s.img.srcSet} sizes="(max-width: 900px) 100vw, 40vw" alt={s.img.alt} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
+                </div>
               </li>
             </Reveal>
           ))}
         </ol>
       </section>
 
-      {/* ── Blood testing ── */}
+      {/* ── Blood testing, as one tile with the marker groups in two columns ── */}
       <section className="nx-container nx-sec" aria-labelledby="hiw-blood">
         <Reveal>
-          <div className="nx-sec-head">
-            <p className="nx-eyebrow">Blood testing</p>
-            <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "26ch" }}>Your blood is tested before the first dose, and again at week {RETEST_WEEK}.</h2>
-            <p className="nx-lede">
-              The kit reads {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} systems, drawn at home. Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
-            </p>
+          <div className="sp-tile">
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">Blood testing</p>
+              <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "26ch" }}>Your blood is tested before the first dose, and again at week {RETEST_WEEK}.</h2>
+              <p className="nx-lede">
+                The kit reads {PANEL_TOTAL_MARKERS} markers across {PANEL_CATEGORY_COUNT} systems, drawn at home. Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
+              </p>
+            </div>
+            <ul className="sp-panel__list" data-testid="hiw-panel">
+              {BIOMARKER_PANEL.map((c) => (
+                <li key={c.name} className="sp-panel__item">
+                  <div className="sp-panel__row">
+                    <p className="sp-panel__name">{c.name}</p>
+                    <span className="sp-panel__count">{c.count} marker{c.count === 1 ? "" : "s"}</span>
+                  </div>
+                  {c.blurb ? <p className="sp-panel__blurb">{c.blurb}</p> : null}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul style={{ listStyle: "none", margin: "clamp(1.4rem,3vw,2rem) 0 0", padding: 0, display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", maxWidth: 900 }} data-testid="hiw-panel">
-            {BIOMARKER_PANEL.map((c) => (
-              <li key={c.name} style={card}>
-                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
-                  <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: 0 }}>{c.name}</p>
-                  <span style={{ ...kicker, color: "var(--nx-fg-muted)" }}>{c.count} marker{c.count === 1 ? "" : "s"}</span>
-                </div>
-                {c.blurb ? <p style={{ ...small, marginTop: "0.35rem" }}>{c.blurb}</p> : null}
-              </li>
-            ))}
-          </ul>
         </Reveal>
       </section>
 
-      {/* ── Who is involved ── */}
+      {/* ── Who is involved: the physicians and the pharmacy, as two tiles ── */}
       <section className="nx-container nx-sec" aria-labelledby="hiw-who">
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Who is involved</p>
             <h2 id="hiw-who" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Everyone involved is named here, with what each one does.</h2>
+            <p className="nx-lede">
+              Nexphoria operates the service and does not make clinical decisions. The online visit is completed through the Bask Health telehealth platform, and blood work is analysed by a CLIA-certified laboratory.
+            </p>
           </div>
         </Reveal>
-        <ul style={{ listStyle: "none", margin: "1.4rem 0 0", padding: 0, display: "grid", gap: 10, maxWidth: 820 }} data-testid="hiw-parties">
-          {PARTIES.map((p) => (
-            <li key={p.name} style={card}>
-              <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", color: "var(--nx-fg)", margin: 0 }}>{p.name}</p>
-              <p style={{ ...small, marginTop: "0.25rem" }}>{p.line}</p>
-            </li>
+        <ul className="sp-two" data-testid="hiw-parties">
+          {PARTIES.map((p, i) => (
+            <Reveal key={p.name} delay={i * 60}>
+              <li className="sp-tile" data-testid={p.testid}>
+                <p className="sp-tile__eyebrow">{p.eyebrow}</p>
+                <h3 className="sp-tile__t">{p.name}</h3>
+                <p className="sp-tile__b">{p.line}</p>
+                <p className="sp-fine">{p.body}</p>
+              </li>
+            </Reveal>
           ))}
         </ul>
       </section>
 
-      {/* ── If the physician does not prescribe ── */}
+      {/* ── If the physician does not prescribe, as one calm tile ── */}
       <section className="nx-container nx-sec" aria-labelledby="hiw-decline">
         <Reveal>
-          <div className="nx-sec-head">
-            <p className="nx-eyebrow">The decision</p>
-            <h2 id="hiw-decline" className="nx-dsh2" style={{ maxWidth: "24ch" }}>If the physician does not prescribe, nothing is made.</h2>
-            <p className="nx-lede">
-              The physician explains why not. Nothing is compounded and nothing ships, and the refund policy sets out what is refunded.
+          <div className="sp-tile sp-tile--calm" data-testid="hiw-decline">
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">The decision</p>
+              <h2 id="hiw-decline" className="nx-dsh2" style={{ maxWidth: "24ch" }}>If the physician does not prescribe, nothing is made.</h2>
+              <p className="nx-lede">
+                The physician explains why not. Nothing is compounded and nothing ships, and the refund policy sets out what is refunded.
+              </p>
+            </div>
+            <p className="sp-tile__link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)" }}>
+              <Link href="/legal/refund-policy" className="nx-text-link" style={{ fontWeight: 600 }}>Read the refund policy</Link>
             </p>
           </div>
-          <p style={{ ...small, marginTop: "0.9rem" }}>
-            <Link href="/legal/refund-policy" className="nx-text-link" style={{ fontWeight: 600 }}>The refund policy</Link>
-          </p>
         </Reveal>
       </section>
 
-      {/* ── What it costs ── */}
+      {/* ── What it costs, as one tile ── */}
       <section className="nx-container nx-sec" aria-labelledby="hiw-price">
         <Reveal>
-          <div className="nx-sec-head">
-            <p className="nx-eyebrow">Price</p>
-            <h2 id="hiw-price" className="nx-dsh2" style={{ maxWidth: "26ch" }}>One monthly price covers the medicine, the physician and the blood work.</h2>
-            <p className="nx-lede">
-              One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
+          <div className="sp-tile" data-testid="hiw-price">
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">Price</p>
+              <h2 id="hiw-price" className="nx-dsh2" style={{ maxWidth: "26ch" }}>One monthly price covers the medicine, the physician and the blood work.</h2>
+              <p className="nx-lede">
+                One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
+              </p>
+            </div>
+            <p className="sp-tile__link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)" }}>
+              <Link href="/peptides" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-pricing-all">See every medicine, with its price</Link>
             </p>
           </div>
-          <p style={{ ...small, marginTop: "0.9rem" }}>
-            <Link href="/peptides" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-pricing-all">Every medicine, with its price</Link>
-          </p>
         </Reveal>
       </section>
 

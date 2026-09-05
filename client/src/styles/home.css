@@ -1,0 +1,99 @@
+/* ═══ Home sections, tightened (2026-09-05 polish pass) ═══
+   Imported from GoalGallery.tsx; every rule here is scoped to a home
+   section (.nx-goals, .nx-tiles--hero, .nx-tiles--how, .nx-explain--home,
+   .nx-arrives--grid, .nx-rail--menu, .nx-tabs--scroll). Tokens only.
+   Measured before: 9,344 px at 1440 and 14,208 at 390, the goal gallery
+   alone 2,283 / 4,617. The gallery is now three 4:5 tiles a row on the
+   desktop and one snap rail on the phone. */
+
+/* the container's own edge (1.5rem, 3rem from 768), so a rail can bleed to it */
+.nx-goals, .nx-tabs--scroll { --nx-home-bleed: 1.5rem; }
+@media (min-width: 768px) { .nx-goals, .nx-tabs--scroll { --nx-home-bleed: 3rem; } }
+
+/* ── By goal: three fixed 4:5 tiles a row; a snap rail on the phone ── */
+.nx-goals { list-style: none; margin: clamp(1.2rem, 2.4vw, 1.8rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.8rem, 1.4vw, 1.2rem); }
+/* every tile in a row stands the same height: the wrapper stretches, the tile fills it */
+.nx-goals__item { min-width: 0; display: grid; }
+.nx-goal { align-self: stretch; }
+.nx-goal { position: relative; display: flex; flex-direction: column; justify-content: flex-end; aspect-ratio: 4 / 5; border-radius: var(--nx-r-lg); background: var(--nx-bg-dark); color: var(--nx-ceramic); isolation: isolate; transition: transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease); }
+.nx-goal:hover { transform: translateY(-4px); box-shadow: var(--nx-e-3); }
+/* the photograph, clipped to the tile's own radius, fading into navy at the copy */
+.nx-goal__media { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; z-index: 0; }
+.nx-goal__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-goal:hover .nx-goal__media img { transform: scale(1.03); }
+.nx-goal__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--nx-bg-dark) 8%, transparent) 0%, color-mix(in srgb, var(--nx-bg-dark) 18%, transparent) 34%, color-mix(in srgb, var(--nx-bg-dark) 90%, transparent) 60%, var(--nx-bg-dark) 78%); pointer-events: none; }
+/* the gloss every tile carries */
+.nx-goal__media::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(135deg, color-mix(in srgb, var(--nx-ceramic) 22%, transparent) 0%, transparent 42%); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--nx-ceramic) 45%, transparent); }
+.nx-goal__copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .45rem; padding: 1.15rem 1.2rem 1.2rem; }
+.nx-goal__copy .nx-chips { margin-bottom: .1rem; }
+.nx-goal__t { margin: 0; font-size: var(--nx-t-xl); font-weight: 500; line-height: 1.12; letter-spacing: var(--nx-ls-snug); color: var(--nx-ceramic); text-wrap: balance; }
+/* one line of the teaching, clamped to two */
+.nx-goal__b { margin: 0; font-size: var(--nx-t-sm); line-height: 1.45; color: color-mix(in srgb, var(--nx-ceramic) 80%, transparent); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+/* the medicines as one row of pills: "Tirzepatide · from $319/mo" */
+.nx-goal__pills { list-style: none; margin: .3rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.nx-goal__pill { display: inline-flex; align-items: center; gap: .35em; min-height: 32px; padding: 4px 11px; border-radius: var(--nx-r-pill); border: 1px solid color-mix(in srgb, var(--nx-ceramic) 28%, transparent); background: color-mix(in srgb, var(--nx-ceramic) 10%, transparent); backdrop-filter: blur(6px); color: var(--nx-ceramic); font-size: var(--nx-t-xs); font-weight: 600; line-height: 1.2; text-decoration: none; white-space: nowrap; transition: background var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease); }
+.nx-goal__pill:hover { background: var(--nx-ceramic); color: var(--nx-fg); border-color: var(--nx-ceramic); }
+.nx-goal__pill:hover .nx-goal__price { color: var(--nx-fg-graphite); }
+.nx-goal__price { font-weight: 500; color: color-mix(in srgb, var(--nx-ceramic) 72%, transparent); }
+.nx-goal__dot { opacity: .55; }
+/* the round arrow, top-right on the photograph, the same arrow as the hero tiles on the phone */
+.nx-goal__arrow { position: absolute; top: 1rem; right: 1rem; z-index: 2; display: inline-flex; width: 40px; height: 40px; border-radius: 50%; background: var(--nx-ceramic); color: var(--nx-fg); align-items: center; justify-content: center; box-shadow: var(--nx-e-3); text-decoration: none; transition: transform var(--nx-dur-2) var(--nx-ease); }
+.nx-goal__arrow:hover { transform: translateX(2px); }
+/* the rail's arrows, drawn for the porcelain canvas; hidden until the grid becomes a rail */
+.nx-goals__nav { display: none; justify-content: flex-end; gap: 8px; margin-top: .6rem; }
+.nx-goals__nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--nx-border); background: var(--nx-ceramic); color: var(--nx-fg); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background var(--nx-dur-2) var(--nx-ease); }
+.nx-goals__nav button:hover { background: var(--nx-cobalt-soft); }
+@media (max-width: 1100px) { .nx-goals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* the phone: one and a quarter tiles visible, snapping (a tablet keeps the two-column grid) */
+@media (max-width: 700px) {
+  .nx-goals { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: .2rem; margin-left: calc(-1 * var(--nx-home-bleed)); margin-right: calc(-1 * var(--nx-home-bleed)); padding-left: var(--nx-home-bleed); padding-right: var(--nx-home-bleed); scroll-padding-left: var(--nx-home-bleed); }
+  .nx-goals::-webkit-scrollbar { display: none; }
+  .nx-goals__item { scroll-snap-align: start; }
+  .nx-goal:hover { transform: none; box-shadow: none; }
+  .nx-goal__copy { padding: 1rem 1rem 1.05rem; }
+  .nx-goal__t { font-size: var(--nx-t-lg); }
+  .nx-goal__pill { min-height: 36px; }
+  .nx-goals__nav { display: flex; }
+}
+
+/* ── The hero tiles: the sentence sits under the chips in a column no wider than 52% ── */
+.nx-tiles--hero .nx-tile__title--low { right: 48%; }
+@media (max-width: 900px) { .nx-tiles--hero .nx-tile__title--low { right: 46%; } }
+
+/* ── How it works: 4:3 on the desktop instead of 4:5 ── */
+.nx-tiles--how .nx-tile--photo { aspect-ratio: 4 / 3; }
+.nx-tiles--how .nx-tile--photo img { object-position: 50% 30%; }
+.nx-tiles--how .nx-tile--photo::after { background: linear-gradient(180deg, color-mix(in srgb, var(--nx-bg-dark) 0%, transparent) 30%, color-mix(in srgb, var(--nx-bg-dark) 88%, transparent) 100%); }
+.nx-tiles--how .nx-tile__t { font-size: var(--nx-t-xl); }
+.nx-tiles--how .nx-tile__foot { padding: 1rem 1.2rem 1.15rem; gap: .3rem; }
+
+/* ── The explainer: one frame for the diagrams and the render, captions tighter ── */
+.nx-explain--home { margin-top: clamp(1.2rem, 2.4vw, 1.8rem); }
+.nx-explain--home .nx-explain__art { aspect-ratio: 3 / 2; border-radius: var(--nx-r-lg); border: 1px solid var(--nx-border); background: linear-gradient(160deg, var(--nx-ceramic) 0%, var(--nx-cobalt-soft) 100%); }
+.nx-explain--home .nx-explain__media { display: flex; align-items: center; justify-content: center; padding: 6%; background: transparent; }
+.nx-explain--home .nx-explain__media img { width: auto; height: 100%; object-fit: contain; object-position: 50% 50%; }
+.nx-explain--home .nx-explain__t { margin-top: .8rem; font-size: var(--nx-t-xl); line-height: 1.15; }
+.nx-explain--home .nx-explain__b { margin-top: .4rem; font-size: var(--nx-t-sm); line-height: 1.5; max-width: 38ch; }
+@media (max-width: 900px) { .nx-explain--home { gap: 1rem; } .nx-explain--home .nx-explain__art { aspect-ratio: 16 / 9; } }
+
+/* ── What arrives: six small tiles, two across; the icon beside the title, one line under ── */
+.nx-arrives--grid { align-items: center; }
+.nx-arrives--grid .nx-arrives__media { aspect-ratio: 3 / 2; }
+.nx-arrives__grid { list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.nx-arrives__tile { display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: .6rem; row-gap: .15rem; align-items: start; padding: .75rem .85rem .8rem; border-radius: var(--nx-r-md); background: var(--nx-ceramic); border: 1px solid var(--nx-border); min-width: 0; }
+.nx-arrives__tile .nx-arrives__i { grid-row: 1 / 3; width: 28px; height: 28px; }
+.nx-arrives__tile .nx-arrives__t { font-size: var(--nx-t-base); line-height: 1.25; padding-top: .2rem; }
+.nx-arrives__tile .nx-arrives__b { margin-top: 0; font-size: var(--nx-t-sm); line-height: 1.4; }
+@media (max-width: 900px) { .nx-arrives--grid { gap: 1.2rem; } .nx-arrives--grid .nx-arrives__media { aspect-ratio: 16 / 10; } }
+/* on a narrow phone the two columns are too tight for a row; one column, still the small tile */
+@media (max-width: 480px) { .nx-arrives__grid { grid-template-columns: 1fr; gap: 6px; } }
+
+/* ── The menu rail: 240 px cards, 40 px arrows, the tab row scrolls on the phone ── */
+.nx-rail--menu { grid-auto-columns: 240px; }
+.nx-rail__nav--lg button { width: 40px; height: 40px; }
+@media (max-width: 900px) {
+  .nx-tabs--scroll { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-left: calc(-1 * var(--nx-home-bleed)); margin-right: calc(-1 * var(--nx-home-bleed)); padding: 0 var(--nx-home-bleed); scroll-padding-left: var(--nx-home-bleed); scroll-snap-type: x proximity; }
+  .nx-tabs--scroll::-webkit-scrollbar { display: none; }
+  .nx-tabs--scroll .nx-tab { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; min-height: 36px; }
+  .nx-rail--menu { grid-auto-columns: min(240px, 72vw); }
+}

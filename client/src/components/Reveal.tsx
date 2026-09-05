@@ -1,27 +1,34 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Children, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 interface RevealProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  /** Rise the direct children one after another (styles/motion.css staggers
+      them --nx-m-stagger apart). Defaults to on when there is more than one
+      direct child; pass false to keep a multi-child block moving as one. */
+  stagger?: boolean;
 }
 
 /* Content is never hidden by default. The element renders settled; only if
    it is safely below the fold at mount does it ARM (nx-armed: faded and
    lifted), then reveal on intersection. The prerenderer strips nx-armed, so
    a crawler or a visitor whose JS is late always sees the content. A 4s
-   failsafe reveals anything an observer never fires for. */
+   failsafe reveals anything an observer never fires for.
+   The entrance itself (14px rise, 600ms, the house ease) lives in
+   client/src/styles/motion.css — one grammar for every Reveal on the site. */
 function safelyOffscreen(el: Element) {
   const r = el.getBoundingClientRect();
   return r.top > window.innerHeight + 80;
 }
 
-export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
+export function Reveal({ children, className = "", delay = 0, stagger }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [armed, setArmed] = useState(false);
   const [visible, setVisible] = useState(false);
   // settled drops will-change once the entrance finished (no lingering layer)
   const [settled, setSettled] = useState(false);
+  const staggered = stagger ?? Children.count(children) > 1;
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -52,14 +59,21 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   }, [armed, delay]);
 
   const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget && e.propertyName === "transform") setSettled(true);
+    if (e.propertyName !== "transform") return;
+    const host = e.currentTarget;
+    // Whole-block entrance: the host itself finished. Staggered entrance: the
+    // host never moves, so settle when the LAST direct child lands.
+    const done = staggered
+      ? e.target instanceof Element && e.target.parentElement === host && e.target === host.lastElementChild
+      : e.target === host;
+    if (done) setSettled(true);
   };
 
   return (
     <div
       ref={ref}
       onTransitionEnd={handleTransitionEnd}
-      className={["nx-reveal", armed ? "nx-armed" : "", visible ? "visible" : "", settled ? "nx-settled" : "", className].filter(Boolean).join(" ")}
+      className={["nx-reveal", armed ? "nx-armed" : "", staggered ? "nx-stagger" : "", visible ? "visible" : "", settled ? "nx-settled" : "", className].filter(Boolean).join(" ")}
     >
       {children}
     </div>

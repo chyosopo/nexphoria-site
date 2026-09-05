@@ -8,6 +8,7 @@ import { Reveal } from "@/components/Reveal";
 import { F, S } from "@/lib/typography";
 import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { PROTO_WIDE } from "@/lib/studioTiles";
+import "@/styles/protocols.css";
 
 export function FeaturedProtocol({ slug = "recover", shout = "Prescribed together, so each medicine does its own job." }: { slug?: string; shout?: string }) {
   const st = FLAGSHIP_STACKS.find((s) => s.slug === slug) ?? FLAGSHIP_STACKS[0];

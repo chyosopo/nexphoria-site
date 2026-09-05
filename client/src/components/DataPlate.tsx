@@ -1,7 +1,7 @@
 /* ═══ DATA-PLATE SYSTEM — SEED-STUDY S1 (design only) ═══
    Numbers as identity, taxonomy as design. Three primitives:
 
-   - <BigFigure>     giant tabular numeral + small-caps unit + caption —
+   - <BigFigure>     giant tabular numeral + unit + caption —
                      precision figures ARE the display type.
    - <BigFigureRow>  ruled row of BigFigures, paper-like hairline dividers.
    - <SpecPlate>     specimen-label block for a compound: serif name,
@@ -27,7 +27,7 @@ export function BigFigure({
 }: {
   /** The figure itself — "99", "90", "503A", "≤3". Set huge, tabular. */
   value: string;
-  /** Small-caps unit/qualifier beside the numeral — "markers", "days". */
+  /** The unit or qualifier beside the numeral, in sentence case — "markers", "days". */
   unit?: string;
   /** One quiet line under the figure. */
   caption?: string;
@@ -59,10 +59,8 @@ export function BigFigure({
           <span
             style={{
               fontFamily: F,
-              fontSize: "var(--nx-t-xs)",
+              fontSize: "var(--nx-t-sm)",
               fontWeight: 600,
-              letterSpacing: "var(--nx-ls-caps)",
-              textTransform: "uppercase",
               color: "var(--nx-cobalt)",
             }}
           >
@@ -161,10 +159,8 @@ export function SpecPlate({
             <dt
               style={{
                 fontFamily: F,
-                fontSize: "var(--nx-t-2xs)",
+                fontSize: "var(--nx-t-xs)",
                 fontWeight: 600,
-                letterSpacing: "var(--nx-ls-caps)",
-                textTransform: "uppercase",
                 color: mutedOf(tone),
                 flexShrink: 0,
               }}

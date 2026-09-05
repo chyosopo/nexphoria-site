@@ -4,7 +4,7 @@
    the data cannot back. buildPdpFaq() feeds both the rendered accordion and
    FAQPage JSON-LD (via faqJsonLd in seo.ts). The strings are the plain
    deck's (docs/COPY-DECK-PLAIN.md, "PdpFaq"). */
-import { S } from "@/lib/typography";
+import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import type { SoloRegulatory } from "@/data/soloCatalog";
 
 export interface FaqItem { q: string; a: string }
@@ -69,7 +69,7 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "What bloodwork is required?",
-    a: "An at-home blood kit of 24 markers ships with the first order, included. The draw is before the first dose, and the physician sets the dose from the results. At week 12 the same test is drawn again and compared.",
+    a: `An at-home blood kit of ${PANEL_TOTAL_MARKERS} markers ships with your first order, included. You draw it before the first dose, and the physician sets your dose from the results. At week 12 the same test is drawn again and compared.`,
   });
 
   if (feelBy && fullEffect) {
@@ -86,13 +86,13 @@ export function buildPdpFaq(opts: {
 
   items.push({
     q: "Do I pay before the physician decides?",
-    a: "Yes. The order is placed first, then a quick online visit follows. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
+    a: "Yes. You place the order first, then a quick online visit follows. If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.",
   });
 
   if (hasPricing) {
     items.push({
       q: "How is it billed?",
-      a: "A term is paid up front: one month, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood testing. At the end of the term, renewing is a choice.",
+      a: "You pay a term up front: one month, or three, six or twelve months at 10, 15 or 20% less per month. Longer terms include more blood testing. At the end of the term, renewing is a choice.",
     });
   }
 
@@ -101,11 +101,9 @@ export function buildPdpFaq(opts: {
 
 export function PdpFaq({ items }: { items: FaqItem[] }) {
   return (
-    <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} data-testid="pdp-faq">
-      <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
-        Here is what people ask about it.
-      </h2>
-      <div style={{ marginTop: "clamp(1.2rem,2vw,1.6rem)" }}>
+    <section className="nx-pdp-sec nx-pdp-faq" data-testid="pdp-faq">
+      <h2 className="nx-dsh3">Here is what people ask about it.</h2>
+      <div className="nx-faq-list" style={{ marginTop: "1rem" }}>
         {items.map((it, i) => (
           <details key={it.q} className="nx-faq-item" data-testid={`faq-${i}`} open={i === 0}>
             <summary>

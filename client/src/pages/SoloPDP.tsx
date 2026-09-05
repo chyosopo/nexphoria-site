@@ -225,9 +225,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div style={{ marginTop: "1rem" }}><InsideTheVial sku={solo} /></div>
               <Ritual sku={solo} />
               <div className="nx-pdp-sub" aria-labelledby="solo-blood-title" data-testid="solo-blood">
-                <p id="solo-blood-title" className="nx-eyebrow">The blood.</p>
+                <p id="solo-blood-title" className="nx-eyebrow">Your blood work</p>
                 <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
-                  The panel is drawn at home before the first dose and repeated at week {RETEST_WEEK}.
+                  You draw the panel at home before the first dose, and again at week {RETEST_WEEK}.
                   {monitoring && (monitoring.doseMarker
                     ? ` For ${solo.name}, ${monitoring.doseMarker} sets the dose${monitoring.watch.filter((w) => w !== monitoring.doseMarker).length ? `; ${monitoring.watch.filter((w) => w !== monitoring.doseMarker).map(lc).join(", ")} are read alongside it` : ""}.`
                     : ` For ${solo.name}, ${monitoring.watch.map(lc).join(", ")} are read.`)}

@@ -1,0 +1,147 @@
+/* ═══ THE CATALOG (2026-09-05, the polish pass) ═══
+   Where people choose, so it has to be effortless. Everything here is built
+   on the tokens in index.css; nothing new is introduced. Imported from
+   ProductTile.tsx, which is the card every shelf renders.
+
+   1. The goal tiles: the filter. Five across on the desktop; on the phone a
+      horizontal snap rail with one and a half tiles in view, so the thumb
+      knows there is more. The active tile reads at a glance.
+   2. The sticky chip row (phone): the same goals as pills, pinned under the
+      header once the tiles have scrolled away.
+   3. The product card: the render at the top edge to edge, the chips over
+      it, the name, one line, the price large, the house pill.
+   4. The search field with its icon, its clear button and the results line;
+      the empty state as a tile.
+   5. The group heading: the goal and its line, then the cards. */
+
+/* ── 1. The goal tiles ─────────────────────────────────────────────────── */
+.nx-tiles--goals { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.6rem, 1.2vw, .9rem); }
+.nx-tile--goal .nx-tile__title { right: 1rem; }
+/* The active tile: the cobalt ring, a cobalt pill with a tick, and the
+   picture held still while the others stay lively. */
+.nx-tile--goal.is-active { outline: 3px solid var(--nx-cobalt); outline-offset: 2px; box-shadow: var(--nx-e-3); }
+.nx-tile--goal.is-active:hover { transform: none; }
+.nx-tile--goal.is-active:hover img { transform: none; }
+.nx-tile__check { gap: 5px; }
+.nx-tile__check svg { width: 12px; height: 12px; }
+.nx-tile--goal:not(.is-active) .nx-tile__check svg { display: none; }
+/* A goal chosen elsewhere (a hero tile, a chip) should also read on the
+   tiles that were not chosen: quieter, still tappable. */
+.nx-tiles--goals.has-choice .nx-tile--goal:not(.is-active) { opacity: .86; }
+.nx-tiles--goals.has-choice .nx-tile--goal:not(.is-active):hover { opacity: 1; }
+@media (min-width: 761px) and (max-width: 1100px) { .nx-tiles--goals { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .nx-tiles--goals {
+    --nx-rail-gap: 10px;
+    --nx-rail-bleed: 1.5rem; /* .nx-container is px-6 under 768 */
+    display: flex;
+    gap: var(--nx-rail-gap);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* bleed to the screen edges; the first tile still lines up with the copy */
+    margin-left: calc(-1 * var(--nx-rail-bleed));
+    margin-right: calc(-1 * var(--nx-rail-bleed));
+    padding: 6px var(--nx-rail-bleed) 10px;
+    scroll-padding-inline: var(--nx-rail-bleed);
+  }
+  .nx-tiles--goals::-webkit-scrollbar { display: none; }
+  /* one and a half tiles in view */
+  .nx-tiles--goals .nx-tile--goal { flex: 0 0 calc((100% - var(--nx-rail-gap)) / 1.5); aspect-ratio: 4 / 3; scroll-snap-align: start; }
+  .nx-tiles--goals .nx-tile--goal .nx-tile__title { top: 1rem; bottom: auto; right: 1rem; font-size: var(--nx-t-lg); }
+  .nx-tiles--goals .nx-tile--goal img { object-position: 70% 50%; }
+  .nx-tiles--goals .nx-tile__check { bottom: .9rem; left: 1rem; }
+  .nx-tiles--goals .nx-tile--goal.is-active { outline-offset: -3px; }
+}
+
+/* ── 2. The sticky chip row (phone) ────────────────────────────────────── */
+.nx-goalchips { display: none; }
+@media (max-width: 760px) {
+  .nx-goalchips { --nx-rail-bleed: 1.5rem; display: block; position: sticky; top: 64px; z-index: var(--nx-z-sticky); height: 0; }
+  .nx-goalchips__bar {
+    position: absolute; left: 0; right: 0; top: 0;
+    background: color-mix(in srgb, var(--nx-bg) 92%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--nx-border);
+    opacity: 0; transform: translateY(-6px); pointer-events: none;
+    transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease);
+  }
+  .nx-goalchips.is-shown .nx-goalchips__bar { opacity: 1; transform: none; pointer-events: auto; }
+  .nx-goalchips__row {
+    display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+    padding: 8px var(--nx-rail-bleed); scroll-padding-inline: var(--nx-rail-bleed);
+    -webkit-overflow-scrolling: touch;
+  }
+  .nx-goalchips__row::-webkit-scrollbar { display: none; }
+  .nx-goalchip {
+    flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px;
+    border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: var(--nx-ceramic);
+    color: var(--nx-fg); font-size: var(--nx-t-sm); font-weight: 600; white-space: nowrap; cursor: pointer;
+    transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease), border-color var(--nx-dur-2) var(--nx-ease);
+  }
+  .nx-goalchip[aria-pressed="true"] { background: var(--nx-cobalt); border-color: var(--nx-cobalt); color: var(--nx-ceramic); }
+  .nx-goalchip:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .nx-goalchips__bar { transition: none; } }
+
+/* ── 3. The product card ───────────────────────────────────────────────── */
+.nx-frost { position: relative; border: 1px solid var(--nx-border); }
+/* the render, edge to edge at the top; the card's own radius clips it */
+.nx-frost__media { position: relative; aspect-ratio: 1 / 1; padding: 0; background: var(--nx-bg-cream); display: block; }
+.nx-frost__media img.nx-sku-img--card { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; max-height: none; }
+.nx-frost__media > .nx-vial-panel { padding: 8%; }
+.nx-frost__media--photo { aspect-ratio: 4 / 3; }
+/* the chips sit over the render: the goal, Rx, and Pending when it applies */
+.nx-frost__chips { position: absolute; top: .8rem; left: .8rem; right: .8rem; z-index: 1; display: flex; flex-wrap: wrap; gap: 5px; pointer-events: none; }
+.nx-frost .nx-chip { min-height: 0; padding: 4px 8px; border-radius: var(--nx-r-xs); font-size: var(--nx-t-2xs); font-weight: 700; line-height: 1.2; letter-spacing: normal; text-transform: uppercase; background: color-mix(in srgb, var(--nx-fg) 9%, transparent); color: var(--nx-fg); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transform: none; }
+.nx-frost .nx-chip--accent { background: var(--nx-cobalt); color: var(--nx-ceramic); }
+.nx-frost .nx-chip--pending { margin-left: auto; background: color-mix(in srgb, var(--nx-ceramic) 88%, transparent); color: var(--nx-fg-muted); }
+/* the copy: name, one line, the price large, the pill */
+.nx-frost__body { display: flex; flex-direction: column; gap: 0; padding: .9rem 1rem 1rem; flex: 1; }
+.nx-frost__name { margin: 0; font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.15; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-frost__line { margin-top: .35rem; font-size: var(--nx-t-xs); line-height: 1.45; color: var(--nx-fg-graphite); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.nx-frost__price { margin-top: auto; padding-top: .8rem; display: flex; align-items: baseline; gap: 0; font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-fg-graphite); }
+.nx-frost__price > span:first-child:not(.nx-frost__price--note) { margin-right: .35rem; }
+.nx-frost__price b { font-size: var(--nx-t-h3); font-weight: 500; line-height: 1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-frost__price--note { font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg); }
+.nx-frost__btn { margin-top: .8rem; width: auto; align-self: flex-start; min-height: 40px; }
+/* equal heights in a row: the reveal wrapper is a grid cell, the card fills it */
+.nx-float-grid > .nx-reveal { display: grid; }
+.nx-float-grid > .nx-reveal > .nx-frost { min-height: 100%; }
+@media (max-width: 700px) {
+  .nx-frost__body { padding: .75rem .8rem .85rem; }
+  .nx-frost__chips { top: .5rem; left: .5rem; right: .5rem; }
+  .nx-frost .nx-chip { padding: 4px 7px; }
+  .nx-frost__price b { font-size: var(--nx-t-xl); }
+  .nx-frost__line { -webkit-line-clamp: 4; }
+  .nx-frost__btn { width: 100%; justify-content: center; }
+}
+
+/* ── 4. Search, the results line, the empty state ──────────────────────── */
+.nx-search { position: relative; width: 100%; max-width: 420px; }
+.nx-search__icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: var(--nx-fg-muted); pointer-events: none; }
+.nx-search .nx-input { padding-left: 38px; padding-right: 44px; min-height: 44px; border-radius: var(--nx-r-pill); }
+.nx-search .nx-input::-webkit-search-cancel-button, .nx-search .nx-input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+.nx-search__clear { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; background: transparent; color: var(--nx-fg-muted); cursor: pointer; transition: background var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease); }
+.nx-search__clear:hover { background: var(--nx-cobalt-soft); color: var(--nx-fg); }
+.nx-search__clear:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 1px; }
+.nx-search__clear svg { width: 16px; height: 16px; }
+.nx-catalog-status { margin: 0; flex: 1 1 100%; font-size: var(--nx-t-sm); color: var(--nx-fg-muted); }
+.nx-catalog-status b { font-weight: 600; color: var(--nx-fg); }
+.nx-catalog-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .4rem; padding: clamp(2.2rem, 5vw, 3.5rem) 1.5rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+.nx-catalog-empty__icon { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--nx-cobalt-soft); color: var(--nx-cobalt); margin-bottom: .4rem; }
+.nx-catalog-empty__icon svg { width: 20px; height: 20px; }
+.nx-catalog-empty h2 { margin: 0; font-size: var(--nx-t-h3); font-weight: 500; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-wrap: balance; }
+.nx-catalog-empty p { margin: 0; font-size: var(--nx-t-base); color: var(--nx-fg-graphite); max-width: 40ch; }
+.nx-catalog-empty .nx-cta-ghost { margin-top: .8rem; }
+
+/* ── 5. The group heading ──────────────────────────────────────────────── */
+.nx-catgroup { margin-bottom: clamp(1.6rem, 3vw, 2.6rem); scroll-margin-top: 120px; }
+.nx-catgroup__head { display: block; margin-bottom: clamp(.9rem, 1.8vw, 1.2rem); padding-bottom: .7rem; border-bottom: 1px solid var(--nx-border); }
+.nx-catgroup__head p { margin: .3rem 0 0; max-width: 60ch; }
+.nx-catgroup__head .nx-dsh3 { max-width: none; }
+/* on a photograph the chips sit on porcelain so they read on any picture */
+.nx-frost__media--photo .nx-chip { background: color-mix(in srgb, var(--nx-ceramic) 88%, transparent); color: var(--nx-fg); }
+.nx-frost__media--photo .nx-chip--accent { background: var(--nx-cobalt); color: var(--nx-ceramic); }

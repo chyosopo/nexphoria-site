@@ -14,6 +14,8 @@ import { soloByName } from "@/data/soloCatalog";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
+import { SkuPhoto } from "@/components/SkuPhoto";
+import "@/styles/protocols.css";
 
 /* Filter chips in the deck's category vocabulary (the same words as the
    goal tiles and the catalog filters). Each chip matches a protocol by
@@ -42,6 +44,34 @@ const matchCat = (c: string, filter: string) =>
 const CATEGORIES = ALL_CATEGORIES.filter(
   (c) => c === "All" || FLAGSHIP_STACKS.some((s) => matchCat(s.category, c)),
 );
+
+/* One medicine as a small tile: its render, its name, the line under it.
+   The pairs section is rows of these, so a pair reads as two tiles side by
+   side rather than two words in a sentence. */
+function PairTile({ name, joiner }: { name: string; joiner?: string }) {
+  const sku = soloByName(name);
+  const inner = (
+    <>
+      <span className="nx-pair-tile__media" aria-hidden="true">
+        <SkuPhoto name={name} slug={sku?.slug} className="nx-sku-img" fallback={null} />
+      </span>
+      <span className="nx-pair-tile__name" style={{ fontFamily: S }}>
+        {name}
+        {sku?.outcome && <small style={{ fontFamily: F }}>{sku.outcome}</small>}
+      </span>
+    </>
+  );
+  return (
+    <>
+      {joiner && <span className="nx-pairs__join" aria-hidden="true" style={{ fontFamily: F }}>{joiner}</span>}
+      {sku ? (
+        <Link href={`/peptides/${sku.slug}`} className="nx-pair-tile" aria-label={`About ${name}`}>{inner}</Link>
+      ) : (
+        <span className="nx-pair-tile">{inner}</span>
+      )}
+    </>
+  );
+}
 
 export default function ProtocolsIndex() {
   const [filter, setFilter] = useState("All");
@@ -102,7 +132,7 @@ export default function ProtocolsIndex() {
       </section>
       {/* filter */}
       <section className="nx-container" style={{ paddingBottom: "1rem" }} aria-label="Filter protocols">
-        <div role="group" aria-label="Filter protocols by category" style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+        <div role="group" aria-label="Filter protocols by category" className="nx-protofilters">
           {CATEGORIES.map((c) => {
             const active = filter === c;
             return (
@@ -153,34 +183,34 @@ export default function ProtocolsIndex() {
           lead="Each medicine in a protocol does a different job, and the same rule applies if you build your own."
           maxTitle="18ch"
         />
-        <div className="nx-synergy" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
-          <div className="nx-synergy__col">
-            <p className="nx-synergy__h" style={{ fontFamily: F }}>Pairs well</p>
-            <ul className="nx-synergy__list">
+        <div className="nx-pairs">
+          <div className="nx-pairs__group">
+            <p className="nx-pairs__h" style={{ fontFamily: F }}>Pairs well</p>
+            <ul className="nx-pairs__list">
               {PAIRS_WELL.map((p) => (
-                <li key={p.pair.join("+")} className="nx-synergy__item">
-                  <p style={{ fontFamily: S }} className="nx-synergy__pair">
-                    {p.pair.map((n, i) => { const s = soloByName(n); return (
-                      <span key={n}>{i > 0 && <span aria-hidden> + </span>}{s ? <Link href={`/peptides/${s.slug}`}>{n}</Link> : n}</span>
-                    ); })}
-                  </p>
-                  <p style={{ fontFamily: F }} className="nx-synergy__note">{p.note}</p>
+                <li key={p.pair.join("+")} className="nx-pairs__row">
+                  <div className="nx-pairs__tiles">
+                    {p.pair.map((n, i) => (
+                      <PairTile key={n} name={n} joiner={i > 0 ? "+" : undefined} />
+                    ))}
+                  </div>
+                  <p style={{ fontFamily: F }} className="nx-pairs__note">{p.note}</p>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="nx-synergy__col nx-synergy__col--one">
-            <p className="nx-synergy__h" style={{ fontFamily: F }}>One at a time</p>
-            <ul className="nx-synergy__list">
+          <div className="nx-pairs__group nx-pairs__group--one">
+            <p className="nx-pairs__h" style={{ fontFamily: F }}>One at a time</p>
+            <ul className="nx-pairs__list">
               {SAME_JOB.map((g) => (
-                <li key={g.name} className="nx-synergy__item">
-                  <p style={{ fontFamily: S }} className="nx-synergy__pair">{g.name}</p>
-                  <p style={{ fontFamily: F }} className="nx-synergy__members">
-                    {g.members.map((n, i) => { const s = soloByName(n); return (
-                      <span key={n}>{i > 0 && <span aria-hidden> · </span>}{s ? <Link href={`/peptides/${s.slug}`}>{n}</Link> : n}</span>
-                    ); })}
-                  </p>
-                  <p style={{ fontFamily: F }} className="nx-synergy__note">{g.note}</p>
+                <li key={g.name} className="nx-pairs__row">
+                  <p style={{ fontFamily: S, margin: "0 0 .6rem", fontSize: "var(--nx-t-base)", fontWeight: 500, color: "var(--nx-fg)" }}>{g.name}</p>
+                  <div className={`nx-pairs__tiles${g.members.length === 3 ? " nx-pairs__tiles--3" : ""}`}>
+                    {g.members.map((n, i) => (
+                      <PairTile key={n} name={n} joiner={i > 0 ? "or" : undefined} />
+                    ))}
+                  </div>
+                  <p style={{ fontFamily: F }} className="nx-pairs__note">{g.note}</p>
                 </li>
               ))}
             </ul>
@@ -204,7 +234,7 @@ export default function ProtocolsIndex() {
               Your online visit says what is being treated, and a licensed physician chooses the protocol, or a single medicine if that fits better.
             </p>
             <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }} data-testid="proto-assess-cta">
-              How it works
+              See how it works
             </Link>
           </div>
         </div>

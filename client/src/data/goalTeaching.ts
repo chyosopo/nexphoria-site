@@ -2,19 +2,23 @@
    One plain line per category for the home's teaching band (Happy Head's
    "Solutions for every stage", in the house register). The medicines under
    each line are read from the catalog, so a goal can never show a medicine
-   we do not sell. FLAGGED FOR PHYSICIAN REVIEW before apex launch. */
+   we do not sell. FLAGGED FOR PHYSICIAN REVIEW before apex launch.
+   Copy v4 (2026-09-05 evening): each line is two sentences to the reader.
+   The first says what the goal feels like, in "you"; the second says what
+   the medicines do in the body. GoalGallery splits on the first ". ", so
+   the first sentence must stay a single sentence. */
 import type { PeptideCategory } from "@/data/peptides";
 
 export const GOAL_TEACHING: Record<PeptideCategory, string> = {
-  metabolic: "Appetite that is hard to argue with, and weight that will not move. GLP-1 medicines make you feel full sooner and stay full longer; a physician steps the dose up as your body settles.",
-  growth: "Deep abdominal fat that diet and training have not shifted, and lean mass you want to keep. These medicines raise your own growth hormone on its natural rhythm, and IGF-1 in the panel shows it working.",
-  recovery: "A tendon, muscle, joint or gut lining that is slow to repair. These peptides send the repair signal and move repair cells to where they are needed.",
-  longevity: "Energy and recovery that have slipped with age. These medicines top up what your cells run on, or switch on the same pathways exercise does.",
-  cognition: "Focus and mood that fray under sustained stress. Nasal-spray peptides that work on the brain's stress circuits and the protein it uses to build connections.",
-  sleep: "Falling asleep slowly, or waking without feeling rested. Peptides taken at bedtime that work on the sleep-wake cycle and deep sleep.",
-  "sexual-health": "Desire, closeness and performance, on the days you choose. Medicines that work on the brain's desire circuits, on bonding, or on blood flow, taken as needed.",
-  hormone: "Low testosterone with the symptoms that go with it, or a hormone axis you would rather support than replace. Replacement where blood work shows it is low; kisspeptin to prompt your own production.",
-  skin: "Skin that has lost firmness and elasticity, and healing that takes longer. A copper peptide your skin makes less of with age, signalling collagen and elastin.",
+  metabolic: "You are hungry more often than you would like, and the weight will not move. A GLP-1 medicine makes you feel full sooner and stay full longer, and your physician steps the dose up as your body settles.",
+  growth: "You want lean mass you can keep, and the deep abdominal fat has stayed put through diet and training. These peptides raise your own growth hormone on its natural overnight rhythm, and IGF-1 in your blood shows it working.",
+  recovery: "A tendon, a joint, a muscle or your gut lining is taking longer to repair than it used to. These peptides send the repair signal and bring repair cells to the tissue that needs them.",
+  longevity: "Your energy and your recovery have slipped as the years have added up. These medicines top up what your cells run on, or switch on the same pathways exercise does.",
+  cognition: "Your focus and your mood fray when the pressure does not let up. These nasal-spray peptides work on your brain's stress circuits and on the protein it uses to build connections.",
+  sleep: "You fall asleep slowly, or you wake without feeling rested. These peptides are taken at bedtime and work on your sleep-wake cycle and your deep sleep.",
+  "sexual-health": "You want desire, closeness and performance back, on the days you choose. These medicines work on your brain's desire circuits, on bonding or on blood flow, and you take them as needed.",
+  hormone: "Your energy, drive and mood have dropped with low testosterone, or you would rather support your own hormone axis than replace it. Testosterone is prescribed where your blood work shows it is low, and kisspeptin prompts your own production.",
+  skin: "Your skin has lost some of its firmness, and healing takes longer than it did. A copper peptide your skin makes less of with age signals it to make collagen and elastin.",
 };
 
 /** The order the band reads in: the goals most people arrive with first. */

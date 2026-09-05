@@ -88,7 +88,12 @@ const RUNTIME_SET = new Set(["--nx-scroll-progress"]); // set via JS setProperty
 const tokFiles = execSync("grep -rl 'var(--nx-' client/src --include='*.tsx' --include='*.css'", { encoding: "utf8" }).trim().split("\n");
 const used = new Set<string>();
 for (const f of tokFiles) for (const m of readFileSync(f, "utf8").matchAll(/var\((--nx-[a-z0-9-]+)/g)) used.add(m[1]);
-const css = readFileSync("client/src/index.css", "utf8");
+/* Definitions live in index.css and, since the ten-agent pass (2026-09-05),
+   in the per-area sheets under client/src/styles/ (each scopes its own
+   --nx-* tokens as color-mix of the sheet's tokens). A token defined in
+   any of them counts; a token defined nowhere still fails. */
+const defFiles = ["client/src/index.css", ...execSync("ls client/src/styles/*.css 2>/dev/null || true", { encoding: "utf8" }).trim().split("\n").filter(Boolean)];
+const css = defFiles.map((f) => readFileSync(f, "utf8")).join("\n");
 const defined = new Set([...css.matchAll(/(--nx-[a-z0-9-]+):/g)].map((m) => m[1]));
 const undef = [...used].filter((t) => !defined.has(t) && !RUNTIME_SET.has(t)).sort();
 if (undef.length) {

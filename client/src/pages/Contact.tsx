@@ -1,56 +1,23 @@
-/* JOB: route support, press, and consult requests to the right door. */
+/* JOB: route support, press, and clinical questions to the right door. */
+/* ═══ CONTACT — the tile grammar (2026-09-05)
+   One tile with the address, the email, the phone and the hours; the form
+   as a second tile. Every business fact is derived from data/compliance.ts
+   so the contact page, the legal pages and the structured data cannot
+   disagree. The SMS opt-in beside the phone field is A2P-mandated and
+   asserted by audit:a2p (data-testid contact-sms-consent, id contact-sms,
+   the consent sentence verbatim from data/messaging.ts). The page's own
+   classes live in client/src/styles/support.css. */
 import { useState } from "react";
 import { Link } from "wouter";
 import { smsConsentLabel } from "@/data/messaging";
-import { BUSINESS, BUSINESS_ADDRESS } from "@/data/compliance";
-import { F } from "@/lib/typography";
+import { BUSINESS } from "@/data/compliance";
+import { F, S } from "@/lib/typography";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { MxHeader, ColoredHeroTile, TileGlyphs } from "@/components/SignatureTile";
-import { PillBadge } from "@/components/PillBadge";
-import { MessageSquare, Stethoscope, Newspaper, MapPin, Lock, ShieldCheck, Clock, type LucideIcon } from "lucide-react";
-import contactCareTeam from "@/assets/brand/contact-care-team.webp";
+import "@/styles/support.css";
 
-const contactColumns: {
-  eyebrow: string; title: string; Icon: LucideIcon;
-  items: { label: string; value: string }[]; note: string;
-}[] = [
-  {
-    eyebrow: "PATIENT SUPPORT",
-    title: "Ask about your order, billing or the portal.",
-    Icon: MessageSquare,
-    items: [
-      { label: "EMAIL", value: "hello@nexphoria.com" },
-      { label: "PHONE", value: BUSINESS.phone },
-      { label: "HOURS", value: "Mon–Fri, 9am–6pm ET" },
-      { label: "RESPONSE", value: "On business days" },
-    ],
-    note: "For billing, shipping, order status, and portal access questions.",
-  },
-  {
-    eyebrow: "MEDICAL QUESTIONS",
-    title: "Message your physician through the secure portal.",
-    Icon: Stethoscope,
-    items: [
-      { label: "CHANNEL", value: "Secure member portal" },
-      { label: "RESPONSE", value: "Reviewed by a physician" },
-      { label: "URGENT CARE", value: "Call 911 for medical emergencies" },
-    ],
-    note: "For questions about results, a prescription, or protocol adjustments. Clinical questions go through the secure portal.",
-  },
-  {
-    eyebrow: "PRESS & PARTNERSHIPS",
-    title: "Reach us for press and partnerships.",
-    Icon: Newspaper,
-    items: [
-      { label: "EMAIL", value: "press@nexphoria.com" },
-      { label: "MAILING ADDRESS", value: `${BUSINESS.entity}\n${BUSINESS_ADDRESS.streetAddress}\n${BUSINESS_ADDRESS.addressLocality}, ${BUSINESS_ADDRESS.addressRegion} ${BUSINESS_ADDRESS.postalCode}` },
-      { label: "PHARMACY LICENSE", value: "Available on request. Verified 503A facility" },
-    ],
-    note: "Media inquiries, research collaborations, and pharmacy partnership discussions.",
-  },
-];
+const PRESS_EMAIL = "press@nexphoria.com";
 
 const reasons = [
   "Select a reason",
@@ -82,16 +49,15 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (form.name && form.email && form.message && form.reason !== reasons[0]) {
+    if (form.name && form.email && form.message && form.reason && form.reason !== reasons[0]) {
       setError("");
-      /* No repo-side endpoint: the old handler faked "message received" while
-         sending nothing. We route through the visitor's own mail client so the
-         message actually reaches a person — and so nothing (including any
+      /* No repo-side endpoint: the message goes through the visitor's own
+         mail client so it reaches a person, and so nothing (including any
          health details) is ever persisted in this repo. PHI-never-in-repo. */
       const to =
         form.reason === "Press or media" || form.reason === "Partnership or wholesale"
-          ? "press@nexphoria.com"
-          : "hello@nexphoria.com";
+          ? PRESS_EMAIL
+          : BUSINESS.email;
       const body = [
         `Name: ${form.name}`,
         `Email: ${form.email}`,
@@ -108,413 +74,100 @@ export default function Contact() {
       )}&body=${encodeURIComponent(body)}`;
       setSubmitted(true);
     } else {
-      setError("Please complete your name, email, reason, and message before sending.");
+      setError("Please complete your name, email, reason and message before sending.");
     }
-  };
-
-  const labelStyle: React.CSSProperties = {
-    fontFamily: F,
-    fontSize: "var(--nx-t-xs)",
-    fontWeight: 700,
-    letterSpacing: "var(--nx-ls-caps)",
-    textTransform: "uppercase" as const,
-    color: "var(--nx-fg-muted)",
-    display: "block",
-    marginBottom: "0.4rem",
   };
 
   return (
     <SiteLayout navVariant="showcase">
-      {/* NOT a <main id="main-content">: SiteLayout already renders the sole
-          <main id="main-content"> landmark + skip-link target around all
-          children. A second one here duplicated the landmark AND the id
-          (invalid HTML5; cf. Community 6fdc1e7b, FAQ c785c4b, Journal, Pricing). */}
-      <div style={{ background: "var(--mx-page-bg)" }}>
-        <div className="mx-page">
-          <MxHeader
-            badge={<PillBadge tone="acid">Get in touch</PillBadge>}
-            headline={
-              <>
-                <span>Tell us what you need, and the right person answers.</span>
-              </>
-            }
-            subtitle="Patient support, medical questions, partnerships or press: every message reaches the right person on a business day."
-          />
-
-          <div className="mx-grid">
-            <ColoredHeroTile
-              href="mailto:hello@nexphoria.com"
-              tone="sky"
-              glyph={TileGlyphs.circle}
-              label={<>Patient support<br /><span>Mon–Fri, 9–6 ET</span></>}
-              caption="Replies on business days"
-              ctaLabel="Message us"
-            />
-            <ColoredHeroTile
-              href="mailto:press@nexphoria.com"
-              tone="sage"
-              glyph={TileGlyphs.wave}
-              label={<>Press &amp; partners<br /><span>media kit</span></>}
-              caption="Replies on business days"
-              ctaLabel="Message us"
-            />
-          </div>
-        </div>
-      </div>
-
-
-      {/* ── Three support columns ── */}
-      <section
-        className="py-[var(--nx-section-y)]"
-        style={{ backgroundColor: "var(--nx-bg-cream)", borderTop: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <div
-            role="list"
-            aria-label="Ways to reach us"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-              gap: "1.5px",
-              backgroundColor: "var(--nx-border)",
-              border: "1.5px solid var(--nx-border)",
-            }}
-          >
-            {contactColumns.map((col, i) => (
-              <Reveal key={col.eyebrow} delay={i * 80}>
-                <div
-                  role="listitem"
-                  style={{
-                    backgroundColor: "var(--nx-ceramic)",
-                    padding: "2.85rem 2.25rem",
-                    height: "100%",
-                    borderTop: "2px solid var(--nx-cobalt)",
-                  }}
-                >
-                  <span className="nx-icon-circle" aria-hidden style={{ marginBottom: "1.1rem" }}>
-                    <col.Icon size={20} strokeWidth={1.9} />
-                  </span>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-2xs)",
-                      fontWeight: 700,
-                      letterSpacing: "var(--nx-ls-caps)",
-                      textTransform: "uppercase",
-                      color: "var(--nx-cobalt)",
-                      marginBottom: "0.875rem",
-                    }}
-                  >
-                    {col.eyebrow}
-                  </p>
-                  <h2
-                    style={{
-                      fontFamily: F,
-                      fontWeight: 500,
-                      fontSize: "var(--nx-t-xl)",
-                      color: "var(--nx-fg)",
-                      lineHeight: 1.2,
-                      marginBottom: "1.5rem",
-                    }}
-                  >
-                    {col.title}
-                  </h2>
-                  <ul
-                    style={{
-                      listStyle: "none",
-                      padding: 0,
-                      margin: "0 0 1.25rem",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "0.875rem",
-                    }}
-                  >
-                    {col.items.map((item) => (
-                      <li key={item.label}>
-                        <p
-                          style={{
-                            fontFamily: F,
-                            fontSize: "var(--nx-t-xs)",
-                            fontWeight: 700,
-                            letterSpacing: "var(--nx-ls-caps)",
-                            textTransform: "uppercase",
-                            color: "var(--nx-fg-muted)",
-                            marginBottom: "2px",
-                          }}
-                        >
-                          {item.label}
-                        </p>
-                        <p
-                          style={{
-                            fontFamily: F,
-                            fontSize: "var(--nx-t-sm)",
-                            fontWeight: 500,
-                            color: "var(--nx-fg)",
-                            lineHeight: 1.5,
-                            whiteSpace: "pre-line",
-                          }}
-                        >
-                          {item.value}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-xs)",
-                      color: "var(--nx-fg-muted)",
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {col.note}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+      {/* ── Hero ── */}
+      <section className="nx-tilehero" aria-labelledby="contact-title">
+        <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
+          <div className="nx-tilehero__head nx-hero-seq">
+            <p className="nx-eyebrow">Contact</p>
+            <h1 id="contact-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Tell us what you need, and the right person answers.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Patient support, press and partnerships reach a person on a business day. Clinical questions go to the physician through the secure portal.</p>
           </div>
         </div>
       </section>
 
-      {/* ── Coverage strip — location visual + coverage stats ── */}
-      <section
-        className="py-[var(--nx-sp-sec)]"
-        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.4rem,3vw,2.4rem)", alignItems: "stretch" }}>
-            {/* Stylized location panel — a dot-grid "map" field with a pinned HQ */}
-            <Reveal>
-              <div
-                data-testid="contact-location"
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  borderRadius: "var(--nx-r-lg)",
-                  border: "1px solid var(--nx-border)",
-                  background:
-                    "radial-gradient(120% 90% at 80% -10%, color-mix(in srgb, var(--nx-cobalt) 14%, transparent) 0%, transparent 55%), var(--nx-cobalt-soft)",
-                  padding: "var(--nx-sp-tight)",
-                  minHeight: 220,
-                }}
-              >
-                {/* dot-grid map texture */}
-                <div
-                  aria-hidden
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    backgroundImage:
-                      "radial-gradient(color-mix(in srgb, var(--nx-cobalt) 26%, transparent) 1.2px, transparent 1.2px)",
-                    backgroundSize: "22px 22px",
-                    maskImage: "linear-gradient(120deg, transparent, #000 60%)",
-                    WebkitMaskImage: "linear-gradient(120deg, transparent, #000 60%)",
-                    opacity: 0.7,
-                  }}
-                />
-                {/* pinned HQ marker — desktop only; at 390px the pin sat on
-                    top of the headline. display lives in classes so the
-                    sm:hidden actually wins. */}
-                <div aria-hidden className="hidden sm:flex" style={{ position: "absolute", right: "18%", top: "26%", flexDirection: "column", alignItems: "center" }}>
-                  <span className="nx-icon-circle" style={{ boxShadow: "var(--nx-e-3)" }}>
-                    <MapPin size={20} strokeWidth={2} />
-                  </span>
-                  <span className="nx-pulse-dot" style={{ width: 8, height: 8, borderRadius: "var(--nx-r-pill)", background: "var(--nx-cobalt)", marginTop: 8 }} />
+      {/* ── The facts tile and the form tile ── */}
+      <section className="nx-container" aria-label="Ways to reach us" style={{ paddingTop: "var(--nx-sp-tight)" }}>
+        <div className="sp-contact">
+          {/* The facts: address, email, phone, hours */}
+          <Reveal>
+            <div className="sp-tile" data-testid="contact-location">
+              <p className="sp-tile__eyebrow">Where to find us</p>
+              <h2 className="sp-tile__t">{BUSINESS.entity}</h2>
+              <p className="sp-tile__b">Write, call, or send the form, and a person replies on a business day.</p>
+              <dl className="sp-facts">
+                <div>
+                  <dt>Email</dt>
+                  <dd>
+                    <a href={`mailto:${BUSINESS.email}`} data-testid="contact-email-link">{BUSINESS.email}</a>
+                    <small>Orders, billing, shipping and the portal.</small>
+                  </dd>
                 </div>
-                <div style={{ position: "relative" }}>
-                  {/* Was hardcoded to "Nexphoria Health, LLC" at "800 Third
-                      Ave, Suite 1000, New York, NY 10022" — a THIRD entity
-                      name and an address that is not ours, published on the
-                      site's own contact page. compliance.ts exists precisely
-                      so a business fact has one source; this block predated it
-                      and never got wired up. Derived now, so the contact page,
-                      the legal pages and the structured data cannot disagree
-                      about who we are or where we are. */}
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-cobalt)", marginBottom: "0.6rem" }}>
-                    Brooklyn, NY · 50-state coverage
-                  </p>
-                  <p style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg)", lineHeight: 1.2, marginBottom: "0.4rem" }}>
-                    {BUSINESS.entity}
-                  </p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, maxWidth: "26ch" }}>
-                    {BUSINESS.address}
-                  </p>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.6, marginTop: "0.35rem" }}>
-                    <a href={`tel:${BUSINESS.phoneE164}`} style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>{BUSINESS.phone}</a>
-                  </p>
+                <div>
+                  <dt>Phone</dt>
+                  <dd>
+                    <a href={`tel:${BUSINESS.phoneE164}`} data-testid="contact-phone-link">{BUSINESS.phone}</a>
+                    <small>Monday to Friday, 9am to 6pm ET.</small>
+                  </dd>
                 </div>
-              </div>
-            </Reveal>
-            {/* Coverage stats */}
-            <Reveal delay={80}>
-              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1" style={{ gap: 12, height: "100%" }}>
-                {[
-                  { label: "States Covered", value: "50" },
-                  { label: "Human Review", value: "Every message" },
-                  { label: "Physician availability", value: "Mon–Fri" },
-                ].map(({ label, value }) => (
-                  <div key={label} className="nx-stat-card" style={{ justifyContent: "center" }}>
-                    <span className="nx-stat-num" style={{ fontSize: "var(--nx-t-h3)" }}>{value}</span>
-                    <span className="nx-stat-lbl">{label}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+                <div>
+                  <dt>Hours</dt>
+                  <dd>Monday to Friday, 9am to 6pm ET. Replies come on business days.</dd>
+                </div>
+                <div>
+                  <dt>Address</dt>
+                  <dd>{BUSINESS.entity}<br />{BUSINESS.address}</dd>
+                </div>
+                <div>
+                  <dt>Press and partnerships</dt>
+                  <dd>
+                    <a href={`mailto:${PRESS_EMAIL}`}>{PRESS_EMAIL}</a>
+                    <small>Media, research collaborations and pharmacy partnerships.</small>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Clinical questions</dt>
+                  <dd>Questions about your results, a prescription or a dose go to the physician through the secure portal. In an emergency, call 911.</dd>
+                </div>
+              </dl>
+            </div>
+          </Reveal>
 
-      {/* ── Contact form ── */}
-      <section
-        className="py-[var(--nx-section-y)]"
-        style={{ backgroundColor: "var(--nx-bg)", borderTop: "1px solid var(--nx-border)" }}
-      >
-        <div className="nx-container max-w-screen-xl">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "4rem",
-              maxWidth: "840px",
-            }}
-            className="md:grid-cols-[1fr_2fr]"
-          >
-            {/* Left label */}
-            <Reveal>
-              <div>
-                <p
-                  style={{
-                    fontFamily: F,
-                    fontSize: "var(--nx-t-2xs)",
-                    fontWeight: 500,
-                    letterSpacing: "var(--nx-ls-wide)",
-                    textTransform: "uppercase",
-                    color: "var(--nx-cobalt)",
-                    marginBottom: "1rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <span style={{ display: "inline-block", width: "32px", height: "1px", backgroundColor: "var(--nx-cobalt)" }} />
-                  SEND A MESSAGE
-                </p>
-                <h2
-                  style={{
-                    fontFamily: F,
-                    fontWeight: 500,
-                    fontSize: "var(--nx-t-h3)",
-                    color: "var(--nx-fg)",
-                    lineHeight: 1.15,
-                  }}
-                >
-                  We read every message.
-                </h2>
-                {/* Trust signals near the form */}
-                <ul style={{ listStyle: "none", padding: 0, margin: "1.75rem 0 0", display: "flex", flexDirection: "column", gap: "0.9rem" }}>
-                  {[
-                    { Icon: Lock, t: "Encrypted in transit and at rest" },
-                    { Icon: ShieldCheck, t: "HIPAA-aware handling of details" },
-                    { Icon: Clock, t: "Replies on business days, Mon–Fri ET" },
-                  ].map(({ Icon, t }) => (
-                    <li key={t} style={{ display: "flex", alignItems: "center", gap: 11 }}>
-                      <span className="nx-icon-circle" aria-hidden style={{ width: 34, height: 34 }}><Icon size={16} strokeWidth={1.9} /></span>
-                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-graphite)", lineHeight: 1.4 }}>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-                {/* A person answers — the care team, not a queue */}
-                <div style={{ marginTop: "1.75rem", borderRadius: "var(--nx-r-md)", overflow: "hidden", border: "1px solid var(--nx-border)", aspectRatio: "3 / 2" }}>
-                  <img
-                    src={contactCareTeam}
-                    alt="A care coordinator with a headset smiles mid-conversation at a warm wood desk"
-                    loading="lazy"
-                    decoding="async"
-                    width={1600}
-                    height={1063}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  />
-                </div>
-              </div>
-            </Reveal>
+          {/* The form */}
+          <Reveal delay={60}>
+            <div className="sp-tile">
+              <p className="sp-tile__eyebrow">Send a message</p>
+              <h2 className="sp-tile__t">Write to us here, and a person reads it.</h2>
+              <p className="sp-tile__b">The form opens a message in your own mail app, addressed to the right inbox, and you press send.</p>
 
-            {/* Form */}
-            <Reveal delay={80}>
               {submitted ? (
-                <div
-                  role="status"
-                  aria-live="polite"
-                  style={{
-                    padding: "2.5rem",
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "var(--nx-r-sm)",
-                    backgroundColor: "var(--nx-bg-cream)",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-xs)",
-                      fontWeight: 700,
-                      letterSpacing: "var(--nx-ls-caps)",
-                      textTransform: "uppercase",
-                      color: "var(--nx-cobalt)",
-                      marginBottom: "0.75rem",
-                    }}
-                  >
-                    ONE MORE STEP
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontWeight: 500,
-                      fontSize: "var(--nx-t-h3)",
-                      color: "var(--nx-fg)",
-                      marginBottom: "0.625rem",
-                    }}
-                  >
-                    Check your email app.
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: F,
-                      fontSize: "var(--nx-t-sm)",
-                      color: "var(--nx-fg-graphite)",
-                      lineHeight: 1.65,
-                    }}
-                  >
-                    We've opened a pre-filled message to our team. Just press send. We reply on business days
-                    (Monday through Friday ET). If your mail app didn't open, email us directly at{" "}
-                    <a href="mailto:hello@nexphoria.com" style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>hello@nexphoria.com</a>.
+                <div role="status" aria-live="polite" className="sp-sent" data-testid="contact-sent">
+                  <p className="sp-tile__eyebrow">One more step</p>
+                  <p className="sp-tile__t">Check your mail app.</p>
+                  <p className="sp-tile__b">
+                    A message to our team is open in your mail app, ready to send. Replies come on business days, Monday to Friday ET. If your mail app did not open, email{" "}
+                    <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>{BUSINESS.email}</a>.
                   </p>
                   {form.reason === "Clinical / medical question" && (
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 500, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-amber)", marginTop: "1rem" }}>
-                      Note: For urgent medical concerns, use the secure portal or call 911.
+                    <p className="sp-tile__b" style={{ fontWeight: 600, color: "var(--nx-fg)" }}>
+                      For urgent medical concerns, use the secure portal or call 911.
                     </p>
                   )}
                 </div>
               ) : (
-                <form
-                  data-testid="contact-form"
-                  onSubmit={handleSubmit}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1.5rem",
-                    padding: "clamp(1.6rem, 3vw, 2.4rem)",
-                    borderRadius: "var(--nx-r-lg)",
-                    border: "1px solid var(--nx-border)",
-                    borderTop: "2px solid var(--nx-cobalt)",
-                    backgroundColor: "var(--nx-ceramic)",
-                    boxShadow: "var(--nx-e-2)",
-                  }}
-                >
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                    <div>
-                      <label style={labelStyle} htmlFor="contact-name">Name</label>
+                <form data-testid="contact-form" onSubmit={handleSubmit} className="sp-form" noValidate>
+                  <div className="sp-fields-2">
+                    <label className="nx-field" htmlFor="contact-name">
+                      <span className="nx-field__l" style={{ fontFamily: F }}>Name</span>
                       <input
                         id="contact-name"
                         type="text"
+                        autoComplete="name"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         required
@@ -524,12 +177,13 @@ export default function Contact() {
                         className="nx-input"
                         data-testid="contact-name-input"
                       />
-                    </div>
-                    <div>
-                      <label style={labelStyle} htmlFor="contact-email">Email</label>
+                    </label>
+                    <label className="nx-field" htmlFor="contact-email">
+                      <span className="nx-field__l" style={{ fontFamily: F }}>Email</span>
                       <input
                         id="contact-email"
                         type="email"
+                        autoComplete="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         required
@@ -539,75 +193,67 @@ export default function Contact() {
                         className="nx-input"
                         data-testid="contact-email-input"
                       />
-                    </div>
+                    </label>
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                    <div>
-                      <label style={labelStyle} htmlFor="contact-phone">Phone (optional)</label>
+                  <div className="sp-fields-2">
+                    <label className="nx-field" htmlFor="contact-phone">
+                      <span className="nx-field__l" style={{ fontFamily: F }}>Phone (optional)</span>
                       <input
                         id="contact-phone"
                         type="tel"
+                        autoComplete="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
                         className="nx-input"
                       />
-                    </div>
-                    <div>
-                      <label style={labelStyle} htmlFor="contact-state">State</label>
+                    </label>
+                    <label className="nx-field" htmlFor="contact-state">
+                      <span className="nx-field__l" style={{ fontFamily: F }}>State (optional)</span>
                       <input
                         id="contact-state"
                         type="text"
+                        autoComplete="address-level1"
                         value={form.state}
                         onChange={(e) => setForm({ ...form, state: e.target.value })}
                         placeholder="e.g. NY"
                         className="nx-input"
                       />
-                    </div>
+                    </label>
                   </div>
 
                   {/* SMS OPT-IN — required on every surface that collects a
-                      mobile number, not just the intake. A2P campaign review
-                      checks the site for a visible, unchecked opt-in with the
-                      disclosure in the label; a phone field without one is the
-                      second most common rejection after the missing privacy
-                      clause. Optional by rule: messaging consent may not be a
+                      mobile number. A2P campaign review checks the site for a
+                      visible, unchecked opt-in with the disclosure in the
+                      label. Optional by rule: messaging consent may not be a
                       condition of anything, so this never gates submission. */}
-                  <label
-                    htmlFor="contact-sms"
-                    data-testid="contact-sms-consent"
-                    style={{
-                      display: "flex", gap: "0.7rem", alignItems: "flex-start", cursor: "pointer",
-                      border: "1px solid var(--nx-border)", background: "var(--nx-ceramic)",
-                      borderRadius: "var(--nx-r-sm)", padding: "0.85rem 0.95rem",
-                    }}
-                  >
+                  <label htmlFor="contact-sms" data-testid="contact-sms-consent" className="sp-consent">
                     <input
                       id="contact-sms"
                       type="checkbox"
                       checked={form.sms}
                       onChange={(e) => setForm({ ...form, sms: e.target.checked })}
-                      style={{ marginTop: 3, width: 16, height: 16, accentColor: "var(--nx-cobalt)", flexShrink: 0 }}
                     />
-                    <span style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" }}>
+                    <span>
                       {smsConsentLabel()}{" "}
-                      <Link href="/legal/messaging" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>Messaging Terms</Link>
+                      <Link href="/legal/messaging">Messaging Terms</Link>
                       {" · "}
-                      <Link href="/legal/privacy" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>Privacy Policy</Link>
+                      <Link href="/legal/privacy">Privacy Policy</Link>
                     </span>
                   </label>
 
-                  <div>
-                    <label style={labelStyle} htmlFor="contact-reason">Reason</label>
+                  <label className="nx-field" htmlFor="contact-reason">
+                    <span className="nx-field__l" style={{ fontFamily: F }}>Reason</span>
                     <select
                       id="contact-reason"
-                      value={form.reason}
+                      value={form.reason || reasons[0]}
                       onChange={(e) => setForm({ ...form, reason: e.target.value })}
                       required
                       aria-required="true"
                       aria-invalid={error && (!form.reason || form.reason === reasons[0]) ? true : undefined}
                       aria-describedby="contact-form-error"
-                      className="nx-input" style={{ cursor: "pointer" }}
+                      className="nx-input"
+                      style={{ cursor: "pointer" }}
                       data-testid="contact-subject-select"
                     >
                       {reasons.map((r) => (
@@ -616,10 +262,10 @@ export default function Contact() {
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </label>
 
-                  <div>
-                    <label style={labelStyle} htmlFor="contact-message">Message</label>
+                  <label className="nx-field" htmlFor="contact-message">
+                    <span className="nx-field__l" style={{ fontFamily: F }}>Message</span>
                     <textarea
                       id="contact-message"
                       value={form.message}
@@ -629,47 +275,34 @@ export default function Contact() {
                       aria-invalid={error && !form.message ? true : undefined}
                       aria-describedby="contact-form-error"
                       rows={5}
-                      className="nx-input" style={{ resize: "none" }}
+                      className="nx-input"
+                      style={{ resize: "vertical" }}
                       data-testid="contact-message-input"
                     />
-                  </div>
+                  </label>
 
                   {/* Screen-reader + visual validation feedback */}
                   <div id="contact-form-error" aria-live="polite" role="alert" data-testid="contact-form-error">
-                    {error && (
-                      <p
-                        style={{
-                          fontFamily: F,
-                          fontSize: "var(--nx-t-sm)",
-                          color: "var(--nx-danger)",
-                          margin: 0,
-                        }}
-                      >
-                        {error}
-                      </p>
-                    )}
+                    {error && <p className="sp-form__error">{error}</p>}
                   </div>
 
-                  <button
-                    type="submit"
-                    data-testid="contact-submit-button"
-                    className="nx-cta-cobalt"
-                    style={{
-                      justifyContent: "center",
-                      color: "var(--nx-ceramic)",
-                      fontSize: "var(--nx-t-xs)",
-                      fontWeight: 700,
-                      letterSpacing: "var(--nx-ls-caps)",
-                      textTransform: "uppercase",
-                      padding: "0.875rem 2rem",
-                      alignSelf: "flex-start",
-                    }}
-                  >
-                    SEND MESSAGE <span aria-hidden="true">→</span>
+                  <button type="submit" data-testid="contact-submit-button" className="nx-cta-cobalt" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}>
+                    Send the message
                   </button>
                 </form>
               )}
-            </Reveal>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── Closer, as one tile ── */}
+      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="contact-closer">
+        <div className="nx-closer-tile">
+          <div>
+            <h2 id="contact-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>Most questions are already answered.</h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>How it works, what it costs, safety, shipping and who is involved are set out on the questions page and the five steps.</p>
+            <Link href="/faq" className="nx-cta-ceramic" data-testid="contact-faq-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>Read the questions</Link>
           </div>
         </div>
       </section>

@@ -1,0 +1,99 @@
+/* ═══ BUY BOX — the moment of decision as a tile, not a form ═══
+   (the ten-agent polish pass, 2026-09-05). Owned with BuyBox.tsx,
+   PayToday.tsx, PrescribedPromise.tsx and StatusPill.tsx; imported from
+   each so the classes travel with whichever lazy chunk needs them.
+   Tokens only: both worlds theme it through the accent token. */
+
+/* ── the card ── */
+.nx-buybox { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); box-shadow: var(--nx-e-3); padding: clamp(1.1rem, 2.4vw, 1.4rem); font-family: var(--nx-font-body); }
+.nx-buybox__cat { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt); }
+.nx-buybox__name { margin: .3rem 0 0; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-xl); line-height: 1.1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-buybox__status { margin-top: .6rem; }
+.nx-buybox__legal { margin: .6rem 0 0; font-size: var(--nx-t-xs); line-height: 1.5; color: var(--nx-fg-muted); }
+.nx-buybox__body { margin: .55rem 0 0; font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-buybox__gate { display: inline-flex; align-items: center; gap: 7px; margin-top: .9rem; font-size: var(--nx-t-sm); font-weight: 600; color: var(--nx-cobalt); }
+.nx-buybox__from { margin: .9rem 0 0; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h3); line-height: 1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-buybox__from small { font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 500; letter-spacing: 0; color: var(--nx-fg-muted); margin-left: 4px; }
+
+/* ── the four terms, as tiles (.nx-plan and .nx-term are taken in index.css) in a 2×2 ── */
+.nx-bb-terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 1rem; }
+.nx-bb-term { position: relative; display: flex; flex-direction: column; align-items: flex-start; width: 100%; min-height: 104px; padding: .8rem .85rem .75rem; text-align: left; cursor: pointer; font-family: var(--nx-font-body); color: var(--nx-fg); background: var(--nx-bg); border: 1.5px solid var(--nx-border); border-radius: var(--nx-r-md); transition: border-color var(--nx-dur-2) var(--nx-ease), background-color var(--nx-dur-2) var(--nx-ease), color var(--nx-dur-2) var(--nx-ease); }
+.nx-bb-term:hover { border-color: var(--nx-cobalt); }
+.nx-bb-term:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
+.nx-bb-term__term { font-size: var(--nx-t-sm); font-weight: 600; line-height: 1.2; color: var(--nx-fg); padding-right: 24px; }
+.nx-bb-term__price { margin-top: .45rem; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-xl); line-height: 1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); white-space: nowrap; }
+.nx-bb-term__price small { font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 500; letter-spacing: 0; color: var(--nx-fg-muted); margin-left: 2px; }
+.nx-bb-term__total { margin-top: .45rem; font-size: var(--nx-t-xs); line-height: 1.35; color: var(--nx-fg-graphite); }
+.nx-bb-term__less { margin-top: .15rem; font-size: var(--nx-t-xs); line-height: 1.35; font-weight: 600; color: var(--nx-cobalt); }
+.nx-bb-term__check { position: absolute; top: 9px; right: 9px; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: var(--nx-r-pill); background: var(--nx-ceramic); color: var(--nx-cobalt); opacity: 0; transform: scale(.6); transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+/* the chosen term: cobalt, every line in ceramic (AA on the accent in both worlds), the check lit */
+.nx-bb-term[aria-checked="true"] { background: var(--nx-cobalt); border-color: var(--nx-cobalt); color: var(--nx-ceramic); }
+.nx-bb-term[aria-checked="true"] .nx-bb-term__term, .nx-bb-term[aria-checked="true"] .nx-bb-term__price, .nx-bb-term[aria-checked="true"] .nx-bb-term__price small, .nx-bb-term[aria-checked="true"] .nx-bb-term__total, .nx-bb-term[aria-checked="true"] .nx-bb-term__less { color: var(--nx-ceramic); }
+.nx-bb-term[aria-checked="true"] .nx-bb-term__check { opacity: 1; transform: none; }
+
+/* ── the total, once ── */
+.nx-buybox__sum { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: .9rem; padding-top: .8rem; border-top: 1px solid var(--nx-border); }
+.nx-buybox__sum-label { margin: 0; font-size: var(--nx-t-sm); line-height: 1.4; color: var(--nx-fg-graphite); }
+.nx-buybox__sum-value { margin: 0; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-lg); letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); white-space: nowrap; }
+
+/* ── what the term includes: a compact 2×2 of icon rows ── */
+.nx-incl { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 10px; }
+.nx-incl li { display: flex; align-items: flex-start; gap: 7px; font-size: var(--nx-t-xs); line-height: 1.4; color: var(--nx-fg-graphite); }
+.nx-incl svg { flex-shrink: 0; margin-top: 1px; color: var(--nx-cobalt); }
+
+/* ── the button, full width, and the line under it ── */
+.nx-buybox .nx-buybox__cta { display: flex; justify-content: center; width: 100%; min-height: 52px; margin-top: 1rem; border: none; font-size: var(--nx-t-base); }
+.nx-buybox__rx { margin: .6rem 0 0; text-align: center; font-size: var(--nx-t-xs); line-height: 1.5; color: var(--nx-fg-muted); }
+.nx-buybox__rx a { font-weight: 600; }
+.nx-buybox__promise { margin-top: .85rem; }
+
+/* ── a pending medicine: the price once, one email, as a calm tile ── */
+.nx-pending { margin-top: 1rem; padding: 1rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: var(--nx-bg); }
+.nx-pending__price { margin: 0; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h3); line-height: 1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-pending__price small { font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 500; letter-spacing: 0; color: var(--nx-fg-muted); margin-left: 4px; }
+.nx-pending__note { margin: .6rem 0 0; font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+
+/* ── the promise, one phrasing, beside every price ── */
+.nx-promise { display: flex; align-items: flex-start; gap: 8px; margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 500; line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-promise svg { flex-shrink: 0; margin-top: 2px; color: var(--nx-cobalt); }
+.nx-promise strong { font-weight: 600; color: var(--nx-fg); }
+.nx-promise--center { justify-content: center; text-align: center; }
+.nx-promise--dark { color: color-mix(in srgb, var(--nx-acid) 85%, transparent); }
+.nx-promise--dark svg, .nx-promise--dark strong { color: var(--nx-acid); }
+.nx-promise--card { padding: .8rem .9rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: var(--nx-ceramic); }
+
+/* ── the availability pill ── */
+.nx-status { font-family: var(--nx-font-body); }
+
+/* ── what you pay today (cart, checkout) ── */
+.nx-paytoday { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: 1.25rem 1.3rem; font-family: var(--nx-font-body); }
+.nx-paytoday__kicker { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt); }
+.nx-paytoday__figure { margin: .5rem 0 0; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h2); line-height: 1.05; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); }
+.nx-paytoday__figure small { font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 500; letter-spacing: 0; color: var(--nx-fg-graphite); margin-left: 6px; }
+.nx-paytoday__terms { margin: .35rem 0 0; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-paytoday__body { margin: .5rem 0 0; font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-paytoday__next { margin: 1.1rem 0 0; font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-paytoday__steps { list-style: none; margin: .5rem 0 0; padding: 0; display: grid; gap: 8px; }
+.nx-paytoday__steps li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-paytoday__n { font-size: var(--nx-t-2xs); font-weight: 700; color: var(--nx-cobalt); margin-top: 3px; }
+.nx-paytoday__steps strong { font-weight: 600; color: var(--nx-fg); }
+.nx-paytoday__legal { margin: .9rem 0 0; font-size: var(--nx-t-xs); line-height: 1.5; color: var(--nx-fg-muted); }
+.nx-paytoday__legal a { font-weight: 600; }
+
+/* ── the mobile bar: name, the monthly price, the button ──
+   Fixed while scrolling, so it is opaque (a backdrop blur here was a top
+   cause of scroll jank on mid-range phones). At least 56px tall before the
+   safe area. The body carries the bar's height as bottom padding while a
+   buy box is mounted, so the bar never covers the footer's last line. */
+.nx-buybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--nx-z-bar); background: var(--nx-ceramic); border-top: 1px solid var(--nx-border); padding: 8px clamp(16px, 4vw, 24px) calc(8px + env(safe-area-inset-bottom, 0px)); font-family: var(--nx-font-body); }
+.nx-buybar__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+.nx-buybar__text { min-width: 0; }
+.nx-buybar__name { margin: 0; font-size: var(--nx-t-xs); font-weight: 600; line-height: 1.2; color: var(--nx-fg-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nx-buybar__price { margin: 2px 0 0; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-lg); line-height: 1.05; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nx-buybar__price small { font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 500; letter-spacing: 0; color: var(--nx-fg-muted); margin-left: 4px; }
+.nx-buybar .nx-cta-cobalt { flex-shrink: 0; min-height: 44px; padding: 0 1.2rem; font-size: var(--nx-t-sm); white-space: nowrap; border: none; cursor: pointer; }
+body.nx-has-buybar { --nx-buybar-h: 60px; padding-bottom: calc(var(--nx-buybar-h) + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 1024px) {
+  .nx-buybar { display: none; }
+  body.nx-has-buybar { padding-bottom: 0; }
+}

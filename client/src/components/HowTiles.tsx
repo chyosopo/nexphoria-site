@@ -1,4 +1,4 @@
-/* ═══ How it works, in three tall tiles (effecty study, 2026-09-05) ═══
+/* ═══ How it works, in three tiles (effecty study, 2026-09-05; 4:3 since the evening polish) ═══
    A photograph fills each tile; the step's name and one line sit at the
    bottom over a navy gradient. The three steps that involve the reader:
    the online visit, the physician, the box. The full five live on
@@ -28,11 +28,11 @@ export function HowTiles() {
           <Link href="/how-it-works" className="nx-cta-navy" data-testid="frontdoor-road-all" style={{ fontFamily: F }}>See every step <ArrowRight size={15} aria-hidden="true" /></Link>
         </div>
       </Reveal>
-      <ol className="nx-tiles nx-tiles--3 nx-tiles--tall" aria-label="The three steps">
+      <ol className="nx-tiles nx-tiles--3 nx-tiles--how" aria-label="The three steps">
         {STEPS.map((s, i) => (
           <Reveal key={s.t} delay={i * 70} className="nx-tiles__item">
             <li className="nx-tile nx-tile--photo">
-              <img src={s.img} srcSet={`${s.img800} 800w, ${s.img} 1600w`} sizes="(max-width: 900px) 100vw, 33vw" alt={s.alt} loading="lazy" decoding="async" width={1600} height={2000} />
+              <img src={s.img} srcSet={`${s.img800} 800w, ${s.img} 1600w`} sizes="(max-width: 900px) 100vw, 33vw" alt={s.alt} loading="lazy" decoding="async" width={1600} height={1200} />
               <span className="nx-tile__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <span className="nx-tile__foot">
                 <span className="nx-tile__t" style={{ fontFamily: S }}>{s.t}</span>
@@ -42,7 +42,7 @@ export function HowTiles() {
           </Reveal>
         ))}
       </ol>
-      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "1rem" }}>
+      <p style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: ".8rem" }}>
         If the physician does not prescribe, nothing is made and the refund policy sets out what is refunded.
       </p>
     </section>
