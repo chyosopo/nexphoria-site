@@ -295,3 +295,24 @@ picker. Now ONE path, shop-first:
 Removed from the home: the goal grid (GoalPicker), the example-plans band, the
 hero goal chips, the eight-row price table, the menu route filters. The files
 stay for reuse; the home does not stack them.
+
+## Count the reason, not the shelf (2026-09-05, Chiya)
+"Why do customers care about 22? Every word needs the best reason." A customer
+does not care how many medicines we stock, how many families, or how many
+protocols. That is our inventory talking about us. Every headline leads with the
+reader's reason instead:
+- Hero: "Prescription peptides, matched to your goal: weight, recovery, sleep,
+  focus, hormones or skin." (was "Twenty-two prescription peptides…")
+- Menu band: "What each medicine treats, and what it costs." (was "All
+  twenty-two…"); link "See every medicine" (was "The complete list").
+- Catalog: "Every medicine, by what it treats." (was "Twenty-two prescription
+  peptides."). Nav: "All medicines" (was "All twenty-two medicines").
+- Peptides 101: "Peptides come in a few families." (was "Six families,
+  twenty-two medicines.").
+- About: "Medicines for the goals people actually have." (was "Twenty-two
+  medicines and six protocols.").
+- "the formulary" as a customer word is retired ("the medicines a physician can
+  prescribe"); it stays only as a physician-credential term.
+audit:voice now bans "twenty-two", "all twenty" and "the complete list". A count
+that describes the PRODUCT (a 24-marker blood panel) is fine; a count of the MENU
+is not.

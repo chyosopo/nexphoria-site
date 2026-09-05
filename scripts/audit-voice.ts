@@ -73,6 +73,11 @@ const PATTERNS: { re: RegExp; why: string }[] = [
     why: "'free' is banned; the word is 'included'." },
   { re: /\b(?:Best value|Most popular|Try it ·|Reserve your price|Discover more|Ready when you are|clinical standard|answers to (?:a number|the panel)|one recovery engine|Dialed in, not wired)\b/g,
     why: "a badge, a nudge, a slogan or self-praise. The plain deck retired it." },
+  /* Inventory brag (Chiya 2026-09-05): a customer does not care how many we
+     stock. Count the reader's reason, never our shelf. "24 markers" describing
+     the blood panel is fine (that is the product); counting the menu is not. */
+  { re: /\b(?:twenty-two|all twenty|the complete list)\b/gi,
+    why: "counts our shelf, not the reader's reason. Say what it treats, not how many we have." },
 ];
 
 /* Literal exemptions. Each is quoted exactly as it renders, and each is here

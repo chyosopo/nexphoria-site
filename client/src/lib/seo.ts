@@ -240,7 +240,7 @@ export const orgJsonLd = (): Record<string, unknown> => ({
   url: BASE_URL,
   logo: `${BASE_URL}/favicon/favicon-512.png`,
   description:
-    "Prescription peptide therapy, with a physician and your blood work. Twenty-two compounded peptide medicines, prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.",
+    "Prescription peptide therapy, with a physician and your blood work. Compounded peptide medicines, prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.",
   // Real, in-use inboxes — hello@ (Contact.tsx / Footer.tsx) and press@
   // (Contact.tsx press desk). No phone number is published anywhere on the
   // site, so none is emitted.

@@ -57,7 +57,7 @@ export function ProtocolSelector({ goal, world }: { goal: PeptideCategory; world
         <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "0.8rem" }}>
           {isComparison
             ? "Pick the shape that fits how you want to work. Whichever you choose, a physician confirms it against your bloodwork — and can decline."
-            : "This is what the formulary currently offers for this goal. A physician confirms it against your bloodwork — and can decline."}
+            : "These are the medicines a physician can prescribe for this goal. A physician confirms the fit against your bloodwork — and can decline."}
         </p>
 
         {/* ── the question — on-page, low-commitment (Maximus §3) ── */}

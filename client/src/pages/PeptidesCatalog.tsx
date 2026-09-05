@@ -63,8 +63,8 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       ? "Prescription peptides for women | Nexphoria"
       : world === "men"
       ? "Prescription peptides for men | Nexphoria"
-      : "Twenty-two prescription peptides | Nexphoria",
-    description: "Twenty-two prescription peptides, each with what it is for, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.",
+      : "Prescription peptides, by what they treat | Nexphoria",
+    description: "Prescription peptides organised by what they treat, each with what it is for, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.",
     jsonLd: [
       // World-aware path so the WebPage node's url matches this page's own
       // canonical/og:url + breadcrumb + itemList (all `${base}/peptides`) on
@@ -144,10 +144,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             <div className="nx-sec-head">
               <p className="nx-eyebrow">The medicines</p>
               <h1 id="peptides-hero-title" className="nx-dsh1" style={{ maxWidth: "16ch" }}>
-                Twenty-two prescription peptides.
+                Every medicine, by what it treats.
               </h1>
               <p className="nx-lede" style={{ maxWidth: "50ch" }}>
-                Each with what it is for, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+                Choose by your goal. Each one shows what it treats, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
               </p>
             </div>
             {/* THE FORMULARY, RENDERED — replaces vial-lineup-hero.webp.

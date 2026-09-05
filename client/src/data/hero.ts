@@ -19,7 +19,7 @@ export const HERO = {
   lead: "Peptide therapy, prescribed for your",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
   subline:
-    "Twenty-two prescription peptides for weight, recovery, sleep, focus, hormones and skin. A licensed U.S. physician prescribes the right one for you and doses it against your own blood work.",
+    "Prescription peptides, matched to your goal: weight, recovery, sleep, focus, hormones or skin. A licensed U.S. physician chooses the one that fits you and doses it against your own blood work.",
   cta: "See the treatments",
   ctaSecondary: "How it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",

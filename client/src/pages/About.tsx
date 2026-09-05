@@ -81,9 +81,9 @@ export default function About() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">What we offer</p>
-            <h2 id="about-offer" className="nx-dsh2" style={{ maxWidth: "20ch" }}>Twenty-two medicines and six protocols.</h2>
+            <h2 id="about-offer" className="nx-dsh2" style={{ maxWidth: "20ch" }}>Medicines for the goals people actually have.</h2>
             <p className="nx-lede">
-              Twenty-two compounded peptide medicines and six protocols, for {GOALS}. Each is listed with what it is for, how it works, how you take it, what to expect, and its price.
+              Compounded peptide medicines and protocols for {GOALS}. Each is listed with what it treats, how it works, how you take it, what to expect, and its price.
             </p>
           </div>
           <p style={{ ...body, marginTop: "0.8rem" }}>
@@ -93,7 +93,7 @@ export default function About() {
             One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "1rem" }}>
-            <Link href="/peptides" className="nx-text-link" style={{ ...small, fontWeight: 600 }} data-testid="about-peptides-link">The complete list</Link>
+            <Link href="/peptides" className="nx-text-link" style={{ ...small, fontWeight: 600 }} data-testid="about-peptides-link">See every medicine</Link>
             <Link href="/stacks" className="nx-text-link" style={{ ...small, fontWeight: 600 }}>The protocols</Link>
             <Link href="/labs" className="nx-text-link" style={{ ...small, fontWeight: 600 }}>Every marker, and the additional tests</Link>
           </div>

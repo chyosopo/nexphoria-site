@@ -107,8 +107,8 @@ export default function Peptides101() {
 
       {/* the four */}
       <section className="nx-container" aria-labelledby="p101-four">
-        <Reveal><div className="nx-sec-head"><p className="nx-eyebrow">The medicines we prescribe</p><h2 id="p101-four" className="nx-dsh2" style={{ maxWidth: "22ch" }}>Six families, twenty-two medicines.</h2>
-          <p className="nx-lede">Every medicine here belongs to one of a few families. Once you know the family, the medicine makes sense. The catalog lists all twenty-two with what each is for and its price.</p>
+        <Reveal><div className="nx-sec-head"><p className="nx-eyebrow">The medicines we prescribe</p><h2 id="p101-four" className="nx-dsh2" style={{ maxWidth: "22ch" }}>Peptides come in a few families.</h2>
+          <p className="nx-lede">Every medicine belongs to one of a few families. Once you know yours, the choice makes sense. The catalog shows what each one treats and its price.</p>
         </div></Reveal>
         <div className="nx-p101-families" data-testid="p101-four">
           {FAMILIES.map((fam, i) => {

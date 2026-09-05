@@ -91,7 +91,7 @@ function TreatmentsPanel({ onPick }: { onPick: () => void }) {
       <aside className="nx-mega__rail" aria-label="Treatments">
         <Link href="/peptides" className="nx-mega__all" onClick={onPick} data-testid="mega-view-all">
           <span className="nx-mega__all-art" aria-hidden="true"><img src="img/img_b02fe34b47f7.webp" alt="" loading="lazy" decoding="async" /></span>
-          <span className="nx-mega__all-title" style={{ fontFamily: S }}>All twenty-two medicines</span>
+          <span className="nx-mega__all-title" style={{ fontFamily: S }}>All medicines</span>
           <span className="nx-mega__all-line" style={{ fontFamily: F }}>What each is for, and its price. <ArrowRight size={13} aria-hidden="true" /></span>
         </Link>
         <Link href="/quiz" className="nx-mega__rail-link" onClick={onPick} data-testid="mega-quiz-link" style={{ fontFamily: F }}>Find your medicine <ArrowUpRight size={14} aria-hidden="true" /></Link>
@@ -279,7 +279,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                         <div className="nx-mega-m__panel">
                           {item.panel === "treatments" ? (
                             <>
-                              <Link href="/peptides" className="nx-mega-m__link" onClick={() => setMenuOpen(false)} style={{ fontFamily: F }}>All twenty-two medicines <ArrowRight size={14} aria-hidden="true" /></Link>
+                              <Link href="/peptides" className="nx-mega-m__link" onClick={() => setMenuOpen(false)} style={{ fontFamily: F }}>All medicines <ArrowRight size={14} aria-hidden="true" /></Link>
                               {GROUPS.filter((g) => g.goals.length).map((g) => (
                                 <div key={g.key} className="nx-mega-m__group">
                                   <p className="nx-mega__group" style={{ fontFamily: F }}>{g.label}</p>
