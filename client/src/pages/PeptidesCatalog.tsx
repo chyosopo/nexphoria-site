@@ -37,15 +37,20 @@ const CAT_LABEL: Record<SoloCategory, string> = {
   Hormone: "Hormones",
 };
 /* One plain phrase per group, shown as the group heading. */
+/* One line under each group heading. These used to carry the group's own name
+   as a prefix ("Focus and mood: focus by day and …"), which the render then
+   stripped — leaving a sentence that began in lower case under a heading that
+   had just said the same words. They are standalone sentences now, in the
+   power register: what the group is for, not what it is called. */
 const CAT_LINE: Record<SoloCategory, string> = {
-  Growth: "Body composition: your own growth hormone, lean mass and fat.",
-  Cognitive: "Focus and mood: focus by day and a steadier mood under stress.",
-  Recovery: "Recovery: injury and recovery from training.",
-  "Skin & Longevity": "Skin, energy and ageing: skin firmness, cellular energy and healthy ageing.",
-  Metabolic: "Weight loss: appetite and weight.",
-  Sleep: "Sleep: deep sleep.",
-  "Sexual Health": "Sexual health: desire, closeness and erectile function.",
-  Hormone: "Hormones: low testosterone.",
+  Growth: "Your own growth hormone, raised overnight. Lean mass on, deep fat off.",
+  Cognitive: "Focus that holds through the day, and a mood that holds under stress.",
+  Recovery: "For the injury that is slow to heal, and the training you want to get back to.",
+  "Skin & Longevity": "Firmness, cellular energy, and the recovery the years take back.",
+  Metabolic: "Appetite quiets first. The weight follows.",
+  Sleep: "Asleep sooner, and deeper once you are.",
+  "Sexual Health": "Desire, closeness and erectile function, on the days you choose.",
+  Hormone: "Low testosterone, read from your blood and dosed from your own baseline.",
 };
 const labelFor = (c: string) => (c === "All" ? "All" : CAT_LABEL[c as SoloCategory] ?? c);
 /* The sticky header is 64px tall (Nav: h-16); the chip row pins under it. */
@@ -403,7 +408,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   <m.div key={cat} className="nx-catgroup" data-testid={`catalog-group-${cat.toLowerCase()}`} variants={rise}>
                     <div className="nx-catgroup__head">
                       <h2 className="nx-dsh3" style={{ fontFamily: S }}>{labelFor(cat)}.</h2>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)" }}>{(CAT_LINE[cat] ?? "").replace(/^[^:]+:\s*/, "")}</p>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)" }}>{CAT_LINE[cat] ?? ""}</p>
                     </div>
                     <div className="nx-float-grid">
                       {items.map((s, i) => <div key={s.slug} className="nx-cell"><ProductCard sku={s} index={i} /></div>)}
