@@ -45,43 +45,13 @@ export default function LegalIndex() {
             hero next to a max-w-2xl list read as two misaligned pages */}
         <div className="nx-container max-w-2xl">
           <Reveal>
-            <p
-              style={{
-                fontFamily: FONT,
-                fontSize: "var(--nx-t-2xs)",
-                fontWeight: 500,
-                letterSpacing: "var(--nx-ls-caps)",
-                textTransform: "uppercase",
-                color: "var(--nx-fg-muted)",
-                marginBottom: "1rem",
-              }}
-            >
-              Legal
-            </p>
-            <h1
-              style={{
-                fontFamily: FONT,
-                fontSize: "var(--nx-t-h1)",
-                fontWeight: 600,
-                letterSpacing: "var(--nx-ls-display)",
-                color: "var(--nx-fg)",
-                lineHeight: 1.02,
-                marginBottom: "0.75rem",
-              }}
-            >
-              Legal documents.
-            </h1>
-            <p
-              style={{
-                fontFamily: FONT,
-                fontSize: "var(--nx-t-body)",
-                lineHeight: 1.6,
-                color: "var(--nx-fg-graphite)",
-                maxWidth: 560,
-              }}
-            >
-              The agreements, policies, and consents that govern your care at Nexphoria.
-            </p>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">Legal</p>
+              <h1 className="nx-dsh1">Legal documents.</h1>
+              <p className="nx-lede">
+                The agreements, policies, and consents that govern your care at Nexphoria.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -93,17 +63,13 @@ export default function LegalIndex() {
               <Reveal key={label} delay={i * 60}>
                 <Link
                   href={href}
-                  className="no-underline legal-index-card"
+                  className="no-underline legal-index-card nx-card"
                   data-testid={`legal-link-${href.split("/").pop()}`}
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "space-between",
                     gap: "1rem",
-                    padding: "1.5rem 1.75rem",
-                    border: "1px solid var(--nx-border)",
-                    borderRadius: "var(--nx-r-md)",
-                    backgroundColor: "var(--nx-ceramic)",
                   }}
                 >
                   <div>

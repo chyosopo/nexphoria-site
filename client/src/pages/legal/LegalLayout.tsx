@@ -59,40 +59,20 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
         }}
       >
         <div className="nx-container">
-          <Link
-            href="/legal"
-            data-testid="legal-breadcrumb"
-            className="no-underline"
-            style={{ ...eyebrowStyle, color: "var(--nx-fg-muted)", display: "inline-block", marginBottom: "1rem" }}
-          >
-            Legal
-          </Link>
-          <h1
-            style={{
-              fontFamily: FONT,
-              fontSize: "var(--nx-t-h1)",
-              fontWeight: 600,
-              letterSpacing: "var(--nx-ls-display)",
-              color: "var(--nx-fg)",
-              lineHeight: 1.02,
-              marginBottom: "0.75rem",
-              maxWidth: 800,
-            }}
-          >
-            {title}
-          </h1>
-          <p
-            style={{
-              fontFamily: FONT,
-              fontSize: "var(--nx-t-2xs)",
-              fontWeight: 500,
-              letterSpacing: "var(--nx-ls-caps)",
-              textTransform: "uppercase",
-              color: "var(--nx-fg-muted)",
-            }}
-          >
-            Last updated: {lastUpdated}
-          </p>
+          <div className="nx-sec-head">
+            <Link
+              href="/legal"
+              data-testid="legal-breadcrumb"
+              className="no-underline nx-eyebrow"
+              style={{ display: "inline-block" }}
+            >
+              Legal
+            </Link>
+            <h1 className="nx-dsh1">{title}</h1>
+            <p style={{ ...eyebrowStyle, color: "var(--nx-fg-muted)" }}>
+              Last updated: {lastUpdated}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -257,18 +237,7 @@ export function LegalSection({ title, children }: { title: string; children: Rea
   const id = slugify(title);
   return (
     <div className="mb-10" data-testid={`legal-section-${id}`}>
-      <h2
-        id={id}
-        style={{
-          fontFamily: FONT,
-          fontSize: "var(--nx-t-lg)",
-          fontWeight: 600,
-          letterSpacing: "var(--nx-ls-normal)",
-          color: "var(--nx-fg)",
-          marginBottom: "0.875rem",
-          lineHeight: 1.25,
-        }}
-      >
+      <h2 id={id} className="nx-dsh3" style={{ marginBottom: "0.875rem" }}>
         {title}
       </h2>
       {children}
@@ -277,5 +246,5 @@ export function LegalSection({ title, children }: { title: string; children: Rea
 }
 
 export function LegalP({ children }: { children: React.ReactNode }) {
-  return <p style={{ marginBottom: "1rem", lineHeight: 1.75 }}>{children}</p>;
+  return <p className="nx-prose" style={{ marginBottom: "1rem" }}>{children}</p>;
 }
