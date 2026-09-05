@@ -1,65 +1,74 @@
-# The home hero video — the prompt (2026-09-05)
+# The home hero video — the prompt (2026-09-05, v2: hyper-motion athletic)
 
-Chiya: "a video for the home page … as crispy and sharp and engaging and
-amazing as enhanced.com's." Their film is black, high-contrast, macro
-product, fast cuts, grain. Ours keeps the sheet: porcelain, navy, ice,
-one window light. Same energy, our world.
+Chiya: "not a single vial. Hyper motion, lifestyle, athlete, high-res,
+crispy video," as crisp and engaging as enhanced.com's film. Same energy,
+our world: cold porcelain light, navy, ice; the product only as the last
+beat. No text, no logos.
 
-Use the MASTER PROMPT for a text-to-video model (Kling 2, Veo 3, Runway
-Gen-4, Higgsfield). For image-to-video, feed a studio render
-(review/studio/out/hero-still.png or a pdp-*.png) as the first frame and
-use the SHOT prompt for that shot only.
+Use the MASTER PROMPT for a text-to-video model (Kling 2.x, Veo 3, Runway
+Gen-4, Higgsfield). Generate each SHOT separately at 4 to 6 s and cut them
+fast in the edit (0.8 to 1.5 s per cut). For image-to-video, feed the
+first-frame render named in the shot.
 
-## Master prompt (one clip, 8 to 10 s, loopable)
+## Master prompt (per shot, prepend this)
 
-Cinematic macro product film, photoreal, 4K, 24 fps, anamorphic look, very
-shallow depth of field. A single small glass medicine vial with a plain
-white label and a deep navy flip cap stands on pale porcelain stone in a
-cold white studio. One tall window of cool morning light from the left;
-long soft navy shadows; ice-blue highlights refract through the glass and
-the clear liquid inside. The camera pushes in slowly on a slider, then
-arcs a few degrees around the vial as light sweeps across the label. A
-slow, fine haze of condensation beads on the cold glass. Palette: porcelain
-white, pale ice blue, deep navy; no other colour. Fine film grain, crisp
-edges, high micro-contrast, no motion blur on the product. No text, no
-logos, no hands, no people. Calm, precise, expensive. Ends on the same
-framing it began on, for a seamless loop.
+Hyper-real athletic lifestyle film, 4K, shot on a high-speed cinema
+camera, 120 fps slow motion cut against real-time bursts, razor-sharp
+focus, high micro-contrast, fine film grain, anamorphic 2.39 look, very
+shallow depth of field. Cold porcelain light: white studio daylight and
+ice-blue rim light, deep navy shadows, wet-skin specular highlights, breath
+visible in cold air. Palette locked to porcelain white, pale ice blue and
+deep navy; no warm cast, no other colour. Fast, precise, expensive.
+Photoreal skin, sweat, fabric and hair detail. No text, no logos, no
+watermark.
+
+## The shot list (10 shots, ~4 s each, cut fast)
+
+1. **The start.** A sprinter in a navy kit explodes out of the blocks on a
+   pale track at dawn, low angle, dust and breath in ice-blue light. Camera
+   whip-pans with the launch.
+2. **Hands and chalk.** Extreme close-up: a hand claps chalk, the cloud
+   hangs in cold window light, then grips a steel bar. 120 fps.
+3. **The pull.** A woman in her forties finishes a heavy pull, side
+   profile, every muscle of the forearm and shoulder in sharp relief,
+   ice-blue rim light along the arm. Camera arcs slowly around her.
+4. **The swim.** A swimmer breaks the surface of a cold pool at first
+   light, water sheeting off in slow motion, droplets crisp against a navy
+   background. Top-down, then level with the water.
+5. **The breath.** Macro of a face mid-effort, eyes open, breath fogging in
+   cold air, sweat beading on the brow, absolute stillness for one beat.
+6. **The road.** A runner in a navy layer on a coastal path at dawn, tracked
+   from a car at speed, sea a cold pale blue, hair and jacket whipping.
+7. **The recovery.** The same runner on a stone step, head down, hands on
+   knees, chest rising, steam off the shoulders in the cold. Slow push-in.
+8. **The morning.** A man in his forties at a bright kitchen window at
+   seven in the morning drinks a glass of water in one motion, porcelain
+   light, navy shadows. (first frame: client/src/assets/life/hero-kitchen.webp
+   for the female version)
+9. **The kit.** A plain matte-white box with a pale-ice band on a stone
+   counter, lid lifted in one clean motion, cold light inside; a hand sets
+   a small glass vial with a navy cap beside it. (first frame:
+   review/studio/out/hero-still.png)
+10. **The product.** Macro of the vial on porcelain: ice-blue refraction
+    through the glass, one light sweep across the label, then hold. The
+    hero headline lands on this frame. (first frame: review/studio/out/pdp/pdp-sermorelin.png)
 
 ## Negative prompt
 
-text, watermark, logo, hands, people, warm tones, orange, yellow, green,
-purple, neon, lens flare streaks, fast shaky camera, blur on the product,
-plastic look, cartoon, extra caps, floating objects, distorted label.
-
-## The shot list (for a 20 s cut, 5 shots of 4 s)
-
-1. **The window.** Extreme close-up of the vial's shoulder and cap; light
-   sweeps left to right across the aluminium; ice-blue refraction blooms
-   in the glass. Camera: micro push-in. (image-to-video: pdp-sermorelin.png)
-2. **The liquid.** Inside the vial, the meniscus catches the light; a
-   single slow bubble rises through clear liquid. Camera: locked off.
-3. **The row.** Three vials in a line on porcelain, back to front, the
-   focus racking from the front label to the back cap. Camera: slow lateral
-   slide. (image-to-video: proto-recover-wide.png)
-4. **The kit.** A plain matte-white box with a pale-ice band opens a few
-   centimetres, the lid lifting in one clean motion, cold light inside.
-   Camera: high three-quarter, slow tilt down.
-5. **The person.** A woman in her early forties in a navy knit at a bright
-   kitchen window at seven in the morning, holding a plain glass of water,
-   turning her head toward the light, calm. Camera: slow dolly in, 35 mm.
-   (image-to-video: client/src/assets/life/hero-kitchen.webp)
-
-Grade every shot the same: porcelain white, pale ice blue, deep navy, fine
-grain, high micro-contrast, no warm cast.
+text, captions, watermark, logo, warm tones, orange, yellow, green, purple,
+neon, lens-flare streaks, motion blur on faces, soft focus, plastic skin,
+extra limbs, distorted hands, gym signage, branded apparel, crowds,
+cartoon, low resolution.
 
 ## Settings that matter
 
-- Aspect 16:9 for the home hero (2400 × 1000 crop lives behind the
-  headline); also render 9:16 for the phone if the model allows.
-- Duration 8 to 10 s per generation; stitch in the edit.
-- Motion strength low to medium: the product never wobbles.
-- Seed-lock one clip you like and vary only the prompt's camera line for
-  the others, so the glass and the label match across shots.
-- Export ProRes or H.264 at 20 Mbps, then encode WebM (VP9) and MP4 (H.264)
-  at 1920 wide for the site; the hero autoplays muted, loops, and shows the
-  still (hero-still.webp) until the first frame is ready.
+- 16:9 for the home hero; also 9:16 for the phone if the model allows.
+- 4 to 6 s per generation, 24 fps master with 120 fps slow-motion shots;
+  cut at 0.8 to 1.5 s in the edit so it feels fast.
+- Motion strength high for shots 1, 4, 6; medium for 2, 3, 5, 7, 8; low
+  for 9 and 10 (the product never wobbles).
+- Lock the seed and the palette line across shots so skin, light and navy
+  match; change only the shot description.
+- Export ProRes, then WebM (VP9) and MP4 (H.264) at 1920 wide, 20 Mbps
+  master; the hero autoplays muted, loops, and shows hero-still.webp until
+  the first frame is ready. 18 to 22 s total, loop point on shot 10.
