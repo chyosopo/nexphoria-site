@@ -81,7 +81,7 @@
 .nx-mtile--proto .nx-mtile__line { color: color-mix(in srgb, var(--nx-ceramic) 84%, transparent); max-width: 40ch; }
 
 /* ── the phone sheet ── */
-.nx-sheet { position: fixed; inset: 0; z-index: var(--nx-z-menu); display: flex; flex-direction: column; background: var(--nx-bg); font-family: var(--nx-font-body); animation: nx-sheet-in var(--nx-dur-3) var(--nx-ease) both; }
+.nx-sheet { position: fixed; inset: 0; z-index: var(--nx-z-menu); display: flex; flex-direction: column; background: var(--nx-bg); font-family: var(--nx-font-body); }
 @keyframes nx-sheet-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .nx-sheet__bar { flex: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--nx-border); }
 .nx-sheet__body { flex: 1 1 auto; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 1rem 0 1.25rem; }

@@ -7,9 +7,10 @@
    is a tile; each group is its name and its line, then the cards. The
    styles live in styles/catalog.css (imported by ProductTile). */
 import { useEffect, useRef, useState } from "react";
-import { Link } from "wouter";
+import { Link, useSearch } from "wouter";
+import { m, useSheen, TAP_TILE, PRESS_SPRING, rise, stagger } from "@/motion";
+import { scrollToResults } from "@/motion/scroll";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Reveal } from "@/components/Reveal";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES, type SoloCategory } from "@/data/soloCatalog";
 import { Check, Search, SearchX, X } from "lucide-react";
@@ -49,7 +50,14 @@ const CAT_LINE: Record<SoloCategory, string> = {
 const labelFor = (c: string) => (c === "All" ? "All" : CAT_LABEL[c as SoloCategory] ?? c);
 /* The sticky header is 64px tall (Nav: h-16); the chip row pins under it. */
 const HEADER_PX = 64;
+/* The chip row's height on the phone (catalog.css .nx-goalchips__bar). */
+const CHIPS_PX = 54;
 const PHONE = "(max-width: 760px)";
+const GOAL_MAP: Record<string, SoloCategory> = { metabolic: "Metabolic", growth: "Growth", recovery: "Recovery", longevity: "Skin & Longevity", skin: "Skin & Longevity", cognition: "Cognitive", sleep: "Sleep", "sexual-health": "Sexual Health", hormone: "Hormone" };
+function goalFromSearch(search: string): string {
+  const g = new URLSearchParams(search).get("goal");
+  return (g && GOAL_MAP[g]) || "All";
+}
 
 /* Scroll a rail sideways so one of its children is in view: horizontal only,
    so choosing a goal from below never yanks the page back up to the tiles. */
@@ -68,10 +76,31 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
      that goal. Read once, on the client only (the prerender sees "All"). */
   const [filter, setFilter] = useState<string>(() => {
     if (typeof window === "undefined") return "All";
-    const g = new URLSearchParams(window.location.search).get("goal");
-    const map: Record<string, SoloCategory> = { metabolic: "Metabolic", growth: "Growth", recovery: "Recovery", longevity: "Skin & Longevity", skin: "Skin & Longevity", cognition: "Cognitive", sleep: "Sleep", "sexual-health": "Sexual Health", hormone: "Hormone" };
-    return (g && map[g]) || "All";
+    return goalFromSearch(window.location.search);
   });
+  /* The same page, a new goal: a hero tile, a nav tile or the menu sheet
+     can send ?goal= while the shelf is already open (the phone menu does
+     exactly this). The filter follows the URL, and the results come into
+     view under the header: always on the phone, where they sit a screen
+     below the tiles; on the desktop only when the reader had scrolled past
+     them. */
+  const search = useSearch();
+  const arrivedRef = useRef(false);
+  useEffect(() => {
+    const g = goalFromSearch(search);
+    const hasGoal = new URLSearchParams(search).has("goal");
+    if (hasGoal) setFilter(g);
+    if (!hasGoal || g === "All") return;
+    const phone = window.matchMedia(PHONE).matches;
+    const t = window.setTimeout(() => scrollToResults("catalog-results", { always: phone, extra: phone ? CHIPS_PX : 0 }), arrivedRef.current ? 60 : 380);
+    arrivedRef.current = true;
+    return () => window.clearTimeout(t);
+  }, [search]);
+  /* The results grid animates on every change AFTER the first paint: the
+     cards rise in a stagger when the goal or the search changes, and the
+     first render stays static for the prerender. */
+  const paintedRef = useRef(false);
+  useEffect(() => { paintedRef.current = true; }, []);
   const [q, setQ] = useState("");
   // Roving tabindex for the category filter toolbar (same idiom as Journal's
   // filter row): exactly one chip is Tab-reachable; Arrow/Home/End move focus
@@ -91,9 +120,13 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   useEffect(() => {
     const s = sentinelRef.current;
     if (!s || typeof IntersectionObserver === "undefined") return;
+    /* Shown once the sentinel has risen to where the chip row sits (the
+       header plus the row): that is exactly where scrollToResults parks the
+       results after a choice, so the row is there when the reader lands. */
+    const line = HEADER_PX + CHIPS_PX + 12;
     const io = new IntersectionObserver(
-      ([entry]) => setChipsShown(!entry.isIntersecting && entry.boundingClientRect.top < HEADER_PX),
-      { rootMargin: `-${HEADER_PX}px 0px 0px 0px`, threshold: 0 },
+      ([entry]) => setChipsShown(!entry.isIntersecting && entry.boundingClientRect.top < line),
+      { rootMargin: `-${line}px 0px 0px 0px`, threshold: 0 },
     );
     io.observe(s);
     return () => io.disconnect();
@@ -150,7 +183,15 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
     revealInRail(pillsRef.current, pillRefs.current[i] ?? null, 24);
   }, [filter]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const choose = (c: string, i: number) => { setFilter(c); setFocusIdx(i); };
+  const choose = (c: string, i: number) => {
+    setFilter(c);
+    setFocusIdx(i);
+    /* The answer comes to the reader: under the header and the chip row on
+       the phone, and on the desktop only if the list had scrolled away. */
+    const phone = window.matchMedia(PHONE).matches;
+    window.requestAnimationFrame(() => scrollToResults("catalog-results", { always: phone, extra: phone ? CHIPS_PX : 0 }));
+  };
+  const sheen = useSheen();
 
   const onFilterKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const n = cats.length;
@@ -211,7 +252,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
               const tile = c === "All" ? null : CATEGORY_TILE[c as SoloCategory];
               const dark = c === "All" ? false : TILE_DARK[c as SoloCategory];
               return (
-                <button
+                <m.button
                   key={c}
                   type="button"
                   ref={(el) => { chipRefs.current[i] = el; }}
@@ -219,15 +260,18 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                   aria-pressed={active}
                   tabIndex={i === focusIdx ? 0 : -1}
                   data-testid={`filter-${c.toLowerCase()}`}
-                  className={`nx-tile nx-tile--goal${dark ? " nx-tile--dark" : ""}${active ? " is-active" : ""}`}
+                  className={`nx-tile nx-tile--goal nx-sheen${dark ? " nx-tile--dark" : ""}${active ? " is-active" : ""}`}
                   style={{ ["--i" as string]: i }}
+                  whileTap={TAP_TILE}
+                  transition={PRESS_SPRING}
+                  {...sheen}
                 >
                   {tile
                     ? <img src={tile.src} srcSet={`${tile.src600} 600w, ${tile.src} 1200w`} sizes="(max-width: 760px) 66vw, 20vw" alt="" width={1200} height={900} loading={i < 5 ? "eager" : "lazy"} decoding="async" />
                     : <img src={heroStill} srcSet={`${heroStill1200} 1200w, ${heroStill} 1800w`} sizes="(max-width: 760px) 66vw, 20vw" alt="" width={1800} height={1400} fetchPriority="high" decoding="async" />}
                   <span className="nx-tile__title" style={{ fontFamily: S }}>{c === "All" ? "All medicines" : labelFor(c)}</span>
-                  <span className="nx-tile__check" aria-hidden="true"><Check strokeWidth={3} aria-hidden="true" />{active ? "Showing" : "Show"}</span>
-                </button>
+                  <m.span className="nx-tile__check" aria-hidden="true" animate={active ? { scale: [1, 1.08, 1] } : { scale: 1 }} transition={{ duration: 0.36, ease: "easeOut" }}><Check strokeWidth={3} aria-hidden="true" />{active ? "Showing" : "Show"}</m.span>
+                </m.button>
               );
             })}
           </div>
@@ -272,7 +316,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-goalchips__bar">
           <div ref={pillsRef} className="nx-goalchips__row" role="toolbar" aria-orientation="horizontal" aria-label="Filter the catalog by goal" aria-controls="catalog-results">
             {cats.map((c, i) => (
-              <button
+              <m.button
                 key={c}
                 type="button"
                 ref={(el) => { pillRefs.current[i] = el; }}
@@ -282,9 +326,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 className="nx-goalchip"
                 style={{ fontFamily: F }}
                 data-testid={`catalog-chip-${c.toLowerCase()}`}
+                whileTap={{ scale: 0.94 }}
+                transition={PRESS_SPRING}
               >
                 {c === "All" ? "All medicines" : labelFor(c)}
-              </button>
+              </m.button>
             ))}
           </div>
         </div>
@@ -315,16 +361,20 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
              The price line lives in the card, so a shelf card can never
              disagree with the PDP it links to. */
           const card = (s: (typeof shown)[number], i: number) => (
-            <Reveal key={s.slug} delay={i * 35}>
+            <m.div key={s.slug} className="nx-cell" variants={rise}>
               <ProductCard sku={s} index={i} />
-            </Reveal>
+            </m.div>
           );
+          /* One key per result set: a new goal or search remounts the grid
+             and the cards rise in a stagger. The first paint is static. */
+          const gridKey = `${filter}|${needle}`;
+          const entrance = paintedRef.current ? "hidden" : false;
           const grouped = filter === "All" && !needle;
           if (!grouped) {
             return (
-              <div className="nx-float-grid">
+              <m.div key={gridKey} className="nx-float-grid" variants={stagger(0.03)} initial={entrance} animate="show">
                 {shown.map((s, i) => card(s, i))}
-              </div>
+              </m.div>
             );
           }
           // Her page should open on her strongest affinity (Skin & Longevity),
@@ -336,21 +386,25 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
               })
             : SOLO_CATEGORIES;
-          return orderedCats.map((cat) => {
-            const items = shown.filter((s) => s.category === cat);
-            if (items.length === 0) return null;
-            return (
-              <div key={cat} className="nx-catgroup" data-testid={`catalog-group-${cat.toLowerCase()}`}>
-                <div className="nx-catgroup__head">
-                  <h2 className="nx-dsh3" style={{ fontFamily: S }}>{labelFor(cat)}.</h2>
-                  <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)" }}>{(CAT_LINE[cat] ?? "").replace(/^[^:]+:\s*/, "")}</p>
-                </div>
-                <div className="nx-float-grid">
-                  {items.map((s, i) => card(s, i))}
-                </div>
-              </div>
-            );
-          });
+          return (
+            <m.div key={gridKey} variants={stagger(0.02)} initial={entrance} animate="show">
+              {orderedCats.map((cat) => {
+                const items = shown.filter((s) => s.category === cat);
+                if (items.length === 0) return null;
+                return (
+                  <m.div key={cat} className="nx-catgroup" data-testid={`catalog-group-${cat.toLowerCase()}`} variants={rise}>
+                    <div className="nx-catgroup__head">
+                      <h2 className="nx-dsh3" style={{ fontFamily: S }}>{labelFor(cat)}.</h2>
+                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)" }}>{(CAT_LINE[cat] ?? "").replace(/^[^:]+:\s*/, "")}</p>
+                    </div>
+                    <div className="nx-float-grid">
+                      {items.map((s, i) => <div key={s.slug} className="nx-cell"><ProductCard sku={s} index={i} /></div>)}
+                    </div>
+                  </m.div>
+                );
+              })}
+            </m.div>
+          );
         })()}
       </section>
 

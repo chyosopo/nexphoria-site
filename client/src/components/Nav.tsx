@@ -13,6 +13,7 @@
    cart icon. Cut to the spine (Chiya 2026-09-05): Treatments · Protocols ·
    How it works. Copy is the plain deck; nothing here persuades. Styles live
    in client/src/styles/nav.css (tokens only). */
+import { m, AnimatePresence, rise, stagger, EASE } from "@/motion";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
@@ -145,6 +146,11 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [ta
 
 export function Nav({ variant = "gate" }: NavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  /* The sheet's portal mounts on the client only (the smoke renderer has no
+     portals); AnimatePresence inside it needs the portal to stay mounted
+     through the exit, so the gate is "on the client", not "menu open". */
+  const [onClient, setOnClient] = useState(false);
+  useEffect(() => { setOnClient(true); }, []);
   const [open, setOpen] = useState<PanelKey | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
@@ -302,8 +308,10 @@ export function Nav({ variant = "gate" }: NavProps) {
       )}
 
       {/* ── Phone sheet ── */}
-      {menuOpen && createPortal(
-        <div
+      {onClient && createPortal(
+        <AnimatePresence>
+        {menuOpen && (
+        <m.div
           ref={sheetRef}
           id="nav-mobile-sheet"
           className="nx-sheet"
@@ -312,6 +320,9 @@ export function Nav({ variant = "gate" }: NavProps) {
           aria-label="Menu"
           onKeyDown={onSheetKeyDown}
           data-testid="nav-mobile-drawer"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.3, ease: EASE } }}
+          exit={{ opacity: 0, y: 10, transition: { duration: 0.18, ease: "easeIn" } }}
         >
           <div className={`${CONTAINER} nx-sheet__bar`}>
             <Logo variant="dark" />
@@ -321,28 +332,30 @@ export function Nav({ variant = "gate" }: NavProps) {
           </div>
           <div className={`${CONTAINER} nx-sheet__body`}>
             <p className="nx-sheet__label" id="nav-sheet-goals">Treatments, by goal</p>
-            <ul className="nx-mtiles nx-sheet__goals" role="list" aria-labelledby="nav-sheet-goals">
+            <m.ul className="nx-mtiles nx-sheet__goals" role="list" aria-labelledby="nav-sheet-goals" variants={stagger(0.04, 0.08)} initial="hidden" animate="show">
               {GOALS.map((g) => (
-                <li key={g}><GoalTile goal={g} onPick={pick} sizes="50vw" testid={`nav-mobile-category-${g}`} /></li>
+                <m.li key={g} variants={rise}><GoalTile goal={g} onPick={pick} sizes="50vw" testid={`nav-mobile-category-${g}`} /></m.li>
               ))}
-              <li><AllTile onPick={pick} testid="nav-mobile-link-treatments" /></li>
-            </ul>
-            <ul className="nx-sheet__rows" role="list">
+              <m.li variants={rise}><AllTile onPick={pick} testid="nav-mobile-link-treatments" /></m.li>
+            </m.ul>
+            <m.ul className="nx-sheet__rows" role="list" variants={stagger(0.04, 0.3)} initial="hidden" animate="show">
               {SHEET_ROWS.map((r) => (
-                <li key={r.href}>
+                <m.li key={r.href} variants={rise}>
                   <Link href={r.href} className="nx-sheet__row" onClick={pick} data-testid={`nav-mobile-link-${r.label.toLowerCase().replace(/\s+/g, "-")}`}>
                     <span>{r.label}<small>{r.line}</small></span>
                     <ArrowRight size={18} aria-hidden="true" />
                   </Link>
-                </li>
+                </m.li>
               ))}
-            </ul>
+            </m.ul>
           </div>
           <div className={`${CONTAINER} nx-sheet__foot`}>
             <StartIntakeButton productSlug={intakeSlug} source={`${navSource}-mobile`} size="md" className="nx-sheet__cta">Get started</StartIntakeButton>
             <p className="nx-sheet__note">A licensed U.S. physician prescribes, if appropriate.</p>
           </div>
-        </div>,
+        </m.div>
+        )}
+        </AnimatePresence>,
         document.body,
       )}
     </header>

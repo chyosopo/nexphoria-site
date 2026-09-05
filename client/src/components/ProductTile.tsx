@@ -7,6 +7,7 @@
    shelf needs to say about a product is said here, so two shelves can never
    disagree. The styles live in styles/catalog.css. */
 import { Link } from "wouter";
+import { m, useSheen, PRESS_SPRING } from "@/motion";
 import { F, S } from "@/lib/typography";
 import { statusOf, type SoloPeptide } from "@/data/soloCatalog";
 import { usd, stackReservable, type FlagshipStack } from "@/data/stacksCatalog";
@@ -42,8 +43,10 @@ export function ProductTile({ sku, index = 0, detail = false, base = "", testId 
   const goal = peptides.find((p) => p.slug === sku.slug)?.category;
   const status = statusOf(sku);
   const pending = status === "coming" ? "Pending" : status === "watch" ? "Under review" : null;
+  const sheen = useSheen();
   return (
-    <Link href={`${base}/peptides/${sku.slug}`} className="nx-frost nx-stagger-item" style={{ ["--i" as string]: Math.min(index, 8) }} data-testid={testId ?? `tile-${sku.slug}`} aria-label={`${sku.name}: ${sku.outcome}`}>
+    <Link href={`${base}/peptides/${sku.slug}`} asChild>
+    <m.a className="nx-frost nx-stagger-item nx-sheen" style={{ ["--i" as string]: Math.min(index, 8) }} data-testid={testId ?? `tile-${sku.slug}`} aria-label={`${sku.name}: ${sku.outcome}`} whileTap={{ scale: 0.975 }} transition={PRESS_SPRING} {...sheen}>
       <div className="nx-frost__media" data-goal={goal}>
         <span className="nx-frost__chips" aria-hidden="true">
           <span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{goal ? CATEGORY_LABELS[goal] : sku.category}</span>
@@ -61,6 +64,7 @@ export function ProductTile({ sku, index = 0, detail = false, base = "", testId 
         {sku.gated ? <PriceLine note="Priced after review" /> : sku.pricing ? <PriceLine from={sku.pricing.m12} /> : <PriceLine note="Priced at consultation" />}
         <span className="nx-frost__btn nx-cta-cobalt nx-cta--sm" style={{ fontFamily: F }}>Read more</span>
       </div>
+    </m.a>
     </Link>
   );
 }

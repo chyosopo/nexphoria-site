@@ -10,5 +10,10 @@ import { initAnalytics } from "@/lib/analytics";
 
 initAnalytics(); // no-op unless VITE_GA4_ID is configured at build time
 
+/* iOS Safari only draws :active (the press in styles/motion.css) once a
+   touchstart listener exists somewhere on the page. An empty, passive one
+   is the whole fix. */
+document.addEventListener("touchstart", () => {}, { passive: true });
+
 /* One sheet: Porcelain & Navy (Chiya, 2026-09-04). The review toggle is retired. */
 createRoot(document.getElementById("root")!).render(<App />);

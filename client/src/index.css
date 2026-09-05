@@ -3091,6 +3091,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 /* ═══ The rotating word in the hero (2026-09-05, after alyvewellness.com) ═══ */
 .nx-rotate { display: inline-block; color: var(--nx-cobalt); transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
 .nx-rotate.is-changing { opacity: 0; transform: translateY(6px); }
+.nx-rotate__word { display: inline-block; will-change: transform, opacity; }
 @media (prefers-reduced-motion: reduce) { .nx-rotate { transition: none; } }
 
 /* ═══ Find your medicine (the quiz) ═══ */

@@ -5,6 +5,7 @@
    .nx-buyrail wrapper in the page). Mobile: the card sits in flow AND a
    fixed bottom bar keeps name, price and the button persistent. Styles in
    client/src/styles/buy.css; tokens only, both worlds theme it for free. */
+import { m, AnimatePresence, PRESS_SPRING, EASE } from "@/motion";
 import { useEffect } from "react";
 import { Link } from "wouter";
 import { Lock, Check, FlaskConical, Stethoscope, Snowflake, Droplets } from "lucide-react";
@@ -184,9 +185,9 @@ export function BuyBox(props: BuyBoxProps) {
             <div role="radiogroup" aria-label="Term" className="nx-bb-terms">
               {tiers.map((t) => {
                 const isActive = t.key === active.key;
-                const { months: m, less } = termOf(t);
+                const { months: mo, less } = termOf(t);
                 return (
-                  <button
+                  <m.button
                     key={t.key}
                     type="button"
                     role="radio"
@@ -194,17 +195,20 @@ export function BuyBox(props: BuyBoxProps) {
                     onClick={() => { onSelect?.(t.key); track("cadence_selected", { cadence: t.key, product: name }); }}
                     data-testid={`cadence-${t.key}`}
                     className="nx-bb-term"
+                    whileTap={{ scale: 0.96 }}
+                    animate={isActive ? { scale: [1, 1.025, 1] } : { scale: 1 }}
+                    transition={isActive ? { duration: 0.34, ease: "easeOut" } : PRESS_SPRING}
                   >
                     <span className="nx-bb-term__term">{t.label}</span>
                     <span className="nx-bb-term__price">
                       {usd(t.amount)}<small>{t.per}</small>
                     </span>
                     <span className="nx-bb-term__total">
-                      {t.per === "/mo" && m > 1 ? `${usd(t.amount * m)} for ${m} months` : t.sub}
+                      {t.per === "/mo" && mo > 1 ? `${usd(t.amount * mo)} for ${mo} months` : t.sub}
                     </span>
                     {less > 0 && <span className="nx-bb-term__less">{less}% less a month</span>}
                     <span className="nx-bb-term__check" aria-hidden="true"><Check size={12} strokeWidth={3} /></span>
-                  </button>
+                  </m.button>
                 );
               })}
             </div>
@@ -213,7 +217,11 @@ export function BuyBox(props: BuyBoxProps) {
             {active.per === "/mo" && (
               <div className="nx-buybox__sum" data-testid="buybox-total">
                 <p className="nx-buybox__sum-label">Paid up front, {months > 1 ? `${months} months` : "one month"}</p>
-                <p className="nx-buybox__sum-value">{usd(active.amount * months)}</p>
+                <p className="nx-buybox__sum-value">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <m.span key={active.key} style={{ display: "inline-block" }} initial={{ y: 10, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { duration: 0.24, ease: EASE } }} exit={{ y: -10, opacity: 0, transition: { duration: 0.12 } }}>{usd(active.amount * months)}</m.span>
+                  </AnimatePresence>
+                </p>
               </div>
             )}
 
@@ -257,10 +265,12 @@ export function BuyBox(props: BuyBoxProps) {
             <p className="nx-buybar__name">{name}</p>
             <p className="nx-buybar__price">
               {gated ? "Eligibility first" : consultPriced || !active ? "At consult" : (
-                <>
-                  {usd(active.amount)}
-                  <small>{active.per}{reserving ? "" : ` · ${active.label.toLowerCase()}`} · if prescribed</small>
-                </>
+                <AnimatePresence mode="wait" initial={false}>
+                  <m.span key={active.key} style={{ display: "inline-block" }} initial={{ y: 8, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { duration: 0.22, ease: EASE } }} exit={{ y: -8, opacity: 0, transition: { duration: 0.12 } }}>
+                    {usd(active.amount)}
+                    <small>{active.per}{reserving ? "" : ` · ${active.label.toLowerCase()}`} · if prescribed</small>
+                  </m.span>
+                </AnimatePresence>
               )}
             </p>
           </div>

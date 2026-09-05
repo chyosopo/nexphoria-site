@@ -138,6 +138,50 @@ button:not(:disabled):active, [role="button"]:active {
 .focus-visible\:ring-ring:focus-visible,
 .focus-visible\:ring-primary:focus-visible { --tw-ring-color: var(--nx-cobalt); }
 
+/* ── 5. The touch press ───────────────────────────────────────────────────
+   A finger has no hover, so on a touch device the press is the whole
+   answer: every tile, card, term, chip, row and button settles to 97% the
+   moment it is touched and springs back on release (main.tsx registers the
+   touchstart listener iOS needs before it draws :active). The framer
+   whileTap on the flagship surfaces does the same through an inline
+   transform; this covers everything else. */
+@media (hover: none) {
+  .nx-tile:active, .nx-goal:active, .nx-frost:active, .nx-mtile:active,
+  .nx-bb-term:active, .nx-goalchip:active, .nx-filter-chip:active, .nx-sheet__row:active,
+  .nx-goal__pill:active, .nx-goal__arrow:active, .nx-protocol-card:active, .nx-product-card:active,
+  .nx-cta-cobalt:active, .nx-cta-ghost:active, .nx-cta-navy:active, .nx-cta-ceramic:active, .nx-cta-acid:active,
+  .nx-tile__btn:active, .nx-text-link:active, summary:active,
+  button:not(:disabled):active, [role="button"]:active {
+    transform: scale(var(--nx-m-press-touch, 0.97));
+    transition-duration: var(--nx-dur-1);
+  }
+  .nx-tile:active img, .nx-goal:active .nx-goal__media img { transform: none; }
+  .nx-tile--goal.is-active:active { transform: scale(var(--nx-m-press-touch, 0.97)); }
+}
+:root { --nx-m-press-touch: 0.97; }
+
+/* ── 6. The sheen ──────────────────────────────────────────────────────────
+   A soft light that follows the pointer across a tile and lights where a
+   finger lands (motion/index.tsx useSheen writes --mx/--my and is-lit).
+   Drawn as ::after above the tile's own gradient (.nx-tile::before sits at
+   z-index 1) and under nothing that needs the pointer. */
+.nx-sheen { --mx: 50%; --my: 50%; }
+.nx-sheen::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+  opacity: 0; transition: opacity var(--nx-dur-3) var(--nx-ease);
+  background: radial-gradient(56% 56% at var(--mx) var(--my), color-mix(in srgb, var(--nx-ceramic) 26%, transparent), transparent 72%);
+}
+.nx-sheen.is-lit::after { opacity: 1; }
+.nx-frost.nx-sheen::after { background: radial-gradient(56% 56% at var(--mx) var(--my), color-mix(in srgb, var(--nx-cobalt) 12%, transparent), transparent 72%); }
+.nx-tilt { transform-style: preserve-3d; }
+
+/* ── 7. The animated grid cell ──────────────────────────────────────────
+   PeptidesCatalog wraps each card in an m.div (a staggered rise on every
+   filter change) instead of a Reveal; the cell keeps the grid sizing the
+   Reveal cell had (catalog.css). */
+.nx-float-grid > .nx-cell { display: grid; min-width: 0; }
+.nx-float-grid > .nx-cell > .nx-frost { min-height: 100%; }
+
 /* ── Off switch ──────────────────────────────────────────────────────────
    Reveal.tsx already refuses to arm when the OS asks for reduced motion;
    these rules cover the CSS-only paths: hover lifts, presses, staggers, and
@@ -173,4 +217,5 @@ button:not(:disabled):active, [role="button"]:active {
   .nx-float-card:hover .nx-float-card__media img {
     transform: none;
   }
+  .nx-sheen::after { transition: none; }
 }

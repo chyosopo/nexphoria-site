@@ -2,6 +2,7 @@
 /* ═══ PROTOCOLS INDEX — the protocols still on the shelf, to
    docs/COPY-DECK-PLAIN.md. Reads FLAGSHIP_STACKS, which the launch scope
    filters (stacksCatalog LAUNCH_STACK_SLUGS). ═══ */
+import { scrollToResults } from "@/motion/scroll";
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
@@ -136,7 +137,7 @@ export default function ProtocolsIndex() {
           {CATEGORIES.map((c) => {
             const active = filter === c;
             return (
-              <button key={c} onClick={() => setFilter(c)} aria-pressed={active} data-testid={`protofilter-${c.toLowerCase()}`} className="nx-filter-chip" style={{
+              <button key={c} onClick={() => { setFilter(c); window.requestAnimationFrame(() => scrollToResults("protocols-results", { always: window.matchMedia("(max-width: 760px)").matches })); }} aria-pressed={active} data-testid={`protofilter-${c.toLowerCase()}`} className="nx-filter-chip" style={{
                 fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600,
               }}>
                 {c}
@@ -150,7 +151,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* the protocols, as tiles: the medicines of each rendered together on its goal-toned panel */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Protocols">
+      <section id="protocols-results" className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-band)" }} aria-label="Protocols">
         <div className="nx-tiles nx-tiles--2" style={{ marginTop: 0 }}>
           {shown.map((s, i) => {
             const rec = s.cadences.length ? Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)) : undefined;

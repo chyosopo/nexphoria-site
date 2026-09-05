@@ -14,6 +14,8 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { CartProvider } from "@/contexts/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { MotionRoot } from "@/motion";
+import { PageTransition } from "@/motion/PageTransition";
 
 // Pages — eagerly loaded (fast/common paths)
 
@@ -56,6 +58,7 @@ function AppRouter() {
   useEffect(() => { track("page_view", { path: __loc }); }, [__loc]);
   return (
     <RouteErrorBoundary>
+    <PageTransition>
     <Suspense fallback={<LoadingScreen />}>
       <Switch>
         {/* ══ THE SPINE ══ Home · Medicines · Product · How-it-works · Cart · Checkout */}
@@ -145,6 +148,7 @@ function AppRouter() {
         <Route component={NotFound} />
       </Switch>
     </Suspense>
+    </PageTransition>
     </RouteErrorBoundary>
   );
 }
@@ -152,6 +156,7 @@ function AppRouter() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <MotionRoot>
       <TooltipProvider>
         <CartProvider>
           <Toaster />
@@ -167,6 +172,7 @@ function App() {
           </Router>
         </CartProvider>
       </TooltipProvider>
+      </MotionRoot>
     </QueryClientProvider>
   );
 }
