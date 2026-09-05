@@ -141,12 +141,12 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="peptides-hero-title">
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
-            <div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>The medicines</p>
-              <h1 id="peptides-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">The medicines</p>
+              <h1 id="peptides-hero-title" className="nx-dsh1" style={{ maxWidth: "16ch" }}>
                 Twenty-two prescription peptides.
               </h1>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
+              <p className="nx-lede" style={{ maxWidth: "50ch" }}>
                 Each with what it is for, how it works, how you take it, and what it costs. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
               </p>
             </div>

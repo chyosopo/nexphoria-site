@@ -21,8 +21,6 @@ import { F, S } from "@/lib/typography";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { track } from "@/lib/analytics";
 
-const kicker: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" };
-const h2: React.CSSProperties = { fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance" };
 const body: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "58ch" };
 const small: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.55, color: "var(--nx-fg-graphite)" };
 
@@ -83,8 +81,8 @@ export default function Labs() {
       <section className="nx-hero-r3" aria-labelledby="labs-title"><div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
         <div className="nx-labs-hero">
           <div>
-            <p style={kicker}>Blood testing</p>
-            <h1 id="labs-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "16ch", textWrap: "balance" }} data-testid="labs-h1">
+            <p className="nx-eyebrow">Blood testing</p>
+            <h1 id="labs-title" className="nx-dsh1" style={{ marginTop: "0.8rem", maxWidth: "16ch" }} data-testid="labs-h1">
               A blood test before your first dose.
             </h1>
             <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }} data-testid="labs-sub">
@@ -133,8 +131,10 @@ export default function Labs() {
       <section className="nx-labs-band" aria-labelledby="labs-steps">
         <div className="nx-container">
           <Reveal>
-            <p style={kicker}>How it works</p>
-            <h2 id="labs-steps" style={{ ...h2, maxWidth: "18ch" }}>A few drops, a prepaid box, a physician's note.</h2>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">How it works</p>
+              <h2 id="labs-steps" className="nx-dsh2" style={{ maxWidth: "18ch" }}>A few drops, a prepaid box, a physician's note.</h2>
+            </div>
           </Reveal>
           <ol className="nx-labs-steps" data-testid="labs-steps">
             {STEPS.map((s, i) => (
@@ -186,9 +186,11 @@ export default function Labs() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="labs-panel">
         <div className="grid lg:grid-cols-[0.8fr_1.2fr]" style={{ gap: "clamp(1.6rem,4vw,3.5rem)" }}>
           <Reveal>
-            <p style={kicker}>What we test</p>
-            <h2 id="labs-panel" style={{ ...h2, maxWidth: "14ch" }}>{LAB_KIT.markers} markers. Every one has a reason.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>One panel, the same for everyone, built around what a peptide plan can move. Open a system to see each marker and why your physician reads it.</p>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">What we test</p>
+              <h2 id="labs-panel" className="nx-dsh2" style={{ maxWidth: "14ch" }}>{LAB_KIT.markers} markers. Every one has a reason.</h2>
+              <p className="nx-lede">One panel, the same for everyone, built around what a peptide plan can move. Open a system to see each marker and why your physician reads it.</p>
+            </div>
             <p style={{ ...small, marginTop: "0.9rem" }}>
               <Link href="/bloodwork" className="nx-text-link" style={{ fontWeight: 600 }}>Why blood work is part of every plan</Link>
             </p>
@@ -222,9 +224,11 @@ export default function Labs() {
       <section className="nx-labs-band" aria-labelledby="labs-addons">
         <div className="nx-container">
           <Reveal>
-            <p style={kicker}>Additional tests</p>
-            <h2 id="labs-addons" style={{ ...h2, maxWidth: "18ch" }}>The tests that go with a plan.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>Each add-on is drawn from the same kit and read in the same note. Your physician may recommend one from your results; you can add any of them now.</p>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">Additional tests</p>
+              <h2 id="labs-addons" className="nx-dsh2" style={{ maxWidth: "18ch" }}>The tests that go with a plan.</h2>
+              <p className="nx-lede">Each add-on is drawn from the same kit and read in the same note. Your physician may recommend one from your results; you can add any of them now.</p>
+            </div>
           </Reveal>
           <ul className="nx-addon-grid" data-testid="labs-addons">
             {LAB_ADDONS.map((a, i) => {
@@ -266,8 +270,10 @@ export default function Labs() {
       {/* ── 5. When you test ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="labs-when">
         <Reveal>
-          <p style={kicker}>When you test</p>
-          <h2 id="labs-when" style={{ ...h2, maxWidth: "18ch" }}>Baseline first. Then the same panel, so you see what changed.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">When you test</p>
+            <h2 id="labs-when" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Baseline first. Then the same panel, so you see what changed.</h2>
+          </div>
         </Reveal>
         <ol className="nx-labs-when" data-testid="labs-schedule">
           {LAB_SCHEDULE.map((s, i) => (
@@ -286,9 +292,11 @@ export default function Labs() {
       <section className="nx-labs-band" aria-labelledby="labs-read">
         <div className="nx-container grid lg:grid-cols-[0.9fr_1.1fr]" style={{ gap: "clamp(1.6rem,4vw,3.5rem)", alignItems: "center" }}>
           <Reveal>
-            <p style={kicker}>Your results</p>
-            <h2 id="labs-read" style={{ ...h2, maxWidth: "16ch" }}>Written for you, in plain words.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>Every marker sits beside its range and, from week {RETEST_WEEK} on, beside your baseline. Your physician's note says what is in range, what moved, and what changes in your plan because of it.</p>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">Your results</p>
+              <h2 id="labs-read" className="nx-dsh2" style={{ maxWidth: "16ch" }}>Written for you, in plain words.</h2>
+              <p className="nx-lede">Every marker sits beside its range and, from week {RETEST_WEEK} on, beside your baseline. Your physician's note says what is in range, what moved, and what changes in your plan because of it.</p>
+            </div>
           </Reveal>
           <Reveal delay={60}>
             <p style={{ ...small, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginBottom: "0.5rem" }} data-testid="labs-report-label">Example, not a patient record.</p>
@@ -310,8 +318,10 @@ export default function Labs() {
       {/* ── 7. Questions ── */}
       <section className="nx-container nx-faq-section" aria-labelledby="labs-faq">
         <Reveal>
-          <p style={kicker}>Questions</p>
-          <h2 id="labs-faq" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Questions</p>
+            <h2 id="labs-faq" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Common questions.</h2>
+          </div>
         </Reveal>
         <div className="nx-faq-list" data-testid="labs-faq">
           {FAQ.map((f, i) => (

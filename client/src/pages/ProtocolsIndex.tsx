@@ -94,12 +94,12 @@ export default function ProtocolsIndex() {
       <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
         <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
           <div className="nx-hero-split nx-hero-seq">
-            <div>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>Protocols</p>
-              <h1 id="protocols-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.8rem" }}>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">Protocols</p>
+              <h1 id="protocols-hero-title" className="nx-dsh1" style={{ maxWidth: "16ch" }}>
                 Protocols. Medicines prescribed together, on one plan.
               </h1>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "50ch", marginTop: "1rem" }}>
+              <p className="nx-lede" style={{ maxWidth: "50ch" }}>
                 A protocol is two to four medicines a physician prescribes together, with one blood test before you start and the same test at week {RETEST_WEEK}. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
               </p>
             </div>
@@ -235,7 +235,7 @@ export default function ProtocolsIndex() {
       </section>
 
       {/* Blood testing. The sample "biomarker index" dashboard was retired 2026-09-03: fabricated-looking figures. */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Blood testing">
+      <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-label="Blood testing">
         <div style={{ maxWidth: 720 }}>
           <div>
             <SectionHead

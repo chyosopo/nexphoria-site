@@ -38,17 +38,6 @@ const FAQ = [
   { q: "How is it billed?", a: "One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping." },
 ];
 
-const kicker: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
-  letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)",
-};
-const h2: React.CSSProperties = {
-  fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)",
-  lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance",
-};
-const bodyText: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)",
-};
 
 export default function FrontDoor() {
   useSeo({
@@ -73,7 +62,7 @@ export default function FrontDoor() {
       <HeroR3 />
 
       {/* ══ 02 · WHAT THIS IS — one sentence of reasoning, before the shop ══ */}
-      <section className="nx-container" aria-labelledby="fd-what" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="fd-what">
         <Reveal>
           <div className="nx-premise">
             <p className="nx-premise__k" style={{ fontFamily: F }}>New to peptides</p>
@@ -91,10 +80,12 @@ export default function FrontDoor() {
       <MenuRail photo="img/img_d489ea4e9dbc.webp" />
 
       {/* ══ 04 · HOW IT WORKS — the five steps, once ══ */}
-      <section className="nx-container" aria-labelledby="fd-road" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="fd-road">
         <Reveal>
-          <p style={kicker}>How it works</p>
-          <h2 id="fd-road" style={{ ...h2, maxWidth: "18ch" }}>Five steps, from choosing to your first dose.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">How it works</p>
+            <h2 id="fd-road" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Five steps, from choosing to your first dose.</h2>
+          </div>
         </Reveal>
         <Reveal><ol className="nx-road" aria-label="The five steps" data-testid="frontdoor-road" style={{ marginTop: "clamp(1.6rem,3vw,2.4rem)" }}>
           {ROAD.map((r, i) => (
@@ -112,14 +103,14 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 05 · BLOOD TESTING — why we measure ══ */}
-      <section className="nx-container" aria-labelledby="fd-blood" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="fd-blood">
         <div className="nx-blood">
           <Reveal className="nx-reveal-scale">
             <div className="nx-labs-art"><LabKitBox markers={LAB_KIT.markers} name={LAB_KIT.short} /></div>
           </Reveal>
           <Reveal delay={60}>
-            <p style={kicker}>Why we test</p>
-            <h2 id="fd-blood" style={{ ...h2, maxWidth: "20ch" }}>Your dose is set from your own blood work.</h2>
+            <p className="nx-eyebrow">Why we test</p>
+            <h2 id="fd-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>Your dose is set from your own blood work.</h2>
             <ul className="nx-blood__lines">
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>A blood kit ships with your first order.</strong> {LAB_KIT.markers} markers, drawn at home, included.</span></li>
               <li><i><Check size={13} strokeWidth={2.6} aria-hidden="true" /></i><span><strong>Your physician sets your dose from the results,</strong> before your first dose.</span></li>
@@ -131,11 +122,13 @@ export default function FrontDoor() {
       </section>
 
       {/* ══ 06 · PRICE — one statement, no table; the ladder lives on each product page ══ */}
-      <section className="nx-container" aria-labelledby="fd-pricing" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="fd-pricing">
         <Reveal>
-          <p style={kicker}>Price</p>
-          <h2 id="fd-pricing" style={{ ...h2, maxWidth: "18ch" }}>One monthly price. Everything within it.</h2>
-          <p style={{ ...bodyText, marginTop: "1rem", maxWidth: "58ch" }}>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Price</p>
+            <h2 id="fd-pricing" className="nx-dsh2" style={{ maxWidth: "18ch" }}>One monthly price. Everything within it.</h2>
+          </div>
+          <p className="nx-prose" style={{ marginTop: "1rem", maxWidth: "58ch" }}>
             Paid up front for a term of one, three, six or twelve months. It covers the medicine, the physician's review, the blood kit, the week-{RETEST_WEEK} test and cold shipping. Longer terms cost less per month. Each medicine shows its own price on its page.
           </p>
           <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem", display: "inline-block" }} data-testid="frontdoor-pricing-all">Every medicine, with its price <ArrowRight size={14} aria-hidden="true" /></Link>
@@ -145,8 +138,10 @@ export default function FrontDoor() {
       {/* ══ 07 · QUESTIONS ══ */}
       <section className="nx-container nx-faq-section" aria-labelledby="fd-faq">
         <Reveal>
-          <p style={kicker}>Questions</p>
-          <h2 id="fd-faq" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Questions</p>
+            <h2 id="fd-faq" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Common questions.</h2>
+          </div>
         </Reveal>
         <div className="nx-faq-list" data-testid="frontdoor-faq">
           {FAQ.map((it, i) => (

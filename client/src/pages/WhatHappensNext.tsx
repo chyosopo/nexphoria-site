@@ -61,13 +61,13 @@ export default function WhatHappensNext() {
       {/* Hero */}
       <section className="relative" style={{ overflow: "hidden" }} aria-labelledby="whn-title">
         <div className="nx-container relative nx-hero-seq" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)", zIndex: 1, maxWidth: 820 }}>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+          <p className="nx-eyebrow">
             What happens next
           </p>
-          <h1 id="whn-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "18ch" }}>
+          <h1 id="whn-title" className="nx-dsh1" style={{ marginTop: "0.8rem", maxWidth: "18ch" }}>
             What happens after you submit.
           </h1>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.62, color: "var(--nx-fg-graphite)", maxWidth: "56ch", marginTop: "1.1rem" }}>
+          <p className="nx-lede" style={{ marginTop: "1.1rem" }}>
             The five steps, in the order they happen. The first is behind you; the physician's decision comes next.
           </p>
         </div>

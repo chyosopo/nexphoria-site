@@ -3181,3 +3181,30 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-p101-fam .nx-text-link { margin-top: auto; }
 .nx-p101-screens { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .8rem; }
 .nx-p101-screen { padding: 1.2rem 1.4rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN SYSTEM PRIMITIVES (2026-09-05, Chiya — Phase 2: one system)
+   One source for the recurring roles, so every page reads as one company
+   instead of 26 slightly-different inline copies. Built entirely on the
+   existing tokens; introduces no new literal. Use these classes on every
+   page in place of per-page `kicker`/`h2`/`body`/`lede` style objects.
+   ═══════════════════════════════════════════════════════════════════ */
+.nx-eyebrow { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt); margin: 0; }
+.nx-dsh1 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.04; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); margin: 0; text-wrap: balance; }
+.nx-dsh2 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h2); line-height: 1.08; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); margin: 0; text-wrap: balance; }
+.nx-dsh3 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h3); line-height: 1.14; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); margin: 0; text-wrap: balance; }
+.nx-lede { font-family: var(--nx-font-body); font-size: var(--nx-t-body); line-height: 1.65; color: var(--nx-fg-graphite); margin: 0; max-width: 58ch; }
+.nx-prose { font-family: var(--nx-font-body); font-size: var(--nx-t-body); line-height: 1.65; color: var(--nx-fg-graphite); }
+.nx-prose--sm { font-size: var(--nx-t-sm); }
+/* Section header: eyebrow + heading + lede, one consistent stack everywhere. */
+.nx-sec-head { display: flex; flex-direction: column; gap: 0.7rem; max-width: 42rem; }
+.nx-sec-head .nx-lede { margin-top: 0.25rem; }
+/* Standard vertical rhythm between sections (the top of each section). */
+.nx-sec { padding-top: var(--nx-sp-sec); }
+/* One card surface for the whole site. */
+.nx-card { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.3rem, 2.4vw, 1.75rem); }
+.nx-card--flush { padding: 0; overflow: hidden; }
+/* On dark bands, the section header inverts by scoping (no new literals). */
+.nx-band .nx-eyebrow, .nx-hero-r3 .nx-eyebrow { color: var(--nx-cobalt); }
+.nx-band .nx-dsh1, .nx-band .nx-dsh2, .nx-band .nx-dsh3 { color: var(--nx-ceramic); }
+.nx-band .nx-lede, .nx-band .nx-prose { color: color-mix(in srgb, var(--nx-ceramic) 74%, transparent); }

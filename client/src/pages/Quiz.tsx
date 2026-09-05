@@ -60,10 +60,6 @@ const SHAPES: { key: Shape; label: string; line: string }[] = [
 const isNasal = (s: SoloPeptide) => s.route === "nasal" || /nasal spray/i.test(s.outcome);
 const isAsNeeded = (s: SoloPeptide) => /as needed|before\./i.test(s.outcome);
 
-const kicker: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" };
-const h1: React.CSSProperties = { fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance" };
-const body: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)" };
-
 export default function Quiz() {
   useSeo({
     title: "Find your medicine | Nexphoria",
@@ -101,7 +97,7 @@ export default function Quiz() {
 
   const total = 4;
   const Progress = ({ n }: { n: number }) => (
-    <p style={{ ...kicker }} data-testid="quiz-progress">Question {n} of {total}</p>
+    <p className="nx-eyebrow" data-testid="quiz-progress">Question {n} of {total}</p>
   );
 
   return (
@@ -109,9 +105,11 @@ export default function Quiz() {
       <main className="nx-container nx-quiz" data-testid="quiz" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }}>
         {step === 0 && (
           <section className="nx-quiz__step" aria-labelledby="quiz-q1">
-            <Progress n={1} />
-            <h1 id="quiz-q1" style={h1}>What would you like to treat?</h1>
-            <p style={{ ...body, marginTop: "0.8rem", maxWidth: "56ch" }}>Four questions, a few seconds each. At the end: the medicines a licensed U.S. physician can prescribe for it, with their typical onset and their price. Your answers stay in your browser.</p>
+            <div className="nx-sec-head">
+              <Progress n={1} />
+              <h1 id="quiz-q1" className="nx-dsh2">What would you like to treat?</h1>
+              <p className="nx-lede">Four questions, a few seconds each. At the end: the medicines a licensed U.S. physician can prescribe for it, with their typical onset and their price. Your answers stay in your browser.</p>
+            </div>
             <ul className="nx-quiz__options" role="list">
               {goals.map((g) => (
                 <li key={g}>
@@ -127,8 +125,10 @@ export default function Quiz() {
 
         {step === 1 && (
           <section className="nx-quiz__step" aria-labelledby="quiz-q2">
-            <Progress n={2} />
-            <h1 id="quiz-q2" style={h1}>How would you rather take it?</h1>
+            <div className="nx-sec-head">
+              <Progress n={2} />
+              <h1 id="quiz-q2" className="nx-dsh2">How would you rather take it?</h1>
+            </div>
             <ul className="nx-quiz__options" role="list">
               {ROUTES.map((r) => (
                 <li key={r.key}>
@@ -145,8 +145,10 @@ export default function Quiz() {
 
         {step === 2 && (
           <section className="nx-quiz__step" aria-labelledby="quiz-q3">
-            <Progress n={3} />
-            <h1 id="quiz-q3" style={h1}>How soon do you want to notice something?</h1>
+            <div className="nx-sec-head">
+              <Progress n={3} />
+              <h1 id="quiz-q3" className="nx-dsh2">How soon do you want to notice something?</h1>
+            </div>
             <ul className="nx-quiz__options" role="list">
               {ONSETS.map((o) => (
                 <li key={o.key}>
@@ -163,8 +165,10 @@ export default function Quiz() {
 
         {step === 3 && (
           <section className="nx-quiz__step" aria-labelledby="quiz-q4">
-            <Progress n={4} />
-            <h1 id="quiz-q4" style={h1}>One medicine, or a plan of several?</h1>
+            <div className="nx-sec-head">
+              <Progress n={4} />
+              <h1 id="quiz-q4" className="nx-dsh2">One medicine, or a plan of several?</h1>
+            </div>
             <ul className="nx-quiz__options" role="list">
               {SHAPES.map((s) => (
                 <li key={s.key}>
@@ -181,16 +185,18 @@ export default function Quiz() {
 
         {step === 4 && goal && result && (
           <section className="nx-quiz__result" aria-labelledby="quiz-result" data-testid="quiz-result">
-            <p style={kicker}>{CATEGORY_LABELS[goal]}</p>
-            <h1 id="quiz-result" style={h1}>For {CATEGORY_LABELS[goal].toLowerCase()}, a physician here can prescribe these.</h1>
-            <p style={{ ...body, marginTop: "0.8rem", maxWidth: "58ch" }}>{result.note ? `${result.note} ` : ""}{onsetLine} Each is compounded for you in a licensed U.S. pharmacy and dosed from your blood work.</p>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">{CATEGORY_LABELS[goal]}</p>
+              <h1 id="quiz-result" className="nx-dsh2">For {CATEGORY_LABELS[goal].toLowerCase()}, a physician here can prescribe these.</h1>
+              <p className="nx-lede">{result.note ? `${result.note} ` : ""}{onsetLine} Each is compounded for you in a licensed U.S. pharmacy and dosed from your blood work.</p>
+            </div>
             <div className="nx-quiz__tiles">
               {result.list.map((s, i) => <ProductTile key={s.slug} sku={s} index={i} detail testId={`quiz-sku-${s.slug}`} />)}
               {shape !== "one" && result.stack && <ProtocolTile stack={result.stack} index={result.list.length} testId={`quiz-stack-${result.stack.slug}`} />}
             </div>
             <div className="nx-quiz__next">
-              <p style={kicker}>What happens next</p>
-              <ol style={{ ...body, listStyle: "decimal", paddingLeft: "1.4rem", marginTop: "0.6rem" }}>
+              <p className="nx-eyebrow">What happens next</p>
+              <ol className="nx-prose" style={{ listStyle: "decimal", paddingLeft: "1.4rem", marginTop: "0.6rem" }}>
                 <li>The health questions. Your health history, current medicines and goals. A few minutes.</li>
                 <li>A licensed U.S. physician reviews them and prescribes, or explains why not.</li>
                 <li>Your medicine ships cold with an at-home blood kit. You draw before your first dose.</li>

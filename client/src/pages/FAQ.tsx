@@ -384,31 +384,14 @@ export default function FAQPage() {
               tabIndex={0}
             >
               <Reveal>
-                <p
-                  style={{
-                    fontFamily: F,
-                    fontSize: "var(--nx-t-2xs)",
-                    fontWeight: 500,
-                    letterSpacing: "var(--nx-ls-wide)",
-                    textTransform: "uppercase",
-                    color: "var(--nx-cobalt)",
-                    marginBottom: "0.625rem",
-                  }}
-                >
-                  {categories[activeCategory].label}
-                </p>
-                <h2
-                  style={{
-                    fontFamily: "var(--nx-font-display)",
-                    fontWeight: 500,
-                    fontSize: "var(--nx-t-h2)",
-                    color: "var(--nx-fg)",
-                    lineHeight: 1.15,
-                    marginBottom: "2rem",
-                  }}
-                >
-                  {categoryHeadings[categories[activeCategory].label] ?? `${categories[activeCategory].label} questions.`}
-                </h2>
+                <div className="nx-sec-head" style={{ marginBottom: "2rem" }}>
+                  <p className="nx-eyebrow">
+                    {categories[activeCategory].label}
+                  </p>
+                  <h2 className="nx-dsh2">
+                    {categoryHeadings[categories[activeCategory].label] ?? `${categories[activeCategory].label} questions.`}
+                  </h2>
+                </div>
 
                 <FaqAccordion key={activeCategory} items={categories[activeCategory].items} openFirst={false} />
               </Reveal>

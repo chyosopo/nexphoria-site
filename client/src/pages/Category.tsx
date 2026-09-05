@@ -335,14 +335,6 @@ const COPY: Partial<Record<PeptideCategory, GoalCopy>> = {
 };
 
 /* ── shared styles, the same ones the home page uses ── */
-const kicker: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
-  letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)",
-};
-const h2: React.CSSProperties = {
-  fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)",
-  lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance",
-};
 const body: React.CSSProperties = {
   fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "58ch",
 };
@@ -428,8 +420,10 @@ export default function Category() {
     return (
       <SiteLayout navVariant={world} footerVariant={world}>
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="category-notfound-title">
-          <p style={kicker}>Choose a goal</p>
-          <h1 id="category-notfound-title" style={{ ...h2, fontSize: "var(--nx-t-h1)", maxWidth: "18ch" }}>Coming soon. Here is what we treat today.</h1>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Choose a goal</p>
+            <h1 id="category-notfound-title" className="nx-dsh1" style={{ maxWidth: "18ch" }}>Coming soon. Here is what we treat today.</h1>
+          </div>
           <div className="mt-8 flex flex-wrap gap-2" role="list">
             {doors.map((d) => (
               <Link key={d.c} href={`/goals/${d.c}`} className="nx-chip" role="listitem" style={{ fontFamily: F }} data-testid={`cat-door-${d.c}`}>
@@ -452,8 +446,8 @@ export default function Category() {
       <section className="nx-hero-r3" aria-labelledby="category-hero-title"><div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 items-center">
           <div>
-            <p style={kicker} data-testid="cat-eyebrow">{cfg.short}</p>
-            <h1 id="category-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.06, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "18ch", marginTop: "0.9rem", textWrap: "balance" }} data-testid="cat-h1">
+            <p className="nx-eyebrow" data-testid="cat-eyebrow">{cfg.short}</p>
+            <h1 id="category-hero-title" className="nx-dsh1" style={{ maxWidth: "18ch", marginTop: "0.9rem" }} data-testid="cat-h1">
               {cfg.headline}
             </h1>
             <p style={{ ...body, fontSize: "var(--nx-t-lg)", marginTop: "1.1rem" }} data-testid="cat-sub">{cfg.sub}</p>
@@ -478,8 +472,10 @@ export default function Category() {
       <section style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-what-title">
         <div className="nx-container grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }}>
           <Reveal>
-            <p style={kicker}>How it works</p>
-            <h2 id="category-what-title" style={{ ...h2, maxWidth: "18ch" }} data-testid="cat-what">{cfg.what.title}</h2>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">How it works</p>
+              <h2 id="category-what-title" className="nx-dsh2" style={{ maxWidth: "18ch" }} data-testid="cat-what">{cfg.what.title}</h2>
+            </div>
           </Reveal>
           <Reveal delay={60}>
             <div style={{ display: "grid", gap: "1rem" }}>
@@ -505,10 +501,12 @@ export default function Category() {
       {/* ── 3. Choose ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-options-title">
         <Reveal>
-          <p style={kicker}>Medicines</p>
-          <h2 id="category-options-title" style={{ ...h2, maxWidth: "20ch" }}>
-            {skus.length === 1 ? "The medicine for this goal." : "The medicines for this goal."}
-          </h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Medicines</p>
+            <h2 id="category-options-title" className="nx-dsh2" style={{ maxWidth: "20ch" }}>
+              {skus.length === 1 ? "The medicine for this goal." : "The medicines for this goal."}
+            </h2>
+          </div>
         </Reveal>
         <Reveal><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ marginTop: "clamp(1.4rem,3vw,2.2rem)" }}>
           {skus.map((s, i) => (
@@ -530,9 +528,11 @@ export default function Category() {
       <section style={{ background: "var(--nx-ceramic)", borderTop: "1px solid var(--nx-border)", borderBottom: "1px solid var(--nx-border)" }} aria-labelledby="category-weeks-title">
         <div className="nx-container grid lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }}>
           <Reveal>
-            <p style={kicker}>What to expect</p>
-            <h2 id="category-weeks-title" style={{ ...h2, maxWidth: "16ch" }}>Your first {RETEST_WEEK} weeks.</h2>
-            <p style={{ ...body, marginTop: "1rem" }}>The blood kit ships with your first order and you draw at home before your first dose. Your physician sets your dose from the results, and the same {PANEL_TOTAL_MARKERS} markers are tested again at week {RETEST_WEEK}.</p>
+            <div className="nx-sec-head">
+              <p className="nx-eyebrow">What to expect</p>
+              <h2 id="category-weeks-title" className="nx-dsh2" style={{ maxWidth: "16ch" }}>Your first {RETEST_WEEK} weeks.</h2>
+              <p className="nx-lede">The blood kit ships with your first order and you draw at home before your first dose. Your physician sets your dose from the results, and the same {PANEL_TOTAL_MARKERS} markers are tested again at week {RETEST_WEEK}.</p>
+            </div>
           </Reveal>
           <Reveal delay={60}>
             <ol className="nx-timeline" data-testid="cat-weeks">
@@ -558,11 +558,13 @@ export default function Category() {
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="category-blood-title" data-testid="cat-blood">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]" style={{ gap: "clamp(1.4rem,3vw,2.6rem)" }}>
             <Reveal>
-              <p style={kicker}>Your week-{RETEST_WEEK} blood panel</p>
-              <h2 id="category-blood-title" style={{ ...h2, maxWidth: "18ch" }}>What your physician reads first.</h2>
-              <p style={{ ...body, marginTop: "1rem" }}>
-                The {PANEL_TOTAL_MARKERS}-marker blood test is included in your plan. These are the markers your physician reads first for this treatment, and why.
-              </p>
+              <div className="nx-sec-head">
+                <p className="nx-eyebrow">Your week-{RETEST_WEEK} blood panel</p>
+                <h2 id="category-blood-title" className="nx-dsh2" style={{ maxWidth: "18ch" }}>What your physician reads first.</h2>
+                <p className="nx-lede">
+                  The {PANEL_TOTAL_MARKERS}-marker blood test is included in your plan. These are the markers your physician reads first for this treatment, and why.
+                </p>
+              </div>
               {doseMarkers.map((d) => (
                 <p key={d.peptide} style={{ ...small, marginTop: "0.8rem" }}>Your {d.peptide} dose is set against your {d.marker}.</p>
               ))}
@@ -597,8 +599,10 @@ export default function Category() {
       {/* ── 7. Questions ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-band)", maxWidth: 860 }} aria-labelledby="category-faq-title">
         <Reveal>
-          <p style={kicker}>Questions</p>
-          <h2 id="category-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Questions</p>
+            <h2 id="category-faq-title" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Common questions.</h2>
+          </div>
           <div className="mt-6">
             {cfg.faqs.map((f, i) => (
               <details key={f.q} className="nx-faq-item" open={i === 0}>
@@ -645,7 +649,7 @@ export default function Category() {
       {/* ── Start ── */}
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="category-cta-title">
         <div className="nx-glass-card" style={{ padding: "var(--nx-sp-band)", textAlign: "center" }}>
-          <h2 id="category-cta-title" style={{ ...h2, marginTop: 0 }}>The next step is a physician.</h2>
+          <h2 id="category-cta-title" className="nx-dsh2">The next step is a physician.</h2>
           <p style={{ ...body, margin: "0.7rem auto 0" }}>A few health questions. A licensed U.S. physician reads them and decides whether this is right for you. If it is, your medication is made and shipped cold to your door.</p>
           <Link href={assessmentHref} className="nx-cta-cobalt inline-flex items-center gap-2 mt-6" data-testid="cat-cta-end">
             See if I'm eligible <ArrowRight size={17} strokeWidth={2} />

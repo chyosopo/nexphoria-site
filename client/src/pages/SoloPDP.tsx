@@ -215,7 +215,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           {/* LEFT */}
           <div>
             {/* ── 3 · What to expect ── */}
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>What to expect</h2>
+            <h2 className="nx-dsh3">What to expect</h2>
             <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
             <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
               {solo.timeline.map((t, i) => (
@@ -237,11 +237,11 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* ── 4 · Blood testing for this medicine, from data/monitoring.ts ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-blood-title" data-testid="solo-blood">
-              <h2 id="solo-blood-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+              <h2 id="solo-blood-title" className="nx-dsh3">
                 Blood testing for this medicine
               </h2>
               {monitoring && (
-                <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", marginTop: "0.9rem", maxWidth: "58ch" }}>{monitoring.why}</p>
+                <p className="nx-lede" style={{ marginTop: "0.9rem" }}>{monitoring.why}</p>
               )}
               {monitoring && (
                 <div className="nx-glass-tile" style={{ display: "block", marginTop: "1rem" }}>
@@ -258,7 +258,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* ── 5 · Who should not take it ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-contra-title">
-              <h2 id="solo-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Who should not take it</h2>
+              <h2 id="solo-contra-title" className="nx-dsh3">Who should not take it</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {solo.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -277,7 +277,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="solo-parties-title" data-testid="solo-parties">
-              <h2 id="solo-parties-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Who prescribes it, and who makes it</h2>
+              <h2 id="solo-parties-title" className="nx-dsh3">Who prescribes it, and who makes it</h2>
               <div style={{ marginTop: "1rem" }}>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Clinical care</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{PROVIDER_INFO.body}</p>
@@ -318,10 +318,10 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
       {/* ══ 9 · Other medicines ══ */}
       {related.length > 0 && (
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="solo-crosssell-title">
-          <h2 id="solo-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+          <h2 id="solo-crosssell-title" className="nx-dsh3">
             Other medicines
           </h2>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
+          <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
             Each comes with the same physician review and the same blood testing.
           </p>
           <Reveal><div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
@@ -332,8 +332,8 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ 10 · Closer ══ */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "4.5rem", textAlign: "center" }} aria-labelledby="solo-close-title">
-        <h2 id="solo-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.1 }}>The next step is a physician.</h2>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this medicine is right for you.</p>
+        <h2 id="solo-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>The next step is a physician.</h2>
+        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this medicine is right for you.</p>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ marginTop: "1.6rem" }}>See if I'm eligible</Link>
       </section>
     </SiteLayout>

@@ -13,14 +13,6 @@ import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import heroAbout from "@/assets/brand/hero-about.webp";
 
-const kicker: React.CSSProperties = {
-  fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
-  letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)",
-};
-const h2: React.CSSProperties = {
-  fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)",
-  lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance",
-};
 const body: React.CSSProperties = {
   fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "58ch",
 };
@@ -70,7 +62,7 @@ export default function About() {
       <section className="nx-hero-r3" data-testid="about-hero" aria-labelledby="about-h1">
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
           <Reveal>
-            <p style={kicker}>About</p>
+            <p className="nx-eyebrow">About</p>
             <h1 id="about-h1" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
               About Nexphoria.
             </h1>
@@ -85,13 +77,15 @@ export default function About() {
       </section>
 
       {/* ── What we offer ── */}
-      <section className="nx-container" aria-labelledby="about-offer" style={{ paddingTop: "var(--nx-sp-sec)" }} data-testid="about-offer">
+      <section className="nx-container nx-sec" aria-labelledby="about-offer" data-testid="about-offer">
         <Reveal>
-          <p style={kicker}>What we offer</p>
-          <h2 id="about-offer" style={{ ...h2, maxWidth: "20ch" }}>Twenty-two medicines and six protocols.</h2>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            Twenty-two compounded peptide medicines and six protocols, for {GOALS}. Each is listed with what it is for, how it works, how you take it, what to expect, and its price.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">What we offer</p>
+            <h2 id="about-offer" className="nx-dsh2" style={{ maxWidth: "20ch" }}>Twenty-two medicines and six protocols.</h2>
+            <p className="nx-lede">
+              Twenty-two compounded peptide medicines and six protocols, for {GOALS}. Each is listed with what it is for, how it works, how you take it, what to expect, and its price.
+            </p>
+          </div>
           <p style={{ ...body, marginTop: "0.8rem" }}>
             An at-home blood kit of {PANEL_TOTAL_MARKERS} markers ships with the first order and is drawn before the first dose. The same {PANEL_TOTAL_MARKERS} markers are tested again at week {RETEST_WEEK} on terms of three months and longer.
           </p>
@@ -107,10 +101,12 @@ export default function About() {
       </section>
 
       {/* ── Who is involved ── */}
-      <section className="nx-container" aria-labelledby="about-who" style={{ paddingTop: "var(--nx-sp-sec)" }} data-testid="about-who">
+      <section className="nx-container nx-sec" aria-labelledby="about-who" data-testid="about-who">
         <Reveal>
-          <p style={kicker}>Who is involved</p>
-          <h2 id="about-who" style={{ ...h2, maxWidth: "18ch" }}>Who is involved.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Who is involved</p>
+            <h2 id="about-who" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Who is involved.</h2>
+          </div>
         </Reveal>
         <ul style={{ listStyle: "none", margin: "1.4rem 0 0", padding: 0, display: "grid", gap: 10, maxWidth: 820 }}>
           <li style={card}>
@@ -133,13 +129,15 @@ export default function About() {
       </section>
 
       {/* ── Where we operate ── */}
-      <section className="nx-container" aria-labelledby="about-where" style={{ paddingTop: "var(--nx-sp-sec)" }} data-testid="about-where">
+      <section className="nx-container nx-sec" aria-labelledby="about-where" data-testid="about-where">
         <Reveal>
-          <p style={kicker}>Where we operate</p>
-          <h2 id="about-where" style={{ ...h2, maxWidth: "18ch" }}>Where we operate.</h2>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            Medicines ship to all 50 states. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Where we operate</p>
+            <h2 id="about-where" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Where we operate.</h2>
+            <p className="nx-lede">
+              Medicines ship to all 50 states. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.
+            </p>
+          </div>
           <p style={{ ...small, marginTop: "0.9rem" }}>
             <Link href="/legal/state-availability" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="about-state-link">State availability</Link>
           </p>
@@ -147,13 +145,15 @@ export default function About() {
       </section>
 
       {/* ── Contact ── */}
-      <section className="nx-container" aria-labelledby="about-contact" style={{ paddingTop: "var(--nx-sp-sec)" }} data-testid="about-contact-cta">
+      <section className="nx-container nx-sec" aria-labelledby="about-contact" data-testid="about-contact-cta">
         <Reveal>
-          <p style={kicker}>Contact</p>
-          <h2 id="about-contact" style={{ ...h2, maxWidth: "18ch" }}>Contact.</h2>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            Email <a href={`mailto:${BUSINESS.email}`} className="nx-text-link" style={{ fontWeight: 600 }}>{BUSINESS.email}</a> or call <a href={`tel:${BUSINESS.phoneE164}`} className="nx-text-link" style={{ fontWeight: 600 }}>{BUSINESS.phone}</a>.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Contact</p>
+            <h2 id="about-contact" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Contact.</h2>
+            <p className="nx-lede">
+              Email <a href={`mailto:${BUSINESS.email}`} className="nx-text-link" style={{ fontWeight: 600 }}>{BUSINESS.email}</a> or call <a href={`tel:${BUSINESS.phoneE164}`} className="nx-text-link" style={{ fontWeight: 600 }}>{BUSINESS.phone}</a>.
+            </p>
+          </div>
           <p style={{ ...small, marginTop: "0.9rem" }}>
             <Link href="/contact" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="about-contact-link">The contact page</Link>
           </p>
@@ -163,8 +163,10 @@ export default function About() {
       {/* ── Common questions ── */}
       <section className="nx-container nx-faq-section" aria-labelledby="about-faq-title" data-testid="about-faq">
         <Reveal>
-          <p style={kicker}>Questions</p>
-          <h2 id="about-faq-title" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Questions</p>
+            <h2 id="about-faq-title" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Common questions.</h2>
+          </div>
         </Reveal>
         <div className="nx-faq-list">
           {ABOUT_FAQ_ITEMS.map((it, i) => (

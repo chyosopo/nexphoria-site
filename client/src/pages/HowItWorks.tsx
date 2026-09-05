@@ -18,10 +18,6 @@ const kicker: React.CSSProperties = {
   fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600,
   letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)",
 };
-const h2: React.CSSProperties = {
-  fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)",
-  lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance",
-};
 const body: React.CSSProperties = {
   fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)", maxWidth: "58ch",
 };
@@ -96,7 +92,7 @@ export default function HowItWorks() {
         <div className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-band)" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
-              <p style={kicker}>How it works</p>
+              <p className="nx-eyebrow">How it works</p>
               <h1 id="hiw-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", maxWidth: "16ch", marginTop: "0.9rem" }}>
                 How it works.
               </h1>
@@ -116,10 +112,12 @@ export default function HowItWorks() {
       </section>
 
       {/* ── The five steps ── */}
-      <section className="nx-container" aria-labelledby="hiw-steps" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="hiw-steps">
         <Reveal>
-          <p style={kicker}>The steps</p>
-          <h2 id="hiw-steps" style={{ ...h2, maxWidth: "18ch" }}>Five steps.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">The steps</p>
+            <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Five steps.</h2>
+          </div>
         </Reveal>
         <ol style={{ listStyle: "none", margin: "clamp(1.6rem,3vw,2.4rem) 0 0", padding: 0, display: "grid", gap: 14, maxWidth: 820 }} data-testid="hiw-steps">
           {STEPS.map((s, i) => (
@@ -136,13 +134,15 @@ export default function HowItWorks() {
       </section>
 
       {/* ── Blood testing ── */}
-      <section className="nx-container" aria-labelledby="hiw-blood" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="hiw-blood">
         <Reveal>
-          <p style={kicker}>Blood testing</p>
-          <h2 id="hiw-blood" style={{ ...h2, maxWidth: "20ch" }}>A blood test before you start, and again at week {RETEST_WEEK}.</h2>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Blood testing</p>
+            <h2 id="hiw-blood" className="nx-dsh2" style={{ maxWidth: "20ch" }}>A blood test before you start, and again at week {RETEST_WEEK}.</h2>
+            <p className="nx-lede">
+              Terms of three months and longer include the week-{RETEST_WEEK} test. Six- and twelve-month terms add a six-month test, and twelve-month terms add a test each quarter. On its own the test is $149; a further test on a plan is $99.
+            </p>
+          </div>
           <p style={{ ...small, marginTop: "0.9rem" }}>
             <Link href="/labs" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-labs-link">Every marker, and the additional tests</Link>
           </p>
@@ -150,10 +150,12 @@ export default function HowItWorks() {
       </section>
 
       {/* ── Who is involved ── */}
-      <section className="nx-container" aria-labelledby="hiw-who" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="hiw-who">
         <Reveal>
-          <p style={kicker}>Who is involved</p>
-          <h2 id="hiw-who" style={{ ...h2, maxWidth: "18ch" }}>Who is involved.</h2>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Who is involved</p>
+            <h2 id="hiw-who" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Who is involved.</h2>
+          </div>
         </Reveal>
         <ul style={{ listStyle: "none", margin: "1.4rem 0 0", padding: 0, display: "grid", gap: 10, maxWidth: 820 }} data-testid="hiw-parties">
           {PARTIES.map((p) => (
@@ -166,13 +168,15 @@ export default function HowItWorks() {
       </section>
 
       {/* ── If the physician does not prescribe ── */}
-      <section className="nx-container" aria-labelledby="hiw-decline" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="hiw-decline">
         <Reveal>
-          <p style={kicker}>The decision</p>
-          <h2 id="hiw-decline" style={{ ...h2, maxWidth: "20ch" }}>If the physician does not prescribe.</h2>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            The physician explains why not. Nothing is compounded and nothing ships, and the refund policy sets out what is refunded.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">The decision</p>
+            <h2 id="hiw-decline" className="nx-dsh2" style={{ maxWidth: "20ch" }}>If the physician does not prescribe.</h2>
+            <p className="nx-lede">
+              The physician explains why not. Nothing is compounded and nothing ships, and the refund policy sets out what is refunded.
+            </p>
+          </div>
           <p style={{ ...small, marginTop: "0.9rem" }}>
             <Link href="/legal/refund-policy" className="nx-text-link" style={{ fontWeight: 600 }}>The refund policy</Link>
           </p>
@@ -180,13 +184,15 @@ export default function HowItWorks() {
       </section>
 
       {/* ── What it costs ── */}
-      <section className="nx-container" aria-labelledby="hiw-price" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="hiw-price">
         <Reveal>
-          <p style={kicker}>Price</p>
-          <h2 id="hiw-price" style={{ ...h2, maxWidth: "18ch" }}>What it costs.</h2>
-          <p style={{ ...body, marginTop: "1rem" }}>
-            One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">Price</p>
+            <h2 id="hiw-price" className="nx-dsh2" style={{ maxWidth: "18ch" }}>What it costs.</h2>
+            <p className="nx-lede">
+              One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
+            </p>
+          </div>
           <p style={{ ...small, marginTop: "0.9rem" }}>
             <Link href="/peptides" className="nx-text-link" style={{ fontWeight: 600 }} data-testid="hiw-pricing-all">Every medicine, with its price</Link>
           </p>

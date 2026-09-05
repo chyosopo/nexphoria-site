@@ -414,3 +414,19 @@ six families of peptides with how each class works and its members (derived from
 the catalog), the first 12 weeks, four plain cards on what a doctor screens for,
 FAQ, closer. 15,466px to 5,993px. Pending: Chiya's read; the same check on the
 other long pages if any dump the catalog.
+
+### 2026-09-05 · Phase 2: one design system (Chiya approved the delivery plan)
+Chiya, after the offer doc: "I don't see a plan or how you're gonna tackle
+everything." Agreed a five-phase delivery plan; she approved it and chose to
+start with the design system. "We came to help, not to sell" is corrected to an
+INTERNAL ethos (the mindset every decision passes), never public copy.
+Verified: canonical primitive classes added to index.css (.nx-eyebrow,
+.nx-dsh1/2/3, .nx-lede, .nx-prose, .nx-sec-head, .nx-sec, .nx-card), documented
+in docs/DESIGN-SYSTEM.md, and applied across the journey pages (home, catalog,
+protocols index, product, protocol, quiz, goal, labs, how-it-works, about, FAQ,
+what-happens-next, peptides-101) in place of ~26 drifting per-page inline style
+objects. Every section header, rhythm and card now reads from one source. No new
+literal; audit:design unchanged (fontSize 3 radius 0 shadow 5). Display-sized
+hero headings and structural/buy-box styles were left as-is by design.
+Pending: Phase 3 (page-by-page polish to the offer standard), Phase 4 (imagery,
+motion), Phase 5 (QA + launch). Failed: none.

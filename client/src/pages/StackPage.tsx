@@ -216,7 +216,7 @@ export default function StackPage({ slug }: { slug: string }) {
             </p>
 
             {/* ── 3 · What to expect ── */}
-            <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+            <h2 className="nx-dsh3" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               What to expect
             </h2>
             <div className="nx-timeline" style={{ marginTop: "1.4rem" }}>
@@ -235,10 +235,10 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 4 · Blood testing for this protocol ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-blood-title" data-testid="stack-blood">
-              <h2 id="stack-blood-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+              <h2 id="stack-blood-title" className="nx-dsh3">
                 Blood testing for this protocol
               </h2>
-              <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.9rem" }}>
+              <p className="nx-lede" style={{ marginTop: "0.9rem" }}>
                 A blood test before your first dose, and the same test at week 12.
               </p>
               {watch.length > 0 && (
@@ -255,7 +255,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 5 · Who should not take it ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-contra-title">
-              <h2 id="stack-contra-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Who should not take it</h2>
+              <h2 id="stack-contra-title" className="nx-dsh3">Who should not take it</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {stack.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -274,7 +274,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-parties-title" data-testid="stack-parties">
-              <h2 id="stack-parties-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>Who prescribes it, and who makes it</h2>
+              <h2 id="stack-parties-title" className="nx-dsh3">Who prescribes it, and who makes it</h2>
               <div style={{ marginTop: "1rem" }}>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>Clinical care</p>
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{PROVIDER_INFO.body}</p>
@@ -314,10 +314,10 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── 9 · The other protocols ── */}
       {otherStacks.length > 0 && (
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="stack-crosssell-title">
-          <h2 id="stack-crosssell-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)" }}>
+          <h2 id="stack-crosssell-title" className="nx-dsh3">
             The other protocols
           </h2>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "var(--nx-fg-graphite)", maxWidth: "58ch", marginTop: "0.5rem" }}>
+          <p className="nx-lede" style={{ marginTop: "0.5rem" }}>
             Each comes with the same physician review and the same blood testing.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{ gap: 14, marginTop: "1.4rem" }}>
@@ -355,11 +355,11 @@ export default function StackPage({ slug }: { slug: string }) {
       )}
 
       {/* ── 10 · Closer ── */}
-      <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }} aria-labelledby="stack-close-title">
-        <h2 id="stack-close-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", maxWidth: "22ch", margin: "0 auto", lineHeight: 1.12 }}>
+      <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-sec)", textAlign: "center" }} aria-labelledby="stack-close-title">
+        <h2 id="stack-close-title" className="nx-dsh2" style={{ maxWidth: "22ch", margin: "0 auto" }}>
           The next step is a physician.
         </h2>
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this protocol is right for you.</p>
+        <p className="nx-lede" style={{ maxWidth: "52ch", margin: "0.9rem auto 0" }}>A few health questions, read by a licensed U.S. physician, who decides whether this protocol is right for you.</p>
         <Link href="/assessment" className="nx-cta-cobalt" style={{ fontSize: "var(--nx-t-base)", padding: "14px 28px", marginTop: "1.6rem" }}>
           See if I'm eligible
         </Link>

@@ -15,8 +15,6 @@ import { SOLO_CATALOG, type SoloCategory } from "@/data/soloCatalog";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
-const kicker: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" };
-const h2: React.CSSProperties = { fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-fg)", lineHeight: 1.08, letterSpacing: "var(--nx-ls-tight)", marginTop: "0.7rem", textWrap: "balance" };
 const body: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.65, color: "var(--nx-fg-graphite)" };
 
 const WHAT = [
@@ -79,7 +77,7 @@ export default function Peptides101() {
 
       <section className="nx-container" style={{ paddingTop: "clamp(3.5rem, 9vh, 6rem)", paddingBottom: "var(--nx-sp-band)" }}>
         <Reveal>
-          <p style={kicker}>Peptides 101</p>
+          <p className="nx-eyebrow">Peptides 101</p>
           <h1 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1, letterSpacing: "var(--nx-ls-display)", color: "var(--nx-fg)", marginTop: "0.8rem", maxWidth: "14ch", textWrap: "balance" }}>
             What peptides are, and what ours do.
           </h1>
@@ -91,7 +89,7 @@ export default function Peptides101() {
 
       {/* what a peptide is */}
       <section className="nx-container" aria-labelledby="p101-what">
-        <Reveal><p style={kicker}>Start here</p><h2 id="p101-what" style={{ ...h2, maxWidth: "18ch" }}>What a peptide is.</h2></Reveal>
+        <Reveal><div className="nx-sec-head"><p className="nx-eyebrow">Start here</p><h2 id="p101-what" className="nx-dsh2" style={{ maxWidth: "18ch" }}>What a peptide is.</h2></div></Reveal>
         <ol className="nx-check-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }} data-testid="p101-what">
           {WHAT.map(([t, b], i) => (
             <Reveal key={t} delay={i * 80}>
@@ -109,9 +107,9 @@ export default function Peptides101() {
 
       {/* the four */}
       <section className="nx-container" aria-labelledby="p101-four">
-        <Reveal><p style={kicker}>The medicines we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>Six families, twenty-two medicines.</h2>
-          <p style={{ ...body, maxWidth: "60ch", marginTop: "1rem" }}>Every medicine here belongs to one of a few families. Once you know the family, the medicine makes sense. The catalog lists all twenty-two with what each is for and its price.</p>
-        </Reveal>
+        <Reveal><div className="nx-sec-head"><p className="nx-eyebrow">The medicines we prescribe</p><h2 id="p101-four" className="nx-dsh2" style={{ maxWidth: "22ch" }}>Six families, twenty-two medicines.</h2>
+          <p className="nx-lede">Every medicine here belongs to one of a few families. Once you know the family, the medicine makes sense. The catalog lists all twenty-two with what each is for and its price.</p>
+        </div></Reveal>
         <div className="nx-p101-families" data-testid="p101-four">
           {FAMILIES.map((fam, i) => {
             const members = membersOf(fam.cats);
@@ -134,7 +132,7 @@ export default function Peptides101() {
       {/* the first twelve weeks */}
       <section className="nx-steps-band" aria-labelledby="p101-twelve">
         <div className="nx-container">
-          <Reveal><p style={kicker}>The first {RETEST_WEEK} weeks</p><h2 id="p101-twelve" style={{ ...h2, maxWidth: "20ch" }}>What happens, week by week.</h2></Reveal>
+          <Reveal><div className="nx-sec-head"><p className="nx-eyebrow">The first {RETEST_WEEK} weeks</p><h2 id="p101-twelve" className="nx-dsh2" style={{ maxWidth: "20ch" }}>What happens, week by week.</h2></div></Reveal>
           <ol className="nx-steps" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }} data-testid="p101-twelve">
             {TWELVE.map(([when, t, b], i) => (
               <Reveal key={t} delay={i * 80}>
@@ -150,13 +148,15 @@ export default function Peptides101() {
       </section>
 
       {/* the honest part */}
-      <section className="nx-container" aria-labelledby="p101-honest" style={{ paddingTop: "var(--nx-sp-sec)" }}>
+      <section className="nx-container nx-sec" aria-labelledby="p101-honest">
         <Reveal>
-          <p style={kicker}>The honest part</p>
-          <h2 id="p101-honest" style={{ ...h2, maxWidth: "20ch" }}>Who it is for, and what is screened for.</h2>
-          <p style={{ ...body, maxWidth: "60ch", marginTop: "1rem" }}>
-            Peptides are for adults with a goal a doctor can help with. Because you start before any blood is drawn, your questionnaire carries the questions a doctor needs answered first. Some plans end there.
-          </p>
+          <div className="nx-sec-head">
+            <p className="nx-eyebrow">The honest part</p>
+            <h2 id="p101-honest" className="nx-dsh2" style={{ maxWidth: "20ch" }}>Who it is for, and what is screened for.</h2>
+            <p className="nx-lede">
+              Peptides are for adults with a goal a doctor can help with. Because you start before any blood is drawn, your questionnaire carries the questions a doctor needs answered first. Some plans end there.
+            </p>
+          </div>
         </Reveal>
         <ul className="nx-p101-screens" data-testid="p101-screens">
           {[
@@ -181,7 +181,7 @@ export default function Peptides101() {
       <SectionLine />
 
       <section className="nx-container nx-faq-section" aria-labelledby="p101-faq">
-        <Reveal><p style={kicker}>Asked by people new to this</p><h2 id="p101-faq" style={{ ...h2, maxWidth: "18ch" }}>Common questions.</h2></Reveal>
+        <Reveal><div className="nx-sec-head"><p className="nx-eyebrow">Asked by people new to this</p><h2 id="p101-faq" className="nx-dsh2" style={{ maxWidth: "18ch" }}>Common questions.</h2></div></Reveal>
         <div className="nx-faq-list" data-testid="p101-faq">
           {FAQ.map((it, i) => (
             <Reveal key={it.q} delay={i * 50}>
