@@ -3219,3 +3219,17 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 @media (min-width: 768px) {
   .nx-road--ritual { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* How it works in your body: three tiles with arrows between, stacking on
+   phones with the arrows turned to point down. */
+.nx-pathway { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+.nx-pathway__item { position: relative; display: flex; align-items: stretch; padding-right: 34px; }
+.nx-pathway__item:last-child { padding-right: 0; }
+.nx-pathway__item > .nx-glass-tile { flex: 1 1 auto; }
+.nx-pathway__arrow { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); color: var(--nx-cobalt); display: flex; }
+@media (max-width: 900px) {
+  .nx-pathway { grid-template-columns: 1fr; gap: 6px; }
+  .nx-pathway__item { flex-direction: column; padding-right: 0; padding-bottom: 28px; }
+  .nx-pathway__item:last-child { padding-bottom: 0; }
+  .nx-pathway__arrow { right: auto; left: 50%; top: auto; bottom: 2px; transform: translateX(-50%) rotate(90deg); }
+}

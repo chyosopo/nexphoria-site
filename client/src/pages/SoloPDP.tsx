@@ -36,6 +36,8 @@ import { InsideTheVial } from "@/components/InsideTheVial";
 import { Ritual } from "@/components/Ritual";
 import { WhatArrives } from "@/components/WhatArrives";
 import { CareCards } from "@/components/CareCards";
+import { Pathway } from "@/components/Pathway";
+import { Milestones } from "@/components/Milestones";
 
 /* SoloCategory → the category vocabulary (the deck: filters, tiles and goal
    pages all use the same words). */
@@ -228,22 +230,16 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </div>
             </section>
 
-            {/* ── 3 · What to expect ── */}
+            {/* ── 2b · How it works in your body: signal → where it acts → what changes ── */}
+            <section aria-labelledby="solo-how-title" data-testid="solo-how" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+              <h2 id="solo-how-title" className="nx-dsh3">How it works in your body</h2>
+              <Pathway slug={solo.slug} />
+            </section>
+
+            {/* ── 3 · What to expect: the horizon bar, then the milestones ── */}
             <h2 className="nx-dsh3" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>What to expect</h2>
             <div style={{ marginTop: "1rem" }}><ExpectTimeline slug={solo.slug} /></div>
-            <div className="nx-timeline" style={{ marginTop: "1.2rem" }}>
-              {solo.timeline.map((t, i) => (
-                <Reveal key={i} delay={i * 55}>
-                  <div className="nx-timeline-step" style={{ paddingBottom: i < solo.timeline.length - 1 ? "1.1rem" : 0 }}>
-                    <span className="nx-timeline-node" aria-hidden>{i + 1}</span>
-                    <div className="nx-glass-tile" style={{ display: "block" }}>
-                      <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
-                      <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.55, color: "var(--nx-fg-graphite)", marginTop: "0.35rem" }}>{t.effect}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <Milestones sku={solo} />
 
             {/* The evidence: what the studies found, stated as results, kept
                 because it teaches (Chiya 2026-09-04: we teach what it is good for). */}
