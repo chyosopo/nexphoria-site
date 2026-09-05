@@ -190,7 +190,7 @@ export default function Quiz() {
             </div>
             <div className="nx-quiz__next">
               <p style={kicker}>What happens next</p>
-              <ol style={{ ...body, paddingLeft: "1.2rem", marginTop: "0.6rem" }}>
+              <ol style={{ ...body, listStyle: "decimal", paddingLeft: "1.4rem", marginTop: "0.6rem" }}>
                 <li>The health questions. Your health history, current medicines and goals. A few minutes.</li>
                 <li>A licensed U.S. physician reviews them and prescribes, or explains why not.</li>
                 <li>Your medicine ships cold with an at-home blood kit. You draw before your first dose.</li>
