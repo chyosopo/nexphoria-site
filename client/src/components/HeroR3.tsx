@@ -1,17 +1,13 @@
-/* ═══ The R3 opening (the agency's direction, built on our content, 2026-09-04)
-   A full-bleed photograph under a navy tint, one glass card in the middle
-   with the claim and the two doors, and a row of four goal chips beneath
-   it. Copy is the house copy (data/hero); the grammar is theirs. */
+/* ═══ The R3 opening (2026-09-05, decluttered) ═══
+   One photograph under a navy tint, one glass card: the claim with the
+   rotating goal word, one subline, ONE action (see the treatments), and the
+   fact strip. The competing goal chips were removed (Chiya 2026-09-05: one
+   path, not five). Copy is the house copy (data/hero). */
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
-import { ArrowRight, Stethoscope, FlaskConical, Droplets, MonitorSmartphone, Snowflake, Wallet } from "lucide-react";
+import { Stethoscope, FlaskConical, Droplets, MonitorSmartphone, Snowflake, Wallet } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { HERO } from "@/data/hero";
-import { CATEGORY_LABELS, liveCategories, type PeptideCategory } from "@/data/peptides";
-import { OUTCOME_CATEGORY } from "@/data/outcomeImagery";
 import { track } from "@/lib/analytics";
-
-const QUICK: PeptideCategory[] = liveCategories(["metabolic", "growth", "sexual-health", "hormone", "recovery", "cognition"]).slice(0, 4);
 
 function RotatingWord({ words }: { words: string[] }) {
   const [i, setI] = useState(0);
@@ -44,8 +40,7 @@ export function HeroR3() {
           <h1 className="nx-r3-hero__h1" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</h1>
           <p className="nx-r3-hero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
           <div className="nx-r3-hero__cta">
-            <Link href={HERO.ctaHref} className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-quiz" })}>{HERO.cta}</Link>
-            <Link href="/how-it-works" className="nx-cta-ghost nx-cta-ghost--light" data-testid="frontdoor-hero-cta-assess">How it works</Link>
+            <a href="#treatments" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta" onClick={() => track("intake_cta", { source: "hero-treatments" })}>{HERO.cta}</a>
           </div>
           <ul className="nx-r3-hero__facts" aria-label="The facts" data-testid="hero-facts">
             {HERO.facts.map((f, i) => {
@@ -54,20 +49,6 @@ export function HeroR3() {
             })}
           </ul>
         </div>
-        <ul className="nx-r3-quick" aria-label="Start with a goal">
-          {QUICK.map((c, i) => {
-            const img = OUTCOME_CATEGORY.men[c] ?? OUTCOME_CATEGORY.women[c];
-            return (
-              <li key={c} style={{ ["--i" as string]: i }}>
-                <Link href={`/goals/${c}`} className="nx-glass nx-r3-quick__chip" data-testid={`hero-quick-${c}`}>
-                  {img && <img src={img} alt="" aria-hidden="true" loading="lazy" decoding="async" width={80} height={80} />}
-                  <span style={{ fontFamily: F }}>{CATEGORY_LABELS[c]}</span>
-                  <i aria-hidden="true"><ArrowRight size={14} strokeWidth={2.2} /></i>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );

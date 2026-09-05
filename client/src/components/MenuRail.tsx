@@ -9,7 +9,7 @@ import { Link } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { peptides, CATEGORY_LABELS, LIVE_CATEGORIES, liveCategories, type PeptideCategory } from "@/data/peptides";
-import { SOLO_CATALOG, type SoloPeptide } from "@/data/soloCatalog";
+import { SOLO_CATALOG, isSellable, type SoloPeptide } from "@/data/soloCatalog";
 import { ProductTile, ProtocolTile } from "@/components/ProductTile";
 import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
 
@@ -17,21 +17,18 @@ const ORDER = liveCategories(["metabolic", "growth", "hormone", "recovery", "lon
 
 export function MenuRail({ photo }: { photo: string }) {
   const [cat, setCat] = useState<PeptideCategory | "all" | "protocols">("all");
-  /* How you take it (alyverx.com filters its grid by injectable or not):
-     injection, nasal spray, or taken only on the day. */
-  const [route, setRoute] = useState<"any" | "injection" | "nasal" | "as-needed">("any");
-  const isNasal = (s: SoloPeptide) => s.route === "nasal" || /nasal spray/i.test(s.outcome);
-  const isAsNeeded = (s: SoloPeptide) => /as needed|before\./i.test(s.outcome);
   const rail = useRef<HTMLDivElement>(null);
   const items: SoloPeptide[] = peptides
     .filter((p) => cat === "all" || (cat !== "protocols" && p.category === cat))
     .map((p) => SOLO_CATALOG.find((s) => s.slug === p.slug))
     .filter((s): s is SoloPeptide => Boolean(s))
-    .filter((s) => route === "any" || (route === "nasal" ? isNasal(s) : route === "as-needed" ? isAsNeeded(s) : !isNasal(s)));
+    /* Live, buyable medicines lead; pending ones trail. A shopper should
+       land on what a physician can prescribe today (Chiya 2026-09-05). */
+    .sort((a, b) => Number(isSellable(b)) - Number(isSellable(a)));
   const scroll = (dir: 1 | -1) => rail.current?.scrollBy({ left: dir * Math.round(rail.current.clientWidth * 0.8), behavior: "smooth" });
 
   return (
-    <section className="nx-band" aria-labelledby="fd-formulary" data-testid="frontdoor-menu">
+    <section id="treatments" className="nx-band" aria-labelledby="fd-formulary" data-testid="frontdoor-menu" style={{ scrollMarginTop: 72 }}>
       <div className="nx-band__art" aria-hidden="true"><img src={photo} alt="" loading="lazy" decoding="async" /></div>
       <div className="nx-container nx-band__body">
         <div className="nx-band__head">
@@ -48,13 +45,6 @@ export function MenuRail({ photo }: { photo: string }) {
             <button key={c} role="tab" aria-selected={cat === c} className="nx-tab" onClick={() => setCat(c)} style={{ fontFamily: F }} data-testid={`menu-tab-${c}`}>{CATEGORY_LABELS[c]}</button>
           ))}
         </div>
-        {cat !== "protocols" && (
-          <div className="nx-tabs nx-tabs--route" role="tablist" aria-label="Filter by how you take it">
-            {([["any", "Any form"], ["injection", "Injection"], ["nasal", "Nasal spray"], ["as-needed", "Taken as needed"]] as const).map(([k, label]) => (
-              <button key={k} role="tab" aria-selected={route === k} className="nx-tab nx-tab--sm" onClick={() => setRoute(k)} style={{ fontFamily: F }} data-testid={`menu-route-${k}`}>{label}</button>
-            ))}
-          </div>
-        )}
         <Reveal><div className="nx-rail" ref={rail} data-testid="frontdoor-rail">
           {cat === "protocols" && FLAGSHIP_STACKS.map((st, i) => <ProtocolTile key={st.slug} stack={st} index={i} testId={`frontdoor-protocol-${st.slug}`} />)}
           {cat !== "protocols" && items.map((s, i) => <ProductTile key={s.slug} sku={s} index={i} testId={`frontdoor-sku-${s.slug}`} />)}

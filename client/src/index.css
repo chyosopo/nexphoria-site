@@ -3168,3 +3168,9 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-pdp-facts li { display: flex; align-items: flex-start; gap: .5rem; font-size: var(--nx-t-sm); color: var(--nx-fg-graphite); line-height: 1.4; }
 .nx-pdp-facts svg { color: var(--nx-cobalt); flex: 0 0 auto; margin-top: 2px; }
 @media (max-width: 480px) { .nx-pdp-facts { grid-template-columns: 1fr; } }
+
+/* ═══ The premise line (2026-09-05): one sentence of reasoning before the shop ═══ */
+.nx-premise { max-width: 52rem; padding-left: 1.2rem; border-left: 3px solid var(--nx-cobalt); }
+.nx-premise__k { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-fg-muted); }
+.nx-premise__t { margin: .5rem 0 0; font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.28; color: var(--nx-fg); letter-spacing: var(--nx-ls-snug); text-wrap: balance; }
+.nx-premise__link { margin-top: .9rem; display: inline-flex; align-items: center; gap: .35rem; }

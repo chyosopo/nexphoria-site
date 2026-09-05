@@ -274,3 +274,24 @@ Already in the voice. Align the step words to the five steps; nothing else.
   decides.
 - The menu is Treatments · Protocols · Blood testing · How it works · Find
   your medicine. The panels carry the medicines with their pictures and prices.
+
+## The home, decluttered (2026-09-05, Chiya)
+"Everything is a big mess. No clarity, no reasoning. It confuses customers."
+The home had five ways to browse the same catalog; three were the same goal
+picker. Now ONE path, shop-first:
+1. Hero: the rotating claim, one action ("See the treatments", scrolls to the
+   medicines), the fact strip. No goal chips, no second button.
+2. What this is: one sentence of reasoning before the shop, with "How peptides
+   work" to /peptides-101. "A peptide is a signal your body already makes. A
+   licensed physician prescribes the right one for your goal, and doses it
+   against your own blood work."
+3. The medicines (the menu rail, id="treatments"): the one and only browse,
+   goal tabs, no route filters on the home.
+4. How it works: the five steps.
+5. Why we test: "Your dose answers to a number, not a guess."
+6. Price: one statement, no table. "One monthly price. Everything within it."
+7. Common questions (now opens with "What is a peptide?").
+8. Closer: the same one action, "See the treatments".
+Removed from the home: the goal grid (GoalPicker), the example-plans band, the
+hero goal chips, the eight-row price table, the menu route filters. The files
+stay for reuse; the home does not stack them.

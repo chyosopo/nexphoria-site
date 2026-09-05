@@ -35,18 +35,17 @@ const PRICE = /\$\s?\d{2,}/;
 const CTA_SEL = '.nx-cta-cobalt:visible, .nx-cta-acid:visible, .nx-cta-ceramic:visible, [data-testid*="buybox"]:visible, [data-testid*="add-"]:visible';
 
 const PATHS = [
-  { name: "front door → goal → PDP", entry: "/", clicks: [
-    // was frontdoor-goal-recovery; recovery is retired under the launch scope
-    // and the tile no longer exists, so the selector matched nothing.
-    '[data-testid^="frontdoor-goal-"]',
-    'a[href*="/peptides/"]',
+  { name: "front door → medicines rail → PDP", entry: "/", clicks: [
+    // The home is one browse now (Chiya 2026-09-05): the medicines rail. The
+    // goal grid and the price table were removed as competing navigators.
+    '[data-testid^="frontdoor-sku-"]',
   ]},
   /* The Pricing nav item and /pricing page were retired 2026-09-04 (Chiya:
      price is a fact on the product page, never a page of its own). The path
      that replaces it: the home price table's rows link to a PDP, and the
      nav's Peptides item reaches every medicine with its figure. */
-  { name: "front door → price table row → PDP", entry: "/", clicks: ['[data-testid^="frontdoor-price-"]'] },
-  { name: "front door → every medicine → PDP", entry: "/", clicks: ['[data-testid="frontdoor-pricing-all"]', '[data-testid^="peptide-"]'] },
+  { name: "front door → complete list → catalog → PDP", entry: "/", clicks: ['[data-testid="frontdoor-menu-all"]', '[data-testid^="peptide-"]'] },
+  { name: "front door → every medicine, priced → catalog → PDP", entry: "/", clicks: ['[data-testid="frontdoor-pricing-all"]', '[data-testid^="peptide-"]'] },
   /* The two per-world home paths are retired with the men/women split
      (2026-08-13). /men and /women now REDIRECT to the single home, so their
      goal-tile selectors no longer exist — which is what this gate correctly
@@ -56,13 +55,11 @@ const PATHS = [
      asserted to land somewhere that reaches price + buy. Those URLs are in the
      wild and possibly indexed, so an arriving visitor must still complete the
      funnel — a redirect into a dead end would be invisible otherwise. */
-  { name: "legacy /men redirect → goal → PDP", entry: "/men", clicks: [
-    '[data-testid^="frontdoor-goal-"]',
-    'a[href*="/peptides/"]',
+  { name: "legacy /men redirect → medicines rail → PDP", entry: "/men", clicks: [
+    '[data-testid^="frontdoor-sku-"]',
   ]},
-  { name: "legacy /women redirect → goal → PDP", entry: "/women", clicks: [
-    '[data-testid^="frontdoor-goal-"]',
-    'a[href*="/peptides/"]',
+  { name: "legacy /women redirect → medicines rail → PDP", entry: "/women", clicks: [
+    '[data-testid^="frontdoor-sku-"]',
   ]},
   { name: "catalog → PDP", entry: "/peptides", clicks: ['[data-testid^="peptide-"]'] },
   { name: "protocols index → stack page", entry: "/stacks", clicks: ['a[href*="/stacks/"]:not([href$="/stacks"]):not([href*="build"])'] },

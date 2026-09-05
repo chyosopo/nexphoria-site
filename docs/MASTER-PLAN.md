@@ -390,3 +390,17 @@ example, not a patient record. Each product hero carries a four-fact strip with
 an icon each (physician, blood test included, U.S. pharmacy, cold shipping).
 Both in Porcelain & Navy on tokens; audit:design unchanged (fontSize 3 radius 0
 shadow 5). Pending: Chiya's read.
+
+### 2026-09-05 · The home, decluttered to one path
+Chiya: "Everything is a big mess. No clarity, no reasoning. It confuses
+customers." The home carried five browses of one catalog (hero goal chips, the
+goal grid, the medicines rail, the example plans, an eight-row price table),
+three of them the same goal picker. Rebuilt to one path: hero (one action, the
+fact strip, no goal chips) → one sentence of reasoning with a link to learn →
+the medicines rail as the single browse (goal tabs, no route filters, live
+medicines first) → how it works → why we test → price as a statement → common
+questions (opening "What is a peptide?") → the same one action. Removed from the
+home: GoalPicker, ExamplePlans, the hero chips, the price table, the rail route
+filters (files kept for reuse). audit:funnel repointed to the rail. See the deck
+"The home, decluttered". Pending: the same one-path discipline on the goal and
+category pages if they read cluttered; Chiya's read.

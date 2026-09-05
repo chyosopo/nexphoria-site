@@ -19,9 +19,8 @@ export const HERO = {
   lead: "Peptide therapy, prescribed for your",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "desire"],
   subline:
-    "Twenty-two compounded peptide medicines for weight, body composition, recovery, sleep, focus, hormones and sexual health. A licensed U.S. physician reviews your health history, prescribes if it is appropriate, and adjusts your dose from a blood test at week 12. One monthly price covers the medicine, the physician and the blood work.",
-  cta: "Find your medicine",
-  ctaHref: "/quiz",
+    "Twenty-two prescription peptides for weight, recovery, sleep, focus, hormones and skin. A licensed U.S. physician prescribes the right one for you and doses it against your own blood work.",
+  cta: "See the treatments",
   ctaSecondary: "How it works",
   micro: "Prescribed by licensed U.S. physicians. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons (2026-09-05, after alyverx.com):
