@@ -3438,3 +3438,11 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 /* chips on the product tile read solid over the glass */
 .nx-tile--pdp .nx-chip { background: color-mix(in srgb, var(--nx-ceramic) 92%, transparent); color: var(--nx-fg); }
 .nx-tile--pdp .nx-chip--accent { background: var(--nx-cobalt); color: var(--nx-ceramic); }
+
+/* the protocol tiles on the index */
+.nx-tile--proto { aspect-ratio: 4 / 3; }
+.nx-tile--proto img { object-position: 50% 30%; }
+.nx-tile--proto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--nx-bg-dark) 88%, transparent) 78%, var(--nx-bg-dark) 100%); pointer-events: none; }
+.nx-tile__foot--proto { gap: .45rem; }
+.nx-tile__foot--proto .nx-tile__t { font-size: var(--nx-t-h3); }
+@media (max-width: 900px) { .nx-tile--proto { aspect-ratio: 4 / 3.4; } }

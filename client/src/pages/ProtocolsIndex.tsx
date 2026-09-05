@@ -8,15 +8,13 @@ import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/EnterprisePatterns";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
+import { PROTO_TILE } from "@/lib/studioTiles";
 import { FLAGSHIP_STACKS, usd, stackReservable, SAME_JOB, PAIRS_WELL } from "@/data/stacksCatalog";
 import { soloByName } from "@/data/soloCatalog";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
-import { ArrowRight, Lock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
-import { stackArt, outcomeSrcSet } from "@/data/outcomeImagery";
-import vialLineupHero from "@/assets/brand/vial-lineup-hero.webp";
-import vialLineupMaster from "@/assets/brand/vial-lineup-master.webp";
 
 /* Filter chips in the deck's category vocabulary (the same words as the
    goal tiles and the catalog filters). Each chip matches a protocol by
@@ -91,22 +89,14 @@ export default function ProtocolsIndex() {
 
   return (
     <SiteLayout navVariant={world} footerVariant={world}>
-      <section className="nx-hero-r3 relative" style={{ overflow: "hidden" }} aria-labelledby="protocols-hero-title">
-        <div className="nx-container relative" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-tight)", zIndex: 1 }}>
-          <div className="nx-hero-split nx-hero-seq">
-            <div className="nx-sec-head">
-              <p className="nx-eyebrow">Protocols</p>
-              <h1 id="protocols-hero-title" className="nx-dsh1" style={{ maxWidth: "16ch" }}>
-                Protocols. Medicines prescribed together, on one plan.
-              </h1>
-              <p className="nx-lede" style={{ maxWidth: "50ch" }}>
-                A protocol is two to four medicines a physician prescribes together, with one panel before the first dose and the same panel at week {RETEST_WEEK}. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
-              </p>
-            </div>
-            <div className="nx-hero-media nx-hero-frame nx-hero-bleed" style={{ position: "relative", aspectRatio: "5 / 4" }}>
-              <img src={vialLineupHero} alt="The Nexphoria protocol vial lineup" fetchPriority="high" width={1600} height={1280} />
-              <div className="nx-gradient-overlay tint" aria-hidden />
-            </div>
+      <section className="nx-tilehero" aria-labelledby="protocols-hero-title">
+        <div className="nx-container">
+          <div className="nx-tilehero__head nx-hero-seq">
+            <p className="nx-eyebrow">Protocols</p>
+            <h1 id="protocols-hero-title" className="nx-tilehero__h1 nx-shout" style={{ fontFamily: S }}>Prescribed together.</h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
+              A protocol is two to four medicines a physician prescribes together, with one panel before the first dose and the same panel at week {RETEST_WEEK}. Prescribed by licensed U.S. physicians and compounded in a licensed U.S. pharmacy.
+            </p>
           </div>
         </div>
       </section>
@@ -129,42 +119,26 @@ export default function ProtocolsIndex() {
         </p>
       </section>
 
-      {/* grid — compact floating product tiles (hims pattern) */}
+      {/* the protocols, as tiles: the medicines of each rendered together on its goal-toned panel */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }} aria-label="Protocols">
-        <div className="nx-float-grid">
+        <div className="nx-tiles nx-tiles--2" style={{ marginTop: 0 }}>
           {shown.map((s, i) => {
             const rec = s.cadences.length ? Math.min(...s.cadences.map((c) => c.perMonth ?? c.total)) : undefined;
             const reservable = stackReservable(s);
+            const art = PROTO_TILE[s.slug];
             return (
-              <Reveal key={s.slug} delay={i * 45}>
-                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-float-card">
-                  <div className="nx-float-card__media">
-                    {stackArt(s.slug, world) && (
-                      <img
-                        src={stackArt(s.slug, world)}
-                        srcSet={outcomeSrcSet(stackArt(s.slug, world)!)}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        alt="" aria-hidden loading="lazy" width={1632} height={2048}
-                      />
-                    )}
-                    {s.gated && (
-                      <span className="nx-float-badge"><Lock size={10} aria-hidden="true" /> Assessed</span>
-                    )}
-                    {reservable && (
-                      <span className="nx-float-badge">Pending</span>
-                    )}
-                  </div>
-                  <div className="nx-float-card__body">
-                    <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", fontWeight: 700, letterSpacing: "var(--nx-ls-caps)", textTransform: "uppercase", color: "var(--nx-fg-muted)" }}>{s.category}</p>
-                    <h2 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)", lineHeight: 1.15, marginTop: "0.3rem" }}>{s.name}</h2>
-                    <p className="nx-line-2" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", lineHeight: 1.4, color: "var(--nx-fg-muted)", marginTop: "0.25rem" }}>{s.tagline}</p>
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: "auto", paddingTop: "0.85rem" }}>
-                      <span style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
-                        {s.gated ? "Priced at consultation" : rec ? `From ${usd(rec)}/mo` : ""}
-                      </span>
-                      <ArrowRight size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
-                    </div>
-                  </div>
+              <Reveal key={s.slug} delay={i * 45} className="nx-tiles__item">
+                <Link href={`/stacks/${s.slug}`} data-testid={`protocol-${s.slug}`} className="nx-tile nx-tile--dark nx-tile--proto">
+                  {art && <img src={art.src} srcSet={`${art.src600} 600w, ${art.src} 1200w`} sizes="(max-width: 900px) 100vw, 50vw" alt={`The medicines of the ${s.name.toLowerCase()}`} loading={i < 2 ? "eager" : "lazy"} decoding="async" width={1200} height={900} />}
+                  <span className="nx-chips nx-chips--tile" aria-hidden="true">
+                    <span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{s.category}</span>
+                    <span className="nx-chip" style={{ fontFamily: F }}>{s.gated ? "Assessed" : reservable ? "Pending" : "Rx"}</span>
+                  </span>
+                  <span className="nx-tile__foot nx-tile__foot--proto">
+                    <span className="nx-tile__t nx-shout" style={{ fontFamily: S }}>{s.name}</span>
+                    <span className="nx-tile__b" style={{ fontFamily: F }}>{s.tagline}</span>
+                    <span className="nx-tile__btn nx-tile__btn--static" style={{ fontFamily: F }}>{s.gated ? "Priced at consultation" : rec ? `Shop the protocol · from ${usd(rec)}/mo` : "Shop the protocol"}</span>
+                  </span>
                 </Link>
               </Reveal>
             );
@@ -228,18 +202,20 @@ export default function ProtocolsIndex() {
         </div>
       </section>
 
-      {/* the closer: the health questions choose */}
-      <section style={{ background: "var(--nx-bg-dark)", padding: "var(--nx-sp-band) 0" }} aria-labelledby="protocols-assess-title">
-        <div className="nx-container" style={{ textAlign: "center" }}>
-          <h2 id="protocols-assess-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: "0.8rem auto 0", lineHeight: 1.12 }}>
-            Which one, is the physician's call.
-          </h2>
-          <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.7, color: "var(--nx-acid)", opacity: 0.85, maxWidth: "52ch", margin: "1rem auto 0" }}>
-            The health questions state what is being treated. A licensed physician chooses the protocol, or a single medicine if that fits better.
-          </p>
-          <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
-            How it works
-          </Link>
+      {/* the closer, as one tile */}
+      <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="protocols-assess-title">
+        <div className="nx-closer-tile">
+          <div>
+            <h2 id="protocols-assess-title" className="nx-shout" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "16ch", margin: 0 }}>
+              Which one is the physician's call.
+            </h2>
+            <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>
+              The health questions state what is being treated. A licensed physician chooses the protocol, or a single medicine if that fits better.
+            </p>
+            <Link href="/how-it-works" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.6rem" }} data-testid="proto-assess-cta">
+              How it works
+            </Link>
+          </div>
         </div>
       </section>
     </SiteLayout>
