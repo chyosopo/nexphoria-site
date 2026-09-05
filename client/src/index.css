@@ -3174,3 +3174,10 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-premise__k { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-fg-muted); }
 .nx-premise__t { margin: .5rem 0 0; font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.28; color: var(--nx-fg); letter-spacing: var(--nx-ls-snug); text-wrap: balance; }
 .nx-premise__link { margin-top: .9rem; display: inline-flex; align-items: center; gap: .35rem; }
+
+/* ═══ Peptides 101: families and screens (2026-09-05, decluttered) ═══ */
+.nx-p101-families { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1rem; margin-top: clamp(1.6rem, 3vw, 2.4rem); }
+.nx-p101-fam { display: flex; flex-direction: column; padding: 1.5rem 1.6rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }
+.nx-p101-fam .nx-text-link { margin-top: auto; }
+.nx-p101-screens { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .8rem; }
+.nx-p101-screen { padding: 1.2rem 1.4rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); }

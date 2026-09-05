@@ -9,11 +9,10 @@ import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { SectionLine } from "@/components/SectionLine";
-import { SkuPhoto } from "@/components/SkuPhoto";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
-import { SOLO_CATALOG } from "@/data/soloCatalog";
-import { monitoringFor, RETEST_WEEK } from "@/data/monitoring";
+import { SOLO_CATALOG, type SoloCategory } from "@/data/soloCatalog";
+import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
 const kicker: React.CSSProperties = { fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" };
@@ -25,6 +24,27 @@ const WHAT = [
   ["A peptide is a message your body already sends.", "Insulin is a peptide. So is the signal that tells you that you are full, and the one that tells your body to release growth hormone. A prescription peptide is a precise copy of one of those messages."],
   ["A prescription peptide is prescribed, made for you and monitored.", "A licensed U.S. doctor decides whether one fits you, a licensed U.S. pharmacy makes it for you, and at week twelve your blood shows your doctor what it changed."],
 ] as const;
+
+/* The families a newcomer can actually hold in their head, instead of a wall
+   of twenty-two. Each teaches how that class works; the member names and the
+   count come from the catalog, so this can never drift from what we carry. */
+const FAMILIES: { name: string; how: string; cats: SoloCategory[]; goal: string }[] = [
+  { name: "GLP-1 medicines", cats: ["Metabolic"], goal: "metabolic",
+    how: "A GLP-1 is a hormone your gut releases after you eat. It tells your brain you are full and steadies your blood sugar. These medicines are a longer-lasting version of that signal, so you feel full sooner and think about food less." },
+  { name: "Growth hormone peptides", cats: ["Growth"], goal: "growth",
+    how: "Your body releases growth hormone in pulses, mostly while you sleep. These peptides prompt those pulses, so your body makes more of its own rather than taking it from outside. Best studied for abdominal fat and lean mass." },
+  { name: "Repair peptides", cats: ["Recovery"], goal: "recovery",
+    how: "When tissue is injured, your body sends a repair signal and moves repair cells to the site. These peptides are studied for both halves of that, for tendons, muscle, joints and the gut lining." },
+  { name: "Focus, mood and sleep", cats: ["Cognitive", "Sleep"], goal: "cognition",
+    how: "Some peptides act on the brain: on the proteins it uses to build connections, on its stress response, and on the sleep cycle. Two are nasal sprays; the sleep one is taken at night." },
+  { name: "Longevity and skin", cats: ["Skin & Longevity"], goal: "skin",
+    how: "These work at the cellular level: the coenzyme every cell uses for energy, the signals mitochondria send, and the copper peptide behind collagen and skin repair." },
+  { name: "Hormones and sexual health", cats: ["Hormone", "Sexual Health"], goal: "hormone",
+    how: "Testosterone replacement, dosed against your own blood work, with a peptide that keeps your own production working underneath it; and, for desire and function, medicines taken on the day you choose." },
+];
+
+const membersOf = (cats: SoloCategory[]) =>
+  SOLO_CATALOG.filter((s) => cats.includes(s.category)).map((s) => s.name);
 
 const TWELVE = [
   ["Before day 1", "Your blood kit.", `Your medicine ships cold with an at-home blood kit of ${PANEL_TOTAL_MARKERS} markers, included. You draw before your first dose and your doctor sets the dose from the results.`],
@@ -89,27 +109,19 @@ export default function Peptides101() {
 
       {/* the four */}
       <section className="nx-container" aria-labelledby="p101-four">
-        <Reveal><p style={kicker}>The medicines we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>What each one is for, and what the week-{RETEST_WEEK} panel measures.</h2></Reveal>
-        <div style={{ display: "grid", gap: "clamp(1rem, 2vw, 1.4rem)", marginTop: "clamp(1.6rem, 3vw, 2.4rem)" }} data-testid="p101-four">
-          {SOLO_CATALOG.map((s, i) => {
-            const m = monitoringFor(s.slug);
+        <Reveal><p style={kicker}>The medicines we prescribe</p><h2 id="p101-four" style={{ ...h2, maxWidth: "22ch" }}>Six families, twenty-two medicines.</h2>
+          <p style={{ ...body, maxWidth: "60ch", marginTop: "1rem" }}>Every medicine here belongs to one of a few families. Once you know the family, the medicine makes sense. The catalog lists all twenty-two with what each is for and its price.</p>
+        </Reveal>
+        <div className="nx-p101-families" data-testid="p101-four">
+          {FAMILIES.map((fam, i) => {
+            const members = membersOf(fam.cats);
             return (
-              <Reveal key={s.slug} delay={i * 60}>
-                <article className="nx-p101-card" data-testid={`p101-${s.slug}`}>
-                  <div className="nx-p101-photo"><SkuPhoto slug={s.slug} name={s.name} className="nx-sku-img nx-sku-img--card" /></div>
-                  <div>
-                    <p style={kicker}>{s.category}</p>
-                    <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.1, marginTop: "0.4rem" }}>{s.name}. <em style={{ color: "var(--nx-cobalt)" }}>{s.outcome}</em></h3>
-                    <p style={{ ...body, marginTop: "0.8rem", maxWidth: "62ch" }}>{s.mechanism}</p>
-                    {m && (
-                      <p style={{ ...body, fontSize: "var(--nx-t-sm)", marginTop: "0.8rem", maxWidth: "62ch" }}>
-                        <span style={{ fontWeight: 600, color: "var(--nx-fg)" }}>At week {RETEST_WEEK} your doctor reads first:</span> {m.watch.join(", ")}. {m.why}
-                      </p>
-                    )}
-                    <Link href={`/peptides/${s.slug}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.9rem", display: "inline-block" }}>
-                      See {s.name}, the plan and the price
-                    </Link>
-                  </div>
+              <Reveal key={fam.name} delay={i * 60}>
+                <article className="nx-p101-fam">
+                  <h3 style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h3)", color: "var(--nx-fg)", lineHeight: 1.1 }}>{fam.name}</h3>
+                  <p style={{ ...body, marginTop: "0.7rem" }}>{fam.how}</p>
+                  <p style={{ ...body, fontSize: "var(--nx-t-sm)", color: "var(--nx-fg-muted)", marginTop: "0.8rem" }}>{members.slice(0, 4).join(" · ")}{members.length > 4 ? " and more" : ""}</p>
+                  <Link href={`/goals/${fam.goal}`} className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "0.8rem", display: "inline-block" }}>See these medicines</Link>
                 </article>
               </Reveal>
             );
@@ -146,22 +158,21 @@ export default function Peptides101() {
             Peptides are for adults with a goal a doctor can help with. Because you start before any blood is drawn, your questionnaire carries the questions a doctor needs answered first. Some plans end there.
           </p>
         </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 14, marginTop: "1.6rem" }} data-testid="p101-screens">
-          {SOLO_CATALOG.map((s, i) => {
-            const m = monitoringFor(s.slug);
-            if (!m) return null;
-            return (
-              <Reveal key={s.slug} delay={i * 60}>
-                <div style={{ background: "var(--nx-ceramic)", border: "1px solid var(--nx-border)", borderRadius: "var(--nx-r-lg)", padding: "1.2rem 1.4rem", height: "100%" }}>
-                  <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{s.name}: what your doctor asks</p>
-                  <ul style={{ margin: "0.6rem 0 0", padding: "0 0 0 1.1rem", display: "grid", gap: 4 }}>
-                    {m.intakeScreens.map((q) => <li key={q} style={{ ...body, fontSize: "var(--nx-t-sm)" }}>{q}</li>)}
-                  </ul>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+        <ul className="nx-p101-screens" data-testid="p101-screens">
+          {[
+            ["Your history", "Any cancer now or in the past, and any heart, liver or kidney condition."],
+            ["Pregnancy", "Whether you are pregnant, breastfeeding or planning to be."],
+            ["Your medicines", "Everything you already take, so nothing interacts."],
+            ["Your goal", "What you are treating, so the doctor matches the medicine to it, or says none fits."],
+          ].map(([t, b], i) => (
+            <Reveal key={t} delay={i * 60}>
+              <li className="nx-p101-screen">
+                <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", color: "var(--nx-fg)" }}>{t}</p>
+                <p style={{ ...body, fontSize: "var(--nx-t-sm)", marginTop: "0.3rem" }}>{b}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ul>
         <p style={{ ...body, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.2rem", maxWidth: "70ch" }}>
           Compounded medications are prepared for you by a licensed 503A pharmacy under a physician's prescription. They are not FDA-approved drugs, and they are not the branded products. Educational content, not medical advice.
         </p>

@@ -404,3 +404,13 @@ home: GoalPicker, ExamplePlans, the hero chips, the price table, the rail route
 filters (files kept for reuse). audit:funnel repointed to the rail. See the deck
 "The home, decluttered". Pending: the same one-path discipline on the goal and
 category pages if they read cluttered; Chiya's read.
+
+### 2026-09-05 · Peptides 101 was a catalog dump; now it teaches
+The teaching page (the home's "How peptides work" link) rendered 15,466px: it
+listed all 22 medicines with full mechanism paragraphs (8,935px), then listed
+all 22 again with their intake screens (2,176px). A "what is a peptide" page had
+become the whole catalog, twice. Rebuilt to teach: what a peptide is (3 cards),
+six families of peptides with how each class works and its members (derived from
+the catalog), the first 12 weeks, four plain cards on what a doctor screens for,
+FAQ, closer. 15,466px to 5,993px. Pending: Chiya's read; the same check on the
+other long pages if any dump the catalog.
