@@ -115,6 +115,12 @@ export function Footer({ variant = "shared" }: FooterProps) {
 
   return (
     <footer className="nx-footer" data-testid="footer">
+      {/* The wordmark, set large (enhanced.com study, 2026-09-05): the name
+          once, at the size of the page, above the columns. Decorative; the
+          logo below carries the accessible name. */}
+      <div className="nx-container nx-footer__mark" aria-hidden="true">
+        <span style={{ fontFamily: "'General Sans', system-ui, sans-serif" }}>NEXPHORIA</span>
+      </div>
       <div className="nx-container py-16">
         {/* Top row — brand/newsletter (left) + 4 nav columns (right) */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_2.6fr] gap-12 pb-12 border-b" style={{ borderColor: "rgba(255,255,255,0.1)" }}>

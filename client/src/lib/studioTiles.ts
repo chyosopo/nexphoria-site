@@ -74,6 +74,31 @@ import goal_hormone_600 from "@/assets/studio/pdp/goal-hormone-600.webp";
 import goal_skin from "@/assets/studio/pdp/goal-skin.webp";
 import goal_skin_600 from "@/assets/studio/pdp/goal-skin-600.webp";
 
+import proto_recover_wide from "@/assets/studio/proto/proto-recover-wide.webp";
+import proto_recover_wide_1200 from "@/assets/studio/proto/proto-recover-wide-1200.webp";
+import proto_recover from "@/assets/studio/proto/proto-recover.webp";
+import proto_recover_600 from "@/assets/studio/proto/proto-recover-600.webp";
+import proto_ascend_wide from "@/assets/studio/proto/proto-ascend-wide.webp";
+import proto_ascend_wide_1200 from "@/assets/studio/proto/proto-ascend-wide-1200.webp";
+import proto_ascend from "@/assets/studio/proto/proto-ascend.webp";
+import proto_ascend_600 from "@/assets/studio/proto/proto-ascend-600.webp";
+import proto_lucidity_wide from "@/assets/studio/proto/proto-lucidity-wide.webp";
+import proto_lucidity_wide_1200 from "@/assets/studio/proto/proto-lucidity-wide-1200.webp";
+import proto_lucidity from "@/assets/studio/proto/proto-lucidity.webp";
+import proto_lucidity_600 from "@/assets/studio/proto/proto-lucidity-600.webp";
+import proto_ignite_wide from "@/assets/studio/proto/proto-ignite-wide.webp";
+import proto_ignite_wide_1200 from "@/assets/studio/proto/proto-ignite-wide-1200.webp";
+import proto_ignite from "@/assets/studio/proto/proto-ignite.webp";
+import proto_ignite_600 from "@/assets/studio/proto/proto-ignite-600.webp";
+import proto_vitality_wide from "@/assets/studio/proto/proto-vitality-wide.webp";
+import proto_vitality_wide_1200 from "@/assets/studio/proto/proto-vitality-wide-1200.webp";
+import proto_vitality from "@/assets/studio/proto/proto-vitality.webp";
+import proto_vitality_600 from "@/assets/studio/proto/proto-vitality-600.webp";
+import proto_foundation_wide from "@/assets/studio/proto/proto-foundation-wide.webp";
+import proto_foundation_wide_1200 from "@/assets/studio/proto/proto-foundation-wide-1200.webp";
+import proto_foundation from "@/assets/studio/proto/proto-foundation.webp";
+import proto_foundation_600 from "@/assets/studio/proto/proto-foundation-600.webp";
+
 export interface StudioTile { src: string; src600: string }
 export const PDP_TILE: Record<string, StudioTile> = {
   "sermorelin": { src: pdp_sermorelin, src600: pdp_sermorelin_600 },
@@ -121,3 +146,21 @@ export const CATEGORY_TILE: Record<SoloCategory, StudioTile> = {
 };
 /* Which goals read light (navy type) and which read dark (ceramic type). */
 export const TILE_DARK: Record<SoloCategory, boolean> = { Metabolic: false, Growth: true, "Sexual Health": true, Recovery: false, "Skin & Longevity": false, Cognitive: true, Sleep: true, Hormone: true };
+
+/* The protocols: every medicine of the protocol on one panel (scene-protocols.mjs). */
+export const PROTO_WIDE: Record<string, { src: string; src1200: string }> = {
+  recover: { src: proto_recover_wide, src1200: proto_recover_wide_1200 },
+  ascend: { src: proto_ascend_wide, src1200: proto_ascend_wide_1200 },
+  lucidity: { src: proto_lucidity_wide, src1200: proto_lucidity_wide_1200 },
+  ignite: { src: proto_ignite_wide, src1200: proto_ignite_wide_1200 },
+  vitality: { src: proto_vitality_wide, src1200: proto_vitality_wide_1200 },
+  foundation: { src: proto_foundation_wide, src1200: proto_foundation_wide_1200 },
+};
+export const PROTO_TILE: Record<string, StudioTile> = {
+  recover: { src: proto_recover, src600: proto_recover_600 },
+  ascend: { src: proto_ascend, src600: proto_ascend_600 },
+  lucidity: { src: proto_lucidity, src600: proto_lucidity_600 },
+  ignite: { src: proto_ignite, src600: proto_ignite_600 },
+  vitality: { src: proto_vitality, src600: proto_vitality_600 },
+  foundation: { src: proto_foundation, src600: proto_foundation_600 },
+};

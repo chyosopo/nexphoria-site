@@ -17,6 +17,7 @@ import { MenuRail } from "@/components/MenuRail";
 import { Explainer } from "@/components/Explainer";
 import { GoalGallery } from "@/components/GoalGallery";
 import { WhatArrives } from "@/components/WhatArrives";
+import { FeaturedProtocol } from "@/components/FeaturedProtocol";
 import { Check, ArrowRight } from "lucide-react";
 import { LabKitBox } from "@/components/LabKitBox";
 import { LAB_KIT } from "@/data/labs";
@@ -75,6 +76,9 @@ export default function FrontDoor() {
 
       {/* ══ 03b · BY GOAL — one photograph per goal, the medicines under it ══ */}
       <GoalGallery />
+
+      {/* ══ 03b2 · A PROTOCOL — the medicines prescribed together, one wide tile ══ */}
+      <FeaturedProtocol slug="recover" />
 
       {/* ══ 03c · WHAT ARRIVES — the box, and what a month includes ══ */}
       <WhatArrives />
