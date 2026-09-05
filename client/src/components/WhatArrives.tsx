@@ -1,11 +1,12 @@
 /* ═══ What arrives (2026-09-05) ═══
-   One photograph of the box and the list of what a month includes, beside
+   The carton, rendered in the house studio, and the list of what a month includes, beside
    it. The same five facts the price section used to carry as icon cards,
    now in one place a reader can picture. */
 import { FlaskConical, Stethoscope, Droplets, RefreshCw, Snowflake } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { F, S } from "@/lib/typography";
-import { ARRIVES_IMAGE } from "@/data/goalImages";
+import monthBox from "@/assets/studio/month-box.webp";
+import monthBox1200 from "@/assets/studio/month-box-1200.webp";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { RETEST_WEEK } from "@/data/monitoring";
 
@@ -22,7 +23,7 @@ export function WhatArrives() {
       <div className="nx-arrives">
         <Reveal className="nx-arrives__media-wrap">
           <div className="nx-arrives__media">
-            <img src={ARRIVES_IMAGE.src} srcSet={ARRIVES_IMAGE.src800 ? `${ARRIVES_IMAGE.src800} 800w, ${ARRIVES_IMAGE.src} 1600w` : undefined} sizes="(max-width: 900px) 100vw, 50vw" alt={ARRIVES_IMAGE.alt} loading="lazy" decoding="async" width={1600} height={1063} />
+            <img src={monthBox} srcSet={`${monthBox1200} 1200w, ${monthBox} 2000w`} sizes="(max-width: 900px) 100vw, 50vw" alt="The open Nexphoria carton with the vial, the blood kit, two syringes, two prep pads, the ice pack and the card" loading="lazy" decoding="async" width={2000} height={1300} />
           </div>
         </Reveal>
         <Reveal delay={80}>

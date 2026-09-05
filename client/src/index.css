@@ -2911,11 +2911,11 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-rail__nav button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--nx-ceramic) 40%, transparent); background: transparent; color: var(--nx-ceramic); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
 .nx-frost { display: flex; flex-direction: column; text-decoration: none; color: var(--nx-fg); background: var(--nx-ceramic); border-radius: var(--nx-r-lg); overflow: hidden; height: 100%; transition: transform var(--nx-dur-2) var(--nx-ease); }
 .nx-frost:hover { transform: translateY(-3px); }
-.nx-frost__media { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, var(--nx-cobalt-soft), color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-ceramic))); padding: 8%; }
-.nx-frost__media[data-goal="sexual-health"] { background: linear-gradient(160deg, #F6E9DE, #E9C9B4); }
-.nx-frost__media[data-goal="hormone"] { background: linear-gradient(160deg, #EDE6DA, #D6C6A8); }
-.nx-frost__media[data-goal="skin"], .nx-frost__media[data-goal="longevity"] { background: linear-gradient(160deg, #F3EEE6, #DACFBF); }
-.nx-frost__media[data-goal="cognition"], .nx-frost__media[data-goal="sleep"] { background: linear-gradient(160deg, #E8E8F4, #C6C8E4); }
+/* One ground for every goal (Porcelain & Navy, 2026-09-05): the studio
+   render carries its own porcelain backdrop, so the media is flush. The
+   per-goal warm tints of the earlier sheets are gone. */
+.nx-frost__media { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, var(--nx-ceramic), var(--nx-cobalt-soft)); padding: 0; overflow: hidden; }
+.nx-frost__media > .nx-vial-panel { padding: 8%; }
 .nx-frost__media img, .nx-frost__media > * { max-height: 100%; }
 .nx-frost__body { display: flex; flex-direction: column; padding: .9rem 1rem 1rem; flex: 1; }
 .nx-frost__tag { align-self: flex-start; font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt); background: var(--nx-cobalt-soft); padding: 3px 8px; border-radius: var(--nx-r-xs); }
@@ -3238,9 +3238,17 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-explain { list-style: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.6rem); counter-reset: nx-explain; }
 .nx-explain__item { min-width: 0; }
 .nx-explain__frame { display: flex; flex-direction: column; height: 100%; }
-.nx-explain__media { position: relative; aspect-ratio: 3 / 2; border-radius: var(--nx-r-lg); overflow: hidden; background: var(--nx-bg-cream); border: 1px solid var(--nx-border); }
-.nx-explain__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-explain__art { position: relative; aspect-ratio: 3 / 2; border-radius: var(--nx-r-lg); overflow: hidden; background: var(--nx-bg-cream); border: 1px solid var(--nx-border); }
+.nx-explain__media, .nx-explain__art > .nx-diagram { position: absolute; inset: 0; }
+.nx-explain__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
 .nx-explain__frame:hover .nx-explain__media img { transform: scale(1.03); }
+/* the drawn diagrams: an ice tile, the line draws in, the beads land */
+.nx-diagram { background: linear-gradient(160deg, var(--nx-ceramic) 0%, var(--nx-cobalt-soft) 100%); }
+.nx-diagram svg { display: block; width: 100%; height: 100%; }
+.nx-diagram__line { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.4s var(--nx-reveal-ease) .15s; }
+.nx-diagram__bead { opacity: 0; transform: scale(.4); transition: opacity var(--nx-dur-4) var(--nx-reveal-ease), transform var(--nx-dur-5) var(--nx-reveal-ease); transition-delay: calc(.25s + var(--i, 0) * 110ms); }
+.nx-diagram.is-on .nx-diagram__line { stroke-dashoffset: 0; }
+.nx-diagram.is-on .nx-diagram__bead { opacity: 1; transform: none; }
 .nx-explain__n { position: absolute; top: .8rem; left: .8rem; display: inline-flex; align-items: center; justify-content: center; min-width: 2.2rem; height: 2.2rem; padding: 0 .6rem; border-radius: var(--nx-r-pill); background: color-mix(in srgb, var(--nx-bg) 88%, transparent); backdrop-filter: blur(8px); color: var(--nx-cobalt); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); }
 .nx-explain__t { margin: 1rem 0 0; font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.15; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-wrap: balance; }
 .nx-explain__b { margin: .55rem 0 0; font-size: var(--nx-t-base); line-height: 1.55; color: var(--nx-fg-graphite); }
@@ -3275,3 +3283,17 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-arrives__t { display: block; font-size: var(--nx-t-base); font-weight: 500; color: var(--nx-fg); line-height: 1.3; }
 .nx-arrives__b { display: block; margin-top: .15rem; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
 @media (max-width: 900px) { .nx-arrives { grid-template-columns: 1fr; } }
+
+/* ═══ Hero, the still life (2026-09-05) ═══ */
+.nx-hero-still { position: relative; overflow: hidden; background: var(--nx-bg); }
+.nx-hero-still__grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-top: clamp(2.6rem, 6vh, 4.5rem); padding-bottom: clamp(2.2rem, 5vh, 3.5rem); }
+.nx-hero-still__h1 { margin: .8rem 0 0; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); font-weight: 500; color: var(--nx-fg); text-wrap: balance; max-width: 13ch; }
+.nx-hero-still__h1 .nx-rotate { color: var(--nx-cobalt); }
+.nx-hero-still__sub { margin: 1.1rem 0 0; max-width: 50ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); }
+.nx-hero-still__cta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 1.5rem; }
+.nx-hero-still__facts { list-style: none; margin: 1.6rem 0 0; padding: 1.1rem 0 0; border-top: 1px solid var(--nx-border); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem 1.2rem; max-width: 34rem; }
+.nx-hero-still__facts li { display: inline-flex; align-items: center; gap: 8px; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-hero-still__facts svg { color: var(--nx-cobalt); flex-shrink: 0; }
+.nx-hero-still__media { position: relative; border-radius: var(--nx-r-lg); overflow: hidden; background: var(--nx-bg-cream); border: 1px solid var(--nx-border); box-shadow: var(--nx-e-3); aspect-ratio: 9 / 7; }
+.nx-hero-still__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 900px) { .nx-hero-still__grid { grid-template-columns: 1fr; } .nx-hero-still__h1 { max-width: none; } .nx-hero-still__facts { grid-template-columns: 1fr; } }

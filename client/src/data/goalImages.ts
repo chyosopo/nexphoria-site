@@ -5,7 +5,6 @@
    same file. Every entry has a 1600w frame; the 800w variant is served to
    narrow screens where it exists. Swap a frame here, nowhere else. */
 import type { PeptideCategory } from "@/data/peptides";
-import bloodKit from "@/assets/nx_bloodwork_hero.webp";
 
 export interface GoalImage { src: string; src800?: string; alt: string }
 
@@ -26,13 +25,3 @@ export const GOAL_IMAGES: Record<PeptideCategory, GoalImage> = {
   hormone: img("84799b6e21dc", "A man at a window at dusk"),
   skin: img("84444e0185e3", "A woman with a towel wrapped, skin in soft light"),
 };
-
-/* The explainer's three frames: the sculptural set from the same library. */
-export const EXPLAINER_IMAGES = {
-  signal: img("7c9efa52850f", "A chain of porcelain beads, the shape of a peptide"),
-  prescribed: img("b02fe34b47f7", "A single vial with a navy cap on a pale surface"),
-  measured: { src: bloodKit, alt: "The at-home blood kit, opened, with its collection tubes" } as GoalImage,
-};
-
-/* What arrives: the cold box, opened. */
-export const ARRIVES_IMAGE = img("d489ea4e9dbc", "The at-home blood kit box on a pale kitchen counter");

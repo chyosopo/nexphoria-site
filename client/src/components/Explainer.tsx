@@ -1,30 +1,31 @@
 /* ═══ What a peptide does — the three-frame explainer (2026-09-05) ═══
    Chiya: "I wanna learn on the site and immediately know what it can do for
-   me, why I need it." Three photographs from the sculptural set, one
-   sentence of teaching under each: the signal, the prescription, the blood.
-   Facts only; the reader decides. */
+   me, why I need it." Three frames, one sentence of teaching under each:
+   the signal (the chain, drawn), the prescription (the vial, rendered in
+   the house studio), the blood (the marker chart, drawn). Facts only. */
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { F, S } from "@/lib/typography";
-import { EXPLAINER_IMAGES } from "@/data/goalImages";
+import { PeptideChain, MarkerChart } from "@/components/diagrams/Diagrams";
+import { SKU_PHOTO } from "@/components/SkuPhoto";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { RETEST_WEEK } from "@/data/monitoring";
 
 export function Explainer() {
   const frames = [
     {
-      img: EXPLAINER_IMAGES.signal,
+      art: <PeptideChain />,
       t: "A signal the body already makes.",
       b: "A peptide is a short chain of amino acids, the same building blocks as protein. The body makes thousands of them as messages: release growth hormone tonight, you have eaten enough, repair this tendon.",
     },
     {
-      img: EXPLAINER_IMAGES.prescribed,
+      art: <div className="nx-explain__media"><img src={SKU_PHOTO.sermorelin} alt="A Nexphoria vial of sermorelin" loading="lazy" decoding="async" width={1600} height={1600} /></div>,
       t: "The physician prescribes the exact one.",
       b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reads the health questions and prescribes the one that fits the goal, at a starting dose, compounded to order.",
     },
     {
-      img: EXPLAINER_IMAGES.measured,
+      art: <MarkerChart />,
       t: "The blood shows it working.",
       b: `A ${PANEL_TOTAL_MARKERS}-marker panel is drawn at home before the first dose and again at week ${RETEST_WEEK}. The physician sets the dose from what changed.`,
     },
@@ -42,8 +43,8 @@ export function Explainer() {
         {frames.map((f, i) => (
           <Reveal key={f.t} delay={i * 70} className="nx-explain__item">
             <li className="nx-explain__frame">
-              <div className="nx-explain__media">
-                <img src={f.img.src} srcSet={f.img.src800 ? `${f.img.src800} 800w, ${f.img.src} 1600w` : undefined} sizes="(max-width: 900px) 100vw, 33vw" alt={f.img.alt} loading="lazy" decoding="async" width={1600} height={1067} />
+              <div className="nx-explain__art">
+                {f.art}
                 <span className="nx-explain__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <p className="nx-explain__t" style={{ fontFamily: S }}>{f.t}</p>
