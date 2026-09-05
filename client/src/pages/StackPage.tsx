@@ -223,7 +223,7 @@ export default function StackPage({ slug }: { slug: string }) {
               if (members.length === 0) return null;
               return (
                 <section aria-labelledby="stack-get-title" data-testid="stack-get">
-                  <h2 id="stack-get-title" className="nx-dsh3">The medicines</h2>
+                  <h2 id="stack-get-title" className="nx-dsh3 nx-shout">What arrives.</h2>
                   <p className="nx-lede" style={{ marginTop: "0.6rem" }}>Each is dispensed in its own vial, at its own dose. The figures follow from the stated dose and vial; the prescription states the exact volumes.</p>
                   <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 12, marginTop: "1rem" }}>
                     {members.map((m) => (
@@ -238,7 +238,7 @@ export default function StackPage({ slug }: { slug: string }) {
             })()}
 
             {/* ── 3 · What to expect ── */}
-            <h2 className="nx-dsh3" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
+            <h2 className="nx-dsh3 nx-shout" style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }}>
               What to expect
             </h2>
             <div className="nx-timeline" style={{ marginTop: "1.4rem" }}>
@@ -257,7 +257,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 4 · Blood testing for this protocol ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-blood-title" data-testid="stack-blood">
-              <h2 id="stack-blood-title" className="nx-dsh3">
+              <h2 id="stack-blood-title" className="nx-dsh3 nx-shout">
                 Blood testing for this protocol
               </h2>
               <p className="nx-lede" style={{ marginTop: "0.9rem" }}>
@@ -277,7 +277,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 5 · Who should not take it ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-contra-title">
-              <h2 id="stack-contra-title" className="nx-dsh3">Who should not take it</h2>
+              <h2 id="stack-contra-title" className="nx-dsh3 nx-shout">Who should not take it.</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {stack.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -296,7 +296,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
             {/* ── 7 · Who prescribes it, and who makes it (compliance.ts, verbatim) ── */}
             <section style={{ marginTop: "clamp(2rem,4vw,2.8rem)" }} aria-labelledby="stack-parties-title" data-testid="stack-parties">
-              <h2 id="stack-parties-title" className="nx-dsh3">Prescribing and dispensing</h2>
+              <h2 id="stack-parties-title" className="nx-dsh3 nx-shout">Who prescribes. Who makes it.</h2>
               <CareCards slug={stack.slug} />
             </section>
 
@@ -329,7 +329,7 @@ export default function StackPage({ slug }: { slug: string }) {
       {/* ── 9 · The other protocols ── */}
       {otherStacks.length > 0 && (
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "0" }} aria-labelledby="stack-crosssell-title">
-          <h2 id="stack-crosssell-title" className="nx-dsh3">
+          <h2 id="stack-crosssell-title" className="nx-dsh3 nx-shout">
             The other protocols
           </h2>
           <p className="nx-lede" style={{ marginTop: "0.5rem" }}>

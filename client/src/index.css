@@ -3430,3 +3430,11 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 .nx-tile__name { margin: 0; font-size: var(--nx-t-lg); font-weight: 500; color: color-mix(in srgb, var(--nx-ceramic) 88%, transparent); }
 .nx-band__h2.nx-shout { line-height: .98; }
 @media (max-width: 900px) { .nx-tile__title.nx-shout { font-size: var(--nx-t-lg); right: 40%; } }
+
+/* the shout on the product page */
+.nx-pdp-shout { margin: 0; font-size: var(--nx-t-lg); color: var(--nx-cobalt); }
+.nx-dsh3.nx-shout { line-height: 1; }
+
+/* chips on the product tile read solid over the glass */
+.nx-tile--pdp .nx-chip { background: color-mix(in srgb, var(--nx-ceramic) 92%, transparent); color: var(--nx-fg); }
+.nx-tile--pdp .nx-chip--accent { background: var(--nx-cobalt); color: var(--nx-ceramic); }

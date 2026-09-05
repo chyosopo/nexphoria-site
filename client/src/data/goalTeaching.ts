@@ -33,3 +33,9 @@ export const GOAL_SHOUT: Record<PeptideCategory, string> = {
   hormone: "Built around your baseline.",
   skin: "Firmer skin.",
 };
+
+/* The catalog's SoloCategory, mapped to the goal key the shouts and tiles use. */
+export const CATEGORY_TO_GOAL: Record<string, PeptideCategory> = {
+  Metabolic: "metabolic", Growth: "growth", Recovery: "recovery", "Skin & Longevity": "longevity",
+  Cognitive: "cognition", Sleep: "sleep", "Sexual Health": "sexual-health", Hormone: "hormone",
+};
