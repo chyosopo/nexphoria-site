@@ -40,8 +40,8 @@ export const GOAL_SHOUT: Record<PeptideCategory, string> = {
   longevity: "Steady energy. Recovery that keeps up with you.",
   cognition: "Stay sharp. Stay steady under pressure.",
   sleep: "Fall asleep sooner. Wake up rested.",
-  "sexual-health": "Bring back the drive, on the days you choose.",
-  hormone: "Lift your testosterone. From your own baseline.",
+  "sexual-health": "Restore the drive. Choose the day.",
+  hormone: "Lift your testosterone. Dose it from your blood.",
   skin: "Firm the skin. Speed the healing.",
 };
 

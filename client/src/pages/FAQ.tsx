@@ -41,7 +41,7 @@ const categories: { label: string; heading: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How does it work?",
-        a: `Five steps. You choose a medicine or a protocol, and a term of one, three, six or twelve months. At checkout you answer a few questions on your history, your current medicines and your goal. A licensed U.S. physician reads them and writes the prescription, or explains why not; if not, nothing is made and the refund policy applies. The medicine ships cold with an at-home blood kit, included. You draw before the first dose, and the physician sets the dose from the results. At week ${RETEST_WEEK} the same panel is drawn again, and the physician continues, adjusts or stops the dose.`,
+        a: `Five steps. You choose a medicine or a protocol, and a term. At checkout you answer a few questions on your history, your current medicines and your goal. A licensed U.S. physician reads them and writes the prescription, or explains why not. The medicine ships cold, with an at-home blood kit you draw before the first dose. At week ${RETEST_WEEK} the same panel is drawn again, and the physician continues, adjusts or stops the dose.`,
       },
       {
         q: "Do I need to see a doctor in person?",
