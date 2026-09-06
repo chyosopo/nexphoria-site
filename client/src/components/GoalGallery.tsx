@@ -16,6 +16,7 @@ import { SOLO_CATALOG, statusOf, type SoloPeptide } from "@/data/soloCatalog";
 import { usd } from "@/data/stacksCatalog";
 import { GOAL_TEACHING, GOAL_ORDER, GOAL_SHOUT } from "@/data/goalTeaching";
 import { GOAL_IMAGES } from "@/data/goalImages";
+import { imgSrcSet } from "@/data/imageVariants";
 import "@/styles/home.css";
 
 function skusFor(goal: PeptideCategory): SoloPeptide[] {
@@ -42,7 +43,7 @@ function GoalTile({ g, i }: { g: PeptideCategory; i: number }) {
     <Reveal delay={Math.min(i * 50, 250)} className="nx-goals__item">
       <m.article className="nx-goal nx-sheen" role="listitem" data-testid={`goal-card-${g}`} whileTap={{ scale: 0.985 }} transition={PRESS_SPRING} {...sheen}>
         <div className="nx-goal__media">
-          <img src={im.src} srcSet={im.src800 ? `${im.src800} 800w, ${im.src} 1600w` : undefined} sizes="(max-width: 900px) 78vw, 33vw" alt={im.alt} loading="lazy" decoding="async" width={1600} height={1067} />
+          <img src={im.src} srcSet={imgSrcSet(im.src, im.src800)} sizes="(max-width: 900px) 78vw, 33vw" alt={im.alt} loading="lazy" decoding="async" width={1600} height={1067} />
         </div>
         <Link href={`/peptides?goal=${g}`} className="nx-goal__arrow" aria-label={`${CATEGORY_LABELS[g]}: every medicine`} data-testid={`goal-more-${g}`}><ArrowRight size={18} /></Link>
         <div className="nx-goal__copy">

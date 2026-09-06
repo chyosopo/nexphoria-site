@@ -14,6 +14,7 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo"
 import { F, S } from "@/lib/typography";
 import { Reveal } from "@/components/Reveal";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
+import { imgSrcSet } from "@/data/imageVariants";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 import monthBox from "@/assets/studio/month-box.webp";
@@ -40,19 +41,19 @@ const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
     t: "Complete a quick online visit at checkout.",
     d: "A few minutes on your history, your current medicines and your goal. It comes right after you order, before anything is made.",
     detail: "The order is placed first, then the questions are answered. They cover the conditions that rule each medicine out and the medicines already taken. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.",
-    img: { src: "img/img_329e054306f2.webp", srcSet: "img/img_329e054306f2-800w.webp 800w, img/img_329e054306f2.webp 1600w", alt: "A woman answering the online visit on a tablet at a bright desk" },
+    img: { src: "img/img_329e054306f2.webp", srcSet: imgSrcSet("img/img_329e054306f2.webp", "img/img_329e054306f2-800w.webp"), alt: "A woman answering the online visit on a tablet at a bright desk" },
   },
   {
     t: "A physician reads them and decides.",
     d: "A licensed U.S. physician reviews your answers. They write the prescription, or explain why not. If not, nothing is made and the refund policy applies.",
     detail: "The physician reads the answers against the conditions that rule each medicine out and against the other medicines taken. A decision comes within a few business days.",
-    img: { src: "img/img_334cb24acfa5.webp", srcSet: "img/img_334cb24acfa5-800w.webp 800w, img/img_334cb24acfa5.webp 1600w", alt: "A physician in a white coat with a stethoscope" },
+    img: { src: "img/img_334cb24acfa5.webp", srcSet: imgSrcSet("img/img_334cb24acfa5.webp", "img/img_334cb24acfa5-800w.webp"), alt: "A physician in a white coat with a stethoscope" },
   },
   {
     t: "Draw your blood at home, then take the first dose.",
     d: "The draw comes first. Your dose is set from what your own blood says.",
     detail: `The kit holds what you need to draw a small sample at home, and a prepaid box to send it back. It covers ${PANEL_TOTAL_MARKERS} markers across five systems. The physician reads the results before setting the first dose.`,
-    img: { src: "img/img_d489ea4e9dbc.webp", srcSet: "img/img_d489ea4e9dbc-800w.webp 800w, img/img_d489ea4e9dbc.webp 1600w", alt: "The at-home blood kit box on a kitchen counter, by the window" },
+    img: { src: "img/img_d489ea4e9dbc.webp", srcSet: imgSrcSet("img/img_d489ea4e9dbc.webp", "img/img_d489ea4e9dbc-800w.webp"), alt: "The at-home blood kit box on a kitchen counter, by the window" },
   },
   {
     t: `At week ${RETEST_WEEK}, the same panel is drawn again.`,

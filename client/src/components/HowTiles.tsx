@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { F, S } from "@/lib/typography";
 import { RETEST_WEEK } from "@/data/monitoring";
+import { imgSrcSet } from "@/data/imageVariants";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 
 const STEPS = [
@@ -32,7 +33,7 @@ export function HowTiles() {
         {STEPS.map((s, i) => (
           <Reveal key={s.t} delay={i * 70} className="nx-tiles__item">
             <li className="nx-tile nx-tile--photo">
-              <img src={s.img} srcSet={`${s.img800} 800w, ${s.img} 1600w`} sizes="(max-width: 900px) 100vw, 33vw" alt={s.alt} loading="lazy" decoding="async" width={1600} height={1200} />
+              <img src={s.img} srcSet={imgSrcSet(s.img, s.img800)} sizes="(max-width: 900px) 100vw, 33vw" alt={s.alt} loading="lazy" decoding="async" width={1600} height={1200} />
               <span className="nx-tile__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <span className="nx-tile__foot">
                 <span className="nx-tile__t" style={{ fontFamily: S }}>{s.t}</span>
