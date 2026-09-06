@@ -3,7 +3,6 @@
    states the figure once and offers one action. */
 import { LAB_KIT } from "@/data/labs";
 import { RETEST_WEEK } from "@/data/monitoring";
-import { RoadStrip } from "@/components/RoadStrip";
 import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { X, Stethoscope, Truck, Shield, Check, FlaskConical, ArrowRight } from "lucide-react";
@@ -86,7 +85,6 @@ export function CartDrawer() {
               <h2 className="nx-drawer__h" style={{ fontFamily: S }}>
                 {itemCount === 0 ? "Your cart is empty." : "Your cart."}
               </h2>
-              <div style={{ marginTop: 8 }}><RoadStrip current={itemCount === 0 ? 0 : 1} testId="cart-road" /></div>
             </div>
             <button
               onClick={close}
@@ -102,7 +100,7 @@ export function CartDrawer() {
           {/* The promise, beside every figure */}
           {lines.length > 0 ? (
             <div className="px-6 py-3" style={{ background: "var(--nx-ceramic)", borderBottom: "1px solid var(--nx-border)" }}>
-              <PrescribedPromise testid="cart-drawer-promise" detail="Card is held; billing runs through Bask Health after review." />
+              <PrescribedPromise testid="cart-drawer-promise" />
             </div>
           ) : null}
 

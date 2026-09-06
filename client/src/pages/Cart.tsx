@@ -46,8 +46,8 @@ export default function Cart() {
               </h1>
               <p className="nx-cartpage__lede" style={{ fontFamily: F }}>
                 {itemCount === 0
-                  ? "Every medicine is listed by what it treats, with its price."
-                  : "Each medicine, its term and its price. Change the term or the quantity here, then continue to checkout. A licensed physician reviews every order before anything is made."}
+                  ? "Every medicine is listed by what it treats, with its price on it."
+                  : "Each medicine, its term, its price. Change any of them here. A licensed physician reviews the order before anything is made."}
               </p>
             </div>
           </Reveal>

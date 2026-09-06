@@ -236,10 +236,10 @@ export default function Checkout() {
           <Reveal>
             <div style={{ marginTop: "1.2rem", maxWidth: "42rem" }}>
               <h1 className="nx-cartpage__h1" style={{ fontFamily: S }} data-testid="checkout-title">
-                Almost there.
+                Where it ships, and how you pay.
               </h1>
               <p className="nx-cartpage__lede" style={{ fontFamily: F }}>
-                Where it ships and how you pay. A licensed U.S. physician reviews the order, and if appropriate, the medicine ships cold.
+                A licensed U.S. physician reviews the order. If it is appropriate, the medicine is compounded and ships cold.
               </p>
               <PrescribedPromise testid="checkout-promise" style={{ marginTop: "0.8rem" }} />
               <PhysicianGate testid="checkout-physician-gate" style={{ marginTop: "0.75rem" }} />
