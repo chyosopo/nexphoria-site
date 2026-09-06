@@ -105,7 +105,7 @@ export default function HowItWorks() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">How it works</p>
-            <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Answer a few questions. A licensed physician decides the rest.</h1>
+            <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>A quick online visit. A licensed physician decides the rest.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps, from choosing a medicine to the week-{RETEST_WEEK} blood panel. Each one is set out below, in the order it happens.</p>
             <div className="nx-tilehero__foot">
               <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Shop the medicines</Link>

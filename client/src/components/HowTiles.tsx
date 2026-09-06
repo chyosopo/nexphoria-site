@@ -24,7 +24,7 @@ export function HowTiles() {
         <div className="nx-sec-row">
           <div className="nx-sec-head">
             <p className="nx-eyebrow">How it works</p>
-            <h2 id="fd-road" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Answer a few questions. A physician takes it from there.</h2>
+            <h2 id="fd-road" className="nx-dsh2" style={{ maxWidth: "24ch" }}>A quick online visit. A physician takes it from there.</h2>
           </div>
           <Link href="/how-it-works" className="nx-cta-navy" data-testid="frontdoor-road-all" style={{ fontFamily: F }}>See every step <ArrowRight size={15} aria-hidden="true" /></Link>
         </div>

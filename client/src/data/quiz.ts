@@ -53,7 +53,7 @@ export interface QuizQuestion {
 export const Q_GOAL: QuizQuestion = {
   id: "goal",
   title: "What do you want to change?",
-  lead: "Pick the one that is loudest. You can read the rest afterwards.",
+  lead: "Three questions to find what fits. The medical visit comes later, at checkout.",
   options: [
     { label: "Lose weight", line: "Appetite runs the day, and the weight will not move.", goal: "metabolic" },
     { label: "Build lean mass", line: "The deep fat has not moved through diet or training.", goal: "growth" },
