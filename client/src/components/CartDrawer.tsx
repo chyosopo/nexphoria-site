@@ -114,7 +114,14 @@ export function CartDrawer() {
                   <div className="nx-added" role="status" data-testid="cart-added">
                     <Check size={15} strokeWidth={2.6} aria-hidden="true" />
                     <p style={{ fontFamily: F }}>
-                      <strong>{justAdded.name}</strong> is in the cart{justAdded.oneTime ? "" : ` for ${justAdded.months} ${justAdded.months === 1 ? "month" : "months"}`}. {hasMedicine ? "The baseline blood kit ships with it, complimentary." : ""}
+                      {/* Adding a medicine that is already in the cart raises its
+                          quantity and rewrites its term (CartProvider.addPeptide).
+                          Both are reasonable, but silent: a reader who picks six
+                          months, adds, then returns and picks twelve has two of
+                          them on the longer term and was told neither. The
+                          confirmation states the quantity whenever it is above
+                          one, so nothing about the line changes unannounced. */}
+                      <strong>{justAdded.name}</strong>{justAdded.qty > 1 ? ` ×${justAdded.qty}` : ""} is in the cart{justAdded.oneTime ? "" : ` for ${justAdded.months} ${justAdded.months === 1 ? "month" : "months"}`}. {hasMedicine ? "The baseline blood kit ships with it, complimentary." : ""}
                     </p>
                   </div>
                 )}
