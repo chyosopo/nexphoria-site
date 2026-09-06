@@ -234,7 +234,10 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
   // sr-only announcement mirrors the result set so AT users hear the new
   // filtered result set on every filter/search change (the plural word and
   // count match exactly what the grid shows).
-  const noun = shown.length === 1 ? "peptide" : "peptides";
+  /* "medicine", to match the visible line and the rest of the site — a
+     screen-reader user was told "22 peptides" where the page says
+     "every medicine". */
+  const noun = shown.length === 1 ? "medicine" : "medicines";
   const resultStatus = needle
     ? `Showing ${shown.length} ${noun} matching “${q.trim()}”${filter !== "All" ? ` in ${labelFor(filter)}` : ""}.`
     : filter === "All"

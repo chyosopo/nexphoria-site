@@ -26,9 +26,9 @@ const IDS: Record<string, string> = {
 
 const BLURBS: Record<string, string> = {
   "Sugar and insulin": "How the body handles food. Usually the first thing a weight plan changes, and the clearest proof it is working.",
-  "Cholesterol and heart": "The numbers a physician tracks for heart risk over time, and what weight change and tesamorelin are expected to move.",
+  "Cholesterol and heart": "The numbers a physician tracks for heart risk over time, and the ones a change in weight or in dose is expected to move.",
   "Liver, kidneys and pancreas": "The organs that process the medication. The physician checks they are handling it well.",
-  "Hormones": "Energy, muscle, desire, thyroid and stress. Context for how a person feels, and the number tesamorelin's dose is set against.",
+  "Hormones": "Energy, muscle, desire, thyroid and stress. Context for how a person feels, and the numbers a hormone dose is set against.",
   "Blood and nutrients": "A general health check, plus the deficiencies that quietly drain energy and are easy to fix.",
 };
 

@@ -17,6 +17,7 @@ import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
 import { imgSrcSet } from "@/data/imageVariants";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
+import { SOLO_CATALOG, statusOf } from "@/data/soloCatalog";
 import monthBox from "@/assets/studio/month-box.webp";
 import monthBox1200 from "@/assets/studio/month-box-1200.webp";
 import bloodTube from "@/assets/brand/editorial-bloodwork.webp";
@@ -30,11 +31,20 @@ type StepImage = { src: string; srcSet?: string; alt: string; render?: boolean }
 
 /* The five steps (the only step list on the site). `d` is the deck
    paragraph, verbatim; `detail` is the one plain paragraph the deck asks for. */
+/* The pending sentence is a fact about the catalog, so it is read from the
+   catalog. Every medicine went live on 2026-09-06 and this page kept telling
+   the reader what a pending medicine does — a state that existed nowhere on
+   the site. It returns by itself the moment one does. */
+const HAS_PENDING = SOLO_CATALOG.some((s) => statusOf(s) !== "live");
+const PENDING_NOTE = HAS_PENDING
+  ? " A pending medicine shows its price and a notice. The only action is an email when it is available."
+  : "";
+
 const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
   {
     t: "Choose a medicine or a protocol, and a term.",
     d: "One, three, six or twelve months. The longer terms cost less a month and carry more blood testing.",
-    detail: "Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price. A pending medicine shows its price and a notice. The only action is an email when it is available.",
+    detail: `Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price.${PENDING_NOTE}`,
     img: { src: monthBox, srcSet: `${monthBox1200} 1200w, ${monthBox} 1600w`, alt: "The month box, drawn in the house studio: the medicine, the blood kit, the first-dose card and the cold pack", render: true },
   },
   {
