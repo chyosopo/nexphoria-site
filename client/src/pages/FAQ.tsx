@@ -12,7 +12,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { useSeo, faqJsonLd, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
-import { SOLO_FROM_LABEL } from "@/data/pricing";
+import { SOLO_FROM_LABEL, SOLO_FROM_LABEL_M12 } from "@/data/pricing";
 import { SOLO_CATALOG } from "@/data/soloCatalog";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
@@ -27,8 +27,11 @@ interface FAQItem {
 /* Every fact below is derived from the catalog and the compliance data,
    never typed (truth law). */
 const PEPTIDE_NAMES = SOLO_CATALOG.map((p) => p.name).join(", ");
+/* Read from the exclusions themselves, not from `gated`. When the catalog
+   went live every solo became ungated, this list emptied, and the shipping
+   answer rendered "restricted by law in ." on the page. */
 const GLP1_EXCLUDED = Array.from(
-  new Set(SOLO_CATALOG.filter((p) => p.gated).flatMap((p) => p.stateExclusions ?? [])),
+  new Set(SOLO_CATALOG.flatMap((p) => p.stateExclusions ?? [])),
 ).sort().join(", ");
 
 const categories: { label: string; heading: string; items: FAQItem[] }[] = [
@@ -94,7 +97,7 @@ const categories: { label: string; heading: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How much does it cost?",
-        a: `Single peptides start from ${SOLO_FROM_LABEL} a month. One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six months 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping.`,
+        a: `Single medicines start from ${SOLO_FROM_LABEL} a month on a one-month term, and ${SOLO_FROM_LABEL_M12} a month on twelve. One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six months 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping.`,
       },
       {
         q: "What do I pay today?",
@@ -138,7 +141,7 @@ const categories: { label: string; heading: string; items: FAQItem[] }[] = [
     items: [
       {
         q: "How is it shipped?",
-        a: `Cold, in plain packaging, to your door. We ship to all 50 states. Compounded GLP-1 medication is restricted by law in ${GLP1_EXCLUDED}.`,
+        a: `Cold, in plain packaging, to your door. We ship to all 50 states.${GLP1_EXCLUDED ? ` Compounded GLP-1 medication is restricted by law in ${GLP1_EXCLUDED}.` : ""}`,
       },
       {
         q: "When does it arrive?",

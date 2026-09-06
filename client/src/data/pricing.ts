@@ -146,3 +146,12 @@ export const SOLO_FROM_PRICE: number = Math.min(
   ...SOLO_CATALOG.filter((s) => s.pricing).map((s) => s.pricing!.m1),
 );
 export const SOLO_FROM_LABEL: string = formatUSD(SOLO_FROM_PRICE);
+
+/* The same floor on a twelve-month term. The shelves and the tiles quote
+   the twelve-month rate ("From $X/mo"), so a page that quotes only the
+   one-month floor puts a different "from" number in front of the same
+   reader. Both figures, both derived. */
+export const SOLO_FROM_PRICE_M12: number = Math.min(
+  ...SOLO_CATALOG.filter((s) => s.pricing).map((s) => s.pricing!.m12),
+);
+export const SOLO_FROM_LABEL_M12: string = formatUSD(SOLO_FROM_PRICE_M12);

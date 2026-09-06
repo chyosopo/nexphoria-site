@@ -78,7 +78,16 @@ export default function Checkout() {
   const { lines, subtotal, itemCount, clear, dueToday } = useCart();
 
   /* ─── GLP-1 state gate (defense-in-depth: PDPs already gate; this enforces at checkout) ─── */
-  const cartHasGLP1 = lines.some((l) => getSolo(l.slug)?.gated || getStack(l.slug)?.gated);
+  /* The GLP-1 state block reads the medicine's OWN state exclusions.
+     It used to read `gated`, which was true of the GLP-1 solos only while
+     they were physician-assessed; when the catalog went live on 2026-09-06
+     every solo became ungated, so this went quietly false and a reader in
+     AK, AR, IN, MI, MN or SC could check out compounded semaglutide. The
+     exclusions are a legal fact about the medicine, not about how it was
+     sold, and soloCatalog carries them per entry. */
+  const cartHasGLP1 = lines.some(
+    (l) => (getSolo(l.slug)?.stateExclusions?.length ?? 0) > 0 || (getStack(l.slug)?.stateExclusions?.length ?? 0) > 0,
+  );
 
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);

@@ -33,7 +33,7 @@ const reasons = [
 export default function Contact() {
   useSeo({
     title: "Contact Nexphoria: physician questions, protocol support",
-    description: "Questions about peptide therapy, a protocol, or how to begin. Every message is answered on business days, Monday to Friday, by a real team.",
+    description: "Questions about peptide therapy, a protocol, or how to begin. Every message is read by a person and answered on business days, Monday to Friday.",
     path: "/contact",
     jsonLd: [webPageJsonLd({
       name: "Contact Nexphoria",
