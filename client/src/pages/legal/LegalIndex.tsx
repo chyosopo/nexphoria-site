@@ -49,8 +49,7 @@ export default function LegalIndex() {
       <section className="nx-container" aria-label="Legal documents" style={{ paddingTop: "var(--nx-sp-tight)", paddingBottom: "var(--nx-sp-sec)" }}>
         <ul className="sp-legal" data-testid="legal-index">
           {legalPages.map(({ label, href, desc }, i) => (
-            <Reveal key={label} delay={Math.min(i * 40, 200)}>
-              <li>
+            <Reveal key={label} as="li" delay={Math.min(i * 40, 200)}>
                 <Link href={href} className="sp-legal__tile" data-testid={`legal-link-${href.split("/").pop()}`}>
                   <span>
                     <span className="sp-legal__t" style={{ display: "block", fontFamily: S }}>{label}</span>
@@ -58,7 +57,6 @@ export default function LegalIndex() {
                   </span>
                   <span className="sp-legal__arrow" aria-hidden="true"><ArrowUpRight size={18} /></span>
                 </Link>
-              </li>
             </Reveal>
           ))}
         </ul>

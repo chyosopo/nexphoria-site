@@ -30,7 +30,7 @@ a.nx-tile--proto::after {
 .nx-pairs { display: grid; gap: clamp(.8rem, 2vw, 1.2rem); margin-top: clamp(1.4rem, 3vw, 2.2rem); }
 .nx-pairs__group { background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.1rem, 2.4vw, 1.6rem); }
 .nx-pairs__group--one { background: var(--nx-bg); }
-.nx-pairs__h { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt); }
+.nx-pairs__h { margin: 0; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt-ink); }
 .nx-pairs__list { list-style: none; margin: .9rem 0 0; padding: 0; display: grid; gap: 1rem; }
 .nx-pairs__row { padding-top: 1rem; border-top: 1px solid var(--nx-border); }
 .nx-pairs__row:first-child { padding-top: 0; border-top: 0; }
@@ -39,7 +39,7 @@ a.nx-tile--proto::after {
 /* the "one at a time" groups sit in the narrower column: one tile per line, the "or" between */
 .nx-pairs__group--one .nx-pairs__tiles { grid-template-columns: 1fr; gap: .4rem; }
 .nx-pairs__group--one .nx-pairs__join { width: auto; height: 1.6rem; justify-self: start; padding: 0 .6rem; font-size: var(--nx-t-sm); }
-.nx-pairs__join { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-size: var(--nx-t-lg); font-weight: 600; line-height: 1; }
+.nx-pairs__join { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); font-size: var(--nx-t-lg); font-weight: 600; line-height: 1; }
 .nx-pair-tile { display: flex; align-items: center; gap: .8rem; min-height: 44px; padding: .55rem .8rem .55rem .55rem; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: var(--nx-ceramic); color: var(--nx-fg); text-decoration: none; transition: border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
 .nx-pair-tile:hover { border-color: color-mix(in srgb, var(--nx-cobalt) 40%, var(--nx-border)); transform: translateY(-2px); }
 .nx-pair-tile__media { flex: 0 0 auto; width: 4.2rem; height: 4.2rem; border-radius: var(--nx-r-sm); overflow: hidden; background: linear-gradient(160deg, var(--nx-ceramic), var(--nx-cobalt-soft)); display: flex; align-items: center; justify-content: center; }

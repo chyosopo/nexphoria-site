@@ -24,7 +24,7 @@
 .nx-bb-term__price { margin-top: .45rem; font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-xl); line-height: 1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); white-space: nowrap; }
 .nx-bb-term__price small { font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 500; letter-spacing: 0; color: var(--nx-fg-muted); margin-left: 2px; }
 .nx-bb-term__total { margin-top: .45rem; font-size: var(--nx-t-xs); line-height: 1.35; color: var(--nx-fg-graphite); }
-.nx-bb-term__less { margin-top: .15rem; font-size: var(--nx-t-xs); line-height: 1.35; font-weight: 600; color: var(--nx-cobalt); }
+.nx-bb-term__less { margin-top: .15rem; font-size: var(--nx-t-xs); line-height: 1.35; font-weight: 600; color: var(--nx-cobalt-ink); }
 .nx-bb-term__check { position: absolute; top: 9px; right: 9px; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: var(--nx-r-pill); background: var(--nx-ceramic); color: var(--nx-cobalt); opacity: 0; transform: scale(.6); transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
 /* the chosen term: cobalt, every line in ceramic (AA on the accent in both worlds), the check lit */
 .nx-bb-term[aria-checked="true"] { background: var(--nx-cobalt); border-color: var(--nx-cobalt); color: var(--nx-ceramic); }

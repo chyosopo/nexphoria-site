@@ -159,7 +159,7 @@ export function LegalLayout({ title, lastUpdated = "June 2026", children }: Lega
                   {!isPlaceholder(BUSINESS.address) && <> · {BUSINESS.address}</>}
                   {!isPlaceholder(BUSINESS.phone) && <> · {BUSINESS.phone}</>}
                   {" · "}
-                  <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--nx-cobalt)" }}>{BUSINESS.email}</a>
+                  <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--nx-cobalt-ink)", textDecoration: "underline", textUnderlineOffset: "3px" }}>{BUSINESS.email}</a>
                 </p>
               </div>
             </article>

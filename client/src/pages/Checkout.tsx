@@ -419,7 +419,7 @@ export default function Checkout() {
                         <p style={{ marginTop: ".3rem" }}>
                           One or more items in the order involve GLP-1 therapy, which we do not currently
                           offer in your state. Remove those items to continue, or{" "}
-                          <Link href="/contact" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+                          <Link href="/contact" style={{ color: "var(--nx-cobalt-ink)", textDecoration: "underline" }}>
                             contact our clinical team
                           </Link>{" "}
                           about alternatives.
@@ -439,7 +439,7 @@ export default function Checkout() {
                 <>
                   <StepTile n="03" title="How billing works." lead="Billing runs through Bask Health, our telehealth billing partner. The card details are entered there.">
                     <div className="nx-note" style={{ display: "flex", gap: ".8rem", alignItems: "flex-start" }} data-testid="notice-deferred-billing">
-                      <Stethoscope size={16} style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
+                      <Stethoscope size={16} style={{ color: "var(--nx-cobalt-ink)", flexShrink: 0, marginTop: 2 }} aria-hidden="true" />
                       <div>
                         <p><strong>A physician decides before anything is made.</strong></p>
                         <p style={{ marginTop: ".3rem" }}>

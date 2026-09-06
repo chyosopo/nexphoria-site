@@ -8,6 +8,12 @@ interface RevealProps {
       them --nx-m-stagger apart). Defaults to on when there is more than one
       direct child; pass false to keep a multi-child block moving as one. */
   stagger?: boolean;
+  /** The element to render. Defaults to a div; pass "li" when the Reveal is
+      the direct child of a <ul> or an <ol>. A div between the list and its
+      items breaks the list for a screen reader — it stops being a list and
+      the items stop being counted — which is what axe-core reports as
+      `list` / `listitem`. */
+  as?: "div" | "li";
 }
 
 /* Content is never hidden by default. The element renders settled; only if
@@ -22,8 +28,8 @@ function safelyOffscreen(el: Element) {
   return r.top > window.innerHeight + 80;
 }
 
-export function Reveal({ children, className = "", delay = 0, stagger }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
+export function Reveal({ children, className = "", delay = 0, stagger, as: Tag = "div" }: RevealProps) {
+  const ref = useRef<HTMLElement>(null);
   const [armed, setArmed] = useState(false);
   const [visible, setVisible] = useState(false);
   // settled drops will-change once the entrance finished (no lingering layer)
@@ -58,7 +64,7 @@ export function Reveal({ children, className = "", delay = 0, stagger }: RevealP
     return () => { observer.disconnect(); window.clearTimeout(failsafe); if (timer) window.clearTimeout(timer); };
   }, [armed, delay]);
 
-  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLElement>) => {
     if (e.propertyName !== "transform") return;
     const host = e.currentTarget;
     // Whole-block entrance: the host itself finished. Staggered entrance: the
@@ -70,12 +76,12 @@ export function Reveal({ children, className = "", delay = 0, stagger }: RevealP
   };
 
   return (
-    <div
-      ref={ref}
+    <Tag
+      ref={ref as React.RefObject<HTMLDivElement & HTMLLIElement>}
       onTransitionEnd={handleTransitionEnd}
       className={["nx-reveal", armed ? "nx-armed" : "", staggered ? "nx-stagger" : "", visible ? "visible" : "", settled ? "nx-settled" : "", className].filter(Boolean).join(" ")}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

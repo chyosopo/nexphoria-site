@@ -10,7 +10,7 @@
 
 /* ── The heading rhythm inside a tile ── */
 /* The numbered pill: the how-it-works tiles' pill, in flow on a light tile. */
-.nx-pt__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; min-width: 2.6rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); font-variant-numeric: tabular-nums; }
+.nx-pt__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; min-width: 2.6rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); font-variant-numeric: tabular-nums; }
 /* The kicker: sentence case, cobalt ("Week 1", "Prescribing"). */
 .nx-pt__k { margin: 0; font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-cobalt); line-height: 1.3; }
 .nx-pt__t { margin: 0; font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.25; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-wrap: pretty; }

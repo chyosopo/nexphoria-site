@@ -147,7 +147,7 @@ export default function Contact() {
                   <p className="sp-tile__t">Check your mail app.</p>
                   <p className="sp-tile__b">
                     A message to our team is open in your mail app, ready to send. Replies come on business days, Monday to Friday ET. If your mail app did not open, email{" "}
-                    <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--nx-cobalt)", fontWeight: 600 }}>{BUSINESS.email}</a>.
+                    <a href={`mailto:${BUSINESS.email}`} style={{ color: "var(--nx-cobalt-ink)", fontWeight: 600 }}>{BUSINESS.email}</a>.
                   </p>
                   {form.reason === "Clinical / medical question" && (
                     <p className="sp-tile__b" style={{ fontWeight: 600, color: "var(--nx-fg)" }}>

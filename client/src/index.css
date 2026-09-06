@@ -114,11 +114,22 @@
     --nx-bg-dark:      #0B2A5B;  /* navy bands, heroes, footer */
     --nx-fg:           #0F2140;  /* navy ink, ~14:1 on canvas */
     --nx-fg-graphite:  #4B5568;  /* secondary body copy, 7:1 */
-    --nx-fg-muted:     #697386;  /* captions, 4.9:1, holds AA */
+    --nx-fg-muted:     #636D7E;  /* captions. Measured: 4.87:1 on the canvas, 4.57:1
+                                    on the cream band, 5.22:1 on ceramic — AA on all
+                                    three. Was #697386, whose comment claimed 4.9:1;
+                                    axe-core measures that pair at 4.46 on the canvas
+                                    and 4.19 on cream, and fails both. */
     --nx-border:       #DEE3EA;  /* hairlines */
     --nx-cobalt:       #2F6FD6;  /* THE accent. White CTA text 4.6:1 */
     --nx-cobalt-hover: #2558AD;
     --nx-cobalt-soft:  #E7EEF8;  /* accent-tinted fills */
+    /* THE ACCENT AS TEXT. --nx-cobalt is the accent and does not move: as a
+       fill it carries white at 4.81:1 and it is the hex law 1 names. But as
+       INK on the porcelain canvas it measures 4.49:1, and on cobalt-soft
+       4.12:1 — both under AA, which the palette sheet promises. This is the
+       same hue darkened 1.5% for text only: 5.07:1 on canvas, 4.66:1 on
+       cobalt-soft. Fills, borders and CTA backgrounds keep --nx-cobalt. */
+    --nx-cobalt-ink:   #2C67C6;
     --nx-amber:        #2F6FD6;  /* aligned to the accent; small accents only */
     --nx-success:      #2E7788;
     --nx-warning:      #3A78BC;
@@ -1731,7 +1742,7 @@ html { scrollbar-color: color-mix(in srgb, var(--nx-cobalt) 28%, var(--nx-bg)) v
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--nx-cobalt);
+  color: var(--nx-cobalt-ink);
   text-decoration: none;
   padding: 12px 6px;
   margin: -12px -6px;
@@ -2678,13 +2689,13 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 
 /* ── Visual benefit layer (data/benefits.ts, components/BenefitStrip.tsx) ── */
 .nx-goodfor { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
-.nx-goodfor__chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: .01em; }
+.nx-goodfor__chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: .01em; }
 .nx-benefit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(1rem, 2.4vw, 1.8rem); align-items: start; padding: clamp(1rem, 2vw, 1.3rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
 .nx-benefit--compact { display: grid; grid-template-columns: 1fr; gap: .5rem; padding: 0; border: 0; background: transparent; }
 .nx-benefit__label { margin: 0 0 .45rem; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
 .nx-benefit__effects { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .nx-benefit__effect { display: flex; align-items: center; gap: 8px; font-size: var(--nx-t-sm); color: var(--nx-fg); }
-.nx-benefit__arrow { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); flex-shrink: 0; }
+.nx-benefit__arrow { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); flex-shrink: 0; }
 .nx-benefit__effect--down .nx-benefit__arrow { background: var(--nx-bg); border: 1px solid var(--nx-border); color: var(--nx-fg-graphite); }
 .nx-benefit__effect--steady .nx-benefit__arrow { background: var(--nx-bg); border: 1px solid var(--nx-border); color: var(--nx-fg-graphite); }
 .nx-benefit__how { display: inline-flex; align-items: center; gap: 6px; margin: 0; font-size: var(--nx-t-sm); color: var(--nx-fg-graphite); }
@@ -3183,7 +3194,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
    existing tokens; introduces no new literal. Use these classes on every
    page in place of per-page `kicker`/`h2`/`body`/`lede` style objects.
    ═══════════════════════════════════════════════════════════════════ */
-.nx-eyebrow { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt); margin: 0; }
+.nx-eyebrow { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt-ink); margin: 0; }
 .nx-dsh1 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.04; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); margin: 0; text-wrap: balance; }
 .nx-dsh2 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h2); line-height: 1.08; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); margin: 0; text-wrap: balance; }
 .nx-dsh3 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h3); line-height: 1.14; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); margin: 0; text-wrap: balance; }
@@ -3423,7 +3434,7 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 @media (max-width: 900px) { .nx-tile__title.nx-shout { font-size: var(--nx-t-lg); right: 40%; } }
 
 /* the shout on the product page */
-.nx-pdp-shout { margin: 0; font-size: var(--nx-t-lg); color: var(--nx-cobalt); }
+.nx-pdp-shout { margin: 0; font-size: var(--nx-t-lg); color: var(--nx-cobalt-ink); }
 .nx-dsh3.nx-shout { line-height: 1; }
 
 /* chips on the product tile read solid over the glass */
@@ -3505,7 +3516,7 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 /* the checkout steps as tiles, with the numbered pill */
 .nx-steps-col { display: grid; gap: clamp(.9rem, 1.6vw, 1.2rem); }
 .nx-steptile { position: relative; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.2rem, 2.4vw, 1.7rem); }
-.nx-steptile__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt); font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); }
+.nx-steptile__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); }
 .nx-steptile__t { margin: .8rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
 .nx-steptile__b { margin: .5rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 58ch; }
 .nx-steptile__body { margin-top: 1.1rem; display: grid; gap: 1rem; }

@@ -88,7 +88,7 @@ export default function Cart() {
                     week-12 test. Stated as a fact of the plan. */}
                 <div className="nx-note nx-note--row" style={{ marginTop: "1.2rem" }} data-testid="cart-panel-note">
                   <div style={{ display: "flex", gap: ".7rem", alignItems: "flex-start", flex: "1 1 24rem", minWidth: 0 }}>
-                    <FlaskConical size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0, marginTop: 2 }} />
+                    <FlaskConical size={16} aria-hidden="true" style={{ color: "var(--nx-cobalt-ink)", flexShrink: 0, marginTop: 2 }} />
                     <p>
                       <strong>{LAB_KIT.name}: {PANEL_TOTAL_MARKERS} markers at home before the first dose, included.</strong>{" "}
                       The physician sets the dose from it. The same panel again at week {RETEST_WEEK} on plans of three months and longer. Additional tests from $19.

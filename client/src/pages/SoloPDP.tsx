@@ -109,7 +109,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", color: "var(--nx-fg-muted)", marginBottom: 28 }}>
             That entry is outside the current formulary. Browse the full catalog to find the right medicine.
           </p>
-          <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}>
+          <Link href={`${base}/peptides`} style={{ fontFamily: F, fontSize: "var(--nx-t-base)", fontWeight: 600, color: "var(--nx-cobalt-ink)", textDecoration: "none" }}>
             ← All medicines
           </Link>
         </div>
@@ -163,7 +163,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             <div>
               <p className="nx-pdp-shout" style={{ fontFamily: S }}>{GOAL_SHOUT[CATEGORY_TO_GOAL[solo.category]]}</p>
               <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.5rem", maxWidth: "18ch" }}>{solo.name}</h1>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)", marginTop: "0.6rem", maxWidth: "40ch" }}>
+              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-ink)", marginTop: "0.6rem", maxWidth: "40ch" }}>
                 {solo.outcome}
               </p>
               <div style={{ marginTop: "1rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} /></div>
@@ -266,7 +266,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {solo.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                    <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-cobalt-ink)", flexShrink: 0 }} />
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>{c}</p>
                   </div>
                 ))}

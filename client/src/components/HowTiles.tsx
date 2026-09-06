@@ -31,15 +31,15 @@ export function HowTiles() {
       </Reveal>
       <ol className="nx-tiles nx-tiles--3 nx-tiles--how" aria-label="The three steps">
         {STEPS.map((s, i) => (
-          <Reveal key={s.t} delay={i * 70} className="nx-tiles__item">
-            <li className="nx-tile nx-tile--photo">
+          <Reveal key={s.t} as="li" delay={i * 70} className="nx-tiles__item">
+            <div className="nx-tile nx-tile--photo">
               <img src={s.img} srcSet={imgSrcSet(s.img, s.img800)} sizes="(max-width: 900px) 100vw, 33vw" alt={s.alt} loading="lazy" decoding="async" width={1600} height={1200} />
               <span className="nx-tile__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <span className="nx-tile__foot">
                 <span className="nx-tile__t" style={{ fontFamily: S }}>{s.t}</span>
                 <span className="nx-tile__b" style={{ fontFamily: F }}>{s.b}</span>
               </span>
-            </li>
+            </div>
           </Reveal>
         ))}
       </ol>

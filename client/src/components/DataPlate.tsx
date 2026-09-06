@@ -61,7 +61,7 @@ export function BigFigure({
               fontFamily: F,
               fontSize: "var(--nx-t-sm)",
               fontWeight: 600,
-              color: "var(--nx-cobalt)",
+              color: "var(--nx-cobalt-ink)",
             }}
           >
             {unit}
@@ -139,7 +139,7 @@ export function SpecPlate({
     >
       <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-lg)", lineHeight: 1.15, color: fgOf(tone) }}>{name}</p>
       {nomenclature && (
-        <p style={{ fontFamily: S, fontStyle: "italic", fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt)", marginTop: "0.15rem" }}>
+        <p style={{ fontFamily: S, fontStyle: "italic", fontSize: "var(--nx-t-sm)", color: "var(--nx-cobalt-ink)", marginTop: "0.15rem" }}>
           {nomenclature}
         </p>
       )}

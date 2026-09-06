@@ -73,6 +73,14 @@ export function CartDrawer() {
         aria-labelledby="nx-cart-drawer-title"
         aria-modal="true"
         aria-hidden={!isOpen}
+        /* inert alongside aria-hidden: the drawer is off-canvas but still in
+           the DOM, so without this its links and buttons stay in the tab
+           order and a keyboard or screen-reader user lands inside a panel
+           they cannot see. aria-hidden alone is what axe-core reports as
+           `aria-hidden-focus` — it hides the panel from the a11y tree while
+           leaving it focusable, which is the contradiction. Written as a DOM
+           attribute because React 18 does not yet type `inert`. */
+        {...(isOpen ? {} : { inert: "" })}
         data-testid="cart-drawer"
       >
         <div className="flex flex-col h-full">

@@ -123,7 +123,7 @@ export function RegulatoryDisclosure({
                 {PROVIDER_INFO.name} provides the clinical care for this program.{" "}
                 <a
                   href={`mailto:${PROVIDER_INFO.email}`}
-                  style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}
+                  style={{ color: "var(--nx-cobalt-ink)", textDecoration: "underline" }}
                 >
                   {PROVIDER_INFO.email}
                 </a>

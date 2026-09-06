@@ -42,7 +42,7 @@ export function SectionHead({
   return (
     <div style={{ textAlign: center ? "center" : "left", marginInline: center ? "auto" : undefined, maxWidth: center ? "60ch" : undefined }}>
       {eyebrow && (
-        <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt)" }}>
+        <p style={{ fontFamily: F, fontSize: "var(--nx-t-2xs)", fontWeight: 600, letterSpacing: "var(--nx-ls-wide)", textTransform: "uppercase", color: "var(--nx-cobalt-ink)" }}>
           {eyebrow}
         </p>
       )}
@@ -148,7 +148,7 @@ export function TextCta({ href, children, testid }: { href: string; children: Re
     <Link
       href={href}
       data-testid={testid}
-      style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)", textDecoration: "none" }}
+      style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-ink)", textDecoration: "none" }}
     >
       {children}
       <ArrowRight size={16} strokeWidth={2.2} aria-hidden />

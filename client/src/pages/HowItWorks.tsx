@@ -134,8 +134,8 @@ export default function HowItWorks() {
         </Reveal>
         <ol className="sp-steps" data-testid="hiw-steps">
           {STEPS.map((s, i) => (
-            <Reveal key={s.t} delay={Math.min(i * 40, 200)}>
-              <li className={i % 2 === 1 ? "sp-step sp-step--flip" : "sp-step"} data-testid={`hiw-step-${i + 1}`}>
+            <Reveal key={s.t} as="li" delay={Math.min(i * 40, 200)}>
+              <div className={i % 2 === 1 ? "sp-step sp-step--flip" : "sp-step"} data-testid={`hiw-step-${i + 1}`}>
                 <div className="sp-step__copy">
                   <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="nx-steptile__t" style={{ fontFamily: S }}><span className="sr-only">Step {i + 1}. </span>{s.t}</h3>
@@ -145,7 +145,7 @@ export default function HowItWorks() {
                 <div className={s.img.render ? "sp-step__media sp-step__media--render" : "sp-step__media"}>
                   <img src={s.img.src} srcSet={s.img.srcSet} sizes="(max-width: 900px) 100vw, 40vw" alt={s.img.alt} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
                 </div>
-              </li>
+              </div>
             </Reveal>
           ))}
         </ol>
@@ -190,13 +190,13 @@ export default function HowItWorks() {
         </Reveal>
         <ul className="sp-two" data-testid="hiw-parties">
           {PARTIES.map((p, i) => (
-            <Reveal key={p.name} delay={i * 60}>
-              <li className="sp-tile" data-testid={p.testid}>
+            <Reveal key={p.name} as="li" delay={i * 60}>
+              <div className="sp-tile" data-testid={p.testid}>
                 <p className="sp-tile__eyebrow">{p.eyebrow}</p>
                 <h3 className="sp-tile__t">{p.name}</h3>
                 <p className="sp-tile__b">{p.line}</p>
                 <p className="sp-fine">{p.body}</p>
-              </li>
+              </div>
             </Reveal>
           ))}
         </ul>

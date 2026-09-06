@@ -124,7 +124,7 @@ export function FinalCTAStrip({
               source="final-cta-strip"
               style={{
                 backgroundColor: "var(--nx-ceramic)",
-                color: "var(--nx-cobalt)",
+                color: "var(--nx-cobalt-ink)",
                 borderColor: "var(--nx-ceramic)",
                 padding: "0.875rem 2rem",
               }}

@@ -121,7 +121,7 @@ export function ConsentGates({
       <Gate id="telehealth" checked={value.telehealth} onChange={set("telehealth")}>
         I consent to a telehealth evaluation by a licensed provider, and I understand
         that a provider may determine that no treatment is appropriate.{" "}
-        <Link href="/legal/telehealth-consent" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+        <Link href="/legal/telehealth-consent" style={{ color: "var(--nx-cobalt-ink)", textDecoration: "underline" }}>
           Telehealth consent
         </Link>
       </Gate>
@@ -156,11 +156,11 @@ export function ConsentGates({
       </p>
       <Gate id="sms" checked={value.sms} onChange={set("sms")}>
         {smsConsentLabel()}{" "}
-        <Link href="/legal/messaging" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+        <Link href="/legal/messaging" style={{ color: "var(--nx-cobalt-ink)", textDecoration: "underline" }}>
           Messaging Terms
         </Link>
         {" · "}
-        <Link href="/legal/privacy" style={{ color: "var(--nx-cobalt)", textDecoration: "underline" }}>
+        <Link href="/legal/privacy" style={{ color: "var(--nx-cobalt-ink)", textDecoration: "underline" }}>
           Privacy Policy
         </Link>
       </Gate>

@@ -56,15 +56,15 @@ export function Explainer() {
       </Reveal>
       <ol className="nx-explain nx-explain--home" aria-label="How it works, in three frames">
         {frames.map((f, i) => (
-          <Reveal key={f.t} delay={i * 70} className="nx-explain__item">
-            <li className="nx-explain__frame">
+          <Reveal key={f.t} as="li" delay={i * 70} className="nx-explain__item">
+            <div className="nx-explain__frame">
               <div className="nx-explain__art">
                 {f.art}
                 <span className="nx-explain__n" style={{ fontFamily: F }} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <p className="nx-explain__t" style={{ fontFamily: S }}>{f.t}</p>
               <p className="nx-explain__b" style={{ fontFamily: F }}>{f.b}</p>
-            </li>
+            </div>
           </Reveal>
         ))}
       </ol>

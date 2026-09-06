@@ -85,7 +85,7 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 
 ---
 
-## Gate Battery — run ALL TEN before EVERY commit
+## Gate Battery — run ALL ELEVEN before EVERY commit
 A commit ships only if these pass / non-regress. Use Node 20 LTS (`.nvmrc` pins it; better-sqlite3 does not compile on Node 26).
 
 ```
@@ -109,6 +109,14 @@ npm run audit:voice       # 10. house voice — law 3, defensive negation, again
                           #    constructions. A law nobody can check is a preference.
                           #    Exemptions are LITERAL strings with a stated reason
                           #    (clinical, FDA, or A2P-mandated wording) — never patterns.
+npm run audit:a11y        # 11. WCAG 2.1 A + AA via axe-core in real Chromium, 14 routes
+                          #    × desktop and phone, against the BUILT site. Added
+                          #    2026-09-06 after a first run found five serious
+                          #    violations on every page: three colour pairs measuring
+                          #    4.11–4.49 against the 4.5 floor the palette sheet
+                          #    promises, list markup a screen reader no longer read as
+                          #    a list, and the off-canvas cart drawer aria-hidden while
+                          #    still holding focusable links. Build first.
 ```
 Also run `npm run build` before deploy-affecting commits, and `npm run audit:bundle` when touching entry/imports (entry ≤300KB budget, recharts banned from entry, Bloodwork stays lazy).
 

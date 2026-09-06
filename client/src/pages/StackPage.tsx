@@ -83,7 +83,7 @@ export default function StackPage({ slug }: { slug: string }) {
       <SiteLayout>
         <section className="nx-container" style={{ paddingTop: "var(--nx-sp-sec)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="stack-notfound-title">
           <h1 id="stack-notfound-title" style={{ fontFamily: F, color: "var(--nx-fg-graphite)" }}>Protocol not found.</h1>
-          <Link href="/stacks" style={{ fontFamily: F, color: "var(--nx-cobalt)" }}>← All protocols</Link>
+          <Link href="/stacks" style={{ fontFamily: F, color: "var(--nx-cobalt-ink)" }}>← All protocols</Link>
         </section>
       </SiteLayout>
     );
@@ -129,14 +129,14 @@ export default function StackPage({ slug }: { slug: string }) {
         <div className="nx-container" style={{ paddingTop: "1.4rem", paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]" style={{ gap: "clamp(1.6rem,4vw,3rem)", alignItems: "center" }}>
             <div>
-              <Link href="/stacks" className="nx-proto-back" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt)" }}>
+              <Link href="/stacks" className="nx-proto-back" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-ink)" }}>
                 <ArrowLeft size={15} aria-hidden="true" /> All protocols
               </Link>
               <p className="nx-pdp-shout" style={{ fontFamily: S, marginTop: "1.2rem" }}>Prescribed together, so each medicine does its own job.</p>
               <h1 id="stack-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
                 {stack.name}
               </h1>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)", marginTop: "0.4rem" }}>
+              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-ink)", marginTop: "0.4rem" }}>
                 {stack.tagline}
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>
@@ -255,7 +255,7 @@ export default function StackPage({ slug }: { slug: string }) {
                     <div className="nx-timeline-step" style={{ paddingBottom: i < stack.timeline.length - 1 ? "1.1rem" : 0 }}>
                       <span className="nx-timeline-node" aria-hidden>{i + 1}</span>
                       <div className="nx-glass-tile" style={{ display: "block" }}>
-                        <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt)" }}>{t.wk}</p>
+                        <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-ink)" }}>{t.wk}</p>
                         <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>{t.effect}</p>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export default function StackPage({ slug }: { slug: string }) {
               <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 10, marginTop: "1rem", maxWidth: 760 }}>
                 {stack.contraindications.map((c) => (
                   <div key={c} className="nx-glass-tile" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-cobalt)", flexShrink: 0 }} />
+                    <X size={17} strokeWidth={2.4} aria-hidden="true" style={{ color: "var(--nx-cobalt-ink)", flexShrink: 0 }} />
                     <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.5, color: "var(--nx-fg-graphite)" }}>{c}</p>
                   </div>
                 ))}

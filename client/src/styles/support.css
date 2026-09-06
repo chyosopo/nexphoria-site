@@ -73,7 +73,7 @@
 .sp-consent { display: flex; gap: .7rem; align-items: flex-start; cursor: pointer; border: 1px solid var(--nx-border); background: var(--nx-bg); border-radius: var(--nx-r-md); padding: .85rem .95rem; }
 .sp-consent input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--nx-cobalt); flex-shrink: 0; }
 .sp-consent span { font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); }
-.sp-consent a { display: inline-block; padding: .6rem 0; margin: -.6rem 0; color: var(--nx-cobalt); text-decoration: underline; text-underline-offset: 3px; }
+.sp-consent a { display: inline-block; padding: .6rem 0; margin: -.6rem 0; color: var(--nx-cobalt-ink); text-decoration: underline; text-underline-offset: 3px; }
 .sp-form__error { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); color: var(--nx-danger); }
 .sp-form .nx-cta-cobalt { align-self: flex-start; justify-content: center; min-height: 2.75rem; }
 .sp-sent { margin-top: 1.2rem; }
