@@ -55,10 +55,11 @@ const CAT_LINE: Record<SoloCategory, string> = {
 const labelFor = (c: string) => (c === "All" ? "All" : CAT_LABEL[c as SoloCategory] ?? c);
 /* The sticky header is 64px tall (Nav: h-16); the chip row pins under it. */
 const HEADER_PX = 64;
-/* The chip row's height on the phone (catalog.css --nx-chips-h). The
+/* The chip row's height on the phone (catalog.css --nx-chips-h, 61px: the chip is 44px on a
+   coarse pointer). The
    results section reserves this much room, so the row is shown as soon as
    the reader is within it of the header. */
-const CHIPS_PX = 53;
+const CHIPS_PX = 61;
 /* Park the results a little ABOVE the header line on the phone: the chip
    row's sticky then engages, so it pins to the header rather than floating
    at its natural position, and the results line above it goes fully under

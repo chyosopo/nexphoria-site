@@ -219,3 +219,34 @@ button:not(:disabled):active, [role="button"]:active {
   }
   .nx-sheen::after { transition: none; }
 }
+
+/* ── 8. Touch target comfort ──────────────────────────────────────────────
+   Swept every route on an iPhone 13 (2026-09-06): no missing alt text, no
+   unlabelled control, no horizontal overflow, one h1 each, no heading jumps.
+   The one real finding was height. Three control families sit at 33–36px on
+   a phone:
+     .nx-goalchip           the sticky goal row on the shelf, tapped most
+     .nx-tab                the tab controls
+     .nx-addons-for__chip   the add-on chips, which are purchase controls
+   All three clear WCAG 2.5.8 AA (24×24), so this is comfort rather than
+   compliance — but 44px is the Apple and Android guidance and these are the
+   controls a thumb hits on the way to buying.
+
+   Scoped to coarse pointers so desktop density is untouched, and applied as
+   min-height with centred content so nothing re-flows: the box grows, the
+   ink stays where it was. The skip link (1×1 until focused) and inline text
+   links in prose are deliberately excluded — the first is meant to be
+   invisible, and the second is exempt from the target-size rule. */
+:root { --nx-touch-min: 44px; }
+@media (pointer: coarse) {
+  /* .nx-goalchip is qualified by its row: styles/catalog.css sets its own
+     36px min-height and, being a component sheet, can load after this one —
+     a bare class here lost the cascade and the chips stayed at 36. */
+  .nx-goalchips__row .nx-goalchip,
+  .nx-tab,
+  .nx-addons-for__chip {
+    min-height: var(--nx-touch-min);
+    display: inline-flex;
+    align-items: center;
+  }
+}
