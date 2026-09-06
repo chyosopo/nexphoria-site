@@ -12,7 +12,7 @@ import "@/styles/support.css";
 
 const DESTINATIONS: { href: string; label: string; note: string; Icon: typeof Layers; testid: string }[] = [
   { href: "/stacks", label: "Protocols", note: "Medicines prescribed together", Icon: Layers, testid: "not-found-protocols-link" },
-  { href: "/peptides", label: "Peptides", note: "Every medicine, by what it treats", Icon: FlaskConical, testid: "not-found-peptides-link" },
+  { href: "/peptides", label: "Medicines", note: "Every one, by what it treats", Icon: FlaskConical, testid: "not-found-peptides-link" },
   { href: "/how-it-works", label: "How it works", note: "The five steps, and the panel", Icon: Stethoscope, testid: "not-found-hiw-link" },
   { href: "/contact", label: "Contact", note: "Support and press", Icon: Mail, testid: "not-found-contact-link" },
 ];
@@ -45,7 +45,7 @@ export default function NotFound() {
           <p className="nx-eyebrow">Error 404</p>
           <h1 id="not-found-title" className="nx-dsh1" style={{ fontFamily: S }}>That page does not exist.</h1>
           <p className="nx-lede" style={{ fontFamily: F }}>
-            The address you followed does not exist or has moved. Here are the routes most people are looking for.
+            These are the pages people are usually looking for.
           </p>
           <div className="sp-404__cta">
             <Link href="/" className="nx-cta-cobalt" data-testid="not-found-home-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}>

@@ -40,7 +40,7 @@ export default function LegalIndex() {
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Legal</p>
             <h1 id="legal-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>The documents that govern your care, in full.</h1>
-            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>The agreements, policies and consents that apply to care at Nexphoria. Each one is written out in full, and the business contact sits at the foot of every page.</p>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>The agreements, policies and consents that apply to care at Nexphoria. The business contact sits at the foot of every one.</p>
           </div>
         </div>
       </section>
