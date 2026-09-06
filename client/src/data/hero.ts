@@ -33,8 +33,11 @@ export const HERO = {
      doing the work of a clause. Twelve words where v4 spent twenty-one. */
   subline:
     "Physician-prescribed peptides, compounded to order in licensed U.S. pharmacies. Dosed from your own blood panel, and read again at week 12.",
-  cta: "Shop the medicines",
-  ctaSecondary: "See how it works",
+  /* The assessment leads (Chiya 2026-09-06, after enhanced.com): a reader
+     who knows the symptom and not the molecule was being handed a shelf.
+     Browsing is the second path now, not the first. */
+  cta: "Find what fits you",
+  ctaSecondary: "Browse every medicine",
   micro: "Prescribed by a licensed U.S. physician, if appropriate. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons: six facts, an icon each, the only
      place these appear on the home. Each is a fact, not a claim. */

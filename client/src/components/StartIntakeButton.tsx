@@ -16,7 +16,14 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { analytics } from "@/lib/analytics";
 
-const INTAKE_ROUTE = "/peptides";
+/* The site's standing call to action. This pointed at "/peptides" — so
+   every "Get started" on the site, in the nav and the phone sheet, handed
+   the reader a shelf of 26 medicines and asked them to already know which
+   one they wanted. It is the assessment now (Chiya 2026-09-06, after
+   enhanced.com, whose CTA is the quiz): three questions, then a
+   recommendation, with browsing kept one tap away on the quiz's first
+   screen. */
+const INTAKE_ROUTE = "/quiz";
 
 type Variant = "primary" | "outline-light" | "outline-dark" | "ghost" | "ghost-dark";
 type Size = "sm" | "md" | "lg" | "xl";

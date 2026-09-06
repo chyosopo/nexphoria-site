@@ -272,7 +272,7 @@ export function Nav({ variant = "gate" }: NavProps) {
         </ul>
 
         <div className="nx-hdr__side">
-          <StartIntakeButton productSlug={intakeSlug} source={navSource} size="sm" className="nx-hdr__cta">Get started</StartIntakeButton>
+          <StartIntakeButton productSlug={intakeSlug} source={navSource} size="sm" className="nx-hdr__cta">Find what fits</StartIntakeButton>
           <CartIconButton className="nx-hdr__cart" />
           <button
             ref={burgerRef}
@@ -350,7 +350,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             </m.ul>
           </div>
           <div className={`${CONTAINER} nx-sheet__foot`}>
-            <StartIntakeButton productSlug={intakeSlug} source={`${navSource}-mobile`} size="md" className="nx-sheet__cta">Get started</StartIntakeButton>
+            <StartIntakeButton productSlug={intakeSlug} source={`${navSource}-mobile`} size="md" className="nx-sheet__cta">Find what fits</StartIntakeButton>
             <p className="nx-sheet__note">A licensed U.S. physician prescribes, if appropriate.</p>
           </div>
         </m.div>

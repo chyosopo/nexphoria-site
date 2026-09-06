@@ -125,8 +125,8 @@ export function HeroTiles() {
           {TILES.map((t, i) => <HeroTile key={t.goal} t={t} i={i} />)}
         </m.div>
         <div className="nx-tilehero__foot">
-          <a href="#treatments" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta">{HERO.cta}</a>
-          <Link href="/how-it-works" className="nx-text-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)" }}>How it works</Link>
+          <Link href="/quiz" className="nx-cta-cobalt" data-testid="frontdoor-hero-cta">{HERO.cta}</Link>
+          <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)" }}>{HERO.ctaSecondary}</Link>
         </div>
       </div>
     </section>

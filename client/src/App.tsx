@@ -35,6 +35,7 @@ const StackPage = lazy(() => import("@/pages/StackPage"));
 const ProtocolsIndex = lazy(() => import("@/pages/ProtocolsIndex"));
 const SoloPDP = lazy(() => import("@/pages/SoloPDP"));
 const PeptidesCatalog = lazy(() => import("@/pages/PeptidesCatalog"));
+const Quiz = lazy(() => import("@/pages/Quiz"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
 const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
@@ -118,8 +119,9 @@ function AppRouter() {
         <Route path="/bloodwork"><R to="/how-it-works" /></Route>
         <Route path="/blood-work"><R to="/how-it-works" /></Route>
         {/* Guided quizzes retired — pure browse */}
-        <Route path="/quiz"><R to="/peptides" /></Route>
-        <Route path="/assessment"><R to="/peptides" /></Route>
+        {/* The assessment — the site's primary call to action (data/quiz.ts) */}
+        <Route path="/quiz" component={Quiz} />
+        <Route path="/assessment"><R to="/quiz" /></Route>
         {/* Blog retired — education lives on each medicine's page */}
         <Route path="/journal"><R to="/" /></Route>
         <Route path="/journal/:slug"><R to="/" /></Route>

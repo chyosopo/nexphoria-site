@@ -3095,16 +3095,6 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 @media (prefers-reduced-motion: reduce) { .nx-rotate { transition: none; } }
 
 /* ═══ Find your medicine (the quiz) ═══ */
-.nx-quiz { max-width: 60rem; }
-.nx-quiz__options { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: .7rem; }
-.nx-quiz__opt { display: flex; flex-direction: column; gap: .3rem; width: 100%; text-align: left; cursor: pointer; padding: 1rem 1.1rem; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); color: var(--nx-fg); transition: border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
-.nx-quiz__opt > span:first-child { font-size: var(--nx-t-lg); font-weight: 500; }
-.nx-quiz__opt > span:last-child { font-size: var(--nx-t-sm); color: var(--nx-fg-graphite); line-height: 1.5; }
-.nx-quiz__opt:hover, .nx-quiz__opt:focus-visible { border-color: var(--nx-cobalt); transform: translateY(-1px); outline: none; }
-.nx-quiz__opt.is-on { border-color: var(--nx-cobalt); background: var(--nx-cobalt-soft); }
-.nx-quiz__back { display: inline-flex; align-items: center; gap: .3rem; margin-top: 1.4rem; background: none; border: 0; padding: 0; cursor: pointer; font-size: var(--nx-t-sm); font-weight: 600; }
-.nx-quiz__tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: .9rem; margin-top: 1.6rem; }
-.nx-quiz__next { margin-top: 2.2rem; padding-top: 1.6rem; border-top: 1px solid var(--nx-border); }
 
 /* ═══ The menu panels (2026-09-05, after alyverx.com) ═══ */
 .nx-mega__sheet { background: var(--nx-bg); border-top: 1px solid var(--nx-border); border-bottom: 1px solid var(--nx-border); box-shadow: 0 24px 48px -24px color-mix(in srgb, var(--nx-fg) 16%, transparent); }

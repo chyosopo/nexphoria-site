@@ -1,0 +1,66 @@
+/* ═══ The assessment (pages/Quiz.tsx) ═══
+   One column, large tap targets, nothing competing with the question. The
+   page is deliberately quiet: a reader here has told us they do not yet
+   know what they want, and a wall of product would be the wrong answer. */
+.nx-quiz { background: var(--nx-bg); min-height: 100vh; }
+.nx-quiz__wrap { max-width: 46rem; padding-top: clamp(1.5rem, 5vh, 3rem); padding-bottom: var(--nx-sp-band); }
+
+/* progress: three marks, filled as they are answered */
+.nx-quiz__bar { display: flex; gap: 6px; margin-bottom: 1.4rem; }
+.nx-quiz__bar span {
+  flex: 1; height: 3px; border-radius: var(--nx-r-pill);
+  background: var(--nx-border);
+  transition: background var(--nx-dur-3) var(--nx-ease);
+}
+.nx-quiz__bar span.is-on { background: var(--nx-cobalt); }
+
+.nx-quiz__h1 {
+  margin: .5rem 0 0; font-size: var(--nx-t-h1); line-height: 1.04;
+  letter-spacing: var(--nx-ls-display); font-weight: 500; color: var(--nx-fg);
+  text-wrap: balance;
+}
+.nx-quiz__h2 {
+  margin: 2rem 0 0; font-size: var(--nx-t-h2); line-height: 1.08;
+  letter-spacing: var(--nx-ls-tight); font-weight: 500; color: var(--nx-fg);
+}
+.nx-quiz__lede { margin-top: .9rem; font-size: var(--nx-t-base); line-height: 1.62; color: var(--nx-fg-graphite); }
+.nx-quiz__why { margin-top: .8rem; font-size: var(--nx-t-base); line-height: 1.62; color: var(--nx-fg-graphite); }
+
+/* the "what you have tried" line, as a quiet acknowledgement */
+.nx-quiz__note {
+  display: flex; align-items: flex-start; gap: .55rem;
+  margin-top: 1.2rem; padding: .8rem 1rem;
+  border: 1px solid var(--nx-border); border-radius: var(--nx-r-md);
+  background: var(--nx-ceramic);
+  font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite);
+}
+.nx-quiz__note svg { color: var(--nx-cobalt); flex: 0 0 auto; margin-top: 2px; }
+
+/* the answers */
+.nx-quiz__opts { list-style: none; margin: 1.6rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.nx-quiz__opt {
+  position: relative; width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: var(--nx-touch-min, 44px);
+  padding: 1rem 1.1rem; text-align: left; cursor: pointer;
+  border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg);
+  background: var(--nx-ceramic); color: var(--nx-fg);
+  transition: border-color var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease),
+              transform var(--nx-dur-2) var(--nx-ease);
+}
+.nx-quiz__opt:hover { border-color: var(--nx-cobalt); box-shadow: var(--nx-e-3); }
+/* The label block takes the room and the arrow holds the right edge. Without
+   the flex/min-width pair the span claimed the full row and pushed the arrow
+   onto a line of its own, centred under the text. */
+.nx-quiz__opt > span:first-child { flex: 1 1 auto; min-width: 0; }
+.nx-quiz__opt svg { color: var(--nx-fg-muted); flex: 0 0 auto; }
+.nx-quiz__opt:hover svg { color: var(--nx-cobalt); }
+.nx-quiz__opt-t { display: block; font-size: var(--nx-t-lg); font-weight: 500; line-height: 1.2; letter-spacing: var(--nx-ls-snug); }
+.nx-quiz__opt-b { display: block; margin-top: .3rem; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-muted); }
+
+.nx-quiz__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin-top: 1.4rem; }
+@media (max-width: 560px) { .nx-quiz__grid { grid-template-columns: 1fr; } }
+.nx-quiz__grid > .nx-cell { display: grid; min-width: 0; }
+
+.nx-quiz__foot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.nx-quiz__legal { margin-top: 1.6rem; font-size: var(--nx-t-xs); line-height: 1.6; color: var(--nx-fg-muted); max-width: 54ch; }
