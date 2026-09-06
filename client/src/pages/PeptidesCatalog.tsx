@@ -13,7 +13,7 @@ import { scrollToResults } from "@/motion/scroll";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/lib/seo";
 import { SOLO_CATALOG, SOLO_CATEGORIES, type SoloCategory } from "@/data/soloCatalog";
-import { Check, Search, SearchX, X } from "lucide-react";
+import { ArrowRight, Check, Search, SearchX, X } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { ProductCard } from "@/components/ProductCard";
 import { CATEGORY_TILE, TILE_DARK } from "@/lib/studioTiles";
@@ -310,6 +310,11 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
                 </button>
               )}
             </div>
+            {/* A reader on the shelf who cannot choose is the assessment's
+                reader, and this page offered them no way to it. */}
+            <Link href="/quiz" className="nx-text-link nx-catalog-quiz" style={{ fontFamily: F, fontWeight: 600 }} data-testid="catalog-quiz-link">
+              Not sure? Answer three questions <ArrowRight size={15} aria-hidden="true" />
+            </Link>
             {/* the results line, visible; the count is in the live region for AT */}
             <p className="nx-catalog-status" style={{ fontFamily: F }} aria-hidden="true" data-testid="catalog-results-line">
               {needle

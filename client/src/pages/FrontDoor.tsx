@@ -138,8 +138,15 @@ export default function FrontDoor() {
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", marginTop: ".8rem", maxWidth: "44ch" }}>
                 Every medicine is listed by what it treats. A licensed U.S. physician prescribes it, if appropriate.
               </p>
-              <Link href="/peptides" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>
-                Shop all medicines
+              {/* The headline above asks the assessment's own question
+                  ("Know what you're after?"), and this button used to answer
+                  it with a shelf of 26. It offers the assessment now; the
+                  shelf is beside it for a reader who would rather browse. */}
+              <Link href="/quiz" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>
+                Find what fits you
+              </Link>
+              <Link href="/peptides" className="nx-text-link nx-closer-alt" data-testid="frontdoor-closer-browse" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }}>
+                Or browse all medicines
               </Link>
             </div>
           </div>

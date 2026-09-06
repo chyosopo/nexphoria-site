@@ -164,3 +164,7 @@
 /* on a photograph the chips sit on porcelain so they read on any picture */
 .nx-frost__media--photo .nx-chip { background: color-mix(in srgb, var(--nx-ceramic) 88%, transparent); color: var(--nx-fg); }
 .nx-frost__media--photo .nx-chip--accent { background: var(--nx-cobalt); color: var(--nx-ceramic); }
+
+/* The route to the assessment, on the shelf. Quiet: it is for the reader who
+   cannot choose, and must not compete with the medicines for the one who can. */
+.nx-catalog-quiz { display: inline-flex; align-items: center; gap: .35rem; margin-top: .8rem; }
