@@ -10,7 +10,7 @@ import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { F, S } from "@/lib/typography";
 import { PeptideChain, MarkerChart } from "@/components/diagrams/Diagrams";
-import { SKU_PHOTO } from "@/components/SkuPhoto";
+import { SKU_PHOTO, SKU_PHOTO_600 } from "@/components/SkuPhoto";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { RETEST_WEEK } from "@/data/monitoring";
 
@@ -22,7 +22,20 @@ export function Explainer() {
       b: "A short chain of amino acids, the same building blocks as protein. Your body makes thousands of them, as messages. Release growth hormone tonight. You have eaten enough. Repair this tendon.",
     },
     {
-      art: <div className="nx-explain__media"><img src={SKU_PHOTO.sermorelin} alt="A Nexphoria vial of sermorelin" loading="lazy" decoding="async" width={1600} height={1600} /></div>,
+      art: (
+        <div className="nx-explain__media">
+          <img
+            src={SKU_PHOTO.sermorelin}
+            srcSet={SKU_PHOTO_600.sermorelin ? `${SKU_PHOTO_600.sermorelin} 600w, ${SKU_PHOTO.sermorelin} 1600w` : undefined}
+            sizes="(max-width: 700px) 46vw, 320px"
+            alt="A Nexphoria vial of sermorelin"
+            loading="lazy"
+            decoding="async"
+            width={1600}
+            height={1600}
+          />
+        </div>
+      ),
       t: "A physician prescribes the one that fits.",
       b: "Each medicine here is a precise copy of one of those messages, made to order in a licensed U.S. pharmacy. Which one, and at what dose, follows from your answers and your blood work.",
     },
