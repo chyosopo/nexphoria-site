@@ -116,10 +116,6 @@ export default function Contact() {
                   </dd>
                 </div>
                 <div>
-                  <dt>Hours</dt>
-                  <dd>Monday to Friday, 9am to 6pm ET. Replies come on business days.</dd>
-                </div>
-                <div>
                   <dt>Address</dt>
                   <dd>{BUSINESS.entity}<br />{BUSINESS.address}</dd>
                 </div>

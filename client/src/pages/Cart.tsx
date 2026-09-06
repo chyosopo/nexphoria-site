@@ -26,7 +26,7 @@ export default function Cart() {
   // context even though the page itself stays out of the index.
   useSeo({
     title: "Your cart",
-    description: "Review your selection before the physician's review.",
+    description: "What you chose, its term and its price, before a physician reads the order.",
     path: "/cart",
     noindex: true,
     jsonLd: [breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Cart", path: "/cart" }])],

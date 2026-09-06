@@ -48,6 +48,19 @@ type FormValues = z.infer<typeof formSchema>;
 
 const STEPS = ["Contact and shipping", "Billing", "Medical details"] as const;
 
+/* The four beats after the order, in one place. The page has two end
+   states — the order submitted, and the card payment returned — and each
+   carried its own hand-written version of this list, so the same four
+   steps reached the reader in two different wordings. The paid state also
+   rendered them without the numbered chip .nx-beats lays out, which put
+   the text in the 24px number column. */
+const WHAT_HAPPENS_NEXT = [
+  "A licensed physician reads your answers and decides",
+  "You hear by email either way",
+  "If prescribed, a licensed 503A pharmacy compounds it to order",
+  "It ships cold, with the blood kit you draw before the first dose",
+] as const;
+
 /* PayToday is the house block for the figure; inside the summary tile it
    sits flush so the tile stays one card. */
 const FLUSH: React.CSSProperties = { background: "transparent", border: 0, padding: 0 };
@@ -219,15 +232,10 @@ export default function Checkout() {
               )}
               <div className="nx-steptile text-left max-w-md mx-auto" style={{ marginTop: "2rem" }}>
                 <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">Next</span>
-                <h2 className="nx-steptile__t" style={{ fontFamily: S }}>What happens now.</h2>
+                <h2 className="nx-steptile__t" style={{ fontFamily: S }}>What happens next.</h2>
                 <ol className="nx-beats" style={{ marginTop: "1rem" }}>
-                  {[
-                    "A licensed physician reads your answers and decides",
-                    "You hear by email either way",
-                    "If prescribed, a licensed 503A pharmacy compounds it to order",
-                    "It ships cold, with the blood kit you draw before the first dose",
-                  ].map((t) => (
-                    <li key={t} style={{ fontFamily: F }}>{t}</li>
+                  {WHAT_HAPPENS_NEXT.map((t, i) => (
+                    <li key={t}><i>{i + 1}</i><span style={{ fontFamily: F }}>{t}</span></li>
                   ))}
                 </ol>
               </div>
@@ -275,13 +283,8 @@ export default function Checkout() {
                 <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">Next</span>
                 <h2 className="nx-steptile__t" style={{ fontFamily: S }}>What happens next.</h2>
                 <ol className="nx-beats" style={{ marginTop: "1rem" }}>
-                  {[
-                    "A physician reviews the intake and the order",
-                    "You receive a secure approval link by email",
-                    "The medicine is made to order in a licensed 503A pharmacy",
-                    "The compounded shipment is sent in cold-chain packaging",
-                  ].map((t, i) => (
-                    <li key={i}><i>{i + 1}</i><span>{t}</span></li>
+                  {WHAT_HAPPENS_NEXT.map((t, i) => (
+                    <li key={t}><i>{i + 1}</i><span style={{ fontFamily: F }}>{t}</span></li>
                   ))}
                 </ol>
                 <Link href="/how-it-works" className="nx-text-link" data-testid="checkout-timeline-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, marginTop: "1.2rem" }}>

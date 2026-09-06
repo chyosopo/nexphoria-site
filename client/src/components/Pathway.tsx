@@ -4,10 +4,20 @@
 import { ArrowRight } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { pathwayFor } from "@/data/pathway";
+import { RETEST_WEEK } from "@/data/monitoring";
 
 export function Pathway({ slug, testId }: { slug: string; testId?: string }) {
   const p = pathwayFor(slug);
   if (!p) return null;
+  /* The sentence was hard-coded plural, so a medicine measured against one
+     marker read "HbA1c are read at week 12" — and the singular branch put
+     "LH and FSH ... is the measure". The markers are catalog data, so the
+     sentence follows them: the comma list reads as prose ("Cortisol and
+     thyroid", not "Cortisol, thyroid"), and a list or a plural noun
+     ("Hormones", "Metabolic markers") takes the plural verb. */
+  const parts = p.reads.split(/,\s*/);
+  const reads = parts.length > 1 ? `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}` : p.reads;
+  const many = parts.length > 1 || / and |s$/.test(p.reads);
   return (
     <div data-testid={testId ?? `pathway-${slug}`}>
       <ol className="nx-pathway" aria-label="How it works">
@@ -22,7 +32,11 @@ export function Pathway({ slug, testId }: { slug: string; testId?: string }) {
         ))}
       </ol>
       <p className="nx-pt-note" style={{ fontFamily: F }}>
-        {p.context ? `${p.reads} are read at week 12 for context.` : `${p.reads}, read at week 12, is the measure the dose is set against.`}
+        {p.context
+          ? `${reads} ${many ? "are" : "is"} read at week ${RETEST_WEEK} for context.`
+          : many
+            ? `${reads}, read at week ${RETEST_WEEK}, are what the dose is set against.`
+            : `${reads}, read at week ${RETEST_WEEK}, is the measure the dose is set against.`}
       </p>
     </div>
   );
