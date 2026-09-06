@@ -199,7 +199,7 @@ export default function Checkout() {
   if (paid) {
     return (
       <SiteLayout variant="gate">
-        <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
+        <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: "clamp(1.5rem, 5vh, 3rem)" }}>
           <div className="nx-container py-[var(--nx-sp-sec)] max-w-2xl">
             <div className="text-center">
               <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-cobalt-soft)", color: "var(--nx-success)" }} aria-hidden="true">
@@ -214,7 +214,7 @@ export default function Checkout() {
               </p>
               {paidSession && (
                 <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1rem" }} data-testid="checkout-paid-ref">
-                  Your reference: {paidSession.slice(-12)}
+                  Your reference: {paidSession.replace(/[^A-Za-z0-9]+/g, "").slice(-12)}
                 </p>
               )}
               <div className="nx-steptile text-left max-w-md mx-auto" style={{ marginTop: "2rem" }}>
