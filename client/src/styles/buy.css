@@ -97,3 +97,14 @@ body.nx-has-buybar { --nx-buybar-h: 60px; padding-bottom: calc(var(--nx-buybar-h
   .nx-buybar { display: none; }
   body.nx-has-buybar { padding-bottom: 0; }
 }
+
+/* The return from an abandoned Stripe Checkout (Cart.tsx ?cancelled=1): a
+   calm statement of fact, not an alarm — nothing went wrong, the reader
+   simply chose not to finish. */
+.nx-cart-cancelled {
+  display: flex; align-items: center; gap: .55rem;
+  margin: 0 0 1rem; padding: .7rem .9rem;
+  border: 1px solid var(--nx-border); border-radius: var(--nx-r-md);
+  background: var(--nx-ceramic);
+  font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite);
+}

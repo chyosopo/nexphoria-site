@@ -4,8 +4,8 @@
    once. Headings are sentences, not caps labels. */
 import { track } from "@/lib/analytics";
 import { CONDITIONAL } from "@/components/RegulatoryDisclosure";
-import { useState } from "react";
-import { Link } from "wouter";
+import { useEffect, useRef, useState } from "react";
+import { Link, useSearch } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -69,6 +69,23 @@ export default function Checkout() {
 
   const { toast } = useToast();
   const [submittedId, setSubmittedId] = useState<number | null>(null);
+
+  /* ── The return from Stripe ──────────────────────────────────────────
+     functions/api/checkout-session.ts sends the reader to hosted Stripe
+     Checkout and asks it to return them here with ?paid=1&session_id=…
+     Without this, a completed payment landed back on an empty form and the
+     reader saw NOTHING confirming they had paid — the worst outcome a
+     checkout can produce. The cart is cleared once, on arrival. */
+  const search = useSearch();
+  const paid = new URLSearchParams(search).get("paid") === "1";
+  const paidSession = new URLSearchParams(search).get("session_id") || "";
+  const clearedRef = useRef(false);
+  useEffect(() => {
+    if (!paid || clearedRef.current) return;
+    clearedRef.current = true;
+    track("checkout_paid", { session: paidSession ? "yes" : "unknown" });
+    clear();
+  }, [paid, paidSession, clear]);
   const [step, setStep] = useState(0); // 0 contact + shipping, 1 billing, 2 health questions + confirm
 
   const form = useForm<FormValues>({
@@ -177,6 +194,56 @@ export default function Checkout() {
   };
 
   const terms = lines.filter((l) => !l.oneTime).map((l) => `${l.months} ${l.months === 1 ? "month" : "months"} of ${l.name}`).join(" · ");
+
+  /* ─── Paid: the return from hosted Stripe Checkout ─── */
+  if (paid) {
+    return (
+      <SiteLayout variant="gate">
+        <div style={{ background: "var(--nx-bg)", minHeight: "100vh", paddingTop: 96 }}>
+          <div className="nx-container py-[var(--nx-sp-sec)] max-w-2xl">
+            <div className="text-center">
+              <div className="inline-flex p-5 rounded-full mb-6" style={{ background: "var(--nx-cobalt-soft)", color: "var(--nx-success)" }} aria-hidden="true">
+                <Check size={32} strokeWidth={1.5} />
+              </div>
+              <h1 className="nx-cartpage__h1" style={{ fontFamily: S, margin: "0 auto" }}>
+                Payment received. A physician reviews it next.
+              </h1>
+              <p className="nx-cartpage__lede" style={{ fontFamily: F, margin: "1rem auto 0" }}>
+                A licensed U.S. physician now reviews the order. If it is appropriate, the medicine is compounded to
+                order and ships cold with your blood kit. If it is not, nothing is made and the refund policy applies.
+              </p>
+              {paidSession && (
+                <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1rem" }} data-testid="checkout-paid-ref">
+                  Your reference: {paidSession.slice(-12)}
+                </p>
+              )}
+              <div className="nx-steptile text-left max-w-md mx-auto" style={{ marginTop: "2rem" }}>
+                <span className="nx-steptile__n" style={{ fontFamily: F }} aria-hidden="true">Next</span>
+                <h2 className="nx-steptile__t" style={{ fontFamily: S }}>What happens now.</h2>
+                <ol className="nx-beats" style={{ marginTop: "1rem" }}>
+                  {[
+                    "A licensed physician reads your answers and decides",
+                    "You hear by email either way",
+                    "If prescribed, a licensed 503A pharmacy compounds it to order",
+                    "It ships cold, with the blood kit you draw before the first dose",
+                  ].map((t) => (
+                    <li key={t} style={{ fontFamily: F }}>{t}</li>
+                  ))}
+                </ol>
+              </div>
+              <div style={{ marginTop: "2rem", display: "flex", gap: ".8rem", justifyContent: "center", flexWrap: "wrap" }}>
+                <Link href="/how-it-works" className="nx-cta-cobalt" style={{ fontFamily: F, fontWeight: 600 }}>See how it works</Link>
+                <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }}>Back to the medicines</Link>
+              </div>
+              <p style={{ fontFamily: F, fontSize: "var(--nx-t-xs)", color: "var(--nx-fg-muted)", marginTop: "1.6rem" }}>
+                Questions: <a href="mailto:hello@nexphoria.com" className="nx-text-link">hello@nexphoria.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </SiteLayout>
+    );
+  }
 
   /* ─── Success screen (intake-complete confirmation) ─── */
   if (submittedId !== null) {

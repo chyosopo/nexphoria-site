@@ -2,7 +2,7 @@
    The card grammar (2026-09-05): each line is a card with the SKU render,
    the name, the term, the monthly price and the term total; the summary is
    one tile with the figure once. Headings are sentences, not caps labels. */
-import { Link } from "wouter";
+import { Link, useSearch } from "wouter";
 import { ArrowRight, ShieldCheck, Stethoscope, Truck, RefreshCw, FlaskConical } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
@@ -33,6 +33,11 @@ export default function Cart() {
   });
   const { lines, subtotal, itemCount, dueToday } = useCart();
   const terms = lines.filter((l) => !l.oneTime).map((l) => `${l.months} ${l.months === 1 ? "month" : "months"} of ${l.name}`).join(" · ");
+  /* Backing out of hosted Stripe Checkout returns here with ?cancelled=1
+     (functions/api/checkout-session.ts). Say plainly that nothing was
+     charged — a reader who abandons a payment and lands on an unchanged
+     cart otherwise has to guess whether their card was touched. */
+  const cancelled = new URLSearchParams(useSearch()).get("cancelled") === "1";
 
   return (
     <SiteLayout variant="gate">
@@ -41,6 +46,11 @@ export default function Cart() {
         <div className="nx-container nx-section-y" style={{ paddingTop: "clamp(2rem, 4vw, 3rem)" }}>
           <Reveal>
             <div>
+              {cancelled && (
+                <p className="nx-cart-cancelled" role="status" data-testid="cart-cancelled" style={{ fontFamily: F }}>
+                  Payment was not completed, and nothing was charged. Your cart is as you left it.
+                </p>
+              )}
               <h1 className="nx-cartpage__h1" style={{ fontFamily: S }} data-testid="cart-title">
                 {itemCount === 0 ? "Your cart is empty." : "Review what you chose."}
               </h1>
