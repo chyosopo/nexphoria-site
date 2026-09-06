@@ -13,7 +13,19 @@ export type SoloCategory =
   | "Growth" | "Cognitive" | "Recovery" | "Skin & Longevity"
   | "Metabolic" | "Sleep" | "Sexual Health" | "Hormone";
 
-/* Availability (the playbook, 2026-09-04). "coming": an FDA Category 2
+/* ⚠️ ALL 26 SET LIVE — Chiya, 2026-09-06, explicit instruction ("make all
+   peptides available"), given after the exposure was put to her in writing:
+   the eight moved here are FDA Category 2 substances pending final
+   rulemaking, which a 503A pharmacy cannot lawfully compound today, and
+   offering them is the specific thing that draws a LegitScript refusal (the
+   application is in progress) and a payment-processor termination. Her call,
+   recorded here so the next reader knows it was a decision and not a drift.
+   To reverse: set status back to "coming" on selank, semax, bpc-157, tb-500,
+   bpc-tb-combo, ghk-cu, epitalon, mots-c, and "watch" on dsip.
+   The FDA and compounding DISCLOSURES are untouched by this and stay on
+   every page — availability and disclosure are separate things.
+
+   Availability (the playbook, 2026-09-04). "coming": an FDA Category 2
    peptide pending final rulemaking, shown and reservable at the founding
    price, never sold. "watch": status unresolved (DSIP), shown with caution. */
 export type SoloStatus = "live" | "coming" | "watch";
@@ -197,7 +209,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full", panelNote: "The blood test at week 12, included. TSH is read for context.",
     contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review)"],
     pricing: { m1: 189, m3: 170, m6: 161, m12: 151 },
-    status: "coming", feelBy: "Same day to 1 week", fullEffect: "2 to 4 weeks", evidence: 2,
+    status: "live", feelBy: "Same day to 1 week", fullEffect: "2 to 4 weeks", evidence: 2,
     combine: ["Semax"], avoid: [],
   },
   {
@@ -209,7 +221,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full",
     contraindications: ["Pregnancy", "Concurrent psychiatric medication (physician review)"],
     pricing: { m1: 189, m3: 170, m6: 161, m12: 151 },
-    status: "coming", feelBy: "Same day to 1 week", fullEffect: "2 to 4 weeks", evidence: 2,
+    status: "live", feelBy: "Same day to 1 week", fullEffect: "2 to 4 weeks", evidence: 2,
     combine: ["Selank"], avoid: [],
   },
   {
@@ -243,7 +255,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full", panelNote: "The blood test at week 12, included. Inflammation markers are read first.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
     pricing: { m1: 179, m3: 161, m6: 152, m12: 143 },
-    status: "coming", feelBy: "Gut symptoms within days; tissue in 1 to 2 weeks", fullEffect: "4 to 8 weeks", evidence: 2,
+    status: "live", feelBy: "Gut symptoms within days; tissue in 1 to 2 weeks", fullEffect: "4 to 8 weeks", evidence: 2,
     combine: ["TB-500", "Ipamorelin / CJC-1295 Blend"], avoid: [],
   },
   {
@@ -255,7 +267,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full", panelNote: "The blood test at week 12, included. IL-6 and hs-CRP are read first.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
     pricing: { m1: 259, m3: 233, m6: 220, m12: 207 },
-    status: "coming", feelBy: "2 to 3 weeks", fullEffect: "6 to 8 weeks", evidence: 1,
+    status: "live", feelBy: "2 to 3 weeks", fullEffect: "6 to 8 weeks", evidence: 1,
     combine: ["BPC-157"], avoid: [],
   },
   {
@@ -267,7 +279,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full", panelNote: "The blood test at week 12, included. IL-6 and hs-CRP are read first.",
     contraindications: ["Active malignancy", "Pregnancy or lactation"],
     pricing: { m1: 399, m3: 359, m6: 339, m12: 319 },
-    status: "coming", feelBy: "Gut symptoms within days; tissue in 1 to 3 weeks", fullEffect: "6 to 8 weeks", evidence: 2,
+    status: "live", feelBy: "Gut symptoms within days; tissue in 1 to 3 weeks", fullEffect: "6 to 8 weeks", evidence: 2,
     combine: ["Ipamorelin / CJC-1295 Blend"], avoid: [],
   },
 
@@ -281,7 +293,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full",
     contraindications: ["Active malignancy", "Copper allergy"],
     pricing: { m1: 129, m3: 116, m6: 110, m12: 103 },
-    status: "coming", feelBy: "Skin in 3 to 4 weeks", fullEffect: "8 to 12 weeks", evidence: 2,
+    status: "live", feelBy: "Skin in 3 to 4 weeks", fullEffect: "8 to 12 weeks", evidence: 2,
     combine: ["NAD+", "MOTS-c", "Epitalon"], avoid: [],
   },
   {
@@ -293,7 +305,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full",
     contraindications: ["Active malignancy", "Pregnancy"],
     pricing: { m1: 199, m3: 179, m6: 169, m12: 159 },
-    status: "coming", feelBy: "Sleep in 1 to 2 weeks", fullEffect: "per course", evidence: 1,
+    status: "live", feelBy: "Sleep in 1 to 2 weeks", fullEffect: "per course", evidence: 1,
     combine: ["NAD+", "MOTS-c", "GHK-Cu"], avoid: [],
   },
   {
@@ -317,7 +329,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full",
     contraindications: ["Active malignancy", "Pregnancy"],
     pricing: { m1: 169, m3: 152, m6: 144, m12: 135 },
-    status: "coming", feelBy: "2 to 4 weeks", fullEffect: "8 to 12 weeks", evidence: 2,
+    status: "live", feelBy: "2 to 4 weeks", fullEffect: "8 to 12 weeks", evidence: 2,
     combine: ["NAD+", "Epitalon", "Tirzepatide"], avoid: [],
   },
 
@@ -359,7 +371,7 @@ const ALL_SOLO: SoloPeptide[] = [
     panel: "Full",
     contraindications: ["Pregnancy", "Concurrent SSRI/SNRI (physician review)"],
     pricing: { m1: 129, m3: 116, m6: 110, m12: 103 },
-    status: "watch", feelBy: "The first nights", fullEffect: "ongoing", evidence: 1,
+    status: "live", feelBy: "The first nights", fullEffect: "ongoing", evidence: 1,
     combine: ["Epitalon"], avoid: [],
   },
   {

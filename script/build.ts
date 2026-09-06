@@ -3,6 +3,7 @@ import { build as viteBuild } from "vite";
 import { rm, readFile } from "node:fs/promises";
 import { generateSitemap } from "./genSitemap";
 import { generateLlms } from "./genLlms";
+import { generatePrices } from "./genPrices";
 import { prerender } from "./prerender";
 
 // server deps to bundle to reduce openat(2) syscalls
@@ -43,6 +44,12 @@ async function buildAll() {
   // Regenerate llms.txt from the canonical catalogs (the hand-written file
   // had drifted to fictional stacks + dead hash-URLs — see docs/LAUNCH-AUDIT.md §5).
   const llms = await generateLlms();
+
+  /* The price manifest the Stripe Checkout Function trusts. Generated from
+     the same catalog the pages render, so the amount charged can never drift
+     from the amount shown. */
+  const prices = await generatePrices();
+  console.log(`prices: ${Object.keys(prices.solos).length} medicines + ${Object.keys(prices.stacks).length} protocols priced for checkout`);
   console.log(`llms.txt regenerated — ${llms.stacks} stacks · ${llms.solos} peptides`);
 
   console.log("building client...");

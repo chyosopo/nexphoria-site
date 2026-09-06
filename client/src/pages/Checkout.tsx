@@ -97,6 +97,38 @@ export default function Checkout() {
          physician team" promise — and hand the user a working path
          (retry / concierge email). Health answers are never persisted
          client-side (PHI stays out of the repo and its storage). */
+      /* ── 1 · PAYMENT ──────────────────────────────────────────────────
+         /api/checkout-session is the Cloudflare Pages Function that creates
+         a Stripe Checkout Session (functions/api/checkout-session.ts). It is
+         handed WHAT is being bought — slug, term, quantity — and never the
+         price: every amount is looked up server-side from the generated
+         manifest, so a browser cannot name its own total.
+         PHI LAW: the cart lines go to Stripe. The medical answers in
+         `values` DO NOT, and must never be added to this call. */
+      const pay = await fetch("/api/checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: values.email,
+          items: lines.map((l) => ({ type: l.type, slug: l.slug, cadence: l.cadence, qty: l.qty })),
+        }),
+      });
+      if (pay.ok) {
+        const { url } = (await pay.json()) as { url?: string };
+        if (url) {
+          track("checkout_payment_redirect", { lines: lines.length });
+          window.location.assign(url); // hosted Stripe Checkout takes it from here
+          return { ok: true, id: 0, message: "redirecting" };
+        }
+      }
+      /* Payments not switched on for this environment (503), or Stripe
+         refused. Fall through to the intake capture below rather than
+         inventing a confirmation — the reader gets a working path either
+         way, and the failure is visible instead of silent. */
+      const why = pay.status === 503 ? "payments_not_configured" : `stripe_${pay.status}`;
+      track("checkout_payment_unavailable", { why });
+
+      /* ── 2 · INTAKE CAPTURE (fallback) ─────────────────────────────── */
       return await apiRequest<{ ok: boolean; id: number; message: string }>("/api/checkout", {
         method: "POST",
         body: JSON.stringify({
@@ -110,6 +142,7 @@ export default function Checkout() {
       });
     },
     onSuccess: (data) => {
+      if (data.message === "redirecting") return; // the browser is leaving for Stripe
       setSubmittedId(data.id);
       track("checkout_submitted", { id: data.id });
       queryClient.invalidateQueries({ queryKey: ["/api/checkout"] });
