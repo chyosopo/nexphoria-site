@@ -146,9 +146,23 @@ export default function Quiz() {
               </div>
             )}
 
+            {/* The primary action is the RECOMMENDATION. It used to be "See
+                every medicine for this", which sent the reader back to the
+                shelf — the assessment answered "which one?" and then its
+                loudest button undid the answer. The shelf is still one tap
+                away, as a text link, for anyone who wants to compare. */}
             <div className="nx-quiz__foot">
-              <Link href={`/peptides?goal=${goal}`} className="nx-cta-cobalt" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-see-all">
-                See every medicine for this <ArrowRight size={16} aria-hidden="true" />
+              {first ? (
+                <Link href={`/peptides/${first.slug}`} className="nx-cta-cobalt" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-primary-cta">
+                  Read about {first.name} <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              ) : (
+                <Link href={`/peptides?goal=${goal}`} className="nx-cta-cobalt" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-primary-cta">
+                  See every medicine for this <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              )}
+              <Link href={`/peptides?goal=${goal}`} className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-see-all">
+                Compare all {CATEGORY_LABELS[goal].toLowerCase()} medicines
               </Link>
               <button type="button" onClick={restart} className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-restart">
                 Start again
