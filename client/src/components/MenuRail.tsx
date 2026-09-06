@@ -38,7 +38,7 @@ export function MenuRail({ photo }: { photo: string }) {
             <p className="nx-band__kicker" style={{ fontFamily: F }}>The medicines</p>
             <h2 id="fd-formulary" className="nx-band__h2" style={{ fontFamily: S }}>Every medicine a physician can prescribe here, with its price.</h2>
           </div>
-          <Link href="/peptides" className="nx-cta-ceramic nx-cta--sm" data-testid="frontdoor-menu-all">Shop all medicines <ArrowRight size={14} aria-hidden="true" /></Link>
+          <Link href="/peptides" className="nx-cta-ceramic nx-cta--sm" data-testid="frontdoor-menu-all">Browse every medicine <ArrowRight size={14} aria-hidden="true" /></Link>
         </div>
         <div className="nx-tabs nx-tabs--scroll" role="tablist" aria-label="Filter by goal">
           <button role="tab" aria-selected={cat === "all"} className="nx-tab" onClick={() => setCat("all")} style={{ fontFamily: F }} data-testid="menu-tab-all">All medicines</button>

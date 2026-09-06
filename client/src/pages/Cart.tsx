@@ -56,7 +56,7 @@ export default function Cart() {
               </h1>
               <p className="nx-cartpage__lede" style={{ fontFamily: F }}>
                 {itemCount === 0
-                  ? "Nothing chosen yet."
+                  ? "Three questions, and we point you at the medicine for what you want to change."
                   : "Each medicine, its term, its price. Change any of them here. A licensed physician reviews the order before anything is made."}
               </p>
             </div>
@@ -142,10 +142,12 @@ export default function Cart() {
 function EmptyCart() {
   return (
     <div className="nx-cart-empty" data-testid="cart-empty">
-      <p style={{ fontFamily: F }}>Every medicine shows what it treats and what it costs, grouped by goal.</p>
       <div className="nx-stepnav">
-        <Link href="/peptides" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="link-empty-browse-peptides">
-          Shop the medicines
+        <Link href="/quiz" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="link-empty-quiz">
+          Find what fits
+        </Link>
+        <Link href="/peptides" className="nx-cta-ghost" style={{ fontFamily: F }} data-testid="link-empty-browse-peptides">
+          Browse every medicine
         </Link>
         <Link href="/stacks" className="nx-cta-ghost" style={{ fontFamily: F }} data-testid="link-empty-browse-stacks">
           See the protocols

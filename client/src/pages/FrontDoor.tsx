@@ -133,20 +133,22 @@ export default function FrontDoor() {
           <div className="nx-closer-tile">
             <div>
               <h2 id="fd-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>
-                Know what you're after? Start there.
+                Name the goal. We name the medicine.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", marginTop: ".8rem", maxWidth: "44ch" }}>
-                Every medicine is listed by what it treats. A licensed U.S. physician prescribes it, if appropriate.
+                Three questions, and no account. A licensed U.S. physician prescribes what follows, if appropriate.
               </p>
-              {/* The headline above asks the assessment's own question
-                  ("Know what you're after?"), and this button used to answer
-                  it with a shelf of 26. It offers the assessment now; the
-                  shelf is beside it for a reader who would rather browse. */}
+              {/* The headline used to be "Know what you're after? Start
+                  there." — Enhanced's own line, and it argued against the
+                  button beneath it: the assessment is for the reader who
+                  does NOT yet know. It names the trade instead: the reader
+                  names the goal, we name the medicine. The shelf stays
+                  beside it for a reader who would rather browse. */}
               <Link href="/quiz" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>
                 Find what fits you
               </Link>
               <Link href="/peptides" className="nx-text-link nx-closer-alt" data-testid="frontdoor-closer-browse" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }}>
-                Or browse all medicines
+                Or browse every medicine
               </Link>
             </div>
           </div>

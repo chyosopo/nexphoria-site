@@ -70,7 +70,7 @@ export function CartDrawer() {
         style={{ background: "var(--nx-bg)", borderLeft: "1px solid var(--nx-border)" }}
         data-world={world}
         role="dialog"
-        aria-label="Shopping cart"
+        aria-labelledby="nx-cart-drawer-title"
         aria-modal="true"
         aria-hidden={!isOpen}
         data-testid="cart-drawer"
@@ -82,9 +82,9 @@ export function CartDrawer() {
             style={{ borderBottom: "1px solid var(--nx-border)", background: "var(--nx-bg)" }}
           >
             <div>
-              <h2 className="nx-drawer__h" style={{ fontFamily: S }}>
+              <p id="nx-cart-drawer-title" className="nx-drawer__h" style={{ fontFamily: S }}>
                 {itemCount === 0 ? "Your cart is empty." : "Your cart."}
-              </h2>
+              </p>
             </div>
             <button
               onClick={close}
@@ -189,13 +189,13 @@ export function CartDrawer() {
 function EmptyCart({ onClose }: { onClose: () => void }) {
   return (
     <div className="nx-cart-empty" style={{ margin: "1rem 0 0" }}>
-      <p style={{ fontFamily: F }}>Every medicine shows what it treats and what it costs, grouped by goal.</p>
+      <p style={{ fontFamily: F }}>Three questions, and we point you at the medicine for what you want to change.</p>
       <div className="nx-stepnav">
-        <Link href="/peptides" onClick={onClose} className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="link-browse-stacks">
-          Shop the medicines
+        <Link href="/quiz" onClick={onClose} className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="link-drawer-quiz">
+          Find what fits
         </Link>
-        <Link href="/stacks" onClick={onClose} className="nx-cta-ghost" style={{ fontFamily: F }} data-testid="link-browse-peptides">
-          See the protocols
+        <Link href="/peptides" onClick={onClose} className="nx-cta-ghost" style={{ fontFamily: F }} data-testid="link-browse-peptides">
+          Browse every medicine
         </Link>
       </div>
     </div>

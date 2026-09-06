@@ -51,7 +51,7 @@ export function Explainer() {
         <div className="nx-sec-head">
           <p className="nx-eyebrow">What a peptide does</p>
           <h2 id="fd-explain" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Peptides are your body's own signals, prescribed one at a time.</h2>
-          <p className="nx-lede">Here is the whole idea, in three frames.</p>
+          <p className="nx-lede">The signal you already make, the prescription that copies it, and the blood panel that reads what changed.</p>
         </div>
       </Reveal>
       <ol className="nx-explain nx-explain--home" aria-label="How it works, in three frames">

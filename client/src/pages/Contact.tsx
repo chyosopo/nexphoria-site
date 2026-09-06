@@ -300,7 +300,7 @@ export default function Contact() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="contact-closer">
         <div className="nx-closer-tile">
           <div>
-            <h2 id="contact-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>Most questions are already answered.</h2>
+            <h2 id="contact-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>The answer is probably already written.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>How it works, what it costs, safety, shipping, who is involved. All of it is on the questions page and the five steps.</p>
             <Link href="/faq" className="nx-cta-ceramic" data-testid="contact-faq-link" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>Read the questions</Link>
           </div>

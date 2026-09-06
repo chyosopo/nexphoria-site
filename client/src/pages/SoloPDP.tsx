@@ -178,7 +178,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                   Choose a plan
                 </a>
                 <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  Shop all medicines
+                  Browse every medicine
                 </Link>
               </div>
               {/* The fact strip (2026-09-05, after alyverx.com): the four facts

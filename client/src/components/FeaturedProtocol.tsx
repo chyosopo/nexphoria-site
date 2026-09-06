@@ -25,7 +25,7 @@ export function FeaturedProtocol({ slug = "recover", shout = "Prescribed togethe
             <h2 id="fd-protocol" className="nx-tile__t nx-tile__t--lg" style={{ fontFamily: S }}>{shout}</h2>
             <p className="nx-tile__name" style={{ fontFamily: S }}>{st.name}</p>
             <p className="nx-tile__b" style={{ fontFamily: F }}>{st.tagline}</p>
-            <span className="nx-tile__btn nx-tile__btn--static" style={{ fontFamily: F }}>{from ? `Shop the protocol · from ${usd(from)}/mo` : "Shop the protocol"}</span>
+            <span className="nx-tile__btn nx-tile__btn--static" style={{ fontFamily: F }}>{from ? `See the protocol · from ${usd(from)}/mo` : "See the protocol"}</span>
           </div>
         </Link>
       </Reveal>

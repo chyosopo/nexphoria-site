@@ -311,7 +311,7 @@ export default function Checkout() {
               Add a medicine or a protocol before checkout.
             </p>
             <Link href="/peptides" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="link-empty-checkout-stacks">
-              Shop the medicines
+              Browse every medicine
             </Link>
           </div>
         </div>

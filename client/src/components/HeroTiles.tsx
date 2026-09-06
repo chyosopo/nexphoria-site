@@ -13,7 +13,6 @@ import { ArrowRight, Stethoscope, FlaskConical, Droplets } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { HERO } from "@/data/hero";
 import { CATEGORY_LABELS } from "@/data/peptides";
-import { GOAL_SHOUT } from "@/data/goalTeaching";
 import tileMetabolic from "@/assets/studio/tile-metabolic.webp";
 import tileMetabolic800 from "@/assets/studio/tile-metabolic-800.webp";
 import tileGrowth from "@/assets/studio/tile-growth.webp";
@@ -70,7 +69,7 @@ function HeroTile({ t, i }: { t: (typeof TILES)[number]; i: number }) {
       >
         <img src={t.img} srcSet={`${t.img800} 800w, ${t.img} 1200w`} sizes="(max-width: 900px) 100vw, 33vw" alt="" width={1200} height={900} fetchPriority={i === 0 ? "high" : undefined} decoding="async" />
         <span className="nx-chips nx-chips--tile" aria-hidden="true"><span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{CATEGORY_LABELS[t.goal]}</span><span className="nx-chip" style={{ fontFamily: F }}>Rx</span></span>
-        <span className="nx-tile__title nx-tile__title--low" style={{ fontFamily: S }}>{GOAL_SHOUT[t.goal]}</span>
+        <span className="nx-tile__title nx-tile__title--low" style={{ fontFamily: S }}>{t.line}</span>
         <span className="nx-tile__btn" style={{ fontFamily: F }}>{t.cta}</span>
         <span className="nx-tile__arrow" aria-hidden="true"><ArrowRight size={18} /></span>
       </m.a>
@@ -78,10 +77,20 @@ function HeroTile({ t, i }: { t: (typeof TILES)[number]; i: number }) {
   );
 }
 
+/* Each tile carries its OWN line. It used to render GOAL_SHOUT, which the
+   goal gallery further down the same page renders too — so a reader
+   scrolling the home page met "Lose the weight. Keep the muscle you trained
+   for." twice within two screens, and the same for the other two tiles.
+   Same goals, two different sentences: the tile names the goal in the
+   fewest words, the gallery card carries the full shout.
+
+   The button says the same thing on all three because the chip above it
+   already names the category — "Weight loss" and then "Shop weight loss"
+   said the category twice inside one tile. */
 const TILES = [
-  { goal: "metabolic" as const, img: tileMetabolic, img800: tileMetabolic800, href: "/peptides?goal=metabolic", cta: "Shop weight loss", dark: false },
-  { goal: "growth" as const, img: tileGrowth, img800: tileGrowth800, href: "/peptides?goal=growth", cta: "Shop body composition", dark: true },
-  { goal: "sexual-health" as const, img: tileSexual, img800: tileSexual800, href: "/peptides?goal=sexual-health", cta: "Shop sexual health", dark: true },
+  { goal: "metabolic" as const, img: tileMetabolic, img800: tileMetabolic800, href: "/peptides?goal=metabolic", line: "Leaner, and still strong.", cta: "See the medicines", dark: false },
+  { goal: "growth" as const, img: tileGrowth, img800: tileGrowth800, href: "/peptides?goal=growth", line: "Lean mass. Less deep fat.", cta: "See the medicines", dark: true },
+  { goal: "sexual-health" as const, img: tileSexual, img800: tileSexual800, href: "/peptides?goal=sexual-health", line: "Drive, desire, function.", cta: "See the medicines", dark: true },
 ];
 
 export function HeroTiles() {

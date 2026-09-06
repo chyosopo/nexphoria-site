@@ -108,7 +108,7 @@ export default function HowItWorks() {
             <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>A quick online visit. A licensed physician decides the rest.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps, from choosing a medicine to the week-{RETEST_WEEK} blood panel. Each one is set out below, in the order it happens.</p>
             <div className="nx-tilehero__foot">
-              <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Shop the medicines</Link>
+              <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Browse every medicine</Link>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">The steps</p>
-            <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Here are the five steps, in the order they happen.</h2>
+            <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "24ch" }}>From choosing a medicine to the week-12 panel.</h2>
           </div>
         </Reveal>
         <ol className="sp-steps" data-testid="hiw-steps">

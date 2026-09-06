@@ -168,7 +168,7 @@ export default function ProtocolsIndex() {
                   <span className="nx-tile__foot nx-tile__foot--proto">
                     <span className="nx-tile__t" style={{ fontFamily: S }}>{s.name}</span>
                     <span className="nx-tile__b" style={{ fontFamily: F }}>{s.tagline}</span>
-                    <span className="nx-tile__btn nx-tile__btn--static" style={{ fontFamily: F }}>{s.gated ? "Priced at consultation" : rec ? `Shop the protocol · from ${usd(rec)}/mo` : "Shop the protocol"}</span>
+                    <span className="nx-tile__btn nx-tile__btn--static" style={{ fontFamily: F }}>{s.gated ? "Priced at consultation" : rec ? `See the protocol · from ${usd(rec)}/mo` : "See the protocol"}</span>
                   </span>
                 </Link>
               </Reveal>
