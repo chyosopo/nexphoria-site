@@ -62,8 +62,23 @@ export default function Quiz() {
   ];
   const total = 3;
 
+  /* What was chosen at each step, so Back re-opens a question with the
+     reader's own answer still marked. Without this, going back showed a
+     blank question and quietly discarded the choice they came to check. */
+  const chosenAt: (QuizOption | null)[] = [
+    goal ? Q_GOAL.options.find((o) => o.goal === goal) ?? null : null,
+    shape,
+    tried ? Q_TRIED.options.find((o) => o.label === tried) ?? null : null,
+  ];
+
   const choose = (opt: QuizOption) => {
-    if (step === 0 && opt.goal) { setGoal(opt.goal); track("quiz_step", { step: 1, answer: opt.goal }); }
+    /* Changing the goal invalidates the answer beneath it — the second
+       question is a different question per goal. */
+    if (step === 0 && opt.goal) {
+      if (opt.goal !== goal) setShape(null);
+      setGoal(opt.goal);
+      track("quiz_step", { step: 1, answer: opt.goal });
+    }
     if (step === 1) { setShape(opt); track("quiz_step", { step: 2 }); }
     if (step === 2) { setTried(opt.label); track("quiz_complete", { goal }); }
     setStep((s) => s + 1);
@@ -147,12 +162,13 @@ export default function Quiz() {
           <h1 className="nx-quiz__h1" style={{ fontFamily: S }}>{q.title}</h1>
           {q.lead && <p className="nx-quiz__lede" style={{ fontFamily: F }}>{q.lead}</p>}
 
-          <m.ul className="nx-quiz__opts" variants={stagger(0.03)} initial="hidden" animate="show" data-testid={`quiz-q${step + 1}`}>
+          <m.ul className={`nx-quiz__opts${q.options.length > 5 ? " nx-quiz__opts--many" : ""}`} variants={stagger(0.03)} initial="hidden" animate="show" data-testid={`quiz-q${step + 1}`}>
             {q.options.map((opt) => (
               <m.li key={opt.label} variants={rise}>
                 <m.button
                   type="button"
-                  className="nx-quiz__opt nx-sheen"
+                  className={`nx-quiz__opt nx-sheen${chosenAt[step]?.label === opt.label ? " is-on" : ""}`}
+                  aria-pressed={chosenAt[step]?.label === opt.label}
                   onClick={() => choose(opt)}
                   whileTap={{ scale: 0.98 }}
                   transition={PRESS_SPRING}

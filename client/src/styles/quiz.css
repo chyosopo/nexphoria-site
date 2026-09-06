@@ -64,3 +64,21 @@
 
 .nx-quiz__foot { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem; }
 .nx-quiz__legal { margin-top: 1.6rem; font-size: var(--nx-t-xs); line-height: 1.6; color: var(--nx-fg-muted); max-width: 54ch; }
+
+/* The answer already given. Going back must show the reader their own choice
+   — a blank question after Back reads as though the answer was thrown away. */
+.nx-quiz__opt.is-on {
+  border-color: var(--nx-cobalt);
+  box-shadow: inset 0 0 0 1px var(--nx-cobalt);
+  background: var(--nx-cobalt-soft, var(--nx-ceramic));
+}
+.nx-quiz__opt.is-on svg { color: var(--nx-cobalt); }
+
+/* Question one offers all nine goals. In a single column that is a 2,277px
+   page on a desktop, so the reader scrolls past most of their options before
+   choosing one. Two columns above 860px puts nearly all of them in view at
+   once; the shorter questions (three or four answers) stay single-column,
+   where a second column would only scatter them. */
+@media (min-width: 860px) {
+  .nx-quiz__opts--many { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
