@@ -182,3 +182,20 @@ export const TRIED_NOTE: Record<string, string> = {
   "This is the first thing":
     "Nothing is decided today. A licensed physician reads your answers before anything is made.",
 };
+
+/* ── The protocol for a goal, when one exists ──────────────────────────
+   Six goals have a protocol: two to four medicines a physician prescribes
+   together on one plan. The assessment recommended only single medicines,
+   so the protocols — the more complete answer for someone who has just told
+   us their whole goal — never appeared on the primary path at all.
+
+   Keyed by goal, valued by the stack slug (data/stacksCatalog). Three goals
+   (growth, sleep, skin) have no protocol and correctly show none. */
+export const GOAL_PROTOCOL: Partial<Record<PeptideCategory, string>> = {
+  metabolic: "ignite",
+  recovery: "recover",
+  longevity: "ascend",
+  cognition: "lucidity",
+  "sexual-health": "vitality",
+  hormone: "foundation",
+};

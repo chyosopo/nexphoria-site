@@ -11,11 +11,11 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
 import { m, PRESS_SPRING, rise, stagger, useSheen } from "@/motion";
-import { Q_GOAL, Q_SHAPE, Q_TRIED, TRIED_NOTE, type QuizOption } from "@/data/quiz";
+import { Q_GOAL, Q_SHAPE, Q_TRIED, TRIED_NOTE, GOAL_PROTOCOL, type QuizOption } from "@/data/quiz";
 import { GOAL_SHOUT, GOAL_TEACHING } from "@/data/goalTeaching";
 import { CATEGORY_LABELS, peptides, type PeptideCategory } from "@/data/peptides";
 import { SOLO_CATALOG, statusOf, type SoloPeptide } from "@/data/soloCatalog";
-import { usd } from "@/data/stacksCatalog";
+import { usd, getStack } from "@/data/stacksCatalog";
 import { ProductCard } from "@/components/ProductCard";
 import { track } from "@/lib/analytics";
 import "@/styles/quiz.css";
@@ -90,6 +90,8 @@ export default function Quiz() {
   /* ── The recommendation ── */
   if (step >= total && goal) {
     const first = results[0];
+    const protoSlug = GOAL_PROTOCOL[goal];
+    const protocol = protoSlug ? getStack(protoSlug) : undefined;
     return (
       <SiteLayout>
         <div className="nx-quiz">
@@ -125,6 +127,23 @@ export default function Quiz() {
               <p className="nx-quiz__why" style={{ fontFamily: F }}>
                 Every medicine for this goal is on the shelf, with what it treats and what it costs.
               </p>
+            )}
+
+            {/* The protocol, when the goal has one. Someone who has just told
+                us their whole goal is exactly the reader for whom two to four
+                medicines prescribed together may be the more complete answer
+                — and it was reachable only by browsing. Offered as an
+                alternative, never as an upsell: no "recommended", no
+                "best value", and the single medicine keeps the lead. */}
+            {protocol && (
+              <div className="nx-quiz__proto" data-testid="quiz-protocol">
+                <p className="nx-quiz__proto-k" style={{ fontFamily: F }}>Or, prescribed together</p>
+                <h3 className="nx-quiz__proto-t" style={{ fontFamily: S }}>{protocol.name}</h3>
+                <p className="nx-quiz__proto-b" style={{ fontFamily: F }}>{protocol.tagline}</p>
+                <Link href={`/stacks/${protocol.slug}`} className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-protocol-link">
+                  Read the protocol <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </div>
             )}
 
             <div className="nx-quiz__foot">

@@ -82,3 +82,14 @@
 @media (min-width: 860px) {
   .nx-quiz__opts--many { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* The protocol alternative. Set apart from the single-medicine
+   recommendation by a rule rather than a colour, so it reads as another
+   route to the same goal and not as a louder offer. */
+.nx-quiz__proto { margin-top: 2rem; padding-top: 1.4rem; border-top: 1px solid var(--nx-border); }
+.nx-quiz__proto-k {
+  font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps);
+  text-transform: uppercase; color: var(--nx-fg-muted);
+}
+.nx-quiz__proto-t { margin: .4rem 0 0; font-size: var(--nx-t-h3); font-weight: 500; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
+.nx-quiz__proto-b { margin: .5rem 0 .8rem; font-size: var(--nx-t-base); line-height: 1.6; color: var(--nx-fg-graphite); }
