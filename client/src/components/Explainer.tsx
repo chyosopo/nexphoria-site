@@ -24,7 +24,7 @@ export function Explainer() {
     {
       art: <div className="nx-explain__media"><img src={SKU_PHOTO.sermorelin} alt="A Nexphoria vial of sermorelin" loading="lazy" decoding="async" width={1600} height={1600} /></div>,
       t: "A physician prescribes the one that fits.",
-      b: "Each medicine here is a precise copy of one of those messages. A licensed U.S. physician reads your online visit and prescribes the one that fits your goal. It is compounded to order.",
+      b: "Each medicine here is a precise copy of one of those messages, made to order in a licensed U.S. pharmacy. Which one, and at what dose, follows from your answers and your blood work.",
     },
     {
       art: <MarkerChart />,

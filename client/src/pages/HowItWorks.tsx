@@ -32,13 +32,13 @@ type StepImage = { src: string; srcSet?: string; alt: string; render?: boolean }
 const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
   {
     t: "Choose a medicine or a protocol, and a term.",
-    d: "You choose a medicine or a protocol, and a term of one, three, six or twelve months.",
+    d: "One, three, six or twelve months. The longer terms cost less a month and carry more blood testing.",
     detail: "Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price. A pending medicine shows its price and a notice. The only action is an email when it is available.",
     img: { src: monthBox, srcSet: `${monthBox1200} 1200w, ${monthBox} 1600w`, alt: "The month box, drawn in the house studio: the medicine, the blood kit, the first-dose card and the cold pack", render: true },
   },
   {
     t: "Complete a quick online visit at checkout.",
-    d: "Right after you order, you spend a few minutes on your history, your medicines and your goal.",
+    d: "A few minutes on your history, your current medicines and your goal. It comes right after you order, before anything is made.",
     detail: "The order is placed first, then the questions are answered. They cover the conditions that rule each medicine out and the medicines already taken. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.",
     img: { src: "img/img_329e054306f2.webp", srcSet: "img/img_329e054306f2-800w.webp 800w, img/img_329e054306f2.webp 1600w", alt: "A woman answering the online visit on a tablet at a bright desk" },
   },
@@ -50,13 +50,13 @@ const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
   },
   {
     t: "Draw your blood at home, then take the first dose.",
-    d: "The medicine ships cold with an at-home blood kit. The draw comes before the first dose; the physician sets the dose from the results.",
+    d: "The draw comes first. Your dose is set from what your own blood says.",
     detail: `The kit holds what you need to draw a small sample at home, and a prepaid box to send it back. It covers ${PANEL_TOTAL_MARKERS} markers across five systems. The physician reads the results before setting the first dose.`,
     img: { src: "img/img_d489ea4e9dbc.webp", srcSet: "img/img_d489ea4e9dbc-800w.webp 800w, img/img_d489ea4e9dbc.webp 1600w", alt: "The at-home blood kit box on a kitchen counter, by the window" },
   },
   {
     t: `At week ${RETEST_WEEK}, the same panel is drawn again.`,
-    d: "The same panel again. The physician compares the two and continues, adjusts or stops the dose.",
+    d: "The same markers, read against your first draw. What changed decides what happens to the dose.",
     detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home, and compared with the first marker by marker. The physician reads what changed. The dose continues, changes or stops.`,
     img: { src: bloodTube, alt: "A blood sample tube held up to the light in a laboratory" },
   },

@@ -253,7 +253,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
             <p className="nx-eyebrow">The medicines</p>
             <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Every medicine a physician can prescribe, by what it treats.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
-              Choose a goal. Every page states what the medicine treats, how it works, how you take it and what it costs. A licensed U.S. physician prescribes it. A licensed U.S. pharmacy compounds it.
+              Choose a goal, and read the medicine before you buy it: how it works, how you take it, what the studies found, and what it costs. A licensed U.S. physician prescribes it, if appropriate.
             </p>
           </div>
           {/* The goal tiles ARE the filter: one tile per category, the studio
