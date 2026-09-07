@@ -176,7 +176,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "ipa-cjc", name: "Ipamorelin / CJC-1295 Blend", category: "Growth",
-    outcome: "Two growth-hormone peptides, one nightly injection. For recovery, sleep and lean mass.",
+    outcome: "Sleep in the first week, then recovery and lean mass. Two growth-hormone peptides, one nightly injection.",
     dose: "300 mcg nightly, under the skin", spec: "5 mg/mL · 5 mL vial",
     mechanism: "Ipamorelin raises how often your body releases growth hormone, and CJC-1295 raises how much, so together they lift your own overnight pulse. Sleep changes within a week, then recovery and lean mass over 8 to 12 weeks. You take one small injection at bedtime.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose at bedtime." }, { wk: "Wk 4", effect: "You take it nightly." }, { wk: "Wk 12", effect: "You draw the same panel again, and IGF-1 is read first." }],
@@ -202,7 +202,7 @@ const ALL_SOLO: SoloPeptide[] = [
   /* ── COGNITIVE ── */
   {
     slug: "selank", name: "Selank", category: "Cognitive",
-    outcome: "Steadier mood, clearer focus, under pressure that does not let up. A calming nasal spray.",
+    outcome: "Steadier mood, clearer focus. A calming nasal spray, for pressure that does not let up.",
     dose: "300 mcg twice a day, nasal spray", spec: "5 mg/mL · 3 mL nasal spray",
     mechanism: "Selank works on your brain's stress circuits, including GABA signalling, and is studied for a steadier mood and clearer focus under pressure. Some people notice it the same day, and for others it takes a week. You take it as a nasal spray, twice a day.",
     timeline: [{ wk: "Day 1", effect: "You take the first spray." }, { wk: "Wk 2", effect: "You take it twice a day." }, { wk: "Wk 12", effect: "You draw the same panel again, and thyroid and cortisol are read for context." }],
@@ -248,7 +248,7 @@ const ALL_SOLO: SoloPeptide[] = [
   /* ── RECOVERY ── */
   {
     slug: "bpc-157", name: "BPC-157", category: "Recovery",
-    outcome: "For the tendon, muscle, joint or gut lining that is slow to heal. It sends the repair signal.",
+    outcome: "A tendon, joint, muscle or gut lining that is slow to heal. It sends the repair signal.",
     dose: "500 mcg daily, under the skin", spec: "5 mg/mL · 5 mL vial",
     mechanism: "BPC-157 is a fragment of a protective protein from your gut lining, studied for helping tendons, muscle, joints and the gut lining repair. Where gut symptoms are present they often ease first, and tissue follows over weeks. You take one small injection a day.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose." }, { wk: "Wk 4", effect: "You take it daily through your recovery." }, { wk: "Wk 12", effect: "You draw the same panel again, and inflammation markers are read." }],
@@ -272,7 +272,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "bpc-tb-combo", name: "BPC-157 + TB-500", category: "Recovery",
-    outcome: "The repair signal, and the cells that carry it out. BPC-157 and TB-500 in one plan.",
+    outcome: "The repair signal, and the cells that carry it out. Both peptides on one prescription.",
     dose: "BPC-157 daily, TB-500 twice a week", spec: "dual-peptide protocol",
     mechanism: "BPC-157 sends the healing signal at the site, and TB-500 brings repair cells to where they are needed, so the two act on the same tissue from two directions. They are prescribed together as one plan. You take BPC-157 daily and TB-500 twice a week.",
     timeline: [{ wk: "Wk 1", effect: "You take the first doses." }, { wk: "Wk 4", effect: "You take both peptides through your recovery." }, { wk: "Wk 12", effect: "You draw the same panel again, and inflammation markers are read." }],
@@ -298,7 +298,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "epitalon", name: "Epitalon", category: "Skin & Longevity",
-    outcome: "Sleep and healthy ageing. A 20-day course of injections, a few times a year.",
+    outcome: "Deeper sleep within a week or two, and healthy ageing on a longer clock. A 20-day course, a few times a year.",
     dose: "10 mg daily for 20 days, under the skin", spec: "100 mg/mL · 2 mL vial",
     mechanism: "Epitalon is a short peptide modelled on a protein from the pineal gland, studied for telomere maintenance and the sleep-wake cycle. Sleep is typically the first change, within 1 to 2 weeks. You take it as a 20-day course of injections, a few times a year.",
     timeline: [{ wk: "Day 1", effect: "You begin the course." }, { wk: "Day 20", effect: "The course ends." }, { wk: "Wk 12", effect: "You draw the same panel again, and metabolic and inflammation markers are read." }],
@@ -322,7 +322,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "mots-c", name: "MOTS-c", category: "Skin & Longevity",
-    outcome: "Metabolism and endurance that answer your training. It switches on the pathways exercise does.",
+    outcome: "Metabolism and endurance that build with your training. It switches on the same pathway exercise does.",
     dose: "5 mg twice a week, under the skin", spec: "10 mg/mL · 2 mL vial",
     mechanism: "MOTS-c is a peptide made by your mitochondria that switches on AMPK, the same energy-sensing pathway exercise does, and is studied for metabolism and endurance. It builds over 8 to 12 weeks alongside training. You take two small injections a week.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose." }, { wk: "Wk 4", effect: "You take it twice a week, alongside your training." }, { wk: "Wk 12", effect: "You draw the same panel again, and metabolic markers are read." }],
@@ -349,7 +349,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "tirzepatide", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Tirzepatide", category: "Metabolic",
-    outcome: "Weight loss with steadier blood sugar. A GLP-1 and GIP medicine, one injection a week.",
+    outcome: "Lose the weight, with steadier blood sugar. A GLP-1 and GIP medicine, one injection a week.",
     dose: "2.5 to 15 mg weekly, stepped up", spec: "Weekly injection · with glycine + B12",
     mechanism: "Tirzepatide works on two of your appetite hormones at once, GLP-1 and GIP, so you feel full sooner, think about food less and your blood sugar stays steadier. Appetite typically quiets in the first week, and weight changes over months. You take one small injection a week, and the physician raises the dose step by step.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose, at the lowest step." }, { wk: "Wk 4", effect: "Your dose steps up." }, { wk: "Wk 12", effect: "You draw the same panel again, and the physician reviews your dose." }],
@@ -390,7 +390,7 @@ const ALL_SOLO: SoloPeptide[] = [
   /* ── ADDED FROM THE PLAYBOOK (2026-09-04) ── */
   {
     slug: "thymosin-a1", route: "subcutaneous", name: "Thymosin Alpha-1", category: "Skin & Longevity",
-    outcome: "Immune resilience under stress, or through a season. Two injections a week.",
+    outcome: "Immune resilience under stress or through a season. Two injections a week.",
     dose: "1.6 mg twice a week, under the skin", spec: "10 mg/mL · 3 mL vial",
     mechanism: "Thymosin alpha-1 is a peptide your thymus makes that helps your T-cells mature and tunes your immune response. It is used for immune resilience and recovery, and for staying well under stress. You take two small injections a week.",
     timeline: [{ wk: "Wk 1", effect: "You take the first doses." }, { wk: "Wk 4", effect: "You take it through the season." }, { wk: "Wk 12", effect: "You draw the same panel again, and your blood count and inflammation markers are read." }],
@@ -401,7 +401,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "aod-9604", route: "subcutaneous", name: "AOD-9604", category: "Metabolic",
-    outcome: "Fat metabolism, alongside a weight plan. One injection a day.",
+    outcome: "Fat breakdown, without growth hormone's other effects. One injection a day, though the human evidence is limited.",
     dose: "300 mcg daily, under the skin", spec: "5 mg/mL · 3 mL vial",
     mechanism: "AOD-9604 is a fragment of growth hormone, the part linked to fat metabolism, and is studied for fat breakdown without growth hormone's other effects. The human evidence is limited, so it is offered as an add-on to a broader plan rather than on its own. You take one small injection a day.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose." }, { wk: "Wk 6", effect: "You take it daily, alongside your main plan." }, { wk: "Wk 12", effect: "You draw the same panel again, and metabolic markers are read." }],
@@ -434,7 +434,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "testosterone", route: "subcutaneous", regulatory: "compounded-approved-active", name: "Testosterone Cypionate", category: "Hormone",
-    outcome: "For low testosterone in men. One injection a week, dosed from your blood work.",
+    outcome: "Low testosterone in men, replaced at a dose read from your blood. One injection a week.",
     dose: "Weekly, under the skin or into muscle", spec: "200 mg/mL · 10 mL vial",
     mechanism: "Testosterone cypionate is classic testosterone replacement for men whose own level is low, used for energy, drive, muscle and mood, and the base many men build the rest of a plan on. Your physician sets the dose from your total and free testosterone and adjusts it from regular blood work. You take one injection a week.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose." }, { wk: "Wk 6", effect: "Your levels settle." }, { wk: "Wk 12", effect: "You draw the same panel again, and testosterone, estradiol and your blood count are read first." }],
@@ -445,7 +445,7 @@ const ALL_SOLO: SoloPeptide[] = [
   },
   {
     slug: "kisspeptin", route: "subcutaneous", name: "Kisspeptin", category: "Hormone",
-    outcome: "Supports your own testosterone production. Prescribed alongside testosterone.",
+    outcome: "Your own testosterone, prompted rather than replaced. Prescribed alongside testosterone.",
     dose: "Under the skin, on the physician's schedule", spec: "Vial",
     mechanism: "Kisspeptin is the signal at the top of your sex-hormone axis, one step above your own hormones, and a gentler lever than direct replacement. It is used to keep your own production working and in fertility-minded plans. You take it by small injection, on the physician's schedule.",
     timeline: [{ wk: "Wk 1", effect: "You take the first dose." }, { wk: "Wk 6", effect: "You take it on schedule." }, { wk: "Wk 12", effect: "You draw the same panel again, and testosterone, estradiol and SHBG are read first." }],
