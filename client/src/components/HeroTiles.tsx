@@ -109,7 +109,7 @@ export function HeroTiles() {
   const headOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.25]);
   const tilesY = useTransform(scrollYProgress, [0, 1], [0, 28]);
   return (
-    <section ref={ref} className="nx-tilehero" aria-label="Nexphoria" data-testid="photo-hero">
+    <section ref={ref} className="nx-tilehero nx-hero-r3 nx-pattern" aria-label="Nexphoria" data-testid="photo-hero">
       <div className="nx-container">
         <m.div className="nx-tilehero__head nx-hero-seq" style={{ y: headY, opacity: headOpacity }}>
           <ul className="nx-tilehero__pills" aria-label="The facts" data-testid="hero-facts">

@@ -524,10 +524,9 @@
 
   /* ── Cobalt rotating word underline ── */
   .nx-rotating-word {
-    
-    color: var(--nx-cobalt);
+    color: var(--nx-cobalt-ink);
     text-decoration: underline;
-    text-decoration-color: var(--nx-cobalt);
+    text-decoration-color: var(--nx-cobalt-ink);
     text-underline-offset: 6px;
     text-decoration-thickness: 2px;
   }
@@ -2976,7 +2975,7 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 /* inside the navy hero, "ceramic" surfaces become glass so every white card
    (benefit strip, expectation card, spec plate, chips) reads light on dark */
 .nx-hero-r3 { --nx-ceramic: color-mix(in srgb, #FFFFFF 11%, transparent); }
-.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-ceramic { color: #0F2140; background: #FFFFFF; }
+.nx-hero-r3 .nx-cta-ceramic { color: #0F0F0E; background: #FFFFFF; }
 .nx-hero-r3 .nx-benefit__map, .nx-hero-r3 .nx-expect, .nx-hero-r3 .nx-benefit { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .nx-hero-r3 .nx-goodfor__chip { background: color-mix(in srgb, #FFFFFF 16%, transparent); color: #FFFFFF; }
 .nx-hero-r3 .nx-evidence i { background: color-mix(in srgb, #FFFFFF 25%, transparent); }
@@ -3044,7 +3043,7 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 /* ═══ THE BRAND LAYER — Visual Identity Guide v1, §4 type, §6 motifs, §7 buttons ═══ */
 /* §4 · Display serif at weight 400, never bold; italic for emphasis. */
 .nx-tilehero__h1, .nx-dsh1, .nx-dsh2, .nx-tile__t, .nx-tile__title, .nx-goal__t, .nx-quiz__h1, .nx-quiz__h2,
-.nx-cartpage__h1, .nx-steptile__t, .nx-pt__t, .nx-frost__name, .nx-pdp-shout, .sp-tile__t, .nx-closer-tile h2 {
+.nx-cartpage__h1, .nx-steptile__t, .nx-pt__t, .nx-frost__name, .sp-tile__t, .nx-closer-tile h2 {
   font-family: var(--nx-font-display); font-weight: 400; letter-spacing: -0.01em; }
 /* §6 · Film grain, 6% over everything: "adds warmth and tactility to what
    would otherwise be flat digital surfaces". A fixed pseudo-element with no
@@ -3111,7 +3110,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 @media (max-width: 520px) { .nx-compare__row { grid-template-columns: 1fr 64px 64px; } }
 
 /* ═══ The rotating word in the hero (2026-09-05, after alyvewellness.com) ═══ */
-.nx-rotate { display: inline-block; color: var(--nx-cobalt); transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
+.nx-rotate { display: inline-block; color: var(--nx-cobalt-ink); transition: opacity var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-2) var(--nx-ease); }
 .nx-rotate.is-changing { opacity: 0; transform: translateY(6px); }
 .nx-rotate__word { display: inline-block; will-change: transform, opacity; }
 @media (prefers-reduced-motion: reduce) { .nx-rotate { transition: none; } }
@@ -3305,7 +3304,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 .nx-hero-still { position: relative; overflow: hidden; background: var(--nx-bg); }
 .nx-hero-still__grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding-top: clamp(2.6rem, 6vh, 4.5rem); padding-bottom: clamp(2.2rem, 5vh, 3.5rem); }
 .nx-hero-still__h1 { margin: .8rem 0 0; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); font-weight: 500; color: var(--nx-fg); text-wrap: balance; max-width: 13ch; }
-.nx-hero-still__h1 .nx-rotate { color: var(--nx-cobalt); }
+.nx-hero-still__h1 .nx-rotate { color: var(--nx-cobalt-ink); }
 .nx-hero-still__sub { margin: 1.1rem 0 0; max-width: 50ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); }
 .nx-hero-still__cta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 1.5rem; }
 .nx-hero-still__facts { list-style: none; margin: 1.6rem 0 0; padding: 1.1rem 0 0; border-top: 1px solid var(--nx-border); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem 1.2rem; max-width: 34rem; }
@@ -3317,12 +3316,15 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
 
 /* ═══ Tiles (effecty study, 2026-09-05): the hero tiles, the tall step tiles, the closer ═══ */
 .nx-tilehero { position: relative; background: var(--nx-bg); padding-top: clamp(1.6rem, 4vh, 3rem); }
+/* tiles inside the dark band keep the light page's tokens: the band's cream ink and glass ceramic would erase the chip and title on a cream tile */
+.nx-hero-r3 .nx-tile { --nx-fg: #1A1A1A; --nx-fg-graphite: #4A4A47; --nx-ceramic: #FFFFFF; --nx-cobalt: #0F0F0E; }
+.nx-tilehero.nx-hero-r3 { background-color: var(--nx-bg-dark); background-image: radial-gradient(ellipse 60% 80% at 80% 50%, color-mix(in srgb, #C4A265 11%, transparent), transparent); padding-bottom: clamp(2rem, 5vh, 3.5rem); }
 .nx-tilehero__head { max-width: 62rem; }
 .nx-tilehero__pills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .nx-tilehero__pills li { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: var(--nx-ceramic); font-size: var(--nx-t-xs); font-weight: 600; color: var(--nx-fg-graphite); }
-.nx-tilehero__pills svg { color: var(--nx-cobalt); }
+.nx-tilehero__pills svg { color: var(--nx-cobalt-ink); }
 .nx-tilehero__h1 { margin: 1.1rem 0 0; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); font-weight: 500; color: var(--nx-fg); text-wrap: balance; max-width: 16ch; }
-.nx-tilehero__h1 .nx-rotate { color: var(--nx-cobalt); }
+.nx-tilehero__h1 .nx-rotate { color: var(--nx-cobalt-ink); }
 .nx-tilehero__sub { margin: 1rem 0 0; max-width: 56ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); }
 .nx-tilehero__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; margin-top: 1.4rem; }
 .nx-tiles { list-style: none; margin: clamp(1.4rem, 3vw, 2.2rem) 0 0; padding: 0; display: grid; gap: clamp(.8rem, 1.4vw, 1.2rem); }
@@ -3352,9 +3354,12 @@ a.nx-tile:hover img { transform: scale(1.03); }
 .nx-sec-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
 .nx-cta-navy { display: inline-flex; align-items: center; gap: .5rem; padding: 11px 20px; border-radius: var(--nx-r-pill); background: var(--nx-fg); color: var(--nx-ceramic); font-size: var(--nx-t-sm); font-weight: 600; text-decoration: none; transition: transform var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease); }
 .nx-cta-navy:hover { background: var(--nx-bg-dark); transform: translateY(-1px); }
-.nx-closer-tile { position: relative; overflow: hidden; border-radius: var(--nx-r-lg); padding: clamp(2.2rem, 5vw, 4rem); background: linear-gradient(135deg, var(--nx-bg-dark) 0%, var(--nx-cobalt) 100%); color: var(--nx-ceramic); min-height: 20rem; display: flex; align-items: flex-end; }
-.nx-closer-tile::before { content: ""; position: absolute; right: -10%; top: -30%; width: 60%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--nx-ice) 55%, transparent) 0%, transparent 70%); pointer-events: none; }
-.nx-closer-tile > div { position: relative; }
+.nx-closer-tile { position: relative; overflow: hidden; border-radius: var(--nx-r-lg); padding: clamp(2.2rem, 5vw, 4rem); background-color: var(--nx-bg-dark); color: var(--nx-ceramic); min-height: 20rem; display: flex; align-items: flex-end; }
+.nx-closer-tile::before { content: ""; position: absolute; right: -10%; top: -30%; width: 60%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, #C4A265 16%, transparent) 0%, transparent 70%); pointer-events: none; z-index: 1; }
+.nx-closer-tile > div { position: relative; z-index: 2; }
+.nx-closer-tile .nx-cta-ceramic, .nx-closer-tile .nx-cta-cobalt { background: #C9DD69; color: #0F0F0E; }
+.nx-closer-tile .nx-text-link { color: #C4A265; }
+.nx-closer-alt { margin-left: 1rem; }
 /* FAQ rows, as tiles */
 .nx-faq-list { display: grid; gap: 10px; }
 .nx-faq-item, .nx-faq-item:first-child { border: 0; background: var(--nx-ceramic); border-radius: var(--nx-r-md); }
@@ -3435,7 +3440,7 @@ a.nx-tile:hover img { transform: scale(1.03); }
 .nx-shout { text-transform: uppercase; font-weight: 600; letter-spacing: var(--nx-ls-display); line-height: .96; }
 h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); line-height: .92; max-width: 11ch; }
 .nx-tilehero__line { margin: 1rem 0 0; font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.15; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
-.nx-tilehero__line .nx-rotate { color: var(--nx-cobalt); }
+.nx-tilehero__line .nx-rotate { color: var(--nx-cobalt-ink); }
 .nx-dsh2.nx-shout { line-height: .98; }
 .nx-tile__title.nx-shout { font-size: var(--nx-t-h3); line-height: 1; }
 .nx-tile__t.nx-shout { line-height: 1; }
@@ -3445,7 +3450,7 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 @media (max-width: 900px) { .nx-tile__title.nx-shout { font-size: var(--nx-t-lg); right: 40%; } }
 
 /* the shout on the product page */
-.nx-pdp-shout { margin: 0; font-size: var(--nx-t-lg); color: var(--nx-cobalt-ink); }
+.nx-pdp-shout { margin: 0; font-family: var(--nx-font-body); font-size: var(--nx-t-xs); font-weight: 500; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt-ink); }
 .nx-dsh3.nx-shout { line-height: 1; }
 
 /* chips on the product tile read solid over the glass */

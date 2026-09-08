@@ -226,7 +226,7 @@ export default function ProtocolsIndex() {
 
       {/* the closer, as one tile */}
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="protocols-assess-title">
-        <div className="nx-closer-tile">
+        <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="protocols-assess-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0 }}>
               Which protocol fits you is the physician's call.

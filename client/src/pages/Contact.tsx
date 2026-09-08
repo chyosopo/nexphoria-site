@@ -294,7 +294,7 @@ export default function Contact() {
 
       {/* ── Closer, as one tile ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="contact-closer">
-        <div className="nx-closer-tile">
+        <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="contact-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>The answer is probably already written.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>How it works, what it costs, safety, shipping, who is involved. All of it is on the questions page and the five steps.</p>

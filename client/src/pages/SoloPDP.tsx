@@ -161,9 +161,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
             {/* RIGHT: name, category, tile line, mechanism, the benefit chips, one action, the facts */}
             <div>
-              <p className="nx-pdp-shout" style={{ fontFamily: S }}>{GOAL_SHOUT[CATEGORY_TO_GOAL[solo.category]]}</p>
+              <p className="nx-pdp-shout" style={{ fontFamily: F }}>{GOAL_SHOUT[CATEGORY_TO_GOAL[solo.category]]}</p>
               <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.5rem", maxWidth: "18ch" }}>{solo.name}</h1>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-ink)", marginTop: "0.6rem", maxWidth: "40ch" }}>
+              <p style={{ fontFamily: S, fontWeight: 400, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg-graphite)", marginTop: "0.6rem", maxWidth: "40ch" }}>
                 {solo.outcome}
               </p>
               <div style={{ marginTop: "1rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} /></div>
@@ -315,7 +315,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
 
       {/* ══ 9 · Closer, as one tile ══ */}
       <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="solo-close-title">
-        <div className="nx-closer-tile">
+        <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="solo-close-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>A physician decides, and prescribes if it is appropriate.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>You place the order, a licensed physician reviews it, and if not prescribed, nothing is made.</p>

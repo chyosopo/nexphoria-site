@@ -320,7 +320,7 @@ export default function StackPage({ slug }: { slug: string }) {
 
       {/* ── 8 · Closer, as one tile ── */}
       <section className="nx-container nx-sec" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="stack-close-title">
-        <div className="nx-closer-tile">
+        <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="stack-close-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>A physician decides, and prescribes if it is appropriate.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>You place the order, a licensed physician reviews it, and if not prescribed, nothing is made.</p>

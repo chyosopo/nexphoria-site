@@ -99,7 +99,7 @@ export function Footer({ variant = "shared" }: FooterProps) {
   const [open, setOpen] = useState<Record<string, boolean>>({});
 
   return (
-    <footer className="nx-footer" data-testid="footer">
+    <footer className="nx-footer nx-pattern" data-testid="footer">
       {/* The wordmark, set large (enhanced.com study, 2026-09-05): the name
           once, at the width of the page, above the columns. Decorative; the
           logo below carries the accessible name. */}

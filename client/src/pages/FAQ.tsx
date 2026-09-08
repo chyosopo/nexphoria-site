@@ -327,7 +327,7 @@ export default function FAQPage() {
 
       {/* ── Closer, as one tile ── */}
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="faq-closer">
-        <div className="nx-closer-tile">
+        <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="faq-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>Ask us anything this page left open.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>Email hello@nexphoria.com, and a person answers on a business day. Clinical questions go to the physician.</p>

@@ -130,7 +130,7 @@ export default function FrontDoor() {
       {/* ══ 07 · THE CLOSER — one tile, the same one action as the hero ══ */}
       <section className="nx-container nx-sec" aria-labelledby="fd-closer" style={{ paddingBottom: "var(--nx-sp-band)" }}>
         <Reveal>
-          <div className="nx-closer-tile">
+          <div className="nx-closer-tile nx-pattern">
             <div>
               <h2 id="fd-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>
                 Name the goal. We name the medicine.

@@ -432,7 +432,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
 
       {/* the closer: the next step is a physician, as one tile */}
       <section className="nx-container" style={{ paddingBottom: "var(--nx-sp-band)" }} aria-labelledby="peptides-assess-title">
-        <div className="nx-closer-tile">
+        <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="peptides-assess-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0 }}>
               From here, a licensed physician reads your answers and decides.
