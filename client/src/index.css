@@ -5,7 +5,7 @@
 /* ─────────────────────────────────────────────────────────────
    NEXPHORIA — DESIGN SYSTEM v5 · HIMS LANE (single source of truth)
    Warm editorial pharmacy. Cream canvas, warm ink, honey accent.
-   Type: Fraunces (display serif, italic allowed) · General Sans (body)
+   Type: Cormorant Garamond (display serif, 400, italic allowed) · Inter (body)
    Accent: HONEY-BROWN — warm, disciplined, never neon
    ───────────────────────────────────────────────────────────── */
 
@@ -20,9 +20,9 @@
     --nx-t-lg:      clamp(18px, 1.6vw, 20px);        /* leads, card titles */
     --nx-t-xl:      clamp(22px, 2.2vw, 26px);        /* section intros */
     --nx-t-h3:      clamp(24px, 2.6vw, 30px);
-    --nx-t-h2:      clamp(30px, 3.6vw, 42px);
-    --nx-t-h1:      clamp(38px, 5.2vw, 60px);
-    --nx-t-display: clamp(44px, 6.4vw, 76px);        /* hero only */
+    --nx-t-h2:      clamp(34px, 4vw, 48px);
+    --nx-t-h1:      clamp(44px, 5.8vw, 68px);
+    --nx-t-display: clamp(52px, 7vw, 88px);          /* hero only */
     --nx-t-giant:   clamp(46px, 7.5vw, 124px);       /* Seed-scale statement — world heroes only */
 
     /* ══ D1c CAPS TRACKING — the only sanctioned uppercase letter-spacing ══ */
@@ -76,7 +76,7 @@
        "precision instrument" read after colour: 16px cards feel consumer-app,
        10px cards feel like equipment. Scale keeps its seven steps so every
        existing var() reference resolves unchanged. */
-    --nx-r-3xs: 1px; --nx-r-2xs: 2px; --nx-r-xs: 4px; --nx-r-sm: 8px; --nx-r-md: 14px; --nx-r-lg: 20px; --nx-r-pill: 999px;
+    --nx-r-3xs: 1px; --nx-r-2xs: 2px; --nx-r-xs: 4px; --nx-r-sm: 6px; --nx-r-md: 8px; --nx-r-lg: 10px; --nx-r-pill: 999px;
 
     /* ══ D4 MOTION — two speeds, one voice ══ */
     --nx-dur-fast: 160ms;
@@ -97,63 +97,49 @@
                             than any UI transition on purpose: it is the
                             product arriving, not a control responding. */
 
-    /* ── Nexphoria brand tokens — REFINED PORCELAIN & NAVY (Chiya 2026-08:
-       "the whole color design needs to be fully reconsidered and polished"
-       → chose Refined Porcelain & Navy: calmer near-white canvas, deeper
-       richer navy ink, a precise jewel cobalt accent replacing the muddy
-       navy-teal). Same family, polished to a private-bank register. ── */
-    /* TYPE — the faces, as tokens */
-    /* ═══ PORCELAIN & NAVY — chosen by Chiya 2026-09-04 from three costed
-       options (docs/SPINE plan, option C), replacing Graphite & Ice. The
-       agency's navy depth with the house discipline: navy ink and bands, one
-       blue accent, no yellow, one sans throughout. ═══ */
-    --nx-font-body:    'General Sans', system-ui, sans-serif;
-    --nx-font-display: 'General Sans', system-ui, sans-serif;
-    --nx-bg:           #F6F7F9;  /* porcelain canvas */
-    --nx-bg-cream:     #EDF0F5;  /* band / alternating section */
-    --nx-bg-dark:      #0B2A5B;  /* navy bands, heroes, footer */
-    --nx-fg:           #0F2140;  /* navy ink, ~14:1 on canvas */
-    --nx-fg-graphite:  #4B5568;  /* secondary body copy, 7:1 */
-    --nx-fg-muted:     #636D7E;  /* captions. Measured: 4.87:1 on the canvas, 4.57:1
-                                    on the cream band, 5.22:1 on ceramic — AA on all
-                                    three. Was #697386, whose comment claimed 4.9:1;
-                                    axe-core measures that pair at 4.46 on the canvas
-                                    and 4.19 on cream, and fails both. */
-    --nx-border:       #DEE3EA;  /* hairlines */
-    --nx-cobalt:       #2F6FD6;  /* THE accent. White CTA text 4.6:1 */
-    --nx-cobalt-hover: #2558AD;
-    --nx-cobalt-soft:  #E7EEF8;  /* accent-tinted fills */
-    /* THE ACCENT AS TEXT. --nx-cobalt is the accent and does not move: as a
-       fill it carries white at 4.81:1 and it is the hex law 1 names. But as
-       INK on the porcelain canvas it measures 4.49:1, and on cobalt-soft
-       4.12:1 — both under AA, which the palette sheet promises. This is the
-       same hue darkened 1.5% for text only: 5.07:1 on canvas, 4.66:1 on
-       cobalt-soft. Fills, borders and CTA backgrounds keep --nx-cobalt. */
-    --nx-cobalt-ink:   #2C67C6;
-    --nx-amber:        #2F6FD6;  /* aligned to the accent; small accents only */
-    --nx-success:      #2E7788;
-    --nx-warning:      #3A78BC;
+    /* ═══ FUTURISTIC LUXURY LAB — the brand system in Drive, adopted whole
+       by Chiya 2026-09-08 ("use this Nexphoria brand: the pattern, logo,
+       colours, fonts, messaging, voice — design the site to match it
+       completely"). Source: Nexphoria Brand Guidelines / Visual Identity
+       Guide v1 (May 2026). Warm near-black ground, cream field, gold accent;
+       yellow-green and olive as secondaries; Cormorant Garamond display at
+       weight 400, Inter body. "Sober luxury, not hype." Replaces Porcelain &
+       Navy (2026-09-04), which replaced Graphite & Ice (2026-08-13). ═══ */
+    --nx-font-body:    'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    --nx-font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --nx-bg:           #F9F9F9;  /* cream — page background, light-mode base */
+    --nx-bg-cream:     #F7F7F7;  /* card bg / alternating section */
+    --nx-bg-dark:      #0F0F0E;  /* near black, warm — heroes, bands, footer */
+    --nx-fg:           #1A1A1A;  /* text primary */
+    --nx-fg-graphite:  #4A4A47;  /* secondary body copy, 8.4:1 */
+    --nx-fg-muted:     #666666;  /* captions — the guide's text-secondary, 5.7:1 on cream */
+    --nx-border:       #E5E5E5;  /* hairlines — "precision detail that echoes lab documentation" */
+    /* THE FILL. Primary buttons in the guide are near-black pills with cream
+       text; the token keeps its historical name so 232 call sites repaint
+       without edits. */
+    --nx-cobalt:       #0F0F0E;
+    --nx-cobalt-hover: #2A2A28;
+    --nx-cobalt-soft:  #F3ECDD;  /* gold-tinted fill (gold at ~12% on cream) */
+    /* THE ACCENT AS TEXT. Gold #C4A265 on cream is 2.6:1 and fails AA; the
+       guide's own note says so and supplies Gold Text #8E6C2F (4.5:1) for any
+       textual use — eyebrows, links, accent words. Gold itself is decorative:
+       borders, icons, rules. */
+    --nx-cobalt-ink:   #8E6C2F;
+    --nx-accent:       #C4A265;  /* gold — decorative only */
+    --nx-amber:        #C4A265;
+    --nx-acid:         #C9DD69;  /* yellow-green — the high-conversion CTA and the logo on dark */
+    --nx-success:      #4D7C0F;
+    --nx-warning:      #8E6C2F;
 
-    /* ── reference-style paneled pastels, derived from cobalt+rust ── */
-    /* Ice — cobalt's calm cousin. Used for outcome/proof panels.        */
-    --nx-ice:          #E4EAF1;  /* warmed — was cool blue */
-    --nx-ice-edge:     #C3CEDB;
-    /* Peach — rust's warm cousin. Used for metabolic/weight panels.     */
-    --nx-peach:        #EEF1F5;  /* retired warm ivory -> cool porcelain (Chiya 2026-07-21) */
-    --nx-peach-edge:   #D3DAE3;
-    /* Sage — cream's deeper alternate. Used for recovery/sleep panels.  */
-    --nx-sage:         #E3E8EA;
-    --nx-sage-edge:    #C8D0D4;
-    /* Rust accent for callouts */
-    --nx-rust:         #7E94AC;
+    /* ── panel tints, warmed to the family ── */
+    --nx-ice:          #F3F0E8;  --nx-ice-edge:   #E2D9C4;   /* gold-warmed */
+    --nx-peach:        #F7F7F7;  --nx-peach-edge: #E5E5E5;   /* card neutral */
+    --nx-sage:         #EEF0E8;  --nx-sage-edge:  #D5DAC6;   /* olive-warmed */
+    --nx-rust:         #A4B08A;  /* olive — secondary brand accent */
 
-    /* ── V3 tokens — locked minimal palette (locked palette) ── */
-    /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
     --nx-ceramic:      #FFFFFF;  /* elevated surface */
-    --nx-rock:         #E7EEF8;
-    --nx-acid:         #BFD6F5;  /* the light accent on navy bands: pale ice, never yellow */
-    --nx-danger:       #A4453C;  /* form error — muted brick */
-    --nx-accent:       #2F6FD6;  /* mirrors --nx-cobalt */
+    --nx-rock:         #F7F7F7;
+    --nx-danger:       #B91C1C;
 
     /* ══ COMPONENT VARIANT PALETTES ══
        Bespoke per-tone tile/vial colors lifted verbatim out of components so no
@@ -162,30 +148,32 @@
        previous hardcoded behavior. Snapped to the Graphite & Ice family
        2026-08-13 (Chiya) — they were navy-derived and read as a different
        system once the canvas went cold-neutral. */
-    /* GoalVialTile — assessment goal tiles (surface tint + ink) */
-    --nx-tint-cream-bg:   #EDF0F4;  --nx-tint-cream-ink:   #1B1E23;
-    --nx-tint-sage-bg:    #E6ECEC;  --nx-tint-sage-ink:    #23292B;
-    --nx-tint-rose-bg:    #EFEAEE;  --nx-tint-rose-ink:    #241E22;
-    --nx-tint-sky-bg:     #E3EBF3;  --nx-tint-sky-ink:     #17222B;
-    --nx-tint-dusk-bg:    #E7E7EE;  --nx-tint-dusk-ink:    #23212B;
-    --nx-tint-butter-bg:  #E9EEF6;  --nx-tint-butter-ink:  #182029;
-    --nx-tint-cobalt-bg:  #E0E9F4;  --nx-tint-cobalt-ink:  #14212F;
-    --nx-tint-mineral-bg: #E5E9EB;  --nx-tint-mineral-ink: #1F262A;
-    /* VialTile — vial surface + liquid hue per tone */
-    --nx-vial-sage-bg:   #E6EBF2;  --nx-vial-sage-liq:   #8ABFD1;
-    --nx-vial-rose-bg:   #E6EEF7;  --nx-vial-rose-liq:   #A2C0E4;
-    --nx-vial-sky-bg:    #E8EEF1;  --nx-vial-sky-liq:    #A6C3D0;
-    --nx-vial-dusk-bg:   #EAE6F1;  --nx-vial-dusk-liq:   #B5A8CF;
-    --nx-vial-butter-bg: #DEE7F2;  --nx-vial-butter-liq: #6EA0DD;
-    --nx-vial-cobalt-bg: #E8EDEF;  --nx-vial-cobalt-liq: #8AABB6;
-    --nx-vial-mineral-liq: #9DB3C2;
+    /* GoalVialTile — assessment goal tiles (surface tint + ink): warm
+       neutrals from the guide's cream/gold/olive family, near-black ink */
+    --nx-tint-cream-bg:   #F3F0E8;  --nx-tint-cream-ink:   #1A1A1A;
+    --nx-tint-sage-bg:    #EEF0E8;  --nx-tint-sage-ink:    #1A1A1A;
+    --nx-tint-rose-bg:    #F1EDE8;  --nx-tint-rose-ink:    #1A1A1A;
+    --nx-tint-sky-bg:     #ECEEEA;  --nx-tint-sky-ink:     #1A1A1A;
+    --nx-tint-dusk-bg:    #EFEDE9;  --nx-tint-dusk-ink:    #1A1A1A;
+    --nx-tint-butter-bg:  #F6F1DF;  --nx-tint-butter-ink:  #1A1A1A;
+    --nx-tint-cobalt-bg:  #F3ECDD;  --nx-tint-cobalt-ink:  #1A1A1A;
+    --nx-tint-mineral-bg: #EDEDEB;  --nx-tint-mineral-ink: #1A1A1A;
+    /* VialTile — vial surface + liquid hue per tone. Liquids are the guide's
+       "Product Category Accent Colors": functional, product-UI only. */
+    --nx-vial-sage-bg:   #F7F7F7;  --nx-vial-sage-liq:   #4A9B8E;  /* recovery — teal */
+    --nx-vial-rose-bg:   #F7F7F7;  --nx-vial-rose-liq:   #8B5CF6;  /* anti-ageing — violet */
+    --nx-vial-sky-bg:    #F7F7F7;  --nx-vial-sky-liq:    #3B82F6;  /* cognitive — blue */
+    --nx-vial-dusk-bg:   #F7F7F7;  --nx-vial-dusk-liq:   #8B5CF6;
+    --nx-vial-butter-bg: #F7F7F7;  --nx-vial-butter-liq: #C9A24B;  /* growth hormone — gold */
+    --nx-vial-cobalt-bg: #F7F7F7;  --nx-vial-cobalt-liq: #22C55E;  /* weight — green */
+    --nx-vial-mineral-liq: #A4B08A;                                 /* wellness — olive */
     /* VialTile — illustration neutrals (cap + label) */
-    --nx-vial-cap:   #B8BABB;  --nx-vial-cap-shadow:   #9EA2A5;
-    --nx-vial-label: #3B3B3B;  --nx-vial-label-shadow: #1F1F1F;
+    --nx-vial-cap:   #B8B8B4;  --nx-vial-cap-shadow:   #9E9E9A;
+    --nx-vial-label: #3B3B3A;  --nx-vial-label-shadow: #1A1A1A;
     /* VialTile — regulatory status chips */
-    --nx-chip-fda-bg:   #E6F2F6;  --nx-chip-fda-fg:   #24596B;  --nx-chip-fda-edge:   #B0D2DD;
-    --nx-chip-trial-bg: #DAE6F5;  --nx-chip-trial-fg: #0F3F7A;  --nx-chip-trial-edge: #8AB0DF;
-    --nx-chip-rx-fg:    #3D4A5C;  --nx-chip-rx-edge:  #C6D0DC;
+    --nx-chip-fda-bg:   #F3ECDD;  --nx-chip-fda-fg:   #8E6C2F;  --nx-chip-fda-edge:   #D9C69C;
+    --nx-chip-trial-bg: #EEF0E8;  --nx-chip-trial-fg: #4D6B2E;  --nx-chip-trial-edge: #C5CFA8;
+    --nx-chip-rx-fg:    #3D3D3A;  --nx-chip-rx-edge:  #D5D5D2;
 
     /* ── shadcn semantic mappings — LIGHT ── */
     --background: 0 0% 100%;
@@ -194,19 +182,19 @@
     --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
-    --primary: 218 62% 15%;          /* navy ink #0F2140 (Porcelain & Navy) */
+    --primary: 60 3% 6%;             /* near black #0F0F0E */
     --primary-foreground: 0 0% 100%;
     --secondary: 60 6% 97%;
     --secondary-foreground: 0 0% 4%;
     --muted: 60 6% 97%;
     --muted-foreground: 0 0% 54%;
-    --accent: 35 66% 40%;
+    --accent: 38 44% 58%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 60 5% 89%;
     --input: 60 5% 89%;
-    --ring: 217 67% 51%;             /* cobalt #2F6FD6 */
+    --ring: 38 44% 58%;              /* gold #C4A265 */
     --radius: 0.75rem;
 
     /* ── Fluid type scale ── */
@@ -224,56 +212,52 @@
 
   /* ═══ ORCHID WORLD — activates under /women routes ═══ */
   [data-world="women"] {
-    /* Refined rose-quartz — cleaner near-white warm canvas, deeper plum ink,
-       a clearer rose accent. Moves with the men's polish (2026-08). */
-    --nx-bg:           #FAF8F9;
-    --nx-bg-cream:     #F2EDEF;
-    --nx-bg-dark:      #161113;
-    --nx-fg:           #1C181A;
-    --nx-fg-graphite:  #5E545A;
-    --nx-fg-muted:     #736870;  /* AA on the refined orchid --nx-bg */
-    --nx-border:       #E5E0E2;
-    --nx-cobalt:       #A03D6B;  /* her accent — clearer rose-quartz; white CTA text ≥6:1 */
-    --nx-cobalt-hover: #823056;
-    --nx-cobalt-soft:  #F4E6EC;
-    --nx-amber:        #A85B7C;
-    --nx-success:      #A0687F;
-    --nx-warning:      #A85B7C;
-    --nx-ice:          #F3EBEE;
-    --nx-ice-edge:     #DFD1D8;
-    --nx-peach:        #F4ECF0;
-    --nx-peach-edge:   #E0D1D8;
-    --nx-sage:         #EDE6E9;
-    --nx-sage-edge:    #D5CBCF;
-    --nx-rust:         #C79FAF;
-    /* --nx-black retired → identical to --nx-fg; use var(--nx-fg) */
-    --nx-ceramic:      #FDF8FB;
-    --nx-rock:         #F3E9EE;
-    --nx-acid:         #F0CBDB;
-    --nx-danger:       #A4453C;
-    --nx-accent:       #C97B99;
+    /* For Her — the same near-black ground and cream field; olive
+       (#A4B08A, the guide's secondary brand accent) where For Him has gold.
+       Two worlds, one system: the questionnaire's For Him / For Her as
+       architecture, drawn from one palette sheet. */
+    --nx-bg:           #F9F9F9;
+    --nx-bg-cream:     #F7F7F7;
+    --nx-bg-dark:      #0F0F0E;
+    --nx-fg:           #1A1A1A;
+    --nx-fg-graphite:  #4A4A47;
+    --nx-fg-muted:     #666666;
+    --nx-border:       #E5E5E5;
+    --nx-cobalt:       #0F0F0E;
+    --nx-cobalt-hover: #2A2A28;
+    --nx-cobalt-soft:  #EEF0E8;  /* olive-tinted fill */
+    --nx-cobalt-ink:   #5A6640;  /* olive as text, 6.2:1 on cream */
+    --nx-accent:       #A4B08A;
+    --nx-amber:        #A4B08A;
+    --nx-acid:         #C9DD69;
+    --nx-success:      #4D7C0F;
+    --nx-warning:      #5A6640;
+    --nx-ice:          #EEF0E8;  --nx-ice-edge:   #D5DAC6;
+    --nx-peach:        #F7F7F7;  --nx-peach-edge: #E5E5E5;
+    --nx-sage:         #F3F0E8;  --nx-sage-edge:  #E2D9C4;
+    --nx-rust:         #C4A265;
+    --nx-ceramic:      #FFFFFF;
+    --nx-rock:         #F7F7F7;
+    --nx-danger:       #B91C1C;
 
-    /* ── Component variant palettes, orchid parity (Law-1 flagged debt B) ──
-       Same lightness relationships as the azure set, hue-shifted into the
-       orchid/rose family so VialArt liquids and GoalVialTile surfaces no
-       longer render azure-blue against rose backgrounds under /women.
-       Illustration neutrals (cap/label) and regulatory chips stay
-       world-invariant on purpose. */
-    --nx-tint-cream-bg:   #EDF0F4;  --nx-tint-cream-ink:   #1B1E23;
-    --nx-tint-sage-bg:    #E6ECEC;  --nx-tint-sage-ink:    #23292B;
-    --nx-tint-rose-bg:    #EFEAEE;  --nx-tint-rose-ink:    #241E22;
-    --nx-tint-sky-bg:     #E3EBF3;  --nx-tint-sky-ink:     #17222B;
-    --nx-tint-dusk-bg:    #E7E7EE;  --nx-tint-dusk-ink:    #23212B;
-    --nx-tint-butter-bg:  #E9EEF6;  --nx-tint-butter-ink:  #182029;
-    --nx-tint-cobalt-bg:  #E0E9F4;  --nx-tint-cobalt-ink:  #14212F;
-    --nx-tint-mineral-bg: #E5E9EB;  --nx-tint-mineral-ink: #1F262A;
-    --nx-vial-sage-bg:   #F2EAEF;  --nx-vial-sage-liq:   #C99FB6;
-    --nx-vial-rose-bg:   #F4E9EF;  --nx-vial-rose-liq:   #D3A6BE;
-    --nx-vial-sky-bg:    #F1EAEE;  --nx-vial-sky-liq:    #C9A4B5;
-    --nx-vial-dusk-bg:   #EEE5EE;  --nx-vial-dusk-liq:   #BFA0C4;
-    --nx-vial-butter-bg: #F1E0E9;  --nx-vial-butter-liq: #C07E9E;
-    --nx-vial-cobalt-bg: #F0E8EC;  --nx-vial-cobalt-liq: #B995A6;
-    --nx-vial-mineral-liq: #B9A3AE;
+    /* ── Component variant palettes, For Her parity: same warm neutrals,
+       olive and teal liquids where For Him runs gold and green. Cap/label
+       neutrals and regulatory chips stay world-invariant. ── */
+    --nx-tint-cream-bg:   #F3F0E8;  --nx-tint-cream-ink:   #1A1A1A;
+    --nx-tint-sage-bg:    #EEF0E8;  --nx-tint-sage-ink:    #1A1A1A;
+    --nx-tint-rose-bg:    #F1EDE8;  --nx-tint-rose-ink:    #1A1A1A;
+    --nx-tint-sky-bg:     #ECEEEA;  --nx-tint-sky-ink:     #1A1A1A;
+    --nx-tint-dusk-bg:    #EFEDE9;  --nx-tint-dusk-ink:    #1A1A1A;
+    --nx-tint-butter-bg:  #F6F1DF;  --nx-tint-butter-ink:  #1A1A1A;
+    --nx-tint-cobalt-bg:  #EEF0E8;  --nx-tint-cobalt-ink:  #1A1A1A;
+    --nx-tint-mineral-bg: #EDEDEB;  --nx-tint-mineral-ink: #1A1A1A;
+    --nx-vial-sage-bg:   #F7F7F7;  --nx-vial-sage-liq:   #4A9B8E;
+    --nx-vial-rose-bg:   #F7F7F7;  --nx-vial-rose-liq:   #8B5CF6;
+    --nx-vial-sky-bg:    #F7F7F7;  --nx-vial-sky-liq:    #A4B08A;
+    --nx-vial-dusk-bg:   #F7F7F7;  --nx-vial-dusk-liq:   #8B5CF6;
+    --nx-vial-butter-bg: #F7F7F7;  --nx-vial-butter-liq: #C9A24B;
+    --nx-vial-cobalt-bg: #F7F7F7;  --nx-vial-cobalt-liq: #A4B08A;
+    --nx-vial-mineral-liq: #A4B08A;
   }
 
 
@@ -2689,7 +2673,7 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 
 /* ── Visual benefit layer (data/benefits.ts, components/BenefitStrip.tsx) ── */
 .nx-goodfor { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
-.nx-goodfor__chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: .01em; }
+.nx-goodfor__chip { display: inline-flex; align-items: center; min-height: 28px; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-fg); font-size: var(--nx-t-xs); font-weight: 600; letter-spacing: .01em; }
 .nx-benefit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(1rem, 2.4vw, 1.8rem); align-items: start; padding: clamp(1rem, 2vw, 1.3rem); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
 .nx-benefit--compact { display: grid; grid-template-columns: 1fr; gap: .5rem; padding: 0; border: 0; background: transparent; }
 .nx-benefit__label { margin: 0 0 .45rem; font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-fg-muted); }
@@ -2974,10 +2958,10 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-goal-card-copy { display: flex; flex-direction: column; align-items: flex-start; }
 
 /* the navy hero (R3): tokens re-scoped so existing inline styles read light on dark */
-.nx-hero-r3 { position: relative; background: var(--nx-bg-dark); color: #FFFFFF;
-  --nx-fg: #FFFFFF; --nx-fg-graphite: color-mix(in srgb, #FFFFFF 80%, transparent); --nx-fg-muted: color-mix(in srgb, #FFFFFF 66%, transparent);
-  --nx-border: color-mix(in srgb, #FFFFFF 26%, transparent); --nx-bg: color-mix(in srgb, #FFFFFF 8%, transparent); --nx-cobalt-soft: color-mix(in srgb, #FFFFFF 12%, transparent); --nx-cobalt: #9CC4FF; --nx-cobalt-hover: #B9D6FF; }
-.nx-hero-r3 .nx-cta-cobalt { background: #FFFFFF; color: #0F2140; }
+.nx-hero-r3 { position: relative; background: var(--nx-bg-dark); color: #F9F9F9;
+  --nx-fg: #F9F9F9; --nx-fg-graphite: color-mix(in srgb, #F9F9F9 80%, transparent); --nx-fg-muted: color-mix(in srgb, #F9F9F9 66%, transparent);
+  --nx-border: #2A2A28; --nx-bg: #161614; --nx-cobalt-soft: color-mix(in srgb, #C4A265 14%, transparent); --nx-cobalt: #C9DD69; --nx-cobalt-hover: #D9E98A; --nx-cobalt-ink: #C4A265; }
+.nx-hero-r3 .nx-cta-cobalt { background: #C9DD69; color: #0F0F0E; }
 .nx-hero-r3 .nx-cta-ghost { border-color: color-mix(in srgb, #FFFFFF 40%, transparent); color: #FFFFFF; }
 .nx-hero-r3 .nx-sku-img--pdp, .nx-hero-r3 .nx-labs-art { border-radius: var(--nx-r-lg); overflow: hidden; }
 .nx-hero-r3 .nx-labs-art { background: color-mix(in srgb, #FFFFFF 10%, transparent); border-color: color-mix(in srgb, #FFFFFF 22%, transparent); }
@@ -3055,7 +3039,34 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-frost__media--photo { padding: 0; aspect-ratio: 4 / 3; }
 .nx-frost__media--photo img { width: 100%; height: 100%; object-fit: cover; max-height: none; }
 .nx-cta-ghost--light { border-color: color-mix(in srgb, #FFFFFF 45%, transparent); color: #FFFFFF; }
-.nx-terms .nx-chip-acid { background: #FFFFFF; color: var(--nx-bg-dark); }
+.nx-terms .nx-chip-acid { background: var(--nx-acid); color: var(--nx-bg-dark); }
+
+/* ═══ THE BRAND LAYER — Visual Identity Guide v1, §4 type, §6 motifs, §7 buttons ═══ */
+/* §4 · Display serif at weight 400, never bold; italic for emphasis. */
+.nx-tilehero__h1, .nx-dsh1, .nx-dsh2, .nx-tile__t, .nx-tile__title, .nx-goal__t, .nx-quiz__h1, .nx-quiz__h2,
+.nx-cartpage__h1, .nx-steptile__t, .nx-pt__t, .nx-frost__name, .nx-pdp-shout, .sp-tile__t, .nx-closer-tile h2 {
+  font-family: var(--nx-font-display); font-weight: 400; letter-spacing: -0.01em; }
+/* §6 · Film grain, 6% over everything: "adds warmth and tactility to what
+   would otherwise be flat digital surfaces". A fixed pseudo-element with no
+   pointer events; the print stylesheet and reduced-motion leave it be, since
+   it does not move. */
+body::before { content: ""; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; opacity: .06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px; }
+/* §6 · The molecular line-work over dark panels, 5–15% opacity, never over
+   busy images. Add .nx-pattern to any dark band. */
+.nx-pattern { position: relative; isolation: isolate; }
+.nx-pattern::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .09;
+  background: url("/img/molecular-pattern.webp") center / 1100px auto repeat; mix-blend-mode: screen; }
+.nx-pattern > * { position: relative; z-index: 1; }
+/* §6 · Dark panels are never flat black: a radial gold at 8–12% */
+.nx-hero-r3, .nx-closer-tile, .nx-footer { background-image: radial-gradient(ellipse 60% 80% at 80% 50%, color-mix(in srgb, #C4A265 11%, transparent), transparent); }
+/* §7 · Buttons: 999px pill, 44px minimum, 11px/500 uppercase at 0.15em, 300ms ease */
+.nx-cta-cobalt, .nx-cta-ghost, .nx-cta-ceramic, .nx-cta-acid {
+  border-radius: var(--nx-r-pill); min-height: 44px; font-family: var(--nx-font-body);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; transition: all 300ms ease; }
+.nx-cta-ghost { border-color: var(--nx-accent); color: var(--nx-fg); }
 
 /* ═══ MOTION (the Spine, Phase 5 pulled forward): one entrance per page, one
    stagger per band, one hover per card. Everything rests when motion is
@@ -3194,7 +3205,7 @@ html.nx-motion .nx-r3-quick li { animation: nx-rise .7s var(--nx-reveal-ease) bo
    existing tokens; introduces no new literal. Use these classes on every
    page in place of per-page `kicker`/`h2`/`body`/`lede` style objects.
    ═══════════════════════════════════════════════════════════════════ */
-.nx-eyebrow { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 600; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt-ink); margin: 0; }
+.nx-eyebrow { font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 500; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: var(--nx-cobalt-ink); margin: 0; }
 .nx-dsh1 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h1); line-height: 1.04; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); margin: 0; text-wrap: balance; }
 .nx-dsh2 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h2); line-height: 1.08; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); margin: 0; text-wrap: balance; }
 .nx-dsh3 { font-family: var(--nx-font-display); font-weight: 500; font-size: var(--nx-t-h3); line-height: 1.14; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); margin: 0; text-wrap: balance; }
@@ -3516,7 +3527,7 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 /* the checkout steps as tiles, with the numbered pill */
 .nx-steps-col { display: grid; gap: clamp(.9rem, 1.6vw, 1.2rem); }
 .nx-steptile { position: relative; background: var(--nx-ceramic); border: 1px solid var(--nx-border); border-radius: var(--nx-r-lg); padding: clamp(1.2rem, 2.4vw, 1.7rem); }
-.nx-steptile__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); }
+.nx-steptile__n { display: inline-flex; align-items: center; justify-content: center; height: 2.1rem; padding: 0 .7rem; border-radius: var(--nx-r-pill); background: var(--nx-cobalt-soft); color: var(--nx-fg); font-family: var(--nx-font-body); font-size: var(--nx-t-2xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); }
 .nx-steptile__t { margin: .8rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-h3); font-weight: 500; line-height: 1.1; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
 .nx-steptile__b { margin: .5rem 0 0; font-family: var(--nx-font-body); font-size: var(--nx-t-sm); line-height: 1.55; color: var(--nx-fg-graphite); max-width: 58ch; }
 .nx-steptile__body { margin-top: 1.1rem; display: grid; gap: 1rem; }

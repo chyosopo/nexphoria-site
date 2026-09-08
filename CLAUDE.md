@@ -19,13 +19,29 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: PORCELAIN & NAVY** (chosen by Chiya
+1. **Design tokens only — current sheet: FUTURISTIC LUXURY LAB** (chosen by
+   Chiya 2026-09-08: "use this nexphoria brand — everything about the
+   pattern, logo, colours, fonts, messaging, voice guidelines". Source of
+   truth is the Nexphoria Visual Identity Guide v1 on Google Drive, not an
+   agent's inference.) Cream ground #F9F9F9 / card #F7F7F7, text #1A1A1A,
+   secondary #666666, hairline border #E5E5E5; near-black #0F0F0E with
+   panel #161614 / card #1C1C1A / border #2A2A28 for dark bands; gold
+   #C4A265 (the accent), gold-text #8E6C2F for gold-coloured type on
+   light (AA), yellow-green #C9DD69 for the CTA and logo on dark only,
+   olive #A4B08A for wellness and the women's accent. Cormorant Garamond
+   400 for display (never bold), Inter for body. Grain at 6%, molecular
+   pattern at 5–15% on dark bands, pill buttons, gold eyebrows, hairline
+   rules. Category accents: teal #4A9B8E recovery, gold #C9A24B growth
+   hormone, violet #8B5CF6 anti-ageing, blue #3B82F6 cognitive, green
+   #22C55E weight, olive wellness. Gold-text on the gold tint measures
+   4.11 — never pair them; chips and numerals on the tint use --nx-fg.
+   PREVIOUS: PORCELAIN & NAVY (chosen by Chiya
    2026-09-04 from three costed options in the Spine plan, option C, replacing
    Graphite & Ice: navy ink #0F2140 on porcelain #F6F7F9, navy bands #0B2A5B,
    one accent #2F6FD6, pale-ice #BFD6F5 on dark bands, one sans face, no
    yellow, no serif). The paragraph below is the previous sheet, kept as
    history; the reason to ask before repainting still stands.
-   PREVIOUS: GRAPHITE & ICE (chosen by Chiya
+   BEFORE THAT: GRAPHITE & ICE (chosen by Chiya
    2026-08-13 from three costed options, replacing Porcelain & Navy).
    Cold-white canvas #F7F8FA, graphite ink #17191C, true-graphite night
    #101317, ice-blue accent #2B6CB0. Women's world runs the SAME graphite

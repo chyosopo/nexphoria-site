@@ -75,7 +75,7 @@ export function Logo({
       {/* Wordmark: NEXPHORIA */}
       <span
         style={{
-          fontFamily: "'General Sans', system-ui, sans-serif",
+          fontFamily: "var(--nx-font-body)",
           fontSize: "var(--nx-t-body)",
           fontWeight: 600,
           letterSpacing: "var(--nx-ls-caps)",
@@ -98,7 +98,7 @@ export function Logo({
           <span
             className="hidden sm:inline-block"
             style={{
-              fontFamily: "'General Sans', system-ui, sans-serif",
+              fontFamily: "var(--nx-font-body)",
               fontSize: "var(--nx-t-2xs)",
               fontWeight: 500,
               letterSpacing: "var(--nx-ls-wide)",

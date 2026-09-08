@@ -70,15 +70,13 @@
          head and could drift from the data-driven builders. Single source of
          truth = the builders. -->
 
-    <!-- Fonts: General Sans, self-hosted (client/public/fonts; faces declared
-         in client/src/styles/fonts.css). The 500 (display) and 600 (buttons,
-         labels) weights are preloaded so the first paint swaps at once; 400
-         (body) follows from the stylesheet. Fontshare and Google Fonts links
-         removed 2026-09-05: no font request leaves the origin. Fraunces was
-         linked but no rule set it (both --nx-font tokens are General Sans).
-         Relative hrefs: the <base> written above anchors them to the app root. -->
-    <link rel="preload" as="font" type="font/woff2" href="fonts/general-sans-500.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="fonts/general-sans-600.woff2" crossorigin />
+    <!-- Fonts: Cormorant Garamond (display) and Inter (body), the brand
+         faces, self-hosted in client/public/fonts and declared in
+         client/src/styles/fonts.css. Both preloaded: the serif carries every
+         headline above the fold, Inter everything else. No font request
+         leaves the origin. Relative hrefs: the <base> above anchors them. -->
+    <link rel="preload" as="font" type="font/woff2" href="fonts/cormorant-garamond-variable.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="fonts/inter-variable.woff2" crossorigin />
   </head>
   <body class="text-nx-fg antialiased">
     <div id="root"></div>

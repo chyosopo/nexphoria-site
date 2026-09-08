@@ -1,31 +1,28 @@
-/* ═══ Fonts: General Sans, self-hosted (2026-09-05) ═══
-   The single family the site sets (--nx-font-body and --nx-font-display both
-   resolve to it in index.css). Previously loaded at runtime from
-   the Fontshare CDN; now served from client/public/fonts
-   so the first paint never waits on a third-party host. The three weights the
-   tokens use: 400 (body), 500 (display), 600 (buttons, labels).
-   font-display: swap — text paints in the system fallback and swaps once the
-   face arrives; the 500 and 600 files are preloaded from index.html so the
-   swap is normally invisible. unicode-range is deliberately omitted: one
-   Latin file per weight, no subsetting to keep in sync. */
+/* ═══ Fonts: the brand faces, self-hosted (2026-09-08) ═══
+   Visual Identity Guide v1 §4 — display: Roc Grotesk (Adobe) with Cormorant
+   Garamond as the open fallback; body: Neue Haas Grotesk (Adobe) with Inter
+   as the open fallback. The Adobe faces need a Typekit licence the site does
+   not carry, so the two open faces ARE the site's faces. Both are variable
+   fonts, one file each (plus the Cormorant italic), served from
+   client/public/fonts so no font request leaves the origin. */
 @font-face {
-  font-family: "General Sans";
+  font-family: "Cormorant Garamond";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("/fonts/general-sans-400.woff2") format("woff2");
+  src: url("/fonts/cormorant-garamond-variable.woff2") format("woff2");
 }
 @font-face {
-  font-family: "General Sans";
-  font-style: normal;
-  font-weight: 500;
+  font-family: "Cormorant Garamond";
+  font-style: italic;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("/fonts/general-sans-500.woff2") format("woff2");
+  src: url("/fonts/cormorant-garamond-italic.woff2") format("woff2");
 }
 @font-face {
-  font-family: "General Sans";
+  font-family: "Inter";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("/fonts/general-sans-600.woff2") format("woff2");
+  src: url("/fonts/inter-variable.woff2") format("woff2");
 }
