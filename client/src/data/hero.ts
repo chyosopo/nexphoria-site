@@ -20,23 +20,29 @@ import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
    else. */
 export const HERO = {
   kicker: "Prescription peptide therapy",
-  lines: ["Stronger, sharper, better rested.", "Prescribed to your blood."],
+  lines: ["The place for prescription peptides."],
   /* The headline: the triad the reader wants, then the fact nobody else on
      the shelf can state. Two sentences, nine words. */
-  shout: "Stronger, sharper, better rested. Prescribed to your blood.",
+  /* BRAND v6 (Chiya 2026-09-08: the Visual Identity Guide governs; the
+     v5 triad-and-blood line was "nonsense"). The category owner who does
+     not need to shout (kickoff Q9), stated once: this is the place. */
+  shout: "The place for prescription peptides.",
   /* The rotating word keeps the second line personal. The first word renders
      statically, so the prerendered page and a reader with reduced motion see
      a complete sentence. */
-  lead: "Dosed for your",
+  /* v6: no rotating word. The hero states the place and teaches; it does
+     not cycle the reader's goals at them. Kept empty so the component skips
+     the line; the array below stays for the screen-reader sentence. */
+  lead: "",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "drive"],
   /* Compound qualifiers, the way the field writes them: one hyphenated word
      doing the work of a clause. Twelve words where v4 spent twenty-one. */
   subline:
-    "Physician-prescribed peptides, compounded to order in licensed U.S. pharmacies. Dosed from your own blood panel, and read again at week 12.",
+    "Peptides are the short amino-acid chains your body already signals with. A licensed U.S. physician prescribes the one that fits your goal, a licensed U.S. pharmacy compounds it to order, and your own blood panel sets the dose.",
   /* The assessment leads (Chiya 2026-09-06, after enhanced.com): a reader
      who knows the symptom and not the molecule was being handed a shelf.
      Browsing is the second path now, not the first. */
-  cta: "Find what fits you",
+  cta: "Find what fits",
   ctaSecondary: "Browse every medicine",
   micro: "Prescribed by a licensed U.S. physician, if appropriate. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons: six facts, an icon each, the only

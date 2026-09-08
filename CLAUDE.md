@@ -68,7 +68,15 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
    separate on ACCENT plus canvas temperature — men ice-blue on cold white,
    women rose on barely-warm — rather than the previous azure/steel vs
    orchid/rose-quartz split palettes.
-3. **The voice — AMENDED 2026-09-05 (Chiya, after enhanced.com): the
+3. **The voice — AMENDED 2026-09-08 (Chiya: the brand guide governs): the
+   BRAND REGISTER, docs/VOICE.md v6.** Headlines name the thing calmly in
+   two to six words of display serif ("The place for prescription
+   peptides." / "This is the place."); the body teaches in precise plain
+   sentences; goal lines are one clause with the result named, never
+   shouted; no rotating word, no triads, no blood in a headline. The
+   guardrails below still hold. The paragraph that follows is the
+   previous register, kept as history.
+   PREVIOUS — AMENDED 2026-09-05 (Chiya, after enhanced.com): the
    enhanced register for DISPLAY copy.** Headlines, tile titles, closers
    and buttons are short, declarative, second person, set in caps: "LOSE
    THE WEIGHT. KEEP THE MUSCLE." / "BUILT AROUND YOUR BASELINE." / "KNOW

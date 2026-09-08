@@ -259,7 +259,7 @@ export default function FAQPage() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Questions</p>
-            <h1 id="faq-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>What people ask before they start.</h1>
+            <h1 id="faq-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Before you start.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>How it works, what it costs, what to know about safety, how it ships, and who is involved.</p>
           </div>
         </div>
@@ -329,7 +329,7 @@ export default function FAQPage() {
       <section className="nx-container" style={{ paddingTop: "var(--nx-sp-band)", paddingBottom: "var(--nx-sp-sec)" }} aria-labelledby="faq-closer">
         <div className="nx-closer-tile nx-pattern">
           <div>
-            <h2 id="faq-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>Ask us anything this page left open.</h2>
+            <h2 id="faq-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>Ask what this page left open.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>Email hello@nexphoria.com, and a person answers on a business day. Clinical questions go to the physician.</p>
             <Link href="/contact" className="nx-cta-ceramic" data-testid="faq-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.6rem" }}>Ask us</Link>
           </div>

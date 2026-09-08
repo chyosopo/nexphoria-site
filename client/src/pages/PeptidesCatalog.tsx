@@ -255,7 +255,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">The medicines</p>
-            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Every medicine a physician can prescribe, by what it treats.</h1>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>The medicines, by what they treat.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
               Choose a goal, and read the medicine before you buy it: how it works, how you take it, what the studies found, and what it costs. A licensed U.S. physician prescribes it, if appropriate.
             </p>
@@ -435,7 +435,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-closer-tile nx-pattern">
           <div>
             <h2 id="peptides-assess-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0 }}>
-              From here, a licensed physician reads your answers and decides.
+              A licensed physician reads your answers, and decides.
             </h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>
               You complete a quick online visit at checkout, and the physician prescribes the medicine that fits or explains why not.

@@ -1,3 +1,37 @@
+# The house voice, v6: the brand register (Chiya, 2026-09-08)
+
+Chiya, 2026-09-08: "use this nexphoria brand — everything about the
+pattern, logo, colours, fonts, messaging, voice guidelines"; and, on the
+v5 hero still standing after the repaint, "why is the stronger sharper
+to your blood nonsense? Copy not being changed." The Visual Identity
+Guide v1 governs, read together with her own kickoff answers (Q9: the
+foundation is clinical, calm, precise, expensive; the layer on top is
+results and emotion, sharper, stronger, recovered, alive; the confident
+category owner who does not need to shout. Q10: "This is the place.").
+
+v6 replaces the v5 power register. What changes:
+
+1. **A headline names the thing, calmly.** Two to six words in the
+   display serif, sentence case, a full stop. "The place for prescription
+   peptides." / "Before you start." / "This is the place." No triads, no
+   stopped fragments, nothing addressed at the reader's body.
+2. **The body teaches.** One precise sentence on what the thing is, then
+   the facts in the order the reader meets them. The "new era" paragraph
+   below is the model and is the home subline.
+3. **A goal line is one clause, results named without a shout.** "Lower
+   weight, with the muscle kept." / "Focus that holds under pressure." /
+   "Testosterone brought back into range." They are the reader's goal,
+   never a promised result (guardrails unchanged).
+4. **No rotating word, no blood in a headline.** Blood work is a fact in
+   the body and on the product page.
+5. **Buttons stay a verb and an object**, and short: "Find what fits",
+   "See the medicines", "Choose a plan".
+6. Everything under "The guardrails" still holds, and the guide's own
+   line that products are "research compounds" does not apply here: the
+   medicines are prescribed and compounded, and the site says so.
+
+---
+
 # The house voice, v3: the flowing register (Chiya, 2026-09-05)
 
 Chiya, 2026-09-05, on the staccato labels that v2 produced ("QUESTIONS.

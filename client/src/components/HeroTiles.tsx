@@ -88,9 +88,9 @@ function HeroTile({ t, i }: { t: (typeof TILES)[number]; i: number }) {
    already names the category — "Weight loss" and then "Shop weight loss"
    said the category twice inside one tile. */
 const TILES = [
-  { goal: "metabolic" as const, img: tileMetabolic, img800: tileMetabolic800, href: "/peptides?goal=metabolic", line: "Leaner, and still strong.", cta: "See the medicines", dark: false },
-  { goal: "growth" as const, img: tileGrowth, img800: tileGrowth800, href: "/peptides?goal=growth", line: "Lean mass. Less deep fat.", cta: "See the medicines", dark: true },
-  { goal: "sexual-health" as const, img: tileSexual, img800: tileSexual800, href: "/peptides?goal=sexual-health", line: "Drive, desire, function.", cta: "See the medicines", dark: true },
+  { goal: "metabolic" as const, img: tileMetabolic, img800: tileMetabolic800, href: "/peptides?goal=metabolic", line: "Lower weight, muscle kept.", cta: "See the medicines", dark: false },
+  { goal: "growth" as const, img: tileGrowth, img800: tileGrowth800, href: "/peptides?goal=growth", line: "Lean mass, less deep fat.", cta: "See the medicines", dark: true },
+  { goal: "sexual-health" as const, img: tileSexual, img800: tileSexual800, href: "/peptides?goal=sexual-health", line: "Desire and function.", cta: "See the medicines", dark: true },
 ];
 
 export function HeroTiles() {
@@ -127,7 +127,7 @@ export function HeroTiles() {
               <span key={beat} className="nx-tilehero__beat">{beat}</span>
             ))}
           </h1>
-          <p className="nx-tilehero__line" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</p>
+          {HERO.lead && <p className="nx-tilehero__line" style={{ fontFamily: S }}>{HERO.lead} <RotatingWord words={HERO.rotating} /><span className="sr-only">, {HERO.rotating.slice(1).join(", ")}</span>.</p>}
           <p className="nx-tilehero__sub" style={{ fontFamily: F }}>{HERO.subline}</p>
         </m.div>
         <m.div className="nx-tiles nx-tiles--3 nx-tiles--hero" data-testid="hero-tiles" style={{ y: tilesY }}>

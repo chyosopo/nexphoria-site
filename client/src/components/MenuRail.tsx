@@ -36,7 +36,7 @@ export function MenuRail({ photo }: { photo: string }) {
         <div className="nx-band__head">
           <div>
             <p className="nx-band__kicker" style={{ fontFamily: F }}>The medicines</p>
-            <h2 id="fd-formulary" className="nx-band__h2" style={{ fontFamily: S }}>Every medicine a physician can prescribe here, with its price.</h2>
+            <h2 id="fd-formulary" className="nx-band__h2" style={{ fontFamily: S }}>The medicines, with their prices.</h2>
           </div>
           <Link href="/peptides" className="nx-cta-ceramic nx-cta--sm" data-testid="frontdoor-menu-all">Browse every medicine <ArrowRight size={14} aria-hidden="true" /></Link>
         </div>

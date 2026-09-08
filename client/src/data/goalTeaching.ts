@@ -34,15 +34,15 @@ export const GOAL_ORDER: PeptideCategory[] = ["metabolic", "growth", "recovery",
    A goal named, never a result promised. Renders on the hero tiles, the goal
    gallery and the product page. */
 export const GOAL_SHOUT: Record<PeptideCategory, string> = {
-  metabolic: "Lose the weight. Keep the muscle you trained for.",
-  growth: "Build lean mass. Shed the deep fat diet alone has not moved.",
-  recovery: "Repair the tissue. Get back to training.",
-  longevity: "Steady energy. Recovery that keeps up with you.",
-  cognition: "Stay sharp. Stay steady under pressure.",
-  sleep: "Fall asleep sooner. Wake up rested.",
-  "sexual-health": "Restore the drive. Choose the day.",
-  hormone: "Lift your testosterone. Dose it from your blood.",
-  skin: "Firm the skin. Speed the healing.",
+  metabolic: "Lower weight, with the muscle kept.",
+  growth: "Lean mass, and less of the deep fat.",
+  recovery: "Tissue that repairs, training that resumes.",
+  longevity: "Steady energy, and recovery that holds.",
+  cognition: "Focus that holds under pressure.",
+  sleep: "Sleep that comes sooner, and rest that lasts.",
+  "sexual-health": "Desire and function, on your terms.",
+  hormone: "Testosterone brought back into range.",
+  skin: "Firmer skin, and faster healing.",
 };
 
 /* The catalog's SoloCategory, mapped to the goal key the shouts and tiles use. */

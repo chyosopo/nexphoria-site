@@ -95,7 +95,7 @@ export default function FrontDoor() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Price</p>
-            <h2 id="fd-pricing" className="nx-dsh2" style={{ maxWidth: "26ch" }}>One price a month. The medicine, the physician and the blood work, inside it.</h2>
+            <h2 id="fd-pricing" className="nx-dsh2" style={{ maxWidth: "26ch" }}>One number a month. Everything within it.</h2>
           </div>
           <p className="nx-prose" style={{ marginTop: "0.8rem", maxWidth: "58ch" }}>
             You pay it up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. Each medicine shows its own price on its page, and the box above is what the price includes.
@@ -109,7 +109,7 @@ export default function FrontDoor() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Questions</p>
-            <h2 id="fd-faq" className="nx-dsh2" style={{ maxWidth: "24ch" }}>What people ask before they start.</h2>
+            <h2 id="fd-faq" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Before you start.</h2>
           </div>
         </Reveal>
         <div className="nx-faq-list" data-testid="frontdoor-faq">
@@ -133,10 +133,10 @@ export default function FrontDoor() {
           <div className="nx-closer-tile nx-pattern">
             <div>
               <h2 id="fd-closer" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>
-                Name the goal. We name the medicine.
+                This is the place.
               </h2>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", marginTop: ".8rem", maxWidth: "44ch" }}>
-                Three questions, and no account. A licensed U.S. physician prescribes what follows, if appropriate.
+                Three questions, no account. A licensed U.S. physician prescribes what fits, if appropriate.
               </p>
               {/* The headline used to be "Know what you're after? Start
                   there." — Enhanced's own line, and it argued against the
@@ -145,7 +145,7 @@ export default function FrontDoor() {
                   names the goal, we name the medicine. The shelf stays
                   beside it for a reader who would rather browse. */}
               <Link href="/quiz" className="nx-cta-ceramic" data-testid="frontdoor-closer-cta" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>
-                Find what fits you
+                Find what fits
               </Link>
               <Link href="/peptides" className="nx-text-link nx-closer-alt" data-testid="frontdoor-closer-browse" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-sm)", marginTop: "1.2rem" }}>
                 Or browse every medicine

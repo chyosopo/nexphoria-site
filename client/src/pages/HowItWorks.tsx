@@ -115,7 +115,7 @@ export default function HowItWorks() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">How it works</p>
-            <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>A quick online visit. A licensed physician decides the rest.</h1>
+            <h1 id="hiw-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>An online visit. A physician's decision.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Five steps, from choosing a medicine to the week-{RETEST_WEEK} blood panel. Each one is set out below, in the order it happens.</p>
             <div className="nx-tilehero__foot">
               <Link href="/peptides" className="nx-cta-cobalt" data-testid="hiw-hero-cta">Browse every medicine</Link>
@@ -129,7 +129,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">The steps</p>
-            <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "24ch" }}>From choosing a medicine to the week-12 panel.</h2>
+            <h2 id="hiw-steps" className="nx-dsh2" style={{ maxWidth: "24ch" }}>The five steps, in order.</h2>
           </div>
         </Reveal>
         <ol className="sp-steps" data-testid="hiw-steps">
@@ -182,7 +182,7 @@ export default function HowItWorks() {
         <Reveal>
           <div className="nx-sec-head">
             <p className="nx-eyebrow">Who is involved</p>
-            <h2 id="hiw-who" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Everyone involved is named here, with what each one does.</h2>
+            <h2 id="hiw-who" className="nx-dsh2" style={{ maxWidth: "24ch" }}>Who is involved, and what each one does.</h2>
             <p className="nx-lede">
               Nexphoria operates the service and does not make clinical decisions. The online visit is completed through the Bask Health telehealth platform, and blood work is analysed by a CLIA-certified laboratory.
             </p>
@@ -226,7 +226,7 @@ export default function HowItWorks() {
           <div className="sp-tile" data-testid="hiw-price">
             <div className="nx-sec-head">
               <p className="nx-eyebrow">Price</p>
-              <h2 id="hiw-price" className="nx-dsh2" style={{ maxWidth: "26ch" }}>One monthly price covers the medicine, the physician and the blood work.</h2>
+              <h2 id="hiw-price" className="nx-dsh2" style={{ maxWidth: "26ch" }}>One number a month. Everything within it.</h2>
               <p className="nx-lede">
                 One monthly price, paid up front for a term of one, three, six or twelve months. It includes the medicine, the physician's review, the blood testing the term includes, and cold shipping. Three months is 10% less per month, six 15%, twelve 20%.
               </p>
