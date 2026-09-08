@@ -1,0 +1,204 @@
+/* ═══ The ivy sections (2026-09-08) ═══
+   Chiya: "make our site look like ivyrx.com: the design, the feel, the copy,
+   the journey, the vial mockups, the menu bar." Everything here is on the
+   tokens of the ivy layer at the end of index.css. Imported once, from
+   FrontDoor.tsx; the card (.nx-pcard) and the goal tile (.nx-gtile) are
+   shared with the catalog, the nav and the product page. */
+
+/* ── The hero: centred, the fact line, the headline with one gradient word,
+      the pill, the trust chips ── */
+.nx-ivhero { padding-top: clamp(2.2rem, 5vw, 4rem); text-align: center; }
+.nx-ivhero__fact { display: inline-flex; align-items: center; gap: .5rem; margin: 0 auto; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-ivhero__fact svg { color: var(--nx-success); }
+.nx-ivhero__h1 { margin: 1rem auto 0; max-width: 16ch; font-size: var(--nx-t-display); line-height: 1.02; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); text-wrap: balance; }
+.nx-ivhero__chip { display: inline-flex; align-items: center; justify-content: center; width: .8em; height: .8em; margin: 0 .12em; border-radius: 50%; background: var(--nx-cobalt-soft); color: var(--nx-cobalt-ink); vertical-align: -.08em; }
+.nx-ivhero__chip svg { width: 55%; height: 55%; }
+.nx-ivhero__sub { margin: 1.1rem auto 0; max-width: 54ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); text-wrap: pretty; }
+.nx-ivhero__cta { margin-top: 1.6rem; }
+.nx-ivhero__trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; list-style: none; margin: 1.6rem auto 0; padding: 0; }
+.nx-ivhero__trust li { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 16px; border-radius: var(--nx-r-pill); background: var(--nx-ceramic); font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-ivhero__trust svg { color: var(--nx-fg); }
+@media (max-width: 700px) {
+  .nx-ivhero { text-align: left; }
+  .nx-ivhero__h1, .nx-ivhero__sub, .nx-ivhero__fact { margin-left: 0; }
+  .nx-ivhero__trust { justify-content: flex-start; flex-direction: column; }
+  .nx-ivhero__trust li { min-height: 52px; }
+  .nx-ivhero__cta { width: 100%; }
+}
+
+/* ── The two big tinted tiles: the line, the vial bleeding off the edge, one white pill ── */
+.nx-bigtiles { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.8rem, 1.6vw, 1.2rem); margin-top: clamp(1.6rem, 3vw, 2.4rem); }
+.nx-bigtile { position: relative; display: block; min-height: 22rem; border-radius: var(--nx-r-xl); overflow: hidden; text-decoration: none; color: var(--nx-fg); isolation: isolate; transition: transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease); }
+.nx-bigtile:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+.nx-bigtile__copy { position: absolute; top: 1.6rem; left: 1.8rem; right: 45%; z-index: 2; }
+.nx-bigtile__k { display: block; font-family: var(--nx-font-display); font-size: var(--nx-t-xl); line-height: 1.2; color: var(--nx-goal-ink, var(--nx-goal)); }
+.nx-bigtile__t { display: block; margin-top: .1rem; font-family: var(--nx-font-display); font-size: var(--nx-t-xl); line-height: 1.2; color: var(--nx-fg); }
+.nx-bigtile__img { position: absolute; z-index: 1; right: 2%; bottom: -22%; width: 46%; max-width: 380px; object-fit: contain; filter: drop-shadow(0 24px 30px rgba(28, 28, 28, 0.18)); transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-bigtile:hover .nx-bigtile__img { transform: translateY(-6px) rotate(-2deg); }
+.nx-bigtile__btn { position: absolute; z-index: 2; left: 1.8rem; bottom: 1.6rem; width: min(22rem, 52%); }
+@media (max-width: 860px) {
+  .nx-bigtiles { grid-template-columns: 1fr; }
+  .nx-bigtile { min-height: 17rem; }
+  .nx-bigtile__copy { left: 1.3rem; right: 40%; top: 1.3rem; }
+  .nx-bigtile__btn { left: 1.3rem; right: 1.3rem; bottom: 1.3rem; width: auto; }
+  .nx-bigtile__img { width: 44%; bottom: -14%; }
+}
+
+/* ── The goal tile: the vial on its tint, the name as a white pill ── */
+.nx-gtiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); list-style: none; margin: clamp(.8rem, 1.6vw, 1.2rem) 0 0; padding: 0; }
+.nx-gtile { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; aspect-ratio: 1 / 1.02; padding: .9rem; border-radius: var(--nx-r-lg); background: var(--nx-ceramic); text-decoration: none; color: var(--nx-fg); overflow: hidden; transition: transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease); }
+.nx-gtile:hover, .nx-gtile:focus-visible { transform: translateY(-3px); box-shadow: var(--nx-e-3); outline: none; }
+.nx-gtile:focus-visible { box-shadow: 0 0 0 3px var(--nx-accent); }
+.nx-gtile img { position: absolute; left: 50%; top: 4%; width: 68%; height: 68%; object-fit: contain; transform: translateX(-50%); transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-gtile:hover img { transform: translateX(-50%) scale(1.04); }
+.nx-gtile__pill { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; padding: 0 1rem; border-radius: var(--nx-r-pill); background: #FFFFFF; box-shadow: var(--nx-e-2); font-size: var(--nx-t-base); font-weight: 500; text-align: center; }
+.nx-gtile.is-active .nx-gtile__pill { background: var(--nx-bg-dark); color: #FFFFFF; }
+@media (max-width: 900px) { .nx-gtiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .nx-gtiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; } .nx-gtile__pill { min-height: 46px; font-size: var(--nx-t-sm); } }
+
+/* ── The section head: the label pill, the headline (one gradient word), an action at the right ── */
+.nx-ivhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; }
+.nx-ivhead__h2 { margin: .8rem 0 0; font-size: var(--nx-t-h2); line-height: 1.06; letter-spacing: var(--nx-ls-tight); color: var(--nx-fg); text-wrap: balance; max-width: 22ch; }
+.nx-ivhead--center { flex-direction: column; align-items: center; text-align: center; }
+.nx-ivhead--center .nx-ivhead__h2 { max-width: 20ch; }
+.nx-ivhead__lede { margin: .8rem 0 0; max-width: 52ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); }
+
+/* ── How it works: three cards, a drawn scene in each, the step pill, the line ── */
+.nx-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); list-style: none; margin: clamp(1.4rem, 3vw, 2.2rem) 0 0; padding: 0; }
+.nx-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.6rem 1.4rem 1.8rem; border-radius: var(--nx-r-xl); background: var(--nx-ceramic); overflow: hidden; }
+.nx-step__scene { position: relative; width: 100%; height: 12rem; display: flex; align-items: center; justify-content: center; }
+.nx-step__pill { display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; margin-top: 1.2rem; border-radius: var(--nx-r-sm); border: 1px solid var(--nx-accent); color: var(--nx-fg); font-size: var(--nx-t-sm); font-weight: 500; }
+.nx-step__t { margin: .8rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-xl); line-height: 1.2; color: var(--nx-fg); }
+.nx-step__b { margin: .5rem 0 0; max-width: 32ch; font-size: var(--nx-t-base); line-height: 1.55; color: var(--nx-fg-graphite); }
+.nx-step__b b { font-weight: 600; color: var(--nx-fg); }
+/* the drawn scenes: white cards with soft shadows, the way ivy draws its UI */
+.nx-scene { position: relative; width: 100%; height: 100%; }
+.nx-scene__card { position: absolute; background: #FFFFFF; border-radius: var(--nx-r-md); box-shadow: var(--nx-e-3); }
+.nx-scene__card--ghost { opacity: .45; }
+.nx-scene__row { position: absolute; height: 10px; border-radius: var(--nx-r-pill); background: var(--nx-bg-cream); }
+.nx-scene__check { position: absolute; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; color: #FFFFFF; background: var(--nx-accent); }
+.nx-scene__check svg { width: 14px; height: 14px; }
+.nx-scene__ring { position: absolute; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--nx-border); }
+.nx-scene__vial { position: absolute; object-fit: contain; }
+.nx-scene__text { position: absolute; font-size: var(--nx-t-lg); font-weight: 500; color: var(--nx-fg); white-space: nowrap; }
+.nx-scene__sub { position: absolute; display: inline-flex; align-items: center; gap: 6px; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); white-space: nowrap; }
+.nx-scene__sub svg { color: var(--nx-success); }
+.nx-scene__icon { position: absolute; display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: var(--nx-r-md); background: #FFFFFF; box-shadow: var(--nx-e-3); color: var(--nx-accent); }
+.nx-scene__icon--big { width: 96px; height: 96px; }
+.nx-scene__icon svg { width: 34%; height: 34%; }
+.nx-scene__doc { position: absolute; width: 56px; height: 56px; border-radius: var(--nx-r-sm); object-fit: cover; }
+.nx-steps__cta { display: flex; justify-content: center; margin-top: clamp(1.4rem, 3vw, 2rem); }
+@media (max-width: 900px) { .nx-steps { grid-template-columns: 1fr; } }
+
+/* ── The product card: the name and price, the vial on its tint, two pills, the safety line ── */
+.nx-pcard { position: relative; display: flex; flex-direction: column; min-width: 0; padding: 1.3rem 1.3rem 1.2rem; border-radius: var(--nx-r-xl); background: var(--nx-ceramic); color: var(--nx-fg); transition: transform var(--nx-dur-3) var(--nx-ease), box-shadow var(--nx-dur-3) var(--nx-ease); }
+.nx-pcard:hover { transform: translateY(-3px); box-shadow: var(--nx-e-3); }
+.nx-pcard__name { margin: 0; font-family: var(--nx-font-display); font-size: var(--nx-t-h3); line-height: 1.15; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); text-decoration: none; }
+.nx-pcard__name:hover { color: var(--nx-cobalt-ink); }
+.nx-pcard__price { margin: .25rem 0 0; font-size: var(--nx-t-base); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-pcard__price b { font-weight: 500; color: var(--nx-fg); }
+.nx-pcard__media { position: relative; display: block; aspect-ratio: 1 / 0.92; margin: .8rem -0.4rem 0; border-radius: var(--nx-r-lg); overflow: hidden; }
+.nx-pcard__media img { position: absolute; inset: 6% 12%; width: 76%; height: 88%; object-fit: contain; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-pcard:hover .nx-pcard__media img { transform: scale(1.04); }
+.nx-pcard__chips { position: absolute; top: .8rem; left: .8rem; z-index: 1; }
+.nx-pcard__line { margin: .8rem 0 0; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nx-pcard__actions { display: flex; gap: 8px; margin-top: .9rem; }
+.nx-pcard__actions > * { flex: 1 1 0; min-width: 0; white-space: nowrap; }
+.nx-pcard__safety { display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin: .8rem auto 0; min-height: 36px; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg); text-decoration: none; }
+.nx-pcard__safety:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nx-pcard__safety svg { width: 15px; height: 15px; }
+.nx-pcard--pending .nx-pcard__media { opacity: .85; }
+
+/* ── The treatments rail: the cards side by side, arrows below ── */
+.nx-trail { display: grid; grid-auto-flow: column; grid-auto-columns: 300px; gap: clamp(.8rem, 1.6vw, 1.2rem); overflow-x: auto; scroll-snap-type: x mandatory; padding: 1.2rem 0 .6rem; scrollbar-width: none; margin-top: clamp(.6rem, 1.4vw, 1rem); }
+.nx-trail::-webkit-scrollbar { display: none; }
+.nx-trail > * { scroll-snap-align: start; }
+.nx-trail__nav { display: flex; justify-content: center; gap: 8px; margin-top: .4rem; }
+.nx-trail__nav button { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--nx-border); background: #FFFFFF; color: var(--nx-fg); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background var(--nx-dur-2) var(--nx-ease); }
+.nx-trail__nav button:hover { background: var(--nx-ceramic); }
+@media (max-width: 700px) { .nx-trail { grid-auto-columns: min(300px, 78vw); } }
+
+/* ── Support: the headline, a drawn dashboard in the middle, two drawn cards beside it ── */
+.nx-support { position: relative; margin-top: clamp(1.6rem, 3vw, 2.4rem); display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: clamp(.8rem, 1.6vw, 1.2rem); align-items: center; }
+.nx-support__side { display: flex; flex-direction: column; gap: .7rem; }
+.nx-support__card { padding: 1.1rem 1.2rem; border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
+.nx-support__label { margin: 0; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-support__who { display: flex; align-items: center; gap: .7rem; margin: .5rem 0 0; }
+.nx-support__avatar { width: 44px; height: 44px; border-radius: var(--nx-r-sm); object-fit: cover; }
+.nx-support__who b { display: block; font-weight: 600; color: var(--nx-fg); font-size: var(--nx-t-base); }
+.nx-support__who span { font-size: var(--nx-t-sm); color: var(--nx-fg-graphite); }
+.nx-support__msg { margin: .7rem 0 0; padding-top: .7rem; border-top: 1px solid var(--nx-border); font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-support__row { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin: .5rem 0 0; }
+.nx-support__row b { font-family: var(--nx-font-display); font-weight: 400; font-size: var(--nx-t-xl); color: var(--nx-fg); }
+.nx-support__tag { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 12px; border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: #FFFFFF; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg); }
+.nx-support__tag svg { color: var(--nx-success); width: 14px; height: 14px; }
+.nx-support__vial { display: block; width: 56%; margin: .6rem auto 0; }
+.nx-support__main { padding: 1.4rem; border-radius: var(--nx-r-xl); background: var(--nx-ceramic); }
+.nx-support__hello { margin: 0; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-support__greet { margin: .2rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-xl); line-height: 1.2; }
+.nx-support__photo { position: relative; margin-top: 1rem; border-radius: var(--nx-r-lg); overflow: hidden; aspect-ratio: 4 / 3.4; background: var(--nx-bg-cream); }
+.nx-support__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nx-support__end { position: absolute; left: 50%; bottom: 1rem; transform: translateX(-50%); width: 54px; height: 54px; border-radius: 50%; background: rgba(28, 28, 28, 0.55); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
+.nx-support__end svg { width: 22px; height: 22px; }
+.nx-support__lines { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.nx-support__lines li { display: flex; align-items: flex-start; gap: 8px; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-support__lines svg { flex: none; margin-top: 3px; color: var(--nx-fg); width: 15px; height: 15px; }
+@media (max-width: 900px) {
+  .nx-support { grid-template-columns: 1fr; }
+  .nx-support__side { flex-direction: row; }
+  .nx-support__side > * { flex: 1 1 0; }
+  .nx-support__side--r { flex-direction: column; }
+}
+@media (max-width: 560px) { .nx-support__side { flex-direction: column; } }
+
+/* ── Questions: the accordions at the left, the "still have questions" card at the right ── */
+.nx-ivfaq { display: grid; grid-template-columns: 2fr 1fr; gap: clamp(.8rem, 1.6vw, 1.2rem); align-items: start; margin-top: clamp(1.4rem, 3vw, 2.2rem); }
+.nx-ivfaq .nx-faq-list { display: grid; gap: .6rem; }
+.nx-ivfaq .nx-faq-item { border-radius: var(--nx-r-lg); }
+.nx-ivfaq__ask { padding: 1.8rem 1.6rem; border-radius: var(--nx-r-lg); background: var(--nx-ceramic); text-align: center; }
+.nx-ivfaq__ask h3 { margin: 0; font-size: var(--nx-t-xl); line-height: 1.2; }
+.nx-ivfaq__ask p { margin: .4rem 0 0; font-size: var(--nx-t-base); color: var(--nx-fg-graphite); }
+.nx-ivfaq__ask .nx-cta-ceramic { margin-top: 1.1rem; }
+@media (max-width: 860px) { .nx-ivfaq { grid-template-columns: 1fr; } }
+
+/* ── The photo banner: the closer ── */
+.nx-banner { position: relative; min-height: 32rem; border-radius: var(--nx-r-xl); overflow: hidden; display: flex; align-items: center; isolation: isolate; color: #FFFFFF; }
+.nx-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; z-index: -1; }
+.nx-banner::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(28, 28, 28, 0.78) 0%, rgba(28, 28, 28, 0.45) 45%, rgba(28, 28, 28, 0.05) 100%); }
+.nx-banner__copy { padding: clamp(1.8rem, 4vw, 3.2rem); max-width: 40rem; }
+.nx-banner__h2 { margin: 0; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); color: #FFFFFF; text-wrap: balance; }
+.nx-banner__p { margin: 1rem 0 0; max-width: 40ch; font-size: var(--nx-t-body); line-height: 1.55; color: rgba(255, 255, 255, 0.86); }
+.nx-banner__cta { margin-top: 1.4rem; }
+@media (max-width: 700px) { .nx-banner { min-height: 26rem; } .nx-banner::before { background: linear-gradient(180deg, rgba(28, 28, 28, 0.2) 0%, rgba(28, 28, 28, 0.82) 100%); } .nx-banner__copy { align-self: flex-end; } }
+
+/* ── The product page hero: the vial on its tint at the left, the offer at the right ── */
+.nx-phero { padding-top: clamp(1rem, 2.4vw, 1.8rem); }
+.nx-phero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(1.4rem, 3.2vw, 2.6rem); align-items: start; margin-top: 1rem; }
+.nx-phero__panel { position: relative; aspect-ratio: 1 / 1.08; border-radius: var(--nx-r-xl); overflow: hidden; }
+.nx-phero__panel img { position: absolute; inset: 8% 14%; width: 72%; height: 84%; object-fit: contain; filter: drop-shadow(0 30px 34px rgba(28, 28, 28, 0.16)); }
+.nx-phero__panel .nx-chips { position: absolute; top: 1.1rem; left: 1.2rem; z-index: 1; }
+.nx-phero__panel .nx-tile__pill--right { position: absolute; top: 1.1rem; right: 1.2rem; z-index: 1; }
+.nx-phero__name { margin: .8rem 0 0; font-size: var(--nx-t-h1); line-height: 1.02; letter-spacing: var(--nx-ls-display); }
+.nx-phero__price { margin: .6rem 0 0; display: flex; align-items: baseline; gap: .4rem; flex-wrap: wrap; }
+.nx-phero__price b { font-family: var(--nx-font-display); font-weight: 400; font-size: var(--nx-t-h1); line-height: 1; letter-spacing: var(--nx-ls-display); color: var(--nx-fg); }
+.nx-phero__price span { font-size: var(--nx-t-base); font-weight: 500; color: var(--nx-fg-graphite); }
+.nx-phero__lede { margin: 1rem 0 0; max-width: 46ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); }
+.nx-phero .nx-benefit--compact { margin-top: 1rem; }
+.nx-phero__cta { display: flex; width: 100%; margin-top: 1.2rem; min-height: 56px; }
+.nx-phero__note { margin: .6rem 0 0; text-align: center; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+.nx-phero__acc { margin: 1.2rem 0 0; display: grid; gap: .5rem; }
+.nx-phero__acc .nx-faq-item { border-radius: var(--nx-r-lg); }
+.nx-phero__acc .nx-faq-item > summary { font-size: var(--nx-t-lg); padding: 1.1rem 1.4rem; }
+.nx-phero__acc .nx-faq-a { padding: 0 1.4rem 1.2rem; }
+.nx-phero .nx-pdp-facts { margin-top: 1.2rem; }
+@media (max-width: 1024px) { .nx-phero__grid { grid-template-columns: 1fr; } .nx-phero__panel { aspect-ratio: 1 / .9; } }
+
+/* ── fixes after the first render (2026-09-08) ── */
+/* the studio render is transparent: no card of its own inside a tint */
+.nx-pcard__media .nx-sku-img, .nx-phero__panel .nx-sku-img, .nx-gtile img, .nx-bigtile__img { background: transparent; border: 0; box-shadow: none; border-radius: 0; padding: 0; }
+/* a narrow card wraps its two pills instead of clipping them */
+.nx-pcard__actions { flex-wrap: wrap; }
+.nx-pcard__actions > * { flex: 1 1 8.5rem; }
+.nx-float-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); }
+/* the drawn chip in the headline leaves the phone alone */
+@media (max-width: 700px) { .nx-ivhero__chip { display: none; } }

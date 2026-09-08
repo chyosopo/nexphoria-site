@@ -122,3 +122,19 @@
   .nx-mtile:hover { transform: none; }
   .nx-mtiles--goals .nx-mtile:hover img { transform: scale(1.22); }
 }
+
+/* ── the ivy restyle (2026-09-08): the goal tiles are .nx-gtile (styles/ivy.css) ── */
+.nx-mtiles--goals { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .8rem; }
+.nx-mtiles--goals .nx-mtile img { transform: none; }
+.nx-mtile--all.nx-gtile { aspect-ratio: 1 / 1.02; background: var(--nx-bg-dark); border-radius: var(--nx-r-lg); justify-content: flex-end; }
+.nx-mtile--all.nx-gtile::after { display: none; }
+.nx-mtile--all.nx-gtile .nx-mtile__copy { position: absolute; top: 1rem; left: 1rem; right: 1rem; }
+.nx-mtile--all.nx-gtile .nx-mtile__name { font-size: var(--nx-t-lg); font-weight: 400; }
+.nx-mtile--all.nx-gtile .nx-mtile__arrow { position: absolute; right: .8rem; bottom: .8rem; opacity: 1; transform: none; }
+.nx-hdr__panel { border-bottom: 0; box-shadow: var(--nx-e-4); border-radius: 0 0 var(--nx-r-xl) var(--nx-r-xl); }
+.nx-hdr__panel-body { padding: 1.4rem 0 1.6rem; }
+.nx-hdr__panel-title { font-size: var(--nx-t-xl); }
+.nx-hdr__panel-all { color: var(--nx-fg); }
+.nx-sheet__goals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.nx-sheet__goals .nx-gtile img { transform: translateX(-50%); }
+@media (max-width: 1100px) { .nx-mtiles--goals { grid-template-columns: repeat(4, minmax(0, 1fr)); } }

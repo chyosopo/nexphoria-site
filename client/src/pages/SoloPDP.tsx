@@ -18,16 +18,15 @@ import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
 import { getSolo, SoloCategory } from "@/data/soloCatalog";
 import { analytics } from "@/lib/analytics";
-import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
+import { FLAGSHIP_STACKS, usd } from "@/data/stacksCatalog";
 import { getPrice } from "@/data/pricing";
-import { ArrowLeft, X, Stethoscope, Droplets, FlaskConical, Snowflake } from "lucide-react";
+import { ArrowLeft, ArrowRight, X, Stethoscope, Droplets, FlaskConical, Snowflake } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { PdpFaq, buildPdpFaq } from "@/components/PdpFaq";
 import { RegulatoryDisclosure } from "@/components/RegulatoryDisclosure";
 import { VialPanel, labelSpec } from "@/components/VialMockup";
 import { SkuPhoto } from "@/components/SkuPhoto";
-import { PDP_TILE } from "@/lib/studioTiles";
-import { GOAL_SHOUT, CATEGORY_TO_GOAL } from "@/data/goalTeaching";
+import { CATEGORY_TO_GOAL } from "@/data/goalTeaching";
 import { FeaturedProtocol } from "@/components/FeaturedProtocol";
 import { BenefitStrip } from "@/components/BenefitStrip";
 import { AddonsFor } from "@/components/AddonsFor";
@@ -44,6 +43,7 @@ import { CareCards } from "@/components/CareCards";
 import { Pathway } from "@/components/Pathway";
 import { Milestones } from "@/components/Milestones";
 import { forWhom } from "@/data/forWhom";
+import "@/styles/ivy.css";
 
 /* SoloCategory → the category vocabulary (the deck: filters, tiles and goal
    pages all use the same words). */
@@ -142,47 +142,48 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   return (
     <SiteLayout>
       <div className="nx-tight">
-      {/* ══ 1 · HERO: the product beside what it is, what it is for and how it works ══ */}
-      <section className="nx-tilehero" aria-labelledby="solo-hero-title">
-        <div className="nx-container" style={{ paddingTop: "1.4rem", paddingBottom: "var(--nx-sp-tight)" }}>
+      {/* ══ 1 · HERO, the ivy way (2026-09-08): the vial on its tint at the
+          left; at the right the goal, the name in the gradient, the price
+          set large, the line, the benefit chips, one full-width pill, the
+          note, and two accordions (how you take it, how it works). ══ */}
+      <section className="nx-phero" aria-labelledby="solo-hero-title">
+        <div className="nx-container">
           <Link href={`${base}/peptides`} className="nx-text-link" style={{ gap: 6, fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-            <ArrowLeft size={15} aria-hidden="true" /> All medicines
+            <ArrowLeft size={15} aria-hidden="true" /> All treatments
           </Link>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]" style={{ gap: "clamp(1.6rem,4vw,3.2rem)", alignItems: "center", marginTop: "1rem" }}>
-            {/* LEFT: the product, on its goal-toned panel */}
-            <div className="nx-tile nx-tile--pdp" style={{ order: 0 }}>
-              {PDP_TILE[solo.slug]
-                ? <img src={PDP_TILE[solo.slug].src} srcSet={`${PDP_TILE[solo.slug].src600} 600w, ${PDP_TILE[solo.slug].src} 1200w`} sizes="(max-width: 1024px) 100vw, 42vw" alt={`${solo.name}, as dispensed`} width={1200} height={1500} fetchPriority="high" decoding="async" data-testid={`solo-vial-${solo.slug}`} />
-                : <SkuPhoto slug={solo.slug} name={solo.name} eager className="nx-sku-img nx-sku-img--pdp" testId={`solo-vial-${solo.slug}`} fallback={<VialPanel name={solo.name} dose={labelSpec(solo.spec)} size="80%" testId={`solo-vial-${solo.slug}`} />} />}
-              <span className="nx-chips nx-chips--tile" aria-hidden="true"><span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{GOAL_LABEL[solo.category]}</span><span className="nx-chip" style={{ fontFamily: F }}>Rx</span></span>
+          <div className="nx-phero__grid">
+            <div className="nx-phero__panel nx-tint" data-goal={CATEGORY_TO_GOAL[solo.category]}>
+              <SkuPhoto slug={solo.slug} name={solo.name} eager className="nx-sku-img nx-sku-img--pdp" testId={`solo-vial-${solo.slug}`} fallback={<VialPanel name={solo.name} dose={labelSpec(solo.spec)} size="80%" testId={`solo-vial-${solo.slug}`} />} />
+              <span className="nx-chips" aria-hidden="true"><span className="nx-chip nx-chip--accent" style={{ fontFamily: F }}>{GOAL_LABEL[solo.category]}</span><span className="nx-chip" style={{ fontFamily: F }}>Rx</span></span>
               <span className="sr-only" data-testid={`solo-posture-${solo.slug}`}>{solo.gated ? "Physician-assessed" : "Prescription only"}</span>
               <span className="nx-tile__pill nx-tile__pill--right"><StatusPill status={statusOf(solo)} testId={`solo-status-${solo.slug}`} /></span>
             </div>
-
-            {/* RIGHT: name, category, tile line, mechanism, the benefit chips, one action, the facts */}
             <div>
-              <p className="nx-pdp-shout" style={{ fontFamily: S }}>{GOAL_SHOUT[CATEGORY_TO_GOAL[solo.category]]}</p>
-              <h1 id="solo-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-h1)", lineHeight: 1.05, letterSpacing: "var(--nx-ls-tight)", color: "var(--nx-fg)", marginTop: "0.5rem", maxWidth: "18ch" }}>{solo.name}</h1>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-ink)", marginTop: "0.6rem", maxWidth: "40ch" }}>
-                {solo.outcome}
+              <p className="nx-eyebrow nx-pdp-shout">{GOAL_LABEL[solo.category]}</p>
+              <h1 id="solo-hero-title" className="nx-phero__name"><span className="nx-grad">{solo.name}</span></h1>
+              <p className="nx-phero__price" style={{ fontFamily: F }} data-testid={`solo-hero-price-${solo.slug}`}>
+                {solo.gated
+                  ? <span>Priced after the physician's review</span>
+                  : solo.pricing
+                  ? <><b>{usd(solo.pricing.m12)}</b><span>/mo on a twelve-month plan · {usd(solo.pricing.m1)}/mo for one month</span></>
+                  : <span>Priced at consultation</span>}
               </p>
-              <div style={{ marginTop: "1rem", maxWidth: 560 }}><BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} /></div>
-
-              <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", flexWrap: "wrap", marginTop: "1.2rem" }}>
-                <a
-                  href="#buy"
-                  className="nx-cta-cobalt"
-                  data-testid="solo-hero-cta"
-                  style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)" }}
-                >
-                  Choose a plan
-                </a>
-                <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600 }}>
-                  Browse every medicine
-                </Link>
+              <p className="nx-phero__lede" style={{ fontFamily: F }}>{solo.outcome}</p>
+              <BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} />
+              <a href="#buy" className="nx-cta-cobalt nx-phero__cta" data-testid="solo-hero-cta" style={{ fontFamily: F }}>
+                {statusOf(solo) === "live" ? "Shop now" : "See the plan"} <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span>
+              </a>
+              <p className="nx-phero__note" style={{ fontFamily: F }}>Prescribed by a licensed U.S. physician, if appropriate. The blood test is included.</p>
+              <div className="nx-phero__acc">
+                <details className="nx-faq-item" data-testid={`solo-acc-take-${solo.slug}`}>
+                  <summary><span>How to take</span><span className="nx-faq-plus" aria-hidden /></summary>
+                  <p className="nx-faq-a">{solo.dose}. {solo.spec}.</p>
+                </details>
+                <details className="nx-faq-item" data-testid={`solo-acc-works-${solo.slug}`}>
+                  <summary><span>How it works</span><span className="nx-faq-plus" aria-hidden /></summary>
+                  <p className="nx-faq-a">{solo.mechanism}</p>
+                </details>
               </div>
-              {/* The fact strip (2026-09-05, after alyverx.com): the four facts
-                  that are true of every medicine, once, with an icon each. */}
               <ul className="nx-pdp-facts" aria-label="What every order includes" data-testid={`solo-facts-${solo.slug}`}>
                 <li style={{ fontFamily: F }}><Stethoscope size={15} strokeWidth={2.1} aria-hidden="true" />Prescribed by a licensed U.S. physician</li>
                 <li style={{ fontFamily: F }}><Droplets size={15} strokeWidth={2.1} aria-hidden="true" />An at-home blood test, included</li>

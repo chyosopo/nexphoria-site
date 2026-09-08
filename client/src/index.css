@@ -3623,3 +3623,143 @@ h1.nx-shout, .nx-tilehero__h1.nx-shout { font-size: clamp(2.8rem, 7vw, 6rem); li
 .nx-stack-lineup__cell { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
 .nx-stack-lineup__cell > :last-child { width: 100%; }
 .nx-parties-row .nx-card { overflow-wrap: anywhere; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE IVY LAYER (Chiya, 2026-09-08: "roll back, I don't like it … make our
+   site look like ivyrx.com: the design, the feel, the copy, the journey,
+   the vial mockups, the menu bar"). Unlayered, so it wins over the @layer
+   base sheet above it and over the women's world scope; the two previous
+   sheets stay above as history. ivyrx.com, rendered offline and measured:
+   white ground, #1C1C1C ink, #575757 secondary, #E5E5E5 hairline, charcoal
+   #2E2E2E pill buttons with a white top sheen, a pink → lavender gradient
+   (#DC9EA8 → #948EC4) on one word of a headline, DM Sans light headlines,
+   Manrope body, cards at 1.5rem / 2rem radius on #FAFAFA, category tints
+   (mint for weight loss, periwinkle for peptides), label pills instead of
+   caps eyebrows. */
+:root {
+  --nx-font-body:    'Manrope', system-ui, sans-serif;
+  --nx-font-display: 'DM Sans', system-ui, sans-serif;
+  --nx-bg:           #FFFFFF;
+  --nx-bg-cream:     #F5F5F5;
+  --nx-bg-dark:      #1C1C1C;
+  --nx-fg:           #1C1C1C;
+  --nx-fg-graphite:  #575757;
+  --nx-fg-muted:     #6B6B6B;
+  --nx-border:       #E5E5E5;
+  --nx-cobalt:       #2E2E2E;   /* the button fill */
+  --nx-cobalt-hover: #1C1C1C;
+  --nx-cobalt-soft:  #F1F0FB;   /* lavender tint */
+  --nx-cobalt-ink:   #6A61B5;   /* lavender as text, AA on white */
+  --nx-accent:       #948EC4;
+  --nx-amber:        #948EC4;
+  --nx-acid:         #C8C3EA;   /* the arrow disc inside a dark pill */
+  --nx-success:      #1FC16B;
+  --nx-warning:      #C98A3F;
+  --nx-ice:          #F1F0FB;  --nx-ice-edge:   #D8D5EE;
+  --nx-peach:        #E6FBEA;  --nx-peach-edge: #B4F7CF;
+  --nx-sage:         #E7F6F7;  --nx-sage-edge:  #BFE4E7;
+  --nx-rust:         #948EC4;
+  --nx-ceramic:      #FAFAFA;   /* the card */
+  --nx-rock:         #F5F5F5;
+  --nx-danger:       #B91C1C;
+  --nx-grad-a:       #DC9EA8;
+  --nx-grad-b:       #948EC4;
+  /* one colour and one tint per goal: the vial's cap, liquid and label, and
+     the card it sits on */
+  --nx-goal-metabolic: #1FC16B;      --nx-goal-metabolic-tint: #DFFBE8;  --nx-goal-metabolic-tint2: #CCF9EC;  --nx-goal-metabolic-edge: #B4F7CF;  --nx-goal-metabolic-ink: #0F6B3A;
+  --nx-goal-growth: #6E77CC;         --nx-goal-growth-tint: #ECEEFB;     --nx-goal-growth-tint2: #E1E4F9;     --nx-goal-growth-edge: #C9CEF0;     --nx-goal-growth-ink: #363D80;
+  --nx-goal-recovery: #3BB5BD;       --nx-goal-recovery-tint: #E3F6F7;   --nx-goal-recovery-tint2: #D3F0F2;   --nx-goal-recovery-edge: #B4E3E6;   --nx-goal-recovery-ink: #176C71;
+  --nx-goal-longevity: #948EC4;      --nx-goal-longevity-tint: #F1F0FB;  --nx-goal-longevity-tint2: #E7E5F7;  --nx-goal-longevity-edge: #D3D0EC;  --nx-goal-longevity-ink: #4A4478;
+  --nx-goal-cognition: #5B8DEF;      --nx-goal-cognition-tint: #E8F0FF;  --nx-goal-cognition-tint2: #DBE7FF;  --nx-goal-cognition-edge: #C2D4FA;  --nx-goal-cognition-ink: #234C9C;
+  --nx-goal-sleep: #5D65B4;          --nx-goal-sleep-tint: #ECEDF9;      --nx-goal-sleep-tint2: #E0E2F4;      --nx-goal-sleep-edge: #C8CBEA;      --nx-goal-sleep-ink: #34397A;
+  --nx-goal-sexual-health: #DC8FA0;  --nx-goal-sexual-health-tint: #FBEEF1; --nx-goal-sexual-health-tint2: #F8E2E7; --nx-goal-sexual-health-edge: #F0CBD4; --nx-goal-sexual-health-ink: #8A3C4D;
+  --nx-goal-hormone: #E39A6B;        --nx-goal-hormone-tint: #FDF0E7;    --nx-goal-hormone-tint2: #FBE4D5;    --nx-goal-hormone-edge: #F4CDB4;    --nx-goal-hormone-ink: #8A4A1E;
+  --nx-goal-skin: #D9A3C4;           --nx-goal-skin-tint: #F9EEF5;       --nx-goal-skin-tint2: #F4E2EC;       --nx-goal-skin-edge: #EACBDC;       --nx-goal-skin-ink: #7A3A5F;
+  /* the solid register per goal: the ink as a block, white and the tint as type on it */
+  --nx-goal-metabolic-solid: #0F6B3A;  --nx-goal-metabolic-on: #FFFFFF;  --nx-goal-metabolic-onsoft: #DFFBE8;
+  --nx-goal-growth-solid: #363D80;  --nx-goal-growth-on: #FFFFFF;  --nx-goal-growth-onsoft: #ECEEFB;
+  --nx-goal-recovery-solid: #176C71;  --nx-goal-recovery-on: #FFFFFF;  --nx-goal-recovery-onsoft: #E3F6F7;
+  --nx-goal-longevity-solid: #4A4478;  --nx-goal-longevity-on: #FFFFFF;  --nx-goal-longevity-onsoft: #F1F0FB;
+  --nx-goal-cognition-solid: #234C9C;  --nx-goal-cognition-on: #FFFFFF;  --nx-goal-cognition-onsoft: #E8F0FF;
+  --nx-goal-sleep-solid: #34397A;  --nx-goal-sleep-on: #FFFFFF;  --nx-goal-sleep-onsoft: #ECEDF9;
+  --nx-goal-sexual-health-solid: #8A3C4D;  --nx-goal-sexual-health-on: #FFFFFF;  --nx-goal-sexual-health-onsoft: #FBEEF1;
+  --nx-goal-hormone-solid: #8A4A1E;  --nx-goal-hormone-on: #FFFFFF;  --nx-goal-hormone-onsoft: #FDF0E7;
+  --nx-goal-skin-solid: #7A3A5F;  --nx-goal-skin-on: #FFFFFF;  --nx-goal-skin-onsoft: #F9EEF5;
+  /* softer corners, softer shadows */
+  --nx-r-sm: 12px; --nx-r-md: 16px; --nx-r-lg: 24px; --nx-r-xl: 32px;
+  --nx-e-1: 0 1px 2px rgba(28, 28, 28, 0.04);
+  --nx-e-2: 0 4px 14px rgba(28, 28, 28, 0.05);
+  --nx-e-3: 0 12px 32px rgba(28, 28, 28, 0.08);
+  --nx-e-4: 0 24px 60px rgba(28, 28, 28, 0.12);
+  /* the headline scale: ivy's hero is 64px light */
+  --nx-t-h2: clamp(32px, 4vw, 52px);
+  --nx-t-h1: clamp(40px, 5.6vw, 66px);
+  --nx-t-display: clamp(46px, 6.8vw, 80px);
+  --nx-ls-display: -0.03em; --nx-ls-tight: -0.025em; --nx-ls-snug: -0.015em;
+  --primary: 0 0% 18%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 245 30% 66%;
+  --ring: 245 30% 66%;
+  --radius: 1rem;
+}
+/* the tinted card per goal, one attribute: data-goal on any surface */
+[data-goal="metabolic"] { --nx-goal: var(--nx-goal-metabolic); --nx-goal-tint: var(--nx-goal-metabolic-tint); --nx-goal-tint2: var(--nx-goal-metabolic-tint2); --nx-goal-ink: var(--nx-goal-metabolic-ink); }
+[data-goal="growth"] { --nx-goal: var(--nx-goal-growth); --nx-goal-tint: var(--nx-goal-growth-tint); --nx-goal-tint2: var(--nx-goal-growth-tint2); --nx-goal-ink: var(--nx-goal-growth-ink); }
+[data-goal="recovery"] { --nx-goal: var(--nx-goal-recovery); --nx-goal-tint: var(--nx-goal-recovery-tint); --nx-goal-tint2: var(--nx-goal-recovery-tint2); --nx-goal-ink: var(--nx-goal-recovery-ink); }
+[data-goal="longevity"] { --nx-goal: var(--nx-goal-longevity); --nx-goal-tint: var(--nx-goal-longevity-tint); --nx-goal-tint2: var(--nx-goal-longevity-tint2); --nx-goal-ink: var(--nx-goal-longevity-ink); }
+[data-goal="cognition"] { --nx-goal: var(--nx-goal-cognition); --nx-goal-tint: var(--nx-goal-cognition-tint); --nx-goal-tint2: var(--nx-goal-cognition-tint2); --nx-goal-ink: var(--nx-goal-cognition-ink); }
+[data-goal="sleep"] { --nx-goal: var(--nx-goal-sleep); --nx-goal-tint: var(--nx-goal-sleep-tint); --nx-goal-tint2: var(--nx-goal-sleep-tint2); --nx-goal-ink: var(--nx-goal-sleep-ink); }
+[data-goal="sexual-health"] { --nx-goal: var(--nx-goal-sexual-health); --nx-goal-tint: var(--nx-goal-sexual-health-tint); --nx-goal-tint2: var(--nx-goal-sexual-health-tint2); --nx-goal-ink: var(--nx-goal-sexual-health-ink); }
+[data-goal="hormone"] { --nx-goal: var(--nx-goal-hormone); --nx-goal-tint: var(--nx-goal-hormone-tint); --nx-goal-tint2: var(--nx-goal-hormone-tint2); --nx-goal-ink: var(--nx-goal-hormone-ink); }
+[data-goal="skin"] { --nx-goal: var(--nx-goal-skin); --nx-goal-tint: var(--nx-goal-skin-tint); --nx-goal-tint2: var(--nx-goal-skin-tint2); --nx-goal-ink: var(--nx-goal-skin-ink); }
+.nx-tint { background: linear-gradient(160deg, var(--nx-goal-tint, var(--nx-ceramic)) 0%, var(--nx-goal-tint2, var(--nx-bg-cream)) 100%); }
+
+/* headlines: DM Sans, light */
+h1, h2, h3, .nx-dsh1, .nx-dsh2, .nx-dsh3, .nx-tilehero__h1, .nx-band__h2, .nx-tile__t, .nx-tile__title, .nx-goal__t, .nx-frost__name,
+.nx-closer-tile h2, .nx-quiz__h1, .nx-quiz__h2, .nx-cartpage__h1, .nx-steptile__t, .nx-pt__t, .sp-tile__t, .nx-hdr__panel-title, .nx-arrives__t { font-family: var(--nx-font-display); font-weight: 400; }
+.nx-dsh1, .nx-tilehero__h1 { letter-spacing: var(--nx-ls-display); line-height: 1.02; }
+.nx-dsh2 { letter-spacing: var(--nx-ls-tight); line-height: 1.06; }
+body { background-color: var(--nx-bg); }
+/* the one gradient word */
+.nx-grad { background-image: linear-gradient(90deg, var(--nx-grad-a), var(--nx-grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* the eyebrow is a label pill ("Treatments", "Support", "FAQ") */
+.nx-eyebrow, .nx-band__kicker { display: inline-flex; align-items: center; width: fit-content; min-height: 32px; padding: 0 12px; border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: var(--nx-bg); color: var(--nx-fg); font-family: var(--nx-font-body); font-size: var(--nx-t-sm); font-weight: 500; letter-spacing: 0; text-transform: none; }
+/* buttons: the charcoal pill with a top sheen; the white pill */
+.nx-cta-cobalt, .nx-cta-navy, .nx-buybox__cta, .nx-hdr__cta.nx-cta-acid, .nx-sheet__foot .nx-sheet__cta.nx-cta-acid { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 28px; border-radius: var(--nx-r-pill); border: 1px solid rgba(255, 255, 255, 0.12); background-color: var(--nx-cobalt); background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)); color: #FFFFFF; font-family: var(--nx-font-body); font-size: var(--nx-t-base); font-weight: 500; letter-spacing: 0; text-transform: none; text-decoration: none; }
+.nx-cta-cobalt:hover, .nx-cta-navy:hover, .nx-buybox__cta:hover, .nx-hdr__cta.nx-cta-acid:hover { background-color: var(--nx-cobalt-hover); color: #FFFFFF; transform: translateY(-1px); box-shadow: var(--nx-e-3); }
+.nx-cta-cobalt.nx-cta--sm, .nx-cta-navy.nx-cta--sm { min-height: 44px; padding: 0 20px; font-size: var(--nx-t-sm); }
+.nx-hdr__cta.nx-cta-acid { min-height: 44px; padding: 0 22px; font-size: var(--nx-t-sm); }
+.nx-cta__arrow { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--nx-acid); color: var(--nx-bg-dark); flex: none; }
+.nx-cta__arrow svg { width: 13px; height: 13px; }
+.nx-cta-ceramic, .nx-cta-ghost, .nx-cta-acid:not(.nx-hdr__cta):not(.nx-sheet__cta) { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 28px; border-radius: var(--nx-r-pill); border: 1px solid var(--nx-border); background: #FFFFFF; color: var(--nx-fg); font-family: var(--nx-font-body); font-size: var(--nx-t-base); font-weight: 500; letter-spacing: 0; text-transform: none; text-decoration: none; }
+.nx-cta-ceramic:hover, .nx-cta-ghost:hover { background: var(--nx-ceramic); border-color: var(--nx-fg-muted); transform: translateY(-1px); box-shadow: var(--nx-e-2); }
+.nx-cta-ceramic.nx-cta--sm, .nx-cta-ghost.nx-cta--sm { min-height: 44px; padding: 0 20px; font-size: var(--nx-t-sm); }
+.nx-cta-ghost--light { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); color: #FFFFFF; }
+/* cards: no hairline, the soft grey, the big radius */
+.nx-card, .nx-glass-tile, .nx-faq-item, .nx-faq-item:first-child, .nx-frost, .nx-pt, .nx-arrives__tile, .nx-catalog-empty, .nx-goal__pill, .nx-mtile { border-color: transparent; }
+.nx-card, .nx-glass-tile, .nx-faq-item, .nx-faq-item:first-child, .nx-pt, .nx-arrives__tile, .nx-catalog-empty { background: var(--nx-ceramic); border: 0; border-radius: var(--nx-r-lg); }
+.nx-faq-item > summary { font-family: var(--nx-font-display); font-weight: 400; font-size: var(--nx-t-lg); }
+.nx-faq-item > summary:hover { color: var(--nx-fg); }
+/* chips: rounded, sentence case */
+.nx-chip { border-radius: var(--nx-r-pill); padding: 5px 10px; font-size: var(--nx-t-xs); font-weight: 500; letter-spacing: 0; text-transform: none; background: rgba(255, 255, 255, 0.8); color: var(--nx-fg); }
+.nx-chip--accent, .nx-tile:not(.nx-tile--dark):not(.nx-tile--fade) .nx-chip--accent, .nx-frost .nx-chip--accent { background: var(--nx-bg-dark); color: #FFFFFF; }
+.nx-tile:not(.nx-tile--dark):not(.nx-tile--fade) .nx-chip, .nx-frost .nx-chip { background: rgba(255, 255, 255, 0.8); color: var(--nx-fg); border-radius: var(--nx-r-pill); font-size: var(--nx-t-xs); font-weight: 500; letter-spacing: 0; text-transform: none; }
+/* tiles */
+.nx-tile { border-radius: var(--nx-r-lg); background: var(--nx-ceramic); }
+.nx-tile::before { display: none; }
+/* the closer: a dark rounded banner with a lavender glow */
+.nx-closer-tile { background: var(--nx-bg-dark); border-radius: var(--nx-r-xl); }
+.nx-closer-tile::before { background: radial-gradient(circle, rgba(148, 142, 196, 0.45) 0%, transparent 70%); }
+.nx-closer-tile .nx-text-link { color: var(--nx-acid); }
+/* inputs */
+.nx-input { border-radius: var(--nx-r-pill); }
+/* section rhythm: ivy leaves 120px between blocks */
+.nx-sec { padding-top: clamp(4rem, 8vw, 7.5rem); }
+.nx-tight .nx-sec { padding-top: clamp(3.5rem, 7vw, 6.5rem); }
+/* the text link */
+.nx-text-link { color: var(--nx-fg); font-weight: 500; }
+.nx-text-link:hover { color: var(--nx-cobalt-ink); }
+/* the header links */
+.nx-hdr { background: var(--nx-bg); border-bottom: 0; }
+.nx-hdr.is-raised { box-shadow: 0 1px 0 var(--nx-border); }
+.nx-hdr__link { font-weight: 500; font-size: var(--nx-t-base); color: var(--nx-fg-graphite); }

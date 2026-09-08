@@ -1,3 +1,33 @@
+# The house voice, v7: the ivy register (Chiya, 2026-09-08)
+
+Chiya, 2026-09-08, on the brand-guide rebuild: "roll back, I don't like
+it", and then: "make our site look like ivyrx.com: the design, the feel,
+the copy, the journey, everything, the vial mockups, the menu bar." ivyrx.com
+was rendered offline and read: warm, plain, second person, one gradient
+phrase per headline ("Peptides medication, personalized to you", "Don't
+just live longer, live healthier", "Medical support, on your terms",
+"Questions? We've got the answers!", "Find my treatment").
+
+v7 replaces v6. What changes:
+
+1. **A headline is a warm plain phrase with one gradient phrase in it.**
+   "Peptide medicine, personalized to you." / "Feel better, for longer." /
+   "How Nexphoria works." / "Medical support, on your terms." /
+   "Questions? We have the answers." Sentence case, no full stop needed.
+2. **The button is "Find my treatment"** (first person, the reader's), with
+   the lavender arrow. Cards say "Shop now" and "Learn more".
+3. **Trust is four chips under the hero**, each a fact: licensed U.S.
+   physicians, discreet cold delivery included, entirely online, blood test
+   included.
+4. **The steps are three drawn cards**, each a piece of interface, with a
+   Step pill and a headline whose second half is the gradient phrase.
+5. **What ivy does that the laws forbid stays out**: no review counts, no
+   star ratings, no "free", no "no insurance required", no exclamation
+   marks, no discounts, no newsletter with "exclusive" anything.
+6. The guardrails at the bottom still hold.
+
+---
+
 # The house voice, v3: the flowing register (Chiya, 2026-09-05)
 
 Chiya, 2026-09-05, on the staccato labels that v2 produced ("QUESTIONS.

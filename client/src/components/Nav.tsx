@@ -24,7 +24,8 @@ import { CartIconButton } from "./CartIconButton";
 import { CATEGORY_LABELS, liveCategories, type PeptideCategory } from "@/data/peptides";
 import { FLAGSHIP_STACKS } from "@/data/stacksCatalog";
 import { GOAL_ORDER, GOAL_SHOUT } from "@/data/goalTeaching";
-import { GOAL_TILE, PROTO_TILE } from "@/lib/studioTiles";
+import { PROTO_TILE } from "@/lib/studioTiles";
+import { GoalTile as IvyGoalTile } from "@/components/ivy/GoalTile";
 import "@/styles/nav.css";
 
 interface NavProps {
@@ -40,7 +41,7 @@ interface NavItem {
 }
 
 const ITEMS: NavItem[] = [
-  { label: "Medicines", href: "/peptides", panel: "treatments" },
+  { label: "Treatments", href: "/peptides", panel: "treatments" },
   { label: "Protocols", href: "/stacks", panel: "protocols" },
   { label: "How it works", href: "/how-it-works" },
 ];
@@ -53,41 +54,20 @@ const SHEET_ROWS: { label: string; line: string; href: string }[] = [
   { label: "Contact", line: "Write to us, and a person answers.", href: "/contact" },
 ];
 
-/* The studio tile per goal. The tile set keys sexual health as "sexual";
-   the light tiles carry navy type, the dark ones ceramic. */
-const TILE_KEY: Record<PeptideCategory, string> = {
-  metabolic: "metabolic", growth: "growth", recovery: "recovery", longevity: "longevity", cognition: "cognition",
-  sleep: "sleep", "sexual-health": "sexual", hormone: "hormone", skin: "skin",
-};
-const GOAL_DARK: Record<PeptideCategory, boolean> = {
-  metabolic: false, growth: true, recovery: false, longevity: false, cognition: true, sleep: true, "sexual-health": true, hormone: true, skin: false,
-};
-
 /* Only goals with a medicine behind them render, so a tile never opens on
    an empty shelf. */
 const GOALS: PeptideCategory[] = liveCategories(GOAL_ORDER).filter((g) => GOAL_ORDER.includes(g));
 
 const CONTAINER = "nx-container";
 
-function GoalTile({ goal, onPick, sizes, testid }: { goal: PeptideCategory; onPick: () => void; sizes: string; testid: string }) {
-  const tile = GOAL_TILE[TILE_KEY[goal]];
-  const dark = GOAL_DARK[goal];
-  return (
-    <Link href={`/peptides?goal=${goal}`} className={`nx-mtile${dark ? " nx-mtile--dark" : ""}`} onClick={onPick} data-testid={testid} aria-label={`${CATEGORY_LABELS[goal]}: ${GOAL_SHOUT[goal]}`}>
-      {tile && <img src={tile.src} srcSet={`${tile.src600} 600w, ${tile.src} 1200w`} sizes={sizes} alt="" width={1200} height={900} loading="lazy" decoding="async" />}
-      <span className="nx-mtile__copy" aria-hidden="true">
-        <span className="nx-mtile__name">{CATEGORY_LABELS[goal]}</span>
-        <span className="nx-mtile__line">{GOAL_SHOUT[goal]}</span>
-      </span>
-      <span className="nx-mtile__arrow" aria-hidden="true"><ArrowRight size={15} /></span>
-    </Link>
-  );
+function GoalTile({ goal, onPick, testid }: { goal: PeptideCategory; onPick: () => void; sizes?: string; testid: string }) {
+  return <IvyGoalTile goal={goal} href={`/peptides?goal=${goal}`} onClick={onPick} testId={testid} />;
 }
 
 /* The tenth tile: every medicine, on navy. */
 function AllTile({ onPick, testid }: { onPick: () => void; testid: string }) {
   return (
-    <Link href="/peptides" className="nx-mtile nx-mtile--all" onClick={onPick} data-testid={testid}>
+    <Link href="/peptides" className="nx-mtile nx-mtile--all nx-gtile" onClick={onPick} data-testid={testid}>
       <span className="nx-mtile__copy">
         <span className="nx-mtile__name">Every medicine</span>
         <span className="nx-mtile__line">What each one treats, how you take it and what it costs.</span>
@@ -101,8 +81,8 @@ function TreatmentsPanel({ onPick }: { onPick: () => void }) {
   return (
     <div data-testid="nav-mega-pharmacy">
       <div className="nx-hdr__panel-head">
-        <h2 className="nx-hdr__panel-title">Choose a goal, and see what a physician can prescribe for it.</h2>
-        <Link href="/peptides" className="nx-hdr__panel-all" onClick={onPick} data-testid="mega-view-all">Every medicine, by goal and by price <ArrowRight size={14} aria-hidden="true" /></Link>
+        <h2 className="nx-hdr__panel-title">Treatments, by goal</h2>
+        <Link href="/peptides" className="nx-hdr__panel-all" onClick={onPick} data-testid="mega-view-all">View all treatments <ArrowRight size={14} aria-hidden="true" /></Link>
       </div>
       <ul className="nx-mtiles nx-mtiles--goals" role="list">
         {GOALS.map((g) => (
@@ -118,7 +98,7 @@ function ProtocolsPanel({ onPick }: { onPick: () => void }) {
   return (
     <div data-testid="nav-mega-protocols">
       <div className="nx-hdr__panel-head">
-        <h2 className="nx-hdr__panel-title">Two to four medicines a physician prescribes together, on one plan.</h2>
+        <h2 className="nx-hdr__panel-title">Protocols: medicines prescribed together</h2>
         <Link href="/stacks" className="nx-hdr__panel-all" onClick={onPick} data-testid="mega-view-all-protocols">Every protocol <ArrowRight size={14} aria-hidden="true" /></Link>
       </div>
       <ul className="nx-mtiles nx-mtiles--protocols" role="list">
@@ -255,7 +235,7 @@ export function Nav({ variant = "gate" }: NavProps) {
                 <Link
                   href={item.href}
                   className={`nx-hdr__link${isOpen ? " is-open" : ""}${isCurrent(item.href) ? " is-current" : ""}`}
-                  data-testid={`nav-link-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
+                  data-testid={`nav-link-${item.label === "Treatments" ? "medicines" : item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   data-nav-trigger={isPanel ? "true" : undefined}
                   aria-haspopup={isPanel ? "true" : undefined}
                   aria-expanded={isPanel ? isOpen : undefined}
@@ -272,7 +252,7 @@ export function Nav({ variant = "gate" }: NavProps) {
         </ul>
 
         <div className="nx-hdr__side">
-          <StartIntakeButton productSlug={intakeSlug} source={navSource} size="sm" className="nx-hdr__cta">Find what fits</StartIntakeButton>
+          <StartIntakeButton productSlug={intakeSlug} source={navSource} size="sm" className="nx-hdr__cta">Find my treatment</StartIntakeButton>
           <CartIconButton className="nx-hdr__cart" />
           <button
             ref={burgerRef}
@@ -331,7 +311,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             </button>
           </div>
           <div className={`${CONTAINER} nx-sheet__body`}>
-            <p className="nx-sheet__label" id="nav-sheet-goals">Medicines, by goal</p>
+            <p className="nx-sheet__label" id="nav-sheet-goals">Treatments, by goal</p>
             <m.ul className="nx-mtiles nx-sheet__goals" role="list" aria-labelledby="nav-sheet-goals" variants={stagger(0.04, 0.08)} initial="hidden" animate="show">
               {GOALS.map((g) => (
                 <m.li key={g} variants={rise}><GoalTile goal={g} onPick={pick} sizes="50vw" testid={`nav-mobile-category-${g}`} /></m.li>
@@ -350,7 +330,7 @@ export function Nav({ variant = "gate" }: NavProps) {
             </m.ul>
           </div>
           <div className={`${CONTAINER} nx-sheet__foot`}>
-            <StartIntakeButton productSlug={intakeSlug} source={`${navSource}-mobile`} size="md" className="nx-sheet__cta">Find what fits</StartIntakeButton>
+            <StartIntakeButton productSlug={intakeSlug} source={`${navSource}-mobile`} size="md" className="nx-sheet__cta">Find my treatment</StartIntakeButton>
             <p className="nx-sheet__note">A licensed U.S. physician prescribes, if appropriate.</p>
           </div>
         </m.div>

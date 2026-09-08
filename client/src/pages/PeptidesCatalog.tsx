@@ -16,8 +16,8 @@ import { SOLO_CATALOG, SOLO_CATEGORIES, type SoloCategory } from "@/data/soloCat
 import { ArrowRight, Check, Search, SearchX, X } from "lucide-react";
 import { F, S } from "@/lib/typography";
 import { ProductCard } from "@/components/ProductCard";
-import { CATEGORY_TILE, TILE_DARK } from "@/lib/studioTiles";
-import heroStill from "@/assets/studio/hero-still.webp";
+import { GoalTile } from "@/components/ivy/GoalTile";
+import { CATEGORY_TO_GOAL } from "@/data/goalTeaching";
 import heroStill1200 from "@/assets/studio/hero-still-1200.webp";
 
 
@@ -254,8 +254,8 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
       <section className="nx-tilehero" aria-labelledby="peptides-hero-title">
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
-            <p className="nx-eyebrow">The medicines</p>
-            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Every medicine a physician can prescribe, by what it treats.</h1>
+            <p className="nx-eyebrow">Treatments</p>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Treatments, <span className="nx-grad">personalized to you</span></h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
               Choose a goal, and read the medicine before you buy it: how it works, how you take it, what the studies found, and what it costs. A licensed U.S. physician prescribes it, if appropriate.
             </p>
@@ -266,29 +266,35 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
           <div ref={tilesRef} role="toolbar" aria-orientation="horizontal" aria-label="Filter the catalog by goal" aria-controls="catalog-results" onKeyDown={onFilterKeyDown} className={`nx-tiles nx-tiles--goals${filter !== "All" ? " has-choice" : ""}`} data-testid="catalog-goal-tiles">
             {cats.map((c, i) => {
               const active = filter === c;
-              const tile = c === "All" ? null : CATEGORY_TILE[c as SoloCategory];
-              const dark = c === "All" ? false : TILE_DARK[c as SoloCategory];
+              const goal = c === "All" ? null : CATEGORY_TO_GOAL[c];
+              if (!goal) {
+                return (
+                  <button
+                    key={c}
+                    type="button"
+                    ref={(el) => { chipRefs.current[i] = el; }}
+                    onClick={() => choose(c, i)}
+                    aria-pressed={active}
+                    tabIndex={i === focusIdx ? 0 : -1}
+                    data-testid={`filter-${c.toLowerCase()}`}
+                    className={`nx-gtile nx-tile--goal${active ? " is-active" : ""}`}
+                  >
+                    <img src={heroStill1200} alt="" width={1200} height={933} fetchPriority="high" decoding="async" style={{ width: "88%", height: "66%", top: "6%" }} />
+                    <span className="nx-gtile__pill" style={{ fontFamily: F }}>{active && <Check size={15} strokeWidth={3} aria-hidden="true" style={{ marginRight: 6 }} />}All treatments</span>
+                  </button>
+                );
+              }
               return (
-                <m.button
+                <GoalTile
                   key={c}
-                  type="button"
-                  ref={(el) => { chipRefs.current[i] = el; }}
+                  goal={goal}
+                  label={labelFor(c)}
+                  active={active}
                   onClick={() => choose(c, i)}
-                  aria-pressed={active}
+                  testId={`filter-${c.toLowerCase()}`}
+                  className="nx-tile--goal"
                   tabIndex={i === focusIdx ? 0 : -1}
-                  data-testid={`filter-${c.toLowerCase()}`}
-                  className={`nx-tile nx-tile--goal nx-sheen${dark ? " nx-tile--dark" : ""}${active ? " is-active" : ""}`}
-                  style={{ ["--i" as string]: i }}
-                  whileTap={TAP_TILE}
-                  transition={PRESS_SPRING}
-                  {...sheen}
-                >
-                  {tile
-                    ? <img src={tile.src} srcSet={`${tile.src600} 600w, ${tile.src} 1200w`} sizes="(max-width: 760px) 66vw, 20vw" alt="" width={1200} height={900} loading={i < 5 ? "eager" : "lazy"} decoding="async" />
-                    : <img src={heroStill} srcSet={`${heroStill1200} 1200w, ${heroStill} 1800w`} sizes="(max-width: 760px) 66vw, 20vw" alt="" width={1800} height={1400} fetchPriority="high" decoding="async" />}
-                  <span className="nx-tile__title" style={{ fontFamily: S }}>{c === "All" ? "All medicines" : labelFor(c)}</span>
-                  <m.span className="nx-tile__check" aria-hidden="true" animate={active ? { scale: [1, 1.08, 1] } : { scale: 1 }} transition={{ duration: 0.36, ease: "easeOut" }}><Check strokeWidth={3} aria-hidden="true" />{active ? "Showing" : "Show"}</m.span>
-                </m.button>
+                />
               );
             })}
           </div>

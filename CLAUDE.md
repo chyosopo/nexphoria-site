@@ -19,7 +19,25 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: PORCELAIN & NAVY** (chosen by Chiya
+1. **Design tokens only — current sheet: THE IVY SHEET** (chosen by Chiya
+   2026-09-08: "roll back, I don't like it … make our site look like
+   ivyrx.com: the design, the feel, the copy, the journey, the vial
+   mockups, the menu bar". Measured off ivyrx.com rendered offline, not
+   inferred.) White ground #FFFFFF, card #FAFAFA, band #F5F5F5, ink
+   #1C1C1C, secondary #575757, hairline #E5E5E5, dark band #1C1C1C; the
+   button is a charcoal #2E2E2E pill with a white top sheen and a lavender
+   #C8C3EA arrow disc; one gradient phrase per headline, pink #DC9EA8 →
+   lavender #948EC4 (.nx-grad); lavender as text is #6A61B5 (AA). One
+   colour, one tint and one ink per goal (--nx-goal-*): mint #1FC16B for
+   weight, periwinkle #6E77CC for body composition, aqua #3BB5BD recovery,
+   lavender #948EC4 ageing, blue #5B8DEF focus, indigo #5D65B4 sleep, pink
+   #DC8FA0 sexual health, peach #E39A6B hormones, rose #D9A3C4 skin; the
+   vial's cap, liquid and label carry the goal's colour, the card behind
+   it the tint (data-goal + .nx-tint). DM Sans light for every headline,
+   Manrope for body; the eyebrow is a label pill; cards at 24/32px with no
+   hairline. The layer sits at the end of index.css, unlayered, so it wins
+   over the sheets above it, which stay as history.
+   PREVIOUS: PORCELAIN & NAVY (chosen by Chiya
    2026-09-04 from three costed options in the Spine plan, option C, replacing
    Graphite & Ice: navy ink #0F2140 on porcelain #F6F7F9, navy bands #0B2A5B,
    one accent #2F6FD6, pale-ice #BFD6F5 on dark bands, one sans face, no

@@ -19,7 +19,10 @@ import heroKitchen1200 from "@/assets/life/hero-kitchen-1200.webp";
    sentence instead of hanging off a promise. Change the words here, nowhere
    else. */
 export const HERO = {
-  kicker: "Prescription peptide therapy",
+  /* THE IVY REGISTER (Chiya 2026-09-08: "make our site look like ivyrx.com: the
+     design, the feel, the copy, the journey"). Plain, warm, second person,
+     one gradient phrase. The facts stay facts. */
+  kicker: "Licensed U.S. physicians · Compounded in a U.S. pharmacy",
   lines: ["Stronger, sharper, better rested.", "Prescribed to your blood."],
   /* The headline: the triad the reader wants, then the fact nobody else on
      the shelf can state. Two sentences, nine words. */
@@ -27,16 +30,18 @@ export const HERO = {
   /* The rotating word keeps the second line personal. The first word renders
      statically, so the prerendered page and a reader with reduced motion see
      a complete sentence. */
-  lead: "Dosed for your",
+  /* The headline: the first words, then a drawn chip, then the gradient phrase. */
+  lead: "Peptide medicine, ",
+  gradient: "personalized to you",
   rotating: ["sleep", "focus", "recovery", "weight", "energy", "skin", "drive"],
   /* Compound qualifiers, the way the field writes them: one hyphenated word
      doing the work of a clause. Twelve words where v4 spent twenty-one. */
   subline:
-    "Physician-prescribed peptides, compounded to order in licensed U.S. pharmacies. Dosed from your own blood panel, and read again at week 12.",
+    "This is where your care takes shape: a licensed physician, a medicine compounded for you, and a dose set from your own blood work.",
   /* The assessment leads (Chiya 2026-09-06, after enhanced.com): a reader
      who knows the symptom and not the molecule was being handed a shelf.
      Browsing is the second path now, not the first. */
-  cta: "Find what fits you",
+  cta: "Find my treatment",
   ctaSecondary: "Browse every medicine",
   micro: "Prescribed by a licensed U.S. physician, if appropriate. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons: six facts, an icon each, the only

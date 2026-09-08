@@ -1,31 +1,19 @@
-/* ═══ Fonts: General Sans, self-hosted (2026-09-05) ═══
-   The single family the site sets (--nx-font-body and --nx-font-display both
-   resolve to it in index.css). Previously loaded at runtime from
-   the Fontshare CDN; now served from client/public/fonts
-   so the first paint never waits on a third-party host. The three weights the
-   tokens use: 400 (body), 500 (display), 600 (buttons, labels).
-   font-display: swap — text paints in the system fallback and swaps once the
-   face arrives; the 500 and 600 files are preloaded from index.html so the
-   swap is normally invisible. unicode-range is deliberately omitted: one
-   Latin file per weight, no subsetting to keep in sync. */
+/* ═══ Fonts: DM Sans (display) and Manrope (body), self-hosted (2026-09-08) ═══
+   The ivyrx.com study (Chiya: "make our site look like this design"): DM Sans
+   for every headline, light, and Manrope for body and UI. Both are variable
+   files served from client/public/fonts, Latin range; no request leaves the
+   origin. font-display: swap; both are preloaded from index.html. */
 @font-face {
-  font-family: "General Sans";
+  font-family: "DM Sans";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300 700;
   font-display: swap;
-  src: url("/fonts/general-sans-400.woff2") format("woff2");
+  src: url("/fonts/dm-sans-variable.woff2") format("woff2");
 }
 @font-face {
-  font-family: "General Sans";
+  font-family: "Manrope";
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300 800;
   font-display: swap;
-  src: url("/fonts/general-sans-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "General Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/fonts/general-sans-600.woff2") format("woff2");
+  src: url("/fonts/manrope-variable.woff2") format("woff2");
 }
