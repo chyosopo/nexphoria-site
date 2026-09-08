@@ -3017,7 +3017,7 @@ a.nx-price-row:hover { background: var(--nx-cobalt-soft); }
 .nx-road__n { font-family: var(--nx-font-display); font-size: var(--nx-t-h2); font-weight: 500; letter-spacing: var(--nx-ls-tight); line-height: 1; }
 .nx-sku-tile { border-radius: var(--nx-r-lg); }
 .nx-sku-photo { border-radius: var(--nx-r-md); background: linear-gradient(160deg, var(--nx-cobalt-soft), color-mix(in srgb, var(--nx-cobalt) 22%, var(--nx-ceramic))); }
-.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-cobalt * { color: #0F2140 !important; }
+.nx-hero-r3 .nx-cta-cobalt, .nx-hero-r3 .nx-cta-cobalt * { color: #0F0F0E !important; }
 
 /* ═══ THE SPINE: where you are, under every hero ═══ */
 .nx-spine { border-bottom: 1px solid var(--nx-border); background: var(--nx-bg); }
