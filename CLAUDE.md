@@ -19,7 +19,21 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: THE IVY SHEET** (chosen by Chiya
+1. **Design tokens only — current sheet: THE SKY LAYER over the ivy sheet**
+   (Chiya 2026-09-10: "a little too much similar to IvyRx, make it more
+   unique to us"; getwellvia.com for the quiz, roveia.com for the feel).
+   The sky layer sits after the ivy layer at the end of index.css and
+   overrides it: the accent is OUR cobalt again, #0B5FD6 (the Porcelain &
+   Navy accent deepened for AA as text), the one accent phrase per
+   headline is solid cobalt (.nx-grad, no gradient), the hero is a rounded
+   sky panel (#DDEBFF → white), the nav floats as a white pill with a
+   near-black "Find my treatment" pill, the primary button is cobalt with
+   a white arrow disc, a section can flip to the night panel (#0B1220,
+   .nx-panel--dark), the footer is the night, and the headline face is
+   Instrument Sans (Manrope body). The quiz is one question per screen:
+   Back, the mark, a progress bar, radio rows, one Continue. The ivy
+   structure below stays: cards, goal colours and tints, the vials.
+   THE IVY SHEET (chosen by Chiya
    2026-09-08: "roll back, I don't like it … make our site look like
    ivyrx.com: the design, the feel, the copy, the journey, the vial
    mockups, the menu bar". Measured off ivyrx.com rendered offline, not

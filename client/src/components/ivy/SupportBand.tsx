@@ -13,6 +13,7 @@ import { RETEST_WEEK } from "@/data/monitoring";
 export function SupportBand() {
   return (
     <section className="nx-container nx-sec" aria-labelledby="fd-support" data-testid="frontdoor-support">
+      <div className="nx-panel nx-panel--dark">
       <div className="nx-ivhead nx-ivhead--center">
         <p className="nx-eyebrow">Support</p>
         <h2 id="fd-support" className="nx-ivhead__h2"><span className="nx-grad">Medical support,</span><br />on your terms</h2>
@@ -52,6 +53,7 @@ export function SupportBand() {
       </div>
       <div className="nx-steps__cta">
         <Link href="/how-it-works" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="frontdoor-support-all">See how it works <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span></Link>
+      </div>
       </div>
     </section>
   );

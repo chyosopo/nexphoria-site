@@ -17,3 +17,12 @@
   font-display: swap;
   src: url("/fonts/manrope-variable.woff2") format("woff2");
 }
+/* Instrument Sans (2026-09-10): the headline face of the sky layer, so the
+   site stops sharing ivyrx.com's DM Sans. Variable, Latin range, self-hosted. */
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/instrument-sans-variable.woff2") format("woff2");
+}

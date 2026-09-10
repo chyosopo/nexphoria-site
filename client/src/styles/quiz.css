@@ -93,3 +93,32 @@
 }
 .nx-quiz__proto-t { margin: .4rem 0 0; font-size: var(--nx-t-h3); font-weight: 500; letter-spacing: var(--nx-ls-snug); color: var(--nx-fg); }
 .nx-quiz__proto-b { margin: .5rem 0 .8rem; font-size: var(--nx-t-base); line-height: 1.6; color: var(--nx-fg-graphite); }
+
+/* ═══ The wellvia way (2026-09-10): one question per screen ═══ */
+.nx-quiz--wv { min-height: 100vh; background: var(--nx-bg); }
+.nx-quiz__top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 64px; padding-top: .6rem; }
+.nx-quiz__top > :last-child { justify-self: end; }
+.nx-quiz__back { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: 0 .4rem; border: 0; background: transparent; color: var(--nx-fg-graphite); font-size: var(--nx-t-sm); font-weight: 500; cursor: pointer; text-decoration: none; }
+.nx-quiz__back:hover { color: var(--nx-fg); }
+.nx-quiz__step { font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-muted); }
+.nx-quiz__col { max-width: 30rem; margin: 0 auto; padding: 1rem var(--nx-gutter) 4rem; }
+.nx-quiz__progress { height: 8px; border-radius: var(--nx-r-pill); background: var(--nx-bg-cream); overflow: hidden; }
+.nx-quiz__progress span { display: block; height: 100%; border-radius: var(--nx-r-pill); background: var(--nx-cobalt); transition: width var(--nx-dur-3) var(--nx-ease); }
+.nx-quiz__q { margin: 1.6rem 0 0; font-size: var(--nx-t-h3); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: var(--nx-fg); text-wrap: balance; }
+.nx-quiz--wv .nx-quiz__lede { margin-top: .35rem; font-size: var(--nx-t-base); color: var(--nx-fg-graphite); }
+.nx-quiz__radios { display: grid; gap: .6rem; margin-top: 1.4rem; }
+.nx-quiz__radio { display: flex; align-items: center; gap: .9rem; width: 100%; min-height: 60px; padding: .9rem 1.1rem; text-align: left; cursor: pointer; border: 1px solid var(--nx-border); border-radius: var(--nx-r-md); background: #FFFFFF; color: var(--nx-fg); box-shadow: var(--nx-e-1); transition: border-color var(--nx-dur-2) var(--nx-ease), box-shadow var(--nx-dur-2) var(--nx-ease), background var(--nx-dur-2) var(--nx-ease); }
+.nx-quiz__radio:hover { border-color: var(--nx-fg-muted); box-shadow: var(--nx-e-2); }
+.nx-quiz__radio:focus-visible { outline: 2px solid var(--nx-cobalt); outline-offset: 2px; }
+.nx-quiz__dot { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--nx-border); background: #FFFFFF; position: relative; }
+.nx-quiz__radio.is-on { border-color: var(--nx-cobalt); background: var(--nx-cobalt-soft); box-shadow: 0 0 0 1px var(--nx-cobalt); }
+.nx-quiz__radio.is-on .nx-quiz__dot { border-color: var(--nx-cobalt); }
+.nx-quiz__radio.is-on .nx-quiz__dot::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--nx-cobalt); }
+.nx-quiz__radio-text { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.nx-quiz__radio-t { font-size: var(--nx-t-body); font-weight: 500; line-height: 1.3; }
+.nx-quiz__radio-b { font-size: var(--nx-t-sm); line-height: 1.45; color: var(--nx-fg-muted); }
+.nx-quiz__continue { display: flex; width: 100%; margin-top: 1.4rem; min-height: 56px; }
+.nx-quiz__continue:disabled { background-color: var(--nx-bg-cream); background-image: none; color: var(--nx-fg-muted); border-color: transparent; cursor: not-allowed; transform: none; box-shadow: none; }
+.nx-quiz__continue:disabled .nx-cta__arrow { background: #FFFFFF; color: var(--nx-fg-muted); }
+.nx-quiz__skip { display: block; margin-top: 1.2rem; text-align: center; font-size: var(--nx-t-sm); font-weight: 500; color: var(--nx-fg-graphite); text-decoration: none; }
+.nx-quiz__skip:hover { color: var(--nx-fg); text-decoration: underline; text-underline-offset: 4px; }

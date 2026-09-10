@@ -13,6 +13,7 @@
    shelf went (the hero links the catalog, and the reader decides). */
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import { anchor, scrollToBuy } from "@/lib/anchors";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd, faqJsonLd, drugJsonLd, productJsonLd } from "@/lib/seo";
@@ -75,6 +76,9 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
   const imgWorld = world ?? resolveWorld(loc);
   const solo = getSolo(slug);
   const [tier, setTier] = useState<string>("m6");
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#buy") window.setTimeout(() => scrollToBuy(), 60);
+  }, [slug]);
   useEffect(() => {
     if (solo) analytics.productViewed({ kind: "solo", slug: solo.slug, category: solo.category, gated: !!solo.gated, world: imgWorld });
   }, [solo, imgWorld]);
@@ -170,7 +174,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
               </p>
               <p className="nx-phero__lede" style={{ fontFamily: F }}>{solo.outcome}</p>
               <BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} />
-              <a href="#buy" className="nx-cta-cobalt nx-phero__cta" data-testid="solo-hero-cta" style={{ fontFamily: F }}>
+              <a href={anchor("#buy")} onClick={scrollToBuy} className="nx-cta-cobalt nx-phero__cta" data-testid="solo-hero-cta" style={{ fontFamily: F }}>
                 {statusOf(solo) === "live" ? "Shop now" : "See the plan"} <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span>
               </a>
               <p className="nx-phero__note" style={{ fontFamily: F }}>Prescribed by a licensed U.S. physician, if appropriate. The blood test is included.</p>
@@ -320,7 +324,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
           <div>
             <h2 id="solo-close-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>A physician decides, and prescribes if it is appropriate.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>You place the order, a licensed physician reviews it, and if not prescribed, nothing is made.</p>
-            <a href="#buy" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>See the plan and price</a>
+            <a href={anchor("#buy")} onClick={scrollToBuy} className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>See the plan and price</a>
           </div>
         </div>
       </section>

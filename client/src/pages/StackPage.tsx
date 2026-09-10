@@ -13,6 +13,7 @@
    (the index is one click up, and the reader decides). */
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
+import { anchor, scrollToBuy } from "@/lib/anchors";
 import { SiteLayout, resolveWorld } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { BuyBox, BuyTier } from "@/components/BuyBox";
@@ -143,7 +144,7 @@ export default function StackPage({ slug }: { slug: string }) {
                 {stack.bestFor}
               </p>
               <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginTop: "1.5rem" }}>
-                <a href="#buy" className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
+                <a href={anchor("#buy")} onClick={scrollToBuy} className="nx-cta-cobalt" data-testid="stack-hero-cta" style={{ fontSize: "var(--nx-t-base)", padding: "13px 24px" }}>
                   Choose a plan
                 </a>
                 {reservable && <StatusPill status="reserve" testId="stack-status" />}
@@ -324,7 +325,7 @@ export default function StackPage({ slug }: { slug: string }) {
           <div>
             <h2 id="stack-close-title" style={{ fontFamily: S, fontSize: "var(--nx-t-h2)", color: "var(--nx-ceramic)", maxWidth: "20ch", margin: 0, textWrap: "balance" }}>A physician decides, and prescribes if it is appropriate.</h2>
             <p style={{ fontFamily: F, fontSize: "var(--nx-t-base)", lineHeight: 1.6, color: "color-mix(in srgb, var(--nx-ceramic) 78%, transparent)", maxWidth: "46ch", marginTop: ".8rem" }}>You place the order, a licensed physician reviews it, and if not prescribed, nothing is made.</p>
-            <a href="#buy" className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>See the plan and price</a>
+            <a href={anchor("#buy")} onClick={scrollToBuy} className="nx-cta-ceramic" style={{ fontFamily: F, fontWeight: 600, fontSize: "var(--nx-t-base)", marginTop: "1.2rem" }}>See the plan and price</a>
           </div>
         </div>
       </section>

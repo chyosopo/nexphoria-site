@@ -3763,3 +3763,81 @@ body { background-color: var(--nx-bg); }
 .nx-hdr { background: var(--nx-bg); border-bottom: 0; }
 .nx-hdr.is-raised { box-shadow: 0 1px 0 var(--nx-border); }
 .nx-hdr__link { font-weight: 500; font-size: var(--nx-t-base); color: var(--nx-fg-graphite); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE SKY LAYER (Chiya, 2026-09-10: "a little too similar to IvyRx, make it
+   more unique to us"; getwellvia.com for the quiz, roveia.com for the
+   feel). Sits after the ivy layer and overrides it: the accent is OUR
+   cobalt again (the Porcelain & Navy accent, #2F6FD6 deepened to #0B5FD6
+   for AA as text), the gradient phrase becomes one solid cobalt phrase,
+   the hero sits in a rounded sky-blue panel, the nav floats as a white
+   pill, the primary button is cobalt with a white arrow disc, the nav
+   button is near-black, a section can flip to a dark panel, and the
+   headline face is Instrument Sans. The ivy structure, cards, goal
+   colours and vials stay. */
+:root {
+  --nx-font-display: 'Instrument Sans', 'DM Sans', system-ui, sans-serif;
+  --nx-cobalt:       #0B5FD6;
+  --nx-cobalt-hover: #0A4FB3;
+  --nx-cobalt-soft:  #E8F1FF;
+  --nx-cobalt-ink:   #0B5FD6;
+  --nx-accent:       #0B5FD6;
+  --nx-amber:        #0B5FD6;
+  --nx-acid:         #FFFFFF;
+  --nx-ice:          #E8F1FF;  --nx-ice-edge: #C9DEF8;
+  --nx-rust:         #0B5FD6;
+  --nx-sky:          #DDEBFF;
+  --nx-sky-2:        #F3F8FF;
+  --nx-night:        #0B1220;
+  --nx-grad-a:       #0B5FD6;
+  --nx-grad-b:       #0B5FD6;
+  --primary: 217 90% 44%;
+  --accent: 217 90% 44%;
+  --ring: 217 90% 44%;
+}
+/* the one accent phrase, solid */
+.nx-grad { background-image: none; color: var(--nx-cobalt-ink); }
+/* headlines in Instrument Sans, a touch of weight */
+h1, h2, h3, .nx-dsh1, .nx-dsh2, .nx-dsh3, .nx-tilehero__h1, .nx-ivhead__h2, .nx-ivhero__h1, .nx-banner__h2, .nx-phero__name, .nx-pcard__name, .nx-step__t, .nx-bigtile__k, .nx-bigtile__t, .nx-quiz__h1, .nx-quiz__h2, .nx-support__greet, .nx-ivfaq__ask h3 { font-family: var(--nx-font-display); font-weight: 500; letter-spacing: -0.02em; }
+.nx-ivhero__h1, .nx-dsh1, .nx-tilehero__h1, .nx-banner__h2, .nx-phero__name { letter-spacing: -0.03em; }
+/* the primary pill: cobalt, a white arrow disc; the nav pill: near-black */
+.nx-cta-cobalt, .nx-cta-navy, .nx-buybox__cta, .nx-sheet__foot .nx-sheet__cta.nx-cta-acid { background-color: var(--nx-cobalt); background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0)); border-color: rgba(255, 255, 255, 0.1); }
+.nx-cta-cobalt:hover, .nx-cta-navy:hover, .nx-buybox__cta:hover { background-color: var(--nx-cobalt-hover); }
+.nx-cta__arrow { background: #FFFFFF; color: var(--nx-cobalt); }
+.nx-hdr__cta.nx-cta-acid { background-color: var(--nx-bg-dark); background-image: none; }
+.nx-hdr__cta.nx-cta-acid:hover { background-color: #000000; }
+/* the nav floats as a white pill over the page */
+.nx-hdr { background: transparent; }
+.nx-hdr.is-raised { box-shadow: none; }
+.nx-hdr__bar { height: 60px; margin-top: 12px; padding: 0 8px 0 22px; background: #FFFFFF; border-radius: var(--nx-r-pill); box-shadow: 0 8px 30px rgba(11, 18, 32, 0.10); }
+.nx-hdr__side .nx-hdr__cart:hover, .nx-hdr__icon:hover { background: var(--nx-bg-cream); }
+.nx-hdr__panel { top: calc(100% + 8px); left: 0; right: 0; border-radius: var(--nx-r-xl); margin: 0 clamp(8px, 2vw, 24px); }
+/* the hero: a rounded sky panel */
+.nx-ivhero { position: relative; margin-top: 1rem; padding: clamp(3rem, 6vw, 5.5rem) clamp(1.2rem, 3vw, 3rem) clamp(2.4rem, 4vw, 3.6rem); border-radius: var(--nx-r-xl); background: linear-gradient(180deg, var(--nx-sky) 0%, var(--nx-sky-2) 70%, #FFFFFF 100%); }
+.nx-ivhero__trust li { background: #FFFFFF; box-shadow: var(--nx-e-1); }
+.nx-ivhero__chip { background: #FFFFFF; color: var(--nx-cobalt); }
+.nx-bigtiles { margin-top: clamp(1rem, 2vw, 1.4rem); }
+/* a section flipped to the night panel */
+.nx-panel--dark { padding: clamp(2rem, 4vw, 3.6rem) clamp(1.2rem, 3vw, 3rem); border-radius: var(--nx-r-xl); background: var(--nx-night); color: #FFFFFF; }
+.nx-panel--dark .nx-ivhead__h2, .nx-panel--dark h2, .nx-panel--dark h3 { color: #FFFFFF; }
+.nx-panel--dark .nx-grad { color: #8DBBFF; }
+.nx-panel--dark .nx-eyebrow { background: transparent; border-color: rgba(255, 255, 255, 0.3); color: #FFFFFF; }
+.nx-panel--dark .nx-support__lines li { color: rgba(255, 255, 255, 0.82); }
+.nx-panel--dark .nx-support__lines svg { color: #FFFFFF; }
+.nx-panel--dark .nx-support__card, .nx-panel--dark .nx-support__main { background: #FFFFFF; color: var(--nx-fg); }
+.nx-panel--dark .nx-support__main .nx-grad { color: var(--nx-cobalt-ink); }
+/* the step pill and scene checks in cobalt */
+.nx-step__pill { border-color: var(--nx-cobalt); }
+.nx-scene__check { background: var(--nx-cobalt); }
+.nx-scene__icon { color: var(--nx-cobalt); }
+/* the closer photo banner takes the night, the same as the panel */
+.nx-banner::before { background: linear-gradient(90deg, rgba(11, 18, 32, 0.82) 0%, rgba(11, 18, 32, 0.5) 45%, rgba(11, 18, 32, 0.08) 100%); }
+/* the footer is the night */
+.nx-footer { background-color: var(--nx-night); }
+/* the goal tile pill lit in cobalt when chosen */
+.nx-gtile.is-active .nx-gtile__pill { background: var(--nx-cobalt); }
+.nx-tile--goal.is-active { outline: 0; }
+/* the nav pill hides on the phone again (the sheet carries its own), and never wraps */
+.nx-hdr__cta.nx-cta-acid { white-space: nowrap; }
+@media (max-width: 767px) { .nx-hdr__cta.nx-cta-acid { display: none; } }
+.nx-quiz--wv .nx-quiz__top { padding-top: .8rem; }

@@ -7,6 +7,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useSeo, webPageJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { F, S } from "@/lib/typography";
@@ -48,6 +49,8 @@ export default function Quiz() {
   const [goal, setGoal] = useState<PeptideCategory | null>(null);
   const [shape, setShape] = useState<QuizOption | null>(null);
   const [tried, setTried] = useState<string | null>(null);
+  /* the answer picked on the current screen, before Continue */
+  const [pending, setPending] = useState<QuizOption | null>(null);
   const sheen = useSheen();
 
   const results = useMemo(
@@ -179,56 +182,66 @@ export default function Quiz() {
     );
   }
 
-  /* ── The questions ── */
+  /* ── The questions, one per screen (getwellvia.com, Chiya 2026-09-10:
+        "take some inspiration, especially from the quiz. I like it a lot").
+        Back at the top left, the mark in the middle, a thin progress bar,
+        the question, one line under it, the answers as radio rows, and one
+        Continue button that lights once an answer is picked. ── */
   const q = questions[step];
   if (!q) return null;
+  const picked = pending ?? chosenAt[step];
+  const pct = Math.round(((step + (picked ? 1 : 0)) / total) * 100);
   return (
-    <SiteLayout>
-      <div className="nx-quiz">
-        <div className="nx-container nx-quiz__wrap">
-          <div className="nx-quiz__bar" aria-hidden="true">
-            {Array.from({ length: total }, (_, i) => (
-              <span key={i} className={i <= step ? "is-on" : undefined} />
-            ))}
-          </div>
-          <p className="nx-eyebrow" data-testid="quiz-progress">Question {step + 1} of {total}</p>
-          <h1 className="nx-quiz__h1" style={{ fontFamily: S }}>{q.title}</h1>
-          {q.lead && <p className="nx-quiz__lede" style={{ fontFamily: F }}>{q.lead}</p>}
-
-          <m.ul className={`nx-quiz__opts${q.options.length > 5 ? " nx-quiz__opts--many" : ""}`} variants={stagger(0.03)} initial="hidden" animate="show" data-testid={`quiz-q${step + 1}`}>
-            {q.options.map((opt) => (
-              <m.li key={opt.label} variants={rise}>
-                <m.button
+    <SiteLayout hideFooter hideNav>
+      <div className="nx-quiz nx-quiz--wv">
+        <div className="nx-container nx-quiz__top">
+          {step > 0 ? (
+            <button type="button" onClick={() => { setPending(null); back(); }} className="nx-quiz__back" style={{ fontFamily: F }} data-testid="quiz-back">
+              <ArrowLeft size={16} aria-hidden="true" /> Back
+            </button>
+          ) : (
+            <Link href="/" className="nx-quiz__back" style={{ fontFamily: F }} data-testid="quiz-home"><ArrowLeft size={16} aria-hidden="true" /> Home</Link>
+          )}
+          <Logo withSubmark={false} markSize={24} />
+          <span className="nx-quiz__step" style={{ fontFamily: F }} data-testid="quiz-progress">{step + 1} of {total}</span>
+        </div>
+        <div className="nx-quiz__col">
+          <div className="nx-quiz__progress" aria-hidden="true"><span style={{ width: `${Math.max(pct, 8)}%` }} /></div>
+          <h1 className="nx-quiz__q">{q.title}</h1>
+          <p className="nx-quiz__lede" style={{ fontFamily: F }}>{q.lead ?? "Select the one that matters most to you."}</p>
+          <div className="nx-quiz__radios" role="radiogroup" aria-label={q.title} data-testid={`quiz-q${step + 1}`}>
+            {q.options.map((opt) => {
+              const on = picked?.label === opt.label;
+              return (
+                <button
+                  key={opt.label}
                   type="button"
-                  className={`nx-quiz__opt nx-sheen${chosenAt[step]?.label === opt.label ? " is-on" : ""}`}
-                  aria-pressed={chosenAt[step]?.label === opt.label}
-                  onClick={() => choose(opt)}
-                  whileTap={{ scale: 0.98 }}
-                  transition={PRESS_SPRING}
-                  {...sheen}
+                  role="radio"
+                  aria-checked={on}
+                  className={`nx-quiz__radio${on ? " is-on" : ""}`}
+                  onClick={() => setPending(opt)}
                   data-testid={`quiz-opt-${opt.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                 >
-                  <span>
-                    <span className="nx-quiz__opt-t" style={{ fontFamily: S }}>{opt.label}</span>
-                    {opt.line && <span className="nx-quiz__opt-b" style={{ fontFamily: F }}>{opt.line}</span>}
+                  <span className="nx-quiz__dot" aria-hidden="true" />
+                  <span className="nx-quiz__radio-text">
+                    <span className="nx-quiz__radio-t" style={{ fontFamily: F }}>{opt.label}</span>
+                    {opt.line && <span className="nx-quiz__radio-b" style={{ fontFamily: F }}>{opt.line}</span>}
                   </span>
-                  <ArrowRight size={18} aria-hidden="true" />
-                </m.button>
-              </m.li>
-            ))}
-          </m.ul>
-
-          <div className="nx-quiz__foot">
-            {step > 0 ? (
-              <button type="button" onClick={back} className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-back">
-                <ArrowLeft size={15} aria-hidden="true" /> Back
-              </button>
-            ) : (
-              <Link href="/peptides" className="nx-text-link" style={{ fontFamily: F, fontWeight: 600 }} data-testid="quiz-skip">
-                Skip, and browse every medicine
-              </Link>
-            )}
+                </button>
+              );
+            })}
           </div>
+          <button
+            type="button"
+            className="nx-cta-cobalt nx-quiz__continue"
+            disabled={!picked}
+            onClick={() => { if (picked) { choose(picked); setPending(null); } }}
+            style={{ fontFamily: F }}
+            data-testid="quiz-continue"
+          >
+            Continue <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span>
+          </button>
+          <Link href="/peptides" className="nx-quiz__skip" style={{ fontFamily: F }} data-testid="quiz-skip">Skip, and browse every treatment</Link>
         </div>
       </div>
     </SiteLayout>

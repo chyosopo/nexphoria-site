@@ -34,6 +34,8 @@ interface SiteLayoutProps {
   navVariant?: "showcase" | "women" | "men" | "gate";
   footerVariant?: "women" | "men" | "shared";
   hideFooter?: boolean;
+  /** the quiz draws its own top bar (Back, the mark, the step) */
+  hideNav?: boolean;
   hideAnnouncementBar?: boolean;
   hideTrustBar?: boolean;
   /** Legacy prop alias used by Cart.tsx & friends */
@@ -45,6 +47,7 @@ export function SiteLayout({
   navVariant,
   footerVariant = "shared",
   hideFooter = false,
+  hideNav = false,
   variant,
 }: SiteLayoutProps) {
   const [__loc] = useLocation();
@@ -65,7 +68,7 @@ export function SiteLayout({
       >
         Skip to main content
       </a>
-      <Nav variant={resolvedNavVariant} />
+      {!hideNav && <Nav variant={resolvedNavVariant} />}
       <main id="main-content" className="flex-1">{children}</main>
       {!hideFooter && <Footer variant={footerVariant === "shared" ? "shared" : footerVariant} />}
     </div>
