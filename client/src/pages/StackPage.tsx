@@ -133,11 +133,11 @@ export default function StackPage({ slug }: { slug: string }) {
               <Link href="/stacks" className="nx-proto-back" style={{ fontFamily: F, fontSize: "var(--nx-t-sm)", fontWeight: 600, color: "var(--nx-cobalt-ink)" }}>
                 <ArrowLeft size={15} aria-hidden="true" /> All protocols
               </Link>
-              <p className="nx-pdp-shout" style={{ fontFamily: S, marginTop: "1.2rem" }}>Prescribed together, so each medicine does its own job.</p>
+              <p className="nx-pdp-shout" style={{ fontFamily: F, marginTop: "1.2rem" }}>Protocol · prescribed together</p>
               <h1 id="stack-hero-title" style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-display)", lineHeight: 1.03, letterSpacing: "var(--nx-ls-snug)", color: "var(--nx-fg)", marginTop: "0.5rem" }}>
                 {stack.name}
               </h1>
-              <p style={{ fontFamily: S, fontWeight: 500, fontSize: "var(--nx-t-xl)", color: "var(--nx-cobalt-ink)", marginTop: "0.4rem" }}>
+              <p style={{ fontFamily: S, fontWeight: 400, fontSize: "var(--nx-t-xl)", color: "var(--nx-fg-graphite)", marginTop: "0.4rem" }}>
                 {stack.tagline}
               </p>
               <p style={{ fontFamily: F, fontSize: "var(--nx-t-body)", lineHeight: 1.6, color: "var(--nx-fg-graphite)", maxWidth: "52ch", marginTop: "1rem" }}>

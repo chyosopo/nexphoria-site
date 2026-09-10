@@ -85,7 +85,7 @@ export default function Contact() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Contact</p>
-            <h1 id="contact-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Tell us what you need, and the right person answers.</h1>
+            <h1 id="contact-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Tell us what you need, <span className="nx-grad">and the right person answers.</span></h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Patient support, press and partnerships reach a person on a business day. Clinical questions go to the physician through the secure portal.</p>
           </div>
         </div>

@@ -8,6 +8,7 @@ import { ArrowRight, PhoneOff, Package, Check, Stethoscope, Droplets, MessageCir
 import { F } from "@/lib/typography";
 import { SKU_PHOTO_600 } from "@/components/SkuPhoto";
 import physician from "@/assets/hero-physician.webp";
+import careTeam from "@/assets/doctors/dr-reyes.webp";
 import { RETEST_WEEK } from "@/data/monitoring";
 
 export function SupportBand() {
@@ -23,7 +24,7 @@ export function SupportBand() {
           <div className="nx-support__card">
             <p className="nx-support__label" style={{ fontFamily: F }}>Inbox</p>
             <div className="nx-support__who">
-              <img className="nx-support__avatar" src={physician} alt="" loading="lazy" decoding="async" width={44} height={44} />
+              <img className="nx-support__avatar" src={careTeam} alt="" loading="lazy" decoding="async" width={44} height={44} />
               <div><b style={{ fontFamily: F }}>Care team</b><span style={{ fontFamily: F }}>Nexphoria</span></div>
             </div>
             <p className="nx-support__msg" style={{ fontFamily: F }}>Your week-{RETEST_WEEK} results are in. The physician has read them and left a note on your dose.</p>

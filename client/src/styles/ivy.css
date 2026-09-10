@@ -202,3 +202,19 @@
 .nx-float-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); }
 /* the drawn chip in the headline leaves the phone alone */
 @media (max-width: 700px) { .nx-ivhero__chip { display: none; } }
+
+/* ── The protocol index card, light (the audit pass, 2026-09-10): the studio
+      panel is a light tint now, so the navy fade that used to carry white
+      type over a dark render only muddied it. The card is the product card's
+      cousin: the render on top, the name, the line and the pill below it on
+      the soft grey. ── */
+.nx-tile--proto.nx-tile--dark { aspect-ratio: auto; min-height: 0; background: var(--nx-ceramic); color: var(--nx-fg); border-radius: var(--nx-r-xl); }
+.nx-tile--proto.nx-tile--dark::after { display: none; }
+.nx-tile--proto.nx-tile--dark img { position: relative; inset: auto; display: block; width: 100%; height: auto; aspect-ratio: 2 / 1.15; object-fit: cover; object-position: 50% 40%; border-radius: var(--nx-r-xl) var(--nx-r-xl) 0 0; }
+.nx-tile--proto .nx-tile__foot--proto { position: static; padding: 1.1rem 1.4rem 1.4rem; color: var(--nx-fg); gap: .4rem; }
+.nx-tile--proto .nx-tile__foot--proto .nx-tile__t, .nx-tile--proto .nx-tile__foot--proto .nx-tile__b { text-shadow: none; }
+.nx-tile--proto .nx-tile__foot--proto .nx-tile__t { color: var(--nx-fg); font-size: var(--nx-t-h3); }
+.nx-tile--proto .nx-tile__foot--proto .nx-tile__b { color: var(--nx-fg-graphite); max-width: 48ch; }
+.nx-tile--proto .nx-tile__foot--proto .nx-tile__btn--static { background: var(--nx-cobalt); color: #FFFFFF; min-height: 44px; padding: 0 20px; font-weight: 500; box-shadow: none; }
+.nx-tile--proto .nx-chips--tile .nx-chip:not(.nx-chip--accent) { background: rgba(255, 255, 255, 0.85); color: var(--nx-fg); }
+a.nx-tile--proto:hover img { transform: none; }

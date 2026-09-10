@@ -124,7 +124,7 @@ export default function ProtocolsIndex() {
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Protocols</p>
-            <h1 id="protocols-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Two to four medicines, prescribed together as one plan.</h1>
+            <h1 id="protocols-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Two to four medicines, <span className="nx-grad">prescribed together</span> as one plan.</h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
               Each medicine in a protocol does a different job, and a licensed U.S. physician prescribes them together, with one blood panel before the first dose and the same panel at week {RETEST_WEEK}.
             </p>

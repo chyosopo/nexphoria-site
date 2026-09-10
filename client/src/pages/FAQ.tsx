@@ -259,7 +259,7 @@ export default function FAQPage() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Questions</p>
-            <h1 id="faq-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>What people ask before they start.</h1>
+            <h1 id="faq-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>What people ask <span className="nx-grad">before they start.</span></h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>How it works, what it costs, what to know about safety, how it ships, and who is involved.</p>
           </div>
         </div>
