@@ -23,6 +23,8 @@ export function resolveWorld(path: string): World {
 import { Nav } from "./Nav";
 /* the ivy/sky section sheet rides with the layout so every route carries it (2026-09-10) */
 import "@/styles/ivy.css";
+/* the loop section sheet (2026-09-15) rides the same way */
+import "@/styles/loop.css";
 import { Footer } from "./Footer";
 /* The announcement bar and the trust bar are removed sitewide (the plain
    deck, 2026-09-04, rule 3: every fact once per page). The hide* props are

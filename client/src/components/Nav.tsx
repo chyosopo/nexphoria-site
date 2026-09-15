@@ -224,7 +224,7 @@ export function Nav({ variant = "gate" }: NavProps) {
   return (
     <header className={`nx-hdr${scrolled || open ? " is-raised" : ""}`} data-testid="site-nav">
       <nav className={`${CONTAINER} nx-hdr__bar`} aria-label="Primary">
-        <div className="nx-hdr__logo"><Logo variant="dark" /></div>
+        <div className="nx-hdr__logo"><Logo variant="light" /></div>
 
         <ul className="nx-hdr__links">
           {ITEMS.map((item) => {

@@ -19,7 +19,26 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: THE SKY LAYER over the ivy sheet**
+1. **Design tokens only — current sheet: THE LOOP LAYER over the sky and
+   ivy sheets** (Chiya 2026-09-15: "https://openloophealth.com/ … I love the
+   design and layout, copy, everything; mirror our site to look like it as
+   much as possible but give us a uniqueness". Measured off
+   openloophealth.com rendered offline.) The loop layer sits after the sky
+   layer at the end of index.css and overrides it; its sections live in
+   client/src/styles/loop.css, imported from SiteLayout. Mirrored: a
+   full-bleed night hero (#0B1220 running to deep cobalt #0A3D8F and our
+   cobalt #0B5FD6, never magenta) with rounded bottom corners and a drawn
+   device card; every other page head the same night panel; bold
+   Instrument Sans headlines with ONE italic accent phrase (.nx-grad, a
+   true italic file); caps eyebrows in the accent, no pill; a solid cobalt
+   pill with a plain arrow; the night nav bar with white type; sections
+   alternating white and night panels; two-column feature blocks with an
+   icon square and a dark screen; 01/02/03 steps; a soft radial band; the
+   night closer and footer. Ours: the accent stays cobalt (theirs is hot
+   pink #e90153), Manrope body (theirs Inter/Archivo), the goal colours,
+   tints and vials, three facts where they put counters, no press strip.
+   The accent as type on the night is #8DBBFF (AA).
+   PREVIOUS: THE SKY LAYER over the ivy sheet
    (Chiya 2026-09-10: "a little too much similar to IvyRx, make it more
    unique to us"; getwellvia.com for the quiz, roveia.com for the feel).
    The sky layer sits after the ivy layer at the end of index.css and

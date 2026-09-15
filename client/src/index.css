@@ -3841,3 +3841,75 @@ h1, h2, h3, .nx-dsh1, .nx-dsh2, .nx-dsh3, .nx-tilehero__h1, .nx-ivhead__h2, .nx-
 .nx-hdr__cta.nx-cta-acid { white-space: nowrap; }
 @media (max-width: 767px) { .nx-hdr__cta.nx-cta-acid { display: none; } }
 .nx-quiz--wv .nx-quiz__top { padding-top: .8rem; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE LOOP LAYER (Chiya, 2026-09-15: "https://openloophealth.com/ … I love
+   the design and layout, copy, everything; mirror our site to look like it
+   as much as possible but give us a uniqueness"). Measured off
+   openloophealth.com rendered offline. Sits after the sky layer and
+   overrides it. What is mirrored: a full-bleed night panel for the hero
+   with rounded bottom corners and a device card at the right; bold
+   headlines with ONE italic accent phrase; caps eyebrows in the accent
+   with no pill; a solid accent pill with a plain arrow; sections that
+   alternate white and night-to-accent panels; two-column feature blocks
+   with an icon square and a dark device panel; 01/02/03 steps; a soft
+   radial tint band; "Questions? We have answers."; the night footer.
+   What is ours: the accent stays OUR cobalt #0B5FD6 (theirs is a hot
+   pink); the night is our #0B1220, the gradient runs night → deep cobalt,
+   never magenta; Instrument Sans (with a true italic) over Manrope, not
+   Inter and Archivo; the goal colours, tints and vials stay; the hero
+   carries three facts, never counters; the copy is law 3, patient-facing:
+   no counts, no ratings, no press strip, no "get a demo". */
+:root {
+  --nx-loop-deep:      #0A3D8F;   /* the deep cobalt the night runs into */
+  --nx-loop-on-dark:   #8DBBFF;   /* the accent as type on the night (AA) */
+  --nx-loop-glow:      rgba(11, 95, 214, 0.55);
+  --nx-loop-grad:      linear-gradient(168deg, #0B1220 0%, #0B1220 34%, #0A3D8F 72%, #0B5FD6 100%);
+  --nx-loop-grad-side: linear-gradient(312deg, #0B5FD6 4%, #0A3D8F 32%, #0B1220 74%);
+  --nx-loop-grad-panel: linear-gradient(180deg, #0B1220 0%, #0B1220 46%, #0A3D8F 100%);
+  --nx-loop-line:      rgba(255, 255, 255, 0.14);
+  --nx-loop-glass:     rgba(255, 255, 255, 0.06);
+}
+/* headlines: bold, tight; the one accent phrase in italic, solid */
+h1, h2, h3, .nx-dsh1, .nx-dsh2, .nx-dsh3, .nx-tilehero__h1, .nx-ivhead__h2, .nx-ivhero__h1, .nx-banner__h2, .nx-phero__name, .nx-pcard__name, .nx-step__t, .nx-bigtile__k, .nx-bigtile__t, .nx-quiz__h1, .nx-quiz__h2, .nx-support__greet, .nx-ivfaq__ask h3, .nx-hdr__panel-title { font-weight: 700; letter-spacing: -0.025em; }
+.nx-ivhead__h2 { line-height: 1.08; }
+.nx-grad { color: var(--nx-cobalt-ink); font-style: italic; font-weight: inherit; }
+.nx-dk .nx-grad, .nx-panel--dark .nx-grad, .nx-tilehero .nx-grad { color: var(--nx-loop-on-dark); }
+/* the eyebrow: caps in the accent, no pill */
+.nx-eyebrow, .nx-band__kicker { min-height: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--nx-cobalt-ink); font-size: var(--nx-t-xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; }
+.nx-dk .nx-eyebrow, .nx-panel--dark .nx-eyebrow, .nx-tilehero .nx-eyebrow { color: var(--nx-loop-on-dark); border: 0; background: transparent; }
+/* the pill: solid accent, a plain arrow */
+.nx-cta-cobalt, .nx-cta-navy, .nx-buybox__cta, .nx-sheet__foot .nx-sheet__cta.nx-cta-acid { background-image: none; border-color: transparent; font-weight: 600; box-shadow: 0 10px 30px -12px var(--nx-loop-glow); }
+.nx-cta__arrow { width: auto; height: auto; background: transparent; color: inherit; border-radius: 0; }
+.nx-cta__arrow svg { width: 16px; height: 16px; }
+.nx-cta-ceramic, .nx-cta-ghost { font-weight: 600; }
+/* the header: a night bar, white type, the accent pill */
+.nx-hdr { background: var(--nx-night); }
+.nx-hdr.is-raised { box-shadow: 0 1px 0 var(--nx-loop-line); }
+.nx-hdr__bar { height: 72px; margin-top: 0; padding: 0; background: transparent; border-radius: 0; box-shadow: none; }
+.nx-hdr__link { color: rgba(255, 255, 255, 0.84); font-weight: 500; font-size: var(--nx-t-base); }
+.nx-hdr__link:hover, .nx-hdr__link:focus-visible, .nx-hdr__link.is-open, .nx-hdr__link.is-current { color: #FFFFFF; background: var(--nx-loop-glass); }
+.nx-hdr__cta.nx-cta-acid { background-color: var(--nx-cobalt); color: #FFFFFF; font-weight: 600; min-height: 44px; padding: 0 1.3rem; }
+.nx-hdr__cta.nx-cta-acid:hover { background-color: var(--nx-cobalt-hover); color: #FFFFFF; }
+.nx-hdr__icon, .nx-hdr__side .nx-hdr__cart, .nx-hdr__side .nx-hdr__cart svg, .nx-hdr__side .nx-hdr__cart button { color: #FFFFFF; }
+.nx-hdr__icon:hover, .nx-hdr__icon:focus-visible, .nx-hdr__side .nx-hdr__cart:hover { background: var(--nx-loop-glass); }
+.nx-hdr__panel { top: 100%; margin: 0; border-radius: 0 0 var(--nx-r-xl) var(--nx-r-xl); }
+@media (max-width: 767px) { .nx-hdr__bar { height: 64px; } }
+/* the page head on every other route: the same night panel, rounded below */
+.nx-tilehero { background: var(--nx-loop-grad); color: #FFFFFF; border-radius: 0 0 var(--nx-r-xl) var(--nx-r-xl); padding-top: clamp(2.4rem, 5vw, 4.4rem); padding-bottom: clamp(2.4rem, 5vw, 4rem); }
+.nx-tilehero__h1 { color: #FFFFFF; font-weight: 700; }
+.nx-tilehero__sub, .nx-tilehero__line { color: rgba(255, 255, 255, 0.82); }
+.nx-tilehero__pills li { background: var(--nx-loop-glass); border-color: var(--nx-loop-line); color: #FFFFFF; }
+.nx-tilehero__pills svg { color: var(--nx-loop-on-dark); }
+.nx-tilehero .nx-cta-ceramic { background: #FFFFFF; color: var(--nx-fg); border-color: transparent; }
+.nx-tilehero .nx-text-link { color: #FFFFFF; }
+.nx-tilehero .nx-gtile__pill { color: var(--nx-fg); }
+/* the section head phrase on the night panels */
+.nx-panel--dark { background: var(--nx-loop-grad-panel); }
+/* the product card: white with a hairline, the way the loop draws a card */
+.nx-pcard { background: #FFFFFF; border: 1px solid var(--nx-border); }
+.nx-pcard__media { background: var(--nx-ceramic); }
+.nx-ivfaq__ask, .nx-faq-item { border: 1px solid var(--nx-border); background: #FFFFFF; }
+.nx-ivfaq .nx-faq-item { border-radius: var(--nx-r-md); }
+/* the footer: the night, a hairline above */
+.nx-footer { background-color: var(--nx-night); border-top: 1px solid var(--nx-loop-line); }

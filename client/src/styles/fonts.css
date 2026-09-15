@@ -26,3 +26,13 @@
   font-display: swap;
   src: url("/fonts/instrument-sans-variable.woff2") format("woff2");
 }
+/* Instrument Sans Italic (2026-09-15): the loop layer sets the one accent
+   phrase of every headline in italic, the way openloophealth.com does. A true
+   italic file, so the browser does not slant the upright. */
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/instrument-sans-italic-variable.woff2") format("woff2");
+}

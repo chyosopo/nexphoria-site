@@ -255,7 +255,7 @@ export default function PeptidesCatalog({ world }: { world?: "men" | "women" }) 
         <div className="nx-container">
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Treatments</p>
-            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Treatments, <span className="nx-grad">personalized to you</span></h1>
+            <h1 id="peptides-hero-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Treatments, <span className="nx-grad">personalized to you.</span></h1>
             <p className="nx-tilehero__sub" style={{ fontFamily: F }}>
               Choose a goal, and read the medicine before you buy it: how it works, how you take it, what the studies found, and what it costs. A licensed U.S. physician prescribes it, if appropriate.
             </p>

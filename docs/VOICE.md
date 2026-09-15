@@ -1,3 +1,43 @@
+# The house voice, v8: the loop register (Chiya, 2026-09-15)
+
+Chiya, 2026-09-15: "https://openloophealth.com/ … I love the design and
+layout, copy, everything; mirror our site to look like it as much as
+possible but give us a uniqueness." openloophealth.com was rendered offline
+and read. Its copy is B2B (it sells telehealth infrastructure to brands):
+"The white-label operating system for *virtual care.*" / "Don't build it.
+*Brand it.*" / "If your patients need it, *we already built it.*" /
+"Getting started is simple" / "Questions? *We've got answers.*", with counters
+(700,000+ patients, 400+ brands), press logos, Trustpilot and "Get a demo".
+
+v8 replaces v7. What is mirrored is the SHAPE; the facts and the laws are
+ours:
+
+1. **A headline is bold, short, with one italic accent phrase, and it
+   ends in a full stop.** "Peptide medicine, *personalized to you.*" /
+   "A signal *your body already sends.*" / "Know what you're after?
+   *Start there.*" / "A licensed physician *reads every order.*" / "The
+   dose is set *from your blood.*" / "Compounded for you. *Shipped cold.*"
+   / "Questions go to a person. *A person answers.*" / "Three steps,
+   *entirely online.*" / "Care continues *after the first dose.*" /
+   "Questions? *We have answers.*" / "Three minutes to start. *A physician
+   takes it from there.*"
+2. **The eyebrow is caps in the accent, no pill.** THE PHYSICIAN · THE
+   BLOOD PANEL · THE PHARMACY · SUPPORT · GETTING STARTED · START HERE.
+3. **The button is a solid accent pill with a plain arrow.** "Find my
+   treatment →". Feature blocks link onward in two words: "How it works",
+   "The blood panel", "Every medicine", "Contact".
+4. **Where the loop counts, we state.** Its three counters are our three
+   facts: Licensed. / Compounded. / Included. (with the line under each).
+   Its press strip is our six facts. No counts, no ratings, no press, no
+   "get a demo", no "we've got", no exclamation marks (laws 3 and 7).
+5. **The device panels show the care, never a patient.** A drawn screen:
+   the physician's review, the dose set from the panel, the medicine
+   shipped cold, a message to the care team. No names, no numbers that
+   read as a record (no PHI, ever).
+6. The guardrails at the bottom still hold.
+
+---
+
 # The house voice, v7: the ivy register (Chiya, 2026-09-08)
 
 Chiya, 2026-09-08, on the brand-guide rebuild: "roll back, I don't like

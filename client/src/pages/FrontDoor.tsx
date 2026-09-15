@@ -1,23 +1,26 @@
-/* ═══ FRONT DOOR — the homepage, in the ivy journey (2026-09-08) ═══
-   Chiya: "roll back, I don't like it … make our site look like ivyrx.com:
-   the design, the feel, the copy, the journey, the vial mockups, the menu
-   bar." ivyrx.com, rendered offline and walked: a centred hero with one
-   gradient phrase and trust chips; two big tinted tiles with the vial
-   bleeding off the edge; the goals as small tiles; how it works as three
-   drawn cards; the treatments as a rail of cards (name, price, vial, two
-   pills, the safety line); support as a drawn dashboard; questions with a
-   "still have questions" card; a photograph as the closer. Our facts, our
-   laws: no counts, no reviews, no "free", no urgency.
-   Copy is the ivy register (client/src/data/hero.ts). */
+/* ═══ FRONT DOOR — the homepage, the loop way (2026-09-15) ═══
+   Chiya: "https://openloophealth.com/ … I love the design and layout, copy,
+   everything; mirror our site to look like it as much as possible but give
+   us a uniqueness." openloophealth.com, rendered offline and walked: a
+   night hero with a device card; a muted strip; a two-column block beside
+   an orbit diagram; a night band of cards; alternating feature blocks with
+   dark device panels; the programs; 01/02/03 steps; a soft radial band;
+   "Questions? We've got answers."; a night closer. The same order here,
+   with our facts and our laws: no counts, no reviews, no press, no "free",
+   no urgency. The previous home (the ivy journey, 2026-09-08) is in git.
+   Copy is the loop register (docs/VOICE.md v8; client/src/data/hero.ts). */
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { HeroIvy } from "@/components/ivy/HeroIvy";
-import { GoalGrid } from "@/components/ivy/GoalGrid";
-import { StepsIvy } from "@/components/ivy/StepsIvy";
+import { HeroLoop } from "@/components/loop/HeroLoop";
+import { FactStrip } from "@/components/loop/FactStrip";
+import { SignalBlock } from "@/components/loop/SignalBlock";
+import { GoalBand } from "@/components/loop/GoalBand";
+import { FeatureBlocks } from "@/components/loop/FeatureBlocks";
 import { TreatmentsRail } from "@/components/ivy/TreatmentsRail";
-import { SupportBand } from "@/components/ivy/SupportBand";
-import { Banner } from "@/components/ivy/Banner";
+import { StepsLoop } from "@/components/loop/StepsLoop";
+import { CareBand } from "@/components/loop/CareBand";
+import { CloserLoop } from "@/components/loop/CloserLoop";
 import { WhatArrives } from "@/components/WhatArrives";
 import { MessageCircle } from "lucide-react";
 import { RETEST_WEEK } from "@/data/monitoring";
@@ -59,31 +62,37 @@ export default function FrontDoor() {
     <SiteLayout navVariant="showcase" hideTrustBar hideAnnouncementBar>
       <div className="nx-tight">
 
-      {/* ══ 01 · HERO ══ */}
-      <HeroIvy />
+      {/* ══ 01 · HERO — the night panel, the device ══ */}
+      <HeroLoop />
 
-      {/* ══ 02 · BY GOAL — two big tiles, then every goal ══ */}
-      <GoalGrid />
+      {/* ══ 02 · THE FACTS — the strip ══ */}
+      <FactStrip />
 
-      {/* ══ 03 · HOW IT WORKS — three drawn cards ══ */}
-      <StepsIvy />
+      {/* ══ 03 · WHAT A PEPTIDE IS — beside the orbit ══ */}
+      <SignalBlock />
 
-      {/* ══ 04 · TREATMENTS — every medicine as a card (id="treatments") ══ */}
+      {/* ══ 04 · BY GOAL — the night band ══ */}
+      <GoalBand />
+
+      {/* ══ 05 · THE FOUR FACTS OF THE CARE — feature blocks ══ */}
+      <FeatureBlocks />
+
+      {/* ══ 06 · TREATMENTS — every medicine as a card (id="treatments") ══ */}
       <TreatmentsRail />
 
-      {/* ══ 05 · SUPPORT ══ */}
-      <SupportBand />
+      {/* ══ 07 · GETTING STARTED — 01 / 02 / 03 ══ */}
+      <StepsLoop />
 
-      {/* ══ 06 · WHAT ARRIVES ══ */}
+      {/* ══ 08 · WHAT ARRIVES ══ */}
       <WhatArrives />
 
-      {/* ══ 07 · PRICE — one statement; the ladder lives on each product page ══ */}
+      {/* ══ 09 · PRICE — one statement; the ladder lives on each product page ══ */}
       <section className="nx-container nx-sec" aria-labelledby="fd-pricing">
         <Reveal>
-          <div className="nx-ivhead">
+          <div className="nx-ivhead nx-olprice">
             <div>
               <p className="nx-eyebrow">Price</p>
-              <h2 id="fd-pricing" className="nx-ivhead__h2">One price a month, <span className="nx-grad">everything within it</span></h2>
+              <h2 id="fd-pricing" className="nx-ivhead__h2">One price a month, <span className="nx-grad">everything within it.</span></h2>
               <p className="nx-ivhead__lede" style={{ fontFamily: F }}>
                 The medicine, the physician's review and the blood work, in one monthly price. You pay it up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. Each medicine shows its own price on its page.
               </p>
@@ -93,11 +102,14 @@ export default function FrontDoor() {
         </Reveal>
       </section>
 
-      {/* ══ 08 · QUESTIONS ══ */}
+      {/* ══ 10 · AFTER THE BOX ══ */}
+      <CareBand />
+
+      {/* ══ 11 · QUESTIONS ══ */}
       <section className="nx-container nx-sec nx-faq-section" aria-labelledby="fd-faq">
         <div className="nx-ivhead nx-ivhead--center">
           <p className="nx-eyebrow">FAQ</p>
-          <h2 id="fd-faq" className="nx-ivhead__h2"><span className="nx-grad">Questions?</span><br />We have the answers</h2>
+          <h2 id="fd-faq" className="nx-ivhead__h2">Questions? <span className="nx-grad">We have answers.</span></h2>
         </div>
         <div className="nx-ivfaq">
           <div className="nx-faq-list" data-testid="frontdoor-faq">
@@ -119,8 +131,8 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 09 · THE CLOSER ══ */}
-      <Banner />
+      {/* ══ 12 · THE CLOSER ══ */}
+      <CloserLoop />
       </div>
     </SiteLayout>
   );
