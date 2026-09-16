@@ -1,0 +1,135 @@
+/* ═══ The cinema sections (2026-09-16) ═══
+   Chiya: "high-res, cinema-grade design and branding and everything else,
+   copy, tone; mod.com, take inspiration, I like this way." mod.com,
+   rendered offline and walked (docs/MOD-STUDY.md): a black canvas, the
+   photograph as the design, a giant three-line caps headline, one pill,
+   four icon tiles, four numbered photo tiles, a full-bleed photograph with
+   one line, a rail of articles, hairline questions, a sticky bar. The same
+   grammar here, on the tokens of the cinema layer at the end of index.css.
+   Photography: client/src/assets/cinema, rendered in the house studio to
+   one brief (black surface, condensation, one cobalt cap, blue rim light).
+   Imported once, from SiteLayout. */
+
+/* ── The hero: a black surface beaded with water, the three lines, the carton and the vial ── */
+.nx-cine-hero { position: relative; min-height: calc(100svh - 72px); display: flex; align-items: center; overflow: hidden; isolation: isolate; background: var(--nx-bg); }
+.nx-cine-hero__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; opacity: .9; }
+.nx-cine-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.72) 42%, rgba(10, 10, 10, 0.1) 100%), linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, transparent 30%, transparent 75%, var(--nx-bg) 100%); pointer-events: none; }
+.nx-cine-hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(1rem, 3vw, 3rem); width: 100%; padding: clamp(3rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem); }
+.nx-cine-hero__h1 { margin: 0; font-size: var(--nx-t-display); line-height: .96; letter-spacing: -0.02em; color: #FFFFFF; text-transform: uppercase; }
+.nx-cine-hero__h1 span { display: block; }
+.nx-cine-hero__h1 .nx-grad { font-style: italic; }
+.nx-cine-hero__sub { margin: 1.4rem 0 0; max-width: 44ch; font-size: var(--nx-t-body); line-height: 1.55; color: rgba(255, 255, 255, 0.86); text-wrap: pretty; }
+.nx-cine-hero__fact { display: flex; align-items: center; gap: .6rem; margin: 1.1rem 0 0; font-size: var(--nx-t-sm); font-weight: 600; color: rgba(255, 255, 255, 0.8); }
+.nx-cine-hero__fact svg { color: var(--nx-cobalt-ink); flex: none; }
+.nx-cine-hero__act { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem 1.4rem; margin-top: 1.8rem; }
+.nx-cine-hero__more { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; color: #FFFFFF; font-size: var(--nx-t-sm); font-weight: 700; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
+.nx-cine-hero__more:hover { border-color: #FFFFFF; }
+.nx-cine-hero__art { position: relative; display: flex; justify-content: center; align-items: flex-end; }
+.nx-cine-hero__art img { width: min(100%, 34rem); height: auto; display: block; -webkit-mask-image: radial-gradient(70% 70% at 50% 55%, #000 55%, transparent 100%); mask-image: radial-gradient(70% 70% at 50% 55%, #000 55%, transparent 100%); }
+@media (max-width: 960px) {
+  .nx-cine-hero { min-height: 0; }
+  .nx-cine-hero__grid { grid-template-columns: 1fr; padding-top: 2.4rem; }
+  .nx-cine-hero::after { background: linear-gradient(180deg, rgba(10, 10, 10, 0.86) 0%, rgba(10, 10, 10, 0.6) 55%, var(--nx-bg) 100%); }
+  .nx-cine-hero__art img { width: min(100%, 22rem); }
+}
+
+/* ── The sticky bar: the wordmark, the line, the pill ── */
+.nx-cine-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--nx-z-sticky); display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .6rem clamp(1rem, 3vw, 2rem) calc(.6rem + env(safe-area-inset-bottom, 0px)); background: var(--nx-cine-glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--nx-cine-line); transform: translateY(110%); transition: transform var(--nx-dur-3) var(--nx-ease); }
+.nx-cine-bar.is-on { transform: none; }
+.nx-cine-bar__k { font-family: var(--nx-font-display); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: #FFFFFF; font-size: var(--nx-t-sm); white-space: nowrap; }
+.nx-cine-bar__k i { font-style: italic; color: var(--nx-cobalt-ink); }
+.nx-cine-bar__line { flex: 1 1 auto; min-width: 0; font-size: var(--nx-t-sm); color: rgba(255, 255, 255, 0.72); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nx-cine-bar .nx-cta-cobalt { min-height: 44px; padding: 0 20px; white-space: nowrap; }
+@media (max-width: 700px) { .nx-cine-bar__line { display: none; } }
+@media (prefers-reduced-motion: reduce) { .nx-cine-bar { transition: none; } }
+
+/* ── The section head: caps, centred or left ── */
+.nx-cine-head { max-width: 46rem; }
+.nx-cine-head--center { margin: 0 auto; text-align: center; }
+.nx-cine-head__h2 { margin: .6rem 0 0; max-width: 16ch; font-size: var(--nx-t-h1); line-height: .98; letter-spacing: -0.015em; color: #FFFFFF; text-transform: uppercase; text-wrap: balance; }
+.nx-cine-head--center .nx-cine-head__h2 { margin-left: auto; margin-right: auto; max-width: 18ch; }
+.nx-cine-head__h2 .nx-grad { font-style: italic; }
+.nx-cine-head__p { margin: 1.1rem 0 0; max-width: 56ch; font-size: var(--nx-t-body); line-height: 1.6; color: var(--nx-fg-graphite); }
+.nx-cine-head--center .nx-cine-head__p { margin-left: auto; margin-right: auto; }
+.nx-cine-sec { padding-top: clamp(3.5rem, 8vw, 7rem); }
+
+/* ── The four facts: an icon, a caps title, a line ── */
+.nx-cine-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1rem, 2.4vw, 2rem); list-style: none; margin: clamp(2rem, 4vw, 3.2rem) 0 0; padding: 0; text-align: center; }
+.nx-cine-facts li { display: flex; flex-direction: column; align-items: center; padding: 1.6rem 1rem; border: 1px solid var(--nx-cine-line); border-radius: var(--nx-r-md); background: var(--nx-cine-card); }
+.nx-cine-facts .nx-olicon { margin-bottom: 1rem; }
+.nx-cine-facts b { font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 700; line-height: 1.15; letter-spacing: var(--nx-ls-snug); text-transform: uppercase; color: #FFFFFF; }
+.nx-cine-facts span { margin-top: .4rem; font-size: var(--nx-t-sm); line-height: 1.45; color: var(--nx-fg-graphite); max-width: 24ch; }
+@media (max-width: 900px) { .nx-cine-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .nx-cine-facts { grid-template-columns: 1fr; } }
+
+/* ── Getting started: four numbered photographs across a hairline ── */
+.nx-cine-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.8rem, 1.6vw, 1.2rem); list-style: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: clamp(1.6rem, 3vw, 2.4rem) 0 0; border-top: 1px solid var(--nx-cine-line); }
+.nx-cine-step { display: flex; flex-direction: column; }
+.nx-cine-step__img { position: relative; aspect-ratio: 3 / 4; border-radius: var(--nx-r-md); overflow: hidden; background: var(--nx-cine-card); border: 1px solid var(--nx-cine-line); }
+.nx-cine-step__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--nx-dur-5) var(--nx-reveal-ease); }
+.nx-cine-step:hover .nx-cine-step__img img { transform: scale(1.03); }
+.nx-cine-step__n { display: block; margin: 1rem 0 0; font-size: var(--nx-t-xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); color: var(--nx-cobalt-ink); }
+.nx-cine-step__t { margin: .3rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 700; line-height: 1.2; letter-spacing: var(--nx-ls-snug); color: #FFFFFF; }
+.nx-cine-step__b { margin: .3rem 0 0; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); }
+@media (max-width: 900px) { .nx-cine-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ── The full-bleed photograph with one line ── */
+.nx-cine-bleed { position: relative; min-height: 36rem; display: flex; align-items: center; overflow: hidden; isolation: isolate; border-top: 1px solid var(--nx-cine-line); border-bottom: 1px solid var(--nx-cine-line); }
+.nx-cine-bleed img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; }
+.nx-cine-bleed::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.55) 45%, rgba(10, 10, 10, 0.05) 100%); pointer-events: none; }
+.nx-cine-bleed__copy { max-width: 40rem; padding: clamp(3rem, 8vw, 6rem) 0; }
+.nx-cine-bleed .nx-cta-cobalt { margin-top: 1.6rem; }
+@media (max-width: 700px) { .nx-cine-bleed { min-height: 30rem; } .nx-cine-bleed img { object-position: 78% 50%; } .nx-cine-bleed::after { background: linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.88) 100%); } }
+
+/* ── The goals: the tiles on the night ── */
+.nx-cine-goals { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(.7rem, 1.4vw, 1rem); list-style: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: 0; }
+.nx-cine-goals .nx-gtile img { filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.6)); }
+@media (max-width: 960px) { .nx-cine-goals { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .nx-cine-goals { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ── The journal: a rail of articles ── */
+.nx-cine-journal { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 1fr); gap: clamp(.8rem, 1.6vw, 1.2rem); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: clamp(1.6rem, 3vw, 2.4rem) 0 0; padding: clamp(1.6rem, 3vw, 2.4rem) 0 .4rem; border-top: 1px solid var(--nx-cine-line); }
+.nx-cine-journal::-webkit-scrollbar { display: none; }
+.nx-cine-article { scroll-snap-align: start; display: flex; flex-direction: column; min-width: 0; padding: 1.4rem 1.4rem 1.5rem; border-radius: var(--nx-r-md); background: var(--nx-cine-card); border: 1px solid var(--nx-cine-line); color: #FFFFFF; text-decoration: none; transition: border-color var(--nx-dur-2) var(--nx-ease), transform var(--nx-dur-3) var(--nx-ease); }
+.nx-cine-article:hover { border-color: rgba(255, 255, 255, 0.4); transform: translateY(-3px); }
+.nx-cine-article__k { font-size: var(--nx-t-xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt-ink); }
+.nx-cine-article__t { margin: .6rem 0 0; font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 700; line-height: 1.2; letter-spacing: var(--nx-ls-snug); color: #FFFFFF; }
+.nx-cine-article__d { margin: .5rem 0 0; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-graphite); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.nx-cine-article__m { margin-top: auto; padding-top: 1rem; font-size: var(--nx-t-xs); color: var(--nx-fg-muted); }
+
+/* ── The closer: the beaded surface again, one line, one pill ── */
+.nx-cine-close { position: relative; min-height: 30rem; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; isolation: isolate; border-top: 1px solid var(--nx-cine-line); }
+.nx-cine-close img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; opacity: .8; }
+.nx-cine-close::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 50% 50%, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.9) 100%); pointer-events: none; }
+.nx-cine-close__copy { padding: clamp(3rem, 8vw, 6rem) 0; }
+.nx-cine-close__copy .nx-cine-head__p { margin-left: auto; margin-right: auto; color: rgba(255, 255, 255, 0.82); }
+.nx-cine-close .nx-cta-cobalt { margin-top: 1.6rem; }
+
+/* ── The price statement ── */
+.nx-cine-price { padding: clamp(1.6rem, 3vw, 2.6rem); border: 1px solid var(--nx-cine-line); border-radius: var(--nx-r-md); background: var(--nx-cine-card); }
+
+/* ── The sticky bar needs room at the foot of the page ── */
+.nx-cine-pad { padding-bottom: 72px; }
+
+/* ── overrides that must beat the page sheets loaded after this one ── */
+.nx-quiz--wv .nx-quiz__radio, .nx-quiz .nx-quiz__radio { background: var(--nx-cine-card); background-image: none; color: #FFFFFF; border-color: var(--nx-cine-line); }
+.nx-quiz--wv .nx-quiz__radio:hover { border-color: rgba(255, 255, 255, 0.5); box-shadow: none; }
+.nx-quiz--wv .nx-quiz__radio.is-on { background: var(--nx-cobalt-soft); border-color: var(--nx-cobalt-ink); }
+.nx-quiz--wv .nx-quiz__radio-t { color: #FFFFFF; }
+.nx-quiz--wv .nx-quiz__radio-b { color: var(--nx-fg-graphite); }
+.nx-ivfaq .nx-ivfaq__ask h3, .nx-ivfaq__ask h3 { color: #FFFFFF; }
+.nx-footer.nx-footer { --nx-footer-ink: #FFFFFF; --nx-footer-ink-soft: rgba(255, 255, 255, 0.74); --nx-footer-ink-muted: rgba(255, 255, 255, 0.62); --nx-footer-line: rgba(255, 255, 255, 0.12); --nx-footer-chip-bg: rgba(255, 255, 255, 0.07); --nx-footer-chip-edge: rgba(255, 255, 255, 0.16); }
+.nx-buybox .nx-buybox__cat { color: var(--nx-cobalt-ink); }
+.nx-footer .nx-footer__mark span { color: #FFFFFF; }
+/* selected states that used the ceramic token as "white on the accent": the
+   ceramic is the night card now, so the type is white by name */
+.nx-buybox .nx-bb-term[aria-checked="true"], .nx-buybox .nx-bb-term[aria-checked="true"] .nx-bb-term__term, .nx-buybox .nx-bb-term[aria-checked="true"] .nx-bb-term__price, .nx-buybox .nx-bb-term[aria-checked="true"] .nx-bb-term__price small, .nx-buybox .nx-bb-term[aria-checked="true"] .nx-bb-term__total, .nx-buybox .nx-bb-term[aria-checked="true"] .nx-bb-term__less { color: #FFFFFF; }
+.nx-protofilters .nx-filter-chip[aria-pressed="true"], .nx-filter-chip.nx-filter-chip[aria-pressed="true"] { background: var(--nx-cobalt); border-color: var(--nx-cobalt); color: #FFFFFF; }
+.nx-goalchip.nx-goalchip[aria-pressed="true"] { color: #FFFFFF; }
+.nx-frost .nx-chip.nx-chip--accent, .nx-frost__media--photo .nx-chip.nx-chip--accent { background: #FFFFFF; color: #0A0A0A; }
+.nx-hdr__panel .nx-mtile--all .nx-mtile__name, .nx-hdr__panel .nx-mtile--dark .nx-mtile__name, .nx-hdr__panel .nx-mtile--proto .nx-mtile__name { color: #FFFFFF; }
+/* the accent as TYPE on the night is the light cobalt; the deep cobalt stays the button */
+.sp-tile .sp-tile__eyebrow, .sp-facts dd a, .nx-buybox .nx-buybox__gate, .nx-buybox .nx-paytoday__kicker, .nx-buybox .nx-paytoday__n, .nx-pt .nx-pt__k, .nx-pt-fig .nx-pt-fig__u, .nx-horizon .nx-horizon__h { color: var(--nx-cobalt-ink); }
+.nx-chips--tile .nx-chip.nx-chip--accent, .nx-tile .nx-chips--tile .nx-chip--accent, .nx-tile--dark .nx-chips--tile .nx-chip--accent { background: #FFFFFF; color: #0A0A0A; }
+.sp-tile .sp-facts dd a, .sp-tile .sp-facts a { color: var(--nx-cobalt-ink); }
+.nx-hdr__panel .nx-mtile--all .nx-mtile__line { color: rgba(255, 255, 255, 0.78); }

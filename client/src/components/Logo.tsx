@@ -63,7 +63,7 @@ export function Logo({
   markSize = 28,
 }: LogoProps) {
   const ink =
-    variant === "light" ? "var(--nx-ceramic)" : variant === "green" ? "var(--nx-acid)" : "var(--nx-fg)";
+    variant === "light" ? "#FFFFFF" : variant === "green" ? "var(--nx-acid)" : "var(--nx-fg)";
   const sub =
     variant === "light"
       ? "rgba(255,255,255,0.7)"

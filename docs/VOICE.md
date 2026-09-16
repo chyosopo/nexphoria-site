@@ -1,3 +1,45 @@
+# The house voice, v9: the cinema register (Chiya, 2026-09-16)
+
+Chiya, 2026-09-16: "build a site: high-res, cinema-grade design and
+branding and everything else, copy, tone; https://mod.com/, take
+inspiration, I like this way." mod.com was rendered offline and read
+(docs/MOD-STUDY.md): three giant caps lines ("OUT WORK / OUT LAST / OUT
+PERFORM"), one line of what it is, a check line, caps buttons ("TRY MOD",
+"GET STARTED"), caps section titles ("GET YOUR MOD · PRESCRIBED ONLINE ·
+SHIPPED TO YOUR DOOR", "FEEL THE FLOW."), a sticky bar with one line.
+
+v9 replaces v8. What is mirrored is the SHAPE; the facts and the laws are
+ours:
+
+1. **The hero is three caps lines, each a goal the reader names, in the
+   quiz's own words, and the last line is the accent phrase:** "LOSE THE
+   WEIGHT. / RECOVER FASTER. / *SLEEP DEEPER.*" A goal is not a guarantee;
+   the line under it is what it is: "Prescription peptides, compounded for
+   you and set from your own blood work. Entirely online." The check line
+   is the two facts.
+2. **Every headline is caps, bold, with one italic accent phrase, and a
+   full stop.** "A SIGNAL *YOUR BODY ALREADY SENDS.*" / "PRESCRIBED
+   ONLINE. *SHIPPED TO YOUR DOOR.*" / "EVERY MEDICINE, *WITH ITS PRICE
+   BESIDE IT.*" / "BUILT AROUND *YOUR BASELINE.*" / "KNOW WHAT YOU'RE
+   AFTER? *START THERE.*" / "QUESTIONS? *WE HAVE ANSWERS.*" / "THREE
+   MINUTES TO START. *A PHYSICIAN TAKES IT FROM THERE.*" Product names and
+   card titles stay in sentence case.
+3. **Buttons are caps, tracked, one accent:** FIND MY TREATMENT · SHOP NOW ·
+   LEARN MORE · ALL TREATMENTS · HOW IT WORKS.
+4. **The four tiles are facts, in caps, one line each:** PRESCRIBED ·
+   COMPOUNDED · SET FROM YOUR BLOOD · SHIPPED COLD. Where mod.com lists
+   benefits (SUSTAINED ENERGY, ACTIVATES DOPAMINE), we list what is done.
+5. **The steps are photographs, 01 to 04, sentence-case titles.**
+6. **What stays out:** "WHY MOD IS BETTER?" and the graph against coffee
+   (law 3, no comparison); "Shipped Fast!", "*Free shipping", "24 hrs" as
+   a hero number (no urgency, no "free", no counts); "Feel the flow"
+   (a feeling is a claim; ours states the panel).
+7. The guardrails at the bottom still hold. The voice gate caught "not a
+   chart" on the first render of this layer; the line is "so the dose
+   follows your own numbers."
+
+---
+
 # The house voice, v8: the loop register (Chiya, 2026-09-15)
 
 Chiya, 2026-09-15: "https://openloophealth.com/ … I love the design and

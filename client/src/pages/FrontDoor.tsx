@@ -1,4 +1,12 @@
-/* ═══ FRONT DOOR — the homepage, the loop way (2026-09-15) ═══
+/* ═══ FRONT DOOR — the homepage, the cinema way (2026-09-16) ═══
+   Chiya: "high-res, cinema-grade design and branding and everything else,
+   copy, tone; mod.com, take inspiration, I like this way." mod.com,
+   rendered offline and walked (docs/MOD-STUDY.md): a black canvas, the
+   photograph as the design, three giant caps lines, four icon tiles, four
+   numbered photographs, a full-bleed photograph with one line, a rail of
+   articles, hairline questions, a sticky bar. The same order here, with
+   our facts and our laws. The loop home (2026-09-15) is in git.
+   PREVIOUS: the loop way (2026-09-15) ═══
    Chiya: "https://openloophealth.com/ … I love the design and layout, copy,
    everything; mirror our site to look like it as much as possible but give
    us a uniqueness." openloophealth.com, rendered offline and walked: a
@@ -12,16 +20,14 @@
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import { HeroLoop } from "@/components/loop/HeroLoop";
-import { FactStrip } from "@/components/loop/FactStrip";
-import { SignalBlock } from "@/components/loop/SignalBlock";
-import { GoalBand } from "@/components/loop/GoalBand";
-import { FeatureBlocks } from "@/components/loop/FeatureBlocks";
+import { HeroCinema } from "@/components/cinema/HeroCinema";
+import { CineBar } from "@/components/cinema/CineBar";
+import { FactTiles } from "@/components/cinema/FactTiles";
+import { StepsCinema } from "@/components/cinema/StepsCinema";
 import { TreatmentsRail } from "@/components/ivy/TreatmentsRail";
-import { StepsLoop } from "@/components/loop/StepsLoop";
-import { CareBand } from "@/components/loop/CareBand";
-import { CloserLoop } from "@/components/loop/CloserLoop";
-import { WhatArrives } from "@/components/WhatArrives";
+import { BaselineBleed } from "@/components/cinema/BaselineBleed";
+import { GoalsCinema } from "@/components/cinema/GoalsCinema";
+import { CloserCinema } from "@/components/cinema/CloserCinema";
 import { MessageCircle } from "lucide-react";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { useSeo, webPageJsonLd, orgJsonLd, websiteJsonLd, medicalBusinessJsonLd, faqJsonLd } from "@/lib/seo";
@@ -60,36 +66,31 @@ export default function FrontDoor() {
 
   return (
     <SiteLayout navVariant="showcase" hideTrustBar hideAnnouncementBar>
-      <div className="nx-tight">
+      <div className="nx-tight nx-cine-pad">
 
-      {/* ══ 01 · HERO — the night panel, the device ══ */}
-      <HeroLoop />
+      {/* ══ 01 · HERO — the beaded surface, three lines, the carton ══ */}
+      <HeroCinema />
+      <CineBar />
 
-      {/* ══ 02 · THE FACTS — the strip ══ */}
-      <FactStrip />
+      {/* ══ 02 · WHAT A PEPTIDE IS — and the four facts ══ */}
+      <FactTiles />
 
-      {/* ══ 03 · WHAT A PEPTIDE IS — beside the orbit ══ */}
-      <SignalBlock />
+      {/* ══ 03 · GETTING STARTED — four photographs, 01 to 04 ══ */}
+      <StepsCinema />
 
-      {/* ══ 04 · BY GOAL — the night band ══ */}
-      <GoalBand />
-
-      {/* ══ 05 · THE FOUR FACTS OF THE CARE — feature blocks ══ */}
-      <FeatureBlocks />
-
-      {/* ══ 06 · TREATMENTS — every medicine as a card (id="treatments") ══ */}
+      {/* ══ 04 · TREATMENTS — every medicine as a card (id="treatments") ══ */}
       <TreatmentsRail />
 
-      {/* ══ 07 · GETTING STARTED — 01 / 02 / 03 ══ */}
-      <StepsLoop />
+      {/* ══ 05 · THE BLOOD PANEL — the full-bleed photograph ══ */}
+      <BaselineBleed />
 
-      {/* ══ 08 · WHAT ARRIVES ══ */}
-      <WhatArrives />
+      {/* ══ 06 · BY GOAL ══ */}
+      <GoalsCinema />
 
-      {/* ══ 09 · PRICE — one statement; the ladder lives on each product page ══ */}
+      {/* ══ 08 · PRICE — one statement; the ladder lives on each product page ══ */}
       <section className="nx-container nx-sec" aria-labelledby="fd-pricing">
         <Reveal>
-          <div className="nx-ivhead nx-olprice">
+          <div className="nx-ivhead nx-cine-price">
             <div>
               <p className="nx-eyebrow">Price</p>
               <h2 id="fd-pricing" className="nx-ivhead__h2">One price a month, <span className="nx-grad">everything within it.</span></h2>
@@ -102,10 +103,7 @@ export default function FrontDoor() {
         </Reveal>
       </section>
 
-      {/* ══ 10 · AFTER THE BOX ══ */}
-      <CareBand />
-
-      {/* ══ 11 · QUESTIONS ══ */}
+      {/* ══ 09 · QUESTIONS ══ */}
       <section className="nx-container nx-sec nx-faq-section" aria-labelledby="fd-faq">
         <div className="nx-ivhead nx-ivhead--center">
           <p className="nx-eyebrow">FAQ</p>
@@ -131,8 +129,8 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 12 · THE CLOSER ══ */}
-      <CloserLoop />
+      {/* ══ 10 · THE CLOSER ══ */}
+      <CloserCinema />
       </div>
     </SiteLayout>
   );

@@ -25,6 +25,8 @@ import { Nav } from "./Nav";
 import "@/styles/ivy.css";
 /* the loop section sheet (2026-09-15) rides the same way */
 import "@/styles/loop.css";
+/* the cinema section sheet (2026-09-16) rides the same way */
+import "@/styles/cinema.css";
 import { Footer } from "./Footer";
 /* The announcement bar and the trust bar are removed sitewide (the plain
    deck, 2026-09-04, rule 3: every fact once per page). The hide* props are

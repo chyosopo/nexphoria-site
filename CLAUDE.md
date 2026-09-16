@@ -19,8 +19,35 @@ It is **not** the medical engine. Intake, orders, payments, prescriptions, and A
 ---
 
 ## Standing Laws (never violated)
-1. **Design tokens only — current sheet: THE LOOP LAYER over the sky and
-   ivy sheets** (Chiya 2026-09-15: "https://openloophealth.com/ … I love the
+1. **Design tokens only — current sheet: THE CINEMA LAYER over the loop,
+   sky and ivy sheets** (Chiya 2026-09-16: "build a site: high-res,
+   cinema-grade design and branding and everything else, copy, tone;
+   https://mod.com/, take inspiration, I like this way". Measured off
+   mod.com rendered offline; docs/MOD-STUDY.md.) The cinema layer sits
+   after the loop layer at the end of index.css and overrides it; its
+   sections live in client/src/styles/cinema.css, imported from
+   SiteLayout. ONE CANVAS, BLACK: every base token flips to the night
+   (ground #0A0A0A, card #141414, hairline #262626 / rgba(255,255,255,.14),
+   type #FFFFFF / #B8B8B8 / #9A9A9A), so every route follows without a
+   rewrite; the shadcn surfaces follow too. The goal family becomes a dark
+   mix of the goal colour (tint/tint2/edge) with a light ink, every pair
+   ≥8.7:1. PHOTOGRAPHY IS THE DESIGN: the hero surface, the carton with
+   the vial, the phone, the physician, the blood kit were rendered in the
+   house studio (Higgsfield gpt_image_2_5, one brief: black surface,
+   condensation, one cobalt cap, blue rim light) and live in
+   client/src/assets/cinema; the protocol tiles were re-rendered on the
+   night (review/studio/scene-protocols-night.mjs). TYPE: every h1/h2 is
+   caps, 700, with ONE italic accent phrase (.nx-grad, #8DBBFF on black);
+   product names and h3 stay sentence case; buttons are caps, tracked.
+   THE ACCENT stays OUR cobalt #0B5FD6 (mod's is #3238fa), used once per
+   screen as the pill; the secondary button is a white hairline pill. The
+   home: a full-bleed hero (three caps lines, the carton), a sticky bar
+   after the hero, four fact tiles, four numbered photographs, the
+   treatments rail, a full-bleed photograph with one line, the goals, the
+   price card, hairline FAQ rows, the closer on the beaded surface, the
+   night footer. The loop, sky and ivy layers stay as history.
+   PREVIOUS: THE LOOP LAYER over the sky and
+   ivy sheets (Chiya 2026-09-15: "https://openloophealth.com/ … I love the
    design and layout, copy, everything; mirror our site to look like it as
    much as possible but give us a uniqueness". Measured off
    openloophealth.com rendered offline.) The loop layer sits after the sky

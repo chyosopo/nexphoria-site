@@ -50,6 +50,15 @@ export const HERO = {
   /* The woman at the kitchen window, cool morning light (Higgsfield soul_2, 2026-09-05; 2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,
+  /* THE CINEMA REGISTER (Chiya 2026-09-16, after mod.com: "high-res,
+     cinema-grade … copy, tone"). Three caps lines, each a goal a reader
+     names in the quiz's own words, never a guarantee; one line of what it
+     is; the bar's line. */
+  cinema: {
+    lines: ["Lose the weight.", "Recover faster.", "Sleep deeper."],
+    sub: "Prescription peptides, compounded for you and set from your own blood work. Entirely online.",
+    bar: "Prescription peptides, personalized to you. Prescribed by a licensed U.S. physician, if appropriate.",
+  },
   /* the four goal chips under the hero */
   chips: ["Weight loss", "Body composition", "Sexual health", "Hormones"],
 };

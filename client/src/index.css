@@ -3913,3 +3913,128 @@ h1, h2, h3, .nx-dsh1, .nx-dsh2, .nx-dsh3, .nx-tilehero__h1, .nx-ivhead__h2, .nx-
 .nx-ivfaq .nx-faq-item { border-radius: var(--nx-r-md); }
 /* the footer: the night, a hairline above */
 .nx-footer { background-color: var(--nx-night); border-top: 1px solid var(--nx-loop-line); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE CINEMA LAYER (Chiya, 2026-09-16: "build a site: high-res, cinema-grade
+   design and branding and everything else, copy, tone; https://mod.com/,
+   take inspiration, I like this way"). Measured off mod.com rendered
+   offline (docs/MOD-STUDY.md). Sits after the loop layer and overrides it.
+   One canvas: black. Photography is the design: every hero surface is a
+   black surface beaded with condensation, rendered in the house studio
+   (Higgsfield, client/src/assets/cinema). Giant caps headlines, three
+   lines, one italic accent phrase (ours, not theirs). One accent, used
+   once per screen: OUR cobalt #0B5FD6 as the button, #8DBBFF as type on
+   black (law 1; mod's blue is #3238fa). Every base token flips to the
+   night, so every route follows without a rewrite; the goal tints become
+   dark mixes of the goal colour with a light ink (every pair ≥8.7:1). */
+:root {
+  --nx-bg:           #0A0A0A;
+  --nx-bg-cream:     #141414;
+  --nx-bg-dark:      #1A1A1A;
+  --nx-ceramic:      #141414;
+  --nx-rock:         #171717;
+  --nx-fg:           #FFFFFF;
+  --nx-fg-graphite:  #B8B8B8;
+  --nx-fg-muted:     #9A9A9A;
+  --nx-border:       #262626;
+  --nx-night:        #0A0A0A;
+  --nx-sky:          #0F1A2C;
+  --nx-sky-2:        #0A0A0A;
+  --nx-cobalt-soft:  #10233F;
+  --nx-cobalt-ink:   #8DBBFF;
+  --nx-ice:          #10233F;  --nx-ice-edge: #1B3A66;
+  --nx-success:      #4ADE80;
+  --nx-danger:       #F87171;
+  --nx-loop-grad:        #0A0A0A;
+  --nx-loop-grad-side:   linear-gradient(312deg, #0A2A63 0%, #0F0F0F 42%, #0A0A0A 100%);
+  --nx-loop-grad-panel:  linear-gradient(180deg, #111111 0%, #0A1A36 100%);
+  --nx-loop-line:        rgba(255, 255, 255, 0.14);
+  --nx-loop-glass:       rgba(255, 255, 255, 0.06);
+  --nx-cine-line:        rgba(255, 255, 255, 0.14);
+  --nx-cine-card:        #141414;
+  --nx-cine-glass:       rgba(10, 10, 10, 0.72);
+  --nx-e-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --nx-e-2: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --nx-e-3: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --nx-e-4: 0 24px 60px rgba(0, 0, 0, 0.65);
+  /* the goal family on the night: a dark mix as the tint, a light ink */
+  --nx-goal-metabolic-tint: #0F321F; --nx-goal-metabolic-tint2: #11482B; --nx-goal-metabolic-edge: #14663A; --nx-goal-metabolic-ink: #9AE3BC;
+  --nx-goal-growth-tint: #202235; --nx-goal-growth-tint2: #2C2F4C; --nx-goal-growth-edge: #3C406B; --nx-goal-growth-ink: #BEC2E8;
+  --nx-goal-recovery-tint: #153031; --nx-goal-recovery-tint2: #1B4447; --nx-goal-recovery-edge: #226064; --nx-goal-recovery-ink: #A7DEE1;
+  --nx-goal-longevity-tint: #282733; --nx-goal-longevity-tint2: #393749; --nx-goal-longevity-edge: #4F4C67; --nx-goal-longevity-ink: #CFCCE4;
+  --nx-goal-cognition-tint: #1C273C; --nx-goal-cognition-tint2: #263758; --nx-goal-cognition-edge: #324C7C; --nx-goal-cognition-ink: #B5CCF8;
+  --nx-goal-sleep-tint: #1C1E2F; --nx-goal-sleep-tint2: #262944; --nx-goal-sleep-edge: #34385F; --nx-goal-sleep-ink: #B6BADD;
+  --nx-goal-sexual-health-tint: #38272B; --nx-goal-sexual-health-tint2: #51373D; --nx-goal-sexual-health-edge: #734C55; --nx-goal-sexual-health-ink: #EFCDD4;
+  --nx-goal-hormone-tint: #3A2A1F; --nx-goal-hormone-tint2: #543B2B; --nx-goal-hormone-edge: #76523A; --nx-goal-hormone-ink: #F2D2BC;
+  --nx-goal-skin-tint: #382C33; --nx-goal-skin-tint2: #503E49; --nx-goal-skin-edge: #725667; --nx-goal-skin-ink: #EED6E4;
+  /* the shadcn surfaces (the cart drawer, the forms) follow */
+  --background: 0 0% 4%; --foreground: 0 0% 100%;
+  --card: 0 0% 8%; --card-foreground: 0 0% 100%;
+  --popover: 0 0% 8%; --popover-foreground: 0 0% 100%;
+  --secondary: 0 0% 12%; --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 12%; --muted-foreground: 0 0% 66%;
+  --border: 0 0% 15%; --input: 0 0% 15%;
+  --primary: 217 90% 44%; --primary-foreground: 0 0% 100%;
+  --accent: 217 90% 44%; --accent-foreground: 0 0% 100%;
+  color-scheme: dark;
+}
+html, body { background: var(--nx-bg); color: var(--nx-fg); }
+/* display: giant caps, three lines when it is the hero; the accent phrase italic */
+h1, h2, .nx-dsh1, .nx-dsh2, .nx-tilehero__h1, .nx-ivhead__h2, .nx-banner__h2, .nx-olclose__h2, .nx-quiz__h1, .nx-cartpage__h1 { text-transform: uppercase; letter-spacing: -0.01em; font-weight: 700; }
+.nx-phero__name, .nx-pcard__name, h3 { text-transform: none; }
+.nx-grad { color: var(--nx-cobalt-ink); font-style: italic; }
+.nx-dk .nx-grad, .nx-panel--dark .nx-grad, .nx-tilehero .nx-grad { color: var(--nx-cobalt-ink); }
+.nx-eyebrow, .nx-band__kicker { color: var(--nx-cobalt-ink); }
+/* the buttons: caps, tracked; the primary is the one colour on the screen */
+.nx-cta-cobalt, .nx-cta-navy, .nx-buybox__cta, .nx-hdr__cta.nx-cta-acid, .nx-sheet__foot .nx-sheet__cta.nx-cta-acid, .nx-cta-ceramic, .nx-cta-ghost, .nx-quiz__continue { text-transform: uppercase; letter-spacing: var(--nx-ls-wide); font-weight: 700; font-size: var(--nx-t-sm); }
+.nx-cta-cobalt, .nx-cta-navy, .nx-buybox__cta { box-shadow: 0 12px 34px -10px rgba(11, 95, 214, 0.75); }
+.nx-cta-ceramic, .nx-cta-ghost, .nx-tilehero .nx-cta-ceramic { background: transparent; border: 1px solid rgba(255, 255, 255, 0.32); color: #FFFFFF; }
+.nx-cta-ceramic:hover, .nx-cta-ghost:hover, .nx-tilehero .nx-cta-ceramic:hover { background: var(--nx-loop-glass); border-color: #FFFFFF; color: #FFFFFF; box-shadow: none; }
+/* the header: black, a hairline, the one pill */
+.nx-hdr { background: var(--nx-cine-glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--nx-cine-line); }
+.nx-hdr.is-raised { box-shadow: none; }
+.nx-hdr__panel { background: var(--nx-bg); border-bottom: 1px solid var(--nx-cine-line); border-radius: 0; box-shadow: var(--nx-e-4); }
+.nx-hdr__panel-all { color: var(--nx-cobalt-ink); }
+.nx-mtile--all.nx-gtile { background: var(--nx-cine-card); border: 1px solid var(--nx-cine-line); }
+/* the phone sheet */
+.nx-sheet, .nx-sheet__foot { background: var(--nx-bg); }
+.nx-sheet__bar, .nx-sheet__foot, .nx-sheet__rows, .nx-sheet__row { border-color: var(--nx-cine-line); }
+.nx-sheet .nx-hdr__icon { color: #FFFFFF; }
+/* every page head: black, a hairline below, no rounding */
+.nx-tilehero { background: var(--nx-bg); border-radius: 0; border-bottom: 1px solid var(--nx-cine-line); }
+.nx-tilehero__sub, .nx-tilehero__line { color: var(--nx-fg-graphite); }
+.nx-tilehero .nx-gtile__pill, .nx-gtile__pill { color: #0A0A0A; }
+.nx-gtile.is-active .nx-gtile__pill { background: var(--nx-cobalt); color: #FFFFFF; }
+.nx-gtile, .nx-gtile.nx-tint { border: 1px solid var(--nx-cine-line); }
+/* chips: glass on the night, the accent chip white */
+.nx-chip { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; backdrop-filter: blur(6px); }
+.nx-chip--accent, .nx-tile:not(.nx-tile--dark):not(.nx-tile--fade) .nx-chip--accent, .nx-frost .nx-chip--accent { background: #FFFFFF; color: #0A0A0A; }
+.nx-tile--proto .nx-chips--tile .nx-chip:not(.nx-chip--accent) { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; }
+/* cards: the night card with a hairline */
+.nx-pcard { background: var(--nx-cine-card); border-color: var(--nx-cine-line); }
+.nx-pcard__media { background: transparent; }
+.nx-pcard__media img { filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.6)); }
+.nx-trail__nav button { background: transparent; border-color: rgba(255, 255, 255, 0.32); color: #FFFFFF; }
+.nx-trail__nav button:hover { background: var(--nx-loop-glass); }
+.nx-tile--proto.nx-tile--dark { background: var(--nx-cine-card); border: 1px solid var(--nx-cine-line); }
+/* questions: hairline rows, the way mod.com lists them */
+.nx-ivfaq__ask, .nx-faq-item { background: transparent; border: 0; border-top: 1px solid var(--nx-cine-line); border-radius: 0; }
+.nx-ivfaq .nx-faq-item { border-radius: 0; }
+.nx-faq-list .nx-faq-item:last-child { border-bottom: 1px solid var(--nx-cine-line); }
+.nx-ivfaq__ask { border: 1px solid var(--nx-cine-line); padding: 1.8rem 1.6rem; }
+.nx-faq-plus { background: transparent; border: 1px solid rgba(255, 255, 255, 0.4); color: #FFFFFF; }
+/* the panels of the loop layer on the night */
+.nx-panel--dark, .nx-olpanel, .nx-olband, .nx-olclose { background: var(--nx-cine-card); border: 1px solid var(--nx-cine-line); }
+.nx-olprice { background: var(--nx-cine-card); border-color: var(--nx-cine-line); }
+.nx-olcare { background: transparent; border-top: 1px solid var(--nx-cine-line); border-bottom: 1px solid var(--nx-cine-line); }
+.nx-olfacts li { color: var(--nx-fg-graphite); }
+.nx-olstep { border-top-color: var(--nx-cine-line); }
+/* the product page, the buy box, the quiz, the cart follow the tokens */
+.nx-phero__panel img { filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.7)); }
+.nx-quiz__dot { background: transparent; border-color: rgba(255, 255, 255, 0.4); }
+.nx-quiz__continue:disabled .nx-cta__arrow { background: transparent; color: var(--nx-fg-muted); }
+.nx-quiz__radio { background: var(--nx-cine-card); }
+.nx-arrives__tile { background: var(--nx-cine-card); border-color: var(--nx-cine-line); }
+.nx-arrives__media { background: var(--nx-cine-card); border-color: var(--nx-cine-line); }
+/* the footer: black, a hairline above */
+.nx-footer { background-color: var(--nx-bg); border-top: 1px solid var(--nx-cine-line); }
