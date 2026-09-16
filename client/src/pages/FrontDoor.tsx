@@ -22,7 +22,10 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { HeroCinema } from "@/components/cinema/HeroCinema";
 import { CineBar } from "@/components/cinema/CineBar";
+import { BloodChart } from "@/components/cinema/BloodChart";
+import { Anatomy } from "@/components/cinema/Anatomy";
 import { FactTiles } from "@/components/cinema/FactTiles";
+import { Isi } from "@/components/cinema/Isi";
 import { StepsCinema } from "@/components/cinema/StepsCinema";
 import { TreatmentsRail } from "@/components/ivy/TreatmentsRail";
 import { BaselineBleed } from "@/components/cinema/BaselineBleed";
@@ -72,7 +75,13 @@ export default function FrontDoor() {
       <HeroCinema />
       <CineBar />
 
-      {/* ══ 02 · WHAT A PEPTIDE IS — and the four facts ══ */}
+      {/* ══ 02 · THE DOSE — the figure under a caps line (mod's chart slot, ours without a rival) ══ */}
+      <BloodChart />
+
+      {/* ══ 03 · RX PEPTIDES — the vial with callout lines ══ */}
+      <Anatomy />
+
+      {/* ══ 04 · WHAT A PEPTIDE IS — and the four facts ══ */}
       <FactTiles />
 
       {/* ══ 03 · GETTING STARTED — four photographs, 01 to 04 ══ */}
@@ -103,7 +112,10 @@ export default function FrontDoor() {
         </Reveal>
       </section>
 
-      {/* ══ 09 · QUESTIONS ══ */}
+      {/* ══ 09 · IMPORTANT SAFETY INFORMATION ══ */}
+      <Isi />
+
+      {/* ══ 10 · QUESTIONS ══ */}
       <section className="nx-container nx-sec nx-faq-section" aria-labelledby="fd-faq">
         <div className="nx-ivhead nx-ivhead--center">
           <p className="nx-eyebrow">FAQ</p>
@@ -129,7 +141,7 @@ export default function FrontDoor() {
         </div>
       </section>
 
-      {/* ══ 10 · THE CLOSER ══ */}
+      {/* ══ 11 · THE CLOSER ══ */}
       <CloserCinema />
       </div>
     </SiteLayout>

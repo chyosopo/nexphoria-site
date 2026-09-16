@@ -133,3 +133,47 @@
 .nx-chips--tile .nx-chip.nx-chip--accent, .nx-tile .nx-chips--tile .nx-chip--accent, .nx-tile--dark .nx-chips--tile .nx-chip--accent { background: #FFFFFF; color: #0A0A0A; }
 .sp-tile .sp-facts dd a, .sp-tile .sp-facts a { color: var(--nx-cobalt-ink); }
 .nx-hdr__panel .nx-mtile--all .nx-mtile__line { color: rgba(255, 255, 255, 0.78); }
+
+/* ── The figure under a caps line (2026-09-16, second pass): the panel, the dose, the retest ── */
+.nx-cine-chart { margin: clamp(1.6rem, 3vw, 2.6rem) auto 0; max-width: 56rem; }
+.nx-cine-chart svg { display: block; width: 100%; height: auto; }
+.nx-cine-chart__cap { margin: 1rem auto 0; max-width: 60ch; text-align: center; font-size: var(--nx-t-sm); line-height: 1.5; color: var(--nx-fg-muted); }
+.nx-cine-chart .lbl { font-family: var(--nx-font-body); font-weight: 600; font-size: 15px; fill: #FFFFFF; }
+.nx-cine-chart .lbl--sm { font-weight: 500; font-size: 13px; fill: var(--nx-fg-graphite); }
+.nx-cine-chart .axis { stroke: rgba(255, 255, 255, 0.35); stroke-width: 1.5; }
+.nx-cine-chart .line { stroke: var(--nx-cobalt-ink); stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.nx-cine-chart .fill { fill: url(#nx-cine-chart-fill); }
+.nx-cine-chart .dose { stroke: rgba(255, 255, 255, 0.7); stroke-width: 2; stroke-dasharray: 6 8; fill: none; }
+.nx-cine-chart .dot { fill: var(--nx-bg); stroke: var(--nx-cobalt-ink); stroke-width: 4; }
+.nx-cine-chart .tag { fill: var(--nx-cobalt); }
+.nx-cine-chart .tag-t { font-family: var(--nx-font-body); font-weight: 700; font-size: 13px; fill: #FFFFFF; letter-spacing: .06em; }
+
+/* ── The anatomy: the studio vial in the centre, a line to each fact ── */
+.nx-cine-anat__sub { margin: .9rem auto 0; font-size: clamp(1rem, 1.8vw, 1.35rem); font-weight: 700; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; color: #FFFFFF; }
+.nx-cine-anat { position: relative; margin: clamp(2rem, 4vw, 3.4rem) auto 0; max-width: 62rem; display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(.6rem, 2vw, 1.6rem); align-items: center; }
+.nx-cine-anat__vial { position: relative; width: min(100%, 20rem); justify-self: center; border-radius: var(--nx-r-md); overflow: hidden; }
+.nx-cine-anat__vial img { display: block; width: 100%; height: auto; -webkit-mask-image: radial-gradient(75% 75% at 50% 55%, #000 55%, transparent 100%); mask-image: radial-gradient(75% 75% at 50% 55%, #000 55%, transparent 100%); }
+.nx-cine-anat__col { display: grid; gap: clamp(2.4rem, 6vw, 5rem); list-style: none; margin: 0; padding: 0; }
+.nx-cine-anat__item { position: relative; padding-top: .8rem; }
+.nx-cine-anat__item::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(255, 255, 255, 0.6); }
+.nx-cine-anat__item::after { content: ""; position: absolute; top: -4px; width: 9px; height: 9px; border-radius: 50%; background: #FFFFFF; }
+.nx-cine-anat__col--l .nx-cine-anat__item { text-align: left; }
+.nx-cine-anat__col--l .nx-cine-anat__item::after { right: -4px; }
+.nx-cine-anat__col--r .nx-cine-anat__item { text-align: right; }
+.nx-cine-anat__col--r .nx-cine-anat__item::after { left: -4px; }
+.nx-cine-anat__item b { display: block; font-family: var(--nx-font-display); font-size: var(--nx-t-lg); font-weight: 700; text-transform: uppercase; letter-spacing: var(--nx-ls-snug); color: #FFFFFF; }
+.nx-cine-anat__item span { display: block; margin-top: .2rem; font-size: var(--nx-t-base); line-height: 1.45; color: var(--nx-fg-graphite); }
+@media (max-width: 800px) {
+  .nx-cine-anat { grid-template-columns: 1fr; }
+  .nx-cine-anat__vial { width: min(64%, 14rem); order: -1; }
+  .nx-cine-anat__col { gap: 1rem; }
+  .nx-cine-anat__col--r .nx-cine-anat__item { text-align: left; }
+  .nx-cine-anat__col--r .nx-cine-anat__item::after { left: auto; right: -4px; }
+}
+
+/* ── Important safety information ── */
+.nx-cine-isi { max-width: 60rem; margin: 0 auto; padding-top: clamp(1.6rem, 3vw, 2.4rem); border-top: 1px solid var(--nx-cine-line); }
+.nx-cine-isi__h2 { margin: 0; font-size: clamp(1.3rem, 2.4vw, 1.9rem); line-height: 1.1; color: #FFFFFF; }
+.nx-cine-isi__k { margin: 1.2rem 0 0; font-size: var(--nx-t-base); font-weight: 600; color: #FFFFFF; }
+.nx-cine-isi__p { margin: .6rem 0 0; font-size: var(--nx-t-base); line-height: 1.65; color: var(--nx-fg-muted); }
+.nx-cine-isi__a { display: inline-flex; align-items: center; min-height: 44px; margin-top: .6rem; color: var(--nx-cobalt-ink); text-decoration: underline; text-underline-offset: 4px; }
