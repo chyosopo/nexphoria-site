@@ -177,3 +177,17 @@
 .nx-cine-isi__k { margin: 1.2rem 0 0; font-size: var(--nx-t-base); font-weight: 600; color: #FFFFFF; }
 .nx-cine-isi__p { margin: .6rem 0 0; font-size: var(--nx-t-base); line-height: 1.65; color: var(--nx-fg-muted); }
 .nx-cine-isi__a { display: inline-flex; align-items: center; min-height: 44px; margin-top: .6rem; color: var(--nx-cobalt-ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* ── polish (2026-09-16, second pass) ── */
+/* every page head carries the beaded surface, faded, so the right half of a
+   wide screen is the film and not an empty black */
+.nx-tilehero { position: relative; isolation: isolate; overflow: hidden; }
+.nx-tilehero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("../assets/cinema/hero-bg-1200.webp") center right / cover no-repeat; opacity: .55; }
+.nx-tilehero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--nx-bg) 0%, rgba(10, 10, 10, 0.94) 38%, rgba(10, 10, 10, 0.55) 70%, rgba(10, 10, 10, 0.25) 100%), linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, transparent 40%, var(--nx-bg) 100%); pointer-events: none; }
+@media (max-width: 900px) { .nx-tilehero::after { background: linear-gradient(180deg, rgba(10, 10, 10, 0.7) 0%, rgba(10, 10, 10, 0.85) 60%, var(--nx-bg) 100%); } }
+/* the protocol card buttons in the caps register */
+.nx-tile--proto .nx-tile__foot--proto .nx-tile__btn--static, .nx-tile__btn--static { text-transform: uppercase; letter-spacing: var(--nx-ls-wide); font-weight: 700; font-size: var(--nx-t-sm); }
+/* the contact form fields on the night */
+input.nx-input, textarea.nx-input, select.nx-input { background: var(--nx-cine-card); color: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.24); }
+input.nx-input::placeholder, textarea.nx-input::placeholder { color: var(--nx-fg-muted); }
+input.nx-input:focus-visible, textarea.nx-input:focus-visible, select.nx-input:focus-visible { border-color: var(--nx-cobalt-ink); outline: none; box-shadow: 0 0 0 3px rgba(141, 187, 255, 0.25); }

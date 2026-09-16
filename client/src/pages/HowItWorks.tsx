@@ -14,13 +14,21 @@ import { useSeo, webPageJsonLd, breadcrumbJsonLd, howToJsonLd } from "@/lib/seo"
 import { F, S } from "@/lib/typography";
 import { Reveal } from "@/components/Reveal";
 import { PROVIDER_INFO, PHARMACY_INFO } from "@/data/compliance";
-import { imgSrcSet } from "@/data/imageVariants";
 import { RETEST_WEEK } from "@/data/monitoring";
 import { PANEL_TOTAL_MARKERS, PANEL_CATEGORY_COUNT, BIOMARKER_PANEL } from "@/data/biomarkerPanel";
 import { SOLO_CATALOG, statusOf } from "@/data/soloCatalog";
-import monthBox from "@/assets/studio/month-box.webp";
-import monthBox1200 from "@/assets/studio/month-box-1200.webp";
-import bloodTube from "@/assets/brand/editorial-bloodwork.webp";
+/* the cinema set (2026-09-16): the steps carry the house studio's night
+   photographs, the same five the home uses, so the page reads as one film */
+import cineBox800 from "@/assets/cinema/box-800.webp";
+import cineBox1600 from "@/assets/cinema/box-1600.webp";
+import cinePhone600 from "@/assets/cinema/phone-600.webp";
+import cinePhone1200 from "@/assets/cinema/phone-1200.webp";
+import cineDoc600 from "@/assets/cinema/physician-600.webp";
+import cineDoc1200 from "@/assets/cinema/physician-1200.webp";
+import cineKit1200 from "@/assets/cinema/kit-1200.webp";
+import cineKit2400 from "@/assets/cinema/kit-2400.webp";
+import cineVial600 from "@/assets/cinema/vial-600.webp";
+import cineVial1200 from "@/assets/cinema/vial-1200.webp";
 import "@/styles/support.css";
 
 /* One picture per step. The workflow-localised frames (img/…) resolve
@@ -45,31 +53,31 @@ const STEPS: { t: string; d: string; detail: string; img: StepImage }[] = [
     t: "Choose a medicine or a protocol, and a term.",
     d: "One, three, six or twelve months. The longer terms cost less a month and carry more blood testing.",
     detail: `Every medicine and protocol page states what it is for, how it works, how it is taken, what to expect, and its price.${PENDING_NOTE}`,
-    img: { src: monthBox, srcSet: `${monthBox1200} 1200w, ${monthBox} 1600w`, alt: "The month box, drawn in the house studio: the medicine, the blood kit, the first-dose card and the cold pack", render: true },
+    img: { src: cineBox800, srcSet: `${cineBox800} 600w, ${cineBox1600} 1200w`, alt: "The cold carton open on a black surface, a vial beside it, rendered in the house studio", render: true },
   },
   {
     t: "Complete a quick online visit at checkout.",
     d: "A few minutes on your history, your current medicines and your goal. It comes right after you order, before anything is made.",
     detail: "The order is placed first, then the questions are answered. They cover the conditions that rule each medicine out and the medicines already taken. Compounded GLP-1 medicines are restricted by law in some states; the health questions check.",
-    img: { src: "img/img_329e054306f2.webp", srcSet: imgSrcSet("img/img_329e054306f2.webp", "img/img_329e054306f2-800w.webp"), alt: "A woman answering the online visit on a tablet at a bright desk" },
+    img: { src: cinePhone600, srcSet: `${cinePhone600} 450w, ${cinePhone1200} 900w`, alt: "A hand holding a phone with the online visit open, rendered in the house studio", render: true },
   },
   {
     t: "A physician reads them and decides.",
     d: "A licensed U.S. physician reviews your answers. They write the prescription, or explain why not. If not, nothing is made and the refund policy applies.",
     detail: "The physician reads the answers against the conditions that rule each medicine out and against the other medicines taken. A decision comes within a few business days.",
-    img: { src: "img/img_334cb24acfa5.webp", srcSet: imgSrcSet("img/img_334cb24acfa5.webp", "img/img_334cb24acfa5-800w.webp"), alt: "A physician in a white coat with a stethoscope" },
+    img: { src: cineDoc600, srcSet: `${cineDoc600} 450w, ${cineDoc1200} 900w`, alt: "A physician reading a tablet, rendered in the house studio", render: true },
   },
   {
     t: "Draw your blood at home, then take the first dose.",
     d: "The draw comes first. Your dose is set from what your own blood says.",
     detail: `The kit holds what you need to draw a small sample at home, and a prepaid box to send it back. It covers ${PANEL_TOTAL_MARKERS} markers across five systems. The physician reads the results before setting the first dose.`,
-    img: { src: "img/img_d489ea4e9dbc.webp", srcSet: imgSrcSet("img/img_d489ea4e9dbc.webp", "img/img_d489ea4e9dbc-800w.webp"), alt: "The at-home blood kit box on a kitchen counter, by the window" },
+    img: { src: cineKit1200, srcSet: `${cineKit1200} 1200w, ${cineKit2400} 2400w`, alt: "The at-home blood kit on a black surface, rendered in the house studio", render: true },
   },
   {
     t: `At week ${RETEST_WEEK}, the same panel is drawn again.`,
     d: "The same markers, read against your first draw. What changed decides what happens to the dose.",
     detail: `At week ${RETEST_WEEK} the same ${PANEL_TOTAL_MARKERS} markers are drawn at home, and compared with the first marker by marker. The physician reads what changed. The dose continues, changes or stops.`,
-    img: { src: bloodTube, alt: "A blood sample tube held up to the light in a laboratory" },
+    img: { src: cineVial600, srcSet: `${cineVial600} 450w, ${cineVial1200} 900w`, alt: "The vial beside the cold carton, rendered in the house studio", render: true },
   },
 ];
 
