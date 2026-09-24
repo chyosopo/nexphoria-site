@@ -39,6 +39,7 @@ const Quiz = lazy(() => import("@/pages/Quiz"));
 const Cart = lazy(() => import("@/pages/Cart"));
 const Checkout = lazy(() => import("@/pages/Checkout"));
 const HowItWorks = lazy(() => import("@/pages/HowItWorks"));
+const Why = lazy(() => import("@/pages/Why"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const FAQPage = lazy(() => import("@/pages/FAQ"));
 const LegalIndex = lazy(() => import("@/pages/legal/LegalIndex"));
@@ -77,6 +78,7 @@ function AppRouter() {
 
         {/* How it works — the one page that teaches (journey · blood testing · who prescribes) */}
         <Route path="/how-it-works" component={HowItWorks} />
+        <Route path="/why" component={Why} />
 
         {/* Cart + Checkout (pharmacy flow) */}
         <Route path="/cart" component={Cart} />

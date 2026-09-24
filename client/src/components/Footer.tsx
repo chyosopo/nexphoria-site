@@ -48,6 +48,7 @@ const COLUMNS: FooterColumn[] = [
       { label: "All medicines", href: "/peptides" },
       { label: "Protocols", href: "/stacks" },
       { label: "How it works", href: "/how-it-works" },
+      { label: "Why Nexphoria", href: "/why" },
       { label: "FAQ", href: "/faq" },
     ],
   },

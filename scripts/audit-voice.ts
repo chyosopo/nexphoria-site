@@ -39,7 +39,7 @@ if (!existsSync(DIST)) {
    what-happens-next, quiz, the blog) are redirects now — not prerendered, so
    there is nothing to check. Their voice moved into /how-it-works and the PDPs. */
 const ROUTES = [
-  "/", "/how-it-works", "/peptides", "/stacks",
+  "/", "/how-it-works", "/why", "/peptides", "/stacks",
   "/faq", "/contact",
   "/stacks/recover",
   "/peptides/tesamorelin", "/peptides/semaglutide",

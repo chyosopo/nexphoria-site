@@ -52,6 +52,7 @@ async function main() {
     ["/peptides/nope",   "/src/pages/SoloPDP.tsx", { slug: "does-not-exist" }],
     ["/peptides",        "/src/pages/PeptidesCatalog.tsx", {}],
     ["/how-it-works",    "/src/pages/HowItWorks.tsx", {}],
+    ["/why",             "/src/pages/Why.tsx", {}],
     ["/cart",            "/src/pages/Cart.tsx", {}],
     ["/checkout",        "/src/pages/Checkout.tsx", {}],
     ["/faq",             "/src/pages/FAQ.tsx", {}],

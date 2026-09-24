@@ -169,10 +169,15 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 {solo.gated
                   ? <span>Priced after the physician's review</span>
                   : solo.pricing
-                  ? <><b>{usd(solo.pricing.m12)}</b><span>/mo on a twelve-month plan · {usd(solo.pricing.m1)}/mo for one month</span></>
+                  ? <><b>{usd(solo.pricing.m12)}</b><span>/mo</span><small>{usd(solo.pricing.m12 * 12)} for twelve months · {usd(solo.pricing.m1)} a month for one month · the blood test included</small></>
                   : <span>Priced at consultation</span>}
               </p>
               <p className="nx-phero__lede" style={{ fontFamily: F }}>{solo.outcome}</p>
+              {evidenceCount > 0 && (
+                <a href={anchor(`#evidence-title-${solo.slug}`)} className="nx-cite" style={{ fontFamily: F }} data-testid={`solo-cite-${solo.slug}`}>
+                  {evidenceCount === 1 ? "One peer-reviewed study, cited below" : `${NUM[evidenceCount] ?? evidenceCount} peer-reviewed studies, cited below`}
+                </a>
+              )}
               <BenefitStrip slug={solo.slug} compact testId={`benefit-${solo.slug}`} />
               <a href={anchor("#buy")} onClick={scrollToBuy} className="nx-cta-cobalt nx-phero__cta" data-testid="solo-hero-cta" style={{ fontFamily: F }}>
                 {statusOf(solo) === "live" ? "Shop now" : "See the plan"} <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span>
@@ -249,20 +254,17 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
             {/* ── 4 · The first twelve weeks ── */}
             <section aria-labelledby="solo-expect-title" className="nx-pdp-sec">
               <h2 id="solo-expect-title" className="nx-dsh3">The first twelve weeks.</h2>
+              {solo.expect && <p className="nx-expect-lede" style={{ fontFamily: F }} data-testid={`solo-expect-${solo.slug}`}>{solo.expect}</p>}
               <Milestones sku={solo} />
             </section>
 
-            {/* ── The evidence, folded: a reader weighing the medicine opens it;
-                a reader who wants the shape of the page is not made to scroll
-                three citations to reach the price. ── */}
+            {/* ── The evidence, open and numbered (the nuform study, 2026-09-24):
+                the hero's cite link lands here; every row is a finding with
+                its source. Renders nothing when there is none. ── */}
             {evidenceCount > 0 && (
-              <FoldSection
-                title="What the studies found."
-                summary={`${evidenceCount === 1 ? "One peer-reviewed finding" : `${NUM[evidenceCount] ?? evidenceCount} peer-reviewed findings`} on ${solo.name}, each with its source.`}
-                testid="fold-evidence"
-              >
-                <EvidenceStrip slug={solo.slug} name={solo.name} bare />
-              </FoldSection>
+              <div className="nx-pdp-sec" data-testid="fold-evidence">
+                <EvidenceStrip slug={solo.slug} name={solo.name} />
+              </div>
             )}
 
             {/* ── 5 · Who should not take it ── */}

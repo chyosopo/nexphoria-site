@@ -15,7 +15,7 @@ export function GoalsCinema() {
       </div>
       <ul className="nx-cine-goals" aria-label="Every goal">
         {goals.map((g) => (
-          <li key={g}><GoalTile goal={g} href={`/peptides?goal=${g}`} testId={`goal-tile-${g}`} /></li>
+          <li key={g}><GoalTile goal={g} href={`/peptides?goal=${g}`} testId={`goal-tile-${g}`} chips /></li>
         ))}
       </ul>
     </section>

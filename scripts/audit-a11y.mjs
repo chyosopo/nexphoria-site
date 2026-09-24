@@ -30,7 +30,7 @@ const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css
    surface without a five-minute gate. */
 const ROUTES = [
   "/", "/quiz", "/peptides", "/peptides/semaglutide", "/peptides/testosterone",
-  "/stacks", "/stacks/recover", "/how-it-works", "/faq", "/contact",
+  "/stacks", "/stacks/recover", "/how-it-works", "/why", "/faq", "/contact",
   "/cart", "/legal", "/legal/terms", "/no-such-page",
 ];
 const VIEWPORTS = [

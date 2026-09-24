@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { Check } from "lucide-react";
 import { F } from "@/lib/typography";
 import { CATEGORY_LABELS, type PeptideCategory } from "@/data/peptides";
-import { GOAL_REP } from "@/data/goalRep";
+import { GOAL_REP, goalChips } from "@/data/goalRep";
 import { SKU_PHOTO_600, SKU_PHOTO } from "@/components/SkuPhoto";
 
 interface Props {
@@ -18,23 +18,31 @@ interface Props {
   testId?: string;
   className?: string;
   tabIndex?: number;
+  /** name the goal's medicines inside the tile (the nuform study, 2026-09-24) */
+  chips?: boolean;
 }
 
-export function GoalTile({ goal, label, href, onClick, active = false, testId, className = "", tabIndex }: Props) {
+export function GoalTile({ goal, label, href, onClick, active = false, testId, className = "", tabIndex, chips = false }: Props) {
   const rep = GOAL_REP[goal];
   const name = label ?? CATEGORY_LABELS[goal];
   const img = <img src={SKU_PHOTO_600[rep] ?? SKU_PHOTO[rep]} alt="" width={600} height={600} loading="lazy" decoding="async" />;
+  const names = chips ? goalChips(goal) : [];
+  const chipRow = names.length > 0 ? (
+    <span className="nx-gtile__chips" aria-hidden="true">
+      {names.map((n) => <span key={n} className="nx-gtile__chip" style={{ fontFamily: F }}>{n}</span>)}
+    </span>
+  ) : null;
   const pill = (
     <span className="nx-gtile__pill" style={{ fontFamily: F }}>
       {active && <Check size={15} strokeWidth={3} aria-hidden="true" style={{ marginRight: 6 }} />}
       {name}
     </span>
   );
-  const cls = `nx-gtile nx-tint${active ? " is-active" : ""}${className ? ` ${className}` : ""}`;
+  const cls = `nx-gtile nx-tint${active ? " is-active" : ""}${names.length ? " nx-gtile--chips" : ""}${className ? ` ${className}` : ""}`;
   if (href) {
     return (
-      <Link href={href} className={cls} data-goal={goal} onClick={onClick} data-testid={testId} aria-label={name}>
-        {img}{pill}
+      <Link href={href} className={cls} data-goal={goal} onClick={onClick} data-testid={testId} aria-label={names.length ? `${name}: ${names.join(", ")}` : name}>
+        {img}{chipRow}{pill}
       </Link>
     );
   }

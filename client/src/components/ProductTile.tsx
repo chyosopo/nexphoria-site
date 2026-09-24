@@ -32,7 +32,7 @@ export function oneLineOf(outcome: string): string {
 function PriceLine({ from, note }: { from?: number; note?: string }) {
   return (
     <p className="nx-pcard__price" style={{ fontFamily: F }}>
-      {from !== undefined ? <><b>{usd(from)}</b>/mo</> : <span>{note}</span>}
+      {from !== undefined ? <><b>{usd(from)}</b>/mo<small>{usd(from * 12)} for twelve months</small></> : <span>{note}</span>}
     </p>
   );
 }

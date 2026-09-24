@@ -7,6 +7,7 @@
 import { F } from "@/lib/typography";
 import { PANEL_TOTAL_MARKERS } from "@/data/biomarkerPanel";
 import { RETEST_WEEK } from "@/data/monitoring";
+import { MarkerMarquee } from "@/components/cinema/MarkerMarquee";
 
 export function BloodChart() {
   return (
@@ -41,6 +42,7 @@ export function BloodChart() {
         </svg>
         <figcaption className="nx-cine-chart__cap">The at-home kit of {PANEL_TOTAL_MARKERS} markers ships with the first order, included. The physician reads it before the first dose and again at week {RETEST_WEEK}, and the dose follows your own numbers.</figcaption>
       </figure>
+      <MarkerMarquee />
     </section>
   );
 }

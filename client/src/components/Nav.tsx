@@ -44,12 +44,14 @@ const ITEMS: NavItem[] = [
   { label: "Treatments", href: "/peptides", panel: "treatments" },
   { label: "Protocols", href: "/stacks", panel: "protocols" },
   { label: "How it works", href: "/how-it-works" },
+  { label: "Why Nexphoria", href: "/why" },
 ];
 
 /* The rows under the goal tiles on a phone. */
 const SHEET_ROWS: { label: string; line: string; href: string }[] = [
   { label: "Protocols", line: "Medicines prescribed together, on one plan.", href: "/stacks" },
   { label: "How it works", line: "The questions, the physician, the first dose.", href: "/how-it-works" },
+  { label: "Why Nexphoria", line: "One price. One physician. Your own blood.", href: "/why" },
   { label: "FAQ", line: "What people ask before they start.", href: "/faq" },
   { label: "Contact", line: "Write to us, and a person answers.", href: "/contact" },
 ];
@@ -61,7 +63,7 @@ const GOALS: PeptideCategory[] = liveCategories(GOAL_ORDER).filter((g) => GOAL_O
 const CONTAINER = "nx-container";
 
 function GoalTile({ goal, onPick, testid }: { goal: PeptideCategory; onPick: () => void; sizes?: string; testid: string }) {
-  return <IvyGoalTile goal={goal} href={`/peptides?goal=${goal}`} onClick={onPick} testId={testid} />;
+  return <IvyGoalTile goal={goal} href={`/peptides?goal=${goal}`} onClick={onPick} testId={testid} chips />;
 }
 
 /* The tenth tile: every medicine, on navy. */

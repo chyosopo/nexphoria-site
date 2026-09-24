@@ -54,7 +54,7 @@ async function slugsFrom(path: string, scopeName?: string): Promise<string[]> {
    it is neither prerendered nor listed here. */
 const STATIC_ROUTES = [
   "/", "/peptides", "/stacks",
-  "/how-it-works", "/quiz",
+  "/how-it-works", "/why", "/quiz",
   "/faq", "/contact",
   "/legal", "/legal/hipaa-notice", "/legal/prescribing-policy",
   "/legal/privacy", "/legal/refund-policy", "/legal/state-availability",
