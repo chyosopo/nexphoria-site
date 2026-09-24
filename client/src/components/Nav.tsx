@@ -51,7 +51,7 @@ const ITEMS: NavItem[] = [
 const SHEET_ROWS: { label: string; line: string; href: string }[] = [
   { label: "Protocols", line: "Medicines prescribed together, on one plan.", href: "/stacks" },
   { label: "How it works", line: "The questions, the physician, the first dose.", href: "/how-it-works" },
-  { label: "Why Nexphoria", line: "One price. One physician. Your own blood.", href: "/why" },
+  { label: "Why Nexphoria", line: "Physician-guided, read from your blood.", href: "/why" },
   { label: "FAQ", line: "What people ask before they start.", href: "/faq" },
   { label: "Contact", line: "Write to us, and a person answers.", href: "/contact" },
 ];

@@ -14,7 +14,7 @@ export function BloodChart() {
     <section className="nx-container nx-cine-sec" aria-labelledby="fd-blood" data-testid="frontdoor-blood">
       <div className="nx-cine-head nx-cine-head--center">
         <p className="nx-eyebrow">The dose</p>
-        <h2 id="fd-blood" className="nx-cine-head__h2">Set from <span className="nx-grad">your blood.</span></h2>
+        <h2 id="fd-blood" className="nx-cine-head__h2">Your blood. <span className="nx-grad">Your dose.</span></h2>
       </div>
       <figure className="nx-cine-chart" style={{ fontFamily: F }}>
         <svg viewBox="0 0 900 420" role="img" aria-label={`A line from the baseline blood panel, drawn before the first dose, to the same panel read again at week ${RETEST_WEEK}; the dose follows the numbers.`}>

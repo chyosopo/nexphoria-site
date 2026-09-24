@@ -19,7 +19,6 @@
    Copy is the loop register (docs/VOICE.md v8; client/src/data/hero.ts). */
 import { Link } from "wouter";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Reveal } from "@/components/Reveal";
 import { HeroCinema } from "@/components/cinema/HeroCinema";
 import { CineBar } from "@/components/cinema/CineBar";
 import { BloodChart } from "@/components/cinema/BloodChart";
@@ -47,9 +46,10 @@ const FAQ = [
   { q: "How is it billed?", a: "One monthly price, paid up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. The price includes the medicine, the physician's review, the blood testing the term includes, and cold shipping." },
 ];
 /* The five on the home: what it is, who prescribes and makes it (the 503A
-   line the LegitScript gate reads on this route), the doctor, the blood, the
-   bill. The other two stay on the FAQ page. */
-const HOME_FAQ = [FAQ[0], FAQ[1], FAQ[2], FAQ[3], FAQ[6]];
+   line the LegitScript gate reads on this route), the doctor, the blood, what
+   happens when the physician says no. Billing and the Ozempic comparison stay
+   on the FAQ page: price is never display copy (VOICE v10). */
+const HOME_FAQ = [FAQ[0], FAQ[1], FAQ[2], FAQ[3], FAQ[4]];
 
 
 export default function FrontDoor() {
@@ -95,22 +95,6 @@ export default function FrontDoor() {
 
       {/* ══ 06 · BY GOAL ══ */}
       <GoalsCinema />
-
-      {/* ══ 08 · PRICE — one statement; the ladder lives on each product page ══ */}
-      <section className="nx-container nx-sec" aria-labelledby="fd-pricing">
-        <Reveal>
-          <div className="nx-ivhead nx-cine-price">
-            <div>
-              <p className="nx-eyebrow">Price</p>
-              <h2 id="fd-pricing" className="nx-ivhead__h2">One price a month, <span className="nx-grad">everything within it.</span></h2>
-              <p className="nx-ivhead__lede" style={{ fontFamily: F }}>
-                The medicine, the physician's review and the blood work, in one monthly price. You pay it up front for a term of one, three, six or twelve months. Three months is 10% less per month, six 15%, twelve 20%. Each medicine shows its own price on its page.
-              </p>
-            </div>
-            <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F }} data-testid="frontdoor-pricing-all">See every price</Link>
-          </div>
-        </Reveal>
-      </section>
 
       {/* ══ 09 · IMPORTANT SAFETY INFORMATION ══ */}
       <Isi />

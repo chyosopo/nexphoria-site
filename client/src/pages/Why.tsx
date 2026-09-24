@@ -16,20 +16,20 @@ import { RETEST_WEEK } from "@/data/monitoring";
 
 export default function Why() {
   useSeo({
-    title: "Why Nexphoria | One price, one physician, your own blood",
-    description: `What every order includes: a licensed U.S. physician on every order and every dose change, a ${PANEL_TOTAL_MARKERS}-marker blood panel read before the first dose and again at week ${RETEST_WEEK}, a medicine compounded for you in a licensed U.S. pharmacy, and one monthly price with everything within it.`,
+    title: "Why Nexphoria | Physician-guided, read from your blood",
+    description: `A licensed U.S. physician on every order and every dose change, a ${PANEL_TOTAL_MARKERS}-marker blood panel read before the first dose and again at week ${RETEST_WEEK}, a medicine compounded for you in a licensed U.S. pharmacy, and a person who answers.`,
     path: "/why",
     jsonLd: [
-      webPageJsonLd({ name: "Why Nexphoria", description: "One price, one physician, your own blood.", path: "/why", type: "MedicalWebPage" }),
+      webPageJsonLd({ name: "Why Nexphoria", description: "Physician-guided, read from your blood.", path: "/why", type: "MedicalWebPage" }),
       breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Why Nexphoria", path: "/why" }]),
     ],
   });
 
   const FACTS = [
-    { n: "01", t: "One price a month. Everything within it.", p: ["The medicine, the physician's review, the blood testing the term includes and cold shipping, in one monthly price, paid up front for a term of one, three, six or twelve months.", "Three months is 10% less per month, six 15%, twelve 20%. Each medicine shows its own price on its page, and the buy box shows the term total beside the monthly rate."] },
-    { n: "02", t: "A licensed physician on every order.", p: ["A U.S.-licensed physician reviews your health history and your goal, prescribes if it is appropriate, and reviews every dose change after that.", "If the physician decides a medicine is wrong for you, you hear why, and the refund policy states what is refunded."] },
-    { n: "03", t: `A ${PANEL_TOTAL_MARKERS}-marker panel, read twice.`, p: [`An at-home kit of ${PANEL_TOTAL_MARKERS} markers across five systems ships with the first order, included. The physician reads it before the first dose.`, `At week ${RETEST_WEEK} the same markers are drawn again and read against the first draw, marker by marker. What changed decides what happens to the dose.`] },
-    { n: "04", t: "Compounded for you. A person answers.", p: ["Your medicine is compounded to the prescription by a licensed U.S. 503A pharmacy and shipped cold, in a plain carton, to all 50 states.", "Questions go to the care team on any business day, and a person answers in writing. Clinical questions go to the physician through the secure portal."] },
+    { n: "01", t: "A licensed physician on every order.", p: ["A U.S.-licensed physician reviews your health history and your goal, prescribes if it is appropriate, and reviews every dose change after that.", "If the physician decides a medicine is wrong for you, you hear why, and the refund policy states what is refunded."] },
+    { n: "02", t: `A ${PANEL_TOTAL_MARKERS}-marker panel, read twice.`, p: [`An at-home kit of ${PANEL_TOTAL_MARKERS} markers across five systems ships with the first order, included. The physician reads it before the first dose.`, `At week ${RETEST_WEEK} the same markers are drawn again and read against the first draw, marker by marker. What changed decides what happens to the dose.`] },
+    { n: "03", t: "Compounded for you. Shipped cold.", p: ["Your medicine is compounded to the prescription by a licensed U.S. 503A pharmacy and shipped cold, in a plain carton, to all 50 states.", "Each month's carton carries the medicine, the syringes and swabs, and an ice pack."] },
+    { n: "04", t: "A person answers.", p: ["Questions go to the care team on any business day, and a person answers in writing.", "Clinical questions go to the physician through the secure portal, and every dose change is the physician's call."] },
   ];
 
   const LINES = [
@@ -47,8 +47,8 @@ export default function Why() {
         <div className="nx-container" style={{ paddingBottom: "var(--nx-sp-tight)" }}>
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Why Nexphoria</p>
-            <h1 id="why-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>One price. One physician. <span className="nx-grad">Your own blood.</span></h1>
-            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Everything an order includes, on one page. The price sits on each medicine's page, next to the medicine.</p>
+            <h1 id="why-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>Made for you. <span className="nx-grad">Read from your blood.</span></h1>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>A licensed physician, a medicine compounded for you, and a dose set from your own panel. Everything else follows from that.</p>
             <div className="nx-tilehero__foot">
               <Link href="/quiz" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="why-hero-cta">Find my treatment <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span></Link>
               <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F }} data-testid="why-hero-browse">Every medicine</Link>
@@ -59,8 +59,8 @@ export default function Why() {
 
       <section className="nx-container nx-cine-sec" aria-labelledby="why-facts" data-testid="why-facts">
         <div className="nx-cine-head">
-          <p className="nx-eyebrow">The four facts</p>
-          <h2 id="why-facts" className="nx-cine-head__h2">Everything <span className="nx-grad">within the price.</span></h2>
+          <p className="nx-eyebrow">Behind every order</p>
+          <h2 id="why-facts" className="nx-cine-head__h2">Four things <span className="nx-grad">you can count on.</span></h2>
         </div>
         <ol className="nx-why-facts">
           {FACTS.map((f) => (

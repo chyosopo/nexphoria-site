@@ -46,7 +46,7 @@ export const HERO = {
   micro: "Prescribed by a licensed U.S. physician, if appropriate. Compounded in a licensed U.S. pharmacy. Shipped cold to all 50 states.",
   /* The fact strip under the hero buttons: six facts, an icon each, the only
      place these appear on the home. Each is a fact, not a claim. */
-  facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "Entirely online", "Ships cold to all 50 states", "One price a month"],
+  facts: ["Licensed U.S. physicians", "Compounded in a U.S. pharmacy", "Blood test included", "Entirely online", "Ships cold to all 50 states", "A person answers"],
   /* The woman at the kitchen window, cool morning light (Higgsfield soul_2, 2026-09-05; 2400w, 1200w) */
   image: heroKitchen,
   imageSrcSet: `${heroKitchen1200} 1200w, ${heroKitchen} 2400w`,

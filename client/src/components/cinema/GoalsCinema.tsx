@@ -3,6 +3,7 @@ import { GoalTile } from "@/components/ivy/GoalTile";
 import { liveCategories } from "@/data/peptides";
 import { GOAL_ORDER } from "@/data/goalTeaching";
 import { F } from "@/lib/typography";
+import { Link } from "wouter";
 
 export function GoalsCinema() {
   const goals = liveCategories(GOAL_ORDER);
@@ -12,6 +13,7 @@ export function GoalsCinema() {
         <p className="nx-eyebrow">By goal</p>
         <h2 id="fd-goals" className="nx-cine-head__h2">Know what you're after? <span className="nx-grad">Start there.</span></h2>
         <p className="nx-cine-head__p" style={{ fontFamily: F }}>Every goal with a medicine behind it. Choose one and see what a physician can prescribe for it.</p>
+        <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F, marginTop: "1.2rem" }} data-testid="frontdoor-pricing-all">Every medicine</Link>
       </div>
       <ul className="nx-cine-goals" aria-label="Every goal">
         {goals.map((g) => (

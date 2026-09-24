@@ -1,3 +1,31 @@
+# The house voice, v10: price is never display copy (Chiya, 2026-09-24)
+
+Chiya, 2026-09-24, on "EVERY MEDICINE. EVERY PRICE." and "ONE PRICE. ONE
+PHYSICIAN. YOUR OWN BLOOD.": "Who talks about price? None of the
+competition copy is so good." She is right: nuformhealth.com, mod.com,
+enhanced.com and openloophealth.com never put a price in a headline. The
+price is a fact that sits beside the medicine on its page and in the buy
+box, and nowhere else (law 3 already said so; this deck had drifted into
+using the house phrase "one price a month, everything within it" as a
+headline, which turns a fact into a pitch).
+
+v10 replaces v9. What changes:
+
+1. **No headline, lede, eyebrow, nav line or tile names a price, a term
+   or a discount.** The home has no price section. The why page states
+   the physician, the panel, the pharmacy and the person; the price is
+   on each medicine's page.
+2. **Display copy names the goal or the fact, in the performance
+   register:** LEANER. STRONGER. *SHARPER. RESTED.* / YOUR BLOOD. *YOUR
+   DOSE.* / MADE FOR YOU. *READ FROM YOUR BLOOD.* / FOUR THINGS *YOU CAN
+   COUNT ON.* / PRESCRIBED TOGETHER. *ONE PLAN.* / WRITE TO US. *A PERSON
+   ANSWERS.*
+3. **A headline never describes the layout.** "Every medicine, with its
+   price beside it" said where a number sits; it is gone.
+4. The guardrails at the bottom still hold.
+
+---
+
 # The house voice, v9: the cinema register (Chiya, 2026-09-16)
 
 Chiya, 2026-09-16: "build a site: high-res, cinema-grade design and
