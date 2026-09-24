@@ -11,7 +11,7 @@ export function GoalsCinema() {
       <div className="nx-cine-head">
         <p className="nx-eyebrow">By goal</p>
         <h2 id="fd-goals" className="nx-cine-head__h2">Know what you're after? <span className="nx-grad">Start there.</span></h2>
-        <p className="nx-cine-head__p" style={{ fontFamily: F }}>Every goal with a medicine behind it. Choose one and see what a physician can prescribe for it, with the price beside each.</p>
+        <p className="nx-cine-head__p" style={{ fontFamily: F }}>Every goal with a medicine behind it. Choose one and see what a physician can prescribe for it.</p>
       </div>
       <ul className="nx-cine-goals" aria-label="Every goal">
         {goals.map((g) => (

@@ -16,7 +16,7 @@ export function GoalBand() {
         <div className="nx-ivhead nx-ivhead--center">
           <p className="nx-eyebrow">By goal</p>
           <h2 id="fd-goals" className="nx-ivhead__h2">Know what you're after? <span className="nx-grad">Start there.</span></h2>
-          <p className="nx-ivhead__lede" style={{ fontFamily: F }}>Every goal with a medicine behind it. Choose one and see what a physician can prescribe for it, with the price beside each.</p>
+          <p className="nx-ivhead__lede" style={{ fontFamily: F }}>Every goal with a medicine behind it. Choose one and see what a physician can prescribe for it.</p>
         </div>
         <ul className="nx-olgoals" aria-label="Every goal">
           {goals.map((g) => (
