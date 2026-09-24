@@ -48,7 +48,7 @@ export default function Why() {
           <div className="nx-tilehero__head nx-hero-seq">
             <p className="nx-eyebrow">Why Nexphoria</p>
             <h1 id="why-title" className="nx-tilehero__h1" style={{ fontFamily: S }}>One price. One physician. <span className="nx-grad">Your own blood.</span></h1>
-            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Four facts, each stated once and in full. Everything an order includes is on this page, and the price is on each medicine's page.</p>
+            <p className="nx-tilehero__sub" style={{ fontFamily: F }}>Everything an order includes, on one page. The price sits on each medicine's page, next to the medicine.</p>
             <div className="nx-tilehero__foot">
               <Link href="/quiz" className="nx-cta-cobalt" style={{ fontFamily: F }} data-testid="why-hero-cta">Find my treatment <span className="nx-cta__arrow" aria-hidden="true"><ArrowRight /></span></Link>
               <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F }} data-testid="why-hero-browse">Every medicine</Link>
@@ -59,8 +59,8 @@ export default function Why() {
 
       <section className="nx-container nx-cine-sec" aria-labelledby="why-facts" data-testid="why-facts">
         <div className="nx-cine-head">
-          <p className="nx-eyebrow">What every order includes</p>
-          <h2 id="why-facts" className="nx-cine-head__h2">The four facts, <span className="nx-grad">in full.</span></h2>
+          <p className="nx-eyebrow">The four facts</p>
+          <h2 id="why-facts" className="nx-cine-head__h2">Everything <span className="nx-grad">within the price.</span></h2>
         </div>
         <ol className="nx-why-facts">
           {FACTS.map((f) => (
@@ -78,8 +78,8 @@ export default function Why() {
       <section className="nx-container nx-cine-sec" aria-labelledby="why-after" data-testid="why-after">
         <div className="nx-cine-head">
           <p className="nx-eyebrow">After the first dose</p>
-          <h2 id="why-after" className="nx-cine-head__h2">Care continues <span className="nx-grad">for the whole term.</span></h2>
-          <p className="nx-cine-head__p" style={{ fontFamily: F }}>The prescription is the start of the care. What follows is stated here so a reader knows it before the first order.</p>
+          <h2 id="why-after" className="nx-cine-head__h2">The prescription <span className="nx-grad">is where the care starts.</span></h2>
+          <p className="nx-cine-head__p" style={{ fontFamily: F }}>What follows the first dose, stated before the first order.</p>
         </div>
         <ul className="nx-why-lines" aria-label="What continues after the first dose">
           {LINES.map(({ Icon, t }) => (

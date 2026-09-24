@@ -22,7 +22,7 @@ export function TreatmentsRail() {
       <div className="nx-ivhead">
         <div>
           <p className="nx-eyebrow">Treatments</p>
-          <h2 id="fd-formulary" className="nx-ivhead__h2">Every medicine, <span className="nx-grad">with its price beside it.</span></h2>
+          <h2 id="fd-formulary" className="nx-ivhead__h2">Every medicine. <span className="nx-grad">Every price.</span></h2>
         </div>
         <Link href="/peptides" className="nx-cta-ceramic" style={{ fontFamily: F }} data-testid="frontdoor-menu-all">All treatments</Link>
       </div>

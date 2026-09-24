@@ -169,7 +169,7 @@ export default function SoloPDP({ slug, world }: { slug: string; world?: "men" |
                 {solo.gated
                   ? <span>Priced after the physician's review</span>
                   : solo.pricing
-                  ? <><b>{usd(solo.pricing.m12)}</b><span>/mo</span><small>{usd(solo.pricing.m12 * 12)} for twelve months · {usd(solo.pricing.m1)} a month for one month · the blood test included</small></>
+                  ? <><b>{usd(solo.pricing.m12)}</b><span>/mo on a twelve-month plan</span><small>{usd(solo.pricing.m12 * 12)} for the year · {usd(solo.pricing.m1)}/mo month to month · blood test included</small></>
                   : <span>Priced at consultation</span>}
               </p>
               <p className="nx-phero__lede" style={{ fontFamily: F }}>{solo.outcome}</p>
