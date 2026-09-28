@@ -17,6 +17,23 @@ name: Deploy Apex (Cloudflare Pages)
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: >-
+          What to publish. "site" builds and gates the full site. "holding"
+          publishes holding/ (the "Opening soon" page) with no build: every
+          path answers index.html with a 200, so old deep links land there.
+          Same project, same production branch, so the newest deploy wins in
+          either direction; run "site" again to put the site back. Added
+          2026-09-28 on Chiya's word ("put some kind of a coming soon
+          instead"). It lives in this workflow rather than its own file
+          because GitHub only registers a workflow that exists on the default
+          branch, and this one does.
+        required: false
+        default: site
+        type: choice
+        options:
+          - site
+          - holding
       branch:
         description: >-
           Cloudflare Pages branch to publish as. Must equal the PROJECT'S
@@ -37,7 +54,57 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  holding:
+    if: ${{ inputs.mode == 'holding' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: "Gate — the holding folder is complete"
+        run: |
+          set -e
+          for f in holding/index.html holding/_redirects holding/robots.txt \
+                   holding/fonts/instrument-sans-variable.woff2 \
+                   holding/fonts/instrument-sans-italic-variable.woff2 \
+                   holding/fonts/manrope-variable.woff2 \
+                   holding/img/hero-bg-1200.webp holding/img/hero-bg-2400.webp \
+                   holding/img/box-800.webp holding/img/box-1600.webp \
+                   holding/favicon/favicon-32.png holding/favicon/favicon.ico; do
+            [ -s "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          [ ! -e holding/404.html ] || { echo "::error::holding/404.html would disable the SPA fallback"; exit 1; }
+          grep -q "Nexphoria Research LLC" holding/index.html || { echo "::error::the legal entity line is missing"; exit 1; }
+          grep -q "Food and Drug Administration" holding/index.html || { echo "::error::the FDA clause is missing"; exit 1; }
+          echo "holding/ complete"
+
+      - name: Deploy the holding page to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          BRANCH: ${{ inputs.branch || 'claude/cloudflare-agent-setup-x9vzvc' }}
+        run: |
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || { echo "::error::CLOUDFLARE_API_TOKEN secret is not set."; exit 1; }
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || { echo "::error::CLOUDFLARE_ACCOUNT_ID secret is not set."; exit 1; }
+          npx wrangler pages deploy holding --project-name=nexphoria --branch="${BRANCH}" --commit-dirty=true
+
+      - name: Verify the apex serves the holding page (deep links must 200)
+        run: |
+          sleep 20
+          fail=0
+          for p in / /peptides /peptides/tesamorelin /faq; do
+            code=$(curl -sL -o /dev/null -w "%{http_code}" "https://nexphoria.com$p")
+            echo "https://nexphoria.com$p -> $code"
+            [ "$code" = "200" ] || fail=1
+          done
+          curl -sL "https://nexphoria.com/" | grep -q "Opening soon" || { echo "::error::the apex is not serving the holding page"; fail=1; }
+          exit $fail
+
   deploy:
+    if: ${{ inputs.mode != 'holding' }}
     runs-on: ubuntu-latest
     steps:
       # Deploys THE REF IT WAS DISPATCHED ON, not a hardcoded branch.
