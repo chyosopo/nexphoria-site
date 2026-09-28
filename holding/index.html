@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexphoria | Opening soon</title>
+  <meta name="description" content="Nexphoria is a physician-guided peptide telehealth practice. Prescription peptides, compounded for you and set from your own blood work. The site opens soon." />
+  <link rel="canonical" href="https://nexphoria.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nexphoria | Opening soon" />
+  <meta property="og:description" content="Physician-guided peptide telehealth. Opening soon." />
+  <meta property="og:url" content="https://nexphoria.com/" />
+  <meta name="theme-color" content="#0A0A0A" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png" />
+  <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png" />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-sans-variable.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-sans-italic-variable.woff2" crossorigin />
+  <link rel="preload" as="image" href="/img/hero-bg-1200.webp" imagesrcset="/img/hero-bg-1200.webp 1200w, /img/hero-bg-2400.webp 2400w" imagesizes="100vw" />
+  <style>
+    /* The holding page, in the cinema register (client/src/styles/cinema.css):
+       one canvas, black; the beaded surface; the carton; three caps lines with
+       one italic accent; one cobalt pill. The same tokens, copied here so the
+       page stands alone with no build. */
+    @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/instrument-sans-variable.woff2") format("woff2"); }
+    @font-face { font-family: "Instrument Sans"; font-style: italic; font-weight: 400 700; font-display: swap; src: url("/fonts/instrument-sans-italic-variable.woff2") format("woff2"); }
+    @font-face { font-family: "Manrope"; font-style: normal; font-weight: 300 800; font-display: swap; src: url("/fonts/manrope-variable.woff2") format("woff2"); }
+    :root {
+      --nx-bg: #0A0A0A;
+      --nx-fg: #FFFFFF;
+      --nx-fg-soft: #B8B8B8;
+      --nx-fg-mute: #9A9A9A;
+      --nx-line: rgba(255, 255, 255, 0.14);
+      --nx-cobalt: #0B5FD6;
+      --nx-cobalt-ink: #8DBBFF;
+      --nx-t-display: clamp(46px, 6.8vw, 80px);
+      --nx-t-body: 16.5px;
+      --nx-t-sm: 13.5px;
+      --nx-t-xs: 12px;
+      --nx-ls-caps: 0.14em;
+      --nx-ls-wide: 0.2em;
+      --nx-r-pill: 999px;
+      --nx-display: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+      --nx-body: "Manrope", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body { background: var(--nx-bg); color: var(--nx-fg); font-family: var(--nx-body); -webkit-font-smoothing: antialiased; }
+    .nx-skip { position: absolute; left: -999px; }
+    .nx-skip:focus { left: 16px; top: 16px; z-index: 10; background: #fff; color: #000; padding: 8px 12px; }
+
+    .nx-hold { position: relative; min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; isolation: isolate; }
+    .nx-hold__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; opacity: .9; }
+    .nx-hold::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background: linear-gradient(90deg, rgba(10,10,10,.92) 0%, rgba(10,10,10,.72) 42%, rgba(10,10,10,.1) 100%),
+                  linear-gradient(180deg, rgba(10,10,10,.3) 0%, transparent 30%, transparent 75%, var(--nx-bg) 100%); }
+
+    .nx-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+
+    .nx-top { display: flex; align-items: center; justify-content: space-between; padding-top: clamp(1.2rem, 2.5vw, 2rem); }
+    .nx-mark { display: inline-flex; align-items: center; gap: .6rem; color: #fff; text-decoration: none; }
+    .nx-mark svg { width: 30px; height: 25px; display: block; }
+    .nx-mark span { font-family: var(--nx-display); font-weight: 700; font-size: 15px; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; }
+    .nx-top__line { margin: 0; font-size: var(--nx-t-xs); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; color: var(--nx-cobalt-ink); }
+
+    .nx-grid { flex: 1; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(1rem, 3vw, 3rem); padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(2rem, 5vw, 4rem); }
+    h1 { margin: 0; font-family: var(--nx-display); font-weight: 700; font-size: var(--nx-t-display); line-height: .96; letter-spacing: -0.02em; text-transform: uppercase; color: #fff; }
+    h1 span { display: block; }
+    .nx-grad { color: var(--nx-cobalt-ink); font-style: italic; }
+    .nx-sub { margin: 1.4rem 0 0; max-width: 44ch; font-size: var(--nx-t-body); line-height: 1.55; color: rgba(255,255,255,.86); text-wrap: pretty; }
+    .nx-fact { display: flex; align-items: center; gap: .6rem; margin: 1.1rem 0 0; font-size: var(--nx-t-sm); font-weight: 600; color: rgba(255,255,255,.8); }
+    .nx-fact svg { color: var(--nx-cobalt-ink); flex: none; }
+    .nx-act { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem 1.4rem; margin-top: 1.8rem; }
+    .nx-cta { display: inline-flex; align-items: center; gap: .6rem; min-height: 50px; padding: 0 22px 0 26px; border-radius: var(--nx-r-pill); background: var(--nx-cobalt); color: #fff; font-family: var(--nx-body); font-size: var(--nx-t-sm); font-weight: 700; letter-spacing: var(--nx-ls-caps); text-transform: uppercase; text-decoration: none; transition: transform .18s ease, filter .2s ease; }
+    .nx-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    .nx-cta:active { transform: scale(.98); }
+    .nx-cta svg { width: 18px; height: 18px; }
+    .nx-more { display: inline-flex; align-items: center; min-height: 44px; color: #fff; font-size: var(--nx-t-sm); font-weight: 700; letter-spacing: var(--nx-ls-wide); text-transform: uppercase; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.4); }
+    .nx-more:hover { border-color: #fff; }
+    .nx-art { display: flex; justify-content: center; align-items: flex-end; }
+    .nx-art img { width: min(100%, 34rem); height: auto; display: block; -webkit-mask-image: radial-gradient(70% 70% at 50% 55%, #000 55%, transparent 100%); mask-image: radial-gradient(70% 70% at 50% 55%, #000 55%, transparent 100%); }
+
+    .nx-foot { border-top: 1px solid var(--nx-line); padding-top: 1.4rem; padding-bottom: 1.6rem; }
+    .nx-foot__row { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; align-items: baseline; justify-content: space-between; font-size: var(--nx-t-xs); color: var(--nx-fg-mute); }
+    .nx-foot__row a { color: var(--nx-fg-soft); text-decoration: none; }
+    .nx-foot__row a:hover { color: #fff; }
+    .nx-foot__legal { margin: .9rem 0 0; max-width: 84ch; font-size: var(--nx-t-xs); line-height: 1.55; color: var(--nx-fg-mute); }
+
+    @media (max-width: 960px) {
+      .nx-grid { grid-template-columns: 1fr; padding-top: 2.4rem; }
+      .nx-hold::after { background: linear-gradient(180deg, rgba(10,10,10,.86) 0%, rgba(10,10,10,.6) 55%, var(--nx-bg) 100%); }
+      .nx-art img { width: min(100%, 22rem); }
+      .nx-top__line { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { .nx-cta { transition: none; } }
+  </style>
+</head>
+<body>
+  <a class="nx-skip" href="#main">Skip to content</a>
+  <div class="nx-hold">
+    <img class="nx-hold__bg" src="/img/hero-bg-1200.webp" srcset="/img/hero-bg-1200.webp 1200w, /img/hero-bg-2400.webp 2400w" sizes="100vw" alt="" width="2400" height="1029" fetchpriority="high" decoding="async" />
+    <header class="nx-container nx-top">
+      <a class="nx-mark" href="/" aria-label="Nexphoria">
+        <svg viewBox="0 0 600 500" fill="currentColor" aria-hidden="true"><circle cx="129.698" cy="380.792" r="71.864"/><path d="M519.834,328.405c-17.864-16.774-41.141-22.533-62.628-18.55c-18.724,3.471-38.055-0.118-53.17-11.702l-6.86-5.257c-15.349-11.763-23.999-29.746-25.629-49.016c-1.685-19.927-11.623-39.039-29.014-51.808c-16.815-12.346-37.204-16.273-56.18-12.583c-18.19,3.537-37.03,0.099-51.739-11.173l-7.496-5.744c-15.472-11.857-24.203-29.973-25.892-49.393c-1.792-20.603-12.408-40.363-31.14-53.138c-29.987-20.451-71.799-14.725-95.228,12.998c-26.524,31.385-21.393,78.205,10.727,103.18c17.127,13.317,38.364,17.629,58.085,13.695c18.6-3.71,37.886,0.889,52.94,12.426l6.216,4.764c15.349,11.763,23.999,29.746,25.629,49.016c1.685,19.927,11.623,39.039,29.014,51.809c16.815,12.346,37.204,16.273,56.18,12.583c18.19-3.537,37.03-0.099,51.739,11.173l7.704,5.904c14.677,11.248,24.521,28.127,25.467,46.594c1.094,21.348,11.653,41.983,30.521,55.197c34.727,24.32,83.49,13.65,104.428-24.632C548.956,386.504,543.301,350.44,519.834,328.405z"/><circle cx="470.305" cy="119.208" r="71.864"/></svg>
+        <span>Nexphoria</span>
+      </a>
+      <p class="nx-top__line">Physician-guided peptide telehealth</p>
+    </header>
+
+    <main id="main" class="nx-container nx-grid">
+      <div>
+        <h1>
+          <span>Lose the weight.</span>
+          <span>Recover faster.</span>
+          <span class="nx-grad">Opening soon.</span>
+        </h1>
+        <p class="nx-sub">Prescription peptides, compounded for you and set from your own blood work. Entirely online. Nexphoria opens to patients soon.</p>
+        <p class="nx-fact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Licensed U.S. physicians · Compounded in a U.S. pharmacy</p>
+        <div class="nx-act">
+          <a class="nx-cta" href="mailto:hello@nexphoria.com?subject=Nexphoria">Write to us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="nx-more" href="tel:+19297282869">(929) 728-2869</a>
+        </div>
+      </div>
+      <div class="nx-art" aria-hidden="true">
+        <img src="/img/box-800.webp" srcset="/img/box-800.webp 600w, /img/box-1600.webp 1200w" sizes="(max-width: 960px) 80vw, 40vw" alt="" width="1200" height="1607" fetchpriority="high" decoding="async" />
+      </div>
+    </main>
+
+    <footer class="nx-container nx-foot">
+      <div class="nx-foot__row">
+        <span>© 2026 Nexphoria Research LLC · All rights reserved</span>
+        <span>670 Flushing Ave, Brooklyn, NY 11213 · <a href="mailto:hello@nexphoria.com">hello@nexphoria.com</a></span>
+      </div>
+      <p class="nx-foot__legal">These statements have not been evaluated by the Food and Drug Administration. Medication is dispensed only if a licensed provider determines a prescription is appropriate. Compounded medications are not approved or evaluated by the FDA for safety, effectiveness, or quality.</p>
+    </footer>
+  </div>
+</body>
+</html>

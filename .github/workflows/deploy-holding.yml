@@ -1,0 +1,88 @@
+# Holding page deploy — nexphoria.com serves holding/ ("Opening soon")
+# instead of the site.
+#
+# MANUAL TRIGGER ONLY (workflow_dispatch): the apex is public, so every
+# publish here is on Chiya's explicit word (CLAUDE.md hard rule 2). Asked
+# for 2026-09-28: "Instead of the website and nexphoria.com, can you put
+# some kind of a coming soon instead?"
+#
+# holding/ is a static folder with no build step: index.html, the three
+# fonts, the two studio photographs, the favicons, robots.txt and a
+# _redirects that answers every path with index.html, so every deep link
+# that search engines and old links still carry lands on the holding page
+# with a 200, never a 404. No 404.html, for the same reason as the site
+# deploy.
+#
+# To put the site back: run deploy-apex.yml on the branch to publish. The
+# same Pages project, the same production branch; the newest deploy wins.
+name: Deploy Holding Page (Cloudflare Pages, apex)
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: >-
+          Cloudflare Pages branch to publish as. Must equal the project's
+          production branch or the deploy lands as a preview (see
+          deploy-apex.yml for the history of this value).
+        required: false
+        default: claude/cloudflare-agent-setup-x9vzvc
+
+concurrency:
+  group: deploy-apex
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: "Gate — the holding folder is complete"
+        run: |
+          set -e
+          for f in holding/index.html holding/_redirects holding/robots.txt \
+                   holding/fonts/instrument-sans-variable.woff2 \
+                   holding/fonts/instrument-sans-italic-variable.woff2 \
+                   holding/fonts/manrope-variable.woff2 \
+                   holding/img/hero-bg-1200.webp holding/img/hero-bg-2400.webp \
+                   holding/img/box-800.webp holding/img/box-1600.webp \
+                   holding/favicon/favicon-32.png holding/favicon/favicon.ico; do
+            [ -s "$f" ] || { echo "::error::missing $f"; exit 1; }
+          done
+          [ ! -e holding/404.html ] || { echo "::error::holding/404.html would disable the SPA fallback"; exit 1; }
+          grep -q "Nexphoria Research LLC" holding/index.html || { echo "::error::the legal entity line is missing"; exit 1; }
+          grep -q "Food and Drug Administration" holding/index.html || { echo "::error::the FDA clause is missing"; exit 1; }
+          echo "holding/ complete"
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          BRANCH: ${{ inputs.branch || 'claude/cloudflare-agent-setup-x9vzvc' }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN secret is not set."
+            exit 1
+          fi
+          if [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::CLOUDFLARE_ACCOUNT_ID secret is not set."
+            exit 1
+          fi
+          npx wrangler pages deploy holding --project-name=nexphoria --branch="${BRANCH}" --commit-dirty=true
+
+      - name: Verify the apex serves the holding page (deep links must 200)
+        run: |
+          sleep 20
+          fail=0
+          for p in / /peptides /peptides/tesamorelin /faq; do
+            code=$(curl -sL -o /dev/null -w "%{http_code}" "https://nexphoria.com$p")
+            echo "https://nexphoria.com$p -> $code"
+            [ "$code" = "200" ] || fail=1
+          done
+          curl -sL "https://nexphoria.com/" | grep -q "Opening soon" || { echo "::error::the apex is not serving the holding page"; fail=1; }
+          exit $fail
